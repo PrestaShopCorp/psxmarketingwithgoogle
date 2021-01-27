@@ -1,0 +1,6 @@
+.idea/
+.php_cs.cache
+.env
+composer-dev.json
+composer-dev.lock
+vendor

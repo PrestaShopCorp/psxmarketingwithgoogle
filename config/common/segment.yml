@@ -1,0 +1,6 @@
+services:
+  PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment:
+    class: 'PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment'
+    arguments:
+      - '@ps_googleshopping.context'
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Config\Env'

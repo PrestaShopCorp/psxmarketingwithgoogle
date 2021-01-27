@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: ps17_mysql
+    ports:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: psreference
+  reference-release:
+    image: prestashop/prestashop:1.7
+    container_name: ps17_php
+    volumes:
+      - ./:/var/www/html/modules/ps_facebook
+    environment:
+      DB_SERVER: mysql
+      DB_PASSWD: root
+      DB_NAME: psreference
+      PS_DOMAIN: localhost:8001
+      PS_DEV_MODE: 0
+      PS_INSTALL_AUTO: 1
+      PS_ERASE_DB: 1
+      PS_FOLDER_ADMIN: admin-dev
+      PS_FOLDER_INSTALL: install-dev
+      PS_LANGUAGE: fr
+      PS_COUNTRY: fr
+    depends_on:
+      - mysql
+    ports:
+      - "8001:80"
