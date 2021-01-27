@@ -1,6 +1,5 @@
 <?php
 
-
 class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 {
     /** @var Ps_googleshopping */
@@ -14,11 +13,9 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 
     public function initContent()
     {
-
     }
 
     public function postProcess()
     {
-
     }
 }
