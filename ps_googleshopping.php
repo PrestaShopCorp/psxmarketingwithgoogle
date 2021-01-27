@@ -16,6 +16,33 @@ class Ps_googleshopping extends Module
      */
     private $serviceContainer;
 
+    /**
+     * @var string
+     */
+    public $controllerAdmin;
+
+    /**
+     * @var bool
+     */
+    public $psVersionIs17;
+
+    /**
+     * @var string
+     */
+    public $css_path;
+
+    /**
+     * @var string
+     */
+    public $docs_path;
+
+    /**
+     * @var string
+     */
+    public $js_path;
+
+    public $front_controller = null;
+
     public function __construct()
     {
         $this->name = 'ps_googleshopping';
