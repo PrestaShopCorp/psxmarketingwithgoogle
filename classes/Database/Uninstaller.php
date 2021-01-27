@@ -57,6 +57,8 @@ class Uninstaller
         $this->segment->setMessage('PS Google shopping uninstalled');
         $this->segment->track();
 
+        /* todo: remove ignore when first configuration is added to the list */
+        /* @phpstan-ignore-next-line */
         foreach (array_keys(Config::CONFIGURATION_LIST) as $name) {
             \Configuration::deleteByName((string) $name);
         }
