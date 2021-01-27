@@ -1,0 +1,3 @@
+services:
+  PrestaShop\Module\PrestashopGoogleShopping\Repository\TabRepository:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Repository\TabRepository

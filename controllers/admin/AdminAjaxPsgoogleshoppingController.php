@@ -13,6 +13,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 
     public function initContent()
     {
+        parent::initContent();
     }
 
     public function postProcess()

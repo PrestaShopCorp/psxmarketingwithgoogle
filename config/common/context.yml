@@ -1,32 +1,32 @@
 services:
   ps_googleshopping.context:
     class: 'Context'
-    factory: ['PrestaShop\Module\PrestashopFacebook\Factory\ContextFactory', 'getContext']
+    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getContext']
 
   ps_googleshopping.controller:
     class: 'Controller'
-    factory: ['PrestaShop\Module\PrestashopFacebook\Factory\ContextFactory', 'getController']
+    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getController']
 
   ps_googleshopping.cookie:
     class: 'Cookie'
-    factory: ['PrestaShop\Module\PrestashopFacebook\Factory\ContextFactory', 'getCookie']
+    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getCookie']
 
   ps_googleshopping.language:
     class: 'Language'
-    factory: ['PrestaShop\Module\PrestashopFacebook\Factory\ContextFactory', 'getLanguage']
+    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getLanguage']
 
   ps_googleshopping.currency:
     class: 'Currency'
-    factory: ['PrestaShop\Module\PrestashopFacebook\Factory\ContextFactory', 'getCurrency']
+    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getCurrency']
 
   ps_googleshopping.smarty:
     class: 'Smarty'
-    factory: ['PrestaShop\Module\PrestashopFacebook\Factory\ContextFactory', 'getSmarty']
+    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getSmarty']
 
   ps_googleshopping.shop:
     class: 'Shop'
-    factory: ['PrestaShop\Module\PrestashopFacebook\Factory\ContextFactory', 'getShop']
+    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getShop']
 
   ps_googleshopping.link:
     class: 'Shop'
-    factory: ['PrestaShop\Module\PrestashopFacebook\Factory\ContextFactory', 'getLink']
+    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getLink']

@@ -188,7 +188,7 @@ class Installer
             [
                 'className' => 'AdminPsgoogleshoppingModule',
                 'parent' => 'Marketing',
-                'name' => 'Facebook',
+                'name' => 'Google shopping',
                 'module' => $this->module->name,
                 'active' => true,
                 'icon' => '',

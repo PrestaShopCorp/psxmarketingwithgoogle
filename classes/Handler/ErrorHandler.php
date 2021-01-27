@@ -29,7 +29,7 @@ class ErrorHandler
         $env = $module->getService(Env::class);
 
         $this->client = new Raven_Client(
-            $env->get('PSX_FACEBOOK_SENTRY_CREDENTIALS'),
+            $env->get('PSX_GOOGLE_SHOPPING_SENTRY_CREDENTIALS'),
             [
                 'level' => 'warning',
                 'tags' => [

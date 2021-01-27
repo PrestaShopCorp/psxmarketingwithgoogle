@@ -1,6 +1,10 @@
 <?php
 
-use Dotenv\Dotenv;
+use PrestaShop\Module\PrestashopGoogleShopping\Database\Installer;
+use PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller;
+use PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler;
+use PrestaShop\Module\PrestashopGoogleShopping\Repository\TabRepository;
+use PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment;
 use PrestaShop\ModuleLibServiceContainer\DependencyInjection\ServiceContainer;
 
 if (!defined('_PS_VERSION_')) {
@@ -74,16 +78,6 @@ class Ps_googleshopping extends Module
         if ($this->serviceContainer === null) {
             $this->serviceContainer = new ServiceContainer($this->name, $this->getLocalPath());
         }
-
-        $this->loadEnv();
-    }
-
-    private function loadEnv()
-    {
-        if (file_exists(_PS_MODULE_DIR_ . 'ps_googleshopping/.env')) {
-            $dotenv = Dotenv::create(_PS_MODULE_DIR_ . 'ps_googleshopping/');
-            $dotenv->load();
-        }
     }
 
     /**
@@ -94,6 +88,57 @@ class Ps_googleshopping extends Module
     public function getService($serviceName)
     {
         return $this->serviceContainer->getService($serviceName);
+    }
+
+    public function install()
+    {
+        // We can't init the Uninstaller in CLI, as it has been declared in the admin container and PrestaShop
+        // does not have the _PS_ADMIN_DIR_ in this environment.
+        // prestashop/module-lib-service-container:1.3.1 is known as incompatible
+        // $installer = $this->getService(Installer::class);
+        if (!parent::install()) {
+            $this->_errors[] = $this->l('Unable to install module');
+
+            return false;
+        }
+
+        if (!(new PrestaShop\AccountsAuth\Installer\Install())->installPsAccounts()) {
+            $this->_errors[] = $this->l('Unable to install ps accounts');
+
+            return false;
+        }
+
+        $installer = new Installer(
+            $this,
+            $this->getService(Segment::class),
+            $this->getService(ErrorHandler::class)
+        );
+
+        if (!$installer->install()) {
+            $this->_errors = $installer->getErrors();
+
+            return false;
+        }
+
+        return true;
+    }
+
+    public function uninstall()
+    {
+        // We can't init the Uninstaller in CLI, as it has been declared in the admin container and PrestaShop
+        // does not have the _PS_ADMIN_DIR_ in this environment.
+        // prestashop/module-lib-service-container:1.3.1 is known as incompatible
+        // $uninstaller = $this->getService(Uninstaller::class);
+
+        $uninstaller = new Uninstaller(
+            $this,
+            $this->getService(TabRepository::class),
+            $this->getService(Segment::class),
+            $this->getService(ErrorHandler::class)
+        );
+
+        return $uninstaller->uninstall() &&
+            parent::uninstall();
     }
 
     public function getContent()

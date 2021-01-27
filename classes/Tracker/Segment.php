@@ -42,7 +42,7 @@ class Segment implements TrackerInterface
      */
     private function init()
     {
-        \Segment::init($this->env->get('PSX_FACEBOOK_SEGMENT_API_KEY'));
+        \Segment::init($this->env->get('PSX_GOOGLE_SHOPPING_SEGMENT_API_KEY'));
     }
 
     /**
