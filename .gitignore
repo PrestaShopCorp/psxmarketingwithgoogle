@@ -1,0 +1,24 @@
+vendor/
+node_modules/
+upload/*
+
+# Ignore VueJS compiled files
+views/css/app.css
+views/js/app.js
+views/js/chunk-vendors.js
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+
+.php_cs.cache
+.env
+
+.idea/
+
+tests/integration/config.json
+.terraform/
