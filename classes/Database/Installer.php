@@ -71,8 +71,8 @@ class Installer
         $result = true;
 
         foreach (\Shop::getShops(false, null, true) as $shopId) {
-            /** todo: remove ingore when first configuration is added to the list */
-            /** @phpstan-ignore-next-line */
+            /* todo: remove ingore when first configuration is added to the list */
+            /* @phpstan-ignore-next-line */
             foreach (Config::CONFIGURATION_LIST as $name => $value) {
                 if (false === \Configuration::hasKey((string) $name, null, null, (int) $shopId)) {
                     $result = $result && \Configuration::updateValue(
