@@ -1,0 +1,12 @@
+imports:
+  - { resource: common/config.yml }
+  - { resource: common/context.yml }
+  - { resource: common/handler.yml }
+  - { resource: common/segment.yml }
+
+services:
+  ps_googleshopping:
+    class: 'Ps_googleshopping'
+    factory: ['Module', 'getInstanceByName']
+    arguments:
+      - 'ps_googleshopping'
