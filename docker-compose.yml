@@ -13,5 +13,3 @@ services:
         volumes:
             - ./:/var/www/html
         working_dir: /var/www/html
-        environment:
-            PATH: /var/www/html/_dev/node_modules/.bin/:$PATH

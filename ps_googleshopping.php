@@ -50,7 +50,7 @@ class Ps_googleshopping extends Module
     public function __construct()
     {
         $this->name = 'ps_googleshopping';
-        $this->tab = 'social_networks';
+        $this->tab = 'advertising_marketing';
         $this->version = '1.0.0';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
