@@ -1,0 +1,3 @@
+imports:
+  - { resource: ../common.yml }
+  - { resource: installer.yml }

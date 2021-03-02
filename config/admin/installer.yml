@@ -1,0 +1,15 @@
+services:
+  PrestaShop\Module\PrestashopGoogleShopping\Database\Installer:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Database\Installer
+    arguments:
+      - '@ps_googleshopping'
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment'
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler'
+
+  PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller
+    arguments:
+      - '@ps_googleshopping'
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Repository\TabRepository'
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment'
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler'

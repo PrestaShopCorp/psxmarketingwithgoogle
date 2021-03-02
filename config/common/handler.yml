@@ -1,0 +1,3 @@
+services:
+  PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler
