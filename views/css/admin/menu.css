@@ -1,0 +1,10 @@
+/* Add this specific material icon for the backoffice legacy theme */
+#subtab-Marketing:not(.link-active):not(.-active) .material-icons.mi-campaign{
+    -webkit-mask:  url('../../img/campaign-24px.svg') no-repeat 50% 50%;
+    mask-image: url('../../img/campaign-24px.svg') no-repeat 50% 50%;
+    -webkit-mask-size: 19px;
+    mask-size: 19px;
+    background-color: white;
+    background-size: cover;
+    width: 19px;
+}
