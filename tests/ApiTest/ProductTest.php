@@ -214,4 +214,46 @@ class ProductTest extends TestCase
 
         return $shippingService;
     }
+
+    public function testTax()
+    {
+        $client = new Google\Client();
+        $client->getOAuth2Service();
+        $client->addScope(
+            [
+                Google_Service_ShoppingContent::CONTENT
+            ]
+        );
+        $client->setApplicationName("Client_Library_Examples");
+        $client->setDeveloperKey("AIzaSyDyoqQWOB_A0S9QzDPxUaIzs3xhMa0IUFM");
+        $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+        $client->setRedirectUri($redirect_uri);
+        if (isset($_GET['code'])) {
+            $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+            $client->setAccessToken($token);
+        }
+        $client->setAccessToken('ya29.a0AfH6SMDccfkVDViZ-Zfl5KaBLUyU_qvbrjhcvJ0uDRfyfTB4y2nuuQoDWoP-eHCX6IPh6sEfwh-B13C0D-LB5HH1Mp4FxHdkealZ0TxALCk9O5B7U84IVRU216RlgJkIvTCDUnHjF8wxG7knazeg1zTh7p5WwQ');
+        $accountTax = new Google_Service_ShoppingContent_AccountTax();
+        $accountTax->setRules(
+            [
+                $this->createTax(),
+            ]
+        );
+        $accountTax->setAccountId('352543826');
+
+        $service = new Google_Service_ShoppingContent($client);
+        $results = $service->accounttax->update('343942372', '352543826', $accountTax);
+
+        return true;
+    }
+
+    private function createTax()
+    {
+        $rule = new Google_Service_ShoppingContent_AccountTaxTaxRule();
+        $rule->setCountry('US');
+        $rule->setLocationId(21167);
+        $rule->setUseGlobalRate(true);
+
+        return $rule;
+    }
 }
