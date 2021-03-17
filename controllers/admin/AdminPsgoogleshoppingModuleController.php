@@ -22,9 +22,24 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
 
     private function testing()
     {
-        self::testAddShipping();
+        self::testAccessTokenCreate();
     }
 
+    //** We need to call this logic in our API call where we hold client id and secret
+    // https://developers.google.com/identity/protocols/oauth2/web-server */
+    public function testAccessTokenCreate()
+    {
+        $link = 'https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount';
+        $responseType = 'code';
+        $redirect_uri = 'http://margud.eu.ngrok.io/google/admin1/index.php?controller=AdminAjaxPsgoogleshopping';
+        $scope = 'https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcontent';
+        $access_type = 'offline';
+        $flowName = 'GeneralOAuthFlow';
+        $clientId = '1000722766520-po71n2uteu42u0e60s3e7paqc8030ckl.apps.googleusercontent.com';
+
+        Tools::redirectLink("{$link}?response_type={$responseType}&redirect_uri={$redirect_uri}&scope={$scope}&access_type={$access_type}&flowName={$flowName}&client_id={$clientId}");
+//        Tools::redirectLink('https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&redirect_uri=http://margud.eu.ngrok.io/google/admin1/index.php?controller=AdminAjaxPsgoogleshopping&client_id=1000722766520-po71n2uteu42u0e60s3e7paqc8030ckl.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcontent&access_type=online&flowName=GeneralOAuthFlow');
+    }
     public function testAddShipping()
     {
         $client = new Google\Client();

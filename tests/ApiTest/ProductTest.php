@@ -80,7 +80,7 @@ class ProductTest extends TestCase
             $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
             $client->setAccessToken($token);
         }
-        $client->setAccessToken('ya29.A0AfH6SMAoCWCsY6k5if0FVobrLXYgdEh5varurasaxyW3RXk3h1D82GpyDdkO2LDe3T3Y1O6mA4qqbfjzB1D4H95V-kpD-NArmumTDN84cpRZw5WpG5k9uvX8epQm92gD9cSvgQVsASgjiwpRIH8lZbjEp_Pi');
+        $client->setAccessToken('ya29.a0AfH6SMCsPL7P0mA4nwqYSZsL4hlr4xf7yEhweuN74w5ILZVODweIFdUX0__ui2wx-iZgml7IOJKpY_Uh6KWHK9T9Y6Es2w5TADz3YCPfTmSWLpBffW11EW7WLcZzys5pqkafzXBncdchyQzplvuu1Miw2DFFTw');
 
         $service = new Google_Service_ShoppingContent($client);
 
