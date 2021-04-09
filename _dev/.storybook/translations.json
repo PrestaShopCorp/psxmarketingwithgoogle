@@ -1,4 +1,35 @@
 {
   "en": {
+    "general" : {
+      "tabs" : {
+          "configuration" : "Configure",
+          "catalog" : "Product catalog",
+          "help" : "Help"
+      }
+    },
+    "configuration" : {
+        "introduction" : "Configuration Page !"
+    },
+    "help" : {
+        "title" : "Help for PrestaShop Google",
+        "allowsYouTo" : {
+            "title" : "This module allows you to:",
+            "business" : "Manage your business",
+            "account" : "Manage your ad account",
+            "traffic" : "Understand your traffic",
+            "inventory" : "Build and manage inventory",
+            "people" : "Reach more people"
+        },
+        "help" : {
+            "needHelp" : "Need help? Find here the documentation of this module.",
+            "downloadPdf" : "Download PDF",
+            "couldntFindAnyAnswer" : "Couldn\"t find any answer to your question?",
+            "contactUs" : "Contact us"
+        }
+    },
+    "faq" : {
+        "title" : "FAQ",
+        "noFaq" : "No FAQ available."
+    }
   }
 }

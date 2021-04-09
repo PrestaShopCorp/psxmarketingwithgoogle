@@ -45,7 +45,7 @@
             <b-button
               class="mt-3"
               variant="primary"
-              @click="getDocumentation()"
+              @click="getDocumentation"
             >
               {{ $t("help.help.downloadPdf") }}
             </b-button>
@@ -55,7 +55,7 @@
             <div class="mt-2">
               <b-button
                 variant="link"
-                @click="contactUs()"
+                @click="contactUs"
                 :href="`mailto:` + contactUsLink"
               >
                 {{ $t("help.help.contactUs") }}
