@@ -125,9 +125,4 @@ export default {
     display: none !important
   }
   @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-  // Fix for alerts
-  .alert {
-    padding-left: 3.8rem !important;
-    padding-right: 0.5rem !important;
-  }
 </style>
