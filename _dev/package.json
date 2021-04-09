@@ -16,7 +16,7 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.1",
     "debounce": "^1.2.0",
-    "prestakit": "1.1.0",
+    "prestakit": "^1.1.0",
     "prestashop_accounts_vue_components": "^1.4.5",
     "showdown": "^1.9.1",
     "vue": "^2.6.12",
