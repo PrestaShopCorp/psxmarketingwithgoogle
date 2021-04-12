@@ -144,4 +144,9 @@ class Ps_googleshopping extends Module
 
         Tools::redirectAdmin($this->context->link->getAdminLink('AdminPsgoogleshoppingModule') . '&' . http_build_query($_GET));
     }
+
+    public function hookDisplayBackOfficeHeader()
+    {
+        $this->context->controller->addCSS($this->getPathUri() . 'views/css/admin/menu.css');
+    }
 }
