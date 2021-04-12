@@ -26,6 +26,8 @@
  // import css style
  import 'bootstrap-vue/dist/bootstrap-vue';
  import 'prestakit/dist/css/bootstrap-prestashop-ui-kit.css';
+ import '!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss';
+
  Vue.use(BootstrapVue, BootstrapVueIcons);
 
  // i18n and store
@@ -61,3 +63,6 @@
      ],
    }
  }
+ export const decorators = [
+  () => ({ template: '<div id="googleShoppingApp"><story /></div>' }),
+];

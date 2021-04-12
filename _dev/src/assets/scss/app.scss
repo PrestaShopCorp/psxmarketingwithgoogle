@@ -1,0 +1,21 @@
+// vendors 
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/_breakpoints";
+
+// abstracts
+@import "abstracts/variables";
+@import "abstracts/functions";
+
+// base 
+@import "base/typography";
+@import "base/common";
+
+// components
+@import "components/onboardingcard";
+@import "components/landingpageheader";
+@import "components/landingpagecontent";
+@import "components/landingpagefooter";
+
+// page
+@import "pages/landingpage";

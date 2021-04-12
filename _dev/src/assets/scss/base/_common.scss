@@ -1,0 +1,32 @@
+#googleShoppingApp a[target="_blank"] {
+  color: $grey_muted;
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
+    color: $blue;
+  }
+
+  &:active,
+  &:visited {
+    color: $blue_dark;
+  }
+
+  &::after {
+    content: "launch";
+    font-family: 'Material Icons';
+    -webkit-font-feature-settings: 'liga';
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.45em;
+    text-decoration: none;
+  }
+}
+// outbound link color
+
+.ps_gs-outbound-link {
+}
+
+.color-green {
+  color: #4cbb6c;
+}

@@ -34,6 +34,7 @@
     "@storybook/addon-actions": "^6.2.7",
     "@storybook/addon-essentials": "^6.2.7",
     "@storybook/addon-links": "^6.2.7",
+    "@storybook/preset-scss": "^1.0.3",
     "@storybook/vue": "^6.2.7",
     "@types/debounce": "^1.2.0",
     "@types/showdown": "^1.9.3",
@@ -50,6 +51,7 @@
     "@vue/eslint-config-typescript": "^5.1.0",
     "babel-loader": "^8.2.2",
     "babel-preset-vue": "^2.0.2",
+    "css-loader": "^5.2.0",
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prestashop": "0.0.2",
@@ -58,7 +60,9 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
     "node-sass": "^4.12.0",
-    "sass-loader": "^8.0.2",
+    "sass": "^1.32.8",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.12"
   }

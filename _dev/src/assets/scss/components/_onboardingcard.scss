@@ -1,0 +1,9 @@
+.ps_gs-onboardingcard {
+  &--disabled {
+    color: $grey_muted;
+  }
+
+  &--muted {
+    background-color: $bg-grey_disabled;
+  }
+}

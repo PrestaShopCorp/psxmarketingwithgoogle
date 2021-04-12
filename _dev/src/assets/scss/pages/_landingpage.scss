@@ -1,0 +1,7 @@
+.ps_gs-landingpage {
+  padding: rem(24);
+
+  @include media-breakpoint-up(md) {
+    padding: rem(32);
+  }    
+}

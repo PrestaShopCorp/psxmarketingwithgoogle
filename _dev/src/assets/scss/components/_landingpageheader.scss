@@ -1,0 +1,44 @@
+.ps_gs-landingpage-header {
+  &__title {
+    font-size: rem(20);
+    font-weight: 600;
+    line-height: 1.3em;
+
+    span {
+      color: #231768;
+    }
+
+    span + span {
+      color: #89909D;
+    }
+
+    @include media-breakpoint-up(md) {
+      font-size: rem(24);
+    }
+  }
+
+  &__text {
+    font-size: rem(16);
+    font-weight: 600;
+    line-height: rem(22.5);
+  }
+
+  &__benefits {
+    li {
+      &:not(:last-child) {
+        margin-right: rem(13);
+      }
+      
+      &::before {
+        content: "done";
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: rem(8);      
+        font-family: 'Material Icons';
+        font-size: 0.75em;
+        font-weight: 700;
+        -webkit-font-feature-settings: 'liga';
+      }
+    }
+  }
+}
