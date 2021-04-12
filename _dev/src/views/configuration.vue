@@ -27,6 +27,8 @@ export default defineComponent({
   },
   methods: {
   },
+  computed: {
+  },
 });
 </script>
 
