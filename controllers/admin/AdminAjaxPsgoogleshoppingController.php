@@ -34,11 +34,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         parent::initContent();
     }
 
-    public function postProcess()
-    {
-    }
-
-    public function displayAjaxCallEventBus()
+    public function displayAjax()
     {
         $action = Tools::getValue('action');
 
@@ -70,7 +66,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             case 'updateCategoryMap':
                 $this->updateCategoryMap();
                 break;
-           case 'removeCategoryMapping':
+            case 'removeCategoryMapping':
                 $this->removeCategoryMapping();
                 break;
 

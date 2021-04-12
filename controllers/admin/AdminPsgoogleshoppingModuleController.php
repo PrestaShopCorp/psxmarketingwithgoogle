@@ -57,11 +57,10 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
                 ]
             ),
             'psGoogleCallEventBus' => $this->context->link->getAdminLink(
-                'AdminAjaxPsfacebook',
+                'AdminAjaxPsgoogleshopping',
                 true,
                 [],
                 [
-                    'action' => 'CallEventBus',
                     'ajax' => 1,
                 ]
             ),
