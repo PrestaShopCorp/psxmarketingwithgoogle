@@ -24,8 +24,6 @@ export default defineComponent({
     };
   },
   created() {
-    console.log(this.$store.getters.psAccountsIsOnboarded);
-    // console.log(this.$store.state);
   },
   methods: {
   },
