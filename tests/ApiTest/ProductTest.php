@@ -4,6 +4,13 @@ use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase
 {
+    /**
+     * @return bool
+     *
+     *
+     * refresh token main: 1//04wpAm0UR3-tVCgYIARAAGAQSNwF-L9IrzAs49sbMKQzBjO1-D6jNyY6NdqrLBaB-dJaRndBUmFEr_g4UyeXq8wINDVyS62R0B1E
+     *
+     */
     public function testCreateProduct()
     {
         $client = new Google\Client();
@@ -21,7 +28,7 @@ class ProductTest extends TestCase
             $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
             $client->setAccessToken($token);
         }
-        $client->setAccessToken('ya29.a0AfH6SMB4Ys1g4RCrqZmNZUtvbo_sBNOphAwIfkcoZqmLSsDXi1OEKmSLv7yzl7Bb6_9CZ_EY6ouFEVEJgHDkys8LQcLEd2qC9u2m8kl80wuStm6kPGBUC-oc5DMn5JCNM4tXHtFsDUabBC7Ve-p_USnOjDBv');
+        $client->setAccessToken('ya29.a0AfH6SMBTbvRTcehzQ4_Xb6TXkzMC8ciQrnS-0I0N4oYAom4vHPgw4a9NaEnx1J0iMzSd-2PID9Cq9q3Op-6H0YnYYRTR7YKKbC3Oabsl8ZX4gMv-oPccQj-6EWVbYM3UmRBYLuVU2wUqMc4-8NIy65OetvX2');
 
         $service = new Google_Service_ShoppingContent($client);
 
@@ -56,6 +63,8 @@ class ProductTest extends TestCase
         $product->setGender('male');
         $product->setColor('Red');
         $product->setIdentifierExists(false);
+
+        $product->setShippingLabel('test shipping label');
         $results = $service->products->insert('352543826', $product);
 
         if ($results instanceof Google_Service_ShoppingContent_Product) {
@@ -80,7 +89,7 @@ class ProductTest extends TestCase
             $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
             $client->setAccessToken($token);
         }
-        $client->setAccessToken('ya29.a0AfH6SMCsPL7P0mA4nwqYSZsL4hlr4xf7yEhweuN74w5ILZVODweIFdUX0__ui2wx-iZgml7IOJKpY_Uh6KWHK9T9Y6Es2w5TADz3YCPfTmSWLpBffW11EW7WLcZzys5pqkafzXBncdchyQzplvuu1Miw2DFFTw');
+        $client->setAccessToken('ya29.a0AfH6SMDvOlDofYQrPujAXddxW186-1xjhmuEFRc7_DmS6T6mwi90kPbvtu8lyw9LoCjVLM2_BjutdWG_GJf4r5PkDMXCp7-qczPx0xc2R9dFUD_WDA91Ur0m1KzuppTeFB1doSm20xgBFReSUJ87MBeZoKngUg');
 
         $service = new Google_Service_ShoppingContent($client);
 
@@ -89,6 +98,36 @@ class ProductTest extends TestCase
         foreach ($results->getResources() as $item) {
             echo json_encode($item), "<br /> \n";
         }
+    }
+
+    public function testCreateAccount()
+    {
+        $client = new Google\Client();
+        $client->getOAuth2Service();
+        $client->addScope(
+            [
+                Google_Service_ShoppingContent::CONTENT
+            ]
+        );
+        $client->setApplicationName("Client_Library_Examples");
+//        $client->setDeveloperKey("AIzaSyDyoqQWOB_A0S9QzDPxUaIzs3xhMa0IUFM");
+        $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+//        $client->setRedirectUri($redirect_uri);
+        $client->setAuthConfig(__DIR__ . '/../../client_secret.json');
+        $client->setAccessToken('ya29.a0AfH6SMDbhzKDhF9NRtdGC0U4O3e6_d0R0UOL4VswS7Upj8tk1c3p7JptY2hPko8-rrx4cT5g3xRmiqBsVv6xoQf8sl16bZ2W8Ot1c_ey7aZT5gKWByJA5dr4OFfsVdE26LlZ8t9J04GHKqAc3E3AfMQCuezU');
+        $accountLinkRequest = new Google_Service_ShoppingContent_Account();
+        $client->addScope(
+            [
+                Google_Service_ShoppingContent::CONTENT
+            ]
+        );
+        $accountLinkRequest->setName('test1234');
+        $accountLinkRequest->setWebsiteUrl('https://test3.com');
+
+        $service = new Google_Service_ShoppingContent($client);
+        $results = $service->accounts->insert('343942372', $accountLinkRequest);
+
+
     }
 
     public function testLinkAccount()
@@ -101,28 +140,26 @@ class ProductTest extends TestCase
             ]
         );
         $client->setApplicationName("Client_Library_Examples");
-        $client->setDeveloperKey("AIzaSyDyoqQWOB_A0S9QzDPxUaIzs3xhMa0IUFM");
+//        $client->setDeveloperKey("AIzaSyDyoqQWOB_A0S9QzDPxUaIzs3xhMa0IUFM");
         $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-        $client->setRedirectUri($redirect_uri);
-        if (isset($_GET['code'])) {
-            $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-            $client->setAccessToken($token);
-        }
-        $client->setAccessToken('ya29.a0AfH6SMDkdcwvxuDBjlWYjUwOgnf4yahW-V_s0iGgajNraY8bbrj3ozx0oBVyxPBqpZ6cj1CnHqrS-J_bh4Piar03NC5se3jKQjmh4PyalFuU8jjra7VdpJhwT2uDxPn6Lx2f4IxtpDdax0CDJQ1v-Suy7mWb');
-
+//        $client->setRedirectUri($redirect_uri);
+        $client->setAuthConfig(__DIR__ . '/../../client_secret.json');
+        $client->setAccessToken('ya29.a0AfH6SMAiXZq0Ov4OgT5IwRzDO2vvVwBC9Mae62LngugzIHQGywRd8siwXUYNCxkqNHhk-eH-gJURAi-d6KwII3Ed9hndb551oyi6Pl7-8pxvRrXqgeZJ4664atqcOboZ5bfmu7GthXMoE4em6lk7cgby47_3');
         $accountLinkRequest = new Google_Service_ShoppingContent_AccountsLinkRequest();
-
-        $accountLinkRequest->setAction('approve');
-        $accountLinkRequest->setLinkedAccountId('352543826');
+        $client->addScope(
+            [
+                Google_Service_ShoppingContent::CONTENT
+            ]
+        );
+        $accountLinkRequest->setAction('request');
+        $accountLinkRequest->setLinkedAccountId('375596169');
         $accountLinkRequest->setLinkType('eCommercePlatform');
         $accountLinkRequest->setServices('shoppingAdsProductManagement');
 
         $service = new Google_Service_ShoppingContent($client);
-        $results = $service->accounts->link('343942372', '352543826', $accountLinkRequest);
+        $results = $service->accounts->link('343942437', '385593388', $accountLinkRequest);
 
-        foreach ($results->getResources() as $item) {
-            echo json_encode($item), "<br /> \n";
-        }
+
     }
 
     public function testAddShipping()

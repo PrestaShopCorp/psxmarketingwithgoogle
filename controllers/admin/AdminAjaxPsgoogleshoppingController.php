@@ -21,12 +21,16 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
     public function postProcess()
     {
         $client = new Google\Client();
-        $client->setClientId('1000722766520-po71n2uteu42u0e60s3e7paqc8030ckl.apps.googleusercontent.com');
-        $client->setClientSecret('LoXOocivJ1oIpiN0QQftZyGd');
-        $client->setRedirectUri('http://margud.eu.ngrok.io/google/admin1/index.php?controller=AdminAjaxPsgoogleshopping');
+//        $client->setClientId('511840070660-fh4v9s0l7lhb9rnrq6a7hmsdomphmjpb.apps.googleusercontent.com');
+//        $client->setClientSecret('zqkj5LAHGSSOcc2h3h2glHX5');
+//        $client->setRedirectUri('https://margud.eu.ngrok.io/google/admin1/index.php?controller=AdminAjaxPsgoogleshopping');
 //        $client->setAccessType('offline');
+        $client->setAuthConfig(__DIR__ . '/../../client_secret.json');
         $client->fetchAccessTokenWithAuthCode($_GET['code']);
         $access_token = $client->getAccessToken();
+
+        Configuration::updateValue('GOOGLE_TOKEN', $access_token['access_token']);
+        Configuration::updateValue('GOOGLE_REFRESH_TOKEN', $access_token['refresh_token']);
 
     }
 }
