@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -35,5 +36,96 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 
     public function postProcess()
     {
+    }
+
+    public function displayAjaxCallEventBus()
+    {
+        $action = Tools::getValue('action');
+
+        switch ($action) {
+            case 'getShippingSettings':
+                $this->getShippingSettings();
+                break;
+            case 'saveShippingSettings':
+                $this->saveShippingSettings();
+                break;
+            case 'getProductFeedSummary':
+                $this->getProductFeedSummary();
+                break;
+            case 'getProductSyncNumber':
+                $this->getProductSyncNumber();
+                break;
+            case 'getProductFeedbackStatuses':
+                $this->getProductFeedbackStatuses();
+                break;
+            case 'getPrestashopCategories':
+                $this->getPrestashopCategories();
+                break;
+            case 'getMappedCategories':
+                $this->getMappedCategories();
+                break;
+            case 'getChildrenOfCategory':
+                $this->getChildrenOfCategory();
+                break;
+            case 'updateCategoryMap':
+                $this->updateCategoryMap();
+                break;
+           case 'removeCategoryMapping':
+                $this->removeCategoryMapping();
+                break;
+
+            default:
+                $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
+        }
+    }
+
+    private function getShippingSettings()
+    {
+        $this->ajaxDie(json_encode(['success' => true]));
+    }
+
+    private function saveShippingSettings()
+    {
+        $this->ajaxDie(json_encode(['success' => true]));
+    }
+
+    private function getProductFeedSummary()
+    {
+        $this->ajaxDie(json_encode(['success' => true]));
+    }
+
+    private function getProductSyncNumber()
+    {
+        $this->ajaxDie(json_encode(['success' => true]));
+    }
+
+    private function getProductFeedbackStatuses()
+    {
+        $this->ajaxDie(json_encode(['success' => true]));
+    }
+
+    private function getPrestashopCategories()
+    {
+        $this->ajaxDie(json_encode(['success' => true]));
+    }
+
+    private function getMappedCategories()
+    {
+        $this->ajaxDie(json_encode(['success' => true]));
+    }
+
+    private function getChildrenOfCategory()
+    {
+        $this->ajaxDie(json_encode(['success' => true]));
+    }
+
+    private function updateCategoryMap()
+    {
+        $this->ajaxDie(json_encode(['success' => true]));
+    }
+
+    private function removeCategoryMapping()
+    {
+        $this->ajaxDie(json_encode(['success' => true]));
     }
 }
