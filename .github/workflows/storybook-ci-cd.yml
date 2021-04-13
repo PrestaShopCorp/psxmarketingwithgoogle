@@ -15,6 +15,10 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v1
 
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.14.5
+
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
@@ -29,17 +33,24 @@ jobs:
       - name: Configure docker and pull package
         run: |
           gcloud auth configure-docker
-          docker pull "$REGISTRY/facebook-storybook-package:latest"
+          docker pull "$REGISTRY/googleshopping-storybook-package:latest"
         env:
           REGISTRY: ${{ secrets.REGISTRY }}
+
+      - name: Terraform init
+        working-directory: _dev/.cloud
+        run: |
+          terraform init
+          terraform workspace select alpha
+          terraform fmt
 
       - name: Build package
         working-directory: _dev
         run: |
           docker build \
             --target=package \
-            --tag="$REGISTRY/facebook-storybook-package:latest" .
-          docker push "$REGISTRY/facebook-storybook-package:latest"
+            --tag="$REGISTRY/googleshopping-storybook-package:latest" .
+          docker push "$REGISTRY/googleshopping-storybook-package:latest"
         env:
           REGISTRY: ${{ secrets.REGISTRY }}
 
@@ -54,3 +65,8 @@ jobs:
           TAG: ${{ steps.get_tag.outputs.TAG }}
           REGISTRY: ${{ secrets.REGISTRY }}
 
+      - name: Terraform apply
+          working-directory: _dev/.cloud
+          run: terraform apply -auto-approve --var app_version=$SHA
+          env:
+            SHA: ${{ github.sha }}
