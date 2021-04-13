@@ -26,7 +26,7 @@ jobs:
           service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
           export_default_credentials: true
 
-      - run: gcloud config get-value account
+      - run: gcloud projects list
 
       - name: Build package
         working-directory: _dev
