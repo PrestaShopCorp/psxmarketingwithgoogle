@@ -23,7 +23,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@master
         with:
           project_id: psessentials-integration
-          service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+          service_account_key: ${{ secrets.G_CREDENTIAL }}
           service_account_email: ${{ secrets.G_EMAIL_INTEGRATION }}
           export_default_credentials: true
 
