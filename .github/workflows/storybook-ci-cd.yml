@@ -24,8 +24,9 @@ jobs:
         with:
           project_id: psessentials-integration
           service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
-          service_account_email: ${{ secrets.G_EMAIL_INTEGRATION }}
           export_default_credentials: true
+#          service_account_email: ${{ secrets.G_EMAIL_INTEGRATION }}
+
 
       - name: Configure docker and pull package
         run: |
