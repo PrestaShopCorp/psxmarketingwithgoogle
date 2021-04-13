@@ -25,13 +25,13 @@ jobs:
           project_id: psessentials-integration
           service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
           export_default_credentials: true
-#          service_account_email: ${{ secrets.G_EMAIL_INTEGRATION }}
-
 
       - name: Configure docker and pull package
         run: |
           gcloud auth configure-docker
-          docker pull "eu.gcr.io/psessentials-integration/facebook-storybook-package:latest"
+          docker pull "$REGISTRY/facebook-storybook-package:latest"
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
 
       - name: Build package
         working-directory: _dev
@@ -43,14 +43,14 @@ jobs:
         env:
           REGISTRY: ${{ secrets.REGISTRY }}
 
-#      - name: Build and push finale image
-#        working-directory: _dev
-#        run: |
-#          docker build . \
-#            --tag="$REGISTRY/googleshopping-storybook:latest" \
-#            --cache-from="$REGISTRY/googleshopping-storybook-package:latest"
-#          docker push "$REGISTRY/googleshopping-storybook:latest"
-#        env:
-#          TAG: ${{ steps.get_tag.outputs.TAG }}
-#          REGISTRY: ${{ secrets.REGISTRY }}
+      - name: Build and push finale image
+        working-directory: _dev
+        run: |
+          docker build . \
+            --tag="$REGISTRY/googleshopping-storybook:latest" \
+            --cache-from="$REGISTRY/googleshopping-storybook-package:latest"
+          docker push "$REGISTRY/googleshopping-storybook:latest"
+        env:
+          TAG: ${{ steps.get_tag.outputs.TAG }}
+          REGISTRY: ${{ secrets.REGISTRY }}
 
