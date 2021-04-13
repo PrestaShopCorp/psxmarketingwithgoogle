@@ -1,0 +1,50 @@
+name: Storybook CI/CD
+
+on: [push]
+#on:
+#  pull_request:
+#    types: [opened,edited,reopened,synchronize,labeled]
+
+jobs:
+  alpha:
+    name: Alpha - Storybook
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: contains(github.event.pull_request.labels.*.name, 'quality assurance needed')
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v1
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.G_PROJECT_INTEGRATION }}
+          service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+          export_default_credentials: true
+
+      - name: Build package
+        working-directory: _dev
+        run: |
+          docker build \
+            --target=package \
+            --tag="$REGISTRY/facebook-storybook-package:latest" .
+          docker push "$REGISTRY/facebook-storybook-package:latest"
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
+
+      - name: Build and push finale image
+        working-directory: _dev
+        run: |
+          docker build . \
+            --tag="$REGISTRY/googleshopping-storybook:latest" \
+            --cache-from="$REGISTRY/googleshopping-storybook-package:latest"
+          docker push "$REGISTRY/googleshopping-storybook:latest"
+        env:
+          TAG: ${{ steps.get_tag.outputs.TAG }}
+          REGISTRY: ${{ secrets.REGISTRY }}
+
