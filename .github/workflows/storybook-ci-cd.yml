@@ -23,7 +23,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@master
         with:
           project_id: ${{ secrets.G_PROJECT_INTEGRATION }}
-          service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+          service_account_key: ${{ secrets.G_CREDENTIAL }}
           export_default_credentials: true
 
       - run: gcloud projects list
