@@ -23,18 +23,14 @@ jobs:
         uses: google-github-actions/setup-gcloud@master
         with:
           project_id: psessentials-integration
-          service_account_key: ${{ secrets.G_CREDENTIAL }}
+          service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
           service_account_email: ${{ secrets.G_EMAIL_INTEGRATION }}
           export_default_credentials: true
 
-      - name: Configure docker
+      - name: Configure docker and pull package
         run: |
           gcloud auth configure-docker
-
-      - name: Docker pull
-        run: docker pull "eu.gcr.io/psessentials-integration/facebook-storybook-package:latest"
-#        continue-on-error: true
-
+          docker pull "eu.gcr.io/psessentials-integration/facebook-storybook-package:latest"
 
       - name: Build package
         working-directory: _dev
