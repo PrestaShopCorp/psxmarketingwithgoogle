@@ -19,23 +19,25 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
-#      - name: Set up Cloud SDK
-#        uses: google-github-actions/setup-gcloud@master
-#        with:
-#          project_id: ${{ secrets.G_PROJECT_INTEGRATION }}
-#          service_account_key: ${{ secrets.G_CREDENTIAL }}
-#          export_default_credentials: true
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.G_PROJECT_INTEGRATION }}
+          service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+          service_account_email: ${{ secrets.G_EMAIL_INTEGRATION }}
 
-      - name: Gcloud auth and write env file
-        run: |
-          echo $GOOGLE_APPLICATION_CREDENTIALS > token.json
-          gcloud auth activate-service-account --key-file=token.json
-          gcloud container clusters get-credentials essentials \
-          --zone europe-west1-c --project psessentials-integration
-          gcloud auth configure-docker
-          rm token.json
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL }}
+          export_default_credentials: true
+
+#      - name: Gcloud auth and write env file
+#        run: |
+#          echo $GOOGLE_APPLICATION_CREDENTIALS > token.json
+#          gcloud auth activate-service-account --key-file=token.json
+#          gcloud container clusters get-credentials essentials \
+#          --zone europe-west1-c --project psessentials-integration
+#          gcloud auth configure-docker
+#          rm token.json
+#        env:
+#          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL }}
 
       - name: Build package
         working-directory: _dev
