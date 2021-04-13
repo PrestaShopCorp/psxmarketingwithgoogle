@@ -10,7 +10,6 @@ jobs:
     name: Alpha - Storybook
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: contains(github.event.pull_request.labels.*.name, 'quality assurance needed')
 
     steps:
       - name: Checkout the repository
