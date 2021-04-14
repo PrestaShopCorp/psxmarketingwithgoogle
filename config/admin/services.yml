@@ -1,3 +1,4 @@
 imports:
   - { resource: ../common.yml }
   - { resource: installer.yml }
+  - { resource: APIClient.yml }

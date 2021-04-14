@@ -1,5 +1,6 @@
 <?php
 
+use Dotenv\Dotenv;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Installer;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller;
 use PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler;
@@ -72,6 +73,8 @@ class Ps_googleshopping extends Module
         if ($this->serviceContainer === null) {
             $this->serviceContainer = new ServiceContainer($this->name, $this->getLocalPath());
         }
+
+        $this->loadEnv();
     }
 
     /**
@@ -148,5 +151,18 @@ class Ps_googleshopping extends Module
     public function hookDisplayBackOfficeHeader()
     {
         $this->context->controller->addCSS($this->getPathUri() . 'views/css/admin/menu.css');
+    }
+
+    private function loadEnv()
+    {
+        if (file_exists(_PS_MODULE_DIR_ . 'ps_googleshopping/.env')) {
+            $dotenv = Dotenv::create(_PS_MODULE_DIR_ . 'ps_googleshopping/');
+            $dotenv->load();
+        }
+
+        if (file_exists(_PS_MODULE_DIR_ . 'ps_googleshopping/.env.dist')) {
+            $dotenv = Dotenv::create(_PS_MODULE_DIR_ . 'ps_googleshopping/', '.env.dist');
+            $dotenv->load();
+        }
     }
 }

@@ -4,6 +4,10 @@ namespace PrestaShop\Module\PrestashopGoogleShopping\Config;
 
 class Config
 {
+    const MOCK_API_URL = 'http://localhost:8080/rest/PS+Google+Shopping+all-in-one/1.0/';
+
+    const API_URL = '';
+
     const HOOK_LIST = [
         'displayBackOfficeHeader',
     ];

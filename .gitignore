@@ -22,3 +22,4 @@ views/js/chunk-vendors.js
 
 tests/integration/config.json
 .terraform/
+microcks/

@@ -48,3 +48,10 @@ docker-up:
 dd: docker-down
 docker-down:
 	docker-compose down
+
+build-microcks:
+	git clone https://github.com/microcks/microcks.git
+
+run-microcks:
+	cd microcks/install/docker-compose
+	docker-compose up -d
