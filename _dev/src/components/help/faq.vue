@@ -101,7 +101,9 @@
                     <i class="material-icons">keyboard_arrow_right</i>
                     {{ item.question }}
                   </summary>
-                  <p class="answer">{{ item.answer }}</p>
+                  <p class="answer">
+                    {{ item.answer }}
+                  </p>
                 </details>
               </div>
             </div>

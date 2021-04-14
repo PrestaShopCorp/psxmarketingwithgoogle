@@ -1,13 +1,13 @@
-// vendors 
-@import "bootstrap/scss/functions";
-@import "bootstrap/scss/variables";
-@import "bootstrap/scss/mixins/_breakpoints";
+// vendors
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/_breakpoints";
 
 // abstracts
 @import "abstracts/variables";
 @import "abstracts/functions";
 
-// base 
+// base
 @import "base/typography";
 @import "base/common";
 

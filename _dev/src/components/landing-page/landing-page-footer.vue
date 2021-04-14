@@ -5,7 +5,9 @@
         <p class="ps_gs-landingpage-footer__text mb-3">
           Make your first steps with PrestaShop Google Shopping!
         </p>
-        <b-button variant="primary">Get started</b-button>
+        <b-button variant="primary">
+          Get started
+        </b-button>
       </b-col>
     </b-row>
   </footer>
@@ -15,9 +17,9 @@
 
 export default {
   name: 'LandingPageFooter',
-  data: function(){
+  data() {
     return {
-    }
+    };
   },
-}
+};
 </script>

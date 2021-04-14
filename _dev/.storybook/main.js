@@ -27,7 +27,7 @@
      "@storybook/addon-links",
      "@storybook/addon-essentials",
      "@storybook/addon-a11y",
-     "@storybook/preset-scss"
+     "@storybook/preset-scss  "
    ],
    webpackFinal: async (config) => {
      config.module.rules.push({

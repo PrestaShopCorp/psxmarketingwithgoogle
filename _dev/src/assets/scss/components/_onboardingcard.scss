@@ -1,9 +1,26 @@
 .ps_gs-onboardingcard {
+  border: none;
+
+  & + .ps_gs-section-title {
+    margin-top: rem(32);
+
+    @include media-breakpoint-up(md) {
+      margin-top: rem(48);
+    }
+  }
+
   &--disabled {
+    background-color: $bg-grey_disabled;
     color: $grey_muted;
   }
 
   &--muted {
     background-color: $bg-grey_disabled;
+  }
+
+  &__title {
+    font-size: rem(16);
+    line-height: rem(22.5);
+    font-weight: 600;
   }
 }

@@ -1,32 +1,78 @@
-#googleShoppingApp a[target="_blank"] {
-  color: $grey_muted;
-  text-decoration: underline;
-
-  &:hover,
-  &:focus {
-    color: $blue;
+#googleShoppingApp {
+  .text-muted {
+    a[target="_blank"] {
+      color: $grey_muted;
+    }
   }
 
-  &:active,
-  &:visited {
-    color: $blue_dark;
-  }
+  a[target="_blank"] {
+    text-decoration: underline;
 
-  &::after {
-    content: "launch";
-    font-family: 'Material Icons';
-    -webkit-font-feature-settings: 'liga';
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 0.45em;
-    text-decoration: none;
-  }
-}
-// outbound link color
+    &:hover,
+    &:focus {
+      color: $blue;
+    }
 
-.ps_gs-outbound-link {
+    &:active,
+    &:visited {
+      color: $blue_dark;
+    }
+
+    &::after {
+      content: "launch";
+      font-family: 'Material Icons';
+      -webkit-font-feature-settings: 'liga';
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.45em;
+      text-decoration: none;
+    }
+  }
 }
 
 .color-green {
   color: #4cbb6c;
+}
+
+.icon-busy {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0;
+  color: #fff;
+  border-style: solid;
+  border-width: 0.15rem;
+  border-top-color: #FFFFFF;
+  border-right-color: #BEEAF3;
+  border-bottom-color: #BEEAF3;
+  border-left-color: #FFFFFF;
+  border-radius: 1rem;
+  outline: none;
+  -webkit-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+
+.badge-muted {
+  font-size: rem(12);
+  background-color: $grey_light;
+  color: $grey_muted;
+}
+
+
+.ps_googleshopping-dropdown {
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($blue_dark, 0.5);
+      border-color: $blue_dark;
+    }
+  }
+
+  button ~ [role=menu] {
+    width: 100%;
+  }
 }
