@@ -16,8 +16,14 @@
       width="20"
       height="20"
     >
-      <b-icon-circle-fill stacked variant="success" />
-      <b-icon-check stacked variant="white" />
+      <b-icon-circle-fill
+        stacked
+        variant="success"
+      />
+      <b-icon-check
+        stacked
+        variant="white"
+      />
     </b-iconstack>
     {{ stepTitle }}
   </h2>
@@ -31,7 +37,7 @@ import {
 } from 'bootstrap-vue';
 
 export default {
-  name: "SectionTitle",
+  name: 'SectionTitle',
   components: {
     BIconstack,
     BIconCheck,
@@ -48,12 +54,12 @@ export default {
     },
     isEnabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isDone: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 };
 </script>

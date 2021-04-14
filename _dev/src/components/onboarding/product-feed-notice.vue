@@ -4,7 +4,9 @@
     class="ps_gs-onboardingcard ps_gs-onboardingcard--muted p-3"
   >
     <p class="mb-1 px-2">
-      Google’s retail solutions can help you welcome more customers to your site or your store. After you get set up, you’ll have access to reports so you can see how well your ads are doing.
+      Google’s retail solutions can help you welcome more customers to your site or your store.
+      After you get set up,
+      you’ll have access to reports so you can see how well your ads are doing.
     </p>
     <a
       target="_blank"
@@ -17,6 +19,6 @@
 
 <script>
 export default {
-  name: "ProductFeedNotice",
+  name: 'ProductFeedNotice',
 };
 </script>

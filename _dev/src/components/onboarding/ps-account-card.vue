@@ -9,7 +9,8 @@
       <div class="d-flex align-items-center">
         <img
           class="mr-3 rounded-circle"
-          :src="isConnected ? '//source.unsplash.com/40x40' : require('@/assets/images/puffin-logo.svg')"
+          :src="isConnected ? '//source.unsplash.com/40x40'
+            : require('@/assets/images/puffin-logo.svg')"
           width="40"
           height="40"
         />
@@ -56,15 +57,8 @@
 </template>
 
 <script>
-import { BIconstack, BIconCheck, BIconCircleFill } from "bootstrap-vue";
-
 export default {
-  name: "PsAccountCard",
-  components: {
-    BIconstack,
-    BIconCheck,
-    BIconCircleFill,
-  },
+  name: 'PsAccountCard',
   props: {
     isConnected: {
       type: Boolean,
@@ -73,9 +67,11 @@ export default {
     },
   },
   computed: {
-    message: function() {
-      return this.isConnected ? 'Your shop is associated to the PrestaShop account of' : 'Authorize your account to manage your shop’s services'
-    }
-  }
+    message() {
+      return this.isConnected
+        ? 'Your shop is associated to the PrestaShop account of'
+        : 'Authorize your account to manage your shop’s services';
+    },
+  },
 };
 </script>

@@ -15,9 +15,12 @@
           src="@/assets/images/google-icon-grey.svg"
           width="40"
           height="40"
-          >
-        <b-card-text class="text-left mb-0 ps_gs-fz-12">
-          When you are done connecting your PrestaShop account you will be able to connect your Google accounts.
+        >
+        <b-card-text
+          class="text-left mb-0 ps_gs-fz-12"
+        >
+          When you are done connecting your PrestaShop account
+          you will be able to connect your Google accounts.
         </b-card-text>
       </div>
     </template>
@@ -32,7 +35,7 @@
           src="@/assets/images/google-icon.svg"
           width="40"
           height="40"
-          >
+        >
         <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
           Google account
         </b-card-text>
@@ -72,7 +75,7 @@
             </template>
             <template v-else>
               Connecting account...
-              <span class="ml-1 icon-busy"></span>
+              <span class="ml-1 icon-busy" />
             </template>
           </b-button>
         </div>
@@ -81,9 +84,9 @@
           class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
         >
           <b-button
-          variant="outline-secondary"
-          class="mx-2 mt-3 mt-md-0"
-          target="_blank"
+            variant="outline-secondary"
+            class="mx-2 mt-3 mt-md-0"
+            target="_blank"
           >
             Dissociate
           </b-button>
@@ -101,7 +104,8 @@
         class="text-md-right text-muted mt-3"
       >
         <p class="ps_gs-fz-12 mb-0">
-          Dissociating your Google account will disconnect your Google Merchant Center and your Google Ads accounts.
+          Dissociating your Google account will disconnect
+          your Google Merchant Center and your Google Ads accounts.
         </p>
       </div>
     </template>
@@ -119,12 +123,12 @@ import {
 export default {
   name: 'GoogleAccountCard',
   components: {
-    BIconstack, BIconCheck, BIconCircleFill
+    BIconstack, BIconCheck, BIconCircleFill,
   },
-  data: function(){
+  data() {
     return {
       isConnecting: false,
-    }
+    };
   },
   props: {
     isEnabled: {
@@ -140,8 +144,8 @@ export default {
     connectGoogleAccount() {
       this.$emit('connectGoogleAccount');
       this.isConnecting = true;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -22,22 +22,13 @@
 </template>
 
 <script>
-import { BIconstack, BIconCheck, BIconCircleFill, BIconExclamationCircle, BTooltip } from "bootstrap-vue";
-
 export default {
-  name: "GoogleAdsAccountCard",
-  components: {
-    BIconstack,
-    BIconCheck,
-    BIconCircleFill,
-    BIconExclamationCircle,
-    BTooltip
-  },
+  name: 'GoogleAdsAccountCard',
   props: {
     isEnabled: {
       type: Boolean,
       default: false,
-    }
+    },
   },
 };
 </script>
