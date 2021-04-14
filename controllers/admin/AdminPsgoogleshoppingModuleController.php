@@ -56,6 +56,14 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
                     'ajax' => 1,
                 ]
             ),
+            'psGoogleCallEventBus' => $this->context->link->getAdminLink(
+                'AdminAjaxPsgoogleshopping',
+                true,
+                [],
+                [
+                    'ajax' => 1,
+                ]
+            ),
         ]);
 
         $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');
