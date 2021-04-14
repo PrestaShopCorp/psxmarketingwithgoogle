@@ -19,21 +19,15 @@ jobs:
         with:
           terraform_version: 0.14.5
 
-#      - name: Set up Cloud SDK
-#        uses: google-github-actions/setup-gcloud@master
-#        with:
-#          project_id: psessentials-integration
-#          service_account_key: ${{ secrets.TEST }}
-#          export_default_credentials: true
 
       - name: Gcloud auth and write env file
         run: |
-          echo $GOOGLE_APPLICATION_CREDENTIALS > token.json
-          gcloud auth activate-service-account --key-file=token.json
+          echo $GOOGLE_APPLICATION_CREDENTIALS > /tmp/token.json
+          gcloud auth activate-service-account --key-file=/tmp/token.json
           gcloud container clusters get-credentials essentials \
           --zone europe-west1-c --project psessentials-integration
           gcloud auth configure-docker
-          rm token.json
+          rm /tmp/token.json
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
 
@@ -53,32 +47,32 @@ jobs:
       - name: Configure docker
         run: gcloud auth configure-docker
 
-#      - name: Pull package
-#        continue-on-error: true
-#        run: docker pull "$REGISTRY/googleshopping-storybook-package:latest"
-#        env:
-#          REGISTRY: ${{ secrets.REGISTRY }}
-#
-#      - name: Build package
-#        working-directory: _dev
-#        run: |
-#          docker build \
-#            --target=package \
-#            --tag="$REGISTRY/googleshopping-storybook-package:latest" .
-#          docker push "$REGISTRY/googleshopping-storybook-package:latest"
-#        env:
-#          REGISTRY: ${{ secrets.REGISTRY }}
-#
-#      - name: Build and push finale image
-#        working-directory: _dev
-#        run: |
-#          docker build . \
-#            --tag="$REGISTRY/googleshopping-storybook:latest" \
-#            --cache-from="$REGISTRY/googleshopping-storybook-package:latest"
-#          docker push "$REGISTRY/googleshopping-storybook:latest"
-#        env:
-#          TAG: ${{ steps.get_tag.outputs.TAG }}
-#          REGISTRY: ${{ secrets.REGISTRY }}
+      - name: Pull package
+        continue-on-error: true
+        run: docker pull "$REGISTRY/googleshopping-storybook-package:latest"
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
+
+      - name: Build package
+        working-directory: _dev
+        run: |
+          docker build \
+            --target=package \
+            --tag="$REGISTRY/googleshopping-storybook-package:latest" .
+          docker push "$REGISTRY/googleshopping-storybook-package:latest"
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
+
+      - name: Build and push finale image
+        working-directory: _dev
+        run: |
+          docker build . \
+            --tag="$REGISTRY/googleshopping-storybook:$TAG" \
+            --cache-from="$REGISTRY/googleshopping-storybook-package:latest"
+          docker push "$REGISTRY/googleshopping-storybook:$TAG"
+        env:
+          TAG: ${{ steps.get_tag.outputs.TAG }}
+          REGISTRY: ${{ secrets.REGISTRY }}
 
       - name: Terraform apply
         working-directory: _dev/.cloud
