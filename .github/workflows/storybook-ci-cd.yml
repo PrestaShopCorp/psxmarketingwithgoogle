@@ -19,6 +19,13 @@ jobs:
         with:
           terraform_version: 0.14.5
 
+      - name: Terraform init
+        working-directory: _dev/.cloud
+        run: |
+          terraform init
+          terraform workspace select alpha
+          terraform fmt
+
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
@@ -38,13 +45,6 @@ jobs:
         run: docker pull "$REGISTRY/googleshopping-storybook-package:latest"
         env:
           REGISTRY: ${{ secrets.REGISTRY }}
-
-      - name: Terraform init
-        working-directory: _dev/.cloud
-        run: |
-          terraform init
-          terraform workspace select alpha
-          terraform fmt
 
       - name: Build package
         working-directory: _dev
