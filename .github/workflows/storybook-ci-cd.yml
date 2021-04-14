@@ -40,32 +40,32 @@ jobs:
       - name: Configure docker
         run: gcloud auth configure-docker
 
-      - name: Pull package
-        continue-on-error: true
-        run: docker pull "$REGISTRY/googleshopping-storybook-package:latest"
-        env:
-          REGISTRY: ${{ secrets.REGISTRY }}
-
-      - name: Build package
-        working-directory: _dev
-        run: |
-          docker build \
-            --target=package \
-            --tag="$REGISTRY/googleshopping-storybook-package:latest" .
-          docker push "$REGISTRY/googleshopping-storybook-package:latest"
-        env:
-          REGISTRY: ${{ secrets.REGISTRY }}
-
-      - name: Build and push finale image
-        working-directory: _dev
-        run: |
-          docker build . \
-            --tag="$REGISTRY/googleshopping-storybook:latest" \
-            --cache-from="$REGISTRY/googleshopping-storybook-package:latest"
-          docker push "$REGISTRY/googleshopping-storybook:latest"
-        env:
-          TAG: ${{ steps.get_tag.outputs.TAG }}
-          REGISTRY: ${{ secrets.REGISTRY }}
+#      - name: Pull package
+#        continue-on-error: true
+#        run: docker pull "$REGISTRY/googleshopping-storybook-package:latest"
+#        env:
+#          REGISTRY: ${{ secrets.REGISTRY }}
+#
+#      - name: Build package
+#        working-directory: _dev
+#        run: |
+#          docker build \
+#            --target=package \
+#            --tag="$REGISTRY/googleshopping-storybook-package:latest" .
+#          docker push "$REGISTRY/googleshopping-storybook-package:latest"
+#        env:
+#          REGISTRY: ${{ secrets.REGISTRY }}
+#
+#      - name: Build and push finale image
+#        working-directory: _dev
+#        run: |
+#          docker build . \
+#            --tag="$REGISTRY/googleshopping-storybook:latest" \
+#            --cache-from="$REGISTRY/googleshopping-storybook-package:latest"
+#          docker push "$REGISTRY/googleshopping-storybook:latest"
+#        env:
+#          TAG: ${{ steps.get_tag.outputs.TAG }}
+#          REGISTRY: ${{ secrets.REGISTRY }}
 
       - name: Terraform apply
         working-directory: _dev/.cloud
