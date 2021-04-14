@@ -8,6 +8,7 @@ resource "kubernetes_deployment" "storybook" {
       "name" = "${terraform.workspace}-storybook"
       "version" = var.app_version
       "managed-by" = "terraform"
+      "hash-id" = var.hash_id
     }
   }
 
@@ -33,6 +34,7 @@ resource "kubernetes_deployment" "storybook" {
           # Use commit to force tf detection
           "version" = var.hash_id
           "managed-by" = "terraform"
+          "hash-id" = var.hash_id
         }
       }
 

@@ -66,17 +66,17 @@ jobs:
       - name: Build and push finale image
         working-directory: _dev
         run: |
-          docker build \
-            --cache-from="$REGISTRY/googleshopping-storybook-package:latest" \
-            --tag="${REGISTRY}/googleshopping-storybook:${TAG}" .
-          docker push "${REGISTRY}/googleshopping-storybook:${TAG}"
+          docker build . \
+            --tag="eu.gcr.io/psessentials-integration/googleshopping-storybook:latest" \
+            --cache-from="eu.gcr.io/psessentials-integration/googleshopping-storybook-package:latest"
+          docker push "eu.gcr.io/psessentials-integration/googleshopping-storybook:latest"
         env:
           TAG: ${{ steps.get_tag.outputs.TAG }}
           REGISTRY: ${{ secrets.REGISTRY }}
 
       - name: Terraform apply
         working-directory: _dev/.cloud
-        run: terraform apply -auto-approve --var app_version=$SHA
+        run: terraform apply -auto-approve --var app_version=$SHA --var hash_id=$SHA
         env:
           SHA: ${{ github.sha }}
           GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
