@@ -4,7 +4,9 @@ namespace PrestaShop\Module\PrestashopGoogleShopping\Config;
 
 class Config
 {
-    const HOOK_LIST = [];
+    const HOOK_LIST = [
+        'displayBackOfficeHeader',
+    ];
 
     const CONFIGURATION_LIST = [];
 
