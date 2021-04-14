@@ -80,3 +80,4 @@ jobs:
         env:
           SHA: ${{ github.sha }}
           GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+
