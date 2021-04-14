@@ -23,7 +23,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@master
         with:
           project_id: psessentials-integration
-          service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+          service_account_key: ${{ secrets.TEST }}
           export_default_credentials: true
 
       - name: Terraform init
@@ -72,4 +72,3 @@ jobs:
         run: terraform apply -auto-approve --var app_version=$SHA
         env:
           SHA: ${{ github.sha }}
-          GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
