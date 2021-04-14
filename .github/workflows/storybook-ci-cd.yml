@@ -41,7 +41,7 @@ jobs:
           GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
 
       - name: Get the version
-        id: get_version
+        id: get_tag
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
       - name: Configure docker
