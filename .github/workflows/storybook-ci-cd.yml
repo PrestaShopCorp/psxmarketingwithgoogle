@@ -35,7 +35,7 @@ jobs:
           gcloud auth configure-docker
           rm token.json
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.TEST }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
 
       - name: Terraform init
         working-directory: _dev/.cloud
@@ -44,7 +44,7 @@ jobs:
           terraform workspace select alpha
           terraform fmt
         env:
-          GOOGLE_CREDENTIALS: ${{ secrets.TEST }}
+          GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
 
       - name: Get the version
         id: get_version
@@ -85,4 +85,4 @@ jobs:
         run: terraform apply -auto-approve --var app_version=$SHA
         env:
           SHA: ${{ github.sha }}
-          GOOGLE_CREDENTIALS: ${{ secrets.TEST }}
+          GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
