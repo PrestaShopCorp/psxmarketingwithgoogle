@@ -66,10 +66,10 @@ jobs:
       - name: Build and push finale image
         working-directory: _dev
         run: |
-          docker build . \
-            --tag="$REGISTRY/googleshopping-storybook:$TAG" \
-            --cache-from="$REGISTRY/googleshopping-storybook-package:latest"
-          docker push "$REGISTRY/googleshopping-storybook:$TAG"
+          docker build \
+            --cache-from="$REGISTRY/googleshopping-storybook-package:latest" \
+            --tag="${REGISTRY}/googleshopping-storybook:${TAG}" .
+          docker push "${REGISTRY}/googleshopping-storybook:${TAG}"
         env:
           TAG: ${{ steps.get_tag.outputs.TAG }}
           REGISTRY: ${{ secrets.REGISTRY }}
