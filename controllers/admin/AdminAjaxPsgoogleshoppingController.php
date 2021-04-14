@@ -1,5 +1,7 @@
 <?php
 
+use PrestaShop\Module\PrestashopGoogleShopping\API\APIClient;
+
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -23,10 +25,17 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
     /** @var Ps_googleshopping */
     public $module;
 
+    /**
+     * @var APIClient
+     */
+    private $apiClient;
+
     public function __construct()
     {
         parent::__construct();
         $this->bootstrap = false;
+
+        $this->apiClient = $this->module->getService(APIClient::class);
     }
 
     public function initContent()
@@ -42,37 +51,26 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             case 'getDefaultCountry':
                 $this->getDefaultCountry();
                 break;
-            case 'getShippingSettings':
-                $this->getShippingSettings();
-                break;
-            case 'saveShippingSettings':
-                $this->saveShippingSettings();
-                break;
             case 'getProductFeedSummary':
                 $this->getProductFeedSummary();
+            case 'getOauthCallback':
+                $this->getOauthCallback();
                 break;
-            case 'getProductSyncNumber':
-                $this->getProductSyncNumber();
+            case 'getHealthCheck':
+                $this->getHealthCheck();
                 break;
-            case 'getProductFeedbackStatuses':
-                $this->getProductFeedbackStatuses();
+            case 'getFeedValidationList':
+                $this->getFeedValidationList();
                 break;
-            case 'getPrestashopCategories':
-                $this->getPrestashopCategories();
+            case 'getFeedValidationSummary':
+                $this->getFeedValidationSummary();
                 break;
-            case 'getMappedCategories':
-                $this->getMappedCategories();
+            case 'getLastStatus':
+                $this->getLastStatus();
                 break;
-            case 'getChildrenOfCategory':
-                $this->getChildrenOfCategory();
+            case 'postAccountOnboard':
+                $this->postAccountOnboard();
                 break;
-            case 'updateCategoryMap':
-                $this->updateCategoryMap();
-                break;
-            case 'removeCategoryMapping':
-                $this->removeCategoryMapping();
-                break;
-
             default:
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
         }
@@ -92,53 +90,45 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         );
     }
 
-    private function getShippingSettings()
+    private function getOauthCallback()
     {
-        $this->ajaxDie(json_encode(['success' => true]));
+        $response = $this->apiClient->getOauthCallback();
+
+        $this->ajaxDie(json_encode($response));
     }
 
-    private function saveShippingSettings()
+    private function getHealthCheck()
     {
-        $this->ajaxDie(json_encode(['success' => true]));
+        $response = $this->apiClient->getHealthCheck();
+
+        $this->ajaxDie(json_encode($response));
     }
 
-    private function getProductFeedSummary()
+    private function getFeedValidationList()
     {
-        $this->ajaxDie(json_encode(['success' => true]));
+        $response = $this->apiClient->getFeedValidationList();
+
+        $this->ajaxDie(json_encode($response));
     }
 
-    private function getProductSyncNumber()
+    private function getFeedValidationSummary()
     {
-        $this->ajaxDie(json_encode(['success' => true]));
+        $response = $this->apiClient->getFeedValidationSummary();
+
+        $this->ajaxDie(json_encode($response));
     }
 
-    private function getProductFeedbackStatuses()
+    private function getLastStatus()
     {
-        $this->ajaxDie(json_encode(['success' => true]));
+        $response = $this->apiClient->getLastStatus();
+
+        $this->ajaxDie(json_encode($response));
     }
 
-    private function getPrestashopCategories()
+    private function postAccountOnboard()
     {
-        $this->ajaxDie(json_encode(['success' => true]));
-    }
+        $response = $this->apiClient->postAccountOnboard();
 
-    private function getMappedCategories()
-    {
-        $this->ajaxDie(json_encode(['success' => true]));
-    }
-
-    private function getChildrenOfCategory()
-    {
-        $this->ajaxDie(json_encode(['success' => true]));
-    }
-
-    private function updateCategoryMap()
-    {
-        $this->ajaxDie(json_encode(['success' => true]));
-    }
-
-    private function removeCategoryMapping()
-    {
-        $this->ajaxDie(json_encode(['success' => true]));
+        $this->ajaxDie(json_encode($response));
     }
 }

@@ -4,6 +4,7 @@ imports:
   - { resource: common/handler.yml }
   - { resource: common/segment.yml }
   - { resource: common/repository.yml }
+  - { resource: common/factory.yml }
 
 services:
   ps_googleshopping:

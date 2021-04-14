@@ -1,0 +1,6 @@
+services:
+  PrestaShop\Module\PrestashopGoogleShopping\API\APIClient:
+    class: PrestaShop\Module\PrestashopGoogleShopping\API\APIClient
+    arguments:
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Factory\ApiClientFactory'
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler'
