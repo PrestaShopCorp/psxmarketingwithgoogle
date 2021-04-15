@@ -14,7 +14,6 @@
       "header": {
         "title": "PrestaShop Google Shopping",
         "text": "PrestaShop Google Shopping makes it easy to connect your store with Google, so you can showcase your products to millions of shoppers across Google Search, Shopping, Gmail, YouTube, and the Display Network.",
-        "getStarted": "Get started",
         "reinsurance": "- Easy setup \n- Cancel anytime"
       },
       "content": {
@@ -33,9 +32,21 @@
           "text": "Smart Shopping campaigns help you reach even more customers and grow your business by promoting your products across Google Search, Shopping, YouTube, Gmail, and the Display Network. They use Google’s technology to optimize your ads and automatically show your products to customers who are more likely to buy and spend more.",
           "footer": "[Learn more about Smart Shopping campaigns](//tartiflette.com){:target=\"_blank\"}"
         }
+      },
+      "footer": {
+        "text": "Make your first steps with PrestaShop Google Shopping!"
       }
     },
     "onboarding": {
+      "sectionTitle": {
+        "psAccount": "Your PrestaShop account",
+        "freeListing": "Activate your free product listings",
+        "smartShoppingCampaign": "Launch your paid Smart Shopping campaign"
+      },
+      "psAccountCard": {
+        "disonboardedText": "Authorize your account to manage your shop’s services",
+        "onboardedText": "Your shop is associated to the PrestaShop account of"
+      },
       "mcaCard": {
         "footerEU": "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)](//google.com){:target=\"_blank\"}  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners](//google.com){:target=\"_blank\"}  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use."
       }
@@ -60,6 +71,12 @@
     "faq" : {
         "title" : "FAQ",
         "noFaq" : "No FAQ available."
+    },
+    "cta": {
+      "getStarted": "Get started",
+      "connect": "Connect",
+      "dissociate": "Dissociate",
+      "manageAccount": "Manage account"
     }
   }
 }

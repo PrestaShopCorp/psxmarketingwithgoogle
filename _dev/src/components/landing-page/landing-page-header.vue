@@ -27,7 +27,7 @@
         variant="primary"
         class="my-2"
       >
-        {{ $t('landingPage.header.getStarted') }}
+        {{ $t('cta.getStarted') }}
       </b-button>
 
       <div class="ps_gs-landingpage-header__benefits text-muted">

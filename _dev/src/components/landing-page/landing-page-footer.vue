@@ -3,10 +3,10 @@
     <b-row class="flex-column flex-sm-row">
       <b-col>
         <p class="ps_gs-landingpage-footer__text mb-3">
-          Make your first steps with PrestaShop Google Shopping!
+          {{ $t('landingPage.footer.text') }}
         </p>
         <b-button variant="primary">
-          Get started
+          {{ $t('cta.getStarted') }}
         </b-button>
       </b-col>
     </b-row>

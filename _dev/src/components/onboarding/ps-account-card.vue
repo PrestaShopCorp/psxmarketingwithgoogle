@@ -32,7 +32,7 @@
           variant="primary"
           class="mx-2 mt-3 mt-md-0 mr-md-0"
         >
-          Connect
+          {{ $t('cta.connect') }}
         </b-button>
 
         <template v-else>
@@ -41,14 +41,14 @@
             class="mx-2 mt-3 mt-md-0"
             target="_blank"
           >
-            Dissociate
+            {{ $t('cta.dissociate') }}
           </b-button>
           <b-button
             variant="outline-secondary"
             class="mx-2 mt-3 mt-md-0 mr-md-0"
             target="_blank"
           >
-            Manage account
+            {{ $t('cta.manageAccount') }}
           </b-button>
         </template>
       </div>
@@ -68,9 +68,13 @@ export default {
   },
   computed: {
     message() {
+      /**
+       * * I'm using this.$i18n.t('') instead of $t('')
+       * * Without this change, it wouldn't work in Storybook
+       */
       return this.isConnected
-        ? 'Your shop is associated to the PrestaShop account of'
-        : 'Authorize your account to manage your shop’s services';
+        ? this.$i18n.t('onboarding.psAccountCard.onboardedText')
+        : this.$i18n.t('onboarding.psAccountCard.disonboardedText');
     },
   },
 };

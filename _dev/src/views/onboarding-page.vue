@@ -2,7 +2,7 @@
   <div>
     <section-title
       :step-number="1"
-      step-title="Your PrestaShop account"
+      :step-title="$t('onboarding.sectionTitle.psAccount')"
       :is-enabled="true"
       :is-done="false"
     />
@@ -11,7 +11,7 @@
     />
     <section-title
       :step-number="2"
-      step-title="Activate your free product listings"
+      :step-title="$t('onboarding.sectionTitle.freeListing')"
       :is-enabled="false"
       :is-done="false"
     />
@@ -21,7 +21,7 @@
     />
     <section-title
       :step-number="3"
-      step-title="Launch your paid Smart Shopping campaign"
+      :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
       :is-enabled="false"
       :is-done="false"
     />

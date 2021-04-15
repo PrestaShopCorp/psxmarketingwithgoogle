@@ -30,7 +30,11 @@ import "bootstrap-vue/dist/bootstrap-vue";
 import "prestakit/dist/css/bootstrap-prestashop-ui-kit.css";
 import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
 
-// showdown extension to add title and target attributes to links
+/**
+ * ? Should this extension be in it's on file?
+ * Showdown Extension to allow target attribute on links in MD
+ * Eslint is disabled because I wasn't sure how to correct the regex fn
+ */
 /* eslint-disable */
 showdown.extension("targetlink", function () {
   return [
