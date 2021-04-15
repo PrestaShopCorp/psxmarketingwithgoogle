@@ -21,11 +21,27 @@
         </b-card-text>
       </div>
     </div>
-    <p class="ps_gs-fz-12">
-      Allows you to display your products either free on Google Shopping tab
-      and/or paid Smart Shopping campaigns
-    </p>
-    <div class="d-flex mt-2">
+    <div class="d-md-flex justify-content-between">
+      <p class="ps_gs-fz-12">
+        Allows you to display your products either free on Google Shopping tab
+        and/or paid Smart Shopping campaigns
+      </p>
+      <div
+        class="text-center"
+        v-if="isEnabled"
+      >
+        <b-button
+          variant="primary"
+          class="ml-md-3"
+        >
+          Configure and export product feed
+        </b-button>
+      </div>
+    </div>
+    <div
+      v-if="!isEnabled"
+      class="d-flex mt-2"
+    >
       <span
         class="mr-2"
       >
