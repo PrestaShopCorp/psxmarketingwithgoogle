@@ -18,11 +18,27 @@
         >
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
           Merchant Center account
+          <b-iconstack
+            v-if="mcaConfigured"
+            font-scale="1.5"
+            class="ml-2 mr-3 fixed-size color-green"
+            width="20"
+            height="20"
+          >
+            <b-icon-circle-fill
+              stacked
+            />
+            <b-icon-check
+              stacked
+              variant="white"
+            />
+          </b-iconstack>
         </b-card-text>
       </div>
     </div>
     <VueShowdown
-      class="ps_gs-fz-12"
+      v-if="!websiteVerification"
+      class="ps_gs-fz-12 mb-3"
       :markdown="message"
       :extensions="['targetlink']"
     />
@@ -49,9 +65,12 @@
         </li>
       </ul>
     </div>
-    <div v-else>
-      <b-form>
-        <p for="mcaSelection">
+    <div v-if="isEnabled && !websiteVerification">
+      <b-form class="mb-2">
+        <p
+          for="mcaSelection"
+          class="mb-0"
+        >
           <strong>Connect an existing Merchant Center account</strong>
         </p>
         <div class="d-md-flex text-center">
@@ -82,7 +101,7 @@
           </b-button>
         </div>
       </b-form>
-      <div class="mt-4">
+      <div class="mt-3">
         <a href="#">
           <i
             class="left material-icons mr-2"
@@ -103,21 +122,136 @@
         />
       </div>
     </div>
+    <div
+      v-if="isEnabled && websiteVerification"
+      class="mt-2 d-flex justify-content-between align-items-start">
+      <div class="d-flex align-items-center">
+        <strong>Maison Royer - 246797534</strong>
+        <b-badge
+          v-if="mcaStatus == 'active'"
+          class="mx-3"
+          variant="success"
+        >
+          Active
+        </b-badge>
+        <b-badge
+          v-if="mcaStatus == 'warning'"
+          class="mx-3"
+          variant="warning"
+        >
+          Pending
+        </b-badge>
+        <b-badge
+          v-if="mcaStatus == 'danger'"
+          class="mx-3"
+          variant="danger"
+        >
+          Disapproved
+        </b-badge>
+        <span
+          v-if="websiteVerification == 'checking'"
+          class="text-muted"
+        >
+          <i class="icon-busy icon-busy--dark mr-1"></i>
+          Checking your site claim...
+        </span>
+        <span
+          v-if="websiteVerification == 'doneAlert'"
+          class="text-muted"
+        >
+          <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
+          Site verified
+        </span>
+      </div>
+      <b-button
+        variant="outline-secondary"
+      >
+        {{ $t('cta.dissociate') }}
+      </b-button>
+    </div>
+    <div
+      v-if="isEnabled && error"
+      class="mt-2"
+    >
+      <b-alert
+        v-if="error == 'disapproved'"
+        show
+        variant="danger"
+        class="mb-0"
+      >
+        <p class="mb-0">
+          This is a danger alert with a link.
+          <a href="//google.com" target="_blank" class="text-muted ps_gs-fz-12 font-weight-normal">Learn about account suspension</a>
+        </p>
+      </b-alert>
+      <b-alert
+        v-else-if="error == 'expiring'"
+        show
+        variant="warning"
+        class="mb-0"
+      >
+        <p class="mb-0">
+          This is a warning alert with a link.
+          <a href="//google.com" target="_blank" class="text-muted ps_gs-fz-12 font-weight-normal">Learn about account suspension</a>
+        </p>
+      </b-alert>
+      <b-alert
+        v-else-if="error == 'overwrite'"
+        show
+        variant="warning"
+        class="mb-0"
+      >
+        <p class="mb-0">
+          <strong>Your current website claim collides with an existing claim</strong><br>
+          <span class="ps_gs-fz-12">
+            To finalize your Google Merchant Center account creation, you need to overwrite the existing claim.
+          </span>
+        </p>
+        <div class="d-flex align-items-center mt-2">
+          <b-button
+            class="mx-3 mt-3 mt-md-0 mx-md-0"
+            variant="secondary"
+          >
+            {{ $t('cta.overwriteClaim') }}
+          </b-button>
+          <b-button
+            class="mx-3 mt-3 mt-md-0"
+            variant="outline-secondary"
+          >
+            {{ $t('cta.switchAccount') }}
+          </b-button>
+          <a
+            href="//google.com"
+            target="_blank"
+            class="text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
+          >
+            Learn about site claimning
+          </a>
+        </div>
+      </b-alert>
+    </div>
   </b-card>
 </template>
 
 <script>
 import {
+  BIconstack,
+  BIconCheck,
+  BIconCircleFill,
   BIconExclamationCircle,
 } from 'bootstrap-vue';
 
 export default {
   name: 'MerchantCenterAccountCard',
   components: {
+    BIconstack,
+    BIconCheck,
+    BIconCircleFill,
     BIconExclamationCircle,
   },
   data() {
     return {
+      mcaConfigured: false,
       selected: null,
       mcaSelectionOptions: [
         {
@@ -136,6 +270,8 @@ export default {
           text: 'Fondation Royer - 678321007',
         },
       ],
+      websiteVerification: null,
+      mcaStatus: null,
     };
   },
   props: {
@@ -143,6 +279,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    error: String,
   },
   computed: {
     message() {
@@ -153,7 +290,15 @@ export default {
   },
   methods: {
     selectMerchantCenterAccount() {
-
+      this.websiteVerification = 'checking';
+      this.mcaStatus = 'active'
+      setTimeout(() => {
+        this.websiteVerification = 'doneAlert';
+        this.mcaConfigured = true;
+        setTimeout(() => {
+          this.websiteVerification = 'done';
+        }, 2000);
+      }, 2000);
     },
   },
   mounted() {

@@ -76,7 +76,9 @@
       "getStarted": "Get started",
       "connect": "Connect",
       "dissociate": "Dissociate",
-      "manageAccount": "Manage account"
+      "manageAccount": "Manage account",
+      "overwriteClaim": "Overwrite claim",
+      "switchAccount": "Switch account"
     }
   }
 }

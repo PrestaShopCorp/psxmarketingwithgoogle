@@ -12,13 +12,12 @@
     <b-iconstack
       v-else
       font-scale="1.5"
-      class="ml-2 mr-3 fixed-size"
+      class="ml-2 mr-3 fixed-size color-green"
       width="20"
       height="20"
     >
       <b-icon-circle-fill
         stacked
-        variant="success"
       />
       <b-icon-check
         stacked
