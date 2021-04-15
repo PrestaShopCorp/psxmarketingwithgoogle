@@ -65,3 +65,21 @@ const TemplateBusy = (args, { argTypes }) => ({
 
 export const Busy:any = TemplateBusy.bind({});
 Busy.args = {}
+
+const TemplateInvisible = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { },
+  template: `
+    <div>
+      <b-button variant="text">
+        Invisible
+      </b-button>
+      <b-button variant="text">
+        <i class="ml-1 material-icons">close</i>
+      </b-button>
+    </div>
+  `,
+});
+
+export const Invisible:any = TemplateInvisible.bind({});
+Invisible.args = {}
