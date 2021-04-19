@@ -1,17 +1,22 @@
-import ProductFeedCard from '../src/components/onboarding/product-feed-card.vue'
+import FreeListingCard from '../src/components/onboarding/free-listing-card.vue'
 
 export default {
-  title: 'Onboarding/Components/Card - Product feed',
-  component: ProductFeedCard,
+  title: 'Onboarding/Components/Card - Free listing',
+  component: FreeListingCard,
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { ProductFeedCard },
-  template: '<ProductFeedCard v-bind="$props" />',
+  components: { FreeListingCard },
+  template: '<FreeListingCard v-bind="$props" />',
 });
 
-export const Default:any = Template.bind({});
-Default.args = {
+export const Disabled:any = Template.bind({});
+Disabled.args = {
   isEnabled: false,
+}
+
+export const Enabled:any = Template.bind({});
+Enabled.args = {
+  isEnabled: true,
 }

@@ -15,9 +15,10 @@
           "
           width="40"
           height="40"
+          alt=""
         />
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
-          Merchant Center account
+          {{ $t('onboarding.mcaCard.title') }}
           <b-iconstack
             v-if="mcaConfigured"
             font-scale="1.5"
@@ -44,17 +45,17 @@
       <ul class="list-inline mb-0">
         <li
           v-b-tooltip.hover
-          title="Requires Google account configured"
+          :title="$t('tooltip.googleAccountRequired')"
           class="list-inline-item"
         >
-          <b-badge variant="muted"> Google account </b-badge>
+          <b-badge variant="muted">{{ $t('badge.googleAccount') }}</b-badge>
         </li>
       </ul>
     </div>
     <div v-if="isEnabled && !websiteVerification">
       <b-form class="mb-2">
         <p for="mcaSelection" class="mb-0">
-          <strong>Connect an existing Merchant Center account</strong>
+          <strong>{{ $t('onboarding.mcaCard.labelSelect') }}</strong>
         </p>
         <div class="d-md-flex text-center">
           <b-dropdown
@@ -80,14 +81,14 @@
             class="mt-3 mt-md-0 ml-md-3"
             @click="selectMerchantCenterAccount"
           >
-            Choose existing account
+            {{ $t('cta.chooseExistingAccount') }}
           </b-button>
         </div>
       </b-form>
       <div class="mt-3">
         <a href="#">
-          <i class="left material-icons mr-2" aria-hidden="true"> person_add </i>
-          <span class="align-middle"> Create new Merchant Center account </span>
+          <i class="left material-icons mr-2" aria-hidden="true">person_add</i>
+          <span class="align-middle">{{ $t('cta.createNewMCA') }}</span>
         </a>
         <VueShowdown
           class="mt-4 mb-0 text-muted ps_gs-fz-12"
@@ -103,21 +104,21 @@
       <div class="d-flex align-items-center">
         <strong>Maison Royer - 246797534</strong>
         <b-badge v-if="mcaStatus == 'active'" class="mx-3" variant="success">
-          Active
+          {{ $t('badge.active') }}
         </b-badge>
         <b-badge v-if="mcaStatus == 'warning'" class="mx-3" variant="warning">
-          Pending
+          {{ $t('badge.pending') }}
         </b-badge>
         <b-badge v-if="mcaStatus == 'danger'" class="mx-3" variant="danger">
-          Disapproved
+          {{ $t('badge.disapproved') }}
         </b-badge>
         <span v-if="websiteVerification == 'checking'" class="text-muted">
           <i class="icon-busy icon-busy--dark mr-1"></i>
-          Checking your site claim...
+          {{ $t('badge.checkingSiteClaim') }}
         </span>
         <span v-if="websiteVerification == 'doneAlert'" class="text-muted">
           <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
-          Site verified
+          {{ $t('badge.siteVerified') }}
         </span>
       </div>
       <b-button variant="outline-secondary">
@@ -127,40 +128,51 @@
     <div v-if="isEnabled && error" class="mt-2">
       <b-alert v-if="error == 'disapproved'" show variant="danger" class="mb-0">
         <p class="mb-0">
+          <!-- not translated, in need to be dynamic -->
           This is a danger alert with a link.
           <a
             href="//google.com"
             target="_blank"
             class="text-muted ps_gs-fz-12 font-weight-normal"
-            >Learn about account suspension</a
+            >
+              {{ $t('cta.learnAboutAccountSuspension') }}
+            </a
           >
         </p>
       </b-alert>
       <b-alert v-else-if="error == 'expiring'" show variant="warning" class="mb-0">
         <p class="mb-0">
+          <!-- not translated, in need to be dynamic -->
           This is a warning alert with a link.
           <a
             href="//google.com"
             target="_blank"
             class="text-muted ps_gs-fz-12 font-weight-normal"
-            >Learn about account suspension</a
+            >
+              {{ $t('cta.learnAboutAccountSuspension') }}
+            </a
           >
         </p>
       </b-alert>
       <b-alert v-else-if="error == 'overwrite'" show variant="warning" class="mb-0">
         <p class="mb-0">
-          <strong>Your current website claim collides with an existing claim</strong
+          <strong>{{ $t('onboarding.mcaCard.claimCollides') }}</strong
           ><br />
           <span class="ps_gs-fz-12">
-            To finalize your Google Merchant Center account creation, you need to
-            overwrite the existing claim.
+            {{ $t('onboarding.mcaCard.claimOverwrite') }}
           </span>
         </p>
         <div class="d-md-flex text-center align-items-center mt-2">
-          <b-button class="mx-3 mt-3 mt-md-0 mx-md-0" variant="secondary">
+          <b-button
+            class="mx-3 mt-3 mt-md-0 mx-md-0"
+            variant="secondary"
+          >
             {{ $t("cta.overwriteClaim") }}
           </b-button>
-          <b-button class="mx-3 mt-3 mt-md-0" variant="outline-secondary">
+          <b-button
+            class="mx-3 mt-3 mt-md-0"
+            variant="outline-secondary"
+          >
             {{ $t("cta.switchAccount") }}
           </b-button>
           <a
@@ -168,7 +180,7 @@
             target="_blank"
             class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
           >
-            Learn about site claiming
+            {{ $t('cta.learnAboutSiteClaiming') }}
           </a>
         </div>
       </b-alert>
@@ -222,13 +234,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    isConnected: {
+      type: Boolean,
+      default: false,
+    },
     error: String,
   },
   computed: {
     message() {
       return this.isEnabled
-        ? '[Google Merchant Center](//google.com){:target="_blank"} helps you get your store and product info into Google and make it available to shoppers across Google.'
-        : "Once connected your Google account you will be able to associate your Merchant Center account.";
+        ? this.$i18n.t('onboarding.mcaCard.introEnabled')
+        : this.$i18n.t('onboarding.mcaCard.introDisabled');
     },
   },
   methods: {
@@ -245,7 +261,12 @@ export default {
     },
   },
   mounted() {
-    return this.isEnabled && this.$refs.mcaSelection.$refs.toggle.focus();
+    if (this.isConnected) {
+      this.mcaConfigured = true;
+      this.mcaStatus = "active";
+      this.websiteVerification = "done";
+    }
+    this.isEnabled && this.$refs.mcaSelection.$refs.toggle.focus();
   },
 };
 </script>

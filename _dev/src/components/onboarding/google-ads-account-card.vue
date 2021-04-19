@@ -13,9 +13,10 @@
         src="@/assets/images/Google-Ads-icon-grey.svg"
         width="40"
         height="40"
+        alt=""
         >
       <b-card-text class="text-left mb-0 ps_gs-fz-12">
-        Create adverstising campaigns for your products: find the right audience at the right time
+        {{ $t('onboarding.googleAdsAccountCard.introDisabled') }}
       </b-card-text>
     </div>
   </b-card>

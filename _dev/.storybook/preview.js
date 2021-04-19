@@ -97,6 +97,26 @@ export const parameters = {
       },
     ],
   },
+  options: {
+    storySort: {
+      order: [
+        'Base',
+        'LandingPage',
+          [
+            'Components',
+              ['Header', 'Content', 'Footer'] ,
+            'LandingPage'
+          ],
+        'Onboarding',
+          [
+            'Components',
+              ['SectionTitle', 'Notice - Product feed', 'Card - PS Account', 'Card - Google Account', 'Card - MCA', 'Card - Product feed', 'Card - Free listing', 'Settings - Poduct feed'] ,
+            'OnboardingPage',
+              ['Header', 'Content', 'Footer'] ,
+          ],
+      ]
+    }
+  }
 };
 export const decorators = [
   () => ({ template: '<div id="googleShoppingApp"><story /></div>' }),

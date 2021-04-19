@@ -19,8 +19,7 @@
         <b-card-text
           class="text-left mb-0 ps_gs-fz-12"
         >
-          When you are done connecting your PrestaShop account
-          you will be able to connect your Google accounts.
+          {{ $t('onboarding.googleAccountCard.introDisabled') }}
         </b-card-text>
       </div>
     </template>
@@ -37,7 +36,7 @@
           height="40"
         >
         <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
-          Google account
+          {{ $t('onboarding.googleAccountCard.title') }}
         </b-card-text>
         <b-iconstack
           v-if="isConnected"
@@ -58,7 +57,7 @@
       </div>
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
         <p class="ps_gs-fz-12 mb-0">
-          A Google Account lets you access your Google Merchant Center and Google Ads accounts
+          {{ $t('onboarding.googleAccountCard.introEnabled') }}
         </p>
         <div
           v-if="!isConnected"
@@ -71,10 +70,10 @@
             @click="connectGoogleAccount"
           >
             <template v-if="!isConnecting">
-              Connect account
+              {{ $t('cta.connectAccount') }}
             </template>
             <template v-else>
-              Connecting account...
+              {{ $t('cta.connectingAccount') }}
               <span class="ml-1 icon-busy" />
             </template>
           </b-button>
@@ -88,14 +87,14 @@
             class="mx-2 mt-3 mt-md-0"
             target="_blank"
           >
-            Dissociate
+            {{ $t('cta.dissociate') }}
           </b-button>
           <b-button
             variant="outline-secondary"
             class="mx-2 mt-3 mt-md-0 mr-md-0"
             target="_blank"
           >
-            Manage account
+            {{ $t('cta.manageAccount') }}
           </b-button>
         </div>
       </div>
@@ -104,8 +103,7 @@
         class="text-md-right text-muted mt-3"
       >
         <p class="ps_gs-fz-12 mb-0">
-          Dissociating your Google account will disconnect
-          your Google Merchant Center and your Google Ads accounts.
+          {{ $t('onboarding.googleAccountCard.footerDissociating') }}
         </p>
       </div>
     </template>

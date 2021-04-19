@@ -1,0 +1,34 @@
+.ps_gs-breadcrumb {
+  &__item {
+    display: flex;
+    font-size: rem(12);
+    font-weight: 600;
+
+    @include media-breakpoint-up(md) {
+      font-size: rem(16);
+    }
+
+    @include media-breakpoint-down(sm) {
+      line-height: 1.2em;
+    }
+
+    & + &::before {
+      content: '>';
+      margin-right: rem(8);
+    }
+  }
+
+  &__link {
+    color: $grey_median;
+  }
+
+  &__icon {
+    @include media-breakpoint-down(sm) {
+      width: rem(24);
+      height: rem(24);
+      margin-right: rem(8);
+    }
+
+    margin-right: rem(16);
+  }
+}

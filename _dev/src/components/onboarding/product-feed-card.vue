@@ -15,16 +15,16 @@
             : require('@/assets/images/product-feed-icon-grey.svg')"
           width="40"
           height="40"
+          alt=""
         >
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
-          Product feed
+          {{ $t('onboarding.productFeedCard.title') }}
         </b-card-text>
       </div>
     </div>
     <div class="d-md-flex justify-content-between">
       <p class="ps_gs-fz-12">
-        Allows you to display your products either free on Google Shopping tab
-        and/or paid Smart Shopping campaigns
+        {{ $t('onboarding.productFeedCard.introDisabled') }}
       </p>
       <div
         class="text-center"
@@ -34,7 +34,7 @@
           variant="primary"
           class="ml-md-3"
         >
-          Configure and export product feed
+          {{ $t('cta.configureAndExportProductFeed') }}
         </b-button>
       </div>
     </div>
@@ -54,7 +54,7 @@
           title="Tooltip directive content"
         >
           <b-badge variant="muted">
-            Merchant Center account
+            {{ $t('badge.mca') }}
           </b-badge>
         </li>
         <li
@@ -63,7 +63,7 @@
           title="Tooltip directive content"
         >
           <b-badge variant="muted">
-            Product feed settings
+            {{ $t('badge.productFeedSettings') }}
           </b-badge>
         </li>
       </ul>

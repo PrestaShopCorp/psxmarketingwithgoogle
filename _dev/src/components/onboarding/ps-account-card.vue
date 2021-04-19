@@ -13,6 +13,7 @@
             : require('@/assets/images/puffin-logo.svg')"
           width="40"
           height="40"
+          alt=""
         />
         <b-card-text class="flex-grow-1 text-left mb-0">
           {{ message }}
@@ -29,8 +30,8 @@
       >
         <b-button
           v-if="!isConnected"
-          variant="primary"
           class="mx-2 mt-3 mt-md-0 mr-md-0"
+          variant="primary"
         >
           {{ $t('cta.connect') }}
         </b-button>
