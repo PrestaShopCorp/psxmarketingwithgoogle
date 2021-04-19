@@ -175,90 +175,17 @@
             "time": "2014-10-12T19:18:40+00:00"
         },
         {
-            "name": "lcobucci/jwt",
-            "version": "3.4.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lcobucci/jwt.git",
-                "reference": "511629a54465e89a31d3d7e4cf0935feab8b14c1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/511629a54465e89a31d3d7e4cf0935feab8b14c1",
-                "reference": "511629a54465e89a31d3d7e4cf0935feab8b14c1",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "ext-openssl": "*",
-                "php": "^5.6 || ^7.0"
-            },
-            "require-dev": {
-                "mikey179/vfsstream": "~1.5",
-                "phpmd/phpmd": "~2.2",
-                "phpunit/php-invoker": "~1.1",
-                "phpunit/phpunit": "^5.7 || ^7.3",
-                "squizlabs/php_codesniffer": "~2.3"
-            },
-            "suggest": {
-                "lcobucci/clock": "*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Lcobucci\\JWT\\": "src"
-                },
-                "files": [
-                    "compat/class-aliases.php",
-                    "compat/json-exception-polyfill.php",
-                    "compat/lcobucci-clock-polyfill.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Luís Otávio Cobucci Oblonczyk",
-                    "email": "lcobucci@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A simple library to work with JSON Web Token and JSON Web Signature",
-            "keywords": [
-                "JWS",
-                "jwt"
-            ],
-            "funding": [
-                {
-                    "url": "https://github.com/lcobucci",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/lcobucci",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2021-02-16T09:40:01+00:00"
-        },
-        {
             "name": "paragonie/random_compat",
-            "version": "v2.0.19",
+            "version": "v2.0.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "446fc9faa5c2a9ddf65eb7121c0af7e857295241"
+                "reference": "0f1f60250fccffeaf5dda91eea1c018aed1adc2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/446fc9faa5c2a9ddf65eb7121c0af7e857295241",
-                "reference": "446fc9faa5c2a9ddf65eb7121c0af7e857295241",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/0f1f60250fccffeaf5dda91eea1c018aed1adc2a",
+                "reference": "0f1f60250fccffeaf5dda91eea1c018aed1adc2a",
                 "shasum": ""
             },
             "require": {
@@ -299,7 +226,7 @@
                 "issues": "https://github.com/paragonie/random_compat/issues",
                 "source": "https://github.com/paragonie/random_compat"
             },
-            "time": "2020-10-15T10:06:57+00:00"
+            "time": "2021-04-17T09:33:01+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -519,19 +446,6 @@
             "time": "2020-10-21T08:35:58+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "prestashop/prestashop-accounts-auth",
-            "version": "v2.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PrestaShopCorp/prestashop_accounts_auth.git",
-                "reference": "640f1ed35d0276cda7a96519bc6993a4a3ff35b6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PrestaShopCorp/prestashop_accounts_auth/zipball/640f1ed35d0276cda7a96519bc6993a4a3ff35b6",
-                "reference": "640f1ed35d0276cda7a96519bc6993a4a3ff35b6",
-=======
             "name": "prestashop/prestashop-accounts-installer",
             "version": "dev-main",
             "source": {
@@ -543,7 +457,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/PrestaShopCorp/prestashop-accounts-installer/zipball/6381bcbf53a792b5634bfa4470f3bf9958521df8",
                 "reference": "6381bcbf53a792b5634bfa4470f3bf9958521df8",
->>>>>>> add accountsv4 on projet
                 "shasum": ""
             },
             "require": {
@@ -566,17 +479,12 @@
             "license": [
                 "MIT"
             ],
-<<<<<<< HEAD
-            "description": "PrestaShop Accounts composer library",
-            "time": "2021-03-11T15:19:17+00:00"
-=======
             "description": "Utility package to install `ps_accounts` module or present data to trigger manual install from psx configuration page.",
             "support": {
                 "issues": "https://github.com/PrestaShopCorp/prestashop-accounts-installer/issues",
                 "source": "https://github.com/PrestaShopCorp/prestashop-accounts-installer/tree/main"
             },
             "time": "2021-03-10T17:42:09+00:00"
->>>>>>> add accountsv4 on projet
         },
         {
             "name": "psr/cache",
@@ -880,54 +788,9 @@
                 "segment",
                 "segmentio"
             ],
-<<<<<<< HEAD
-            "time": "2021-03-11T21:29:11+00:00"
-        },
-        {
-            "name": "sentry/sentry",
-            "version": "1.11.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "159eeaa02bb2ef8a8ec669f3c88e4bff7e6a7ffe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/159eeaa02bb2ef8a8ec669f3c88e4bff7e6a7ffe",
-                "reference": "159eeaa02bb2ef8a8ec669f3c88e4bff7e6a7ffe",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": "^5.3|^7.0"
-            },
-            "conflict": {
-                "raven/raven": "*"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^1.8.0",
-                "monolog/monolog": "^1.0",
-                "phpunit/phpunit": "^4.8.35 || ^5.7"
-            },
-            "suggest": {
-                "ext-hash": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "monolog/monolog": "Automatically capture Monolog events as breadcrumbs"
-            },
-            "bin": [
-                "bin/sentry"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.11.x-dev"
-                }
-=======
             "support": {
                 "issues": "https://github.com/segmentio/analytics-php/issues",
                 "source": "https://github.com/segmentio/analytics-php/tree/1.7.0"
->>>>>>> add accountsv4 on projet
             },
             "time": "2021-03-11T21:29:11+00:00"
         },
@@ -3069,13 +2932,10 @@
                 "MIT"
             ],
             "description": "PrestaShop coding standards",
-<<<<<<< HEAD
-=======
             "support": {
                 "issues": "https://github.com/PrestaShop/php-dev-tools/issues",
                 "source": "https://github.com/PrestaShop/php-dev-tools/tree/v3.15"
             },
->>>>>>> add accountsv4 on projet
             "time": "2021-03-11T15:36:18+00:00"
         },
         {
@@ -3686,14 +3546,11 @@
                 "phpcs",
                 "standards"
             ],
-<<<<<<< HEAD
-=======
             "support": {
                 "issues": "https://github.com/squizlabs/PHP_CodeSniffer/issues",
                 "source": "https://github.com/squizlabs/PHP_CodeSniffer",
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
->>>>>>> add accountsv4 on projet
             "time": "2021-04-09T00:54:41+00:00"
         },
         {
