@@ -22,50 +22,15 @@ import Vue from "vue";
 // import vue plugins
 import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
 import VueI18n from "vue-i18n";
-import showdown from "showdown";
 import VueShowdown from "vue-showdown";
+
+// import showdown extension
+import "../showdown.js";
 
 // import css style
 import "bootstrap-vue/dist/bootstrap-vue";
 import "prestakit/dist/css/bootstrap-prestashop-ui-kit.css";
 import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
-
-/**
- * ? Should this extension be in it's on file?
- * Showdown Extension to allow target attribute on links in MD
- * Extension found on showdown github repository:
- * https://github.com/showdownjs/showdown/issues/222#issuecomment-234141081
- * Extension used in:
- *   _dev/src/main.ts
- *   _dev/.storybook/preview.js
- * Eslint is disabled because I wasn't sure how to correct the regex fn
- */
-/* eslint-disable */
-showdown.extension("targetlink", function () {
-  return [
-    {
-      type: "lang",
-      regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\{\:target=(["'])(.*?)\6}/g,
-      replace: function (wholematch, linkText, url, a, b, title, c, target) {
-        var result = '<a href="' + url + '"';
-
-        if (typeof title != "undefined" && title !== "" && title !== null) {
-          title = title.replace(/"/g, "&quot;");
-          title = showdown.helper.escapeCharacters(title, "*_", false);
-          result += ' title="' + title + '"';
-        }
-
-        if (typeof target != "undefined" && target !== "" && target !== null) {
-          result += ' target="' + target + '"';
-        }
-
-        result += ">" + linkText + "</a>";
-        return result;
-      },
-    },
-  ];
-});
-/* eslint-enable */
 
 Vue.use(BootstrapVue, BootstrapVueIcons);
 Vue.use(VueShowdown);
