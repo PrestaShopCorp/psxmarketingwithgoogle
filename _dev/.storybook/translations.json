@@ -121,7 +121,8 @@
       "learnAboutAccountSuspension" : "Learn about account suspension",
       "learnAboutSiteClaiming" : "Learn about site claiming",
       "learnAboutGoogleSolutions" : "Learn more about Google's retail solutions",
-      "configureAndExportProductFeed" : "Configure and export product feed"
+      "configureAndExportProductFeed" : "Configure and export product feed",
+      "chooseAccount" : "Choose your account"
     },
     "badge" : {
       "free" : "Free",

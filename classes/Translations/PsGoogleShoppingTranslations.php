@@ -170,6 +170,7 @@ class PsGoogleShoppingTranslations
                 'learnAboutSiteClaiming' => $this->module->l('Learn about site claiming', 'PsGoogleShoppingTranslations'),
                 'learnAboutGoogleSolutions' => $this->module->l('Learn more about Google\'s retail solutions', 'PsGoogleShoppingTranslations'),
                 'configureAndExportProductFeed' => $this->module->l('Configure and export product feed', 'PsGoogleShoppingTranslations'),
+                'chooseAccount' => $this->module->l('Choose your account', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),

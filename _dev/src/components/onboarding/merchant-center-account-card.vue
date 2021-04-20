@@ -61,7 +61,7 @@
           <b-dropdown
             id="mcaSelection"
             ref="mcaSelection"
-            :text="selected || 'Choose your account'"
+            :text="selected || $t('cta.chooseAccount')"
             variant=" "
             class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
             menu-class="ps-dropdown"
@@ -102,7 +102,7 @@
       class="mt-2 d-flex justify-content-between align-items-start"
     >
       <div class="d-flex align-items-center">
-        <strong>Maison Royer - 246797534</strong>
+        <strong>{{ selected }}</strong>
         <b-badge v-if="mcaStatus == 'active'" class="mx-3" variant="success">
           {{ $t('badge.active') }}
         </b-badge>
