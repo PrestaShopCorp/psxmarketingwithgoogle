@@ -74,8 +74,8 @@ export default {
        * * Without this change, it wouldn't work in Storybook
        */
       return this.isConnected
-        ? this.$i18n.t('onboarding.psAccountCard.onboardedText')
-        : this.$i18n.t('onboarding.psAccountCard.disonboardedText');
+        ? this.$i18n.t('psAccountCard.onboardedText')
+        : this.$i18n.t('psAccountCard.disonboardedText');
     },
   },
 };

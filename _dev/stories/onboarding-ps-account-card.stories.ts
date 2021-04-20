@@ -1,7 +1,7 @@
-import PsAccountCard from '../src/components/onboarding/ps-account-card.vue'
+import PsAccountCard from '../src/components/ps-account/ps-account-card.vue'
 
 export default {
-  title: 'Onboarding/Components/Card - PS Account',
+  title: 'PS Account/Card',
   component: PsAccountCard,
 };
 

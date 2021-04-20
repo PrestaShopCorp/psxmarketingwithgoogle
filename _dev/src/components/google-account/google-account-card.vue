@@ -19,7 +19,7 @@
         <b-card-text
           class="text-left mb-0 ps_gs-fz-12"
         >
-          {{ $t('onboarding.googleAccountCard.introDisabled') }}
+          {{ $t('googleAccountCard.introDisabled') }}
         </b-card-text>
       </div>
     </template>
@@ -36,7 +36,7 @@
           height="40"
         >
         <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
-          {{ $t('onboarding.googleAccountCard.title') }}
+          {{ $t('googleAccountCard.title') }}
         </b-card-text>
         <b-iconstack
           v-if="isConnected"
@@ -57,7 +57,7 @@
       </div>
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
         <p class="ps_gs-fz-12 mb-0">
-          {{ $t('onboarding.googleAccountCard.introEnabled') }}
+          {{ $t('googleAccountCard.introEnabled') }}
         </p>
         <div
           v-if="!isConnected"
@@ -103,7 +103,7 @@
         class="text-md-right text-muted mt-3"
       >
         <p class="ps_gs-fz-12 mb-0">
-          {{ $t('onboarding.googleAccountCard.footerDissociating') }}
+          {{ $t('googleAccountCard.footerDissociating') }}
         </p>
       </div>
     </template>
@@ -117,6 +117,7 @@ import {
   BIconCheck,
   BIconCircleFill,
 } from 'bootstrap-vue';
+
 
 export default {
   name: 'GoogleAccountCard',

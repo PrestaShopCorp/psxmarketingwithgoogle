@@ -18,13 +18,13 @@
           alt=""
         >
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
-          {{ $t('onboarding.productFeedCard.title') }}
+          {{ $t('productFeedCard.title') }}
         </b-card-text>
       </div>
     </div>
     <div class="d-md-flex justify-content-between">
       <p class="ps_gs-fz-12">
-        {{ $t('onboarding.productFeedCard.introDisabled') }}
+        {{ $t('productFeedCard.introDisabled') }}
       </p>
       <div
         class="text-center"

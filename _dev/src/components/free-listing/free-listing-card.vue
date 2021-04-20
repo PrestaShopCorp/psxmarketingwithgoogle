@@ -18,7 +18,7 @@
           alt=""
         >
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
-          {{ $t('onboarding.freeListingCard.title') }}
+          {{ $t('freeListingCard.title') }}
           <b-badge
             class="ml-3"
             variant="muted"
@@ -55,7 +55,7 @@
       class="ps_gs-fz-12"
       :class="isEnabled ? 'mb-0' : 'mb-2'"
     >
-      {{ $t('onboarding.freeListingCard.intro') }}
+      {{ $t('freeListingCard.intro') }}
     </p>
     <template v-if="isEnabled">
       <ul
@@ -63,12 +63,12 @@
       >
         <li class="list-inline-item">
           <a href="//google.com" target="_blank">
-            {{ $t('onboarding.freeListingCard.learnFreeListing') }}
+            {{ $t('freeListingCard.learnFreeListing') }}
           </a>
         </li>
         <li class="list-inline-item">
           <a href="//google.com" target="_blank">
-            {{ $t('onboarding.freeListingCard.seeFreeListing') }}
+            {{ $t('freeListingCard.seeFreeListing') }}
           </a>
         </li>
       </ul>
@@ -77,7 +77,7 @@
         class="d-md-flex justify-content-md-end align-items-center text-center"
       >
         <p class="text-muted ps_gs-fs-12 mb-3 mb-md-0 text-left">
-          {{ $t('onboarding.freeListingCard.googleDelay') }}
+          {{ $t('freeListingCard.googleDelay') }}
         </p>
         <b-button
           disabled
@@ -89,7 +89,7 @@
       </div>
       <b-alert variant="success" show class="mb-0">
         <p class="mb-0">
-          {{ $t('onboarding.freeListingCard.freeListingActivationSuccess') }}
+          {{ $t('freeListingCard.freeListingActivationSuccess') }}
         </p>
       </b-alert>
     </template>

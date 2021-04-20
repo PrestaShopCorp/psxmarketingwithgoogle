@@ -16,7 +16,7 @@
         alt=""
         >
       <b-card-text class="text-left mb-0 ps_gs-fz-12">
-        {{ $t('onboarding.googleAdsAccountCard.introDisabled') }}
+        {{ $t('googleAdsAccountCard.introDisabled') }}
       </b-card-text>
     </div>
   </b-card>

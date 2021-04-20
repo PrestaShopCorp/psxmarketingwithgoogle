@@ -1,7 +1,7 @@
 import ProductFeedNotice from '../src/components/onboarding/product-feed-notice.vue'
 
 export default {
-  title: 'Onboarding/Components/Notice - Product feed',
+  title: 'Onboarding/Components/Product feed notice',
   component: ProductFeedNotice,
 };
 

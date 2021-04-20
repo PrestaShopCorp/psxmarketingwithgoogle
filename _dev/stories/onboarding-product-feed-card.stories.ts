@@ -1,7 +1,7 @@
-import ProductFeedCard from '../src/components/onboarding/product-feed-card.vue'
+import ProductFeedCard from '../src/components/product-feed/product-feed-card.vue'
 
 export default {
-  title: 'Onboarding/Components/Card - Product feed',
+  title: 'Product feed/Card',
   component: ProductFeedCard,
 };
 

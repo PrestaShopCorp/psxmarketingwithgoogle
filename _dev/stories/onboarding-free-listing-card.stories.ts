@@ -1,7 +1,7 @@
-import FreeListingCard from '../src/components/onboarding/free-listing-card.vue'
+import FreeListingCard from '../src/components/free-listing/free-listing-card.vue'
 
 export default {
-  title: 'Onboarding/Components/Card - Free listing',
+  title: 'Free listing/Card',
   component: FreeListingCard,
 };
 

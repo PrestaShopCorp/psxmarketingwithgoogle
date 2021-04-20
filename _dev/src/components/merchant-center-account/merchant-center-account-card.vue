@@ -18,7 +18,7 @@
           alt=""
         />
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
-          {{ $t('onboarding.mcaCard.title') }}
+          {{ $t('mcaCard.title') }}
           <b-iconstack
             v-if="mcaConfigured"
             font-scale="1.5"
@@ -55,7 +55,7 @@
     <div v-if="isEnabled && !websiteVerification">
       <b-form class="mb-2">
         <p for="mcaSelection" class="mb-0">
-          <strong>{{ $t('onboarding.mcaCard.labelSelect') }}</strong>
+          <strong>{{ $t('mcaCard.labelSelect') }}</strong>
         </p>
         <div class="d-md-flex text-center">
           <b-dropdown
@@ -92,7 +92,7 @@
         </a>
         <VueShowdown
           class="mt-4 mb-0 text-muted ps_gs-fz-12"
-          :markdown="$t('onboarding.mcaCard.footerEU')"
+          :markdown="$t('mcaCard.footerEU')"
           :extensions="['targetlink']"
         />
       </div>
@@ -156,10 +156,10 @@
       </b-alert>
       <b-alert v-else-if="error == 'overwrite'" show variant="warning" class="mb-0">
         <p class="mb-0">
-          <strong>{{ $t('onboarding.mcaCard.claimCollides') }}</strong
+          <strong>{{ $t('mcaCard.claimCollides') }}</strong
           ><br />
           <span class="ps_gs-fz-12">
-            {{ $t('onboarding.mcaCard.claimOverwrite') }}
+            {{ $t('mcaCard.claimOverwrite') }}
           </span>
         </p>
         <div class="d-md-flex text-center align-items-center mt-2">
@@ -243,8 +243,8 @@ export default {
   computed: {
     message() {
       return this.isEnabled
-        ? this.$i18n.t('onboarding.mcaCard.introEnabled')
-        : this.$i18n.t('onboarding.mcaCard.introDisabled');
+        ? this.$i18n.t('mcaCard.introEnabled')
+        : this.$i18n.t('mcaCard.introDisabled');
     },
   },
   methods: {

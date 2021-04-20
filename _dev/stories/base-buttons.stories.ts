@@ -1,5 +1,5 @@
 export default {
-  title: 'Base/Buttons',
+  title: 'Basic Components/Buttons',
 };
 
 const Template = (args, { argTypes }) => ({

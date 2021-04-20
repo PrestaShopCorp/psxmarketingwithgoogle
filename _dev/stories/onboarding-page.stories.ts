@@ -1,11 +1,11 @@
 import SectionTitle from '../src/components/onboarding/section-title.vue'
-import PsAccountCard from '../src/components/onboarding/ps-account-card.vue'
-import GoogleAccountCard from '../src/components/onboarding/google-account-card.vue'
-import GoogleAdsAccountCard from '../src/components/onboarding/google-ads-account-card.vue'
+import PsAccountCard from '../src/components/ps-account/ps-account-card.vue'
+import GoogleAccountCard from '../src/components/google-account/google-account-card.vue'
+import GoogleAdsAccountCard from '../src/components/google-ads-account/google-ads-account-card.vue'
 import ProductFeedNotice from '../src/components/onboarding/product-feed-notice.vue'
-import MerchantCenterAccountCard from '../src/components/onboarding/merchant-center-account-card.vue'
-import ProductFeedCard from '../src/components/onboarding/product-feed-card.vue'
-import FreeListingCard from '../src/components/onboarding/free-listing-card.vue'
+import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue'
+import ProductFeedCard from '../src/components/product-feed/product-feed-card.vue'
+import FreeListingCard from '../src/components/free-listing/free-listing-card.vue'
 
 export default {
   title: 'Onboarding/OnboardingPage',

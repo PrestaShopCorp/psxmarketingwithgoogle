@@ -1,7 +1,7 @@
-import GoogleAccountCard from '../src/components/onboarding/google-account-card.vue'
+import GoogleAccountCard from '../src/components/google-account/google-account-card.vue'
 
 export default {
-  title: 'Onboarding/Components/Card - Google Account',
+  title: 'Google Account/Card',
   component: GoogleAccountCard,
 };
 

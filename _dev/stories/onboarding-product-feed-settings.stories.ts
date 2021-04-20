@@ -1,7 +1,7 @@
-import ProductFeedSettings from '../src/components/onboarding/product-feed-settings.vue'
+import ProductFeedSettings from '../src/components/product-feed/product-feed-settings.vue'
 
 export default {
-  title: 'Onboarding/Components/Settings - Product feed',
+  title: 'Product feed/Settings',
   component: ProductFeedSettings,
 };
 

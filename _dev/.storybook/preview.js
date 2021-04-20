@@ -70,7 +70,7 @@ export const parameters = {
   options: {
     storySort: {
       order: [
-        'Base',
+        'Basic Components',
         'LandingPage',
           [
             'Components',
@@ -84,6 +84,11 @@ export const parameters = {
             'OnboardingPage',
               ['Header', 'Content', 'Footer'] ,
           ],
+        'PS Account',
+        'Google Account',
+        'Merchant Center Account',
+        'Product feed',
+        'Free listing',
       ]
     }
   }

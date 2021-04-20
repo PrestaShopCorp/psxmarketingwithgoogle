@@ -1,7 +1,7 @@
-import MerchantCenterAccountCard from '../src/components/onboarding/merchant-center-account-card.vue'
+import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue'
 
 export default {
-  title: 'Onboarding/Components/Card - MCA',
+  title: 'Merchant Center Account/Card',
   component: MerchantCenterAccountCard,
   argTypes: {
     error: {
