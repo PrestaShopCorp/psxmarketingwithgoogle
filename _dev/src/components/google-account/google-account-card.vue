@@ -56,9 +56,24 @@
         </b-iconstack>
       </div>
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
-        <p class="ps_gs-fz-12 mb-0">
+        <p
+          v-if="!isConnected"
+          class="ps_gs-fz-12 mb-0"
+        >
           {{ $t('googleAccountCard.introEnabled') }}
         </p>
+        <div
+          v-else
+        >
+          <img
+            class="mr-3 rounded-circle"
+            :src="user.photo"
+            width="38"
+            height="38"
+            alt=""
+          >
+          <strong>{{ user.email }}</strong>
+        </div>
         <div
           v-if="!isConnected"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
@@ -127,6 +142,10 @@ export default {
   data() {
     return {
       isConnecting: false,
+      user: {
+        email: 'v.godard@maisonroyer.com',
+        photo: '//source.unsplash.com/38x38',
+      },
     };
   },
   props: {
