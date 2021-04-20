@@ -33,6 +33,11 @@ import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
 /**
  * ? Should this extension be in it's on file?
  * Showdown Extension to allow target attribute on links in MD
+ * Extension found on showdown github repository:
+ * https://github.com/showdownjs/showdown/issues/222#issuecomment-234141081
+ * Extension used in:
+ *   _dev/src/main.ts
+ *   _dev/.storybook/preview.js
  * Eslint is disabled because I wasn't sure how to correct the regex fn
  */
 /* eslint-disable */
