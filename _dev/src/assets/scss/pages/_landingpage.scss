@@ -1,0 +1,13 @@
+.ps_gs-landingpage {
+  padding: rem(24);
+
+  @include media-breakpoint-up(md) {
+    padding: rem(32);
+  }
+
+  &-content + hr {
+    @include media-breakpoint-up(md) {
+      margin-top: rem(50) !important;
+    }
+  }
+}

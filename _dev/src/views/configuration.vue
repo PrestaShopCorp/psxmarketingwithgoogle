@@ -1,26 +1,25 @@
 <template>
   <div id="configuration">
-    <b-card no-body>
-      <b-card-body>
-        <div class="row">
-          {{ $t("configuration.introduction") }}
-        </div>
-      </b-card-body>
-    </b-card>
+    <landing-page />
+    <onboarding-page />
   </div>
 </template>
 
 <script>
 import {defineComponent} from '@vue/composition-api';
+import LandingPage from './landing-page.vue';
+import OnboardingPage from './onboarding-page.vue';
 
 export default defineComponent({
   name: 'configuration',
   components: {
+    LandingPage, OnboardingPage,
   },
   props: {
   },
   data() {
     return {
+      psAccountsIsOnboarded: false,
     };
   },
   created() {

@@ -1,5 +1,5 @@
 {
-  "en": {
+  "en" : {
     "general" : {
       "tabs" : {
           "configuration" : "Configure",
@@ -10,26 +10,134 @@
     "configuration" : {
         "introduction" : "Configuration Page !"
     },
-    "help" : {
-        "title" : "Help for PrestaShop Google",
-        "allowsYouTo" : {
-            "title" : "This module allows you to:",
-            "business" : "Manage your business",
-            "account" : "Manage your ad account",
-            "traffic" : "Understand your traffic",
-            "inventory" : "Build and manage inventory",
-            "people" : "Reach more people"
+    "landingPage" : {
+      "header" : {
+        "title" : "PrestaShop Google Shopping",
+        "text" : "PrestaShop Google Shopping makes it easy to connect your store with Google, so you can showcase your products to millions of shoppers across Google Search, Shopping, Gmail, YouTube, and the Display Network.",
+        "reinsurance" : "- Easy setup \n- Cancel anytime"
+      },
+      "content" : {
+        "content1" : {
+          "title" : "Connect your store to Google Merchant Center",
+          "text" : "Connecting your store to Google Merchant Center allows you to upload store and product data to Google. Your products will automatically sync to make relevant information available for free listings, Google Ads, and other Google services.",
+          "footer" : "You can create a new [Merchant Center account](//google.com){:target=\"_blank\"} or link an existing account. Note that you’ll need to meet the Merchant Center eligibility requirements in order to connect your store."
         },
-        "help" : {
-            "needHelp" : "Need help? Find here the documentation of this module.",
-            "downloadPdf" : "Download PDF",
-            "couldntFindAnyAnswer" : "Couldn\"t find any answer to your question?",
-            "contactUs" : "Contact us"
+        "content2" : {
+          "title" : "Reach online shoppers with free listings",
+          "text" : "Free listings drive traffic by showcasing your products to customers who are actively looking for what you sell. Your products will appear on the Google Shopping tab, and can also appear on Google Search, Google Images, and Gmail depending on regional availability.",
+          "footer" : "[Learn more about free listings](//google.com){:target=\"_blank\"}"
+        },
+        "content3" : {
+          "title" : "Boost store traffic and sales with Google Ads",
+          "text" : "Smart Shopping campaigns help you reach even more customers and grow your business by promoting your products across Google Search, Shopping, YouTube, Gmail, and the Display Network. They use Google’s technology to optimize your ads and automatically show your products to customers who are more likely to buy and spend more.",
+          "footer" : "[Learn more about Smart Shopping campaigns](//google.com){:target=\"_blank\"}"
         }
+      },
+      "footer" : {
+        "text" : "Make your first steps with PrestaShop Google Shopping!"
+      }
+    },
+    "onboarding" : {
+      "sectionTitle" : {
+        "psAccount" : "Your PrestaShop account",
+        "freeListing" : "Activate your free product listings",
+        "smartShoppingCampaign" : "Launch your paid Smart Shopping campaign"
+      },
+      "productFeedNotice" : "Google’s retail solutions can help you welcome more customers to your site or your store. After you get set up, you’ll have access to reports so you can see how well your ads are doing."
+    },
+    "psAccountCard" : {
+      "disonboardedText" : "Authorize your account to manage your shop’s services",
+      "onboardedText" : "Your shop is associated to the PrestaShop account of"
+    },
+    "googleAccountCard" : {
+      "title" : "Google account",
+      "introDisabled" : "When you are done connecting your PrestaShop account you will be able to connect your Google accounts.",
+      "introEnabled" : "A Google Account lets you access your Google Merchant Center and Google Ads accounts",
+      "footerDissociating" : "Dissociating your Google account will disconnect your Google Merchant Center and your Google Ads accounts."
+    },
+    "mcaCard" : {
+      "title" : "Merchant Center account",
+      "introDisabled" : "Once connected your Google account you will be able to associate your Merchant Center account.",
+      "introEnabled" : "[Google Merchant Center](//google.com){:target=\"_blank\"} helps you get your store and product info into Google and make it available to shoppers across Google.",
+      "labelSelect" : "Connect an existing Merchant Center account",
+      "claimCollides" : "Your current website claim collides with an existing claim",
+      "claimOverwrite" : "To finalize your Google Merchant Center account creation, you need to overwrite the existing claim.",
+      "footerEU" : "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)](//google.com){:target=\"_blank\"}  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners](//google.com){:target=\"_blank\"}  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use."
+    },
+    "productFeedCard" : {
+      "title" : "Product feed",
+      "introDisabled" : "Allows you to display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns"
+    },
+    "freeListingCard" : {
+      "title" : "Free listing for Google Shopping tab",
+      "intro" : "Enable the free listing of your products on the Google Shopping tab",
+      "learnFreeListing" : "Learn more about free listing",
+      "seeFreeListing" : "See my free listing in Merchant Center",
+      "googleDelay" : "Google usually takes 3-5 business days to review products.",
+      "freeListingActivationSuccess" : "You have successfully activated the free listing of your products for Google Shopping tab for free."
+    },
+    "googleAdsAccountCard" : {
+      "introDisabled" : "Create adverstising campaigns for your products: find the right audience at the right time"
+    },
+    "help" : {
+      "title" : "Help for PrestaShop Google",
+      "allowsYouTo" : {
+        "title" : "This module allows you to:",
+        "business" : "Manage your business",
+        "account" : "Manage your ad account",
+        "traffic" : "Understand your traffic",
+        "inventory" : "Build and manage inventory",
+        "people" : "Reach more people"
+      },
+      "help" : {
+        "needHelp" : "Need help? Find here the documentation of this module.",
+        "downloadPdf" : "Download PDF",
+        "couldntFindAnyAnswer" : "Couldn\"t find any answer to your question?",
+        "contactUs" : "Contact us"
+      }
     },
     "faq" : {
-        "title" : "FAQ",
-        "noFaq" : "No FAQ available."
+      "title" : "FAQ",
+      "noFaq" : "No FAQ available."
+    },
+    "glass" : {
+      "message" : "Can't see Google secured browser?  \nHit Continue to relaunch the window and finish configuration.\n\nYou may need to activate popups in your browser to continue."
+    },
+    "cta" : {
+      "getStarted" : "Get started",
+      "connect" : "Connect",
+      "dissociate" : "Dissociate",
+      "manageAccount" : "Manage account",
+      "overwriteClaim" : "Overwrite claim",
+      "switchAccount" : "Switch account",
+      "continue" : "Continue",
+      "disabled" : "Disabled",
+      "enabled" : "Enabled",
+      "enableFreeListing" : "Enable free listing",
+      "connectAccount" : "Connect account",
+      "connectingAccount" : "Connecting account...",
+      "chooseExistingAccount" : "Choose existing account",
+      "createNewMCA" : "Create new Merchant Center account",
+      "learnAboutAccountSuspension" : "Learn about account suspension",
+      "learnAboutSiteClaiming" : "Learn about site claiming",
+      "learnAboutGoogleSolutions" : "Learn more about Google's retail solutions",
+      "configureAndExportProductFeed" : "Configure and export product feed",
+      "chooseAccount" : "Choose your account"
+    },
+    "badge" : {
+      "free" : "Free",
+      "active" : "Active",
+      "pending" : "Pending",
+      "disapproved" : "Disapproved",
+      "checkingSiteClaim" : "Checking your site claim...",
+      "siteVerified" : "Site verified",
+      "productFeed" : "Product feed",
+      "productFeedSettings" : "Product feed settings",
+      "mca" : "Merchant Center account",
+      "googleAccount" : "Google account"
+    },
+    "tooltip" : {
+      "googleAccountRequired" : "Requires Google account configured"
     }
   }
 }

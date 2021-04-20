@@ -16,48 +16,83 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
- import { configure, addDecorator } from '@storybook/vue';
- import Vue from 'vue';
+import { configure, addDecorator } from "@storybook/vue";
+import Vue from "vue";
 
- // import vue plugins
- import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
- import VueI18n from 'vue-i18n';
+// import vue plugins
+import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
+import VueI18n from "vue-i18n";
+import VueShowdown from "vue-showdown";
 
- // import css style
- import 'bootstrap-vue/dist/bootstrap-vue';
- import 'prestakit/dist/css/bootstrap-prestashop-ui-kit.css';
- Vue.use(BootstrapVue, BootstrapVueIcons);
+// import showdown extension
+import "../showdown.js";
 
- // i18n and store
- Vue.use(VueI18n);
- addDecorator(() => ({
-   template: '<story/>',
-   i18n: new VueI18n({
-     locale: 'en',
-     messages: require('./translations.json'),
-   }),
-   store: require('../src/store'),
- }));
+// import css style
+import "bootstrap-vue/dist/bootstrap-vue";
+import "prestakit/dist/css/bootstrap-prestashop-ui-kit.css";
+import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
 
- configure(require.context('../src', true, /\.stories\.(ts|js|md)x?$/), module);
+Vue.use(BootstrapVue, BootstrapVueIcons);
+Vue.use(VueShowdown);
 
- export const parameters = {
-   actions: { argTypesRegex: "^on[A-Z].*" },
-   backgrounds: {
-     default: 'backOffice',
-     values: [
-       {
-         name: 'backOffice',
-         value: '#F1F1F1'
-       },
-       {
-         name: 'white',
-         value: '#ffffff'
-       },
-       {
-         name: 'black',
-         value: '#000000'
-       },
-     ],
-   }
- }
+// i18n and store
+Vue.use(VueI18n);
+addDecorator(() => ({
+  template: "<story/>",
+  i18n: new VueI18n({
+    locale: "en",
+    messages: require("./translations.json"),
+  }),
+  store: require("../src/store"),
+}));
+
+configure(require.context("../src", true, /\.stories\.(ts|js|md)x?$/), module);
+
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  backgrounds: {
+    default: "backOffice",
+    values: [
+      {
+        name: "backOffice",
+        value: "#F1F1F1",
+      },
+      {
+        name: "white",
+        value: "#ffffff",
+      },
+      {
+        name: "black",
+        value: "#000000",
+      },
+    ],
+  },
+  options: {
+    storySort: {
+      order: [
+        'Basic Components',
+        'LandingPage',
+          [
+            'Components',
+              ['Header', 'Content', 'Footer'] ,
+            'LandingPage'
+          ],
+        'Onboarding',
+          [
+            'Components',
+              ['SectionTitle', 'Notice - Product feed', 'Card - PS Account', 'Card - Google Account', 'Card - MCA', 'Card - Product feed', 'Card - Free listing', 'Settings - Poduct feed'] ,
+            'OnboardingPage',
+              ['Header', 'Content', 'Footer'] ,
+          ],
+        'PS Account',
+        'Google Account',
+        'Merchant Center Account',
+        'Product feed',
+        'Free listing',
+      ]
+    }
+  }
+};
+export const decorators = [
+  () => ({ template: '<div id="googleShoppingApp"><story /></div>' }),
+];

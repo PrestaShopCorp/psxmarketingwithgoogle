@@ -24,6 +24,7 @@
     "vue-i18n": "^8.24.2",
     "vue-property-decorator": "^10.0.0-rc.3",
     "vue-router": "^3.4.9",
+    "vue-showdown": "^2.4.1",
     "vue2-collapse": "^1.0.15",
     "vuex": "^3.6.0",
     "vuex-module-decorators": "^0.17.0"
@@ -34,6 +35,7 @@
     "@storybook/addon-actions": "^6.2.7",
     "@storybook/addon-essentials": "^6.2.7",
     "@storybook/addon-links": "^6.2.7",
+    "@storybook/preset-scss": "^1.0.3",
     "@storybook/vue": "^6.2.7",
     "@types/debounce": "^1.2.0",
     "@types/showdown": "^1.9.3",
