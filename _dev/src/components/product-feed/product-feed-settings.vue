@@ -29,7 +29,7 @@
       </ol>
     </b-card-header>
     <b-card-body
-      body-class="p-4"
+      body-class="p-3 p-md-4"
     >
       <stepper
         :steps="steps"
