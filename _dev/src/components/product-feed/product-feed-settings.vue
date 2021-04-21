@@ -20,10 +20,12 @@
               height="40"
               alt=""
             >
-            Product feed
+            {{ $t('productFeedCard.title') }}
           </a>
         </li>
-        <li class="list-inline-item ps_gs-breadcrumb__item">Product feed settings</li>
+        <li class="list-inline-item ps_gs-breadcrumb__item">
+          {{ $t('productFeedSettings.breadcrumb') }}
+        </li>
       </ol>
     </b-card-header>
     <b-card-body
@@ -51,19 +53,19 @@ export default {
     return {
       steps: [
         {
-          title: 'Shipping settings',
+          title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
         },
         {
-          title: 'Export rules',
+          title: this.$i18n.t('productFeedSettings.steps.exportRules'),
         },
         {
-          title: 'Attribute mapping',
+          title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
         },
         {
-          title: 'Category mapping',
+          title: this.$i18n.t('productFeedSettings.steps.categoryMapping'),
         },
         {
-          title: 'Summary',
+          title: this.$i18n.t('productFeedSettings.steps.summary'),
         },
       ],
     };

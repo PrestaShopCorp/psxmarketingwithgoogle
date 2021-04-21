@@ -1,17 +1,17 @@
 <template>
   <b-form>
     <b-form-group
-      label="Target countries"
+      :label="$t('productFeedSettings.targetCountries')"
       label-class="h4 font-weight-600 mb-2 d-block p-0"
     >
       <p>
-        If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.
+        {{ $t('productFeedSettings.ifMultipleCountries') }}
       </p>
       <label class="mb-2">
-        Products available in
+        {{ $t('productFeedSettings.productAvailaibleIn') }}
       </label>
       <v-select
-        placeholder="Select countries of destination"
+        :placeholder="$t('productFeedSettings.placeholderSelect')"
         :reduce="country => country.code"
         :options="$options.countriesSelectionOptions"
         :deselectFromDropdown="true"
@@ -21,13 +21,19 @@
         @input="pushSelectedCountries"
       />
       <p class="text-muted my-1 ps_gs-fz-12">
-        Can’t find a country? Only supported countries are listed.
-        <a class="d-inline-block" href="//google.com" target="_blank">Supported countries</a>
+        {{ $t('productFeedSettings.cantFindCountry') }}
+        <a
+          class="d-inline-block"
+          href="//google.com"
+          target="_blank"
+        >
+          {{ $t('cta.supportedCountries') }}
+        </a>
       </p>
     </b-form-group>
     <b-form-group
       class="mt-4"
-      label="Shipping settings"
+      :label="$t('productFeedSettings.shippingSettings')"
       label-class="h4 font-weight-600 mb-2 d-block p-0"
     >
       <b-form-radio
@@ -38,9 +44,11 @@
         class="mb-2"
       >
         <div>
-          <span class="font-weight-normal mb-1">Automatically import shipping settings</span>
+          <span class="font-weight-normal mb-1">
+            {{ $t('productFeedSettings.autoImportShipping') }}
+          </span>
           <p class="text-muted ps_gs-fz-12 mb-0">
-            PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.
+            {{ $t('productFeedSettings.autoImportShippingDescription') }}
           </p>
         </div>
       </b-form-radio>
@@ -52,9 +60,11 @@
         class="mb-2"
       >
         <div>
-          <span class="font-weight-normal mb-1">Manually set up shipping settings in Google Merchant Center</span>
+          <span class="font-weight-normal mb-1">
+            {{ $t('productFeedSettings.manualShipping') }}
+          </span>
           <p class="text-muted ps_gs-fz-12 mb-0">
-            You will go to Google Merchant Center and enter your product shipping information yourself. Your products won’t sync until you do this.
+            {{ $t('productFeedSettings.manualShippingDescription') }}
           </p>
         </div>
       </b-form-radio>
@@ -62,11 +72,11 @@
     <b-form-group
       v-if="isUS"
       class="mt-4"
-      label="Tax settings"
+      :label="$t('productFeedSettings.taxSettings')"
       label-class="h4 font-weight-600 mb-2 d-block p-0"
     >
       <p>
-        So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect. Select how you want to set up tax settings.
+        {{ $t('productFeedSettings.taxSettingsDescription') }}
       </p>
       <b-form-radio
         v-model="selectedTaxSettings"
@@ -76,7 +86,9 @@
         class="mb-2"
       >
         <div>
-          <span class="font-weight-normal mb-1">Automatically import tax settings</span>
+          <span class="font-weight-normal mb-1">
+            {{ $t('productFeedSettings.autoImportTax') }}
+          </span>
         </div>
       </b-form-radio>
       <b-form-radio
@@ -87,7 +99,9 @@
         class="mb-2"
       >
         <div>
-          <span class="font-weight-normal mb-1">Manually set up tax settings in Google Merchant Center</span>
+          <span class="font-weight-normal mb-1">
+            {{ $t('productFeedSettings.manualImportTax') }}
+          </span>
         </div>
       </b-form-radio>
     </b-form-group>
@@ -96,14 +110,14 @@
         class="mx-2 mt-3 mt-md-0"
         variant="outline-secondary"
       >
-        Cancel
+        {{ $t('cta.cancel') }}
       </b-button>
       <b-button
-        disabled
+        :disabled="disableContinue"
         class="mx-2 mt-3 mt-md-0 mr-md-0"
         variant="primary"
       >
-        Continue
+        {{ $t('cta.continue') }}
       </b-button>
     </div>
   </b-form>
@@ -121,7 +135,7 @@ export default {
   },
   data() {
     return {
-      selectedCountries: null,
+      selectedCountries: [],
       selectedShippingSettings: null,
       selectedTaxSettings: null,
       isUS: false,
@@ -131,6 +145,26 @@ export default {
     pushSelectedCountries(event) {
       this.selectedCountries = event;
       this.selectedCountries.includes('US') ? this.isUS = true : this.isUS = false;
+    },
+  },
+  computed: {
+    disableContinue: function() {
+      if (this.isUS) {
+        if (this.selectedCountries.length >= 1 && this.selectedShippingSettings !== null && this.selectedTaxSettings !== null) {
+          return false
+        }
+        else {
+          return true
+        }
+      }
+      else {
+        if (this.selectedCountries.length >= 1 && this.selectedShippingSettings !== null) {
+          return false
+        }
+        else {
+          return true
+        }
+      }
     },
   },
   countriesSelectionOptions,

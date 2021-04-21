@@ -68,6 +68,30 @@
       "title" : "Product feed",
       "introDisabled" : "Allows you to display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns"
     },
+    "productFeedSettings" : {
+      "breadcrumb" : "Product feed settings",
+      "steps" : {
+        "shippingSettings" : "Shipping settings",
+        "exportRules" : "Export rules",
+        "attributeMapping" : "Attribute mapping",
+        "categoryMapping" : "Category mapping",
+        "summary" : "Summary"
+      },
+      "targetCountries" : "Target countries",
+      "ifMultipleCountries" : "If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.",
+      "productAvailaibleIn" : "Products available in",
+      "placeholderSelect" : "XXXXXXXXX",
+      "cantFindCountry" : "Can’t find a country? Only supported countries are listed.",
+      "shippingSettings" : "Shipping settings",
+      "autoImportShipping" : "Automatically import shipping settings",
+      "autoImportShippingDescription" : "PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.",
+      "manualShipping" : "Manually set up shipping settings in Google Merchant Center",
+      "manualShippingDescription" : "You will go to Google Merchant Center and enter your product shipping information yourself. Your products won’t sync until you do this.",
+      "taxSettings" : "Tax settings",
+      "taxSettingsDescription" : "So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect. Select how you want to set up tax settings.",
+      "autoImportTax" : "Automatically import tax settings",
+      "manualImportTax" : "Manually set up tax settings in Google Merchant Center"
+    },
     "freeListingCard" : {
       "title" : "Free listing for Google Shopping tab",
       "intro" : "Enable the free listing of your products on the Google Shopping tab",
@@ -122,7 +146,9 @@
       "learnAboutSiteClaiming" : "Learn about site claiming",
       "learnAboutGoogleSolutions" : "Learn more about Google's retail solutions",
       "configureAndExportProductFeed" : "Configure and export product feed",
-      "chooseAccount" : "Choose your account"
+      "chooseAccount" : "Choose your account",
+      "supportedCountries" : "Supported countries",
+      "cancel" : "Cancel"
     },
     "badge" : {
       "free" : "Free",

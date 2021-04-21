@@ -41,7 +41,7 @@ $stepWidth: rem(32);
   list-style: none;
   z-index: 1;
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(xs) {
     display: flex;
     align-items: center;
     padding: rem(4) 0;
@@ -90,7 +90,7 @@ $stepWidth: rem(32);
     z-index: -1;
   }
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(xs) {
     &.complete::before,
     &.active::before {
       width: 2px;
