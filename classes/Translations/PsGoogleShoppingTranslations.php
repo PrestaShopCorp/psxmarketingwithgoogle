@@ -203,6 +203,7 @@ class PsGoogleShoppingTranslations
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
                 'active' => $this->module->l('Active', 'PsGoogleShoppingTranslations'),
                 'pending' => $this->module->l('Pending', 'PsGoogleShoppingTranslations'),
+                'expiring' => $this->module->l('Expiring', 'PsGoogleShoppingTranslations'),
                 'disapproved' => $this->module->l('Disapproved', 'PsGoogleShoppingTranslations'),
                 'checkingSiteClaim' => $this->module->l('Checking your site claim...', 'PsGoogleShoppingTranslations'),
                 'siteVerified' => $this->module->l('Site verified', 'PsGoogleShoppingTranslations'),

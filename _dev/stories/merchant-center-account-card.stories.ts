@@ -7,7 +7,7 @@ export default {
     error: {
       control: {
         type: 'select',
-        options: [null, 'disapproved', 'expiring', 'overwrite'],
+        options: [null, 'disapproved', 'expiring', 'pending', 'overwrite'],
       }
     }
   }
