@@ -5,7 +5,7 @@
       :key="step.title"
       class="ps_gs-stepper-step col position-relative"
       :class="{
-        'active': step.active,
+        'active': index + 1 == activeStep,
         'complete': isComplete(index)
       }"
     >
@@ -46,14 +46,18 @@ export default {
   },
   methods: {
     isComplete(index) {
-      const indexActive = this.steps.map(i => i.active).indexOf(true);
-      return index < indexActive;
+      return index < this.activeStep - 1;
     },
   },
   props: {
     steps: {
       type: Array,
+      required: true,
     },
+    activeStep: {
+      type: Number,
+      default: 1,
+    }
   },
 }
 </script>
