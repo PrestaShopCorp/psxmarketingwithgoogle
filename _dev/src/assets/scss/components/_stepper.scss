@@ -2,38 +2,8 @@ $stepWidth: rem(32);
 
 .ps_gs-stepper {
 
-  &::before {
-    content: "";
-    display: block;
-    position: absolute;
-    background: $grey_median;
-  }
-
-  @include media-breakpoint-down(sm) {
-    &::before {
-      margin: 0 auto;
-      width: 2px;
-      left: calc(#{$stepWidth} / 2 - 1px);
-      top: calc(#{$stepWidth} / 2);
-      bottom: calc(#{$stepWidth} / 2);
-    }
-  }
-
   @include media-breakpoint-up(sm) {
     display: flex;
-
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      background: $grey_median;
-      margin: 0 auto;
-      height: 2px;
-      width: 80%;
-      top: calc(#{$stepWidth} / 2 - 1px);
-      left: 0;
-      right: 0;
-    }
   }
 }
 
@@ -59,6 +29,27 @@ $stepWidth: rem(32);
 
     .ps_gs-stepoper-step__title {
       color: $grey_dark;
+    }
+  }
+
+  &.active ~ &:after {
+    content:'';
+    display: block;
+    position: absolute;
+    background: $grey_median;
+
+    @include media-breakpoint-down(xs) {
+      width: 2px;
+      left: calc(#{$stepWidth} / 2 - 1px);
+      top: calc(-50% + #{$stepWidth} / 2);
+      height: calc(100% - #{$stepWidth});
+    }
+
+    @include media-breakpoint-up(sm) {
+      height: 2px;
+      top: calc(#{$stepWidth} / 2 - 1px);
+      left: calc(-50% + #{$stepWidth} / 2);
+      width: calc(100% - #{$stepWidth});
     }
   }
 
@@ -108,12 +99,16 @@ $stepWidth: rem(32);
       bottom: 0;
     }
 
-    &.complete + #{&}.complete:before {
+    &.complete + &.complete:before {
       top: 0;
       bottom: 0;
     }
 
-    &.complete + #{&}.active::before {
+    &.complete + &.complete:last-child:before {
+      height: 50%;
+    }
+
+    &.complete + &.active::before {
       top: 0;
     }
   }
@@ -134,12 +129,16 @@ $stepWidth: rem(32);
       right: 0;
     }
 
-    &.complete + #{&}.complete:before {
+    &.complete + &.complete:before {
       left: 0;
       width: 100%;
     }
 
-    &.complete + #{&}.active::before {
+    &.complete + &.complete:last-child:before {
+      width: 50%;
+    }
+
+    &.complete + &.active::before {
       left: 0;
     }
   }
