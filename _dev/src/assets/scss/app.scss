@@ -3,6 +3,7 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/";
 @import "~prestakit/scss/variables";
+@import "~vue-select/src/scss/vue-select";
 
 // abstracts
 @import "abstracts/variables";
@@ -19,6 +20,7 @@
 @import "components/landingpagefooter";
 @import "components/glass";
 @import "components/breadcrumb";
+@import "components/stepper";
 
 // page
 @import "pages/landingpage";
