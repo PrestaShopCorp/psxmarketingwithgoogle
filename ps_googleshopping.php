@@ -90,13 +90,8 @@ class Ps_googleshopping extends Module
         // does not have the _PS_ADMIN_DIR_ in this environment.
         // prestashop/module-lib-service-container:1.3.1 is known as incompatible
         // $installer = $this->getService(Installer::class);
-        if (!parent::install()) {
-            $this->_errors[] = $this->l('Unable to install module');
 
-            return false;
-        }
-
-        if (!(new PrestaShop\AccountsAuth\Installer\Install())->installPsAccounts()) {
+        if (!(new PrestaShop\PsAccountsInstaller\Installer\Installer('4'))->install()) {
             $this->_errors[] = $this->l('Unable to install ps accounts');
 
             return false;
@@ -110,6 +105,12 @@ class Ps_googleshopping extends Module
 
         if (!$installer->install()) {
             $this->_errors = $installer->getErrors();
+
+            return false;
+        }
+
+        if (!parent::install()) {
+            $this->_errors[] = $this->l('Unable to install module');
 
             return false;
         }
