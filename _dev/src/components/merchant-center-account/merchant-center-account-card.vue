@@ -246,10 +246,6 @@ export default {
       ],
       websiteVerification: null,
       mcaStatus: null,
-      mcaStatusBadge: {
-        color: 'success',
-        text: 'active',
-      },
     };
   },
   props: {
@@ -263,55 +259,46 @@ export default {
       default: true,
     },
   },
-  watch: {
-    error: function(error) {
-      switch (error) {
-        case null:
-          this.mcaStatusBadge.color = 'success';
-          this.mcaStatusBadge.text = 'active';
-          break;
-        case 'overwrite':
-          this.mcaStatusBadge.color = 'success';
-          this.mcaStatusBadge.text = 'active';
-          break;
-        case 'pending':
-          this.mcaStatusBadge.color = 'warning';
-          this.mcaStatusBadge.text = 'pending';
-          break;
-        case 'expiring':
-          this.mcaStatusBadge.color = 'warning';
-          this.mcaStatusBadge.text = 'expiring';
-          break;
-        case 'disapproved':
-          this.mcaStatusBadge.color = 'danger';
-          this.mcaStatusBadge.text = 'disapproved';
-          break;
-        default:
-          this.mcaStatusBadge.color = 'succes';
-          this.mcaStatusBadge.text = 'active';
-          break;
-      };
-      console.log(error)
-    },
-  },
   computed: {
     message() {
       return this.isEnabled
         ? this.$i18n.t('mcaCard.introEnabled')
         : this.$i18n.t('mcaCard.introDisabled');
     },
+    mcaStatusBadge: function() {
+      switch (this.error) {
+        case 'pending':
+          return {
+            color: 'warning',
+            text: 'pending',
+          };
+        case 'expiring':
+          return {
+            color: 'warning',
+            text: 'expiring',
+          };
+        case 'disapproved':
+          return {
+            color: 'danger',
+            text: 'disapproved',
+          };
+        case 'overwrite':
+        default:
+          return {
+            color: 'success',
+            text: 'active',
+          };
+      };
+    },
   },
   methods: {
     selectMerchantCenterAccount() {
-      this.websiteVerification = "checking";
-      this.mcaStatus = "active";
-      setTimeout(() => {
-        this.websiteVerification = "doneAlert";
-        this.mcaConfigured = true;
-        setTimeout(() => {
-          this.websiteVerification = "done";
-        }, 2000);
-      }, 2000);
+      /**
+       ** I'm sending the component as a payload
+       ** This way, I can access it from StoryBook and change datas
+       */
+      const component = this;
+      this.$emit('selectMerchantCenterAccount', component);
     },
   },
   mounted() {

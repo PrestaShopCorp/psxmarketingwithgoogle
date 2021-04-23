@@ -16,19 +16,30 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MerchantCenterAccountCard },
-  template: '<MerchantCenterAccountCard v-bind="$props" />',
+  template: '<MerchantCenterAccountCard v-bind="$props" @selectMerchantCenterAccount="fakeConnection" />',
+  methods: {
+    fakeConnection: (component)=> {
+      component.$data.websiteVerification = 'checking';
+      component.$data.mcaStatus = "active";
+      setTimeout(() => {
+        component.$data.websiteVerification = "doneAlert";
+        component.$data.mcaConfigured = true;
+        setTimeout(() => {
+          component.$data.websiteVerification = "done";
+        }, 2000);
+      }, 2000);
+    }
+  }
 });
 
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
   error: null,
-  websiteClaimStatus: null,
 }
 
 export const EnabledNotConnected:any = Template.bind({});
 EnabledNotConnected.args = {
   isEnabled: true,
   error: null,
-  websiteClaimStatus: null,
 }
