@@ -11,4 +11,8 @@
   &__footer {
     padding-top: rem(8);
   }
+
+  & + .modal-backdrop {
+    background: $overlay-popin;
+  }
 }
