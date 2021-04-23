@@ -1,0 +1,18 @@
+.ps_gs-modal {
+  &__title {
+    font-weight: 600;
+    font-size: rem(18);
+  }
+
+  &__content {
+    border-radius: 0;
+  }
+
+  &__footer {
+    padding-top: rem(8);
+  }
+
+  & + .modal-backdrop {
+    background: $overlay-popin;
+  }
+}

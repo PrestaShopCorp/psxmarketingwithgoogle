@@ -148,7 +148,8 @@
       "configureAndExportProductFeed" : "Configure and export product feed",
       "chooseAccount" : "Choose your account",
       "supportedCountries" : "Supported countries",
-      "cancel" : "Cancel"
+      "cancel" : "Cancel",
+      "disconnectAccount" : "Disconnect account"
     },
     "badge" : {
       "free" : "Free",
@@ -162,6 +163,13 @@
       "productFeedSettings" : "Product feed settings",
       "mca" : "Merchant Center account",
       "googleAccount" : "Google account"
+    },
+    "modal" : {
+      "titleDisconnection" : "Confirm disconnection?",
+      "titleOverwriteClaim" : "Overwrite existing claim",
+      "textDisconnectGoogleAccount" : "You are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.",
+      "textDisconnectMCA" : "You are about to disconnect Google Merchant Center account. This will remove access to Google Merchant Center and Google Ads accounts.",
+      "textOverwriteClaim" : "The existing claim will be overwritten. This action will impact the previous account to become inactive and the existing campaigns - free listings and Google Shopping campaigns - tied to that claim to be paused.  /nIf you are running a different Google Shopping campaign, we recommend pausing the campaign."
     },
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configured"

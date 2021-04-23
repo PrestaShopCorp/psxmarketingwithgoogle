@@ -198,6 +198,7 @@ class PsGoogleShoppingTranslations
                 'chooseAccount' => $this->module->l('Choose your account', 'PsGoogleShoppingTranslations'),
                 'supportedCountries' => $this->module->l('Supported countries', 'PsGoogleShoppingTranslations'),
                 'cancel' => $this->module->l('Cancel', 'PsGoogleShoppingTranslations'),
+                'disconnectAccount' => $this->module->l('Disconnect account', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
@@ -211,6 +212,13 @@ class PsGoogleShoppingTranslations
                 'productFeedSettings' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),
                 'mca' => $this->module->l('Merchant Center account', 'PsGoogleShoppingTranslations'),
                 'googleAccount' => $this->module->l('Google account', 'PsGoogleShoppingTranslations'),
+            ],
+            'modal' => [
+                'titleDisconnection' => $this->module->l('Confirm disconnection?', 'PsGoogleShoppingTranslations'),
+                'titleOverwriteClaim' => $this->module->l('Overwrite existing claim', 'PsGoogleShoppingTranslations'),
+                'textDisconnectGoogleAccount' => $this->module->l('YYou are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.', 'PsGoogleShoppingTranslations'),
+                'textDisconnectMCA' => $this->module->l('You are about to disconnect Google Merchant Center account. This will remove access to Google Merchant Center and Google Ads accounts.', 'PsGoogleShoppingTranslations'),
+                'textOverwriteClaim' => $this->module->l('The existing claim will be overwritten. This action will impact the previous account to become inactive and the existing campaigns - free listings and Google Shopping campaigns - tied to that claim to be paused.  /nIf you are running a different Google Shopping campaign, we recommend pausing the campaign.', 'PsGoogleShoppingTranslations'),
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configured', 'PsGoogleShoppingTranslations'),
