@@ -18,21 +18,21 @@
  */
 export default {
   setValidationListStatement(state, payload) {
-    state.validationList = payload;
+    state.freeListing.validationList = payload;
   },
   setSummaryValidation(state, payload) {
-    state.summaryValidationList = payload;
+    state.freeListing.summaryValidationList = payload;
   },
   setFreeListingStatus(state, payload) {
-    state.freeListingStatus = payload;
+    state.freeListing.status = payload;
   },
   setLastSync(state, payload) {
-    state.lastSync = payload;
+    state.productFeed.lastSync = payload;
   },
   setRegisterDataSync(state, payload) {
-    state.registerSyncData = payload;
+    state.productFeed.registerSyncData = payload;
   },
   setSuspendSync(state, payload) {
-    state.isSuspendSync = payload;
+    state.productFeed.isSuspendSync = payload;
   },
 };
