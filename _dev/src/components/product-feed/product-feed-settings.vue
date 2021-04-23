@@ -33,9 +33,9 @@
     >
       <stepper
         :steps="steps"
-        :activeStep="activeStep"
+        :active-step="activeStep"
       />
-      <product-feed-settings-shipping v-if="activeStep == 1"/>
+      <product-feed-settings-shipping v-if="activeStep == 1" />
     </b-card-body>
   </b-card>
 </template>
@@ -47,7 +47,7 @@ import ProductFeedSettingsShipping from './product-feed-settings-shipping';
 export default {
   name: 'ProductFeedSettings',
   components: {
-    Stepper, ProductFeedSettingsShipping
+    Stepper, ProductFeedSettingsShipping,
   },
   data() {
     return {

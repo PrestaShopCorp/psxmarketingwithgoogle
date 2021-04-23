@@ -133,7 +133,6 @@ import {
   BIconCircleFill,
 } from 'bootstrap-vue';
 
-
 export default {
   name: 'GoogleAccountCard',
   components: {

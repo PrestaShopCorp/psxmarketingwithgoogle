@@ -10,7 +10,7 @@ import i18n from './lib/i18n';
 import './assets/scss/app.scss';
 
 // import showdown extension
-import "../showdown.js";
+import '../showdown.js';
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);

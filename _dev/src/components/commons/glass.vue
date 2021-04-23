@@ -32,6 +32,6 @@
 
 <script>
 export default {
-  name: 'Glass'
-}
+  name: 'Glass',
+};
 </script>

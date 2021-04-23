@@ -14,7 +14,7 @@
           width="40"
           height="40"
           alt=""
-        />
+        >
         <b-card-text class="flex-grow-1 text-left mb-0">
           {{ message }}
           <strong

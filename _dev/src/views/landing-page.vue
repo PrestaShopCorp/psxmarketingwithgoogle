@@ -4,22 +4,22 @@
       <LandingPageHeader />
       <hr class="my-4">
       <LandingPageContent
-        contentImage="Merchant-Center-img.png"
-        :contentTitle="$t('landingPage.content.content1.title')"
-        :contentText="$t('landingPage.content.content1.text')"
-        :contentFooter="$t('landingPage.content.content1.footer')"
+        content-image="Merchant-Center-img.png"
+        :content-title="$t('landingPage.content.content1.title')"
+        :content-text="$t('landingPage.content.content1.text')"
+        :content-footer="$t('landingPage.content.content1.footer')"
       />
       <LandingPageContent
-        contentImage="Google-Shopping-Tab-img.png"
-        :contentTitle="$t('landingPage.content.content2.title')"
-        :contentText="$t('landingPage.content.content2.text')"
-        :contentFooter="$t('landingPage.content.content2.footer')"
+        content-image="Google-Shopping-Tab-img.png"
+        :content-title="$t('landingPage.content.content2.title')"
+        :content-text="$t('landingPage.content.content2.text')"
+        :content-footer="$t('landingPage.content.content2.footer')"
       />
       <LandingPageContent
-        contentImage="Google-Ads-img.png"
-        :contentTitle="$t('landingPage.content.content3.title')"
-        :contentText="$t('landingPage.content.content3.text')"
-        :contentFooter="$t('landingPage.content.content3.footer')"
+        content-image="Google-Ads-img.png"
+        :content-title="$t('landingPage.content.content3.title')"
+        :content-text="$t('landingPage.content.content3.text')"
+        :content-footer="$t('landingPage.content.content3.footer')"
       />
       <hr class="my-4">
       <LandingPageFooter />
