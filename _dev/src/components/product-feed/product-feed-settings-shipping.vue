@@ -138,38 +138,27 @@ export default {
       selectedCountries: [],
       selectedShippingSettings: null,
       selectedTaxSettings: null,
-      isUS: false,
     };
   },
   methods: {
     pushSelectedCountries(event) {
       this.selectedCountries = event;
-      if (this.selectedCountries.includes('US')) {
-        this.isUS = true;
-      } else {
-        this.isUS = false;
-      }
     },
   },
   computed: {
+    isUS() {
+      return this.selectedCountries.includes('US');
+    },
     disableContinue() {
       if (this.isUS) {
-        if (
-          this.selectedCountries.length >= 1
-          && this.selectedShippingSettings !== null
-          && this.selectedTaxSettings !== null
-        ) {
-          return false;
-        }
-
-        return true;
+        return (
+          this.selectedCountries.length < 1
+          || this.selectedShippingSettings === null
+          || this.selectedTaxSettings === null
+        );
       }
 
-      if (this.selectedCountries.length >= 1 && this.selectedShippingSettings !== null) {
-        return false;
-      }
-
-      return true;
+      return this.selectedCountries.length < 1 || this.selectedShippingSettings === null;
     },
   },
   countriesSelectionOptions,
