@@ -18,7 +18,7 @@
         <span
           v-else
         >
-          {{ index + 1}}
+          {{ index + 1 }}
         </span>
       </div>
       <div
@@ -36,10 +36,9 @@ import {
   BIconCheck,
 } from 'bootstrap-vue';
 
-
 export default {
-  name: 'stepper',
-  components: { BIconCheck },
+  name: 'Stepper',
+  components: {BIconCheck},
   data() {
     return {
     };
@@ -57,7 +56,7 @@ export default {
     activeStep: {
       type: Number,
       default: 1,
-    }
+    },
   },
-}
+};
 </script>

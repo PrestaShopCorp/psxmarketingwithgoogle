@@ -37,7 +37,7 @@
             name="example_ps_switch_3"
             id="example_off_3"
             value="0"
-          />
+          >
           <label for="example_off_3">{{ $t('cta.disabled') }}</label>
           <input
             type="radio"
@@ -45,9 +45,9 @@
             id="example_on_3"
             value="1"
             checked
-          />
+          >
           <label for="example_on_3">{{ $t('cta.enabled') }}</label>
-          <span class="slide-button"></span>
+          <span class="slide-button" />
         </span>
       </div>
     </div>
@@ -62,12 +62,18 @@
         class="list-inline text-muted ps_gs-fz-12"
       >
         <li class="list-inline-item">
-          <a href="//google.com" target="_blank">
+          <a
+            href="//google.com"
+            target="_blank"
+          >
             {{ $t('freeListingCard.learnFreeListing') }}
           </a>
         </li>
         <li class="list-inline-item">
-          <a href="//google.com" target="_blank">
+          <a
+            href="//google.com"
+            target="_blank"
+          >
             {{ $t('freeListingCard.seeFreeListing') }}
           </a>
         </li>
@@ -87,7 +93,11 @@
           {{ $t('cta.enableFreeListing') }}
         </b-button>
       </div>
-      <b-alert variant="success" show class="mb-0">
+      <b-alert
+        variant="success"
+        show
+        class="mb-0"
+      >
         <p class="mb-0">
           {{ $t('freeListingCard.freeListingActivationSuccess') }}
         </p>

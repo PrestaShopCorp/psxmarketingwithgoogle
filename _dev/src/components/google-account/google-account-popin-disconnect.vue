@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import PsModal from '../commons/ps-modal'
+import PsModal from '../commons/ps-modal';
 
 export default {
-  name: "GoogleAccountPopinDisconnect",
+  name: 'GoogleAccountPopinDisconnect',
   components: {
-    PsModal
+    PsModal,
   },
   data() {
     return {

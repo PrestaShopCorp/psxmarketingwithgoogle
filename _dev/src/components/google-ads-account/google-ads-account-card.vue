@@ -14,7 +14,7 @@
         width="40"
         height="40"
         alt=""
-        >
+      >
       <b-card-text class="text-left mb-0 ps_gs-fz-12">
         {{ $t('googleAdsAccountCard.introDisabled') }}
       </b-card-text>

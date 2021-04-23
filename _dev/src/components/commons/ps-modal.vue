@@ -5,11 +5,16 @@
  ** such as specific classes and buttons variants.
  */
 
-import { BModal } from 'bootstrap-vue';
+import {BModal} from 'bootstrap-vue';
 
 export default {
   name: 'PsModal',
   extends: BModal,
+  /**
+   * As I'm extending a component, I don't want to overwrite props type
+   * That's why I'm disabling this specific eslint rule
+   */
+  /* eslint-disable vue/require-prop-types */
   props: {
     modalClass: {
       default: 'ps_gs-modal',
@@ -30,5 +35,7 @@ export default {
       default: 'outline-secondary',
     },
   },
-}
+  /* eslint-enable vue/require-prop-types */
+};
+
 </script>

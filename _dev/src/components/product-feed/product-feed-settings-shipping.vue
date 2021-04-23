@@ -14,7 +14,7 @@
         :placeholder="$t('productFeedSettings.placeholderSelect')"
         :reduce="country => country.code"
         :options="$options.countriesSelectionOptions"
-        :deselectFromDropdown="true"
+        :deselect-from-dropdown="true"
         class="ps_gs-v-select"
         multiple
         label="country"
@@ -124,47 +124,36 @@
 </template>
 
 <script>
-import vSelect from 'vue-select'
+import vSelect from 'vue-select';
 
 import countriesSelectionOptions from '../../assets/json/countries.json';
 
 export default {
   name: 'ProductFeedSettingsShipping',
   components: {
-    vSelect
+    vSelect,
   },
   data() {
     return {
       selectedCountries: [],
       selectedShippingSettings: null,
       selectedTaxSettings: null,
-      isUS: false,
     };
   },
   methods: {
     pushSelectedCountries(event) {
       this.selectedCountries = event;
-      this.selectedCountries.includes('US') ? this.isUS = true : this.isUS = false;
     },
   },
   computed: {
-    disableContinue: function() {
-      if (this.isUS) {
-        if (this.selectedCountries.length >= 1 && this.selectedShippingSettings !== null && this.selectedTaxSettings !== null) {
-          return false
-        }
-        else {
-          return true
-        }
+    isUS() {
+      return this.selectedCountries.includes('US');
+    },
+    disableContinue() {
+      if (this.isUS && this.selectedTaxSettings === null) {
+        return true;
       }
-      else {
-        if (this.selectedCountries.length >= 1 && this.selectedShippingSettings !== null) {
-          return false
-        }
-        else {
-          return true
-        }
-      }
+      return this.selectedCountries.length < 1 || this.selectedShippingSettings === null;
     },
   },
   countriesSelectionOptions,

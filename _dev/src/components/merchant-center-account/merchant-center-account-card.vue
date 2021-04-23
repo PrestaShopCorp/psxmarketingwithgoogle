@@ -16,7 +16,7 @@
           width="40"
           height="40"
           alt=""
-        />
+        >
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
           {{ $t('mcaCard.title') }}
           <b-iconstack
@@ -27,7 +27,10 @@
             height="20"
           >
             <b-icon-circle-fill stacked />
-            <b-icon-check stacked variant="white" />
+            <b-icon-check
+              stacked
+              variant="white"
+            />
           </b-iconstack>
         </b-card-text>
       </div>
@@ -38,7 +41,10 @@
       :markdown="message"
       :extensions="['targetlink']"
     />
-    <div v-if="!isEnabled" class="d-flex pt-2">
+    <div
+      v-if="!isEnabled"
+      class="d-flex pt-2"
+    >
       <span class="mr-2">
         <b-icon-exclamation-circle />
       </span>
@@ -48,7 +54,9 @@
           :title="$t('tooltip.googleAccountRequired')"
           class="list-inline-item"
         >
-          <b-badge variant="muted">{{ $t('badge.googleAccount') }}</b-badge>
+          <b-badge variant="muted">
+            {{ $t('badge.googleAccount') }}
+          </b-badge>
         </li>
       </ul>
     </div>
@@ -89,7 +97,10 @@
       </b-form>
       <div class="mt-3">
         <a href="#">
-          <i class="left material-icons mr-2" aria-hidden="true">person_add</i>
+          <i
+            class="left material-icons mr-2"
+            aria-hidden="true"
+          >person_add</i>
           <span class="align-middle">{{ $t('cta.createNewMCA') }}</span>
         </a>
         <VueShowdown
@@ -116,7 +127,7 @@
           v-if="websiteVerification == 'checking'"
           class="text-muted"
         >
-          <i class="icon-busy icon-busy--dark mr-1"></i>
+          <i class="icon-busy icon-busy--dark mr-1" />
           {{ $t('badge.checkingSiteClaim') }}
         </span>
         <span
@@ -144,10 +155,9 @@
           href="//google.com"
           target="_blank"
           class="text-muted ps_gs-fz-12 font-weight-normal"
-          >
-            {{ $t('cta.learnAboutAccountSuspension') }}
-          </a
         >
+          {{ $t('cta.learnAboutAccountSuspension') }}
+        </a>
       </p>
     </b-alert>
     <b-alert
@@ -163,10 +173,9 @@
           href="//google.com"
           target="_blank"
           class="text-muted ps_gs-fz-12 font-weight-normal"
-          >
-            {{ $t('cta.learnAboutAccountSuspension') }}
-          </a
         >
+          {{ $t('cta.learnAboutAccountSuspension') }}
+        </a>
       </p>
     </b-alert>
     <b-alert
@@ -176,8 +185,7 @@
       class="mb-0 mt-3"
     >
       <p class="mb-0">
-        <strong>{{ $t('mcaCard.claimCollides') }}</strong
-        ><br />
+        <strong>{{ $t('mcaCard.claimCollides') }}</strong><br>
         <span class="ps_gs-fz-12">
           {{ $t('mcaCard.claimOverwrite') }}
         </span>
@@ -213,10 +221,10 @@ import {
   BIconCheck,
   BIconCircleFill,
   BIconExclamationCircle,
-} from "bootstrap-vue";
+} from 'bootstrap-vue';
 
 export default {
-  name: "MerchantCenterAccountCard",
+  name: 'MerchantCenterAccountCard',
   components: {
     BIconstack,
     BIconCheck,
@@ -229,19 +237,19 @@ export default {
       selected: null,
       mcaSelectionOptions: [
         {
-          text: "V Godard - 123456789",
+          text: 'V Godard - 123456789',
         },
         {
-          text: "Royer et fils - 653367900",
+          text: 'Royer et fils - 653367900',
         },
         {
-          text: "Maison Royer - 246797534",
+          text: 'Maison Royer - 246797534',
         },
         {
-          text: "Godard - 79747579864",
+          text: 'Godard - 79747579864',
         },
         {
-          text: "Fondation Royer - 678321007",
+          text: 'Fondation Royer - 678321007',
         },
       ],
       websiteVerification: null,
@@ -253,7 +261,10 @@ export default {
       type: Boolean,
       default: false,
     },
-    error: String,
+    error: {
+      type: String,
+      default: null,
+    },
     isEU: {
       type: Boolean,
       default: true,
@@ -265,7 +276,7 @@ export default {
         ? this.$i18n.t('mcaCard.introEnabled')
         : this.$i18n.t('mcaCard.introDisabled');
     },
-    mcaStatusBadge: function() {
+    mcaStatusBadge() {
       switch (this.error) {
         case 'pending':
           return {
@@ -288,7 +299,7 @@ export default {
             color: 'success',
             text: 'active',
           };
-      };
+      }
     },
   },
   methods: {
@@ -302,7 +313,9 @@ export default {
     },
   },
   mounted() {
-    this.isEnabled && this.$refs.mcaSelection.$refs.toggle.focus();
+    if (this.isEnabled) {
+      this.$refs.mcaSelection.$refs.toggle.focus();
+    }
   },
 };
 </script>
