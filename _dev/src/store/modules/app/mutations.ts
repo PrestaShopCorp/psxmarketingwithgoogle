@@ -17,4 +17,22 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 export default {
+  setValidationListStatement(state, payload) {
+    state.validationList = payload;
+  },
+  setSummaryValidation(state, payload) {
+    state.summaryValidationList = payload;
+  },
+  setFreeListingStatus(state, payload) {
+    state.freeListingStatus = payload;
+  },
+  setLastSync(state, payload) {
+    state.lastSync = payload;
+  },
+  setRegisterDataSync(state, payload) {
+    state.registerSyncData = payload;
+  },
+  setSuspendSync(state, payload) {
+    state.isSuspendSync = payload;
+  },
 };

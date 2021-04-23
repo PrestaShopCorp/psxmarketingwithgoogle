@@ -21,4 +21,10 @@ const {contextPsAccounts} = window || {};
 
 export default {
   contextPsAccounts,
+  validationList: {},
+  summaryValidationList: [],
+  freeListingStatus: false,
+  lastSync: {},
+  registerSyncData: {},
+  isSuspendSync: null,
 };
