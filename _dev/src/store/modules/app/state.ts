@@ -21,4 +21,16 @@ const {contextPsAccounts} = window || {};
 
 export default {
   contextPsAccounts,
+  googleAccount: {},
+  googleMerchantAccount: {},
+  productFeed: {
+    lastSync: {},
+    registerSyncData: {},
+    isSuspendSync: null,
+  },
+  freeListing: {
+    validationList: {},
+    summaryValidationList: [],
+    status: false,
+  },
 };
