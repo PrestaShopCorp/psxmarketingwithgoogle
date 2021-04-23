@@ -1,17 +1,17 @@
 <template>
   <ps-modal
-    id="MerchantCenterAccountPopinDisconnect"
-    :title="$t('modal.titleDisconnection')"
+    id="MerchantCenterAccountPopinOverwriteClaim"
+    :title="$t('modal.titleOverwriteClaim')"
     v-bind="$attrs"
   >
     <p class="my-1">
       {{ $t('modal.textDisconnectMCA') }}
     </p>
     <template slot="modal-cancel">
-      {{ $t('cta.cancel') }}
+      {{ $t('cta.switchAccount') }}
     </template>
     <template slot="modal-ok">
-      {{ $t('cta.disconnectAccount') }}
+      {{ $t('cta.overwriteClaim') }}
     </template>
   </ps-modal>
 </template>
@@ -20,7 +20,7 @@
 import PsModal from '../commons/ps-modal'
 
 export default {
-  name: "MerchantCenterAccountPopinDisconnect",
+  name: "MerchantCenterAccountPopinOverwriteClaim",
   components: {
     PsModal
   },

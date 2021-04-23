@@ -3,7 +3,7 @@ import OnboardingPage from '../src/views/onboarding-page.vue'
 
 export default {
   title: 'Merchant Center Account/Popin Disconnect',
-  component: MerchantCenterAccountPopinDisconnect, OnboardingPage
+  component: MerchantCenterAccountPopinDisconnect, OnboardingPage,
 };
 
 const Template = (args, { argTypes }) => ({
@@ -12,10 +12,12 @@ const Template = (args, { argTypes }) => ({
   template: `
     <div>
       <OnboardingPage />
-      <MerchantCenterAccountPopinDisconnect />
+      <MerchantCenterAccountPopinDisconnect v-bind="$props" />
     </div>
   `,
 });
 
 export const PopinDisconnect:any = Template.bind({});
-PopinDisconnect.args = {}
+PopinDisconnect.args = {
+  visible: true,
+};
