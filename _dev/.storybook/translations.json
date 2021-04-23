@@ -153,8 +153,9 @@
     "badge" : {
       "free" : "Free",
       "active" : "Active",
-      "pending" : "Pending",
       "disapproved" : "Disapproved",
+      "pending" : "Pending",
+      "expiring" : "Expiring",
       "checkingSiteClaim" : "Checking your site claim...",
       "siteVerified" : "Site verified",
       "productFeed" : "Product feed",

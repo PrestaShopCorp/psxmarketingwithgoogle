@@ -20,7 +20,7 @@
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
           {{ $t('mcaCard.title') }}
           <b-iconstack
-            v-if="mcaConfigured"
+            v-if="mcaConfigured && !error"
             font-scale="1.5"
             class="ml-2 mr-3 fixed-size color-green"
             width="20"
@@ -54,9 +54,11 @@
     </div>
     <div v-if="isEnabled && !websiteVerification">
       <b-form class="mb-2">
-        <p for="mcaSelection" class="mb-0">
+        <legend
+          class="mb-1 h4 font-weight-600"
+        >
           <strong>{{ $t('mcaCard.labelSelect') }}</strong>
-        </p>
+        </legend>
         <div class="d-md-flex text-center">
           <b-dropdown
             id="mcaSelection"
@@ -91,6 +93,7 @@
           <span class="align-middle">{{ $t('cta.createNewMCA') }}</span>
         </a>
         <VueShowdown
+          v-if="isEU"
           class="mt-4 mb-0 text-muted ps_gs-fz-12"
           :markdown="$t('mcaCard.footerEU')"
           :extensions="['targetlink']"
@@ -103,20 +106,23 @@
     >
       <div class="d-flex align-items-center">
         <strong>{{ selected }}</strong>
-        <b-badge v-if="mcaStatus == 'active'" class="mx-3" variant="success">
-          {{ $t('badge.active') }}
+        <b-badge
+          class="mx-3"
+          :variant="mcaStatusBadge.color"
+        >
+          {{ $t(`badge.${mcaStatusBadge.text}`) }}
         </b-badge>
-        <b-badge v-if="mcaStatus == 'warning'" class="mx-3" variant="warning">
-          {{ $t('badge.pending') }}
-        </b-badge>
-        <b-badge v-if="mcaStatus == 'danger'" class="mx-3" variant="danger">
-          {{ $t('badge.disapproved') }}
-        </b-badge>
-        <span v-if="websiteVerification == 'checking'" class="text-muted">
+        <span
+          v-if="websiteVerification == 'checking'"
+          class="text-muted"
+        >
           <i class="icon-busy icon-busy--dark mr-1"></i>
           {{ $t('badge.checkingSiteClaim') }}
         </span>
-        <span v-if="websiteVerification == 'doneAlert'" class="text-muted">
+        <span
+          v-if="websiteVerification == 'doneAlert'"
+          class="text-muted"
+        >
           <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
           {{ $t('badge.siteVerified') }}
         </span>
@@ -125,66 +131,79 @@
         {{ $t("cta.dissociate") }}
       </b-button>
     </div>
-    <div v-if="isEnabled && error" class="mt-2">
-      <b-alert v-if="error == 'disapproved'" show variant="danger" class="mb-0">
-        <p class="mb-0">
-          <!-- not translated, in need to be dynamic -->
-          This is a danger alert with a link.
-          <a
-            href="//google.com"
-            target="_blank"
-            class="text-muted ps_gs-fz-12 font-weight-normal"
-            >
-              {{ $t('cta.learnAboutAccountSuspension') }}
-            </a
+    <b-alert
+      v-if="error == 'disapproved'"
+      show
+      variant="danger"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        <!-- not translated, in need to be dynamic -->
+        This is a danger alert with a link.
+        <a
+          href="//google.com"
+          target="_blank"
+          class="text-muted ps_gs-fz-12 font-weight-normal"
           >
-        </p>
-      </b-alert>
-      <b-alert v-else-if="error == 'expiring'" show variant="warning" class="mb-0">
-        <p class="mb-0">
-          <!-- not translated, in need to be dynamic -->
-          This is a warning alert with a link.
-          <a
-            href="//google.com"
-            target="_blank"
-            class="text-muted ps_gs-fz-12 font-weight-normal"
-            >
-              {{ $t('cta.learnAboutAccountSuspension') }}
-            </a
+            {{ $t('cta.learnAboutAccountSuspension') }}
+          </a
+        >
+      </p>
+    </b-alert>
+    <b-alert
+      v-else-if="error == 'expiring'"
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        <!-- not translated, in need to be dynamic -->
+        This is a warning alert with a link.
+        <a
+          href="//google.com"
+          target="_blank"
+          class="text-muted ps_gs-fz-12 font-weight-normal"
           >
-        </p>
-      </b-alert>
-      <b-alert v-else-if="error == 'overwrite'" show variant="warning" class="mb-0">
-        <p class="mb-0">
-          <strong>{{ $t('mcaCard.claimCollides') }}</strong
-          ><br />
-          <span class="ps_gs-fz-12">
-            {{ $t('mcaCard.claimOverwrite') }}
-          </span>
-        </p>
-        <div class="d-md-flex text-center align-items-center mt-2">
-          <b-button
-            class="mx-3 mt-3 mt-md-0 mx-md-0"
-            variant="secondary"
-          >
-            {{ $t("cta.overwriteClaim") }}
-          </b-button>
-          <b-button
-            class="mx-3 mt-3 mt-md-0"
-            variant="outline-secondary"
-          >
-            {{ $t("cta.switchAccount") }}
-          </b-button>
-          <a
-            href="//google.com"
-            target="_blank"
-            class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
-          >
-            {{ $t('cta.learnAboutSiteClaiming') }}
-          </a>
-        </div>
-      </b-alert>
-    </div>
+            {{ $t('cta.learnAboutAccountSuspension') }}
+          </a
+        >
+      </p>
+    </b-alert>
+    <b-alert
+      v-else-if="error == 'overwrite'"
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        <strong>{{ $t('mcaCard.claimCollides') }}</strong
+        ><br />
+        <span class="ps_gs-fz-12">
+          {{ $t('mcaCard.claimOverwrite') }}
+        </span>
+      </p>
+      <div class="d-md-flex text-center align-items-center mt-2">
+        <b-button
+          class="mx-3 mt-3 mt-md-0 mx-md-0"
+          variant="secondary"
+        >
+          {{ $t("cta.overwriteClaim") }}
+        </b-button>
+        <b-button
+          class="mx-3 mt-3 mt-md-0"
+          variant="outline-secondary"
+        >
+          {{ $t("cta.switchAccount") }}
+        </b-button>
+        <a
+          href="//google.com"
+          target="_blank"
+          class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
+        >
+          {{ $t('cta.learnAboutSiteClaiming') }}
+        </a>
+      </div>
+    </b-alert>
   </b-card>
 </template>
 
@@ -234,11 +253,11 @@ export default {
       type: Boolean,
       default: false,
     },
-    isConnected: {
-      type: Boolean,
-      default: false,
-    },
     error: String,
+    isEU: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     message() {
@@ -246,26 +265,43 @@ export default {
         ? this.$i18n.t('mcaCard.introEnabled')
         : this.$i18n.t('mcaCard.introDisabled');
     },
+    mcaStatusBadge: function() {
+      switch (this.error) {
+        case 'pending':
+          return {
+            color: 'warning',
+            text: 'pending',
+          };
+        case 'expiring':
+          return {
+            color: 'warning',
+            text: 'expiring',
+          };
+        case 'disapproved':
+          return {
+            color: 'danger',
+            text: 'disapproved',
+          };
+        case 'overwrite':
+        default:
+          return {
+            color: 'success',
+            text: 'active',
+          };
+      };
+    },
   },
   methods: {
     selectMerchantCenterAccount() {
-      this.websiteVerification = "checking";
-      this.mcaStatus = "active";
-      setTimeout(() => {
-        this.websiteVerification = "doneAlert";
-        this.mcaConfigured = true;
-        setTimeout(() => {
-          this.websiteVerification = "done";
-        }, 2000);
-      }, 2000);
+      /**
+       ** I'm sending the component as a payload
+       ** This way, I can access it from StoryBook and change datas
+       */
+      const component = this;
+      this.$emit('selectMerchantCenterAccount', component);
     },
   },
   mounted() {
-    if (this.isConnected) {
-      this.mcaConfigured = true;
-      this.mcaStatus = "active";
-      this.websiteVerification = "done";
-    }
     this.isEnabled && this.$refs.mcaSelection.$refs.toggle.focus();
   },
 };
