@@ -150,14 +150,9 @@ export default {
       return this.selectedCountries.includes('US');
     },
     disableContinue() {
-      if (this.isUS) {
-        return (
-          this.selectedCountries.length < 1
-          || this.selectedShippingSettings === null
-          || this.selectedTaxSettings === null
-        );
+      if (this.isUS && this.selectedTaxSettings === null) {
+        return true;
       }
-
       return this.selectedCountries.length < 1 || this.selectedShippingSettings === null;
     },
   },
