@@ -83,3 +83,25 @@
     width: 100%;
   }
 }
+
+.ps_gs-v-select {
+  .vs__selected {
+    border: none;
+    background-color: $blue-light;
+    color: $blue_dark;
+    padding: 4px 8px;
+  }
+  .vs__deselect {
+    text-shadow: none;
+    color: $blue_dark;
+
+    &:hover, &:focus {
+      color: red;
+    }
+  }
+
+  &__deselect {
+    font-size: rem(16);
+    color: inherit;
+  }
+}

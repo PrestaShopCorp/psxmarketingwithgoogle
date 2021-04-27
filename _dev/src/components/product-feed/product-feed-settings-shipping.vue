@@ -1,17 +1,17 @@
 <template>
   <b-form>
     <b-form-group
-      :label="$t('productFeedSettings.targetCountries')"
+      :label="$t('productFeedSettings.shipping.targetCountries')"
       label-class="h4 font-weight-600 mb-2 d-block p-0"
     >
       <p>
-        {{ $t('productFeedSettings.ifMultipleCountries') }}
+        {{ $t('productFeedSettings.shipping.ifMultipleCountries') }}
       </p>
       <label class="mb-2">
-        {{ $t('productFeedSettings.productAvailaibleIn') }}
+        {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
       <v-select
-        :placeholder="$t('productFeedSettings.placeholderSelect')"
+        :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
         :reduce="country => country.code"
         :options="$options.countriesSelectionOptions"
         :deselect-from-dropdown="true"
@@ -21,7 +21,7 @@
         @input="pushSelectedCountries"
       />
       <p class="text-muted my-1 ps_gs-fz-12">
-        {{ $t('productFeedSettings.cantFindCountry') }}
+        {{ $t('productFeedSettings.shipping.cantFindCountry') }}
         <a
           class="d-inline-block"
           href="//google.com"
@@ -33,7 +33,7 @@
     </b-form-group>
     <b-form-group
       class="mt-4"
-      :label="$t('productFeedSettings.shippingSettings')"
+      :label="$t('productFeedSettings.shipping.shippingSettings')"
       label-class="h4 font-weight-600 mb-2 d-block p-0"
     >
       <b-form-radio
@@ -45,10 +45,10 @@
       >
         <div>
           <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.autoImportShipping') }}
+            {{ $t('productFeedSettings.shipping.autoImportShipping') }}
           </span>
           <p class="text-muted ps_gs-fz-12 mb-0">
-            {{ $t('productFeedSettings.autoImportShippingDescription') }}
+            {{ $t('productFeedSettings.shipping.autoImportShippingDescription') }}
           </p>
         </div>
       </b-form-radio>
@@ -61,10 +61,10 @@
       >
         <div>
           <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.manualShipping') }}
+            {{ $t('productFeedSettings.shipping.manualShipping') }}
           </span>
           <p class="text-muted ps_gs-fz-12 mb-0">
-            {{ $t('productFeedSettings.manualShippingDescription') }}
+            {{ $t('productFeedSettings.shipping.manualShippingDescription') }}
           </p>
         </div>
       </b-form-radio>
@@ -72,11 +72,11 @@
     <b-form-group
       v-if="isUS"
       class="mt-4"
-      :label="$t('productFeedSettings.taxSettings')"
+      :label="$t('productFeedSettings.shipping.taxSettings')"
       label-class="h4 font-weight-600 mb-2 d-block p-0"
     >
       <p>
-        {{ $t('productFeedSettings.taxSettingsDescription') }}
+        {{ $t('productFeedSettings.shipping.taxSettingsDescription') }}
       </p>
       <b-form-radio
         v-model="selectedTaxSettings"
@@ -87,7 +87,7 @@
       >
         <div>
           <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.autoImportTax') }}
+            {{ $t('productFeedSettings.shipping.autoImportTax') }}
           </span>
         </div>
       </b-form-radio>
@@ -100,7 +100,7 @@
       >
         <div>
           <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.manualImportTax') }}
+            {{ $t('productFeedSettings.shipping.manualImportTax') }}
           </span>
         </div>
       </b-form-radio>

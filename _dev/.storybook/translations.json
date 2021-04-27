@@ -77,20 +77,33 @@
         "categoryMapping" : "Category mapping",
         "summary" : "Summary"
       },
-      "targetCountries" : "Target countries",
-      "ifMultipleCountries" : "If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.",
-      "productAvailaibleIn" : "Products available in",
-      "placeholderSelect" : "XXXXXXXXX",
-      "cantFindCountry" : "Can’t find a country? Only supported countries are listed.",
-      "shippingSettings" : "Shipping settings",
-      "autoImportShipping" : "Automatically import shipping settings",
-      "autoImportShippingDescription" : "PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.",
-      "manualShipping" : "Manually set up shipping settings in Google Merchant Center",
-      "manualShippingDescription" : "You will go to Google Merchant Center and enter your product shipping information yourself. Your products won’t sync until you do this.",
-      "taxSettings" : "Tax settings",
-      "taxSettingsDescription" : "So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect. Select how you want to set up tax settings.",
-      "autoImportTax" : "Automatically import tax settings",
-      "manualImportTax" : "Manually set up tax settings in Google Merchant Center"
+      "shipping" : {
+        "targetCountries" : "Target countries",
+        "ifMultipleCountries" : "If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.",
+        "productAvailaibleIn" : "Products available in",
+        "placeholderSelect" : "XXXXXXXXX",
+        "cantFindCountry" : "Can’t find a country? Only supported countries are listed.",
+        "shippingSettings" : "Shipping settings",
+        "autoImportShipping" : "Automatically import shipping settings",
+        "autoImportShippingDescription" : "PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.",
+        "manualShipping" : "Manually set up shipping settings in Google Merchant Center",
+        "manualShippingDescription" : "You will go to Google Merchant Center and enter your product shipping information yourself. Your products won’t sync until you do this.",
+        "taxSettings" : "Tax settings",
+        "taxSettingsDescription" : "So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect. Select how you want to set up tax settings.",
+        "autoImportTax" : "Automatically import tax settings",
+        "manualImportTax" : "Manually set up tax settings in Google Merchant Center"
+      },
+      "export" : {
+        "synchronizationSchedule" : "Synchronization schedule",
+        "synchronizationTime" : "Synchronization time",
+        "timeZone" : "Time zone",
+        "exportMethod" : "Export method",
+        "allProducts" : "All products",
+        "brand" : "Brand",
+        "category" : "Category",
+        "excludeProducts" : "Exclude specific products",
+        "searchProduct" : "Search product"
+      }
     },
     "freeListingCard" : {
       "title" : "Free listing for Google Shopping tab",
@@ -149,7 +162,8 @@
       "chooseAccount" : "Choose your account",
       "supportedCountries" : "Supported countries",
       "cancel" : "Cancel",
-      "disconnectAccount" : "Disconnect account"
+      "disconnectAccount" : "Disconnect account",
+      "back" : "Back"
     },
     "badge" : {
       "free" : "Free",
