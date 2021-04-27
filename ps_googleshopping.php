@@ -86,6 +86,12 @@ class Ps_googleshopping extends Module
 
     public function install()
     {
+        if (70400 > PHP_VERSION_ID) {
+            $this->_errors[] = $this->l('This requires PHP 7.4 to work properly. Please upgrade your server configuration.');
+
+            return false;
+        }
+
         // We can't init the Uninstaller in CLI, as it has been declared in the admin container and PrestaShop
         // does not have the _PS_ADMIN_DIR_ in this environment.
         // prestashop/module-lib-service-container:1.3.1 is known as incompatible
