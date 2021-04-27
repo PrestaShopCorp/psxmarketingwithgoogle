@@ -48,7 +48,6 @@ class Installer
         $this->segment->track();
 
         return $this->installConfiguration() &&
-            $this->module->registerHook(Config::HOOK_LIST) &&
             $this->installTabs() &&
             $this->installTables();
     }

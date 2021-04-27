@@ -1,5 +1,6 @@
 <?php
 
+use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Installer;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller;
 use PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler;
@@ -120,6 +121,8 @@ class Ps_googleshopping extends Module
 
             return false;
         }
+
+        $this->registerHook(Config::HOOK_LIST);
 
         return true;
     }
