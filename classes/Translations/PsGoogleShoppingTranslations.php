@@ -79,7 +79,7 @@ class PsGoogleShoppingTranslations
                     'content3' => [
                         'title' => $this->module->l('Boost store traffic and sales with Google Ads', 'PsGoogleShoppingTranslations'),
                         'text' => $this->module->l('Smart Shopping campaigns help you reach even more customers and grow your business by promoting your products across Google Search, Shopping, YouTube, Gmail, and the Display Network. They use Google’s technology to optimize your ads and automatically show your products to customers who are more likely to buy and spend more.', 'PsGoogleShoppingTranslations'),
-                        'footer' => $this->module->l('[Learn more about Smart Shopping <campaigns></campaigns>](//google.com){:target="_blank"}', 'PsGoogleShoppingTranslations'),
+                        'footer' => $this->module->l('[Learn more about Smart Shopping campaigns](//google.com){:target="_blank"}', 'PsGoogleShoppingTranslations'),
                     ],
                 ],
                 'footer' => [
