@@ -4,7 +4,13 @@ import Stepper from '../src/components/commons/stepper.vue'
 export default {
   title: 'Product feed/Settings',
   component: ProductFeedSettings,
-  subcomponents: { Stepper }
+  subcomponents: { Stepper },
+  argTypes: {
+    activeStep: {
+      options: [1, 2, 3, 4, 5],
+      control: { type: 'select' },
+    },
+  },
 };
 
 const Template = (args, { argTypes }) => ({
@@ -16,4 +22,10 @@ const Template = (args, { argTypes }) => ({
 export const ShippingSettings:any = Template.bind({});
 ShippingSettings.args = {
   activeStep: 1,
+}
+
+
+export const ExportSettings:any = Template.bind({});
+ExportSettings.args = {
+  activeStep: 2,
 }

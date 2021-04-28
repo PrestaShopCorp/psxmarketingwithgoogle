@@ -2,7 +2,7 @@ import MerchantCenterAccountPopinOverwriteClaim from '../src/components/merchant
 import OnboardingPage from '../src/views/onboarding-page.vue'
 
 export default {
-  title: 'Merchant Center Account/Popin Overwrite Claim',
+  title: 'Merchant Center Account/Popins/Overwrite Claim',
   component: MerchantCenterAccountPopinOverwriteClaim, OnboardingPage,
 };
 

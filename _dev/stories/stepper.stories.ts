@@ -1,7 +1,7 @@
 import Stepper from '../src/components/commons/stepper.vue'
 
 export default {
-  title: 'Base/Horizontal Stepper',
+  title: 'Basic Components/Horizontal Stepper',
   component: Stepper,
 };
 

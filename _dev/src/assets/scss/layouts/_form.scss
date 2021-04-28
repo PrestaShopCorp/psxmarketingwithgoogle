@@ -1,0 +1,82 @@
+.custom-select {
+  box-shadow: none;
+  padding-left: rem(10);
+}
+
+.ps_googleshopping-dropdown {
+  padding: 1px 0;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: rem(4);
+    padding-bottom: rem(4);
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($blue_dark, 0.5);
+      border-color: $blue_dark;
+    }
+  }
+
+  button ~ [role=menu] {
+    width: calc(100% + 2px);
+    margin-left: -1px;
+    margin-right: -1px;
+    padding: 0;
+  }
+
+  .dropdown-item:focus, .dropdown-item:hover {
+    color: #fff;
+    background-color: $blue_medium;
+    border-radius: 0;
+  }
+
+  .ps-dropdown {
+    border-radius: 0 0 4px 4px;
+  }
+}
+
+.v-select {
+  &.has-selection {
+    background-color: $grey_extralight;
+  }
+
+  .vs__search {
+    color: $grey_median;
+    padding-left: 0;
+  }
+
+  .vs__dropdown-toggle {
+    border: 1px solid $gray-450;
+  }
+
+  .vs__selected {
+    border: none;
+    background-color: $blue-light;
+    color: $blue_dark;
+    font-size: rem(12);
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  .vs__deselect {
+    text-shadow: none;
+    color: $blue_dark;
+
+    i {
+      font-size: rem(16);
+      color: inherit;
+    }
+
+    &:hover, &:focus {
+      color: red;
+    }
+  }
+
+  .vs__dropdown-toggle {
+  }
+
+  .vs__selected-options {
+    padding: 2px 2px 2px 10px;
+  }
+}

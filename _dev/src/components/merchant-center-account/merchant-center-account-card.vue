@@ -76,6 +76,7 @@
             class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
             menu-class="ps-dropdown"
             no-flip
+            size="sm"
           >
             <b-dropdown-item
               v-for="option in mcaSelectionOptions"
@@ -86,6 +87,7 @@
             </b-dropdown-item>
           </b-dropdown>
           <b-button
+            size="sm"
             variant="primary"
             :disabled="!selected"
             class="mt-3 mt-md-0 ml-md-3"
@@ -138,7 +140,10 @@
           {{ $t('badge.siteVerified') }}
         </span>
       </div>
-      <b-button variant="outline-secondary">
+      <b-button
+        size="sm"
+        variant="outline-secondary"
+      >
         {{ $t("cta.dissociate") }}
       </b-button>
     </div>
@@ -192,13 +197,15 @@
       </p>
       <div class="d-md-flex text-center align-items-center mt-2">
         <b-button
-          class="mx-3 mt-3 mt-md-0 mx-md-0"
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
           variant="secondary"
         >
           {{ $t("cta.overwriteClaim") }}
         </b-button>
         <b-button
-          class="mx-3 mt-3 mt-md-0"
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 mr-md-3"
           variant="outline-secondary"
         >
           {{ $t("cta.switchAccount") }}

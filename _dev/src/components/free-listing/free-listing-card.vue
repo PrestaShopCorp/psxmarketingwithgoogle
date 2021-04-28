@@ -57,7 +57,7 @@
     >
       {{ $t('freeListingCard.intro') }}
     </p>
-    <template v-if="isEnabled">
+    <template v-if="false">
       <ul
         class="list-inline text-muted ps_gs-fz-12"
       >
@@ -86,6 +86,7 @@
           {{ $t('freeListingCard.googleDelay') }}
         </p>
         <b-button
+          size="sm"
           disabled
           variant="primary"
           class="ml-md-3"

@@ -11,7 +11,12 @@ const Template = (args, { argTypes }) => ({
   template: '<ProductFeedCard v-bind="$props" />',
 });
 
-export const Default:any = Template.bind({});
-Default.args = {
+export const Disabled:any = Template.bind({});
+Disabled.args = {
   isEnabled: false,
-}
+};
+
+export const Enabled:any = Template.bind({});
+Enabled.args = {
+  isEnabled: true,
+};

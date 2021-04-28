@@ -36,10 +36,10 @@ export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
   error: null,
-}
+};
 
 export const EnabledNotConnected:any = Template.bind({});
 EnabledNotConnected.args = {
   isEnabled: true,
   error: null,
-}
+};

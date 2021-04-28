@@ -17,6 +17,7 @@
       <b-button
         class="ps_gs-glass__button mt-3"
         variant="outline"
+        size="sm"
       >
         {{ $t('cta.continue') }}
       </b-button>

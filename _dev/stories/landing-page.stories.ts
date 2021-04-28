@@ -1,7 +1,7 @@
 import LandingPage from '../src/views/landing-page.vue'
 
 export default {
-  title: 'LandingPage/LandingPage',
+  title: 'LandingPage/Landing Page View',
   component: LandingPage,
 };
 
@@ -11,6 +11,6 @@ const Template = (args, { argTypes }) => ({
   template: '<LandingPage />',
 });
 
-export const View:any = Template.bind({});
-View.args = {
+export const LandingPageView:any = Template.bind({});
+LandingPageView.args = {
 };

@@ -5,7 +5,10 @@
         <p class="ps_gs-landingpage-footer__text mb-3">
           {{ $t('landingPage.footer.text') }}
         </p>
-        <b-button variant="primary">
+        <b-button
+          size="sm"
+          variant="primary"
+        >
           {{ $t('cta.getStarted') }}
         </b-button>
       </b-col>

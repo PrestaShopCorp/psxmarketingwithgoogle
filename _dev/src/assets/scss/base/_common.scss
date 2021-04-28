@@ -66,20 +66,6 @@
   color: $grey_muted;
 }
 
-
-.ps_googleshopping-dropdown {
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    &:focus {
-      box-shadow: 0 0 0 0.2rem rgba($blue_dark, 0.5);
-      border-color: $blue_dark;
-    }
-  }
-
-  button ~ [role=menu] {
-    width: 100%;
-  }
+.btn-sm {
+  font-size: rem(14);
 }
