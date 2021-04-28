@@ -73,6 +73,7 @@
         :deselect-from-dropdown="true"
         multiple
         @input="pushSelectedExcludeProducts"
+        @search="searchProducts"
         label="name"
         :placeholder="$t('productFeedSettings.export.searchProducts')"
         class="maxw-sm-500"
