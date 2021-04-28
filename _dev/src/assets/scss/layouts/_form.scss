@@ -1,5 +1,6 @@
 .custom-select {
   box-shadow: none;
+  padding-left: rem(10);
 }
 
 .ps_googleshopping-dropdown {
@@ -43,6 +44,7 @@
 
   .vs__search {
     color: $grey_median;
+    padding-left: 0;
   }
 
   .vs__dropdown-toggle {

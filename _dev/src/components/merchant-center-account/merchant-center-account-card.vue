@@ -198,14 +198,14 @@
       <div class="d-md-flex text-center align-items-center mt-2">
         <b-button
           size="sm"
-          class="mx-3 mt-3 mt-md-0 mx-md-0"
+          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
           variant="secondary"
         >
           {{ $t("cta.overwriteClaim") }}
         </b-button>
         <b-button
           size="sm"
-          class="mx-3 mt-3 mt-md-0"
+          class="mx-1 mt-3 mt-md-0 mr-md-3"
           variant="outline-secondary"
         >
           {{ $t("cta.switchAccount") }}

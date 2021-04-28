@@ -109,7 +109,7 @@
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
         size="sm"
-        class="mx-2 mt-3 mt-md-0"
+        class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
       >
         {{ $t('cta.cancel') }}
@@ -117,7 +117,7 @@
       <b-button
         size="sm"
         :disabled="disableContinue"
-        class="mx-2 mt-3 mt-md-0 mr-md-0"
+        class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
       >
         {{ $t('cta.continue') }}

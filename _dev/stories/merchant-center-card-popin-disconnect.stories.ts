@@ -2,7 +2,7 @@ import MerchantCenterAccountPopinDisconnect from '../src/components/merchant-cen
 import OnboardingPage from '../src/views/onboarding-page.vue'
 
 export default {
-  title: 'Merchant Center Account/Popin Disconnect',
+  title: 'Merchant Center Account/Popins/Disconnect',
   component: MerchantCenterAccountPopinDisconnect, OnboardingPage,
 };
 

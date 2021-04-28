@@ -2,7 +2,7 @@ import GoogleAccountPopinDisconnect from '../src/components/google-account/googl
 import OnboardingPage from '../src/views/onboarding-page.vue'
 
 export default {
-  title: 'Google Account/Popin Disconnect',
+  title: 'Google Account/Popins/Disconnect',
   component: GoogleAccountPopinDisconnect, OnboardingPage,
 };
 

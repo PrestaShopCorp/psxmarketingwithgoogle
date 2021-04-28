@@ -70,7 +70,6 @@ export const parameters = {
   options: {
     storySort: {
       order: [
-        'Basic Components',
         'LandingPage',
           [
             'Components',
@@ -89,9 +88,10 @@ export const parameters = {
         'Merchant Center Account',
         'Product feed',
         'Free listing',
-      ]
-    }
-  }
+        'Basic Components',
+      ],
+    },
+  },
 };
 export const decorators = [
   () => ({ template: '<div id="googleShoppingApp"><story /></div>' }),

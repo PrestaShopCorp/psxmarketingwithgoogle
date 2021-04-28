@@ -31,7 +31,7 @@
         <b-button
           size="sm"
           v-if="!isConnected"
-          class="mx-2 mt-3 mt-md-0 mr-md-0"
+          class="mx-1 mt-3 mt-md-0 mr-md-0"
           variant="primary"
         >
           {{ $t('cta.connect') }}
@@ -41,7 +41,7 @@
           <b-button
             size="sm"
             variant="outline-secondary"
-            class="mx-2 mt-3 mt-md-0"
+            class="mx-1 mt-3 mt-md-0"
             target="_blank"
           >
             {{ $t('cta.dissociate') }}
@@ -49,7 +49,7 @@
           <b-button
             size="sm"
             variant="outline-secondary"
-            class="mx-2 mt-3 mt-md-0 mr-md-0"
+            class="mx-1 mt-3 mt-md-0 mr-md-0"
             target="_blank"
           >
             {{ $t('cta.manageAccount') }}
