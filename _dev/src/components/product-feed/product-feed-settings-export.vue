@@ -65,7 +65,7 @@
       class="mt-4 pb-2"
     >
     <label class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block">
-      Exclude specific products
+      {{ $t("productFeedSettings.export.excludeProducts") }}
     </label>
       <ps-select
         :reduce="options => options.name"
@@ -75,12 +75,12 @@
         @input="pushSelectedExcludeProducts"
         @search="searchProducts"
         label="name"
-        placeholder="Search product"
+        :placeholder="$t('productFeedSettings.export.searchProducts')"
         class="maxw-sm-500"
         :class="{ 'has-selection': selectedExcludeProducts.length > 0 }"
       >
         <template v-slot:option="option">
-          {{ option.id }} - <span v-html="highlightSearch(option.name)" />
+          <span v-html="highlightSearch(`${option.id} - ${option.name}`)" />
         </template>
       </ps-select>
     </b-form-group>
@@ -126,10 +126,86 @@ export default {
       selectedExcludeProducts: [],
       searchString: '',
       options: [
-        { name: 'Orange', id: '1598735' },
-        { name: 'Apple', id: '1497935' },
-        { name: 'Pineapple', id: '22474135' },
-        { name: 'Grape', id: '177135' },
+        {
+            id: '20',
+            name: 'Carte cadeau',
+        },
+        {
+            id: '19',
+            name: 'Mug personnalisable',
+        },
+        {
+            id: '18',
+            name: 'Carnet de notes Colibri',
+        },
+        {
+            id: '17',
+            name: 'Carnet de notes Ours brun',
+        },
+        {
+            id: '16',
+            name: 'Carnet de notes Renard',
+        },
+        {
+            id: '15',
+            name: 'Pack Mug + Affiche encadrée',
+        },
+        {
+            id: '14',
+            name: 'Illustration vectorielle Colibri',
+        },
+        {
+            id: '13',
+            name: 'Illustration vectorielle Ours brun',
+        },
+        {
+            id: '12',
+            name: 'Illustration vectorielle Renard',
+        },
+        {
+            id: '11',
+            name: 'Coussin colibri',
+        },
+        {
+            id: '10',
+            name: 'Coussin ours brun',
+        },
+        {
+            id: '9',
+            name: 'Coussin renard',
+        },
+        {
+            id: '8',
+            name: 'Mug Today is a good day',
+        },
+        {
+            id: '7',
+            name: 'Mug The adventure begins',
+        },
+        {
+            id: '6',
+            name: 'Mug The best is yet to come',
+        },
+        {
+            id: '5',
+            name: 'Affiche encadrée Today is a good day',
+        },
+        {
+            id: '4',
+            name: 'Affiche encadrée The adventure begins',
+        },
+        {
+            id: '3',
+            name: 'Affiche encadrée The best is yet to come',
+        },
+        {
+            id: '2',
+            name: 'Pull imprimé colibri',
+        },
+        {
+            id: '1',
+            name: 'T-shirt imprimé colibri',
+        },
       ],
     };
   },
@@ -145,7 +221,7 @@ export default {
         date.setHours(0);
         date.setMinutes(minutes);
         ranges.push(date.toLocaleTimeString(language, format));
-      }
+      };
       return ranges;
     },
     pushSelectedExcludeProducts(event) {

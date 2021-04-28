@@ -81,7 +81,7 @@
         "targetCountries" : "Target countries",
         "ifMultipleCountries" : "If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.",
         "productAvailaibleIn" : "Products available in",
-        "placeholderSelect" : "XXXXXXXXX",
+        "placeholderSelect" : "Select the countries where your products are available",
         "cantFindCountry" : "Can’t find a country? Only supported countries are listed.",
         "shippingSettings" : "Shipping settings",
         "autoImportShipping" : "Automatically import shipping settings",
@@ -102,7 +102,7 @@
         "brand" : "Brand",
         "category" : "Category",
         "excludeProducts" : "Exclude specific products",
-        "searchProduct" : "Search product"
+        "searchProducts" : "Search product"
       }
     },
     "freeListingCard" : {
