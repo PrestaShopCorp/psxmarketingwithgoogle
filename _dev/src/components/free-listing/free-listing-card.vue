@@ -86,6 +86,7 @@
           {{ $t('freeListingCard.googleDelay') }}
         </p>
         <b-button
+          size="sm"
           disabled
           variant="primary"
           class="ml-md-3"

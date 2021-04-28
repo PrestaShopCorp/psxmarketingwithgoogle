@@ -79,6 +79,7 @@
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
           <b-button
+            size="sm"
             variant="primary"
             class="mx-2 mt-3 mt-md-0 mr-md-0"
             target="_blank"
@@ -98,6 +99,7 @@
           class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
         >
           <b-button
+            size="sm"
             variant="outline-secondary"
             class="mx-2 mt-3 mt-md-0"
             target="_blank"
@@ -105,6 +107,7 @@
             {{ $t('cta.dissociate') }}
           </b-button>
           <b-button
+            size="sm"
             variant="outline-secondary"
             class="mx-2 mt-3 mt-md-0 mr-md-0"
             target="_blank"

@@ -2,17 +2,20 @@
   <b-form>
     <b-form-group
       :label="$t('productFeedSettings.export.synchronizationSchedule')"
-      label-class="h4 font-weight-600 mb-2 d-block p-0"
+      label-class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block"
     >
       <b-form-row>
-        <b-col md="3">
+        <b-col
+          cols="12"
+          class="maxw-sm-160"
+        >
           <label class="mb-2">
             {{ $t("productFeedSettings.export.synchronizationTime") }}
           </label>
-          <b-select v-model="selectedSyncTime" class="mb-3 mb-md-0">
-            <b-form-select-option :value="null">
-              Please select an option
-            </b-form-select-option>
+          <b-select
+            v-model="selectedSyncTime"
+            class="mb-3 mb-md-0"
+          >
             <b-form-select-option
               v-for="(option, index) in getTimeRanges(30)"
               :key="index"
@@ -22,14 +25,14 @@
             </b-form-select-option>
           </b-select>
         </b-col>
-        <b-col md="8">
+        <b-col
+          cols="12"
+          class="maxw-sm-420"
+        >
           <label class="mb-2">
             {{ $t("productFeedSettings.export.timeZone") }}
           </label>
           <b-select v-model="selectedTimeZone" class="mb-3 mb-md-0">
-            <b-form-select-option :value="null">
-              Please select an option
-            </b-form-select-option>
             <b-form-select-option
               v-for="(option, index) in $options.timezones"
               :key="index"
@@ -41,34 +44,14 @@
         </b-col>
       </b-form-row>
     </b-form-group>
-    <b-form-group
-      class="mt-4"
-    >
-    <label class="mb-2">
-      Exclude products
-    </label>
-      <v-select
-        :components="{ Deselect }"
-        :reduce="options => options.name"
-        :options="options.filter(o => selectedExcludeProducts.indexOf(o.name) < 0)"
-        :deselect-from-dropdown="true"
-        class="ps_gs-v-select"
-        multiple
-        @input="pushSelectedExcludeProducts"
-        @search="searchProducts"
-        label="name"
-        placeholder="Search product"
-      >
-        <template v-slot:option="option">
-          {{ option.id }} - <span v-html="highlightSearch(option.name)" />
-        </template>
-      </v-select>
-    </b-form-group>
     <b-form-group class="mt-4">
-      <label class="h4 font-weight-600 mb-2 d-block p-0">
+      <label class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block">
         {{ $t("productFeedSettings.export.exportMethod") }}
       </label>
-      <b-select v-model="selectedExportMethod" class="mb-3 mb-md-0 col-md-9">
+      <b-select
+        v-model="selectedExportMethod"
+        class="maxw-sm-500 mb-3 mb-md-0 col-md-9"
+      >
         <b-form-select-option
           v-for="(option, index) in $options.exportMethods"
           :key="index"
@@ -78,14 +61,46 @@
         </b-form-select-option>
       </b-select>
     </b-form-group>
+    <b-form-group
+      class="mt-4 pb-2"
+    >
+    <label class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block">
+      Exclude specific products
+    </label>
+      <ps-select
+        :reduce="options => options.name"
+        :options="options.filter(o => selectedExcludeProducts.indexOf(o.name) < 0)"
+        :deselect-from-dropdown="true"
+        multiple
+        @input="pushSelectedExcludeProducts"
+        @search="searchProducts"
+        label="name"
+        placeholder="Search product"
+        class="maxw-sm-500"
+        :class="{ 'has-selection': selectedExcludeProducts.length > 0 }"
+      >
+        <template v-slot:option="option">
+          {{ option.id }} - <span v-html="highlightSearch(option.name)" />
+        </template>
+      </ps-select>
+    </b-form-group>
     <div class="d-md-flex text-center justify-content-end mt-3">
-      <b-button class="mx-2 mt-3 mt-md-0" variant="outline-secondary">
+      <b-button
+        size="sm"
+        class="mx-2 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
         {{ $t("cta.back") }}
       </b-button>
-      <b-button class="mx-2 mt-3 mt-md-0" variant="outline-secondary">
+      <b-button
+        size="sm"
+        class="mx-2 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
         {{ $t("cta.cancel") }}
       </b-button>
       <b-button
+        size="sm"
         :disabled="disableContinue"
         class="mx-2 mt-3 mt-md-0 mr-md-0"
         variant="primary"
@@ -97,16 +112,16 @@
 </template>
 
 <script>
-import vSelect from 'vue-select';
+import PsSelect from '../commons/ps-select';
 import timezones from "timezones.json";
 
 export default {
   name: "ProductFeedSettingsExport",
-  components: { vSelect, },
+  components: { PsSelect },
   data() {
     return {
-      selectedSyncTime: null,
-      selectedTimeZone: null,
+      selectedSyncTime: 0,
+      selectedTimeZone: 0,
       selectedExportMethod: 'all',
       selectedExcludeProducts: [],
       searchString: '',
@@ -116,9 +131,6 @@ export default {
         { name: 'Pineapple', id: '22474135' },
         { name: 'Grape', id: '177135' },
       ],
-      Deselect: {
-        render: createElement => createElement('span', {class: 'material-icons ps_gs-v-select__deselect'}, 'close'),
-      },
     };
   },
   methods: {
@@ -143,6 +155,7 @@ export default {
       this.searchString = event;
     },
     highlightSearch(str) {
+      /** Highlight search terms */
       const regex = new RegExp(`(${this.searchString})`, 'gi');
       return str.replace(regex, '<strong>$1</strong>');
     },

@@ -1,0 +1,13 @@
+@include media-breakpoint-up(sm) {
+  .maxw-sm-420 {
+    max-width: 420px;
+  }
+
+  .maxw-sm-500 {
+    max-width: 500px;
+  }
+
+  .maxw-sm-160 {
+    max-width: 160px;
+  }
+}

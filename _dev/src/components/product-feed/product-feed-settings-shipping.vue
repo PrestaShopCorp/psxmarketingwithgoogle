@@ -10,15 +10,16 @@
       <label class="mb-2">
         {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
-      <v-select
+      <ps-select
+        v-model="selectedCountries"
         :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
         :reduce="country => country.code"
         :options="$options.countriesSelectionOptions"
         :deselect-from-dropdown="true"
-        class="ps_gs-v-select"
+        class="ps_gs-v-select maxw-sm-500"
         multiple
         label="country"
-        @input="pushSelectedCountries"
+
       />
       <p class="text-muted my-1 ps_gs-fz-12">
         {{ $t('productFeedSettings.shipping.cantFindCountry') }}
@@ -107,12 +108,14 @@
     </b-form-group>
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
+        size="sm"
         class="mx-2 mt-3 mt-md-0"
         variant="outline-secondary"
       >
         {{ $t('cta.cancel') }}
       </b-button>
       <b-button
+        size="sm"
         :disabled="disableContinue"
         class="mx-2 mt-3 mt-md-0 mr-md-0"
         variant="primary"
@@ -124,14 +127,13 @@
 </template>
 
 <script>
-import vSelect from 'vue-select';
-
+import PsSelect from '../commons/ps-select';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 
 export default {
   name: 'ProductFeedSettingsShipping',
   components: {
-    vSelect,
+    PsSelect,
   },
   data() {
     return {
@@ -141,9 +143,6 @@ export default {
     };
   },
   methods: {
-    pushSelectedCountries(event) {
-      this.selectedCountries = event;
-    },
   },
   computed: {
     isUS() {

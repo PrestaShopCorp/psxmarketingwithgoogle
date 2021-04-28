@@ -66,42 +66,6 @@
   color: $grey_muted;
 }
 
-
-.ps_googleshopping-dropdown {
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    &:focus {
-      box-shadow: 0 0 0 0.2rem rgba($blue_dark, 0.5);
-      border-color: $blue_dark;
-    }
-  }
-
-  button ~ [role=menu] {
-    width: 100%;
-  }
-}
-
-.ps_gs-v-select {
-  .vs__selected {
-    border: none;
-    background-color: $blue-light;
-    color: $blue_dark;
-    padding: 4px 8px;
-  }
-  .vs__deselect {
-    text-shadow: none;
-    color: $blue_dark;
-
-    &:hover, &:focus {
-      color: red;
-    }
-  }
-
-  &__deselect {
-    font-size: rem(16);
-    color: inherit;
-  }
+.btn-sm {
+  font-size: rem(14);
 }

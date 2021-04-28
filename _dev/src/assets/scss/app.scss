@@ -13,6 +13,10 @@
 @import "base/typography";
 @import "base/common";
 
+// page
+@import "layouts/form";
+@import "layouts/sizing";
+
 // components
 @import "components/onboardingcard";
 @import "components/landingpageheader";

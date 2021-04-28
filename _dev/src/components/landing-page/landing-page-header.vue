@@ -24,6 +24,7 @@
         {{ $t('landingPage.header.text') }}
       </p>
       <b-button
+        size="sm"
         variant="primary"
         class="my-2"
       >

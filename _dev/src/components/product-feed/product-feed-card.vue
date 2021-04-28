@@ -31,6 +31,7 @@
         v-if="isEnabled"
       >
         <b-button
+          size="sm"
           variant="primary"
           class="ml-md-3"
         >
