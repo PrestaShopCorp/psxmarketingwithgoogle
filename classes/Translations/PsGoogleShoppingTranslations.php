@@ -151,7 +151,7 @@ class PsGoogleShoppingTranslations
                     'brand' => $this->module->l('Brand', 'PsGoogleShoppingTranslations'),
                     'category' => $this->module->l('Category', 'PsGoogleShoppingTranslations'),
                     'excludeProducts' => $this->module->l('Exclude specific products', 'PsGoogleShoppingTranslations'),
-                    'searchProduct' => $this->module->l('Search product', 'PsGoogleShoppingTranslations'),
+                    'searchProducts' => $this->module->l('Search product', 'PsGoogleShoppingTranslations'),
                 ],
             ],
             'freeListingCard' => [
