@@ -73,8 +73,6 @@ addDecorator(() => ({
   store: require("../src/store"),
 }));
 
-console.log(require("./translations.json"))
-
 configure(require.context("../src", true, /\.stories\.(ts|js|md)x?$/), module);
 
 export const parameters = {
