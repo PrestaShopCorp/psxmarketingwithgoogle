@@ -17,7 +17,7 @@ const Template = (args, { argTypes }) => ({
   `,
 });
 
-export const PopinDisconnect:any = Template.bind({});
-PopinDisconnect.args = {
+export const Disconnect:any = Template.bind({});
+Disconnect.args = {
   visible: true,
 };
