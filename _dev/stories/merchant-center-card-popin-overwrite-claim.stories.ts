@@ -17,7 +17,7 @@ const Template = (args, { argTypes }) => ({
   `,
 });
 
-export const PopinOverwriteClaim:any = Template.bind({});
-PopinOverwriteClaim.args = {
+export const OverwriteClaim:any = Template.bind({});
+OverwriteClaim.args = {
   visible: true,
 };
