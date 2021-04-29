@@ -59,7 +59,7 @@
   }
 
   .vs__search {
-    color: $grey_median;
+    color: $gray-450;
     padding-left: 0;
   }
 
@@ -104,7 +104,8 @@
   }
 
   .custom-control-label:before{
-    border-color: $grey_median;
+    border-color: $gray-450;
+    border-width: 2px;
     border-radius: 2px;
   }
 
@@ -115,5 +116,9 @@
   .custom-control-input:checked~.custom-control-label:after {
     background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' aria-label='check' xmlns='http://www.w3.org/2000/svg' fill='%23fff'%3E%3Cpath d='M10.97 4.97a.75.75 0 011.07 1.05l-3.99 4.99a.75.75 0 01-1.08.02L4.324 8.384a.75.75 0 111.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 01.02-.022z'/%3E%3C/svg%3E");
     background-size: 125%;
+  }
+
+  .custom-control-input:indeterminate~.custom-control-label:after {
+    background-color: $grey_muted;
   }
 }
