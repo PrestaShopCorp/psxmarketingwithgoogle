@@ -56,7 +56,7 @@
         class="maxw-sm-500 mb-3 mb-md-0 col-md-9"
       >
         <b-form-select-option
-          v-for="(option, index) in $options.exportMethods"
+          v-for="(option, index) in exportMethods"
           :key="index"
           :value="option.value"
         >
@@ -64,12 +64,18 @@
         </b-form-select-option>
       </b-select>
     </b-form-group>
+    <product-feed-settings-export-exclude-category
+      v-if="selectedExportMethod == 'category'"
+    />
+    <product-feed-settings-export-exclude-brand
+      v-if="selectedExportMethod == 'brand'"
+    />
     <b-form-group
       class="mt-4 pb-2"
     >
-      <label class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block">
-        {{ $t("productFeedSettings.export.excludeProducts") }}
-      </label>
+    <label class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block">
+      {{ $t("productFeedSettings.export.labelExcludeProducts") }}
+    </label>
       <ps-select
         :reduce="options => options.name"
         :options="options.filter(o => selectedExcludeProducts.indexOf(o.name) < 0)"
@@ -78,7 +84,7 @@
         @input="pushSelectedExcludeProducts"
         @search="searchProducts"
         label="name"
-        :placeholder="$t('productFeedSettings.export.searchProducts')"
+        :placeholder="$t('productFeedSettings.export.placeholderExcludeProducts')"
         class="maxw-sm-500"
         :class="{ 'has-selection': selectedExcludeProducts.length > 0 }"
       >
@@ -111,105 +117,68 @@
         {{ $t("cta.continue") }}
       </b-button>
     </div>
+    <div class="text-muted ps_gs-fz-12 mb-0 mt-2 d-flex align-items-start align-items-sm-center justify-content-end">
+      <b-button
+        v-b-tooltip
+        title="Tooltip!"
+        variant="invisible"
+        class="mr-1 text-muted p-0 border-0"
+      >
+        <b-icon-exclamation-circle />
+        <span class="sr-only">Tooltip!</span>
+      </b-button>
+      <p>
+        {{ $t("productFeedSettings.noticeDataStored") }}
+      </p>
+    </div>
   </b-form>
 </template>
 
 <script>
 import timezones from 'timezones.json';
 import PsSelect from '../commons/ps-select';
-
+import {
+  BIconExclamationCircle,
+} from 'bootstrap-vue';
+import ProductFeedSettingsExportExcludeCategory from './product-feed-settings-export-exclude-category';
+import ProductFeedSettingsExportExcludeBrand from './product-feed-settings-export-exclude-brand';
+/**
+ ** Import fixture of products.
+ ** Should be fetched from PrestaShop data
+ * TODO: Replace with real datas.
+ */
+import { Products } from '@/../fixtures/products.js'
 export default {
   name: 'ProductFeedSettingsExport',
-  components: {PsSelect},
+  components: {
+    PsSelect,
+    BIconExclamationCircle,
+    ProductFeedSettingsExportExcludeCategory,
+    ProductFeedSettingsExportExcludeBrand,
+  },
   data() {
     return {
+      exportMethods: [
+        {
+          text: this.$i18n.t('productFeedSettings.export.allProducts'),
+          value: 'all',
+        },
+        {
+          text: this.$i18n.t('productFeedSettings.export.byBrand'),
+          value: 'category',
+        },
+        {
+          text: this.$i18n.t('productFeedSettings.export.byCategory'),
+          value: 'brand',
+        },
+      ],
       selectedSyncTime: 0,
       selectedTimeZone: 0,
       selectedExportMethod: 'all',
       selectedExcludeProducts: [],
       searchString: '',
-      options: [
-        {
-          id: '20',
-          name: 'Carte cadeau',
-        },
-        {
-          id: '19',
-          name: 'Mug personnalisable',
-        },
-        {
-          id: '18',
-          name: 'Carnet de notes Colibri',
-        },
-        {
-          id: '17',
-          name: 'Carnet de notes Ours brun',
-        },
-        {
-          id: '16',
-          name: 'Carnet de notes Renard',
-        },
-        {
-          id: '15',
-          name: 'Pack Mug + Affiche encadrée',
-        },
-        {
-          id: '14',
-          name: 'Illustration vectorielle Colibri',
-        },
-        {
-          id: '13',
-          name: 'Illustration vectorielle Ours brun',
-        },
-        {
-          id: '12',
-          name: 'Illustration vectorielle Renard',
-        },
-        {
-          id: '11',
-          name: 'Coussin colibri',
-        },
-        {
-          id: '10',
-          name: 'Coussin ours brun',
-        },
-        {
-          id: '9',
-          name: 'Coussin renard',
-        },
-        {
-          id: '8',
-          name: 'Mug Today is a good day',
-        },
-        {
-          id: '7',
-          name: 'Mug The adventure begins',
-        },
-        {
-          id: '6',
-          name: 'Mug The best is yet to come',
-        },
-        {
-          id: '5',
-          name: 'Affiche encadrée Today is a good day',
-        },
-        {
-          id: '4',
-          name: 'Affiche encadrée The adventure begins',
-        },
-        {
-          id: '3',
-          name: 'Affiche encadrée The best is yet to come',
-        },
-        {
-          id: '2',
-          name: 'Pull imprimé colibri',
-        },
-        {
-          id: '1',
-          name: 'T-shirt imprimé colibri',
-        },
-      ],
+      allCategoriesIndeterminate: true,
+      options: Products,
     };
   },
   methods: {
@@ -244,22 +213,6 @@ export default {
       return true;
     },
   },
-  mounted() {
-  },
   timezones,
-  exportMethods: [
-    {
-      text: 'Export all products',
-      value: 'all',
-    },
-    {
-      text: 'Export by category',
-      value: 'category',
-    },
-    {
-      text: 'Export by brand',
-      value: 'brand',
-    },
-  ],
 };
 </script>

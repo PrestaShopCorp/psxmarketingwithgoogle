@@ -1,7 +1,7 @@
 import ProductFeedNotice from '../src/components/onboarding/product-feed-notice.vue'
 
 export default {
-  title: 'Onboarding/Components/Product feed notice',
+  title: 'Onboarding/Components/Notice',
   component: ProductFeedNotice,
 };
 
@@ -11,6 +11,6 @@ const Template = (args, { argTypes }) => ({
   template: '<ProductFeedNotice v-bind="$props" />',
 });
 
-export const Default:any = Template.bind({});
-Default.args = {
+export const Notice:any = Template.bind({});
+Notice.args = {
 }
