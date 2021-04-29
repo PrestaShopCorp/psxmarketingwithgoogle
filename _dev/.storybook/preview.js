@@ -16,112 +16,112 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
- import { configure, addDecorator } from "@storybook/vue";
- import { select } from '@storybook/addon-knobs'
- import Vue from "vue";
+import { configure, addDecorator } from "@storybook/vue";
+import { select } from '@storybook/addon-knobs'
+import Vue from "vue";
 
- // import vue plugins
- import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
- import VueI18n from "vue-i18n";
- import VueShowdown from "vue-showdown";
+// import vue plugins
+import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
+import VueI18n from "vue-i18n";
+import VueShowdown from "vue-showdown";
 
- // import showdown extension
- import "../showdown.js";
+// import showdown extension
+import "../showdown.js";
 
- // import css style
- import "bootstrap-vue/dist/bootstrap-vue";
- import "prestakit/dist/css/bootstrap-prestashop-ui-kit.css";
- import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
+// import css style
+import "bootstrap-vue/dist/bootstrap-vue";
+import "prestakit/dist/css/bootstrap-prestashop-ui-kit.css";
+import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
 
- Vue.use(BootstrapVue, BootstrapVueIcons);
- Vue.use(VueShowdown);
+Vue.use(BootstrapVue, BootstrapVueIcons);
+Vue.use(VueShowdown);
 
- // import language file
- const message = require("./translations.json");
+// import language file
+const message = require("./translations.json");
 
- // i18n and store
- Vue.use(VueI18n);
- addDecorator(() => ({
-   template: "<story/>",
-   i18n: new VueI18n({
-     defaultLocale: 'en',
-     locale: 'en',
-     locales: [ 'en', 'ar' ],
-     messages: {
-       en: message.en,
-       ar: message.ar,
-     },
-   }),
-   // add a props to toggle language
-   props: {
-     storybookLocale: {
-       type: String,
-       default: select('I18n locale', ['en', 'ar'], 'en'),
-     },
-   },
-   watch: {
-     // add a watcher to toggle language
-     storybookLocale: {
-       handler() {
-         this.$i18n.locale = this.storybookLocale;
-         let dir = this.storybookLocale === 'ar' ? 'rtl' : 'ltr';
-         document.querySelector('html').setAttribute('dir', dir);
-       },
-       immediate: true,
-     },
-   },
-   store: require("../src/store"),
- }));
+// i18n and store
+Vue.use(VueI18n);
+addDecorator(() => ({
+  template: "<story/>",
+  i18n: new VueI18n({
+    defaultLocale: 'en',
+    locale: 'en',
+    locales: [ 'en', 'ar' ],
+    messages: {
+      en: message.en,
+      ar: message.ar,
+    },
+  }),
+  // add a props to toggle language
+  props: {
+    storybookLocale: {
+      type: String,
+      default: select('I18n locale', ['en', 'ar'], 'en'),
+    },
+  },
+  watch: {
+    // add a watcher to toggle language
+    storybookLocale: {
+      handler() {
+        this.$i18n.locale = this.storybookLocale;
+        let dir = this.storybookLocale === 'ar' ? 'rtl' : 'ltr';
+        document.querySelector('html').setAttribute('dir', dir);
+      },
+      immediate: true,
+    },
+  },
+  store: require("../src/store"),
+}));
 
- console.log(require("./translations.json"))
+console.log(require("./translations.json"))
 
- configure(require.context("../src", true, /\.stories\.(ts|js|md)x?$/), module);
+configure(require.context("../src", true, /\.stories\.(ts|js|md)x?$/), module);
 
- export const parameters = {
-   actions: { argTypesRegex: "^on[A-Z].*" },
-   backgrounds: {
-     default: "backOffice",
-     values: [
-       {
-         name: "backOffice",
-         value: "#F1F1F1",
-       },
-       {
-         name: "white",
-         value: "#ffffff",
-       },
-       {
-         name: "black",
-         value: "#000000",
-       },
-     ],
-   },
-   options: {
-     storySort: {
-       order: [
-         'LandingPage',
-           [
-             'Components',
-               ['Header', 'Content', 'Footer'] ,
-             'LandingPage'
-           ],
-         'Onboarding',
-           [
-             'Components',
-               ['SectionTitle', 'Notice - Product feed', 'Card - PS Account', 'Card - Google Account', 'Card - MCA', 'Card - Product feed', 'Card - Free listing', 'Settings - Poduct feed'] ,
-             'OnboardingPage',
-               ['Header', 'Content', 'Footer'] ,
-           ],
-         'PS Account',
-         'Google Account',
-         'Merchant Center Account',
-         'Product feed',
-         'Free listing',
-         'Basic Components',
-       ],
-     },
-   },
- };
- export const decorators = [
-   () => ({ template: '<div id="googleShoppingApp"><story /></div>' }),
- ];
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  backgrounds: {
+    default: "backOffice",
+    values: [
+      {
+        name: "backOffice",
+        value: "#F1F1F1",
+      },
+      {
+        name: "white",
+        value: "#ffffff",
+      },
+      {
+        name: "black",
+        value: "#000000",
+      },
+    ],
+  },
+  options: {
+    storySort: {
+      order: [
+        'LandingPage',
+          [
+            'Components',
+              ['Header', 'Content', 'Footer'] ,
+            'LandingPage'
+          ],
+        'Onboarding',
+          [
+            'Components',
+              ['SectionTitle', 'Notice - Product feed', 'Card - PS Account', 'Card - Google Account', 'Card - MCA', 'Card - Product feed', 'Card - Free listing', 'Settings - Poduct feed'] ,
+            'OnboardingPage',
+              ['Header', 'Content', 'Footer'] ,
+          ],
+        'PS Account',
+        'Google Account',
+        'Merchant Center Account',
+        'Product feed',
+        'Free listing',
+        'Basic Components',
+      ],
+    },
+  },
+};
+export const decorators = [
+  () => ({ template: '<div id="googleShoppingApp"><story /></div>' }),
+];
