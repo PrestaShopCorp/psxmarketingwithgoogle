@@ -1,7 +1,11 @@
 <template>
   <div id="configuration">
-    <landing-page />
-    <onboarding-page />
+    <landing-page
+      v-if="!psAccountsIsOnboarded && showIntroduction"
+    />
+    <template v-else>
+      <onboarding-page />
+    </template>
   </div>
 </template>
 
@@ -19,10 +23,14 @@ export default defineComponent({
   },
   data() {
     return {
-      psAccountsIsOnboarded: false,
+      psAccountsIsOnboarded: this.$store.getters.psAccountsIsOnboarded,
+      showIntroduction: true,
     };
   },
   created() {
+    this.$root.$on('onHideLanding', () => {
+      this.showIntroduction = false;
+    });
   },
   methods: {
   },

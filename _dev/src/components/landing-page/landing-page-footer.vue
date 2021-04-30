@@ -8,6 +8,7 @@
         <b-button
           size="sm"
           variant="primary"
+          @click="hideLandingPage"
         >
           {{ $t('cta.getStarted') }}
         </b-button>
@@ -23,6 +24,11 @@ export default {
   data() {
     return {
     };
+  },
+  methods: {
+    hideLandingPage() {
+      this.$root.$emit('onHideLanding');
+    },
   },
 };
 </script>
