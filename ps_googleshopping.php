@@ -87,8 +87,8 @@ class Ps_googleshopping extends Module
 
     public function install()
     {
-        if (70400 > PHP_VERSION_ID) {
-            $this->_errors[] = $this->l('This requires PHP 7.4 to work properly. Please upgrade your server configuration.');
+        if (70300 > PHP_VERSION_ID) {
+            $this->_errors[] = $this->l('This requires PHP 7.3 to work properly. Please upgrade your server configuration.');
 
             return false;
         }
