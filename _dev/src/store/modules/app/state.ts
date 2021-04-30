@@ -17,12 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-const {contextPsAccounts} = window || {};
-
 export default {
-  contextPsAccounts,
-  googleAccount: {},
-  googleMerchantAccount: {},
   productFeed: {
     lastSync: {},
     registerSyncData: {},

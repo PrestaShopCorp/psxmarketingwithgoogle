@@ -17,5 +17,13 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-export default {
+const {contextPsAccounts} = window || {};
+
+export const state = {
+  contextPsAccounts,
+  googleAccount: {},
+  googleMerchantAccount: {},
 };
+
+// Declare state
+export type State = typeof state;

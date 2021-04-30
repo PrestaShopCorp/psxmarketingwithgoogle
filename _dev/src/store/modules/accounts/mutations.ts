@@ -16,6 +16,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import MutationsTypes from './mutations-types';
+import {State as LocalState} from './state';
 
 export default {
+  [MutationsTypes.SAVE_ONBOARD_STATUS](state: LocalState, response: any) {
+    state.googleAccount = response;
+  },
 };

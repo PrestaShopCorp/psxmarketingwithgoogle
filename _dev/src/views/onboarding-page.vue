@@ -53,13 +53,19 @@ export default {
   },
   data() {
     return {
-      psAccountsContext: this.$store.getters.getPsAccountsContext,
-      shops: this.$store.getters.getPsAccountsContext.shops,
     };
   },
   methods: {
     onShopSelected(shopSelected) {
       window.location.href = shopSelected.url;
+    },
+  },
+  computed: {
+    psAccountsContext() {
+      return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
+    },
+    shops() {
+      return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'].shops;
     },
   },
 };
