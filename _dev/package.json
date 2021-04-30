@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@prestashopcorp/segment-vue": "^1.2.9",
+    "@storybook/addon-knobs": "^6.2.9",
     "@vue/composition-api": "^1.0.0-rc.6",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.1",

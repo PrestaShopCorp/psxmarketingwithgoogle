@@ -17,6 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import { configure, addDecorator } from "@storybook/vue";
+import { select } from '@storybook/addon-knobs'
 import Vue from "vue";
 
 // import vue plugins
@@ -35,14 +36,40 @@ import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
 Vue.use(BootstrapVue, BootstrapVueIcons);
 Vue.use(VueShowdown);
 
+// import language file
+const message = require("./translations.json");
+
 // i18n and store
 Vue.use(VueI18n);
 addDecorator(() => ({
   template: "<story/>",
   i18n: new VueI18n({
-    locale: "en",
-    messages: require("./translations.json"),
+    defaultLocale: 'en',
+    locale: 'en',
+    locales: [ 'en', 'ar' ],
+    messages: {
+      en: message.en,
+      ar: message.ar,
+    },
   }),
+  // add a props to toggle language
+  props: {
+    storybookLocale: {
+      type: String,
+      default: select('I18n locale', ['en', 'ar'], 'en'),
+    },
+  },
+  watch: {
+    // add a watcher to toggle language
+    storybookLocale: {
+      handler() {
+        this.$i18n.locale = this.storybookLocale;
+        let dir = this.storybookLocale === 'ar' ? 'rtl' : 'ltr';
+        document.querySelector('html').setAttribute('dir', dir);
+      },
+      immediate: true,
+    },
+  },
   store: require("../src/store"),
 }));
 
