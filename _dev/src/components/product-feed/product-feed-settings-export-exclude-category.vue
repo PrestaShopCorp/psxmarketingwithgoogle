@@ -3,7 +3,7 @@
     class="mt-4 pb-2"
   >
     <p class="font-weight-600 mb-1 p-0 d-block">
-      Select categories to export
+      {{ $t('productFeedSettings.export.selectCategoriesToExport') }}
     </p>
     <ul class="ps_gs-categories-list">
       <li>
@@ -13,7 +13,7 @@
           :indeterminate.sync="allCategoriesIndeterminate"
           inline
         >
-          All categories
+          {{ $t('productFeedSettings.export.allCategories') }}
         </b-form-checkbox>
         <ul>
           <li v-for="(n,index) in 5" :key="index">

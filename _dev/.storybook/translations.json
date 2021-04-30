@@ -94,6 +94,7 @@
         "summary" : "Summary",
         "exportFeed" : "Export feed!"
       },
+      "noticeDataStored" : "Data are stored at each step but will be submitted only at the final step.",
       "shipping" : {
         "targetCountries" : "Target countries",
         "ifMultipleCountries" : "If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.",
@@ -115,11 +116,15 @@
         "synchronizationTime" : "Synchronization time",
         "timeZone" : "Time zone",
         "exportMethod" : "Export method",
-        "allProducts" : "All products",
-        "brand" : "Brand",
-        "category" : "Category",
-        "excludeProducts" : "Exclude specific products",
-        "searchProducts" : "Search product"
+        "allProducts" : "Export all products",
+        "byBrand" : "Export by brand",
+        "byCategory" : "Export by category",
+        "labelExcludeProducts" : "Exclude specific products",
+        "placeholderExcludeProducts" : "Search product",
+        "selectCategoriesToExport" : "Select categories to export",
+        "allCategories" : "All categories",
+        "labelSelectBrand" : "Select brand",
+        "placeholderSelectBrand" : "Search brand"
       }
     },
     "freeListingCard" : {

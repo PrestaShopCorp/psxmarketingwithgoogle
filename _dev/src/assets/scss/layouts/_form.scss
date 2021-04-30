@@ -98,15 +98,23 @@
 }
 
 .ps_gs-checkbox {
+  padding-left: 0;
+
   .custom-control-label {
     display: flex;
     align-items: center;
+    padding-left: rem(24);
+    cursor: pointer;
   }
 
   .custom-control-label:before{
     border-color: $gray-450;
     border-width: 2px;
     border-radius: 2px;
+  }
+
+  .custom-control-label:after, .custom-control-label:before {
+    left: 0;
   }
 
   .custom-control-input:checked~.custom-control-label:before {

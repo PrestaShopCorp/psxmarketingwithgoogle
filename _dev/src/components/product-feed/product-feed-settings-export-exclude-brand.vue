@@ -3,7 +3,7 @@
     class="mt-0 pb-2"
   >
   <label class="ps_gs-fz-14 font-weight-600 mb-2 p-0 d-block">
-    Select brand
+    {{ $t('productFeedSettings.export.labelSelectBrand') }}
   </label>
     <ps-select
       :reduce="options => options.name"
@@ -13,7 +13,7 @@
       @input="pushSelectedBrands"
       @search="searchProducts"
       label="name"
-      :placeholder="$t('productFeedSettings.export.searchProducts')"
+      :placeholder="$t('productFeedSettings.export.placeholderSelectBrand')"
       class="maxw-sm-500"
       :class="{ 'has-selection': selectedBrand.length > 0 }"
     >
