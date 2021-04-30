@@ -19,4 +19,5 @@
 
 export default {
   psAccountsIsOnboarded: (state) => state.contextPsAccounts.user.emailIsValidated && state.contextPsAccounts.user.email !== '',
+  getPsAccountsContext: (state) => state.contextPsAccounts,
 };

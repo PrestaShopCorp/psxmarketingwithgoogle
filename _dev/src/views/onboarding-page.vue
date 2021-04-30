@@ -6,8 +6,16 @@
       :is-enabled="true"
       :is-done="false"
     />
-    <ps-account-card
-      :is-connected="false"
+    <MultiStoreSelector
+      v-if="!psAccountsContext.isShopContext && shops.length"
+      :shops="shops"
+      class="m-3"
+      @shop-selected="onShopSelected($event)"
+    />
+    <ps-accounts
+      v-else
+      :context="psAccountsContext"
+      class="m-3"
     />
     <section-title
       :step-number="2"
@@ -33,15 +41,26 @@
 </template>
 
 <script>
+import {MultiStoreSelector, PsAccounts} from 'prestashop_accounts_vue_components';
 import SectionTitle from '../components/onboarding/section-title';
-import PsAccountCard from '../components/ps-account/ps-account-card';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
 
 export default {
   name: 'OnboardingPage',
   components: {
-    SectionTitle, PsAccountCard, GoogleAccountCard, GoogleAdsAccountCard,
+    PsAccounts, MultiStoreSelector, SectionTitle, GoogleAccountCard, GoogleAdsAccountCard,
+  },
+  data() {
+    return {
+      psAccountsContext: this.$store.getters.getPsAccountsContext,
+      shops: this.$store.getters.getPsAccountsContext.shops,
+    };
+  },
+  methods: {
+    onShopSelected(shopSelected) {
+      window.location.href = shopSelected.url;
+    },
   },
 };
 </script>
