@@ -1,5 +1,15 @@
 .table-firstline-borderless {
-  thead + tr td {
+  tbody tr:first-child td {
     border: none;
   }
+
+  td ~ td {
+    @include media-breakpoint-down(sm) {
+      border-top: 0
+    }
+  }
+}
+
+.table.b-table[class*="b-table-stacked"] > tbody > tr > :first-child {
+  border-top-width: 1px;
 }

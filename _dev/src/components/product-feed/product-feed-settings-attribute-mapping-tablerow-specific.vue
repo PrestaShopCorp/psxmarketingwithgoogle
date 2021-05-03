@@ -24,7 +24,7 @@
         >
           {{ $t('productFeedSettings.attributeMapping.theXField', [$t(`productFeedSettings.attributeMapping.${input}`)]) }}
         </b-form-radio>
-        <div class="d-flex align-items-center">
+        <div class="d-sm-flex align-items-center">
           <b-form-radio
             v-model="selectedRadio"
             :name="`${input}Radio`"
@@ -34,7 +34,7 @@
             {{ $t('productFeedSettings.attributeMapping.thisCustomField') }}
           </b-form-radio>
           <b-select
-            class="mb-0"
+            class="mb-0 mt-2 mt-md-0"
             :disabled="disabledSelect"
           >
             <b-form-select-option

@@ -17,45 +17,47 @@
         {{ $t('productFeedSettings.attributeMapping.toDescribeProducts') }}
       </p>
       <b-table-simple
-        borderless
+        stacked="md"
         variant="light"
-        responsive="sm"
+        borderless
         class="mx-n1"
       >
         <product-feed-settings-attribute-mapping-tablehead />
-        <b-tr>
-          <b-td class="align-top">
-            <span class="font-weight-bold d-flex align-items-center">
-              {{ $t('productFeedSettings.attributeMapping.description') }}
-              <b-button
-                v-b-tooltip
-                title="Tooltip!"
-                variant="invisible"
-                class="ml-1 p-0 border-0 ps_gs-fz-12"
-              >
-                <b-icon-exclamation-circle />
-                <span class="sr-only">Tooltip!</span>
-              </b-button>
-            </span>
-          </b-td>
-          <b-td class="align-top">
-            <b-form-group class="mb-0 text-left">
-              <b-form-radio
-                name="descriptionRadio"
-                value="Long"
-                class="mb-2"
-              >
-                {{ $t('productFeedSettings.attributeMapping.longDescription') }}
-              </b-form-radio>
-              <b-form-radio
-                name="descriptionRadio"
-                value="Short"
-              >
-                {{ $t('productFeedSettings.attributeMapping.shortDescription') }}
-              </b-form-radio>
-            </b-form-group>
-          </b-td>
-        </b-tr>
+        <b-tbody>
+          <b-tr>
+            <b-td class="align-top">
+              <span class="font-weight-bold d-flex align-items-center">
+                {{ $t('productFeedSettings.attributeMapping.description') }}
+                <b-button
+                  v-b-tooltip
+                  title="Tooltip!"
+                  variant="invisible"
+                  class="ml-1 p-0 border-0 ps_gs-fz-12"
+                >
+                  <b-icon-exclamation-circle />
+                  <span class="sr-only">Tooltip!</span>
+                </b-button>
+              </span>
+            </b-td>
+            <b-td class="align-top">
+              <b-form-group class="mb-0 text-left">
+                <b-form-radio
+                  name="descriptionRadio"
+                  value="Long"
+                  class="mb-2"
+                >
+                  {{ $t('productFeedSettings.attributeMapping.longDescription') }}
+                </b-form-radio>
+                <b-form-radio
+                  name="descriptionRadio"
+                  value="Short"
+                >
+                  {{ $t('productFeedSettings.attributeMapping.shortDescription') }}
+                </b-form-radio>
+              </b-form-group>
+            </b-td>
+          </b-tr>
+        </b-tbody>
       </b-table-simple>
     </section>
     <section class="mt-4">
@@ -69,7 +71,7 @@
         <b-form-checkbox
           switch
           size="lg"
-          class="ml-4 mb-3 ps_gs-switch"
+          class="ml-sm-4 mb-3 ps_gs-switch"
           v-model="sellRefurbished"
         >
           <span class="ps_gs-fz-14">
@@ -89,7 +91,7 @@
           v-model="sellApparel"
           switch
           size="lg"
-          class="ml-4 mb-3 ps_gs-switch"
+          class="ml-sm-4 mb-3 ps_gs-switch"
         >
           <span class="ps_gs-fz-14">
             {{
@@ -107,25 +109,27 @@
           {{ $t('productFeedSettings.attributeMapping.toDescribeProducts') }}
         </p>
         <b-table-simple
-          responsive="sm"
+          stacked="md"
           class="mx-n1"
           table-class="border-bottom-0 table-firstline-borderless"
         >
           <product-feed-settings-attribute-mapping-tablehead />
-          <template v-if="sellRefurbished">
-            <product-feed-settings-attribute-mapping-tablerow-specific
-              v-for="input in refurbishedInputs"
-              :key="input"
-              :input="input"
-            />
-          </template>
-          <template v-if="sellApparel">
-            <product-feed-settings-attribute-mapping-tablerow-specific
-              v-for="input in apparelInputs"
-              :key="input"
-              :input="input"
-            />
-          </template>
+          <b-tbody>
+            <template v-if="sellRefurbished">
+              <product-feed-settings-attribute-mapping-tablerow-specific
+                v-for="input in refurbishedInputs"
+                :key="input"
+                :input="input"
+              />
+            </template>
+            <template v-if="sellApparel">
+              <product-feed-settings-attribute-mapping-tablerow-specific
+                v-for="input in apparelInputs"
+                :key="input"
+                :input="input"
+              />
+            </template>
+          </b-tbody>
         </b-table-simple>
       </template>
       <div class="text-muted ps_gs-fz-12 mt-4">
