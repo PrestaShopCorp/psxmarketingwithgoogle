@@ -40,6 +40,9 @@
         v-if="activeStep == 2"
         v-bind="$attrs"
       />
+      <product-feed-settings-attribute-mapping
+        v-if="activeStep == 3"
+      />
     </b-card-body>
   </b-card>
 </template>
@@ -48,11 +51,15 @@
 import Stepper from '../commons/stepper';
 import ProductFeedSettingsShipping from './product-feed-settings-shipping';
 import ProductFeedSettingsExport from './product-feed-settings-export';
+import ProductFeedSettingsAttributeMapping from './product-feed-settings-attribute-mapping';
 
 export default {
   name: 'ProductFeedSettings',
   components: {
-    Stepper, ProductFeedSettingsShipping, ProductFeedSettingsExport,
+    Stepper,
+    ProductFeedSettingsShipping,
+    ProductFeedSettingsExport,
+    ProductFeedSettingsAttributeMapping,
   },
   data() {
     return {

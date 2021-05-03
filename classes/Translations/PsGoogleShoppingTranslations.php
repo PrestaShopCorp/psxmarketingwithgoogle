@@ -259,6 +259,7 @@ class PsGoogleShoppingTranslations
                 'editRules' => $this->module->l('Edit rules', 'PsGoogleShoppingTranslations'),
                 'editAttributeMapping' => $this->module->l('Edit attribute mapping', 'PsGoogleShoppingTranslations'),
                 'forceSync' => $this->module->l('Force sync', 'PsGoogleShoppingTranslations'),
+                'saveAndContinue' => $this->module->l('Save and continue', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),

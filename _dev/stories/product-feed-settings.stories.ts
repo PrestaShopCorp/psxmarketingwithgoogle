@@ -31,3 +31,8 @@ ExportSettings.args = {
   activeStep: 2,
   options: Products,
 }
+
+export const AttributeMapping:any = Template.bind({});
+AttributeMapping.args = {
+  activeStep: 3,
+}

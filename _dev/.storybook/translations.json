@@ -196,9 +196,7 @@
       "supportedCountries" : "Supported countries",
       "cancel" : "Cancel",
       "disconnectAccount" : "Disconnect account",
-      "back" : "Back",
       "selectAccount" : "Select account",
-      "createNewGoogleAdsAccount" : "Create new Google Ads account",
       "addMapping" : "Add mapping",
       "modifyMapping" : "Modify mapping",
       "learnAboutProductConfiguration" : "Learn more about product configuration",
@@ -210,7 +208,10 @@
       "editSettings" : "Edit settings",
       "editRules" : "Edit rules",
       "editAttributeMapping" : "Edit attribute mapping",
-      "forceSync" : "Force sync"
+      "forceSync" : "Force sync",
+      "createNewGoogleAdsAccount" : "Create new Google Ads account",
+      "back" : "Back",
+      "saveAndContinue" : "Save and continue"
     },
     "badge" : {
       "free" : "Free",
