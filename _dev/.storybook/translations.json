@@ -125,6 +125,33 @@
         "allCategories" : "All categories",
         "labelSelectBrand" : "Select brand",
         "placeholderSelectBrand" : "Search brand"
+      },
+      "attributeMapping": {
+        "intro" : "Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.",
+        "learnAboutAttributeMapping" : "Learn more about attribute mapping ",
+        "introNotice" : "In addition to the attributes required for standard free listings, the following attributes are required to participate in enhanced listings. Performance may be limited unless you provide all attributes available in your region:",
+        "genericTitle" : "Generic",
+        "toDescribeProducts" : "To describe my product attributes, please use:",
+        "googleAttribute" : "Google product attribute",
+        "prestashopAttribute" : "PrestaShop product attribute",
+        "description" : "Description",
+        "longDescription" : "Long description",
+        "shortDescription" : "Short description",
+        "specificTitle" : "Specific",
+        "sellRefurbished" : "Do you sell refurbished products ?",
+        "sellApparel" : "Do you sell apparel and accessories ?",
+        "condition" : "Condition",
+        "color" : "Color",
+        "size" : "Size",
+        "ageGroup" : "Age group",
+        "gender" : "Gender",
+        "theXField" : "The \"{0}\" field",
+        "thisCustomField" : "This custom field",
+        "footerNotice1" : "Note that you must provide shipping costs for enhanced listings on surfaces across Google. You can set up shipping by using the shipping attribute in the feed or define shipping settings on the account level.",
+        "footerNotice2" : "We encourage submitting as many applicable attributes as possible to ensure accurate and comprehensive data.",
+        "learnAboutShippingSettings" : "Learn more about shipping settings",
+        "learnHowToSetupShippingSettings" : "Learn how to set up shipping",
+        "learnRequirementsProductSpeficifacion" : "Learn more about requirements for the Shopping product data specification"
       }
     },
     "freeListingCard" : {
@@ -211,7 +238,9 @@
       "forceSync" : "Force sync",
       "createNewGoogleAdsAccount" : "Create new Google Ads account",
       "back" : "Back",
-      "saveAndContinue" : "Save and continue"
+      "saveAndContinue" : "Save and continue",
+      "yes" : "Yes",
+      "no" : "No"
     },
     "badge" : {
       "free" : "Free",

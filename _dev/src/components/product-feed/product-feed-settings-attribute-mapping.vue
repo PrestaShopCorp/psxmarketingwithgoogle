@@ -1,18 +1,20 @@
 <template>
   <div>
     <p>
-      Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.
+      {{ $t('productFeedSettings.attributeMapping.intro') }}
     </p>
     <p class="text-muted">
-      <a class="ps_gs-fz-12" href="//google.com" target="_blank">Learn more about attribute mapping</a>
+      <a class="ps_gs-fz-12" href="//google.com" target="_blank">
+        {{ $t('productFeedSettings.attributeMapping.learnAboutAttributeMapping') }}
+      </a>
     </p>
     <p class="text-muted ps_gs-fz-12">
-      In addition to the attributes required for standard free listings, the following attributes are required to participate in enhanced listings. Performance may be limited unless you provide all attributes available in your region:
+      {{ $t('productFeedSettings.attributeMapping.introNotice') }}
     </p>
     <section class="mt-4 pt-2">
-      <h2>1. Generic</h2>
+      <h2>1. {{ $t('productFeedSettings.attributeMapping.genericTitle') }}</h2>
       <p>
-        To describe my product attributes, please use:
+        {{ $t('productFeedSettings.attributeMapping.toDescribeProducts') }}
       </p>
       <b-table-simple
         borderless
@@ -20,20 +22,11 @@
         responsive="sm"
         class="mx-n1"
       >
-        <b-thead>
-          <b-tr>
-            <b-th class="border-0 font-weight-600 text-decoration-underline">
-              Google product attribute
-            </b-th>
-            <b-th class="border-0 font-weight-600 text-decoration-underline">
-              PrestaShop product attribute
-            </b-th>
-          </b-tr>
-        </b-thead>
+        <product-feed-settings-attribute-mapping-tablehead />
         <b-tr>
           <b-td class="align-top">
             <span class="font-weight-bold d-flex align-items-center">
-              Description
+              {{ $t('productFeedSettings.attributeMapping.description') }}
               <b-button
                 v-b-tooltip
                 title="Tooltip!"
@@ -47,18 +40,18 @@
           </b-td>
           <b-td class="align-top">
             <b-form-group class="mb-0 text-left">
-              <b-form-radio plain
+              <b-form-radio
                 name="descriptionRadio"
                 value="Long"
                 class="mb-2"
               >
-                Long description
+                {{ $t('productFeedSettings.attributeMapping.longDescription') }}
               </b-form-radio>
-              <b-form-radio plain
+              <b-form-radio
                 name="descriptionRadio"
                 value="Short"
               >
-                Short description
+                {{ $t('productFeedSettings.attributeMapping.shortDescription') }}
               </b-form-radio>
             </b-form-group>
           </b-td>
@@ -66,12 +59,12 @@
       </b-table-simple>
     </section>
     <section class="mt-4">
-      <h2>2. Specific</h2>
+      <h2>2. {{ $t('productFeedSettings.attributeMapping.specificTitle') }}</h2>
       <div style="display: -ms-grid; display: grid; -ms-grid-columns: max-content 1fr; grid-template-columns: max-content 1fr">
         <div
           class="font-weight-600 font-italic"
         >
-          Do you sell refurbished products
+          {{ $t('productFeedSettings.attributeMapping.sellRefurbished') }}
         </div>
         <b-form-checkbox
           switch
@@ -80,13 +73,17 @@
           v-model="sellRefurbished"
         >
           <span class="ps_gs-fz-14">
-            {{ sellRefurbished ? 'Yes' : 'No' }}
+            {{
+              sellRefurbished
+              ? $t('cta.yes')
+              : $t('cta.no')
+            }}
           </span>
         </b-form-checkbox>
         <div
           class="font-weight-600 font-italic"
         >
-          Do you sell apparel and accessories ?
+          {{ $t('productFeedSettings.attributeMapping.sellApparel') }}
         </div>
         <b-form-checkbox
           v-model="sellApparel"
@@ -94,287 +91,60 @@
           size="lg"
           class="ml-4 mb-3 ps_gs-switch"
         >
-         <span class="ps_gs-fz-14">
-           {{ sellApparel ? 'Yes' : 'No' }}
-         </span>
+          <span class="ps_gs-fz-14">
+            {{
+              sellApparel
+              ? $t('cta.yes')
+              : $t('cta.no')
+            }}
+          </span>
         </b-form-checkbox>
       </div>
       <template
         v-if="sellRefurbished || sellApparel"
       >
         <p>
-          To describe my product attributes, please use:
+          {{ $t('productFeedSettings.attributeMapping.toDescribeProducts') }}
         </p>
         <b-table-simple
           responsive="sm"
           class="mx-n1"
-          table-class="border-bottom-0"
+          table-class="border-bottom-0 table-firstline-borderless"
         >
-          <b-thead>
-            <b-tr>
-              <b-th class="border-0 font-weight-600 text-decoration-underline">
-                Google product attribute
-              </b-th>
-              <b-th class="border-0 font-weight-600 text-decoration-underline">
-                PrestaShop product attribute
-              </b-th>
-            </b-tr>
-          </b-thead>
+          <product-feed-settings-attribute-mapping-tablehead />
           <template v-if="sellRefurbished">
-            <b-tr>
-              <b-td class="align-top border-top-0">
-                <span class="font-weight-bold d-flex align-items-center">
-                  Condition
-                  <b-button
-                    v-b-tooltip
-                    title="Tooltip!"
-                    variant="invisible"
-                    class="ml-1 p-0 border-0 ps_gs-fz-12"
-                  >
-                    <b-icon-exclamation-circle />
-                    <span class="sr-only">Tooltip!</span>
-                  </b-button>
-                </span>
-              </b-td>
-              <b-td class="align-top border-top-0">
-                <b-form-group class="mb-0 text-left">
-                  <b-form-radio plain
-                    name="conditionRadio"
-                    value="default"
-                    class="mb-2"
-                  >
-                    The "Condition" field
-                  </b-form-radio>
-                  <div class="d-flex align-items-center">
-                    <b-form-radio plain
-                      name="conditionRadio"
-                      value="custom"
-                      class="flex-shrink-0 pr-5"
-                    >
-                      This custom field
-                    </b-form-radio>
-                    <b-select
-                      class="mb-3 mb-md-0"
-                      disabled
-                    >
-                      <b-form-select-option
-                        v-for="(option, index) in ['Option 1', 'Option 2']"
-                        :key="index"
-                        :value="index"
-                      >
-                        {{ option }}
-                      </b-form-select-option>
-                    </b-select>
-                  </div>
-                </b-form-group>
-              </b-td>
-            </b-tr>
+            <product-feed-settings-attribute-mapping-tablerow-specific
+              v-for="input in refurbishedInputs"
+              :key="input"
+              :input="input"
+            />
           </template>
           <template v-if="sellApparel">
-            <b-tr>
-              <b-td class="align-top">
-                <span class="font-weight-bold d-flex align-items-center">
-                  Color
-                  <b-button
-                    v-b-tooltip
-                    title="Tooltip!"
-                    variant="invisible"
-                    class="ml-1 p-0 border-0 ps_gs-fz-12"
-                  >
-                    <b-icon-exclamation-circle />
-                    <span class="sr-only">Tooltip!</span>
-                  </b-button>
-                </span>
-              </b-td>
-              <b-td class="align-top">
-                <b-form-group class="mb-0 text-left">
-                  <b-form-radio plain
-                    name="colorRadio"
-                    value="default"
-                    class="mb-2"
-                  >
-                    The "Color" field
-                  </b-form-radio>
-                  <div class="d-flex align-items-center">
-                    <b-form-radio plain
-                      name="colorRadio"
-                      value="custom"
-                      class="flex-shrink-0 pr-5"
-                    >
-                      This custom field
-                    </b-form-radio>
-                    <b-select
-                      class="mb-3 mb-md-0"
-                      disabled
-                    >
-                      <b-form-select-option
-                        v-for="(option, index) in ['Option 1', 'Option 2']"
-                        :key="index"
-                        :value="index"
-                      >
-                        {{ option }}
-                      </b-form-select-option>
-                    </b-select>
-                  </div>
-                </b-form-group>
-              </b-td>
-            </b-tr>
-            <b-tr>
-              <b-td class="align-top">
-                <span class="font-weight-bold d-flex align-items-center">
-                  Size
-                  <b-button
-                    v-b-tooltip
-                    title="Tooltip!"
-                    variant="invisible"
-                    class="ml-1 p-0 border-0 ps_gs-fz-12"
-                  >
-                    <b-icon-exclamation-circle />
-                    <span class="sr-only">Tooltip!</span>
-                  </b-button>
-                </span>
-              </b-td>
-              <b-td class="align-top">
-                <b-form-group class="mb-0 text-left">
-                  <b-form-radio plain
-                    name="sizeRadio"
-                    value="default"
-                    class="mb-2"
-                  >
-                    The "Size" field
-                  </b-form-radio>
-                  <div class="d-flex align-items-center">
-                    <b-form-radio plain
-                      name="sizeRadio"
-                      value="custom"
-                      class="flex-shrink-0 pr-5"
-                    >
-                      This custom field
-                    </b-form-radio>
-                    <b-select
-                      class="mb-3 mb-md-0"
-                      disabled
-                    >
-                      <b-form-select-option
-                        v-for="(option, index) in ['Option 1', 'Option 2']"
-                        :key="index"
-                        :value="index"
-                      >
-                        {{ option }}
-                      </b-form-select-option>
-                    </b-select>
-                  </div>
-                </b-form-group>
-              </b-td>
-            </b-tr>
-            <b-tr>
-              <b-td class="align-top">
-                <span class="font-weight-bold d-flex align-items-center">
-                  Age group
-                  <b-button
-                    v-b-tooltip
-                    title="Tooltip!"
-                    variant="invisible"
-                    class="ml-1 p-0 border-0 ps_gs-fz-12"
-                  >
-                    <b-icon-exclamation-circle />
-                    <span class="sr-only">Tooltip!</span>
-                  </b-button>
-                </span>
-              </b-td>
-              <b-td class="align-top">
-                <b-form-group class="mb-0 text-left">
-                  <b-form-radio plain
-                    name="ageRadio"
-                    value="default"
-                    class="mb-2"
-                  >
-                    The "Age group" field
-                  </b-form-radio>
-                  <div class="d-flex align-items-center">
-                    <b-form-radio plain
-                      name="ageRadio"
-                      value="custom"
-                      class="flex-shrink-0 pr-5"
-                    >
-                      This custom field
-                    </b-form-radio>
-                    <b-select
-                      class="mb-3 mb-md-0"
-                      disabled
-                    >
-                      <b-form-select-option
-                        v-for="(option, index) in ['Option 1', 'Option 2']"
-                        :key="index"
-                        :value="index"
-                      >
-                        {{ option }}
-                      </b-form-select-option>
-                    </b-select>
-                  </div>
-                </b-form-group>
-              </b-td>
-            </b-tr>
-            <b-tr>
-              <b-td class="align-top">
-                <span class="font-weight-bold d-flex align-items-center">
-                  Gender
-                  <b-button
-                    v-b-tooltip
-                    title="Tooltip!"
-                    variant="invisible"
-                    class="ml-1 p-0 border-0 ps_gs-fz-12"
-                  >
-                    <b-icon-exclamation-circle />
-                    <span class="sr-only">Tooltip!</span>
-                  </b-button>
-                </span>
-              </b-td>
-              <b-td class="align-top">
-                <b-form-group class="mb-0 text-left">
-                  <b-form-radio plain
-                    name="genderRadio"
-                    value="default"
-                    class="mb-2"
-                  >
-                    The "Gender" field
-                  </b-form-radio>
-                  <div class="d-flex align-items-center">
-                    <b-form-radio plain
-                      name="genderRadio"
-                      value="custom"
-                      class="flex-shrink-0 pr-5"
-                    >
-                      This custom field
-                    </b-form-radio>
-                    <b-select
-                      class="mb-3 mb-md-0"
-                      disabled
-                    >
-                      <b-form-select-option
-                        v-for="(option, index) in ['Option 1', 'Option 2']"
-                        :key="index"
-                        :value="index"
-                      >
-                        {{ option }}
-                      </b-form-select-option>
-                    </b-select>
-                  </div>
-                </b-form-group>
-              </b-td>
-            </b-tr>
+            <product-feed-settings-attribute-mapping-tablerow-specific
+              v-for="input in apparelInputs"
+              :key="input"
+              :input="input"
+            />
           </template>
         </b-table-simple>
       </template>
       <div class="text-muted ps_gs-fz-12 mt-4">
         <p class="mb-3">
-          Note that you must provide shipping costs for enhanced listings on surfaces across Google. You can set up shipping by using the shipping attribute in the feed or define shipping settings on the account level.<br>
-          <a href="//google.com" target="_blank">Learn more about shipping settings</a>
-          <a href="//google.com" target="_blank" class="ml-2">Learn how to set up shipping</a>
+          {{ $t('productFeedSettings.attributeMapping.footerNotice1') }}
+          <br>
+          <a href="//google.com" target="_blank">
+            {{ $t('productFeedSettings.attributeMapping.learnAboutShippingSettings') }}
+          </a>
+          <a href="//google.com" target="_blank" class="ml-2">
+            {{ $t('productFeedSettings.attributeMapping.learnHowToSetupShippingSettings') }}
+          </a>
         </p>
         <p>
-          We encourage submitting as many applicable attributes as possible to ensure accurate and comprehensive data.<br>
-          <a href="//google.com" target="_blank">Learn more about requirements for the Shopping product data specification</a>
+          {{ $t('productFeedSettings.attributeMapping.footerNotice2') }}
+          <br>
+          <a href="//google.com" target="_blank">
+            {{ $t('productFeedSettings.attributeMapping.learnRequirementsProductSpeficifacion') }}
+          </a>
         </p>
       </div>
     </section>
@@ -425,25 +195,25 @@ import {
   BTable,
   BIconExclamationCircle,
 } from 'bootstrap-vue';
+import ProductFeedSettingsAttributeMappingTablehead from './product-feed-settings-attribute-mapping-tablehead';
+import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
 
 export default {
   name: 'ProductFeedSettingsAttributeMapping',
   components: {
     BTable,
     BIconExclamationCircle,
+    ProductFeedSettingsAttributeMappingTablerowSpecific,
+    ProductFeedSettingsAttributeMappingTablehead,
   },
   data() {
     return {
       disableContinue: true,
       sellRefurbished: false,
       sellApparel: false,
+      refurbishedInputs: ['condition'],
+      apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
     };
-  },
-  methods: {
-  },
-  computed: {
-  },
-  mounted() {
   },
 };
 </script>
