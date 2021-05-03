@@ -16,7 +16,8 @@
         "segmentio/analytics-php": "^1.5",
         "prestashop/prestashop-accounts-installer": "dev-main",
         "prestashop/module-lib-faq": "^1.0",
-        "sentry/sentry": "^1.11"
+        "sentry/sentry": "^1.11",
+        "prestashop/prestashop-accounts-auth": "^2.1.9"
     },
     "require-dev": {
         "prestashop/php-dev-tools": "^3.0",
