@@ -60,7 +60,7 @@
     </section>
     <section class="mt-4">
       <h2>2. {{ $t('productFeedSettings.attributeMapping.specificTitle') }}</h2>
-      <div style="display: -ms-grid; display: grid; -ms-grid-columns: max-content 1fr; grid-template-columns: max-content 1fr">
+      <div class="ps_gs-attribute-mapping-questions">
         <div
           class="font-weight-600 font-italic"
         >
