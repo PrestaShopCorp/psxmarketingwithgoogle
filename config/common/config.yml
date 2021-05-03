@@ -1,3 +1,0 @@
-services:
-  PrestaShop\Module\PrestashopGoogleShopping\Config\Env:
-    class: PrestaShop\Module\PrestashopGoogleShopping\Config\Env

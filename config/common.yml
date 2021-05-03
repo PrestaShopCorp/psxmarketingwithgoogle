@@ -1,5 +1,4 @@
 imports:
-  - { resource: common/config.yml }
   - { resource: common/context.yml }
   - { resource: common/handler.yml }
   - { resource: common/segment.yml }

@@ -3,4 +3,3 @@ services:
     class: 'PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment'
     arguments:
       - '@ps_googleshopping.context'
-      - '@PrestaShop\Module\PrestashopGoogleShopping\Config\Env'

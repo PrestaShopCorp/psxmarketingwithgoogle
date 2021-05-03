@@ -3,7 +3,7 @@
 namespace PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler;
 
 use Module;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Env;
+use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 use Ps_googleshopping;
 use Raven_Client;
 
@@ -26,10 +26,9 @@ class ErrorHandler
     {
         /** @var Ps_googleshopping */
         $module = Module::getInstanceByName('ps_googleshopping');
-        $env = $module->getService(Env::class);
 
         $this->client = new Raven_Client(
-            $env->get('PSX_GOOGLE_SHOPPING_SENTRY_CREDENTIALS'),
+            Config::PSX_GOOGLE_SHOPPING_SENTRY_CREDENTIALS,
             [
                 'level' => 'warning',
                 'tags' => [

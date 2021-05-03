@@ -21,7 +21,7 @@
 namespace PrestaShop\Module\PrestashopGoogleShopping\Factory;
 
 use GuzzleHttp\Client;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Env;
+use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 
 class ApiClientFactory implements ApiClientFactoryInterface
 {
@@ -30,9 +30,9 @@ class ApiClientFactory implements ApiClientFactoryInterface
      */
     private $apiUrl;
 
-    public function __construct(Env $env)
+    public function __construct()
     {
-        $this->apiUrl = $env->get('APP_ENV') === 'test' ? $env->get('MOCK_API_URL') : $env->get('API_URL');
+        $this->apiUrl = Config::APP_ENV === 'test' ? Config::MOCK_API_URL : Config::API_URL;
     }
 
     public function createClient()
