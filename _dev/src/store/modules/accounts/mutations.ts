@@ -35,4 +35,7 @@ export default {
   [MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN](state: LocalState, token: string) {
     state.googleAccount.token = token;
   },
+  [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string) {
+    state.googleAccount.authenticationUrl = url;
+  },
 };

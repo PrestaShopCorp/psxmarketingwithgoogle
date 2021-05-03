@@ -45,4 +45,7 @@ export default {
   [GetterTypes.GET_GOOGLE_ACCOUNT](state: LocalState) : GoogleAccountsContext {
     return state.googleAccount;
   },
+  [GetterTypes.GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL](state: LocalState) : String {
+    return state.googleAccount.authenticationUrl;
+  },
 };

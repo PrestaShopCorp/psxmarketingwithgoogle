@@ -33,4 +33,20 @@ export default {
       console.error(error);
     }
   },
+  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state}, payload: any) {
+    const data = JSON.stringify(payload);
+    try {
+      const response = await fetch(`${state.psGoogleShoppingApiUrl}/shops/${payload.shopId}/google/generate-auth-url`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json'},
+        body: btoa(data),
+      });
+      const json = await response.json();
+      commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
+    } catch (error) {
+      console.error(error);
+      Promise.reject(new Error(error));
+    } 
+  },
+
 };

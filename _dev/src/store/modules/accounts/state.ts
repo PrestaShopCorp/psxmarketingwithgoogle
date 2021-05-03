@@ -38,6 +38,7 @@ export interface GoogleAccountsContext {
   token: string,
   email: string,
   photo: string,
+  authenticationUrl: string,
 }
 
 export interface State {
@@ -45,6 +46,8 @@ export interface State {
   googleAccount: GoogleAccountsContext;
   googleMerchantAccount: object;
   psGoogleShoppingApiUrl: string;
+  psGoogleShoppingShopUrl: string;
+  psAccountShopId: string;
 }
 
 export const state: State = {
@@ -53,7 +56,10 @@ export const state: State = {
     token: '',
     email: '',
     photo: '',
+    authenticationUrl: '',
   },
   googleMerchantAccount: {},
   psGoogleShoppingApiUrl: '',
+  psGoogleShoppingShopUrl: '',
+  psAccountShopId: '',
 };
