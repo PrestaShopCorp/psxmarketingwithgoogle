@@ -122,6 +122,7 @@ class Ps_googleshopping extends Module
             return false;
         }
 
+        /* @phpstan-ignore-next-line */
         $this->registerHook(Config::HOOK_LIST);
 
         return true;

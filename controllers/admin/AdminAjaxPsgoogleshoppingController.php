@@ -86,7 +86,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
                 [
                     'success' => true,
                     'country_id' => $country->id,
-                    'country_iso_code' => $country->iso_code
+                    'country_iso_code' => $country->iso_code,
                 ]
             )
         );
