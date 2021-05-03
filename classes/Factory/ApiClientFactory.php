@@ -32,7 +32,7 @@ class ApiClientFactory implements ApiClientFactoryInterface
 
     public function __construct()
     {
-        /** @phpstan-ignore-next-line */
+        /* @phpstan-ignore-next-line */
         $this->apiUrl = Config::APP_ENV === 'test' ? Config::MOCK_API_URL : Config::API_URL;
     }
 
