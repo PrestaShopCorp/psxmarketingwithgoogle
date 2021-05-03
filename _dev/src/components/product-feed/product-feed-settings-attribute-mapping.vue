@@ -42,15 +42,17 @@
             <b-td class="align-top">
               <b-form-group class="mb-0 text-left">
                 <b-form-radio
+                  v-model="selectedDescriptionLength"
                   name="descriptionRadio"
-                  value="Long"
+                  value="long"
                   class="mb-2"
                 >
                   {{ $t('productFeedSettings.attributeMapping.longDescription') }}
                 </b-form-radio>
                 <b-form-radio
+                  v-model="selectedDescriptionLength"
                   name="descriptionRadio"
-                  value="Short"
+                  value="short"
                 >
                   {{ $t('productFeedSettings.attributeMapping.shortDescription') }}
                 </b-form-radio>
@@ -217,6 +219,7 @@ export default {
       sellApparel: false,
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
+      selectedDescriptionLength: 'long',
     };
   },
 };
