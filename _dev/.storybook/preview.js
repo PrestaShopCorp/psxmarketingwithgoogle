@@ -115,6 +115,7 @@ export const parameters = {
         'Merchant Center Account',
         'Product feed',
         'Free listing',
+        'Google Ads Account',
         'Basic Components',
       ],
     },
