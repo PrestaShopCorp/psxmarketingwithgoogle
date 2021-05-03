@@ -63,7 +63,9 @@ export default {
   },
   [MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_STATUS](state: LocalState, newStatus: string|null) {
     // ToDo: Add some validation about possible values?
-
     state.googleMerchantAccount.websiteVerificationStatus = newStatus;
+  },
+  [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string) {
+    state.googleAccount.authenticationUrl = url;
   },
 };

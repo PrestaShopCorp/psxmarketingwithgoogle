@@ -60,4 +60,7 @@ export default {
       && state.googleMerchantAccount.websiteVerificationProgressStatus
       && ['done', 'doneAlert'].indexOf(state.googleMerchantAccount.websiteVerificationProgressStatus) !== -1);
   },
+  [GetterTypes.GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL](state: LocalState) : String {
+    return state.googleAccount.authenticationUrl;
+  },
 };

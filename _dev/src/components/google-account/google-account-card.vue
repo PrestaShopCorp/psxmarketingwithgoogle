@@ -83,7 +83,7 @@
             variant="primary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
             target="_blank"
-            @click="connectGoogleAccount"
+            @click="openPopin"
           >
             <template v-if="!isConnecting">
               {{ $t('cta.connectAccount') }}
@@ -165,6 +165,9 @@ export default {
     connectGoogleAccount() {
       this.$emit('connectGoogleAccount');
       this.isConnecting = true;
+    },
+    openPopin() {
+      window.open(this.$store.getters.getGoogleAuthEndpoint, '_blank');
     },
   },
 };
