@@ -65,7 +65,7 @@
         <legend
           class="mb-1 h4 font-weight-600"
         >
-          <strong>{{ $t('mcaCard.labelSelect') }}</strong>
+          {{ $t('mcaCard.labelSelect') }}
         </legend>
         <div class="d-md-flex text-center">
           <b-dropdown

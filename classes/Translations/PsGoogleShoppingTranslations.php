@@ -163,7 +163,15 @@ class PsGoogleShoppingTranslations
                 'freeListingActivationSuccess' => $this->module->l('You have successfully activated the free listing of your products for Google Shopping tab for free.', 'PsGoogleShoppingTranslations'),
             ],
             'googleAdsAccountCard' => [
-                'introDisabled' => $this->module->l('Create adverstising campaigns for your products: find the right audience at the right time', 'PsGoogleShoppingTranslations'),
+                'title' => $this->module->l('Google Ads Account', 'PsGoogleShoppingTranslations'),
+                'intro' => $this->module->l('Create adverstising campaigns for your products: find the right audience at the right time', 'PsGoogleShoppingTranslations'),
+                'text' => $this->module->l('Once connected you may need to configure your billing settings in your Google Ads account.', 'PsGoogleShoppingTranslations'),
+                'labelSelect' => $this->module->l('Connect an existing Google Ads account', 'PsGoogleShoppingTranslations'),
+                'id' => $this->module->l('Google Ads account ID', 'PsGoogleShoppingTranslations'),
+            ],
+            'googsmartShoppingCampaignCardleAdsAccountCard' => [
+                'title' => $this->module->l('Smart Shopping Campaign', 'PsGoogleShoppingTranslations'),
+                'intro' => $this->module->l('Enable the paid listing of your products with Smart Shopping Campaigns', 'PsGoogleShoppingTranslations'),
             ],
             'help' => [
                 'title' => $this->module->l('Help for PrestaShop Google', 'PsGoogleShoppingTranslations'),
@@ -213,6 +221,8 @@ class PsGoogleShoppingTranslations
                 'cancel' => $this->module->l('Cancel', 'PsGoogleShoppingTranslations'),
                 'disconnectAccount' => $this->module->l('Disconnect account', 'PsGoogleShoppingTranslations'),
                 'back' => $this->module->l('Back', 'PsGoogleShoppingTranslations'),
+                'selectAccount' => $this->module->l('Select account', 'PsGoogleShoppingTranslations'),
+                'createNewGoogleAdsAccount' => $this->module->l('Create new Google Ads account', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
@@ -226,6 +236,8 @@ class PsGoogleShoppingTranslations
                 'productFeedSettings' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),
                 'mca' => $this->module->l('Merchant Center account', 'PsGoogleShoppingTranslations'),
                 'googleAccount' => $this->module->l('Google account', 'PsGoogleShoppingTranslations'),
+                'paid' => $this->module->l('Paid', 'PsGoogleShoppingTranslations'),
+                'googleAdsAccount' => $this->module->l('Google Ads account', 'PsGoogleShoppingTranslations'),
             ],
             'modal' => [
                 'titleDisconnection' => $this->module->l('Confirm disconnection?', 'PsGoogleShoppingTranslations'),
