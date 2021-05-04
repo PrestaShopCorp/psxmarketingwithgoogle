@@ -50,5 +50,4 @@ export default {
       Promise.reject(new Error(error));
     } 
   },
-
 };
