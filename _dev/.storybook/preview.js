@@ -116,6 +116,7 @@ export const parameters = {
         'Product feed',
         'Free listing',
         'Google Ads Account',
+        'Smart Shopping Campaign',
         'Basic Components',
       ],
     },

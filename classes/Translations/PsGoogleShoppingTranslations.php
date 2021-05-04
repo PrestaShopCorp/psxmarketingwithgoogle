@@ -169,6 +169,10 @@ class PsGoogleShoppingTranslations
                 'labelSelect' => $this->module->l('Connect an existing Google Ads account', 'PsGoogleShoppingTranslations'),
                 'id' => $this->module->l('Google Ads account ID', 'PsGoogleShoppingTranslations'),
             ],
+            'googsmartShoppingCampaignCardleAdsAccountCard' => [
+                'title' => $this->module->l('Smart Shopping Campaign', 'PsGoogleShoppingTranslations'),
+                'intro' => $this->module->l('Enable the paid listing of your products with Smart Shopping Campaigns', 'PsGoogleShoppingTranslations'),
+            ],
             'help' => [
                 'title' => $this->module->l('Help for PrestaShop Google', 'PsGoogleShoppingTranslations'),
                 'allowsYouTo' => [
@@ -232,6 +236,8 @@ class PsGoogleShoppingTranslations
                 'productFeedSettings' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),
                 'mca' => $this->module->l('Merchant Center account', 'PsGoogleShoppingTranslations'),
                 'googleAccount' => $this->module->l('Google account', 'PsGoogleShoppingTranslations'),
+                'paid' => $this->module->l('Paid', 'PsGoogleShoppingTranslations'),
+                'googleAdsAccount' => $this->module->l('Google Ads account', 'PsGoogleShoppingTranslations'),
             ],
             'modal' => [
                 'titleDisconnection' => $this->module->l('Confirm disconnection?', 'PsGoogleShoppingTranslations'),

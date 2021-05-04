@@ -120,6 +120,10 @@
       "labelSelect" : "Connect an existing Google Ads account",
       "id" : "Google Ads account ID"
     },
+    "smartShoppingCampaignCard" : {
+      "title" : "Smart Shopping Campaign",
+      "intro" : "Enable the paid listing of your products with Smart Shopping Campaigns"
+    },
     "help" : {
       "title" : "Help for PrestaShop Google",
       "allowsYouTo" : {
@@ -182,7 +186,9 @@
       "productFeed" : "Product feed",
       "productFeedSettings" : "Product feed settings",
       "mca" : "Merchant Center account",
-      "googleAccount" : "Google account"
+      "googleAccount" : "Google account",
+      "paid" : "Paid",
+      "googleAdsAccount" : "Google Ads account"
     },
     "modal" : {
       "titleDisconnection" : "Confirm disconnection?",
