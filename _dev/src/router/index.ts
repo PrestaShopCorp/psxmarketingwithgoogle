@@ -26,4 +26,18 @@ const router = new VueRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  if (window.location.href.indexOf('from') !== -1
+  || window.location.href.indexOf('message') !== -1
+  || window.location.href.indexOf('status') !== -1) {
+    const params = new URLSearchParams(window.location.search);
+    params.delete('message');
+    params.delete('status');
+    params.delete('from');
+    window.history.replaceState(null, '', `?${params}${window.location.hash}`);
+    // need to save the value from GET var
+  }
+  next();
+});
+
 export default router;
