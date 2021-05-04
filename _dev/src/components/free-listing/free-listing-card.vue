@@ -28,7 +28,7 @@
         </b-card-text>
       </div>
       <div
-        v-if="isEnabled"
+        v-if="!firstTime"
         class="form-group ml-auto mb-md-0"
       >
         <span class="ps-switch ps-switch-sm">
@@ -57,9 +57,9 @@
     >
       {{ $t('freeListingCard.intro') }}
     </p>
-    <template v-if="false">
+    <template v-if="isEnabled">
       <ul
-        class="list-inline text-muted ps_gs-fz-12"
+        class="list-inline text-muted ps_gs-fz-12 mb-0"
       >
         <li class="list-inline-item">
           <a
@@ -79,15 +79,15 @@
         </li>
       </ul>
       <div
-        v-if="isEnabled"
-        class="d-md-flex justify-content-md-end align-items-center text-center"
+        v-if="firstTime"
+        class="d-md-flex justify-content-md-end align-items-center text-center mt-3"
       >
-        <p class="text-muted ps_gs-fs-12 mb-3 mb-md-0 text-left">
+        <p class="text-muted ps_gs-fz-12 mb-3 mb-md-0 text-left">
           {{ $t('freeListingCard.googleDelay') }}
         </p>
         <b-button
           size="sm"
-          disabled
+          :disabled="ctaIsDisabled"
           variant="primary"
           class="ml-md-3"
         >
@@ -95,12 +95,43 @@
         </b-button>
       </div>
       <b-alert
+        v-if="error"
         variant="success"
         show
-        class="mb-0"
+        class="mb-0 mt-3"
       >
         <p class="mb-0">
           {{ $t('freeListingCard.freeListingActivationSuccess') }}
+        </p>
+      </b-alert>
+      <b-alert
+        v-if="error"
+        variant="warning"
+        show
+        class="mb-0 mt-3"
+      >
+        <p class="mb-0">
+          Enable free listing to display your products on Google Shopping tab for free.
+        </p>
+      </b-alert>
+      <b-alert
+        v-if="error"
+        variant="warning"
+        show
+        class="mb-0 mt-3"
+      >
+        <p class="mb-0">
+          The synchronization of your product feed is disabled. Products are still visible on your free listing but they will not be updated anymore and they will disappear from your free listing after 30 days.
+        </p>
+      </b-alert>
+      <b-alert
+        v-if="error"
+        variant="warning"
+        show
+        class="mb-0 mt-3"
+      >
+        <p class="mb-0">
+          Enable free listing to display your products on Google Shopping tab for free. This action will cause the reactivation of the product feed.
         </p>
       </b-alert>
     </template>
@@ -148,6 +179,12 @@ import {
 
 export default {
   name: 'FreeListingCard',
+  data() {
+    return {
+      ctaIsDisabled: false,
+      error: false,
+    };
+  },
   components: {
     BIconExclamationCircle,
   },
@@ -155,6 +192,10 @@ export default {
     isEnabled: {
       type: Boolean,
       default: false,
+    },
+    firstTime: {
+      type: Boolean,
+      default: true,
     },
   },
 };
