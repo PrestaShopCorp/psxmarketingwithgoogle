@@ -62,11 +62,5 @@ export default {
       allCategoriesIndeterminate: true,
     };
   },
-  methods: {
-  },
-  computed: {
-  },
-  mounted() {
-  },
 };
 </script>
