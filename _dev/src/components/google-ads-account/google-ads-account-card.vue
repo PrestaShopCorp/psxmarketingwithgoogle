@@ -19,7 +19,7 @@
         alt=""
       >
       <b-card-text class="text-left mb-0 ps_gs-fz-12">
-        {{ $t('googleAdsAccountCard.introDisabled') }}
+        {{ $t('googleAdsAccountCard.intro') }}
       </b-card-text>
     </div>
     </template>
@@ -34,29 +34,30 @@
           src="@/assets/images/Google-Ads-icon.svg"
           width="40"
           height="40"
+          alt=""
         >
         <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
-          Google Ads account
+          {{ $t('googleAdsAccountCard.title') }}
         </b-card-text>
       </div>
       <p class="ps_gs-fz-12 mt-3 mb-0">
-        Create adverstising campaigns for your products: find the right audience at the right time
+        {{ $t('googleAdsAccountCard.intro') }}
       </p>
       <div v-if="isEnabled && !googleAdsAccountConfigured">
         <p class="mt-3">
-          Once connected you may need to configure your billing settings in your Google Ads account.
+          {{ $t('googleAdsAccountCard.text') }}
         </p>
         <b-form class="mb-2">
           <legend
             class="mb-1 h4 font-weight-600"
           >
-            Connect an existing Google Ads account
+            {{ $t('googleAdsAccountCard.labelSelect') }}
           </legend>
           <div class="d-md-flex text-center">
             <b-dropdown
               id="googleAdsAccountSelection"
               ref="googleAdsAccountSelection"
-              :text="selected || $t('cta.chooseAccount')"
+              :text="selected || $t('cta.selectAccount')"
               variant=" "
               class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
               menu-class="ps-dropdown"
@@ -88,7 +89,9 @@
               class="left material-icons mr-2"
               aria-hidden="true"
             >person_add</i>
-            <span class="align-middle">Create new Google Ads account</span>
+            <span class="align-middle">
+              {{ $t('cta.createNewGoogleAdsAccount') }}
+            </span>
           </a>
         </div>
       </div>
@@ -97,7 +100,7 @@
         <p
           class="mb-0"
         >
-          Google Ads account ID<br>
+          {{ $t('googleAdsAccountCard.id') }}<br>
           <strong class="font-weight-600">{{ selected }}</strong>
         </p>
         <div
@@ -144,6 +147,9 @@ export default {
     return {
       selected: null,
       googleAdsAccountConfigured: false,
+      /**
+       * TODO: To replace with actual datas
+       */
       googleAdsAccountSelectionOptions: [
         {
           text: '987-654-3210',

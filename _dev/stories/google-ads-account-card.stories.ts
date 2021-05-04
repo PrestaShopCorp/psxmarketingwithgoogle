@@ -12,8 +12,8 @@ const Template = (args, { argTypes }) => ({
   methods: {
     fakeConnection: (component)=> {
       component.$data.googleAdsAccountConfigured = true;
-    }
-  }
+    },
+  },
 });
 
 export const Disabled:any = Template.bind({});
@@ -26,10 +26,4 @@ export const NotConnected:any = Template.bind({});
 NotConnected.args = {
   isEnabled: true,
   isConnected: false,
-};
-
-export const Connected:any = Template.bind({});
-Connected.args = {
-  isEnabled: true,
-  isConnected: true,
 };

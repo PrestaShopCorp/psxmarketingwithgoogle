@@ -114,7 +114,11 @@
       "freeListingActivationSuccess" : "You have successfully activated the free listing of your products for Google Shopping tab for free."
     },
     "googleAdsAccountCard" : {
-      "introDisabled" : "Create adverstising campaigns for your products: find the right audience at the right time"
+      "title" : "Google Ads Account",
+      "intro" : "Create adverstising campaigns for your products: find the right audience at the right time",
+      "text" : "Once connected you may need to configure your billing settings in your Google Ads account.",
+      "labelSelect" : "Connect an existing Google Ads account",
+      "id" : "Google Ads account ID"
     },
     "help" : {
       "title" : "Help for PrestaShop Google",
@@ -163,7 +167,9 @@
       "supportedCountries" : "Supported countries",
       "cancel" : "Cancel",
       "disconnectAccount" : "Disconnect account",
-      "back" : "Back"
+      "back" : "Back",
+      "selectAccount" : "Select account",
+      "createNewGoogleAdsAccount" : "Create new Google Ads account"
     },
     "badge" : {
       "free" : "Free",
