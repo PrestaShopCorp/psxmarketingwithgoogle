@@ -34,16 +34,16 @@
         <span class="ps-switch ps-switch-sm">
           <input
             type="radio"
-            name="example_ps_switch_3"
-            id="example_off_3"
-            value="0"
+            name="switchEnable"
+            v-model="enabledFreeListing"
+            :value="false"
           >
           <label for="example_off_3">{{ $t('cta.disabled') }}</label>
           <input
             type="radio"
-            name="example_ps_switch_3"
-            id="example_on_3"
-            value="1"
+            name="switchEnable"
+            v-model="enabledFreeListing"
+            :value="true"
             checked
           >
           <label for="example_on_3">{{ $t('cta.enabled') }}</label>
@@ -96,42 +96,12 @@
       </div>
       <b-alert
         v-if="alert"
-        variant="success"
+        :variant="alert.variant"
         show
         class="mb-0 mt-3"
       >
         <p class="mb-0">
-          {{ $t('freeListingCard.alertActivationSuccess') }}
-        </p>
-      </b-alert>
-      <b-alert
-        v-if="alert"
-        variant="warning"
-        show
-        class="mb-0 mt-3"
-      >
-        <p class="mb-0">
-          {{ $t('freeListingCard.alertEnableFreeListing') }}
-        </p>
-      </b-alert>
-      <b-alert
-        v-if="alert"
-        variant="warning"
-        show
-        class="mb-0 mt-3"
-      >
-        <p class="mb-0">
-          {{ $t('freeListingCard.alertProductFeedDisabled') }}
-        </p>
-      </b-alert>
-      <b-alert
-        v-if="alert"
-        variant="warning"
-        show
-        class="mb-0 mt-3"
-      >
-        <p class="mb-0">
-          {{ $t('freeListingCard.alertEnableFreeListingAndProductFeed') }}
+          {{ $t(`freeListingCard.${alert.text}`) }}
         </p>
       </b-alert>
     </template>
@@ -197,6 +167,14 @@ export default {
       type: Boolean,
       default: true,
     },
+    alert: {
+      type: Object,
+      default: null,
+    },
+    enabledFreeListing: {
+      type: Boolean,
+      default: false,
+    }
   },
 };
 </script>
