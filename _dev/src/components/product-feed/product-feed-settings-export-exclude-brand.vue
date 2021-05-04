@@ -33,6 +33,9 @@ export default {
     return {
       selectedBrand: [],
       searchString: '',
+      /**
+       * Fixtures, should be populated with PrestaShop datas
+       */
       options: [
         {
             id: '1',
