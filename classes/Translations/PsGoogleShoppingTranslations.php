@@ -160,7 +160,10 @@ class PsGoogleShoppingTranslations
                 'learnFreeListing' => $this->module->l('Learn more about free listing', 'PsGoogleShoppingTranslations'),
                 'seeFreeListing' => $this->module->l('See my free listing in Merchant Center', 'PsGoogleShoppingTranslations'),
                 'googleDelay' => $this->module->l('Google usually takes 3-5 business days to review products.', 'PsGoogleShoppingTranslations'),
-                'freeListingActivationSuccess' => $this->module->l('You have successfully activated the free listing of your products for Google Shopping tab for free.', 'PsGoogleShoppingTranslations'),
+                'alertActivationSuccess' => $this->module->l('You have successfully activated the free listing of your products for Google Shopping tab for free.', 'PsGoogleShoppingTranslations'),
+                'alertEnableFreeListing' => $this->module->l('Enable free listing to display your products on Google Shopping tab for free.', 'PsGoogleShoppingTranslations'),
+                'alertProductFeedDisabled' => $this->module->l('The synchronization of your product feed is disabled. Products are still visible on your free listing but they will not be updated anymore and they will disappear from your free listing after 30 days.', 'PsGoogleShoppingTranslations'),
+                'alertEnableFreeListingAndProductFeed' => $this->module->l('Enable free listing to display your products on Google Shopping tab for free. This action will cause the reactivation of the product feed.', 'PsGoogleShoppingTranslations'),
             ],
             'googleAdsAccountCard' => [
                 'title' => $this->module->l('Google Ads Account', 'PsGoogleShoppingTranslations'),

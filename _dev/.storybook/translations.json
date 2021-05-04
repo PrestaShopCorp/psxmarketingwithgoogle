@@ -111,7 +111,10 @@
       "learnFreeListing" : "Learn more about free listing",
       "seeFreeListing" : "See my free listing in Merchant Center",
       "googleDelay" : "Google usually takes 3-5 business days to review products.",
-      "freeListingActivationSuccess" : "You have successfully activated the free listing of your products for Google Shopping tab for free."
+      "alertActivationSuccess" : "You have successfully activated the free listing of your products for Google Shopping tab for free.",
+      "alertEnableFreeListing" : "Enable free listing to display your products on Google Shopping tab for free.",
+      "alertProductFeedDisabled" : "The synchronization of your product feed is disabled. Products are still visible on your free listing but they will not be updated anymore and they will disappear from your free listing after 30 days.",
+      "alertEnableFreeListingAndProductFeed" : "Enable free listing to display your products on Google Shopping tab for free. This action will cause the reactivation of the product feed."
     },
     "googleAdsAccountCard" : {
       "title" : "Google Ads Account",

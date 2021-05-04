@@ -95,43 +95,43 @@
         </b-button>
       </div>
       <b-alert
-        v-if="error"
+        v-if="alert"
         variant="success"
         show
         class="mb-0 mt-3"
       >
         <p class="mb-0">
-          {{ $t('freeListingCard.freeListingActivationSuccess') }}
+          {{ $t('freeListingCard.alertActivationSuccess') }}
         </p>
       </b-alert>
       <b-alert
-        v-if="error"
+        v-if="alert"
         variant="warning"
         show
         class="mb-0 mt-3"
       >
         <p class="mb-0">
-          Enable free listing to display your products on Google Shopping tab for free.
+          {{ $t('freeListingCard.alertEnableFreeListing') }}
         </p>
       </b-alert>
       <b-alert
-        v-if="error"
+        v-if="alert"
         variant="warning"
         show
         class="mb-0 mt-3"
       >
         <p class="mb-0">
-          The synchronization of your product feed is disabled. Products are still visible on your free listing but they will not be updated anymore and they will disappear from your free listing after 30 days.
+          {{ $t('freeListingCard.alertProductFeedDisabled') }}
         </p>
       </b-alert>
       <b-alert
-        v-if="error"
+        v-if="alert"
         variant="warning"
         show
         class="mb-0 mt-3"
       >
         <p class="mb-0">
-          Enable free listing to display your products on Google Shopping tab for free. This action will cause the reactivation of the product feed.
+          {{ $t('freeListingCard.alertEnableFreeListingAndProductFeed') }}
         </p>
       </b-alert>
     </template>
@@ -182,7 +182,7 @@ export default {
   data() {
     return {
       ctaIsDisabled: false,
-      error: false,
+      alert: null,
     };
   },
   components: {
