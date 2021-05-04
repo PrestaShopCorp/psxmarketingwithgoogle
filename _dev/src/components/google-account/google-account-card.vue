@@ -82,7 +82,6 @@
             size="sm"
             variant="primary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
-            target="_blank"
             @click="openPopin"
           >
             <template v-if="!isConnecting">
@@ -102,7 +101,6 @@
             size="sm"
             variant="outline-secondary"
             class="mx-1 mt-3 mt-md-0"
-            target="_blank"
           >
             {{ $t('cta.dissociate') }}
           </b-button>
@@ -110,7 +108,6 @@
             size="sm"
             variant="outline-secondary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
-            target="_blank"
           >
             {{ $t('cta.manageAccount') }}
           </b-button>
@@ -167,7 +164,7 @@ export default {
       this.isConnecting = true;
     },
     openPopin() {
-      window.open(this.$store.getters.getGoogleAuthEndpoint, '_blank');
+      window.open(this.$store.getters.getGoogleAuthEndpoint);
     },
   },
 };
