@@ -142,6 +142,7 @@ import {
 } from 'bootstrap-vue';
 import ProductFeedSettingsExportExcludeCategory from './product-feed-settings-export-exclude-category';
 import ProductFeedSettingsExportExcludeBrand from './product-feed-settings-export-exclude-brand';
+
 /**
  ** Import fixture of products.
  ** Should be fetched from PrestaShop data
