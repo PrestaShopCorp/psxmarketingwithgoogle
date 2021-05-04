@@ -41,6 +41,10 @@ export interface GoogleAccountsContext {
   email: string,
   photo: string,
   authenticationUrl: string,
+
+  from?: string,
+  message?: string,
+  status?: string,
 }
 
 export interface MerchantCenterAccount {

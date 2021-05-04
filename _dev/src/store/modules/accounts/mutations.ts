@@ -68,4 +68,9 @@ export default {
   [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string) {
     state.googleAccount.authenticationUrl = url;
   },
+  [MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE](state: LocalState, googleResponse) {
+    state.googleAccount.from = googleResponse.from;
+    state.googleAccount.message = googleResponse.message;
+    state.googleAccount.status = googleResponse.status;
+  },
 };
