@@ -16,7 +16,7 @@ Disabled.args = {
   isEnabled: false,
 };
 
-export const Enabled:any = Template.bind({});
-Enabled.args = {
+export const EnabledToConfigure:any = Template.bind({});
+EnabledToConfigure.args = {
   isEnabled: true,
 };

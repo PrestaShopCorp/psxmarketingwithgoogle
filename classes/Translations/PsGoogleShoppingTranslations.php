@@ -115,7 +115,7 @@ class PsGoogleShoppingTranslations
             ],
             'productFeedCard' => [
                 'title' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),
-                'introDisabled' => $this->module->l('Allows you to display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns', 'PsGoogleShoppingTranslations'),
+                'intro' => $this->module->l('Allows you to display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedSettings' => [
                 'breadcrumb' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),

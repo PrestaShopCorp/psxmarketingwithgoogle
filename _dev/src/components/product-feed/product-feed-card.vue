@@ -22,23 +22,9 @@
         </b-card-text>
       </div>
     </div>
-    <div class="d-md-flex justify-content-between">
-      <p class="ps_gs-fz-12">
-        {{ $t('productFeedCard.introDisabled') }}
-      </p>
-      <div
-        class="text-center"
-        v-if="isEnabled"
-      >
-        <b-button
-          size="sm"
-          variant="primary"
-          class="ml-md-3"
-        >
-          {{ $t('cta.configureAndExportProductFeed') }}
-        </b-button>
-      </div>
-    </div>
+    <p class="ps_gs-fz-12">
+      {{ $t('productFeedCard.intro') }}
+    </p>
     <div
       v-if="!isEnabled"
       class="d-flex mt-2"
@@ -69,6 +55,71 @@
         </li>
       </ul>
     </div>
+    <div v-if="isEnabled && toConfigure">
+      <p>
+        Submitting your product data to Google in the correct format is important for creating successful ads and free listings for your products. We use this data to make sure that it's matched to the right queries.<br>
+        <a class="ps_gs-fz-12 text-muted" href="//google.com" target="_blank">Lear more about product configuration</a>
+      </p>
+      <stepper
+        class="mt-2"
+        :steps="steps"
+        :active-step="1"
+      />
+      <div
+        class="d-flex justify-content-center justify-content-md-end mt-n1"
+        v-if="isEnabled"
+      >
+        <b-button
+          size="sm"
+          variant="primary"
+        >
+          {{ $t('cta.configureAndExportProductFeed') }}
+        </b-button>
+      </div>
+    </div>
+    <div v-if="isEnabled && !toConfigure">
+      <b-alert
+        variant="success"
+        show
+      >
+        You are successfully opted in. Once your products are approved, they can appear in Shopping tab search results.
+      </b-alert>
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="font-weight-600">
+          210 products synced today at 02:00
+        </p>
+        <b-button variant="invisible">
+          View sync status
+        </b-button>
+      </div>
+      <p class="ps_gs-fz-12 text-muted">
+        Next sync: 06/12/21 02:00
+      </p>
+      <div class="d-flex">
+        <div class="border px-3 py-2">
+          <b-badge
+            class="ml-n1 mt-n1"
+            variant="success"
+          >
+            Ready-to-sync
+          </b-badge>
+          <span class="d-block">
+            210
+          </span>
+        </div>
+        <div class="border px-3 py-2">
+          <b-badge
+            class="ml-n1 mt-n1"
+            variant="warning"
+          >
+            Can’t be synced
+          </b-badge>
+          <span class="d-block">
+            8
+          </span>
+        </div>
+      </div>
+    </div>
   </b-card>
 </template>
 
@@ -76,16 +127,43 @@
 import {
   BIconExclamationCircle,
 } from 'bootstrap-vue';
+import Stepper from '../commons/stepper';
 
 export default {
   name: 'ProductFeedCard',
   components: {
     BIconExclamationCircle,
+    Stepper,
+  },
+  data() {
+    return {
+      steps: [
+        {
+          title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
+        },
+        {
+          title: this.$i18n.t('productFeedSettings.steps.exportRules'),
+        },
+        {
+          title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
+        },
+        {
+          title: this.$i18n.t('productFeedSettings.steps.categoryMapping'),
+        },
+        {
+          title: 'Export feed!'
+        },
+      ],
+    };
   },
   props: {
     isEnabled: {
       type: Boolean,
       default: false,
+    },
+    toConfigure: {
+      type: Boolean,
+      default: true,
     },
   },
 };
