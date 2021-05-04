@@ -1,4 +1,3 @@
-<!-- NOTHING DONE YET -->
 <template>
   <b-card
     no-body
