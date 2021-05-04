@@ -28,22 +28,22 @@
         </b-card-text>
       </div>
       <div
-        v-if="isEnabled"
+        v-if="!firstTime"
         class="form-group ml-auto mb-md-0"
       >
         <span class="ps-switch ps-switch-sm">
           <input
             type="radio"
-            name="example_ps_switch_3"
-            id="example_off_3"
-            value="0"
+            name="switchEnable"
+            v-model="enabledFreeListing"
+            :value="false"
           >
           <label for="example_off_3">{{ $t('cta.disabled') }}</label>
           <input
             type="radio"
-            name="example_ps_switch_3"
-            id="example_on_3"
-            value="1"
+            name="switchEnable"
+            v-model="enabledFreeListing"
+            :value="true"
             checked
           >
           <label for="example_on_3">{{ $t('cta.enabled') }}</label>
@@ -57,9 +57,9 @@
     >
       {{ $t('freeListingCard.intro') }}
     </p>
-    <template v-if="false">
+    <template v-if="isEnabled">
       <ul
-        class="list-inline text-muted ps_gs-fz-12"
+        class="list-inline text-muted ps_gs-fz-12 mb-0"
       >
         <li class="list-inline-item">
           <a
@@ -79,15 +79,15 @@
         </li>
       </ul>
       <div
-        v-if="isEnabled"
-        class="d-md-flex justify-content-md-end align-items-center text-center"
+        v-if="firstTime"
+        class="d-md-flex justify-content-md-end align-items-center text-center mt-3"
       >
-        <p class="text-muted ps_gs-fs-12 mb-3 mb-md-0 text-left">
+        <p class="text-muted ps_gs-fz-12 mb-3 mb-md-0 text-left">
           {{ $t('freeListingCard.googleDelay') }}
         </p>
         <b-button
           size="sm"
-          disabled
+          :disabled="ctaIsDisabled"
           variant="primary"
           class="ml-md-3"
         >
@@ -95,12 +95,13 @@
         </b-button>
       </div>
       <b-alert
-        variant="success"
+        v-if="alert"
+        :variant="alert.variant"
         show
-        class="mb-0"
+        class="mb-0 mt-3"
       >
         <p class="mb-0">
-          {{ $t('freeListingCard.freeListingActivationSuccess') }}
+          {{ $t(`freeListingCard.${alert.text}`) }}
         </p>
       </b-alert>
     </template>
@@ -148,6 +149,12 @@ import {
 
 export default {
   name: 'FreeListingCard',
+  data() {
+    return {
+      ctaIsDisabled: false,
+      alert: null,
+    };
+  },
   components: {
     BIconExclamationCircle,
   },
@@ -156,6 +163,18 @@ export default {
       type: Boolean,
       default: false,
     },
+    firstTime: {
+      type: Boolean,
+      default: true,
+    },
+    alert: {
+      type: Object,
+      default: null,
+    },
+    enabledFreeListing: {
+      type: Boolean,
+      default: false,
+    }
   },
 };
 </script>
