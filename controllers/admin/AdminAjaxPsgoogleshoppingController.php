@@ -39,6 +39,9 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $action = Tools::getValue('action');
 
         switch ($action) {
+            case 'getDefaultCountry':
+                $this->getDefaultCountry();
+                break;
             case 'getShippingSettings':
                 $this->getShippingSettings();
                 break;
@@ -73,6 +76,20 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             default:
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
         }
+    }
+
+    private function getDefaultCountry()
+    {
+        $defaultCountryId = (int) Configuration::get('PS_COUNTRY_DEFAULT');
+        $country = new Country($defaultCountryId);
+        $this->ajaxDie(json_encode(
+                [
+                    'success' => true,
+                    'country_id' => $country->id,
+                    'country_iso_code' => $country->iso_code,
+                ]
+            )
+        );
     }
 
     private function getShippingSettings()
