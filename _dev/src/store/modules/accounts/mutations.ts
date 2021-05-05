@@ -18,6 +18,10 @@
  */
 import MutationsTypes from './mutations-types';
 import {State as LocalState} from './state';
+interface OnboardStatus {
+  // TODO: To be defined from response structure 
+  // isOnboarded: Boolean;
+}
 
 interface OnboardStatus {
   // TODO: To be defined from response structure
