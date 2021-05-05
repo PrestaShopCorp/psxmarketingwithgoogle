@@ -18,9 +18,13 @@
  */
 import MutationsTypes from './mutations-types';
 import {State as LocalState} from './state';
+interface OnboardStatus {
+  // TODO: To be defined from response structure 
+  // isOnboarded: Boolean;
+}
 
 export default {
-  [MutationsTypes.SAVE_ONBOARD_STATUS](state: LocalState, response: any) {
+  [MutationsTypes.SAVE_ONBOARD_STATUS](state: LocalState, response: OnboardStatus) {
     state.googleAccount = response;
   },
 };

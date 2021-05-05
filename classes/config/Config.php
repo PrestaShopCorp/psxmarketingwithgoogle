@@ -4,6 +4,8 @@ namespace PrestaShop\Module\PrestashopGoogleShopping\Config;
 
 class Config
 {
+    const API_URL = 'https://googleshopping-api.psessentials.net';
+
     const HOOK_LIST = [
         'displayBackOfficeHeader',
     ];

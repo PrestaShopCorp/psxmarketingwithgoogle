@@ -18,7 +18,7 @@
  */
 
 import {State as LocalState} from './state';
-import {GetterTypes} from './getters-types';
+import GetterTypes from './getters-types';
 
 export default {
   [GetterTypes.GET_PS_ACCOUNTS_IS_ONBOARDED](state: LocalState) {
@@ -27,5 +27,8 @@ export default {
   },
   [GetterTypes.GET_PS_ACCOUNTS_CONTEXT](state: LocalState) {
     return state.contextPsAccounts;
+  },
+  [GetterTypes.GET_PS_ACCOUNTS_CONTEXT_SHOPS](state: LocalState) : Object[] {
+    return state.contextPsAccounts?.shops || [];
   },
 };
