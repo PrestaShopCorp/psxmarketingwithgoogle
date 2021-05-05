@@ -60,6 +60,11 @@ class APIClient
         return $this->get('account/onboard');
     }
 
+    public function getWebsiteClaim()
+    {
+        return $this->get('account/claim');
+    }
+
     /**
      * @param int|string $id
      * @param array $headers

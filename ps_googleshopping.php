@@ -1,5 +1,6 @@
 <?php
 
+use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Installer;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller;
 use PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler;
@@ -148,5 +149,14 @@ class Ps_googleshopping extends Module
     public function hookDisplayBackOfficeHeader()
     {
         $this->context->controller->addCSS($this->getPathUri() . 'views/css/admin/menu.css');
+    }
+
+    public function hookDisplayHeader()
+    {
+        $this->context->smarty->assign([
+            'website_claim' => Configuration::get(Config::WEBSITE_CLAIM),
+        ]);
+
+        $this->display(__FILE__, 'header.tpl');
     }
 }
