@@ -80,7 +80,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 
     private function getDefaultCountry()
     {
-        $defaultCountryId = Configuration::get('PS_COUNTRY_DEFAULT');
+        $defaultCountryId = (int) Configuration::get('PS_COUNTRY_DEFAULT');
         $country = new Country($defaultCountryId);
         $this->ajaxDie(json_encode(
                 [
