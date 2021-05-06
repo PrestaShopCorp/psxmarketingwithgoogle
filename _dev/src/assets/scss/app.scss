@@ -1,86 +1,83 @@
-// vendors
-// @import "~bootstrap/scss/functions";
-// @import "~bootstrap/scss/variables";
-// @import "~bootstrap/scss/mixins/";
+#googleShoppingApp {
+  @import "~bootstrap/scss/functions";
 
-@import "~bootstrap/scss/functions";
+  // Custom PS
+  @import "~prestakit/scss/functions";
+  @import "~prestakit/scss/variables";
 
-// Custom PS
-@import "~prestakit/scss/functions";
-@import "~prestakit/scss/variables";
+  // Bootstrap
+  @import "~bootstrap/scss/bootstrap";
+  @import '~bootstrap-vue/src/index';
 
-// Bootstrap
-@import "~bootstrap/scss/bootstrap";
-@import '~bootstrap-vue/src/index';
+  // Mixins
+  @import "~prestakit/scss/mixins/fonts";
+  @import "~prestakit/scss/imports"; // need fonts first
+  @import "~prestakit/scss/mixins/close-button";
+  @import "~prestakit/scss/mixins/shadows";
+  @import "~prestakit/scss/mixins/buttons";
+  @import "~prestakit/scss/mixins/forms";
 
-// Mixins
-@import "~prestakit/scss/mixins/fonts";
-@import "~prestakit/scss/imports"; // need fonts first
-@import "~prestakit/scss/mixins/close-button";
-@import "~prestakit/scss/mixins/shadows";
-@import "~prestakit/scss/mixins/buttons";
-@import "~prestakit/scss/mixins/forms";
+  // Components
+  @import "~prestakit/scss/type";
+  @import "~prestakit/scss/alerts";
+  @import "~prestakit/scss/help-box";
+  @import "~prestakit/scss/popover";
+  @import "~prestakit/scss/badges";
+  @import "~prestakit/scss/buttons";
+  @import "~prestakit/scss/button-group";
+  // @import "~prestakit/scss/breadcrumb";
+  @import "~prestakit/scss/toolbar";
+  @import "~prestakit/scss/cards";
+  @import "~prestakit/scss/custom-forms";
+  @import "~prestakit/scss/dropdown";
+  @import "~prestakit/scss/forms";
+  @import "~prestakit/scss/input-group";
+  @import "~prestakit/scss/list-group";
+  @import "~prestakit/scss/modal";
+  @import "~prestakit/scss/navs";
+  @import "~prestakit/scss/pagination";
+  @import "~prestakit/scss/ps-tagger";
+  @import "~prestakit/scss/ps-tags";
+  @import "~prestakit/scss/ps-switch";
+  @import "~prestakit/scss/ps-sortable-columns";
+  @import "~prestakit/scss/ps-dropdown";
+  @import "~prestakit/scss/ps-number";
+  @import "~prestakit/scss/tables";
+  @import "~prestakit/scss/spinners";
+  @import "~prestakit/scss/material-checkbox";
+  @import "~prestakit/scss/growl";
+  @import "~prestakit/scss/search";
+  @import "~prestakit/scss/floating-button";
 
-// Components
-@import "~prestakit/scss/type";
-@import "~prestakit/scss/alerts";
-@import "~prestakit/scss/help-box";
-@import "~prestakit/scss/popover";
-@import "~prestakit/scss/badges";
-@import "~prestakit/scss/buttons";
-@import "~prestakit/scss/button-group";
-// @import "~prestakit/scss/breadcrumb";
-@import "~prestakit/scss/toolbar";
-@import "~prestakit/scss/cards";
-@import "~prestakit/scss/custom-forms";
-@import "~prestakit/scss/dropdown";
-@import "~prestakit/scss/forms";
-@import "~prestakit/scss/input-group";
-@import "~prestakit/scss/list-group";
-@import "~prestakit/scss/modal";
-@import "~prestakit/scss/navs";
-@import "~prestakit/scss/pagination";
-@import "~prestakit/scss/ps-tagger";
-@import "~prestakit/scss/ps-tags";
-@import "~prestakit/scss/ps-switch";
-@import "~prestakit/scss/ps-sortable-columns";
-@import "~prestakit/scss/ps-dropdown";
-@import "~prestakit/scss/ps-number";
-@import "~prestakit/scss/tables";
-@import "~prestakit/scss/spinners";
-@import "~prestakit/scss/material-checkbox";
-@import "~prestakit/scss/growl";
-@import "~prestakit/scss/search";
-@import "~prestakit/scss/floating-button";
+  @import "~prestakit/scss/variables";
+  @import "~vue-select/src/scss/vue-select";
 
-@import "~prestakit/scss/variables";
-@import "~vue-select/src/scss/vue-select";
+  // abstracts
+  @import "abstracts/variables";
+  @import "abstracts/functions";
 
-// abstracts
-@import "abstracts/variables";
-@import "abstracts/functions";
+  // base
+  @import "base/reset";
+  @import "base/typography";
+  @import "base/common";
 
-// base
-@import "base/typography";
-@import "base/common";
+  // page
+  @import "layouts/form";
+  @import "layouts/sizing";
+  // @import "layouts/table";
 
-// page
-@import "layouts/form";
-@import "layouts/sizing";
-@import "layouts/table";
+  // components
+  @import "components/onboardingcard";
+  @import "components/landingpageheader";
+  @import "components/landingpagecontent";
+  @import "components/landingpagefooter";
+  @import "components/glass";
+  @import "components/breadcrumb";
+  @import "components/stepper";
+  @import "components/modal";
+  // @import "components/categorieslist";
 
-// components
-@import "components/onboardingcard";
-@import "components/landingpageheader";
-@import "components/landingpagecontent";
-@import "components/landingpagefooter";
-@import "components/glass";
-@import "components/breadcrumb";
-@import "components/stepper";
-@import "components/modal";
-@import "components/productfeedreportcard";
-@import "components/categorieslist";
-
-// page
-@import "pages/landingpage";
-@import "pages/attribute-mapping";
+  // page
+  @import "pages/landingpage";
+  // @import "pages/attribute-mapping";
+}
