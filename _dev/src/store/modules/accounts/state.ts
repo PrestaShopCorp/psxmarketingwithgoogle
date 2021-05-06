@@ -17,15 +17,33 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-const {contextPsAccounts} = window || {};
-const {psGoogleShoppingApiUrl} = window;
+export interface AccountsContext {
+  user: {
+    email: string|null,
+    emailIsValidated: boolean,
+    isSuperAdmin: boolean,
+  },
+  currentShop: {
+      id: string;
+      name: string;
+      domain: string;
+      domainSsl: string;
+      url: string;
+  },
+  isShopContext: boolean,
+  shops: object[],
+}
 
-export const state = {
-  contextPsAccounts,
+export interface State {
+  contextPsAccounts: AccountsContext|any;
+  googleAccount: object;
+  googleMerchantAccount: object;
+  psGoogleShoppingApiUrl: string;
+}
+
+export const state: State = {
+  contextPsAccounts: {},
   googleAccount: {},
   googleMerchantAccount: {},
-  psGoogleShoppingApiUrl,
+  psGoogleShoppingApiUrl: '',
 };
-
-// Declare state
-export type State = typeof state;

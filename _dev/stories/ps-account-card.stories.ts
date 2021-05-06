@@ -1,22 +1,32 @@
-import PsAccountCard from '../src/components/ps-account/ps-account-card.vue'
+import {PsAccounts} from 'prestashop_accounts_vue_components';
+import {
+  contextPsAccountsNotConnected,
+  contextPsAccountsConnected,
+  contextPsAccountsConnectedAndValidated,
+} from '../.storybook/mock/ps-accounts.js';
 
 export default {
   title: 'PS Account/Card',
-  component: PsAccountCard,
+  component: PsAccounts,
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { PsAccountCard },
-  template: '<PsAccountCard v-bind="$props" />',
+  components: { PsAccounts },
+  template: '<ps-accounts v-bind="$props" />',
 });
 
 export const NotConnected:any = Template.bind({});
 NotConnected.args = {
-  isConnected: false,
+  context: contextPsAccountsNotConnected,
 }
 
 export const Connected:any = Template.bind({});
 Connected.args = {
-  isConnected: true,
+  context: contextPsAccountsConnected,
+}
+
+export const ConnectedAndValidated:any = Template.bind({});
+ConnectedAndValidated.args = {
+  context: contextPsAccountsConnectedAndValidated,
 }

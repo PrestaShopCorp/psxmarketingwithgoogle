@@ -4,7 +4,7 @@
       :step-number="1"
       :step-title="$t('onboarding.sectionTitle.psAccount')"
       :is-enabled="true"
-      :is-done="false"
+      :is-done="psAccountsIsOnboarded"
     />
     <MultiStoreSelector
       v-if="!psAccountsContext.isShopContext && shops.length"
@@ -20,21 +20,21 @@
     <section-title
       :step-number="2"
       :step-title="$t('onboarding.sectionTitle.freeListing')"
-      :is-enabled="false"
+      :is-enabled="psAccountsIsOnboarded"
       :is-done="false"
     />
     <google-account-card
-      :is-enabled="false"
+      :is-enabled="psAccountsIsOnboarded"
       :is-connected="false"
     />
     <section-title
       :step-number="3"
       :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
-      :is-enabled="false"
+      :is-enabled="psAccountsIsOnboarded && false"
       :is-done="false"
     />
     <google-ads-account-card
-      :is-enabled="false"
+      :is-enabled="psAccountsIsOnboarded && false"
       :is-connected="false"
     />
   </div>
@@ -66,6 +66,9 @@ export default {
     },
     shops() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
+    },
+    psAccountsIsOnboarded() {
+      return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
     },
   },
 };
