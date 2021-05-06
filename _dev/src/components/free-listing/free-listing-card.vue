@@ -173,7 +173,7 @@ export default {
     enabledFreeListing: {
       type: Boolean,
       default: false,
-    }
+    },
   },
 };
 </script>

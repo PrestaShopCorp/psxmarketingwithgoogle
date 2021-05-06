@@ -19,7 +19,6 @@
         class="ps_gs-v-select maxw-sm-500"
         multiple
         label="country"
-
       />
       <p class="text-muted my-1 ps_gs-fz-12">
         {{ $t('productFeedSettings.shipping.cantFindCountry') }}

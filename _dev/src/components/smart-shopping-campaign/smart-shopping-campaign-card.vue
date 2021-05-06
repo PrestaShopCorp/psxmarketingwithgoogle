@@ -4,7 +4,7 @@
     class="ps_gs-onboardingcard p-3"
     :class="{ 'ps_gs-onboardingcard--disabled' : !isEnabled }"
   >
-   <div
+    <div
       class="d-md-flex flex-wrap align-items-center justify-content-between mb-3"
     >
       <div class="d-flex align-items-center">
