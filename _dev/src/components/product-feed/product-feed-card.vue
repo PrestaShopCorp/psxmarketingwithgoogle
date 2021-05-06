@@ -4,7 +4,7 @@
     class="ps_gs-onboardingcard p-3"
     :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
   >
-    <div class="d-md-flex flex-wrap align-items-center justify-content-between mb-3">
+    <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
       <div class="d-flex align-items-center">
         <img
           class="mr-3"
@@ -23,7 +23,7 @@
       </div>
       <div
         v-if="!toConfigure && isEnabled"
-        class="form-group ml-auto mb-md-0"
+        class="form-group ml-auto mb-0"
       >
         <span class="ps-switch ps-switch-sm">
           <input

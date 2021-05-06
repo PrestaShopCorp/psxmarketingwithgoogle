@@ -8,7 +8,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { SmartShoppingCampaign },
-  template: '<SmartShoppingCampaign v-bind="$props" @selectGoogleAdsAccount="fakeConnection"/>',
+  template: '<SmartShoppingCampaign v-bind="$props" />',
 });
 
 export const Disabled:any = Template.bind({});
