@@ -173,6 +173,7 @@
                     font-scale="0.75"
                     width="14"
                     height="14"
+                    class="align-middle d-inline-block"
                   />
                 </b-button>
               </div>
@@ -190,9 +191,23 @@
           </b-col>
           <b-col cols class="ps_gs-productfeed-report-card">
             <div class="px-3 py-2">
-              <b-badge class="ml-n1 mt-n1 mb-2" variant="warning">
-                {{ $t("badge.cantSync") }}
-              </b-badge>
+              <div class="d-flex align-items-center ml-n1 mt-n1 mb-2">
+                <b-badge variant="warning">
+                  {{ $t("badge.cantSync") }}
+                </b-badge>
+                <b-button
+                  variant="invisible"
+                  class="p-0 mt-0 ml-1"
+                  v-b-tooltip.hover
+                  title="Tooltip directive content"
+                >
+                  <b-icon-exclamation-circle
+                    width="14"
+                    height="14"
+                    class="align-middle d-inline-block"
+                  />
+                </b-button>
+              </div>
               <i
                 v-if="syncStatus === 'busy'"
                 class="icon-busy icon-busy--dark d-block"
