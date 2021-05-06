@@ -23,7 +23,6 @@ export default defineComponent({
   },
   data() {
     return {
-      psAccountsIsOnboarded: this.$store.getters.psAccountsIsOnboarded,
       showIntroduction: true,
     };
   },
@@ -31,10 +30,14 @@ export default defineComponent({
     this.$root.$on('onHideLanding', () => {
       this.showIntroduction = false;
     });
+    this.$store.dispatch('accounts/TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT', 'www.google.com');
   },
   methods: {
   },
   computed: {
+    psAccountsIsOnboarded() {
+      return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
+    },
   },
 });
 </script>

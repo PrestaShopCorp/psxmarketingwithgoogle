@@ -16,6 +16,21 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import MutationsTypes from './mutations-types';
+import ActionsTypes from './actions-types';
 
 export default {
+  async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, state}, webhookUrl: String) {
+    try {
+      const response = await fetch(`${state.psGoogleShoppingApiUrl}/account/onboard`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        body: JSON.stringify(webhookUrl),
+      });
+      const json = await response.json();
+      commit(MutationsTypes.SAVE_ONBOARD_STATUS, json);
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };

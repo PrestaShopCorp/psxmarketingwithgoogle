@@ -17,6 +17,8 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
+
+use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 use PrestaShop\Module\Ps_googleshopping\Translations\PsGoogleShoppingTranslations;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 
@@ -73,6 +75,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
                 ]
             ),
             'psAccountShopId' => $psAccountShopId,
+            'psGoogleShoppingApiUrl' => Config::API_URL,
         ]);
 
         $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');

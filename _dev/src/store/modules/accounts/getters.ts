@@ -17,5 +17,18 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {State as LocalState} from './state';
+import GetterTypes from './getters-types';
+
 export default {
+  [GetterTypes.GET_PS_ACCOUNTS_IS_ONBOARDED](state: LocalState) {
+    return state.contextPsAccounts.user.emailIsValidated
+      && state.contextPsAccounts.user.email !== '';
+  },
+  [GetterTypes.GET_PS_ACCOUNTS_CONTEXT](state: LocalState) {
+    return state.contextPsAccounts;
+  },
+  [GetterTypes.GET_PS_ACCOUNTS_CONTEXT_SHOPS](state: LocalState) : Object[] {
+    return state.contextPsAccounts?.shops || [];
+  },
 };

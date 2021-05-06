@@ -17,5 +17,8 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-export default {
-};
+enum ActionsTypes {
+  TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT = 'TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT',
+}
+
+export {ActionsTypes as default};

@@ -17,5 +17,8 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-export default {
-};
+enum MutationsTypes {
+    SAVE_ONBOARD_STATUS = 'SAVE_ONBOARD_STATUS',
+}
+
+export {MutationsTypes as default};
