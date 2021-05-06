@@ -65,8 +65,24 @@
       "footerEU" : "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)](//google.com){:target=\"_blank\"}  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners](//google.com){:target=\"_blank\"}  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use."
     },
     "productFeedCard" : {
-      "title" : "Product feed",
-      "intro" : "Allows you to display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns"
+      "title" : "Product feed export configuration",
+      "intro" : "Allows you to display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns",
+      "introToConfigure" : "Submitting your product data to Google in the correct format is important for creating successful ads and free listings for your products. We use this data to make sure that it's matched to the right queries.",
+      "nextSync" : "Next sync: {0}",
+      "syncFailedAt" : "Sync failed {0} at {1}",
+      "syncSuccess" : "{0} products synced {1} at {2}",
+      "syncBusy" : "Sync progressing...",
+      "syncCantPerform" : "Sync can't perform",
+      "mappedCategories" : "{0}/{1} mapped categories",
+      "alertSuccess" : "You are successfully opted in. Once your products are approved, they can appear in Shopping tab search results.",
+      "alertFailed" : "The synchronization of your product feed failed. **[See possible reasons in Merchant Center]({0}){:target=\"_blank\"}**",
+      "alertShippingSettingsMissing" : "Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. **[Add shipping settings]({0}){:target=\"_blank\"}**",
+      "alertProductFeedDeactivated" : "If the product sync is deactivated, there will be no new products pushed into the GMC. The account itself will continue to exist and the products will expire after 30 days. This stops the catalog items to show on both Free Listings and the ad campaigns.",
+      "alertProductFeedExists" : "**A product feed already exists**  \n<small>To activate free listing feature, you need to overwrite the exisitng product feed.</small>",
+      "googleTaxonomyAssociation" : "Google Product taxonomy association",
+      "optional" : "Optional",
+      "attributeDescription" : "With these attributes, you can organize your advertising campaigns in Google Ads and override the category automatically assigned by Google in some cases.",
+      "excludedProducts" : "Excluded products"
     },
     "productFeedSettings" : {
       "breadcrumb" : "Product feed settings",
@@ -75,7 +91,8 @@
         "exportRules" : "Export rules",
         "attributeMapping" : "Attribute mapping",
         "categoryMapping" : "Category mapping",
-        "summary" : "Summary"
+        "summary" : "Summary",
+        "exportFeed" : "Export feed!"
       },
       "shipping" : {
         "targetCountries" : "Target countries",
@@ -176,7 +193,19 @@
       "disconnectAccount" : "Disconnect account",
       "back" : "Back",
       "selectAccount" : "Select account",
-      "createNewGoogleAdsAccount" : "Create new Google Ads account"
+      "createNewGoogleAdsAccount" : "Create new Google Ads account",
+      "addMapping" : "Add mapping",
+      "modifyMapping" : "Modify mapping",
+      "learnAboutProductConfiguration" : "Learn more about product configuration",
+      "overwriteProductFeed" : "Overwrite product feed",
+      "trackProductStatus" : "Track products status",
+      "whyDidntWork" : "Check out why it didn’t work",
+      "aboutProductCategory" : "About Google product category",
+      "editCountries" : "Edit countries",
+      "editSettings" : "Edit settings",
+      "editRules" : "Edit rules",
+      "editAttributeMapping" : "Edit attribute mapping",
+      "forceSync" : "Force sync"
     },
     "badge" : {
       "free" : "Free",
@@ -191,7 +220,9 @@
       "mca" : "Merchant Center account",
       "googleAccount" : "Google account",
       "paid" : "Paid",
-      "googleAdsAccount" : "Google Ads account"
+      "googleAdsAccount" : "Google Ads account",
+      "readyToSync" : "Ready-to-sync",
+      "cantSync" : "Can’t be synced"
     },
     "modal" : {
       "titleDisconnection" : "Confirm disconnection?",
