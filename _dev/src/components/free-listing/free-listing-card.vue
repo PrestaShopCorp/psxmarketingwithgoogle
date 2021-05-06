@@ -152,7 +152,6 @@ export default {
   data() {
     return {
       ctaIsDisabled: false,
-      alert: null,
     };
   },
   components: {
