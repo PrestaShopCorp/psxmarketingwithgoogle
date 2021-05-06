@@ -16,7 +16,7 @@
           width="40"
           height="40"
           alt=""
-        />
+        >
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
           {{ $t("productFeedCard.title") }}
         </b-card-text>
@@ -48,17 +48,28 @@
     <p class="ps_gs-fz-12">
       {{ $t("productFeedCard.intro") }}
     </p>
-    <div v-if="!isEnabled" class="d-flex mt-2">
+    <div
+      v-if="!isEnabled"
+      class="d-flex mt-2"
+    >
       <span class="mr-2">
         <b-icon-exclamation-circle />
       </span>
       <ul class="list-inline mb-0">
-        <li class="list-inline-item" v-b-tooltip.hover title="Tooltip directive content">
+        <li
+          class="list-inline-item"
+          v-b-tooltip.hover
+          title="Tooltip directive content"
+        >
           <b-badge variant="muted">
             {{ $t("badge.mca") }}
           </b-badge>
         </li>
-        <li class="list-inline-item" v-b-tooltip.hover title="Tooltip directive content">
+        <li
+          class="list-inline-item"
+          v-b-tooltip.hover
+          title="Tooltip directive content"
+        >
           <b-badge variant="muted">
             {{ $t("badge.productFeedSettings") }}
           </b-badge>
@@ -67,7 +78,7 @@
     </div>
     <div v-if="isEnabled && toConfigure">
       <p>
-        {{ $t("productFeedCard.introToConfigure") }}<br />
+        {{ $t("productFeedCard.introToConfigure") }}<br>
         <a
           class="ps_gs-fz-12 text-muted"
           :href="$options.googleUrl.productConfiguration"
@@ -76,12 +87,19 @@
           {{ $t("cta.learnAboutProductConfiguration") }}
         </a>
       </p>
-      <stepper class="mt-2" :steps="steps" :active-step="1" />
+      <stepper
+        class="mt-2"
+        :steps="steps"
+        :active-step="1"
+      />
       <div
         class="d-flex justify-content-center justify-content-md-end mt-n1"
         v-if="isEnabled"
       >
-        <b-button size="sm" variant="primary">
+        <b-button
+          size="sm"
+          variant="primary"
+        >
           {{ $t("cta.configureAndExportProductFeed") }}
         </b-button>
       </div>
@@ -99,7 +117,9 @@
           v-if="alert === 'ProductFeedExists'"
           class="mt-1"
         >
-          <b-button variant="outline-secondary">{{ $t('cta.overwriteProductFeed') }}</b-button>
+          <b-button variant="outline-secondary">
+            {{ $t('cta.overwriteProductFeed') }}
+          </b-button>
         </div>
       </b-alert>
       <h3
@@ -128,7 +148,10 @@
           height="16"
         >
           <b-icon-circle-fill stacked />
-          <b-icon-check stacked variant="white" />
+          <b-icon-check
+            stacked
+            variant="white"
+          />
         </b-iconstack>
         <span class="align-middle">
           {{ syncStatusMessage }}
@@ -155,23 +178,29 @@
           {{ $t('cta.forceSync') }}
         </b-button>
       </div>
-      <b-container fluid class="p-0 mb-2">
-        <b-row no-gutters class="mx-n1">
+      <b-container
+        fluid
+        class="p-0 mb-2"
+      >
+        <b-row
+          no-gutters
+          class="mx-n1"
+        >
           <product-feed-card-report-products-card
-            badgeVariant="success"
-            :badgeText="$t('badge.readyToSync')"
-            :badgeTooltip="'placeholder'"
-            :syncStatus="syncStatus"
-            :nbProducts="nbProductsReadyToSync"
+            badge-variant="success"
+            :badge-text="$t('badge.readyToSync')"
+            :badge-tooltip="'placeholder'"
+            :sync-status="syncStatus"
+            :nb-products="nbProductsReadyToSync"
           />
           <product-feed-card-report-products-card
-            badgeVariant="warning"
-            :badgeText="$t('badge.cantSync')"
-            :badgeTooltip="'placeholder'"
-            :syncStatus="syncStatus"
-            :nbProducts="nbProductsCantSync"
-            :ctaText="$t('cta.whyDidntWork')"
-            ctaLink="//google.com"
+            badge-variant="warning"
+            :badge-text="$t('badge.cantSync')"
+            :badge-tooltip="'placeholder'"
+            :sync-status="syncStatus"
+            :nb-products="nbProductsCantSync"
+            :cta-text="$t('cta.whyDidntWork')"
+            cta-link="//google.com"
           />
         </b-row>
       </b-container>
@@ -180,28 +209,34 @@
           {{ $t("productFeedSettings.breadcrumb") }}
         </h3>
       </div>
-      <b-container fluid class="p-0 mb-2">
-        <b-row no-gutters class="mx-n1">
+      <b-container
+        fluid
+        class="p-0 mb-2"
+      >
+        <b-row
+          no-gutters
+          class="mx-n1"
+        >
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
-            linkTo="#"
+            link-to="#"
           />
           <product-feed-card-report-card
             status="warning"
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
-            linkTo="#"
+            link-to="#"
           />
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.shipping.taxSettings')"
             :description="taxSettings"
             :link="$t('cta.editSettings')"
-            linkTo="#"
+            link-to="#"
           />
           <product-feed-card-report-card
             status="success"
@@ -209,27 +244,29 @@
             :description="exportRules.join(', ')"
             :details="exportRulesDetails.join(', ')"
             :link="$t('cta.editRules')"
-            linkTo="#"
+            link-to="#"
           />
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedCard.excludedProducts')"
-            :description="`${$t('productFeedCard.excludedProducts')} (${excludedProductsDetails.length})`"
+            :description="`
+              ${$t('productFeedCard.excludedProducts')} (${excludedProductsDetails.length})
+            `"
             :details="excludedProductsDetails.join(', ')"
             :link="$t('cta.editRules')"
-            linkTo="#"
+            link-to="#"
           />
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.steps.attributeMapping')"
             :description="attributeMapping.join(', ') + '...'"
             :link="$t('cta.editAttributeMapping')"
-            linkTo="#"
+            link-to="#"
           />
           <product-feed-card-report-mapped-categories-card
-            :hasMapping="hasMapping"
-            :categoriesMapped="categoriesMapped"
-            :categoriesTotal="categoriesTotal"
+            :has-mapping="hasMapping"
+            :categories-mapped="categoriesMapped"
+            :categories-total="categoriesTotal"
           />
         </b-row>
       </b-container>
@@ -238,7 +275,7 @@
 </template>
 
 <script>
-import googleUrl from "@/assets/json/googleUrl.json";
+import googleUrl from '@/assets/json/googleUrl.json';
 
 import {
   BIconstack,
@@ -305,7 +342,7 @@ export default {
     syncStatus: {
       type: String,
       default: null,
-      validator: function (value) {
+      validator(value) {
         return [null, 'success', 'warning', 'error', 'busy'].indexOf(value) !== -1;
       },
     },
@@ -319,7 +356,7 @@ export default {
     alert: {
       type: String,
       default: null,
-      validator: function (value) {
+      validator(value) {
         return [null, 'Success', 'Failed', 'ShippingSettingsMissing', 'ProductFeedDeactivated', 'ProductFeedExists'].indexOf(value) !== -1;
       },
     },
@@ -387,15 +424,14 @@ export default {
     alertLink() {
       if (this.alert === 'Failed') {
         return [this.$options.googleUrl.syncFailed];
-      } else if (this.alert === 'ShippingSettingsMissing') {
+      } if (this.alert === 'ShippingSettingsMissing') {
         return [this.$options.googleUrl.shippingSettingsMissing];
-      } else {
-        return null;
-      };
+      }
+      return null;
     },
     hasMapping() {
-      return this.categoriesMapped > 0
-    }
+      return this.categoriesMapped > 0;
+    },
   },
   googleUrl,
 };

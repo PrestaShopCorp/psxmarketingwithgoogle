@@ -1,5 +1,8 @@
 <template>
-  <b-col cols class="ps_gs-productfeed-report-card">
+  <b-col
+    cols
+    class="ps_gs-productfeed-report-card"
+  >
     <div class="px-3 py-2">
       <div class="d-flex align-items-center ml-n1 mt-n1 mb-2">
         <b-badge :variant="badgeVariant">

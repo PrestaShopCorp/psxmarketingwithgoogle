@@ -13,12 +13,15 @@
           height="16"
         >
           <b-icon-circle-fill stacked />
-          <b-icon-check stacked variant="white" />
+          <b-icon-check
+            stacked
+            variant="white"
+          />
         </b-iconstack>
         {{ $t('productFeedCard.googleTaxonomyAssociation') }}
-        <span class="text-muted font-italic font-weight-normal"
-          >-&nbsp;{{ $t('productFeedCard.optional') }}</span
-        >
+        <span
+          class="text-muted font-italic font-weight-normal"
+        >-&nbsp;{{ $t('productFeedCard.optional') }}</span>
       </div>
       <div
         v-if="hasMapping"
@@ -40,7 +43,10 @@
             class="mt-2 w-75 mx-auto"
           />
         </div>
-        <b-button class="mt-3 ml-sm-4 mt-sm-0" variant="outline-secondary">
+        <b-button
+          class="mt-3 ml-sm-4 mt-sm-0"
+          variant="outline-secondary"
+        >
           {{ $t("cta.modifyMapping") }}
         </b-button>
       </div>
@@ -49,8 +55,12 @@
         class="d-sm-flex align-items-end"
       >
         <p class="ps_gs-fz-12 mb-0 flex-grow-1">
-          {{ $t('productFeedCard.attributeDescription') }}<br />
-          <a href="//google.com" target="_blank" class="text-muted">
+          {{ $t('productFeedCard.attributeDescription') }}<br>
+          <a
+            href="//google.com"
+            target="_blank"
+            class="text-muted"
+          >
             {{ $t('cta.aboutProductCategory') }}
           </a>
         </p>
@@ -70,8 +80,6 @@ import {
   BIconstack,
   BIconCheck,
   BIconCircleFill,
-  BIconExclamationCircle,
-  BIconExclamationTriangleFill,
 } from 'bootstrap-vue';
 
 export default {
@@ -80,8 +88,6 @@ export default {
     BIconstack,
     BIconCheck,
     BIconCircleFill,
-    BIconExclamationCircle,
-    BIconExclamationTriangleFill,
   },
   props: {
     hasMapping: {

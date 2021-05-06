@@ -59,7 +59,6 @@ import {
   BIconstack,
   BIconCheck,
   BIconCircleFill,
-  BIconExclamationCircle,
   BIconExclamationTriangleFill,
 } from 'bootstrap-vue';
 
@@ -69,30 +68,29 @@ export default {
     BIconstack,
     BIconCheck,
     BIconCircleFill,
-    BIconExclamationCircle,
     BIconExclamationTriangleFill,
   },
   props: {
     status: {
       type: String,
-      validator: function (value) {
-        return ['success', 'warning'].indexOf(value) !== -1
+      validator(value) {
+        return ['success', 'warning'].indexOf(value) !== -1;
       },
     },
     title: {
-      type: String
+      type: String,
     },
     description: {
-      type: String
+      type: String,
     },
     details: {
-      type: String
+      type: String,
     },
     link: {
-      type: String
+      type: String,
     },
     linkTo: {
-      type: String
+      type: String,
     },
   },
 };
