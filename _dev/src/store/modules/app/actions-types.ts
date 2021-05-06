@@ -17,6 +17,8 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-export enum ActionsTypes {
+enum ActionsTypes {
 
 }
+
+export {ActionsTypes as default};

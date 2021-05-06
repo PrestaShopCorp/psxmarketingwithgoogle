@@ -18,7 +18,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
+use PrestaShop\Module\PrestashopGoogleShopping\Config\Env;
 use PrestaShop\Module\Ps_googleshopping\Translations\PsGoogleShoppingTranslations;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 
@@ -27,10 +27,17 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
     /** @var Ps_googleshopping */
     public $module;
 
+    /**
+     * @var Env
+     */
+    private $env;
+
     public function __construct()
     {
         parent::__construct();
         $this->bootstrap = false;
+
+        $this->env = $this->module->getService(Env::class);
     }
 
     public function initContent()
@@ -75,7 +82,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
                 ]
             ),
             'psAccountShopId' => $psAccountShopId,
-            'psGoogleShoppingApiUrl' => Config::API_URL,
+            'psGoogleShoppingApiUrl' => $this->env->get('PSX_GOOGLE_SHOPPING_API_URL'),
         ]);
 
         $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');
