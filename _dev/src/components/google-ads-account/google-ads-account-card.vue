@@ -96,7 +96,10 @@
         </div>
       </div>
 
-      <div v-if="googleAdsAccountConfigured" class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
+      <div
+        v-if="googleAdsAccountConfigured"
+        class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
+      >
         <p
           class="mb-0"
         >
