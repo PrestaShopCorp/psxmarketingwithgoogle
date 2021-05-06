@@ -32,7 +32,7 @@ class ApiClientFactory implements ApiClientFactoryInterface
 
     public function __construct(Env $env)
     {
-        $this->apiUrl = $env->get('APP_ENV') === 'test' ? $env->get('MOCK_API_URL') : $env->get('API_URL');
+        $this->apiUrl = $env->get('PSX_GOOGLE_SHOPPING_API_URL');
     }
 
     public function createClient()

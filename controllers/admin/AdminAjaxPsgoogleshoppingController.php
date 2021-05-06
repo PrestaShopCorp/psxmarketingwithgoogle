@@ -51,8 +51,6 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             case 'getDefaultCountry':
                 $this->getDefaultCountry();
                 break;
-            case 'getProductFeedSummary':
-                $this->getProductFeedSummary();
             case 'getOauthCallback':
                 $this->getOauthCallback();
                 break;

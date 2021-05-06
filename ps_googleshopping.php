@@ -166,13 +166,8 @@ class Ps_googleshopping extends Module
 
     private function loadEnv()
     {
-        if (file_exists(_PS_MODULE_DIR_ . 'ps_googleshopping/.env')) {
-            $dotenv = Dotenv::create(_PS_MODULE_DIR_ . 'ps_googleshopping/');
-            $dotenv->load();
-        }
-
-        if (file_exists(_PS_MODULE_DIR_ . 'ps_googleshopping/.env.dist')) {
-            $dotenv = Dotenv::create(_PS_MODULE_DIR_ . 'ps_googleshopping/', '.env.dist');
+        if (file_exists(__DIR__ . '/.env')) {
+            $dotenv = Dotenv::create(__DIR__);
             $dotenv->load();
         }
     }

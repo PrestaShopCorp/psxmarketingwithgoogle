@@ -17,6 +17,8 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-export enum MutationsTypes {
+enum MutationsTypes {
 
 }
+
+export {MutationsTypes as default};
