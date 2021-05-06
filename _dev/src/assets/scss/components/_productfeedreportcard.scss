@@ -3,8 +3,13 @@
 
   border: 1px solid $grey_light;
   border-radius: 3px;
-  margin: rem(4px);
   flex: 0 0 100%;
+  margin-top: rem(4);
+  margin-bottom: rem(4);
+
+  @include media-breakpoint-up(sm) {
+    margin: rem(4);
+  }
 
   &:not(#{$root}--full) {
     @include media-breakpoint-up(sm) {
