@@ -4,7 +4,7 @@ import Deselect from './ps-select-deselect';
 import OpenIndicator from './ps-select-open-indicator';
 
 export default {
-  name: 'psSelect',
+  name: 'PsSelect',
   extends: vSelect,
   /**
    * As I'm extending a component, I don't want to overwrite props type
@@ -13,7 +13,7 @@ export default {
   /* eslint-disable vue/require-prop-types */
   props: {
     components: {
-      default: () => ({ OpenIndicator, Deselect }),
+      default: () => ({OpenIndicator, Deselect}),
     },
   },
   /* eslint-enable vue/require-prop-types */

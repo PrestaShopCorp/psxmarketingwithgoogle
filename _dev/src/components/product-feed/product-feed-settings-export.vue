@@ -32,7 +32,10 @@
           <label class="mb-2">
             {{ $t("productFeedSettings.export.timeZone") }}
           </label>
-          <b-select v-model="selectedTimeZone" class="mb-3 mb-md-0">
+          <b-select
+            v-model="selectedTimeZone"
+            class="mb-3 mb-md-0"
+          >
             <b-form-select-option
               v-for="(option, index) in $options.timezones"
               :key="index"
@@ -64,9 +67,9 @@
     <b-form-group
       class="mt-4 pb-2"
     >
-    <label class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block">
-      {{ $t("productFeedSettings.export.excludeProducts") }}
-    </label>
+      <label class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block">
+        {{ $t("productFeedSettings.export.excludeProducts") }}
+      </label>
       <ps-select
         :reduce="options => options.name"
         :options="options.filter(o => selectedExcludeProducts.indexOf(o.name) < 0)"
@@ -112,12 +115,12 @@
 </template>
 
 <script>
+import timezones from 'timezones.json';
 import PsSelect from '../commons/ps-select';
-import timezones from "timezones.json";
 
 export default {
-  name: "ProductFeedSettingsExport",
-  components: { PsSelect },
+  name: 'ProductFeedSettingsExport',
+  components: {PsSelect},
   data() {
     return {
       selectedSyncTime: 0,
@@ -127,84 +130,84 @@ export default {
       searchString: '',
       options: [
         {
-            id: '20',
-            name: 'Carte cadeau',
+          id: '20',
+          name: 'Carte cadeau',
         },
         {
-            id: '19',
-            name: 'Mug personnalisable',
+          id: '19',
+          name: 'Mug personnalisable',
         },
         {
-            id: '18',
-            name: 'Carnet de notes Colibri',
+          id: '18',
+          name: 'Carnet de notes Colibri',
         },
         {
-            id: '17',
-            name: 'Carnet de notes Ours brun',
+          id: '17',
+          name: 'Carnet de notes Ours brun',
         },
         {
-            id: '16',
-            name: 'Carnet de notes Renard',
+          id: '16',
+          name: 'Carnet de notes Renard',
         },
         {
-            id: '15',
-            name: 'Pack Mug + Affiche encadrée',
+          id: '15',
+          name: 'Pack Mug + Affiche encadrée',
         },
         {
-            id: '14',
-            name: 'Illustration vectorielle Colibri',
+          id: '14',
+          name: 'Illustration vectorielle Colibri',
         },
         {
-            id: '13',
-            name: 'Illustration vectorielle Ours brun',
+          id: '13',
+          name: 'Illustration vectorielle Ours brun',
         },
         {
-            id: '12',
-            name: 'Illustration vectorielle Renard',
+          id: '12',
+          name: 'Illustration vectorielle Renard',
         },
         {
-            id: '11',
-            name: 'Coussin colibri',
+          id: '11',
+          name: 'Coussin colibri',
         },
         {
-            id: '10',
-            name: 'Coussin ours brun',
+          id: '10',
+          name: 'Coussin ours brun',
         },
         {
-            id: '9',
-            name: 'Coussin renard',
+          id: '9',
+          name: 'Coussin renard',
         },
         {
-            id: '8',
-            name: 'Mug Today is a good day',
+          id: '8',
+          name: 'Mug Today is a good day',
         },
         {
-            id: '7',
-            name: 'Mug The adventure begins',
+          id: '7',
+          name: 'Mug The adventure begins',
         },
         {
-            id: '6',
-            name: 'Mug The best is yet to come',
+          id: '6',
+          name: 'Mug The best is yet to come',
         },
         {
-            id: '5',
-            name: 'Affiche encadrée Today is a good day',
+          id: '5',
+          name: 'Affiche encadrée Today is a good day',
         },
         {
-            id: '4',
-            name: 'Affiche encadrée The adventure begins',
+          id: '4',
+          name: 'Affiche encadrée The adventure begins',
         },
         {
-            id: '3',
-            name: 'Affiche encadrée The best is yet to come',
+          id: '3',
+          name: 'Affiche encadrée The best is yet to come',
         },
         {
-            id: '2',
-            name: 'Pull imprimé colibri',
+          id: '2',
+          name: 'Pull imprimé colibri',
         },
         {
-            id: '1',
-            name: 'T-shirt imprimé colibri',
+          id: '1',
+          name: 'T-shirt imprimé colibri',
         },
       ],
     };
@@ -214,14 +217,14 @@ export default {
       const ranges = [];
       const date = new Date();
       const format = {
-        hour: "numeric",
-        minute: "numeric",
+        hour: 'numeric',
+        minute: 'numeric',
       };
-      for (let minutes = 0; minutes < 24 * 60; minutes = minutes + interval) {
+      for (let minutes = 0; minutes < 24 * 60; minutes += interval) {
         date.setHours(0);
         date.setMinutes(minutes);
         ranges.push(date.toLocaleTimeString(language, format));
-      };
+      }
       return ranges;
     },
     pushSelectedExcludeProducts(event) {
@@ -246,16 +249,16 @@ export default {
   timezones,
   exportMethods: [
     {
-      text: "Export all products",
-      value: "all",
+      text: 'Export all products',
+      value: 'all',
     },
     {
-      text: "Export by category",
-      value: "category",
+      text: 'Export by category',
+      value: 'category',
     },
     {
-      text: "Export by brand",
-      value: "brand",
+      text: 'Export by brand',
+      value: 'brand',
     },
   ],
 };

@@ -8,20 +8,20 @@
     <template
       v-if="!isEnabled"
     >
-    <div
-      class="d-flex align-items-center"
-    >
-      <img
-        class="mr-3 rounded-circle"
-        src="@/assets/images/Google-Ads-icon-grey.svg"
-        width="40"
-        height="40"
-        alt=""
+      <div
+        class="d-flex align-items-center"
       >
-      <b-card-text class="text-left mb-0 ps_gs-fz-12">
-        {{ $t('googleAdsAccountCard.intro') }}
-      </b-card-text>
-    </div>
+        <img
+          class="mr-3 rounded-circle"
+          src="@/assets/images/Google-Ads-icon-grey.svg"
+          width="40"
+          height="40"
+          alt=""
+        >
+        <b-card-text class="text-left mb-0 ps_gs-fz-12">
+          {{ $t('googleAdsAccountCard.intro') }}
+        </b-card-text>
+      </div>
     </template>
     <template
       v-else
