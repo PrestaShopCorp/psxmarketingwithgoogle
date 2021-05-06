@@ -157,72 +157,22 @@
       </div>
       <b-container fluid class="p-0 mb-2">
         <b-row no-gutters class="mx-n1">
-          <b-col cols class="ps_gs-productfeed-report-card">
-            <div class="px-3 py-2">
-              <div class="d-flex align-items-center ml-n1 mt-n1 mb-2">
-                <b-badge variant="success">
-                  {{ $t("badge.readyToSync") }}
-                </b-badge>
-                <b-button
-                  variant="invisible"
-                  class="p-0 mt-0 ml-1"
-                  v-b-tooltip.hover
-                  title="Tooltip directive content"
-                >
-                  <b-icon-exclamation-circle
-                    font-scale="0.75"
-                    width="14"
-                    height="14"
-                    class="align-middle d-inline-block"
-                  />
-                </b-button>
-              </div>
-              <i
-                v-if="syncStatus === 'busy'"
-                class="icon-busy icon-busy--dark d-block"
-              />
-              <div
-                v-else
-                class="d-flex justify-content-between"
-              >
-                <span class="ps_gs-fz-12 font-weight-600">{{ nbProductsReadyToSync }}</span>
-              </div>
-            </div>
-          </b-col>
-          <b-col cols class="ps_gs-productfeed-report-card">
-            <div class="px-3 py-2">
-              <div class="d-flex align-items-center ml-n1 mt-n1 mb-2">
-                <b-badge variant="warning">
-                  {{ $t("badge.cantSync") }}
-                </b-badge>
-                <b-button
-                  variant="invisible"
-                  class="p-0 mt-0 ml-1"
-                  v-b-tooltip.hover
-                  title="Tooltip directive content"
-                >
-                  <b-icon-exclamation-circle
-                    width="14"
-                    height="14"
-                    class="align-middle d-inline-block"
-                  />
-                </b-button>
-              </div>
-              <i
-                v-if="syncStatus === 'busy'"
-                class="icon-busy icon-busy--dark d-block"
-              />
-              <div
-                v-else
-                class="d-flex justify-content-between"
-              >
-                <span class="ps_gs-fz-12 font-weight-600">{{ nbProductsCantSync }}</span>
-                <a href="" class="ps_gs-fz-12 font-weight-600">
-                  {{ $t('cta.whyDidntWork') }}
-                </a>
-              </div>
-            </div>
-          </b-col>
+          <product-feed-card-report-products-card
+            badgeVariant="success"
+            :badgeText="$t('badge.readyToSync')"
+            :badgeTooltip="'placeholder'"
+            :syncStatus="syncStatus"
+            :nbProducts="nbProductsReadyToSync"
+          />
+          <product-feed-card-report-products-card
+            badgeVariant="warning"
+            :badgeText="$t('badge.cantSync')"
+            :badgeTooltip="'placeholder'"
+            :syncStatus="syncStatus"
+            :nbProducts="nbProductsCantSync"
+            :ctaText="$t('cta.whyDidntWork')"
+            ctaLink="//google.com"
+          />
         </b-row>
       </b-container>
       <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
@@ -276,7 +226,7 @@
             :link="$t('cta.editAttributeMapping')"
             linkTo="#"
           />
-          <product-feed-card-report-mapped-categories
+          <product-feed-card-report-mapped-categories-card
             :hasMapping="hasMapping"
             :categoriesMapped="categoriesMapped"
             :categoriesTotal="categoriesTotal"
@@ -299,7 +249,8 @@ import {
 } from 'bootstrap-vue';
 import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
-import ProductFeedCardReportMappedCategories from './product-feed-card-report-mapped-categories.vue';
+import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
+import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 
 export default {
   name: 'ProductFeedCard',
@@ -311,7 +262,8 @@ export default {
     BIconExclamationTriangleFill,
     Stepper,
     ProductFeedCardReportCard,
-    ProductFeedCardReportMappedCategories,
+    ProductFeedCardReportMappedCategoriesCard,
+    ProductFeedCardReportProductsCard,
   },
   data() {
     return {

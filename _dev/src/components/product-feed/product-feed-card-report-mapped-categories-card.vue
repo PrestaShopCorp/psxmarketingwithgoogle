@@ -75,7 +75,7 @@ import {
 } from 'bootstrap-vue';
 
 export default {
-  name: 'ProductFeedCardReportCard',
+  name: 'ProductFeedCardReportMappedCategoriesCard',
   components: {
     BIconstack,
     BIconCheck,
