@@ -21,16 +21,18 @@ import {State as LocalState} from './state';
 
 interface OnboardStatus {
   // TODO: To be defined from response structure
-  // isOnboarded: Boolean;
-}
-
-interface OnboardStatus {
-  // TODO: To be defined from response structure
-  // isOnboarded: Boolean;
+  email: string;
 }
 
 export default {
   [MutationsTypes.SAVE_ONBOARD_STATUS](state: LocalState, response: OnboardStatus) {
-    state.googleAccount = response;
+    const {email} = response;
+    state.googleAccount = {
+      ...state.googleAccount,
+      email,
+    };
+  },
+  [MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN](state: LocalState, token: string) {
+    state.googleAccount.token = token;
   },
 };

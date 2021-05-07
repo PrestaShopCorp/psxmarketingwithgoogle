@@ -53,6 +53,4 @@ export const contextPsAccountsConnectedAndValidated = {
     },
 };
 
-export default {
-    contextPsAccounts: contextPsAccountsNotConnected,
-};
+export default contextPsAccountsConnectedAndValidated;

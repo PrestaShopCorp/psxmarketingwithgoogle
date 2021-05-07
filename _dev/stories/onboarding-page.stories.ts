@@ -8,6 +8,7 @@ import ProductFeedCard from '../src/components/product-feed/product-feed-card.vu
 import FreeListingCard from '../src/components/free-listing/free-listing-card.vue'
 import OnboardingPage from '../src/views/onboarding-page.vue'
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
+import {googleAccountNotConnected, googleAccountConnected} from "../.storybook/mock/google-account";
 
 export default {
   title: 'Onboarding/OnboardingPage',
@@ -49,6 +50,7 @@ const TemplateMerchantCenterAccount = (args, { argTypes }) => ({
   `,
   beforeCreate(this: any) {
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
+    this.$store.state.accounts.googleAccount = googleAccountConnected;
   },
 });
 
