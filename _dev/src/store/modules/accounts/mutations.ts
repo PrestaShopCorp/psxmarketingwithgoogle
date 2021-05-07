@@ -24,6 +24,11 @@ interface OnboardStatus {
   // isOnboarded: Boolean;
 }
 
+interface OnboardStatus {
+  // TODO: To be defined from response structure
+  // isOnboarded: Boolean;
+}
+
 export default {
   [MutationsTypes.SAVE_ONBOARD_STATUS](state: LocalState, response: OnboardStatus) {
     state.googleAccount = response;

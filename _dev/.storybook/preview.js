@@ -19,6 +19,7 @@
 import { configure, addDecorator } from "@storybook/vue";
 import { select } from '@storybook/addon-knobs'
 import Vue from "vue";
+import Vuex from "vuex";
 
 // import vue plugins
 import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
@@ -41,6 +42,8 @@ const message = require("./translations.json");
 
 // i18n and store
 Vue.use(VueI18n);
+
+import store from "../src/store";
 addDecorator(() => ({
   template: "<story/>",
   i18n: new VueI18n({
@@ -70,7 +73,7 @@ addDecorator(() => ({
       immediate: true,
     },
   },
-  store: require("../src/store"),
+  store,
 }));
 
 configure(require.context("../src", true, /\.stories\.(ts|js|md)x?$/), module);
