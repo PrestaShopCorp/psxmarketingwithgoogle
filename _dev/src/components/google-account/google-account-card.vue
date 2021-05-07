@@ -144,10 +144,6 @@ export default {
   data() {
     return {
       isConnecting: false,
-      user: {
-        email: 'v.godard@maisonroyer.com',
-        photo: '//source.unsplash.com/38x38',
-      },
     };
   },
   props: {
@@ -158,6 +154,11 @@ export default {
     isConnected: {
       type: Boolean,
       default: false,
+    },
+  },
+  computed: {
+    user() {
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'];
     },
   },
   methods: {

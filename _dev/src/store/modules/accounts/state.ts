@@ -17,7 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-export interface AccountsContext {
+export interface PrestaShopAccountsContext {
   user: {
     email: string|null,
     emailIsValidated: boolean,
@@ -34,16 +34,26 @@ export interface AccountsContext {
   shops: object[],
 }
 
+export interface GoogleAccountsContext {
+  token: string,
+  email: string,
+  photo: string,
+}
+
 export interface State {
-  contextPsAccounts: AccountsContext|any;
-  googleAccount: object;
+  contextPsAccounts: PrestaShopAccountsContext|any;
+  googleAccount: GoogleAccountsContext;
   googleMerchantAccount: object;
   psGoogleShoppingApiUrl: string;
 }
 
 export const state: State = {
   contextPsAccounts: {},
-  googleAccount: {},
+  googleAccount: {
+    token: '',
+    email: '',
+    photo: '',
+  },
   googleMerchantAccount: {},
   psGoogleShoppingApiUrl: '',
 };

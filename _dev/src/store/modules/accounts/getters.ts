@@ -17,7 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import {State as LocalState, AccountsContext} from './state';
+import {State as LocalState, PrestaShopAccountsContext, GoogleAccountsContext} from './state';
 import GetterTypes from './getters-types';
 
 export default {
@@ -26,7 +26,7 @@ export default {
     return state.contextPsAccounts.user.emailIsValidated
       && state.contextPsAccounts.user.email !== '';
   },
-  [GetterTypes.GET_PS_ACCOUNTS_CONTEXT](state: LocalState): AccountsContext {
+  [GetterTypes.GET_PS_ACCOUNTS_CONTEXT](state: LocalState): PrestaShopAccountsContext {
     return state.contextPsAccounts;
   },
   [GetterTypes.GET_PS_ACCOUNTS_CONTEXT_SHOPS](state: LocalState) : Object[] {
@@ -36,4 +36,13 @@ export default {
   },
 
   /* Google Account */
+  [GetterTypes.GET_GOOGLE_ACCOUNT_IS_ONBOARDED](state: LocalState): boolean {
+    return !!state.googleAccount.token.length;
+  },
+  [GetterTypes.GET_GOOGLE_ACCOUNT_TOKEN](state: LocalState) : String {
+    return state.googleAccount.token;
+  },
+  [GetterTypes.GET_GOOGLE_ACCOUNT](state: LocalState) : GoogleAccountsContext {
+    return state.googleAccount;
+  },
 };
