@@ -73,9 +73,9 @@
     <b-form-group
       class="mt-4 pb-2"
     >
-    <label class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block">
-      {{ $t("productFeedSettings.export.labelExcludeProducts") }}
-    </label>
+      <label class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block">
+        {{ $t("productFeedSettings.export.labelExcludeProducts") }}
+      </label>
       <ps-select
         :reduce="options => options.name"
         :options="options.filter(o => selectedExcludeProducts.indexOf(o.name) < 0)"
@@ -117,7 +117,10 @@
         {{ $t("cta.continue") }}
       </b-button>
     </div>
-    <div class="text-muted ps_gs-fz-12 mb-0 mt-2 d-flex align-items-start align-items-sm-center justify-content-end">
+    <div
+      class="text-muted ps_gs-fz-12 mb-0 mt-2
+      d-flex align-items-start align-items-sm-center justify-content-end"
+    >
       <b-button
         v-b-tooltip
         title="Tooltip!"
@@ -136,10 +139,11 @@
 
 <script>
 import timezones from 'timezones.json';
-import PsSelect from '../commons/ps-select';
 import {
   BIconExclamationCircle,
 } from 'bootstrap-vue';
+import {Products} from '@/../fixtures/products.js';
+import PsSelect from '../commons/ps-select';
 import ProductFeedSettingsExportExcludeCategory from './product-feed-settings-export-exclude-category';
 import ProductFeedSettingsExportExcludeBrand from './product-feed-settings-export-exclude-brand';
 
@@ -148,7 +152,7 @@ import ProductFeedSettingsExportExcludeBrand from './product-feed-settings-expor
  ** Should be fetched from PrestaShop data
  * TODO: Replace with real datas.
  */
-import { Products } from '@/../fixtures/products.js'
+
 export default {
   name: 'ProductFeedSettingsExport',
   components: {

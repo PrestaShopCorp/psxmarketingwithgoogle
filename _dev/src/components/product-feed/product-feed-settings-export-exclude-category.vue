@@ -16,31 +16,40 @@
           {{ $t('productFeedSettings.export.allCategories') }}
         </b-form-checkbox>
         <ul>
-          <li v-for="(n,index) in 5" :key="index">
+          <li
+            v-for="(nCategory,index) in 5"
+            :key="index"
+          >
             <b-form-checkbox
               class="ps_gs-checkbox"
               name="allCategories"
               inline
             >
-              Catégorie {{ n }}
+              Catégorie {{ nCategory }}
             </b-form-checkbox>
             <ul>
-              <li v-for="(n,index) in 3" :key="index">
+              <li
+                v-for="(nCategory2,index2) in 3"
+                :key="index2"
+              >
                 <b-form-checkbox
                   class="ps_gs-checkbox"
                   name="allCategories"
                   inline
                 >
-                  Catégorie {{ n }}
+                  Catégorie {{ nCategory2 }}
                 </b-form-checkbox>
                 <ul>
-                  <li v-for="(n,index) in 2" :key="index">
+                  <li
+                    v-for="(nCategory3,index3) in 2"
+                    :key="index3"
+                  >
                     <b-form-checkbox
                       class="ps_gs-checkbox"
                       name="allCategories"
                       inline
                     >
-                      Catégorie {{ n }}
+                      Catégorie {{ nCategory3 }}
                     </b-form-checkbox>
                   </li>
                 </ul>

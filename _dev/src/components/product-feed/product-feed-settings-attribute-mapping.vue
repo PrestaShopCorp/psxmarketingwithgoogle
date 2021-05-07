@@ -4,7 +4,11 @@
       {{ $t('productFeedSettings.attributeMapping.intro') }}
     </p>
     <p class="text-muted">
-      <a class="ps_gs-fz-12" href="//google.com" target="_blank">
+      <a
+        class="ps_gs-fz-12"
+        href="//google.com"
+        target="_blank"
+      >
         {{ $t('productFeedSettings.attributeMapping.learnAboutAttributeMapping') }}
       </a>
     </p>
@@ -73,14 +77,14 @@
         <b-form-checkbox
           switch
           size="lg"
-          class="ml-sm-4 mb-3 ps_gs-switch"
+          class="ml-sm-4 ps_gs-switch"
           v-model="sellRefurbished"
         >
           <span class="ps_gs-fz-14">
             {{
               sellRefurbished
-              ? $t('cta.yes')
-              : $t('cta.no')
+                ? $t('cta.yes')
+                : $t('cta.no')
             }}
           </span>
         </b-form-checkbox>
@@ -93,13 +97,13 @@
           v-model="sellApparel"
           switch
           size="lg"
-          class="ml-sm-4 mb-3 ps_gs-switch"
+          class="ml-sm-4 ps_gs-switch"
         >
           <span class="ps_gs-fz-14">
             {{
               sellApparel
-              ? $t('cta.yes')
-              : $t('cta.no')
+                ? $t('cta.yes')
+                : $t('cta.no')
             }}
           </span>
         </b-form-checkbox>
@@ -138,17 +142,27 @@
         <p class="mb-3">
           {{ $t('productFeedSettings.attributeMapping.footerNotice1') }}
           <br>
-          <a href="//google.com" target="_blank">
+          <a
+            href="//google.com"
+            target="_blank"
+          >
             {{ $t('productFeedSettings.attributeMapping.learnAboutShippingSettings') }}
           </a>
-          <a href="//google.com" target="_blank" class="ml-2">
+          <a
+            href="//google.com"
+            target="_blank"
+            class="ml-2"
+          >
             {{ $t('productFeedSettings.attributeMapping.learnHowToSetupShippingSettings') }}
           </a>
         </p>
         <p>
           {{ $t('productFeedSettings.attributeMapping.footerNotice2') }}
           <br>
-          <a href="//google.com" target="_blank">
+          <a
+            href="//google.com"
+            target="_blank"
+          >
             {{ $t('productFeedSettings.attributeMapping.learnRequirementsProductSpeficifacion') }}
           </a>
         </p>
@@ -178,7 +192,10 @@
         {{ $t("cta.saveAndContinue") }}
       </b-button>
     </div>
-    <div class="text-muted ps_gs-fz-12 mb-0 mt-2 d-flex align-items-start align-items-sm-center justify-content-end">
+    <div
+      class="text-muted ps_gs-fz-12 mb-0 mt-2
+      d-flex align-items-start align-items-sm-center justify-content-end"
+    >
       <b-button
         v-b-tooltip
         title="Tooltip!"
@@ -198,7 +215,7 @@
 <script>
 
 import {
-  BTable,
+  BTableSimple,
   BIconExclamationCircle,
 } from 'bootstrap-vue';
 import ProductFeedSettingsAttributeMappingTablehead from './product-feed-settings-attribute-mapping-tablehead';
@@ -207,7 +224,7 @@ import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-
 export default {
   name: 'ProductFeedSettingsAttributeMapping',
   components: {
-    BTable,
+    BTableSimple,
     BIconExclamationCircle,
     ProductFeedSettingsAttributeMappingTablerowSpecific,
     ProductFeedSettingsAttributeMappingTablehead,

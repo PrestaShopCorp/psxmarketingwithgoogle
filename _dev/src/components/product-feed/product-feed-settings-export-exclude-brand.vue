@@ -2,9 +2,9 @@
   <b-form-group
     class="mt-0 pb-2"
   >
-  <label class="ps_gs-fz-14 font-weight-600 mb-2 p-0 d-block">
-    {{ $t('productFeedSettings.export.labelSelectBrand') }}
-  </label>
+    <label class="ps_gs-fz-14 font-weight-600 mb-2 p-0 d-block">
+      {{ $t('productFeedSettings.export.labelSelectBrand') }}
+    </label>
     <ps-select
       :reduce="options => options.name"
       :options="options.filter(o => selectedBrand.indexOf(o.name) < 0)"
@@ -38,68 +38,68 @@ export default {
        */
       options: [
         {
-            id: '1',
-            name: 'Adidas',
+          id: '1',
+          name: 'Adidas',
         },
         {
-            id: '2',
-            name: 'Nike',
+          id: '2',
+          name: 'Nike',
         },
         {
-            id: '3',
-            name: 'Hummel',
+          id: '3',
+          name: 'Hummel',
         },
         {
-            id: '4',
-            name: 'Kappa',
+          id: '4',
+          name: 'Kappa',
         },
         {
-            id: '5',
-            name: 'Le Coq Sportif',
+          id: '5',
+          name: 'Le Coq Sportif',
         },
         {
-            id: '6',
-            name: 'New Balance',
+          id: '6',
+          name: 'New Balance',
         },
         {
-            id: '7',
-            name: 'Celio',
+          id: '7',
+          name: 'Celio',
         },
         {
-            id: '8',
-            name: 'Suitsupply',
+          id: '8',
+          name: 'Suitsupply',
         },
         {
-            id: '9',
-            name: 'Burberry',
+          id: '9',
+          name: 'Burberry',
         },
         {
-            id: '10',
-            name: 'Bruce field',
+          id: '10',
+          name: 'Bruce field',
         },
         {
-            id: '11',
-            name: 'Cos',
+          id: '11',
+          name: 'Cos',
         },
         {
-            id: '12',
-            name: 'Jules',
+          id: '12',
+          name: 'Jules',
         },
         {
-            id: '13',
-            name: 'Devred',
+          id: '13',
+          name: 'Devred',
         },
         {
-            id: '14',
-            name: 'Pied de biche',
+          id: '14',
+          name: 'Pied de biche',
         },
         {
-            id: '15',
-            name: 'Bexley',
+          id: '15',
+          name: 'Bexley',
         },
         {
-            id: '16',
-            name: 'Charles tyrwhitt',
+          id: '16',
+          name: 'Charles tyrwhitt',
         },
       ],
     };

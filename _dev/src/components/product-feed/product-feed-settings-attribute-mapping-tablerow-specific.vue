@@ -22,7 +22,10 @@
           value="default"
           class="mb-2"
         >
-          {{ $t('productFeedSettings.attributeMapping.theXField', [$t(`productFeedSettings.attributeMapping.${input}`)]) }}
+          {{
+            $t('productFeedSettings.attributeMapping.theXField',
+               [$t(`productFeedSettings.attributeMapping.${input}`)])
+          }}
         </b-form-radio>
         <div class="d-sm-flex align-items-center">
           <b-form-radio
