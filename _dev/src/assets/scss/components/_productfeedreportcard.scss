@@ -1,0 +1,28 @@
+.ps_gs-productfeed-report-card {
+  $root: &;
+
+  border: 1px solid $grey_light;
+  border-radius: 3px;
+  flex: 0 0 100%;
+  margin-top: rem(4);
+  margin-bottom: rem(4);
+
+  @include media-breakpoint-up(sm) {
+    margin: rem(4);
+  }
+
+  &:not(#{$root}--full) {
+    @include media-breakpoint-up(sm) {
+      flex: 0 0 calc(50% - 4px - 4px);
+      max-width: calc(50% - 4px - 4px);
+    }
+  }
+
+  &__details {
+    max-height: rem(12) * 2 * (1.4 * 12); // Font size * Nb of lines * line height * font-size
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
