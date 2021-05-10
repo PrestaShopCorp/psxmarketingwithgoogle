@@ -64,7 +64,7 @@
   // page
   @import "layouts/form";
   @import "layouts/sizing";
-  // @import "layouts/table";
+  @import "layouts/table";
 
   // components
   @import "components/onboardingcard";
@@ -75,9 +75,9 @@
   @import "components/breadcrumb";
   @import "components/stepper";
   @import "components/modal";
-  // @import "components/categorieslist";
+  @import "components/categorieslist";
 
   // page
   @import "pages/landingpage";
-  // @import "pages/attribute-mapping";
+  @import "pages/attribute-mapping";
 }
