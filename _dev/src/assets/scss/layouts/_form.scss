@@ -3,6 +3,15 @@
   padding-left: rem(10);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='%23000000'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z'/%3E%3C/svg%3E");
   background-size: 24px;
+
+  &:disabled {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='%23b3c7cd'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z'/%3E%3C/svg%3E");
+  }
+
+  option:hover,
+  option:focus {
+    background-color: $blue_medium;
+  }
 }
 
 .ps_googleshopping-dropdown {
@@ -54,7 +63,7 @@
   }
 
   .vs__search {
-    color: $grey_median;
+    color: $gray-450;
     padding-left: 0;
   }
 
@@ -89,5 +98,55 @@
 
   .vs__selected-options {
     padding: 2px 2px 2px 10px;
+  }
+}
+
+.ps_gs-checkbox {
+  padding-left: 0;
+
+  .custom-control-label {
+    display: flex;
+    align-items: center;
+    padding-left: rem(24);
+    cursor: pointer;
+  }
+
+  .custom-control-label:before{
+    border-color: $gray-450;
+    border-width: 2px;
+    border-radius: 2px;
+  }
+
+  .custom-control-label:after, .custom-control-label:before {
+    left: 0;
+  }
+
+  .custom-control-input:checked~.custom-control-label:before {
+    border-color: $blue;
+  }
+
+  .custom-control-input:checked~.custom-control-label:after {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' aria-label='check' xmlns='http://www.w3.org/2000/svg' fill='%23fff'%3E%3Cpath d='M10.97 4.97a.75.75 0 011.07 1.05l-3.99 4.99a.75.75 0 01-1.08.02L4.324 8.384a.75.75 0 111.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 01.02-.022z'/%3E%3C/svg%3E");
+    background-size: 125%;
+  }
+
+  .custom-control-input:indeterminate~.custom-control-label:after {
+    background-color: $grey_muted;
+  }
+}
+
+.ps_gs-switch {
+  .custom-control-input:checked ~ .custom-control-label::before {
+    border-color: $green;
+    background-color: $green;
+  }
+
+  .custom-control-label::after {
+    background-color: #fff;
+  }
+
+  .custom-control-label::before {
+    background-color: $gray-450;
+    border-color: $gray-450;
   }
 }

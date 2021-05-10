@@ -29,3 +29,8 @@ export const ExportSettings:any = Template.bind({});
 ExportSettings.args = {
   activeStep: 2,
 }
+
+export const AttributeMapping:any = Template.bind({});
+AttributeMapping.args = {
+  activeStep: 3,
+}

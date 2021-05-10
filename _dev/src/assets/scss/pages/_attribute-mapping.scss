@@ -1,0 +1,8 @@
+.ps_gs-attribute-mapping-questions {
+  @include media-breakpoint-up(sm) {
+    display: grid;
+    align-items: center;
+    grid-template-columns: max-content 1fr;
+    grid-row-gap: rem(16);
+  }
+}
