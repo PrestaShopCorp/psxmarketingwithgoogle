@@ -30,9 +30,6 @@ import VueShowdown from "vue-showdown";
 import "../showdown.js";
 
 // import css style
-// Import will be done in the scss directly to be able to import only what we need
-// import "prestakit/dist/css/bootstrap-prestashop-ui-kit.css";
-// import "bootstrap-vue/dist/bootstrap-vue";
 import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
 
 Vue.use(BootstrapVue, BootstrapVueIcons);
