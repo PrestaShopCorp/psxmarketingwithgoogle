@@ -3,7 +3,7 @@
 namespace PrestaShop\Module\PrestashopGoogleShopping\Tracker;
 
 use Context;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Env;
+use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 
 class Segment implements TrackerInterface
 {
@@ -23,17 +23,11 @@ class Segment implements TrackerInterface
     private $context;
 
     /**
-     * @var Env
-     */
-    private $env;
-
-    /**
      * Segment constructor.
      */
-    public function __construct(Context $context, Env $env)
+    public function __construct(Context $context)
     {
         $this->context = $context;
-        $this->env = $env;
         $this->init();
     }
 
@@ -42,7 +36,7 @@ class Segment implements TrackerInterface
      */
     private function init()
     {
-        \Segment::init($this->env->get('PSX_GOOGLE_SHOPPING_SEGMENT_API_KEY'));
+        \Segment::init(Config::PSX_GOOGLE_SHOPPING_SEGMENT_API_KEY);
     }
 
     /**

@@ -164,6 +164,20 @@ class Ps_googleshopping extends Module
         $this->context->controller->addCSS($this->getPathUri() . 'views/css/admin/menu.css');
     }
 
+    public function hookDisplayHeader()
+    {
+        $websiteClaim = Configuration::get(Config::WEBSITE_CLAIM);
+        if (!$websiteClaim) {
+            return;
+        }
+
+        $this->context->smarty->assign([
+            'website_claim' => $websiteClaim,
+        ]);
+
+        $this->display(__FILE__, 'header.tpl');
+    }
+
     private function loadEnv()
     {
         if (file_exists(__DIR__ . '/.env')) {

@@ -1,5 +1,8 @@
 # ps_googleshopping
 
+## microcks
+
+### setup
 ### Development
 
 #### Environment customization
@@ -18,8 +21,7 @@ PSX_GOOGLE_SHOPPING_API_URL=https://localhost:8080
 
 #### Microcks
 
-**Setup**
-
-When running for the fist time run command: make build-microcks
-After microcks is installed run: make run-microcks
-When microcks is running you can access it by opening [microcks](http://localhost:8080/).
+To use microcks replace the default PSX_GOOGLE_SHOPPING_API_URL from Config.php by filling an `.env` file with:
+```
+PSX_GOOGLE_SHOPPING_API_URL=https://mock-googleshopping-api.psessentials-integration.net/rest/PS+Google+Shopping+all-in-one/1.0/
+```

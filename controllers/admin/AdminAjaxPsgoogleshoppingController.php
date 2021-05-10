@@ -1,6 +1,7 @@
 <?php
 
 use PrestaShop\Module\PrestashopGoogleShopping\API\APIClient;
+use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
@@ -69,6 +70,9 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             case 'postAccountOnboard':
                 $this->postAccountOnboard();
                 break;
+            case 'getWebsiteClaim':
+                $this->getWebsiteClaim();
+                break;
             default:
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
         }
@@ -116,6 +120,13 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $this->ajaxDie(json_encode($response));
     }
 
+    private function postAccountOnboard()
+    {
+        $response = $this->apiClient->postAccountOnboard();
+
+        $this->ajaxDie(json_encode($response));
+    }
+
     private function getLastStatus()
     {
         $response = $this->apiClient->getLastStatus();
@@ -123,10 +134,10 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $this->ajaxDie(json_encode($response));
     }
 
-    private function postAccountOnboard()
+    private function getWebsiteClaim()
     {
-        $response = $this->apiClient->postAccountOnboard();
+        $response = $this->apiClient->getWebsiteClaim();
 
-        $this->ajaxDie(json_encode($response));
+        Configuration::updateValue(Config::WEBSITE_CLAIM, $response);
     }
 }

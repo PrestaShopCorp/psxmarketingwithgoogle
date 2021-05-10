@@ -13,11 +13,6 @@ class APIClient
     private $client;
 
     /**
-     * @var string
-     */
-    private $accessToken = '';
-
-    /**
      * @var ErrorHandler
      */
     private $errorHandler;
@@ -58,6 +53,11 @@ class APIClient
     public function postAccountOnboard()
     {
         return $this->get('account/onboard');
+    }
+
+    public function getWebsiteClaim()
+    {
+        return $this->get('account/claim');
     }
 
     /**
@@ -108,12 +108,7 @@ class APIClient
     {
         $options = [
             'headers' => $headers,
-            'body' => array_merge(
-                [
-                    'access_token' => $this->accessToken,
-                ],
-                $body
-            ),
+            'body' => $body,
         ];
 
         try {
