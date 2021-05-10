@@ -96,7 +96,11 @@ export default {
   .page-sidebar-closed:not(.mobile) #content.nobootstrap {
     padding-left: 50px;
   }
+  .page-sidebar:not(.page-sidebar-closed) .nobootstrap {
+    margin-left: 210px;
+  }
   .material-icons.js-mobile-menu {
     display: none !important
   }
+
 </style>
