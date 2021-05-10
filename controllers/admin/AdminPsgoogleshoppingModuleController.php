@@ -83,7 +83,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
             ),
             'psAccountShopId' => $psAccountShopId,
             'psGoogleShoppingApiUrl' => $this->env->get('PSX_GOOGLE_SHOPPING_API_URL'),
-            'psGoogleShoppingShopUrl' =>  'baseUrl' =>  $this->context->link->getAdminLink('AdminPsgoogleshoppingModule'),
+            'psGoogleShoppingShopUrl' => $this->context->link->getAdminLink('AdminPsgoogleshoppingModule'),
         ]);
 
         $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');

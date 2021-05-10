@@ -164,7 +164,7 @@ export default {
       this.isConnecting = true;
     },
     openPopin() {
-      window.open(this.$store.getters.getGoogleAuthEndpoint);
+      window.location.href = this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL'];
     },
   },
 };

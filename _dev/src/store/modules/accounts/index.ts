@@ -11,11 +11,11 @@ const {
 }: any = window;
 
 const state = Object.assign(
-  contextPsAccounts || {},
-  psGoogleShoppingApiUrl || '',
-  {...initialState},
-  psAccountShopId || '',
-  psGoogleShoppingShopUrl || '',
+  initialState,
+  {contextPsAccounts} || {},
+  {psGoogleShoppingApiUrl} || '',
+  {psGoogleShoppingShopUrl} || '',
+  {psAccountShopId} || '',
 );
 
 export default {

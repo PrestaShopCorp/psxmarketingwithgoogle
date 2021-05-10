@@ -30,7 +30,7 @@ export default defineComponent({
     this.$root.$on('onHideLanding', () => {
       this.showIntroduction = false;
     });
-    this.$store.dispatch('accounts/TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT', 'www.google.com');
+    // this.$store.dispatch('accounts/TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT', 'www.google.com');
   },
   methods: {
   },

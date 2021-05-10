@@ -3,6 +3,7 @@ import VueRouter, {RouteConfig} from 'vue-router';
 import Configuration from '../views/configuration.vue';
 import Help from '../views/help.vue';
 import Store from '../store';
+import MutationsTypes from '../store/modules/accounts/mutations-types';
 
 Vue.use(VueRouter);
 
@@ -40,8 +41,7 @@ router.beforeEach((to, from, next) => {
       window.history.replaceState(null, '', `?${params}${window.location.hash}`);
     });
   }
-  Store.commit('setGoogleOauthResp', paramsWithValues);
-  Store.dispatch('getGoogleOauthResponse', paramsWithValues);
+  Store.commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE, paramsWithValues);
   next();
 });
 
