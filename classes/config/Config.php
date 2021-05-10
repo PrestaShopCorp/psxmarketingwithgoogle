@@ -4,7 +4,6 @@ namespace PrestaShop\Module\PrestashopGoogleShopping\Config;
 
 class Config
 {
-
     const PSX_GOOGLE_SHOPPING_API_URL = 'https://googleshopping-api.psessentials.net';
 
     const HOOK_LIST = [

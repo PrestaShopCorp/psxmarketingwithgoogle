@@ -172,7 +172,7 @@ class Ps_googleshopping extends Module
 
         $this->display(__FILE__, 'header.tpl');
     }
-  
+
     private function loadEnv()
     {
         if (file_exists(__DIR__ . '/.env')) {
