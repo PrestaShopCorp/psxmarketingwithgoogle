@@ -58,7 +58,6 @@ export default {
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
     } catch (error) {
       console.error(error);
-      Promise.reject(new Error(error));
     }
   },
 };

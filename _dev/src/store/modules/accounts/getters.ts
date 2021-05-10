@@ -39,6 +39,12 @@ export default {
       ? state.contextPsAccounts.shops
       : [];
   },
+  [GetterTypes.GET_PS_ACCOUNTS_SHOP_ID](state: LocalState): string {
+    return state.psAccountShopId;
+  },
+  [GetterTypes.GET_SHOP_CONTROLLER_URL](state: LocalState): string {
+    return state.psGoogleShoppingShopUrl;
+  },
 
   /* Google Account */
   [GetterTypes.GET_GOOGLE_ACCOUNT_IS_ONBOARDED](state: LocalState): boolean {

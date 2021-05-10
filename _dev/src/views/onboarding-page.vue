@@ -127,7 +127,7 @@ export default {
     // ToDo : Add condition to this action call:
     // - As soon as psAccountShopId is set
     // - When the Google authentication is not done yet
-    this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH', {redirectUri: this.$store.state.app.baseUrl, shopId: this.$store.state.app.psAccountShopId});
+    this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH', {redirectUri: this.$store.getters['accounts/GET_SHOP_CONTROLLER_URL'], shopId: this.$store.getters['accounts/GET_PS_ACCOUNTS_SHOP_ID']});
   },
 };
 </script>
