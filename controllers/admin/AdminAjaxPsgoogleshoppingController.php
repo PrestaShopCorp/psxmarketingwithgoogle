@@ -123,6 +123,8 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
     private function postAccountOnboard()
     {
         $response = $this->apiClient->postAccountOnboard();
+
+        $this->ajaxDie(json_encode($response));
     }
 
     private function getLastStatus()

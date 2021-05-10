@@ -166,8 +166,13 @@ class Ps_googleshopping extends Module
 
     public function hookDisplayHeader()
     {
+        $websiteClaim = Configuration::get(Config::WEBSITE_CLAIM);
+        if (!$websiteClaim) {
+            return;
+        }
+
         $this->context->smarty->assign([
-            'website_claim' => Configuration::get(Config::WEBSITE_CLAIM),
+            'website_claim' => $websiteClaim,
         ]);
 
         $this->display(__FILE__, 'header.tpl');

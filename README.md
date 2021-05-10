@@ -23,5 +23,5 @@ PSX_GOOGLE_SHOPPING_API_URL=https://localhost:8080
 
 To use microcks change PSX_GOOGLE_SHOPPING_API_URL in Config.php class to:
 ```
-PSX_GOOGLE_SHOPPING_API_URL=https://mock-googleshopping-api.psessentials-integration.net/
+PSX_GOOGLE_SHOPPING_API_URL=https://mock-googleshopping-api.psessentials-integration.net/rest/PS+Google+Shopping+all-in-one/1.0/
 ```

@@ -13,11 +13,6 @@ class APIClient
     private $client;
 
     /**
-     * @var string
-     */
-    private $accessToken = '';
-
-    /**
      * @var ErrorHandler
      */
     private $errorHandler;
@@ -113,12 +108,7 @@ class APIClient
     {
         $options = [
             'headers' => $headers,
-            'body' => array_merge(
-                [
-                    'access_token' => $this->accessToken,
-                ],
-                $body
-            ),
+            'body' => $body,
         ];
 
         try {
