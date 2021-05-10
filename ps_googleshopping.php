@@ -1,5 +1,6 @@
 <?php
 
+use Dotenv\Dotenv;
 use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Installer;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller;
@@ -68,11 +69,13 @@ class Ps_googleshopping extends Module
         $this->js_path = $this->_path . 'views/js/';
         $this->docs_path = $this->_path . 'docs/';
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall this module?');
-        $this->ps_versions_compliancy = ['min' => '1.7.0.0', 'max' => _PS_VERSION_];
+        $this->ps_versions_compliancy = ['min' => '1.7.7.0', 'max' => _PS_VERSION_];
 
         if ($this->serviceContainer === null) {
             $this->serviceContainer = new ServiceContainer($this->name, $this->getLocalPath());
         }
+
+        $this->loadEnv();
     }
 
     /**
@@ -87,17 +90,18 @@ class Ps_googleshopping extends Module
 
     public function install()
     {
-        // We can't init the Uninstaller in CLI, as it has been declared in the admin container and PrestaShop
-        // does not have the _PS_ADMIN_DIR_ in this environment.
-        // prestashop/module-lib-service-container:1.3.1 is known as incompatible
-        // $installer = $this->getService(Installer::class);
-        if (!parent::install()) {
-            $this->_errors[] = $this->l('Unable to install module');
+        if (70300 > PHP_VERSION_ID) {
+            $this->_errors[] = $this->l('This requires PHP 7.3 to work properly. Please upgrade your server configuration.');
 
             return false;
         }
 
-        if (!(new PrestaShop\AccountsAuth\Installer\Install())->installPsAccounts()) {
+        // We can't init the Uninstaller in CLI, as it has been declared in the admin container and PrestaShop
+        // does not have the _PS_ADMIN_DIR_ in this environment.
+        // prestashop/module-lib-service-container:1.3.1 is known as incompatible
+        // $installer = $this->getService(Installer::class);
+
+        if (!(new PrestaShop\PsAccountsInstaller\Installer\Installer('4'))->install()) {
             $this->_errors[] = $this->l('Unable to install ps accounts');
 
             return false;
@@ -114,6 +118,15 @@ class Ps_googleshopping extends Module
 
             return false;
         }
+
+        if (!parent::install()) {
+            $this->_errors[] = $this->l('Unable to install module');
+
+            return false;
+        }
+
+        /* @phpstan-ignore-next-line */
+        $this->registerHook(Config::HOOK_LIST);
 
         return true;
     }
@@ -158,5 +171,13 @@ class Ps_googleshopping extends Module
         ]);
 
         $this->display(__FILE__, 'header.tpl');
+    }
+  
+    private function loadEnv()
+    {
+        if (file_exists(__DIR__ . '/.env')) {
+            $dotenv = Dotenv::create(__DIR__);
+            $dotenv->load();
+        }
     }
 }

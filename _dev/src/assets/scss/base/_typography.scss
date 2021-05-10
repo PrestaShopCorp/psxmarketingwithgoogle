@@ -1,0 +1,45 @@
+#googleShoppingApp {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+}
+
+.ps_gs-section-title {
+  display: flex;
+  align-items: center;
+  font-size: rem(20);
+  line-height: rem(27);
+  font-weight: 600;
+
+  &--disabled {
+    color: $grey_muted;
+  }
+
+  img {
+    filter: saturate(0);
+  }
+}
+
+.ps_gs-fz-16 {
+  font-size: rem(16);
+  margin-bottom: rem(8);
+}
+
+.ps_gs-fz-14 {
+  font-size: rem(14);
+}
+
+.ps_gs-fz-13 {
+  font-size: rem(13);
+}
+
+.ps_gs-fz-12 {
+  font-size: rem(12);
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.font-weight-600 {
+  font-weight: 600;
+}

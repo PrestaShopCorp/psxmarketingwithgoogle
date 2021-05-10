@@ -36,6 +36,7 @@
 
 <script lang="ts">
 import {BIconInfoCircle} from 'bootstrap-vue';
+
 export default {
   name: 'Tooltip',
   components: {

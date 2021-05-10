@@ -1,3 +1,5 @@
 services:
   PrestaShop\Module\PrestashopGoogleShopping\Factory\ApiClientFactory:
     class: PrestaShop\Module\PrestashopGoogleShopping\Factory\ApiClientFactory
+    arguments:
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Config\Env'

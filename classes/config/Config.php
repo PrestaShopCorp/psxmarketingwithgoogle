@@ -4,11 +4,8 @@ namespace PrestaShop\Module\PrestashopGoogleShopping\Config;
 
 class Config
 {
-    const APP_ENV = 'test'; // change to 'test' to use mocked api
 
-    const MOCK_API_URL = 'http://localhost:8080/rest/PS+Google+Shopping+all-in-one/1.0/';
-
-    const API_URL = '';
+    const PSX_GOOGLE_SHOPPING_API_URL = 'https://googleshopping-api.psessentials.net';
 
     const HOOK_LIST = [
         'displayBackOfficeHeader',

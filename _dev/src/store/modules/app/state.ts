@@ -17,8 +17,15 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-const {contextPsAccounts} = window || {};
-
 export default {
-  contextPsAccounts,
+  productFeed: {
+    lastSync: {},
+    registerSyncData: {},
+    isSuspendSync: null,
+  },
+  freeListing: {
+    validationList: {},
+    summaryValidationList: [],
+    status: false,
+  },
 };

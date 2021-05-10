@@ -49,6 +49,9 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $action = Tools::getValue('action');
 
         switch ($action) {
+            case 'getDefaultCountry':
+                $this->getDefaultCountry();
+                break;
             case 'getOauthCallback':
                 $this->getOauthCallback();
                 break;
@@ -73,6 +76,20 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             default:
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
         }
+    }
+
+    private function getDefaultCountry()
+    {
+        $defaultCountryId = (int) Configuration::get('PS_COUNTRY_DEFAULT');
+        $country = new Country($defaultCountryId);
+        $this->ajaxDie(json_encode(
+                [
+                    'success' => true,
+                    'country_id' => $country->id,
+                    'country_iso_code' => $country->iso_code,
+                ]
+            )
+        );
     }
 
     private function getOauthCallback()
@@ -103,16 +120,14 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $this->ajaxDie(json_encode($response));
     }
 
-    private function getLastStatus()
-    {
-        $response = $this->apiClient->getLastStatus();
-
-        $this->ajaxDie(json_encode($response));
-    }
-
     private function postAccountOnboard()
     {
         $response = $this->apiClient->postAccountOnboard();
+    }
+  
+    private function getLastStatus()
+    {
+        $response = $this->apiClient->getLastStatus();
 
         $this->ajaxDie(json_encode($response));
     }
@@ -122,7 +137,5 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $response = $this->apiClient->getWebsiteClaim();
 
         Configuration::updateValue(Config::WEBSITE_CLAIM, $response);
-
-        $this->ajaxDie(json_encode($response));
     }
 }

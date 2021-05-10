@@ -1,0 +1,51 @@
+%drop-shadow {
+  filter: drop-shadow(3px 5px 10px rgba(0, 0, 0, 0.2));
+}
+
+.ps_gs-glass {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: $overlay-popin;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &__img {
+    display: inline-block;
+    padding: rem(6);
+    background: #fff;
+    border-radius: 100%;
+    @extend %drop-shadow;
+  }
+
+  &__content {
+    color: #fff;
+    max-width: 460px;
+    padding: rem(16);
+
+    p {
+      @extend %drop-shadow;
+      margin-bottom: rem(8);
+    }
+  }
+
+  &__button {
+    @extend %drop-shadow;
+    @include button-outline-variant($grey_muted);
+
+    background-color: #fff;
+  }
+
+  &__close {
+    position: fixed;
+    right: 0;
+    top: 0;
+    color: #fff;
+    font-size: rem(14);
+  }
+}

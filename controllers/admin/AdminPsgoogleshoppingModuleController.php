@@ -18,18 +18,26 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-use PrestaShop\AccountsAuth\Presenter\PsAccountsPresenter;
+use PrestaShop\Module\PrestashopGoogleShopping\Config\Env;
 use PrestaShop\Module\Ps_googleshopping\Translations\PsGoogleShoppingTranslations;
+use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 
 class AdminPsgoogleshoppingModuleController extends ModuleAdminController
 {
     /** @var Ps_googleshopping */
     public $module;
 
+    /**
+     * @var Env
+     */
+    private $env;
+
     public function __construct()
     {
         parent::__construct();
         $this->bootstrap = false;
+
+        $this->env = $this->module->getService(Env::class);
     }
 
     public function initContent()
@@ -40,8 +48,17 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
             'chunkVendor' => $this->module->getPathUri() . 'views/js/chunk-vendors.js',
         ]);
 
+        try {
+            $psAccountsService = $this->module->getService(PsAccounts::class)->getPsAccountsService();
+            $psAccountShopId = $psAccountsService->getShopUuidV4();
+        } catch (Exception $e) {
+            $psAccountShopId = null;
+        }
+
         Media::addJsDef([
-            'contextPsAccounts' => (object) $this->presentPsAccounts(),
+            'contextPsAccounts' => (object) $this->module->getService(PsAccounts::class)
+            ->getPsAccountsPresenter()
+            ->present($this->module->name),
             'translations' => (new PsGoogleShoppingTranslations($this->module))->getTranslations(),
             'i18nSettings' => [
                 'isoCode' => $this->context->language->iso_code,
@@ -64,6 +81,8 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
                     'ajax' => 1,
                 ]
             ),
+            'psAccountShopId' => $psAccountShopId,
+            'psGoogleShoppingApiUrl' => $this->env->get('PSX_GOOGLE_SHOPPING_API_URL'),
         ]);
 
         $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');
@@ -73,69 +92,5 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
 
     public function postProcess()
     {
-    }
-
-    private function presentPsAccounts()
-    {
-        $this->psAccountsEnvVarHotFix();
-
-        $psAccountPresenter = new PsAccountsPresenter($this->module->name);
-
-        return $this->psAccountsHotFix($psAccountPresenter->present());
-    }
-
-    /**
-     * Quickfix for multishop with PS Accounts.
-     * The shop in the Context class is always defined, even if multistore. This means the multistore selector
-     * is never displayed at the moment.
-
-     * TODO : Move in https://github.com/PrestaShopCorp/prestashop_accounts_vue_components
-     */
-    private function psAccountsHotFix(array $presentedData)
-    {
-        if (!isset($presentedData['shops'])) {
-            return;
-        }
-
-        foreach ($presentedData['shops'] as &$shopGroup) {
-            foreach ($shopGroup['shops'] as &$shop) {
-                $shop['url'] = $this->context->link->getAdminLink(
-                    'AdminModules',
-                    true,
-                    [],
-                    [
-                        'configure' => $this->module->name,
-                        'setShopContext' => 's-' . $shop['id'],
-                    ]
-                );
-            }
-        }
-
-        $presentedData['isShopContext'] = Shop::getContext() === Shop::CONTEXT_SHOP;
-
-        return $presentedData;
-    }
-
-    /**
-     * Quickfix for multishop with PS Accounts.
-     * Some env var are used without being checked first, and this may break the whole script execution if the version installed is old.
-     * We set them with a default value until these checks exist.
-     */
-    private function psAccountsEnvVarHotFix()
-    {
-        $envVarUsed = [
-            'ACCOUNTS_SVC_API_URL',
-            'BILLING_SVC_API_URL',
-            'SENTRY_CREDENTIALS',
-            'SSO_RESEND_VERIFICATION_EMAIL',
-            'ACCOUNTS_SVC_UI_URL',
-            'SSO_MANAGE_ACCOUNT',
-        ];
-
-        foreach ($envVarUsed as $envVar) {
-            if (!isset($_ENV[$envVar])) {
-                $_ENV[$envVar] = null;
-            }
-        }
     }
 }

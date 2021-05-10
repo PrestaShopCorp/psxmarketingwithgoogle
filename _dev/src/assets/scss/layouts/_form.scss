@@ -1,0 +1,93 @@
+.custom-select {
+  box-shadow: none;
+  padding-left: rem(10);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='%23000000'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z'/%3E%3C/svg%3E");
+  background-size: 24px;
+}
+
+.ps_googleshopping-dropdown {
+  padding: 1px 0;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: rem(4);
+    padding-bottom: rem(4);
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($blue_dark, 0.5);
+      border-color: $blue_dark;
+    }
+  }
+
+  button ~ [role=menu] {
+    width: calc(100% + 2px);
+    margin-left: -1px;
+    margin-right: -1px;
+    padding: 0;
+  }
+
+  .dropdown-item:focus, .dropdown-item:hover {
+    color: #fff;
+    background-color: $blue_medium;
+    border-radius: 0;
+  }
+
+  .ps-dropdown {
+    border-radius: 0 0 4px 4px;
+  }
+}
+
+.v-select {
+  &.vs--open .vs__dropdown-toggle,
+  &.vs--open .vs__dropdown-menu {
+    border-color: $blue_medium;
+  }
+
+  &.has-selection {
+    background-color: $grey_extralight;
+  }
+
+  &.vs--searching .vs__search {
+    color: $grey_dark;
+  }
+
+  .vs__search {
+    color: $grey_median;
+    padding-left: 0;
+  }
+
+  .vs__dropdown-toggle {
+    border: 1px solid $gray-450;
+  }
+
+  .vs__selected {
+    border: none;
+    background-color: $blue-light;
+    color: $blue_dark;
+    font-size: rem(12);
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  .vs__deselect {
+    text-shadow: none;
+    color: $blue_dark;
+
+    i {
+      font-size: rem(16);
+      color: inherit;
+    }
+
+    &:hover, &:focus {
+      color: red;
+    }
+  }
+
+  .vs__dropdown-toggle {
+  }
+
+  .vs__selected-options {
+    padding: 2px 2px 2px 10px;
+  }
+}

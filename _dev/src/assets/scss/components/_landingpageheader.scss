@@ -1,0 +1,34 @@
+.ps_gs-landingpage-header {
+  &__text {
+    font-size: rem(16);
+    font-weight: 600;
+    line-height: rem(22.5);
+  }
+
+  &__benefits {
+    ul {
+      margin-bottom: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    li {
+      display: inline-block;
+
+      &:not(:last-child) {
+        margin-right: rem(13);
+      }
+
+      &::before {
+        content: "done";
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: rem(8);
+        font-family: 'Material Icons';
+        font-size: 0.75em;
+        font-weight: 700;
+        -webkit-font-feature-settings: 'liga';
+      }
+    }
+  }
+}

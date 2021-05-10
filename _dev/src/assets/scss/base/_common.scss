@@ -1,0 +1,72 @@
+#googleShoppingApp {
+  .text-muted a[target="_blank"],
+  a[target="_blank"].text-muted {
+    a[target="_blank"] {
+      color: $grey_muted;
+    }
+  }
+
+  a[target="_blank"] {
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: $blue;
+    }
+
+    &:active,
+    &:visited {
+      color: $blue_dark;
+    }
+
+    &::after {
+      content: "launch";
+      font-family: 'Material Icons';
+      -webkit-font-feature-settings: 'liga';
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.45em;
+      text-decoration: none;
+    }
+  }
+}
+
+.color-green {
+  color: #4cbb6c;
+}
+
+.icon-busy {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0;
+  color: #fff;
+  border-style: solid;
+  border-width: 0.15rem;
+  border-top-color: #FFFFFF;
+  border-right-color: $blue_light;
+  border-bottom-color: $blue_light;
+  border-left-color: #FFFFFF;
+  border-radius: 1rem;
+  outline: none;
+  -webkit-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+
+  &--dark {
+    border-top-color: $blue;
+    border-right-color: $blue_light;
+    border-bottom-color: $blue_light;
+    border-left-color: $blue;
+  }
+}
+
+.badge-muted {
+  font-size: rem(12);
+  background-color: $grey_light;
+  color: $grey_muted;
+}
+
+.btn-sm {
+  font-size: rem(14);
+}
