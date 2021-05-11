@@ -71,7 +71,7 @@
           <b-dropdown
             id="mcaSelection"
             ref="mcaSelection"
-            :text="selected || $t('cta.chooseAccount')"
+            :text="selectedMcaIndex !== null ? mcaSelectionOptions[selectedMcaIndex].name : $t('cta.chooseAccount')"
             variant=" "
             class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
             menu-class="ps-dropdown"
@@ -79,17 +79,17 @@
             size="sm"
           >
             <b-dropdown-item
-              v-for="option in mcaSelectionOptions"
-              :key="option.text"
-              @click="selected = option.text"
+              v-for="(option, index) in mcaSelectionOptions"
+              :key="option.id"
+              @click="selectedMcaIndex = index"
             >
-              {{ option.text }}
+              {{ option.name }}
             </b-dropdown-item>
           </b-dropdown>
           <b-button
             size="sm"
             variant="primary"
-            :disabled="!selected"
+            :disabled="selectedMcaIndex === null"
             class="mt-3 mt-md-0 ml-md-3"
             @click="selectMerchantCenterAccount"
           >
@@ -118,7 +118,7 @@
       class="mt-2 d-flex justify-content-between align-items-start"
     >
       <div class="d-flex align-items-center">
-        <strong>{{ selected }}</strong>
+        <strong>{{ selectedMcaDetails.name }}</strong>
         <b-badge
           class="mx-3"
           :variant="mcaStatusBadge.color"
@@ -240,27 +240,39 @@ export default {
   },
   data() {
     return {
-      mcaConfigured: false,
-      selected: null,
+      selectedMcaIndex: null,
       mcaSelectionOptions: [
         {
-          text: 'V Godard - 123456789',
+          id: '123456789',
+          name: 'V Godard - 123456789',
+          websiteUrl: "http://perdu.com",
+          adultContent: false,
         },
         {
-          text: 'Royer et fils - 653367900',
+          id: '653367900',
+          name: 'Royer et fils - 653367900',
+          websiteUrl: "http://perdu.com",
+          adultContent: false,
         },
         {
-          text: 'Maison Royer - 246797534',
+          id: '246797534',
+          name: 'Maison Royer - 246797534',
+          websiteUrl: "http://perdu.com",
+          adultContent: false,
         },
         {
-          text: 'Godard - 79747579864',
+          id: '79747579864',
+          name: 'Godard - 79747579864',
+          websiteUrl: "http://perdu.com",
+          adultContent: false,
         },
         {
-          text: 'Fondation Royer - 678321007',
+          id: '678321007',
+          name: 'Fondation Royer - 678321007',
+          websiteUrl: "http://perdu.com",
+          adultContent: false,
         },
       ],
-      websiteVerification: null,
-      mcaStatus: null,
     };
   },
   props: {
@@ -278,6 +290,12 @@ export default {
     },
   },
   computed: {
+    websiteVerification() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'].websiteVerificationProgressStatus;
+    },
+    selectedMcaDetails() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
+    },
     message() {
       return this.isEnabled
         ? this.$i18n.t('mcaCard.introEnabled')
@@ -308,19 +326,17 @@ export default {
           };
       }
     },
+    mcaConfigured() {
+      return ['done', 'doneAlert'].indexOf(this.websiteVerification) !== -1;
+    }
   },
   methods: {
     selectMerchantCenterAccount() {
-      /**
-       ** I'm sending the component as a payload
-       ** This way, I can access it from StoryBook and change datas
-       */
-      const component = this;
-      this.$emit('selectMerchantCenterAccount', component);
+      this.$emit('selectMerchantCenterAccount', this.mcaSelectionOptions[this.selectedMcaIndex]);
     },
   },
   mounted() {
-    if (this.isEnabled) {
+    if (this.$refs.mcaSelection) {
       this.$refs.mcaSelection.$refs.toggle.focus();
     }
   },

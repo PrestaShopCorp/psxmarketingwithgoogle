@@ -18,6 +18,7 @@
  */
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
+import {MerchantCenterAccount} from './state';
 
 export default {
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, state}, webhookUrl: String) {
@@ -33,4 +34,14 @@ export default {
       console.error(error);
     }
   },
+  [ActionsTypes.SAVE_SELECTED_GOOGLE_ACCOUNT]({commit}, selectedAccount: MerchantCenterAccount) {
+    commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
+    commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'checking');
+      setTimeout(() => {
+        commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'doneAlert');
+        setTimeout(() => {
+          commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'done');
+        }, 2000);
+      }, 2000);
+  }
 };

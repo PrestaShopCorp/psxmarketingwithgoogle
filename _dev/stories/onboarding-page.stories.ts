@@ -7,8 +7,10 @@ import MerchantCenterAccountCard from '../src/components/merchant-center-account
 import ProductFeedCard from '../src/components/product-feed/product-feed-card.vue'
 import FreeListingCard from '../src/components/free-listing/free-listing-card.vue'
 import OnboardingPage from '../src/views/onboarding-page.vue'
+import {initialStateAccounts} from '../.storybook/mock/state-accounts';
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {googleAccountNotConnected, googleAccountConnected} from "../.storybook/mock/google-account";
+import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
 
 export default {
   title: 'Onboarding/OnboardingPage',
@@ -20,7 +22,7 @@ const TemplatePsAccount = (args, { argTypes }) => ({
   template: `
     <OnboardingPage/>
   `,
-  beforeCreate(this: any) {
+  beforeMount(this: any) {
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsNotConnected;
   },
 });
@@ -34,8 +36,14 @@ const TemplateGoogleAccount = (args, { argTypes }) => ({
   template: `
     <OnboardingPage/>
   `,
-  beforeCreate(this: any) {
+  beforeMount(this: any) {
+    this.$store.state.accounts = Object.assign(
+      this.$store.state.accounts,
+      initialStateAccounts
+    );
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
+    this.$store.state.accounts.googleAccount = googleAccountNotConnected;
+    this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountNotConnected;
   },
 });
 
@@ -48,9 +56,14 @@ const TemplateMerchantCenterAccount = (args, { argTypes }) => ({
   template: `
     <OnboardingPage/>
   `,
-  beforeCreate(this: any) {
+  beforeMount(this: any) {
+    this.$store.state.accounts = Object.assign(
+      this.$store.state.accounts,
+      initialStateAccounts
+    );
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
     this.$store.state.accounts.googleAccount = googleAccountConnected;
+    this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountNotConnected;
   },
 });
 

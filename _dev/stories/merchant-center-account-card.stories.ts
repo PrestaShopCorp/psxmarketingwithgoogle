@@ -1,4 +1,5 @@
 import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue'
+import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
 
 export default {
   title: 'Merchant Center Account/Card',
@@ -16,18 +17,17 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MerchantCenterAccountCard },
-  template: '<MerchantCenterAccountCard v-bind="$props" @selectMerchantCenterAccount="fakeConnection" />',
+  template: `<MerchantCenterAccountCard 
+      v-bind="$props" 
+      @selectMerchantCenterAccount="fakeConnection"
+    />`,
+  beforeMount(this: any) {
+    this.$store.state.accounts.googleMerchantAccount = args.initialMcaStatus;
+  },
   methods: {
-    fakeConnection: (component)=> {
-      component.$data.websiteVerification = 'checking';
-      component.$data.mcaStatus = "active";
-      setTimeout(() => {
-        component.$data.websiteVerification = "doneAlert";
-        component.$data.mcaConfigured = true;
-        setTimeout(() => {
-          component.$data.websiteVerification = "done";
-        }, 2000);
-      }, 2000);
+    fakeConnection(payload) {
+      // @ts-ignore
+      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', payload);
     }
   }
 });
@@ -36,10 +36,19 @@ export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
   error: null,
+  initialMcaStatus: merchantCenterAccountNotConnected,
 };
 
 export const EnabledNotConnected:any = Template.bind({});
 EnabledNotConnected.args = {
   isEnabled: true,
   error: null,
+  initialMcaStatus: merchantCenterAccountNotConnected,
+};
+
+export const EnabledConnected:any = Template.bind({});
+EnabledConnected.args = {
+  isEnabled: true,
+  error: null,
+  initialMcaStatus: merchantCenterAccountConnected,
 };

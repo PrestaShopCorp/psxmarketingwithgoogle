@@ -17,6 +17,8 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import { MerchantCenterAccount } from "stories/onboarding-page.stories";
+
 export interface PrestaShopAccountsContext {
   user: {
     email: string|null,
@@ -40,10 +42,24 @@ export interface GoogleAccountsContext {
   photo: string,
 }
 
+export interface MerchantCenterAccount {
+  id: string|null,
+  name?: string,
+  websiteUrl?: string,
+  adultContent?: string,
+}
+
+export type MerchantCenterAccountContext = MerchantCenterAccount & {
+  // Allow the spinner to be displayed while claiming is done
+  websiteVerificationProgressStatus: string|null,
+  // Allow displaying the error message
+  websiteVerificationStatus: string|null,
+};
+
 export interface State {
   contextPsAccounts: PrestaShopAccountsContext|any;
   googleAccount: GoogleAccountsContext;
-  googleMerchantAccount: object;
+  googleMerchantAccount: MerchantCenterAccountContext;
   psGoogleShoppingApiUrl: string;
 }
 
@@ -54,6 +70,10 @@ export const state: State = {
     email: '',
     photo: '',
   },
-  googleMerchantAccount: {},
+  googleMerchantAccount: {
+    id: null,
+    websiteVerificationProgressStatus: null,
+    websiteVerificationStatus: null,
+  },
   psGoogleShoppingApiUrl: '',
 };

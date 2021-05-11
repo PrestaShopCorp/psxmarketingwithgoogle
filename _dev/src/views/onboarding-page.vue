@@ -34,6 +34,7 @@
       v-if="stepsAreCompleted.step1"
       :is-connected="merchantCenterAccountIsChosen"
       :is-enabled="googleAccountIsOnboarded"
+      @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
     />
     <ProductFeedCard
       v-if="stepsAreCompleted.step1"
@@ -86,6 +87,9 @@ export default {
   methods: {
     onShopSelected(shopSelected) {
       window.location.href = shopSelected.url;
+    },
+    onMerchantCenterAccountSelected(selectedAccount) {
+      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount);
     },
   },
   computed: {
