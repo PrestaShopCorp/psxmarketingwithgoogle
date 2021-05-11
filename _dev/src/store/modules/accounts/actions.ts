@@ -37,11 +37,11 @@ export default {
   [ActionsTypes.SAVE_SELECTED_GOOGLE_ACCOUNT]({commit}, selectedAccount: MerchantCenterAccount) {
     commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
     commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'checking');
+    setTimeout(() => {
+      commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'doneAlert');
       setTimeout(() => {
-        commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'doneAlert');
-        setTimeout(() => {
-          commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'done');
-        }, 2000);
+        commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'done');
       }, 2000);
-  }
+    }, 2000);
+  },
 };

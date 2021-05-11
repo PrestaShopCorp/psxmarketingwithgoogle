@@ -71,7 +71,9 @@
           <b-dropdown
             id="mcaSelection"
             ref="mcaSelection"
-            :text="selectedMcaIndex !== null ? mcaSelectionOptions[selectedMcaIndex].name : $t('cta.chooseAccount')"
+            :text="selectedMcaIndex !== null
+              ? mcaSelectionOptions[selectedMcaIndex].name
+              : $t('cta.chooseAccount')"
             variant=" "
             class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
             menu-class="ps-dropdown"
@@ -246,31 +248,31 @@ export default {
         {
           id: '123456789',
           name: 'V Godard - 123456789',
-          websiteUrl: "http://perdu.com",
+          websiteUrl: 'http://perdu.com',
           adultContent: false,
         },
         {
           id: '653367900',
           name: 'Royer et fils - 653367900',
-          websiteUrl: "http://perdu.com",
+          websiteUrl: 'http://perdu.com',
           adultContent: false,
         },
         {
           id: '246797534',
           name: 'Maison Royer - 246797534',
-          websiteUrl: "http://perdu.com",
+          websiteUrl: 'http://perdu.com',
           adultContent: false,
         },
         {
           id: '79747579864',
           name: 'Godard - 79747579864',
-          websiteUrl: "http://perdu.com",
+          websiteUrl: 'http://perdu.com',
           adultContent: false,
         },
         {
           id: '678321007',
           name: 'Fondation Royer - 678321007',
-          websiteUrl: "http://perdu.com",
+          websiteUrl: 'http://perdu.com',
           adultContent: false,
         },
       ],

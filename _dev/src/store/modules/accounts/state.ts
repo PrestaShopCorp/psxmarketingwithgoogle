@@ -17,7 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import { MerchantCenterAccount } from "stories/onboarding-page.stories";
+import {MerchantCenterAccount} from 'stories/onboarding-page.stories';
 
 export interface PrestaShopAccountsContext {
   user: {

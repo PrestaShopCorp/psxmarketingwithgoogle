@@ -36,11 +36,10 @@ export default {
     state.googleAccount.token = token;
   },
   [MutationsTypes.SAVE_MCA_ACCOUNT](state: LocalState, selectedAccount: MerchantCenterAccount) {
-    state.googleMerchantAccount = Object.assign(
-      {},
-      state.googleMerchantAccount,
-      selectedAccount,
-    );
+    state.googleMerchantAccount = {
+      ...state.googleMerchantAccount,
+      ...selectedAccount,
+    };
   },
   [MutationsTypes.REMOVE_MCA_ACCOUNT](state: LocalState) {
     state.googleMerchantAccount = {
@@ -50,7 +49,10 @@ export default {
       websiteVerificationStatus: null,
     };
   },
-  [MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS](state: LocalState, newStatus: string|null) {
+  [MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS](
+    state: LocalState,
+    newStatus: string|null,
+  ) {
     if (!state.googleMerchantAccount.id) {
       // Account has been dissiociated, abort.
       return;
