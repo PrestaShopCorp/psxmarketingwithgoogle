@@ -9,13 +9,11 @@
     <MultiStoreSelector
       v-if="!psAccountsContext.isShopContext && shops.length"
       :shops="shops"
-      class="m-3"
       @shop-selected="onShopSelected($event)"
     />
     <ps-accounts
       v-else
       :context="psAccountsContext"
-      class="m-3"
     />
     <section-title
       :step-number="2"

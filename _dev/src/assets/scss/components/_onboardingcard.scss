@@ -2,14 +2,6 @@
   border: none;
   margin-bottom: rem(16);
 
-  & + .ps_gs-section-title {
-    margin-top: rem(32);
-
-    @include media-breakpoint-up(md) {
-      margin-top: rem(48);
-    }
-  }
-
   &--disabled {
     background-color: $bg-grey_disabled;
     color: $grey_muted;
@@ -23,5 +15,13 @@
     font-size: rem(16);
     line-height: rem(22.5);
     font-weight: 600;
+  }
+}
+
+.ps_gs-section-title ~ .ps_gs-section-title {
+  margin-top: rem(32);
+
+  @include media-breakpoint-up(md) {
+    margin-top: rem(48);
   }
 }

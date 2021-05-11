@@ -10,10 +10,6 @@
         {{ $t('general.tabs.help') }}
       </MenuItem>
     </Menu>
-
-    <div class="pt-5" />
-    <div class="pt-3" />
-
     <router-view />
   </div>
 </template>
@@ -40,44 +36,23 @@ export default {
 </script>
 
 <style lang="scss">
-  #googleShoppingApp {
-    @import '~bootstrap-vue/dist/bootstrap-vue';
-    @import '~prestakit/dist/css/bootstrap-prestashop-ui-kit';
-  }
-  #googleShoppingApp {
-    margin: 0px;
-    font-family: Open Sans,Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    font-size: .875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #363a41;
-    text-align: left;
-  }
-  #googleShoppingApp .card-header, .card-header .card-header-title {
-    font-weight: 600;
-    line-height: 24px;
-    line-height: 1.5rem;
-  }
-  #googleShoppingApp .card-header .main-header #header-search-container .input-group:before,
-  .card-header .material-icons, .card-header .ps-tree-items .tree-name button:before,
-  .main-header #header-search-container .card-header .input-group:before,
-  .ps-tree-items .tree-name .card-header button:before {
-    color: #6c868e;
-    margin-right: 5px;
-  }
-  #googleShoppingApp .form-group.has-danger:after, #googleShoppingApp .form-group.has-success:after,
-  #googleShoppingApp .form-group.has-warning:after {
-    right: 10px;
-  }
   .nobootstrap {
     background-color: unset !important;
-    padding: 100px 10px 100px;
+    padding: 100px 0 100px;
     min-width: unset !important;
   }
   .nobootstrap .form-group>div {
     float: unset;
   }
+
+  @media screen and (min-width: 1024px) {
+    .nobootstrap {
+      background-color: unset !important;
+      padding: 100px 0 100px;
+      min-width: unset !important;
+    }
+  }
+
   .nobootstrap fieldset {
     background-color: unset;
     border: unset;
@@ -121,8 +96,11 @@ export default {
   .page-sidebar-closed:not(.mobile) #content.nobootstrap {
     padding-left: 50px;
   }
+  .page-sidebar:not(.page-sidebar-closed) .nobootstrap {
+    margin-left: 210px;
+  }
   .material-icons.js-mobile-menu {
     display: none !important
   }
-  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 </style>

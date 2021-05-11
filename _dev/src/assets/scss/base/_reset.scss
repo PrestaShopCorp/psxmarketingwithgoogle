@@ -1,0 +1,48 @@
+& {
+  margin: 0px;
+  font-family: Open Sans,Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #363a41;
+  text-align: left;
+}
+
+& .nav-pills {
+  position: sticky;
+  top: 136px;
+  margin-bottom: 10px !important;
+}
+
+// & .card-header, .card-header .card-header-title {
+//   font-weight: 600;
+//   line-height: 24px;
+//   line-height: 1.5rem;
+// }
+
+// & .card-header .main-header #header-search-container .input-group:before,
+// .card-header .material-icons, .card-header .ps-tree-items .tree-name button:before,
+// .main-header #header-search-container .card-header .input-group:before,
+// .ps-tree-items .tree-name .card-header button:before {
+//   color: #6c868e;
+//   margin-right: 5px;
+// }
+
+// & .form-group.has-danger:after,
+// & .form-group.has-success:after,
+// & .form-group.has-warning:after {
+//   right: 10px;
+// }
+
+& > *:not(.nav) {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@media screen and (min-width: 1024px) {
+  & > *:not(.nav) {
+  }
+}
+
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
