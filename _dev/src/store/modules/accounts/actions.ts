@@ -34,15 +34,8 @@ export default {
     }
   },
   async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state}, payload: any) {
-    const data = JSON.stringify({
-      state: btoa(JSON.stringify(payload)),
-    });
     try {
-      const response = await fetch(`${state.psGoogleShoppingApiUrl}/shops/${payload.shopId}/google/generate-auth-url`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json'},
-        body: data,
-      });
+      const response = await fetch(`${state.psGoogleShoppingApiUrl}/oauth/${payload.shopId}/authorized-url`);
       const json = await response.json();
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
     } catch (error) {
