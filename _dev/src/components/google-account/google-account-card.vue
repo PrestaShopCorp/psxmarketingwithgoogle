@@ -82,7 +82,7 @@
             size="sm"
             variant="primary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
-            @click="openPopin"
+            @click="openPopup"
           >
             <template v-if="!isConnecting">
               {{ $t('cta.connectAccount') }}
@@ -92,6 +92,8 @@
               <span class="ml-1 icon-busy" />
             </template>
           </b-button>
+
+          <glass v-if="popupClosingLooper" @close="closePopup" @forceFocus="focusPopup" />
         </div>
         <div
           v-else
@@ -132,15 +134,20 @@ import {
   BIconCheck,
   BIconCircleFill,
 } from 'bootstrap-vue';
+import MutationsTypes from '../../store/modules/accounts/mutations-types';
+import Glass from '../commons/glass';
 
 export default {
   name: 'GoogleAccountCard',
   components: {
-    BIconstack, BIconCheck, BIconCircleFill,
+    BIconstack, BIconCheck, BIconCircleFill, Glass,
   },
   data() {
     return {
       isConnecting: false,
+      popup: null,
+      popupMessageListener: null,
+      popupClosingLooper: null,
     };
   },
   props: {
@@ -158,13 +165,73 @@ export default {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'];
     },
   },
+  created() {
+    this.refreshAccount();
+  },
   methods: {
     connectGoogleAccount() {
       this.$emit('connectGoogleAccount');
       this.isConnecting = true;
     },
-    openPopin() {
-      window.location.href = this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL'];
+    openPopup() {
+      if (this.popupMessageListener) {
+        window.removeEventListener('message', this.popupMessageListener);
+      }
+      if (this.popupClosingLooper) {
+        clearInterval(this.popupClosingLooper);
+      }
+
+      this.popupMessageListener = window.addEventListener('message', (event) => {
+        const params = new URLSearchParams(event.data);
+        const paramsFromGoogleCb = ['from', 'message', 'status'];
+        const paramsFound = paramsFromGoogleCb.reduce((acc, x) => {
+          acc[x] = params.get(x);
+          return acc;
+        },
+        {},
+        );
+        if (paramsFound.from === 'SVC' && paramsFound.message === 'ok') {
+          this.$store.commit(`accounts/${MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE}`, paramsFound);
+          this.refreshAccount();
+          window.removeEventListener('message', this.popupMessageListener);
+        }
+      });
+      const url = this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL'];
+      const p = 'scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=564,height=671';
+      this.popup = window.open(
+        url,
+        'ps_google_shopping_onboarding',
+        p,
+      );
+      this.popup.focus();
+
+      this.popupClosingLooper = setInterval(() => {
+        if (this.popup && (this.popup.closed === true)) {
+          if (this.popupClosingLooper) {
+            clearInterval(this.popupClosingLooper);
+            this.popupClosingLooper = null;
+          }
+        }
+      }, 750);
+    },
+    closePopup() {
+      if (this.popup) {
+        this.popup.close();
+      }
+      if (this.popupClosingLooper) {
+        clearInterval(this.popupClosingLooper);
+        this.popupClosingLooper = null;
+      }
+    },
+    focusPopup() {
+      if (this.popup) {
+        this.popup.focus();
+      } else {
+        this.openPopup();
+      }
+    },
+    refreshAccount() {
+      // TODO : call to nest to retrieve data if already onboarded
     },
   },
 };

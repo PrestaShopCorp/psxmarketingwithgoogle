@@ -42,6 +42,13 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
 
     public function initContent()
     {
+        // on vient de google
+        if (Tools::getValue('message') !== false || Tools::getValue('from') !== false) {
+            $this->ajax = 1;
+            $this->content = $this->context->smarty->fetch('module:ps_googleshopping/views/templates/admin/googlePopin.tpl');
+            return;
+        }
+
         $this->context->smarty->assign([
             'pathApp' => $this->module->getPathUri() . 'views/js/app.js',
             'psGoogleShoppingControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsgoogleshopping'),

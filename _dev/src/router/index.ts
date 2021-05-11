@@ -28,21 +28,4 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  const paramsFromGoogleCb: Array<string> = ['from', 'message', 'status'];
-  const paramsFound = paramsFromGoogleCb.filter((x) => window.location.href.indexOf(x) !== -1);
-  const paramsWithValues = {};
-
-  if (paramsFound.length > 0) {
-    paramsFromGoogleCb.forEach((key, value) => {
-      const params = new URLSearchParams(window.location.search);
-      paramsWithValues[key] = params.get(key);
-      params.delete(key);
-      window.history.replaceState(null, '', `?${params}${window.location.hash}`);
-    });
-  }
-  Store.commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE, paramsWithValues);
-  next();
-});
-
 export default router;

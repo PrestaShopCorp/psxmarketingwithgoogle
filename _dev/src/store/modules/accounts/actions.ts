@@ -44,9 +44,13 @@ export default {
       }, 2000);
     }, 2000);
   },
-  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state}, payload: any) {
+  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state}) {
+    const urlState = btoa(JSON.stringify({
+      redirectUri: state.psGoogleShoppingShopUrl,
+      shopId: state.psAccountShopId,
+    }));
     try {
-      const response = await fetch(`${state.psGoogleShoppingApiUrl}/oauth/${payload.shopId}/authorized-url`);
+      const response = await fetch(`${state.psGoogleShoppingApiUrl}/oauth/${state.psAccountShopId}/authorized-url?state=${urlState}`);
       const json = await response.json();
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
     } catch (error) {
