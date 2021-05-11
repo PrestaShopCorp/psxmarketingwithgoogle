@@ -20,6 +20,7 @@ const Template = (args, { argTypes }) => ({
   template: `<MerchantCenterAccountCard 
       v-bind="$props" 
       @selectMerchantCenterAccount="fakeConnection"
+      @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociated"
     />`,
   beforeMount(this: any) {
     this.$store.state.accounts.googleMerchantAccount = args.initialMcaStatus;
@@ -28,7 +29,11 @@ const Template = (args, { argTypes }) => ({
     fakeConnection(payload) {
       // @ts-ignore
       this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', payload);
-    }
+    },
+    onMerchantCenterAccountDissociated() {
+      // @ts-ignore
+      this.$store.commit('accounts/REMOVE_MCA_ACCOUNT');
+    },
   }
 });
 

@@ -35,6 +35,7 @@
       :is-connected="merchantCenterAccountIsChosen"
       :is-enabled="googleAccountIsOnboarded"
       @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
+      @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociated"
     />
     <ProductFeedCard
       v-if="stepsAreCompleted.step1"
@@ -90,6 +91,9 @@ export default {
     },
     onMerchantCenterAccountSelected(selectedAccount) {
       this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount);
+    },
+    onMerchantCenterAccountDissociated() {
+      this.$store.commit('accounts/REMOVE_MCA_ACCOUNT');
     },
   },
   computed: {

@@ -143,6 +143,7 @@
       <b-button
         size="sm"
         variant="outline-secondary"
+        @click="dissociateMerchantCenterAccount"
       >
         {{ $t("cta.dissociate") }}
       </b-button>
@@ -333,6 +334,9 @@ export default {
   methods: {
     selectMerchantCenterAccount() {
       this.$emit('selectMerchantCenterAccount', this.mcaSelectionOptions[this.selectedMcaIndex]);
+    },
+    dissociateMerchantCenterAccount() {
+      this.$emit('dissociateMerchantCenterAccount');
     },
   },
   mounted() {

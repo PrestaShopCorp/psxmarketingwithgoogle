@@ -51,6 +51,10 @@ export default {
     };
   },
   [MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS](state: LocalState, newStatus: string|null) {
+    if (!state.googleMerchantAccount.id) {
+      // Account has been dissiociated, abort.
+      return;
+    }
     // ToDo: Add some validation about possible values?
 
     state.googleMerchantAccount.websiteVerificationProgressStatus = newStatus;
