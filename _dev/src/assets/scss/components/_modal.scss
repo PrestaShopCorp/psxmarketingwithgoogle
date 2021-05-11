@@ -10,6 +10,14 @@
 
   &__footer {
     padding-top: rem(8);
+
+    @include media-breakpoint-down(xs) {
+      justify-content: center;
+    }
+
+    .btn {
+      white-space: unset;
+    }
   }
 
   & + .modal-backdrop {
