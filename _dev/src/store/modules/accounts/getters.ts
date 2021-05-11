@@ -54,4 +54,9 @@ export default {
   [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT](state: LocalState) : MerchantCenterAccountContext {
     return state.googleMerchantAccount;
   },
+  [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED](state: LocalState) : boolean {
+    return !!(state.googleMerchantAccount.id 
+      && state.googleMerchantAccount.websiteVerificationProgressStatus
+      && ['done', 'doneAlert'].indexOf(state.googleMerchantAccount.websiteVerificationProgressStatus) !== -1);
+  },
 };

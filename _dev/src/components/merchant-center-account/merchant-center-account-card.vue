@@ -293,6 +293,9 @@ export default {
     websiteVerification() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'].websiteVerificationProgressStatus;
     },
+    mcaConfigured() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'].websiteVerificationProgressStatus;
+    },
     selectedMcaDetails() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
     },
@@ -326,9 +329,6 @@ export default {
           };
       }
     },
-    mcaConfigured() {
-      return ['done', 'doneAlert'].indexOf(this.websiteVerification) !== -1;
-    }
   },
   methods: {
     selectMerchantCenterAccount() {
