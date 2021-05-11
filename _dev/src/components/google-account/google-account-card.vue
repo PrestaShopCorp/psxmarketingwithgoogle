@@ -39,7 +39,7 @@
           {{ $t('googleAccountCard.title') }}
         </b-card-text>
         <b-iconstack
-          v-if="user"
+          v-if="user.email"
           font-scale="1.5"
           class="mx-3"
           width="20"
@@ -57,7 +57,7 @@
       </div>
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
         <p
-          v-if="!user"
+          v-if="!user.email"
           class="ps_gs-fz-12 mb-0"
         >
           {{ $t('googleAccountCard.introEnabled') }}
@@ -75,7 +75,7 @@
           <strong>{{ user.email }}</strong>
         </div>
         <div
-          v-if="!user"
+          v-if="!user.email"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
           <b-button
@@ -120,7 +120,7 @@
         </div>
       </div>
       <div
-        v-if="user"
+        v-if="user.email"
         class="text-md-right text-muted mt-3"
       >
         <p class="ps_gs-fz-12 mb-0">
@@ -139,6 +139,7 @@ import {
   BIconCircleFill,
 } from 'bootstrap-vue';
 import MutationsTypes from '../../store/modules/accounts/mutations-types';
+import ActionsTypes from '../../store/modules/accounts/actions-types';
 import Glass from '../commons/glass';
 
 export default {
@@ -232,7 +233,14 @@ export default {
       }
     },
     refreshAccount(errorIfNot) {
-      console.log(errorIfNot);
+      this.$store.dispatch(`accounts/${ActionsTypes.REQUEST_FOR_GET_GOOGLE_ACCOUNT}`).then((res) => {
+        if (errorIfNot && !res) {
+          throw new Error();
+        }
+      }).catch((err) => {
+        // TODO: display error message
+        console.error(err);
+      });
       // TODO : call to action in store, to nest to retrieve data if already onboarded.
       // TODO: if errorIfNot,et que le résultat du call à nest est négatif,alors afficher une erreur
     },

@@ -57,4 +57,17 @@ export default {
       console.error(error);
     }
   },
+  async [ActionsTypes.REQUEST_FOR_GET_GOOGLE_ACCOUNT]({commit, state}) {
+    try {
+      const response = await fetch(`${state.psGoogleShoppingApiUrl}/oauth/${state.psAccountShopId}/`);
+      const json = await response.json();
+      commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
+    } catch (error) {
+      if (error.status === 404) {
+        commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
+        return;
+      }
+      throw new Error(error);
+    }
+  },
 };

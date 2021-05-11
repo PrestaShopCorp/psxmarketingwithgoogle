@@ -73,4 +73,10 @@ export default {
     state.googleAccount.message = googleResponse.message;
     state.googleAccount.status = googleResponse.status;
   },
+  [MutationsTypes.SET_GOOGLE_ACCOUNT](state:LocalState, googleAccountInfo) {
+    // to avoid undefined
+    state.googleAccount.email = googleAccountInfo.email ? googleAccountInfo.email : '';
+    state.googleAccount.photo = googleAccountInfo.photo ? googleAccountInfo.photo : '';
+    state.googleAccount.token = googleAccountInfo.token ? googleAccountInfo.token : '';
+  },
 };
