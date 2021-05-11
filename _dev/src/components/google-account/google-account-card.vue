@@ -39,7 +39,7 @@
           {{ $t('googleAccountCard.title') }}
         </b-card-text>
         <b-iconstack
-          v-if="isConnected"
+          v-if="user"
           font-scale="1.5"
           class="mx-3"
           width="20"
@@ -57,7 +57,7 @@
       </div>
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
         <p
-          v-if="!isConnected"
+          v-if="!user"
           class="ps_gs-fz-12 mb-0"
         >
           {{ $t('googleAccountCard.introEnabled') }}
@@ -75,7 +75,7 @@
           <strong>{{ user.email }}</strong>
         </div>
         <div
-          v-if="!isConnected"
+          v-if="!user"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
           <b-button
@@ -93,7 +93,11 @@
             </template>
           </b-button>
 
-          <glass v-if="popupClosingLooper" @close="closePopup" @forceFocus="focusPopup" />
+          <glass
+            v-if="popupClosingLooper"
+            @close="closePopup"
+            @forceFocus="focusPopup"
+          />
         </div>
         <div
           v-else
@@ -116,7 +120,7 @@
         </div>
       </div>
       <div
-        v-if="isConnected"
+        v-if="user"
         class="text-md-right text-muted mt-3"
       >
         <p class="ps_gs-fz-12 mb-0">
@@ -155,18 +159,15 @@ export default {
       type: Boolean,
       default: false,
     },
-    isConnected: {
-      type: Boolean,
-      default: false,
+    user: {
+      type: Object,
+      default: null,
     },
   },
-  computed: {
-    user() {
-      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'];
-    },
-  },
-  created() {
-    this.refreshAccount();
+  mounted() {
+    if (this.isEnabled && !this.user) {
+      this.refreshAccount(false);
+    }
   },
   methods: {
     connectGoogleAccount() {
@@ -192,7 +193,7 @@ export default {
         );
         if (paramsFound.from === 'SVC' && paramsFound.message === 'ok') {
           this.$store.commit(`accounts/${MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE}`, paramsFound);
-          this.refreshAccount();
+          this.refreshAccount(true);
           window.removeEventListener('message', this.popupMessageListener);
         }
       });
@@ -230,8 +231,10 @@ export default {
         this.openPopup();
       }
     },
-    refreshAccount() {
-      // TODO : call to nest to retrieve data if already onboarded
+    refreshAccount(errorIfNot) {
+      console.log(errorIfNot);
+      // TODO : call to action in store, to nest to retrieve data if already onboarded.
+      // TODO: if errorIfNot,et que le résultat du call à nest est négatif,alors afficher une erreur
     },
   },
 };
