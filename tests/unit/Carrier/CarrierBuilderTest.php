@@ -3,7 +3,6 @@
 namespace Carrier;
 
 use Carrier;
-use Currency;
 use PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PrestashopGoogleShopping\Builder\CarrierBuilder;
 use PrestaShop\Module\PrestashopGoogleShopping\DTO\CarrierDetail;
@@ -15,19 +14,27 @@ use RangePrice;
 
 class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testBuildCarriers()
     {
-
     }
 
     /**
      * @dataProvider buildCarrierDataProvider
      *
      * @param Carrier $carrier
-     * @param $currency
-     * @param $weightUnit
-     * @param $expected
+     * @param string $currency
+     * @param string $weightUnit
+     * @param float $freeShippintAtPrice
+     * @param float $freeShippingAtWeight
+     * @param $mockedDeliveryBy
+     * @param $mockedCountryIsoCode
+     * @param $mockedStateIsoCode
+     * @param $mockedCarrierTaxesByZone
+     * @param $mockedCarrierRange
+     * @param array $expected
+     *
+     * @throws \PrestaShopDatabaseException
+     * @throws \PrestaShopException
      */
     public function testBuildCarrier(
         Carrier $carrier,
@@ -42,36 +49,17 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
         $mockedCarrierRange,
         array $expected
     ) {
-        $carrierRepo = $this->getMockBuilder(CarrierRepository::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $carrierRepo->expects($this->at(0))->method('getDeliveryPriceByRange')->willReturn($mockedDeliveryBy);
-        $carrierRepo->expects($this->any())->method('getCarrierRange')->willReturn($mockedCarrierRange);
+        $carrierRepo = $this->createCarrierRepositoryMock($mockedDeliveryBy, $mockedCarrierRange);
 
-        $countryRepo = $this->getMockBuilder(CountryRepository::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $countryRepo->expects($this->any())->method('getCountyIsoCodesByZoneId')->willReturn($mockedCountryIsoCode);
+        $countryRepo = $this->createCountryRepositoryMock($mockedCountryIsoCode);
 
-        $stateRepo = $this->getMockBuilder(StateRepository::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $stateRepo->expects($this->any())->method('getStateIsoCodesByZoneId')->willReturn($mockedStateIsoCode);
+        $stateRepo = $this->createStateRepositoryMock($mockedStateIsoCode);
 
-        $taxRepository = $this->getMockBuilder(TaxRepository::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $taxRepository->expects($this->any())->method('getCarrierTaxesByZone')->willReturn($mockedCarrierTaxesByZone);
+        $taxRepository = $this->createTaxRepositoryMock($mockedCarrierTaxesByZone);
 
-        $configurationAdapter = $this->getMockBuilder(ConfigurationAdapter::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $configurationAdapter->expects($this->at(0))->method('get')->willReturn($freeShippintAtPrice);
-        $configurationAdapter->expects($this->at(1))->method('get')->willReturn($freeShippingAtWeight);
+        $configurationAdapter = $this->createConfigurationAdapterMock($freeShippintAtPrice, $freeShippingAtWeight);
 
         $carrierBuilder = new CarrierBuilder($carrierRepo, $countryRepo, $stateRepo, $taxRepository, $configurationAdapter);
-
         $carrierLine = $carrierBuilder->buildCarrier($carrier, $currency, $weightUnit);
 
         $this->assertEquals($expected, $carrierLine->jsonSerialize());
@@ -168,7 +156,7 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
 
         $priceRangeDelimiter1 = 0.0;
         $priceRangeDelimiter2 = 100.0;
-        $rangePrice = $this->createMockedRangePrice(1, $priceRangeDelimiter1, $priceRangeDelimiter2);
+        $rangePrice = $this->createMockedRangePrice($rangePriceId, $priceRangeDelimiter1, $priceRangeDelimiter2);
 
         return [
             'free shipping' => [
@@ -184,13 +172,13 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
                 'mockedCarrierRange' => $rangePrice,
                 'result' => [
                     [
-                        'collection' => (string)$carrierCollection,
-                        'id' => (string)$freeCarrierReference,
+                        'collection' => (string) $carrierCollection,
+                        'id' => (string) $freeCarrierReference,
                         'properties' => [
-                            'id_carrier' => (string)$freeCarrierId,
-                            'id_reference' => (string)$freeCarrierReference,
+                            'id_carrier' => (string) $freeCarrierId,
+                            'id_reference' => (string) $freeCarrierReference,
                             'name' => $freeCarrierName,
-                            'carrier_taxes_rates_group_id' => (string)$carrierTaxesRatesGroupId,
+                            'carrier_taxes_rates_group_id' => (string) $carrierTaxesRatesGroupId,
                             'url' => $carrierUrl,
                             'active' => $true,
                             'deleted' => $false,
@@ -211,9 +199,9 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
                             'delay' => $freeCarrierDelay,
                             'currency' => $currency,
                             'weight_unit' => $weightUnit,
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ],
             'carrier with price' => [
                 'carrier' => $carrier,
@@ -228,10 +216,10 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
                         'zones' => [
                             '1' => [
                                 'id_zone' => $firstZoneId,
-                                'price' => $carrierShippingPrice
-                            ]
-                        ]
-                    ]
+                                'price' => $carrierShippingPrice,
+                            ],
+                        ],
+                    ],
                 ],
                 'mockedCountryIsoCodeByZone' => [$countryIsoCode],
                 'mockedStateIsoCodeByZone' => [],
@@ -239,19 +227,19 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
                     0 => [
                         'rate' => (string) $taxRate,
                         'country_iso_code' => $countryIsoCode,
-                        'state_iso_code' => null
-                    ]
+                        'state_iso_code' => null,
+                    ],
                 ],
                 'mockedCarrierRange' => $rangePrice,
                 'result' => [
                     [
-                        'collection' => (string)$carrierCollection,
-                        'id' => (string)$carrierReference,
+                        'collection' => (string) $carrierCollection,
+                        'id' => (string) $carrierReference,
                         'properties' => [
-                            'id_carrier' => (string)$carrierId,
-                            'id_reference' => (string)$carrierReference,
+                            'id_carrier' => (string) $carrierId,
+                            'id_reference' => (string) $carrierReference,
                             'name' => $carrierName,
-                            'carrier_taxes_rates_group_id' => (string)$carrierTaxesRatesGroupId,
+                            'carrier_taxes_rates_group_id' => (string) $carrierTaxesRatesGroupId,
                             'url' => $carrierUrl,
                             'active' => $true,
                             'deleted' => $false,
@@ -272,35 +260,35 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
                             'delay' => $carrierDelay,
                             'currency' => $currency,
                             'weight_unit' => $weightUnit,
-                        ]
+                        ],
                     ],
                     [
-                        'collection' => (string)$carrierDetailsCollection,
-                        'id' => $carrierReference . '-' . $firstZoneId . '-' . CarrierDetail::RANGE_BY_PRICE . '-' . 1,
+                        'collection' => (string) $carrierDetailsCollection,
+                        'id' => $carrierReference . '-' . $firstZoneId . '-' . CarrierDetail::RANGE_BY_PRICE . '-' . $rangePriceId,
                         'properties' => [
-                            'id_reference' => (string)$carrierReference,
-                            'id_carrier_detail' => (string)$rangePriceId,
+                            'id_reference' => (string) $carrierReference,
+                            'id_carrier_detail' => (string) $rangePriceId,
                             'shipping_method' => 'range_price',
                             'delimiter1' => $priceRangeDelimiter1,
                             'delimiter2' => $priceRangeDelimiter2,
                             'country_ids' => $countryIsoCode,
                             'state_ids' => '',
                             'price' => $carrierShippingPrice,
-                        ]
+                        ],
                     ],
                     [
-                        'collection' => (string)$carrierTaxesCollection,
+                        'collection' => (string) $carrierTaxesCollection,
                         'id' => $carrierReference . '-' . $firstZoneId,
                         'properties' => [
-                            'id_reference' => (string)$carrierReference,
-                            'id_carrier_tax' => (string)$carrierTaxesRatesGroupId,
+                            'id_reference' => (string) $carrierReference,
+                            'id_carrier_tax' => (string) $carrierTaxesRatesGroupId,
                             'country_id' => $countryIsoCode,
                             'state_ids' => '',
                             'tax_rate' => $taxRate,
-                        ]
-                    ]
-                ]
-            ]
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 
@@ -363,7 +351,85 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
         $rangePrice->delimiter1 = $delimiter1;
         $rangePrice->delimiter2 = $delimiter2;
 
-
         return $rangePrice;
+    }
+
+    /**
+     * @param $mockedDeliveryBy
+     * @param $mockedCarrierRange
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    private function createCarrierRepositoryMock($mockedDeliveryBy, $mockedCarrierRange): \PHPUnit_Framework_MockObject_MockObject
+    {
+        $carrierRepo = $this->getMockBuilder(CarrierRepository::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $carrierRepo->expects($this->at(0))->method('getDeliveryPriceByRange')->willReturn($mockedDeliveryBy);
+        $carrierRepo->expects($this->any())->method('getCarrierRange')->willReturn($mockedCarrierRange);
+
+        return $carrierRepo;
+    }
+
+    /**
+     * @param $mockedCountryIsoCode
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    private function createCountryRepositoryMock($mockedCountryIsoCode): \PHPUnit_Framework_MockObject_MockObject
+    {
+        $countryRepo = $this->getMockBuilder(CountryRepository::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $countryRepo->expects($this->any())->method('getCountyIsoCodesByZoneId')->willReturn($mockedCountryIsoCode);
+
+        return $countryRepo;
+    }
+
+    /**
+     * @param $mockedStateIsoCode
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    private function createStateRepositoryMock($mockedStateIsoCode): \PHPUnit_Framework_MockObject_MockObject
+    {
+        $stateRepo = $this->getMockBuilder(StateRepository::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $stateRepo->expects($this->any())->method('getStateIsoCodesByZoneId')->willReturn($mockedStateIsoCode);
+
+        return $stateRepo;
+    }
+
+    /**
+     * @param $mockedCarrierTaxesByZone
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    private function createTaxRepositoryMock($mockedCarrierTaxesByZone): \PHPUnit_Framework_MockObject_MockObject
+    {
+        $taxRepository = $this->getMockBuilder(TaxRepository::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $taxRepository->expects($this->any())->method('getCarrierTaxesByZone')->willReturn($mockedCarrierTaxesByZone);
+
+        return $taxRepository;
+    }
+
+    /**
+     * @param float $freeShippintAtPrice
+     * @param float $freeShippingAtWeight
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    private function createConfigurationAdapterMock(float $freeShippintAtPrice, float $freeShippingAtWeight): \PHPUnit_Framework_MockObject_MockObject
+    {
+        $configurationAdapter = $this->getMockBuilder(ConfigurationAdapter::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $configurationAdapter->expects($this->at(0))->method('get')->willReturn($freeShippintAtPrice);
+        $configurationAdapter->expects($this->at(1))->method('get')->willReturn($freeShippingAtWeight);
+
+        return $configurationAdapter;
     }
 }
