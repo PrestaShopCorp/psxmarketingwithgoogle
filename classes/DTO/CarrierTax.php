@@ -44,7 +44,7 @@ class CarrierTax implements JsonSerializable
     /**
      * @return string
      */
-    public function getCollection()
+    public function getCollection(): string
     {
         return $this->collection;
     }
@@ -54,7 +54,7 @@ class CarrierTax implements JsonSerializable
      *
      * @return CarrierTax
      */
-    public function setCollection($collection)
+    public function setCollection(string $collection): CarrierTax
     {
         $this->collection = $collection;
 
@@ -64,7 +64,7 @@ class CarrierTax implements JsonSerializable
     /**
      * @return int
      */
-    public function getCarrierReference()
+    public function getCarrierReference(): int
     {
         return $this->carrierReference;
     }
@@ -74,7 +74,7 @@ class CarrierTax implements JsonSerializable
      *
      * @return CarrierTax
      */
-    public function setCarrierReference($carrierReference)
+    public function setCarrierReference(int $carrierReference): CarrierTax
     {
         $this->carrierReference = $carrierReference;
 
@@ -84,7 +84,7 @@ class CarrierTax implements JsonSerializable
     /**
      * @return int
      */
-    public function getTaxRulesGroupId()
+    public function getTaxRulesGroupId(): int
     {
         return $this->taxRulesGroupId;
     }
@@ -94,7 +94,7 @@ class CarrierTax implements JsonSerializable
      *
      * @return CarrierTax
      */
-    public function setTaxRulesGroupId($taxRulesGroupId)
+    public function setTaxRulesGroupId(int $taxRulesGroupId): CarrierTax
     {
         $this->taxRulesGroupId = $taxRulesGroupId;
 
@@ -104,7 +104,7 @@ class CarrierTax implements JsonSerializable
     /**
      * @return int
      */
-    public function getZoneId()
+    public function getZoneId(): int
     {
         return $this->zoneId;
     }
@@ -114,7 +114,7 @@ class CarrierTax implements JsonSerializable
      *
      * @return CarrierTax
      */
-    public function setZoneId($zoneId)
+    public function setZoneId(int $zoneId): CarrierTax
     {
         $this->zoneId = $zoneId;
 
@@ -124,7 +124,7 @@ class CarrierTax implements JsonSerializable
     /**
      * @return string
      */
-    public function getCountryIsoCode()
+    public function getCountryIsoCode(): string
     {
         return $this->countryIsoCode;
     }
@@ -134,7 +134,7 @@ class CarrierTax implements JsonSerializable
      *
      * @return CarrierTax
      */
-    public function setCountryIsoCode($countryIsoCode)
+    public function setCountryIsoCode(string $countryIsoCode): CarrierTax
     {
         $this->countryIsoCode = $countryIsoCode;
 
@@ -144,7 +144,7 @@ class CarrierTax implements JsonSerializable
     /**
      * @return string
      */
-    public function getStateIsoCodes()
+    public function getStateIsoCodes(): string
     {
         return $this->stateIsoCodes;
     }
@@ -154,7 +154,7 @@ class CarrierTax implements JsonSerializable
      *
      * @return CarrierTax
      */
-    public function setStateIsoCodes($stateIsoCodes)
+    public function setStateIsoCodes(string $stateIsoCodes): CarrierTax
     {
         $this->stateIsoCodes = $stateIsoCodes;
 
@@ -164,7 +164,7 @@ class CarrierTax implements JsonSerializable
     /**
      * @return float
      */
-    public function getTaxRate()
+    public function getTaxRate(): float
     {
         return $this->taxRate;
     }
@@ -174,7 +174,7 @@ class CarrierTax implements JsonSerializable
      *
      * @return CarrierTax
      */
-    public function setTaxRate($taxRate)
+    public function setTaxRate(float $taxRate): CarrierTax
     {
         $this->taxRate = $taxRate;
 

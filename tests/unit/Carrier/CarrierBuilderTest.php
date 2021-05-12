@@ -165,7 +165,7 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
                 'weightUnit' => $weightUnit,
                 'mockedFreeShippingAtPrice' => $freeShippingStartsAtPriceRange,
                 'mockedFreeShippingAtWeight' => $freeShippingStartsAtWeightRange,
-                'mockedDeliveryBy' => $false,
+                'mockedDeliveryBy' => [],
                 'mockedCountryIsoCodeByZone' => $countryIsoCode,
                 'mockedStateIsoCodeByZone' => $false,
                 'mockedCarrierTaxesByZone' => $priceFree,
@@ -227,7 +227,7 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
                     0 => [
                         'rate' => (string) $taxRate,
                         'country_iso_code' => $countryIsoCode,
-                        'state_iso_code' => null,
+                        'state_iso_code' => '',
                     ],
                 ],
                 'mockedCarrierRange' => $rangePrice,
