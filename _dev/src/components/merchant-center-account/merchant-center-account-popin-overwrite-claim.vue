@@ -4,9 +4,10 @@
     :title="$t('modal.titleOverwriteClaim')"
     v-bind="$attrs"
   >
-    <p class="my-1">
-      {{ $t('modal.textDisconnectMCA') }}
-    </p>
+    <VueShowdown
+      class="my-1"
+      :markdown="$t('modal.textOverwriteClaim')"
+    />
     <template slot="modal-cancel">
       {{ $t('cta.switchAccount') }}
     </template>
@@ -20,13 +21,14 @@
 import PsModal from '../commons/ps-modal';
 
 export default {
+  /**
+   * TODO:
+   * Handle all events:  close, click on cancel, click on ok, etc...
+   */
+
   name: 'MerchantCenterAccountPopinOverwriteClaim',
   components: {
     PsModal,
-  },
-  data() {
-    return {
-    };
   },
 };
 </script>

@@ -289,6 +289,9 @@ class PsGoogleShoppingTranslations
                 'saveAndContinue' => $this->module->l('Save and continue', 'PsGoogleShoppingTranslations'),
                 'yes' => $this->module->l('Yes', 'PsGoogleShoppingTranslations'),
                 'no' => $this->module->l('No', 'PsGoogleShoppingTranslations'),
+                'disableFreeListing' => $this->module->l('Disable free listing', 'PsGoogleShoppingTranslations'),
+                'disableProductFeed' => $this->module->l('Disable product feed', 'PsGoogleShoppingTranslations'),
+                'enableFreeListingAndProductFeed' => $this->module->l('Enable free listing and product feed', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
@@ -310,9 +313,15 @@ class PsGoogleShoppingTranslations
             'modal' => [
                 'titleDisconnection' => $this->module->l('Confirm disconnection?', 'PsGoogleShoppingTranslations'),
                 'titleOverwriteClaim' => $this->module->l('Overwrite existing claim', 'PsGoogleShoppingTranslations'),
-                'textDisconnectGoogleAccount' => $this->module->l('YYou are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.', 'PsGoogleShoppingTranslations'),
+                'textDisconnectGoogleAccount' => $this->module->l('You are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.', 'PsGoogleShoppingTranslations'),
                 'textDisconnectMCA' => $this->module->l('You are about to disconnect Google Merchant Center account. This will remove access to Google Merchant Center and Google Ads accounts.', 'PsGoogleShoppingTranslations'),
                 'textOverwriteClaim' => $this->module->l('The existing claim will be overwritten. This action will impact the previous account to become inactive and the existing campaigns - free listings and Google Shopping campaigns - tied to that claim to be paused.  /nIf you are running a different Google Shopping campaign, we recommend pausing the campaign.', 'PsGoogleShoppingTranslations'),
+                'titleDisableFreeListing' => $this->module->l('Disable free listing?', 'PsGoogleShoppingTranslations'),
+                'textDisableFreeListing' => $this->module->l('By this action, your products will no longer be advertised on Google Shopping and your running campaigns will be paused.  \nYour catalog export will be still running.', 'PsGoogleShoppingTranslations'),
+                'titleDisableProductFeed' => $this->module->l('Disable product feed?', 'PsGoogleShoppingTranslations'),
+                'textDisableProductFeed' => $this->module->l('Products will continue to show on Free Listings until the product feed has expired after 30 days.  \nSmart shopping campaigns will remain active as long as there are still active products in the merchant center - you will need to pause your campaigns.', 'PsGoogleShoppingTranslations'),
+                'titleEnableFreeListing' => $this->module->l('Enable free listing?', 'PsGoogleShoppingTranslations'),
+                'textEnableFreeListing' => $this->module->l('This action will also cause the reactivation of the product feed.', 'PsGoogleShoppingTranslations'),
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configured', 'PsGoogleShoppingTranslations'),

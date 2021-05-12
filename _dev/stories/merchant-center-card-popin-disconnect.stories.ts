@@ -1,5 +1,6 @@
 import MerchantCenterAccountPopinDisconnect from '../src/components/merchant-center-account/merchant-center-account-popin-disconnect.vue'
 import OnboardingPage from '../src/views/onboarding-page.vue'
+import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 
 export default {
   title: 'Merchant Center Account/Popins/Disconnect',
@@ -15,6 +16,9 @@ const Template = (args, { argTypes }) => ({
       <MerchantCenterAccountPopinDisconnect v-bind="$props" />
     </div>
   `,
+  beforeCreate(this: any) {
+    this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
+  },
 });
 
 export const Disconnect:any = Template.bind({});

@@ -1,24 +1,24 @@
 <template>
   <ps-modal
-    id="GoogleAccountPopinDisconnect"
-    :title="$t('modal.titleDisconnection')"
+    id="ProductFeedPopinDisable"
+    :title="$t('modal.titleDisableProductFeed')"
     v-bind="$attrs"
   >
     <VueShowdown
       class="my-1"
-      :markdown="$t('modal.textDisconnectGoogleAccount')"
+      :markdown="$t('modal.textDisableProductFeed')"
     />
     <template slot="modal-cancel">
-      {{ $t('cta.cancel') }}
+      {{ $t("cta.cancel") }}
     </template>
     <template slot="modal-ok">
-      {{ $t('cta.disconnectAccount') }}
+      {{ $t("cta.disableProductFeed") }}
     </template>
   </ps-modal>
 </template>
 
 <script>
-import PsModal from '../commons/ps-modal';
+import PsModal from "../commons/ps-modal";
 
 export default {
   /**
@@ -26,7 +26,7 @@ export default {
    * Handle all events:  close, click on cancel, click on ok, etc...
    */
 
-  name: 'GoogleAccountPopinDisconnect',
+  name: "ProductFeedPopinDisable",
   components: {
     PsModal,
   },

@@ -1,19 +1,17 @@
-import GlassScreen from '../src/components/commons/glass.vue'
-import OnboardingPage from '../src/views/onboarding-page.vue'
+import FreeListingPopinDisable from '../src/components/free-listing/free-listing-popin-disable.vue'
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 
 export default {
-  title: 'Basic Components/Glass',
-  component: GlassScreen, OnboardingPage
+  title: 'Free Listing/Popins/Disable',
+  component: FreeListingPopinDisable,
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { GlassScreen, OnboardingPage},
+  components: { FreeListingPopinDisable },
   template: `
     <div>
-      <OnboardingPage />
-      <GlassScreen />
+      <FreeListingPopinDisable v-bind="$props" />
     </div>
   `,
   beforeCreate(this: any) {
@@ -21,5 +19,7 @@ const Template = (args, { argTypes }) => ({
   },
 });
 
-export const Glass:any = Template.bind({});
-Glass.args = {}
+export const Disable:any = Template.bind({});
+Disable.args = {
+  visible: true,
+};
