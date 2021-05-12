@@ -14,10 +14,6 @@ use RangePrice;
 
 class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
 {
-    public function testBuildCarriers()
-    {
-    }
-
     /**
      * @dataProvider buildCarrierDataProvider
      *
