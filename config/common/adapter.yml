@@ -1,0 +1,3 @@
+services:
+  PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter
