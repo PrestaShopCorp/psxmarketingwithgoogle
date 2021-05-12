@@ -2,5 +2,11 @@
   "productConfiguration" : "//google.com",
   "syncFailed" : "https://support.google.com/merchants/answer/188476",
   "shippingSettingsMissing" : "//google.com",
-  "loginMCA" : "//google.com"
+  "loginMCA" : "//google.com",
+  "shoppingAdsPolicies" : "//google.com",
+  "accurateContactInformation" : "//google.com",
+  "secureCheckoutProcess" : "//google.com",
+  "returnPolicy" : "//google.com",
+  "billingTerms" : "//google.com",
+  "completeCheckoutProcess" : "//google.com"
 }

@@ -66,6 +66,41 @@
       "shopInfoMissing" : "Shop information is missing",
       "shopInfoMissingDescription" : "To check if it is a validity issue or if you are not following our rules, please log in to your account at"
     },
+    "mcaRequirements": {
+      "title" : "Create new Merchant Center account",
+      "legend" : "To use Google Ads, you must acknowledge that you meet these requirements by checking these boxes.",
+      "footer" : "Learn about shopping website requirements",
+      "shoppingAdsPolicies" : {
+        "title": "Shopping Ads policies",
+        "description": "Don’t promote prohibited content or use prohibited practice to advertise. Respect restricted content policy and quality standards for your ads and website.",
+        "link": "See Shopping Ads policies"
+      },
+      "accurateContactInformation" : {
+        "title": "Accurate contact information",
+        "description": "According to the policy provide users with the information that they need to make informed decisions (currently 2 out of 3: e-mail, phone number or physical address)",
+        "link": "Discover how to provide relevant information"
+      },
+      "secureCheckoutProcess" : {
+        "title": "Secure checkout process and collection of personal data",
+        "description": "Do not misuse information about user, nor collect it for unclear purposes or without appropriate security measures.",
+        "link": "Learn about irresponsible data collection & use"
+      },
+      "returnPolicy" : {
+        "title": "Return policy",
+        "description": "Provide users with the information that they need to make informed decisions.",
+        "link": "Discover how to set up return policies"
+      },
+      "billingTerms" : {
+        "title": "Billing terms and conditions",
+        "description": "Provide users with the information that they need to make informed decisions.",
+        "link": "See Merchant Center guidelines"
+      },
+      "completeCheckoutProcess" : {
+        "title": "Complete checkout process",
+        "description": "Avoid abuse",
+        "link": "See checkout requirements"
+      }
+    },
     "productFeedCard" : {
       "title" : "Product feed export configuration",
       "intro" : "Allows you to display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns",
@@ -279,7 +314,8 @@
       "textEnableFreeListing" : "This action will also cause the reactivation of the product feed."
     },
     "tooltip" : {
-      "googleAccountRequired" : "Requires Google account configured"
+      "googleAccountRequired" : "Requires Google account configured",
+      "mustCheckAllRequirements" : "You must check if all requirements met."
     }
   },
   "ar" : {
