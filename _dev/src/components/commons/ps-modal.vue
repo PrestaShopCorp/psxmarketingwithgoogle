@@ -34,6 +34,9 @@ export default {
     cancelVariant: {
       default: 'outline-secondary',
     },
+    static: {
+      default: true,
+    },
   },
   /* eslint-enable vue/require-prop-types */
 };
