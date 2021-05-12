@@ -190,8 +190,8 @@ class CarrierBuilder
         $carrierTax->setCarrierReference($carrier->id_reference);
         $carrierTax->setTaxRulesGroupId($taxRulesGroupId);
         $carrierTax->setZoneId($zoneId);
-        $carrierTax->setCountryIsoCode($carrierTaxesByZone['country_iso_code']);
-        $carrierTax->setStateIsoCodes($carrierTaxesByZone['state_iso_code']);
+        $carrierTax->setCountryIsoCode((string) $carrierTaxesByZone['country_iso_code']);
+        $carrierTax->setStateIsoCodes((string) $carrierTaxesByZone['state_iso_code']);
         $carrierTax->setTaxRate($carrierTaxesByZone['rate']);
 
         return $carrierTax;
