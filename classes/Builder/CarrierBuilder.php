@@ -57,7 +57,7 @@ class CarrierBuilder
         $this->configurationAdapter = $configurationAdapter;
     }
 
-    public function buildCarriers(array $carriers, Language $lang, Currency $currency, $weightUnit)
+    public function buildCarriers(array $carriers, Language $lang, Currency $currency, string $weightUnit): array
     {
         $carrierLines = [];
         foreach ($carriers as $carrier) {
@@ -77,17 +77,7 @@ class CarrierBuilder
         return $formattedCarriers;
     }
 
-    /**
-     * @param Carrier $carrier
-     * @param string $currency
-     * @param string $weightUnit
-     *
-     * @return DTOCarrier
-     *
-     * @throws \PrestaShopDatabaseException
-     * @throws \PrestaShopException
-     */
-    public function buildCarrier(Carrier $carrier, $currencyIsoCode, $weightUnit)
+    public function buildCarrier(Carrier $carrier, string $currencyIsoCode, string $weightUnit): DTOCarrier
     {
         $carrierLine = new DTOCarrier();
         $freeShippingStartsAtPrice = (float) $this->configurationAdapter->get('PS_SHIPPING_FREE_PRICE');
@@ -157,7 +147,7 @@ class CarrierBuilder
      * @param RangeWeight|RangePrice $rangeWeight
      * @param array $zone
      *
-     * @return false|CarrierDetail
+     * @return ?CarrierDetail
      *
      * @throws \PrestaShopDatabaseException
      */
@@ -175,7 +165,7 @@ class CarrierBuilder
 
         $countryIsoCodes = $this->countryRepository->getCountyIsoCodesByZoneId($zone['id_zone']);
         if (!$countryIsoCodes) {
-            return false;
+            return null;
         }
         $carrierDetail->setCountryIsoCodes($countryIsoCodes);
 
@@ -185,15 +175,7 @@ class CarrierBuilder
         return $carrierDetail;
     }
 
-    /**
-     * @param Carrier $carrier
-     * @param int $zoneId
-     *
-     * @return CarrierTax|null
-     *
-     * @throws \PrestaShopDatabaseException
-     */
-    private function buildCarrierTaxes(Carrier $carrier, $zoneId)
+    private function buildCarrierTaxes(Carrier $carrier, int $zoneId): ?CarrierTax
     {
         $taxRulesGroupId = (int) $carrier->getIdTaxRulesGroup();
         $carrierTaxesByZone = $this->taxRepository->getCarrierTaxesByZone($zoneId, $taxRulesGroupId);
@@ -215,12 +197,7 @@ class CarrierBuilder
         return $carrierTax;
     }
 
-    /**
-     * @param bool $shippingHandling
-     *
-     * @return float
-     */
-    private function getShippingHandlePrice($shippingHandling)
+    private function getShippingHandlePrice(bool $shippingHandling): float
     {
         if ($shippingHandling) {
             return (float) $this->configurationAdapter->get('PS_SHIPPING_HANDLING');

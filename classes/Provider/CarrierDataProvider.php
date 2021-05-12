@@ -39,13 +39,7 @@ class CarrierDataProvider
         $this->carrierRepository = $carrierRepository;
     }
 
-    /**
-     * @return array
-     *
-     * @throws \PrestaShopDatabaseException
-     * @throws \PrestaShopException
-     */
-    public function getFormattedData()
+    public function getFormattedData(): array
     {
         $language = new Language($this->configurationAdapter->get('PS_LANG_DEFAULT'));
         $currency = new Currency($this->configurationAdapter->get('PS_CURRENCY_DEFAULT'));

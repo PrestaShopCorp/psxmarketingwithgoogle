@@ -5,9 +5,6 @@ namespace PrestaShop\Module\PrestashopGoogleShopping\Repository;
 use Context;
 use Db;
 use DbQuery;
-use mysqli_result;
-use PDOStatement;
-use PrestaShopDatabaseException;
 
 class TaxRepository
 {
@@ -29,10 +26,7 @@ class TaxRepository
         $this->context = $context;
     }
 
-    /**
-     * @return DbQuery
-     */
-    private function getBaseQuery()
+    private function getBaseQuery(): DbQuery
     {
         $query = new DbQuery();
 
@@ -47,16 +41,7 @@ class TaxRepository
         return $query;
     }
 
-    /**
-     * @param int $zoneId
-     * @param int $taxRulesGroupId
-     * @param bool $active
-     *
-     * @return array|bool|mysqli_result|PDOStatement|resource|null
-     *
-     * @throws PrestaShopDatabaseException
-     */
-    public function getCarrierTaxesByZone($zoneId, $taxRulesGroupId, $active = true)
+    public function getCarrierTaxesByZone(int $zoneId, int $taxRulesGroupId, bool $active = true): array
     {
         $cacheKey = $zoneId . '-' . (int) $active;
 

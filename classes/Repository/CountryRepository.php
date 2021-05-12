@@ -5,9 +5,6 @@ namespace PrestaShop\Module\PrestashopGoogleShopping\Repository;
 use Context;
 use Db;
 use DbQuery;
-use mysqli_result;
-use PDOStatement;
-use PrestaShopDatabaseException;
 
 class CountryRepository
 {
@@ -32,10 +29,7 @@ class CountryRepository
         $this->country = $country;
     }
 
-    /**
-     * @return DbQuery
-     */
-    private function getBaseQuery()
+    private function getBaseQuery(): DbQuery
     {
         $query = new DbQuery();
 
@@ -48,15 +42,7 @@ class CountryRepository
         return $query;
     }
 
-    /**
-     * @param int $zoneId
-     * @param bool $active
-     *
-     * @return array|bool|mysqli_result|PDOStatement|resource|null
-     *
-     * @throws PrestaShopDatabaseException
-     */
-    public function getCountyIsoCodesByZoneId($zoneId, $active = true)
+    public function getCountyIsoCodesByZoneId(int $zoneId, bool $active = true): array
     {
         $cacheKey = $zoneId . '-' . (int) $active;
 

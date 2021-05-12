@@ -11,5 +11,6 @@ parameters:
   ignoreErrors:
     - '#Parameter \#4 \$ssl of method LinkCore::getModuleLink\(\) expects null, true given.#'
     - '#Parameter \#1 \$id of class [a-zA-Z0-9\\_]+ constructor expects null, bool\|string given.#'
+    - '#Parameter \#1 \$id of class [a-zA-Z0-9\\_]+ constructor expects int\|null, bool\|string given.#'
 
   level: 5

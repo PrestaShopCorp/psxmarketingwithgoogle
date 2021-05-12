@@ -25,7 +25,7 @@ use DbQuery;
 
 class TabRepository
 {
-    public function hasChildren($tabId)
+    public function hasChildren(int $tabId): bool
     {
         $sql = new DbQuery();
         $sql->select('id_tab');
