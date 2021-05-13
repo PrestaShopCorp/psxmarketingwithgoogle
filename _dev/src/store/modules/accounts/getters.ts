@@ -21,6 +21,7 @@ import {
   State as LocalState,
   PrestaShopAccountsContext,
   GoogleAccountsContext,
+  MerchantCenterAccount,
   MerchantCenterAccountContext,
 } from './state';
 import GetterTypes from './getters-types';
@@ -55,6 +56,9 @@ export default {
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT](state: LocalState) : GoogleAccountsContext {
     return state.googleAccount;
+  },
+  [GetterTypes.GET_GOOGLE_ACCOUNT_MCA_LIST](state: LocalState) : MerchantCenterAccount[] {
+    return state.googleAccount.mcaSelectionOptions;
   },
   /* Merchant Center Account */
   [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT](state: LocalState) :

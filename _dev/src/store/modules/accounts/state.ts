@@ -40,6 +40,8 @@ export interface GoogleAccountsContext {
   token: string,
   email: string,
   photo: string,
+  mcaSelectionOptions: MerchantCenterAccount[],
+
   authenticationUrl: string,
 
   from?: string,
@@ -76,6 +78,8 @@ export const state: State = {
     token: '',
     email: '',
     photo: '',
+    mcaSelectionOptions: [],
+
     authenticationUrl: '',
   },
   googleMerchantAccount: {

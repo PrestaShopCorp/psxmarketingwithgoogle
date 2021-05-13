@@ -246,38 +246,6 @@ export default {
   data() {
     return {
       selectedMcaIndex: null,
-      mcaSelectionOptions: [
-        {
-          id: '123456789',
-          name: 'V Godard',
-          websiteUrl: 'http://perdu.com',
-          adultContent: false,
-        },
-        {
-          id: '653367900',
-          name: 'Royer et fils',
-          websiteUrl: 'http://perdu.com',
-          adultContent: false,
-        },
-        {
-          id: '246797534',
-          name: 'Maison Royer',
-          websiteUrl: 'http://perdu.com',
-          adultContent: false,
-        },
-        {
-          id: '79747579864',
-          name: 'Godard',
-          websiteUrl: 'http://perdu.com',
-          adultContent: false,
-        },
-        {
-          id: '678321007',
-          name: 'Fondation Royer',
-          websiteUrl: 'http://perdu.com',
-          adultContent: false,
-        },
-      ],
     };
   },
   props: {
@@ -295,6 +263,9 @@ export default {
     },
   },
   computed: {
+    mcaSelectionOptions() {
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
+    },
     websiteVerification() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'].websiteVerificationProgressStatus;
     },
