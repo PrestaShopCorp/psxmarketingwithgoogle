@@ -8,7 +8,7 @@ export const merchantCenterAccountConnected = {
     ...merchantCenterAccountNotConnected,
     websiteVerificationProgressStatus: 'done',
     id: '246797534',
-    name: 'Maison Royer - 246797534',
+    name: 'Maison Royer',
     websiteUrl: "http://perdu.com",
     adultContent: false,
 }

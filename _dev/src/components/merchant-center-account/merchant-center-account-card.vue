@@ -71,9 +71,7 @@
           <b-dropdown
             id="mcaSelection"
             ref="mcaSelection"
-            :text="selectedMcaIndex !== null
-              ? mcaSelectionOptions[selectedMcaIndex].name
-              : $t('cta.chooseAccount')"
+            :text="mcaLabel(selectedMcaIndex) || $t('cta.chooseAccount')"
             variant=" "
             class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
             menu-class="ps-dropdown"
@@ -85,7 +83,7 @@
               :key="option.id"
               @click="selectedMcaIndex = index"
             >
-              {{ option.name }}
+              {{ mcaLabel(index) }}
             </b-dropdown-item>
           </b-dropdown>
           <b-button
@@ -115,12 +113,16 @@
         />
       </div>
     </div>
+    <!--
+      ToDo: Consider moving the "associated state" in a dedicated component
+      As we only use data from the vuex store
+    -->
     <div
       v-if="isEnabled && websiteVerification"
       class="mt-2 d-flex justify-content-between align-items-start"
     >
       <div class="d-flex align-items-center">
-        <strong>{{ selectedMcaDetails.name }}</strong>
+        <strong>{{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}</strong>
         <b-badge
           class="mx-3"
           :variant="mcaStatusBadge.color"
@@ -247,31 +249,31 @@ export default {
       mcaSelectionOptions: [
         {
           id: '123456789',
-          name: 'V Godard - 123456789',
+          name: 'V Godard',
           websiteUrl: 'http://perdu.com',
           adultContent: false,
         },
         {
           id: '653367900',
-          name: 'Royer et fils - 653367900',
+          name: 'Royer et fils',
           websiteUrl: 'http://perdu.com',
           adultContent: false,
         },
         {
           id: '246797534',
-          name: 'Maison Royer - 246797534',
+          name: 'Maison Royer',
           websiteUrl: 'http://perdu.com',
           adultContent: false,
         },
         {
           id: '79747579864',
-          name: 'Godard - 79747579864',
+          name: 'Godard',
           websiteUrl: 'http://perdu.com',
           adultContent: false,
         },
         {
           id: '678321007',
-          name: 'Fondation Royer - 678321007',
+          name: 'Fondation Royer',
           websiteUrl: 'http://perdu.com',
           adultContent: false,
         },
@@ -339,6 +341,12 @@ export default {
     },
     dissociateMerchantCenterAccount() {
       this.$emit('dissociateMerchantCenterAccount');
+    },
+    mcaLabel(index) {
+      if (this.mcaSelectionOptions[index]) {
+        return `${this.mcaSelectionOptions[index].name} - ${this.mcaSelectionOptions[index].id}`;
+      }
+      return null;
     },
   },
   mounted() {
