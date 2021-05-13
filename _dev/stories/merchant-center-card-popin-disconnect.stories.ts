@@ -1,6 +1,8 @@
 import MerchantCenterAccountPopinDisconnect from '../src/components/merchant-center-account/merchant-center-account-popin-disconnect.vue'
 import OnboardingPage from '../src/views/onboarding-page.vue'
-import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
+import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
+import {googleAccountConnected} from "../.storybook/mock/google-account";
+import {merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
 
 export default {
   title: 'Merchant Center Account/Popins/Disconnect',
@@ -18,6 +20,8 @@ const Template = (args, { argTypes }) => ({
   `,
   beforeCreate(this: any) {
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
+    this.$store.state.accounts.googleAccount = googleAccountConnected;
+    this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountConnected;
   },
 });
 
