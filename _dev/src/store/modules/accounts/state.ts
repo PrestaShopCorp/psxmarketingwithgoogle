@@ -49,11 +49,21 @@ export interface GoogleAccountsContext {
   status?: string,
 }
 
+/** @see https://developers.google.com/shopping-content/reference/rest/v2.1/accounts#Account */
 export interface MerchantCenterAccount {
   id: string|null,
   name?: string,
   websiteUrl?: string,
   adultContent?: string,
+  users: MerchantCenterAccountUser[],
+}
+
+export interface MerchantCenterAccountUser {
+  emailAddress: string,
+  admin: boolean,
+  orderManager: boolean,
+  paymentsManager: boolean,
+  paymentsAnalyst: boolean
 }
 
 export type MerchantCenterAccountContext = MerchantCenterAccount & {
@@ -86,6 +96,7 @@ export const state: State = {
     id: null,
     websiteVerificationProgressStatus: null,
     websiteVerificationStatus: null,
+    users: [],
   },
   psGoogleShoppingApiUrl: '',
   psGoogleShoppingShopUrl: '',
