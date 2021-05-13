@@ -1,11 +1,3 @@
-import {PsAccounts} from 'prestashop_accounts_vue_components';
-import SectionTitle from '../src/components/onboarding/section-title.vue'
-import GoogleAccountCard from '../src/components/google-account/google-account-card.vue'
-import GoogleAdsAccountCard from '../src/components/google-ads-account/google-ads-account-card.vue'
-import ProductFeedNotice from '../src/components/onboarding/product-feed-notice.vue'
-import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue'
-import ProductFeedCard from '../src/components/product-feed/product-feed-card.vue'
-import FreeListingCard from '../src/components/free-listing/free-listing-card.vue'
 import OnboardingPage from '../src/views/onboarding-page.vue'
 import {initialStateAccounts} from '../.storybook/mock/state-accounts';
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
