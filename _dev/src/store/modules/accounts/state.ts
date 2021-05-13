@@ -77,9 +77,6 @@ export interface State {
   contextPsAccounts: PrestaShopAccountsContext|any;
   googleAccount: GoogleAccountsContext;
   googleMerchantAccount: MerchantCenterAccountContext;
-  psGoogleShoppingApiUrl: string;
-  psGoogleShoppingShopUrl: string;
-  psAccountShopId: string;
 }
 
 export const state: State = {
@@ -98,7 +95,4 @@ export const state: State = {
     websiteVerificationStatus: null,
     users: [],
   },
-  psGoogleShoppingApiUrl: '',
-  psGoogleShoppingShopUrl: '',
-  psAccountShopId: '',
 };

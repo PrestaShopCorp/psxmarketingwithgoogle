@@ -16,23 +16,41 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-export default {
-  setValidationListStatement(state, payload) {
-    state.freeListing.validationList = payload;
+
+// ToDo: Replace every "any" in this file with the proper type
+export interface ProductFeedStatus {
+  lastSync: any;
+  registerSyncData: any;
+  isSuspendSync: any;
+}
+
+export interface FreeListingStatus {
+  validationList: any;
+  summaryValidationList: any;
+  status: any;
+}
+
+export interface State {
+  productFeed: {
+    status: ProductFeedStatus,
+    settings: any,
   },
-  setSummaryValidation(state, payload) {
-    state.freeListing.summaryValidationList = payload;
+  freeListing: FreeListingStatus;
+}
+
+export const state: State = {
+  productFeed: {
+    status: {
+      lastSync: {},
+      registerSyncData: {},
+      isSuspendSync: null,
+    },
+    settings: {
+    },
   },
-  setFreeListingStatus(state, payload) {
-    state.freeListing.status = payload;
-  },
-  setLastSync(state, payload) {
-    state.productFeed.lastSync = payload;
-  },
-  setRegisterDataSync(state, payload) {
-    state.productFeed.registerSyncData = payload;
-  },
-  setSuspendSync(state, payload) {
-    state.productFeed.isSuspendSync = payload;
+  freeListing: {
+    validationList: {},
+    summaryValidationList: [],
+    status: false,
   },
 };

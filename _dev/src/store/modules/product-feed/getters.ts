@@ -17,5 +17,8 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {} from './state';
+import GetterTypes from './getters-types';
+
 export default {
 };
