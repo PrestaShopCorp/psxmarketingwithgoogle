@@ -27,13 +27,15 @@
     <google-account-card
       :is-enabled="stepsAreCompleted.step1"
       :user="getGoogleAccount"
+      :is-connected="googleAccountIsOnboarded"
+      @dissociateGoogleAccount="onGoogleAccountDissociationRequest"
     />
     <MerchantCenterAccountCard
       v-if="stepsAreCompleted.step1"
       :is-connected="merchantCenterAccountIsChosen"
       :is-enabled="googleAccountIsOnboarded"
       @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
-      @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociated"
+      @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
     />
     <ProductFeedCard
       v-if="stepsAreCompleted.step1"
@@ -53,6 +55,13 @@
       :is-enabled="stepsAreCompleted.step2"
       :is-connected="false"
     />
+    <!-- Modals -->
+    <GoogleAccountPopinDisconnect
+      ref="googleAccountDisconnectModal"
+    />
+    <MerchantCenterAccountPopinDisconnect
+      ref="mcaDisconnectModal"
+    />
   </div>
 </template>
 
@@ -65,6 +74,8 @@ import ProductFeedNotice from '../components/onboarding/product-feed-notice.vue'
 import MerchantCenterAccountCard from '../components/merchant-center-account/merchant-center-account-card.vue';
 import ProductFeedCard from '../components/product-feed/product-feed-card.vue';
 import FreeListingCard from '../components/free-listing/free-listing-card.vue';
+import GoogleAccountPopinDisconnect from '../components/google-account/google-account-popin-disconnect.vue';
+import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 
 export default {
   name: 'OnboardingPage',
@@ -78,6 +89,8 @@ export default {
     MerchantCenterAccountCard,
     ProductFeedCard,
     FreeListingCard,
+    GoogleAccountPopinDisconnect,
+    MerchantCenterAccountPopinDisconnect,
   },
   data() {
     return {
@@ -90,8 +103,15 @@ export default {
     onMerchantCenterAccountSelected(selectedAccount) {
       this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount);
     },
-    onMerchantCenterAccountDissociated() {
-      this.$store.commit('accounts/REMOVE_MCA_ACCOUNT');
+    onGoogleAccountDissociationRequest() {
+      this.$bvModal.show(
+        this.$refs.googleAccountDisconnectModal.$refs.modal.id,
+      );
+    },
+    onMerchantCenterAccountDissociationRequest() {
+      this.$bvModal.show(
+        this.$refs.mcaDisconnectModal.$refs.modal.id,
+      );
     },
   },
   computed: {
@@ -111,7 +131,7 @@ export default {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'];
     },
     merchantCenterAccountIsChosen() {
-      return !!this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
     productFeedIsConfigured() {
       return false;

@@ -1,8 +1,10 @@
 <template>
   <ps-modal
     id="MerchantCenterAccountPopinDisconnect"
+    ref="modal"
     :title="$t('modal.titleDisconnection')"
     v-bind="$attrs"
+    @ok="onMerchantCenterAccountDissociationConfirmation"
   >
     <VueShowdown
       class="my-1"
@@ -21,14 +23,14 @@
 import PsModal from '../commons/ps-modal';
 
 export default {
-  /**
-   * TODO:
-   * Handle all events:  close, click on cancel, click on ok, etc...
-   */
-
   name: 'MerchantCenterAccountPopinDisconnect',
   components: {
     PsModal,
+  },
+  methods: {
+    onMerchantCenterAccountDissociationConfirmation() {
+      this.$store.dispatch('accounts/DISSOCIATE_MERCHANT_CENTER_ACCOUNT');
+    },
   },
 };
 </script>

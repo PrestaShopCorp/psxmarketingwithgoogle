@@ -35,6 +35,9 @@ export default {
   [MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN](state: LocalState, token: string) {
     state.googleAccount.token = token;
   },
+  [MutationsTypes.REMOVE_GOOGLE_ACCOUNT](state: LocalState) {
+    state.googleAccount.token = '';
+  },
   [MutationsTypes.SAVE_MCA_ACCOUNT](state: LocalState, selectedAccount: MerchantCenterAccount) {
     state.googleMerchantAccount = {
       ...state.googleMerchantAccount,
