@@ -32,6 +32,8 @@
       v-if="stepsAreCompleted.step1"
       :is-connected="merchantCenterAccountIsChosen"
       :is-enabled="googleAccountIsOnboarded"
+      @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
+      @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociated"
     />
     <ProductFeedCard
       v-if="stepsAreCompleted.step1"
@@ -85,6 +87,12 @@ export default {
     onShopSelected(shopSelected) {
       window.location.href = shopSelected.url;
     },
+    onMerchantCenterAccountSelected(selectedAccount) {
+      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount);
+    },
+    onMerchantCenterAccountDissociated() {
+      this.$store.commit('accounts/REMOVE_MCA_ACCOUNT');
+    },
   },
   computed: {
     psAccountsContext() {
@@ -100,7 +108,7 @@ export default {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED'];
     },
     merchantCenterAccountIsChosen() {
-      return false;
+      return !!this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
     productFeedIsConfigured() {
       return false;

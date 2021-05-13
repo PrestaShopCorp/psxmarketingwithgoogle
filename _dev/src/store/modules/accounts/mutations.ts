@@ -17,7 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import MutationsTypes from './mutations-types';
-import {State as LocalState} from './state';
+import {State as LocalState, MerchantCenterAccount} from './state';
 
 interface OnboardStatus {
   // TODO: To be defined from response structure
@@ -34,5 +34,36 @@ export default {
   },
   [MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN](state: LocalState, token: string) {
     state.googleAccount.token = token;
+  },
+  [MutationsTypes.SAVE_MCA_ACCOUNT](state: LocalState, selectedAccount: MerchantCenterAccount) {
+    state.googleMerchantAccount = {
+      ...state.googleMerchantAccount,
+      ...selectedAccount,
+    };
+  },
+  [MutationsTypes.REMOVE_MCA_ACCOUNT](state: LocalState) {
+    state.googleMerchantAccount = {
+      ...state.googleMerchantAccount,
+      id: null,
+      websiteVerificationProgressStatus: null,
+      websiteVerificationStatus: null,
+    };
+  },
+  [MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS](
+    state: LocalState,
+    newStatus: string|null,
+  ) {
+    if (!state.googleMerchantAccount.id) {
+      // Account has been dissiociated, abort.
+      return;
+    }
+    // ToDo: Add some validation about possible values?
+
+    state.googleMerchantAccount.websiteVerificationProgressStatus = newStatus;
+  },
+  [MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_STATUS](state: LocalState, newStatus: string|null) {
+    // ToDo: Add some validation about possible values?
+
+    state.googleMerchantAccount.websiteVerificationStatus = newStatus;
   },
 };

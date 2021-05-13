@@ -1,3 +1,9 @@
+export const googleAccountNotConnected = {
+    token: '',
+    email: '',
+    photo: '',
+};
+
 export const googleAccountConnected = {
     token: 'wololo',
     email: 'v.godard@maisonroyer.com',

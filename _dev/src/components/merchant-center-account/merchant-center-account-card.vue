@@ -71,7 +71,7 @@
           <b-dropdown
             id="mcaSelection"
             ref="mcaSelection"
-            :text="selected || $t('cta.chooseAccount')"
+            :text="mcaLabel(selectedMcaIndex) || $t('cta.chooseAccount')"
             variant=" "
             class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
             menu-class="ps-dropdown"
@@ -79,17 +79,17 @@
             size="sm"
           >
             <b-dropdown-item
-              v-for="option in mcaSelectionOptions"
-              :key="option.text"
-              @click="selected = option.text"
+              v-for="(option, index) in mcaSelectionOptions"
+              :key="option.id"
+              @click="selectedMcaIndex = index"
             >
-              {{ option.text }}
+              {{ mcaLabel(index) }}
             </b-dropdown-item>
           </b-dropdown>
           <b-button
             size="sm"
             variant="primary"
-            :disabled="!selected"
+            :disabled="selectedMcaIndex === null"
             class="mt-3 mt-md-0 ml-md-3"
             @click="selectMerchantCenterAccount"
           >
@@ -113,12 +113,16 @@
         />
       </div>
     </div>
+    <!--
+      ToDo: Consider moving the "associated state" in a dedicated component
+      As we only use data from the vuex store
+    -->
     <div
       v-if="isEnabled && websiteVerification"
       class="mt-2 d-flex justify-content-between align-items-start"
     >
       <div class="d-flex align-items-center">
-        <strong>{{ selected }}</strong>
+        <strong>{{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}</strong>
         <b-badge
           class="mx-3"
           :variant="mcaStatusBadge.color"
@@ -143,6 +147,7 @@
       <b-button
         size="sm"
         variant="outline-secondary"
+        @click="dissociateMerchantCenterAccount"
       >
         {{ $t("cta.dissociate") }}
       </b-button>
@@ -240,27 +245,39 @@ export default {
   },
   data() {
     return {
-      mcaConfigured: false,
-      selected: null,
+      selectedMcaIndex: null,
       mcaSelectionOptions: [
         {
-          text: 'V Godard - 123456789',
+          id: '123456789',
+          name: 'V Godard',
+          websiteUrl: 'http://perdu.com',
+          adultContent: false,
         },
         {
-          text: 'Royer et fils - 653367900',
+          id: '653367900',
+          name: 'Royer et fils',
+          websiteUrl: 'http://perdu.com',
+          adultContent: false,
         },
         {
-          text: 'Maison Royer - 246797534',
+          id: '246797534',
+          name: 'Maison Royer',
+          websiteUrl: 'http://perdu.com',
+          adultContent: false,
         },
         {
-          text: 'Godard - 79747579864',
+          id: '79747579864',
+          name: 'Godard',
+          websiteUrl: 'http://perdu.com',
+          adultContent: false,
         },
         {
-          text: 'Fondation Royer - 678321007',
+          id: '678321007',
+          name: 'Fondation Royer',
+          websiteUrl: 'http://perdu.com',
+          adultContent: false,
         },
       ],
-      websiteVerification: null,
-      mcaStatus: null,
     };
   },
   props: {
@@ -278,6 +295,15 @@ export default {
     },
   },
   computed: {
+    websiteVerification() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'].websiteVerificationProgressStatus;
+    },
+    mcaConfigured() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'].websiteVerificationProgressStatus;
+    },
+    selectedMcaDetails() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
+    },
     message() {
       return this.isEnabled
         ? this.$i18n.t('mcaCard.introEnabled')
@@ -311,16 +337,20 @@ export default {
   },
   methods: {
     selectMerchantCenterAccount() {
-      /**
-       ** I'm sending the component as a payload
-       ** This way, I can access it from StoryBook and change datas
-       */
-      const component = this;
-      this.$emit('selectMerchantCenterAccount', component);
+      this.$emit('selectMerchantCenterAccount', this.mcaSelectionOptions[this.selectedMcaIndex]);
+    },
+    dissociateMerchantCenterAccount() {
+      this.$emit('dissociateMerchantCenterAccount');
+    },
+    mcaLabel(index) {
+      if (this.mcaSelectionOptions[index]) {
+        return `${this.mcaSelectionOptions[index].name} - ${this.mcaSelectionOptions[index].id}`;
+      }
+      return null;
     },
   },
   mounted() {
-    if (this.isEnabled) {
+    if (this.$refs.mcaSelection) {
       this.$refs.mcaSelection.$refs.toggle.focus();
     }
   },

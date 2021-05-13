@@ -7,8 +7,10 @@ import MerchantCenterAccountCard from '../src/components/merchant-center-account
 import ProductFeedCard from '../src/components/product-feed/product-feed-card.vue'
 import FreeListingCard from '../src/components/free-listing/free-listing-card.vue'
 import OnboardingPage from '../src/views/onboarding-page.vue'
+import {initialStateAccounts} from '../.storybook/mock/state-accounts';
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {googleAccountNotConnected, googleAccountConnected} from "../.storybook/mock/google-account";
+import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
 
 export default {
   title: 'Onboarding/OnboardingPage',
@@ -20,99 +22,51 @@ const TemplatePsAccount = (args, { argTypes }) => ({
   template: `
     <OnboardingPage/>
   `,
-  beforeCreate(this: any) {
-    this.$store.state.accounts.contextPsAccounts = contextPsAccountsNotConnected;
-  },
+  beforeMount: args.beforeMount,
 });
 
 export const PsAccount:any = TemplatePsAccount.bind({});
-PsAccount.args = {};
+PsAccount.args = {
+  beforeMount: function(this: any) {
+    this.$store.state.accounts.contextPsAccounts = contextPsAccountsNotConnected;
+  }
+};
 
-const TemplateGoogleAccount = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { OnboardingPage },
-  template: `
-    <OnboardingPage/>
-  `,
-  beforeCreate(this: any) {
+export const GoogleAccount:any = TemplatePsAccount.bind({});
+GoogleAccount.args = {
+  beforeMount(this: any) {
+    this.$store.state.accounts = Object.assign(
+      this.$store.state.accounts,
+      initialStateAccounts
+    );
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
+    this.$store.state.accounts.googleAccount = googleAccountNotConnected;
+    this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountNotConnected;
   },
-});
+};
 
-export const GoogleAccount:any = TemplateGoogleAccount.bind({});
-GoogleAccount.args = {};
-
-const TemplateMerchantCenterAccount = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { OnboardingPage },
-  template: `
-    <OnboardingPage/>
-  `,
-  beforeCreate(this: any) {
+export const MerchantCenterAccount:any = TemplatePsAccount.bind({});
+MerchantCenterAccount.args = {
+  beforeMount(this: any) {
+    this.$store.state.accounts = Object.assign(
+      this.$store.state.accounts,
+      initialStateAccounts
+    );
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
     this.$store.state.accounts.googleAccount = googleAccountConnected;
+    this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountNotConnected;
   },
-});
+};
 
-export const MerchantCenterAccount:any = TemplateMerchantCenterAccount.bind({});
-MerchantCenterAccount.args = {};
-
-const TemplateProductFeed = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: {
-    SectionTitle,
-    PsAccounts,
-    GoogleAccountCard,
-    GoogleAdsAccountCard,
-    ProductFeedNotice,
-    MerchantCenterAccountCard,
-    ProductFeedCard,
-    FreeListingCard,
-  },
-  template: `
-    <div>
-      <SectionTitle
-        :is-enabled="true"
-        :step-number="1"
-        :is-done="true"
-        step-title="Your PrestaShop account"
-      />
-      <PsAccounts
-        :context="context"
-      />
-      <SectionTitle
-        :is-enabled="true"
-        :step-number="2"
-        step-title="Activate your free product listings"
-      />
-      <ProductFeedNotice />
-      <GoogleAccountCard
-        :is-enabled="true"
-        :is-connected="true"
-      />
-      <MerchantCenterAccountCard
-        :is-connected="true"
-        :is-enabled="true"
-      />
-      <ProductFeedCard
-      :is-enabled="true"
-      />
-      <FreeListingCard
-      :is-enabled="false"
-      />
-      <SectionTitle
-        :is-enabled="false"
-        :step-number="3"
-        step-title="Launch your paid Smart Shopping campaign"
-      />
-      <GoogleAdsAccountCard
-      :is-connected="false"
-      />
-    </div>
-  `,
-});
-
-export const ProductFeed:any = TemplateProductFeed.bind({});
+export const ProductFeed:any = TemplatePsAccount.bind({});
 ProductFeed.args = {
-  context: contextPsAccountsConnectedAndValidated,
+  beforeMount(this: any) {
+    this.$store.state.accounts = Object.assign(
+      this.$store.state.accounts,
+      initialStateAccounts
+    );
+    this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
+    this.$store.state.accounts.googleAccount = googleAccountConnected;
+    this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountConnected;
+  },
 };

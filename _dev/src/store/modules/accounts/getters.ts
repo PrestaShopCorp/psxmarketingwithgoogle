@@ -17,7 +17,12 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import {State as LocalState, PrestaShopAccountsContext, GoogleAccountsContext} from './state';
+import {
+  State as LocalState,
+  PrestaShopAccountsContext,
+  GoogleAccountsContext,
+  MerchantCenterAccountContext,
+} from './state';
 import GetterTypes from './getters-types';
 
 export default {
@@ -44,5 +49,15 @@ export default {
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT](state: LocalState) : GoogleAccountsContext {
     return state.googleAccount;
+  },
+  /* Merchant Center Account */
+  [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT](state: LocalState) :
+    MerchantCenterAccountContext {
+    return state.googleMerchantAccount;
+  },
+  [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED](state: LocalState) : boolean {
+    return !!(state.googleMerchantAccount.id
+      && state.googleMerchantAccount.websiteVerificationProgressStatus
+      && ['done', 'doneAlert'].indexOf(state.googleMerchantAccount.websiteVerificationProgressStatus) !== -1);
   },
 };
