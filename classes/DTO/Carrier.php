@@ -141,19 +141,11 @@ class Carrier implements JsonSerializable
      */
     private $carrierTaxes = [];
 
-    /**
-     * @return string
-     */
     public function getCollection(): string
     {
         return $this->collection;
     }
 
-    /**
-     * @param string $collection
-     *
-     * @return Carrier
-     */
     public function setCollection(string $collection): Carrier
     {
         $this->collection = $collection;
@@ -161,19 +153,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getIdCarrier(): int
     {
         return $this->idCarrier;
     }
 
-    /**
-     * @param int $idCarrier
-     *
-     * @return Carrier
-     */
     public function setIdCarrier(int $idCarrier): Carrier
     {
         $this->idCarrier = $idCarrier;
@@ -181,19 +165,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getIdReference(): int
     {
         return $this->idReference;
     }
 
-    /**
-     * @param int $idReference
-     *
-     * @return Carrier
-     */
     public function setIdReference(int $idReference): Carrier
     {
         $this->idReference = $idReference;
@@ -201,19 +177,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getTaxesRatesGroupId(): int
     {
         return $this->taxesRatesGroupId;
     }
 
-    /**
-     * @param int $taxesRatesGroupId
-     *
-     * @return Carrier
-     */
     public function setTaxesRatesGroupId(int $taxesRatesGroupId): Carrier
     {
         $this->taxesRatesGroupId = $taxesRatesGroupId;
@@ -221,19 +189,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return Carrier
-     */
     public function setName(string $name): Carrier
     {
         $this->name = $name;
@@ -241,19 +201,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @param string $url
-     *
-     * @return Carrier
-     */
     public function setUrl(string $url): Carrier
     {
         $this->url = $url;
@@ -261,19 +213,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isActive(): bool
     {
         return $this->active;
     }
 
-    /**
-     * @param bool $active
-     *
-     * @return Carrier
-     */
     public function setActive(bool $active): Carrier
     {
         $this->active = $active;
@@ -281,19 +225,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isDeleted(): bool
     {
         return $this->deleted;
     }
 
-    /**
-     * @param bool $deleted
-     *
-     * @return Carrier
-     */
     public function setDeleted(bool $deleted): Carrier
     {
         $this->deleted = $deleted;
@@ -301,19 +237,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getShippingHandling(): float
     {
         return $this->shippingHandling;
     }
 
-    /**
-     * @param float $shippingHandling
-     *
-     * @return Carrier
-     */
     public function setShippingHandling(float $shippingHandling): Carrier
     {
         $this->shippingHandling = $shippingHandling;
@@ -321,19 +249,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getFreeShippingStartsAtPrice(): float
     {
         return $this->freeShippingStartsAtPrice;
     }
 
-    /**
-     * @param float $freeShippingStartsAtPrice
-     *
-     * @return Carrier
-     */
     public function setFreeShippingStartsAtPrice(float $freeShippingStartsAtPrice): Carrier
     {
         $this->freeShippingStartsAtPrice = $freeShippingStartsAtPrice;
@@ -341,19 +261,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getFreeShippingStartsAtWeight(): float
     {
         return $this->freeShippingStartsAtWeight;
     }
 
-    /**
-     * @param float $freeShippingStartsAtWeight
-     *
-     * @return Carrier
-     */
     public function setFreeShippingStartsAtWeight(float $freeShippingStartsAtWeight): Carrier
     {
         $this->freeShippingStartsAtWeight = $freeShippingStartsAtWeight;
@@ -361,19 +273,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isDisableCarrierWhenOutOfRange(): bool
     {
         return $this->disableCarrierWhenOutOfRange;
     }
 
-    /**
-     * @param bool $disableCarrierWhenOutOfRange
-     *
-     * @return Carrier
-     */
     public function setDisableCarrierWhenOutOfRange(bool $disableCarrierWhenOutOfRange): Carrier
     {
         $this->disableCarrierWhenOutOfRange = $disableCarrierWhenOutOfRange;
@@ -381,19 +285,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isModule(): bool
     {
         return $this->isModule;
     }
 
-    /**
-     * @param bool $isModule
-     *
-     * @return Carrier
-     */
     public function setIsModule(bool $isModule): Carrier
     {
         $this->isModule = $isModule;
@@ -401,19 +297,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isFree(): bool
     {
         return $this->isFree;
     }
 
-    /**
-     * @param bool $isFree
-     *
-     * @return Carrier
-     */
     public function setIsFree(bool $isFree): Carrier
     {
         $this->isFree = $isFree;
@@ -421,19 +309,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isShippingExternal(): bool
     {
         return $this->shippingExternal;
     }
 
-    /**
-     * @param bool $shippingExternal
-     *
-     * @return Carrier
-     */
     public function setShippingExternal(bool $shippingExternal): Carrier
     {
         $this->shippingExternal = $shippingExternal;
@@ -441,19 +321,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isNeedRange(): bool
     {
         return $this->needRange;
     }
 
-    /**
-     * @param bool $needRange
-     *
-     * @return Carrier
-     */
     public function setNeedRange(bool $needRange): Carrier
     {
         $this->needRange = $needRange;
@@ -461,19 +333,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getExternalModuleName(): string
     {
         return $this->externalModuleName;
     }
 
-    /**
-     * @param string $externalModuleName
-     *
-     * @return Carrier
-     */
     public function setExternalModuleName(string $externalModuleName): Carrier
     {
         $this->externalModuleName = $externalModuleName;
@@ -481,19 +345,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getMaxWidth(): float
     {
         return $this->maxWidth;
     }
 
-    /**
-     * @param float $maxWidth
-     *
-     * @return Carrier
-     */
     public function setMaxWidth(float $maxWidth): Carrier
     {
         $this->maxWidth = $maxWidth;
@@ -501,19 +357,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getMaxHeight(): float
     {
         return $this->maxHeight;
     }
 
-    /**
-     * @param float $maxHeight
-     *
-     * @return Carrier
-     */
     public function setMaxHeight(float $maxHeight): Carrier
     {
         $this->maxHeight = $maxHeight;
@@ -521,19 +369,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getMaxDepth(): float
     {
         return $this->maxDepth;
     }
 
-    /**
-     * @param float $maxDepth
-     *
-     * @return Carrier
-     */
     public function setMaxDepth(float $maxDepth): Carrier
     {
         $this->maxDepth = $maxDepth;
@@ -541,19 +381,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getMaxWeight(): float
     {
         return $this->maxWeight;
     }
 
-    /**
-     * @param float $maxWeight
-     *
-     * @return Carrier
-     */
     public function setMaxWeight(float $maxWeight): Carrier
     {
         $this->maxWeight = $maxWeight;
@@ -561,19 +393,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getGrade(): int
     {
         return $this->grade;
     }
 
-    /**
-     * @param int $grade
-     *
-     * @return Carrier
-     */
     public function setGrade(int $grade): Carrier
     {
         $this->grade = $grade;
@@ -581,19 +405,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDelay(): string
     {
         return $this->delay;
     }
 
-    /**
-     * @param string $delay
-     *
-     * @return Carrier
-     */
     public function setDelay(string $delay): Carrier
     {
         $this->delay = $delay;
@@ -601,19 +417,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getCurrency(): string
     {
         return $this->currency;
     }
 
-    /**
-     * @param string $currency
-     *
-     * @return Carrier
-     */
     public function setCurrency(string $currency): Carrier
     {
         $this->currency = $currency;
@@ -621,19 +429,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getWeightUnit(): string
     {
         return $this->weightUnit;
     }
 
-    /**
-     * @param string $weightUnit
-     *
-     * @return Carrier
-     */
     public function setWeightUnit(string $weightUnit): Carrier
     {
         $this->weightUnit = $weightUnit;
@@ -641,19 +441,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return CarrierDetail[]
-     */
     public function getCarrierDetails(): array
     {
         return $this->carrierDetails;
     }
 
-    /**
-     * @param CarrierDetail[] $carrierDetails
-     *
-     * @return Carrier
-     */
     public function setCarrierDetails(array $carrierDetails): Carrier
     {
         $this->carrierDetails = $carrierDetails;
@@ -661,19 +453,11 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return CarrierTax[]
-     */
     public function getCarrierTaxes(): array
     {
         return $this->carrierTaxes;
     }
 
-    /**
-     * @param CarrierTax[] $carrierTaxes
-     *
-     * @return Carrier
-     */
     public function setCarrierTaxes(array $carrierTaxes): Carrier
     {
         $this->carrierTaxes = $carrierTaxes;

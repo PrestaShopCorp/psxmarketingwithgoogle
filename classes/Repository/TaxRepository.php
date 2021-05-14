@@ -43,7 +43,7 @@ class TaxRepository
 
     public function getCarrierTaxesByZone(int $zoneId, int $taxRulesGroupId, bool $active = true): array
     {
-        $cacheKey = $zoneId . '-' . (int) $active;
+        $cacheKey = $zoneId . '-' . (int) $taxRulesGroupId . '-' . (int) $active;
 
         if (!isset($this->countryIsoCodeCache[$cacheKey])) {
             $query = $this->getBaseQuery();

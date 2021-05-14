@@ -28,7 +28,7 @@ class CarrierDetail implements JsonSerializable
     /**
      * @var int
      */
-    private $CarrierDetailId;
+    private $carrierDetailId;
 
     /**
      * @var int
@@ -65,19 +65,11 @@ class CarrierDetail implements JsonSerializable
      */
     private $price;
 
-    /**
-     * @return string
-     */
     public function getCollection(): string
     {
         return $this->collection;
     }
 
-    /**
-     * @param string $collection
-     *
-     * @return CarrierDetail
-     */
     public function setCollection(string $collection): CarrierDetail
     {
         $this->collection = $collection;
@@ -85,19 +77,11 @@ class CarrierDetail implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getShippingMethod(): string
     {
         return $this->shippingMethod;
     }
 
-    /**
-     * @param string $shippingMethod
-     *
-     * @return CarrierDetail
-     */
     public function setShippingMethod(string $shippingMethod): CarrierDetail
     {
         $this->shippingMethod = $shippingMethod;
@@ -105,19 +89,11 @@ class CarrierDetail implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCarrierReference(): int
     {
         return $this->carrierReference;
     }
 
-    /**
-     * @param int $carrierReference
-     *
-     * @return CarrierDetail
-     */
     public function setCarrierReference(int $carrierReference): CarrierDetail
     {
         $this->carrierReference = $carrierReference;
@@ -125,39 +101,23 @@ class CarrierDetail implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCarrierDetailId(): int
     {
-        return $this->CarrierDetailId;
+        return $this->carrierDetailId;
     }
 
-    /**
-     * @param int $CarrierDetailId
-     *
-     * @return CarrierDetail
-     */
-    public function setCarrierDetailId(int $CarrierDetailId): CarrierDetail
+    public function setCarrierDetailId(int $carrierDetailId): CarrierDetail
     {
-        $this->CarrierDetailId = $CarrierDetailId;
+        $this->carrierDetailId = $carrierDetailId;
 
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getZoneId(): int
     {
         return $this->zoneId;
     }
 
-    /**
-     * @param int $zoneId
-     *
-     * @return CarrierDetail
-     */
     public function setZoneId(int $zoneId): CarrierDetail
     {
         $this->zoneId = $zoneId;
@@ -165,19 +125,11 @@ class CarrierDetail implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getRangeId(): int
     {
         return $this->rangeId;
     }
 
-    /**
-     * @param int $rangeId
-     *
-     * @return CarrierDetail
-     */
     public function setRangeId(int $rangeId): CarrierDetail
     {
         $this->rangeId = $rangeId;
@@ -185,19 +137,11 @@ class CarrierDetail implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getDelimiter1(): float
     {
         return $this->delimiter1;
     }
 
-    /**
-     * @param float $delimiter1
-     *
-     * @return CarrierDetail
-     */
     public function setDelimiter1(float $delimiter1): CarrierDetail
     {
         $this->delimiter1 = $delimiter1;
@@ -205,19 +149,11 @@ class CarrierDetail implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getDelimiter2(): float
     {
         return $this->delimiter2;
     }
 
-    /**
-     * @param float $delimiter2
-     *
-     * @return CarrierDetail
-     */
     public function setDelimiter2(float $delimiter2): CarrierDetail
     {
         $this->delimiter2 = $delimiter2;
@@ -225,19 +161,11 @@ class CarrierDetail implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getCountryIsoCodes(): array
     {
         return $this->countryIsoCodes;
     }
 
-    /**
-     * @param array $countryIsoCodes
-     *
-     * @return CarrierDetail
-     */
     public function setCountryIsoCodes(array $countryIsoCodes): CarrierDetail
     {
         $this->countryIsoCodes = $countryIsoCodes;
@@ -245,19 +173,11 @@ class CarrierDetail implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getStateIsoCodes(): array
     {
         return $this->stateIsoCodes;
     }
 
-    /**
-     * @param array $stateIsoCodes
-     *
-     * @return CarrierDetail
-     */
     public function setStateIsoCodes(array $stateIsoCodes): CarrierDetail
     {
         $this->stateIsoCodes = $stateIsoCodes;
@@ -265,19 +185,11 @@ class CarrierDetail implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getPrice(): float
     {
         return $this->price;
     }
 
-    /**
-     * @param float $price
-     *
-     * @return CarrierDetail
-     */
     public function setPrice(float $price): CarrierDetail
     {
         $this->price = $price;
