@@ -36,12 +36,14 @@ export interface PrestaShopAccountsContext {
   shops: object[],
 }
 
-export interface GoogleAccountsContext {
+export interface GoogleAccount {
   token: string,
   email: string,
   photo: string,
   mcaSelectionOptions: MerchantCenterAccount[],
+}
 
+export type GoogleAccountContext = GoogleAccount & {
   authenticationUrl: string,
 
   from?: string,
@@ -75,12 +77,14 @@ export type MerchantCenterAccountContext = MerchantCenterAccount & {
 
 export interface State {
   contextPsAccounts: PrestaShopAccountsContext|any;
-  googleAccount: GoogleAccountsContext;
+  shopIdPsAccounts: string;
+  googleAccount: GoogleAccountContext;
   googleMerchantAccount: MerchantCenterAccountContext;
 }
 
 export const state: State = {
   contextPsAccounts: {},
+  shopIdPsAccounts: '',
   googleAccount: {
     token: '',
     email: '',
