@@ -1,5 +1,5 @@
 import OnboardingPage from '../src/views/onboarding-page.vue'
-import {initialStateAccounts} from '../.storybook/mock/state-accounts';
+import {initialStateApp} from '../.storybook/mock/state-app';
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {googleAccountNotConnected, googleAccountConnected} from "../.storybook/mock/google-account";
 import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
@@ -27,9 +27,9 @@ PsAccount.args = {
 export const GoogleAccount:any = TemplatePsAccount.bind({});
 GoogleAccount.args = {
   beforeMount(this: any) {
-    this.$store.state.accounts = Object.assign(
-      this.$store.state.accounts,
-      initialStateAccounts
+    this.$store.state.app = Object.assign(
+      this.$store.state.app,
+      initialStateApp
     );
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
     this.$store.state.accounts.googleAccount = googleAccountNotConnected;
@@ -40,9 +40,9 @@ GoogleAccount.args = {
 export const MerchantCenterAccount:any = TemplatePsAccount.bind({});
 MerchantCenterAccount.args = {
   beforeMount(this: any) {
-    this.$store.state.accounts = Object.assign(
-      this.$store.state.accounts,
-      initialStateAccounts
+    this.$store.state.app = Object.assign(
+      this.$store.state.app,
+      initialStateApp
     );
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
     this.$store.state.accounts.googleAccount = googleAccountConnected;
@@ -53,9 +53,9 @@ MerchantCenterAccount.args = {
 export const ProductFeed:any = TemplatePsAccount.bind({});
 ProductFeed.args = {
   beforeMount(this: any) {
-    this.$store.state.accounts = Object.assign(
-      this.$store.state.accounts,
-      initialStateAccounts
+    this.$store.state.app = Object.assign(
+      this.$store.state.app,
+      initialStateApp
     );
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
     this.$store.state.accounts.googleAccount = googleAccountConnected;

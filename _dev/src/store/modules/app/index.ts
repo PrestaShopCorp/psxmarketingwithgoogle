@@ -1,11 +1,21 @@
-import getters from './getters';
-import mutations from './mutations';
-import actions from './actions';
-import state from './state';
+import {state as initialState} from './state';
 
+const {
+  psGoogleShoppingApiUrl,
+  psGoogleShoppingShopUrl,
+  psAccountShopId,
+}: any = window;
+
+const state = Object.assign(
+  initialState,
+  {psGoogleShoppingApiUrl} || '',
+  {psGoogleShoppingShopUrl} || '',
+  {psAccountShopId} || '',
+);
+
+/**
+ * Return minimal state with common data for all other stores
+ */
 export default {
   state,
-  getters,
-  mutations,
-  actions,
 };

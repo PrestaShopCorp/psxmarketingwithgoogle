@@ -21,9 +21,9 @@ import ActionsTypes from './actions-types';
 import {MerchantCenterAccount} from './state';
 
 export default {
-  async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, state}, webhookUrl: String) {
+  async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, rootState}, webhookUrl: String) {
     try {
-      const response = await fetch(`${state.psGoogleShoppingApiUrl}/account/onboard`, {
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/account/onboard`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify(webhookUrl),
@@ -44,22 +44,22 @@ export default {
       }, 2000);
     }, 2000);
   },
-  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state}) {
+  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, rootState}) {
     const urlState = btoa(JSON.stringify({
-      redirectUri: state.psGoogleShoppingShopUrl,
-      shopId: state.psAccountShopId,
+      redirectUri: rootState.app.psGoogleShoppingShopUrl,
+      shopId: rootState.app.psAccountShopId,
     }));
     try {
-      const response = await fetch(`${state.psGoogleShoppingApiUrl}/oauth/${state.psAccountShopId}/authorized-url?state=${urlState}`);
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${rootState.app.psAccountShopId}/authorized-url?state=${urlState}`);
       const json = await response.json();
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
     } catch (error) {
       console.error(error);
     }
   },
-  async [ActionsTypes.REQUEST_FOR_GET_GOOGLE_ACCOUNT]({commit, state}) {
+  async [ActionsTypes.REQUEST_FOR_GET_GOOGLE_ACCOUNT]({commit, rootState}) {
     try {
-      const response = await fetch(`${state.psGoogleShoppingApiUrl}/oauth/${state.psAccountShopId}/`);
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${rootState.app.psAccountShopId}/`);
       const json = await response.json();
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
     } catch (error) {

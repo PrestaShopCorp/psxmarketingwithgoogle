@@ -2,6 +2,7 @@ export const merchantCenterAccountNotConnected = {
     websiteVerificationProgressStatus: null,
     websiteVerificationStatus: null,
     id: null,
+    users: [],
 };
 
 export const merchantCenterAccountConnected = {
@@ -11,6 +12,9 @@ export const merchantCenterAccountConnected = {
     name: 'Maison Royer',
     websiteUrl: "http://perdu.com",
     adultContent: false,
+    users: [
+        // ToDo: Fill it with mocked data
+    ],
 }
 
 export default merchantCenterAccountConnected;

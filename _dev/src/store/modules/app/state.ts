@@ -17,15 +17,14 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-export default {
-  productFeed: {
-    lastSync: {},
-    registerSyncData: {},
-    isSuspendSync: null,
-  },
-  freeListing: {
-    validationList: {},
-    summaryValidationList: [],
-    status: false,
-  },
+export interface State {
+  psGoogleShoppingApiUrl: string;
+  psGoogleShoppingShopUrl: string;
+  psAccountShopId: string;
+}
+
+export const state: State = {
+  psGoogleShoppingApiUrl: '',
+  psGoogleShoppingShopUrl: '',
+  psAccountShopId: '',
 };
