@@ -115,6 +115,41 @@ class PsGoogleShoppingTranslations
                 'shopInfoMissing' => $this->module->l('Shop information is missing', 'PsGoogleShoppingTranslations'),
                 'shopInfoMissingDescription' => $this->module->l('To check if it is a validity issue or if you are not following our rules, please log in to your account a', 'PsGoogleShoppingTranslations'),
             ],
+            'mcaRequirements'=> [
+                'title' => $this->module->l('Create new Merchant Center account', 'PsGoogleShoppingTranslations'),
+                'legend' => $this->module->l('To use Google Ads, you must acknowledge that you meet these requirements by checking these boxes.', 'PsGoogleShoppingTranslations'),
+                'footer' => $this->module->l('Learn about shopping website requirements', 'PsGoogleShoppingTranslations'),
+                'shoppingAdsPolicies' => [
+                  'title' => $this->module->l('Shopping Ads policies', 'PsGoogleShoppingTranslations'),
+                  'description' => $this->module->l('Don’t promote prohibited content or use prohibited practice to advertise. Respect restricted content policy and quality standards for your ads and website.', 'PsGoogleShoppingTranslations'),
+                  'link' => $this->module->l('See Shopping Ads policies', 'PsGoogleShoppingTranslations'),
+                ],
+                'accurateContactInformation' => [
+                  'title' => $this->module->l('Accurate contact information', 'PsGoogleShoppingTranslations'),
+                  'description' => $this->module->l('According to the policy provide users with the information that they need to make informed decisions (currently 2 out of 3: e-mail, phone number or physical address)', 'PsGoogleShoppingTranslations'),
+                  'link' => $this->module->l('Discover how to provide relevant information', 'PsGoogleShoppingTranslations'),
+                ],
+                'secureCheckoutProcess' => [
+                  'title' => $this->module->l('Secure checkout process and collection of personal data', 'PsGoogleShoppingTranslations'),
+                  'description' => $this->module->l('Do not misuse information about user, nor collect it for unclear purposes or without appropriate security measures.', 'PsGoogleShoppingTranslations'),
+                  'link' => $this->module->l('Learn about irresponsible data collection & use', 'PsGoogleShoppingTranslations'),
+                ],
+                'returnPolicy' => [
+                  'title' => $this->module->l('Return policy', 'PsGoogleShoppingTranslations'),
+                  'description' => $this->module->l('Provide users with the information that they need to make informed decisions.', 'PsGoogleShoppingTranslations'),
+                  'link' => $this->module->l('Discover how to set up return policies', 'PsGoogleShoppingTranslations'),
+                ],
+                'billingTerms' => [
+                  'title' => $this->module->l('Billing terms and conditions', 'PsGoogleShoppingTranslations'),
+                  'description' => $this->module->l('Provide users with the information that they need to make informed decisions.', 'PsGoogleShoppingTranslations'),
+                  'link' => $this->module->l('See Merchant Center guidelines', 'PsGoogleShoppingTranslations'),
+                ],
+                'completeCheckoutProcess' => [
+                  'title' => $this->module->l('Complete checkout process', 'PsGoogleShoppingTranslations'),
+                  'description' => $this->module->l('Avoid abuse', 'PsGoogleShoppingTranslations'),
+                  'link' => $this->module->l('See checkout requirements', 'PsGoogleShoppingTranslations'),
+                ],
+            ],
             'productFeedCard' => [
                 'title' => $this->module->l('Product feed export configuration', 'PsGoogleShoppingTranslations'),
                 'intro' => $this->module->l('Allows you to display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns', 'PsGoogleShoppingTranslations'),
@@ -294,6 +329,7 @@ class PsGoogleShoppingTranslations
                 'disableFreeListing' => $this->module->l('Disable free listing', 'PsGoogleShoppingTranslations'),
                 'disableProductFeed' => $this->module->l('Disable product feed', 'PsGoogleShoppingTranslations'),
                 'enableFreeListingAndProductFeed' => $this->module->l('Enable free listing and product feed', 'PsGoogleShoppingTranslations'),
+                'iCheckRequirements' => $this->module->l('I checked all requirements', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
@@ -327,6 +363,7 @@ class PsGoogleShoppingTranslations
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configured', 'PsGoogleShoppingTranslations'),
+                'mustCheckAllRequirements' => $this->module->l('You must check if all requirements met.', 'PsGoogleShoppingTranslations'),
             ],
         ];
 

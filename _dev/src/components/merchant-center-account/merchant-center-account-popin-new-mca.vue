@@ -6,6 +6,9 @@
     scrollable
     ref="MerchantCenterAccountPopinNewMca"
   >
+    <Stepper
+      :steps="steps"
+    />
     <form class="my-1">
       <legend class="font-weight-normal ps_gs-fz-14 mb-2">
         {{ $t('mcaRequirements.legend') }}
@@ -65,7 +68,7 @@
           @click="ok()"
           :disabled="validateForm()"
         >
-          I checked all requirements
+          {{ $t('cta.iCheckRequirements') }}
         </b-button>
       </span>
     </template>
@@ -80,11 +83,13 @@
 import googleUrl from '@/assets/json/googleUrl.json';
 
 import PsModal from '../commons/ps-modal';
+import Stepper from '../commons/stepper';
 
 export default {
   name: 'MerchantCenterAccountPopinNewMca',
   components: {
     PsModal,
+    Stepper,
   },
   data() {
     return {
@@ -97,6 +102,14 @@ export default {
         'completeCheckoutProcess',
       ],
       selectedRequirements: [],
+      steps: [
+        {
+          title: 'Shopping website requirements',
+        },
+        {
+          title: 'Shop information',
+        },
+      ],
     };
   },
   methods: {

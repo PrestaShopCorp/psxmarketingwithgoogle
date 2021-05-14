@@ -66,39 +66,39 @@
       "shopInfoMissing" : "Shop information is missing",
       "shopInfoMissingDescription" : "To check if it is a validity issue or if you are not following our rules, please log in to your account at"
     },
-    "mcaRequirements": {
+    "mcaRequirements" : {
       "title" : "Create new Merchant Center account",
       "legend" : "To use Google Ads, you must acknowledge that you meet these requirements by checking these boxes.",
       "footer" : "Learn about shopping website requirements",
       "shoppingAdsPolicies" : {
-        "title": "Shopping Ads policies",
-        "description": "Don’t promote prohibited content or use prohibited practice to advertise. Respect restricted content policy and quality standards for your ads and website.",
-        "link": "See Shopping Ads policies"
+        "title" : "Shopping Ads policies",
+        "description" : "Don’t promote prohibited content or use prohibited practice to advertise. Respect restricted content policy and quality standards for your ads and website.",
+        "link" : "See Shopping Ads policies"
       },
       "accurateContactInformation" : {
-        "title": "Accurate contact information",
-        "description": "According to the policy provide users with the information that they need to make informed decisions (currently 2 out of 3: e-mail, phone number or physical address)",
-        "link": "Discover how to provide relevant information"
+        "title" : "Accurate contact information",
+        "description" : "According to the policy provide users with the information that they need to make informed decisions (currently 2 out of 3: e-mail, phone number or physical address)",
+        "link" : "Discover how to provide relevant information"
       },
       "secureCheckoutProcess" : {
-        "title": "Secure checkout process and collection of personal data",
-        "description": "Do not misuse information about user, nor collect it for unclear purposes or without appropriate security measures.",
-        "link": "Learn about irresponsible data collection & use"
+        "title" : "Secure checkout process and collection of personal data",
+        "description" : "Do not misuse information about user, nor collect it for unclear purposes or without appropriate security measures.",
+        "link" : "Learn about irresponsible data collection & use"
       },
       "returnPolicy" : {
-        "title": "Return policy",
-        "description": "Provide users with the information that they need to make informed decisions.",
-        "link": "Discover how to set up return policies"
+        "title" : "Return policy",
+        "description" : "Provide users with the information that they need to make informed decisions.",
+        "link" : "Discover how to set up return policies"
       },
       "billingTerms" : {
-        "title": "Billing terms and conditions",
-        "description": "Provide users with the information that they need to make informed decisions.",
-        "link": "See Merchant Center guidelines"
+        "title" : "Billing terms and conditions",
+        "description" : "Provide users with the information that they need to make informed decisions.",
+        "link" : "See Merchant Center guidelines"
       },
       "completeCheckoutProcess" : {
-        "title": "Complete checkout process",
-        "description": "Avoid abuse",
-        "link": "See checkout requirements"
+        "title" : "Complete checkout process",
+        "description" : "Avoid abuse",
+        "link" : "See checkout requirements"
       }
     },
     "productFeedCard" : {
@@ -163,7 +163,7 @@
         "labelSelectBrand" : "Select brand",
         "placeholderSelectBrand" : "Search brand"
       },
-      "attributeMapping": {
+      "attributeMapping" : {
         "intro" : "Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.",
         "learnAboutAttributeMapping" : "Learn more about attribute mapping",
         "introNotice" : "In addition to the attributes required for standard free listings, the following attributes are required to participate in enhanced listings. Performance may be limited unless you provide all attributes available in your region:",
@@ -281,7 +281,8 @@
       "disableFreeListing" : "Disable free listing",
       "disableProductFeed" : "Disable product feed",
       "enableFreeListingAndProductFeed" : "Enable free listing and product feed",
-      "checkRequirements" : "Check requirements"
+      "checkRequirements" : "Check requirements",
+      "iCheckRequirements" : "I checked all requirements"
     },
     "badge" : {
       "free" : "Free",
