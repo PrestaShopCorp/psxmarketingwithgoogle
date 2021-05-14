@@ -10,7 +10,7 @@
       :steps="steps"
     />
     <form class="my-1">
-      <legend class="font-weight-normal ps_gs-fz-14 mb-2">
+      <legend class="font-weight-normal ps_gs-fz-14 mb-2 bg-transparent border-0">
         {{ $t('mcaRequirements.legend') }}
       </legend>
       <ul class="list-unstyled">

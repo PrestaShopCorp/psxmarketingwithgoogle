@@ -1,4 +1,9 @@
 .ps_gs-modal {
+  &__header {
+    border: none;
+    min-height: auto;
+  }
+
   &__title {
     font-weight: 600;
     font-size: rem(18);
@@ -10,6 +15,8 @@
 
   &__footer {
     padding-top: rem(8);
+    border: none;
+    text-align: unset;
 
     @include media-breakpoint-down(xs) {
       justify-content: center;
