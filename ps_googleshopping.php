@@ -191,7 +191,8 @@ class Ps_googleshopping extends Module
      *
      * @return bool
      */
-    public function isCompatibleForCSS() {
+    public function isCompatibleForCSS()
+    {
         $availableCities = [
             'BG',
             'BE',
@@ -223,7 +224,7 @@ class Ps_googleshopping extends Module
             'IE',
             'EL',
             'CH',
-            'GB'
+            'GB',
         ];
 
         return in_array($this->context->country->iso_code, $availableCities);

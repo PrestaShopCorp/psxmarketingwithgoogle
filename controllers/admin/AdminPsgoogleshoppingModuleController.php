@@ -17,8 +17,6 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
-
-use JetBrains\PhpStorm\Language;
 use PrestaShop\Module\PrestashopGoogleShopping\Config\Env;
 use PrestaShop\Module\Ps_googleshopping\Translations\PsGoogleShoppingTranslations;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;

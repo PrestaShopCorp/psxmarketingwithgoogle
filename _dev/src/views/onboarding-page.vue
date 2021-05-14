@@ -126,8 +126,7 @@ export default {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
     },
     googleAccountIsOnboarded() {
-      // return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED'];
-      return true;
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED'];
     },
     getGoogleAccount() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'];

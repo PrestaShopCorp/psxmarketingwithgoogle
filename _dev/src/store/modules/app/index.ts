@@ -1,4 +1,5 @@
 import {state as initialState} from './state';
+import getters from './getters';
 
 const {
   psGoogleShoppingApiUrl,
@@ -21,4 +22,5 @@ const state = Object.assign(
 export default {
   namespaced: true,
   state,
+  getters,
 };
