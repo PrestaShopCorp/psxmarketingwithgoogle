@@ -63,7 +63,7 @@
     <div v-if="isEnabled && !websiteVerification">
       <b-form class="mb-2">
         <legend
-          class="mb-1 h4 font-weight-600"
+          class="mb-1 h4 font-weight-600 bg-transparent border-0"
         >
           {{ $t('mcaCard.labelSelect') }}
         </legend>
@@ -259,7 +259,6 @@ export default {
     },
     isEU: {
       type: Boolean,
-      default: true,
     },
   },
   computed: {

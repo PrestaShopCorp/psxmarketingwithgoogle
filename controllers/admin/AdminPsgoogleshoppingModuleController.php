@@ -18,6 +18,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
+use JetBrains\PhpStorm\Language;
 use PrestaShop\Module\PrestashopGoogleShopping\Config\Env;
 use PrestaShop\Module\Ps_googleshopping\Translations\PsGoogleShoppingTranslations;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
@@ -92,6 +93,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
             'psAccountShopId' => $psAccountShopId,
             'psGoogleShoppingApiUrl' => $this->env->get('PSX_GOOGLE_SHOPPING_API_URL'),
             'psGoogleShoppingShopUrl' => $this->context->link->getAdminLink('AdminPsgoogleshoppingModule'),
+            'isCompatibleForCss' => $this->module->isCompatibleForCSS(),
         ]);
 
         $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');

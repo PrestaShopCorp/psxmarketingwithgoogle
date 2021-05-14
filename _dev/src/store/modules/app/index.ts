@@ -4,6 +4,7 @@ const {
   psGoogleShoppingApiUrl,
   psGoogleShoppingShopUrl,
   psAccountShopId,
+  isCompatibleForCss,
 }: any = window;
 
 const state = Object.assign(
@@ -11,11 +12,13 @@ const state = Object.assign(
   {psGoogleShoppingApiUrl} || '',
   {psGoogleShoppingShopUrl} || '',
   {psAccountShopId} || '',
+  {isCompatibleForCss} || null,
 );
 
 /**
  * Return minimal state with common data for all other stores
  */
 export default {
+  namespaced: true,
   state,
 };

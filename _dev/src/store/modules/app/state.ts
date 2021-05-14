@@ -16,8 +16,8 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-
 export interface State {
+  isCompatibleForCss: boolean|null;
   psGoogleShoppingApiUrl: string;
   psGoogleShoppingShopUrl: string;
   psAccountShopId: string;
@@ -27,4 +27,5 @@ export const state: State = {
   psGoogleShoppingApiUrl: '',
   psGoogleShoppingShopUrl: '',
   psAccountShopId: '',
+  isCompatibleForCss: null,
 };
