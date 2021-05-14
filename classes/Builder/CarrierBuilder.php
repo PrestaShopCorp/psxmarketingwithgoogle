@@ -124,7 +124,7 @@ class CarrierBuilder
                 continue;
             }
             foreach ($deliveryPriceByRange['zones'] as $zone) {
-                $carrierDetail = $this->buildCarrierDetails($carrier, $range, $zone);
+                $carrierDetail = $this->buildCarrierDetails($carrier, $range, $zone, $deliveryPriceByRange);
                 if ($carrierDetail) {
                     $carrierDetails[] = $carrierDetail;
                 }
@@ -144,24 +144,25 @@ class CarrierBuilder
 
     /**
      * @param Carrier $carrier
-     * @param RangeWeight|RangePrice $rangeWeight
+     * @param RangeWeight|RangePrice $range
      * @param array $zone
+     * @param array $deliveryPriceByRange
      *
      * @return ?CarrierDetail
-     *
-     * @throws \PrestaShopDatabaseException
      */
-    private function buildCarrierDetails(Carrier $carrier, $rangeWeight, array $zone)
+    private function buildCarrierDetails(Carrier $carrier, $range, array $zone, array $deliveryPriceByRange)
     {
+        $rangeTable = $carrier->getRangeTable();
+        $carrierDetailId = isset($deliveryPriceByRange['id_range_weight']) ? $deliveryPriceByRange['id_range_weight'] : $deliveryPriceByRange['id_range_price'];
         $carrierDetail = new CarrierDetail();
-        $carrierDetail->setShippingMethod($carrier->getRangeTable());
-        $carrierDetail->setCarrierDetailId($rangeWeight->id);
-        $carrierDetail->setDelimiter1($rangeWeight->delimiter1);
-        $carrierDetail->setDelimiter2($rangeWeight->delimiter2);
+        $carrierDetail->setShippingMethod($rangeTable);
+        $carrierDetail->setCarrierDetailId($carrierDetailId);
+        $carrierDetail->setDelimiter1($range->delimiter1);
+        $carrierDetail->setDelimiter2($range->delimiter2);
         $carrierDetail->setPrice($zone['price']);
         $carrierDetail->setCarrierReference($carrier->id_reference);
         $carrierDetail->setZoneId($zone['id_zone']);
-        $carrierDetail->setRangeId($rangeWeight->id);
+        $carrierDetail->setRangeId($range->id);
 
         $countryIsoCodes = $this->countryRepository->getCountyIsoCodesByZoneId($zone['id_zone']);
         if (!$countryIsoCodes) {

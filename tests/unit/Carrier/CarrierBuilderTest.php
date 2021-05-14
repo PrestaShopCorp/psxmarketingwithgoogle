@@ -11,6 +11,7 @@ use PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository;
 use PrestaShop\Module\PrestashopGoogleShopping\Repository\StateRepository;
 use PrestaShop\Module\PrestashopGoogleShopping\Repository\TaxRepository;
 use RangePrice;
+use RangeWeight;
 
 class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,7 +21,7 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
      * @param Carrier $carrier
      * @param string $currency
      * @param string $weightUnit
-     * @param float $freeShippintAtPrice
+     * @param float $freeShippingAtPrice
      * @param float $freeShippingAtWeight
      * @param $mockedDeliveryBy
      * @param $mockedCountryIsoCode
@@ -36,7 +37,7 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
         Carrier $carrier,
         string $currency,
         string $weightUnit,
-        float $freeShippintAtPrice,
+        float $freeShippingAtPrice,
         float $freeShippingAtWeight,
         $mockedDeliveryBy,
         $mockedCountryIsoCode,
@@ -53,7 +54,7 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
 
         $taxRepository = $this->createTaxRepositoryMock($mockedCarrierTaxesByZone);
 
-        $configurationAdapter = $this->createConfigurationAdapterMock($freeShippintAtPrice, $freeShippingAtWeight);
+        $configurationAdapter = $this->createConfigurationAdapterMock($freeShippingAtPrice, $freeShippingAtWeight);
 
         $carrierBuilder = new CarrierBuilder($carrierRepo, $countryRepo, $stateRepo, $taxRepository, $configurationAdapter);
         $carrierLine = $carrierBuilder->buildCarrier($carrier, $currency, $weightUnit);
@@ -76,13 +77,13 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
         $shippingHandleFee = 10.0;
 
         $freeShippingStartsAtPriceRange = 5.0;
-        $freeShippingStartsAtWeightRange = 5.0;
+        $freeShippingStartsAtWeightRange = 50.0;
 
         $noSizeLimitation = 0.0;
-        $maxWidth = 1.0;
-        $maxHeight = 2.0;
-        $maxDepth = 3.0;
-        $maxWeight = 4.0;
+        $maxWidth = 10.0;
+        $maxHeight = 20.0;
+        $maxDepth = 30.0;
+        $maxWeight = 40.0;
 
         $priceFree = 0.0;
 
@@ -105,6 +106,10 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
         $firstZoneId = 1;
         $secondZoneId = 2;
         $rangePriceId = 1;
+        $rangeWeightId = 9;
+
+        $rangeTablePrice = 'range_price';
+        $rangeTableWeight = 'range_weight';
 
         $freeShippingCarrier = $this->createMockedCarrierObject(
             $freeCarrierId,
@@ -125,7 +130,8 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
             $noSizeLimitation,
             $noSizeLimitation,
             $grade,
-            $freeCarrierDelay
+            $freeCarrierDelay,
+            $rangeTablePrice
         );
 
         $carrier = $this->createMockedCarrierObject(
@@ -147,12 +153,40 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
             $noSizeLimitation,
             $noSizeLimitation,
             $grade,
-            $carrierDelay
+            $carrierDelay,
+            $rangeTablePrice
+        );
+
+        $carrierWithSizeLimitations = $this->createMockedCarrierObject(
+            $carrierId,
+            $carrierReference,
+            $carrierName,
+            $carrierTaxesRatesGroupId,
+            $carrierUrl,
+            $true,
+            $false,
+            $false,
+            $false,
+            $true,
+            $false,
+            $false,
+            $externalModuleName,
+            $maxWidth,
+            $maxHeight,
+            $maxDepth,
+            $maxWeight,
+            $grade,
+            $carrierDelay,
+            $rangeTableWeight
         );
 
         $priceRangeDelimiter1 = 0.0;
         $priceRangeDelimiter2 = 100.0;
+
+        $priceWeightDelimiter1 = 0.0;
+        $priceWeightDelimiter2 = 100.0;
         $rangePrice = $this->createMockedRangePrice($rangePriceId, $priceRangeDelimiter1, $priceRangeDelimiter2);
+        $rangeWeight = $this->createMockedRangeWeight($rangeWeightId, $priceWeightDelimiter1, $priceWeightDelimiter2);
 
         return [
             'free shipping' => [
@@ -199,7 +233,7 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
                     ],
                 ],
             ],
-            'carrier with price' => [
+            'carrier with price, range by price' => [
                 'carrier' => $carrier,
                 'currency' => $currency,
                 'weightUnit' => $weightUnit,
@@ -285,6 +319,92 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
                     ],
                 ],
             ],
+            'carrier with price, range by weight' => [
+                'carrier' => $carrierWithSizeLimitations,
+                'currency' => $currency,
+                'weightUnit' => $weightUnit,
+                'mockedFreeShippingAtPrice' => $freeShippingStartsAtPriceRange,
+                'mockedFreeShippingAtWeight' => $freeShippingStartsAtWeightRange,
+                'mockedDeliveryBy' => [
+                    [
+                        'id_range_weight' => $rangeWeightId,
+                        'id_carrier' => $carrierId,
+                        'zones' => [
+                            '1' => [
+                                'id_zone' => $firstZoneId,
+                                'price' => $carrierShippingPrice,
+                            ],
+                        ],
+                    ],
+                ],
+                'mockedCountryIsoCodeByZone' => [$countryIsoCode],
+                'mockedStateIsoCodeByZone' => [],
+                'mockedCarrierTaxesByZone' => [
+                    0 => [
+                        'rate' => (string) $taxRate,
+                        'country_iso_code' => $countryIsoCode,
+                        'state_iso_code' => '',
+                    ],
+                ],
+                'mockedCarrierRange' => $rangeWeight,
+                'result' => [
+                    [
+                        'collection' => (string) $carrierCollection,
+                        'id' => (string) $carrierReference,
+                        'properties' => [
+                            'id_carrier' => (string) $carrierId,
+                            'id_reference' => (string) $carrierReference,
+                            'name' => $carrierName,
+                            'carrier_taxes_rates_group_id' => (string) $carrierTaxesRatesGroupId,
+                            'url' => $carrierUrl,
+                            'active' => $true,
+                            'deleted' => $false,
+                            'shipping_handling' => $freeShippingHandle,
+                            'free_shipping_starts_at_price' => $freeShippingStartsAtPriceRange,
+                            'free_shipping_starts_at_weight' => $freeShippingStartsAtWeightRange,
+                            'disable_carrier_when_out_of_range' => $false,
+                            'is_module' => $false,
+                            'is_free' => $true,
+                            'shipping_external' => $false,
+                            'need_range' => $false,
+                            'external_module_name' => '',
+                            'max_width' => $maxWidth,
+                            'max_height' => $maxHeight,
+                            'max_depth' => $maxDepth,
+                            'max_weight' => $maxWeight,
+                            'grade' => $grade,
+                            'delay' => $carrierDelay,
+                            'currency' => $currency,
+                            'weight_unit' => $weightUnit,
+                        ],
+                    ],
+                    [
+                        'collection' => (string) $carrierDetailsCollection,
+                        'id' => $carrierReference . '-' . $firstZoneId . '-' . CarrierDetail::RANGE_BY_WEIGHT . '-' . $rangeWeightId,
+                        'properties' => [
+                            'id_reference' => (string) $carrierReference,
+                            'id_carrier_detail' => (string) $rangeWeightId,
+                            'shipping_method' => 'range_weight',
+                            'delimiter1' => $priceRangeDelimiter1,
+                            'delimiter2' => $priceRangeDelimiter2,
+                            'country_ids' => $countryIsoCode,
+                            'state_ids' => '',
+                            'price' => $carrierShippingPrice,
+                        ],
+                    ],
+                    [
+                        'collection' => (string) $carrierTaxesCollection,
+                        'id' => $carrierReference . '-' . $firstZoneId,
+                        'properties' => [
+                            'id_reference' => (string) $carrierReference,
+                            'id_carrier_tax' => (string) $carrierTaxesRatesGroupId,
+                            'country_id' => $countryIsoCode,
+                            'state_ids' => '',
+                            'tax_rate' => $taxRate,
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 
@@ -307,7 +427,8 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
         $maxDepth,
         $maxWeight,
         $grade,
-        $delay
+        $delay,
+        $rangeTable
     ) {
         $carrier = $this->getMockBuilder(Carrier::class)
             ->disableOriginalConstructor()
@@ -317,7 +438,7 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
         $carrier->id_reference = $reference;
         $carrier->name = $name;
         $carrier->expects($this->any())->method('getIdTaxRulesGroup')->willReturn($taxRuleId);
-        $carrier->expects($this->any())->method('getRangeTable')->willReturn('range_price');
+        $carrier->expects($this->any())->method('getRangeTable')->willReturn($rangeTable);
         $carrier->url = $url;
         $carrier->active = $isActive;
         $carrier->deleted = $isDeleted;
@@ -340,6 +461,19 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
     private function createMockedRangePrice($id, $delimiter1, $delimiter2)
     {
         $rangePrice = $this->getMockBuilder(RangePrice::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $rangePrice->id = $id;
+        $rangePrice->delimiter1 = $delimiter1;
+        $rangePrice->delimiter2 = $delimiter2;
+
+        return $rangePrice;
+    }
+
+    private function createMockedRangeWeight($id, $delimiter1, $delimiter2)
+    {
+        $rangePrice = $this->getMockBuilder(RangeWeight::class)
             ->disableOriginalConstructor()
             ->getMock();
 
