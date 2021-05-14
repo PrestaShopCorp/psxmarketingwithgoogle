@@ -3,12 +3,19 @@ import mutations from './mutations';
 import actions from './actions';
 import {state as initialState} from './state';
 
-const {contextPsAccounts, psGoogleShoppingApiUrl}: any = window;
+const {
+  contextPsAccounts,
+  psGoogleShoppingApiUrl,
+  psAccountShopId,
+  psGoogleShoppingShopUrl,
+}: any = window;
 
 const state = Object.assign(
-  contextPsAccounts || {},
-  psGoogleShoppingApiUrl || '',
-  {...initialState},
+  initialState,
+  {contextPsAccounts} || {},
+  {psGoogleShoppingApiUrl} || '',
+  {psGoogleShoppingShopUrl} || '',
+  {psAccountShopId} || '',
 );
 
 export default {

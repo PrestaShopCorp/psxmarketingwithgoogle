@@ -2,6 +2,8 @@ import Vue from 'vue';
 import VueRouter, {RouteConfig} from 'vue-router';
 import Configuration from '../views/configuration.vue';
 import Help from '../views/help.vue';
+import Store from '../store';
+import MutationsTypes from '../store/modules/accounts/mutations-types';
 
 Vue.use(VueRouter);
 

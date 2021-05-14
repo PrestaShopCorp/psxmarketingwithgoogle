@@ -44,4 +44,30 @@ export default {
       }, 2000);
     }, 2000);
   },
+  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state}) {
+    const urlState = btoa(JSON.stringify({
+      redirectUri: state.psGoogleShoppingShopUrl,
+      shopId: state.psAccountShopId,
+    }));
+    try {
+      const response = await fetch(`${state.psGoogleShoppingApiUrl}/oauth/${state.psAccountShopId}/authorized-url?state=${urlState}`);
+      const json = await response.json();
+      commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async [ActionsTypes.REQUEST_FOR_GET_GOOGLE_ACCOUNT]({commit, state}) {
+    try {
+      const response = await fetch(`${state.psGoogleShoppingApiUrl}/oauth/${state.psAccountShopId}/`);
+      const json = await response.json();
+      commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
+    } catch (error) {
+      if (error.status === 404) {
+        commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
+        return;
+      }
+      throw new Error(error);
+    }
+  },
 };

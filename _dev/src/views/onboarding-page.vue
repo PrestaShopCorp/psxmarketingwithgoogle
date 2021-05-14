@@ -26,7 +26,7 @@
     />
     <google-account-card
       :is-enabled="stepsAreCompleted.step1"
-      :is-connected="googleAccountIsOnboarded"
+      :user="getGoogleAccount"
     />
     <MerchantCenterAccountCard
       v-if="stepsAreCompleted.step1"
@@ -107,6 +107,9 @@ export default {
     googleAccountIsOnboarded() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED'];
     },
+    getGoogleAccount() {
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'];
+    },
     merchantCenterAccountIsChosen() {
       return !!this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
@@ -122,6 +125,12 @@ export default {
         step3: false,
       };
     },
+  },
+  created() {
+    // ToDo : Add condition to this action call:
+    // - As soon as psAccountShopId is set
+    // - When the Google authentication is not done yet
+    this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH');
   },
 };
 </script>

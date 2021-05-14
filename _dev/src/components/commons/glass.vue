@@ -1,6 +1,7 @@
 <template>
   <div
     class="ps_gs-glass"
+    @click="forceFocus"
   >
     <div class="ps_gs-glass__content">
       <figure class="ps_gs-glass__img">
@@ -25,6 +26,7 @@
     <b-button
       class="ps_gs-glass__close p-3 m-2"
       variant="text"
+      @click="closePopup"
     >
       <i class="material-icons">close</i>
     </b-button>
@@ -34,5 +36,13 @@
 <script>
 export default {
   name: 'Glass',
+  methods: {
+    closePopup() {
+      this.$emit('close');
+    },
+    forceFocus() {
+      this.$emit('forceFocus');
+    },
+  },
 };
 </script>

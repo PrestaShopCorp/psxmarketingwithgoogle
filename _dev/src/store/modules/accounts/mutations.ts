@@ -63,7 +63,20 @@ export default {
   },
   [MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_STATUS](state: LocalState, newStatus: string|null) {
     // ToDo: Add some validation about possible values?
-
     state.googleMerchantAccount.websiteVerificationStatus = newStatus;
+  },
+  [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string) {
+    state.googleAccount.authenticationUrl = url;
+  },
+  [MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE](state: LocalState, googleResponse) {
+    state.googleAccount.from = googleResponse.from;
+    state.googleAccount.message = googleResponse.message;
+    state.googleAccount.status = googleResponse.status;
+  },
+  [MutationsTypes.SET_GOOGLE_ACCOUNT](state:LocalState, googleAccountInfo) {
+    // to avoid undefined
+    state.googleAccount.email = googleAccountInfo.email || '';
+    state.googleAccount.photo = googleAccountInfo.photo || '';
+    state.googleAccount.token = googleAccountInfo.token || '';
   },
 };

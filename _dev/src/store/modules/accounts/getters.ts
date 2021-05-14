@@ -39,6 +39,12 @@ export default {
       ? state.contextPsAccounts.shops
       : [];
   },
+  [GetterTypes.GET_PS_ACCOUNTS_SHOP_ID](state: LocalState): string {
+    return state.psAccountShopId;
+  },
+  [GetterTypes.GET_SHOP_CONTROLLER_URL](state: LocalState): string {
+    return state.psGoogleShoppingShopUrl;
+  },
 
   /* Google Account */
   [GetterTypes.GET_GOOGLE_ACCOUNT_IS_ONBOARDED](state: LocalState): boolean {
@@ -59,5 +65,8 @@ export default {
     return !!(state.googleMerchantAccount.id
       && state.googleMerchantAccount.websiteVerificationProgressStatus
       && ['done', 'doneAlert'].indexOf(state.googleMerchantAccount.websiteVerificationProgressStatus) !== -1);
+  },
+  [GetterTypes.GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL](state: LocalState) : String {
+    return state.googleAccount.authenticationUrl;
   },
 };
