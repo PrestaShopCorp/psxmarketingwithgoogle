@@ -1,5 +1,7 @@
 import GoogleAccountPopinDisconnect from '../src/components/google-account/google-account-popin-disconnect.vue'
 import OnboardingPage from '../src/views/onboarding-page.vue'
+import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
+import {googleAccountConnected} from "../.storybook/mock/google-account";
 
 export default {
   title: 'Google Account/Popins/Disconnect',
@@ -15,6 +17,10 @@ const Template = (args, { argTypes }) => ({
       <GoogleAccountPopinDisconnect v-bind="$props" />
     </div>
   `,
+  beforeCreate(this: any) {
+    this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
+    this.$store.state.accounts.googleAccount = googleAccountConnected;
+  },
 });
 
 export const Disconnect:any = Template.bind({});

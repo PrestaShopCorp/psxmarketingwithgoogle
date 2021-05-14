@@ -70,4 +70,13 @@ export default {
       throw new Error(error);
     }
   },
+  [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, dispatch}) {
+    dispatch(ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT);
+    // ToDo: Add API calls if needed
+    commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
+  },
+  [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit}) {
+    // ToDo: Add API calls if needed
+    commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
+  },
 };

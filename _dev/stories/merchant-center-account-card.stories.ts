@@ -1,4 +1,5 @@
 import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue'
+import MerchantCenterAccountPopinDisconnect from '../src/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
 
 export default {
@@ -16,12 +17,18 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { MerchantCenterAccountCard },
-  template: `<MerchantCenterAccountCard 
-      v-bind="$props" 
-      @selectMerchantCenterAccount="fakeConnection"
-      @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociated"
-    />`,
+  components: { MerchantCenterAccountCard, MerchantCenterAccountPopinDisconnect },
+  template: `
+    <div>
+      <MerchantCenterAccountCard 
+        v-bind="$props" 
+        @selectMerchantCenterAccount="fakeConnection"
+        @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociated"
+      />
+      <MerchantCenterAccountPopinDisconnect
+        ref="mcaDisconnectModal"
+      />
+    </div>`,
   beforeMount(this: any) {
     this.$store.state.accounts.googleMerchantAccount = args.initialMcaStatus;
   },
@@ -32,7 +39,10 @@ const Template = (args, { argTypes }) => ({
     },
     onMerchantCenterAccountDissociated() {
       // @ts-ignore
-      this.$store.commit('accounts/REMOVE_MCA_ACCOUNT');
+      this.$bvModal.show(
+        // @ts-ignore
+        this.$refs.mcaDisconnectModal.$refs.modal.id,
+      );
     },
   }
 });

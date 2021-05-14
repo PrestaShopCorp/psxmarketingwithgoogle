@@ -1,8 +1,10 @@
 <template>
   <ps-modal
     id="GoogleAccountPopinDisconnect"
+    ref="modal"
     :title="$t('modal.titleDisconnection')"
     v-bind="$attrs"
+    @ok="onGoogleAccountDissociationConfirmation"
   >
     <VueShowdown
       class="my-1"
@@ -21,14 +23,14 @@
 import PsModal from '../commons/ps-modal';
 
 export default {
-  /**
-   * TODO:
-   * Handle all events:  close, click on cancel, click on ok, etc...
-   */
-
   name: 'GoogleAccountPopinDisconnect',
   components: {
     PsModal,
+  },
+  methods: {
+    onGoogleAccountDissociationConfirmation() {
+      this.$store.dispatch('accounts/DISSOCIATE_GOOGLE_ACCOUNT');
+    },
   },
 };
 </script>

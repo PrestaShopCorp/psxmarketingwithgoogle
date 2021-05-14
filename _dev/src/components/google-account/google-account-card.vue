@@ -107,6 +107,7 @@
             size="sm"
             variant="outline-secondary"
             class="mx-1 mt-3 mt-md-0"
+            @click="dissociateGoogleAccount"
           >
             {{ $t('cta.dissociate') }}
           </b-button>
@@ -243,6 +244,9 @@ export default {
       });
       // TODO : call to action in store, to nest to retrieve data if already onboarded.
       // TODO: if errorIfNot,et que le résultat du call à nest est négatif,alors afficher une erreur
+    },
+    dissociateGoogleAccount() {
+      this.$emit('dissociateGoogleAccount');
     },
   },
 };
