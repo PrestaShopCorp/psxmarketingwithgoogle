@@ -39,7 +39,7 @@
           {{ $t('googleAccountCard.title') }}
         </b-card-text>
         <b-iconstack
-          v-if="user.email"
+          v-if="user && user.email"
           font-scale="1.5"
           class="mx-3"
           width="20"
@@ -57,7 +57,7 @@
       </div>
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
         <p
-          v-if="!user.email"
+          v-if="!user || !user.email"
           class="ps_gs-fz-12 mb-0"
         >
           {{ $t('googleAccountCard.introEnabled') }}
@@ -75,7 +75,7 @@
           <strong>{{ user.email }}</strong>
         </div>
         <div
-          v-if="!user.email"
+          v-if="!user || !user.email"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
           <b-button
@@ -120,7 +120,7 @@
         </div>
       </div>
       <div
-        v-if="user.email"
+        v-if="user && user.email"
         class="text-md-right text-muted mt-3"
       >
         <p class="ps_gs-fz-12 mb-0">
@@ -199,7 +199,7 @@ export default {
         }
       });
       const url = this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL'];
-      const p = 'scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=564,height=671';
+      const p = 'scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=450,height=628';
       this.popup = window.open(
         url,
         'ps_google_shopping_onboarding',

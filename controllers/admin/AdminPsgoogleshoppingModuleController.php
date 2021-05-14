@@ -42,7 +42,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
 
     public function initContent()
     {
-        // on vient de google
+        // from google response
         if (Tools::getValue('message') !== false || Tools::getValue('from') !== false) {
             $this->ajax = true;
             $this->content = $this->context->smarty->fetch('module:ps_googleshopping/views/templates/admin/googlePopin.tpl');
