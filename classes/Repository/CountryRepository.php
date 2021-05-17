@@ -20,13 +20,22 @@
 
 namespace PrestaShop\Module\PrestashopGoogleShopping\Repository;
 
-class CountryRepository {
+class CountryRepository
+{
+    private $country;
+
+    public function __construct(\Country $country)
+    {
+        $this->country = $country;
+    }
+
     /**
      * isCompatibleForCSS
      *
      * @return bool
      */
-    public function isCompatibleForCSS() {
+    public function isCompatibleForCSS()
+    {
         $availableCountries = [
             'BG',
             'BE',
@@ -61,7 +70,6 @@ class CountryRepository {
             'GB',
         ];
 
-        return in_array(\Context::getContext()->country->iso_code, $availableCountries);
+        return in_array($this->country->iso_code, $availableCountries);
     }
 }
-
