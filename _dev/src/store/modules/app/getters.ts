@@ -20,7 +20,7 @@ import GettersTypes from './getters-types';
 import {State as LocalState} from './state';
 
 export default {
-  [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean|null {
+  [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
     return state.isCountryMemberOfEuropeanUnion;
   },
 };
