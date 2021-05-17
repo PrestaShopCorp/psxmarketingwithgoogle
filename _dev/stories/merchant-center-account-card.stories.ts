@@ -9,10 +9,10 @@ export default {
     error: {
       control: {
         type: 'select',
-        options: [null, 'disapproved', 'expiring', 'pending', 'overwrite'],
-      }
-    }
-  }
+        options: [null, 'disapproved', 'expiring', 'pending', 'overwrite', 'shopinfomissing'],
+      },
+    },
+  },
 };
 
 const Template = (args, { argTypes }) => ({
@@ -20,8 +20,8 @@ const Template = (args, { argTypes }) => ({
   components: { MerchantCenterAccountCard, MerchantCenterAccountPopinDisconnect },
   template: `
     <div>
-      <MerchantCenterAccountCard 
-        v-bind="$props" 
+      <MerchantCenterAccountCard
+        v-bind="$props"
         @selectMerchantCenterAccount="fakeConnection"
         @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociated"
       />
