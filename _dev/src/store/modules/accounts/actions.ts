@@ -19,6 +19,7 @@
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import {MerchantCenterAccount} from './state';
+import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, rootState}, webhookUrl: String) {
@@ -29,6 +30,9 @@ export default {
         body: JSON.stringify(webhookUrl),
       });
       const json = await response.json();
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
     } catch (error) {
       console.error(error);
@@ -54,6 +58,9 @@ export default {
     }));
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/authorized-url?state=${urlState}`);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       const json = await response.json();
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
     } catch (error) {
@@ -64,14 +71,16 @@ export default {
   async [ActionsTypes.REFRESH_GOOGLE_ACCESS_TOKEN]({commit, state, rootState}) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/`);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       const json = await response.json();
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json.access_token);
     } catch (error) {
       if (error.status === 404) {
         commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
-        return;
+        console.error(error);
       }
-      throw new Error(error);
     }
   },
 
@@ -81,16 +90,18 @@ export default {
     try {
       // ToDo: ⚠️ We need another route to get all account details, not only the token
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/`);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       const json = await response.json();
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json.access_token);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
     } catch (error) {
-      if (error.status === 404) {
+      if (error instanceof HttpClientError && error.code === 404) {
         // This is likely caused by a missing Google account, so retrieve the URL
         dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
-        return;
+        console.error(error);
       }
-      throw new Error(error);
     }
   },
 
