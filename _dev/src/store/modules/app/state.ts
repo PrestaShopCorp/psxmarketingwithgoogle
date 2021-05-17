@@ -17,7 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 export interface State {
-  isCompatibleForCss: boolean|null;
+  isCountryMemberOfEuropeanUnion: boolean;
   psGoogleShoppingApiUrl: string;
   psGoogleShoppingShopUrl: string;
   psAccountShopId: string;
@@ -27,5 +27,5 @@ export const state: State = {
   psGoogleShoppingApiUrl: '',
   psGoogleShoppingShopUrl: '',
   psAccountShopId: '',
-  isCompatibleForCss: null,
+  isCountryMemberOfEuropeanUnion: false,
 };

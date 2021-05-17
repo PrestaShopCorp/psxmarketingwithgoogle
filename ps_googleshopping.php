@@ -185,48 +185,4 @@ class Ps_googleshopping extends Module
             $dotenv->load();
         }
     }
-
-    /**
-     * isCompatibleForCSS
-     *
-     * @return bool
-     */
-    public function isCompatibleForCSS()
-    {
-        $availableCities = [
-            'BG',
-            'BE',
-            'CZ',
-            'DK',
-            'CY',
-            'LV',
-            'LT',
-            'LU',
-            'ES',
-            'FR',
-            'HR',
-            'IT',
-            'PL',
-            'PT',
-            'RO',
-            'SI',
-            'HU',
-            'MT',
-            'NL',
-            'AT',
-            'IS',
-            'LI',
-            'NO',
-            'SK',
-            'FI',
-            'SE',
-            'DE',
-            'IE',
-            'EL',
-            'CH',
-            'GB',
-        ];
-
-        return in_array($this->context->country->iso_code, $availableCities);
-    }
 }

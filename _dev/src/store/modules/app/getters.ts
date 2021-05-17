@@ -20,7 +20,7 @@ import GettersTypes from './getters-types';
 import {State as LocalState} from './state';
 
 export default {
-  [GettersTypes.GET_COUNTRY_CSS_STATUS](state: LocalState): boolean|null {
-    return state.isCompatibleForCss;
+  [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean|null {
+    return state.isCountryMemberOfEuropeanUnion;
   },
 };

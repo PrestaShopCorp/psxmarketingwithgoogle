@@ -34,7 +34,7 @@
       v-if="stepsAreCompleted.step1"
       :is-connected="merchantCenterAccountIsChosen"
       :is-enabled="googleAccountIsOnboarded"
-      :isEU="detectCSSForMCA"
+      :isEU="showCSSForMCA"
       @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
       @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
     />
@@ -134,8 +134,8 @@ export default {
     merchantCenterAccountIsChosen() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
-    detectCSSForMCA() {
-      return this.$store.getters['app/GET_COUNTRY_CSS_STATUS'];
+    showCSSForMCA() {
+      return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
     productFeedIsConfigured() {
       return false;

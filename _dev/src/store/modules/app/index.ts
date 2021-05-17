@@ -5,7 +5,7 @@ const {
   psGoogleShoppingApiUrl,
   psGoogleShoppingShopUrl,
   psAccountShopId,
-  isCompatibleForCss,
+  isCountryMemberOfEuropeanUnion,
 }: any = window;
 
 const state = Object.assign(
@@ -13,7 +13,7 @@ const state = Object.assign(
   {psGoogleShoppingApiUrl} || '',
   {psGoogleShoppingShopUrl} || '',
   {psAccountShopId} || '',
-  {isCompatibleForCss} || null,
+  {isCountryMemberOfEuropeanUnion} || false,
 );
 
 /**
