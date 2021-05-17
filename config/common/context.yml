@@ -23,6 +23,10 @@ services:
     class: 'Smarty'
     factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getSmarty']
 
+  ps_googleshopping.country:
+    class: 'Country'
+    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getCountry']
+
   ps_googleshopping.shop:
     class: 'Shop'
     factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getShop']

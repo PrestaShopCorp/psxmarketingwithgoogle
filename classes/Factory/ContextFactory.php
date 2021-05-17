@@ -45,4 +45,9 @@ class ContextFactory
     {
         return Context::getContext()->link;
     }
+
+    public static function getCountry()
+    {
+        return Context::getContext()->country;
+    }
 }

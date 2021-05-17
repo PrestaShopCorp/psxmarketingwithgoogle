@@ -92,7 +92,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
             'psAccountShopId' => $psAccountShopId,
             'psGoogleShoppingApiUrl' => $this->env->get('PSX_GOOGLE_SHOPPING_API_URL'),
             'psGoogleShoppingShopUrl' => $this->context->link->getAdminLink('AdminPsgoogleshoppingModule'),
-            'isCountryMemberOfEuropeanUnion' => (new CountryRepository($this->context->country))->isCompatibleForCSS(),
+            'isCountryMemberOfEuropeanUnion' => $this->module->getService(CountryRepository::class)->isCompatibleForCSS(),
         ]);
 
         $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');
