@@ -115,7 +115,7 @@ class PsGoogleShoppingTranslations
                 'shopInfoMissing' => $this->module->l('Shop information is missing', 'PsGoogleShoppingTranslations'),
                 'shopInfoMissingDescription' => $this->module->l('To check if it is a validity issue or if you are not following our rules, please log in to your account a', 'PsGoogleShoppingTranslations'),
             ],
-            'mcaRequirements'=> [
+            'mcaRequirements' => [
                 'steps' => [
                     'websiteRequirements' => $this->module->l('Shopping website requirements', 'PsGoogleShoppingTranslations'),
                     'shopInfo' => $this->module->l('Shop information', 'PsGoogleShoppingTranslations'),
