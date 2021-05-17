@@ -20,7 +20,7 @@
 import {
   State as LocalState,
   PrestaShopAccountsContext,
-  GoogleAccountsContext,
+  GoogleAccountContext,
   MerchantCenterAccount,
   MerchantCenterAccountContext,
 } from './state';
@@ -48,7 +48,7 @@ export default {
   [GetterTypes.GET_GOOGLE_ACCOUNT_TOKEN](state: LocalState) : String {
     return state.googleAccount.token;
   },
-  [GetterTypes.GET_GOOGLE_ACCOUNT](state: LocalState) : GoogleAccountsContext {
+  [GetterTypes.GET_GOOGLE_ACCOUNT](state: LocalState) : GoogleAccountContext {
     return state.googleAccount;
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT_MCA_LIST](state: LocalState) : MerchantCenterAccount[] {

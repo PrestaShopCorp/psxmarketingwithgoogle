@@ -18,11 +18,15 @@
  */
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
+import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
   async [ActionsTypes.GET_VALIDATION_LIST]({commit, rootState}) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       const json = await response.json();
       commit(MutationsTypes.SET_VALIDATION_LIST_STATEMENT, json);
     } catch (error) {
@@ -33,6 +37,9 @@ export default {
   async [ActionsTypes.GET_SUMMARY_VALIDATION]({commit, rootState}) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       const json = await response.json();
       commit(MutationsTypes.SET_SUMMARY_VALIDATION, json);
     } catch (error) {
@@ -47,6 +54,9 @@ export default {
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify(payload),
       });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       const json = await response.json();
       commit(MutationsTypes.SET_FREE_LISTING_STATUS, json);
     } catch (error) {
@@ -57,6 +67,9 @@ export default {
   async [ActionsTypes.GET_LAST_SYNCHRONISATION]({commit, rootState}) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       const json = await response.json();
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, json);
     } catch (error) {
@@ -71,6 +84,9 @@ export default {
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify(payload),
       });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       const json = await response.json();
       commit(MutationsTypes.SET_REGISTERED_DATA_SYNC, json);
     } catch (error) {
@@ -85,6 +101,9 @@ export default {
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify(payload),
       });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       const json = await response.json();
       commit(MutationsTypes.SET_SUSPENDED_DATA_SYNC, json);
     } catch (error) {

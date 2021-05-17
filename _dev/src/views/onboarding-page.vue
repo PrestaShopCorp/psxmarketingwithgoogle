@@ -151,10 +151,9 @@ export default {
     },
   },
   created() {
-    // ToDo : Add condition to this action call:
-    // - As soon as psAccountShopId is set
-    // - When the Google authentication is not done yet
-    this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH');
+    if (this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED']) {
+      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
+    }
   },
 };
 </script>

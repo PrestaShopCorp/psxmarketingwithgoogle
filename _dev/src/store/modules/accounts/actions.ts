@@ -19,6 +19,7 @@
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import {MerchantCenterAccount} from './state';
+import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, rootState}, webhookUrl: String) {
@@ -29,13 +30,18 @@ export default {
         body: JSON.stringify(webhookUrl),
       });
       const json = await response.json();
-      commit(MutationsTypes.SAVE_ONBOARD_STATUS, json);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
     } catch (error) {
       console.error(error);
     }
   },
+
   [ActionsTypes.SAVE_SELECTED_GOOGLE_ACCOUNT]({commit}, selectedAccount: MerchantCenterAccount) {
     commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
+    // ToDo: Replace the following lines with the actual behavior
     commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'checking');
     setTimeout(() => {
       commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'doneAlert');
@@ -44,37 +50,69 @@ export default {
       }, 2000);
     }, 2000);
   },
-  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, rootState}) {
+
+  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}) {
     const urlState = btoa(JSON.stringify({
       redirectUri: rootState.app.psGoogleShoppingShopUrl,
-      shopId: rootState.app.psAccountShopId,
+      shopId: state.shopIdPsAccounts,
     }));
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${rootState.app.psAccountShopId}/authorized-url?state=${urlState}`);
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/authorized-url?state=${urlState}`);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       const json = await response.json();
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
     } catch (error) {
       console.error(error);
     }
   },
-  async [ActionsTypes.REQUEST_FOR_GET_GOOGLE_ACCOUNT]({commit, rootState}) {
+
+  async [ActionsTypes.REFRESH_GOOGLE_ACCESS_TOKEN]({commit, state, rootState}) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${rootState.app.psAccountShopId}/`);
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/`);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
       const json = await response.json();
-      commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
+      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json.access_token);
     } catch (error) {
       if (error.status === 404) {
-        commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
-        return;
+        commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
+        console.error(error);
       }
-      throw new Error(error);
     }
   },
+
+  async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS]({
+    commit, state, rootState, dispatch,
+  }) {
+    try {
+      // ToDo: ⚠️ We need another route to get all account details, not only the token
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/`);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      const json = await response.json();
+      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json.access_token);
+      commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
+    } catch (error) {
+      if (error instanceof HttpClientError && error.code === 404) {
+        // This is likely caused by a missing Google account, so retrieve the URL
+        dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
+        console.error(error);
+      }
+    }
+  },
+
   [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, dispatch}) {
     dispatch(ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT);
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
+    commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
+    dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
   },
+
   [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit}) {
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_MCA_ACCOUNT);

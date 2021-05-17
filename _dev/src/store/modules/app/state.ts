@@ -20,12 +20,10 @@ export interface State {
   isCountryMemberOfEuropeanUnion: boolean;
   psGoogleShoppingApiUrl: string;
   psGoogleShoppingShopUrl: string;
-  psAccountShopId: string;
 }
 
 export const state: State = {
   psGoogleShoppingApiUrl: '',
   psGoogleShoppingShopUrl: '',
-  psAccountShopId: '',
   isCountryMemberOfEuropeanUnion: false,
 };

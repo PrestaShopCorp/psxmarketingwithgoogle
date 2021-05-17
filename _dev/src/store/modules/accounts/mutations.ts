@@ -17,19 +17,18 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import MutationsTypes from './mutations-types';
-import {State as LocalState, MerchantCenterAccount} from './state';
-
-interface OnboardStatus {
-  // TODO: To be defined from response structure
-  email: string;
-}
+import {
+  State as LocalState,
+  GoogleAccount,
+  MerchantCenterAccount,
+} from './state';
 
 export default {
-  [MutationsTypes.SAVE_ONBOARD_STATUS](state: LocalState, response: OnboardStatus) {
-    const {email} = response;
+  /** Google Account mutations */
+  [MutationsTypes.SET_GOOGLE_ACCOUNT](state: LocalState, response: GoogleAccount) {
     state.googleAccount = {
       ...state.googleAccount,
-      email,
+      ...response,
     };
   },
   [MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN](state: LocalState, token: string) {
@@ -38,6 +37,17 @@ export default {
   [MutationsTypes.REMOVE_GOOGLE_ACCOUNT](state: LocalState) {
     state.googleAccount.token = '';
   },
+  [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string) {
+    state.googleAccount.authenticationUrl = url;
+  },
+  [MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE](state: LocalState, googleResponse) {
+    state.googleAccount.from = googleResponse.from;
+    state.googleAccount.message = googleResponse.message;
+    state.googleAccount.status = googleResponse.status;
+  },
+  /** End of Google Account mutations */
+
+  /** Merchant Center Account mutations */
   [MutationsTypes.SAVE_MCA_ACCOUNT](state: LocalState, selectedAccount: MerchantCenterAccount) {
     state.googleMerchantAccount = {
       ...state.googleMerchantAccount,
@@ -68,18 +78,5 @@ export default {
     // ToDo: Add some validation about possible values?
     state.googleMerchantAccount.websiteVerificationStatus = newStatus;
   },
-  [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string) {
-    state.googleAccount.authenticationUrl = url;
-  },
-  [MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE](state: LocalState, googleResponse) {
-    state.googleAccount.from = googleResponse.from;
-    state.googleAccount.message = googleResponse.message;
-    state.googleAccount.status = googleResponse.status;
-  },
-  [MutationsTypes.SET_GOOGLE_ACCOUNT](state:LocalState, googleAccountInfo) {
-    // to avoid undefined
-    state.googleAccount.email = googleAccountInfo.email || '';
-    state.googleAccount.photo = googleAccountInfo.photo || '';
-    state.googleAccount.token = googleAccountInfo.token || '';
-  },
+  /** End of Merchant Center Account mutations */
 };

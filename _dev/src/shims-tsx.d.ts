@@ -13,7 +13,7 @@ declare global {
       i18nSettings: any;
       psGoogleShoppingApiUrl: String;
       psGoogleShoppingShopUrl: String;
-      psAccountShopId: String;
+      shopIdPsAccounts: String;
     }
   //   interface IntrinsicElements {
   //     [elem: string]: any;

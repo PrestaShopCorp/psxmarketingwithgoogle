@@ -142,6 +142,7 @@ import {
 import MutationsTypes from '../../store/modules/accounts/mutations-types';
 import ActionsTypes from '../../store/modules/accounts/actions-types';
 import Glass from '../commons/glass';
+import {GoogleAccountContext} from '../../store/modules/accounts/state';
 
 export default {
   name: 'GoogleAccountCard',
@@ -162,7 +163,7 @@ export default {
       default: false,
     },
     user: {
-      type: Object,
+      type: GoogleAccountContext,
       default: null,
     },
   },
@@ -234,7 +235,7 @@ export default {
       }
     },
     refreshAccount(errorIfNot) {
-      this.$store.dispatch(`accounts/${ActionsTypes.REQUEST_FOR_GET_GOOGLE_ACCOUNT}`).then((res) => {
+      this.$store.dispatch(`accounts/${ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS}`).then((res) => {
         if (errorIfNot && !res) {
           throw new Error();
         }
