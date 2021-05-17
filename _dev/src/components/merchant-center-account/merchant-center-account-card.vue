@@ -60,7 +60,7 @@
         </li>
       </ul>
     </div>
-    <div v-if="isEnabled && !websiteVerification">
+    <div v-if="isEnabled && websiteVerification === null">
       <b-form class="mb-2">
         <legend
           class="mb-1 h4 font-weight-600 bg-transparent border-0"
@@ -130,14 +130,14 @@
           {{ $t(`badge.${mcaStatusBadge.text}`) }}
         </b-badge>
         <span
-          v-if="websiteVerification == 'checking'"
+          v-if="websiteVerification === WebsiteClaimProgressStatus.Checking"
           class="text-muted"
         >
           <i class="icon-busy icon-busy--dark mr-1" />
           {{ $t('badge.checkingSiteClaim') }}
         </span>
         <span
-          v-if="websiteVerification == 'doneAlert'"
+          v-if="websiteVerification === WebsiteClaimProgressStatus.DoneWithToast"
           class="text-muted"
         >
           <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
@@ -166,7 +166,7 @@
       </div>
     </div>
     <b-alert
-      v-if="error == 'disapproved'"
+      v-if="error === WebsiteClaimErrorReason.Disapproved"
       show
       variant="danger"
       class="mb-0 mt-3"
@@ -184,7 +184,7 @@
       </p>
     </b-alert>
     <b-alert
-      v-else-if="error == 'expiring'"
+      v-else-if="error === WebsiteClaimErrorReason.Expiring"
       show
       variant="warning"
       class="mb-0 mt-3"
@@ -202,7 +202,7 @@
       </p>
     </b-alert>
     <b-alert
-      v-else-if="error == 'overwrite'"
+      v-else-if="error === WebsiteClaimErrorReason.Overwrite"
       show
       variant="warning"
       class="mb-0 mt-3"
@@ -270,6 +270,11 @@ import {
   BIconExclamationCircle,
 } from 'bootstrap-vue';
 
+import {
+  WebsiteClaimErrorReason,
+  WebsiteClaimProgressStatus,
+} from '../../store/modules/accounts/state';
+
 export default {
   name: 'MerchantCenterAccountCard',
   components: {
@@ -281,6 +286,8 @@ export default {
   data() {
     return {
       selectedMcaIndex: null,
+      WebsiteClaimErrorReason,
+      WebsiteClaimProgressStatus,
     };
   },
   props: {
@@ -289,7 +296,7 @@ export default {
       default: false,
     },
     error: {
-      type: String,
+      type: WebsiteClaimErrorReason,
       default: null,
     },
     isEU: {
@@ -316,22 +323,22 @@ export default {
     },
     mcaStatusBadge() {
       switch (this.error) {
-        case 'pending':
+        case WebsiteClaimErrorReason.Pending:
           return {
             color: 'warning',
             text: 'pending',
           };
-        case 'expiring':
+        case WebsiteClaimErrorReason.Expiring:
           return {
             color: 'warning',
             text: 'expiring',
           };
-        case 'disapproved':
+        case WebsiteClaimErrorReason.Disapproved:
           return {
             color: 'danger',
             text: 'disapproved',
           };
-        case 'overwrite':
+        case WebsiteClaimErrorReason.Overwrite:
         default:
           return {
             color: 'success',

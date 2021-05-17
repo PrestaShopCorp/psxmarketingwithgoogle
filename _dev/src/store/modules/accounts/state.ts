@@ -70,9 +70,9 @@ export interface MerchantCenterAccountUser {
 
 export type MerchantCenterAccountContext = MerchantCenterAccount & {
   // Allow the spinner to be displayed while claiming is done
-  websiteVerificationProgressStatus: string|null,
+  websiteVerificationProgressStatus: WebsiteClaimProgressStatus|null,
   // Allow displaying the error message
-  websiteVerificationStatus: string|null,
+  websiteVerificationStatus: WebsiteClaimErrorReason|null,
 };
 
 export interface State {
@@ -80,6 +80,20 @@ export interface State {
   shopIdPsAccounts: string;
   googleAccount: GoogleAccountContext;
   googleMerchantAccount: MerchantCenterAccountContext;
+}
+
+export enum WebsiteClaimProgressStatus {
+  Checking,
+  Done,
+  // ToDo: Find a better name (or move it in the component state)
+  DoneWithToast,
+}
+
+export enum WebsiteClaimErrorReason {
+  Disapproved = 'Disapproved',
+  Expiring = 'Expiring',
+  Pending = 'Pending',
+  Overwrite = 'Overwrite',
 }
 
 export const state: State = {

@@ -23,6 +23,7 @@ import {
   GoogleAccountContext,
   MerchantCenterAccount,
   MerchantCenterAccountContext,
+  WebsiteClaimProgressStatus,
 } from './state';
 import GetterTypes from './getters-types';
 
@@ -62,7 +63,10 @@ export default {
   [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED](state: LocalState) : boolean {
     return !!(state.googleMerchantAccount.id
       && state.googleMerchantAccount.websiteVerificationProgressStatus
-      && ['done', 'doneAlert'].indexOf(state.googleMerchantAccount.websiteVerificationProgressStatus) !== -1);
+      && [
+        WebsiteClaimProgressStatus.Done,
+        WebsiteClaimProgressStatus.DoneWithToast
+      ].indexOf(state.googleMerchantAccount.websiteVerificationProgressStatus) !== -1);
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL](state: LocalState) : String {
     return state.googleAccount.authenticationUrl;
