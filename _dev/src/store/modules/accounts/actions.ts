@@ -18,8 +18,8 @@
  */
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import {MerchantCenterAccount} from './state';
 import HttpClientError from '../../../utils/HttpClientError';
+import {MerchantCenterAccount, WebsiteClaimProgressStatus} from './state';
 
 export default {
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, rootState}, webhookUrl: String) {
@@ -42,11 +42,11 @@ export default {
   [ActionsTypes.SAVE_SELECTED_GOOGLE_ACCOUNT]({commit}, selectedAccount: MerchantCenterAccount) {
     commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
     // ToDo: Replace the following lines with the actual behavior
-    commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'checking');
+    commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, WebsiteClaimProgressStatus.Checking);
     setTimeout(() => {
-      commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'doneAlert');
+      commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, WebsiteClaimProgressStatus.DoneWithToast);
       setTimeout(() => {
-        commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, 'done');
+        commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, WebsiteClaimProgressStatus.Done);
       }, 2000);
     }, 2000);
   },
@@ -117,5 +117,18 @@ export default {
   [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit}) {
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
+  },
+  
+  async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS]({rootState, commit}) {
+    try {
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/status`)
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      const json = await response.json();
+      commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, json);
+    } catch(error) {
+      console.error(error);
+    }
   },
 };

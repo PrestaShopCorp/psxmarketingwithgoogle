@@ -36,7 +36,7 @@
       </div>
     </div>
     <VueShowdown
-      v-if="!websiteVerification"
+      v-if="!isWebsiteIsVerified"
       class="ps_gs-fz-12 mb-3"
       :markdown="message"
       :extensions="['targetlink']"
@@ -60,7 +60,7 @@
         </li>
       </ul>
     </div>
-    <div v-if="isEnabled && websiteVerification === null">
+    <div v-if="isEnabled && isWebsiteIsVerified === false">
       <b-form class="mb-2">
         <legend
           class="mb-1 h4 font-weight-600 bg-transparent border-0"
@@ -130,14 +130,14 @@
           {{ $t(`badge.${mcaStatusBadge.text}`) }}
         </b-badge>
         <span
-          v-if="websiteVerification === WebsiteClaimProgressStatus.Checking"
+          v-if="isWebsiteIsVerified && isWebsiteIsAlreadyClaimed"
           class="text-muted"
         >
           <i class="icon-busy icon-busy--dark mr-1" />
           {{ $t('badge.checkingSiteClaim') }}
         </span>
         <span
-          v-if="websiteVerification === WebsiteClaimProgressStatus.DoneWithToast"
+          v-if="isWebsiteIsVerified && isWebsiteIsAlreadyClaimed"
           class="text-muted"
         >
           <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
@@ -272,7 +272,6 @@ import {
 
 import {
   WebsiteClaimErrorReason,
-  WebsiteClaimProgressStatus,
 } from '../../store/modules/accounts/state';
 
 export default {
@@ -287,7 +286,6 @@ export default {
     return {
       selectedMcaIndex: null,
       WebsiteClaimErrorReason,
-      WebsiteClaimProgressStatus,
     };
   },
   props: {
@@ -307,8 +305,11 @@ export default {
     mcaSelectionOptions() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
     },
-    websiteVerification() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'].websiteVerificationProgressStatus;
+    isWebsiteIsVerified() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'].isVerified;
+    },
+    isWebsiteIsAlreadyClaimed() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'].isClaimed;
     },
     mcaConfigured() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'].websiteVerificationProgressStatus;

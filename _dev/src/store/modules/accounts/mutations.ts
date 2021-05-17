@@ -21,6 +21,7 @@ import {
   State as LocalState,
   GoogleAccount,
   MerchantCenterAccount,
+  MerchantCenterAccountContext,
 } from './state';
 
 export default {
@@ -58,7 +59,6 @@ export default {
     state.googleMerchantAccount = {
       ...state.googleMerchantAccount,
       id: null,
-      websiteVerificationProgressStatus: null,
       websiteVerificationStatus: null,
     };
   },
@@ -78,5 +78,9 @@ export default {
     // ToDo: Add some validation about possible values?
     state.googleMerchantAccount.websiteVerificationStatus = newStatus;
   },
+  [MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS](state: LocalState, websiteClaimingStatus: MerchantCenterAccountContext) {
+    state.googleMerchantAccount.isClaimed = websiteClaimingStatus.isClaimed;
+    state.googleMerchantAccount.isVerified = websiteClaimingStatus.isVerified;
+  }
   /** End of Merchant Center Account mutations */
 };

@@ -70,7 +70,8 @@ export interface MerchantCenterAccountUser {
 
 export type MerchantCenterAccountContext = MerchantCenterAccount & {
   // Allow the spinner to be displayed while claiming is done
-  websiteVerificationProgressStatus: WebsiteClaimProgressStatus|null,
+  isVerified?: boolean,
+  isClaimed?: boolean,
   // Allow displaying the error message
   websiteVerificationStatus: WebsiteClaimErrorReason|null,
 };
@@ -80,13 +81,6 @@ export interface State {
   shopIdPsAccounts: string;
   googleAccount: GoogleAccountContext;
   googleMerchantAccount: MerchantCenterAccountContext;
-}
-
-export enum WebsiteClaimProgressStatus {
-  Checking,
-  Done,
-  // ToDo: Find a better name (or move it in the component state)
-  DoneWithToast,
 }
 
 export enum WebsiteClaimErrorReason {
@@ -104,12 +98,10 @@ export const state: State = {
     email: '',
     photo: '',
     mcaSelectionOptions: [],
-
     authenticationUrl: '',
   },
   googleMerchantAccount: {
     id: null,
-    websiteVerificationProgressStatus: null,
     websiteVerificationStatus: null,
     users: [],
   },
