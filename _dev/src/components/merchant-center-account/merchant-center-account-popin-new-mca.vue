@@ -9,7 +9,10 @@
     <Stepper
       :steps="steps"
     />
-    <form class="my-1" v-if="stepActiveData === 1">
+    <form
+      class="my-1"
+      v-if="stepActiveData === 1"
+    >
       <legend class="font-weight-normal ps_gs-fz-14 mb-2 bg-transparent border-0">
         {{ $t('mcaRequirements.legend') }}
       </legend>
@@ -19,33 +22,36 @@
           :key="$t(`mcaRequirements.${requirement}.title`)"
           class="d-flex border-bottom py-3 pl-2 ml-1"
         >
-        <b-form-checkbox
-          class="ps_gs-checkbox"
-          :id="safeString($t(`mcaRequirements.${requirement}.title`))"
-          v-model="selectedRequirements"
-          :value="safeString($t(`mcaRequirements.${requirement}.title`))"
-        >
-          <div>
-            <span
-              class="ps_gs-fz-14 font-weight-normal mb-1"
-            >
-              {{ $t(`mcaRequirements.${requirement}.title`) }}
-            </span>
-            <p class="ps_gs-fz-12 text-muted">
-              {{ $t(`mcaRequirements.${requirement}.description`) }}<br>
-              <a
-                :href="$options.googleUrl[requirement]"
-                target="_blank"
+          <b-form-checkbox
+            class="ps_gs-checkbox"
+            :id="safeString($t(`mcaRequirements.${requirement}.title`))"
+            v-model="selectedRequirements"
+            :value="safeString($t(`mcaRequirements.${requirement}.title`))"
+          >
+            <div>
+              <span
+                class="ps_gs-fz-14 font-weight-normal mb-1"
               >
-                {{ $t(`mcaRequirements.${requirement}.link`)  }}
-              </a>
-            </p>
-          </div>
-        </b-form-checkbox>
+                {{ $t(`mcaRequirements.${requirement}.title`) }}
+              </span>
+              <p class="ps_gs-fz-12 text-muted">
+                {{ $t(`mcaRequirements.${requirement}.description`) }}<br>
+                <a
+                  :href="$options.googleUrl[requirement]"
+                  target="_blank"
+                >
+                  {{ $t(`mcaRequirements.${requirement}.link`) }}
+                </a>
+              </p>
+            </div>
+          </b-form-checkbox>
         </li>
       </ul>
     </form>
-    <form class="my-1" v-else>
+    <form
+      class="my-1"
+      v-else
+    >
       <VueShowdown
         class="font-weight-normal ps_gs-fz-14 mb-3 pb-2"
         :markdown="$t('mcaRequirements.legend2')"
@@ -107,7 +113,8 @@
       <div class="mb-4 pb-1">
         <div class="d-flex align-items-center">
           <legend
-            class="h4 mb-0 font-weight-600 d-block col-form-label mr-2 w-auto bg-transparent border-0"
+            class="d-block w-auto h4 mb-0 mr-2 font-weight-600 col-form-label
+              bg-transparent border-0"
           >
             {{ $t('mcaRequirements.siteContainsAdultContent') }}
           </legend>
@@ -125,8 +132,12 @@
             name="radio-sub-component"
             v-model="containsAdultContent"
           >
-            <b-form-radio :value="true">{{ $t('cta.yes') }}</b-form-radio>
-            <b-form-radio :value="false">{{ $t('cta.no') }}</b-form-radio>
+            <b-form-radio :value="true">
+              {{ $t('cta.yes') }}
+            </b-form-radio>
+            <b-form-radio :value="false">
+              {{ $t('cta.no') }}
+            </b-form-radio>
           </b-form-radio-group>
         </b-form-group>
       </div>
@@ -144,7 +155,10 @@
         </b-form-checkbox>
       </div>
     </form>
-    <template slot="modal-footer" v-if="stepActiveData === 1">
+    <template
+      slot="modal-footer"
+      v-if="stepActiveData === 1"
+    >
       <a
         class="ps_gs-fz-12 text-muted mr-sm-auto"
         href="//google.com"
@@ -171,7 +185,10 @@
         </b-button>
       </span>
     </template>
-    <template slot="modal-footer" v-else>
+    <template
+      slot="modal-footer"
+      v-else
+    >
       <b-button
         variant="outline-secondary"
         @click="cancel()"
@@ -237,12 +254,12 @@ export default {
     };
   },
   methods: {
-   safeString(str) {
-      str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-      str = str
-        .replace(/\-/g, " ") //convert all hyphens to spaces
-        .replace(/\s+/g, "") //remove spaces
-      return str;
+    safeString(str) {
+      let newStr = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      newStr = newStr
+        .replace(/-/g, ' ') // convert all hyphens to spaces
+        .replace(/\s+/g, ''); // remove spaces
+      return newStr;
     },
     validateStepOne() {
       return !(this.selectedRequirements.length === this.requirements.length);
@@ -263,17 +280,17 @@ export default {
        */
     },
     cancel() {
-      this.$refs.MerchantCenterAccountPopinNewMca.hide()
+      this.$refs.MerchantCenterAccountPopinNewMca.hide();
     },
   },
   props: {
-    infosWebsiteURL : {
+    infosWebsiteURL: {
       type: String,
     },
-    infosStoreName : {
+    infosStoreName: {
       type: String,
     },
-    infosBusinessLocation : {
+    infosBusinessLocation: {
       type: String,
     },
     infosBusinessAddress: {
