@@ -362,7 +362,7 @@ export default {
   mounted() {
     if (this.$refs.mcaSelection) {
       this.$refs.mcaSelection.$refs.toggle.focus();
-    };
+    }
   },
   googleUrl,
 };
