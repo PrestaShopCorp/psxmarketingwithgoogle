@@ -15,7 +15,24 @@ const Template = (args, { argTypes }) => ({
   `,
 });
 
-export const NewMCA:any = Template.bind({});
-NewMCA.args = {
+export const NewMcaStepOne:any = Template.bind({});
+NewMcaStepOne.args = {
   visible: true,
+  infosWebsiteURL: 'maysonroyer.com',
+  infosStoreName: 'Maison Royer',
+  infosBusinessLocation: 'France',
+  infosBusinessAddress: 'La Morelière - 85500 Les Herbiers',
+  infosBusinessPhone: '+33 2 51 92 04 25',
+  stepActive: 1,
+};
+
+export const NewMcaStepTwo:any = Template.bind({});
+NewMcaStepTwo.args = {
+  visible: true,
+  infosWebsiteURL: 'maysonroyer.com',
+  infosStoreName: 'Maison Royer',
+  infosBusinessLocation: 'France',
+  infosBusinessAddress: 'La Morelière - 85500 Les Herbiers',
+  infosBusinessPhone: '+33 2 51 92 04 25',
+  stepActive: 2,
 };

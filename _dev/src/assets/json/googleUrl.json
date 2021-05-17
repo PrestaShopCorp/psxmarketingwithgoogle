@@ -8,5 +8,6 @@
   "secureCheckoutProcess" : "//google.com",
   "returnPolicy" : "//google.com",
   "billingTerms" : "//google.com",
-  "completeCheckoutProcess" : "//google.com"
+  "completeCheckoutProcess" : "//google.com",
+  "policyAdultContent" : "//google.com"
 }

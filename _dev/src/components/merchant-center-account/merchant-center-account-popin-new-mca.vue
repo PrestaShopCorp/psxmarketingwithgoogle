@@ -9,7 +9,7 @@
     <Stepper
       :steps="steps"
     />
-    <form class="my-1">
+    <form class="my-1" v-if="stepActiveData === 1">
       <legend class="font-weight-normal ps_gs-fz-14 mb-2 bg-transparent border-0">
         {{ $t('mcaRequirements.legend') }}
       </legend>
@@ -45,7 +45,106 @@
         </li>
       </ul>
     </form>
-    <template slot="modal-footer">
+    <form class="my-1" v-else>
+      <VueShowdown
+        class="font-weight-normal ps_gs-fz-14 mb-3 pb-2"
+        :markdown="$t('mcaRequirements.legend2')"
+      />
+      <section class="mb-3">
+        <h3 class="h4 mb-0 font-weight-600">
+          {{ $t('mcaRequirements.websiteURL') }}
+        </h3>
+        <span class="d-block">
+          {{ infosWebsiteURL }}
+        </span>
+        <p class="ps_gs-fz-12 text-muted">
+          {{ $t('mcaRequirements.websiteURLDescription') }}
+        </p>
+      </section>
+      <section class="mb-3">
+        <h3 class="h4 mb-0 font-weight-600">
+          {{ $t('mcaRequirements.storeName') }}
+        </h3>
+        <span class="d-block">
+          {{ infosStoreName }}
+        </span>
+        <p class="ps_gs-fz-12 text-muted">
+          {{ $t('mcaRequirements.storeNameDescription') }}
+        </p>
+      </section>
+      <section class="mb-3">
+        <h3 class="h4 mb-0 font-weight-600">
+          {{ $t('mcaRequirements.businessLocation') }}
+        </h3>
+        <span class="d-block">
+          {{ infosBusinessLocation }}
+        </span>
+      </section>
+      <b-form-group
+        :label="$t('mcaRequirements.businessAddress')"
+        label-for="inputBusinessAddress"
+        label-class="h4 mb-0 font-weight-600"
+        content-cols="12"
+      >
+        <b-form-input
+          id="inputBusinessAddress"
+          :value="businessAddress"
+          class="maxw-sm-420"
+        />
+      </b-form-group>
+      <b-form-group
+        :label="$t('mcaRequirements.businessPhone')"
+        label-for="inputBusinessPhoneNumber"
+        label-class="h4 mb-0 font-weight-600"
+        content-cols="12"
+      >
+        <b-form-input
+          id="inputBusinessPhoneNumber"
+          :value="businessPhone"
+          class="maxw-sm-420"
+        />
+      </b-form-group>
+      <div class="mb-4 pb-1">
+        <div class="d-flex align-items-center">
+          <legend
+            class="h4 mb-0 font-weight-600 d-block col-form-label mr-2 w-auto bg-transparent border-0"
+          >
+            {{ $t('mcaRequirements.siteContainsAdultContent') }}
+          </legend>
+          <a
+            :href="$options.googleUrl.policyAdultContent"
+            target="_blank"
+            class="text-muted ps_gs-fz-12"
+          >
+            {{ $t('mcaRequirements.seePolicyAdultContent') }}
+          </a>
+        </div>
+        <b-form-group>
+          <b-form-radio-group
+            id="radio-group-2"
+            name="radio-sub-component"
+            v-model="containsAdultContent"
+          >
+            <b-form-radio :value="true">{{ $t('cta.yes') }}</b-form-radio>
+            <b-form-radio :value="false">{{ $t('cta.no') }}</b-form-radio>
+          </b-form-radio-group>
+        </b-form-group>
+      </div>
+      <div
+        class="d-flex"
+      >
+        <b-form-checkbox
+          class="ps_gs-checkbox"
+          v-model="acceptsGoogleTerms"
+        >
+          <VueShowdown
+            :markdown="$t('mcaRequirements.labelReadAndAgree')"
+            :extensions="['targetlink']"
+          />
+        </b-form-checkbox>
+      </div>
+    </form>
+    <template slot="modal-footer" v-if="stepActiveData === 1">
       <a
         class="ps_gs-fz-12 text-muted mr-sm-auto"
         href="//google.com"
@@ -61,14 +160,34 @@
       </b-button>
       <span
         v-b-tooltip:googleShoppingApp
-        :title="validateForm() ? $t('tooltip.mustCheckAllRequirements') : ''"
+        :title="validateStepOne() ? $t('tooltip.mustCheckAllRequirements') : ''"
+      >
+        <b-button
+          variant="primary"
+          @click="saveFirstStep()"
+          :disabled="validateStepOne()"
+        >
+          {{ $t('cta.iCheckRequirements') }}
+        </b-button>
+      </span>
+    </template>
+    <template slot="modal-footer" v-else>
+      <b-button
+        variant="outline-secondary"
+        @click="cancel()"
+      >
+        {{ $t('cta.cancel') }}
+      </b-button>
+      <span
+        v-b-tooltip:googleShoppingApp
+        :title="validateStepTwo() ? $t('tooltip.mustAgreeGoogleTerms') : ''"
       >
         <b-button
           variant="primary"
           @click="ok()"
-          :disabled="validateForm()"
+          :disabled="validateStepTwo()"
         >
-          {{ $t('cta.iCheckRequirements') }}
+          {{ $t('cta.createAccount') }}
         </b-button>
       </span>
     </template>
@@ -93,6 +212,7 @@ export default {
   },
   data() {
     return {
+      stepActiveData: 1,
       requirements: [
         'shoppingAdsPolicies',
         'accurateContactInformation',
@@ -104,12 +224,16 @@ export default {
       selectedRequirements: [],
       steps: [
         {
-          title: 'Shopping website requirements',
+          title: this.$i18n.t('mcaRequirements.steps.websiteRequirements'),
         },
         {
-          title: 'Shop information',
+          title: this.$i18n.t('mcaRequirements.steps.shopInfo'),
         },
       ],
+      businessAddress: this.infosBusinessAddress || '',
+      businessPhone: this.infosBusinessPhone || '',
+      containsAdultContent: null,
+      acceptsGoogleTerms: false,
     };
   },
   methods: {
@@ -120,15 +244,50 @@ export default {
         .replace(/\s+/g, "") //remove spaces
       return str;
     },
-    validateForm() {
+    validateStepOne() {
       return !(this.selectedRequirements.length === this.requirements.length);
     },
+    validateStepTwo() {
+      /**
+       * TODO: Form step 2 validation
+       * Adds businessAddress and businessPhoneto the validation
+       */
+      return !(this.acceptsGoogleTerms && (this.containsAdultContent != null));
+    },
+    saveFirstStep() {
+      this.stepActiveData = 2;
+    },
     ok() {
-
+      /**
+       * TODO
+       */
     },
     cancel() {
       this.$refs.MerchantCenterAccountPopinNewMca.hide()
     },
+  },
+  props: {
+    infosWebsiteURL : {
+      type: String,
+    },
+    infosStoreName : {
+      type: String,
+    },
+    infosBusinessLocation : {
+      type: String,
+    },
+    infosBusinessAddress: {
+      type: String,
+    },
+    infosBusinessPhone: {
+      type: String,
+    },
+    stepActive: {
+      type: Number,
+    },
+  },
+  mounted() {
+    this.stepActiveData = this.stepActive;
   },
   googleUrl,
 };

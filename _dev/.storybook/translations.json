@@ -67,8 +67,13 @@
       "shopInfoMissingDescription" : "To check if it is a validity issue or if you are not following our rules, please log in to your account at"
     },
     "mcaRequirements" : {
+      "steps": {
+        "websiteRequirements" : "Shopping website requirements",
+        "shopInfo" : "Shop information"
+      },
       "title" : "Create new Merchant Center account",
       "legend" : "To use Google Ads, you must acknowledge that you meet these requirements by checking these boxes.",
+      "legend2" : "**Before you can upload product data, your store’s website URL needs to be verified and claimed.**  \nVerification lets Google know you are the authorized owner of your website. Claiming associates your website URL with your Google Merchant Center account.",
       "footer" : "Learn about shopping website requirements",
       "shoppingAdsPolicies" : {
         "title" : "Shopping Ads policies",
@@ -99,7 +104,17 @@
         "title" : "Complete checkout process",
         "description" : "Avoid abuse",
         "link" : "See checkout requirements"
-      }
+      },
+      "websiteURL" : "Website URL",
+      "websiteURLDescription" : "This is the website used to create your Merchant Center account.",
+      "storeName" : "Store name",
+      "storeNameDescription" : "This name will appear in your Shopping ads.",
+      "businessLocation" : "Business location",
+      "businessAddress" : "Business address",
+      "businessPhone" : "Business phone number",
+      "siteContainsAdultContent" : "My site contains adult content",
+      "seePolicyAdultContent" : "See policy on adult-oriented content",
+      "labelReadAndAgree" : "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies](//google.com){:target=\"_blank\"}, including [Google’s Merchant Center terms of service](//google.com){:target=\"_blank\"}, [Shopping ads policies](//google.com){:target=\"_blank\"}, and [Google Ads Terms and Conditions](//google.com){:target=\"_blank\"}."
     },
     "productFeedCard" : {
       "title" : "Product feed export configuration",
@@ -282,7 +297,8 @@
       "disableProductFeed" : "Disable product feed",
       "enableFreeListingAndProductFeed" : "Enable free listing and product feed",
       "checkRequirements" : "Check requirements",
-      "iCheckRequirements" : "I checked all requirements"
+      "iCheckRequirements" : "I checked all requirements",
+      "createAccount" : "Create account"
     },
     "badge" : {
       "free" : "Free",
@@ -316,7 +332,8 @@
     },
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configured",
-      "mustCheckAllRequirements" : "You must check if all requirements met."
+      "mustCheckAllRequirements" : "You must check if all requirements met.",
+      "mustAgreeGoogleTerms" : "You must agree the Google terms"
     }
   },
   "ar" : {
