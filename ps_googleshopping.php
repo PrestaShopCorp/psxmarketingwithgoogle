@@ -166,6 +166,11 @@ class Ps_googleshopping extends Module
 
     public function hookDisplayHeader()
     {
+        $isWebsiteClaimEnabled = Configuration::get(Config::IS_WEBSITE_CLAIM_ENABLED);
+        if (!$isWebsiteClaimEnabled) {
+            return;
+        }
+
         $websiteClaim = Configuration::get(Config::WEBSITE_CLAIM);
         if (!$websiteClaim) {
             return;

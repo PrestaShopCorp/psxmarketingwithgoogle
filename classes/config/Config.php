@@ -4,7 +4,8 @@ namespace PrestaShop\Module\PrestashopGoogleShopping\Config;
 
 class Config
 {
-    const PSX_GOOGLE_SHOPPING_API_URL = 'https://googleshopping-api.psessentials.net';
+//    const PSX_GOOGLE_SHOPPING_API_URL = 'https://googleshopping-api.psessentials.net';
+    const PSX_GOOGLE_SHOPPING_API_URL = 'https://mock-googleshopping-api.psessentials-integration.net/rest/PS+Google+Shopping+all-in-one/1.0/';
 
     const HOOK_LIST = [
         'displayBackOfficeHeader',
@@ -22,4 +23,5 @@ class Config
     const PSX_GOOGLE_SHOPPING_SEGMENT_API_KEY = 'GnGf1m503biLVjo3a52nplV1becA0kiv';
 
     const WEBSITE_CLAIM = 'GOOGLE_WEBSITE_CLAIM';
+    const IS_WEBSITE_CLAIM_ENABLED = 'IS_WEBSITE_CLAIM_ENABLED';
 }
