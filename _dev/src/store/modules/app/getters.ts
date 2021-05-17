@@ -16,16 +16,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-export interface State {
-  isCountryMemberOfEuropeanUnion: boolean;
-  psGoogleShoppingApiUrl: string;
-  psGoogleShoppingShopUrl: string;
-  psAccountShopId: string;
-}
+import GettersTypes from './getters-types';
+import {State as LocalState} from './state';
 
-export const state: State = {
-  psGoogleShoppingApiUrl: '',
-  psGoogleShoppingShopUrl: '',
-  psAccountShopId: '',
-  isCountryMemberOfEuropeanUnion: false,
+export default {
+  [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
+    return state.isCountryMemberOfEuropeanUnion;
+  },
 };

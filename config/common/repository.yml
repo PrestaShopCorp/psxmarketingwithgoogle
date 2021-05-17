@@ -1,3 +1,7 @@
 services:
   PrestaShop\Module\PrestashopGoogleShopping\Repository\TabRepository:
     class: PrestaShop\Module\PrestashopGoogleShopping\Repository\TabRepository
+  PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository
+    arguments:
+      - '@ps_googleshopping.country'
