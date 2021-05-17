@@ -1,6 +1,5 @@
 <?php
 
-use PrestaShop\Module\PrestashopGoogleShopping\API\APIClient;
 use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 
 /**
@@ -26,17 +25,10 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
     /** @var Ps_googleshopping */
     public $module;
 
-    /**
-     * @var APIClient
-     */
-    private $apiClient;
-
     public function __construct()
     {
         parent::__construct();
         $this->bootstrap = false;
-
-        $this->apiClient = $this->module->getService(APIClient::class);
     }
 
     public function initContent()
@@ -49,95 +41,28 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $action = Tools::getValue('action');
 
         switch ($action) {
-            case 'getDefaultCountry':
-                $this->getDefaultCountry();
+            case 'setWebsiteClaimHeader':
+                $this->setWebsiteClaimHeader();
                 break;
-            case 'getOauthCallback':
-                $this->getOauthCallback();
-                break;
-            case 'getHealthCheck':
-                $this->getHealthCheck();
-                break;
-            case 'getFeedValidationList':
-                $this->getFeedValidationList();
-                break;
-            case 'getFeedValidationSummary':
-                $this->getFeedValidationSummary();
-                break;
-            case 'getLastStatus':
-                $this->getLastStatus();
-                break;
-            case 'postAccountOnboard':
-                $this->postAccountOnboard();
-                break;
-            case 'getWebsiteClaim':
-                $this->getWebsiteClaim();
+            case 'toggleWebsiteClaim':
+                $this->toggleWebsiteClaim();
                 break;
             default:
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
         }
     }
 
-    private function getDefaultCountry()
+    private function setWebsiteClaimHeader()
     {
-        $defaultCountryId = (int) Configuration::get('PS_COUNTRY_DEFAULT');
-        $country = new Country($defaultCountryId);
-        $this->ajaxDie(json_encode(
-                [
-                    'success' => true,
-                    'country_id' => $country->id,
-                    'country_iso_code' => $country->iso_code,
-                ]
-            )
-        );
+        $websiteClaim = Tools::getValue('websiteClaim');
+
+        Configuration::updateValue(Config::WEBSITE_CLAIM, $websiteClaim);
     }
 
-    private function getOauthCallback()
+    private function toggleWebsiteClaim()
     {
-        $response = $this->apiClient->getOauthCallback();
+        $isEnabled = Tools::getValue('isWebsiteClaimEnabled');
 
-        $this->ajaxDie(json_encode($response));
-    }
-
-    private function getHealthCheck()
-    {
-        $response = $this->apiClient->getHealthCheck();
-
-        $this->ajaxDie(json_encode($response));
-    }
-
-    private function getFeedValidationList()
-    {
-        $response = $this->apiClient->getFeedValidationList();
-
-        $this->ajaxDie(json_encode($response));
-    }
-
-    private function getFeedValidationSummary()
-    {
-        $response = $this->apiClient->getFeedValidationSummary();
-
-        $this->ajaxDie(json_encode($response));
-    }
-
-    private function postAccountOnboard()
-    {
-        $response = $this->apiClient->postAccountOnboard();
-
-        $this->ajaxDie(json_encode($response));
-    }
-
-    private function getLastStatus()
-    {
-        $response = $this->apiClient->getLastStatus();
-
-        $this->ajaxDie(json_encode($response));
-    }
-
-    private function getWebsiteClaim()
-    {
-        $response = $this->apiClient->getWebsiteClaim();
-
-        Configuration::updateValue(Config::WEBSITE_CLAIM, $response);
+        Configuration::updateValue(Config::IS_WEBSITE_CLAIM_ENABLED, $isEnabled);
     }
 }
