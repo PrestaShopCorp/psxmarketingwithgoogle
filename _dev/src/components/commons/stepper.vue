@@ -5,10 +5,10 @@
       :key="step.title"
       class="ps_gs-stepper-step col position-relative px-0"
       :class="{
-        'active': index + 1 == mutableActiveStep,
+        'active': isActive(index),
         'complete': isComplete(index)
       }"
-      :aria-current="index + 1 == mutableActiveStep ? 'step' : null"
+      :aria-current="isActive(index) ? 'step' : null"
     >
       <component
         :is="isComplete(index) ? 'a' : 'div'"
@@ -54,6 +54,9 @@ export default {
   methods: {
     isComplete(index) {
       return index < this.mutableActiveStep - 1;
+    },
+    isActive(index) {
+      return index + 1 == this.mutableActiveStep;
     },
     handleStepClick(index) {
       this.mutableActiveStep = index + 1;
