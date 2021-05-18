@@ -34,7 +34,7 @@
       v-if="stepsAreCompleted.step1"
       :is-connected="merchantCenterAccountIsChosen"
       :is-enabled="googleAccountIsOnboarded"
-      :isEU="showCSSForMCA"
+      :is-e-u="showCSSForMCA"
       @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
       @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
     />

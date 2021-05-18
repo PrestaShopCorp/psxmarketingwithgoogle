@@ -1,12 +1,13 @@
 <template>
   <ps-modal
     id="MerchantCenterAccountPopinNewMca"
-    :title="$t('mcaRequirements.title')"
+    :title="popinTitle"
     v-bind="$attrs"
     scrollable
     ref="MerchantCenterAccountPopinNewMca"
   >
     <Stepper
+      v-if="newMca"
       :steps="steps"
     />
     <form
@@ -16,6 +17,16 @@
       <legend class="font-weight-normal ps_gs-fz-14 mb-2 bg-transparent border-0">
         {{ $t('mcaRequirements.legend') }}
       </legend>
+      <b-alert
+        v-if="!newMca"
+        variant="warning"
+        show
+        class="my-3"
+      >
+        <p class="mb-0">
+          {{ $t('mcaRequirements.alert') }}
+        </p>
+      </b-alert>
       <ul class="list-unstyled">
         <li
           v-for="requirement in requirements"
@@ -80,7 +91,7 @@
       <section class="mb-3">
         <div class="d-flex align-items-center">
           <h3 class="h4 mb-0 font-weight-600">
-          {{ $t('mcaRequirements.storeName') }}
+            {{ $t('mcaRequirements.storeName') }}
           </h3>
           <b-button
             class="ml-1 p-0 d-flex"
@@ -193,6 +204,7 @@
         {{ $t('cta.cancel') }}
       </b-button>
       <span
+        v-if="newMca"
         v-b-tooltip:googleShoppingApp
         :title="validateStepOne() ? $t('tooltip.mustCheckAllRequirements') : ''"
       >
@@ -204,6 +216,13 @@
           {{ $t('cta.iCheckRequirements') }}
         </b-button>
       </span>
+      <b-button
+        v-else
+        variant="primary"
+        @click="saveChangeExistingMca()"
+      >
+        {{ $t('cta.saveChange') }}
+      </b-button>
     </template>
     <template
       slot="modal-footer"
@@ -234,18 +253,20 @@
 <script>
 /**
  * TODO: Handle events (close, continue, etc...)
+ * Handle Existing MCA, check requirements that are already checked
+ * by filling the data.selectedRequirements[]
  */
 
 import googleUrl from '@/assets/json/googleUrl.json';
 
-import PsModal from '../commons/ps-modal';
-import Stepper from '../commons/stepper';
 import {
   BIconExclamationCircle,
 } from 'bootstrap-vue';
+import PsModal from '../commons/ps-modal';
+import Stepper from '../commons/stepper';
 
 export default {
-  name: 'MerchantCenterAccountPopinNewMca',
+  name: 'MerchantCenterAccountPopinWebsiteRequirements',
   components: {
     PsModal,
     Stepper,
@@ -306,6 +327,11 @@ export default {
     cancel() {
       this.$refs.MerchantCenterAccountPopinNewMca.hide();
     },
+    saveChangeExistingMca() {
+      /**
+       * TODO: Save change when existing MCA
+       */
+    },
   },
   props: {
     infosWebsiteURL: {
@@ -325,6 +351,16 @@ export default {
     },
     stepActive: {
       type: Number,
+      default: 1,
+    },
+    newMca: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  computed: {
+    popinTitle() {
+      return this.newMca ? this.$i18n.t('mcaRequirements.title') : this.$i18n.t('mcaRequirements.steps.websiteRequirements');
     },
   },
   mounted() {

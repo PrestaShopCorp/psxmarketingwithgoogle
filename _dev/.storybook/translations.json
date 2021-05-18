@@ -114,7 +114,8 @@
       "businessPhone" : "Business phone number",
       "siteContainsAdultContent" : "My site contains adult content",
       "seePolicyAdultContent" : "See policy on adult-oriented content",
-      "labelReadAndAgree" : "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies](//google.com){:target=\"_blank\"}, including [Google’s Merchant Center terms of service](//google.com){:target=\"_blank\"}, [Shopping ads policies](//google.com){:target=\"_blank\"}, and [Google Ads Terms and Conditions](//google.com){:target=\"_blank\"}."
+      "labelReadAndAgree" : "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies](//google.com){:target=\"_blank\"}, including [Google’s Merchant Center terms of service](//google.com){:target=\"_blank\"}, [Shopping ads policies](//google.com){:target=\"_blank\"}, and [Google Ads Terms and Conditions](//google.com){:target=\"_blank\"}.",
+      "alert" : "If one of these requirements is missing, your Merchant Center account will be disapproved."
     },
     "productFeedCard" : {
       "title" : "Product feed export configuration",
@@ -298,7 +299,8 @@
       "enableFreeListingAndProductFeed" : "Enable free listing and product feed",
       "checkRequirements" : "Check requirements",
       "iCheckRequirements" : "I checked all requirements",
-      "createAccount" : "Create account"
+      "createAccount" : "Create account",
+      "saveChange" : "Save change"
     },
     "badge" : {
       "free" : "Free",

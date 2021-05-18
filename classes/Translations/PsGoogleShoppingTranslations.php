@@ -163,6 +163,7 @@ class PsGoogleShoppingTranslations
                 'siteContainsAdultContent' => $this->module->l('My site contains adult content', 'PsGoogleShoppingTranslations'),
                 'seePolicyAdultContent' => $this->module->l('See policy on adult-oriented content', 'PsGoogleShoppingTranslations'),
                 'labelReadAndAgree' => $this->module->l('By purchasing Shopping ads, I have read and agree to comply with [Google\'s terms and policies](//google.com){:target="_blank"}, including [Google’s Merchant Center terms of service](//google.com){:target="_blank"}, [Shopping ads policies](//google.com){:target="_blank"}, and [Google Ads Terms and Conditions](//google.com){:target="_blank"}.', 'PsGoogleShoppingTranslations'),
+                'alert' => $this->module->l('If one of these requirements is missing, your Merchant Center account will be disapproved.', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedCard' => [
                 'title' => $this->module->l('Product feed export configuration', 'PsGoogleShoppingTranslations'),
@@ -345,6 +346,7 @@ class PsGoogleShoppingTranslations
                 'enableFreeListingAndProductFeed' => $this->module->l('Enable free listing and product feed', 'PsGoogleShoppingTranslations'),
                 'iCheckRequirements' => $this->module->l('I checked all requirements', 'PsGoogleShoppingTranslations'),
                 'createAccount' => $this->module->l('Create account', 'PsGoogleShoppingTranslations'),
+                'saveChange' => $this->module->l('Save change','PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
