@@ -62,7 +62,9 @@
       "labelSelect" : "Connect an existing Merchant Center account",
       "claimCollides" : "Your current website claim collides with an existing claim",
       "claimOverwrite" : "To finalize your Google Merchant Center account creation, you need to overwrite the existing claim.",
-      "footerEU" : "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)](//google.com){:target=\"_blank\"}  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners](//google.com){:target=\"_blank\"}  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use."
+      "footerEU" : "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)](//google.com){:target=\"_blank\"}  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners](//google.com){:target=\"_blank\"}  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
+      "shopInfoMissing" : "Shop information is missing",
+      "shopInfoMissingDescription" : "To check if it is a validity issue or if you are not following our rules, please log in to your account at"
     },
     "productFeedCard" : {
       "title" : "Product feed export configuration",
@@ -243,7 +245,8 @@
       "no" : "No",
       "disableFreeListing" : "Disable free listing",
       "disableProductFeed" : "Disable product feed",
-      "enableFreeListingAndProductFeed" : "Enable free listing and product feed"
+      "enableFreeListingAndProductFeed" : "Enable free listing and product feed",
+      "checkRequirements" : "Check requirements"
     },
     "badge" : {
       "free" : "Free",

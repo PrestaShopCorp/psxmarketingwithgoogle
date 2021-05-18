@@ -1,5 +1,6 @@
 {
   "productConfiguration" : "//google.com",
   "syncFailed" : "https://support.google.com/merchants/answer/188476",
-  "shippingSettingsMissing" : "//google.com"
+  "shippingSettingsMissing" : "//google.com",
+  "loginMCA" : "//google.com"
 }

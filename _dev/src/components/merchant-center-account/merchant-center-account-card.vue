@@ -119,7 +119,7 @@
     -->
     <div
       v-if="isEnabled && websiteVerification"
-      class="mt-2 d-flex justify-content-between align-items-start"
+      class="d-flex flex-wrap flex-md-nowrap justify-content-between"
     >
       <div class="d-flex align-items-center">
         <strong>{{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}</strong>
@@ -144,13 +144,26 @@
           {{ $t('badge.siteVerified') }}
         </span>
       </div>
-      <b-button
-        size="sm"
-        variant="outline-secondary"
-        @click="dissociateMerchantCenterAccount"
+      <div
+        class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
       >
-        {{ $t("cta.dissociate") }}
-      </b-button>
+        <b-button
+          class="mx-1 mt-3 mt-md-0"
+          size="sm"
+          variant="outline-secondary"
+          @click="checkWebsiteRequirements"
+        >
+          {{ $t("cta.checkRequirements") }}
+        </b-button>
+        <b-button
+          class="mx-1 mt-3 mt-md-0 mr-md-0"
+          size="sm"
+          variant="outline-secondary"
+          @click="dissociateMerchantCenterAccount"
+        >
+          {{ $t("cta.dissociate") }}
+        </b-button>
+      </div>
     </div>
     <b-alert
       v-if="error == 'disapproved'"
@@ -224,10 +237,32 @@
         </a>
       </div>
     </b-alert>
+    <b-alert
+      v-else-if="error == 'shopinfomissing'"
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        <strong>{{ $t('mcaCard.shopInfoMissing') }}</strong><br>
+        <span class="ps_gs-fz-12">
+          {{ $t('mcaCard.shopInfoMissingDescription') }}
+        </span><br>
+        <a
+          class="ps_gs-fz-12 text-muted"
+          :href="$options.googleUrl.loginMCA"
+          target="_blank"
+        >
+          {{ $options.googleUrl.loginMCA }}
+        </a>
+      </p>
+    </b-alert>
   </b-card>
 </template>
 
 <script>
+import googleUrl from '@/assets/json/googleUrl.json';
+
 import {
   BIconstack,
   BIconCheck,
@@ -318,11 +353,16 @@ export default {
       }
       return null;
     },
+    checkWebsiteRequirements() {
+      /**
+       * TODO: Handle opening of Popup */
+    },
   },
   mounted() {
     if (this.$refs.mcaSelection) {
       this.$refs.mcaSelection.$refs.toggle.focus();
     }
   },
+  googleUrl,
 };
 </script>
