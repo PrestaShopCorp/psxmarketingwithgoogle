@@ -1,38 +1,61 @@
 $stepWidth: rem(32);
 
 .ps_gs-stepper {
-
   @include media-breakpoint-up(sm) {
     display: flex;
   }
 }
 
 .ps_gs-stepper-step {
-  list-style: none;
-  z-index: 1;
+  $root: '.ps_gs-stepper-step';
 
-  @include media-breakpoint-down(xs) {
-    display: flex;
-    align-items: center;
-    padding: rem(4) 0;
-    margin-bottom: 0;
+  z-index: 1;
+  list-style: none;
+  text-align: center;
+
+  @include media-breakpoint-up(sm) {
+    max-width: 130px;
+  }
+
+  &__link {
+    display: inline-block;
+
+    a#{&}:hover, a#{&}:focus {
+      text-decoration: none;
+
+      #{$root}__title {
+        color: $blue;
+        text-decoration: underline;
+      }
+    }
+
+    @include media-breakpoint-down(xs) {
+      display: flex;
+      align-items: center;
+      padding: rem(4) 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    color: $grey_muted;
   }
 
   &.active,
   &.complete {
-    .ps_gs-stepper-step__step {
+    #{$root}__step {
       background-color: $blue;
       border-color: $blue;
       color: #fff;
       font-weight: 600;
     }
 
-    .ps_gs-stepoper-step__title {
+    #{$root}__title {
       color: $grey_dark;
     }
   }
 
-  &.active ~ &:after {
+  &.active ~ #{$root}::after {
     content:'';
     display: block;
     position: absolute;
@@ -99,16 +122,16 @@ $stepWidth: rem(32);
       bottom: 0;
     }
 
-    &.complete + &.complete:before {
+    &.complete + #{$root}.complete:before {
       top: 0;
       bottom: 0;
     }
 
-    &.complete + &.complete:last-child:before {
+    &.complete + #{$root}.complete:last-child:before {
       height: 50%;
     }
 
-    &.complete + &.active::before {
+    &.complete + #{$root}.active::before {
       top: 0;
     }
   }
@@ -129,16 +152,16 @@ $stepWidth: rem(32);
       right: 0;
     }
 
-    &.complete + &.complete:before {
+    &.complete + #{$root}.complete:before {
       left: 0;
       width: 100%;
     }
 
-    &.complete + &.complete:last-child:before {
+    &.complete + #{$root}.complete:last-child:before {
       width: 50%;
     }
 
-    &.complete + &.active::before {
+    &.complete + #{$root}.active::before {
       left: 0;
     }
   }
