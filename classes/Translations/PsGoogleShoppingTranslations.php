@@ -346,7 +346,7 @@ class PsGoogleShoppingTranslations
                 'enableFreeListingAndProductFeed' => $this->module->l('Enable free listing and product feed', 'PsGoogleShoppingTranslations'),
                 'iCheckRequirements' => $this->module->l('I checked all requirements', 'PsGoogleShoppingTranslations'),
                 'createAccount' => $this->module->l('Create account', 'PsGoogleShoppingTranslations'),
-                'saveChange' => $this->module->l('Save change','PsGoogleShoppingTranslations'),
+                'saveChange' => $this->module->l('Save change', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
