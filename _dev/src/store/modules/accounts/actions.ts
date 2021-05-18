@@ -53,8 +53,9 @@ export default {
 
   async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}) {
     const urlState = btoa(JSON.stringify({
-      redirectUri: rootState.app.psGoogleShoppingShopUrl,
+      redirectUri: rootState.app.psGoogleShoppingAdminUrl,
       shopId: state.shopIdPsAccounts,
+      shopUrl: rootState.app.psGoogleShoppingShopUrl,
     }));
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/authorized-url?state=${urlState}`);
