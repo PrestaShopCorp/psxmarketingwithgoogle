@@ -52,31 +52,51 @@
       class="my-1"
       v-else
     >
-      <VueShowdown
-        class="font-weight-normal ps_gs-fz-14 mb-3 pb-2"
-        :markdown="$t('mcaRequirements.legend2')"
-      />
       <section class="mb-3">
-        <h3 class="h4 mb-0 font-weight-600">
-          {{ $t('mcaRequirements.websiteURL') }}
-        </h3>
+        <div class="d-flex align-items-center">
+          <h3 class="h4 mb-0 font-weight-600">
+            {{ $t('mcaRequirements.websiteURL') }}
+          </h3>
+          <b-button
+            class="ml-1 p-0 d-flex"
+            variant="text"
+            v-b-tooltip:googleShoppingApp
+            :title="$t('mcaRequirements.websiteURLDescription')"
+          >
+            <b-icon-exclamation-circle
+              variant="primary"
+              font-scale="0.75"
+            />
+          </b-button>
+        </div>
         <span class="d-block">
           {{ infosWebsiteURL }}
         </span>
-        <p class="ps_gs-fz-12 text-muted">
-          {{ $t('mcaRequirements.websiteURLDescription') }}
-        </p>
+        <VueShowdown
+          class="font-weight-normal ps_gs-fz-12 text-muted mb-3 pb-2"
+          :markdown="$t('mcaRequirements.legend2')"
+        />
       </section>
       <section class="mb-3">
-        <h3 class="h4 mb-0 font-weight-600">
+        <div class="d-flex align-items-center">
+          <h3 class="h4 mb-0 font-weight-600">
           {{ $t('mcaRequirements.storeName') }}
-        </h3>
+          </h3>
+          <b-button
+            class="ml-1 p-0 d-flex"
+            variant="text"
+            v-b-tooltip:googleShoppingApp
+            :title="$t('mcaRequirements.storeNameDescription')"
+          >
+            <b-icon-exclamation-circle
+              variant="primary"
+              font-scale="0.75"
+            />
+          </b-button>
+        </div>
         <span class="d-block">
           {{ infosStoreName }}
         </span>
-        <p class="ps_gs-fz-12 text-muted">
-          {{ $t('mcaRequirements.storeNameDescription') }}
-        </p>
       </section>
       <section class="mb-3">
         <h3 class="h4 mb-0 font-weight-600">
@@ -220,12 +240,16 @@ import googleUrl from '@/assets/json/googleUrl.json';
 
 import PsModal from '../commons/ps-modal';
 import Stepper from '../commons/stepper';
+import {
+  BIconExclamationCircle,
+} from 'bootstrap-vue';
 
 export default {
   name: 'MerchantCenterAccountPopinNewMca',
   components: {
     PsModal,
     Stepper,
+    BIconExclamationCircle,
   },
   data() {
     return {

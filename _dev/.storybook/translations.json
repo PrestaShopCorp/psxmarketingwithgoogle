@@ -73,7 +73,7 @@
       },
       "title" : "Create new Merchant Center account",
       "legend" : "To use Google Ads, you must acknowledge that you meet these requirements by checking these boxes.",
-      "legend2" : "**Before you can upload product data, your store’s website URL needs to be verified and claimed.**  \nVerification lets Google know you are the authorized owner of your website. Claiming associates your website URL with your Google Merchant Center account.",
+      "legend2" : "Before you can upload product data, your store’s website URL needs to be verified and claimed.  \nVerification lets Google know you are the authorized owner of your website. Claiming associates your website URL with your Google Merchant Center account.",
       "footer" : "Learn about shopping website requirements",
       "shoppingAdsPolicies" : {
         "title" : "Shopping Ads policies",
@@ -106,7 +106,7 @@
         "link" : "See checkout requirements"
       },
       "websiteURL" : "Website URL",
-      "websiteURLDescription" : "This is the website used to create your Merchant Center account.",
+      "websiteURLDescription" : "The website used to create your Merchant Center account",
       "storeName" : "Store name",
       "storeNameDescription" : "This name will appear in your Shopping ads.",
       "businessLocation" : "Business location",

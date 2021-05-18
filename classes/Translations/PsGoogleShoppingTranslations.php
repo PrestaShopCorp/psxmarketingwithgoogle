@@ -154,7 +154,7 @@ class PsGoogleShoppingTranslations
                   'link' => $this->module->l('See checkout requirements', 'PsGoogleShoppingTranslations'),
                 ],
                 'websiteURL' => $this->module->l('Website URL', 'PsGoogleShoppingTranslations'),
-                'websiteURLDescription' => $this->module->l('This is the website used to create your Merchant Center account.', 'PsGoogleShoppingTranslations'),
+                'websiteURLDescription' => $this->module->l('The website used to create your Merchant Center account', 'PsGoogleShoppingTranslations'),
                 'storeName' => $this->module->l('Store name', 'PsGoogleShoppingTranslations'),
                 'storeNameDescription' => $this->module->l('This name will appear in your Shopping ads.', 'PsGoogleShoppingTranslations'),
                 'businessLocation' => $this->module->l('Business location', 'PsGoogleShoppingTranslations'),
