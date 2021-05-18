@@ -16,23 +16,18 @@ HorizontalStepper.args = {
   steps: [
     {
       title: "Shipping settings",
-      active: true,
     },
     {
       title: "Export rules",
-      active: false,
-    },
-    {
-      title: "Attribute mapping",
-      active: false,
     },
     {
       title: "Category mapping",
-      active: false,
+    },
+    {
+      title: "Attribute mapping",
     },
     {
       title: "Summary",
-      active: false,
     },
   ],
 }
