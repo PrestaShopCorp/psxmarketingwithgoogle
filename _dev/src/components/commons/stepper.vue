@@ -42,9 +42,10 @@
 import {
   BIconCheck,
 } from 'bootstrap-vue';
+
 export default {
   name: 'Stepper',
-  components: { BIconCheck },
+  components: {BIconCheck},
   data() {
     return {
       mutableActiveStep: this.activeStep,

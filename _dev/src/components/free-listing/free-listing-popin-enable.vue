@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import PsModal from "../commons/ps-modal";
+import PsModal from '../commons/ps-modal';
 
 export default {
   /**
@@ -26,7 +26,7 @@ export default {
    * Handle all events:  close, click on cancel, click on ok, etc...
    */
 
-  name: "FreeListingPopinEnable",
+  name: 'FreeListingPopinEnable',
   components: {
     PsModal,
   },
