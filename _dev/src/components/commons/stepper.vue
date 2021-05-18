@@ -56,7 +56,7 @@ export default {
       return index < this.mutableActiveStep - 1;
     },
     isActive(index) {
-      return index + 1 == this.mutableActiveStep;
+      return index + 1 === this.mutableActiveStep;
     },
     handleStepClick(index) {
       this.mutableActiveStep = index + 1;
