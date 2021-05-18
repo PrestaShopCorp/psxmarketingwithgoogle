@@ -19,7 +19,7 @@
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
-import {MerchantCenterAccount, WebsiteClaimProgressStatus} from './state';
+import {MerchantCenterAccount} from './state';
 
 export default {
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, rootState}, webhookUrl: String) {
@@ -39,16 +39,12 @@ export default {
     }
   },
 
-  [ActionsTypes.SAVE_SELECTED_GOOGLE_ACCOUNT]({commit}, selectedAccount: MerchantCenterAccount) {
+  [ActionsTypes.SAVE_SELECTED_GOOGLE_ACCOUNT](
+    {commit, dispatch},
+    selectedAccount: MerchantCenterAccount,
+  ) {
     commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
-    // ToDo: Replace the following lines with the actual behavior
-    commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, WebsiteClaimProgressStatus.Checking);
-    setTimeout(() => {
-      commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, WebsiteClaimProgressStatus.DoneWithToast);
-      setTimeout(() => {
-        commit(MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS, WebsiteClaimProgressStatus.Done);
-      }, 2000);
-    }, 2000);
+    dispatch(ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS);
   },
 
   async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}) {
@@ -76,12 +72,15 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
+      if (!json.access_token) {
+        throw new Error('Missing token in response');
+      }
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json.access_token);
     } catch (error) {
       if (error.status === 404) {
         commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
-        console.error(error);
       }
+      console.error(error);
     }
   },
 
@@ -95,14 +94,17 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
+      if (!json.access_token /* */) {
+        throw new Error('Missing accounts details in response');
+      }
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json.access_token);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
     } catch (error) {
       if (error instanceof HttpClientError && error.code === 404) {
         // This is likely caused by a missing Google account, so retrieve the URL
         dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
-        console.error(error);
       }
+      console.error(error);
     }
   },
 
@@ -118,16 +120,16 @@ export default {
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
   },
-  
+
   async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS]({rootState, commit}) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/status`)
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/status`);
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
       commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, json);
-    } catch(error) {
+    } catch (error) {
       console.error(error);
     }
   },

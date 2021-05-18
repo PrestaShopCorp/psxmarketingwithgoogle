@@ -62,25 +62,12 @@ export default {
       websiteVerificationStatus: null,
     };
   },
-  [MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_PROGRESS_STATUS](
+  [MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS](
     state: LocalState,
-    newStatus: string|null,
+    websiteClaimingStatus: MerchantCenterAccountContext,
   ) {
-    if (!state.googleMerchantAccount.id) {
-      // Account has been dissiociated, abort.
-      return;
-    }
-    // ToDo: Add some validation about possible values?
-
-    state.googleMerchantAccount.websiteVerificationProgressStatus = newStatus;
-  },
-  [MutationsTypes.SAVE_MCA_WEBSITE_VERIFICATION_STATUS](state: LocalState, newStatus: string|null) {
-    // ToDo: Add some validation about possible values?
-    state.googleMerchantAccount.websiteVerificationStatus = newStatus;
-  },
-  [MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS](state: LocalState, websiteClaimingStatus: MerchantCenterAccountContext) {
     state.googleMerchantAccount.isClaimed = websiteClaimingStatus.isClaimed;
     state.googleMerchantAccount.isVerified = websiteClaimingStatus.isVerified;
-  }
+  },
   /** End of Merchant Center Account mutations */
 };

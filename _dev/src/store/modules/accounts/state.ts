@@ -70,8 +70,8 @@ export interface MerchantCenterAccountUser {
 
 export type MerchantCenterAccountContext = MerchantCenterAccount & {
   // Allow the spinner to be displayed while claiming is done
-  isVerified?: boolean,
-  isClaimed?: boolean,
+  isVerified: boolean,
+  isClaimed: boolean,
   // Allow displaying the error message
   websiteVerificationStatus: WebsiteClaimErrorReason|null,
 };
@@ -102,6 +102,8 @@ export const state: State = {
   },
   googleMerchantAccount: {
     id: null,
+    isVerified: false,
+    isClaimed: false,
     websiteVerificationStatus: null,
     users: [],
   },

@@ -3,6 +3,7 @@ import {initialStateApp} from '../.storybook/mock/state-app';
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {googleAccountNotConnected, googleAccountConnected} from "../.storybook/mock/google-account";
 import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
+import Actions from '../.storybook/mock/actions-accounts';
 
 export default {
   title: 'Onboarding/OnboardingPage',

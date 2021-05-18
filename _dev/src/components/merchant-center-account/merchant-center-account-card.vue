@@ -36,7 +36,7 @@
       </div>
     </div>
     <VueShowdown
-      v-if="!isWebsiteIsVerified"
+      v-if="selectedMcaDetails.id === null"
       class="ps_gs-fz-12 mb-3"
       :markdown="message"
       :extensions="['targetlink']"
@@ -60,7 +60,7 @@
         </li>
       </ul>
     </div>
-    <div v-if="isEnabled && isWebsiteIsVerified === false">
+    <div v-if="isEnabled && selectedMcaDetails.id === null">
       <b-form class="mb-2">
         <legend
           class="mb-1 h4 font-weight-600 bg-transparent border-0"
@@ -118,7 +118,7 @@
       As we only use data from the vuex store
     -->
     <div
-      v-if="isEnabled && websiteVerification"
+      v-if="isEnabled && selectedMcaDetails.id !== null"
       class="d-flex flex-wrap flex-md-nowrap justify-content-between"
     >
       <div class="d-flex align-items-center">
@@ -130,16 +130,17 @@
           {{ $t(`badge.${mcaStatusBadge.text}`) }}
         </b-badge>
         <span
-          v-if="isWebsiteIsVerified && isWebsiteIsAlreadyClaimed"
+          v-if="mcaConfigured === false"
           class="text-muted"
         >
           <i class="icon-busy icon-busy--dark mr-1" />
           {{ $t('badge.checkingSiteClaim') }}
         </span>
         <span
-          v-if="isWebsiteIsVerified && isWebsiteIsAlreadyClaimed"
+          v-if="displaySiteVerified"
           class="text-muted"
         >
+
           <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
           {{ $t('badge.siteVerified') }}
         </span>
@@ -286,6 +287,7 @@ export default {
     return {
       selectedMcaIndex: null,
       WebsiteClaimErrorReason,
+      displaySiteVerified: false,
     };
   },
   props: {
@@ -305,14 +307,8 @@ export default {
     mcaSelectionOptions() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
     },
-    isWebsiteIsVerified() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'].isVerified;
-    },
-    isWebsiteIsAlreadyClaimed() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'].isClaimed;
-    },
     mcaConfigured() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'].websiteVerificationProgressStatus;
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
     selectedMcaDetails() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
@@ -370,6 +366,16 @@ export default {
     if (this.$refs.mcaSelection) {
       this.$refs.mcaSelection.$refs.toggle.focus();
     }
+  },
+  watch: {
+    mcaConfigured(newVal, oldVal) {
+      if (oldVal === false && newVal === true) {
+        this.displaySiteVerified = true;
+        setTimeout(() => {
+          this.displaySiteVerified = false;
+        }, 2000);
+      }
+    },
   },
   googleUrl,
 };

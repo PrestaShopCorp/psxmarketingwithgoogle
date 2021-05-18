@@ -1,14 +1,14 @@
 export const merchantCenterAccountNotConnected = {
     websiteVerificationStatus: null,
     isClaimed: false,
-    isVerified: true,
+    isVerified: false,
     id: null,
     users: [],
 };
 
 export const merchantCenterAccountConnected = {
     ...merchantCenterAccountNotConnected,
-    isClaimed: false,
+    isClaimed: true,
     isVerified: true,
     id: '246797534',
     name: 'Maison Royer',

@@ -39,6 +39,10 @@ const Template = (args, { argTypes }) => ({
     fakeConnection(payload) {
       // @ts-ignore
       this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', payload);
+      setTimeout(() => {
+        // @ts-ignore
+        this.$store.commit('accounts/SAVE_WEBSITE_CLAIMING_STATUS', {isClaimed: true, isVerified: true});
+      }, 2000);
     },
     onMerchantCenterAccountDissociated() {
       // @ts-ignore

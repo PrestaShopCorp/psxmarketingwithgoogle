@@ -142,7 +142,7 @@ import {
 import MutationsTypes from '../../store/modules/accounts/mutations-types';
 import ActionsTypes from '../../store/modules/accounts/actions-types';
 import Glass from '../commons/glass';
-import {GoogleAccountContext} from '../../store/modules/accounts/state';
+// import {GoogleAccountContext} from '../../store/modules/accounts/state';
 
 export default {
   name: 'GoogleAccountCard',
@@ -163,7 +163,7 @@ export default {
       default: false,
     },
     user: {
-      type: GoogleAccountContext,
+      type: Object,
       default: null,
     },
   },
