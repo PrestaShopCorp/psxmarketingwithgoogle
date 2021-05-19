@@ -239,7 +239,7 @@
       </div>
     </b-alert>
     <b-alert
-      v-else-if="error == 'shopinfomissing'"
+      v-else-if="error === WebsiteClaimErrorReason.ShopInfoMissing"
       show
       variant="warning"
       class="mb-0 mt-3"
@@ -296,7 +296,7 @@ export default {
       default: false,
     },
     error: {
-      type: WebsiteClaimErrorReason,
+      type: String, // Possible values in type WebsiteClaimErrorReason,
       default: null,
     },
     isEU: {

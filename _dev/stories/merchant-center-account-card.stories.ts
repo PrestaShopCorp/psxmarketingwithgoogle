@@ -11,6 +11,7 @@ export default {
     error: {
       control: {
         type: 'select',
+        // @ts-ignore
         options: [null].concat(Object.keys(WebsiteClaimErrorReason)),
       }
     }

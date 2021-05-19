@@ -88,6 +88,7 @@ export enum WebsiteClaimErrorReason {
   Expiring = 'Expiring',
   Pending = 'Pending',
   Overwrite = 'Overwrite',
+  ShopInfoMissing = 'ShopInfoMissing',
 }
 
 export const state: State = {
