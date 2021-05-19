@@ -1,13 +1,15 @@
 export const merchantCenterAccountNotConnected = {
-    websiteVerificationProgressStatus: null,
     websiteVerificationStatus: null,
+    isClaimed: false,
+    isVerified: false,
     id: null,
     users: [],
 };
 
 export const merchantCenterAccountConnected = {
     ...merchantCenterAccountNotConnected,
-    websiteVerificationProgressStatus: 'done',
+    isClaimed: true,
+    isVerified: true,
     id: '246797534',
     name: 'Maison Royer',
     websiteUrl: "http://perdu.com",

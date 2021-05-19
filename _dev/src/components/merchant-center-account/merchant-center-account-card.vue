@@ -36,7 +36,7 @@
       </div>
     </div>
     <VueShowdown
-      v-if="!websiteVerification"
+      v-if="selectedMcaDetails.id === null"
       class="ps_gs-fz-12 mb-3"
       :markdown="message"
       :extensions="['targetlink']"
@@ -60,7 +60,7 @@
         </li>
       </ul>
     </div>
-    <div v-if="isEnabled && !websiteVerification">
+    <div v-if="isEnabled && selectedMcaDetails.id === null">
       <b-form class="mb-2">
         <legend
           class="mb-1 h4 font-weight-600 bg-transparent border-0"
@@ -118,7 +118,7 @@
       As we only use data from the vuex store
     -->
     <div
-      v-if="isEnabled && websiteVerification"
+      v-if="isEnabled && selectedMcaDetails.id !== null"
       class="d-flex flex-wrap flex-md-nowrap justify-content-between"
     >
       <div class="d-flex align-items-center">
@@ -130,16 +130,17 @@
           {{ $t(`badge.${mcaStatusBadge.text}`) }}
         </b-badge>
         <span
-          v-if="websiteVerification == 'checking'"
+          v-if="mcaConfigured === false"
           class="text-muted"
         >
           <i class="icon-busy icon-busy--dark mr-1" />
           {{ $t('badge.checkingSiteClaim') }}
         </span>
         <span
-          v-if="websiteVerification == 'doneAlert'"
+          v-if="displaySiteVerified"
           class="text-muted"
         >
+
           <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
           {{ $t('badge.siteVerified') }}
         </span>
@@ -166,7 +167,7 @@
       </div>
     </div>
     <b-alert
-      v-if="error == 'disapproved'"
+      v-if="error === WebsiteClaimErrorReason.Disapproved"
       show
       variant="danger"
       class="mb-0 mt-3"
@@ -184,7 +185,7 @@
       </p>
     </b-alert>
     <b-alert
-      v-else-if="error == 'expiring'"
+      v-else-if="error === WebsiteClaimErrorReason.Expiring"
       show
       variant="warning"
       class="mb-0 mt-3"
@@ -202,7 +203,7 @@
       </p>
     </b-alert>
     <b-alert
-      v-else-if="error == 'overwrite'"
+      v-else-if="error === WebsiteClaimErrorReason.Overwrite"
       show
       variant="warning"
       class="mb-0 mt-3"
@@ -238,7 +239,7 @@
       </div>
     </b-alert>
     <b-alert
-      v-else-if="error == 'shopinfomissing'"
+      v-else-if="error === WebsiteClaimErrorReason.ShopInfoMissing"
       show
       variant="warning"
       class="mb-0 mt-3"
@@ -270,6 +271,10 @@ import {
   BIconExclamationCircle,
 } from 'bootstrap-vue';
 
+import {
+  WebsiteClaimErrorReason,
+} from '../../store/modules/accounts/state';
+
 export default {
   name: 'MerchantCenterAccountCard',
   components: {
@@ -281,6 +286,8 @@ export default {
   data() {
     return {
       selectedMcaIndex: null,
+      WebsiteClaimErrorReason,
+      displaySiteVerified: false,
     };
   },
   props: {
@@ -289,7 +296,7 @@ export default {
       default: false,
     },
     error: {
-      type: String,
+      type: String, // Possible values in type WebsiteClaimErrorReason,
       default: null,
     },
     isEU: {
@@ -300,11 +307,8 @@ export default {
     mcaSelectionOptions() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
     },
-    websiteVerification() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'].websiteVerificationProgressStatus;
-    },
     mcaConfigured() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'].websiteVerificationProgressStatus;
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
     selectedMcaDetails() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
@@ -316,22 +320,22 @@ export default {
     },
     mcaStatusBadge() {
       switch (this.error) {
-        case 'pending':
+        case WebsiteClaimErrorReason.Pending:
           return {
             color: 'warning',
             text: 'pending',
           };
-        case 'expiring':
+        case WebsiteClaimErrorReason.Expiring:
           return {
             color: 'warning',
             text: 'expiring',
           };
-        case 'disapproved':
+        case WebsiteClaimErrorReason.Disapproved:
           return {
             color: 'danger',
             text: 'disapproved',
           };
-        case 'overwrite':
+        case WebsiteClaimErrorReason.Overwrite:
         default:
           return {
             color: 'success',
@@ -362,6 +366,16 @@ export default {
     if (this.$refs.mcaSelection) {
       this.$refs.mcaSelection.$refs.toggle.focus();
     }
+  },
+  watch: {
+    mcaConfigured(newVal, oldVal) {
+      if (oldVal === false && newVal === true) {
+        this.displaySiteVerified = true;
+        setTimeout(() => {
+          this.displaySiteVerified = false;
+        }, 2000);
+      }
+    },
   },
   googleUrl,
 };
