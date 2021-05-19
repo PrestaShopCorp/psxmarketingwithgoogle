@@ -61,7 +61,7 @@
     </form>
     <form
       class="my-1"
-      v-if-else="stepActiveData === 2"
+      v-else-if="stepActiveData === 2"
     >
       <section class="mb-3">
         <div class="d-flex align-items-center">
@@ -226,7 +226,7 @@
     </template>
     <template
       slot="modal-footer"
-      v-if-else="stepActiveData === 2"
+      v-else-if="stepActiveData === 2"
     >
       <b-button
         variant="outline-secondary"
