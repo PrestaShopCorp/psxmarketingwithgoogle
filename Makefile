@@ -1,5 +1,6 @@
 .PHONY: help clean build zip vuejs tests test-back test-front fix-lint db docker-build docker-build-front docker-watch-front du docker-up dd docker-down 
 VERSION ?= $(shell git describe --tags 2> /dev/null || echo "0.0.0")
+PHP ?= $(shell which php 2> /dev/null)
 SEM_VERSION ?= $(shell echo ${VERSION} | sed 's/^v//')
 MODULE ?= $(shell basename ${PWD})
 PACKAGE ?= "${MODULE}-${VERSION}"
