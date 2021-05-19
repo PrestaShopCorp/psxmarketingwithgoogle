@@ -298,7 +298,7 @@
       "disableProductFeed" : "Disable product feed",
       "enableFreeListingAndProductFeed" : "Enable free listing and product feed",
       "checkRequirements" : "Check requirements",
-      "iCheckRequirements" : "I checked all requirements",
+      "iCheckedAllRequirements" : "I checked all requirements",
       "createAccount" : "Create account",
       "saveChange" : "Save change"
     },

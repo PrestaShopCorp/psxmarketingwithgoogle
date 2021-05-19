@@ -344,7 +344,7 @@ class PsGoogleShoppingTranslations
                 'disableFreeListing' => $this->module->l('Disable free listing', 'PsGoogleShoppingTranslations'),
                 'disableProductFeed' => $this->module->l('Disable product feed', 'PsGoogleShoppingTranslations'),
                 'enableFreeListingAndProductFeed' => $this->module->l('Enable free listing and product feed', 'PsGoogleShoppingTranslations'),
-                'iCheckRequirements' => $this->module->l('I checked all requirements', 'PsGoogleShoppingTranslations'),
+                'iCheckedAllRequirements' => $this->module->l('I checked all requirements', 'PsGoogleShoppingTranslations'),
                 'createAccount' => $this->module->l('Create account', 'PsGoogleShoppingTranslations'),
                 'saveChange' => $this->module->l('Save change', 'PsGoogleShoppingTranslations'),
             ],

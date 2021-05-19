@@ -61,7 +61,7 @@
     </form>
     <form
       class="my-1"
-      v-else
+      v-if-else="stepActiveData === 2"
     >
       <section class="mb-3">
         <div class="d-flex align-items-center">
@@ -206,14 +206,14 @@
       <span
         v-if="newMca"
         v-b-tooltip:googleShoppingApp
-        :title="validateStepOne() ? $t('tooltip.mustCheckAllRequirements') : ''"
+        :title="isStepOneReadyToValidate() ? $t('tooltip.mustCheckAllRequirements') : ''"
       >
         <b-button
           variant="primary"
           @click="saveFirstStep()"
-          :disabled="validateStepOne()"
+          :disabled="isStepOneReadyToValidate()"
         >
-          {{ $t('cta.iCheckRequirements') }}
+          {{ $t('cta.iCheckedAllRequirements') }}
         </b-button>
       </span>
       <b-button
@@ -226,7 +226,7 @@
     </template>
     <template
       slot="modal-footer"
-      v-else
+      v-if-else="stepActiveData === 2"
     >
       <b-button
         variant="outline-secondary"
@@ -236,12 +236,12 @@
       </b-button>
       <span
         v-b-tooltip:googleShoppingApp
-        :title="validateStepTwo() ? $t('tooltip.mustAgreeGoogleTerms') : ''"
+        :title="isStepTwoReadyToValidate() ? $t('tooltip.mustAgreeGoogleTerms') : ''"
       >
         <b-button
           variant="primary"
           @click="ok()"
-          :disabled="validateStepTwo()"
+          :disabled="isStepTwoReadyToValidate()"
         >
           {{ $t('cta.createAccount') }}
         </b-button>
@@ -306,10 +306,10 @@ export default {
         .replace(/\s+/g, ''); // remove spaces
       return newStr;
     },
-    validateStepOne() {
+    isStepOneReadyToValidate() {
       return !(this.selectedRequirements.length === this.requirements.length);
     },
-    validateStepTwo() {
+    isStepTwoReadyToValidate() {
       /**
        * TODO: Form step 2 validation
        * Adds businessAddress and businessPhoneto the validation
