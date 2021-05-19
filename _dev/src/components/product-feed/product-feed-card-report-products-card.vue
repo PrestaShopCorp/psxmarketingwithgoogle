@@ -11,7 +11,7 @@
         <b-button
           variant="invisible"
           class="p-0 mt-0 ml-1"
-          v-b-tooltip.hover
+          v-b-tooltip:googleShoppingApp.hover
           :title="badgeTooltip"
         >
           <b-icon-exclamation-circle
