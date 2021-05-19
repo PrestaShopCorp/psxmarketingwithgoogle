@@ -65,7 +65,9 @@ export default {
     }
   },
 
-  async [ActionsTypes.REFRESH_GOOGLE_ACCESS_TOKEN]({commit, state, rootState}) {
+  async [ActionsTypes.REFRESH_GOOGLE_ACCESS_TOKEN]({
+    commit, state, rootState, dispatch,
+  }) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/`);
       if (!response.ok) {
@@ -78,7 +80,8 @@ export default {
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json.access_token);
     } catch (error) {
       if (error.status === 404) {
-        commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
+        dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
+        return;
       }
       console.error(error);
     }
@@ -103,6 +106,7 @@ export default {
       if (error instanceof HttpClientError && error.code === 404) {
         // This is likely caused by a missing Google account, so retrieve the URL
         dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
+        return;
       }
       console.error(error);
     }
