@@ -50,7 +50,7 @@
       </span>
       <ul class="list-inline mb-0">
         <li
-          v-b-tooltip.hover
+          v-b-tooltip:googleShoppingApp
           :title="$t('tooltip.googleAccountRequired')"
           class="list-inline-item"
         >

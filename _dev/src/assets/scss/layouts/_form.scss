@@ -109,6 +109,13 @@
     align-items: center;
     padding-left: rem(24);
     cursor: pointer;
+    float: none;
+    width: auto;
+    text-align: left;
+    font-weight: inherit;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
   }
 
   .custom-control-label:before{

@@ -1,0 +1,26 @@
+
+.nobootstrap form p {
+  padding-bottom: 0;
+}
+
+.nobootstrap .form-group {
+  float: none;
+}
+
+.nobootstrap label {
+  color: inherit;
+  float: none;
+  font-weight: inherit;
+  padding: unset;
+  text-align: inherit;
+  text-shadow: none;
+  width: auto;
+}
+
+.nobootstrap fieldset {
+  background-color: unset;
+  border: none;
+  color: inherit;
+  margin: unset;
+  padding: unset;
+}

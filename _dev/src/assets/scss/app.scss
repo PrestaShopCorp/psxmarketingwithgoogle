@@ -1,3 +1,5 @@
+@import "base/nobootstrap";
+
 #googleShoppingApp {
   @import "~bootstrap/scss/functions";
 
@@ -76,6 +78,7 @@
   @import "components/stepper";
   @import "components/modal";
   @import "components/categorieslist";
+  @import "components/productfeedreportcard";
 
   // page
   @import "pages/landingpage";

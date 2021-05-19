@@ -3,7 +3,6 @@
 
   border: 1px solid $grey_light;
   border-radius: 3px;
-  flex: 0 0 100%;
   margin-top: rem(4);
   margin-bottom: rem(4);
 
@@ -11,7 +10,7 @@
     margin: rem(4);
   }
 
-  &:not(#{$root}--full) {
+  &:not(.ps_gs-productfeed-report-card--full) {
     @include media-breakpoint-up(sm) {
       flex: 0 0 calc(50% - 4px - 4px);
       max-width: calc(50% - 4px - 4px);
