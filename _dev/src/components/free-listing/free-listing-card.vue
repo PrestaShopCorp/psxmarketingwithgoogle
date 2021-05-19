@@ -115,7 +115,7 @@
       <ul class="list-inline mb-0">
         <li
           class="list-inline-item"
-          v-b-tooltip.hover
+          v-b-tooltip:googleShoppingApp.hover
           title="Tooltip directive content"
         >
           <b-badge
@@ -126,7 +126,7 @@
         </li>
         <li
           class="list-inline-item"
-          v-b-tooltip.hover
+          v-b-tooltip:googleShoppingApp.hover
           title="Tooltip directive content"
         >
           <b-badge
