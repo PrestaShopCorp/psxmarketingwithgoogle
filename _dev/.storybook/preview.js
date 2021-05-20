@@ -30,6 +30,12 @@ import VueShowdown from "vue-showdown";
 import "../showdown.js";
 
 // import css style
+// theme.css v1.7.5 from the Back-Office
+// all font import are commented to avoid 404
+import "!style-loader!css-loader?url=false!./assets/theme.css";
+// shame.css is a set of rules to better mimic the BO behavior in a shameful way
+import "!style-loader!css-loader?url=false!./assets/shame.css";
+// app.scss all the styles for the module
 import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
 
 Vue.use(BootstrapVue, BootstrapVueIcons);
@@ -124,5 +130,18 @@ export const parameters = {
   },
 };
 export const decorators = [
-  () => ({ template: '<div id="googleShoppingApp"><story /></div>' }),
+  () => ({
+    template: `
+      <div
+        class="nobootstrap"
+        style="
+          background: none;
+          padding: 0;
+          min-width: 0;
+        "
+      >
+        <div id="googleShoppingApp"><story /></div>
+      </div>
+      `
+  }),
 ];

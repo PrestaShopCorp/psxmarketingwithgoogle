@@ -1,6 +1,8 @@
 import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue'
 import MerchantCenterAccountPopinDisconnect from '../src/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
+import {googleAccountConnected} from "../.storybook/mock/google-account";
 import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
+import {WebsiteClaimErrorReason} from '../src/store/modules/accounts/state';
 
 export default {
   title: 'Merchant Center Account/Card',
@@ -9,10 +11,11 @@ export default {
     error: {
       control: {
         type: 'select',
-        options: [null, 'disapproved', 'expiring', 'pending', 'overwrite', 'shopinfomissing'],
-      },
-    },
-  },
+        // @ts-ignore
+        options: [null].concat(Object.keys(WebsiteClaimErrorReason)),
+      }
+    }
+  }
 };
 
 const Template = (args, { argTypes }) => ({
@@ -30,12 +33,17 @@ const Template = (args, { argTypes }) => ({
       />
     </div>`,
   beforeMount(this: any) {
+    this.$store.state.accounts.googleAccount = googleAccountConnected;
     this.$store.state.accounts.googleMerchantAccount = args.initialMcaStatus;
   },
   methods: {
     fakeConnection(payload) {
       // @ts-ignore
       this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', payload);
+      setTimeout(() => {
+        // @ts-ignore
+        this.$store.commit('accounts/SAVE_WEBSITE_CLAIMING_STATUS', {isClaimed: true, isVerified: true});
+      }, 2000);
     },
     onMerchantCenterAccountDissociated() {
       // @ts-ignore

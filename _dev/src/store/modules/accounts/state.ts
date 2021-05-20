@@ -70,9 +70,10 @@ export interface MerchantCenterAccountUser {
 
 export type MerchantCenterAccountContext = MerchantCenterAccount & {
   // Allow the spinner to be displayed while claiming is done
-  websiteVerificationProgressStatus: string|null,
+  isVerified: boolean,
+  isClaimed: boolean,
   // Allow displaying the error message
-  websiteVerificationStatus: string|null,
+  websiteVerificationStatus: WebsiteClaimErrorReason|null,
 };
 
 export interface State {
@@ -80,6 +81,14 @@ export interface State {
   shopIdPsAccounts: string;
   googleAccount: GoogleAccountContext;
   googleMerchantAccount: MerchantCenterAccountContext;
+}
+
+export enum WebsiteClaimErrorReason {
+  Disapproved = 'Disapproved',
+  Expiring = 'Expiring',
+  Pending = 'Pending',
+  Overwrite = 'Overwrite',
+  ShopInfoMissing = 'ShopInfoMissing',
 }
 
 export const state: State = {
@@ -90,12 +99,12 @@ export const state: State = {
     email: '',
     photo: '',
     mcaSelectionOptions: [],
-
     authenticationUrl: '',
   },
   googleMerchantAccount: {
     id: null,
-    websiteVerificationProgressStatus: null,
+    isVerified: false,
+    isClaimed: false,
     websiteVerificationStatus: null,
     users: [],
   },

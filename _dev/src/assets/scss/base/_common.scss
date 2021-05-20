@@ -1,33 +1,31 @@
-#googleShoppingApp {
-  .text-muted a[target="_blank"],
-  a[target="_blank"].text-muted {
-    a[target="_blank"] {
-      color: $grey_muted;
-    }
+.text-muted a[target="_blank"],
+a[target="_blank"].text-muted {
+  a[target="_blank"] {
+    color: $grey_muted;
+  }
+}
+
+a[target="_blank"] {
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
+    color: $blue;
   }
 
-  a[target="_blank"] {
-    text-decoration: underline;
+  &:active,
+  &:visited {
+    color: $blue_dark;
+  }
 
-    &:hover,
-    &:focus {
-      color: $blue;
-    }
-
-    &:active,
-    &:visited {
-      color: $blue_dark;
-    }
-
-    &::after {
-      content: "launch";
-      font-family: 'Material Icons';
-      -webkit-font-feature-settings: 'liga';
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 0.45em;
-      text-decoration: none;
-    }
+  &::after {
+    content: "launch";
+    font-family: 'Material Icons';
+    -webkit-font-feature-settings: 'liga';
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.45em;
+    text-decoration: none;
   }
 }
 

@@ -34,7 +34,7 @@
       v-if="stepsAreCompleted.step1"
       :is-connected="merchantCenterAccountIsChosen"
       :is-enabled="googleAccountIsOnboarded"
-      :isEU="showCSSForMCA"
+      :is-e-u="showCSSForMCA"
       @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
       @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
     />
@@ -150,9 +150,11 @@ export default {
       };
     },
   },
-  created() {
-    if (this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED']) {
+  mounted() {
+    if (this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED']) {
       this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
+    } else {
+      this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH');
     }
   },
 };

@@ -12,6 +12,7 @@ declare global {
       translations: any;
       i18nSettings: any;
       psGoogleShoppingApiUrl: String;
+      psGoogleShoppingAdminUrl: String;
       psGoogleShoppingShopUrl: String;
       shopIdPsAccounts: String;
     }
