@@ -8,8 +8,8 @@
   @import "~prestakit/scss/variables";
 
   // Bootstrap
-  @import "~bootstrap/scss/bootstrap";
-  @import '~bootstrap-vue/src/index';
+  @import "./vendors/bootstrap";
+  @import "./vendors/bootstrap-vue";
 
   // Mixins
   @import "~prestakit/scss/mixins/fonts";
@@ -22,8 +22,8 @@
   // Components
   @import "~prestakit/scss/type";
   @import "~prestakit/scss/alerts";
-  @import "~prestakit/scss/help-box";
-  @import "~prestakit/scss/popover";
+  // @import "~prestakit/scss/help-box";
+  // @import "~prestakit/scss/popover";
   @import "~prestakit/scss/badges";
   @import "~prestakit/scss/buttons";
   @import "~prestakit/scss/button-group";
