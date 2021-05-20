@@ -1,0 +1,43 @@
+// --- BootstrapVue Custom SCSS ---
+
+// Requires at least the Bootstrap functions, variables and
+// mixins to be imported first
+
+// Include variables and utilities first
+@import "~bootstrap-vue/src/variables";
+@import "~bootstrap-vue/src/utilities";
+
+// General styling needed for special form controls
+@import "~bootstrap-vue/src/custom-controls";
+
+// Include custom SCSS for components
+// @import "~bootstrap-vue/src/avatar/index";
+// @import "~bootstrap-vue/src/components/calendar/index";
+@import "~bootstrap-vue/src/components/card/index";
+@import "~bootstrap-vue/src/components/dropdown/index";
+@import "~bootstrap-vue/src/components/form-checkbox/index";
+@import "~bootstrap-vue/src/components/form-datepicker/index";
+// @import "~bootstrap-vue/src/components/form-file/index";
+@import "~bootstrap-vue/src/components/form-input/index";
+@import "~bootstrap-vue/src/components/form-radio/index";
+// @import "~bootstrap-vue/src/components/form-rating/index";
+@import "~bootstrap-vue/src/components/form-spinbutton/index";
+@import "~bootstrap-vue/src/components/form-tags/index";
+// @import "~bootstrap-vue/src/components/form-timepicker/index";
+@import "~bootstrap-vue/src/components/input-group/index";
+// @import "~bootstrap-vue/src/components/media/index";
+@import "~bootstrap-vue/src/components/modal/index";
+// @import "~bootstrap-vue/src/components/nav/index";
+// @import "~bootstrap-vue/src/components/navbar/index";
+@import "~bootstrap-vue/src/components/pagination-nav/index";
+@import "~bootstrap-vue/src/components/pagination/index";
+// @import "~bootstrap-vue/src/components/popover/index";
+// @import "~bootstrap-vue/src/components/sidebar/index";
+// @import "~bootstrap-vue/src/components/skeleton/index";
+@import "~bootstrap-vue/src/components/table/index";
+// @import "~bootstrap-vue/src/components/time/index";
+@import "~bootstrap-vue/src/components/toast/index";
+@import "~bootstrap-vue/src/components/tooltip/index";
+
+// Include custom SCSS for icons
+@import "~bootstrap-vue/src/icons/index";
