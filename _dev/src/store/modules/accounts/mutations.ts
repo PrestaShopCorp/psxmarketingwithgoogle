@@ -16,11 +16,12 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+
+import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import MutationsTypes from './mutations-types';
 import {
   State as LocalState,
   GoogleAccount,
-  MerchantCenterAccount,
   MerchantCenterAccountContext,
 } from './state';
 
@@ -49,7 +50,7 @@ export default {
   /** End of Google Account mutations */
 
   /** Merchant Center Account mutations */
-  [MutationsTypes.SAVE_MCA_ACCOUNT](state: LocalState, selectedAccount: MerchantCenterAccount) {
+  [MutationsTypes.SAVE_MCA_ACCOUNT](state: LocalState, selectedAccount: contentApi.Schema$Account) {
     state.googleMerchantAccount = {
       ...state.googleMerchantAccount,
       ...selectedAccount,
