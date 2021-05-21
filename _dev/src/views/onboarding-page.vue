@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pt-2">
     <section-title
       :step-number="1"
       :step-title="$t('onboarding.sectionTitle.psAccount')"
