@@ -75,26 +75,26 @@ EnabledNotConnected.args = {
   initialMcaStatus: merchantCenterAccountNotConnected,
 };
 
-export const EnableWithOverrideClaim:any = Template.bind({});
-EnableWithOverrideClaim.args = {
+export const ConnectedWithOverrideClaim:any = Template.bind({});
+ConnectedWithOverrideClaim.args = {
   isEnabled: true,
   initialMcaStatus: merchandCenterAccountNotConnectedWithOverwriteClaim,
 };
 
-export const EnableWithClaimDisapproved:any = Template.bind({});
-EnableWithClaimDisapproved.args = {
+export const ConnectedWithClaimDisapproved:any = Template.bind({});
+ConnectedWithClaimDisapproved.args = {
   isEnabled: true,
   initialMcaStatus: merchandCenterAccountNotConnectedWithDisapprovedStatus,
 };
 
-export const EnableWithExpiringError:any = Template.bind({});
-EnableWithExpiringError.args = {
+export const ConnectedWithExpiringError:any = Template.bind({});
+ConnectedWithExpiringError.args = {
   isEnabled: true,
   initialMcaStatus: merchandCenterAccountNotConnectedWithExpiringError,
 };
 
-export const EnableAndShopInfoMissing:any = Template.bind({});
-EnableAndShopInfoMissing.args = {
+export const ConnectedAndShopInfoMissing:any = Template.bind({});
+ConnectedAndShopInfoMissing.args = {
   isEnabled: true,
   initialMcaStatus: merchandCenterAccountNotConnectedWithShopInfoMissing,
 };

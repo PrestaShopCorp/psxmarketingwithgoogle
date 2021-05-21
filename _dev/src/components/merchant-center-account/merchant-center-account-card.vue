@@ -246,7 +246,7 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 mr-md-3"
           variant="outline-secondary"
-          @click="switchNewGMCAccount"
+          @click="dissociateMerchantCenterAccount"
         >
           {{ $t("cta.switchAccount") }}
         </b-button>
@@ -288,6 +288,7 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
+import MerchantCenterAccountPopinDisconnect from './merchant-center-account-popin-disconnect.vue';
 
 import {
   WebsiteClaimErrorReason,
@@ -372,10 +373,6 @@ export default {
         this.$refs.mcaPopinOverrideClaim.$refs.modal.id,
       );
     },
-    switchNewGMCAccount() {
-      this.WebsiteClaimErrorReason = '';
-      this.$refs.mcaSelection.$refs.toggle.focus();
-    },
     mcaLabel(index) {
       if (this.mcaSelectionOptions[index]) {
         return `${this.mcaSelectionOptions[index].name} - ${this.mcaSelectionOptions[index].id}`;
@@ -396,16 +393,21 @@ export default {
       });
       return isAdmin;
     },
+    setFocusOnSelectMCA() {
+      if (this.$refs.mcaSelection) {
+        this.$refs.mcaSelection.$refs.toggle.focus();
+      }
+    },
     checkWebsiteRequirements() {
       /**
        * TODO: Handle opening of Popup */
     },
   },
+  updated() {
+    this.setFocusOnSelectMCA();
+  },
   mounted() {
-    if (this.$refs.mcaSelection) {
-      this.$refs.mcaSelection.$refs.toggle.focus();
-    }
-    console.log(this.WebsiteClaimErrorReason);
+    this.setFocusOnSelectMCA();
   },
   watch: {
     mcaConfigured(newVal, oldVal) {

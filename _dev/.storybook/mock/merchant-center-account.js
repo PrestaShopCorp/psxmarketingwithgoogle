@@ -8,39 +8,59 @@ export const merchantCenterAccountNotConnected = {
 };
 
 export const merchandCenterAccountNotConnectedWithOverwriteClaim = {
-  websiteVerificationStatus: null,
-  isClaimed: false,
-  isVerified: false,
-  id: null,
+  ...merchantCenterAccountNotConnected,
+  isClaimed: true,
+  isVerified: true,
+  id: '246797534',
+  name: 'Maison Royer',
+  websiteUrl: "http://perdu.com",
+  adultContent: false,
+  users: [
+      // ToDo: Fill it with mocked data
+  ],
   claimError: 'Overwrite',
-  users: [],
 }
 
 export const merchandCenterAccountNotConnectedWithExpiringError = {
-  websiteVerificationStatus: null,
-  isClaimed: false,
-  isVerified: false,
-  id: null,
+  ...merchantCenterAccountNotConnected,
+  isClaimed: true,
+  isVerified: true,
+  id: '246797534',
+  name: 'Maison Royer',
+  websiteUrl: "http://perdu.com",
+  adultContent: false,
+  users: [
+      // ToDo: Fill it with mocked data
+  ],
   claimError: 'Expiring',
-  users: [],
 }
 
 export const merchandCenterAccountNotConnectedWithDisapprovedStatus = {
-  websiteVerificationStatus: null,
-  isClaimed: false,
-  isVerified: false,
-  id: null,
+  ...merchantCenterAccountNotConnected,
+  isClaimed: true,
+  isVerified: true,
+  id: '246797534',
+  name: 'Maison Royer',
+  websiteUrl: "http://perdu.com",
+  adultContent: false,
+  users: [
+      // ToDo: Fill it with mocked data
+  ],
   claimError: 'Disapproved',
-  users: [],
 }
 
 export const merchandCenterAccountNotConnectedWithShopInfoMissing = {
-  websiteVerificationStatus: null,
-  isClaimed: false,
-  isVerified: false,
-  id: null,
+  ...merchantCenterAccountNotConnected,
+  isClaimed: true,
+  isVerified: true,
+  id: '246797534',
+  name: 'Maison Royer',
+  websiteUrl: "http://perdu.com",
+  adultContent: false,
+  users: [
+      // ToDo: Fill it with mocked data
+  ],
   claimError: 'ShopInfoMissing',
-  users: [],
 }
 
 
