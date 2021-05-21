@@ -16,10 +16,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+
+import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
-import {MerchantCenterAccount} from './state';
 
 export default {
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, rootState}, webhookUrl: String) {
@@ -41,7 +42,7 @@ export default {
 
   [ActionsTypes.SAVE_SELECTED_GOOGLE_ACCOUNT](
     {commit, dispatch},
-    selectedAccount: MerchantCenterAccount,
+    selectedAccount: contentApi.Schema$Account,
   ) {
     commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
     dispatch(ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS);

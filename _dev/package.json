@@ -11,6 +11,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@googleapis/content": "^1.2.0",
     "@prestashopcorp/segment-vue": "^1.2.9",
     "@vue/composition-api": "^1.0.0-rc.8",
     "bootstrap": "^4.5.3",
