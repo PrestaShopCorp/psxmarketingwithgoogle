@@ -10,6 +10,8 @@
     margin: rem(4);
   }
 
+  flex-basis: 100%;
+
   &:not(.ps_gs-productfeed-report-card--full) {
     @include media-breakpoint-up(sm) {
       flex: 0 0 calc(50% - 4px - 4px);

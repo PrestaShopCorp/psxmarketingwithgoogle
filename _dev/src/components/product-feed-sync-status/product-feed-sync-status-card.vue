@@ -45,15 +45,15 @@
           v-if="syncStatus !== 'busy'"
           class="d-inline-block mx-2"
         >
-         Last sync: 06/12/21 02:03
+          {{ $t('productFeedPage.syncStatus.lastSync', [lastSyncTime]) }}
         </span>
         <span class="d-inline-block mx-2">
-          Next sync: 05/12/21 02:00
+          {{ $t('productFeedPage.syncStatus.nextSync', [nextSyncTime]) }}
         </span>
         <b-button
           v-if="syncStatus === 'error'"
           variant="primary"
-          class="d-block mx-auto mt-3go"
+          class="d-block mx-auto mt-3"
         >
           <span class="material-icons">
             autorenew
@@ -62,10 +62,10 @@
         </b-button>
       </div>
       <h4 class="font-weight-600 mb-1">
-        Which products will be exported at next sync?
+        {{ $t('productFeedPage.syncStatus.prescanTitle') }}
       </h4>
       <p>
-        Check products ready to be synced and those with detected problems and couldn’t be synced.
+        {{ $t('productFeedPage.syncStatus.prescanDescription') }}
       </p>
       <b-container
         fluid
@@ -127,8 +127,14 @@ export default {
     nbProductsCantSync: {
       type: Number,
     },
+    nextSyncTime: {
+      type: String,
+    },
+    lastSyncTime: {
+      type: String,
+    },
   },
-   computed: {
+  computed: {
     syncStatusMessage() {
       let message;
       switch (this.syncStatus) {
@@ -149,5 +155,5 @@ export default {
       return message;
     },
   },
-}
+};
 </script>

@@ -282,6 +282,10 @@ class PsGoogleShoppingTranslations
                   'syncProcessing' => $this->module->l('Sync processing...', 'PsGoogleShoppingTranslations'),
                   'syncProcessed' => $this->module->l('Sync processed', 'PsGoogleShoppingTranslations'),
                   'syncFailed' => $this->module->l('Sync failed', 'PsGoogleShoppingTranslations'),
+                  'lastSync' => $this->module->l('Last sync: {0}', 'PsGoogleShoppingTranslations'),
+                  'nextSync' => $this->module->l('Next sync: {0}', 'PsGoogleShoppingTranslations'),
+                  'prescanTitle' => $this->module->l('Which products will be exported at next sync?', 'PsGoogleShoppingTranslations'),
+                  'prescanDescription' => $this->module->l('Check products ready to be synced and those with detected problems and couldn’t be synced.', 'PsGoogleShoppingTranslations'),
                 ],
             ],
             'help' => [
