@@ -1,7 +1,15 @@
 import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue'
 import MerchantCenterAccountPopinDisconnect from '../src/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import {googleAccountConnected} from "../.storybook/mock/google-account";
-import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
+import {
+  merchantCenterAccountNotConnected,
+  merchantCenterAccountConnected,
+  merchandCenterAccountNotConnectedWithOverwriteClaim,
+  merchandCenterAccountNotConnectedWithExpiringError,
+  merchandCenterAccountNotConnectedWithPendingStatus,
+  merchandCenterAccountNotConnectedWithDisapprovedStatus,
+  merchandCenterAccountNotConnectedWithShopInfoMissing,
+} from "../.storybook/mock/merchant-center-account";
 import {WebsiteClaimErrorReason} from '../src/store/modules/accounts/state';
 
 export default {
@@ -58,20 +66,41 @@ const Template = (args, { argTypes }) => ({
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
-  error: null,
   initialMcaStatus: merchantCenterAccountNotConnected,
 };
 
 export const EnabledNotConnected:any = Template.bind({});
 EnabledNotConnected.args = {
   isEnabled: true,
-  error: null,
   initialMcaStatus: merchantCenterAccountNotConnected,
+};
+
+export const EnableWithOverrideClaim:any = Template.bind({});
+EnableWithOverrideClaim.args = {
+  isEnabled: true,
+  initialMcaStatus: merchandCenterAccountNotConnectedWithOverwriteClaim,
+};
+
+export const EnableWithClaimDisapproved:any = Template.bind({});
+EnableWithClaimDisapproved.args = {
+  isEnabled: true,
+  initialMcaStatus: merchandCenterAccountNotConnectedWithDisapprovedStatus,
+};
+
+export const EnableWithExpiringError:any = Template.bind({});
+EnableWithExpiringError.args = {
+  isEnabled: true,
+  initialMcaStatus: merchandCenterAccountNotConnectedWithExpiringError,
+};
+
+export const EnableAndShopInfoMissing:any = Template.bind({});
+EnableAndShopInfoMissing.args = {
+  isEnabled: true,
+  initialMcaStatus: merchandCenterAccountNotConnectedWithShopInfoMissing,
 };
 
 export const EnabledConnected:any = Template.bind({});
 EnabledConnected.args = {
   isEnabled: true,
-  error: null,
   initialMcaStatus: merchantCenterAccountConnected,
 };

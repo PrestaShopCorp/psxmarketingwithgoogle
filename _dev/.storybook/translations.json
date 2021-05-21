@@ -372,7 +372,7 @@
       "titleOverwriteClaim" : "Overwrite existing claim",
       "textDisconnectGoogleAccount" : "You are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.",
       "textDisconnectMCA" : "You are about to disconnect Google Merchant Center account. This will remove access to Google Merchant Center and Google Ads accounts.",
-      "textOverwriteClaim" : "The existing claim will be overwritten. This action will impact the previous account to become inactive and the existing campaigns - free listings and Google Shopping campaigns - tied to that claim to be paused.  /nIf you are running a different Google Shopping campaign, we recommend pausing the campaign.",
+      "textOverwriteClaim" : "The existing claim will be overwritten. This action will impact the previous account to become inactive and the existing campaigns - free listings and Google Shopping campaigns - tied to that claim to be paused.  \nIf you are running a different Google Shopping campaign, we recommend pausing the campaign.",
       "titleDisableFreeListing" : "Disable free listing?",
       "textDisableFreeListing" : "By this action, your products will no longer be advertised on Google Shopping and your running campaigns will be paused.  \nYour catalog export will be still running.",
       "titleDisableProductFeed" : "Disable product feed?",

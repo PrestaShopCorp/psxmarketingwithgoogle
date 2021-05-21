@@ -1,8 +1,10 @@
 <template>
   <ps-modal
     id="MerchantCenterAccountPopinOverwriteClaim"
+    ref="modal"
     :title="$t('modal.titleOverwriteClaim')"
     v-bind="$attrs"
+    @ok="onMCAOverrideClaim"
   >
     <VueShowdown
       class="my-1"
@@ -29,6 +31,11 @@ export default {
   name: 'MerchantCenterAccountPopinOverwriteClaim',
   components: {
     PsModal,
+  },
+  methods: {
+    onMCAOverrideClaim() {
+      this.$store.dispatch('accounts/REQUEST_TO_OVERRIDE_CLAIM');
+    }
   },
 };
 </script>

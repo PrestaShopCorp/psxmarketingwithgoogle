@@ -24,6 +24,7 @@ import {
   GoogleAccount,
   GoogleAccountToken,
   MerchantCenterAccountContext,
+  WebsiteClaimErrorReason,
 } from './state';
 
 export default {
@@ -76,6 +77,7 @@ export default {
       ...state.googleMerchantAccount,
       id: null,
       websiteVerificationStatus: null,
+      claimError: null,
     };
   },
   [MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS](
@@ -85,5 +87,8 @@ export default {
     state.googleMerchantAccount.isClaimed = websiteClaimingStatus.isClaimed;
     state.googleMerchantAccount.isVerified = websiteClaimingStatus.isVerified;
   },
+  [MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING](state: LocalState, overrideClaimStatus: WebsiteClaimErrorReason) {
+    state.googleMerchantAccount.claimError = overrideClaimStatus;
+  }
   /** End of Merchant Center Account mutations */
 };

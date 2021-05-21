@@ -146,6 +146,12 @@ export default {
     commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
   },
 
+  [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {
+    //  ToDo: Add API call for get new status
+    const resp = '';
+    commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, resp);
+  },
+
   /** Merchant Center Account - Website Claiming */
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS]({dispatch, state}) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;

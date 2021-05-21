@@ -63,6 +63,7 @@ export type MerchantCenterAccountContext = contentApi.Schema$Account & {
   // Allow the spinner to be displayed while claiming is done
   isVerified: boolean,
   isClaimed: boolean,
+  claimError: string|null,
   // Allow displaying the error message
   websiteVerificationStatus: WebsiteClaimErrorReason|null,
 };
@@ -100,6 +101,7 @@ export const state: State = {
     isVerified: false,
     isClaimed: false,
     websiteVerificationStatus: null,
+    claimError: null,
     users: [],
   },
 };
