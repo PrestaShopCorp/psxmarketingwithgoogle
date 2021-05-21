@@ -82,8 +82,13 @@
               v-for="(option, index) in mcaSelectionOptions"
               :key="option.id"
               @click="selectedMcaIndex = index"
+              :disabled="!isMcaUserAdmin(index)"
+              variant="dark"
             >
               {{ mcaLabel(index) }}
+              <span v-if="!isMcaUserAdmin(index)">
+                {{ $t('mcaCard.userIsNotAdmin') }}
+              </span>
             </b-dropdown-item>
           </b-dropdown>
           <b-button
@@ -356,6 +361,15 @@ export default {
         return `${this.mcaSelectionOptions[index].name} - ${this.mcaSelectionOptions[index].id}`;
       }
       return null;
+    },
+    isMcaUserAdmin(index) {
+      let isAdmin = false;
+      this.mcaSelectionOptions[index].users.forEach((user) => {
+        // ToDo: We may need to check if the email is the same as
+        // the google account one
+        isAdmin = user.admin || isAdmin;
+      });
+      return isAdmin;
     },
     checkWebsiteRequirements() {
       /**
