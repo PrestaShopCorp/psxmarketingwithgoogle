@@ -13,8 +13,7 @@ const Template = (args, { argTypes }) => ({
       <b-toaster name="b-toaster-top-right"></b-toaster>
       <ps-toast
         variant="success"
-        :no-auto-hide="true"
-        :visible="true"
+        :visible="visible"
         toaster="b-toaster-top-right"
       >
         <p>
@@ -23,8 +22,7 @@ const Template = (args, { argTypes }) => ({
       </ps-toast>
       <ps-toast
         variant="warning"
-        :no-auto-hide="true"
-        :visible="true"
+        :visible="visible"
         toaster="b-toaster-top-right"
       >
         <p>
@@ -33,8 +31,7 @@ const Template = (args, { argTypes }) => ({
       </ps-toast>
       <ps-toast
         variant="danger"
-        :no-auto-hide="true"
-        :visible="true"
+        :visible="visible"
         toaster="b-toaster-top-right"
       >
         <p>
@@ -47,5 +44,5 @@ const Template = (args, { argTypes }) => ({
 
 export const Toast:any = Template.bind({});
 Toast.args = {
-  isToastShown: 5,
+  visible: true,
 }
