@@ -9,8 +9,7 @@
     :body-class="`alert alert-${$attrs.variant} mb-0`"
   >
     <div class="d-flex pr-0">
-      <slot>
-      </slot>
+      <slot />
       <button
         type="button"
         aria-label="Close"
@@ -20,21 +19,21 @@
         ×
       </button>
     </div>
-    <slot name="toast-title">
-    </slot>
+    <slot name="toast-title" />
   </b-toast>
 </template>
 <script>
-	import { BToast } from 'bootstrap-vue';
+import {BToast} from 'bootstrap-vue';
 
-	export default {
-		name: 'PsToast',
-    data() {
-      return {
-        id: this._uid.toString()
-      };
-    },
-		inheritAttrs: false,
-		components: { BToast },
-	}
+export default {
+  name: 'PsToast',
+  data() {
+    return {
+      // eslint-disable-next-line no-underscore-dangle
+      id: this._uid.toString(),
+    };
+  },
+  inheritAttrs: false,
+  components: {BToast},
+};
 </script>
