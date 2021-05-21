@@ -12,7 +12,7 @@
     <b-iconstack
       v-else
       font-scale="1.5"
-      class="ml-2 mr-3 fixed-size color-green"
+      class="ml-2 mr-3 fixed-size text-success"
       width="20"
       height="20"
     >

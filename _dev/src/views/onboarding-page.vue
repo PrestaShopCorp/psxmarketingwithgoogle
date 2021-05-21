@@ -12,6 +12,7 @@
       @shop-selected="onShopSelected($event)"
     />
     <ps-accounts
+      class="ps_gs-ps-account-card"
       v-else
       :context="psAccountsContext"
     />
