@@ -287,9 +287,6 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
-import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
-import MerchantCenterAccountPopinDisconnect from './merchant-center-account-popin-disconnect.vue';
-
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';

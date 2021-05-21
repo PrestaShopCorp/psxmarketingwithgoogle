@@ -141,7 +141,7 @@ export default {
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
   },
 
-  [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit}) {
+  [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit, state}) {
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
   },
