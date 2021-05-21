@@ -1,3 +1,12 @@
+/**
+** Create a new stacking context
+** Now, fixed element will be positioned as
+** absolute to #googleShoppingApp
+*/
+@at-root #googleShoppingApp {
+  transform: translateZ(0);
+}
+
 .text-muted a[target="_blank"],
 a[target="_blank"].text-muted {
   a[target="_blank"] {
