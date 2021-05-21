@@ -347,6 +347,7 @@ class PsGoogleShoppingTranslations
                 'iCheckedAllRequirements' => $this->module->l('I checked all requirements', 'PsGoogleShoppingTranslations'),
                 'createAccount' => $this->module->l('Create account', 'PsGoogleShoppingTranslations'),
                 'saveChange' => $this->module->l('Save change', 'PsGoogleShoppingTranslations'),
+                'close' => $this->module->l('Close', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
