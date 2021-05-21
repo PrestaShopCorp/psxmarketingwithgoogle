@@ -317,7 +317,8 @@
       "paid" : "Paid",
       "googleAdsAccount" : "Google Ads account",
       "readyToSync" : "Ready-to-sync",
-      "cantSync" : "Can’t be synced"
+      "cantSync" : "Can’t be synced",
+      "close" : "Close"
     },
     "modal" : {
       "titleDisconnection" : "Confirm disconnection?",
