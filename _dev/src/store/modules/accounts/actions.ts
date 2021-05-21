@@ -126,16 +126,94 @@ export default {
     commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
   },
 
-  async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS]({rootState, commit}) {
+  /** Merchant Center Account - Website Claiming */
+  async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS]({dispatch, state}) {
+    const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/status`);
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
+      // 1- Get site vrification token from Nest
+      const token = await dispatch(ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN, correlationId);
+      // 2- Store token in shop
+      await dispatch(ActionsTypes.TOGGLE_WEBSITE_CLAIMING_SNIPPET, token);
+      // 3- Request verification to Google via Nest
+      await dispatch(ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE, correlationId);
+      // 4- Retrieve verification results
+      let isVerified = false;
+      for (let i = 0; i < 5 && !isVerified; i += 1) {
+        // eslint-disable-next-line no-await-in-loop
+        const result = await dispatch(ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS, correlationId);
+        isVerified = result.isVerified;
+        // Wait before checking again
+        // eslint-disable-next-line no-await-in-loop
+        await new Promise((resolve) => setTimeout(resolve, (1000 + i * 1000)));
       }
-      const json = await response.json();
-      commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, json);
+      if (!isVerified) {
+        throw new Error('Website was not verified by Google');
+      }
+      // 5- Remove token from shop
+      await dispatch(ActionsTypes.TOGGLE_WEBSITE_CLAIMING_SNIPPET, false);
     } catch (error) {
       console.error(error);
     }
+  },
+
+  async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({rootState}, correlationId: string) {
+    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/token`, {
+      headers: {
+        Accept: 'application/json',
+        'x-correlation-id': correlationId,
+      },
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    return response.json();
+  },
+
+  async [ActionsTypes.TOGGLE_WEBSITE_CLAIMING_SNIPPET]({rootState}, token: string|false) {
+    const response = await fetch(`${rootState.app.psGoogleShoppingAdminUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'toggleWebsiteClaim',
+        websiteClaim: token,
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    return response;
+  },
+
+  async [ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE](
+    {rootState, commit},
+    correlationId: string,
+  ) {
+    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/verify`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'x-correlation-id': correlationId,
+      },
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    return response.json();
+  },
+
+  async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS]({rootState, commit}, correlationId: string) {
+    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/status`, {
+      headers: {
+        Accept: 'application/json',
+        'x-correlation-id': correlationId,
+      },
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const json = response.json();
+    commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, json);
+    return json;
   },
 };
