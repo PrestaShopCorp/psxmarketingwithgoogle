@@ -22,5 +22,5 @@ const Template = (args, { argTypes }) => ({
 
 export const Toast:any = Template.bind({});
 Toast.args = {
-  isToastShown: 1,
+  isToastShown: 5,
 }
