@@ -298,7 +298,7 @@ class PsGoogleShoppingTranslations
                 'noFaq' => $this->module->l('No FAQ available.', 'PsGoogleShoppingTranslations'),
             ],
             'glass' => [
-                'message' => $this->module->l('Can\'t see Google secured browser?  \nHit Continue to relaunch the window and finish configuration.\n\nYou may need to activate popups in your browser to continue.', 'PsGoogleShoppingTranslations'),
+                'message' => $this->module->l("Can't see Google secured browser?  \nHit Continue to relaunch the window and finish configuration.\n\nYou may need to activate popups in your browser to continue.", 'PsGoogleShoppingTranslations'),
             ],
             'cta' => [
                 'getStarted' => $this->module->l('Get started', 'PsGoogleShoppingTranslations'),
