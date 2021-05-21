@@ -10,11 +10,36 @@ const Template = (args, { argTypes }) => ({
   components: { PsToast },
   template: `
     <div>
+      <b-toaster name="b-toaster-top-right"></b-toaster>
       <ps-toast
         variant="success"
-        :show="isToastShown"
+        :no-auto-hide="true"
+        :visible="true"
+        toaster="b-toaster-top-right"
       >
-        Fixed position (top) alert!
+        <p>
+          Success variant.
+        </p>
+      </ps-toast>
+      <ps-toast
+        variant="warning"
+        :no-auto-hide="true"
+        :visible="true"
+        toaster="b-toaster-top-right"
+      >
+        <p>
+          Warning variant.
+        </p>
+      </ps-toast>
+      <ps-toast
+        variant="danger"
+        :no-auto-hide="true"
+        :visible="true"
+        toaster="b-toaster-top-right"
+      >
+        <p>
+          Danger variant.
+        </p>
       </ps-toast>
     </div>
   `,
