@@ -5,7 +5,8 @@ export const googleAccountNotConnected = {
 };
 
 export const googleAccountConnected = {
-    token: 'wololo',
+    accessToken: 'wololo',
+    expiryDate: 999999999999999,
     details: {
         email: 'v.godard@maisonroyer.com',
         picture: '//source.unsplash.com/38x38',

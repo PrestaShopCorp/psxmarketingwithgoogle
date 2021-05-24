@@ -22,6 +22,7 @@ import MutationsTypes from './mutations-types';
 import {
   State as LocalState,
   GoogleAccount,
+  GoogleAccountToken,
   MerchantCenterAccountContext,
 } from './state';
 
@@ -33,11 +34,16 @@ export default {
       ...response,
     };
   },
-  [MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN](state: LocalState, token: string) {
-    state.googleAccount.token = token;
+  [MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN](
+    state: LocalState,
+    payload: GoogleAccountToken,
+  ) {
+    state.googleAccount.access_token = payload.access_token;
+    state.googleAccount.expiry_date = payload.expiry_date;
   },
   [MutationsTypes.REMOVE_GOOGLE_ACCOUNT](state: LocalState) {
-    state.googleAccount.token = '';
+    state.googleAccount.access_token = '';
+    state.googleAccount.expiry_date = 0;
   },
   [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string) {
     state.googleAccount.authenticationUrl = url;
