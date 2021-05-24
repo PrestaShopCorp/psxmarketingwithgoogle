@@ -73,30 +73,10 @@ export default {
     }
   },
 
-  async [ActionsTypes.REFRESH_GOOGLE_ACCESS_TOKEN]({
-    commit, state, rootState, dispatch,
-  }) {
-    try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/`);
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      const json = await response.json();
-      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
-    } catch (error) {
-      if (error.status === 404) {
-        dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
-        return;
-      }
-      console.error(error);
-    }
-  },
-
   async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS]({
     commit, state, rootState, dispatch,
   }) {
     try {
-      // ToDo: ⚠️ We need another route to get all account details, not only the token
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/`);
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
@@ -104,12 +84,36 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
+
+      // ToDo: Add a filter to avoid dispatching this action if the GMC is already chosen
+      dispatch(ActionsTypes.REQUEST_GOOGLE_ACCOUNT_GMC_LIST);
     } catch (error) {
       if (error instanceof HttpClientError && error.code === 404) {
-        // This is likely caused by a missing Google account, so retrieve the URL
+        // This is likely caused by a missing Google account, so let's retrieve the URL
         dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
         return;
       }
+      console.error(error);
+    }
+  },
+
+  async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_GMC_LIST]({
+    commit, state, rootState,
+  }) {
+    try {
+      // ToDo: ⚠️ We need another route to get all account details, not only the token
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
+        headers: {
+          Accept: 'application/json',
+          user_id: state.shopIdPsAccounts,
+        },
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      const json = await response.json();
+      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_MCA_LIST, json);
+    } catch (error) {
       console.error(error);
     }
   },
