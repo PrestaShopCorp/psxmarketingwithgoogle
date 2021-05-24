@@ -6,14 +6,13 @@
       :is-enabled="true"
       :is-done="stepsAreCompleted.step1"
     />
-    <!-- <div v-if="stepsAreCompleted.step2">TOAST</div> -->
-    <div>coucou {{googleAccountIsOnboarded}}{{getGoogleAccount}}</div>
+    <div v-if="getGoogleAccount.token && !merchantCenterAccountIsChosen">TOAST </div>
     
     <MultiStoreSelector
       v-if="!psAccountsContext.isShopContext && shops.length"
       :shops="shops"
       @shop-selected="onShopSelected($event)"
-    /> 
+    />
     <ps-accounts
       v-else
       :context="psAccountsContext"

@@ -22,6 +22,8 @@ import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 
+import googleAccountConnected from '../../../../.storybook/mock/google-account.js'
+
 export default {
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, rootState}, webhookUrl: String) {
     try {
@@ -97,6 +99,11 @@ export default {
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
+      // ////////////////////////////////////////////////////
+      // while waiting for the API response we use the mock
+      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, googleAccountConnected.token);
+      commit(MutationsTypes.SET_GOOGLE_ACCOUNT, googleAccountConnected);
+      // ///////////////////////////////////////////////////
       const json = await response.json();
       if (!json.access_token /* */) {
         throw new Error('Missing accounts details in response');

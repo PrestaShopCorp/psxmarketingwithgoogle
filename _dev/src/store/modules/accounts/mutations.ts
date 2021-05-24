@@ -28,6 +28,7 @@ import {
 export default {
   /** Google Account mutations */
   [MutationsTypes.SET_GOOGLE_ACCOUNT](state: LocalState, response: GoogleAccount) {
+    console.log('hey', response, state.googleAccount)
     state.googleAccount = {
       ...state.googleAccount,
       ...response,
