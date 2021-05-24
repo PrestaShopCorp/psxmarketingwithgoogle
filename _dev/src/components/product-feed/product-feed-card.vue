@@ -143,7 +143,7 @@
         <b-iconstack
           v-if="syncStatus === 'success'"
           font-scale="1.5"
-          class="mr-1 fixed-size color-green align-center"
+          class="mr-1 fixed-size text-success align-center"
           width="16"
           height="16"
         >

@@ -8,7 +8,7 @@
         <b-iconstack
           v-if="hasMapping"
           font-scale="1.5"
-          class="mr-1 fixed-size color-green"
+          class="mr-1 fixed-size text-success"
           width="16"
           height="16"
         >
