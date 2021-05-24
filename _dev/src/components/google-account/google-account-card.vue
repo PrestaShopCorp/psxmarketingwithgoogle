@@ -39,7 +39,7 @@
           {{ $t('googleAccountCard.title') }}
         </b-card-text>
         <b-iconstack
-          v-if="user && user.email"
+          v-if="user && user.details.email"
           font-scale="1.5"
           class="mx-3"
           width="20"
@@ -57,7 +57,7 @@
       </div>
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
         <p
-          v-if="!user || !user.email"
+          v-if="!user || !user.details.email"
           class="ps_gs-fz-12 mb-0"
         >
           {{ $t('googleAccountCard.introEnabled') }}
@@ -67,15 +67,15 @@
         >
           <img
             class="mr-3 rounded-circle"
-            :src="user.photo"
+            :src="user.details.picture"
             width="38"
             height="38"
             alt=""
           >
-          <strong>{{ user.email }}</strong>
+          <strong>{{ user.details.email }}</strong>
         </div>
         <div
-          v-if="!user || !user.email"
+          v-if="!user || !user.details.email"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
           <b-button
@@ -121,7 +121,7 @@
         </div>
       </div>
       <div
-        v-if="user && user.email"
+        v-if="user && user.details.email"
         class="text-md-right text-muted mt-3"
       >
         <p class="ps_gs-fz-12 mb-0">

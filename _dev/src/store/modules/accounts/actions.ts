@@ -82,10 +82,7 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      if (!json.access_token) {
-        throw new Error('Missing token in response');
-      }
-      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json.access_token);
+      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
     } catch (error) {
       if (error.status === 404) {
         dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
@@ -105,10 +102,7 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      if (!json.access_token /* */) {
-        throw new Error('Missing accounts details in response');
-      }
-      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json.access_token);
+      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
     } catch (error) {
       if (error instanceof HttpClientError && error.code === 404) {

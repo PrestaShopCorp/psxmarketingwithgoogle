@@ -169,11 +169,9 @@ export default {
     },
   },
   mounted() {
-    if (this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED']) {
-      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
-    } else {
-      this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH');
-    }
+    // Try to retrieve Google account details. If the merchant is not onboarded,
+    // this action will dispatch another one to generate the authentication route.
+    this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
   },
 };
 </script>

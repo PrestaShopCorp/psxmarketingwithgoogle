@@ -1,14 +1,16 @@
 export const googleAccountNotConnected = {
     token: '',
-    email: '',
-    photo: '',
+    details: {},
     mcaSelectionOptions: [],
 };
 
 export const googleAccountConnected = {
-    token: 'wololo',
-    email: 'v.godard@maisonroyer.com',
-    photo: '//source.unsplash.com/38x38',
+    accessToken: 'wololo',
+    expiryDate: 999999999999999,
+    details: {
+        email: 'v.godard@maisonroyer.com',
+        picture: '//source.unsplash.com/38x38',
+    },
     mcaSelectionOptions: [
         {
             id: '123456789',
