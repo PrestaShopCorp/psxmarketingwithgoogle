@@ -304,7 +304,7 @@ class PsGoogleShoppingTranslations
                 'getStarted' => $this->module->l('Get started', 'PsGoogleShoppingTranslations'),
                 'connect' => $this->module->l('Connect', 'PsGoogleShoppingTranslations'),
                 'dissociate' => $this->module->l('Dissociate', 'PsGoogleShoppingTranslations'),
-                'manageAccount' => $this->module->l('ManageAccount', 'PsGoogleShoppingTranslations'),
+                'manageAccount' => $this->module->l('Manage account', 'PsGoogleShoppingTranslations'),
                 'overwriteClaim' => $this->module->l('Overwrite claim', 'PsGoogleShoppingTranslations'),
                 'switchAccount' => $this->module->l('Switch account', 'PsGoogleShoppingTranslations'),
                 'continue' => $this->module->l('Continue', 'PsGoogleShoppingTranslations'),
