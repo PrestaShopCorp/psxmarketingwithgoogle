@@ -41,6 +41,7 @@ export interface GoogleAccount {
   email: string,
   photo: string,
   mcaSelectionOptions: contentApi.Schema$Account[],
+  connectedOnce: boolean,
 }
 
 export type GoogleAccountContext = GoogleAccount & {
@@ -83,6 +84,7 @@ export const state: State = {
     photo: '',
     mcaSelectionOptions: [],
     authenticationUrl: '',
+    connectedOnce: false,
   },
   googleMerchantAccount: {
     id: null,

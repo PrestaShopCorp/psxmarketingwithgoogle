@@ -1,3 +1,4 @@
+ <!-- component waits for props : visible/variant/toaster and text inside is in child -->
 <template>
   <b-toast
     solid
@@ -24,7 +25,6 @@
 </template>
 <script>
 import {BToast} from 'bootstrap-vue';
-
 export default {
   name: 'PsToast',
   data() {
@@ -37,3 +37,4 @@ export default {
   components: {BToast},
 };
 </script>
+

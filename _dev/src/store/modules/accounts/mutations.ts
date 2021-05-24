@@ -28,7 +28,6 @@ import {
 export default {
   /** Google Account mutations */
   [MutationsTypes.SET_GOOGLE_ACCOUNT](state: LocalState, response: GoogleAccount) {
-    console.log('hey', response, state.googleAccount)
     state.googleAccount = {
       ...state.googleAccount,
       ...response,
@@ -47,6 +46,9 @@ export default {
     state.googleAccount.from = googleResponse.from;
     state.googleAccount.message = googleResponse.message;
     state.googleAccount.status = googleResponse.status;
+  },
+  [MutationsTypes.SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE](state: LocalState, response) {
+    state.googleAccount.connectedOnce = response
   },
   /** End of Google Account mutations */
 
