@@ -1,3 +1,4 @@
+ <!-- component waits for props : visible/variant/toaster and text inside is in child -->
 <template>
   <b-toast
     solid

@@ -47,6 +47,9 @@ export default {
     state.googleAccount.message = googleResponse.message;
     state.googleAccount.status = googleResponse.status;
   },
+  [MutationsTypes.SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE](state: LocalState, response) {
+    state.googleAccount.connectedOnce = response;
+  },
   /** End of Google Account mutations */
 
   /** Merchant Center Account mutations */

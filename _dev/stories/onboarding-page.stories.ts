@@ -47,6 +47,7 @@ MerchantCenterAccount.args = {
     );
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
     this.$store.state.accounts.googleAccount = googleAccountConnected;
+    this.$store.state.accounts.googleAccount.connectedOnce = true;
     this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountNotConnected;
   },
 };

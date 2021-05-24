@@ -245,6 +245,7 @@ export default {
       });
       // TODO : call to action in store, to nest to retrieve data if already onboarded.
       // TODO: if errorIfNot,et que le résultat du call à nest est négatif,alors afficher une erreur
+      this.connectGoogleAccount();
     },
     dissociateGoogleAccount() {
       this.$emit('dissociateGoogleAccount');
