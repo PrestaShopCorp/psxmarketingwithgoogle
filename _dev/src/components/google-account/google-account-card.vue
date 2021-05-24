@@ -166,10 +166,6 @@ export default {
       type: GoogleAccountContext,
       default: null,
     },
-    isConnected: {
-        type: Boolean,
-      default: false,
-    },
   },
   mounted() {
     if (this.isEnabled && !this.user) {

@@ -15,14 +15,12 @@ const Template = (args, { argTypes }) => ({
     <div>
     <b-toaster name="b-toaster-top-right"></b-toaster>
       <OnboardingPage />
-      <PsToast v-bind="$props" variant="success" toaster="b-toaster-top-right">
-        <p>You have connected your Google account! </p>
-      </PsToast>
     </div>
   `,
   beforeCreate(this: any) {
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
     this.$store.state.accounts.googleAccount = googleAccountConnected;
+    this.$store.state.accounts.googleAccount.connectedOnce = true;
   },
 });
 

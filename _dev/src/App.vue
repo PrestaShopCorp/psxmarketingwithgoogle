@@ -10,7 +10,7 @@
         {{ $t('general.tabs.help') }}
       </MenuItem>
     </Menu>
-    <b-toaster name="b-toaster-top-right"></b-toaster>
+    <b-toaster name="b-toaster-top-right" />
     <router-view />
   </div>
 </template>

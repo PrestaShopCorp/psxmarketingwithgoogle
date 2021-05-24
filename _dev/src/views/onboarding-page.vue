@@ -5,7 +5,7 @@
       :step-title="$t('onboarding.sectionTitle.psAccount')"
       :is-enabled="true"
       :is-done="stepsAreCompleted.step1"
-    />  
+    />
     <MultiStoreSelector
       v-if="!psAccountsContext.isShopContext && shops.length"
       :shops="shops"
@@ -64,11 +64,14 @@
     <MerchantCenterAccountPopinDisconnect
       ref="mcaDisconnectModal"
     />
-      <!-- Toast -->
-    <PsToast  variant="success" :visible="googleAccountConnectedOnce" toaster="b-toaster-top-right">
-        <p>You have connected your Google account!</p>
+    <!-- Toast -->
+    <PsToast
+      variant="success"
+      :visible="googleAccountConnectedOnce"
+      toaster="b-toaster-top-right"
+    >
+      <p>{{ $t('toast.googleAccountConnectedOnceSuccess') }}</p>
     </PsToast>
-
   </div>
 </template>
 
@@ -84,6 +87,7 @@ import FreeListingCard from '../components/free-listing/free-listing-card.vue';
 import GoogleAccountPopinDisconnect from '../components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import PsToast from '../components/commons/ps-toast';
+
 export default {
   name: 'OnboardingPage',
   components: {
@@ -141,7 +145,7 @@ export default {
     getGoogleAccount() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'];
     },
-    googleAccountConnectedOnce() {
+    googleAccountConnectedOnce() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_CONNECTED_ONCE'];
     },
     merchantCenterAccountIsChosen() {

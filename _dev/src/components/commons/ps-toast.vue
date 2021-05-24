@@ -25,6 +25,7 @@
 </template>
 <script>
 import {BToast} from 'bootstrap-vue';
+
 export default {
   name: 'PsToast',
   data() {
@@ -37,4 +38,3 @@ export default {
   components: {BToast},
 };
 </script>
-
