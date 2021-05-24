@@ -1,26 +1,87 @@
+.nobootstrap {
+  background-color: unset !important;
+  padding: 100px 0 100px;
+  min-width: unset !important;
 
-.nobootstrap form p {
-  padding-bottom: 0;
+  form p {
+    padding-bottom: 0;
+  }
+
+  .form-group {
+    float: none;
+
+    > div {
+      float: unset;
+    }
+  }
+
+  label {
+    color: inherit;
+    float: none;
+    font-weight: inherit;
+    padding: unset;
+    text-align: inherit;
+    text-shadow: none;
+    width: auto;
+  }
+
+  fieldset {
+    background-color: unset;
+    border: none;
+    color: inherit;
+    margin: unset;
+    padding: unset;
+  }
+
+  .table {
+    background-color: unset;
+    border: unset;
+    border-radius: unset;
+    padding: unset;
+
+    tr {
+      th {
+        background-color: unset;
+        color: unset;
+        font-size: unset;
+      }
+
+      td {
+        border-bottom: unset;
+        color: unset;
+      }
+    }
+  }
+
+  &.table-hover {
+    tbody tr:hover {
+      color: #fff;
+    }
+    tbody tr:hover a {
+      color: #fff !important;
+    }
+  }
 }
 
-.nobootstrap .form-group {
-  float: none;
+
+@media screen and (min-width: 1024px) {
+  .nobootstrap {
+    background-color: unset !important;
+    padding: 100px 0 100px;
+    min-width: unset !important;
+  }
 }
 
-.nobootstrap label {
-  color: inherit;
-  float: none;
-  font-weight: inherit;
-  padding: unset;
-  text-align: inherit;
-  text-shadow: none;
-  width: auto;
-}
 
-.nobootstrap fieldset {
-  background-color: unset;
-  border: none;
-  color: inherit;
-  margin: unset;
-  padding: unset;
+.page-sidebar.mobile #content.nobootstrap {
+  margin-left: unset;
+}
+.page-sidebar-closed:not(.mobile) #content.nobootstrap {
+  padding-left: 50px;
+}
+.page-sidebar:not(.page-sidebar-closed) .nobootstrap {
+  margin-left: 210px;
+}
+.material-icons.js-mobile-menu {
+  display: none !important
 }

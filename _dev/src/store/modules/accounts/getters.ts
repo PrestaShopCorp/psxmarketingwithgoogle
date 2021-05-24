@@ -44,10 +44,10 @@ export default {
 
   /* Google Account */
   [GetterTypes.GET_GOOGLE_ACCOUNT_IS_ONBOARDED](state: LocalState): boolean {
-    return !!state.googleAccount.token.length;
+    return !!state.googleAccount.access_token.length;
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT_TOKEN](state: LocalState) : String {
-    return state.googleAccount.token;
+    return state.googleAccount.access_token;
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT](state: LocalState) : GoogleAccountContext {
     return state.googleAccount;

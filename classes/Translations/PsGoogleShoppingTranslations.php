@@ -384,6 +384,9 @@ class PsGoogleShoppingTranslations
                 'mustCheckAllRequirements' => $this->module->l('You must check if all requirements met.', 'PsGoogleShoppingTranslations'),
                 'mustAgreeGoogleTerms' => $this->module->l('You must agree the Google terms', 'PsGoogleShoppingTranslations'),
             ],
+            'toast' => [
+                'googleAccountConnectedOnceSuccess' => $this->module->l('You have connected your Google account!', 'PsGoogleShoppingTranslations'),
+           ],
         ];
 
         return $translations;
