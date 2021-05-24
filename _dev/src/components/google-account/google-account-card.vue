@@ -57,7 +57,7 @@
       </div>
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
         <p
-          v-if="!user || !user.details.email"
+          v-if="!user || !user.access_token"
           class="ps_gs-fz-12 mb-0"
         >
           {{ $t('googleAccountCard.introEnabled') }}
@@ -75,7 +75,7 @@
           <strong>{{ user.details.email }}</strong>
         </div>
         <div
-          v-if="!user || !user.details.email"
+          v-if="!user || !user.access_token"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
           <b-button
@@ -121,7 +121,7 @@
         </div>
       </div>
       <div
-        v-if="user && user.details.email"
+        v-if="user && user.access_token"
         class="text-md-right text-muted mt-3"
       >
         <p class="ps_gs-fz-12 mb-0">
