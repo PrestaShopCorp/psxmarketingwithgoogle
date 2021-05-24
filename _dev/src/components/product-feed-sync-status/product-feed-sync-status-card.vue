@@ -87,7 +87,7 @@
             :badge-tooltip="'placeholder'"
             :nb-products="nbProductsCantSync"
             :cta-text="$t('cta.whyDidntWork')"
-            cta-link="//google.com"
+            :cta-link="$options.googleUrl.syncFailed"
           />
         </b-row>
       </b-container>
@@ -96,6 +96,13 @@
 </template>
 
 <script>
+/**
+ * ! BE CAREFUL
+ * ! Prescan is out of scope for batch 1
+ */
+
+import googleUrl from '@/assets/json/googleUrl.json';
+
 import {
   BIconstack,
   BIconCheck,
@@ -116,10 +123,10 @@ export default {
   props: {
     syncStatus: {
       type: String,
-      default: null,
       validator(value) {
-        return [null, 'success', 'warning', 'error', 'busy'].indexOf(value) !== -1;
+        return ['success', 'error', 'busy'].indexOf(value) !== -1;
       },
+      required: true,
     },
     nbProductsReadyToSync: {
       type: Number,
@@ -136,24 +143,18 @@ export default {
   },
   computed: {
     syncStatusMessage() {
-      let message;
       switch (this.syncStatus) {
         case null:
           break;
         case 'busy':
-          message = this.$i18n.t('productFeedPage.syncStatus.syncProcessing');
-          break;
+          return this.$i18n.t('productFeedPage.syncStatus.syncProcessing');
         case 'error':
-          message = this.$i18n.t('productFeedPage.syncStatus.syncFailed');
-          break;
+          return this.$i18n.t('productFeedPage.syncStatus.syncFailed');
         case 'success':
-          message = this.$i18n.t('productFeedPage.syncStatus.syncProcessed');
-          break;
-        default:
-          break;
+          return this.$i18n.t('productFeedPage.syncStatus.syncProcessed');
       }
-      return message;
     },
   },
+  googleUrl,
 };
 </script>

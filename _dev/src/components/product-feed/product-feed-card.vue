@@ -200,7 +200,7 @@
             :sync-status="syncStatus"
             :nb-products="nbProductsCantSync"
             :cta-text="$t('cta.whyDidntWork')"
-            cta-link="//google.com"
+            :cta-link="$options.googleUrl.syncFailed"
           />
         </b-row>
       </b-container>
