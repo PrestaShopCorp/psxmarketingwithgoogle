@@ -13,7 +13,7 @@ const Template = (args, { argTypes }) => ({
   components: { PsToast, OnboardingPage},
   template: `
     <div>
-    <b-toaster name="b-toaster-top-right"></b-toaster>
+      <b-toaster name="b-toaster-top-right"></b-toaster>
       <OnboardingPage />
     </div>
   `,

@@ -1,6 +1,11 @@
-.ps_gs-toast {
-  position: fixed;
-  top: .5rem;
-  right: .5rem;
-  z-index: 2000;
+.ps_gs-toaster-top-right {
+  position: relative !important;
+  right: 0 !important;
+  left: 0 !important;
+  top: rem(-10) !important;
+
+  .b-toaster-slot {
+    top: 0 !important;
+    right: rem(10) !important;
+  }
 }
