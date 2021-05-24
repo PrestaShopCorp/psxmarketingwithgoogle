@@ -22,7 +22,7 @@
         >
           <b-icon-circle-fill
             stacked
-            class="color-green"
+            class="text-success"
           />
           <b-icon-check
             stacked
