@@ -230,6 +230,18 @@
       "title" : "Smart Shopping Campaign",
       "intro" : "Enable the paid listing of your products with Smart Shopping Campaigns"
     },
+    "productFeedPage" : {
+      "syncStatus" : {
+        "title" : "Sync status",
+        "syncProcessing" : "Sync processing...",
+        "syncProcessed" : "Sync processed",
+        "syncFailed" : "Sync failed",
+        "nextSync" : "Next sync: {0}",
+        "lastSync" : "Last sync: {0}",
+        "prescanTitle" : "Which products will be exported at next sync?",
+        "prescanDescription" : "Check products ready to be synced and those with detected problems and couldn’t be synced."
+      }
+    },
     "help" : {
       "title" : "Help for PrestaShop Google",
       "allowsYouTo" : {

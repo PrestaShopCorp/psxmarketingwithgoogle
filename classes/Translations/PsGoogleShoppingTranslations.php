@@ -277,6 +277,18 @@ class PsGoogleShoppingTranslations
                 'title' => $this->module->l('Smart Shopping Campaign', 'PsGoogleShoppingTranslations'),
                 'intro' => $this->module->l('Enable the paid listing of your products with Smart Shopping Campaigns', 'PsGoogleShoppingTranslations'),
             ],
+            'productFeedPage' => [
+                'syncStatus' => [
+                  'title' => $this->module->l('Sync status', 'PsGoogleShoppingTranslations'),
+                  'syncProcessing' => $this->module->l('Sync processing...', 'PsGoogleShoppingTranslations'),
+                  'syncProcessed' => $this->module->l('Sync processed', 'PsGoogleShoppingTranslations'),
+                  'syncFailed' => $this->module->l('Sync failed', 'PsGoogleShoppingTranslations'),
+                  'lastSync' => $this->module->l('Last sync: {0}', 'PsGoogleShoppingTranslations'),
+                  'nextSync' => $this->module->l('Next sync: {0}', 'PsGoogleShoppingTranslations'),
+                  'prescanTitle' => $this->module->l('Which products will be exported at next sync?', 'PsGoogleShoppingTranslations'),
+                  'prescanDescription' => $this->module->l('Check products ready to be synced and those with detected problems and couldn’t be synced.', 'PsGoogleShoppingTranslations'),
+                ],
+            ],
             'help' => [
                 'title' => $this->module->l('Help for PrestaShop Google', 'PsGoogleShoppingTranslations'),
                 'allowsYouTo' => [
