@@ -9,7 +9,7 @@
     toast-class="bg-transparent border-0"
     :body-class="`alert alert-${$attrs.variant} mb-0`"
   >
-    <div class="d-flex pr-0">
+    <div class="d-flex pr-0 align-items-start">
       <slot />
       <button
         type="button"
