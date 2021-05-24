@@ -17,7 +17,8 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
+ import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
+ import {oauth2_v2 as oauthApi} from '@googleapis/oauth2/v2';
 
 export interface PrestaShopAccountsContext {
   user: {
@@ -38,8 +39,8 @@ export interface PrestaShopAccountsContext {
 
 export interface GoogleAccount {
   token: string,
-  email: string,
-  photo: string,
+  expiryDateToken: number,
+  details: oauthApi.Schema$Userinfo,
   mcaSelectionOptions: contentApi.Schema$Account[],
   connectedOnce: boolean,
 }
@@ -80,8 +81,8 @@ export const state: State = {
   shopIdPsAccounts: '',
   googleAccount: {
     token: '',
-    email: '',
-    photo: '',
+    expiryDateToken: 0,
+    details: {},
     mcaSelectionOptions: [],
     authenticationUrl: '',
     connectedOnce: false,
