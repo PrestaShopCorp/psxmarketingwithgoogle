@@ -143,16 +143,12 @@ export default {
   },
   computed: {
     syncStatusMessage() {
-      switch (this.syncStatus) {
-        case null:
-          break;
-        case 'busy':
-          return this.$i18n.t('productFeedPage.syncStatus.syncProcessing');
-        case 'error':
-          return this.$i18n.t('productFeedPage.syncStatus.syncFailed');
-        case 'success':
-          return this.$i18n.t('productFeedPage.syncStatus.syncProcessed');
+      if (this.syncStatus === 'busy') {
+        return this.$i18n.t('productFeedPage.syncStatus.syncProcessing');
+      } if (this.syncStatus === 'error') {
+        return this.$i18n.t('productFeedPage.syncStatus.syncFailed');
       }
+      return this.$i18n.t('productFeedPage.syncStatus.syncProcessed');
     },
   },
   googleUrl,
