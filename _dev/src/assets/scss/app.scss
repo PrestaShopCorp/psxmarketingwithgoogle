@@ -85,3 +85,21 @@
   @import "pages/landingpage";
   @import "pages/attribute-mapping";
 }
+
+
+/**
+* ! Adds Tooltips rules outside the scope.
+* ! needed for PS Account component
+*/
+@import "~bootstrap/scss/functions";
+
+// Custom PS
+@import "~prestakit/scss/functions";
+@import "~prestakit/scss/variables";
+
+// Bootstrap
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap-vue/src/variables";
+@import "~bootstrap/scss/tooltip";
+

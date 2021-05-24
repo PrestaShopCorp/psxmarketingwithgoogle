@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pt-2">
     <section-title
       :step-number="1"
       :step-title="$t('onboarding.sectionTitle.psAccount')"
@@ -12,6 +12,7 @@
       @shop-selected="onShopSelected($event)"
     />
     <ps-accounts
+      class="ps_gs-ps-account-card"
       v-else
       :context="psAccountsContext"
     />
@@ -28,6 +29,7 @@
       :is-enabled="stepsAreCompleted.step1"
       :user="getGoogleAccount"
       :is-connected="googleAccountIsOnboarded"
+      @connectGoogleAccount="onGoogleAccountConnection"
       @dissociateGoogleAccount="onGoogleAccountDissociationRequest"
     />
     <MerchantCenterAccountCard
@@ -63,6 +65,14 @@
     <MerchantCenterAccountPopinDisconnect
       ref="mcaDisconnectModal"
     />
+    <!-- Toast -->
+    <PsToast
+      variant="success"
+      :visible="googleAccountConnectedOnce"
+      toaster="b-toaster-top-right"
+    >
+      <p>{{ $t('toast.googleAccountConnectedOnceSuccess') }}</p>
+    </PsToast>
   </div>
 </template>
 
@@ -77,6 +87,7 @@ import ProductFeedCard from '../components/product-feed/product-feed-card.vue';
 import FreeListingCard from '../components/free-listing/free-listing-card.vue';
 import GoogleAccountPopinDisconnect from '../components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
+import PsToast from '../components/commons/ps-toast';
 
 export default {
   name: 'OnboardingPage',
@@ -92,6 +103,7 @@ export default {
     FreeListingCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
+    PsToast,
   },
   data() {
     return {
@@ -103,6 +115,9 @@ export default {
     },
     onMerchantCenterAccountSelected(selectedAccount) {
       this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount);
+    },
+    onGoogleAccountConnection() {
+      this.$store.dispatch('accounts/SAVE_GOOGLE_CONNECTION_ONCE');
     },
     onGoogleAccountDissociationRequest() {
       this.$bvModal.show(
@@ -130,6 +145,9 @@ export default {
     },
     getGoogleAccount() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'];
+    },
+    googleAccountConnectedOnce() {
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_CONNECTED_ONCE'];
     },
     merchantCenterAccountIsChosen() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];

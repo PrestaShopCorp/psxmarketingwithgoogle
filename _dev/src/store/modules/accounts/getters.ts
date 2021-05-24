@@ -55,6 +55,9 @@ export default {
   [GetterTypes.GET_GOOGLE_ACCOUNT_MCA_LIST](state: LocalState) : contentApi.Schema$Account[] {
     return state.googleAccount.mcaSelectionOptions;
   },
+  [GetterTypes.GET_GOOGLE_ACCOUNT_CONNECTED_ONCE](state: LocalState) : boolean {
+    return state.googleAccount.connectedOnce;
+  },
   /* Merchant Center Account */
   [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT](state: LocalState) :
     MerchantCenterAccountContext {
