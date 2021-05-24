@@ -17,7 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import {MerchantCenterAccount} from 'stories/onboarding-page.stories';
+import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 
 export interface PrestaShopAccountsContext {
   user: {
@@ -40,7 +40,7 @@ export interface GoogleAccount {
   token: string,
   email: string,
   photo: string,
-  mcaSelectionOptions: MerchantCenterAccount[],
+  mcaSelectionOptions: contentApi.Schema$Account[],
 }
 
 export type GoogleAccountContext = GoogleAccount & {
@@ -51,24 +51,7 @@ export type GoogleAccountContext = GoogleAccount & {
   status?: string,
 }
 
-/** @see https://developers.google.com/shopping-content/reference/rest/v2.1/accounts#Account */
-export interface MerchantCenterAccount {
-  id: string|null,
-  name?: string,
-  websiteUrl?: string,
-  adultContent?: string,
-  users: MerchantCenterAccountUser[],
-}
-
-export interface MerchantCenterAccountUser {
-  emailAddress: string,
-  admin: boolean,
-  orderManager: boolean,
-  paymentsManager: boolean,
-  paymentsAnalyst: boolean
-}
-
-export type MerchantCenterAccountContext = MerchantCenterAccount & {
+export type MerchantCenterAccountContext = contentApi.Schema$Account & {
   // Allow the spinner to be displayed while claiming is done
   isVerified: boolean,
   isClaimed: boolean,

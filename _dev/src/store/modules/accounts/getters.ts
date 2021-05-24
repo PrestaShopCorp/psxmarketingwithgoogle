@@ -17,11 +17,12 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
+
 import {
   State as LocalState,
   PrestaShopAccountsContext,
   GoogleAccountContext,
-  MerchantCenterAccount,
   MerchantCenterAccountContext,
 } from './state';
 import GetterTypes from './getters-types';
@@ -51,7 +52,7 @@ export default {
   [GetterTypes.GET_GOOGLE_ACCOUNT](state: LocalState) : GoogleAccountContext {
     return state.googleAccount;
   },
-  [GetterTypes.GET_GOOGLE_ACCOUNT_MCA_LIST](state: LocalState) : MerchantCenterAccount[] {
+  [GetterTypes.GET_GOOGLE_ACCOUNT_MCA_LIST](state: LocalState) : contentApi.Schema$Account[] {
     return state.googleAccount.mcaSelectionOptions;
   },
   /* Merchant Center Account */
