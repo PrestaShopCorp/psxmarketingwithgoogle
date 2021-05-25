@@ -72,7 +72,7 @@ export const merchantCenterAccountConnected = {
     name: 'Maison Royer',
     websiteUrl: "http://perdu.com",
     adultContent: false,
-    claimError: null,
+    claimError: '',
     users: [
         // ToDo: Fill it with mocked data
     ],
