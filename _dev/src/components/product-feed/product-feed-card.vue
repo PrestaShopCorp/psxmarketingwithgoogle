@@ -23,7 +23,7 @@
       </div>
       <div
         v-if="!toConfigure && isEnabled"
-        class="form-group ml-auto mb-0"
+        class="ml-auto mb-0"
       >
         <span class="ps-switch ps-switch-sm">
           <input
