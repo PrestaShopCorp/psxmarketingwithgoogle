@@ -17,20 +17,14 @@ const Template = (args, { argTypes }) => ({
   template: '<ProductFeedProductStatusCard v-bind="$props" />',
 });
 
-export const SyncStatusBusy:any = Template.bind({});
-SyncStatusBusy.args = {
+export const SynInProgress:any = Template.bind({});
+SynInProgress.args = {
   ...commonProps,
   isSyncInProgress: true,
 };
 
-export const SyncStatusFailed:any = Template.bind({});
-SyncStatusFailed.args = {
-  ...commonProps,
-  isSyncInProgress: false,
-};
-
-export const SyncStatusSuccess:any = Template.bind({});
-SyncStatusSuccess.args = {
+export const Default:any = Template.bind({});
+Default.args = {
   ...commonProps,
   isSyncInProgress: false,
 };
