@@ -36,21 +36,8 @@
 </template>
 
 <script>
-import {
-  BIconstack,
-  BIconCheck,
-  BIconCircleFill,
-  BIconExclamationTriangleFill,
-} from 'bootstrap-vue';
-
 export default {
   name: 'ProductFeedCardReportProductCard',
-  components: {
-    BIconstack,
-    BIconCheck,
-    BIconCircleFill,
-    BIconExclamationTriangleFill,
-  },
   props: {
     variant: {
       type: String,
@@ -65,7 +52,7 @@ export default {
     isSyncInProgress: {
       type: Boolean,
       default: false,
-    }
+    },
   },
 };
 </script>

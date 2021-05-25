@@ -34,22 +34,25 @@
         >
           <product-feed-card-report-product-card
             variant="success"
-            :nbProducts="nbProductsSuccess"
-            :isSyncInProgress="isSyncInProgress"
+            :nb-products="nbProductsSuccess"
+            :is-sync-in-progress="isSyncInProgress"
           />
           <product-feed-card-report-product-card
             variant="warning"
-            :nbProducts="nbProductsPending"
-            :isSyncInProgress="isSyncInProgress"
+            :nb-products="nbProductsPending"
+            :is-sync-in-progress="isSyncInProgress"
           />
           <product-feed-card-report-product-card
             variant="danger"
-            :nbProducts="nbProductsDisapproved"
-            :isSyncInProgress="isSyncInProgress"
+            :nb-products="nbProductsDisapproved"
+            :is-sync-in-progress="isSyncInProgress"
           />
         </b-row>
         <div class="text-right mt-1">
-          <a href="//google.com" class="font-weight-600 ps_gs-fz-13">
+          <a
+            href="//google.com"
+            class="font-weight-600 ps_gs-fz-13"
+          >
             {{ $t('cta.checkProductsStatusDetails') }}
           </a>
         </div>
@@ -60,10 +63,6 @@
 
 <script>
 import {
-  BIconstack,
-  BIconCheck,
-  BIconCircleFill,
-  BIconExclamationCircle,
   BAlert,
 } from 'bootstrap-vue';
 
@@ -72,10 +71,6 @@ import productFeedCardReportProductCard from '../product-feed/product-feed-card-
 export default {
   name: 'ProductFeedSyncStatusCard',
   components: {
-    BIconstack,
-    BIconCheck,
-    BIconCircleFill,
-    BIconExclamationCircle,
     BAlert,
     productFeedCardReportProductCard,
   },
@@ -99,7 +94,7 @@ export default {
   },
   computed: {
     nbProductsTotal() {
-      return this.nbProductsSuccess + this.nbProductsPending + this.nbProductsDisapproved
+      return this.nbProductsSuccess + this.nbProductsPending + this.nbProductsDisapproved;
     },
   },
 };
