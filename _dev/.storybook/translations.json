@@ -240,6 +240,15 @@
         "lastSync" : "Last sync: {0}",
         "prescanTitle" : "Which products will be exported at next sync?",
         "prescanDescription" : "Check products ready to be synced and those with detected problems and couldn’t be synced."
+      },
+      "productStatus" : {
+        "title" : "Products status",
+        "description" : "After submitting your product feed, your products will be assigned a status. There are 6 different product statuses: Not synced, Active, Partially active, Expiring, Pending, Disapproved.",
+        "alert" : "Google usually takes 3-5 business days to review products.",
+        "approvedProducts" : "Approved products",
+        "pendingProducts" : "Pending products",
+        "disapprovedProducts" : "Not approved products",
+        "productsInGoogleCatalog" : "Products in Google cataog: {0}"
       }
     },
     "help" : {
@@ -313,7 +322,9 @@
       "checkRequirements" : "Check requirements",
       "iCheckedAllRequirements" : "I checked all requirements",
       "createAccount" : "Create account",
-      "saveChange" : "Save change"
+      "saveChange" : "Save change",
+      "close" : "Close",
+      "checkProductsStatusDetails" : "Check products status details"
     },
     "badge" : {
       "free" : "Free",
@@ -353,7 +364,6 @@
     },
     "toast": {
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!"
-
     }
   },
   "ar" : {
