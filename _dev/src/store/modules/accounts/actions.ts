@@ -149,11 +149,11 @@ export default {
   [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {
     //  ToDo: Add API call for get new status
     const resp = '';
-    commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, resp);
 
     // After response for API, change statement for claiming to trigger watcher on MCA card
     commit(MutationsTypes.SET_STATUS_ONLY_FOR_CLAIMING, false);
     setTimeout(() => {
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, resp);
       commit(MutationsTypes.SET_STATUS_ONLY_FOR_CLAIMING, true);
     }, 2000);
   },

@@ -350,6 +350,10 @@ export default {
             text: 'disapproved',
           };
         case WebsiteClaimErrorReason.Overwrite:
+          return {
+            color: 'warning',
+            text: 'pending',
+          };
         default:
           return {
             color: 'success',
