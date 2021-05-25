@@ -114,6 +114,7 @@ class PsGoogleShoppingTranslations
                 'footerEU' => $this->module->l('If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)](//google.com){:target=\"_blank\"} \n If you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners](//google.com){:target=\"_blank\"} \n Once you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.', 'PsGoogleShoppingTranslations'),
                 'shopInfoMissing' => $this->module->l('Shop information is missing', 'PsGoogleShoppingTranslations'),
                 'shopInfoMissingDescription' => $this->module->l('To check if it is a validity issue or if you are not following our rules, please log in to your account a', 'PsGoogleShoppingTranslations'),
+                'userIsNotAdmin' => $this->module->l('(You are not admin)', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
@@ -276,6 +277,18 @@ class PsGoogleShoppingTranslations
                 'title' => $this->module->l('Smart Shopping Campaign', 'PsGoogleShoppingTranslations'),
                 'intro' => $this->module->l('Enable the paid listing of your products with Smart Shopping Campaigns', 'PsGoogleShoppingTranslations'),
             ],
+            'productFeedPage' => [
+                'syncStatus' => [
+                  'title' => $this->module->l('Sync status', 'PsGoogleShoppingTranslations'),
+                  'syncProcessing' => $this->module->l('Sync processing...', 'PsGoogleShoppingTranslations'),
+                  'syncProcessed' => $this->module->l('Sync processed', 'PsGoogleShoppingTranslations'),
+                  'syncFailed' => $this->module->l('Sync failed', 'PsGoogleShoppingTranslations'),
+                  'lastSync' => $this->module->l('Last sync: {0}', 'PsGoogleShoppingTranslations'),
+                  'nextSync' => $this->module->l('Next sync: {0}', 'PsGoogleShoppingTranslations'),
+                  'prescanTitle' => $this->module->l('Which products will be exported at next sync?', 'PsGoogleShoppingTranslations'),
+                  'prescanDescription' => $this->module->l('Check products ready to be synced and those with detected problems and couldn’t be synced.', 'PsGoogleShoppingTranslations'),
+                ],
+            ],
             'help' => [
                 'title' => $this->module->l('Help for PrestaShop Google', 'PsGoogleShoppingTranslations'),
                 'allowsYouTo' => [
@@ -304,7 +317,7 @@ class PsGoogleShoppingTranslations
                 'getStarted' => $this->module->l('Get started', 'PsGoogleShoppingTranslations'),
                 'connect' => $this->module->l('Connect', 'PsGoogleShoppingTranslations'),
                 'dissociate' => $this->module->l('Dissociate', 'PsGoogleShoppingTranslations'),
-                'manageAccount' => $this->module->l('ManageAccount', 'PsGoogleShoppingTranslations'),
+                'manageAccount' => $this->module->l('Manage account', 'PsGoogleShoppingTranslations'),
                 'overwriteClaim' => $this->module->l('Overwrite claim', 'PsGoogleShoppingTranslations'),
                 'switchAccount' => $this->module->l('Switch account', 'PsGoogleShoppingTranslations'),
                 'continue' => $this->module->l('Continue', 'PsGoogleShoppingTranslations'),
