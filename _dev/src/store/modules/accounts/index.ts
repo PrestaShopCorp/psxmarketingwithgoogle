@@ -6,12 +6,14 @@ import {state as initialState} from './state';
 const {
   contextPsAccounts,
   shopIdPsAccounts,
+  tokenPsAccounts,
 }: any = window;
 
 const state = Object.assign(
   initialState,
   {contextPsAccounts} || {},
   {shopIdPsAccounts} || '',
+  {tokenPsAccounts} || '',
 );
 
 export default {

@@ -15,6 +15,7 @@ declare global {
       psGoogleShoppingAdminUrl: String;
       psGoogleShoppingShopUrl: String;
       shopIdPsAccounts: String;
+      tokenPsAccounts: String;
     }
   //   interface IntrinsicElements {
   //     [elem: string]: any;

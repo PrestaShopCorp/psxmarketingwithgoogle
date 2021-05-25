@@ -23,11 +23,18 @@ import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
-  async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, rootState}, webhookUrl: String) {
+  async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT](
+    {commit, rootState, state},
+    webhookUrl: String,
+  ) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/account/onboard`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
         body: JSON.stringify(webhookUrl),
       });
       const json = await response.json();
@@ -62,7 +69,12 @@ export default {
       shopUrl: rootState.app.psGoogleShoppingShopUrl,
     }));
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/authorized-url?state=${urlState}`);
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/authorized-url?state=${urlState}`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
+      });
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -77,7 +89,12 @@ export default {
     commit, state, rootState, dispatch,
   }) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/`);
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
+      });
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -101,11 +118,10 @@ export default {
     commit, state, rootState,
   }) {
     try {
-      // ToDo: ⚠️ We need another route to get all account details, not only the token
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
         headers: {
           Accept: 'application/json',
-          user_id: state.shopIdPsAccounts,
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
         },
       });
       if (!response.ok) {
@@ -161,10 +177,11 @@ export default {
     }
   },
 
-  async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({rootState}, correlationId: string) {
+  async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({rootState, state}, correlationId: string) {
     const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/token`, {
       headers: {
         Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
         'x-correlation-id': correlationId,
       },
     });
@@ -190,7 +207,7 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE](
-    {rootState, commit},
+    {rootState, state},
     correlationId: string,
   ) {
     const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/verify`, {
@@ -198,6 +215,7 @@ export default {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
         'x-correlation-id': correlationId,
       },
     });
@@ -207,10 +225,14 @@ export default {
     return response.json();
   },
 
-  async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS]({rootState, commit}, correlationId: string) {
+  async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS](
+    {rootState, state, commit},
+    correlationId: string,
+  ) {
     const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/status`, {
       headers: {
         Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
         'x-correlation-id': correlationId,
       },
     });
