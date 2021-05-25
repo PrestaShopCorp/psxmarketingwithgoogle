@@ -5,24 +5,13 @@
   >
     <div class="px-3 py-2">
       <div class="d-flex align-items-center font-weight-600 ps_gs-fz-13">
-        <template v-if="variant === 'success'">
-          <i class="material-icons text-success ps_gs-fz-20 mr-2">
-            check_circle
-          </i>
-          <span>{{ $t('productFeedPage.productStatus.approvedProducts') }}</span>
-        </template>
-        <template v-if="variant === 'warning'">
-          <i class="material-icons text-warning ps_gs-fz-20 mr-2">
-            autorenew
-          </i>
-          <span>{{ $t('productFeedPage.productStatus.pendingProducts') }}</span>
-        </template>
-        <template v-if="variant === 'danger'">
-          <i class="material-icons text-danger ps_gs-fz-20 mr-2">
-            error_outline
-          </i>
-          <span>{{ $t('productFeedPage.productStatus.disapprovedProducts') }}</span>
-        </template>
+        <i
+          class="material-icons ps_gs-fz-20 mr-2"
+          :class="`text-${variant}`"
+        >
+          {{ cardTitle.icon }}
+        </i>
+        <span>{{ cardTitle.text }}</span>
       </div>
       <div
         class="text-center font-weight-600 ps_gs-fz-20 mt-1"
@@ -52,6 +41,27 @@ export default {
     isSyncInProgress: {
       type: Boolean,
       default: false,
+    },
+  },
+  computed: {
+    cardTitle() {
+      if (this.variant === 'danger') {
+        return {
+          icon: 'error_outline',
+          text: this.$i18n.t('productFeedPage.productStatus.disapprovedProducts'),
+        };
+      } if (this.variant === 'warning') {
+        return {
+          icon: 'autorenew',
+          text: this.$i18n.t('productFeedPage.productStatus.pendingProducts'),
+        };
+      }
+      // Act as if (this.variant === 'success')
+      // Needed to make the linter happy (vue/return-in-computed-property)
+      return {
+        icon: 'check_circle',
+        text: this.$i18n.t('productFeedPage.productStatus.approvedProducts'),
+      };
     },
   },
 };
