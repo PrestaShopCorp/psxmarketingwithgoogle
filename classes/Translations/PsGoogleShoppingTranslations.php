@@ -288,6 +288,15 @@ class PsGoogleShoppingTranslations
                   'prescanTitle' => $this->module->l('Which products will be exported at next sync?', 'PsGoogleShoppingTranslations'),
                   'prescanDescription' => $this->module->l('Check products ready to be synced and those with detected problems and couldn’t be synced.', 'PsGoogleShoppingTranslations'),
                 ],
+                'productStatus' => [
+                    'title' => $this->module->l('Products status', 'PsGoogleShoppingTranslations'),
+                    'description' => $this->module->l('After submitting your product feed, your products will be assigned a status. There are 6 different product statuses: Not synced, Active, Partially active, Expiring, Pending, Disapproved.', 'PsGoogleShoppingTranslations'),
+                    'alert' => $this->module->l('Google usually takes 3-5 business days to review products.', 'PsGoogleShoppingTranslations'),
+                    'approvedProducts' => $this->module->l('Approved products', 'PsGoogleShoppingTranslations'),
+                    'pendingProducts' => $this->module->l('Pending products', 'PsGoogleShoppingTranslations'),
+                    'disapprovedProducts' => $this->module->l('Not approved products', 'PsGoogleShoppingTranslations'),
+                    'productsInGoogleCatalog' => $this->module->l('Products in Google cataog: {0}', 'PsGoogleShoppingTranslations'),
+                ],
             ],
             'help' => [
                 'title' => $this->module->l('Help for PrestaShop Google', 'PsGoogleShoppingTranslations'),
@@ -361,6 +370,7 @@ class PsGoogleShoppingTranslations
                 'createAccount' => $this->module->l('Create account', 'PsGoogleShoppingTranslations'),
                 'saveChange' => $this->module->l('Save change', 'PsGoogleShoppingTranslations'),
                 'close' => $this->module->l('Close', 'PsGoogleShoppingTranslations'),
+                'checkProductsStatusDetails' => $this->module->l('Check products status details', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
