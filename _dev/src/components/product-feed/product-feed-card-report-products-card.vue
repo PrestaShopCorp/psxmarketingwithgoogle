@@ -11,14 +11,10 @@
         <b-button
           variant="invisible"
           class="p-0 mt-0 ml-1"
-          v-b-tooltip:googleShoppingApp.hover
+          v-b-tooltip:googleShoppingApp
           :title="badgeTooltip"
         >
-          <b-icon-exclamation-circle
-            width="14"
-            height="14"
-            class="align-middle d-inline-block"
-          />
+          <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
         </b-button>
       </div>
       <i
@@ -45,15 +41,8 @@
 </template>
 
 <script>
-import {
-  BIconExclamationCircle,
-} from 'bootstrap-vue';
-
 export default {
   name: 'ProductFeedCardReportCard',
-  components: {
-    BIconExclamationCircle,
-  },
   props: {
     badgeVariant: {
       type: String,

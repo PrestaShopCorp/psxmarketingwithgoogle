@@ -40,7 +40,7 @@
         />
         <span>{{ syncStatusMessage }}</span>
       </h4>
-      <div class="text-center text-muted ps_gs-fz-12 mb-4">
+      <div class="text-center text-muted ps_gs-fz-12 mb-2">
         <span
           v-if="syncStatus !== 'busy'"
           class="d-inline-block mx-2"
@@ -61,7 +61,8 @@
           {{ $t('cta.forceSync') }}
         </b-button>
       </div>
-      <h4 class="font-weight-600 mb-1">
+      <!--
+      <h4 class="font-weight-600 mb-1 mt-4">
         {{ $t('productFeedPage.syncStatus.prescanTitle') }}
       </h4>
       <p>
@@ -91,6 +92,7 @@
           />
         </b-row>
       </b-container>
+      -->
     </b-card-body>
   </b-card>
 </template>
