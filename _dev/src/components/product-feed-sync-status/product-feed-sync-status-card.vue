@@ -111,7 +111,12 @@ import {
   BIconCircleFill,
   BIconExclamationCircle,
 } from 'bootstrap-vue';
-import ProductFeedCardReportProductsCard from '../product-feed/product-feed-card-report-products-card';
+/**
+ * ! Prescan is out of scope for batch 1
+ * ! ProductFeedCardReportProductsCard
+ */
+/* import ProductFeedCardReportProductsCard
+ from '../product-feed/product-feed-card-report-products-card'; */
 
 export default {
   name: 'ProductFeedSyncStatusCard',
@@ -120,7 +125,7 @@ export default {
     BIconCheck,
     BIconCircleFill,
     BIconExclamationCircle,
-    ProductFeedCardReportProductsCard,
+    // ProductFeedCardReportProductsCard,
   },
   props: {
     syncStatus: {
