@@ -50,7 +50,7 @@
         </b-row>
         <div class="text-right mt-1">
           <a
-            href="//google.com"
+            href="#"
             class="font-weight-600 ps_gs-fz-13"
           >
             {{ $t('cta.checkProductsStatusDetails') }}
@@ -62,6 +62,11 @@
 </template>
 
 <script>
+/**
+ * TODO: Handle products number
+ * TODO: Add linkTo "Check products status details"
+ */
+
 import {
   BAlert,
 } from 'bootstrap-vue';
