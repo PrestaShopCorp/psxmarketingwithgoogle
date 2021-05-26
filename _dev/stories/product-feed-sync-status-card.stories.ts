@@ -1,4 +1,4 @@
-import ProductFeedSyncStatusCard from '../src/components/product-feed-sync-status/product-feed-sync-status-card.vue';
+import ProductFeedSyncStatusCard from '../src/components/product-feed-page/product-feed-sync-status-card.vue';
 
 const commonProps = {
   nbProductsReadyToSync: 150,

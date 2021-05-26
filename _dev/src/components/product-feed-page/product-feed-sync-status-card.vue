@@ -40,7 +40,7 @@
         />
         <span>{{ syncStatusMessage }}</span>
       </h4>
-      <div class="text-center text-muted ps_gs-fz-12 mb-4">
+      <div class="text-center text-muted ps_gs-fz-12 mb-2">
         <span
           v-if="syncStatus !== 'busy'"
           class="d-inline-block mx-2"
@@ -61,7 +61,8 @@
           {{ $t('cta.forceSync') }}
         </b-button>
       </div>
-      <h4 class="font-weight-600 mb-1">
+      <!--
+      <h4 class="font-weight-600 mb-1 mt-4">
         {{ $t('productFeedPage.syncStatus.prescanTitle') }}
       </h4>
       <p>
@@ -91,6 +92,7 @@
           />
         </b-row>
       </b-container>
+      -->
     </b-card-body>
   </b-card>
 </template>
@@ -109,7 +111,12 @@ import {
   BIconCircleFill,
   BIconExclamationCircle,
 } from 'bootstrap-vue';
-import ProductFeedCardReportProductsCard from '../product-feed/product-feed-card-report-products-card';
+/**
+ * ! Prescan is out of scope for batch 1
+ * ! ProductFeedCardReportProductsCard
+ */
+/* import ProductFeedCardReportProductsCard
+ from '../product-feed/product-feed-card-report-products-card'; */
 
 export default {
   name: 'ProductFeedSyncStatusCard',
@@ -118,7 +125,7 @@ export default {
     BIconCheck,
     BIconCircleFill,
     BIconExclamationCircle,
-    ProductFeedCardReportProductsCard,
+    // ProductFeedCardReportProductsCard,
   },
   props: {
     syncStatus: {

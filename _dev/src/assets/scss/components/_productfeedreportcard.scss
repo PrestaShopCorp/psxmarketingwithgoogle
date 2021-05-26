@@ -12,12 +12,21 @@
 
   flex-basis: 100%;
 
-  &:not(.ps_gs-productfeed-report-card--full) {
-    @include media-breakpoint-up(sm) {
-      flex: 0 0 calc(50% - 4px - 4px);
-      max-width: calc(50% - 4px - 4px);
+  @include media-breakpoint-up(sm) {
+    flex: 0 0 calc(50% - 4px - 4px);
+    max-width: calc(50% - 4px - 4px);
+
+    &.ps_gs-productfeed-report-card--33 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    &.ps_gs-productfeed-report-card--33 {
+      flex: 0 0 calc(33.33333% - 4px - 4px);
+      max-width: calc(33.33333% - 4px - 4px);
     }
   }
+
 
   &__details {
     max-height: rem(12) * 2 * (1.4 * 12); // Font size * Nb of lines * line height * font-size

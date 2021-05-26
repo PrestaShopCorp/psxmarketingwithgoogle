@@ -59,8 +59,10 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
         try {
             $psAccountsService = $this->module->getService(PsAccounts::class)->getPsAccountsService();
             $shopIdPsAccounts = $psAccountsService->getShopUuidV4();
+            $tokenPsAccounts = $psAccountsService->getOrRefreshToken();
         } catch (Exception $e) {
             $shopIdPsAccounts = null;
+            $tokenPsAccounts = null;
         }
 
         Media::addJsDef([
@@ -90,6 +92,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
                 ]
             ),
             'shopIdPsAccounts' => $shopIdPsAccounts,
+            'tokenPsAccounts' => $tokenPsAccounts,
             'psGoogleShoppingApiUrl' => $this->env->get('PSX_GOOGLE_SHOPPING_API_URL'),
             'psGoogleShoppingAdminUrl' => $this->context->link->getAdminLink('AdminPsgoogleshoppingModule'),
             'isCountryMemberOfEuropeanUnion' => $this->module->getService(CountryRepository::class)->isCompatibleForCSS(),

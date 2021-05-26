@@ -70,6 +70,7 @@ export type MerchantCenterAccountContext = contentApi.Schema$Account & {
 export interface State {
   contextPsAccounts: PrestaShopAccountsContext|any;
   shopIdPsAccounts: string;
+  tokenPsAccounts: string;
   googleAccount: GoogleAccountContext;
   googleMerchantAccount: MerchantCenterAccountContext;
 }
@@ -85,6 +86,7 @@ export enum WebsiteClaimErrorReason {
 export const state: State = {
   contextPsAccounts: {},
   shopIdPsAccounts: '',
+  tokenPsAccounts: '',
   googleAccount: {
     access_token: '',
     expiry_date: 0,

@@ -23,11 +23,18 @@ import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
-  async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT]({commit, rootState}, webhookUrl: String) {
+  async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT](
+    {commit, rootState, state},
+    webhookUrl: String,
+  ) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/account/onboard`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
         body: JSON.stringify(webhookUrl),
       });
       const json = await response.json();
@@ -62,7 +69,12 @@ export default {
       shopUrl: rootState.app.psGoogleShoppingShopUrl,
     }));
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/authorized-url?state=${urlState}`);
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/authorized-url?state=${urlState}`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
+      });
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -73,18 +85,28 @@ export default {
     }
   },
 
-  async [ActionsTypes.REFRESH_GOOGLE_ACCESS_TOKEN]({
+  async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS]({
     commit, state, rootState, dispatch,
   }) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/`);
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
+      });
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
+      commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
+
+      // ToDo: Add a filter to avoid dispatching this action if the GMC is already chosen
+      dispatch(ActionsTypes.REQUEST_GOOGLE_ACCOUNT_GMC_LIST);
     } catch (error) {
-      if (error.status === 404) {
+      if (error instanceof HttpClientError && error.code === 404) {
+        // This is likely caused by a missing Google account, so let's retrieve the URL
         dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
         return;
       }
@@ -92,24 +114,22 @@ export default {
     }
   },
 
-  async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS]({
-    commit, state, rootState, dispatch,
+  async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_GMC_LIST]({
+    commit, state, rootState,
   }) {
     try {
-      // ToDo: ⚠️ We need another route to get all account details, not only the token
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/${state.shopIdPsAccounts}/`);
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
+      });
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
-      commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
+      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_MCA_LIST, json);
     } catch (error) {
-      if (error instanceof HttpClientError && error.code === 404) {
-        // This is likely caused by a missing Google account, so retrieve the URL
-        dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
-        return;
-      }
       console.error(error);
     }
   },
@@ -157,10 +177,11 @@ export default {
     }
   },
 
-  async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({rootState}, correlationId: string) {
+  async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({rootState, state}, correlationId: string) {
     const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/token`, {
       headers: {
         Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
         'x-correlation-id': correlationId,
       },
     });
@@ -186,7 +207,7 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE](
-    {rootState, commit},
+    {rootState, state},
     correlationId: string,
   ) {
     const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/verify`, {
@@ -194,6 +215,7 @@ export default {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
         'x-correlation-id': correlationId,
       },
     });
@@ -203,10 +225,14 @@ export default {
     return response.json();
   },
 
-  async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS]({rootState, commit}, correlationId: string) {
+  async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS](
+    {rootState, state, commit},
+    correlationId: string,
+  ) {
     const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/status`, {
       headers: {
         Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
         'x-correlation-id': correlationId,
       },
     });

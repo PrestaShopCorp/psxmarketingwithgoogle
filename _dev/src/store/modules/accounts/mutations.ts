@@ -56,6 +56,12 @@ export default {
   [MutationsTypes.SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE](state: LocalState, response) {
     state.googleAccount.connectedOnce = response;
   },
+  [MutationsTypes.SAVE_GOOGLE_ACCOUNT_MCA_LIST](
+    state: LocalState,
+    mcaSelectionOptions: contentApi.Schema$Account[],
+  ) {
+    state.googleAccount.mcaSelectionOptions = mcaSelectionOptions;
+  },
   /** End of Google Account mutations */
 
   /** Merchant Center Account mutations */
