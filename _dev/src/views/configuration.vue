@@ -19,18 +19,15 @@ export default defineComponent({
   },
   data() {
     return {
-      // showIntroduction: true,
     };
   },
 
   created() {
     this.$root.$on('onHideLanding', () => {
-      // this.showIntroduction = false;
       this.$router.push({
         name: 'onboarding',
       });
     });
-    // this.$store.dispatch('accounts/TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT', 'www.google.com');
   },
   methods: {
   },
