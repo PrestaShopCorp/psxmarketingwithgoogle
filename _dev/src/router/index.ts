@@ -10,12 +10,12 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/configuration',
+    path: '/onboarding',
     name: 'configuration',
     component: Configuration,
   },
   {
-    path: '/onboarding',
+    path: '/configuration',
     name: 'onboarding',
     component: OnboardingPage,
   },
@@ -26,7 +26,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/',
-    redirect: '/configuration',
+    redirect: '/onboarding',
   },
 ];
 

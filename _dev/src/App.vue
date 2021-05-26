@@ -2,7 +2,7 @@
   <div id="googleShoppingApp">
     <div class="ps_gs-sticky-head">
       <Menu>
-        <MenuItem :route="this.$route.name === 'onboarding' ? '/onboarding' : '/configuration'">
+        <MenuItem :route="this.$route.name === 'configuration' ? '/onboarding' : '/configuration'">
           {{ $t('general.tabs.configuration') }}
         </MenuItem>
         <MenuItem
