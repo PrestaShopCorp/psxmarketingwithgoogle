@@ -2,7 +2,7 @@
   <b-form>
     <b-form-group
       :label="$t('productFeedSettings.shipping.targetCountries')"
-      label-class="h4 font-weight-600 mb-2 d-block p-0"
+      label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
       <p>
         {{ $t('productFeedSettings.shipping.ifMultipleCountries') }}
@@ -34,7 +34,7 @@
     <b-form-group
       class="mt-4"
       :label="$t('productFeedSettings.shipping.shippingSettings')"
-      label-class="h4 font-weight-600 mb-2 d-block p-0"
+      label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
       <b-form-radio
         v-model="selectedShippingSettings"
@@ -69,11 +69,43 @@
         </div>
       </b-form-radio>
     </b-form-group>
+    <div
+      v-if="isUS"
+      class="pb-2"
+    >
+      <div class="d-flex flex-wrap align-items-center mb-3">
+        <span class="h4 mb-0 font-weight-600 mr-1">
+          {{ $t('productFeedSettings.shipping.taxSettings') }}
+        </span>
+        <span class="text-muted ps_gs-fz-12">
+          {{ $t('productFeedSettings.shipping.appliedOnlyForUsa') }}
+        </span>
+      </div>
+      <b-alert
+        variant="warning"
+        show
+        class="mb-0"
+      >
+        <p>
+          {{ $t('productFeedSettings.shipping.alertTaxes') }}
+        </p>
+        <div>
+          <b-button
+            variant="secondary"
+            class="mt-2"
+          >
+            {{ $t('cta.setupTaxSettings') }}
+          </b-button>
+        </div>
+      </b-alert>
+    </div>
+    <!-- Not in batch 1 -->
+    <!--
     <b-form-group
       v-if="isUS"
       class="mt-4"
       :label="$t('productFeedSettings.shipping.taxSettings')"
-      label-class="h4 font-weight-600 mb-2 d-block p-0"
+      label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
       <p>
         {{ $t('productFeedSettings.shipping.taxSettingsDescription') }}
@@ -103,7 +135,7 @@
             {{ $t('productFeedSettings.shipping.manualImportTax') }}
           </span>
         </div>
-      </b-form-radio>
+      </b-form-radio> -->
     </b-form-group>
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
@@ -121,6 +153,25 @@
       >
         {{ $t('cta.continue') }}
       </b-button>
+    </div>
+    <div
+      class="text-muted ps_gs-fz-12 mb-0 mt-2
+      d-flex align-items-start align-items-sm-center justify-content-end"
+    >
+      <b-button
+        v-b-tooltip
+        title="Tooltip!"
+        variant="invisible"
+        class="d-flex mr-1 text-muted p-0 border-0"
+      >
+        <span class="material-icons ps_gs-fz-14">
+          error_outline
+        </span>
+        <span class="sr-only">Tooltip!</span>
+      </b-button>
+      <p>
+        {{ $t("productFeedSettings.noticeDataStored") }}
+      </p>
     </div>
   </b-form>
 </template>
@@ -141,16 +192,18 @@ export default {
       selectedTaxSettings: null,
     };
   },
-  methods: {
-  },
   computed: {
     isUS() {
       return this.selectedCountries.includes('US');
     },
     disableContinue() {
-      if (this.isUS && this.selectedTaxSettings === null) {
-        return true;
-      }
+      /**
+       * ! This condition will be used when
+       * ! we'll be able to set taxSettings manually
+       */
+      // if (this.isUS && this.selectedTaxSettings === null) {
+      //   return true;
+      // }
       return this.selectedCountries.length < 1 || this.selectedShippingSettings === null;
     },
   },

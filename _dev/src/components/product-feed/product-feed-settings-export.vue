@@ -1,8 +1,118 @@
 <template>
+  <div>
+    <h3 class="ps_gs-fz-16 font-weight-600 mb-3">
+      {{ $t('productFeedSettings.export.synchronizationSchedule') }}
+    </h3>
+    <b-table-simple
+      stacked="md"
+      variant="light"
+      borderless
+      class="mx-n1 w-auto mb-3"
+    >
+      <b-tbody>
+        <b-tr>
+          <b-td class="font-weight-600 ps_gs-fz-14">{{ $t("productFeedSettings.export.synchronizationTime") }}</b-td>
+          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">2:00 AM</b-td>
+        </b-tr>
+        <b-tr>
+          <b-td class="font-weight-600 ps_gs-fz-14">{{ $t("productFeedSettings.export.timeZone") }}</b-td>
+          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">(UTC+01:00) Normal time in Central Europe (Paris)</b-td>
+        </b-tr>
+        <b-tr>
+          <b-td class="font-weight-600 ps_gs-fz-14">{{ $t("productFeedSettings.export.frequency") }}</b-td>
+          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">Daily</b-td>
+        </b-tr>
+      </b-tbody>
+    </b-table-simple>
+    <VueShowdown
+      :markdown="$t('productFeedSettings.export.prohibitedContentNotice')"
+      :extensions="['targetlink']"
+      class="text-muted ps_gs-fz-12 pt-2"
+    />
+    <div class="d-flex flex-column align-items-center p-3 bg-violet_extralight mt-4">
+      <div class="d-flex flex-wrap flex-sm-nowrap align-items-center mb-3">
+        <span
+          class="font-weight-600 mr-2 order-2 order-sm-0"
+        >
+          Available in the next version
+        </span>
+        <b-badge
+          class="ml-auto mb-1 ml-sm-0 mb-sm-0"
+          variant="primary"
+        >
+          Coming soon
+        </b-badge>
+      </div>
+      <ul class="pl-0">
+        <li class="d-flex align-items-center mb-3">
+          <i class="material-icons mr-2">
+            schedule
+          </i>
+          <span class="ps_gs-fz-12">Sync schedule customization</span>
+        </li>
+        <li class="d-flex align-items-center mb-3">
+          <i class="material-icons mr-2">
+            autorenew
+          </i>
+          <span class="ps_gs-fz-12">Export option</span>
+        </li>
+        <li class="d-flex align-items-center mb-3">
+          <i class="material-icons mr-2">
+            toggle_off
+          </i>
+          <span class="ps_gs-fz-12">Specific product exclusion</span>
+        </li>
+      </ul>
+    </div>
+    <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
+      <b-button
+        size="sm"
+        class="mx-1 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
+        {{ $t("cta.back") }}
+      </b-button>
+      <b-button
+        size="sm"
+        class="mx-1 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
+        {{ $t("cta.cancel") }}
+      </b-button>
+      <b-button
+        size="sm"
+        :disabled="disableContinue"
+        class="mx-1 mt-3 mt-md-0 mr-md-0"
+        variant="primary"
+      >
+        {{ $t("cta.understandAndContinue") }}
+      </b-button>
+    </div>
+    <div
+      class="text-muted ps_gs-fz-12 mb-0 mt-2
+      d-flex align-items-start align-items-sm-center justify-content-end"
+    >
+      <b-button
+        v-b-tooltip
+        title="Tooltip!"
+        variant="invisible"
+        class="d-flex mr-1 text-muted p-0 border-0"
+      >
+        <span class="material-icons ps_gs-fz-14">
+          error_outline
+        </span>
+      </b-button>
+      <p>
+        {{ $t("productFeedSettings.noticeDataStored") }}
+      </p>
+    </div>
+  </div>
+  <!-- This is not in batch 1 -->
+  <!--
   <b-form>
     <b-form-group
       :label="$t('productFeedSettings.export.synchronizationSchedule')"
-      label-class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block"
+      label-class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block bg-transparent border-0"
     >
       <b-form-row>
         <b-col
@@ -114,7 +224,7 @@
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
       >
-        {{ $t("cta.continue") }}
+        {{ $t("cta.understandAndContinue") }}
       </b-button>
     </div>
     <div
@@ -125,23 +235,21 @@
         v-b-tooltip
         title="Tooltip!"
         variant="invisible"
-        class="mr-1 text-muted p-0 border-0"
+        class="d-flex mr-1 text-muted p-0 border-0"
       >
-        <b-icon-exclamation-circle />
-        <span class="sr-only">Tooltip!</span>
+        <span class="material-icons ps_gs-fz-14">
+          error_outline
+        </span>
       </b-button>
       <p>
         {{ $t("productFeedSettings.noticeDataStored") }}
       </p>
     </div>
-  </b-form>
+  </b-form> -->
 </template>
 
 <script>
 import timezones from 'timezones.json';
-import {
-  BIconExclamationCircle,
-} from 'bootstrap-vue';
 import {Products} from '@/../fixtures/products.js';
 import PsSelect from '../commons/ps-select';
 import ProductFeedSettingsExportExcludeCategory from './product-feed-settings-export-exclude-category';
@@ -157,7 +265,6 @@ export default {
   name: 'ProductFeedSettingsExport',
   components: {
     PsSelect,
-    BIconExclamationCircle,
     ProductFeedSettingsExportExcludeCategory,
     ProductFeedSettingsExportExcludeBrand,
   },
@@ -215,7 +322,10 @@ export default {
   },
   computed: {
     disableContinue() {
-      return true;
+      /**
+       * ! Some validation will be necessary in batch 2
+       */
+      return false;
     },
   },
   timezones,

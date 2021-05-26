@@ -20,11 +20,11 @@
               height="40"
               alt=""
             >
-            {{ $t('productFeedCard.title') }}
+            {{ $t('productFeedSettings.breadcrumb1') }}
           </a>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item">
-          {{ $t('productFeedSettings.breadcrumb') }}
+          {{ $t('productFeedSettings.breadcrumb2') }}
         </li>
       </ol>
     </b-card-header>
@@ -73,9 +73,11 @@ export default {
         {
           title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
         },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.categoryMapping'),
-        },
+        /**
+         ** Not in batch 1 */
+        // {
+        //   title: this.$i18n.t('productFeedSettings.steps.categoryMapping'),
+        // },
         {
           title: this.$i18n.t('productFeedSettings.steps.summary'),
         },

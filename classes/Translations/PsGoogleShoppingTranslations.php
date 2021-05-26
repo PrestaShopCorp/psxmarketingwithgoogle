@@ -187,7 +187,8 @@ class PsGoogleShoppingTranslations
                 'excludedProducts' => $this->module->l('Excluded products', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedSettings' => [
-                'breadcrumb' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),
+                'breadcrumb1' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),
+                'breadcrumb2' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),
                 'steps' => [
                   'shippingSettings' => $this->module->l('Shipping settings', 'PsGoogleShoppingTranslations'),
                   'exportRules' => $this->module->l('Export rules', 'PsGoogleShoppingTranslations'),
@@ -211,9 +212,11 @@ class PsGoogleShoppingTranslations
                     'taxSettingsDescription' => $this->module->l('So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect. Select how you want to set up tax settings.', 'PsGoogleShoppingTranslations'),
                     'autoImportTax' => $this->module->l('Automatically import tax settings', 'PsGoogleShoppingTranslations'),
                     'manualImportTax' => $this->module->l('Manually set up tax settings in Google Merchant Center', 'PsGoogleShoppingTranslations'),
+                    'appliedOnlyForUsa' => $this->module->l('(applied only for the USA)', 'PsGoogleShoppingTranslations'),
+                    'alertTaxes' => $this->module->l('So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect.', 'PsGoogleShoppingTranslations'),
                 ],
                 'export' => [
-                    'synchronizationSchedule' => $this->module->l('Synchronization schedule', 'PsGoogleShoppingTranslations'),
+                    'synchronizationSchedule' => $this->module->l('Export synchronization schedule', 'PsGoogleShoppingTranslations'),
                     'synchronizationTime' => $this->module->l('Synchronization time', 'PsGoogleShoppingTranslations'),
                     'timeZone' => $this->module->l('Time zone', 'PsGoogleShoppingTranslations'),
                     'exporMethod' => $this->module->l('Export method', 'PsGoogleShoppingTranslations'),
@@ -226,6 +229,7 @@ class PsGoogleShoppingTranslations
                     'allCategories' => $this->module->l('All categories', 'PsGoogleShoppingTranslations'),
                     'labelSelectBrand' => $this->module->l('Select brand', 'PsGoogleShoppingTranslations'),
                     'placeholderSelectBrand' => $this->module->l('Search brand', 'PsGoogleShoppingTranslations'),
+                    'frequency' => $this->module->l('Frequency', 'PsGoogleShoppingTranslations'),
                 ],
                 'attributeMapping' => [
                     'intro' => $this->module->l('Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.', 'PsGoogleShoppingTranslations'),
@@ -295,7 +299,7 @@ class PsGoogleShoppingTranslations
                     'approvedProducts' => $this->module->l('Approved products', 'PsGoogleShoppingTranslations'),
                     'pendingProducts' => $this->module->l('Pending products', 'PsGoogleShoppingTranslations'),
                     'disapprovedProducts' => $this->module->l('Not approved products', 'PsGoogleShoppingTranslations'),
-                    'productsInGoogleCatalog' => $this->module->l('Products in Google cataog: {0}', 'PsGoogleShoppingTranslations'),
+                    'productsInGoogleCatalog' => $this->module->l('Products in Google catalog: {0}', 'PsGoogleShoppingTranslations'),
                 ],
             ],
             'help' => [
@@ -372,6 +376,8 @@ class PsGoogleShoppingTranslations
                 'saveChange' => $this->module->l('Save change', 'PsGoogleShoppingTranslations'),
                 'close' => $this->module->l('Close', 'PsGoogleShoppingTranslations'),
                 'checkProductsStatusDetails' => $this->module->l('Check products status details', 'PsGoogleShoppingTranslations'),
+                'setupTaxSettings' => $this->module->l('Set up tax settings', 'PsGoogleShoppingTranslations'),
+                'understandAndContinue' => $this->module->l('understandAndContinue', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
