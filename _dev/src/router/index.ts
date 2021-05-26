@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter, {RouteConfig} from 'vue-router';
 import Configuration from '../views/configuration.vue';
+import OnboardingPage from '../views/onboarding-page.vue';
 import Help from '../views/help.vue';
 import Store from '../store';
 import MutationsTypes from '../store/modules/accounts/mutations-types';
@@ -9,9 +10,14 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/Configuration',
+    path: '/onboarding',
     name: 'configuration',
     component: Configuration,
+  },
+  {
+    path: '/configuration',
+    name: 'onboarding',
+    component: OnboardingPage,
   },
   {
     path: '/help',
@@ -20,7 +26,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/',
-    redirect: '/configuration',
+    redirect: '/onboarding',
   },
 ];
 

@@ -1,11 +1,7 @@
 <template>
   <div id="configuration">
-    <landing-page
-      v-if="!psAccountsIsOnboarded && showIntroduction"
-    />
-    <template v-else>
-      <onboarding-page />
-    </template>
+    <landing-page v-if="!psAccountsIsOnboarded" />
+    <onboarding-page v-else />
   </div>
 </template>
 
@@ -23,14 +19,15 @@ export default defineComponent({
   },
   data() {
     return {
-      showIntroduction: true,
     };
   },
+
   created() {
     this.$root.$on('onHideLanding', () => {
-      this.showIntroduction = false;
+      this.$router.push({
+        name: 'onboarding',
+      });
     });
-    // this.$store.dispatch('accounts/TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT', 'www.google.com');
   },
   methods: {
   },
