@@ -43,7 +43,7 @@
           Coming soon
         </b-badge>
       </div>
-      <ul class="pl-0">
+      <ul class="pl-0 mb-2">
         <li class="d-flex align-items-center mb-3">
           <i class="material-icons mr-2">
             schedule
@@ -56,7 +56,7 @@
           </i>
           <span class="ps_gs-fz-12">Export option</span>
         </li>
-        <li class="d-flex align-items-center mb-3">
+        <li class="d-flex align-items-center mb-0">
           <i class="material-icons mr-2">
             toggle_off
           </i>
