@@ -4,60 +4,63 @@
       :step-number="1"
       :step-title="$t('onboarding.sectionTitle.psAccount')"
       :is-enabled="true"
-      :is-done="stepsAreCompleted.step1"
+      :is-done="stepsAreCompleted.step1 && psAccountsContext.isShopContext"
     />
+
     <MultiStoreSelector
       v-if="!psAccountsContext.isShopContext && shops.length"
       :shops="shops"
       @shop-selected="onShopSelected($event)"
     />
     <ps-accounts
-      class="ps_gs-ps-account-card"
       v-else
+      class="ps_gs-ps-account-card"
       :context="psAccountsContext"
     />
-    <section-title
-      :step-number="2"
-      :step-title="$t('onboarding.sectionTitle.freeListing')"
-      :is-enabled="stepsAreCompleted.step1"
-      :is-done="stepsAreCompleted.step2"
-    />
-    <ProductFeedNotice
-      v-if="stepsAreCompleted.step1"
-    />
-    <google-account-card
-      :is-enabled="stepsAreCompleted.step1"
-      :user="getGoogleAccount"
-      :is-connected="googleAccountIsOnboarded"
-      @connectGoogleAccount="onGoogleAccountConnection"
-      @dissociateGoogleAccount="onGoogleAccountDissociationRequest"
-    />
-    <MerchantCenterAccountCard
-      v-if="stepsAreCompleted.step1"
-      :is-connected="merchantCenterAccountIsChosen"
-      :is-enabled="googleAccountIsOnboarded"
-      :is-e-u="showCSSForMCA"
-      @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
-      @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
-    />
-    <ProductFeedCard
-      v-if="stepsAreCompleted.step1"
-      :is-enabled="merchantCenterAccountIsChosen"
-    />
-    <FreeListingCard
-      v-if="stepsAreCompleted.step1"
-      :is-enabled="productFeedIsConfigured"
-    />
-    <section-title
-      :step-number="3"
-      :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
-      :is-enabled="stepsAreCompleted.step2"
-      :is-done="stepsAreCompleted.step3"
-    />
-    <google-ads-account-card
-      :is-enabled="stepsAreCompleted.step2"
-      :is-connected="false"
-    />
+    <div v-if="psAccountsContext.isShopContext">
+      <section-title
+        :step-number="2"
+        :step-title="$t('onboarding.sectionTitle.freeListing')"
+        :is-enabled="stepsAreCompleted.step1"
+        :is-done="stepsAreCompleted.step2"
+      />
+      <ProductFeedNotice
+        v-if="stepsAreCompleted.step1"
+      />
+      <google-account-card
+        :is-enabled="stepsAreCompleted.step1"
+        :user="getGoogleAccount"
+        :is-connected="googleAccountIsOnboarded"
+        @connectGoogleAccount="onGoogleAccountConnection"
+        @dissociateGoogleAccount="onGoogleAccountDissociationRequest"
+      />
+      <MerchantCenterAccountCard
+        v-if="stepsAreCompleted.step1"
+        :is-enabled="googleAccountIsOnboarded"
+        :is-connected="googleAccountIsOnboarded"
+        :is-e-u="showCSSForMCA"
+        @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
+        @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
+      />
+      <ProductFeedCard
+        v-if="stepsAreCompleted.step1"
+        :is-enabled="merchantCenterAccountIsChosen"
+      />
+      <FreeListingCard
+        v-if="stepsAreCompleted.step1"
+        :is-enabled="productFeedIsConfigured"
+      />
+      <section-title
+        :step-number="3"
+        :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
+        :is-enabled="stepsAreCompleted.step2"
+        :is-done="stepsAreCompleted.step3"
+      />
+      <google-ads-account-card
+        :is-enabled="stepsAreCompleted.step2"
+        :is-connected="false"
+      />
+    </div>
     <!-- Modals -->
     <GoogleAccountPopinDisconnect
       ref="googleAccountDisconnectModal"
