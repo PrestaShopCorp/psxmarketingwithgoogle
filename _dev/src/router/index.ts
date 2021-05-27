@@ -8,7 +8,7 @@ import MutationsTypes from '../store/modules/accounts/mutations-types';
 
 Vue.use(VueRouter);
 
-const requireAuth = (to, from, next) => {
+const initialPath = (to, from, next) => {
   if (from.path === '/' && Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED']) {
     next('/configuration');
   } else {
@@ -34,7 +34,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/',
-    beforeEnter: requireAuth,
+    beforeEnter: initialPath,
   },
 ];
 
