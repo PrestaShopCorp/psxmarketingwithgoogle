@@ -99,7 +99,7 @@ class PsGoogleShoppingTranslations
                 'onboardedText' => $this->module->l('Your shop is associated to the PrestaShop account of', 'PsGoogleShoppingTranslations'),
             ],
             'googleAccountCard' => [
-                'title' => $this->module->l('Google accounts', 'PsGoogleShoppingTranslations'),
+                'title' => $this->module->l('Google account', 'PsGoogleShoppingTranslations'),
                 'introDisabled' => $this->module->l('When you are done connecting your PrestaShop account you will be able to connect your Google accounts.', 'PsGoogleShoppingTranslations'),
                 'introEnabled' => $this->module->l('A Google Account lets you access your Google Merchant Center and Google Ads accounts', 'PsGoogleShoppingTranslations'),
                 'footerDissociating' => $this->module->l('Dissociating your Google account will disconnect your Google Merchant Center and your Google Ads accounts.', 'PsGoogleShoppingTranslations'),
@@ -366,6 +366,7 @@ class PsGoogleShoppingTranslations
                 'disableFreeListing' => $this->module->l('Disable free listing', 'PsGoogleShoppingTranslations'),
                 'disableProductFeed' => $this->module->l('Disable product feed', 'PsGoogleShoppingTranslations'),
                 'enableFreeListingAndProductFeed' => $this->module->l('Enable free listing and product feed', 'PsGoogleShoppingTranslations'),
+                'checkRequirements' => $this->module->l('Check requirements', 'PsGoogleShoppingTranslations'),
                 'iCheckedAllRequirements' => $this->module->l('I checked all requirements', 'PsGoogleShoppingTranslations'),
                 'createAccount' => $this->module->l('Create account', 'PsGoogleShoppingTranslations'),
                 'saveChange' => $this->module->l('Save change', 'PsGoogleShoppingTranslations'),
