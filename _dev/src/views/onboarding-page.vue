@@ -4,7 +4,7 @@
       :step-number="1"
       :step-title="$t('onboarding.sectionTitle.psAccount')"
       :is-enabled="true"
-      :is-done="stepsAreCompleted.step1 && psAccountsContext.isShopContext"
+      :is-done="stepsAreCompleted.step1"
     />
 
     <MultiStoreSelector
