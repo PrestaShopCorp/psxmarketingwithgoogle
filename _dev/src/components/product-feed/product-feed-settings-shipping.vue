@@ -135,8 +135,8 @@
             {{ $t('productFeedSettings.shipping.manualImportTax') }}
           </span>
         </div>
-      </b-form-radio> -->
-    </b-form-group>
+      </b-form-radio>
+    </b-form-group> -->
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
         size="sm"

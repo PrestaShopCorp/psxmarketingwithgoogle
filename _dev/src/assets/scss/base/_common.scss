@@ -59,8 +59,11 @@ a[target="_blank"] {
   }
 }
 
-.badge-muted {
+.badge {
   font-size: rem(12);
+}
+
+.badge-muted {
   background-color: $grey_light;
   color: $grey_muted;
 }

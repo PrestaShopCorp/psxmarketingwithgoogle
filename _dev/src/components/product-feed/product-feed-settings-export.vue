@@ -11,16 +11,28 @@
     >
       <b-tbody>
         <b-tr>
-          <b-td class="font-weight-600 ps_gs-fz-14">{{ $t("productFeedSettings.export.synchronizationTime") }}</b-td>
-          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">2:00 AM</b-td>
+          <b-td class="font-weight-600 ps_gs-fz-14">
+            {{ $t("productFeedSettings.export.synchronizationTime") }}
+          </b-td>
+          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">
+            2:00 AM
+          </b-td>
         </b-tr>
         <b-tr>
-          <b-td class="font-weight-600 ps_gs-fz-14">{{ $t("productFeedSettings.export.timeZone") }}</b-td>
-          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">(UTC+01:00) Normal time in Central Europe (Paris)</b-td>
+          <b-td class="font-weight-600 ps_gs-fz-14">
+            {{ $t("productFeedSettings.export.timeZone") }}
+          </b-td>
+          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">
+            (UTC+01:00) Normal time in Central Europe (Paris)
+          </b-td>
         </b-tr>
         <b-tr>
-          <b-td class="font-weight-600 ps_gs-fz-14">{{ $t("productFeedSettings.export.frequency") }}</b-td>
-          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">Daily</b-td>
+          <b-td class="font-weight-600 ps_gs-fz-14">
+            {{ $t("productFeedSettings.export.frequency") }}
+          </b-td>
+          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">
+            Daily
+          </b-td>
         </b-tr>
       </b-tbody>
     </b-table-simple>
@@ -249,11 +261,15 @@
 </template>
 
 <script>
-import timezones from 'timezones.json';
-import {Products} from '@/../fixtures/products.js';
-import PsSelect from '../commons/ps-select';
-import ProductFeedSettingsExportExcludeCategory from './product-feed-settings-export-exclude-category';
-import ProductFeedSettingsExportExcludeBrand from './product-feed-settings-export-exclude-brand';
+/**
+ * ! Not needed for batch 1
+ */
+// import timezones from 'timezones.json';
+// import {Products} from '@/../fixtures/products.js';
+// import PsSelect from '../commons/ps-select';
+// import ProductFeedSettingsExportExcludeCategory from
+// './product-feed-settings-export-exclude-category';
+// import ProductFeedSettingsExportExcludeBrand from './product-feed-settings-export-exclude-brand';
 
 /**
  ** Import fixture of products.
@@ -263,63 +279,66 @@ import ProductFeedSettingsExportExcludeBrand from './product-feed-settings-expor
 
 export default {
   name: 'ProductFeedSettingsExport',
-  components: {
-    PsSelect,
-    ProductFeedSettingsExportExcludeCategory,
-    ProductFeedSettingsExportExcludeBrand,
-  },
-  data() {
-    return {
-      exportMethods: [
-        {
-          text: this.$i18n.t('productFeedSettings.export.allProducts'),
-          value: 'all',
-        },
-        {
-          text: this.$i18n.t('productFeedSettings.export.byBrand'),
-          value: 'category',
-        },
-        {
-          text: this.$i18n.t('productFeedSettings.export.byCategory'),
-          value: 'brand',
-        },
-      ],
-      selectedSyncTime: 0,
-      selectedTimeZone: 0,
-      selectedExportMethod: 'all',
-      selectedExcludeProducts: [],
-      searchString: '',
-      allCategoriesIndeterminate: true,
-      options: Products,
-    };
-  },
-  methods: {
-    getTimeRanges(interval, language = window.navigator.language) {
-      const ranges = [];
-      const date = new Date();
-      const format = {
-        hour: 'numeric',
-        minute: 'numeric',
-      };
-      for (let minutes = 0; minutes < 24 * 60; minutes += interval) {
-        date.setHours(0);
-        date.setMinutes(minutes);
-        ranges.push(date.toLocaleTimeString(language, format));
-      }
-      return ranges;
-    },
-    pushSelectedExcludeProducts(event) {
-      this.selectedExcludeProducts = event;
-    },
-    searchProducts(event) {
-      this.searchString = event;
-    },
-    highlightSearch(str) {
-      /** Highlight search terms */
-      const regex = new RegExp(`(${this.searchString})`, 'gi');
-      return str.replace(regex, '<strong>$1</strong>');
-    },
-  },
+  /**
+   * ! Not needed for batch 1
+   */
+  // components: {
+  //   PsSelect,
+  //   ProductFeedSettingsExportExcludeCategory,
+  //   ProductFeedSettingsExportExcludeBrand,
+  // },
+  // data() {
+  //   return {
+  //     exportMethods: [
+  //       {
+  //         text: this.$i18n.t('productFeedSettings.export.allProducts'),
+  //         value: 'all',
+  //       },
+  //       {
+  //         text: this.$i18n.t('productFeedSettings.export.byBrand'),
+  //         value: 'category',
+  //       },
+  //       {
+  //         text: this.$i18n.t('productFeedSettings.export.byCategory'),
+  //         value: 'brand',
+  //       },
+  //     ],
+  //     selectedSyncTime: 0,
+  //     selectedTimeZone: 0,
+  //     selectedExportMethod: 'all',
+  //     selectedExcludeProducts: [],
+  //     searchString: '',
+  //     allCategoriesIndeterminate: true,
+  //     options: Products,
+  //   };
+  // },
+  // methods: {
+  //   getTimeRanges(interval, language = window.navigator.language) {
+  //     const ranges = [];
+  //     const date = new Date();
+  //     const format = {
+  //       hour: 'numeric',
+  //       minute: 'numeric',
+  //     };
+  //     for (let minutes = 0; minutes < 24 * 60; minutes += interval) {
+  //       date.setHours(0);
+  //       date.setMinutes(minutes);
+  //       ranges.push(date.toLocaleTimeString(language, format));
+  //     }
+  //     return ranges;
+  //   },
+  //   pushSelectedExcludeProducts(event) {
+  //     this.selectedExcludeProducts = event;
+  //   },
+  //   searchProducts(event) {
+  //     this.searchString = event;
+  //   },
+  //   highlightSearch(str) {
+  //     /** Highlight search terms */
+  //     const regex = new RegExp(`(${this.searchString})`, 'gi');
+  //     return str.replace(regex, '<strong>$1</strong>');
+  //   },
+  // },
   computed: {
     disableContinue() {
       /**
@@ -328,6 +347,9 @@ export default {
       return false;
     },
   },
-  timezones,
+  /**
+   * ! Not needed for batch 1
+   */
+  // timezones,
 };
 </script>
