@@ -10,12 +10,11 @@ Vue.use(VueRouter);
 
 const requireAuth = (to, from, next) => {
   if (from.path === '/' && Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED']) {
-  next('/configuration');
- } else {
-  next('/onboarding');
- }
+    next('/configuration');
+  } else {
+    next('/onboarding');
+  }
 };
-
 
 const routes: Array<RouteConfig> = [
   {
@@ -35,7 +34,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/',
-    beforeEnter: requireAuth
+    beforeEnter: requireAuth,
   },
 ];
 
