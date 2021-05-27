@@ -173,5 +173,13 @@ export default {
     // this action will dispatch another one to generate the authentication route.
     this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
   },
+  watch: {
+    googleAccountIsOnboarded(newVal, oldVal) {
+      if (oldVal === false && newVal === true) {
+        // ToDo: Add a filter to avoid dispatching this action if the GMC is already chosen
+        this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_GMC_LIST');
+      }
+    },
+  },
 };
 </script>
