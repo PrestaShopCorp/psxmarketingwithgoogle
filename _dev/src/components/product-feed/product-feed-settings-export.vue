@@ -14,7 +14,7 @@
         {{ syncTimeZone }}
       </span>
     </p>
-      <div class="d-flex flex-column align-items-center p-3 bg-violet_extralight mt-4">
+    <div class="d-flex flex-column align-items-center p-3 bg-violet_extralight mt-4">
       <div class="d-flex flex-wrap flex-sm-nowrap align-items-center mb-3">
         <span
           class="font-weight-600 mr-2 order-2 order-sm-0"

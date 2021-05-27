@@ -100,7 +100,10 @@
               {{ id }}
             </b-td>
             <b-td class="ps_gs-fz-12">
-              <a href="#" :title="`Edit ${name}`">{{ name }}</a>
+              <a
+                href="#"
+                :title="`Edit ${name}`"
+              >{{ name }}</a>
             </b-td>
             <b-td class="ps_gs-table-products__status">
               <b-badge
@@ -117,7 +120,9 @@
         </b-tbody>
       </b-table-simple>
       <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
-        <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">{{ totalProducts }} results</span>
+        <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
+          {{ totalProducts }} results
+        </span>
         <div class="ps_gs-table-controls__products-shown d-flex align-items-center">
           <span>Show:</span>
           <b-dropdown
@@ -145,20 +150,71 @@
         >
           <ul class="pagination mb-0">
             <li class="page-item previous">
-              <a class="page-link" href="#" aria-label="Previous">
+              <a
+                class="page-link"
+                href="#"
+                aria-label="Previous"
+              >
                 <span class="sr-only">Previous</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
-            <li class="page-item"><a class="page-link" href="#">6</a></li>
-            <li class="page-item active" aria-current="page"><a class="page-link" href="#">7</a></li>
-            <li class="page-item"><a class="page-link" href="#">8</a></li>
-            <li class="page-item"><a class="page-link" href="#">9</a></li>
-            <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
-            <li class="page-item"><a class="page-link" href="#">16</a></li>
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="#"
+              >1</a>
+            </li>
+            <li class="page-item disabled">
+              <a
+                class="page-link"
+                href="#"
+              >...</a>
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="#"
+              >6</a>
+            </li>
+            <li
+              class="page-item active"
+              aria-current="page"
+            >
+              <a
+                class="page-link"
+                href="#"
+              >7</a>
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="#"
+              >8</a>
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="#"
+              >9</a>
+            </li>
+            <li class="page-item disabled">
+              <a
+                class="page-link"
+                href="#"
+              >...</a>
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="#"
+              >16</a>
+            </li>
             <li class="page-item next">
-              <a class="page-link" href="#" aria-label="Next">
+              <a
+                class="page-link"
+                href="#"
+                aria-label="Next"
+              >
                 <span class="sr-only">Next</span>
               </a>
             </li>
