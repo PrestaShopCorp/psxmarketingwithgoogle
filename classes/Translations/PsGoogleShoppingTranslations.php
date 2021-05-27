@@ -191,12 +191,13 @@ class PsGoogleShoppingTranslations
                 'breadcrumb2' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),
                 'steps' => [
                   'shippingSettings' => $this->module->l('Shipping settings', 'PsGoogleShoppingTranslations'),
-                  'exportRules' => $this->module->l('Export rules', 'PsGoogleShoppingTranslations'),
+                  'syncRules' => $this->module->l('Synchronization rules', 'PsGoogleShoppingTranslations'),
                   'attributeMapping' => $this->module->l('Attribute mapping', 'PsGoogleShoppingTranslations'),
                   'categoryMapping' => $this->module->l('Category mapping', 'PsGoogleShoppingTranslations'),
                   'summary' => $this->module->l('Summary', 'PsGoogleShoppingTranslations'),
                   'exportFeed' => $this->module->l('Export feed!', 'PsGoogleShoppingTranslations'),
                 ],
+                'noticeDataStored' => $this->module->l('Each step is saved but everything is submitted at the end', 'PsGoogleShoppingTranslations'),
                 'shipping' => [
                     'targetCountries' => $this->module->l('Target countries', 'PsGoogleShoppingTranslations'),
                     'ifMultipleCountries' => $this->module->l('If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.', 'PsGoogleShoppingTranslations'),
@@ -229,7 +230,17 @@ class PsGoogleShoppingTranslations
                     'allCategories' => $this->module->l('All categories', 'PsGoogleShoppingTranslations'),
                     'labelSelectBrand' => $this->module->l('Select brand', 'PsGoogleShoppingTranslations'),
                     'placeholderSelectBrand' => $this->module->l('Search brand', 'PsGoogleShoppingTranslations'),
-                    'frequency' => $this->module->l('Frequency', 'PsGoogleShoppingTranslations'),
+                    'prohibitedContentNotice' => $this->module->l('Please review the [prohibited content guidelines](//google.com){:target=\"_blank\"} to ensure that products in your feed don’t violate these policies.', 'PsGoogleShoppingTranslations'),
+                    'frequency' => [
+                        'daily' => $this->module->l('Daily', 'PsGoogleShoppingTranslations'),
+                    ],
+                    'teaser' => [
+                        'title' => $this->module->l('Available in the next version', 'PsGoogleShoppingTranslations'),
+                        'badge' => $this->module->l('Coming soon', 'PsGoogleShoppingTranslations'),
+                        'syncScheduleCustomization' => $this->module->l('Sync schedule customization', 'PsGoogleShoppingTranslations'),
+                        'exportOption' => $this->module->l('Export option', 'PsGoogleShoppingTranslations'),
+                        'specificProductExclusion' => $this->module->l('Specific product exclusion', 'PsGoogleShoppingTranslations'),
+                    ],
                 ],
                 'attributeMapping' => [
                     'intro' => $this->module->l('Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.', 'PsGoogleShoppingTranslations'),

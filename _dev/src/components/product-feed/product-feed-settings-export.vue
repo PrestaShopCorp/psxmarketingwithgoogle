@@ -3,56 +3,29 @@
     <h3 class="ps_gs-fz-16 font-weight-600 mb-3">
       {{ $t('productFeedSettings.export.synchronizationSchedule') }}
     </h3>
-    <b-table-simple
-      stacked="md"
-      variant="light"
-      borderless
-      class="mx-n1 w-auto mb-3"
-    >
-      <b-tbody>
-        <b-tr>
-          <b-td class="font-weight-600 ps_gs-fz-14">
-            {{ $t("productFeedSettings.export.synchronizationTime") }}
-          </b-td>
-          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">
-            2:00 AM
-          </b-td>
-        </b-tr>
-        <b-tr>
-          <b-td class="font-weight-600 ps_gs-fz-14">
-            {{ $t("productFeedSettings.export.timeZone") }}
-          </b-td>
-          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">
-            (UTC+01:00) Normal time in Central Europe (Paris)
-          </b-td>
-        </b-tr>
-        <b-tr>
-          <b-td class="font-weight-600 ps_gs-fz-14">
-            {{ $t("productFeedSettings.export.frequency") }}
-          </b-td>
-          <b-td class="ps_gs-fz-14 pl-md-3 mt-n2 mt-md-0">
-            Daily
-          </b-td>
-        </b-tr>
-      </b-tbody>
-    </b-table-simple>
-    <VueShowdown
-      :markdown="$t('productFeedSettings.export.prohibitedContentNotice')"
-      :extensions="['targetlink']"
-      class="text-muted ps_gs-fz-12 pt-2"
-    />
-    <div class="d-flex flex-column align-items-center p-3 bg-violet_extralight mt-4">
+    <p>
+      <span class="mr-3">
+        {{ syncFrequency }}
+      </span>
+      <span class="mr-3">
+        {{ syncTime }}
+      </span>
+      <span>
+        {{ syncTimeZone }}
+      </span>
+    </p>
+      <div class="d-flex flex-column align-items-center p-3 bg-violet_extralight mt-4">
       <div class="d-flex flex-wrap flex-sm-nowrap align-items-center mb-3">
         <span
           class="font-weight-600 mr-2 order-2 order-sm-0"
         >
-          Available in the next version
+          {{ $t('productFeedSettings.export.teaser.title') }}
         </span>
         <b-badge
           class="ml-auto mb-1 ml-sm-0 mb-sm-0"
           variant="primary"
         >
-          Coming soon
+          {{ $t('productFeedSettings.export.teaser.badge') }}
         </b-badge>
       </div>
       <ul class="pl-0 mb-2">
@@ -60,19 +33,25 @@
           <i class="material-icons mr-2">
             schedule
           </i>
-          <span class="ps_gs-fz-12">Sync schedule customization</span>
+          <span class="ps_gs-fz-12">
+            {{ $t('productFeedSettings.export.teaser.syncScheduleCustomization') }}
+          </span>
         </li>
         <li class="d-flex align-items-center mb-3">
           <i class="material-icons mr-2">
             autorenew
           </i>
-          <span class="ps_gs-fz-12">Export option</span>
+          <span class="ps_gs-fz-12">
+            {{ $t('productFeedSettings.export.teaser.exportOption') }}
+          </span>
         </li>
         <li class="d-flex align-items-center mb-0">
           <i class="material-icons mr-2">
             toggle_off
           </i>
-          <span class="ps_gs-fz-12">Specific product exclusion</span>
+          <span class="ps_gs-fz-12">
+            {{ $t('productFeedSettings.export.teaser.specificProductExclusion') }}
+          </span>
         </li>
       </ul>
     </div>
@@ -118,6 +97,11 @@
         {{ $t("productFeedSettings.noticeDataStored") }}
       </p>
     </div>
+    <VueShowdown
+      :markdown="$t('productFeedSettings.export.prohibitedContentNotice')"
+      :extensions="['targetlink']"
+      class="text-muted ps_gs-fz-12 pt-2 mt-5 mb-n3"
+    />
   </div>
   <!-- This is not in batch 1 -->
   <!--
@@ -339,6 +323,13 @@ export default {
   //     return str.replace(regex, '<strong>$1</strong>');
   //   },
   // },
+  data() {
+    return {
+      syncFrequency: this.$i18n.t('productFeedSettings.export.frequency.daily'),
+      syncTime: '2:00 AM',
+      syncTimeZone: '(UTC+01:00) Normal time in Central Europe (Paris)',
+    };
+  },
   computed: {
     disableContinue() {
       /**

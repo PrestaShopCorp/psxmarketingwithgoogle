@@ -68,7 +68,7 @@ export default {
           title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
         },
         {
-          title: this.$i18n.t('productFeedSettings.steps.exportRules'),
+          title: this.$i18n.t('productFeedSettings.steps.syncRules'),
         },
         {
           title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),

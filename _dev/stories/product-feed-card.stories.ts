@@ -9,8 +9,8 @@ const basicArgs = {
   targetCountries: ['USA', 'France'],
   shippingSettings: 'Automatic',
   taxSettings: 'Automatic',
-  exportRules: ['2:00 AM', 'export all products'],
-  exportRulesDetails: ['Nike', 'Adidas', 'Reebok'],
+  syncRules: ['2:00 AM', 'export all products'],
+  syncRulesDetails: ['Nike', 'Adidas', 'Reebok'],
   excludedProductsDetails: ['123956 - Totebag sunset', '123460 - Color block printed scarf', '975357 - Totebag electric blue', '3456231- Tartiflette savoyarde'],
   attributeMapping: ['Long description', 'condition', 'color'],
 }

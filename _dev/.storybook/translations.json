@@ -143,13 +143,13 @@
       "breadcrumb2" : "Product feed settings",
       "steps" : {
         "shippingSettings" : "Shipping settings",
-        "exportRules" : "Export rules",
+        "syncRules" : "Synchronization rules",
         "attributeMapping" : "Attribute mapping",
         "categoryMapping" : "Category mapping",
         "summary" : "Summary",
         "exportFeed" : "Export feed!"
       },
-      "noticeDataStored" : "Data are stored at each step but will be submitted only at the final step.",
+      "noticeDataStored" : "Each step is saved but everything is submitted at the end",
       "shipping" : {
         "targetCountries" : "Target countries",
         "ifMultipleCountries" : "If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.",
@@ -182,8 +182,17 @@
         "allCategories" : "All categories",
         "labelSelectBrand" : "Select brand",
         "placeholderSelectBrand" : "Search brand",
-        "frequency" : "Frequency",
-        "prohibitedContentNotice" : "Please review the [prohibited content guidelines](//google.com){:target=\"_blank\"} to ensure that products in your feed don’t violate these policies."
+        "prohibitedContentNotice" : "Please review the [prohibited content guidelines](//google.com){:target=\"_blank\"} to ensure that products in your feed don’t violate these policies.",
+        "frequency" : {
+          "daily" : "Daily"
+        },
+        "teaser" : {
+          "title" : "Available in the next version",
+          "badge" : "Coming soon",
+          "syncScheduleCustomization" : "Sync schedule customization",
+          "exportOption" : "Export option",
+          "specificProductExclusion" : "Specific product exclusion"
+        }
       },
       "attributeMapping" : {
         "intro" : "Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.",

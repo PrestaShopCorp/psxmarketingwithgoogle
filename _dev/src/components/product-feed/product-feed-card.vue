@@ -240,9 +240,9 @@
           />
           <product-feed-card-report-card
             status="success"
-            :title="$t('productFeedSettings.steps.exportRules')"
-            :description="exportRules.join(', ')"
-            :details="exportRulesDetails.join(', ')"
+            :title="$t('productFeedSettings.steps.syncRules')"
+            :description="syncRules.join(', ')"
+            :details="syncRulesDetails.join(', ')"
             :link="$t('cta.editRules')"
             link-to="#"
           />
@@ -316,7 +316,7 @@ export default {
           title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
         },
         {
-          title: this.$i18n.t('productFeedSettings.steps.exportRules'),
+          title: this.$i18n.t('productFeedSettings.steps.syncRules'),
         },
         {
           title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
@@ -375,10 +375,10 @@ export default {
     taxSettings: {
       type: String,
     },
-    exportRules: {
+    syncRules: {
       type: Array,
     },
-    exportRulesDetails: {
+    syncRulesDetails: {
       type: Array,
     },
     excludedProductsDetails: {
