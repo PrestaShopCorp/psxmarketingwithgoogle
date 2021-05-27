@@ -66,6 +66,8 @@ export type MerchantCenterAccountContext = contentApi.Schema$Account & {
   claimError: string,
   // Allow displaying the error message
   websiteVerificationStatus: WebsiteClaimErrorReason|null,
+  // Display toast component once
+  connectedOnce: boolean,
 };
 
 export interface State {
@@ -108,5 +110,6 @@ export const state: State = {
     websiteVerificationStatus: null,
     claimError: '',
     users: [],
+    connectedOnce: false,
   },
 };

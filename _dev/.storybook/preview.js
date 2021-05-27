@@ -139,9 +139,15 @@ export const decorators = [
           background: none;
           padding: 0;
           min-width: 0;
-        "
-      >
-        <div id="googleShoppingApp"><story /></div>
+        ">
+        <div id="googleShoppingApp">
+        <div class="ps_gs-sticky-head">
+        <b-toaster
+          name="b-toaster-top-right"
+          class="ps_gs-toaster-top-right"
+        />
+      </div>
+        <story /></div>
       </div>
       `
   }),

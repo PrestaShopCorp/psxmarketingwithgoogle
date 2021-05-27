@@ -145,7 +145,12 @@ export default {
     return finished;
   },
 
-  // Comment to delete : launch toast Google account connected ONCE after connected
+  [ActionsTypes.SAVE_MCA_CONNECTION_ONCE](
+    {commit},
+  ) {
+    commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
+  },
+
   [ActionsTypes.SAVE_GOOGLE_CONNECTION_ONCE](
     {commit},
   ) {

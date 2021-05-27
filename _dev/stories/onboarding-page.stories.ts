@@ -1,8 +1,8 @@
 import OnboardingPage from '../src/views/onboarding-page.vue'
 import {initialStateApp} from '../.storybook/mock/state-app';
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
-import {googleAccountNotConnected, googleAccountConnected} from "../.storybook/mock/google-account";
-import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
+import {googleAccountNotConnected, googleAccountConnected, googleAccountConnectedOnce} from "../.storybook/mock/google-account";
+import {merchantCenterAccountNotConnected, merchantCenterAccountConnected, merchantCenterAccountConnectedOnce} from "../.storybook/mock/merchant-center-account";
 import Actions from '../.storybook/mock/actions-accounts';
 
 export default {
@@ -46,8 +46,7 @@ MerchantCenterAccount.args = {
       initialStateApp
     );
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
-    this.$store.state.accounts.googleAccount = googleAccountConnected;
-    this.$store.state.accounts.googleAccount.connectedOnce = true;
+    this.$store.state.accounts.googleAccount = googleAccountConnectedOnce;
     this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountNotConnected;
   },
 };
@@ -61,6 +60,6 @@ ProductFeed.args = {
     );
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
     this.$store.state.accounts.googleAccount = googleAccountConnected;
-    this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountConnected;
+    this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountConnectedOnce;
   },
 };

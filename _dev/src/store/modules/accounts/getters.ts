@@ -78,4 +78,7 @@ export default {
   [GetterTypes.GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS](state: LocalState) : String {
     return state.googleMerchantAccount.claimError;
   },
+  [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_CONNECTED_ONCE](state: LocalState) : boolean {
+    return state.googleMerchantAccount.connectedOnce;
+  },
 };

@@ -96,5 +96,8 @@ export default {
   [MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING](state: LocalState, overrideClaimStatus: string) {
     state.googleMerchantAccount.claimError = overrideClaimStatus;
   },
+  [MutationsTypes.SAVE_MCA_CONNECTED_ONCE](state: LocalState, response) {
+    state.googleMerchantAccount.connectedOnce = response;
+  },
   /** End of Merchant Center Account mutations */
 };
