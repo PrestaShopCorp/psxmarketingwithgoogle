@@ -141,7 +141,8 @@
         </i>
         <i
           v-if="syncStatus === 'warning'"
-          class="material-icons-round d-inline-block align-middle mr-1 mb-0 ps_gs-fz-16 text-warning"
+          class="material-icons-round d-inline-block align-middle mr-1 mb-0 ps_gs-fz-16
+            text-warning"
         >
           warning
         </i>

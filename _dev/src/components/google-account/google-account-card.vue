@@ -142,13 +142,13 @@
 
 import googleUrl from '@/assets/json/googleUrl.json';
 
+import {
+  BAlert,
+} from 'bootstrap-vue';
 import MutationsTypes from '../../store/modules/accounts/mutations-types';
 import ActionsTypes from '../../store/modules/accounts/actions-types';
 import Glass from '../commons/glass';
 import {GoogleAccountContext} from '../../store/modules/accounts/state';
-import {
-  BAlert,
-} from 'bootstrap-vue';
 
 export default {
   name: 'GoogleAccountCard',
