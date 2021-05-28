@@ -1,8 +1,114 @@
 <template>
+  <div>
+    <h3 class="ps_gs-fz-16 font-weight-600 mb-3">
+      {{ $t('productFeedSettings.export.synchronizationSchedule') }}
+    </h3>
+    <p>
+      <span class="mr-3">
+        {{ syncFrequency }}
+      </span>
+      <span class="mr-3">
+        {{ syncTime }}
+      </span>
+      <span>
+        {{ syncTimeZone }}
+      </span>
+    </p>
+    <div class="d-flex flex-column align-items-center p-3 bg-violet_extralight mt-4">
+      <div class="d-flex flex-wrap flex-sm-nowrap align-items-center mb-3">
+        <span
+          class="font-weight-600 mr-2 order-2 order-sm-0"
+        >
+          {{ $t('productFeedSettings.export.teaser.title') }}
+        </span>
+        <b-badge
+          class="ml-auto mb-1 ml-sm-0 mb-sm-0"
+          variant="primary"
+        >
+          {{ $t('productFeedSettings.export.teaser.badge') }}
+        </b-badge>
+      </div>
+      <ul class="pl-0 mb-2">
+        <li class="d-flex align-items-center mb-3">
+          <i class="material-icons mr-2">
+            schedule
+          </i>
+          <span class="ps_gs-fz-12">
+            {{ $t('productFeedSettings.export.teaser.syncScheduleCustomization') }}
+          </span>
+        </li>
+        <li class="d-flex align-items-center mb-3">
+          <i class="material-icons mr-2">
+            autorenew
+          </i>
+          <span class="ps_gs-fz-12">
+            {{ $t('productFeedSettings.export.teaser.exportOption') }}
+          </span>
+        </li>
+        <li class="d-flex align-items-center mb-0">
+          <i class="material-icons mr-2">
+            toggle_off
+          </i>
+          <span class="ps_gs-fz-12">
+            {{ $t('productFeedSettings.export.teaser.specificProductExclusion') }}
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
+      <b-button
+        size="sm"
+        class="mx-1 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
+        {{ $t("cta.back") }}
+      </b-button>
+      <b-button
+        size="sm"
+        class="mx-1 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
+        {{ $t("cta.cancel") }}
+      </b-button>
+      <b-button
+        size="sm"
+        :disabled="disableContinue"
+        class="mx-1 mt-3 mt-md-0 mr-md-0"
+        variant="primary"
+      >
+        {{ $t("cta.understandAndContinue") }}
+      </b-button>
+    </div>
+    <div
+      class="text-muted ps_gs-fz-12 mb-0 mt-2
+      d-flex align-items-start align-items-sm-center justify-content-end"
+    >
+      <b-button
+        v-b-tooltip
+        title="Tooltip!"
+        variant="invisible"
+        class="d-flex mr-1 text-muted p-0 border-0"
+      >
+        <span class="material-icons ps_gs-fz-14">
+          error_outline
+        </span>
+      </b-button>
+      <p>
+        {{ $t("productFeedSettings.noticeDataStored") }}
+      </p>
+    </div>
+    <VueShowdown
+      :markdown="$t('productFeedSettings.export.prohibitedContentNotice')"
+      :extensions="['targetlink']"
+      class="text-muted ps_gs-fz-12 pt-2 mt-5 mb-n3"
+    />
+  </div>
+  <!-- This is not in batch 1 -->
+  <!--
   <b-form>
     <b-form-group
       :label="$t('productFeedSettings.export.synchronizationSchedule')"
-      label-class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block"
+      label-class="ps_gs-fz-16 font-weight-600 mb-2 p-0 d-block bg-transparent border-0"
     >
       <b-form-row>
         <b-col
@@ -114,7 +220,7 @@
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
       >
-        {{ $t("cta.continue") }}
+        {{ $t("cta.understandAndContinue") }}
       </b-button>
     </div>
     <div
@@ -125,27 +231,29 @@
         v-b-tooltip
         title="Tooltip!"
         variant="invisible"
-        class="mr-1 text-muted p-0 border-0"
+        class="d-flex mr-1 text-muted p-0 border-0"
       >
-        <b-icon-exclamation-circle />
-        <span class="sr-only">Tooltip!</span>
+        <span class="material-icons ps_gs-fz-14">
+          error_outline
+        </span>
       </b-button>
       <p>
         {{ $t("productFeedSettings.noticeDataStored") }}
       </p>
     </div>
-  </b-form>
+  </b-form> -->
 </template>
 
 <script>
-import timezones from 'timezones.json';
-import {
-  BIconExclamationCircle,
-} from 'bootstrap-vue';
-import {Products} from '@/../fixtures/products.js';
-import PsSelect from '../commons/ps-select';
-import ProductFeedSettingsExportExcludeCategory from './product-feed-settings-export-exclude-category';
-import ProductFeedSettingsExportExcludeBrand from './product-feed-settings-export-exclude-brand';
+/**
+ * ! Not needed for batch 1
+ */
+// import timezones from 'timezones.json';
+// import {Products} from '@/../fixtures/products.js';
+// import PsSelect from '../commons/ps-select';
+// import ProductFeedSettingsExportExcludeCategory from
+// './product-feed-settings-export-exclude-category';
+// import ProductFeedSettingsExportExcludeBrand from './product-feed-settings-export-exclude-brand';
 
 /**
  ** Import fixture of products.
@@ -155,69 +263,84 @@ import ProductFeedSettingsExportExcludeBrand from './product-feed-settings-expor
 
 export default {
   name: 'ProductFeedSettingsExport',
-  components: {
-    PsSelect,
-    BIconExclamationCircle,
-    ProductFeedSettingsExportExcludeCategory,
-    ProductFeedSettingsExportExcludeBrand,
-  },
+  /**
+   * ! Not needed for batch 1
+   */
+  // components: {
+  //   PsSelect,
+  //   ProductFeedSettingsExportExcludeCategory,
+  //   ProductFeedSettingsExportExcludeBrand,
+  // },
+  // data() {
+  //   return {
+  //     exportMethods: [
+  //       {
+  //         text: this.$i18n.t('productFeedSettings.export.allProducts'),
+  //         value: 'all',
+  //       },
+  //       {
+  //         text: this.$i18n.t('productFeedSettings.export.byBrand'),
+  //         value: 'category',
+  //       },
+  //       {
+  //         text: this.$i18n.t('productFeedSettings.export.byCategory'),
+  //         value: 'brand',
+  //       },
+  //     ],
+  //     selectedSyncTime: 0,
+  //     selectedTimeZone: 0,
+  //     selectedExportMethod: 'all',
+  //     selectedExcludeProducts: [],
+  //     searchString: '',
+  //     allCategoriesIndeterminate: true,
+  //     options: Products,
+  //   };
+  // },
+  // methods: {
+  //   getTimeRanges(interval, language = window.navigator.language) {
+  //     const ranges = [];
+  //     const date = new Date();
+  //     const format = {
+  //       hour: 'numeric',
+  //       minute: 'numeric',
+  //     };
+  //     for (let minutes = 0; minutes < 24 * 60; minutes += interval) {
+  //       date.setHours(0);
+  //       date.setMinutes(minutes);
+  //       ranges.push(date.toLocaleTimeString(language, format));
+  //     }
+  //     return ranges;
+  //   },
+  //   pushSelectedExcludeProducts(event) {
+  //     this.selectedExcludeProducts = event;
+  //   },
+  //   searchProducts(event) {
+  //     this.searchString = event;
+  //   },
+  //   highlightSearch(str) {
+  //     /** Highlight search terms */
+  //     const regex = new RegExp(`(${this.searchString})`, 'gi');
+  //     return str.replace(regex, '<strong>$1</strong>');
+  //   },
+  // },
   data() {
     return {
-      exportMethods: [
-        {
-          text: this.$i18n.t('productFeedSettings.export.allProducts'),
-          value: 'all',
-        },
-        {
-          text: this.$i18n.t('productFeedSettings.export.byBrand'),
-          value: 'category',
-        },
-        {
-          text: this.$i18n.t('productFeedSettings.export.byCategory'),
-          value: 'brand',
-        },
-      ],
-      selectedSyncTime: 0,
-      selectedTimeZone: 0,
-      selectedExportMethod: 'all',
-      selectedExcludeProducts: [],
-      searchString: '',
-      allCategoriesIndeterminate: true,
-      options: Products,
+      syncFrequency: this.$i18n.t('productFeedSettings.export.frequency.daily'),
+      syncTime: '2:00 AM',
+      syncTimeZone: '(UTC+01:00) Normal time in Central Europe (Paris)',
     };
-  },
-  methods: {
-    getTimeRanges(interval, language = window.navigator.language) {
-      const ranges = [];
-      const date = new Date();
-      const format = {
-        hour: 'numeric',
-        minute: 'numeric',
-      };
-      for (let minutes = 0; minutes < 24 * 60; minutes += interval) {
-        date.setHours(0);
-        date.setMinutes(minutes);
-        ranges.push(date.toLocaleTimeString(language, format));
-      }
-      return ranges;
-    },
-    pushSelectedExcludeProducts(event) {
-      this.selectedExcludeProducts = event;
-    },
-    searchProducts(event) {
-      this.searchString = event;
-    },
-    highlightSearch(str) {
-      /** Highlight search terms */
-      const regex = new RegExp(`(${this.searchString})`, 'gi');
-      return str.replace(regex, '<strong>$1</strong>');
-    },
   },
   computed: {
     disableContinue() {
-      return true;
+      /**
+       * ! Some validation will be necessary in batch 2
+       */
+      return false;
     },
   },
-  timezones,
+  /**
+   * ! Not needed for batch 1
+   */
+  // timezones,
 };
 </script>
