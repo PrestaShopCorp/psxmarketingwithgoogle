@@ -13,13 +13,13 @@
           >
             check_circle
           </i>
-          <span
+          <i
             v-else
             class="material-icons-round ps_gs-fz-18 mb-0 mr-2"
             :class="`text-${status}`"
           >
             warning
-          </span>
+          </i>
           {{ title }}
         </div>
         <b-link
