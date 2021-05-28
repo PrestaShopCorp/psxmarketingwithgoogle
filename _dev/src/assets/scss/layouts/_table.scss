@@ -13,3 +13,106 @@
 .table.b-table[class*="b-table-stacked"] > tbody > tr > :first-child {
   border-top-width: 1px;
 }
+
+@include media-breakpoint-down(sm) {
+  .ps_gs-table-products {
+    tbody {
+      tr {
+        display: flex !important;
+        flex-wrap: wrap;
+        padding-top: rem(8);
+        padding-bottom: rem(8);
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $gray-400;
+        }
+
+        td {
+          border: none;
+        }
+      }
+    }
+
+    &__status,
+    &__issue {
+      width: 100%;
+      margin-top: rem(-8);
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .ps_gs-table-controls {
+    &::before {
+      content: '';
+      width: 100%;
+      order: 1;
+    }
+
+    &__products-shown {
+      margin-left: auto;
+    }
+
+    &__pagination {
+      order: 2;
+      width: auto;
+
+      ul {
+        justify-content: space-between;
+      }
+    }
+
+    &__go-to {
+      order: 2;
+      width: auto;
+      margin-left: auto;
+
+      input {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .ps_gs-table-controls {
+    &::before {
+      order: 2;
+    }
+
+    &__pagination {
+      width: 100%;
+
+      .page-item {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .page-link {
+        padding-left: rem(4);
+        padding-right: rem(4);
+      }
+    }
+
+    &__go-to {
+      order: 3;
+      width: 100%;
+    }
+  }
+}
+
+.ps_gs-table-controls {
+  &__go-to {
+    input {
+      max-width: 74px;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .ps_gs-table-controls {
+    &::before {
+      content:unset;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 .ps_gs-breadcrumb {
   &__item {
+    $item: '.ps_gs-breadcrumb__item';
     display: flex;
     font-size: rem(12);
     font-weight: 600;
@@ -12,7 +13,7 @@
       line-height: 1.2em;
     }
 
-    & + &::before {
+    & + #{$item}::before {
       content: '>';
       margin-right: rem(8);
     }

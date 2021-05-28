@@ -3,6 +3,7 @@ node_modules/
 upload/*
 dist/
 composer.phar
+config.yml
 
 # Ignore VueJS compiled files
 views/css/app.css

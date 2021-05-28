@@ -6,16 +6,18 @@ a[target="_blank"].text-muted {
 }
 
 a[target="_blank"] {
-  text-decoration: underline;
-
-  &:hover,
-  &:focus {
-    color: $blue;
-  }
-
-  &:active,
-  &:visited {
-    color: $blue_dark;
+  &:not(.btn) {
+    text-decoration: underline;
+  
+    &:hover,
+    &:focus {
+      color: $blue;
+    }
+  
+    &:active,
+    &:visited {
+      color: $blue_dark;
+    }
   }
 
   &::after {
@@ -59,8 +61,11 @@ a[target="_blank"] {
   }
 }
 
-.badge-muted {
+.badge {
   font-size: rem(12);
+}
+
+.badge-muted {
   background-color: $grey_light;
   color: $grey_muted;
 }
@@ -75,4 +80,8 @@ a[target="_blank"] {
 
 .color-grey_darklight {
   color: $grey_darklight;
+}
+
+.bg-violet_extralight {
+  background-color: $violet_extralight;
 }

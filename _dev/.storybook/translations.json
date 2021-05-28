@@ -139,16 +139,17 @@
       "excludedProducts" : "Excluded products"
     },
     "productFeedSettings" : {
-      "breadcrumb" : "Product feed settings",
+      "breadcrumb1" : "Product feed",
+      "breadcrumb2" : "Product feed settings",
       "steps" : {
         "shippingSettings" : "Shipping settings",
-        "exportRules" : "Export rules",
+        "syncRules" : "Synchronization rules",
         "attributeMapping" : "Attribute mapping",
         "categoryMapping" : "Category mapping",
         "summary" : "Summary",
         "exportFeed" : "Export feed!"
       },
-      "noticeDataStored" : "Data are stored at each step but will be submitted only at the final step.",
+      "noticeDataStored" : "Each step is saved but everything is submitted at the end",
       "shipping" : {
         "targetCountries" : "Target countries",
         "ifMultipleCountries" : "If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.",
@@ -163,10 +164,12 @@
         "taxSettings" : "Tax settings",
         "taxSettingsDescription" : "So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect. Select how you want to set up tax settings.",
         "autoImportTax" : "Automatically import tax settings",
-        "manualImportTax" : "Manually set up tax settings in Google Merchant Center"
+        "manualImportTax" : "Manually set up tax settings in Google Merchant Center",
+        "appliedOnlyForUsa" : "(applied only for the USA)",
+        "alertTaxes" : "So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect."
       },
       "export" : {
-        "synchronizationSchedule" : "Synchronization schedule",
+        "synchronizationSchedule" : "Export synchronization schedule",
         "synchronizationTime" : "Synchronization time",
         "timeZone" : "Time zone",
         "exportMethod" : "Export method",
@@ -178,7 +181,18 @@
         "selectCategoriesToExport" : "Select categories to export",
         "allCategories" : "All categories",
         "labelSelectBrand" : "Select brand",
-        "placeholderSelectBrand" : "Search brand"
+        "placeholderSelectBrand" : "Search brand",
+        "prohibitedContentNotice" : "Please review the [prohibited content guidelines](//google.com){:target=\"_blank\"} to ensure that products in your feed don’t violate these policies.",
+        "frequency" : {
+          "daily" : "Daily"
+        },
+        "teaser" : {
+          "title" : "Available in the next version",
+          "badge" : "Coming soon",
+          "syncScheduleCustomization" : "Sync schedule customization",
+          "exportOption" : "Export option",
+          "specificProductExclusion" : "Specific product exclusion"
+        }
       },
       "attributeMapping" : {
         "intro" : "Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.",
@@ -248,7 +262,7 @@
         "approvedProducts" : "Approved products",
         "pendingProducts" : "Pending products",
         "disapprovedProducts" : "Not approved products",
-        "productsInGoogleCatalog" : "Products in Google cataog: {0}"
+        "productsInGoogleCatalog" : "Products in Google catalog: {0}"
       }
     },
     "help" : {
@@ -324,7 +338,9 @@
       "createAccount" : "Create account",
       "saveChange" : "Save change",
       "close" : "Close",
-      "checkProductsStatusDetails" : "Check products status details"
+      "checkProductsStatusDetails" : "Check products status details",
+      "setupTaxSettings" : "Set up tax settings",
+      "understandAndContinue" : "Understand and continue"
     },
     "badge" : {
       "free" : "Free",

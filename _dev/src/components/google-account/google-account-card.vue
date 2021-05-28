@@ -115,6 +115,8 @@
             size="sm"
             variant="outline-secondary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
+            :href="$options.googleUrl.manageGoogleAccount"
+            target="_blank"
           >
             {{ $t('cta.manageAccount') }}
           </b-button>
@@ -133,6 +135,7 @@
 </template>
 
 <script>
+import googleUrl from '@/assets/json/googleUrl.json';
 
 import {
   BIconstack,
@@ -251,6 +254,7 @@ export default {
       this.$emit('dissociateGoogleAccount');
     },
   },
+  googleUrl,
 };
 </script>
 

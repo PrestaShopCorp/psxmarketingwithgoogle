@@ -9,5 +9,6 @@
   "returnPolicy" : "//google.com",
   "billingTerms" : "//google.com",
   "completeCheckoutProcess" : "//google.com",
-  "policyAdultContent" : "//google.com"
+  "policyAdultContent" : "//google.com",
+  "manageGoogleAccount" : "https://myaccount.google.com/"
 }

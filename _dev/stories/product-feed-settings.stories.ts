@@ -16,7 +16,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ProductFeedSettings },
-  template: '<ProductFeedSettings v-bind="$props" />',
+  template: '<div><ProductFeedSettings v-bind="$props" /></div>',
 });
 
 export const ShippingSettings:any = Template.bind({});
