@@ -200,22 +200,6 @@
             :link="'Review problems'"
             link-to="#"
           />
-          <product-feed-card-report-products-card
-            badge-variant="success"
-            :badge-text="$t('badge.readyToSync')"
-            :badge-tooltip="'placeholder'"
-            :sync-status="syncStatus"
-            :nb-products="nbProductsReadyToSync"
-          />
-          <product-feed-card-report-products-card
-            badge-variant="warning"
-            :badge-text="$t('badge.cantSync')"
-            :badge-tooltip="'placeholder'"
-            :sync-status="syncStatus"
-            :nb-products="nbProductsCantSync"
-            :cta-text="$t('cta.whyDidntWork')"
-            :cta-link="$options.googleUrl.syncFailed"
-          />
         </b-row>
       </b-container>
       <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
