@@ -187,6 +187,20 @@
           class="mx-n1"
         >
           <product-feed-card-report-products-card
+            status="success"
+            :title="'Products ready to be synced'"
+            :nbProducts="nbProductsReadyToSync"
+            :sync-status="syncStatus"
+          />
+          <product-feed-card-report-products-card
+            status="warning"
+            :title="'Products with problems'"
+            :nbProducts="nbProductsCantSync"
+            :sync-status="syncStatus"
+            :link="'Review problems'"
+            link-to="#"
+          />
+          <product-feed-card-report-products-card
             badge-variant="success"
             :badge-text="$t('badge.readyToSync')"
             :badge-tooltip="'placeholder'"
