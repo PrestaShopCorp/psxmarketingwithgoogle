@@ -189,13 +189,13 @@
           <product-feed-card-report-products-card
             status="success"
             :title="$t('productFeedCard.productsReadyToBeSynced')"
-            :nbProducts="nbProductsReadyToSync"
+            :nb-products="nbProductsReadyToSync"
             :sync-status="syncStatus"
           />
           <product-feed-card-report-products-card
             status="warning"
             :title="$t('productFeedCard.productsWithProblems')"
-            :nbProducts="nbProductsCantSync"
+            :nb-products="nbProductsCantSync"
             :sync-status="syncStatus"
             :link="$t('cta.reviewProblems')"
             link-to="#"

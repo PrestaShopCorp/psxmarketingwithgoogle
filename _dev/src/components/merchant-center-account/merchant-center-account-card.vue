@@ -19,19 +19,12 @@
         >
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
           {{ $t('mcaCard.title') }}
-          <b-iconstack
+          <i
             v-if="mcaConfigured && !error"
-            font-scale="1.5"
-            class="ml-2 mr-3 fixed-size text-success"
-            width="20"
-            height="20"
+            class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
           >
-            <b-icon-circle-fill stacked />
-            <b-icon-check
-              stacked
-              variant="white"
-            />
-          </b-iconstack>
+            check_circle
+          </i>
         </b-card-text>
       </div>
     </div>
@@ -45,8 +38,8 @@
       v-if="!isEnabled"
       class="d-flex pt-2"
     >
-      <span class="mr-2">
-        <b-icon-exclamation-circle />
+      <span class="material-icons-round mr-2 mb-0 ps_gs-fz-16 align-self-center">
+        error_outline
       </span>
       <ul class="list-inline mb-0">
         <li
@@ -71,7 +64,7 @@
           <b-dropdown
             id="mcaSelection"
             ref="mcaSelection"
-            :text="mcaLabel(selectedMcaIndex) || $t('cta.chooseAccount')"
+            :text="mcaLabel(selectedMcaIndex) || $t('cta.selectAccount')"
             variant=" "
             class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
             menu-class="ps-dropdown"
@@ -79,13 +72,20 @@
             size="sm"
           >
             <b-dropdown-item
+              class="px-1"
+              :disabled="true"
+              v-if="mcaListLoading"
+            >
+              <i class="icon-busy icon-busy--dark" />
+            </b-dropdown-item>
+            <b-dropdown-item
               v-for="(option, index) in mcaSelectionOptions"
               :key="option.id"
               @click="selectedMcaIndex = index"
               :disabled="!isMcaUserAdmin(index)"
               variant="dark"
             >
-              {{ mcaLabel(index) }}
+              <span class="pl-1">{{ mcaLabel(index) }}</span>
               <span v-if="!isMcaUserAdmin(index)">
                 {{ $t('mcaCard.userIsNotAdmin') }}
               </span>
@@ -270,29 +270,21 @@
 import googleUrl from '@/assets/json/googleUrl.json';
 
 import {
-  BIconstack,
-  BIconCheck,
-  BIconCircleFill,
-  BIconExclamationCircle,
-} from 'bootstrap-vue';
-
-import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
 
 export default {
   name: 'MerchantCenterAccountCard',
-  components: {
-    BIconstack,
-    BIconCheck,
-    BIconCircleFill,
-    BIconExclamationCircle,
-  },
   data() {
     return {
       selectedMcaIndex: null,
       WebsiteClaimErrorReason,
       displaySiteVerified: false,
+      /**
+       * TODO: Handle mcaListLoading
+       * Should be set to false as soon as we get the list of MCA
+       */
+      mcaListLoading: true,
     };
   },
   props: {
