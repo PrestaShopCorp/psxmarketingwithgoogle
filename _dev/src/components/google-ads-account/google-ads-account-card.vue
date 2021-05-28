@@ -40,16 +40,10 @@
           {{ $t('googleAdsAccountCard.title') }}
         </b-card-text>
       </div>
-      <p class="ps_gs-fz-12 mt-3 mb-0">
-        {{ $t('googleAdsAccountCard.intro') }}
-      </p>
       <div v-if="isEnabled && !googleAdsAccountConfigured">
-        <p class="mt-3">
-          {{ $t('googleAdsAccountCard.text') }}
-        </p>
-        <b-form class="mb-2">
+        <b-form class="mt-3 mb-2">
           <legend
-            class="mb-1 h4 font-weight-600"
+            class="mb-1 h4 font-weight-600 border-0 bg-transparent"
           >
             {{ $t('googleAdsAccountCard.labelSelect') }}
           </legend>
@@ -139,6 +133,12 @@
           </b-button>
         </div>
       </div>
+      <p
+        v-if="!isConnected"
+        class="mt-3 mb-0 ps_gs-fz-12 text-muted"
+      >
+        {{ $t('googleAdsAccountCard.text') }}
+      </p>
     </template>
   </b-card>
 </template>

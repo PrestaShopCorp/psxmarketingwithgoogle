@@ -287,7 +287,7 @@ class PsGoogleShoppingTranslations
                 'alertEnableFreeListingAndProductFeed' => $this->module->l('Enable free listing to display your products on Google Shopping tab for free. This action will cause the reactivation of the product feed.', 'PsGoogleShoppingTranslations'),
             ],
             'googleAdsAccountCard' => [
-                'title' => $this->module->l('Google Ads Account', 'PsGoogleShoppingTranslations'),
+                'title' => $this->module->l('Connect your Google Ads account', 'PsGoogleShoppingTranslations'),
                 'intro' => $this->module->l('Create adverstising campaigns for your products: find the right audience at the right time', 'PsGoogleShoppingTranslations'),
                 'text' => $this->module->l('Once connected you may need to configure your billing settings in your Google Ads account.', 'PsGoogleShoppingTranslations'),
                 'labelSelect' => $this->module->l('Connect an existing Google Ads account', 'PsGoogleShoppingTranslations'),
