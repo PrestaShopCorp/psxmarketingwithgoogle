@@ -7,138 +7,131 @@ $stepWidth: rem(32);
 }
 
 .ps_gs-stepper-step {
-  $root: '.ps_gs-stepper-step';
+  @include media-breakpoint-down(xs) {
+    display: none;
 
-  z-index: 1;
+    &.active,
+    &:last-child {
+      display: block;
+    }
+
+    .ps_gs-stepper-step__link {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &.active {
+      .ps_gs-stepper-step__step {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        padding-top: 100%;
+        display: flex;
+        border: 4px solid $grey_muted;
+        border-radius: 100%;
+        font-size: rem(18) !important;
+
+        span {
+          font-size: inherit;
+          margin-left: -1ch;
+          margin-top: -0.5ch;
+
+          &:after {
+            content: '/';
+            font-size: 0.5em;
+          }
+        }
+      }
+
+      .ps_gs-stepper-step__title {
+        margin-left: auto;
+        font-size: rem(18) !important;
+      }
+    }
+    &:last-child {
+      .ps_gs-stepper-step__step {
+        margin-left: calc(#{$stepWidth} + 0.5ch) ;
+        margin-top: -0.5ch;
+        font-size: rem(18) !important;
+      }
+    }
+  }
+}
+
+.ps_gs-stepper-step {
+  $root: '.ps_gs-stepper-step';
   list-style: none;
-  text-align: center;
 
   @include media-breakpoint-up(sm) {
+    z-index: 1;
+    text-align: center;
     max-width: 130px;
-  }
+    margin-bottom: rem(16);
 
-  &__link {
-    display: inline-block;
+    &__link {
+      display: inline-block;
+    }
 
-    a#{&}:hover, a#{&}:focus {
+    a#{$root}__link:hover, a#{$root}__link:focus {
       text-decoration: none;
 
       #{$root}__title {
-        color: $blue;
+        color: $blue !important;
         text-decoration: underline;
       }
     }
 
-    @include media-breakpoint-down(xs) {
-      display: flex;
-      align-items: center;
-      padding: rem(4) 0;
-      margin-bottom: 0;
-    }
-  }
 
-  &__title {
-    color: $grey_muted;
-  }
-
-  &.active,
-  &.complete {
-    #{$root}__step {
-      background-color: $blue;
-      border-color: $blue;
-      color: #fff;
-      font-weight: 600;
+    &__title {
+      color: $grey_muted;
     }
 
-    #{$root}__title {
-      color: $grey_dark;
-    }
-  }
+    &.active,
+    &.complete {
+      #{$root}__step {
+        background-color: $blue;
+        border-color: $blue;
+        color: #fff;
+        font-weight: 600;
+      }
 
-  &.active ~ #{$root}::after {
-    content:'';
-    display: block;
-    position: absolute;
-    background: $grey_median;
-
-    @include media-breakpoint-down(xs) {
-      width: 2px;
-      left: calc(#{$stepWidth} / 2 - 1px);
-      top: calc(-50% + #{$stepWidth} / 2);
-      height: calc(100% - #{$stepWidth});
+      #{$root}__title {
+        color: $grey_dark;
+      }
     }
 
-    @include media-breakpoint-up(sm) {
-      height: 2px;
-      top: calc(#{$stepWidth} / 2 - 1px);
-      left: calc(-50% + #{$stepWidth} / 2);
-      width: calc(100% - #{$stepWidth});
+    &.active ~ #{$root}::after {
+      content:'';
+      display: block;
+      position: absolute;
+      background: $grey_median;
+
+        height: 2px;
+        top: calc(#{$stepWidth} / 2 - 1px);
+        left: calc(-50% + #{$stepWidth} / 2);
+        width: calc(100% - #{$stepWidth});
     }
-  }
 
-  @include media-breakpoint-up(sm) {
-    margin-bottom: rem(16);
-  }
 
-  &__step {
-    width: $stepWidth;
-    height: $stepWidth;
-    margin: 0 1rem 0 0;
-    font-size: 0.875rem;
-    color: $grey_muted;
-    background-color: #fff;
-    border: 2px solid $grey_median;
-    border-radius: 50%;
-
-    @include media-breakpoint-up(sm) {
-      margin: 0 auto .5rem;
+    &__step {
+      width: $stepWidth;
+      height: $stepWidth;
+      font-size: 0.875rem;
+      color: $grey_muted;
+      background-color: #fff;
+      border: 2px solid $grey_median;
+      border-radius: 50%;
+        margin: 0 auto .5rem;
     }
-  }
 
-  &.complete::before,
-  &.active::before {
-    content: '';
-    display: block;
-    position: absolute;
-    background: $blue;
-    z-index: -1;
-  }
-
-  @include media-breakpoint-down(xs) {
     &.complete::before,
     &.active::before {
-      width: 2px;
-      top: 0;
-      bottom: 50%;
-      left: calc(#{$stepWidth} / 2 - 1px);
-    }
-
-    &.complete:first-child::before,
-    &.active:first-child::before {
-      top: calc(#{$stepWidth} / 2);
-    }
-
-    &.complete::before {
-      bottom: 0;
-    }
-
-    &.complete + #{$root}.complete:before {
-      top: 0;
-      bottom: 0;
-    }
-
-    &.complete + #{$root}.complete:last-child:before {
-      height: 50%;
-    }
-
-    &.complete + #{$root}.active::before {
-      top: 0;
-    }
-  }
-
-  @include media-breakpoint-up(sm) {
-    &.complete::before,
-    &.active::before {
+      content: '';
+      display: block;
+      position: absolute;
+      background: $blue;
+      z-index: -1;
       height: 2px;
       width: 50%;
       top: calc(#{$stepWidth} / 2 - 1px);
