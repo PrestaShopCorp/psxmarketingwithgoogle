@@ -185,6 +185,8 @@ class PsGoogleShoppingTranslations
                 'optional' => $this->module->l('Optional', 'PsGoogleShoppingTranslations'),
                 'attributeDescription' => $this->module->l('With these attributes, you can organize your advertising campaigns in Google Ads and override the category automatically assigned by Google in some cases.', 'PsGoogleShoppingTranslations'),
                 'excludedProducts' => $this->module->l('Excluded products', 'PsGoogleShoppingTranslations'),
+                'productsReadyToBeSynced' => $this->module->l('Products ready to be synced', 'PsGoogleShoppingTranslations'),
+                'productsWithProblems' => $this->module->l('Products with problems', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedSettings' => [
                 'breadcrumb1' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),
@@ -389,6 +391,7 @@ class PsGoogleShoppingTranslations
                 'checkProductsStatusDetails' => $this->module->l('Check products status details', 'PsGoogleShoppingTranslations'),
                 'setupTaxSettings' => $this->module->l('Set up tax settings', 'PsGoogleShoppingTranslations'),
                 'understandAndContinue' => $this->module->l('understandAndContinue', 'PsGoogleShoppingTranslations'),
+                'reviewProblems' => $this->module->l('Review problems', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),

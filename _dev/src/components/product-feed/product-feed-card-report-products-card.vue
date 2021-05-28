@@ -4,7 +4,7 @@
     class="ps_gs-productfeed-report-card"
   >
     <div class="px-3 py-2">
-      <div class="d-flex justify-content-between font-weight-600 ps_gs-fz-13 mb-2">
+      <div class="d-flex justify-content-between font-weight-600 ps_gs-fz-13 mb-1">
         <div class="d-flex align-items-center">
           <i
             v-if="status === 'success'"

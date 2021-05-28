@@ -136,7 +136,9 @@
       "googleTaxonomyAssociation" : "Google Product taxonomy association",
       "optional" : "Optional",
       "attributeDescription" : "With these attributes, you can organize your advertising campaigns in Google Ads and override the category automatically assigned by Google in some cases.",
-      "excludedProducts" : "Excluded products"
+      "excludedProducts" : "Excluded products",
+      "productsReadyToBeSynced" : "Products ready to be synced",
+      "productsWithProblems" : "Products with problems"
     },
     "productFeedSettings" : {
       "breadcrumb1" : "Product feed",
@@ -340,7 +342,8 @@
       "close" : "Close",
       "checkProductsStatusDetails" : "Check products status details",
       "setupTaxSettings" : "Set up tax settings",
-      "understandAndContinue" : "Understand and continue"
+      "understandAndContinue" : "Understand and continue",
+      "reviewProblems": "Review problems"
     },
     "badge" : {
       "free" : "Free",
