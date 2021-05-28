@@ -205,9 +205,9 @@ export default {
     merchantCenterAccountIsChosen() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
-    // merchantCenterAccountIsOnboarded() {
-    //   return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
-    // },
+    merchantCenterAccountIsOnboarded() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
+    },
     merchantCenterAccountConnectedOnce() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_CONNECTED_ONCE'];
     },
