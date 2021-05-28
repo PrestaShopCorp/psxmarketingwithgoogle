@@ -122,6 +122,12 @@
       ToDo: Consider moving the "associated state" in a dedicated component
       As we only use data from the vuex store
     -->
+    <p
+      v-if="isEnabled && selectedMcaDetails.id !== null"
+      class="mb-0"
+    >
+      {{ $t('mcaCard.googleMCA') }}
+    </p>
     <div
       v-if="isEnabled && selectedMcaDetails.id !== null"
       class="d-flex flex-wrap flex-md-nowrap justify-content-between"

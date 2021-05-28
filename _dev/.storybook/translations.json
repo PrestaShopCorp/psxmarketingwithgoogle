@@ -59,7 +59,7 @@
     },
     "mcaCard" : {
       "title" : "Make your products available to shoppers accross Google",
-      "introDisabled" : "Once connected your Google account you will be able to associate your Merchant Center account.",
+      "introDisabled" : "Associate your Merchant Center account to get your store and products information into Google",
       "introEnabled" : "[Google Merchant Center](//google.com){:target=\"_blank\"} helps you get your store and product info into Google and make it available to shoppers across Google.",
       "labelSelect" : "Connect an existing Merchant Center account",
       "claimCollides" : "Your current website claim collides with an existing claim",
@@ -67,7 +67,8 @@
       "footerEU" : "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)](//google.com){:target=\"_blank\"}  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners](//google.com){:target=\"_blank\"}  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
       "shopInfoMissing" : "Shop information is missing",
       "shopInfoMissingDescription" : "To check if it is a validity issue or if you are not following our rules, please log in to your account at",
-      "userIsNotAdmin" : "(You are not admin)"
+      "userIsNotAdmin" : "(You are not admin)",
+      "googleMCA" : "Google Merchant Center account"
     },
     "mcaRequirements" : {
       "steps": {
@@ -121,7 +122,7 @@
       "alert" : "If one of these requirements is missing, your Merchant Center account will be disapproved."
     },
     "productFeedCard" : {
-      "title" : "Product feed export configuration",
+      "title" : "Send your products data to Google",
       "intro" : "Allows you to display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns",
       "introToConfigure" : "Submitting your product data to Google in the correct format is important for creating successful ads and free listings for your products. We use this data to make sure that it's matched to the right queries.",
       "nextSync" : "Next sync: {0}",

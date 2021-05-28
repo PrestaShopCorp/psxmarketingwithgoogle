@@ -108,7 +108,7 @@ class PsGoogleShoppingTranslations
             ],
             'mcaCard' => [
                 'title' => $this->module->l('Make your products available to shoppers accross Google', 'PsGoogleShoppingTranslations'),
-                'introDisabled' => $this->module->l('Once connected your Google account you will be able to associate your Merchant Center account.', 'PsGoogleShoppingTranslations'),
+                'introDisabled' => $this->module->l('Associate your Merchant Center account to get your store and products information into Google', 'PsGoogleShoppingTranslations'),
                 'introEnabled' => $this->module->l('[Google Merchant Center](//google.com){:target="_blank"} helps you get your store and product info into Google and make it available to shoppers across Google.', 'PsGoogleShoppingTranslations'),
                 'labelSelect' => $this->module->l('Connect an existing Merchant Center account', 'PsGoogleShoppingTranslations'),
                 'claimCollides' => $this->module->l('Your current website claim collides with an existing claim', 'PsGoogleShoppingTranslations'),
@@ -117,6 +117,7 @@ class PsGoogleShoppingTranslations
                 'shopInfoMissing' => $this->module->l('Shop information is missing', 'PsGoogleShoppingTranslations'),
                 'shopInfoMissingDescription' => $this->module->l('To check if it is a validity issue or if you are not following our rules, please log in to your account a', 'PsGoogleShoppingTranslations'),
                 'userIsNotAdmin' => $this->module->l('(You are not admin)', 'PsGoogleShoppingTranslations'),
+                'googleMCA' => $this->module->l('Google Merchant Center account', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
@@ -169,7 +170,7 @@ class PsGoogleShoppingTranslations
                 'alert' => $this->module->l('If one of these requirements is missing, your Merchant Center account will be disapproved.', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedCard' => [
-                'title' => $this->module->l('Product feed export configuration', 'PsGoogleShoppingTranslations'),
+                'title' => $this->module->l('Send your products data to Google', 'PsGoogleShoppingTranslations'),
                 'intro' => $this->module->l('Allows you to display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns', 'PsGoogleShoppingTranslations'),
                 'introToConfigure' => $this->module->l('Submitting your product data to Google in the correct format is important for creating successful ads and free listings for your products. We use this data to make sure that it\'s matched to the right queries.', 'PsGoogleShoppingTranslations'),
                 'nextSync' => $this->module->l('Next sync: {0}', 'PsGoogleShoppingTranslations'),
