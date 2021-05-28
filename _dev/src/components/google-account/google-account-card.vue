@@ -38,22 +38,12 @@
         <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
           {{ $t('googleAccountCard.title') }}
         </b-card-text>
-        <b-iconstack
+        <i
           v-if="user && user.details.email"
-          font-scale="1.5"
-          class="mx-3"
-          width="20"
-          height="20"
+          class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
         >
-          <b-icon-circle-fill
-            stacked
-            class="text-success"
-          />
-          <b-icon-check
-            stacked
-            variant="white"
-          />
-        </b-iconstack>
+          check_circle
+        </i>
       </div>
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
         <p
@@ -138,11 +128,6 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 
-import {
-  BIconstack,
-  BIconCheck,
-  BIconCircleFill,
-} from 'bootstrap-vue';
 import MutationsTypes from '../../store/modules/accounts/mutations-types';
 import ActionsTypes from '../../store/modules/accounts/actions-types';
 import Glass from '../commons/glass';
@@ -151,7 +136,7 @@ import {GoogleAccountContext} from '../../store/modules/accounts/state';
 export default {
   name: 'GoogleAccountCard',
   components: {
-    BIconstack, BIconCheck, BIconCircleFill, Glass,
+    Glass,
   },
   data() {
     return {
