@@ -122,21 +122,38 @@
         </p>
       </div>
     </template>
+    <!-- TODO : Alert to show when error -->
+    <!-- <b-alert
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      {{ error }}
+    </b-alert> -->
   </b-card>
 </template>
 
 <script>
+/**
+ * TODO: Handle error cases (x2)
+ * "Can't connect" and "Token missing"
+ * When "Can't connect", CTA should be disabled
+ */
+
 import googleUrl from '@/assets/json/googleUrl.json';
 
 import MutationsTypes from '../../store/modules/accounts/mutations-types';
 import ActionsTypes from '../../store/modules/accounts/actions-types';
 import Glass from '../commons/glass';
 import {GoogleAccountContext} from '../../store/modules/accounts/state';
+import {
+  BAlert,
+} from 'bootstrap-vue';
 
 export default {
   name: 'GoogleAccountCard',
   components: {
-    Glass,
+    Glass, BAlert,
   },
   data() {
     return {
@@ -144,6 +161,7 @@ export default {
       popup: null,
       popupMessageListener: null,
       popupClosingLooper: null,
+      error: null,
     };
   },
   props: {
