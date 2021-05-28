@@ -45,15 +45,18 @@
         </span>
       </div>
     </div>
-    <p class="ps_gs-fz-12">
+    <p
+      class="ps_gs-fz-12"
+      v-if="!isEnabled"
+    >
       {{ $t("productFeedCard.intro") }}
     </p>
     <div
       v-if="!isEnabled"
       class="d-flex mt-2"
     >
-      <span class="mr-2">
-        <b-icon-exclamation-circle />
+      <span class="material-icons-round mr-2 mb-0 ps_gs-fz-16 align-self-center">
+        error_outline
       </span>
       <ul class="list-inline mb-0">
         <li
@@ -130,29 +133,24 @@
           v-if="syncStatus === 'busy'"
           class="icon-busy icon-busy--dark mr-1 align-middle"
         />
-        <b-icon-exclamation-circle
+        <i
           v-if="syncStatus === 'error'"
-          variant="danger"
-          class="d-inline-block align-middle mr-1"
-        />
-        <b-icon-exclamation-triangle-fill
-          v-if="syncStatus === 'warning'"
-          variant="warning"
-          class="d-inline-block align-middle mr-1"
-        />
-        <b-iconstack
-          v-if="syncStatus === 'success'"
-          font-scale="1.5"
-          class="mr-1 fixed-size text-success align-center"
-          width="16"
-          height="16"
+          class="material-icons-round d-inline-block align-middle mr-1 mb-0 ps_gs-fz-16 text-danger"
         >
-          <b-icon-circle-fill stacked />
-          <b-icon-check
-            stacked
-            variant="white"
-          />
-        </b-iconstack>
+          error_outline
+        </i>
+        <i
+          v-if="syncStatus === 'warning'"
+          class="material-icons-round d-inline-block align-middle mr-1 mb-0 ps_gs-fz-16 text-warning"
+        >
+          warning
+        </i>
+        <i
+          v-if="syncStatus === 'success'"
+          class="material-icons d-inline-block align-middle mr-1 mb-0 ps_gs-fz-18 text-success"
+        >
+          check_circle
+        </i>
         <span class="align-middle">
           {{ syncStatusMessage }}
         </span>
@@ -275,13 +273,6 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 
-import {
-  BIconstack,
-  BIconCheck,
-  BIconCircleFill,
-  BIconExclamationCircle,
-  BIconExclamationTriangleFill,
-} from 'bootstrap-vue';
 import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
@@ -290,11 +281,6 @@ import ProductFeedCardReportProductsCard from './product-feed-card-report-produc
 export default {
   name: 'ProductFeedCard',
   components: {
-    BIconstack,
-    BIconCheck,
-    BIconCircleFill,
-    BIconExclamationCircle,
-    BIconExclamationTriangleFill,
     Stepper,
     ProductFeedCardReportCard,
     ProductFeedCardReportMappedCategoriesCard,
