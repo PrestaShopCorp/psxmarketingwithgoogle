@@ -122,14 +122,14 @@
         </p>
       </div>
     </template>
-    <!-- TODO : Alert to show when error -->
-    <!-- <b-alert
+    <b-alert
+      v-if="error"
       show
       variant="warning"
       class="mb-0 mt-3"
     >
       {{ error }}
-    </b-alert> -->
+    </b-alert>
   </b-card>
 </template>
 
