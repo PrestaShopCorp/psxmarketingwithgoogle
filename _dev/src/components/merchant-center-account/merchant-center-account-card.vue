@@ -365,8 +365,13 @@ export default {
     isMcaUserAdmin(index) {
       let isAdmin = false;
       this.mcaSelectionOptions[index].users.forEach((user) => {
-        // ToDo: We may need to check if the email is the same as
-        // the google account one
+        // Only continue if the user email matches the onboarded Google Account one
+        if (this.$store.state.accounts.googleAccount.details.email
+        && user.emailAddress
+        && this.$store.state.accounts.googleAccount.details.email !== user.emailAddress) {
+          return;
+        }
+
         isAdmin = user.admin || isAdmin;
       });
       return isAdmin;
