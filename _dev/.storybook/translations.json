@@ -56,7 +56,7 @@
       "footerDissociating" : "Dissociating your Google account will disconnect your Google Merchant Center and your Google Ads accounts."
     },
     "mcaCard" : {
-      "title" : "Merchant Center account",
+      "title" : "Make your products available to shoppers accross Google",
       "introDisabled" : "Once connected your Google account you will be able to associate your Merchant Center account.",
       "introEnabled" : "[Google Merchant Center](//google.com){:target=\"_blank\"} helps you get your store and product info into Google and make it available to shoppers across Google.",
       "labelSelect" : "Connect an existing Merchant Center account",

@@ -105,7 +105,7 @@ class PsGoogleShoppingTranslations
                 'footerDissociating' => $this->module->l('Dissociating your Google account will disconnect your Google Merchant Center and your Google Ads accounts.', 'PsGoogleShoppingTranslations'),
             ],
             'mcaCard' => [
-                'title' => $this->module->l('Merchant Center account', 'PsGoogleShoppingTranslations'),
+                'title' => $this->module->l('Make your products available to shoppers accross Google', 'PsGoogleShoppingTranslations'),
                 'introDisabled' => $this->module->l('Once connected your Google account you will be able to associate your Merchant Center account.', 'PsGoogleShoppingTranslations'),
                 'introEnabled' => $this->module->l('[Google Merchant Center](//google.com){:target="_blank"} helps you get your store and product info into Google and make it available to shoppers across Google.', 'PsGoogleShoppingTranslations'),
                 'labelSelect' => $this->module->l('Connect an existing Merchant Center account', 'PsGoogleShoppingTranslations'),
