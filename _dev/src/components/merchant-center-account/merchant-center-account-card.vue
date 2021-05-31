@@ -370,9 +370,11 @@ export default {
       this.$emit('dissociateMerchantCenterAccount');
     },
     overrideClaim() {
-      this.$bvModal.show(
-        this.$refs.mcaPopinOverrideClaim.$refs.modal.id,
-      );
+      if (this.$refs.mcaPopinOverrideClaim) {
+        this.$bvModal.show(
+          this.$refs.mcaPopinOverrideClaim.$refs.modal.id,
+        );
+      }
     },
     mcaLabel(index) {
       if (this.mcaSelectionOptions[index]) {

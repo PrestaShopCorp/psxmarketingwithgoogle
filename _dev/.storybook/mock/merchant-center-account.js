@@ -7,7 +7,7 @@ export const merchantCenterAccountNotConnected = {
     users: [],
 };
 
-export const merchandCenterAccountNotConnectedWithOverwriteClaim = {
+export const merchantCenterAccountConnected = {
   ...merchantCenterAccountNotConnected,
   isClaimed: true,
   isVerified: true,
@@ -15,67 +15,30 @@ export const merchandCenterAccountNotConnectedWithOverwriteClaim = {
   name: 'Maison Royer',
   websiteUrl: "http://perdu.com",
   adultContent: false,
+  claimError: '',
   users: [
       // ToDo: Fill it with mocked data
   ],
+}
+
+export const merchandCenterAccountNotConnectedWithOverwriteClaim = {
+  ...merchantCenterAccountConnected,
   claimError: 'Overwrite',
 }
 
 export const merchandCenterAccountNotConnectedWithExpiringError = {
-  ...merchantCenterAccountNotConnected,
-  isClaimed: true,
-  isVerified: true,
-  id: '246797534',
-  name: 'Maison Royer',
-  websiteUrl: "http://perdu.com",
-  adultContent: false,
-  users: [
-      // ToDo: Fill it with mocked data
-  ],
+  ...merchantCenterAccountConnected,
   claimError: 'Expiring',
 }
 
 export const merchandCenterAccountNotConnectedWithDisapprovedStatus = {
-  ...merchantCenterAccountNotConnected,
-  isClaimed: true,
-  isVerified: true,
-  id: '246797534',
-  name: 'Maison Royer',
-  websiteUrl: "http://perdu.com",
-  adultContent: false,
-  users: [
-      // ToDo: Fill it with mocked data
-  ],
+  ...merchantCenterAccountConnected,
   claimError: 'Disapproved',
 }
 
 export const merchandCenterAccountNotConnectedWithShopInfoMissing = {
-  ...merchantCenterAccountNotConnected,
-  isClaimed: true,
-  isVerified: true,
-  id: '246797534',
-  name: 'Maison Royer',
-  websiteUrl: "http://perdu.com",
-  adultContent: false,
-  users: [
-      // ToDo: Fill it with mocked data
-  ],
+  ...merchantCenterAccountConnected,
   claimError: 'ShopInfoMissing',
-}
-
-
-export const merchantCenterAccountConnected = {
-    ...merchantCenterAccountNotConnected,
-    isClaimed: true,
-    isVerified: true,
-    id: '246797534',
-    name: 'Maison Royer',
-    websiteUrl: "http://perdu.com",
-    adultContent: false,
-    claimError: '',
-    users: [
-        // ToDo: Fill it with mocked data
-    ],
 }
 
 export default merchantCenterAccountConnected;
