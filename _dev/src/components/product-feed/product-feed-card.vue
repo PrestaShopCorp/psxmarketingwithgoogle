@@ -45,7 +45,10 @@
         </span>
       </div>
     </div>
-    <p class="ps_gs-fz-12" v-if="!configurationStarted">
+    <p
+      class="ps_gs-fz-12"
+      v-if="!configurationStarted"
+    >
       {{ $t("productFeedCard.intro") }}
     </p>
     <div
@@ -105,7 +108,6 @@
           {{ $t("cta.configureAndExportProductFeed") }}
         </b-button>
         <product-feed-settings-shipping v-else />
-        
       </div>
     </div>
     <div v-if="isEnabled && !toConfigure">
