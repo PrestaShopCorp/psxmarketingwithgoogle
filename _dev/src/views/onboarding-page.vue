@@ -17,7 +17,7 @@
       class="ps_gs-ps-account-card"
       :context="psAccountsContext"
     />
-    <div v-if="psAccountsContext.isShopContext">
+    <template v-if="psAccountsContext.isShopContext">
       <section-title
         :step-number="2"
         :step-title="$t('onboarding.sectionTitle.freeListing')"
@@ -60,7 +60,7 @@
         :is-enabled="stepsAreCompleted.step2"
         :is-connected="false"
       />
-    </div>
+    </template>
     <!-- Modals -->
     <GoogleAccountPopinDisconnect
       ref="googleAccountDisconnectModal"
