@@ -82,6 +82,7 @@
             size="sm"
             variant="primary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
+            :disabled="isConnecting"
             @click="openPopup"
           >
             <template v-if="!isConnecting">
@@ -176,10 +177,6 @@ export default {
     }
   },
   methods: {
-    connectGoogleAccount() {
-      this.$emit('connectGoogleAccount');
-      this.isConnecting = true;
-    },
     openPopup() {
       if (this.popupMessageListener) {
         window.removeEventListener('message', this.popupMessageListener);
@@ -237,18 +234,20 @@ export default {
         this.openPopup();
       }
     },
-    refreshAccount(errorIfNot) {
-      this.$store.dispatch(`accounts/${ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS}`).then((res) => {
+    async refreshAccount(errorIfNot) {
+      this.isConnecting = true;
+      try {
+        const res = await this.$store.dispatch(`accounts/${ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS}`);
         if (errorIfNot && !res) {
           throw new Error();
         }
-      }).catch((err) => {
+        this.$emit('connectGoogleAccount');
+      } catch (err) {
         // TODO: display error message
         console.error(err);
-      });
-      // TODO : call to action in store, to nest to retrieve data if already onboarded.
-      // TODO: if errorIfNot,et que le résultat du call à nest est négatif,alors afficher une erreur
-      this.connectGoogleAccount();
+      } finally {
+        this.isConnecting = false;
+      }
     },
     dissociateGoogleAccount() {
       this.$emit('dissociateGoogleAccount');

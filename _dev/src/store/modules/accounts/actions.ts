@@ -101,17 +101,16 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
-
-      // ToDo: Add a filter to avoid dispatching this action if the GMC is already chosen
-      dispatch(ActionsTypes.REQUEST_GOOGLE_ACCOUNT_GMC_LIST);
+      return json;
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
         // This is likely caused by a missing Google account, so let's retrieve the URL
         dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
-        return;
+        return null;
       }
       console.error(error);
     }
+    return null;
   },
 
   async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_GMC_LIST]({
