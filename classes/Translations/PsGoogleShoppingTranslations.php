@@ -118,6 +118,7 @@ class PsGoogleShoppingTranslations
                 'shopInfoMissingDescription' => $this->module->l('To check if it is a validity issue or if you are not following our rules, please log in to your account a', 'PsGoogleShoppingTranslations'),
                 'userIsNotAdmin' => $this->module->l('You need Administrator access', 'PsGoogleShoppingTranslations'),
                 'googleMCA' => $this->module->l('Google Merchant Center account', 'PsGoogleShoppingTranslations'),
+                'toUseGmcNeedsAdminAccess' => $this->module->l('To use an existing Google Merchant Center account, you must have Administrator access.', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [

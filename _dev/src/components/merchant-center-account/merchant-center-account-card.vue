@@ -105,14 +105,17 @@
             {{ $t('cta.chooseExistingAccount') }}
           </b-button>
         </div>
+        <p class="text-muted ps_gs-fz-12 mt-3 mt-md-0">
+          {{ $t('mcaCard.toUseGmcNeedsAdminAccess') }}
+        </p>
       </b-form>
       <div class="mt-3">
         <a href="#">
           <i
             class="left material-icons mr-2"
             aria-hidden="true"
-          >person_add</i>
-          <span class="align-middle">{{ $t('cta.createNewMCA') }}</span>
+          >person_add</i><!--
+          --><span class="align-middle">{{ $t('cta.createNewMCA') }}</span>
         </a>
         <VueShowdown
           v-if="isEU"
