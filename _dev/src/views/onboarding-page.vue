@@ -174,7 +174,17 @@ export default {
   mounted() {
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
-    this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
+    if (this.psAccountsIsOnboarded === true) {
+      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
+    }
+  },
+  watch: {
+    googleAccountIsOnboarded(newVal, oldVal) {
+      if (oldVal === false && newVal === true) {
+        // ToDo: Add a filter to avoid dispatching this action if the GMC is already chosen
+        this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_GMC_LIST');
+      }
+    },
   },
 };
 </script>
