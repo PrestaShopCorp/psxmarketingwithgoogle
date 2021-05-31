@@ -72,7 +72,7 @@
             size="sm"
           >
             <b-dropdown-item
-              class="px-1"
+              link-class="px-3"
               :disabled="true"
               v-if="mcaListLoading"
             >
@@ -84,9 +84,13 @@
               @click="selectedMcaIndex = index"
               :disabled="!isMcaUserAdmin(index)"
               variant="dark"
+              link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
             >
-              <span class="pl-1">{{ mcaLabel(index) }}</span>
-              <span v-if="!isMcaUserAdmin(index)">
+              <span class="mr-auto">{{ mcaLabel(index) }}</span>
+              <span
+                v-if="!isMcaUserAdmin(index)"
+                class="ps_gs-fz-12"
+              >
                 {{ $t('mcaCard.userIsNotAdmin') }}
               </span>
             </b-dropdown-item>

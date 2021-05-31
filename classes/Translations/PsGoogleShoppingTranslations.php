@@ -116,7 +116,7 @@ class PsGoogleShoppingTranslations
                 'footerEU' => $this->module->l("If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)](//google.com){:target=\"_blank\"}.  \n  If you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners](//google.com){:target=\"_blank\"}  \n  Once you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.", 'PsGoogleShoppingTranslations'),
                 'shopInfoMissing' => $this->module->l('Shop information is missing', 'PsGoogleShoppingTranslations'),
                 'shopInfoMissingDescription' => $this->module->l('To check if it is a validity issue or if you are not following our rules, please log in to your account a', 'PsGoogleShoppingTranslations'),
-                'userIsNotAdmin' => $this->module->l('(You are not admin)', 'PsGoogleShoppingTranslations'),
+                'userIsNotAdmin' => $this->module->l('You need Administrator access', 'PsGoogleShoppingTranslations'),
                 'googleMCA' => $this->module->l('Google Merchant Center account', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [

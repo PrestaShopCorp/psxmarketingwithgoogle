@@ -37,6 +37,13 @@
     padding: 0;
   }
 
+  .dropdown-item {
+    @include media-breakpoint-down(sm) {
+      white-space: normal;
+      line-height: 1.4em;
+    }
+  }
+
   .dropdown-item:focus, .dropdown-item:hover {
     color: #fff;
     background-color: $blue_medium;
