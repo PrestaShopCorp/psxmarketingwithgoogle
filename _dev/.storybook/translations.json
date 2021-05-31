@@ -161,7 +161,7 @@
         "ifMultipleCountries" : "If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.",
         "productAvailaibleIn" : "Products available in",
         "placeholderSelect" : "Select the countries where your products are available",
-        "cantFindCountry" : "Can’t find a country? Only supported countries are listed.",
+        "cantFindCountry" : "Can’t find a country? Only supported countries are listed. [Supported countries](//google.com){:target=\"_blank\"}\n\n Your shipping services must be configured for the country you are targeting. Please respect [country-specific shopping policies](//google.com){:target=\"_blank\"} and [local regulation](//google.com){:target=\"_blank\"}",
         "shippingSettings" : "Shipping settings",
         "autoImportShipping" : "Automatically import shipping settings",
         "autoImportShippingDescription" : "PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.",

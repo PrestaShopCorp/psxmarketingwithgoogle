@@ -49,6 +49,10 @@
 
   p {
     margin-bottom: 0;
+
+    & + p {
+      margin-top: rem(12);
+    }
   }
 }
 

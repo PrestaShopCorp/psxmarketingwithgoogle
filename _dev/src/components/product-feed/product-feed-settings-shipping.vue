@@ -20,16 +20,11 @@
         multiple
         label="country"
       />
-      <p class="text-muted my-1 ps_gs-fz-12">
-        {{ $t('productFeedSettings.shipping.cantFindCountry') }}
-        <a
-          class="d-inline-block"
-          href="//google.com"
-          target="_blank"
-        >
-          {{ $t('cta.supportedCountries') }}
-        </a>
-      </p>
+      <VueShowdown
+        class="text-muted my-1 ps_gs-fz-12"
+        :markdown="$t('productFeedSettings.shipping.cantFindCountry')"
+        :extensions="['targetlink']"
+      />
     </b-form-group>
     <b-form-group
       class="mt-4"
