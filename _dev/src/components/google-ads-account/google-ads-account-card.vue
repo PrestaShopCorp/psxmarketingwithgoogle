@@ -3,7 +3,7 @@
   <b-card
     no-body
     class="ps_gs-onboardingcard p-3"
-    :class="{ 'ps_gs-onboardingcard--disabled' : !isEnabled }"
+    :class="{ 'ps_gs-onboardingcard--disabled-grey' : !isEnabled }"
   >
     <template
       v-if="!isEnabled"
