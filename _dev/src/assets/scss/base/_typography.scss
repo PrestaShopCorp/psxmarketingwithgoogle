@@ -14,8 +14,8 @@
     color: $grey_muted;
   }
 
-  img {
-    filter: saturate(0);
+  &__step {
+    width: rem(24);
   }
 }
 
