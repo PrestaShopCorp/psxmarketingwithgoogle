@@ -105,7 +105,7 @@ export default {
       // ToDo: Add a filter to avoid dispatching this action if the GMC is already chosen
       dispatch(ActionsTypes.REQUEST_GOOGLE_ACCOUNT_GMC_LIST);
     } catch (error) {
-      if (error instanceof HttpClientError && error.code === 404) {
+      if (error instanceof HttpClientError && error.code === 404 || error.code === 412) {
         // This is likely caused by a missing Google account, so let's retrieve the URL
         dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
         return;
