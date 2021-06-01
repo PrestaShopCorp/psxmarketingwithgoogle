@@ -5,43 +5,23 @@
   >
     <span
       v-if="!this.isDone"
-      class="d-inline-block mx-3"
+      class="d-inline-block ml-2 mr-3 ps_gs-section-title__step"
     >
       {{ stepNumber }}.
     </span>
-    <b-iconstack
+    <i
       v-else
-      font-scale="1.5"
-      class="ml-2 mr-3 fixed-size text-success"
-      width="20"
-      height="20"
+      class="material-icons ml-2 mr-3 mb-0 text-success"
     >
-      <b-icon-circle-fill
-        stacked
-      />
-      <b-icon-check
-        stacked
-        variant="white"
-      />
-    </b-iconstack>
+      check_circle
+    </i>
     {{ stepTitle }}
   </h2>
 </template>
 
 <script>
-import {
-  BIconstack,
-  BIconCheck,
-  BIconCircleFill,
-} from 'bootstrap-vue';
-
 export default {
   name: 'SectionTitle',
-  components: {
-    BIconstack,
-    BIconCheck,
-    BIconCircleFill,
-  },
   props: {
     stepTitle: {
       type: String,
@@ -62,6 +42,3 @@ export default {
   },
 };
 </script>
-
-<style lang="">
-</style>

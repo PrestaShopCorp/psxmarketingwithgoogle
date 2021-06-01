@@ -3,6 +3,10 @@
   margin-bottom: rem(16);
 
   &--disabled {
+    color: $grey_muted;
+  }
+
+  &--disabled-grey {
     background-color: $bg-grey_disabled;
     color: $grey_muted;
   }

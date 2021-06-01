@@ -53,11 +53,13 @@
       "title" : "Google account",
       "introDisabled" : "When you are done connecting your PrestaShop account you will be able to connect your Google accounts.",
       "introEnabled" : "A Google Account lets you access your Google Merchant Center and Google Ads accounts",
-      "footerDissociating" : "Dissociating your Google account will disconnect your Google Merchant Center and your Google Ads accounts."
+      "footerDissociating" : "Dissociating your Google account will disconnect your Google Merchant Center and your Google Ads accounts.",
+      "alertCantConnect" : "You can't connect to your Google account right now. Try again later.",
+      "alertTokenMissing" : "The account token is missing. Try again to connect to your Google Merchant Center account or switch to another one."
     },
     "mcaCard" : {
-      "title" : "Merchant Center account",
-      "introDisabled" : "Once connected your Google account you will be able to associate your Merchant Center account.",
+      "title" : "Make your products available to shoppers accross Google",
+      "introDisabled" : "Associate your Merchant Center account to get your store and products information into Google",
       "introEnabled" : "[Google Merchant Center](//google.com){:target=\"_blank\"} helps you get your store and product info into Google and make it available to shoppers across Google.",
       "labelSelect" : "Connect an existing Merchant Center account",
       "claimCollides" : "Your current website claim collides with an existing claim",
@@ -65,7 +67,9 @@
       "footerEU" : "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)](//google.com){:target=\"_blank\"}  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners](//google.com){:target=\"_blank\"}  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
       "shopInfoMissing" : "Shop information is missing",
       "shopInfoMissingDescription" : "To check if it is a validity issue or if you are not following our rules, please log in to your account at",
-      "userIsNotAdmin" : "(You are not admin)"
+      "userIsNotAdmin" : "You need Administrator access",
+      "googleMCA" : "Google Merchant Center account",
+      "toUseGmcNeedsAdminAccess" : "To use an existing Google Merchant Center account, you must have Administrator access."
     },
     "mcaRequirements" : {
       "steps": {
@@ -119,14 +123,14 @@
       "alert" : "If one of these requirements is missing, your Merchant Center account will be disapproved."
     },
     "productFeedCard" : {
-      "title" : "Product feed export configuration",
-      "intro" : "Allows you to display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns",
+      "title" : "Send your products data to Google",
+      "intro" : "Display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns with Product feed",
       "introToConfigure" : "Submitting your product data to Google in the correct format is important for creating successful ads and free listings for your products. We use this data to make sure that it's matched to the right queries.",
-      "nextSync" : "Next sync: {0}",
-      "syncFailedAt" : "Sync failed {0} at {1}",
+      "nextSync" : "Next synchronization: {0}",
+      "syncFailedAt" : "Synchronization failed {0} at {1}",
       "syncSuccess" : "{0} products synced {1} at {2}",
       "syncBusy" : "Sync progressing...",
-      "syncCantPerform" : "Sync can't perform",
+      "syncCantPerform" : "Synchronization can't perform",
       "mappedCategories" : "{0}/{1} mapped categories",
       "alertSuccess" : "You are successfully opted in. Once your products are approved, they can appear in Shopping tab search results.",
       "alertFailed" : "The synchronization of your product feed failed. **[See possible reasons in Merchant Center]({0}){:target=\"_blank\"}**",
@@ -136,7 +140,9 @@
       "googleTaxonomyAssociation" : "Google Product taxonomy association",
       "optional" : "Optional",
       "attributeDescription" : "With these attributes, you can organize your advertising campaigns in Google Ads and override the category automatically assigned by Google in some cases.",
-      "excludedProducts" : "Excluded products"
+      "excludedProducts" : "Excluded products",
+      "productsReadyToBeSynced" : "Products ready to be synced",
+      "productsWithProblems" : "Products with problems"
     },
     "productFeedSettings" : {
       "breadcrumb1" : "Product feed",
@@ -155,7 +161,7 @@
         "ifMultipleCountries" : "If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.",
         "productAvailaibleIn" : "Products available in",
         "placeholderSelect" : "Select the countries where your products are available",
-        "cantFindCountry" : "Can’t find a country? Only supported countries are listed.",
+        "cantFindCountry" : "Can’t find a country? Only supported countries are listed. [Supported countries](//google.com){:target=\"_blank\"}\n\n Your shipping services must be configured for the country you are targeting. Please respect [country-specific shopping policies](//google.com){:target=\"_blank\"} and [local regulation](//google.com){:target=\"_blank\"}",
         "shippingSettings" : "Shipping settings",
         "autoImportShipping" : "Automatically import shipping settings",
         "autoImportShippingDescription" : "PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.",
@@ -234,7 +240,7 @@
       "alertEnableFreeListingAndProductFeed" : "Enable free listing to display your products on Google Shopping tab for free. This action will cause the reactivation of the product feed."
     },
     "googleAdsAccountCard" : {
-      "title" : "Google Ads Account",
+      "title" : "Connect your Google Ads account",
       "intro" : "Create adverstising campaigns for your products: find the right audience at the right time",
       "text" : "Once connected you may need to configure your billing settings in your Google Ads account.",
       "labelSelect" : "Connect an existing Google Ads account",
@@ -250,9 +256,9 @@
         "syncProcessing" : "Sync processing...",
         "syncProcessed" : "Sync processed",
         "syncFailed" : "Sync failed",
-        "nextSync" : "Next sync: {0}",
+        "nextSync" : "Next synchronization: {0}",
         "lastSync" : "Last sync: {0}",
-        "prescanTitle" : "Which products will be exported at next sync?",
+        "prescanTitle" : "Which products will be exported at Next synchronization?",
         "prescanDescription" : "Check products ready to be synced and those with detected problems and couldn’t be synced."
       },
       "productStatus" : {
@@ -340,7 +346,8 @@
       "close" : "Close",
       "checkProductsStatusDetails" : "Check products status details",
       "setupTaxSettings" : "Set up tax settings",
-      "understandAndContinue" : "Understand and continue"
+      "understandAndContinue" : "Understand and continue",
+      "reviewProblems": "Review problems"
     },
     "badge" : {
       "free" : "Free",
