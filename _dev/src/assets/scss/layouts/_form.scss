@@ -45,8 +45,9 @@
     }
   }
 
-  .dropdown-item:focus, .dropdown-item:hover {
-    color: #fff;
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    color: #fff !important;
     background-color: $blue_medium;
     border-radius: 0;
   }
@@ -54,7 +55,7 @@
   .dropdown-item.disabled:hover,
   .dropdown-item.disabled:focus {
     color: $grey_muted;
-    background-color: $gray-disabled;
+    background-color: $gray-disabled !important;
   }
 
   .ps-dropdown {
