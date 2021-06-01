@@ -290,9 +290,13 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
+import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
 
 export default {
   name: 'MerchantCenterAccountCard',
+  components: {
+    MerchantCenterAccountPopinOverwriteClaim,
+  },
   data() {
     return {
       selectedMcaIndex: null,
