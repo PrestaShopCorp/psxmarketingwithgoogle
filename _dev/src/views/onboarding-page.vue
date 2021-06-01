@@ -216,7 +216,7 @@ export default {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
     productFeedIsConfigured() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
+      return this.$store.getters['productFeed/GET_STATUS_OF_FREE_LISTING'];
     },
     stepsAreCompleted() {
       return {

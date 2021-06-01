@@ -1,8 +1,10 @@
 <template>
   <ps-modal
     id="FreeListingPopinDisable"
+    ref="modal"
     :title="$t('modal.titleDisableFreeListing')"
     v-bind="$attrs"
+    @ok="disableListing"
   >
     <VueShowdown
       class="my-1"
@@ -29,6 +31,11 @@ export default {
   name: 'FreeListingPopinDisable',
   components: {
     PsModal,
+  },
+  methods: {
+    disableListing() {
+      this.$store.dispatch('productFeed/SEND_FREE_LISTING_STATEMENT', false);
+    },
   },
 };
 </script>
