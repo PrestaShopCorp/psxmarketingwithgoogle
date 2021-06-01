@@ -52,10 +52,15 @@
     border-radius: 0;
   }
 
+  .dropdown-item.disabled {
+    pointer-events: initial;
+  }
+
   .dropdown-item.disabled:hover,
   .dropdown-item.disabled:focus {
-    color: $grey_muted;
+    color: $grey_muted !important;
     background-color: $gray-disabled !important;
+    cursor: default;
   }
 
   .ps-dropdown {
