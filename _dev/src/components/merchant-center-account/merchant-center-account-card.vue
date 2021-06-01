@@ -67,6 +67,7 @@
             :text="mcaLabel(selectedMcaIndex) || $t('cta.selectAccount')"
             variant=" "
             class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
+            :toggle-class="{'ps-dropdown__placeholder' : !selectedMcaIndex}"
             menu-class="ps-dropdown"
             no-flip
             size="sm"
