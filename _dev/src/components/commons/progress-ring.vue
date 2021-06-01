@@ -1,26 +1,26 @@
 <template>
-    <svg
-      class="ps_progress-ring"
-      :height="radius * 2"
-      :width="radius * 2"
-     >
-      <circle
-         :stroke-width="stroke"
-         fill="transparent"
-         :r="normalizedRadius"
-         :cx="radius"
-         :cy="radius"
-      />
-      <circle
-         fill="transparent"
-         :stroke-dasharray="circumference + ' ' + circumference"
-         :style="{ strokeDashoffset: strokeDashoffset }"
-         :stroke-width="stroke"
-         :r="normalizedRadius"
-         :cx="radius"
-         :cy="radius"
-      />
-    </svg>
+  <svg
+    class="ps_progress-ring"
+    :height="radius * 2"
+    :width="radius * 2"
+  >
+    <circle
+      :stroke-width="stroke"
+      fill="transparent"
+      :r="normalizedRadius"
+      :cx="radius"
+      :cy="radius"
+    />
+    <circle
+      fill="transparent"
+      :stroke-dasharray="circumference + ' ' + circumference"
+      :style="{ strokeDashoffset: strokeDashoffset }"
+      :stroke-width="stroke"
+      :r="normalizedRadius"
+      :cx="radius"
+      :cy="radius"
+    />
+  </svg>
 </template>
 
 <script>
@@ -29,7 +29,7 @@ export default {
   props: {
     radius: Number,
     progress: Number,
-    stroke: Number
+    stroke: Number,
   },
   data() {
     const normalizedRadius = this.radius - this.stroke;
@@ -37,13 +37,13 @@ export default {
 
     return {
       normalizedRadius,
-      circumference
+      circumference,
     };
   },
   computed: {
     strokeDashoffset() {
-      return this.circumference - this.progress / 100 * this.circumference;
+      return this.circumference - (this.progress / 100) * this.circumference;
     },
   },
-}
+};
 </script>

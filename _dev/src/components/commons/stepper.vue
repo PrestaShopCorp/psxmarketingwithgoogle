@@ -51,7 +51,7 @@ import {
   BIconCheck,
 } from 'bootstrap-vue';
 
-import ProgressRing from '../commons/progress-ring'
+import ProgressRing from '../commons/progress-ring';
 
 export default {
   name: 'Stepper',
