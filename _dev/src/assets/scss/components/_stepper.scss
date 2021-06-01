@@ -1,4 +1,5 @@
 $stepWidth: rem(32);
+$stepWidthMobile: rem(42);
 
 .ps_gs-stepper {
   @include media-breakpoint-up(sm) {
@@ -9,51 +10,49 @@ $stepWidth: rem(32);
 .ps_gs-stepper-step {
   @include media-breakpoint-down(xs) {
     display: none;
+    position: static;
 
-    &.active,
-    &:last-child {
+    &.active {
       display: block;
     }
 
     .ps_gs-stepper-step__link {
       display: flex;
-      justify-content: space-between;
     }
 
     &.active {
+
       .ps_gs-stepper-step__step {
         position: absolute;
+        z-index: 1;
         top: 0;
-        bottom: 0;
         left: 0;
-        padding-top: 100%;
+        width: $stepWidthMobile;
+        height: $stepWidthMobile;
         display: flex;
-        border: 4px solid $grey_muted;
-        border-radius: 100%;
         font-size: rem(18) !important;
 
         span {
-          font-size: inherit;
-          margin-left: -1ch;
-          margin-top: -0.5ch;
+          font-size: rem(12);
 
           &:after {
-            content: '/';
-            font-size: 0.5em;
+            content: ' / ' attr(data-stepperLength);
+            color: $grey_muted;
           }
         }
       }
 
       .ps_gs-stepper-step__title {
-        margin-left: auto;
-        font-size: rem(18) !important;
-      }
-    }
-    &:last-child {
-      .ps_gs-stepper-step__step {
-        margin-left: calc(#{$stepWidth} + 0.5ch) ;
-        margin-top: -0.5ch;
-        font-size: rem(18) !important;
+        text-align: left;
+        font-size: rem(16);
+        padding-left: $stepWidthMobile + rem(16) !important;
+
+        &::after {
+          content: attr(data-nextStep);
+          display: block;
+          font-size: rem(12);
+          color: $grey_muted !important;
+        }
       }
     }
   }
@@ -68,6 +67,7 @@ $stepWidth: rem(32);
     text-align: center;
     max-width: 130px;
     margin-bottom: rem(16);
+    position: relative;
 
     &__link {
       display: inline-block;
@@ -84,7 +84,13 @@ $stepWidth: rem(32);
 
 
     &__title {
+      text-align: center;
+      font-size: rem(12);
       color: $grey_muted;
+    }
+
+    .ps_progress-ring {
+      display: none;
     }
 
     &.active,

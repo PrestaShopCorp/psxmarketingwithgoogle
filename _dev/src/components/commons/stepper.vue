@@ -3,7 +3,7 @@
     <li
       v-for="(step, index) in steps"
       :key="step.title"
-      class="ps_gs-stepper-step col position-relative px-0"
+      class="ps_gs-stepper-step col px-0"
       :class="{
         'active': isActive(index),
         'complete': isComplete(index)
@@ -24,12 +24,20 @@
           />
           <span
             v-else
+            :data-stepperLength="steps.length"
           >
             {{ index + 1 }}
           </span>
+          <ProgressRing
+            v-if="isActive(index)"
+            :radius="22"
+            :progress="(index + 1) / (steps.length) * 100"
+            :stroke="2"
+          />
         </div>
         <div
-          class="ps_gs-stepper-step__title ps_gs-fz-12 text-center px-2"
+          class="ps_gs-stepper-step__title px-2"
+          :data-nextStep="nextStepMsg(index)"
         >
           {{ step.title }}
         </div>
@@ -43,9 +51,14 @@ import {
   BIconCheck,
 } from 'bootstrap-vue';
 
+import ProgressRing from '../commons/progress-ring'
+
 export default {
   name: 'Stepper',
-  components: {BIconCheck},
+  components: {
+    BIconCheck,
+    ProgressRing,
+  },
   data() {
     return {
       mutableActiveStep: this.activeStep,
@@ -60,6 +73,12 @@ export default {
     },
     handleStepClick(index) {
       this.mutableActiveStep = index + 1;
+    },
+    nextStepMsg(index) {
+      if (index < (this.steps.length - 1)) {
+        return this.$i18n.t('stepper.nextStep', [this.steps[index + 1].title]);
+      }
+      return this.$i18n.t('stepper.lastStep');
     },
   },
   props: {

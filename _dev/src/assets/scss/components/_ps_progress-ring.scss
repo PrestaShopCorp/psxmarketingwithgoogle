@@ -1,0 +1,14 @@
+.ps_progress-ring {
+    position: absolute;
+    overflow: visible;
+
+    circle {
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+        stroke: $gray-450;
+
+        & + circle {
+            stroke: $blue;
+        }
+    }
+}
