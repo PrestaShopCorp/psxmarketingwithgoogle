@@ -186,7 +186,6 @@ export default {
   },
   methods: {
     selectGoogleAdsAccount() {
-      const component = this;
       this.$emit('selectGoogleAdsAccount');
     },
   },
