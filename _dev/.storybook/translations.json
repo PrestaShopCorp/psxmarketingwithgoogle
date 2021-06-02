@@ -388,6 +388,10 @@
     },
     "toast": {
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!"
+    },
+    "stepper": {
+      "nextStep" : "Next: {0}",
+      "lastStep" : "Last step"
     }
   },
   "ar" : {

@@ -21,9 +21,6 @@ HorizontalStepper.args = {
       title: "Export rules",
     },
     {
-      title: "Category mapping",
-    },
-    {
       title: "Attribute mapping",
     },
     {

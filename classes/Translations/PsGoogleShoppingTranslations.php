@@ -435,7 +435,11 @@ class PsGoogleShoppingTranslations
             ],
             'toast' => [
                 'googleAccountConnectedOnceSuccess' => $this->module->l('You have connected your Google account!', 'PsGoogleShoppingTranslations'),
-           ],
+            ],
+            'stepper' => [
+                'nextStep' => $this->module->l('Next: {0}', 'PsGoogleShoppingTranslations'),
+                'lastStep' => $this->module->l('Last step', 'PsGoogleShoppingTranslations'),
+            ],
         ];
 
         return $translations;
