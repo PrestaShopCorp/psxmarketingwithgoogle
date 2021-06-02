@@ -253,13 +253,14 @@
     "productFeedPage" : {
       "syncStatus" : {
         "title" : "Sync status",
-        "syncProcessing" : "Sync processing...",
-        "syncProcessed" : "Sync processed",
-        "syncFailed" : "Sync failed",
+        "readyForExport" : "Product feed is ready for export",
+        "syncProcessed" : "Synchronization processed",
+        "syncFailed" : "Synchronization failed",
         "nextSync" : "Next synchronization: {0}",
-        "lastSync" : "Last sync: {0}",
-        "prescanTitle" : "Which products will be exported at Next synchronization?",
-        "prescanDescription" : "Check products ready to be synced and those with detected problems and couldn’t be synced."
+        "lastSync" : "Last synchronization: {0}",
+        "prescanTitle" : "Coming up next synchronization",
+        "scheduleOn" : "Synchronization scheduled on {0}",
+        "alert" : "To solve the synchronization issue, go to Help tab or [contact the customer support service](//google.com){:target=\"_blank\"}."
       },
       "productStatus" : {
         "title" : "Products status",

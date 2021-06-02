@@ -15,7 +15,7 @@ export default {
       control: {
         type: 'select',
         // @ts-ignore
-        options: ['busy', 'error', 'success'],
+        options: ['schedule', 'processed', 'failed'],
       },
     },
   },
@@ -27,20 +27,20 @@ const Template = (args, { argTypes }) => ({
   template: '<ProductFeedSyncStatusCard v-bind="$props" />',
 });
 
-export const SyncStatusBusy:any = Template.bind({});
-SyncStatusBusy.args = {
+export const SyncStatusSchedule:any = Template.bind({});
+SyncStatusSchedule.args = {
   ...commonProps,
-  syncStatus: 'busy',
+  syncStatus: 'schedule',
+};
+
+export const SyncStatusProcessed:any = Template.bind({});
+SyncStatusProcessed.args = {
+  ...commonProps,
+  syncStatus: 'processed',
 };
 
 export const SyncStatusFailed:any = Template.bind({});
 SyncStatusFailed.args = {
   ...commonProps,
-  syncStatus: 'error',
-};
-
-export const SyncStatusSuccess:any = Template.bind({});
-SyncStatusSuccess.args = {
-  ...commonProps,
-  syncStatus: 'success',
+  syncStatus: 'failed',
 };
