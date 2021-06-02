@@ -106,11 +106,15 @@
             size="sm"
             variant="outline-secondary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
-            :href="$options.googleUrl.manageGoogleAccount"
-            target="_blank"
+            @click="changeAccount"
           >
             {{ $t('cta.manageAccount') }}
           </b-button>
+          <glass
+            v-if="popupClosingLooper"
+            @close="closePopup"
+            @forceFocus="focusPopup"
+          />
         </div>
       </div>
       <div
@@ -180,10 +184,18 @@ export default {
     }
   },
   methods: {
+    changeAccount() {
+      this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH').then(() => {
+        this.openPopup();
+      }).catch(() => {
+        // maybe display alert
+      });
+    },
     openPopup() {
       if (this.popupMessageListener) {
         window.removeEventListener('message', this.popupMessageListener);
       }
+
       if (this.popupClosingLooper) {
         clearInterval(this.popupClosingLooper);
       }
