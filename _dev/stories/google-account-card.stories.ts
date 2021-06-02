@@ -3,6 +3,8 @@ import GoogleAccountPopinDisconnect from '../src/components/google-account/googl
 import {
   googleAccountConnected,
   googleAccountNotConnectedButAuthenticationUrlOK,
+  googleAccountFailedToRetrieveAuthenticationUrl,
+  googleAccountFailedToRetrieveToken,
 } from "../.storybook/mock/google-account";
 
 export default {
@@ -51,10 +53,22 @@ NotConnectedAndNoAuthenticationUrlYet.args = {
   isEnabled: true,
 };
 
+export const NotConnectedAndCanNotGetAuthenticationUrl:any = Template.bind({});
+NotConnectedAndCanNotGetAuthenticationUrl.args = {
+  isEnabled: true,
+  user: googleAccountFailedToRetrieveAuthenticationUrl,
+};
+
 export const NotConnected:any = Template.bind({});
 NotConnected.args = {
   isEnabled: true,
   user: googleAccountNotConnectedButAuthenticationUrlOK,
+};
+
+export const CouldNotConnect:any = Template.bind({});
+CouldNotConnect.args = {
+  isEnabled: true,
+  user: googleAccountFailedToRetrieveToken,
 };
 
 export const Connected:any = Template.bind({});

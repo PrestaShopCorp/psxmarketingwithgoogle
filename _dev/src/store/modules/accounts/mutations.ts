@@ -36,8 +36,12 @@ export default {
   },
   [MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN](
     state: LocalState,
-    payload: GoogleAccountToken,
+    payload: GoogleAccountToken|Error,
   ) {
+    if (payload instanceof Error) {
+      state.googleAccount.access_token = payload;
+      return;
+    }
     state.googleAccount.access_token = payload.access_token;
     state.googleAccount.expiry_date = payload.expiry_date;
   },
@@ -45,7 +49,7 @@ export default {
     state.googleAccount.access_token = '';
     state.googleAccount.expiry_date = 0;
   },
-  [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string) {
+  [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string|Error) {
     state.googleAccount.authenticationUrl = url;
   },
   [MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE](state: LocalState, googleResponse) {
