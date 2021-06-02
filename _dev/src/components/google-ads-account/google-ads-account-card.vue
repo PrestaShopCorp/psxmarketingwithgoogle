@@ -54,6 +54,7 @@
               :text="selected || $t('cta.selectAccount')"
               variant=" "
               class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
+              :toggle-class="{'ps-dropdown__placeholder' : !selected}"
               menu-class="ps-dropdown"
               no-flip
               size="sm"
@@ -62,6 +63,7 @@
                 v-for="option in googleAdsAccountSelectionOptions"
                 :key="option.text"
                 @click="selected = option.text"
+                variant="dark"
               >
                 {{ option.text }}
               </b-dropdown-item>
@@ -121,12 +123,12 @@
         </div>
         <div
           v-else
-          class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
+          class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center align-self-end"
         >
           <b-button
             size="sm"
             variant="outline-secondary"
-            class="mt-3 mt-md-0 align-self-end"
+            class="mt-3 mt-md-0"
             target="_blank"
           >
             {{ $t('cta.dissociate') }}
@@ -184,12 +186,7 @@ export default {
   },
   methods: {
     selectGoogleAdsAccount() {
-      /**
-       ** I'm sending the component as a payload
-       ** This way, I can access it from StoryBook and change datas
-       */
-      const component = this;
-      this.$emit('selectGoogleAdsAccount', component);
+      this.$emit('selectGoogleAdsAccount');
     },
   },
 };
