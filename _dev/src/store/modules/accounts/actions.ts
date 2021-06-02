@@ -48,7 +48,12 @@ export default {
   },
 
   async [ActionsTypes.SAVE_SELECTED_GOOGLE_ACCOUNT](
-    {commit, rootState, dispatch, state},
+    {
+      commit,
+      rootState,
+      dispatch,
+      state,
+    },
     selectedAccount,
   ) {
     try {
