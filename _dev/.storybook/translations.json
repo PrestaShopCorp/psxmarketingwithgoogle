@@ -263,13 +263,14 @@
         "alert" : "To solve the synchronization issue, go to Help tab or [contact the customer support service](//google.com){:target=\"_blank\"}."
       },
       "productStatus" : {
-        "title" : "Products status",
-        "description" : "After submitting your product feed, your products will be assigned a status. There are 6 different product statuses: Not synced, Active, Partially active, Expiring, Pending, Disapproved.",
+        "title" : "Product approval status",
+        "description" : "After submitting your product feed, your products will be reviewed and assigned one of 6 statuses",
         "alert" : "Google usually takes 3-5 business days to review products.",
         "approvedProducts" : "Approved products",
         "pendingProducts" : "Pending products",
         "disapprovedProducts" : "Not approved products",
-        "productsInGoogleCatalog" : "Products in Google catalog: {0}"
+        "productsInGoogleCatalog" : "Products in Google catalog: {0}",
+        "approvalStatusList" : "Not synced, Active, Partially active, Expiring, Pending, Disapproved."
       }
     },
     "help" : {
@@ -324,7 +325,7 @@
       "modifyMapping" : "Modify mapping",
       "learnAboutProductConfiguration" : "Learn more about product configuration",
       "overwriteProductFeed" : "Overwrite product feed",
-      "trackProductStatus" : "Track products status",
+      "trackProductStatus" : "Track Product approval status",
       "whyDidntWork" : "Check out why it didn’t work",
       "aboutProductCategory" : "About Google product category",
       "editCountries" : "Edit countries",
@@ -345,7 +346,7 @@
       "createAccount" : "Create account",
       "saveChange" : "Save change",
       "close" : "Close",
-      "checkProductsStatusDetails" : "Check products status details",
+      "viewDetailedStatuses" : "View all detailed statuses",
       "setupTaxSettings" : "Set up tax settings",
       "understandAndContinue" : "Understand and continue",
       "reviewProblems": "Review problems"

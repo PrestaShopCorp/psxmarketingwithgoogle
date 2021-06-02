@@ -14,9 +14,18 @@
     >
       <p>
         {{ $t('productFeedPage.productStatus.description') }}
+        <b-button
+          v-b-tooltip
+          :title="$t('productFeedPage.productStatus.approvalStatusList')"
+          variant="invisible"
+          class="ml-1 p-0 border-0"
+        >
+          <i class="material-icons-round ps_gs-fz-14 mb-0">
+            error_outline
+          </i>
+        </b-button>
       </p>
       <b-alert
-        variant="warning"
         show
       >
         {{ $t('productFeedPage.productStatus.alert') }}
@@ -53,7 +62,7 @@
             href="#"
             class="font-weight-600 ps_gs-fz-13"
           >
-            {{ $t('cta.checkProductsStatusDetails') }}
+            {{ $t('cta.viewDetailedStatuses') }}
           </a>
         </div>
       </b-container>
@@ -64,7 +73,7 @@
 <script>
 /**
  * TODO: Handle products number
- * TODO: Add linkTo "Check products status details"
+ * TODO: Add linkTo "View all detailed statuses"
  */
 
 import {
