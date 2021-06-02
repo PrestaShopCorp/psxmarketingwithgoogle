@@ -4,6 +4,11 @@ export const googleAccountNotConnected = {
     mcaSelectionOptions: [],
 };
 
+export const googleAccountNotConnectedButAuthenticationUrlOK = {
+    ...googleAccountNotConnected,
+    authenticationUrl: '#',
+};
+
 export const googleAccountConnected = {
     access_token: 'wololo',
     expiry_date: 999999999999999,

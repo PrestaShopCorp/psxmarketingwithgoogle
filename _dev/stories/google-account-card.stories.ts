@@ -1,6 +1,9 @@
 import GoogleAccountCard from '../src/components/google-account/google-account-card.vue'
 import GoogleAccountPopinDisconnect from '../src/components/google-account/google-account-popin-disconnect.vue';
-import {googleAccountConnected} from "../.storybook/mock/google-account";
+import {
+  googleAccountConnected,
+  googleAccountNotConnectedButAuthenticationUrlOK,
+} from "../.storybook/mock/google-account";
 
 export default {
   title: 'Google Account/Card',
@@ -43,9 +46,15 @@ Disabled.args = {
   isEnabled: false,
 };
 
+export const NotConnectedAndNoAuthenticationUrlYet:any = Template.bind({});
+NotConnectedAndNoAuthenticationUrlYet.args = {
+  isEnabled: true,
+};
+
 export const NotConnected:any = Template.bind({});
 NotConnected.args = {
   isEnabled: true,
+  user: googleAccountNotConnectedButAuthenticationUrlOK,
 };
 
 export const Connected:any = Template.bind({});

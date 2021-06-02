@@ -72,7 +72,7 @@
             size="sm"
             variant="primary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
-            :disabled="isConnecting"
+            :disabled="isConnecting || !authenticationUrl"
             @click="openPopup"
           >
             <template v-if="!isConnecting">
@@ -183,6 +183,13 @@ export default {
       this.refreshAccount(false);
     }
   },
+  computed: {
+    authenticationUrl() {
+      return this.user && this.user.authenticationUrl
+        ? this.user.authenticationUrl
+        : null;
+    },
+  },
   methods: {
     changeAccount() {
       this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH').then(() => {
@@ -215,10 +222,9 @@ export default {
           window.removeEventListener('message', this.popupMessageListener);
         }
       });
-      const url = this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL'];
       const p = 'scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=450,height=628';
       this.popup = window.open(
-        url,
+        this.user.authenticationUrl,
         'ps_google_shopping_onboarding',
         p,
       );
