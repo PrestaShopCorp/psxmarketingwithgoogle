@@ -32,17 +32,17 @@
           no-gutters
           class="mx-n1"
         >
-          <product-feed-card-report-product-card
+          <product-feed-card-report-products-sync-card
             variant="success"
             :nb-products="nbProductsSuccess"
             :is-sync-in-progress="isSyncInProgress"
           />
-          <product-feed-card-report-product-card
+          <product-feed-card-report-products-sync-card
             variant="warning"
             :nb-products="nbProductsPending"
             :is-sync-in-progress="isSyncInProgress"
           />
-          <product-feed-card-report-product-card
+          <product-feed-card-report-products-sync-card
             variant="danger"
             :nb-products="nbProductsDisapproved"
             :is-sync-in-progress="isSyncInProgress"
@@ -71,13 +71,13 @@ import {
   BAlert,
 } from 'bootstrap-vue';
 
-import productFeedCardReportProductCard from '../product-feed/product-feed-card-report-product-card';
+import productFeedCardReportProductsSyncCard from '../product-feed/product-feed-card-report-products-sync-card';
 
 export default {
   name: 'ProductFeedSyncStatusCard',
   components: {
     BAlert,
-    productFeedCardReportProductCard,
+    productFeedCardReportProductsSyncCard,
   },
   props: {
     isSyncInProgress: {

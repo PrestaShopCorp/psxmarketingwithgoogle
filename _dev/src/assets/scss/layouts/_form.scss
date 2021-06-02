@@ -23,6 +23,7 @@
     justify-content: space-between;
     padding-top: rem(4);
     padding-bottom: rem(4);
+    font-weight: 400;
 
     &:focus {
       box-shadow: 0 0 0 0.2rem rgba($blue_dark, 0.5);
@@ -37,14 +38,38 @@
     padding: 0;
   }
 
-  .dropdown-item:focus, .dropdown-item:hover {
-    color: #fff;
+  .dropdown-item {
+    @include media-breakpoint-down(sm) {
+      white-space: normal;
+      line-height: 1.4em;
+    }
+  }
+
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    color: #fff !important;
     background-color: $blue_medium;
     border-radius: 0;
   }
 
+  .dropdown-item.disabled {
+    pointer-events: initial;
+  }
+
+  .dropdown-item.disabled:hover,
+  .dropdown-item.disabled:focus {
+    color: $grey_muted !important;
+    background-color: $gray-disabled !important;
+    cursor: default;
+  }
+
   .ps-dropdown {
     border-radius: 0 0 4px 4px;
+    cursor: default;
+
+    &__placeholder {
+      color: $gray-450;
+    }
   }
 }
 

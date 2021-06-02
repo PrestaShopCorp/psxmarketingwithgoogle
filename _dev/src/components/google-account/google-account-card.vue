@@ -38,22 +38,12 @@
         <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
           {{ $t('googleAccountCard.title') }}
         </b-card-text>
-        <b-iconstack
+        <i
           v-if="user && user.details.email"
-          font-scale="1.5"
-          class="mx-3"
-          width="20"
-          height="20"
+          class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
         >
-          <b-icon-circle-fill
-            stacked
-            class="text-success"
-          />
-          <b-icon-check
-            stacked
-            variant="white"
-          />
-        </b-iconstack>
+          check_circle
+        </i>
       </div>
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
         <p
@@ -116,11 +106,15 @@
             size="sm"
             variant="outline-secondary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
-            :href="$options.googleUrl.manageGoogleAccount"
-            target="_blank"
+            @click="changeAccount"
           >
             {{ $t('cta.manageAccount') }}
           </b-button>
+          <glass
+            v-if="popupClosingLooper"
+            @close="closePopup"
+            @forceFocus="focusPopup"
+          />
         </div>
       </div>
       <div
@@ -132,16 +126,28 @@
         </p>
       </div>
     </template>
+    <b-alert
+      v-if="error"
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      {{ error }}
+    </b-alert>
   </b-card>
 </template>
 
 <script>
+/**
+ * TODO: Handle error cases (x2)
+ * "Can't connect" and "Token missing"
+ * When "Can't connect", CTA should be disabled
+ */
+
 import googleUrl from '@/assets/json/googleUrl.json';
 
 import {
-  BIconstack,
-  BIconCheck,
-  BIconCircleFill,
+  BAlert,
 } from 'bootstrap-vue';
 import MutationsTypes from '../../store/modules/accounts/mutations-types';
 import ActionsTypes from '../../store/modules/accounts/actions-types';
@@ -151,7 +157,7 @@ import {GoogleAccountContext} from '../../store/modules/accounts/state';
 export default {
   name: 'GoogleAccountCard',
   components: {
-    BIconstack, BIconCheck, BIconCircleFill, Glass,
+    Glass, BAlert,
   },
   data() {
     return {
@@ -159,6 +165,7 @@ export default {
       popup: null,
       popupMessageListener: null,
       popupClosingLooper: null,
+      error: null,
     };
   },
   props: {
@@ -177,10 +184,18 @@ export default {
     }
   },
   methods: {
+    changeAccount() {
+      this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH').then(() => {
+        this.openPopup();
+      }).catch(() => {
+        // maybe display alert
+      });
+    },
     openPopup() {
       if (this.popupMessageListener) {
         window.removeEventListener('message', this.popupMessageListener);
       }
+
       if (this.popupClosingLooper) {
         clearInterval(this.popupClosingLooper);
       }

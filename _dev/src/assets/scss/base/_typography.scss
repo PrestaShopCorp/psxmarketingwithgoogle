@@ -14,13 +14,21 @@
     color: $grey_muted;
   }
 
-  img {
-    filter: saturate(0);
+  &__step {
+    width: rem(24);
   }
 }
 
+.ps_gs-fz-22 {
+  font-size: rem(22) !important;
+}
+
 .ps_gs-fz-20 {
-  font-size: rem(20);
+  font-size: rem(20) !important;
+}
+
+.ps_gs-fz-18 {
+  font-size: rem(18) !important;
 }
 
 .ps_gs-fz-16 {
@@ -41,6 +49,10 @@
 
   p {
     margin-bottom: 0;
+
+    & + p {
+      margin-top: rem(12);
+    }
   }
 }
 

@@ -5,32 +5,23 @@
   >
     <div class="px-3 py-2">
       <div class="d-flex justify-content-between font-weight-600 ps_gs-fz-13">
-        <span>
-          <template v-if="status === 'success'">
-            <b-iconstack
-              font-scale="1.5"
-              class="mr-1 fixed-size text-success"
-              width="16"
-              height="16"
-            >
-              <b-icon-circle-fill
-                stacked
-              />
-              <b-icon-check
-                stacked
-                variant="white"
-              />
-            </b-iconstack>
-          </template>
-          <template v-if="status === 'warning'">
-            <b-icon-exclamation-triangle-fill
-              width="16"
-              height="16"
-              variant="warning"
-            />
-          </template>
+        <div class="d-flex align-items-center">
+          <i
+            v-if="status === 'success'"
+            class="material-icons ps_gs-fz-18 mb-0 mr-2"
+            :class="`text-${status}`"
+          >
+            check_circle
+          </i>
+          <i
+            v-else
+            class="material-icons-round ps_gs-fz-18 mb-0 mr-2"
+            :class="`text-${status}`"
+          >
+            warning
+          </i>
           {{ title }}
-        </span>
+        </div>
         <b-link
           :href="linkTo"
           class="text-right"
@@ -55,21 +46,8 @@
 </template>
 
 <script>
-import {
-  BIconstack,
-  BIconCheck,
-  BIconCircleFill,
-  BIconExclamationTriangleFill,
-} from 'bootstrap-vue';
-
 export default {
   name: 'ProductFeedCardReportCard',
-  components: {
-    BIconstack,
-    BIconCheck,
-    BIconCircleFill,
-    BIconExclamationTriangleFill,
-  },
   props: {
     status: {
       type: String,

@@ -19,19 +19,12 @@
         >
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
           {{ $t('mcaCard.title') }}
-          <b-iconstack
+          <i
             v-if="mcaConfigured && !error"
-            font-scale="1.5"
-            class="ml-2 mr-3 fixed-size text-success"
-            width="20"
-            height="20"
+            class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
           >
-            <b-icon-circle-fill stacked />
-            <b-icon-check
-              stacked
-              variant="white"
-            />
-          </b-iconstack>
+            check_circle
+          </i>
         </b-card-text>
       </div>
     </div>
@@ -45,8 +38,8 @@
       v-if="!isEnabled"
       class="d-flex pt-2"
     >
-      <span class="mr-2">
-        <b-icon-exclamation-circle />
+      <span class="material-icons-round mr-2 mb-0 ps_gs-fz-16 align-self-center">
+        error_outline
       </span>
       <ul class="list-inline mb-0">
         <li
@@ -71,22 +64,34 @@
           <b-dropdown
             id="mcaSelection"
             ref="mcaSelection"
-            :text="mcaLabel(selectedMcaIndex) || $t('cta.chooseAccount')"
+            :text="mcaLabel(selectedMcaIndex) || $t('cta.selectAccount')"
             variant=" "
             class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
+            :toggle-class="{'ps-dropdown__placeholder' : !selectedMcaIndex}"
             menu-class="ps-dropdown"
             no-flip
             size="sm"
           >
+            <b-dropdown-item
+              link-class="px-3"
+              :disabled="true"
+              v-if="mcaListLoading"
+            >
+              <i class="icon-busy icon-busy--dark" />
+            </b-dropdown-item>
             <b-dropdown-item
               v-for="(option, index) in mcaSelectionOptions"
               :key="option.id"
               @click="selectedMcaIndex = index"
               :disabled="!isMcaUserAdmin(index)"
               variant="dark"
+              link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
             >
-              {{ mcaLabel(index) }}
-              <span v-if="!isMcaUserAdmin(index)">
+              <span class="mr-auto">{{ mcaLabel(index) }}</span>
+              <span
+                v-if="!isMcaUserAdmin(index)"
+                class="ps_gs-fz-12"
+              >
                 {{ $t('mcaCard.userIsNotAdmin') }}
               </span>
             </b-dropdown-item>
@@ -101,14 +106,17 @@
             {{ $t('cta.chooseExistingAccount') }}
           </b-button>
         </div>
+        <p class="text-muted ps_gs-fz-12 mt-3 mt-md-0">
+          {{ $t('mcaCard.toUseGmcNeedsAdminAccess') }}
+        </p>
       </b-form>
       <div class="mt-3">
         <a href="#">
           <i
             class="left material-icons mr-2"
             aria-hidden="true"
-          >person_add</i>
-          <span class="align-middle">{{ $t('cta.createNewMCA') }}</span>
+          >person_add</i><!--
+          --><span class="align-middle">{{ $t('cta.createNewMCA') }}</span>
         </a>
         <VueShowdown
           v-if="isEU"
@@ -122,6 +130,12 @@
       ToDo: Consider moving the "associated state" in a dedicated component
       As we only use data from the vuex store
     -->
+    <p
+      v-if="isEnabled && selectedMcaDetails.id !== null"
+      class="mb-0"
+    >
+      {{ $t('mcaCard.googleMCA') }}
+    </p>
     <div
       v-if="isEnabled && selectedMcaDetails.id !== null"
       class="d-flex flex-wrap flex-md-nowrap justify-content-between"
@@ -270,29 +284,21 @@
 import googleUrl from '@/assets/json/googleUrl.json';
 
 import {
-  BIconstack,
-  BIconCheck,
-  BIconCircleFill,
-  BIconExclamationCircle,
-} from 'bootstrap-vue';
-
-import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
 
 export default {
   name: 'MerchantCenterAccountCard',
-  components: {
-    BIconstack,
-    BIconCheck,
-    BIconCircleFill,
-    BIconExclamationCircle,
-  },
   data() {
     return {
       selectedMcaIndex: null,
       WebsiteClaimErrorReason,
       displaySiteVerified: false,
+      /**
+       * TODO: Handle mcaListLoading
+       * Should be set to false as soon as we get the list of MCA
+       */
+      mcaListLoading: true,
     };
   },
   props: {
