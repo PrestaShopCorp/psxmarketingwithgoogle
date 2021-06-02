@@ -238,6 +238,7 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
           variant="secondary"
+          @click="overrideClaim"
         >
           {{ $t("cta.overwriteClaim") }}
         </b-button>
@@ -245,6 +246,7 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 mr-md-3"
           variant="outline-secondary"
+          @click="dissociateMerchantCenterAccount"
         >
           {{ $t("cta.switchAccount") }}
         </b-button>
@@ -277,18 +279,24 @@
         </a>
       </p>
     </b-alert>
+    <MerchantCenterAccountPopinOverwriteClaim
+      ref="mcaPopinOverrideClaim"
+    />
   </b-card>
 </template>
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
-
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
+import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
 
 export default {
   name: 'MerchantCenterAccountCard',
+  components: {
+    MerchantCenterAccountPopinOverwriteClaim,
+  },
   data() {
     return {
       selectedMcaIndex: null,
@@ -306,10 +314,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    error: {
-      type: String, // Possible values in type WebsiteClaimErrorReason,
-      default: null,
-    },
     isEU: {
       type: Boolean,
     },
@@ -323,6 +327,9 @@ export default {
     },
     selectedMcaDetails() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
+    },
+    error() {
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS'];
     },
     message() {
       return this.isEnabled
@@ -347,6 +354,10 @@ export default {
             text: 'disapproved',
           };
         case WebsiteClaimErrorReason.Overwrite:
+          return {
+            color: 'warning',
+            text: 'pending',
+          };
         default:
           return {
             color: 'success',
@@ -361,6 +372,13 @@ export default {
     },
     dissociateMerchantCenterAccount() {
       this.$emit('dissociateMerchantCenterAccount');
+    },
+    overrideClaim() {
+      if (this.$refs.mcaPopinOverrideClaim) {
+        this.$bvModal.show(
+          this.$refs.mcaPopinOverrideClaim.$refs.modal.id,
+        );
+      }
     },
     mcaLabel(index) {
       if (this.mcaSelectionOptions[index]) {
@@ -382,15 +400,21 @@ export default {
       });
       return isAdmin;
     },
+    setFocusOnSelectMCA() {
+      if (this.$refs.mcaSelection) {
+        this.$refs.mcaSelection.$refs.toggle.focus();
+      }
+    },
     checkWebsiteRequirements() {
       /**
        * TODO: Handle opening of Popup */
     },
   },
+  updated() {
+    this.setFocusOnSelectMCA();
+  },
   mounted() {
-    if (this.$refs.mcaSelection) {
-      this.$refs.mcaSelection.$refs.toggle.focus();
-    }
+    this.setFocusOnSelectMCA();
   },
   watch: {
     mcaConfigured(newVal, oldVal) {
