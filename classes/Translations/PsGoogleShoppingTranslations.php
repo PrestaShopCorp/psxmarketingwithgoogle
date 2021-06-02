@@ -301,13 +301,14 @@ class PsGoogleShoppingTranslations
             'productFeedPage' => [
                 'syncStatus' => [
                   'title' => $this->module->l('Sync status', 'PsGoogleShoppingTranslations'),
-                  'syncProcessing' => $this->module->l('Sync processing...', 'PsGoogleShoppingTranslations'),
-                  'syncProcessed' => $this->module->l('Sync processed', 'PsGoogleShoppingTranslations'),
-                  'syncFailed' => $this->module->l('Sync failed', 'PsGoogleShoppingTranslations'),
-                  'lastSync' => $this->module->l('Last sync: {0}', 'PsGoogleShoppingTranslations'),
+                  'readyForExport' => $this->module->l('Product feed is ready for export', 'PsGoogleShoppingTranslations'),
+                  'syncProcessed' => $this->module->l('Synchronization processed', 'PsGoogleShoppingTranslations'),
+                  'syncFailed' => $this->module->l('Synchronization failed', 'PsGoogleShoppingTranslations'),
+                  'lastSync' => $this->module->l('Last synchronization: {0}', 'PsGoogleShoppingTranslations'),
                   'nextSync' => $this->module->l('Next synchronization: {0}', 'PsGoogleShoppingTranslations'),
-                  'prescanTitle' => $this->module->l('Which products will be exported at Next synchronization?', 'PsGoogleShoppingTranslations'),
-                  'prescanDescription' => $this->module->l('Check products ready to be synced and those with detected problems and couldn’t be synced.', 'PsGoogleShoppingTranslations'),
+                  'prescanTitle' => $this->module->l('Coming up next synchronization', 'PsGoogleShoppingTranslations'),
+                  'scheduleOn' => $this->module->l('Synchronization scheduled on {0}', 'PsGoogleShoppingTranslations'),
+                  'alert' => $this->module->l('To solve the synchronization issue, go to Help tab or [contact the customer support service](//google.com){:target="_blank"}.', 'PsGoogleShoppingTranslations'),
                 ],
                 'productStatus' => [
                     'title' => $this->module->l('Products status', 'PsGoogleShoppingTranslations'),
