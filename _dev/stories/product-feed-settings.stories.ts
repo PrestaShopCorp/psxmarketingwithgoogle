@@ -1,9 +1,9 @@
-import ProductFeedSettings from '../src/components/product-feed/product-feed-settings.vue'
+import TunnelProductFeed from '../src/views/tunnel-product-feed.vue'
 import Stepper from '../src/components/commons/stepper.vue'
 
 export default {
   title: 'Product feed/Settings',
-  component: ProductFeedSettings,
+  component: TunnelProductFeed,
   subcomponents: { Stepper },
   argTypes: {
     activeStep: {
@@ -15,11 +15,8 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { ProductFeedSettings, },
-  template:
-    `<div>
-      <ProductFeedSettings v-bind="$props" />
-    </div>`,
+  components: { TunnelProductFeed },
+  template: '<div><TunnelProductFeed v-bind="$props" /></div>',
 });
 
 export const ShippingSettings:any = Template.bind({});

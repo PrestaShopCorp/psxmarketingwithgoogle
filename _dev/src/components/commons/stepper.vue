@@ -16,7 +16,10 @@
         @click.prevent="isComplete(index) ? handleStepClick(index) : null"
         class="ps_gs-stepper-step__link"
       >
-        <div class="ps_gs-stepper-step__step d-flex align-items-center justify-content-center">
+        <div
+          class="ps_gs-stepper-step__step d-flex align-items-center justify-content-center"
+          @click="goStep(index+1)"
+        >
           <b-icon-check
             v-if="isComplete(index)"
             variant="white"
@@ -64,6 +67,16 @@ export default {
       mutableActiveStep: this.activeStep,
     };
   },
+  props: {
+    steps: {
+      type: Array,
+      required: true,
+    },
+    activeStep: {
+      type: Number,
+      default: 1,
+    },
+  },
   methods: {
     isComplete(index) {
       return index < this.mutableActiveStep - 1;
@@ -80,15 +93,20 @@ export default {
       }
       return this.$i18n.t('stepper.lastStep');
     },
-  },
-  props: {
-    steps: {
-      type: Array,
-      required: true,
+  
+    goStep(index) {
+      if (this.$store.state.productFeed.productFeed.stepper < index) {
+
+      } else {
+        this.$store.commit('productFeed/UPDATE_STEPPER', index);
+      }
     },
-    activeStep: {
-      type: Number,
-      default: 1,
+  },
+  computed: {
+    mutableActiveStep: {
+      get() {
+        return this.activeStep;
+      },
     },
   },
 };

@@ -21,7 +21,6 @@ export default defineComponent({
     return {
     };
   },
-
   created() {
     this.$root.$on('onHideLanding', () => {
       this.$router.push({

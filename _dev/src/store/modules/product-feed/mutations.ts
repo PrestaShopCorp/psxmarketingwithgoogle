@@ -38,4 +38,13 @@ export default {
   [MutationsTypes.SET_SUSPENDED_DATA_SYNC](state: LocalState, payload: any) {
     state.productFeed.status.isSuspendSync = payload;
   },
+
+  //  Product Feed Card
+  [MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS](state: LocalState, payload: any) {
+    state.productFeed.settings[payload.name] = payload.data;
+  },
+
+  [MutationsTypes.UPDATE_STEPPER](state: LocalState, payload: any) {
+    state.productFeed.stepper = payload;
+  },
 };

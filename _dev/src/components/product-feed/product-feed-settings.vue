@@ -92,10 +92,10 @@ export default {
       ],
     };
   },
-  props: {
-    activeStep: {
-      type: Number,
-      required: true,
+  computed: {
+    // Where do we get the active step ? Is it in backend ? For now it is just in the store
+    activeStep() {
+      return this.$store.state.productFeed.productFeed.stepper;
     },
   },
 };

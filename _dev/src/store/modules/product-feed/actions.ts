@@ -110,4 +110,40 @@ export default {
       console.error(error);
     }
   },
+
+  // Product Feed Settings Card :
+
+  async [ActionsTypes.GET_SHIPPING_SETTINGS]({commit, rootState}) {
+    // try {
+    //   const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
+    //   if (!response.ok) {
+    //     throw new HttpClientError(response.statusText, response.status);
+    //   }
+    //   const json = await response.json();
+
+    // FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
+    const json = {
+      autoImportShippingSettings: false,
+      autoImportTaxSettings: true,
+      exportProductsWithShortDescription: true,
+      customConditionAttribute: 'extra:condition',
+      customColorAttribute: 'extra:color',
+      customSizeAttribute: 'extra:size',
+      customAgeGroupAttribute: 'extra:age-group',
+      customGenderGroupAttribute: 'extra:gender-group',
+      targetCountries: [
+        'FR',
+        'LT',
+      ],
+    };
+    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'autoImportShippingSettings', data: json.autoImportShippingSettings});
+    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'targetCountries', data: json.targetCountries});
+    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'autoImportTaxSettings', data: json.autoImportTaxSettings});
+    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'exportProductsWithShortDescription', data: json.exportProductsWithShortDescription});
+
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  },
+
 };

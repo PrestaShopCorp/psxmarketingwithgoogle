@@ -11,7 +11,7 @@
         {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
       <ps-select
-        v-model="selectedCountries"
+        v-model="countries"
         :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
         :reduce="country => country.code"
         :options="$options.countriesSelectionOptions"
@@ -32,10 +32,11 @@
       label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
       <b-form-radio
-        v-model="selectedShippingSettings"
+        :checked="shippingSettings"
+        v-model="shippingSettings"
         name="shippingSettingsRadio"
         id="shippingSettingsAuto"
-        value="shippingSettingsAuto"
+        :value="true"
         class="mb-2"
       >
         <div>
@@ -48,10 +49,11 @@
         </div>
       </b-form-radio>
       <b-form-radio
-        v-model="selectedShippingSettings"
+        :checked="!shippingSettings"
+        v-model="shippingSettings"
         name="shippingSettingsRadio"
         id="shippingSettingsManual"
-        value="shippingSettingsManual"
+        :value="false"
         class="mb-2"
       >
         <div>
@@ -106,7 +108,7 @@
         {{ $t('productFeedSettings.shipping.taxSettingsDescription') }}
       </p>
       <b-form-radio
-        v-model="selectedTaxSettings"
+        v-model="tax"
         name="taxSettingsRadio"
         id="taxSettingsAuto"
         value="taxSettingsAuto"
@@ -119,7 +121,7 @@
         </div>
       </b-form-radio>
       <b-form-radio
-        v-model="selectedTaxSettings"
+        v-model="tax"
         name="taxSettingsRadio"
         id="taxSettingsManual"
         value="taxSettingsManual"
@@ -133,14 +135,17 @@
       </b-form-radio>
     </b-form-group> -->
     <div class="d-md-flex text-center justify-content-end mt-3">
+      <router-link to="/onboarding">
+        <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0"
+          variant="outline-secondary"
+        >
+          {{ $t('cta.cancel') }}
+        </b-button>
+      </router-link>
       <b-button
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t('cta.cancel') }}
-      </b-button>
-      <b-button
+        @click="nextStep"
         size="sm"
         :disabled="disableContinue"
         class="mx-1 mt-3 mt-md-0 mr-md-0"
@@ -154,9 +159,12 @@
 </template>
 
 <script>
+import getters from '@/store/modules/app/getters';
 import PsSelect from '../commons/ps-select';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
+import ActionsTypes from '../../store/modules/product-feed/actions-types';
+import MutationsTypes from '../../store/modules/product-feed/mutations-types';
 
 export default {
   name: 'ProductFeedSettingsShipping',
@@ -164,26 +172,57 @@ export default {
     PsSelect,
     ProductFeedSettingsFooter,
   },
-  data() {
-    return {
-      selectedCountries: [],
-      selectedShippingSettings: null,
-      selectedTaxSettings: null,
-    };
-  },
+
   computed: {
     isUS() {
-      return this.selectedCountries.includes('US');
+      return this.countries.includes('US');
     },
     disableContinue() {
       /**
        * ! This condition will be used when
        * ! we'll be able to set taxSettings manually
        */
-      // if (this.isUS && this.selectedTaxSettings === null) {
+      // if (this.isUS && this.tax === null) {
       //   return true;
       // }
-      return this.selectedCountries.length < 1 || this.selectedShippingSettings === null;
+      return this.countries.length < 1 || this.shippingSettings === null;
+    },
+    shippingSettings: {
+      get() {
+        return this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings !== 'undefined'
+          ? this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings : null;
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+          name: 'autoImportShippingSettings',
+          data: value,
+        });
+      },
+    },
+    countries: {
+      get() {
+        return this.$store.state.productFeed.productFeed.settings.targetCountries
+          ? this.$store.state.productFeed.productFeed.settings.targetCountries : [];
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {name: 'targetCountries', data: value});
+      },
+    },
+    // NOT IN BATCH 1
+    // tax: {
+    //   get() {
+    //     return this.$store.state.productFeed.productFeed.settings.autoImportTaxSettings
+    //       ? this.$store.state.productFeed.productFeed.settings.autoImportTaxSettings : null;
+    //   },
+    //   set(value) {
+    //     this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {name: 'autoImportTaxSettings', data: value});
+    //   },
+    // },
+
+  },
+  methods: {
+    nextStep() {
+      this.$store.commit('productFeed/UPDATE_STEPPER', 2);
     },
   },
   countriesSelectionOptions,

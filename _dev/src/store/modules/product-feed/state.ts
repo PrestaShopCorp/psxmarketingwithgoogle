@@ -23,29 +23,40 @@ export interface ProductFeedStatus {
   registerSyncData: any;
   isSuspendSync: any;
 }
+export interface ProductFeedSettingsStatus {
+  autoImportTaxSettings: boolean;
+  targetCountries: Array<string>;
+  autoImportShippingSettings: boolean;
+  exportProductsWithShortDescription: boolean;
+}
 
 export interface FreeListingStatus {
   validationList: any;
   summaryValidationList: any;
   status: any;
 }
-
 export interface State {
   productFeed: {
+    stepper: number,
     status: ProductFeedStatus,
-    settings: any,
+    settings: ProductFeedSettingsStatus,
   },
   freeListing: FreeListingStatus;
 }
 
 export const state: State = {
   productFeed: {
+    stepper: 1,
     status: {
       lastSync: {},
       registerSyncData: {},
       isSuspendSync: null,
     },
     settings: {
+      autoImportTaxSettings: false,
+      targetCountries: [],
+      autoImportShippingSettings: false,
+      exportProductsWithShortDescription: true,
     },
   },
   freeListing: {

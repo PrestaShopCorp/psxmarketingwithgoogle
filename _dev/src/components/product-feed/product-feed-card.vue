@@ -99,14 +99,17 @@
         class="d-flex justify-content-center justify-content-md-end mt-n1"
         v-if="isEnabled"
       >
-        <b-button
+        <router-link
+          to="/product-feed"
           v-if="!configurationStarted"
-          size="sm"
-          variant="primary"
-          @click="startProcessProductFeed()"
         >
-          {{ $t("cta.configureAndExportProductFeed") }}
-        </b-button>
+          <b-button
+            size="sm"
+            variant="primary"
+          >
+            {{ $t("cta.configureAndExportProductFeed") }}
+          </b-button>
+        </router-link>
         <product-feed-settings-shipping v-else />
       </div>
     </div>
@@ -422,13 +425,6 @@ export default {
     },
     hasMapping() {
       return this.categoriesMapped > 0;
-    },
-  },
-  methods: {
-    startProcessProductFeed() {
-      this.$router.push({
-        name: 'tunnel',
-      });
     },
   },
   googleUrl,

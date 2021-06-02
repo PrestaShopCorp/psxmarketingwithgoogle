@@ -61,15 +61,17 @@
                 <b-form-radio
                   v-model="selectedDescriptionLength"
                   name="descriptionRadio"
-                  value="long"
+                  :value="false"
                   class="mb-2"
+                  :checked="!selectedDescriptionLength"
                 >
                   {{ $t('productFeedSettings.attributeMapping.longDescription') }}
                 </b-form-radio>
                 <b-form-radio
                   v-model="selectedDescriptionLength"
                   name="descriptionRadio"
-                  value="short"
+                  :value="true"
+                  :checked="selectedDescriptionLength"
                 >
                   {{ $t('productFeedSettings.attributeMapping.shortDescription') }}
                 </b-form-radio>
@@ -226,8 +228,22 @@ export default {
       sellApparel: false,
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
-      selectedDescriptionLength: 'long',
+
     };
+  },
+  computed: {
+    selectedDescriptionLength: {
+      get() {
+        return this.$store.state.productFeed.productFeed.settings.exportProductsWithShortDescription !== 'undefined'
+          ? this.$store.state.productFeed.productFeed.settings.exportProductsWithShortDescription : null;
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+          name: 'exportProductsWithShortDescription',
+          data: value,
+        });
+      },
+    },
   },
 };
 </script>
