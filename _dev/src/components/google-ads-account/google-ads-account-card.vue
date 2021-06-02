@@ -126,7 +126,7 @@
           <b-button
             size="sm"
             variant="outline-secondary"
-            class="mt-3 mt-md-0"
+            class="mt-3 mt-md-0 align-self-end"
             target="_blank"
           >
             {{ $t('cta.dissociate') }}
