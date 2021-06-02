@@ -71,6 +71,7 @@
             menu-class="ps-dropdown"
             no-flip
             size="sm"
+            :disabled="isLinking"
           >
             <b-dropdown-item
               link-class="px-3"
@@ -99,7 +100,7 @@
           <b-button
             size="sm"
             variant="primary"
-            :disabled="selectedMcaIndex === null"
+            :disabled="selectedMcaIndex === null || isLinking"
             class="mt-3 mt-md-0 ml-md-3"
             @click="selectMerchantCenterAccount"
           >
@@ -294,11 +295,6 @@ export default {
       selectedMcaIndex: null,
       WebsiteClaimErrorReason,
       displaySiteVerified: false,
-      /**
-       * TODO: Handle mcaListLoading
-       * Should be set to false as soon as we get the list of MCA
-       */
-      mcaListLoading: true,
     };
   },
   props: {
@@ -313,10 +309,17 @@ export default {
     isEU: {
       type: Boolean,
     },
+    isLinking: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     mcaSelectionOptions() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
+    },
+    mcaListLoading() {
+      return this.mcaSelectionOptions === null;
     },
     mcaConfigured() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
@@ -363,12 +366,15 @@ export default {
       this.$emit('dissociateMerchantCenterAccount');
     },
     mcaLabel(index) {
-      if (this.mcaSelectionOptions[index]) {
+      if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         return `${this.mcaSelectionOptions[index].name} - ${this.mcaSelectionOptions[index].id}`;
       }
       return null;
     },
     isMcaUserAdmin(index) {
+      if (!this.mcaSelectionOptions) {
+        return false;
+      }
       let isAdmin = false;
       this.mcaSelectionOptions[index].users.forEach((user) => {
         // Only continue if the user email matches the onboarded Google Account one

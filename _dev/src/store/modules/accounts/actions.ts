@@ -47,12 +47,33 @@ export default {
     }
   },
 
-  [ActionsTypes.SAVE_SELECTED_GOOGLE_ACCOUNT](
-    {commit, dispatch},
-    selectedAccount: contentApi.Schema$Account,
+  async [ActionsTypes.SAVE_SELECTED_GOOGLE_ACCOUNT](
+    {commit, rootState, dispatch, state},
+    selectedAccount,
   ) {
-    commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
-    dispatch(ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS);
+    try {
+      const route = `${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts/${selectedAccount.id}/link`;
+      const response = await fetch(route, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
+      });
+      const json = await response.json();
+
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+
+      commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
+      dispatch(ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS);
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
   },
 
   // Comment to delete : launch toast Google account connected ONCE after connected

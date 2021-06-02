@@ -39,6 +39,7 @@
         :is-enabled="googleAccountIsOnboarded"
         :is-connected="merchantCenterAccountIsChosen"
         :is-e-u="showCSSForMCA"
+        :is-linking="isMcaLinking"
         @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
         @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
       />
@@ -110,6 +111,7 @@ export default {
   },
   data() {
     return {
+      isMcaLinking: false,
     };
   },
   methods: {
@@ -117,7 +119,15 @@ export default {
       window.location.href = shopSelected.url;
     },
     onMerchantCenterAccountSelected(selectedAccount) {
-      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount);
+      this.isMcaLinking = true;
+      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount)
+        .then(() => {
+          this.isMcaLinking = false;
+        })
+        .catch((error) => {
+          // TODO !0: show an error in the card
+          console.error(error);
+        });
     },
     onGoogleAccountConnection() {
       this.$store.dispatch('accounts/SAVE_GOOGLE_CONNECTION_ONCE');
