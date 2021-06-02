@@ -34,3 +34,7 @@ services:
   ps_googleshopping.link:
     class: 'Shop'
     factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getLink']
+
+  ps_googleshopping.db:
+    class: Db
+    factory: [ 'Db', 'getInstance' ]
