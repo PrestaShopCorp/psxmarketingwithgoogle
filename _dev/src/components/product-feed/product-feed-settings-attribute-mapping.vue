@@ -111,13 +111,13 @@
       <template
         v-if="sellRefurbished || sellApparel"
       >
-        <p>
+        <p class="mt-3 mb-2 pt-2">
           {{ $t('productFeedSettings.attributeMapping.toDescribeProducts') }}
         </p>
         <b-table-simple
           stacked="md"
           class="mx-n1"
-          table-class="border-bottom-0 table-firstline-borderless"
+          table-class="border-bottom-0 table-firstline-borderless ps_gs-table-attribute-mapping"
         >
           <product-feed-settings-attribute-mapping-tablehead />
           <b-tbody>

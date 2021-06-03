@@ -1,7 +1,7 @@
 <template>
   <b-tr>
-    <b-td class="align-top">
-      <span class="font-weight-bold d-flex align-items-center">
+    <b-td class="pb-0 py-md-3 align-top">
+      <span class="font-weight-bold d-flex align-items-center required">
         {{ $t(`productFeedSettings.attributeMapping.${input}`) }}
         <b-button
           v-b-tooltip
@@ -9,14 +9,21 @@
           variant="invisible"
           class="ml-1 p-0 border-0 ps_gs-fz-12"
         >
-          <b-icon-exclamation-circle />
+          <span class="material-icons-round mb-0 ps_gs-fz-12 align-middle">
+            error_outline
+          </span>
           <span class="sr-only">Tooltip!</span>
         </b-button>
       </span>
     </b-td>
-    <b-td class="align-top">
+    <b-td class="pt-0 py-md-3 align-top">
       <b-form-group class="mb-0 text-left">
-        <b-form-radio
+        {{
+          $t('productFeedSettings.attributeMapping.theXField',
+              [$t(`productFeedSettings.attributeMapping.${input}`)])
+        }}
+        <!-- Not in Batch 1 -->
+        <!-- <b-form-radio
           v-model="selectedRadio"
           :name="`${input}Radio`"
           value="default"
@@ -48,22 +55,15 @@
               {{ option }}
             </b-form-select-option>
           </b-select>
-        </div>
+        </div> -->
       </b-form-group>
     </b-td>
   </b-tr>
 </template>
 
 <script>
-import {
-  BIconExclamationCircle,
-} from 'bootstrap-vue';
-
 export default {
   name: 'ProductFeedSettingsAttributeMappingTablerowSpecific',
-  components: {
-    BIconExclamationCircle,
-  },
   props: {
     input: {
       type: String,

@@ -205,7 +205,7 @@
         "learnAboutAttributeMapping" : "Learn more about attribute mapping",
         "introNotice" : "In addition to the attributes required for standard free listings, the following attributes are required to participate in enhanced listings. Performance may be limited unless you provide all attributes available in your region:",
         "genericTitle" : "Generic",
-        "toDescribeProducts" : "To describe my product attributes, please use:",
+        "toDescribeProducts" : "For your products we will recover these attributes:",
         "googleAttribute" : "Google product attribute",
         "prestashopAttribute" : "PrestaShop product attribute",
         "description" : "Description",

@@ -253,7 +253,7 @@ class PsGoogleShoppingTranslations
                     'learnAboutAttributeMapping' => $this->module->l('Learn more about attribute mapping', 'PsGoogleShoppingTranslations'),
                     'introNotice' => $this->module->l('In addition to the attributes required for standard free listings, the following attributes are required to participate in enhanced listings. Performance may be limited unless you provide all attributes available in your region:', 'PsGoogleShoppingTranslations'),
                     'genericTitle' => $this->module->l('Generic', 'PsGoogleShoppingTranslations'),
-                    'toDescribeProducts' => $this->module->l('To describe my product attributes, please use:', 'PsGoogleShoppingTranslations'),
+                    'toDescribeProducts' => $this->module->l('For your products we will recover these attributes:', 'PsGoogleShoppingTranslations'),
                     'googleAttribute' => $this->module->l('Google product attribute', 'PsGoogleShoppingTranslations'),
                     'prestashopAttribute' => $this->module->l('PrestaShop product attribute', 'PsGoogleShoppingTranslations'),
                     'description' => $this->module->l('Description', 'PsGoogleShoppingTranslations'),
