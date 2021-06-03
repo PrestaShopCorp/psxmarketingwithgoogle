@@ -400,6 +400,7 @@ class PsGoogleShoppingTranslations
                 'setupTaxSettings' => $this->module->l('Set up tax settings', 'PsGoogleShoppingTranslations'),
                 'understandAndContinue' => $this->module->l('understandAndContinue', 'PsGoogleShoppingTranslations'),
                 'reviewProblems' => $this->module->l('Review problems', 'PsGoogleShoppingTranslations'),
+                'saveAndExport' => $this->module->l('Save and export', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
