@@ -34,3 +34,8 @@ export const AttributeMapping:any = Template.bind({});
 AttributeMapping.args = {
   activeStep: 3,
 }
+
+export const Summary:any = Template.bind({});
+Summary.args = {
+  activeStep: 4,
+}
