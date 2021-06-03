@@ -1,15 +1,14 @@
-import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue'
+import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue';
 import MerchantCenterAccountPopinDisconnect from '../src/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
-import {googleAccountConnected} from "../.storybook/mock/google-account";
+import {googleAccountConnected} from '../.storybook/mock/google-account';
 import {
   merchantCenterAccountNotConnected,
   merchantCenterAccountConnected,
   merchandCenterAccountNotConnectedWithOverwriteClaim,
   merchandCenterAccountNotConnectedWithExpiringError,
-  merchandCenterAccountNotConnectedWithPendingStatus,
   merchandCenterAccountNotConnectedWithDisapprovedStatus,
   merchandCenterAccountNotConnectedWithShopInfoMissing,
-} from "../.storybook/mock/merchant-center-account";
+} from '../.storybook/mock/merchant-center-account';
 import {WebsiteClaimErrorReason} from '../src/store/modules/accounts/state';
 
 export default {
@@ -21,14 +20,14 @@ export default {
         type: 'select',
         // @ts-ignore
         options: [null].concat(Object.keys(WebsiteClaimErrorReason)),
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
-  components: { MerchantCenterAccountCard, MerchantCenterAccountPopinDisconnect },
+  components: {MerchantCenterAccountCard, MerchantCenterAccountPopinDisconnect},
   template: `
     <div>
       <MerchantCenterAccountCard
@@ -60,7 +59,7 @@ const Template = (args, { argTypes }) => ({
         this.$refs.mcaDisconnectModal.$refs.modal.id,
       );
     },
-  }
+  },
 });
 
 export const Disabled:any = Template.bind({});
@@ -102,5 +101,19 @@ ConnectedAndShopInfoMissing.args = {
 export const EnabledConnected:any = Template.bind({});
 EnabledConnected.args = {
   isEnabled: true,
+  initialMcaStatus: merchantCenterAccountConnected,
+};
+
+export const EnabledLinkingFailed:any = Template.bind({});
+EnabledLinkingFailed.args = {
+  isEnabled: true,
+  error: WebsiteClaimErrorReason.LinkingFailed,
+  initialMcaStatus: merchantCenterAccountNotConnected,
+};
+
+export const EnabledDisapproved:any = Template.bind({});
+EnabledDisapproved.args = {
+  isEnabled: true,
+  error: WebsiteClaimErrorReason.Disapproved,
   initialMcaStatus: merchantCenterAccountConnected,
 };

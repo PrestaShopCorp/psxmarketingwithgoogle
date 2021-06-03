@@ -39,8 +39,10 @@
         :is-enabled="googleAccountIsOnboarded"
         :is-connected="merchantCenterAccountIsChosen"
         :is-e-u="showCSSForMCA"
+        :is-linking="isMcaLinking"
         @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
         @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
+        :error="mcaError"
       />
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
@@ -81,6 +83,7 @@
 
 <script>
 import {MultiStoreSelector, PsAccounts} from 'prestashop_accounts_vue_components';
+import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
@@ -110,6 +113,8 @@ export default {
   },
   data() {
     return {
+      isMcaLinking: false,
+      mcaError: null,
     };
   },
   methods: {
@@ -117,7 +122,14 @@ export default {
       window.location.href = shopSelected.url;
     },
     onMerchantCenterAccountSelected(selectedAccount) {
-      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount);
+      this.isMcaLinking = true;
+      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount)
+        .catch(() => {
+          this.mcaError = WebsiteClaimErrorReason.LinkingFailed;
+        })
+        .finally(() => {
+          this.isMcaLinking = false;
+        });
     },
     onGoogleAccountConnection() {
       this.$store.dispatch('accounts/SAVE_GOOGLE_CONNECTION_ONCE');

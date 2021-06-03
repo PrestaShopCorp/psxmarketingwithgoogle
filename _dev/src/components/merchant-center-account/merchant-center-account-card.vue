@@ -71,6 +71,7 @@
             menu-class="ps-dropdown"
             no-flip
             size="sm"
+            :disabled="isLinking"
           >
             <b-dropdown-item
               link-class="px-3"
@@ -99,7 +100,7 @@
           <b-button
             size="sm"
             variant="primary"
-            :disabled="selectedMcaIndex === null"
+            :disabled="selectedMcaIndex === null || isLinking"
             class="mt-3 mt-md-0 ml-md-3"
             @click="selectMerchantCenterAccount"
           >
@@ -109,6 +110,19 @@
         <p class="text-muted ps_gs-fz-12 mt-3 mt-md-0">
           {{ $t('mcaCard.toUseGmcNeedsAdminAccess') }}
         </p>
+        <b-alert
+          v-if="error === WebsiteClaimErrorReason.LinkingFailed"
+          show
+          variant="warning"
+          class="mb-0 mt-3"
+        >
+          <p class="mb-0">
+            <strong>{{ $t('mcaCard.linkingFailed') }}</strong><br>
+            <span class="ps_gs-fz-12">
+          {{ $t('mcaCard.linkingFailedDescription') }}
+        </span>
+          </p>
+        </b-alert>
       </b-form>
       <div class="mt-3">
         <a href="#">
@@ -302,11 +316,6 @@ export default {
       selectedMcaIndex: null,
       WebsiteClaimErrorReason,
       displaySiteVerified: false,
-      /**
-       * TODO: Handle mcaListLoading
-       * Should be set to false as soon as we get the list of MCA
-       */
-      mcaListLoading: true,
     };
   },
   props: {
@@ -317,10 +326,17 @@ export default {
     isEU: {
       type: Boolean,
     },
+    isLinking: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     mcaSelectionOptions() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
+    },
+    mcaListLoading() {
+      return this.mcaSelectionOptions === null;
     },
     mcaConfigured() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
@@ -381,12 +397,15 @@ export default {
       }
     },
     mcaLabel(index) {
-      if (this.mcaSelectionOptions[index]) {
+      if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         return `${this.mcaSelectionOptions[index].name} - ${this.mcaSelectionOptions[index].id}`;
       }
       return null;
     },
     isMcaUserAdmin(index) {
+      if (!this.mcaSelectionOptions || !this.mcaSelectionOptions[index]) {
+        return false;
+      }
       let isAdmin = false;
       this.mcaSelectionOptions[index].users.forEach((user) => {
         // Only continue if the user email matches the onboarded Google Account one

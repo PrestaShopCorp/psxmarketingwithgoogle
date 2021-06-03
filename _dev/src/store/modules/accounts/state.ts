@@ -39,7 +39,7 @@ export interface PrestaShopAccountsContext {
 
 export interface GoogleAccount {
   details: oauthApi.Schema$Userinfo,
-  mcaSelectionOptions: contentApi.Schema$Account[],
+  mcaSelectionOptions: contentApi.Schema$Account[] | null,
 }
 
 export interface GoogleAccountToken {
@@ -82,6 +82,7 @@ export enum WebsiteClaimErrorReason {
   Pending = 'Pending',
   Overwrite = 'Overwrite',
   ShopInfoMissing = 'ShopInfoMissing',
+  LinkingFailed = 'LinkingFailed',
 }
 
 export const state: State = {
@@ -92,7 +93,7 @@ export const state: State = {
     access_token: '',
     expiry_date: 0,
     details: {},
-    mcaSelectionOptions: [],
+    mcaSelectionOptions: null,
     authenticationUrl: '',
     connectedOnce: false,
   },
