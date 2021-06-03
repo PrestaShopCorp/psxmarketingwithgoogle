@@ -203,7 +203,7 @@ class PsGoogleShoppingTranslations
                   'summary' => $this->module->l('Summary', 'PsGoogleShoppingTranslations'),
                   'exportFeed' => $this->module->l('Export feed!', 'PsGoogleShoppingTranslations'),
                 ],
-                'noticeDataStored' => $this->module->l('Each step is saved but everything is submitted at the end', 'PsGoogleShoppingTranslations'),
+                'noticeDataStored' => $this->module->l('Data are stored at each step but will be submitted only at the final step.', 'PsGoogleShoppingTranslations'),
                 'shipping' => [
                     'targetCountries' => $this->module->l('Target countries', 'PsGoogleShoppingTranslations'),
                     'ifMultipleCountries' => $this->module->l('If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.', 'PsGoogleShoppingTranslations'),
@@ -269,11 +269,12 @@ class PsGoogleShoppingTranslations
                     'gender' => $this->module->l('Gender', 'PsGoogleShoppingTranslations'),
                     'theXField' => $this->module->l('The "{0}" field', 'PsGoogleShoppingTranslations'),
                     'thisCustomField' => $this->module->l('This custom field', 'PsGoogleShoppingTranslations'),
-                    'footerNotice1' => $this->module->l('Note that you must provide shipping costs for enhanced listings on surfaces across Google. You can set up shipping by using the shipping attribute in the feed or define shipping settings on the account level.', 'PsGoogleShoppingTranslations'),
+                    'footerNotice1' => $this->module->l('These attributes are required for products for specific age group and apparel items for customers in Brazil, France, Germany, Japan, the UK, and the US.', 'PsGoogleShoppingTranslations'),
                     'footerNotice2' => $this->module->l('We encourage submitting as many applicable attributes as possible to ensure accurate and comprehensive data.', 'PsGoogleShoppingTranslations'),
                     'learnAboutShippingSettings' => $this->module->l('Learn more about shipping settings', 'PsGoogleShoppingTranslations'),
                     'learnHowToSetupShippingSettings' => $this->module->l('Learn how to set up shipping', 'PsGoogleShoppingTranslations'),
                     'learnRequirementsProductSpeficifacion' => $this->module->l('Learn more about requirements for the Shopping product data specification', 'PsGoogleShoppingTranslations'),
+                    'weWillRecoverTheseAttributes' => $this->module->l('For your products we will recover these attributes:', 'PsGoogleShoppingTranslations'),
                 ],
             ],
             'freeListingCard' => [

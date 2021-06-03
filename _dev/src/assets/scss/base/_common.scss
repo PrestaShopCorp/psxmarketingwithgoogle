@@ -8,12 +8,12 @@ a[target="_blank"].text-muted {
 a[target="_blank"] {
   &:not(.btn) {
     text-decoration: underline;
-  
+
     &:hover,
     &:focus {
       color: $blue;
     }
-  
+
     &:active,
     &:visited {
       color: $blue_dark;
@@ -84,4 +84,10 @@ a[target="_blank"] {
 
 .bg-violet_extralight {
   background-color: $violet_extralight;
+}
+
+.ps_gs-required::before {
+  content: '*';
+  margin-right: 0.5ch;
+  color: $danger;
 }
