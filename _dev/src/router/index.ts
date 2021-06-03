@@ -9,7 +9,8 @@ import MutationsTypes from '../store/modules/accounts/mutations-types';
 Vue.use(VueRouter);
 
 const initialPath = (to, from, next) => {
-  if (from.path === '/' && Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED']) {
+  if ((from.path === '/' && Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'])
+  || (from.path === '/' && Store.getters['accounts/GET_PS_SHOP_IS_SELECTED'])) {
     next('/configuration');
   } else {
     next('/onboarding');

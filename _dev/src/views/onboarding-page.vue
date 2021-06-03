@@ -6,7 +6,6 @@
       :is-enabled="true"
       :is-done="stepsAreCompleted.step1"
     />
-
     <MultiStoreSelector
       v-if="!psAccountsContext.isShopContext && shops.length"
       :shops="shops"
@@ -115,6 +114,7 @@ export default {
   methods: {
     onShopSelected(shopSelected) {
       window.location.href = shopSelected.url;
+    
     },
     onMerchantCenterAccountSelected(selectedAccount) {
       this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount);

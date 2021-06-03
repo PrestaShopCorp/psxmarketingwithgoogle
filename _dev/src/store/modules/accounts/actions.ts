@@ -55,7 +55,6 @@ export default {
     dispatch(ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS);
   },
 
-  // Comment to delete : launch toast Google account connected ONCE after connected
   [ActionsTypes.SAVE_GOOGLE_CONNECTION_ONCE](
     {commit},
   ) {
