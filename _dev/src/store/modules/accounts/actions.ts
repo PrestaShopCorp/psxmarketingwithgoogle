@@ -82,6 +82,7 @@ export default {
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
     } catch (error) {
       console.error(error);
+      commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, error);
     }
   },
 
@@ -109,6 +110,7 @@ export default {
         return null;
       }
       console.error(error);
+      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, error);
     }
     return null;
   },

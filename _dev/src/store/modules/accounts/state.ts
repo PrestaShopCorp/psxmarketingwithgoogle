@@ -44,14 +44,14 @@ export interface GoogleAccount {
 
 export interface GoogleAccountToken {
   // eslint-disable-next-line camelcase
-  access_token: string,
+  access_token: string|Error,
   // eslint-disable-next-line camelcase
   expiry_date: number,
 }
 
 export type GoogleAccountContext = GoogleAccount
 & GoogleAccountToken & {
-  authenticationUrl: string,
+  authenticationUrl: string|Error,
   connectedOnce: boolean,
 
   from?: string,
