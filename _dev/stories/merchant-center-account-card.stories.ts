@@ -1,15 +1,14 @@
 import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue';
 import MerchantCenterAccountPopinDisconnect from '../src/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
-import {googleAccountConnected} from "../.storybook/mock/google-account";
+import {googleAccountConnected} from '../.storybook/mock/google-account';
 import {
   merchantCenterAccountNotConnected,
   merchantCenterAccountConnected,
   merchandCenterAccountNotConnectedWithOverwriteClaim,
   merchandCenterAccountNotConnectedWithExpiringError,
-  merchandCenterAccountNotConnectedWithPendingStatus,
   merchandCenterAccountNotConnectedWithDisapprovedStatus,
   merchandCenterAccountNotConnectedWithShopInfoMissing,
-} from "../.storybook/mock/merchant-center-account";
+} from '../.storybook/mock/merchant-center-account';
 import {WebsiteClaimErrorReason} from '../src/store/modules/accounts/state';
 
 export default {

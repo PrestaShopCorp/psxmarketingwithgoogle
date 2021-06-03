@@ -124,13 +124,11 @@ export default {
     onMerchantCenterAccountSelected(selectedAccount) {
       this.isMcaLinking = true;
       this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount)
-        .then(() => {
-          this.isMcaLinking = false;
-        })
-        .catch((error) => {
-          console.error(error);
-          this.isMcaLinking = false;
+        .catch(() => {
           this.mcaError = WebsiteClaimErrorReason.LinkingFailed;
+        })
+        .finally(() => {
+          this.isMcaLinking = false;
         });
     },
     onGoogleAccountConnection() {
