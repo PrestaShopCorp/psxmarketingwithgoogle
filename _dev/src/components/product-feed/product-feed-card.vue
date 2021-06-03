@@ -187,7 +187,7 @@
       </b-container>
       <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
         <h3 class="font-weight-600 ps_gs-fz-14 mb-0">
-          {{ $t("productFeedSettings.breadcrumb") }}
+          {{ $t("productFeedSettings.breadcrumb2") }}
         </h3>
       </div>
       <b-container
