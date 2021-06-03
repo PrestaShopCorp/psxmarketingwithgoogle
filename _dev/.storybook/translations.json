@@ -43,7 +43,9 @@
         "freeListing" : "Activate your free product listings",
         "smartShoppingCampaign" : "Launch your paid Smart Shopping campaign"
       },
-      "productFeedNotice" : "Google’s retail solutions can help you welcome more customers to your site or your store. After you get set up, you’ll have access to reports so you can see how well your ads are doing."
+      "productFeedNotice" : "Google’s retail solutions can help you welcome more customers to your site or your store. After you get set up, you’ll have access to reports so you can see how well your ads are doing.",
+      "warningMultistore":  "You can only connect one shop to your Prestashop Account."
+
     },
     "psAccountCard" : {
       "disonboardedText" : "Authorize your account to manage your shop’s services",

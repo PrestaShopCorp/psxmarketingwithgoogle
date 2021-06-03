@@ -6,7 +6,14 @@
       :is-enabled="true"
       :is-done="stepsAreCompleted.step1"
     />
-
+    <b-alert
+      :v-if="!psAccountsContext.isShopContext && shops.length"
+      show
+      variant="warning"
+      class="mb-0 mt-3 mb-3"
+    >
+      {{ $t('onboarding.warningMultistore') }}
+    </b-alert>
     <MultiStoreSelector
       v-if="!psAccountsContext.isShopContext && shops.length"
       :shops="shops"
@@ -67,6 +74,7 @@
     <GoogleAccountPopinDisconnect
       ref="googleAccountDisconnectModal"
     />
+
     <MerchantCenterAccountPopinDisconnect
       ref="mcaDisconnectModal"
     />

@@ -93,6 +93,7 @@ class PsGoogleShoppingTranslations
                     'smartShoppingCampaign' => $this->module->l('Launch your paid Smart Shopping campaign', 'PsGoogleShoppingTranslations'),
                 ],
                 'productFeedNotice' => $this->module->l('Google’s retail solutions can help you welcome more customers to your site or your store. After you get set up, you’ll have access to reports so you can see how well your ads are doing.', 'PsGoogleShoppingTranslations'),
+                'warningMultistore' => $this->module->l('You can only connect one shop to your Prestashop Account.', 'PsGoogleShoppingTranslations'),
             ],
             'psAccountCard' => [
                 'disonboardedText' => $this->module->l('Authorize your account to manage your shop’s services', 'PsGoogleShoppingTranslations'),
