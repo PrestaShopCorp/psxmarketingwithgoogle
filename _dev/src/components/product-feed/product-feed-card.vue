@@ -333,7 +333,7 @@ export default {
           'ShippingSettingsMissing',
           'ProductFeedDeactivated',
           'ProductFeedExists',
-          'GoogleIsReviewingProducts'
+          'GoogleIsReviewingProducts',
         ].indexOf(value) !== -1;
       },
     },
