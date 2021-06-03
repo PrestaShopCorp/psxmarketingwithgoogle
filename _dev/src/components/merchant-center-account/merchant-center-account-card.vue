@@ -372,7 +372,7 @@ export default {
       return null;
     },
     isMcaUserAdmin(index) {
-      if (!this.mcaSelectionOptions) {
+      if (!this.mcaSelectionOptions || !this.mcaSelectionOptions[index]) {
         return false;
       }
       let isAdmin = false;

@@ -39,7 +39,7 @@ export interface PrestaShopAccountsContext {
 
 export interface GoogleAccount {
   details: oauthApi.Schema$Userinfo,
-  mcaSelectionOptions: contentApi.Schema$Account[] | null,
+  mcaSelectionOptions?: contentApi.Schema$Account[],
 }
 
 export interface GoogleAccountToken {

@@ -54,7 +54,7 @@ export default {
       dispatch,
       state,
     },
-    selectedAccount,
+    selectedAccount: contentApi.Schema$Account,
   ) {
     try {
       const route = `${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts/${selectedAccount.id}/link`;
