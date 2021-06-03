@@ -110,6 +110,19 @@
         <p class="text-muted ps_gs-fz-12 mt-3 mt-md-0">
           {{ $t('mcaCard.toUseGmcNeedsAdminAccess') }}
         </p>
+        <b-alert
+          v-if="error === WebsiteClaimErrorReason.LinkingFailed"
+          show
+          variant="warning"
+          class="mb-0 mt-3"
+        >
+          <p class="mb-0">
+            <strong>{{ $t('mcaCard.linkingFailed') }}</strong><br>
+            <span class="ps_gs-fz-12">
+          {{ $t('mcaCard.linkingFailedDescription') }}
+        </span>
+          </p>
+        </b-alert>
       </b-form>
       <div class="mt-3">
         <a href="#">

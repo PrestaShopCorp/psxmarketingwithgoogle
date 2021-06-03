@@ -42,6 +42,7 @@
         :is-linking="isMcaLinking"
         @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
         @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
+        :error="mcaError"
       />
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
@@ -82,6 +83,7 @@
 
 <script>
 import {MultiStoreSelector, PsAccounts} from 'prestashop_accounts_vue_components';
+import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
@@ -112,6 +114,7 @@ export default {
   data() {
     return {
       isMcaLinking: false,
+      mcaError: null,
     };
   },
   methods: {
@@ -125,8 +128,9 @@ export default {
           this.isMcaLinking = false;
         })
         .catch((error) => {
-          // TODO !0: show an error in the card
           console.error(error);
+          this.isMcaLinking = false;
+          this.mcaError = WebsiteClaimErrorReason.LinkingFailed;
         });
     },
     onGoogleAccountConnection() {

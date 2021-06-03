@@ -81,6 +81,7 @@ export enum WebsiteClaimErrorReason {
   Pending = 'Pending',
   Overwrite = 'Overwrite',
   ShopInfoMissing = 'ShopInfoMissing',
+  LinkingFailed = 'LinkingFailed',
 }
 
 export const state: State = {
@@ -91,7 +92,7 @@ export const state: State = {
     access_token: '',
     expiry_date: 0,
     details: {},
-    mcaSelectionOptions: null,
+    mcaSelectionOptions: undefined,
     authenticationUrl: '',
     connectedOnce: false,
   },

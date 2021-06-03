@@ -1,7 +1,7 @@
-import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue'
+import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue';
 import MerchantCenterAccountPopinDisconnect from '../src/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
-import {googleAccountConnected} from "../.storybook/mock/google-account";
-import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
+import {googleAccountConnected} from '../.storybook/mock/google-account';
+import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from '../.storybook/mock/merchant-center-account';
 import {WebsiteClaimErrorReason} from '../src/store/modules/accounts/state';
 
 export default {
@@ -13,14 +13,14 @@ export default {
         type: 'select',
         // @ts-ignore
         options: [null].concat(Object.keys(WebsiteClaimErrorReason)),
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
-  components: { MerchantCenterAccountCard, MerchantCenterAccountPopinDisconnect },
+  components: {MerchantCenterAccountCard, MerchantCenterAccountPopinDisconnect},
   template: `
     <div>
       <MerchantCenterAccountCard
@@ -73,5 +73,19 @@ export const EnabledConnected:any = Template.bind({});
 EnabledConnected.args = {
   isEnabled: true,
   error: null,
+  initialMcaStatus: merchantCenterAccountConnected,
+};
+
+export const EnabledLinkingFailed:any = Template.bind({});
+EnabledLinkingFailed.args = {
+  isEnabled: true,
+  error: WebsiteClaimErrorReason.LinkingFailed,
+  initialMcaStatus: merchantCenterAccountNotConnected,
+};
+
+export const EnabledDisapproved:any = Template.bind({});
+EnabledDisapproved.args = {
+  isEnabled: true,
+  error: WebsiteClaimErrorReason.Disapproved,
   initialMcaStatus: merchantCenterAccountConnected,
 };
