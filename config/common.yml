@@ -1,11 +1,12 @@
 imports:
-  - { resource: common/context.yml }
-  - { resource: common/handler.yml }
-  - { resource: common/segment.yml }
-  - { resource: common/repository.yml }
-  - { resource: common/factory.yml }
   - { resource: common/adapter.yml }
   - { resource: common/config.yml }
+  - { resource: common/context.yml }
+  - { resource: common/factory.yml }
+  - { resource: common/handler.yml }
+  - { resource: common/provider.yml }
+  - { resource: common/repository.yml }
+  - { resource: common/segment.yml }
 
 services:
   ps_googleshopping:

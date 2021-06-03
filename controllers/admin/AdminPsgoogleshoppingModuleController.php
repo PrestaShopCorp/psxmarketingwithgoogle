@@ -18,6 +18,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 use PrestaShop\Module\PrestashopGoogleShopping\Config\Env;
+use PrestaShop\Module\PrestashopGoogleShopping\Provider\MultishopDataProvider;
 use PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository;
 use PrestaShop\Module\Ps_googleshopping\Translations\PsGoogleShoppingTranslations;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
@@ -32,11 +33,17 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
      */
     private $env;
 
+    /**
+     * @var MultishopDataProvider
+     */
+    private $multishopDataProvider;
+
     public function __construct()
     {
         parent::__construct();
         $this->bootstrap = false;
 
+        $this->multishopDataProvider = $this->module->getService(MultishopDataProvider::class);
         $this->env = $this->module->getService(Env::class);
     }
 
@@ -69,6 +76,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
             'contextPsAccounts' => (object) $this->module->getService(PsAccounts::class)
             ->getPsAccountsPresenter()
             ->present($this->module->name),
+            'psAccountShopInConflict' => $this->multishopDataProvider->isCurrentShopInConflict($this->context->shop),
             'translations' => (new PsGoogleShoppingTranslations($this->module))->getTranslations(),
             'i18nSettings' => [
                 'isoCode' => $this->context->language->iso_code,
