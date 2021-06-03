@@ -149,36 +149,20 @@
         {{ $t('cta.continue') }}
       </b-button>
     </div>
-    <div
-      class="text-muted ps_gs-fz-12 mb-0 mt-2
-      d-flex align-items-start align-items-sm-center justify-content-end"
-    >
-      <b-button
-        v-b-tooltip
-        title="Tooltip!"
-        variant="invisible"
-        class="d-flex mr-1 text-muted p-0 border-0"
-      >
-        <span class="material-icons ps_gs-fz-14">
-          error_outline
-        </span>
-        <span class="sr-only">Tooltip!</span>
-      </b-button>
-      <p>
-        {{ $t("productFeedSettings.noticeDataStored") }}
-      </p>
-    </div>
+    <product-feed-settings-footer />
   </b-form>
 </template>
 
 <script>
 import PsSelect from '../commons/ps-select';
 import countriesSelectionOptions from '../../assets/json/countries.json';
+import ProductFeedSettingsFooter from './product-feed-settings-footer';
 
 export default {
   name: 'ProductFeedSettingsShipping',
   components: {
     PsSelect,
+    ProductFeedSettingsFooter,
   },
   data() {
     return {

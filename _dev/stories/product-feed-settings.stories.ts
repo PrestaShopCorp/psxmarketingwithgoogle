@@ -7,7 +7,7 @@ export default {
   subcomponents: { Stepper },
   argTypes: {
     activeStep: {
-      options: [1, 2, 3, 4, 5],
+      options: [1, 2, 3, 4],
       control: { type: 'select' },
     },
   },

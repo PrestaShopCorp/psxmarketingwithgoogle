@@ -36,15 +36,19 @@
                   v-b-tooltip
                   title="Tooltip!"
                   variant="invisible"
-                  class="ml-1 p-0 border-0 ps_gs-fz-12"
+                  class="ml-1 p-0 border-0 ps_gs-fz-12 color-grey_darklight"
                 >
-                  <b-icon-exclamation-circle />
+                  <span class="material-icons-round mb-0 ps_gs-fz-12 align-middle">
+                    error_outline
+                  </span>
                   <span class="sr-only">Tooltip!</span>
                 </b-button>
               </span>
             </b-td>
             <b-td class="align-top">
-              <b-form-group class="mb-0 text-left">
+              {{ $t('productFeedSettings.attributeMapping.longDescription') }}
+              <!-- Not in batch 1 -->
+              <!-- <b-form-group class="mb-0 text-left">
                 <b-form-radio
                   v-model="selectedDescriptionLength"
                   name="descriptionRadio"
@@ -60,7 +64,7 @@
                 >
                   {{ $t('productFeedSettings.attributeMapping.shortDescription') }}
                 </b-form-radio>
-              </b-form-group>
+              </b-form-group> -->
             </b-td>
           </b-tr>
         </b-tbody>
@@ -112,7 +116,7 @@
         v-if="sellRefurbished || sellApparel"
       >
         <p class="mt-3 mb-2 pt-2">
-          {{ $t('productFeedSettings.attributeMapping.toDescribeProducts') }}
+          {{ $t('productFeedSettings.attributeMapping.weWillRecoverTheseAttributes') }}
         </p>
         <b-table-simple
           stacked="md"
@@ -139,22 +143,8 @@
         </b-table-simple>
       </template>
       <div class="text-muted ps_gs-fz-12 mt-4">
-        <p class="mb-3">
+        <p class="mb-3 ps_gs-required">
           {{ $t('productFeedSettings.attributeMapping.footerNotice1') }}
-          <br>
-          <a
-            href="//google.com"
-            target="_blank"
-          >
-            {{ $t('productFeedSettings.attributeMapping.learnAboutShippingSettings') }}
-          </a>
-          <a
-            href="//google.com"
-            target="_blank"
-            class="ml-2"
-          >
-            {{ $t('productFeedSettings.attributeMapping.learnHowToSetupShippingSettings') }}
-          </a>
         </p>
         <p>
           {{ $t('productFeedSettings.attributeMapping.footerNotice2') }}
@@ -192,42 +182,26 @@
         {{ $t("cta.saveAndContinue") }}
       </b-button>
     </div>
-    <div
-      class="text-muted ps_gs-fz-12 mb-0 mt-2
-      d-flex align-items-start align-items-sm-center justify-content-end"
-    >
-      <b-button
-        v-b-tooltip
-        title="Tooltip!"
-        variant="invisible"
-        class="mr-1 text-muted p-0 border-0"
-      >
-        <b-icon-exclamation-circle />
-        <span class="sr-only">Tooltip!</span>
-      </b-button>
-      <p>
-        {{ $t("productFeedSettings.noticeDataStored") }}
-      </p>
-    </div>
+    <product-feed-settings-footer />
   </div>
 </template>
 
 <script>
-
 import {
   BTableSimple,
-  BIconExclamationCircle,
 } from 'bootstrap-vue';
+
 import ProductFeedSettingsAttributeMappingTablehead from './product-feed-settings-attribute-mapping-tablehead';
 import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
+import ProductFeedSettingsFooter from './product-feed-settings-footer';
 
 export default {
   name: 'ProductFeedSettingsAttributeMapping',
   components: {
     BTableSimple,
-    BIconExclamationCircle,
     ProductFeedSettingsAttributeMappingTablerowSpecific,
     ProductFeedSettingsAttributeMappingTablehead,
+    ProductFeedSettingsFooter,
   },
   data() {
     return {

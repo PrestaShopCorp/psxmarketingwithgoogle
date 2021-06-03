@@ -116,13 +116,3 @@
     }
   }
 }
-
-
-.ps_gs-table-attribute-mapping {
-  .required::before {
-    content: '*';
-    margin-right: 0.5ch;
-    color: $danger;
-
-  }
-}

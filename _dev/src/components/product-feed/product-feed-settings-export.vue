@@ -79,28 +79,11 @@
         {{ $t("cta.understandAndContinue") }}
       </b-button>
     </div>
-    <div
-      class="text-muted ps_gs-fz-12 mb-0 mt-2
-      d-flex align-items-start align-items-sm-center justify-content-end"
-    >
-      <b-button
-        v-b-tooltip
-        title="Tooltip!"
-        variant="invisible"
-        class="d-flex mr-1 text-muted p-0 border-0"
-      >
-        <span class="material-icons ps_gs-fz-14">
-          error_outline
-        </span>
-      </b-button>
-      <p>
-        {{ $t("productFeedSettings.noticeDataStored") }}
-      </p>
-    </div>
+    <product-feed-settings-footer />
     <VueShowdown
       :markdown="$t('productFeedSettings.export.prohibitedContentNotice')"
       :extensions="['targetlink']"
-      class="text-muted ps_gs-fz-12 pt-2 mt-5 mb-n3"
+      class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-n3"
     />
   </div>
   <!-- This is not in batch 1 -->
@@ -260,6 +243,7 @@
  ** Should be fetched from PrestaShop data
  * TODO: Replace with real datas.
  */
+import ProductFeedSettingsFooter from './product-feed-settings-footer';
 
 export default {
   name: 'ProductFeedSettingsExport',
@@ -329,6 +313,9 @@ export default {
       syncTime: '2:00 AM',
       syncTimeZone: '(UTC+01:00) Normal time in Central Europe (Paris)',
     };
+  },
+  components: {
+    ProductFeedSettingsFooter,
   },
   computed: {
     disableContinue() {

@@ -1,13 +1,13 @@
 <template>
   <b-tr>
     <b-td class="pb-0 py-md-3 align-top">
-      <span class="font-weight-bold d-flex align-items-center required">
+      <span class="font-weight-bold d-flex align-items-center ps_gs-required">
         {{ $t(`productFeedSettings.attributeMapping.${input}`) }}
         <b-button
           v-b-tooltip
           title="Tooltip!"
           variant="invisible"
-          class="ml-1 p-0 border-0 ps_gs-fz-12"
+          class="ml-1 p-0 border-0 ps_gs-fz-12 color-grey_darklight"
         >
           <span class="material-icons-round mb-0 ps_gs-fz-12 align-middle">
             error_outline
@@ -20,7 +20,7 @@
       <b-form-group class="mb-0 text-left">
         {{
           $t('productFeedSettings.attributeMapping.theXField',
-              [$t(`productFeedSettings.attributeMapping.${input}`)])
+             [$t(`productFeedSettings.attributeMapping.${input}`)])
         }}
         <!-- Not in Batch 1 -->
         <!-- <b-form-radio
