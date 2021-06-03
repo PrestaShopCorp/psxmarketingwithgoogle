@@ -114,7 +114,6 @@ export default {
   methods: {
     onShopSelected(shopSelected) {
       window.location.href = shopSelected.url;
-    
     },
     onMerchantCenterAccountSelected(selectedAccount) {
       this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount);
