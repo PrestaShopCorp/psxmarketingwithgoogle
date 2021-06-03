@@ -1,0 +1,10 @@
+services:
+  PrestaShop\Module\PrestashopGoogleShopping\Builder\CarrierBuilder:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Builder\CarrierBuilder
+    arguments:
+     - '@PrestaShop\Module\PrestashopGoogleShopping\Repository\CarrierRepository'
+     - '@PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository'
+     - '@PrestaShop\Module\PrestashopGoogleShopping\Repository\StateRepository'
+     - '@PrestaShop\Module\PrestashopGoogleShopping\Repository\TaxRepository'
+     - '@PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter'
+

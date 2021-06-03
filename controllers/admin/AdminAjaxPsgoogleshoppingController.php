@@ -1,6 +1,7 @@
 <?php
 
 use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
+use PrestaShop\Module\PrestashopGoogleShopping\Provider\CarrierDataProvider;
 
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
@@ -44,6 +45,9 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             case 'setWebsiteClaimHeader':
                 $this->setWebsiteClaimHeader();
                 break;
+            case 'getCarrierValues':
+                $this->getCarrierValues();
+                break;
             case 'toggleWebsiteClaim':
                 $this->toggleWebsiteClaim();
                 break;
@@ -64,5 +68,15 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $isEnabled = Tools::getValue('isWebsiteClaimEnabled');
 
         Configuration::updateValue(Config::IS_WEBSITE_CLAIM_ENABLED, $isEnabled);
+    }
+
+    private function getCarrierValues()
+    {
+        /** @var CarrierDataProvider $carrierDataProvider */
+        $carrierDataProvider = $this->module->getService(CarrierDataProvider::class);
+
+        $carrierLines = $carrierDataProvider->getFormattedData();
+
+        $this->ajaxDie(json_encode($carrierLines));
     }
 }

@@ -1,7 +1,29 @@
 services:
   PrestaShop\Module\PrestashopGoogleShopping\Repository\TabRepository:
     class: PrestaShop\Module\PrestashopGoogleShopping\Repository\TabRepository
+
+
+  PrestaShop\Module\PrestashopGoogleShopping\Repository\CarrierRepository:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Repository\CarrierRepository
+    arguments:
+      - '@ps_googleshopping.db'
+      - '@ps_googleshopping.context'
+
   PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository:
     class: PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository
     arguments:
+      - '@ps_googleshopping.db'
+      - '@ps_googleshopping.context'
       - '@ps_googleshopping.country'
+
+  PrestaShop\Module\PrestashopGoogleShopping\Repository\StateRepository:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Repository\StateRepository
+    arguments:
+      - '@ps_googleshopping.db'
+      - '@ps_googleshopping.context'
+
+  PrestaShop\Module\PrestashopGoogleShopping\Repository\TaxRepository:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Repository\TaxRepository
+    arguments:
+      - '@ps_googleshopping.db'
+      - '@ps_googleshopping.context'

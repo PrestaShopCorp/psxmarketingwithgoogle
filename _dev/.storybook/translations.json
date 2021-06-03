@@ -263,13 +263,14 @@
         "alert" : "To solve the synchronization issue, go to Help tab or [contact the customer support service](//google.com){:target=\"_blank\"}."
       },
       "productStatus" : {
-        "title" : "Products status",
-        "description" : "After submitting your product feed, your products will be assigned a status. There are 6 different product statuses: Not synced, Active, Partially active, Expiring, Pending, Disapproved.",
+        "title" : "Product approval status",
+        "description" : "After submitting your product feed, your products will be reviewed and assigned one of 6 statuses",
         "alert" : "Google usually takes 3-5 business days to review products.",
         "approvedProducts" : "Approved products",
         "pendingProducts" : "Pending products",
         "disapprovedProducts" : "Not approved products",
-        "productsInGoogleCatalog" : "Products in Google catalog: {0}"
+        "productsInGoogleCatalog" : "Products in Google catalog: {0}",
+        "approvalStatusList" : "Not synced, Active, Partially active, Expiring, Pending, Disapproved."
       }
     },
     "help" : {
@@ -324,7 +325,7 @@
       "modifyMapping" : "Modify mapping",
       "learnAboutProductConfiguration" : "Learn more about product configuration",
       "overwriteProductFeed" : "Overwrite product feed",
-      "trackProductStatus" : "Track products status",
+      "trackProductStatus" : "Track Product approval status",
       "whyDidntWork" : "Check out why it didn’t work",
       "aboutProductCategory" : "About Google product category",
       "editCountries" : "Edit countries",
@@ -345,7 +346,7 @@
       "createAccount" : "Create account",
       "saveChange" : "Save change",
       "close" : "Close",
-      "checkProductsStatusDetails" : "Check products status details",
+      "viewDetailedStatuses" : "View all detailed statuses",
       "setupTaxSettings" : "Set up tax settings",
       "understandAndContinue" : "Understand and continue",
       "reviewProblems": "Review problems"
@@ -373,7 +374,7 @@
       "titleOverwriteClaim" : "Overwrite existing claim",
       "textDisconnectGoogleAccount" : "You are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.",
       "textDisconnectMCA" : "You are about to disconnect Google Merchant Center account. This will remove access to Google Merchant Center and Google Ads accounts.",
-      "textOverwriteClaim" : "The existing claim will be overwritten. This action will impact the previous account to become inactive and the existing campaigns - free listings and Google Shopping campaigns - tied to that claim to be paused.  /nIf you are running a different Google Shopping campaign, we recommend pausing the campaign.",
+      "textOverwriteClaim" : "The existing claim will be overwritten. This action will impact the previous account to become inactive and the existing campaigns - free listings and Google Shopping campaigns - tied to that claim to be paused.  \nIf you are running a different Google Shopping campaign, we recommend pausing the campaign.",
       "titleDisableFreeListing" : "Disable free listing?",
       "textDisableFreeListing" : "By this action, your products will no longer be advertised on Google Shopping and your running campaigns will be paused.  \nYour catalog export will be still running.",
       "titleDisableProductFeed" : "Disable product feed?",

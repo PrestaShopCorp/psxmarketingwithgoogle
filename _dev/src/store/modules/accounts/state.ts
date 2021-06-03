@@ -44,14 +44,14 @@ export interface GoogleAccount {
 
 export interface GoogleAccountToken {
   // eslint-disable-next-line camelcase
-  access_token: string,
+  access_token: string|Error,
   // eslint-disable-next-line camelcase
   expiry_date: number,
 }
 
 export type GoogleAccountContext = GoogleAccount
 & GoogleAccountToken & {
-  authenticationUrl: string,
+  authenticationUrl: string|Error,
   connectedOnce: boolean,
 
   from?: string,
@@ -63,6 +63,7 @@ export type MerchantCenterAccountContext = contentApi.Schema$Account & {
   // Allow the spinner to be displayed while claiming is done
   isVerified: boolean,
   isClaimed: boolean,
+  claimError: string,
   // Allow displaying the error message
   websiteVerificationStatus: WebsiteClaimErrorReason|null,
 };
@@ -101,6 +102,7 @@ export const state: State = {
     isVerified: false,
     isClaimed: false,
     websiteVerificationStatus: null,
+    claimError: '',
     users: [],
   },
 };

@@ -1,0 +1,7 @@
+services:
+  PrestaShop\Module\PrestashopGoogleShopping\Provider\CarrierDataProvider:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Provider\CarrierDataProvider
+    arguments:
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter'
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Builder\CarrierBuilder'
+      - '@PrestaShop\Module\PrestashopGoogleShopping\Repository\CarrierRepository'

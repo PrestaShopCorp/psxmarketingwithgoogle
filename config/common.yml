@@ -4,6 +4,7 @@ imports:
   - { resource: common/segment.yml }
   - { resource: common/repository.yml }
   - { resource: common/factory.yml }
+  - { resource: common/adapter.yml }
   - { resource: common/config.yml }
 
 services:

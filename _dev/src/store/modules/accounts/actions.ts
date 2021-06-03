@@ -108,6 +108,7 @@ export default {
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
     } catch (error) {
       console.error(error);
+      commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, error);
     }
   },
 
@@ -135,6 +136,7 @@ export default {
         return null;
       }
       console.error(error);
+      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, error);
     }
     return null;
   },
@@ -167,9 +169,21 @@ export default {
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
   },
 
-  [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit}) {
+  [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit, state}) {
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
+  },
+
+  [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {
+    //  ToDo: Add API call for get new status
+    const resp = '';
+
+    // After response for API, change statement for claiming to trigger watcher on MCA card
+    commit(MutationsTypes.SET_STATUS_ONLY_FOR_CLAIMING, false);
+    setTimeout(() => {
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, resp);
+      commit(MutationsTypes.SET_STATUS_ONLY_FOR_CLAIMING, true);
+    }, 2000);
   },
 
   /** Merchant Center Account - Website Claiming */

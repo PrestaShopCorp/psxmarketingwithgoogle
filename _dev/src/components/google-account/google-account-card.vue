@@ -47,7 +47,7 @@
       </div>
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
         <p
-          v-if="!user || !user.access_token"
+          v-if="!accessToken"
           class="ps_gs-fz-12 mb-0"
         >
           {{ $t('googleAccountCard.introEnabled') }}
@@ -65,14 +65,14 @@
           <strong>{{ user.details.email }}</strong>
         </div>
         <div
-          v-if="!user || !user.access_token"
+          v-if="!accessToken"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
           <b-button
             size="sm"
             variant="primary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
-            :disabled="isConnecting"
+            :disabled="isConnecting || !authenticationUrl"
             @click="openPopup"
           >
             <template v-if="!isConnecting">
@@ -118,7 +118,7 @@
         </div>
       </div>
       <div
-        v-if="user && user.access_token"
+        v-if="accessToken"
         class="text-md-right text-muted mt-3"
       >
         <p class="ps_gs-fz-12 mb-0">
@@ -165,7 +165,6 @@ export default {
       popup: null,
       popupMessageListener: null,
       popupClosingLooper: null,
-      error: null,
     };
   },
   props: {
@@ -182,6 +181,37 @@ export default {
     if (this.isEnabled && !this.user) {
       this.refreshAccount(false);
     }
+  },
+  computed: {
+    accessToken() {
+      return this.user && this.user.access_token
+        && typeof this.user.access_token === 'string'
+        ? this.user.access_token
+        : null;
+    },
+    authenticationUrl() {
+      return this.user && this.user.authenticationUrl
+        && typeof this.user.authenticationUrl === 'string'
+        ? this.user.authenticationUrl
+        : null;
+    },
+    error() {
+      if (this.user
+        && this.user.authenticationUrl
+        && this.user.authenticationUrl instanceof Error
+      ) {
+        return this.$i18n.t('googleAccountCard.alertCantConnect');
+      }
+
+      if (this.user
+        && this.user.access_token
+        && this.user.access_token instanceof Error
+      ) {
+        return this.$i18n.t('googleAccountCard.alertTokenMissing');
+      }
+
+      return null;
+    },
   },
   methods: {
     changeAccount() {
@@ -215,10 +245,9 @@ export default {
           window.removeEventListener('message', this.popupMessageListener);
         }
       });
-      const url = this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL'];
       const p = 'scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=450,height=628';
       this.popup = window.open(
-        url,
+        this.user.authenticationUrl,
         'ps_google_shopping_onboarding',
         p,
       );

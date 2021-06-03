@@ -44,9 +44,10 @@ export default {
 
   /* Google Account */
   [GetterTypes.GET_GOOGLE_ACCOUNT_IS_ONBOARDED](state: LocalState): boolean {
-    return !!state.googleAccount.access_token.length;
+    return typeof state.googleAccount.access_token === 'string'
+      && !!state.googleAccount.access_token.length;
   },
-  [GetterTypes.GET_GOOGLE_ACCOUNT_TOKEN](state: LocalState) : String {
+  [GetterTypes.GET_GOOGLE_ACCOUNT_TOKEN](state: LocalState) : String|Error {
     return state.googleAccount.access_token;
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT](state: LocalState) : GoogleAccountContext {
@@ -68,7 +69,10 @@ export default {
     return !!(state.googleMerchantAccount.id
       && state.googleMerchantAccount.isClaimed && state.googleMerchantAccount.isVerified);
   },
-  [GetterTypes.GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL](state: LocalState) : String {
+  [GetterTypes.GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL](state: LocalState) : String|Error {
     return state.googleAccount.authenticationUrl;
+  },
+  [GetterTypes.GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS](state: LocalState) : String {
+    return state.googleMerchantAccount.claimError;
   },
 };
