@@ -126,39 +126,22 @@
         </div>
       </b-alert>
       <h3
-        class="font-weight-600 ps_gs-fz-14"
-        :class="syncStatus === 'error' ? 'mb-0' : 'mb-3'"
+        class="font-weight-600 ps_gs-fz-14 d-flex align-items-center"
       >
         <i
-          v-if="syncStatus === 'busy'"
-          class="icon-busy icon-busy--dark mr-1 align-middle"
-        />
-        <i
-          v-if="syncStatus === 'error'"
-          class="material-icons-round d-inline-block align-middle mr-1 mb-0 ps_gs-fz-16 text-danger"
+          class="ps_gs-fz-20 mr-2"
+          :class="[
+            `text-${title.color}`,
+            title.materialClass || 'material-icons'
+          ]"
         >
-          error_outline
+          {{ title.icon }}
         </i>
-        <i
-          v-if="syncStatus === 'warning'"
-          class="material-icons-round d-inline-block align-middle mr-1 mb-0 ps_gs-fz-16
-            text-warning"
-        >
-          warning
-        </i>
-        <i
-          v-if="syncStatus === 'success'"
-          class="material-icons d-inline-block align-middle mr-1 mb-0 ps_gs-fz-18 text-success"
-        >
-          check_circle
-        </i>
-        <span class="align-middle">
-          {{ syncStatusMessage }}
-        </span>
+        <span>{{ title.message }}</span>
       </h3>
       <div class="d-sm-flex align-items-end mb-1">
         <p class="ps_gs-fz-12 text-muted mb-0">
-          {{ $t("productFeedCard.nextSync", [nextSyncTime]) }}
+          {{ $t("productFeedPage.syncStatus.scheduleOn", [nextSyncTime]) }}
         </p>
         <a
           href=""
@@ -166,8 +149,9 @@
         >
           {{ $t('cta.trackProductStatus') }}
         </a>
-        <b-button
-          v-if="syncStatus === 'error'"
+        <!-- Not in free plan -->
+        <!-- <b-button
+          v-if="syncStatus === 'failed'"
           variant="primary"
           class="d-block mx-auto my-2 my-sm-0 ml-sm-3 mr-sm-0"
         >
@@ -175,7 +159,7 @@
             autorenew
           </span>
           {{ $t('cta.forceSync') }}
-        </b-button>
+        </b-button> -->
       </div>
       <b-container
         fluid
@@ -208,7 +192,7 @@
       </div>
       <b-container
         fluid
-        class="p-0 mb-2"
+        class="p-0 mb-0"
       >
         <b-row
           no-gutters
@@ -328,7 +312,7 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return [null, 'success', 'warning', 'error', 'busy'].indexOf(value) !== -1;
+        return [null, 'success', 'warning', 'failed', 'schedule'].indexOf(value) !== -1;
       },
     },
     categoriesTotal: {
@@ -342,7 +326,15 @@ export default {
       type: String,
       default: null,
       validator(value) {
-        return [null, 'Success', 'Failed', 'ShippingSettingsMissing', 'ProductFeedDeactivated', 'ProductFeedExists'].indexOf(value) !== -1;
+        return [
+          null,
+          'Success',
+          'Failed',
+          'ShippingSettingsMissing',
+          'ProductFeedDeactivated',
+          'ProductFeedExists',
+          'GoogleIsReviewingProducts'
+        ].indexOf(value) !== -1;
       },
     },
     nbProductsReadyToSync: {
@@ -374,34 +366,39 @@ export default {
     },
   },
   computed: {
-    syncStatusMessage() {
-      let message;
-      switch (this.syncStatus) {
-        case null:
-          break;
-        case 'busy':
-          message = this.$i18n.t('productFeedCard.syncBusy');
-          break;
-        case 'warning':
-          message = this.$i18n.t('productFeedCard.syncCantPerform');
-          break;
-        case 'error':
-          message = this.$i18n.t('productFeedCard.syncFailedAt', [
+    title() {
+      if (this.syncStatus === 'schedule') {
+        return {
+          icon: 'schedule',
+          color: 'primary',
+          message: this.$i18n.t('productFeedPage.syncStatus.readyForExport'),
+        };
+      } if (this.syncStatus === 'failed') {
+        return {
+          icon: 'error_outline',
+          color: 'danger',
+          message: this.$i18n.t('productFeedCard.syncFailedAt', [
             this.lastSync.day,
             this.lastSync.time,
-          ]);
-          break;
-        case 'success':
-          message = this.$i18n.t('productFeedCard.syncSuccess', [
-            this.lastSync.totalProducts,
-            this.lastSync.day,
-            this.lastSync.time,
-          ]);
-          break;
-        default:
-          break;
+          ]),
+        };
+      } if (this.syncStatus === 'warning') {
+        return {
+          icon: 'warning',
+          color: 'warning',
+          materialClass: 'material-icons-round',
+          message: this.$i18n.t('productFeedCard.syncCantPerform'),
+        };
       }
-      return message;
+      return {
+        icon: 'check_circle',
+        color: 'success',
+        message: this.$i18n.t('productFeedCard.syncSuccess', [
+          this.lastSync.totalProducts,
+          this.lastSync.day,
+          this.lastSync.time,
+        ]),
+      };
     },
     alertVariant() {
       return this.alert === 'Success' ? 'success' : 'warning';

@@ -191,6 +191,7 @@ class PsGoogleShoppingTranslations
                 'excludedProducts' => $this->module->l('Excluded products', 'PsGoogleShoppingTranslations'),
                 'productsReadyToBeSynced' => $this->module->l('Products ready to be synced', 'PsGoogleShoppingTranslations'),
                 'productsWithProblems' => $this->module->l('Products with problems', 'PsGoogleShoppingTranslations'),
+                'alertGoogleIsReviewingProducts' => $this->module->l("Google is currently reviewing your products.  \n\nOnce approved, your products can appear in Shopping tab search results.", 'PsGoogleShoppingTranslations'),
             ],
             'productFeedSettings' => [
                 'breadcrumb1' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),

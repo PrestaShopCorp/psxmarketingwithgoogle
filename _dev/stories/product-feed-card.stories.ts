@@ -15,7 +15,6 @@ const basicArgs = {
   attributeMapping: ['Long description', 'condition', 'color'],
 }
 
-
 export default {
   title: 'Product feed/Card',
   component: ProductFeedCard,
@@ -23,13 +22,21 @@ export default {
     syncStatus: {
       control: {
         type: 'select',
-        options: [null, 'busy', 'warning', 'error', 'success'],
+        options: [null, 'schedule', 'warning', 'failed', 'success'],
       },
     },
     alert: {
       control: {
         type: 'select',
-        options: [null, 'Success', 'Failed', 'ShippingSettingsMissing', 'ProductFeedDeactivated', 'ProductFeedExists'],
+        options: [
+            null,
+            'Success',
+            'Failed',
+            'ShippingSettingsMissing',
+            'ProductFeedDeactivated',
+            'ProductFeedExists',
+            'GoogleIsReviewingProducts'
+        ],
       }
     },
     categoriesMapped: {
