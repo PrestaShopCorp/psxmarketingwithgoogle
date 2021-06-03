@@ -53,7 +53,7 @@ export default {
     return state.googleAccount;
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT_MCA_LIST](state: LocalState)
-    : contentApi.Schema$Account[] | undefined {
+    : contentApi.Schema$Account[] | null {
     return state.googleAccount.mcaSelectionOptions;
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT_CONNECTED_ONCE](state: LocalState) : boolean {
