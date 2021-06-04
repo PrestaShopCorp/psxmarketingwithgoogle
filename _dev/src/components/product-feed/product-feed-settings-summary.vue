@@ -2,7 +2,7 @@
   <div>
     <section>
       <h3 class="ps_gs-fz-16 font-weight-600 mb-3">
-        Next synchronisation
+        {{ $t('productFeedSettings.summary.title1') }}
       </h3>
       <b-container
         fluid
@@ -14,25 +14,25 @@
         >
           <product-feed-card-next-sync-card
             icon="store_mall_directory"
-            title="Total products"
-            description="210"
+            :title="$t('productFeedSettings.summary.totalProducts')"
+            :description="nextSyncTotalProducts"
           />
           <product-feed-card-next-sync-card
             icon="event"
-            title="Date"
-            description="06/12/21"
+            :title="$t('productFeedSettings.summary.date')"
+            :description="nextSyncDate"
           />
           <product-feed-card-next-sync-card
             icon="schedule"
-            title="Time"
-            description="2:00 AM"
+            :title="$t('productFeedSettings.summary.time')"
+            :description="nextSyncTime"
           />
         </b-row>
       </b-container>
     </section>
     <section>
       <h3 class="ps_gs-fz-16 font-weight-600 mb-3">
-        Product feed settings summary
+        {{ $t('productFeedSettings.summary.title2') }}
       </h3>
       <b-container
         fluid
@@ -77,10 +77,10 @@
               <b-thead>
                 <b-tr>
                   <b-th class="border-0 font-weight-600 text-decoration-underline ps_gs-fz-12">
-                    Google Merchant Center
+                    {{ $t('productFeedSettings.summary.tableHeader1') }}
                   </b-th>
                   <b-th class="border-0 font-weight-600 text-decoration-underline ps_gs-fz-12">
-                    PrestaShop
+                    {{ $t('productFeedSettings.summary.tableHeader2') }}
                   </b-th>
                 </b-tr>
               </b-thead>
@@ -88,7 +88,7 @@
                 <b-tr>
                   <b-td class="pb-0 align-top pt-md-0 pb-md-1">
                     <span class="d-flex align-items-center">
-                      Product items
+                      {{ $t('productFeedSettings.summary.productItems') }}
                       <span
                         class="material-icons-round ml-auto ps_gs-fz-20
                           mr-md-2 mb-0 align-middle text-success"
@@ -99,7 +99,7 @@
                   </b-td>
                   <b-td class="pb-0 align-top pt-md-0 pb-md-1">
                     <b-form-group class="mb-0 text-left">
-                      Long description
+                      {{ $t('productFeedSettings.attributeMapping.longDescription') }}
                     </b-form-group>
                   </b-td>
                 </b-tr>
@@ -123,14 +123,11 @@
             </b-table-simple>
             <caption
               v-if="sellRefurbished || sellApparel"
-              class="d-block ps_gs-fz-12"
+              class="d-block ps_gs-fz-12 ps_gs-table-caption"
             >
-              <span class="text-dark">
-                You sell
-              </span>
-              <span class="text-muted">
-                {{ specificProducts }}
-              </span>
+              <VueShowdown
+                :markdown="$t('productFeedSettings.summary.youSell', [specificProducts])"
+              />
             </caption>
           </product-feed-card-report-card>
         </b-row>
@@ -185,12 +182,9 @@ export default {
   data() {
     return {
       enabledProductFeed: true,
-      nextSyncTime: '06/12/21 02:00',
-      lastSync: {
-        day: 'today',
-        time: '02:00',
-        totalProducts: 200,
-      },
+      nextSyncTotalProducts: '210',
+      nextSyncDate: '06/12/21',
+      nextSyncTime: '2:00 AM',
       targetCountries: ['France', 'United States'],
       shippingSettings: 'Automatic',
       refurbishedInputs: ['condition'],

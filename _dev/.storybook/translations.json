@@ -227,8 +227,19 @@
         "learnAboutShippingSettings" : "Learn more about shipping settings",
         "learnHowToSetupShippingSettings" : "Learn how to set up shipping",
         "learnRequirementsProductSpeficifacion" : "Learn more about requirements for the Shopping product data specification",
-        "weWillRecoverTheseAttributes" : "For your products we will recover these attributes:",
-        "xItems" : "{0} items"
+        "weWillRecoverTheseAttributes" : "For your products we will recover these attributes:"
+      },
+      "summary" : {
+        "title1" : "Next synchronisation",
+        "title2" : "Product feed settings summary",
+        "xItems" : "{0} items",
+        "productItems" : "Product items",
+        "tableHeader1" : "Google Merchant Center",
+        "tableHeader2" : "Prestashop",
+        "totalProducts" : "Total products",
+        "date" : "Date",
+        "time" : "Time",
+        "youSell" : "**You sell** {0}"
       }
     },
     "freeListingCard" : {

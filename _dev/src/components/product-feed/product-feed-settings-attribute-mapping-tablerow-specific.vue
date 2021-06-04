@@ -10,7 +10,7 @@
       >
         {{
           isReport
-            ? $t('productFeedSettings.attributeMapping.xItems',
+            ? $t('productFeedSettings.summary.xItems',
                  [$t(`productFeedSettings.attributeMapping.${input}`)])
             : $t(`productFeedSettings.attributeMapping.${input}`)
         }}
