@@ -7,7 +7,7 @@
       header-tag="nav"
       header-class="px-3 py-1"
     >
-      <ol class="list-inline mb-0 d-flex align-items-center ps_gs-breadcrumb">
+      <ol class="list-inline mb-0 d-sm-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
           <a
             href=""
@@ -23,7 +23,7 @@
             {{ $t('productFeedSettings.breadcrumb1') }}
           </a>
         </li>
-        <li class="list-inline-item ps_gs-breadcrumb__item">
+        <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
           {{ $t('productFeedSettings.breadcrumb2') }}
         </li>
       </ol>
