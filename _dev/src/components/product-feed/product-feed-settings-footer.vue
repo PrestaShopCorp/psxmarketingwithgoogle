@@ -1,13 +1,13 @@
 <template>
   <div
     class="text-muted ps_gs-fz-12 mb-0 mt-2
-    d-flex align-items-start align-items-sm-center justify-content-end"
+    text-right"
   >
-    <span class="material-icons-round mr-1 ps_gs-fz-12 align-middle">
+    <span class="material-icons-round d-inline-block align-middle mr-1 ps_gs-fz-14">
       error_outline
     </span>
-    <p>
-      {{ message || $t('productFeedSettings.noticeDataStored') }}
+    <p class="d-inline-block align-middle ">
+      {{ $t(message) }}
     </p>
   </div>
 </template>
@@ -18,6 +18,7 @@ export default {
   props: {
     message: {
       type: String,
+      default: 'productFeedSettings.noticeDataStored',
       required: false,
     },
   },

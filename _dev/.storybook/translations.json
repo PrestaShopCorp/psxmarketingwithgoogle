@@ -227,7 +227,8 @@
         "learnAboutShippingSettings" : "Learn more about shipping settings",
         "learnHowToSetupShippingSettings" : "Learn how to set up shipping",
         "learnRequirementsProductSpeficifacion" : "Learn more about requirements for the Shopping product data specification",
-        "weWillRecoverTheseAttributes" : "For your products we will recover these attributes:"
+        "weWillRecoverTheseAttributes" : "For your products we will recover these attributes:",
+        "xItems" : "{0} items"
       }
     },
     "freeListingCard" : {

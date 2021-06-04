@@ -1,9 +1,20 @@
 <template>
   <b-tr>
-    <b-td class="pb-0 py-md-3 align-top">
-      <span class="font-weight-bold d-flex align-items-center ps_gs-required">
-        {{ $t(`productFeedSettings.attributeMapping.${input}`) }}
+    <b-td
+      class="pb-0 align-top"
+      :class="isReport ? 'pt-md-0 pb-md-1' : 'py-md-3'"
+    >
+      <span
+        class="d-flex align-items-center"
+        :class="{'font-weight-bold ps_gs-required' : !isReport}"
+      >
+        {{
+          isReport
+            ? $t('productFeedSettings.attributeMapping.xItems', [$t(`productFeedSettings.attributeMapping.${input}`)])
+            : $t(`productFeedSettings.attributeMapping.${input}`)
+        }}
         <b-button
+          v-if="!isReport"
           v-b-tooltip
           title="Tooltip!"
           variant="invisible"
@@ -12,15 +23,25 @@
           <span class="material-icons-round mb-0 ps_gs-fz-12 align-middle">
             error_outline
           </span>
-          <span class="sr-only">Tooltip!</span>
         </b-button>
+        <span v-else
+          class="material-icons-round ml-auto ps_gs-fz-20 mr-md-2 mb-0 align-middle text-success"
+        >
+          link
+        </span>
       </span>
     </b-td>
-    <b-td class="pt-0 py-md-3 align-top">
+    <b-td
+      class="pb-0 align-top"
+      :class="isReport ? 'pt-md-0 pb-md-1' : 'py-md-3'"
+    >
       <b-form-group class="mb-0 text-left">
         {{
-          $t('productFeedSettings.attributeMapping.theXField',
-             [$t(`productFeedSettings.attributeMapping.${input}`)])
+          isReport
+            ? $t(`productFeedSettings.attributeMapping.${input}`)
+            : $t('productFeedSettings.attributeMapping.theXField', [
+                $t(`productFeedSettings.attributeMapping.${input}`)
+              ])
         }}
         <!-- Not in Batch 1 -->
         <!-- <b-form-radio
@@ -68,6 +89,11 @@ export default {
     input: {
       type: String,
       required: true,
+    },
+    isReport: {
+      type: Boolean,
+      default: false,
+      required: false,
     },
   },
   data() {

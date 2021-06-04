@@ -26,7 +26,16 @@
         borderless
         class="mx-n1"
       >
-        <product-feed-settings-attribute-mapping-tablehead />
+        <b-thead>
+          <b-tr>
+            <b-th class="border-0 font-weight-600 text-decoration-underline">
+              {{ $t('productFeedSettings.attributeMapping.googleAttribute') }}
+            </b-th>
+            <b-th class="border-0 font-weight-600 text-decoration-underline">
+              {{ $t('productFeedSettings.attributeMapping.prestashopAttribute') }}
+            </b-th>
+          </b-tr>
+        </b-thead>
         <b-tbody>
           <b-tr>
             <b-td class="align-top">
@@ -123,7 +132,16 @@
           class="mx-n1"
           table-class="border-bottom-0 table-firstline-borderless ps_gs-table-attribute-mapping"
         >
-          <product-feed-settings-attribute-mapping-tablehead />
+          <b-thead>
+            <b-tr>
+              <b-th class="border-0 font-weight-600 text-decoration-underline">
+                {{ $t('productFeedSettings.attributeMapping.googleAttribute') }}
+              </b-th>
+              <b-th class="border-0 font-weight-600 text-decoration-underline">
+                {{ $t('productFeedSettings.attributeMapping.prestashopAttribute') }}
+              </b-th>
+            </b-tr>
+          </b-thead>
           <b-tbody>
             <template v-if="sellRefurbished">
               <product-feed-settings-attribute-mapping-tablerow-specific
@@ -191,7 +209,6 @@ import {
   BTableSimple,
 } from 'bootstrap-vue';
 
-import ProductFeedSettingsAttributeMappingTablehead from './product-feed-settings-attribute-mapping-tablehead';
 import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
 
@@ -200,7 +217,6 @@ export default {
   components: {
     BTableSimple,
     ProductFeedSettingsAttributeMappingTablerowSpecific,
-    ProductFeedSettingsAttributeMappingTablehead,
     ProductFeedSettingsFooter,
   },
   data() {

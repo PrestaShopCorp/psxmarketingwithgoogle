@@ -46,6 +46,7 @@
         v-if="activeStep == 3"
       />
       <product-feed-settings-summary
+        v-bind="$attrs"
         v-if="activeStep == 4"
       />
     </b-card-body>
