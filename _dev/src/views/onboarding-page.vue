@@ -7,7 +7,7 @@
       :is-done="stepsAreCompleted.step1"
     />
     <b-alert
-      :v-if="!psAccountsContext.isShopContext && shops.length"
+      v-if="!psAccountsContext.isShopContext && shops.length"
       show
       variant="warning"
       class="mb-0 mt-3 mb-3"
