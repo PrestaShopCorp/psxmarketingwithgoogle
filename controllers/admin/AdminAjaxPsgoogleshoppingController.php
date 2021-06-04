@@ -1,8 +1,4 @@
 <?php
-
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
-use PrestaShop\Module\PrestashopGoogleShopping\Provider\CarrierDataProvider;
-
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -21,15 +17,26 @@ use PrestaShop\Module\PrestashopGoogleShopping\Provider\CarrierDataProvider;
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
+
+use PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter;
+use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
+use PrestaShop\Module\PrestashopGoogleShopping\Provider\CarrierDataProvider;
+
 class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 {
     /** @var Ps_googleshopping */
     public $module;
 
+    /**
+     * @var ConfigurationAdapter
+     */
+    private $configurationAdapter;
+
     public function __construct()
     {
         parent::__construct();
         $this->bootstrap = false;
+        $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
     }
 
     public function initContent()
@@ -51,6 +58,9 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             case 'toggleWebsiteClaim':
                 $this->toggleWebsiteClaim();
                 break;
+            case 'toggleGmcLinkRegistration':
+                $this->toggleGmcLinkRegistration();
+                break;
             default:
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
         }
@@ -60,14 +70,28 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
     {
         $websiteClaim = Tools::getValue('websiteClaim');
 
-        Configuration::updateValue(Config::WEBSITE_CLAIM, $websiteClaim);
+        $this->configurationAdapter->updateValue(Config::WEBSITE_CLAIM, $websiteClaim);
     }
 
     private function toggleWebsiteClaim()
     {
         $isEnabled = Tools::getValue('isWebsiteClaimEnabled');
 
-        Configuration::updateValue(Config::IS_WEBSITE_CLAIM_ENABLED, $isEnabled);
+        $this->configurationAdapter->updateValue(Config::IS_WEBSITE_CLAIM_ENABLED, $isEnabled);
+    }
+
+    /**
+     * Registering the GMC link in the shop database allows us to know if there
+     * will be a conflict with another shop using the same domain name.
+     */
+    private function toggleGmcLinkRegistration()
+    {
+        if ((bool) Tools::getValue('isGmcLinked')) {
+            $this->configurationAdapter->updateValue(Config::PS_GOOGLE_SHOPPING_GMC_IS_LINKED, true);
+        } else {
+            $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_SHOPPING_GMC_IS_LINKED);
+        }
+        $this->ajaxDie(json_encode(['success' => true]));
     }
 
     private function getCarrierValues()

@@ -1,3 +1,5 @@
 services:
   PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter:
     class: PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter
+    arguments:
+      - '@=service("ps_googleshopping.shop").id'
