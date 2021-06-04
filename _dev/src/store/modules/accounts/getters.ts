@@ -42,8 +42,8 @@ export default {
       : [];
   },
   [GetterTypes.GET_PS_ACCOUNTS_SHOP_IN_CONFLICT](state: LocalState) : boolean {
-    console.log('heho', state.psAccountShopInConflict)
-    return state.psAccountShopInConflict
+    console.log('heho', state.psAccountShopInConflict);
+    return state.psAccountShopInConflict;
   },
 
   /* Google Account */

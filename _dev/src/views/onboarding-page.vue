@@ -14,17 +14,24 @@
     >
       {{ $t('onboarding.warningMultistore') }}
     </b-alert>
-    {{shopInConflictPsAccount}}coucou
     <MultiStoreSelector
       v-if="!psAccountsContext.isShopContext && shops.length"
       :shops="shops"
       @shop-selected="onShopSelected($event)"
     />
     <ps-accounts
-      v-else
+      v-else-if="!shopInConflictPsAccount"
       class="ps_gs-ps-account-card"
       :context="psAccountsContext"
     />
+    <b-alert
+      v-if="shopInConflictPsAccount && psAccountsContext.isShopContext && !shops.length"
+      show
+      variant="warning"
+      class="mb-0 mt-3 mb-3"
+    >
+      {{ $t('onboarding.GMCAlreadyLinked') }}
+    </b-alert>
     <template v-if="psAccountsContext.isShopContext">
       <section-title
         :step-number="2"

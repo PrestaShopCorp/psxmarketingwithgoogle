@@ -87,7 +87,7 @@ export enum WebsiteClaimErrorReason {
 }
 
 export const state: State = {
-  psAccountShopInConflict: true,
+  psAccountShopInConflict: false,
   contextPsAccounts: {},
   shopIdPsAccounts: '',
   tokenPsAccounts: '',

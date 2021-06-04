@@ -67,18 +67,34 @@ export default {
         },
       });
       const json = await response.json();
-
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
 
       commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
       dispatch(ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS);
+      dispatch(ActionsTypes.TOGGLE_GMC_LINK_REGISTRATION, true);
       return true;
     } catch (error) {
       console.error(error);
       throw error;
     }
+  },
+
+  async [ActionsTypes.TOGGLE_GMC_LINK_REGISTRATION]({rootState}, isGmcLinked: boolean) {
+    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'toggleGmcLinkRegistration',
+        isGmcLinked,
+        ajax: 1,
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    return response;
   },
 
   // Comment to delete : launch toast Google account connected ONCE after connected
@@ -169,9 +185,10 @@ export default {
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
   },
 
-  [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit, state}) {
+  [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit, dispatch, state}) {
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
+    dispatch(ActionsTypes.TOGGLE_GMC_LINK_REGISTRATION, false);
   },
 
   [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {
