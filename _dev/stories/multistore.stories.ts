@@ -29,7 +29,7 @@ ShopHasChanged.args = {
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsNotConnected;
     this.$store.state.accounts.googleAccount = googleAccountNotConnected;
     this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountNotConnected;
-    this.$store.state.accounts.psAccountShopInConflict = true
+    this.$store.state.accounts.psAccountShopInConflict = true;
   },
 };
 
