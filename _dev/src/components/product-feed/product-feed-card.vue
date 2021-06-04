@@ -31,7 +31,7 @@
             type="radio"
             name="switchEnable"
             v-model="enabledProductFeed"
-            @change="disableFreeListing"
+            @change="disableProductFeed"
             :value="false"
             :checked="productFeedSyncEnabled"
           >
@@ -40,6 +40,8 @@
             @click="toggle"
             type="radio"
             name="switchEnable"
+            v-model="enabledProductFeed"
+            @change="activateProductFeed"
             :value="true"
             :checked="productFeedSyncEnabled"
           >
@@ -475,12 +477,15 @@ export default {
     },
   },
   methods: {
-    disableFreeListing() {
+    disableProductFeed() {
       if (this.$refs.PopinFreeListingDisable) {
         this.$bvModal.show(
           this.$refs.PopinFreeListingDisable.$refs.modal.id,
         );
       }
+    },
+    activateProductFeed() {
+      this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_STATUS', true);
     },
   },
   googleUrl,

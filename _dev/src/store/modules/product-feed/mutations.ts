@@ -70,4 +70,7 @@ export default {
     }
     state.settings.attributeMapping = {...state.settings.attributeMapping};
   },
+  [MutationsTypes.SET_PRODUCT_FEED_STATUS](state: LocalState, status: boolean) {
+    state.productFeed.settings.enabled = status;
+  },
 };

@@ -132,14 +132,49 @@ export default {
       type: Boolean,
       default: true,
     },
-    alert: {
-      type: Object,
-      default: null,
-    },
     enabledFreeListing: {
       type: Boolean,
       default: false,
     },
+  },
+  computed: {
+    alert() {
+      console.log(this.$store.getters['productFeed/GET_STATUS_OF_FREE_LISTING']);
+      console.log(this.$store.getters['productFeed/GET_STATUS_OF_PRODUCT_FEED']);
+      console.log(this.$props);
+      if (this.$store.getters['productFeed/GET_STATUS_OF_FREE_LISTING'] === true
+      && this.$store.getters['productFeed/GET_STATUS_OF_PRODUCT_FEED'] === false) {
+        return {
+          variant: 'warning',
+          text: 'alertProductFeedDisabled',
+        };
+      } if (this.$store.getters['productFeed/GET_STATUS_OF_FREE_LISTING'] === false
+      && this.$store.getters['productFeed/GET_STATUS_OF_PRODUCT_FEED'] === false
+      && this.enabledFreeListing === false) {
+        return {
+          variant: 'warning',
+          text: 'alertEnableFreeListingAndProductFeed',
+        };
+      }
+      if (this.$store.getters['productFeed/GET_STATUS_OF_FREE_LISTING'] === false
+      && this.firstTime === false
+      && this.$store.getters['productFeed/GET_STATUS_OF_PRODUCT_FEED'] === true) {
+        return {
+          variant: 'warning',
+          text: 'alertEnableFreeListing',
+        };
+      } if (this.enabledFreeListing === true
+      && this.$store.getters['productFeed/GET_STATUS_OF_FREE_LISTING'] === true
+      && this.$store.getters['productFeed/GET_STATUS_OF_PRODUCT_FEED'] === true) {
+        return {
+          variant: 'success',
+          text: 'alertActivationSuccess',
+        };
+      }
+      return null;
+    },
+  },
+  methods: {
   },
 };
 </script>

@@ -4,7 +4,7 @@
     ref="modal"
     :title="$t('modal.titleDisableFreeListing')"
     v-bind="$attrs"
-    @ok="disableListing"
+    @ok="disableProductFeed"
   >
     <VueShowdown
       class="my-1"
@@ -33,8 +33,8 @@ export default {
     PsModal,
   },
   methods: {
-    disableListing() {
-      this.$store.dispatch('productFeed/SEND_FREE_LISTING_STATEMENT', false);
+    disableProductFeed() {
+      this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_STATUS', false);
     },
   },
 };
