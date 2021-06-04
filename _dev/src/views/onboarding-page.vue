@@ -14,6 +14,7 @@
     >
       {{ $t('onboarding.warningMultistore') }}
     </b-alert>
+    {{shopInConflictPsAccount}}coucou
     <MultiStoreSelector
       v-if="!psAccountsContext.isShopContext && shops.length"
       :shops="shops"
@@ -28,14 +29,14 @@
       <section-title
         :step-number="2"
         :step-title="$t('onboarding.sectionTitle.freeListing')"
-        :is-enabled="stepsAreCompleted.step1"
+        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step1"
         :is-done="stepsAreCompleted.step2"
       />
       <ProductFeedNotice
         v-if="stepsAreCompleted.step1"
       />
       <google-account-card
-        :is-enabled="stepsAreCompleted.step1"
+        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step1"
         :user="getGoogleAccount"
         :is-connected="googleAccountIsOnboarded"
         @connectGoogleAccount="onGoogleAccountConnection"
@@ -43,7 +44,7 @@
       />
       <MerchantCenterAccountCard
         v-if="stepsAreCompleted.step1"
-        :is-enabled="googleAccountIsOnboarded"
+        :is-enabled="!shopInConflictPsAccount && googleAccountIsOnboarded"
         :is-connected="merchantCenterAccountIsChosen"
         :is-e-u="showCSSForMCA"
         :is-linking="isMcaLinking"
@@ -53,20 +54,20 @@
       />
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
-        :is-enabled="merchantCenterAccountIsChosen"
+        :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
       />
       <FreeListingCard
         v-if="stepsAreCompleted.step1"
-        :is-enabled="productFeedIsConfigured"
+        :is-enabled="!shopInConflictPsAccount && productFeedIsConfigured"
       />
       <section-title
         :step-number="3"
         :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
-        :is-enabled="stepsAreCompleted.step2"
+        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
         :is-done="stepsAreCompleted.step3"
       />
       <google-ads-account-card
-        :is-enabled="stepsAreCompleted.step2"
+        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
         :is-connected="false"
       />
     </template>
@@ -154,6 +155,9 @@ export default {
     },
   },
   computed: {
+    shopInConflictPsAccount() {
+      return this.$store.getters['accounts/GET_PS_ACCOUNTS_SHOP_IN_CONFLICT'];
+    },
     psAccountsContext() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
     },

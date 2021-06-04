@@ -8,6 +8,7 @@ declare global {
   //   interface ElementClass extends Vue {}
 
     interface Window {
+      psAccountShopInConflict: boolean,
       contextPsAccounts: any;
       translations: any;
       i18nSettings: any;
