@@ -10,7 +10,8 @@
       >
         {{
           isReport
-            ? $t('productFeedSettings.attributeMapping.xItems', [$t(`productFeedSettings.attributeMapping.${input}`)])
+            ? $t('productFeedSettings.attributeMapping.xItems',
+                 [$t(`productFeedSettings.attributeMapping.${input}`)])
             : $t(`productFeedSettings.attributeMapping.${input}`)
         }}
         <b-button
@@ -24,7 +25,8 @@
             error_outline
           </span>
         </b-button>
-        <span v-else
+        <span
+          v-else
           class="material-icons-round ml-auto ps_gs-fz-20 mr-md-2 mb-0 align-middle text-success"
         >
           link
@@ -40,8 +42,8 @@
           isReport
             ? $t(`productFeedSettings.attributeMapping.${input}`)
             : $t('productFeedSettings.attributeMapping.theXField', [
-                $t(`productFeedSettings.attributeMapping.${input}`)
-              ])
+              $t(`productFeedSettings.attributeMapping.${input}`)
+            ])
         }}
         <!-- Not in Batch 1 -->
         <!-- <b-form-radio

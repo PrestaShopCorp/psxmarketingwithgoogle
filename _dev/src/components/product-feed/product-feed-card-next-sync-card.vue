@@ -1,7 +1,8 @@
 <template>
   <b-col
     cols
-    class="ps_gs-productfeed-report-card ps_gs-productfeed-report-card--33 bg-violet_extralight border-0"
+    class="ps_gs-productfeed-report-card ps_gs-productfeed-report-card--33
+      bg-violet_extralight border-0"
   >
     <div class="p-3">
       <div class="d-flex align-items-center font-weight-600 ps_gs-fz-13">

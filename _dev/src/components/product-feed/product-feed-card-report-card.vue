@@ -43,7 +43,7 @@
       >
         {{ details }}
       </p>
-      <slot></slot>
+      <slot />
     </div>
   </b-col>
 </template>

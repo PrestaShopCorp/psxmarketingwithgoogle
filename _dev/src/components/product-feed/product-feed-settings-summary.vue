@@ -90,7 +90,8 @@
                     <span class="d-flex align-items-center">
                       Product items
                       <span
-                        class="material-icons-round ml-auto ps_gs-fz-20 mr-md-2 mb-0 align-middle text-success"
+                        class="material-icons-round ml-auto ps_gs-fz-20
+                          mr-md-2 mb-0 align-middle text-success"
                       >
                         link
                       </span>
@@ -107,7 +108,7 @@
                     v-for="input in refurbishedInputs"
                     :key="input"
                     :input="input"
-                    :isReport="true"
+                    :is-report="true"
                   />
                 </template>
                 <template v-if="sellApparel">
@@ -115,7 +116,7 @@
                     v-for="input in apparelInputs"
                     :key="input"
                     :input="input"
-                    :isReport="true"
+                    :is-report="true"
                   />
                 </template>
               </b-tbody>
@@ -165,12 +166,10 @@
 </template>
 
 <script>
-import { BTableSimple } from 'bootstrap-vue';
+import {BTableSimple} from 'bootstrap-vue';
 
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
-import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
-import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
 import ProductFeedCardNextSyncCard from './product-feed-card-next-sync-card';
 
@@ -179,8 +178,6 @@ export default {
   components: {
     ProductFeedSettingsFooter,
     ProductFeedCardReportCard,
-    ProductFeedCardReportMappedCategoriesCard,
-    ProductFeedCardReportProductsCard,
     ProductFeedSettingsAttributeMappingTablerowSpecific,
     ProductFeedCardNextSyncCard,
     BTableSimple,
@@ -204,9 +201,9 @@ export default {
   },
   computed: {
     specificProducts() {
-      let tableOfSpecifics = [];
+      const tableOfSpecifics = [];
       if (this.sellRefurbished) tableOfSpecifics.push('refurbished');
-      if (this.sellApparel) tableOfSpecifics.push('apparel and accessories')
+      if (this.sellApparel) tableOfSpecifics.push('apparel and accessories');
       return tableOfSpecifics.join(', ');
     },
   },
