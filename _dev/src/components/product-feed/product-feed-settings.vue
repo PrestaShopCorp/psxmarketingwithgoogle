@@ -35,7 +35,9 @@
         :steps="steps"
         :active-step="activeStep"
       />
-      <product-feed-settings-shipping v-if="activeStep == 1" />
+      <product-feed-settings-shipping
+        v-if="activeStep == 1"
+      />
       <product-feed-settings-export
         v-if="activeStep == 2"
         v-bind="$attrs"

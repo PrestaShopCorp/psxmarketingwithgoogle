@@ -26,7 +26,9 @@
         {{ $t("cta.saveAndExport") }}
       </b-button>
     </div>
-    <product-feed-settings-footer />
+    <product-feed-settings-footer
+      :message="$t('freeListingCard.googleDelay')"
+    />
   </div>
 </template>
 
@@ -34,18 +36,9 @@
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
 
 export default {
-  name: 'ProductFeedSettingsExport',
-  data() {
-    return {
-      syncFrequency: this.$i18n.t('productFeedSettings.export.frequency.daily'),
-      syncTime: '2:00 AM',
-      syncTimeZone: '(UTC+01:00) Normal time in Central Europe (Paris)',
-    };
-  },
+  name: 'ProductFeedSettingsSummary',
   components: {
     ProductFeedSettingsFooter,
-  },
-  computed: {
   },
 };
 </script>
