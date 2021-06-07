@@ -23,11 +23,20 @@ export interface ProductFeedStatus {
   registerSyncData: any;
   isSuspendSync: any;
 }
+
+export interface ProductFeedSettingsSellingApparel {
+  color: any;
+  size: any;
+  age: any;
+  gender: any;
+}
 export interface ProductFeedSettingsStatus {
   autoImportTaxSettings: boolean;
   targetCountries: Array<string>;
   autoImportShippingSettings: boolean;
   exportProductsWithShortDescription: boolean;
+  sellApparel: ProductFeedSettingsSellingApparel;
+  sellRefurbished: any
 }
 
 export interface FreeListingStatus {
@@ -57,6 +66,13 @@ export const state: State = {
       targetCountries: [],
       autoImportShippingSettings: false,
       exportProductsWithShortDescription: true,
+      sellApparel: {
+        color: '',
+        size: '',
+        age: '',
+        gender: '',
+      },
+      sellRefurbished: [],
     },
   },
   freeListing: {

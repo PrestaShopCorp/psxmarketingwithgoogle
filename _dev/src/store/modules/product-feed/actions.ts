@@ -126,20 +126,29 @@ export default {
       autoImportShippingSettings: false,
       autoImportTaxSettings: true,
       exportProductsWithShortDescription: true,
-      customConditionAttribute: 'extra:condition',
-      customColorAttribute: 'extra:color',
-      customSizeAttribute: 'extra:size',
-      customAgeGroupAttribute: 'extra:age-group',
-      customGenderGroupAttribute: 'extra:gender-group',
+      customConditionAttribute: ['old', 'used', 'new'],
+      customColorAttribute: ['blue', 'red'],
+      customSizeAttribute: ['S', 'M', 'L'],
+      customAgeGroupAttribute: 'children',
+      customGenderGroupAttribute: 'female',
       targetCountries: [
         'FR',
-        'LT',
+        'IT',
       ],
     };
     commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'autoImportShippingSettings', data: json.autoImportShippingSettings});
     commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'targetCountries', data: json.targetCountries});
     commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'autoImportTaxSettings', data: json.autoImportTaxSettings});
-    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'exportProductsWithShortDescription', data: json.exportProductsWithShortDescription});
+    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {
+      name: 'sellApparel',
+      data: {
+        color: json.customColorAttribute,
+        age: json.customAgeGroupAttribute,
+        size: json.customSizeAttribute,
+        gender: json.customGenderGroupAttribute,
+      },
+    });
+    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'sellRefurbished', data: json.customConditionAttribute});
 
     // } catch (error) {
     //   console.error(error);

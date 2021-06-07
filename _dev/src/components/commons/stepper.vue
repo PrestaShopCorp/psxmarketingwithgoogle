@@ -62,11 +62,7 @@ export default {
     BIconCheck,
     ProgressRing,
   },
-  data() {
-    return {
-      mutableActiveStep: this.activeStep,
-    };
-  },
+
   props: {
     steps: {
       type: Array,
@@ -95,9 +91,7 @@ export default {
     },
   
     goStep(index) {
-      if (this.$store.state.productFeed.productFeed.stepper < index) {
-
-      } else {
+      if (this.$store.state.productFeed.productFeed.stepper >= index) {
         this.$store.commit('productFeed/UPDATE_STEPPER', index);
       }
     },

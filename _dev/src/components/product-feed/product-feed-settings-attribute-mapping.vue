@@ -180,13 +180,16 @@
     </section>
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
+        @click="goBack"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
       >
         {{ $t("cta.back") }}
       </b-button>
+    
       <b-button
+      @click="cancel"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
@@ -194,6 +197,7 @@
         {{ $t("cta.cancel") }}
       </b-button>
       <b-button
+        @click="nextStep"
         size="sm"
         :disabled="disableContinue"
         class="mx-1 mt-3 mt-md-0 mr-md-0"
@@ -223,15 +227,15 @@ export default {
   },
   data() {
     return {
-      disableContinue: true,
-      sellRefurbished: false,
-      sellApparel: false,
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
 
     };
   },
   computed: {
+      disableContinue() {
+        return false
+    },
     selectedDescriptionLength: {
       get() {
         return this.$store.state.productFeed.productFeed.settings.exportProductsWithShortDescription !== 'undefined'
@@ -244,6 +248,54 @@ export default {
         });
       },
     },
+    sellApparel: {
+      get() {
+        return !!this.$store.state.productFeed.productFeed.settings.sellApparel.color;
+      },
+      set(value) {
+        if (value === false) {
+          return this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+            name: 'sellApparel',
+            data: {},
+          });
+        }
+        return  this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+            name: 'sellApparel',
+            data: {color: ['red']},
+          });;
+      },
+    },
+    sellRefurbished: {
+      get(){
+        return !!this.$store.state.productFeed.productFeed.settings.sellRefurbished.length;
+      },
+      set(value) {
+           if (value === false) {
+          return this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+            name: 'sellRefurbished',
+            data: [],
+          });
+        }
+        return  this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+            name: 'sellRefurbished',
+            data: ['new']
+          });;
+      }
+    },
+  },
+   methods: {
+    goBack() {
+      this.$store.commit('productFeed/UPDATE_STEPPER', 2);
+    },
+    nextStep() {
+      this.$store.commit('productFeed/UPDATE_STEPPER', 4);
+    },
+    cancel() {
+       this.$store.commit('productFeed/UPDATE_STEPPER', 1);
+      this.$router.push({
+        path: '/onboarding'
+      })
+    }
   },
 };
 </script>

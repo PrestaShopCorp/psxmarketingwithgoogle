@@ -47,7 +47,7 @@
     </div>
     <p
       class="ps_gs-fz-12"
-      v-if="!configurationStarted"
+      v-if="!isEnabled"
     >
       {{ $t("productFeedCard.intro") }}
     </p>

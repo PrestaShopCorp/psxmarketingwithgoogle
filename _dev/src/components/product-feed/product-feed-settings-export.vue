@@ -64,15 +64,14 @@
       >
         {{ $t("cta.back") }}
       </b-button>
-      <router-link to="/onboarding">
         <b-button
+        @click="cancel"
           size="sm"
           class="mx-1 mt-3 mt-md-0"
           variant="outline-secondary"
         >
           {{ $t("cta.cancel") }}
         </b-button>
-      </router-link>
       <b-button
         @click="nextStep"
         size="sm"
@@ -337,6 +336,12 @@ export default {
     nextStep() {
       this.$store.commit('productFeed/UPDATE_STEPPER', 3);
     },
+    cancel() {
+       this.$store.commit('productFeed/UPDATE_STEPPER', 1);
+      this.$router.push({
+        path: '/onboarding'
+      })
+    }
   },
   /**
    * ! Not needed for batch 1
