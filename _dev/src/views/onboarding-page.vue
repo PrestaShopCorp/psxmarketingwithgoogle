@@ -25,7 +25,7 @@
       :context="psAccountsContext"
     />
     <b-alert
-      v-if="shopInConflictPsAccount && psAccountsContext.isShopContext && !shops.length"
+      v-if="shopInConflictPsAccount"
       show
       variant="warning"
       class="mb-0 mt-3 mb-3"
