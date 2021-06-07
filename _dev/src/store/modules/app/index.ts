@@ -4,6 +4,7 @@ import getters from './getters';
 const {
   psGoogleShoppingApiUrl,
   psGoogleShoppingAdminUrl,
+  psGoogleShoppingAdminAjaxUrl,
   psGoogleShoppingShopUrl,
   isCountryMemberOfEuropeanUnion,
 }: any = window;
@@ -12,6 +13,7 @@ const state = Object.assign(
   initialState,
   {psGoogleShoppingApiUrl} || '',
   {psGoogleShoppingAdminUrl} || '',
+  {psGoogleShoppingAdminAjaxUrl} || '',
   {psGoogleShoppingShopUrl} || '',
   {isCountryMemberOfEuropeanUnion} || false,
 );
