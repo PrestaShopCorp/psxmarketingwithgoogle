@@ -155,4 +155,23 @@ export default {
     // }
   },
 
+  async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
+    console.log('rootstate', rootState.productFeed.productFeed.settings);
+    // try {
+    //   const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`, {
+    //     method: 'POST',
+    //     headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+    //     body: JSON.stringify(payload),
+    //   });
+    //   if (!response.ok) {
+    //     throw new HttpClientError(response.statusText, response.status);
+    //   }
+    //   const json = await response.json();
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  },
+
+  
+
 };

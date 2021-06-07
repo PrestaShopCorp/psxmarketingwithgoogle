@@ -33,29 +33,20 @@
         </span>
       </span>
     </b-td>
-<<<<<<< HEAD
     <b-td
       class="pb-0 align-top"
       :class="isReport ? 'pt-md-0 pb-md-1' : 'py-md-3'"
     >
-      <b-form-group class="mb-0 text-left">
-        {{
-          isReport
+      <b-form-group class="mb-0 text-left" v-html="isReport
             ? $t(`productFeedSettings.attributeMapping.${input}`)
             : $t('productFeedSettings.attributeMapping.theXField', [
               $t(`productFeedSettings.attributeMapping.${input}`)
-            ])
-        }}
-=======
-    <b-td class="pt-0 py-md-3 align-top">
-      <b-form-group
-        class="mb-0 text-left"
-        v-html="$t('productFeedSettings.attributeMapping.theXField',
-                   [$t(`productFeedSettings.attributeMapping.${input}`)])"
-      >
->>>>>>> cb9c7df (step 3)
-        <!-- Not in Batch 1 -->
-        <!-- <b-form-radio
+            ])">
+          
+
+          
+            <!-- Not in Batch 1 -->
+            <!-- <b-form-radio
           v-model="selectedRadio"
           :name="`${input}Radio`"
           value="default"
@@ -88,6 +79,8 @@
             </b-form-select-option>
           </b-select>
         </div> -->
+          </b-form-group>
+        </b-td>
       </b-form-group>
     </b-td>
   </b-tr>

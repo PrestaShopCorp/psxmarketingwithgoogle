@@ -187,9 +187,9 @@
       >
         {{ $t("cta.back") }}
       </b-button>
-    
+
       <b-button
-      @click="cancel"
+        @click="cancel"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
@@ -233,13 +233,15 @@ export default {
     };
   },
   computed: {
-      disableContinue() {
-        return false
+    disableContinue() {
+      return false;
     },
     selectedDescriptionLength: {
       get() {
-        return this.$store.state.productFeed.productFeed.settings.exportProductsWithShortDescription !== 'undefined'
-          ? this.$store.state.productFeed.productFeed.settings.exportProductsWithShortDescription : null;
+        return this.$store.state.productFeed.productFeed.settings.exportProductsWithShortDescription
+        !== 'undefined'
+          ? this.$store.state.productFeed.productFeed.settings.exportProductsWithShortDescription
+          : null;
       },
       set(value) {
         this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
@@ -259,43 +261,45 @@ export default {
             data: {},
           });
         }
-        return  this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
-            name: 'sellApparel',
-            data: {color: ['red']},
-          });;
+        return this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+          name: 'sellApparel',
+          data: {color: ['red']},
+        });
       },
     },
     sellRefurbished: {
-      get(){
+      get() {
         return !!this.$store.state.productFeed.productFeed.settings.sellRefurbished.length;
       },
       set(value) {
-           if (value === false) {
+        if (value === false) {
           return this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
             name: 'sellRefurbished',
             data: [],
           });
         }
-        return  this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
-            name: 'sellRefurbished',
-            data: ['new']
-          });;
-      }
+        return this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+          name: 'sellRefurbished',
+          data: ['new'],
+        });
+      },
     },
   },
-   methods: {
+  methods: {
     goBack() {
       this.$store.commit('productFeed/UPDATE_STEPPER', 2);
     },
     nextStep() {
       this.$store.commit('productFeed/UPDATE_STEPPER', 4);
     },
-    cancel() {
-       this.$store.commit('productFeed/UPDATE_STEPPER', 1);
-      this.$router.push({
-        path: '/onboarding'
-      })
-    }
+     cancel() { 
+       if (confirm('Are you sure you want to cancel? Nothing will be saved')){
+         this.$store.commit('productFeed/UPDATE_STEPPER', 1);
+         this.$router.push({
+           path: '/onboarding',
+         });
+       }
+    },
   },
 };
 </script>

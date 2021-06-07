@@ -68,22 +68,24 @@
       /> -->
       <ProductFeedCard
         :is-enabled="true"
->>>>>>> cb9c7df (step 3)
-      />
-      <FreeListingCard
-        v-if="stepsAreCompleted.step1"
-        :is-enabled="!shopInConflictPsAccount && productFeedIsConfigured"
-      />
-      <section-title
-        :step-number="3"
-        :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
-        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
-        :is-done="stepsAreCompleted.step3"
-      />
-      <google-ads-account-card
-        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
-        :is-connected="false"
-      />
+      >
+        >>>>>> cb9c7df (step 3)
+        />
+        <FreeListingCard
+          v-if="stepsAreCompleted.step1"
+          :is-enabled="!shopInConflictPsAccount && productFeedIsConfigured"
+        />
+        <section-title
+          :step-number="3"
+          :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
+          :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
+          :is-done="stepsAreCompleted.step3"
+        />
+        <google-ads-account-card
+          :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
+          :is-connected="false"
+        />
+      </productfeedcard>
     </template>
     <!-- Modals -->
     <GoogleAccountPopinDisconnect

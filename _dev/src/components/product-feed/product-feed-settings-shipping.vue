@@ -135,14 +135,14 @@
       </b-form-radio>
     </b-form-group> -->
     <div class="d-md-flex text-center justify-content-end mt-3">
-        <b-button
+      <b-button
         @click="cancel"
-          size="sm"
-          class="mx-1 mt-3 mt-md-0"
-          variant="outline-secondary"
-        >
-          {{ $t('cta.cancel') }}
-        </b-button>
+        size="sm"
+        class="mx-1 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
+        {{ $t('cta.cancel') }}
+      </b-button>
       <b-button
         @click="nextStep"
         size="sm"
@@ -158,12 +158,9 @@
 </template>
 
 <script>
-import getters from '@/store/modules/app/getters';
 import PsSelect from '../commons/ps-select';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
-import ActionsTypes from '../../store/modules/product-feed/actions-types';
-import MutationsTypes from '../../store/modules/product-feed/mutations-types';
 
 export default {
   name: 'ProductFeedSettingsShipping',
@@ -214,7 +211,8 @@ export default {
     //       ? this.$store.state.productFeed.productFeed.settings.autoImportTaxSettings : null;
     //   },
     //   set(value) {
-    //     this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {name: 'autoImportTaxSettings', data: value});
+    //     this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS',
+    //   {name: 'autoImportTaxSettings', data: value});
     //   },
     // },
 
@@ -223,12 +221,14 @@ export default {
     nextStep() {
       this.$store.commit('productFeed/UPDATE_STEPPER', 2);
     },
-    cancel() {
-       this.$store.commit('productFeed/UPDATE_STEPPER', 1);
-      this.$router.push({
-        path: '/onboarding'
-      })
-    }
+     cancel() { 
+       if (confirm('Are you sure you want to cancel? Nothing will be saved')){
+         this.$store.commit('productFeed/UPDATE_STEPPER', 1);
+         this.$router.push({
+           path: '/onboarding',
+         });
+       }
+    },
   },
   countriesSelectionOptions,
 };

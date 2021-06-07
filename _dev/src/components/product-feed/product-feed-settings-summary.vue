@@ -47,14 +47,14 @@
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
-            link-to="#"
+            :link-to="{type : 'stepper', where: 1}"
           />
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
-            link-to="#"
+            :link-to="{type : 'stepper', where: 1}"
           />
           <product-feed-card-report-card
             status="success"
@@ -135,6 +135,7 @@
     </section>
     <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
       <b-button
+       @click="goBack"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
@@ -142,6 +143,7 @@
         {{ $t("cta.back") }}
       </b-button>
       <b-button
+       @click="cancel"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
@@ -149,6 +151,7 @@
         {{ $t("cta.cancel") }}
       </b-button>
       <b-button
+       @click="saveAll"
         size="sm"
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
@@ -185,12 +188,13 @@ export default {
       nextSyncTotalProducts: '210',
       nextSyncDate: '06/12/21',
       nextSyncTime: '2:00 AM',
-      targetCountries: ['France', 'United States'],
-      shippingSettings: 'Automatic',
-      refurbishedInputs: ['condition'],
+      targetCountries: this.$store.state.productFeed.productFeed.settings.targetCountries,
+      shippingSettings: this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings ? 
+      this.$t('productFeedSettings.shipping.autoImportShipping') : this.$t('productFeedSettings.shipping.manualShipping'),
+       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
-      sellRefurbished: true,
-      sellApparel: true,
+      sellRefurbished: this.$store.state.productFeed.productFeed.settings.sellRefurbished.length ? true :false,
+      sellApparel: this.$store.state.productFeed.productFeed.settings.sellApparel.color ? true : false,
     };
   },
   computed: {
@@ -201,5 +205,22 @@ export default {
       return tableOfSpecifics.join(', ');
     },
   },
+  methods: {
+       goBack() {
+      this.$store.commit('productFeed/UPDATE_STEPPER', 3);
+    },
+     cancel() { 
+       if (confirm('Are you sure you want to cancel? Nothing will be saved')){
+         this.$store.commit('productFeed/UPDATE_STEPPER', 1);
+         this.$router.push({
+           path: '/onboarding',
+         });
+       }
+    },
+    saveAll() {
+      console.log('save', this.$store.state.productFeed.productFeed.settings);
+      this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS')
+    }
+  }
 };
 </script>

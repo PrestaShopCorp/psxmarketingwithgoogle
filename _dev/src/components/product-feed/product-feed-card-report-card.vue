@@ -24,7 +24,7 @@
           {{ title }}
         </div>
         <b-link
-          :href="linkTo"
+          @click="goTo(linkTo)"
           class="text-right"
         >
           {{ link }}
@@ -71,12 +71,21 @@ export default {
       type: String,
     },
     linkTo: {
-      type: String,
+      type: Object,
     },
     size: {
       type: String,
       required: false,
     },
   },
+  methods: {
+    goTo(link) {
+      //  Here I added and check a link type because it's not an url or route but a stepper state. 
+      //  If one day we need to give a simple url we can add a different type in the condition below
+      if (link.type === 'stepper') {
+          this.$store.commit('productFeed/UPDATE_STEPPER', link.where);
+      };
+    },
+  }
 };
 </script>

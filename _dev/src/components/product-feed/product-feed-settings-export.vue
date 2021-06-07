@@ -64,14 +64,14 @@
       >
         {{ $t("cta.back") }}
       </b-button>
-        <b-button
+      <b-button
         @click="cancel"
-          size="sm"
-          class="mx-1 mt-3 mt-md-0"
-          variant="outline-secondary"
-        >
-          {{ $t("cta.cancel") }}
-        </b-button>
+        size="sm"
+        class="mx-1 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
+        {{ $t("cta.cancel") }}
+      </b-button>
       <b-button
         @click="nextStep"
         size="sm"
@@ -336,12 +336,14 @@ export default {
     nextStep() {
       this.$store.commit('productFeed/UPDATE_STEPPER', 3);
     },
-    cancel() {
-       this.$store.commit('productFeed/UPDATE_STEPPER', 1);
-      this.$router.push({
-        path: '/onboarding'
-      })
-    }
+     cancel() { 
+       if (confirm('Are you sure you want to cancel? Nothing will be saved')){
+         this.$store.commit('productFeed/UPDATE_STEPPER', 1);
+         this.$router.push({
+           path: '/onboarding',
+         });
+       }
+    },
   },
   /**
    * ! Not needed for batch 1

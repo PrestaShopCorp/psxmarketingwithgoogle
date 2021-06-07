@@ -89,7 +89,7 @@ export default {
       }
       return this.$i18n.t('stepper.lastStep');
     },
-  
+
     goStep(index) {
       if (this.$store.state.productFeed.productFeed.stepper >= index) {
         this.$store.commit('productFeed/UPDATE_STEPPER', index);
