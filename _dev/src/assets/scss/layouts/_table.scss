@@ -116,3 +116,10 @@
     }
   }
 }
+
+.ps_gs-table-caption {
+  strong {
+    font-weight: normal;
+    color: $body-color;
+  }
+}

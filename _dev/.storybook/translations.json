@@ -43,7 +43,10 @@
         "freeListing" : "Activate your free product listings",
         "smartShoppingCampaign" : "Launch your paid Smart Shopping campaign"
       },
-      "productFeedNotice" : "Google’s retail solutions can help you welcome more customers to your site or your store. After you get set up, you’ll have access to reports so you can see how well your ads are doing."
+      "productFeedNotice" : "Google’s retail solutions can help you welcome more customers to your site or your store. After you get set up, you’ll have access to reports so you can see how well your ads are doing.",
+      "warningMultistore":  "You can associate only one shop to your Prestashop Account.",
+      "GMCAlreadyLinked":  "Your PrestaShop account is already linked to another store. You can associate only one store to a PrestaShop account. To associate this other store you have to unlink the associated one."
+
     },
     "psAccountCard" : {
       "disonboardedText" : "Authorize your account to manage your shop’s services",
@@ -228,6 +231,18 @@
         "learnHowToSetupShippingSettings" : "Learn how to set up shipping",
         "learnRequirementsProductSpeficifacion" : "Learn more about requirements for the Shopping product data specification",
         "weWillRecoverTheseAttributes" : "For your products we will recover these attributes:"
+      },
+      "summary" : {
+        "title1" : "Next synchronisation",
+        "title2" : "Product feed settings summary",
+        "xItems" : "{0} items",
+        "productItems" : "Product items",
+        "tableHeader1" : "Google Merchant Center",
+        "tableHeader2" : "Prestashop",
+        "totalProducts" : "Total products",
+        "date" : "Date",
+        "time" : "Time",
+        "youSell" : "**You sell** {0}"
       }
     },
     "freeListingCard" : {
@@ -351,7 +366,8 @@
       "viewDetailedStatuses" : "View all detailed statuses",
       "setupTaxSettings" : "Set up tax settings",
       "understandAndContinue" : "Understand and continue",
-      "reviewProblems": "Review problems"
+      "reviewProblems": "Review problems",
+      "saveAndExport" : "Save and export"
     },
     "badge" : {
       "free" : "Free",

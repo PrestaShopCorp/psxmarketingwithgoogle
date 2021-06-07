@@ -6,17 +6,21 @@ a[target="_blank"].text-muted {
 }
 
 a[target="_blank"] {
+  color: inherit !important;
+
   &:not(.btn) {
     text-decoration: underline;
 
-    &:hover,
-    &:focus {
-      color: $blue;
-    }
-
     &:active,
     &:visited {
-      color: $blue_dark;
+      // TODO:
+      // Need to discuss about this, it's bad for UX at the moment
+      color: inherit !important;
+    }
+
+    &:hover,
+    &:focus {
+      color: $blue !important;
     }
   }
 
@@ -80,6 +84,10 @@ a[target="_blank"] {
 
 .color-grey_darklight {
   color: $grey_darklight;
+}
+
+.text-purple {
+  color: $purple;
 }
 
 .bg-violet_extralight {

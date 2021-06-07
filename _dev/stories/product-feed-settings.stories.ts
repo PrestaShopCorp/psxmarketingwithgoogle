@@ -15,8 +15,11 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { ProductFeedSettings },
-  template: '<div><ProductFeedSettings v-bind="$props" /></div>',
+  components: { ProductFeedSettings, },
+  template:
+    `<div>
+      <ProductFeedSettings v-bind="$props" />
+    </div>`,
 });
 
 export const ShippingSettings:any = Template.bind({});
@@ -33,4 +36,9 @@ ExportSettings.args = {
 export const AttributeMapping:any = Template.bind({});
 AttributeMapping.args = {
   activeStep: 3,
+}
+
+export const Summary:any = Template.bind({});
+Summary.args = {
+  activeStep: 4,
 }

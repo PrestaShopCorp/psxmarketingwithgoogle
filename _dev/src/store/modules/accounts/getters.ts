@@ -41,6 +41,9 @@ export default {
       ? state.contextPsAccounts.shops
       : [];
   },
+  [GetterTypes.GET_PS_ACCOUNTS_SHOP_IN_CONFLICT](state: LocalState) : boolean {
+    return state.psAccountShopInConflict;
+  },
 
   /* Google Account */
   [GetterTypes.GET_GOOGLE_ACCOUNT_IS_ONBOARDED](state: LocalState): boolean {

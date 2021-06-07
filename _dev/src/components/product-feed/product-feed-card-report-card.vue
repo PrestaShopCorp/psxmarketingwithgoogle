@@ -2,6 +2,7 @@
   <b-col
     cols
     class="ps_gs-productfeed-report-card"
+    :class="size && `ps_gs-productfeed-report-card--${size}`"
   >
     <div class="px-3 py-2">
       <div class="d-flex justify-content-between font-weight-600 ps_gs-fz-13">
@@ -30,6 +31,7 @@
         </b-link>
       </div>
       <p
+        v-if="description"
         class="mb-0 ps_gs-fz-12"
         :class="{'text-muted': status === 'warning'}"
       >
@@ -41,6 +43,7 @@
       >
         {{ details }}
       </p>
+      <slot />
     </div>
   </b-col>
 </template>
@@ -69,6 +72,10 @@ export default {
     },
     linkTo: {
       type: String,
+    },
+    size: {
+      type: String,
+      required: false,
     },
   },
 };
