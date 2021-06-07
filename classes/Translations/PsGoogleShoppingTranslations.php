@@ -398,7 +398,7 @@ class PsGoogleShoppingTranslations
                 'close' => $this->module->l('Close', 'PsGoogleShoppingTranslations'),
                 'viewDetailedStatuses' => $this->module->l('View all detailed statuses', 'PsGoogleShoppingTranslations'),
                 'setupTaxSettings' => $this->module->l('Set up tax settings', 'PsGoogleShoppingTranslations'),
-                'understandAndContinue' => $this->module->l('understandAndContinue', 'PsGoogleShoppingTranslations'),
+                'understandAndContinue' => $this->module->l('Understand and continue', 'PsGoogleShoppingTranslations'),
                 'reviewProblems' => $this->module->l('Review problems', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
