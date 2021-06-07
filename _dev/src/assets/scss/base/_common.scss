@@ -13,7 +13,9 @@ a[target="_blank"] {
 
     &:active,
     &:visited {
-      color: $blue_dark !important;
+      // TODO:
+      // Need to discuss about this, it's bad for UX at the moment
+      color: inherit !important;
     }
 
     &:hover,
