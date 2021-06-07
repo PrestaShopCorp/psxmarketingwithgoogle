@@ -184,21 +184,14 @@ class Ps_googleshopping extends Module
 
     public function hookDisplayHeader()
     {
-        $isWebsiteClaimEnabled = Configuration::get(Config::IS_WEBSITE_CLAIM_ENABLED);
-        if (!$isWebsiteClaimEnabled) {
+        dump('############');
+        $websiteVerificationMeta = Configuration::get(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META);
+        dump($websiteVerificationMeta);
+        if (!$websiteVerificationMeta) {
             return;
         }
 
-        $websiteClaim = Configuration::get(Config::WEBSITE_CLAIM);
-        if (!$websiteClaim) {
-            return;
-        }
-
-        $this->context->smarty->assign([
-            'website_claim' => $websiteClaim,
-        ]);
-
-        $this->display(__FILE__, 'header.tpl');
+        return $websiteVerificationMeta;
     }
 
     private function loadEnv()

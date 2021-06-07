@@ -57,6 +57,8 @@ export default {
     selectedAccount: contentApi.Schema$Account,
   ) {
     try {
+      const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+
       const route = `${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts/${selectedAccount.id}/link`;
       const response = await fetch(route, {
         method: 'POST',
@@ -64,6 +66,7 @@ export default {
           'Content-Type': 'application/json',
           Accept: 'application/json',
           Authorization: `Bearer ${state.tokenPsAccounts}`,
+          'x-correlation-id': correlationId,
         },
       });
       const json = await response.json();
@@ -72,8 +75,22 @@ export default {
       }
 
       commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
-      dispatch(ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS);
       dispatch(ActionsTypes.TOGGLE_GMC_LINK_REGISTRATION, true);
+
+      // must wait before to ask for status
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // TODO : temp
+      const statuses = {isVerified: false, isClaimed: false};
+      /* const statuses = await dispatch(
+        ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
+        correlationId,
+      ); */
+
+      // TODO : temp
+      console.log('###############', statuses);
+      dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS, correlationId);
+
       return true;
     } catch (error) {
       console.error(error);
@@ -207,10 +224,10 @@ export default {
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS]({dispatch, state}) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
     try {
-      // 1- Get site vrification token from Nest
-      const token = await dispatch(ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN, correlationId);
+      // 1- Get site verification token from Nest
+      const {token} = await dispatch(ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN, correlationId);
       // 2- Store token in shop
-      await dispatch(ActionsTypes.TOGGLE_WEBSITE_CLAIMING_SNIPPET, token);
+      await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, token);
       // 3- Request verification to Google via Nest
       await dispatch(ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE, correlationId);
       // 4- Retrieve verification results
@@ -227,7 +244,7 @@ export default {
         throw new Error('Website was not verified by Google');
       }
       // 5- Remove token from shop
-      await dispatch(ActionsTypes.TOGGLE_WEBSITE_CLAIMING_SNIPPET, false);
+      await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
     } catch (error) {
       console.error(error);
     }
@@ -247,13 +264,13 @@ export default {
     return response.json();
   },
 
-  async [ActionsTypes.TOGGLE_WEBSITE_CLAIMING_SNIPPET]({rootState}, token: string|false) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingAdminUrl}`, {
+  async [ActionsTypes.SAVE_WEBSITE_VERIFICATION_META]({rootState}, token: string|false) {
+    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
-        action: 'toggleWebsiteClaim',
-        websiteClaim: token,
+        action: 'setWebsiteVerificationMeta',
+        websiteVerificationMeta: token,
       }),
     });
     if (!response.ok) {

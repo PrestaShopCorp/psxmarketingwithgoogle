@@ -24,6 +24,8 @@ use PrestaShop\Module\PrestashopGoogleShopping\Provider\CarrierDataProvider;
 
 class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 {
+    public $ajax = true;
+
     /** @var Ps_googleshopping */
     public $module;
 
@@ -46,17 +48,17 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 
     public function displayAjax()
     {
+        dump('POUIC');
+        $inputs = json_decode(Tools::file_get_contents('php://input'), true);
+
         $action = Tools::getValue('action');
 
         switch ($action) {
-            case 'setWebsiteClaimHeader':
-                $this->setWebsiteClaimHeader();
+            case 'setWebsiteVerificationMeta':
+                $this->setWebsiteVerificationMeta();
                 break;
             case 'getCarrierValues':
                 $this->getCarrierValues();
-                break;
-            case 'toggleWebsiteClaim':
-                $this->toggleWebsiteClaim();
                 break;
             case 'toggleGmcLinkRegistration':
                 $this->toggleGmcLinkRegistration();
@@ -66,18 +68,21 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         }
     }
 
-    private function setWebsiteClaimHeader()
+    private function setWebsiteVerificationMeta()
     {
-        $websiteClaim = Tools::getValue('websiteClaim');
+        $websiteVerificationMeta = Tools::getValue('websiteVerificationMeta');
+        dump('#################');
+        dump($websiteVerificationMeta);
 
-        $this->configurationAdapter->updateValue(Config::WEBSITE_CLAIM, $websiteClaim);
-    }
-
-    private function toggleWebsiteClaim()
-    {
-        $isEnabled = Tools::getValue('isWebsiteClaimEnabled');
-
-        $this->configurationAdapter->updateValue(Config::IS_WEBSITE_CLAIM_ENABLED, $isEnabled);
+        // TODO : false of "false" or null or else ?
+        if ($websiteVerificationMeta === false) {
+            $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META);
+        } else {
+            $this->configurationAdapter->updateValue(
+                Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META,
+                $websiteVerificationMeta,
+            );
+        }
     }
 
     /**
