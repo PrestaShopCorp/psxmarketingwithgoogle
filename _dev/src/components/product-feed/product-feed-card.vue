@@ -45,10 +45,7 @@
         </span>
       </div>
     </div>
-    <p
-      class="ps_gs-fz-12"
-      v-if="!isEnabled"
-    >
+    <p class="ps_gs-fz-12" v-if="!configurationStarted">
       {{ $t("productFeedCard.intro") }}
     </p>
     <div
@@ -80,7 +77,7 @@
       </ul>
     </div>
     <div v-if="isEnabled && toConfigure">
-      <p>
+      <p v-if="!configurationStarted">
         {{ $t("productFeedCard.introToConfigure") }}<br>
         <a
           class="ps_gs-fz-12 text-muted"
@@ -100,11 +97,15 @@
         v-if="isEnabled"
       >
         <b-button
+          v-if="!configurationStarted"
           size="sm"
           variant="primary"
+          @click="startProcessProductFeed()"
         >
           {{ $t("cta.configureAndExportProductFeed") }}
         </b-button>
+        <product-feed-settings-shipping v-else />
+        
       </div>
     </div>
     <div v-if="isEnabled && !toConfigure">
@@ -262,6 +263,7 @@ import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
 import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
+import ProductFeedSettingsShipping from './product-feed-settings-shipping';
 
 export default {
   name: 'ProductFeedCard',
@@ -270,6 +272,7 @@ export default {
     ProductFeedCardReportCard,
     ProductFeedCardReportMappedCategoriesCard,
     ProductFeedCardReportProductsCard,
+    ProductFeedSettingsShipping,
   },
   data() {
     return {
@@ -307,6 +310,10 @@ export default {
     toConfigure: {
       type: Boolean,
       default: true,
+    },
+    configurationStarted: {
+      type: Boolean,
+      default: false,
     },
     syncStatus: {
       type: String,
@@ -413,6 +420,13 @@ export default {
     },
     hasMapping() {
       return this.categoriesMapped > 0;
+    },
+  },
+  methods: {
+    startProcessProductFeed() {
+      this.$router.push({
+        name: 'tunnel',
+      });
     },
   },
   googleUrl,
