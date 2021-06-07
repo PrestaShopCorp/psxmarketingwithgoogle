@@ -186,12 +186,6 @@ export default {
     merchantCenterAccountIsChosen() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
-    merchantCenterAccountIsOnboarded() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
-    },
-    merchantCenterAccountConnectedOnce() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_CONNECTED_ONCE'];
-    },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
@@ -206,14 +200,6 @@ export default {
           && this.productFeedIsConfigured,
         step3: false,
       };
-    },
-    insideToast() {
-      if (this.googleAccountConnectedOnce) {
-        return this.$t('toast.googleAccountConnectedOnceSuccess');
-      } if (this.merchantCenterAccountConnectedOnce) {
-        return this.$t('toast.MCAConnectedOnceSuccess');
-      }
-      return '';
     },
   },
   mounted() {
