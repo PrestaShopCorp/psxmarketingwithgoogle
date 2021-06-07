@@ -142,7 +142,8 @@
       "attributeDescription" : "With these attributes, you can organize your advertising campaigns in Google Ads and override the category automatically assigned by Google in some cases.",
       "excludedProducts" : "Excluded products",
       "productsReadyToBeSynced" : "Products ready to be synced",
-      "productsWithProblems" : "Products with problems"
+      "productsWithProblems" : "Products with problems",
+      "alertGoogleIsReviewingProducts": "Google is currently reviewing your products.  \n\nOnce approved, your products can appear in Shopping tab search results."
     },
     "productFeedSettings" : {
       "breadcrumb1" : "Product feed",

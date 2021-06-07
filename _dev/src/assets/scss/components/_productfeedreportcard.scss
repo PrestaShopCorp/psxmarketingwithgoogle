@@ -17,8 +17,12 @@
     max-width: calc(50% - 4px - 4px);
 
     &.ps_gs-productfeed-report-card--full {
-      flex: 0 0 100%;
+      flex: 1 1 100%;
       max-width: 100%;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
     &.ps_gs-productfeed-report-card--33 {
@@ -26,7 +30,6 @@
       max-width: calc(33.33333% - 4px - 4px);
     }
   }
-
 
   &__details {
     max-height: rem(12) * 2 * (1.4 * 12); // Font size * Nb of lines * line height * font-size
