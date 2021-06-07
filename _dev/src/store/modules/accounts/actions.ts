@@ -105,13 +105,12 @@ export default {
       body: JSON.stringify({
         action: 'toggleGmcLinkRegistration',
         isGmcLinked,
-        ajax: 1,
       }),
     });
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    return response;
+    return response.json();
   },
 
   // Comment to delete : launch toast Google account connected ONCE after connected
@@ -276,7 +275,7 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    return response;
+    return response.json();
   },
 
   async [ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE](

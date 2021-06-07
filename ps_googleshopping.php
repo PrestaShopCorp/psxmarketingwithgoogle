@@ -184,14 +184,7 @@ class Ps_googleshopping extends Module
 
     public function hookDisplayHeader()
     {
-        dump('############');
-        $websiteVerificationMeta = Configuration::get(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META);
-        dump($websiteVerificationMeta);
-        if (!$websiteVerificationMeta) {
-            return;
-        }
-
-        return $websiteVerificationMeta;
+        return Configuration::get(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META);
     }
 
     private function loadEnv()

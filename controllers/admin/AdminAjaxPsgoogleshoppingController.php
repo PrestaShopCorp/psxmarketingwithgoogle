@@ -24,8 +24,6 @@ use PrestaShop\Module\PrestashopGoogleShopping\Provider\CarrierDataProvider;
 
 class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 {
-    public $ajax = true;
-
     /** @var Ps_googleshopping */
     public $module;
 
@@ -39,6 +37,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         parent::__construct();
         $this->bootstrap = false;
         $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
+        $this->ajax = true;
     }
 
     public function initContent()
@@ -48,33 +47,36 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 
     public function displayAjax()
     {
-        dump('POUIC');
         $inputs = json_decode(Tools::file_get_contents('php://input'), true);
-
-        $action = Tools::getValue('action');
+        $action = isset($inputs['action']) ? $inputs['action'] : null;
 
         switch ($action) {
             case 'setWebsiteVerificationMeta':
-                $this->setWebsiteVerificationMeta();
+                $this->setWebsiteVerificationMeta($inputs);
                 break;
             case 'getCarrierValues':
                 $this->getCarrierValues();
                 break;
             case 'toggleGmcLinkRegistration':
-                $this->toggleGmcLinkRegistration();
+                $this->toggleGmcLinkRegistration($inputs);
                 break;
             default:
+                http_response_code(400);
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
         }
     }
 
-    private function setWebsiteVerificationMeta()
+    private function setWebsiteVerificationMeta(array $inputs)
     {
-        $websiteVerificationMeta = Tools::getValue('websiteVerificationMeta');
-        dump('#################');
-        dump($websiteVerificationMeta);
+        if (!isset($inputs['websiteVerificationMeta'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'error' => 'Missing Meta key',
+            ]));
+        }
+        $websiteVerificationMeta = $inputs['websiteVerificationMeta'];
 
-        // TODO : false of "false" or null or else ?
         if ($websiteVerificationMeta === false) {
             $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META);
         } else {
@@ -83,15 +85,24 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
                 $websiteVerificationMeta,
             );
         }
+        $this->ajaxDie(json_encode(['success' => true]));
     }
 
     /**
      * Registering the GMC link in the shop database allows us to know if there
      * will be a conflict with another shop using the same domain name.
      */
-    private function toggleGmcLinkRegistration()
+    private function toggleGmcLinkRegistration(array $inputs)
     {
-        if ((bool) Tools::getValue('isGmcLinked')) {
+        if (!isset($inputs['isGmcLinked'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'error' => 'Missing isGmcLinked key',
+            ]));
+        }
+
+        if ((bool) $inputs['isGmcLinked']) {
             $this->configurationAdapter->updateValue(Config::PS_GOOGLE_SHOPPING_GMC_IS_LINKED, true);
         } else {
             $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_SHOPPING_GMC_IS_LINKED);
@@ -107,5 +118,14 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $carrierLines = $carrierDataProvider->getFormattedData();
 
         $this->ajaxDie(json_encode($carrierLines));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function ajaxDie($value = null, $controller = null, $method = null)
+    {
+        header('Content-Type: application/json');
+        parent::ajaxDie($value, $controller, $method);
     }
 }
