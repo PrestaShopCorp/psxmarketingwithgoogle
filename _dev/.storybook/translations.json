@@ -231,6 +231,18 @@
         "learnHowToSetupShippingSettings" : "Learn how to set up shipping",
         "learnRequirementsProductSpeficifacion" : "Learn more about requirements for the Shopping product data specification",
         "weWillRecoverTheseAttributes" : "For your products we will recover these attributes:"
+      },
+      "summary" : {
+        "title1" : "Next synchronisation",
+        "title2" : "Product feed settings summary",
+        "xItems" : "{0} items",
+        "productItems" : "Product items",
+        "tableHeader1" : "Google Merchant Center",
+        "tableHeader2" : "Prestashop",
+        "totalProducts" : "Total products",
+        "date" : "Date",
+        "time" : "Time",
+        "youSell" : "**You sell** {0}"
       }
     },
     "freeListingCard" : {
@@ -354,7 +366,8 @@
       "viewDetailedStatuses" : "View all detailed statuses",
       "setupTaxSettings" : "Set up tax settings",
       "understandAndContinue" : "Understand and continue",
-      "reviewProblems": "Review problems"
+      "reviewProblems": "Review problems",
+      "saveAndExport" : "Save and export"
     },
     "badge" : {
       "free" : "Free",

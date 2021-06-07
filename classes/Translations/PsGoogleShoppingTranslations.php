@@ -279,6 +279,18 @@ class PsGoogleShoppingTranslations
                     'learnRequirementsProductSpeficifacion' => $this->module->l('Learn more about requirements for the Shopping product data specification', 'PsGoogleShoppingTranslations'),
                     'weWillRecoverTheseAttributes' => $this->module->l('For your products we will recover these attributes:', 'PsGoogleShoppingTranslations'),
                 ],
+                'summary' => [
+                    'title1' => $this->module->l('Next synchronisation', 'PsGoogleShoppingTranslations'),
+                    'title2' => $this->module->l('Product feed settings summary', 'PsGoogleShoppingTranslations'),
+                    'xItems' => $this->module->l('{0} items', 'PsGoogleShoppingTranslations'),
+                    'productItems' => $this->module->l('Product items', 'PsGoogleShoppingTranslations'),
+                    'tableHeader1' => $this->module->l('Google Merchant Center', 'PsGoogleShoppingTranslations'),
+                    'tableHeader2' => $this->module->l('Prestashop', 'PsGoogleShoppingTranslations'),
+                    'totalProducts' => $this->module->l('Total products', 'PsGoogleShoppingTranslations'),
+                    'date' => $this->module->l('Date', 'PsGoogleShoppingTranslations'),
+                    'time' => $this->module->l('Time', 'PsGoogleShoppingTranslations'),
+                    'youSell' => $this->module->l('**You sell** {0}', 'PsGoogleShoppingTranslations'),
+                ],
             ],
             'freeListingCard' => [
                 'title' => $this->module->l('Free listing for Google Shopping tab', 'PsGoogleShoppingTranslations'),
@@ -402,6 +414,7 @@ class PsGoogleShoppingTranslations
                 'setupTaxSettings' => $this->module->l('Set up tax settings', 'PsGoogleShoppingTranslations'),
                 'understandAndContinue' => $this->module->l('understandAndContinue', 'PsGoogleShoppingTranslations'),
                 'reviewProblems' => $this->module->l('Review problems', 'PsGoogleShoppingTranslations'),
+                'saveAndExport' => $this->module->l('Save and export', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),

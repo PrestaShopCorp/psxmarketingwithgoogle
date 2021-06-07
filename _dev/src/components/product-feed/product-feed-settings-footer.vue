@@ -1,21 +1,13 @@
 <template>
   <div
     class="text-muted ps_gs-fz-12 mb-0 mt-2
-    d-flex align-items-start align-items-sm-center justify-content-end"
+    text-right"
   >
-    <b-button
-      v-b-tooltip
-      title="Tooltip!"
-      variant="invisible"
-      class="ml-1 p-0 border-0 ps_gs-fz-12 text-muted"
-    >
-      <span class="material-icons-round mr-1 ps_gs-fz-12 align-middle">
-        error_outline
-      </span>
-      <span class="sr-only">Tooltip!</span>
-    </b-button>
-    <p>
-      {{ $t("productFeedSettings.noticeDataStored") }}
+    <span class="material-icons-round d-inline-block align-middle mr-1 ps_gs-fz-14">
+      error_outline
+    </span>
+    <p class="d-inline-block align-middle ">
+      {{ $t(message) }}
     </p>
   </div>
 </template>
@@ -23,5 +15,12 @@
 <script>
 export default {
   name: 'ProductFeedSettingsFooter',
+  props: {
+    message: {
+      type: String,
+      default: 'productFeedSettings.noticeDataStored',
+      required: false,
+    },
+  },
 };
 </script>
