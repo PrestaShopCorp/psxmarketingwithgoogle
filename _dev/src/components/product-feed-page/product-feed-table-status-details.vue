@@ -48,7 +48,7 @@
           {{ option }}
         </b-dropdown-item>
       </b-dropdown>
-      <b-table-simple
+      <!-- <b-table-lite
         stacked="md"
         variant="light"
         class="ps_gs-table-products mb-3"
@@ -63,7 +63,20 @@
             </b-th>
             <b-th>
               <div class="d-flex align-items-center">
-                <span>Google validation status</span>
+                <span>Google validation</span>
+                <b-button
+                  variant="invisible"
+                  class="p-0 mt-0 ml-1 border-0"
+                  v-b-tooltip:googleShoppingApp
+                  :title="'placeholder'"
+                >
+                  <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+                </b-button>
+              </div>
+            </b-th>
+            <b-th>
+              <div class="d-flex align-items-center">
+                <span>Language</span>
                 <b-button
                   variant="invisible"
                   class="p-0 mt-0 ml-1 border-0"
@@ -92,9 +105,9 @@
         <b-tbody>
           <b-tr
             v-for="({
-              id, name, status, issues
-            }, index) in productsShown"
-            :key="index"
+              id, name, status, issues, _id, lang, variant
+            }) in items"
+            :key="_id"
           >
             <b-td class="ps_gs-fz-12">
               {{ id }}
@@ -104,6 +117,22 @@
                 href="#"
                 :title="`Edit ${name}`"
               >{{ name }}</a>
+              <template
+                v-if="!!variant"
+              >
+                <span
+                  v-for="(attribute, index) in variant.attributes"
+                  :key="index"
+                >
+                  <span
+                    v-for="(value, key, index) in attribute"
+                    :key="index"
+                  >
+                    <br>
+                    {{ key }} - {{ value }}
+                  </span>
+                </span>
+              </template>
             </b-td>
             <b-td class="ps_gs-table-products__status">
               <b-badge
@@ -113,13 +142,169 @@
                 {{ status }}
               </b-badge>
             </b-td>
+            <b-td>
+              <b-badge
+                variant="primary"
+                class="ps_gs-fz-12"
+              >
+                {{ lang }}
+              </b-badge>
+            </b-td>
             <b-td class="ps_gs-table-products__issue ps_gs-fz-10">
-              {{ issues }}
+              {{ issues.length > 0 ? issues.join(', ') : '' }}
             </b-td>
           </b-tr>
         </b-tbody>
-      </b-table-simple>
-      <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
+      </b-table-lite> -->
+      <b-table
+        id="table-products"
+        class="ps_gs-table-products mb-3"
+        variant="light"
+        responsive
+        :items="items"
+        :fields="fields"
+        :current-page="currentPage"
+        :per-page="perPage"
+        :filter="filter"
+        :filter-included-fields="filterOn"
+        :sort-by.sync="sortBy"
+        :sort-desc.sync="sortDesc"
+        :sort-direction="sortDirection"
+        show-empty
+        @filtered="onFiltered"
+      >
+        <!-- Custom head rendering -->
+        <template #head(status)="data">
+          <div class="d-flex align-items-center">
+            <span>{{ data.label }}</span>
+            <b-button
+              variant="invisible"
+              class="p-0 mt-0 ml-1 border-0"
+              v-b-tooltip:googleShoppingApp
+              :title="'placeholder'"
+            >
+              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+            </b-button>
+          </div>
+        </template>
+        <template #head(lang)="data">
+          <div class="d-flex align-items-center">
+            <span>{{ data.label }}</span>
+            <b-button
+              variant="invisible"
+              class="p-0 mt-0 ml-1 border-0"
+              v-b-tooltip:googleShoppingApp
+              :title="'placeholder'"
+            >
+              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+            </b-button>
+          </div>
+        </template>
+        <template #head(issues)="data">
+          <div class="d-flex align-items-center">
+            <span>{{ data.label }}</span>
+            <b-button
+              variant="invisible"
+              class="p-0 mt-0 ml-1 border-0"
+              v-b-tooltip:googleShoppingApp
+              :title="'placeholder'"
+            >
+              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+            </b-button>
+          </div>
+        </template>
+        <!-- Custom cell rendering -->
+        <template #cell(name)="data">
+          <a
+            class="ps_gs-fz-12"
+            href="#"
+            :title="`Edit ${data.name}`"
+          >{{ data.item.name }}</a>
+          <template
+            v-if="!!data.item.variant"
+          >
+            <template
+              v-for="(attribute) in data.item.variant.attributes"
+            >
+              <span
+                class="text-muted text-capitalize ps_gs-fz-12"
+                v-for="(value, key, index) in attribute"
+                :key="index"
+              >
+                <br>
+                {{ key }} - {{ value }}
+              </span>
+            </template>
+          </template>
+        </template>
+        <template #cell(status)="data">
+          <b-badge
+            :variant="badgeColor(data.item.status)"
+            class="ps_gs-fz-12 text-capitalize"
+          >
+            {{ data.item.status }}
+          </b-badge>
+        </template>
+        <template #cell(lang)="data">
+          <b-badge
+            variant="primary"
+            class="ps_gs-fz-12"
+          >
+            {{ data.item.lang }}
+          </b-badge>
+        </template>
+        <template #cell(issues)="data">
+          <span class="ps_gs-fz-10">
+            {{ data.item.issues.length > 0 ? data.item.issues.join(', ') : '' }}
+          </span>
+        </template>
+      </b-table>
+
+        <!-- User Interface controls -->
+          <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
+            <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
+              {{ totalProducts }} results
+            </span>
+            <div class="d-flex align-items-center mr-auto">
+              <label
+                for="per-page-select"
+                class="mb-0 mr-2"
+              >
+                Show:
+              </label>
+              <b-form-select
+                id="per-page-select"
+                v-model="perPage"
+                :options="pageOptions"
+                label="Show:"
+                size="sm"
+              ></b-form-select>
+            </div>
+            <b-pagination
+              v-model="currentPage"
+              :total-rows="totalRows"
+              :per-page="perPage"
+              align="fill"
+              class="my-0"
+            />
+            <b-input-group
+              class="w-auto ml-auto"
+            >
+              <b-form-input
+                id="go-to-page"
+                class="ml-sm-2 flex-grow-0"
+                size="sm"
+                style="min-width: 72px"
+                v-model="pageToGoTo"
+              />
+              <b-input-group-append>
+                <b-button variant="primary">Go</b-button>
+              </b-input-group-append>
+            </b-input-group>
+          </div>
+
+      <!-- OLD TABLE PAGINATION -->
+      <!-- <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
         <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
           {{ totalProducts }} results
         </span>
@@ -228,7 +413,7 @@
             size="sm"
           />
         </div>
-      </div>
+      </div> -->
     </b-card-body>
   </b-card>
 </template>
@@ -237,17 +422,27 @@
 import {Products} from '@/../fixtures/products.js';
 
 import {
-  BTableSimple,
+  BTableLite,
 } from 'bootstrap-vue';
 
 export default {
   name: 'ProductFeedTableStatusDetails',
   components: {
-    BTableSimple,
+    BTableLite,
   },
   data() {
     return {
-      productsShown: Products.slice(0, 20),
+      totalRows: 1,
+      currentPage: 1,
+      perPage: 5,
+      pageOptions: [5, 10, 15, { value: 100, text: "Show a lot" }],
+      sortBy: '',
+      sortDesc: false,
+      sortDirection: 'asc',
+      filter: null,
+      filterOn: [],
+      pageToGoTo: '',
+      items: Products.slice(1, 20),
       totalProducts: Products.length,
       selectedFilterStatus: 'All status',
       filterProductsOptions: [
@@ -257,7 +452,50 @@ export default {
         'Only not approved',
       ],
       selectedFilterQuantityToShow: '20',
+      fields: [
+        {
+          key: 'id',
+          label: 'ID',
+          sortable: true,
+          stickyColumn: true,
+        },
+        {
+          key: 'name',
+          label: 'Name',
+          sortable: true,
+          stickyColumn: true,
+        },
+        {
+          key: 'status',
+          label: 'Google validation',
+        },
+        {
+          key: 'lang',
+          label: 'Language',
+        },
+        {
+          key: 'issues',
+          label: 'Issue',
+        },
+      ],
     };
+  },
+  computed: {
+    rows() {
+      return this.items.length
+    },
+    sortOptions() {
+      // Create an options list from our fields
+      return this.fields
+        .filter(f => f.sortable)
+        .map(f => {
+          return { text: f.label, value: f.key }
+        })
+    }
+  },
+  mounted() {
+    // Set the initial number of items
+    this.totalRows = this.items.length
   },
   methods: {
     badgeColor(status) {
@@ -267,6 +505,11 @@ export default {
         return 'warning';
       }
       return 'danger';
+    },
+    onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length
+      this.currentPage = 1
     },
   },
 };
