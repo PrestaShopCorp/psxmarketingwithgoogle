@@ -51,12 +51,14 @@
       order: 1;
     }
 
-    &__products-shown {
+    &__per-page {
       margin-left: auto;
+      margin-right: initial !important;
     }
 
     &__pagination {
       order: 2;
+      margin-top: rem(8) !important;
       width: auto;
 
       ul {
@@ -82,6 +84,11 @@
       order: 2;
     }
 
+    &__per-page {
+      margin-left: auto;
+      margin-right: initial !important;
+    }
+
     &__pagination {
       width: 100%;
 
@@ -98,7 +105,8 @@
 
     &__go-to {
       order: 3;
-      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 }
@@ -106,7 +114,7 @@
 .ps_gs-table-controls {
   &__go-to {
     input {
-      max-width: 74px;
+      width: rem(80) !important;
     }
   }
 }
@@ -119,6 +127,7 @@
   }
 }
 
+<<<<<<< HEAD
 .ps_gs-table-caption {
   strong {
     font-weight: normal;
@@ -126,6 +135,11 @@
   }
 }
 
+||||||| constructed merge base
+
+=======
+// Modify sort icon
+>>>>>>> updates mobile version of table controls
 .table.b-table {
   > thead,
   > tfoot {
@@ -171,6 +185,10 @@
 }
 
 
+
+// Sticky column
+// Adds fake drop-shadow through ::before element
+// .is-pinned is added via a javascript observer
 .b-table-sticky-column {
   left: -1px !important;
 }

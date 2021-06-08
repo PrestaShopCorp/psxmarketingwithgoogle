@@ -270,7 +270,7 @@
         <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
           {{ totalProducts }} results
         </span>
-        <div class="d-flex align-items-center mr-auto">
+        <div class="d-flex align-items-center mr-auto ps_gs-table-controls__per-page">
           <label
             for="per-page-select"
             class="mb-0 mr-2"
@@ -290,16 +290,15 @@
           :total-rows="totalRows"
           :per-page="perPage"
           align="fill"
-          class="my-0"
+          class="my-0 ps_gs-table-controls__pagination"
         />
         <b-input-group
-          class="w-auto ml-auto"
+          class="w-auto ml-auto ps_gs-table-controls__go-to"
         >
           <b-form-input
             id="go-to-page"
             class="ml-sm-2 flex-grow-0"
             size="sm"
-            style="width: 72px"
             v-model="pageToGoTo"
           />
           <b-input-group-append>
@@ -465,13 +464,13 @@ export default {
           key: 'id',
           label: 'ID',
           sortable: true,
-          stickyColumn: true,
+          // stickyColumn: true,
         },
         {
           key: 'name',
           label: 'Name',
           sortable: true,
-          // stickyColumn: true,
+          stickyColumn: true,
         },
         {
           key: 'status',
