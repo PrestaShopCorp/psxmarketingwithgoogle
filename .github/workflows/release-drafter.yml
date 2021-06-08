@@ -1,0 +1,13 @@
+name: Build & Release draft
+
+on: [push]
+
+jobs:
+  update_release_draft:
+    runs-on: ubuntu-latest
+    if: github.event.ref == 'refs/heads/master'
+    steps:
+      - id: release_info
+        uses: toolmantim/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
