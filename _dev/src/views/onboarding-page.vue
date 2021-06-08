@@ -61,12 +61,8 @@
       />
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
-        :is-enabled="true"
-      />
-      <!-- <ProductFeedCard
-        v-if="stepsAreCompleted.step1"
         :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
-      /> -->
+      />
 
       <FreeListingCard
         v-if="stepsAreCompleted.step1"
