@@ -350,6 +350,7 @@ class PsGoogleShoppingTranslations
                     'tableHeaderIssue' => $this->module->l('Issue', 'PsGoogleShoppingTranslations'),
                     'xResults' => $this->module->l('{0} results', 'PsGoogleShoppingTranslations'),
                     'perPageLabel' => $this->module->l('Show:', 'PsGoogleShoppingTranslations'),
+                    'goToLabel' => $this->module->l('Go to page:', 'PsGoogleShoppingTranslations'),
                     'editX' => $this->module->l('Edit {0}', 'PsGoogleShoppingTranslations'),
                 ],
             ],

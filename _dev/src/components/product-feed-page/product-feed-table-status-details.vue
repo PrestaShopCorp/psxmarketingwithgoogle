@@ -180,11 +180,18 @@
           class="my-0 ps_gs-table-controls__pagination"
         />
         <b-input-group
-          class="w-auto ml-auto ps_gs-table-controls__go-to"
+          class="w-auto ml-auto ps_gs-table-controls__go-to
+          d-flex align-items-center"
         >
+          <label
+            for="go-to-page"
+            class="mb-0 mr-2"
+          >
+            {{ $t('productFeedPage.approvalTable.goToLabel') }}
+          </label>
           <b-form-input
             id="go-to-page"
-            class="ml-sm-2 flex-grow-0"
+            class="flex-grow-0"
             size="sm"
             v-model="pageToGoTo"
           />

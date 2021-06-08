@@ -304,6 +304,7 @@
         "tableHeaderIssue" : "Issue",
         "xResults" : "{0} results",
         "perPageLabel" : "Show:",
+        "goToLabel" : "Go to page:",
         "editX" : "Edit {0}"
       }
     },
