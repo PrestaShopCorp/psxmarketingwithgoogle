@@ -191,7 +191,7 @@
           </label>
           <b-form-input
             id="go-to-page"
-            class="flex-grow-0"
+            class="flex-grow-0 align-self-stretch"
             size="sm"
             v-model="pageToGoTo"
           />
