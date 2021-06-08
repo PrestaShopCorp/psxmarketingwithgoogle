@@ -17,7 +17,7 @@
           </a>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item">
-          Product status details
+          {{ $t('productFeedPage.breadcrumb') }}
         </li>
       </ol>
     </b-card-header>
@@ -25,10 +25,10 @@
       body-class="p-3 mt-2"
     >
       <p>
-        Products with problems that couldn't be synced are listed below.
+        {{ $t('productFeedPage.approvalTable.description') }}
       </p>
       <p class="font-weight-600 mb-1">
-        Display by Google validation status
+        {{ $t('productFeedPage.approvalTable.filterTitle') }}
       </p>
       <b-dropdown
         id="filterProducts"
@@ -48,6 +48,154 @@
           {{ option }}
         </b-dropdown-item>
       </b-dropdown>
+      <b-table
+        id="table-products"
+        class="ps_gs-table-products mb-3"
+        variant="light"
+        responsive="md"
+        :items="items"
+        :fields="fields"
+        :current-page="currentPage"
+        :per-page="perPage"
+        :filter="filter"
+        :filter-included-fields="filterOn"
+        :sort-by.sync="sortBy"
+        :sort-desc.sync="sortDesc"
+        :sort-direction="sortDirection"
+        show-empty
+        @filtered="onFiltered"
+      >
+        <!-- Custom head rendering -->
+        <template #head(status)="data">
+          <div class="d-flex align-items-center">
+            <span>{{ data.label }}</span>
+            <b-button
+              variant="invisible"
+              class="p-0 mt-0 ml-1 border-0"
+              v-b-tooltip:googleShoppingApp
+              :title="$t('tooltip.approvalStatusStatus')"
+            >
+              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+            </b-button>
+          </div>
+        </template>
+        <template #head(lang)="data">
+          <div class="d-flex align-items-center">
+            <span>{{ data.label }}</span>
+            <b-button
+              variant="invisible"
+              class="p-0 mt-0 ml-1 border-0"
+              v-b-tooltip:googleShoppingApp
+              :title="$t('tooltip.approvalStatusLang')"
+            >
+              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+            </b-button>
+          </div>
+        </template>
+        <template #head(issues)="data">
+          <div
+            class="d-flex align-items-center ps_gs-table-products__issues"
+          >
+            <span>{{ data.label }}</span>
+            <b-button
+              variant="invisible"
+              class="p-0 mt-0 ml-1 border-0"
+              v-b-tooltip:googleShoppingApp
+              :title="$t('tooltip.approvalStatusIssues')"
+            >
+              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+            </b-button>
+          </div>
+        </template>
+        <!-- Custom cell rendering -->
+        <template #cell(name)="data">
+          <a
+            class="ps_gs-fz-12"
+            href="#"
+            :title="$t('productFeedPage.approvalTable.editX', [data.item.name])"
+          >{{ data.item.name }}</a>
+          <template
+            v-if="!!data.item.variant"
+          >
+            <template
+              v-for="(attribute) in data.item.variant.attributes"
+            >
+              <span
+                class="text-muted text-capitalize ps_gs-fz-12"
+                v-for="(value, key, index) in attribute"
+                :key="index"
+              >
+                <br>
+                {{ key }} - {{ value }}
+              </span>
+            </template>
+          </template>
+        </template>
+        <template #cell(status)="data">
+          <b-badge
+            :variant="badgeColor(data.item.status)"
+            class="ps_gs-fz-12 text-capitalize"
+          >
+            {{ data.item.status }}
+          </b-badge>
+        </template>
+        <template #cell(lang)="data">
+          <b-badge
+            variant="primary"
+            class="ps_gs-fz-12"
+          >
+            {{ data.item.lang }}
+          </b-badge>
+        </template>
+        <template #cell(issues)="data">
+          <span class="ps_gs-fz-10">
+            {{ data.item.issues.length > 0 ? data.item.issues.join(', ') : '' }}
+          </span>
+        </template>
+      </b-table>
+      <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
+        <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
+          {{ $t('productFeedPage.approvalTable.xResults', [totalProducts]) }}
+        </span>
+        <div class="d-flex align-items-center mr-auto ps_gs-table-controls__per-page">
+          <label
+            for="per-page-select"
+            class="mb-0 mr-2"
+          >
+            {{ $t('productFeedPage.approvalTable.perPageLabel') }}
+          </label>
+          <b-form-select
+            id="per-page-select"
+            v-model="perPage"
+            :options="pageOptions"
+            label="Show:"
+            size="sm"
+          />
+        </div>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="totalRows"
+          :per-page="perPage"
+          align="fill"
+          class="my-0 ps_gs-table-controls__pagination"
+        />
+        <b-input-group
+          class="w-auto ml-auto ps_gs-table-controls__go-to"
+        >
+          <b-form-input
+            id="go-to-page"
+            class="ml-sm-2 flex-grow-0"
+            size="sm"
+            v-model="pageToGoTo"
+          />
+          <b-input-group-append>
+            <b-button variant="primary">
+              {{ $t('cta.go') }}
+            </b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </div>
+
       <!-- OLD TABLE -->
       <!-- TO KEEP IF WE SWITCH BACK TO B-TABLE-LITE -->
       <!--
@@ -159,157 +307,8 @@
           </b-tr>
         </b-tbody>
       </b-table-lite> -->
-      <b-table
-        id="table-products"
-        class="ps_gs-table-products mb-3"
-        variant="light"
-        responsive="md"
-        :items="items"
-        :fields="fields"
-        :current-page="currentPage"
-        :per-page="perPage"
-        :filter="filter"
-        :filter-included-fields="filterOn"
-        :sort-by.sync="sortBy"
-        :sort-desc.sync="sortDesc"
-        :sort-direction="sortDirection"
-        show-empty
-        @filtered="onFiltered"
-      >
-        <!-- Custom head rendering -->
-        <template #head(status)="data">
-          <div class="d-flex align-items-center">
-            <span>{{ data.label }}</span>
-            <b-button
-              variant="invisible"
-              class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:googleShoppingApp
-              :title="'placeholder'"
-            >
-              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
-            </b-button>
-          </div>
-        </template>
-        <template #head(lang)="data">
-          <div class="d-flex align-items-center">
-            <span>{{ data.label }}</span>
-            <b-button
-              variant="invisible"
-              class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:googleShoppingApp
-              :title="'placeholder'"
-            >
-              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
-            </b-button>
-          </div>
-        </template>
-        <template #head(issues)="data">
-          <div
-            class="d-flex align-items-center"
-            style="min-width: 140px"
-          >
-            <span>{{ data.label }}</span>
-            <b-button
-              variant="invisible"
-              class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:googleShoppingApp
-              :title="'placeholder'"
-            >
-              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
-            </b-button>
-          </div>
-        </template>
-        <!-- Custom cell rendering -->
-        <template #cell(name)="data">
-          <a
-            class="ps_gs-fz-12"
-            href="#"
-            :title="`Edit ${data.name}`"
-          >{{ data.item.name }}</a>
-          <template
-            v-if="!!data.item.variant"
-          >
-            <template
-              v-for="(attribute) in data.item.variant.attributes"
-            >
-              <span
-                class="text-muted text-capitalize ps_gs-fz-12"
-                v-for="(value, key, index) in attribute"
-                :key="index"
-              >
-                <br>
-                {{ key }} - {{ value }}
-              </span>
-            </template>
-          </template>
-        </template>
-        <template #cell(status)="data">
-          <b-badge
-            :variant="badgeColor(data.item.status)"
-            class="ps_gs-fz-12 text-capitalize"
-          >
-            {{ data.item.status }}
-          </b-badge>
-        </template>
-        <template #cell(lang)="data">
-          <b-badge
-            variant="primary"
-            class="ps_gs-fz-12"
-          >
-            {{ data.item.lang }}
-          </b-badge>
-        </template>
-        <template #cell(issues)="data">
-          <span class="ps_gs-fz-10">
-            {{ data.item.issues.length > 0 ? data.item.issues.join(', ') : '' }}
-          </span>
-        </template>
-      </b-table>
-
-      <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
-        <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
-          {{ totalProducts }} results
-        </span>
-        <div class="d-flex align-items-center mr-auto ps_gs-table-controls__per-page">
-          <label
-            for="per-page-select"
-            class="mb-0 mr-2"
-          >
-            Show:
-          </label>
-          <b-form-select
-            id="per-page-select"
-            v-model="perPage"
-            :options="pageOptions"
-            label="Show:"
-            size="sm"
-          />
-        </div>
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="totalRows"
-          :per-page="perPage"
-          align="fill"
-          class="my-0 ps_gs-table-controls__pagination"
-        />
-        <b-input-group
-          class="w-auto ml-auto ps_gs-table-controls__go-to"
-        >
-          <b-form-input
-            id="go-to-page"
-            class="ml-sm-2 flex-grow-0"
-            size="sm"
-            v-model="pageToGoTo"
-          />
-          <b-input-group-append>
-            <b-button variant="primary">
-              Go
-            </b-button>
-          </b-input-group-append>
-        </b-input-group>
-      </div>
-
       <!-- OLD TABLE PAGINATION -->
+
       <!-- TO KEEP IF WE SWITCH BACK TO B-TABLE-LITE -->
       <!-- <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
         <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
@@ -428,14 +427,9 @@
 <script>
 import {Products} from '@/../fixtures/products.js';
 
-import {
-  BTableLite,
-} from 'bootstrap-vue';
-
 export default {
   name: 'ProductFeedTableStatusDetails',
   components: {
-    BTableLite,
   },
   data() {
     return {
@@ -451,38 +445,38 @@ export default {
       pageToGoTo: '',
       items: Products.slice(1, 20),
       totalProducts: Products.length,
-      selectedFilterStatus: 'All status',
+      selectedFilterStatus: this.$i18n.t('productFeedPage.approvalTable.filterAllStatus'),
       filterProductsOptions: [
-        'All status',
-        'Only approved',
-        'Only pending',
-        'Only not approved',
+        this.$i18n.t('productFeedPage.approvalTable.filterAllStatus'),
+        this.$i18n.t('productFeedPage.approvalTable.filterOnlyApproved'),
+        this.$i18n.t('productFeedPage.approvalTable.filterOnlyPending'),
+        this.$i18n.t('productFeedPage.approvalTable.filterOnlyNotApproved'),
       ],
       selectedFilterQuantityToShow: '20',
       fields: [
         {
           key: 'id',
-          label: 'ID',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderID'),
           sortable: true,
           // stickyColumn: true,
         },
         {
           key: 'name',
-          label: 'Name',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
           sortable: true,
           stickyColumn: true,
         },
         {
           key: 'status',
-          label: 'Google validation',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderGoogleValidation'),
         },
         {
           key: 'lang',
-          label: 'Language',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderLanguage'),
         },
         {
           key: 'issues',
-          label: 'Issue',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderIssue'),
         },
       ],
     };
@@ -506,19 +500,18 @@ export default {
     document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
       if (i) {
         const observer = new IntersectionObserver((entries) => {
-            observerCallback(entries, observer, i)
+          observerCallback(entries, observer, i);
         },
         {
           root: document.querySelector('.ps_gs-table-products'),
-          // rootMargin: '0px 0px 0px -1px',
-          threshold: 1
+          threshold: 1,
         });
         observer.observe(i);
       }
-    })
-    const observerCallback = (entries, observer, header) => {
-      entries.forEach((entry, i) => {
-        entry.target.classList.toggle('is-pinned', entry.intersectionRatio < 1)
+    });
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('is-pinned', entry.intersectionRatio < 1);
       });
     };
   },

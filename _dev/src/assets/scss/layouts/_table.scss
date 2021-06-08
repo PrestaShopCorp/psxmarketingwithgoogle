@@ -14,6 +14,12 @@
   border-top-width: 1px;
 }
 
+.ps_gs-table-products {
+  &__issues {
+    min-width: 140px;
+  }
+}
+
 // ! TO KEEP
 // ! MIGHT BE USED IF FILTERING AND SORTING ARE NOT POSSIBLE
 // @include media-breakpoint-down(sm) {
