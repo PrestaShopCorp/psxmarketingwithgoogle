@@ -64,7 +64,7 @@ test-front:
 # target: fix-lint			             - Launch php cs fixer and npm run lint
 fix-lint:
 	docker-compose run --rm php sh -c "vendor/bin/php-cs-fixer fix --using-cache=no"
-	docker-compose run --rm node sh -c "npm --prefix=./_dev run lint --fix"
+	docker-compose run --rm node sh -c "npm --prefix=./_dev run lint-fix"
 
 # target: docker-build|db              	 - Setup PHP & Node.js with docker
 db: docker-build
