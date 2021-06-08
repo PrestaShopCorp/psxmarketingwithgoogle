@@ -48,7 +48,10 @@
           {{ option }}
         </b-dropdown-item>
       </b-dropdown>
-      <!-- <b-table-lite
+      <!-- OLD TABLE -->
+      <!-- TO KEEP IF WE SWITCH BACK TO B-TABLE-LITE -->
+      <!--
+      <b-table-lite
         stacked="md"
         variant="light"
         class="ps_gs-table-products mb-3"
@@ -160,7 +163,7 @@
         id="table-products"
         class="ps_gs-table-products mb-3"
         variant="light"
-        responsive
+        responsive="md"
         :items="items"
         :fields="fields"
         :current-page="currentPage"
@@ -201,7 +204,10 @@
           </div>
         </template>
         <template #head(issues)="data">
-          <div class="d-flex align-items-center">
+          <div
+            class="d-flex align-items-center"
+            style="min-width: 140px"
+          >
             <span>{{ data.label }}</span>
             <b-button
               variant="invisible"
@@ -260,50 +266,52 @@
         </template>
       </b-table>
 
-        <!-- User Interface controls -->
-          <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
-            <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
-              {{ totalProducts }} results
-            </span>
-            <div class="d-flex align-items-center mr-auto">
-              <label
-                for="per-page-select"
-                class="mb-0 mr-2"
-              >
-                Show:
-              </label>
-              <b-form-select
-                id="per-page-select"
-                v-model="perPage"
-                :options="pageOptions"
-                label="Show:"
-                size="sm"
-              ></b-form-select>
-            </div>
-            <b-pagination
-              v-model="currentPage"
-              :total-rows="totalRows"
-              :per-page="perPage"
-              align="fill"
-              class="my-0"
-            />
-            <b-input-group
-              class="w-auto ml-auto"
-            >
-              <b-form-input
-                id="go-to-page"
-                class="ml-sm-2 flex-grow-0"
-                size="sm"
-                style="min-width: 72px"
-                v-model="pageToGoTo"
-              />
-              <b-input-group-append>
-                <b-button variant="primary">Go</b-button>
-              </b-input-group-append>
-            </b-input-group>
-          </div>
+      <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
+        <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
+          {{ totalProducts }} results
+        </span>
+        <div class="d-flex align-items-center mr-auto">
+          <label
+            for="per-page-select"
+            class="mb-0 mr-2"
+          >
+            Show:
+          </label>
+          <b-form-select
+            id="per-page-select"
+            v-model="perPage"
+            :options="pageOptions"
+            label="Show:"
+            size="sm"
+          />
+        </div>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="totalRows"
+          :per-page="perPage"
+          align="fill"
+          class="my-0"
+        />
+        <b-input-group
+          class="w-auto ml-auto"
+        >
+          <b-form-input
+            id="go-to-page"
+            class="ml-sm-2 flex-grow-0"
+            size="sm"
+            style="width: 72px"
+            v-model="pageToGoTo"
+          />
+          <b-input-group-append>
+            <b-button variant="primary">
+              Go
+            </b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </div>
 
       <!-- OLD TABLE PAGINATION -->
+      <!-- TO KEEP IF WE SWITCH BACK TO B-TABLE-LITE -->
       <!-- <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
         <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
           {{ totalProducts }} results
@@ -434,8 +442,8 @@ export default {
     return {
       totalRows: 1,
       currentPage: 1,
-      perPage: 5,
-      pageOptions: [5, 10, 15, { value: 100, text: "Show a lot" }],
+      perPage: 10,
+      pageOptions: [2, 10, 20, 50, 100],
       sortBy: '',
       sortDesc: false,
       sortDirection: 'asc',
@@ -463,7 +471,7 @@ export default {
           key: 'name',
           label: 'Name',
           sortable: true,
-          stickyColumn: true,
+          // stickyColumn: true,
         },
         {
           key: 'status',
@@ -482,20 +490,38 @@ export default {
   },
   computed: {
     rows() {
-      return this.items.length
+      return this.items.length;
     },
     sortOptions() {
       // Create an options list from our fields
       return this.fields
-        .filter(f => f.sortable)
-        .map(f => {
-          return { text: f.label, value: f.key }
-        })
-    }
+        .filter((f) => f.sortable)
+        .map((f) => ({text: f.label, value: f.key}));
+    },
   },
   mounted() {
     // Set the initial number of items
-    this.totalRows = this.items.length
+    this.totalRows = this.items.length;
+
+    // Observer to add class to sticky columns when they are stuck
+    document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
+      if (i) {
+        const observer = new IntersectionObserver((entries) => {
+            observerCallback(entries, observer, i)
+        },
+        {
+          root: document.querySelector('.ps_gs-table-products'),
+          // rootMargin: '0px 0px 0px -1px',
+          threshold: 1
+        });
+        observer.observe(i);
+      }
+    })
+    const observerCallback = (entries, observer, header) => {
+      entries.forEach((entry, i) => {
+        entry.target.classList.toggle('is-pinned', entry.intersectionRatio < 1)
+      });
+    };
   },
   methods: {
     badgeColor(status) {
@@ -508,9 +534,10 @@ export default {
     },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length
-      this.currentPage = 1
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
     },
   },
 };
+
 </script>
