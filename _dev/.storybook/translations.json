@@ -384,15 +384,9 @@
       "viewDetailedStatuses" : "View all detailed statuses",
       "setupTaxSettings" : "Set up tax settings",
       "understandAndContinue" : "Understand and continue",
-<<<<<<< HEAD
       "reviewProblems": "Review problems",
-      "saveAndExport" : "Save and export"
-||||||| constructed merge base
-      "reviewProblems": "Review problems"
-=======
-      "reviewProblems": "Review problems",
+      "saveAndExport" : "Save and export",
       "go" : "Go"
->>>>>>> Adds translation and fix lint
     },
     "badge" : {
       "free" : "Free",
