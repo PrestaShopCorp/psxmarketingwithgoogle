@@ -19,7 +19,8 @@
 
 // ToDo: Replace every "any" in this file with the proper type
 export interface ProductFeedStatus {
-  lastSync: any;
+  nextSync: string,
+  lastSync: string;
   registerSyncData: any;
   isSuspendSync: any;
 }
@@ -57,7 +58,8 @@ export const state: State = {
   productFeed: {
     stepper: 1,
     status: {
-      lastSync: {},
+      nextSync: '',
+      lastSync: '',
       registerSyncData: {},
       isSuspendSync: null,
     },

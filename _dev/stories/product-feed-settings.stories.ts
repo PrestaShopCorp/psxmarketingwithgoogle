@@ -17,25 +17,46 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { TunnelProductFeed },
   template: '<div><TunnelProductFeed v-bind="$props" /></div>',
+  beforeMount: args.beforeMount,
 });
 
 export const ShippingSettings:any = Template.bind({});
 ShippingSettings.args = {
-  activeStep: 1,
+  beforeMount(this: any) {
+    this.$store.state.productFeed = Object.assign(
+      this.$store.state.productFeed,
+    );
+    this.$store.state.productFeed.productFeed.stepper = 1
+  },
 }
 
 
 export const ExportSettings:any = Template.bind({});
 ExportSettings.args = {
-  activeStep: 2,
+  beforeMount(this: any) {
+    this.$store.state.productFeed = Object.assign(
+      this.$store.state.productFeed,
+    );
+    this.$store.state.productFeed.productFeed.stepper = 2
+  },
 }
 
 export const AttributeMapping:any = Template.bind({});
 AttributeMapping.args = {
-  activeStep: 3,
+  beforeMount(this: any) {
+    this.$store.state.productFeed = Object.assign(
+      this.$store.state.productFeed,
+    );
+    this.$store.state.productFeed.productFeed.stepper = 3
+  },
 }
 
 export const Summary:any = Template.bind({});
 Summary.args = {
-  activeStep: 4,
+  beforeMount(this: any) {
+    this.$store.state.productFeed = Object.assign(
+      this.$store.state.productFeed,
+    );
+    this.$store.state.productFeed.productFeed.stepper = 4
+  },
 }

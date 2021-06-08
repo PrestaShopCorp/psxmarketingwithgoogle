@@ -217,6 +217,8 @@ class PsGoogleShoppingTranslations
                     'autoImportShipping' => $this->module->l('Automatically import shipping settings', 'PsGoogleShoppingTranslations'),
                     'autoImportShippingDescription' => $this->module->l('PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.', 'PsGoogleShoppingTranslations'),
                     'manualShipping' => $this->module->l('Manually set up shipping settings in Google Merchant Center', 'PsGoogleShoppingTranslations'),
+                    'automatically' => $this->module->l('Automatically', 'PsGoogleShoppingTranslations'),
+                    'manually' => $this->module->l('Manually', 'PsGoogleShoppingTranslations'),
                     'manualShippingDescription' => $this->module->l('You will go to Google Merchant Center and enter your product shipping information yourself. Your products won’t sync until you do this.', 'PsGoogleShoppingTranslations'),
                     'taxSettings' => $this->module->l('Tax settings', 'PsGoogleShoppingTranslations'),
                     'taxSettingsDescription' => $this->module->l('So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect. Select how you want to set up tax settings.', 'PsGoogleShoppingTranslations'),
@@ -474,6 +476,7 @@ class PsGoogleShoppingTranslations
             ],
             'toast' => [
                 'googleAccountConnectedOnceSuccess' => $this->module->l('You have connected your Google account!', 'PsGoogleShoppingTranslations'),
+                'attributesMapppingSuccess' => $this->module->l('Your attributes are successfully mapped. Once you click on ‘Save’ your products will be sent to Google', 'PsGoogleShoppingTranslations'),
             ],
             'stepper' => [
                 'nextStep' => $this->module->l('Next: {0}', 'PsGoogleShoppingTranslations'),

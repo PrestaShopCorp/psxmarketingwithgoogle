@@ -169,6 +169,8 @@
         "shippingSettings" : "Shipping settings",
         "autoImportShipping" : "Automatically import shipping settings",
         "autoImportShippingDescription" : "PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.",
+        "automatically" : "Automatically",
+        "manually" : "Manually",
         "manualShipping" : "Manually set up shipping settings in Google Merchant Center",
         "manualShippingDescription" : "You will go to Google Merchant Center and enter your product shipping information yourself. Your products won’t sync until you do this.",
         "taxSettings" : "Tax settings",
@@ -428,7 +430,8 @@
       "approvalStatusIssues" : "placeholder"
     },
     "toast": {
-      "googleAccountConnectedOnceSuccess" : "You have connected your Google account!"
+      "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
+      "attributesMapppingSuccess": "Your attributes are successfully mapped. Once you click on ‘Save’ your products will be sent to Google"
     },
     "stepper": {
       "nextStep" : "Next: {0}",

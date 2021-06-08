@@ -65,16 +65,34 @@ export default {
   },
 
   async [ActionsTypes.GET_LAST_SYNCHRONISATION]({commit, rootState}) {
-    try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      const json = await response.json();
-      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, json);
-    } catch (error) {
-      console.error(error);
-    }
+    //  TODO : CONNECT BACKEND
+    // try {
+    //   const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/sync/status`);
+    //   if (!response.ok) {
+    //     throw new HttpClientError(response.statusText, response.status);
+    //   }
+    //   const json = await response.json();
+    // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
+    const json = {
+      jobEndedAt: '2021-04-13T13:59:01.440Z',
+      nextJobAt: '2021-05-13T13:59:01.440Z',
+      shopHealthy: true,
+      successfulSyncs: [
+        'info',
+        'modules',
+        'themes',
+      ],
+      failedSyncs: [
+        'products',
+        'google-taxonomies',
+      ],
+      suspended: false,
+    };
+    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'lastSync', data: json.jobEndedAt});
+    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextSync', data: json.nextJobAt});
+    // } catch (error) {
+    //   console.error(error);
+    // }
   },
 
   async [ActionsTypes.REGISTER_SYNCHRONISATION]({commit, rootState}, payload: any) {
@@ -105,7 +123,6 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      commit(MutationsTypes.SET_SUSPENDED_DATA_SYNC, json);
     } catch (error) {
       console.error(error);
     }
@@ -114,14 +131,15 @@ export default {
   // Product Feed Settings Card :
 
   async [ActionsTypes.GET_SHIPPING_SETTINGS]({commit, rootState}) {
+    // TODO : CONNECT BACKEND
     // try {
-    //   const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
+    //   const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/sync/settings`);
     //   if (!response.ok) {
     //     throw new HttpClientError(response.statusText, response.status);
     //   }
     //   const json = await response.json();
 
-    // FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
+    // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
     const json = {
       autoImportShippingSettings: false,
       autoImportTaxSettings: true,
@@ -157,8 +175,9 @@ export default {
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
     console.log('rootstate', rootState.productFeed.productFeed.settings);
+    // TODO : CONNECT BACKEND
     // try {
-    //   const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`, {
+    //   const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/sync/settings, {
     //     method: 'POST',
     //     headers: {'Content-Type': 'application/json', Accept: 'application/json'},
     //     body: JSON.stringify(payload),
@@ -171,7 +190,5 @@ export default {
     //   console.error(error);
     // }
   },
-
-  
 
 };

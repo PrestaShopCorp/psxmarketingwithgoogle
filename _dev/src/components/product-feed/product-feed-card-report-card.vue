@@ -80,12 +80,12 @@ export default {
   },
   methods: {
     goTo(link) {
-      //  Here I added and check a link type because it's not an url or route but a stepper state. 
+      //  Here I added and check a link type because it's not an url or route but a stepper state.
       //  If one day we need to give a simple url we can add a different type in the condition below
       if (link.type === 'stepper') {
-          this.$store.commit('productFeed/UPDATE_STEPPER', link.where);
-      };
+        this.$store.commit('productFeed/UPDATE_STEPPER', link.where);
+      }
     },
-  }
+  },
 };
 </script>

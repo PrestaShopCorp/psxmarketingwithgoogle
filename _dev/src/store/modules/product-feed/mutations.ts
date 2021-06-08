@@ -30,7 +30,7 @@ export default {
     state.freeListing.status = payload;
   },
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: any) {
-    state.productFeed.status.lastSync = payload;
+    state.productFeed.status[payload.name] = payload.data;
   },
   [MutationsTypes.SET_REGISTERED_DATA_SYNC](state: LocalState, payload: any) {
     state.productFeed.status.registerSyncData = payload;
