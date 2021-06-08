@@ -123,3 +123,45 @@
     color: $body-color;
   }
 }
+
+.table.b-table {
+  > thead,
+  > tfoot {
+    > tr {
+      > [aria-sort]:not(.b-table-sort-icon-left) {
+        position: relative;
+        background-image: none;
+      }
+
+      > [aria-sort="none"]:after,
+      > [aria-sort="ascending"]:after,
+      > [aria-sort="descending"]:after {
+        font-weight: 700;
+        font-family: 'Material Icons';
+        -webkit-font-feature-settings: 'liga';
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 0.45em;
+        text-decoration: none;
+        color: $primary;
+
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      > [aria-sort="none"]:after {
+        content: 'unfold_more';
+      }
+
+      > [aria-sort="ascending"]:after {
+        content: 'keyboard_arrow_up';
+      }
+
+      > [aria-sort="descending"]:after {
+        content: 'keyboard_arrow_down';
+      }
+    }
+  }
+}
