@@ -139,8 +139,13 @@ export default {
     },
     onMerchantCenterAccountSelected(selectedAccount) {
       this.isMcaLinking = true;
-      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', selectedAccount)
-        .catch(() => {
+      const correlationId = `${Math.floor(Date.now() / 1000)}`;
+      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', {selectedAccount, correlationId})
+        // must wait before to ask for status
+        .then(() => new Promise((resolve) => setTimeout(resolve, 1000)))
+        .then(() => this.$store.dispatch('accounts/TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS', correlationId))
+        .catch((error) => {
+          console.error(error);
           this.mcaError = WebsiteClaimErrorReason.LinkingFailed;
         })
         .finally(() => {

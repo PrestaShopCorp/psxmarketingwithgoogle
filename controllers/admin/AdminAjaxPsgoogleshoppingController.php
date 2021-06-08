@@ -79,13 +79,16 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 
         if ($websiteVerificationMeta === false) {
             $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META);
+            $this->ajaxDie(json_encode(['success' => true, 'method' => 'delete']));
         } else {
+            // base64 encoded to avoid prestashop sanitization
             $this->configurationAdapter->updateValue(
                 Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META,
-                $websiteVerificationMeta,
+                base64_encode($websiteVerificationMeta),
             );
+            $this->ajaxDie(json_encode(['success' => true, 'method' => 'insert']));
         }
-        $this->ajaxDie(json_encode(['success' => true]));
+
     }
 
     /**

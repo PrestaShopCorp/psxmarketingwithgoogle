@@ -20,6 +20,7 @@
 
 use Dotenv\Dotenv;
 use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
+use PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Installer;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller;
 use PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler;
@@ -184,7 +185,10 @@ class Ps_googleshopping extends Module
 
     public function hookDisplayHeader()
     {
-        return Configuration::get(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META);
+        $configuration = $this->getService(ConfigurationAdapter::class);
+        $meta = base64_decode($configuration->get(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META));
+
+        return $meta;
     }
 
     private function loadEnv()
