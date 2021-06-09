@@ -244,7 +244,7 @@ export default {
           : null;
       },
       set(value) {
-        this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'exportProductsWithShortDescription',
           data: value,
         });
@@ -256,12 +256,12 @@ export default {
       },
       set(value) {
         if (value === false) {
-          return this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+          return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
             name: 'sellApparel',
             data: {},
           });
         }
-        return this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+        return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'sellApparel',
           data: {color: ['red']},
         });
@@ -273,12 +273,12 @@ export default {
       },
       set(value) {
         if (value === false) {
-          return this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+          return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
             name: 'sellRefurbished',
             data: [],
           });
         }
-        return this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+        return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'sellRefurbished',
           data: ['new'],
         });

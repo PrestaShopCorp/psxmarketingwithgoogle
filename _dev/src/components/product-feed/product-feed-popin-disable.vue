@@ -3,6 +3,8 @@
     id="ProductFeedPopinDisable"
     :title="$t('modal.titleDisableProductFeed')"
     v-bind="$attrs"
+    ref="modal"
+    @ok="onProductFeedDisableConfirmation"
   >
     <VueShowdown
       class="my-1"
@@ -29,6 +31,13 @@ export default {
   name: 'ProductFeedPopinDisable',
   components: {
     PsModal,
+  },
+  methods: {
+    onProductFeedDisableConfirmation() {
+      this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION');
+      this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_STATUS',
+        {name: 'isSuspendSync', data: !this.$store.state.productFeed.productFeed.status.isSuspendSync});
+    },
   },
 };
 </script>

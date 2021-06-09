@@ -90,6 +90,9 @@ export default {
     };
     commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'lastSync', data: json.jobEndedAt});
     commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextSync', data: json.nextJobAt});
+    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'isSuspendSync', data: json.suspended});
+    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'successfulSyncs', data: json.successfulSyncs});
+    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'failedSyncs', data: json.failedSyncs});
     // } catch (error) {
     //   console.error(error);
     // }
@@ -112,9 +115,9 @@ export default {
     }
   },
 
-  async [ActionsTypes.SUSPEND_SYNCHRONISATION]({commit, rootState}, payload: any) {
+  async [ActionsTypes.TOGGLE_SYNCHRONIZATION]({commit, rootState}, payload: any) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`, {
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/sync/suspend`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify(payload),
@@ -127,8 +130,6 @@ export default {
       console.error(error);
     }
   },
-
-  // Product Feed Settings Card :
 
   async [ActionsTypes.GET_SHIPPING_SETTINGS]({commit, rootState}) {
     // TODO : CONNECT BACKEND
@@ -154,10 +155,10 @@ export default {
         'IT',
       ],
     };
-    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'autoImportShippingSettings', data: json.autoImportShippingSettings});
-    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'targetCountries', data: json.targetCountries});
-    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'autoImportTaxSettings', data: json.autoImportTaxSettings});
-    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {
+    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'autoImportShippingSettings', data: json.autoImportShippingSettings});
+    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'targetCountries', data: json.targetCountries});
+    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'autoImportTaxSettings', data: json.autoImportTaxSettings});
+    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
       name: 'sellApparel',
       data: {
         color: json.customColorAttribute,
@@ -166,7 +167,7 @@ export default {
         gender: json.customGenderGroupAttribute,
       },
     });
-    commit(MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS, {name: 'sellRefurbished', data: json.customConditionAttribute});
+    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'sellRefurbished', data: json.customConditionAttribute});
 
     // } catch (error) {
     //   console.error(error);

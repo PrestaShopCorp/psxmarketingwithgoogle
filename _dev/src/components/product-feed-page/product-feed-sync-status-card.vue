@@ -133,6 +133,7 @@ export default {
       type: String,
     },
   },
+
   computed: {
     title() {
       if (this.syncStatus === 'schedule') {

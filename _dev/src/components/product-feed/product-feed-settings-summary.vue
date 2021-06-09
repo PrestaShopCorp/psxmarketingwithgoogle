@@ -185,7 +185,6 @@ export default {
   data() {
     // TODO : retrieve products from backend for nextSyncTotalProducts
     return {
-      enabledProductFeed: true,
       nextSyncTotalProducts: '210',
       nextSyncDate: this.$store.state.productFeed.productFeed.status.nextSync,
       targetCountries: this.$store.state.productFeed.productFeed.settings.targetCountries,
@@ -217,30 +216,12 @@ export default {
     saveAll() {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
       this.$store.commit('productFeed/TOGGLE_CONFIGURATION_STARTED');
-      !this.$store.state.productFeed.productFeed.isConfigured ? this.$store.commit('productFeed/TOGGLE_CONFIGURATION_FINISHED') : '';
+      if (this.$store.state.productFeed.productFeed.isConfigured === false) {
+        this.$store.commit('productFeed/TOGGLE_CONFIGURATION_FINISHED');
+      }
       this.$router.push({
         path: '/configuration',
       });
-    },
-  },
-  filters: {
-    timeConverterToDate(timestamp) {
-      const a = new Date(timestamp);
-      const year = a.getFullYear();
-      let month = a.getMonth();
-      month = month < 10 ? `0${month}` : month;
-      let day = a.getDate();
-      day = day < 10 ? `0${day}` : day;
-      const time = `${day}/${month}/${year}`;
-      return time;
-    },
-    timeConverterToHour(timestamp) {
-      const a = new Date(timestamp);
-      const hour = a.getHours();
-      let min = a.getMinutes();
-      min = min < 10 ? `0${min}` : min;
-      const time = `${hour}:${min}`;
-      return time;
     },
   },
 };

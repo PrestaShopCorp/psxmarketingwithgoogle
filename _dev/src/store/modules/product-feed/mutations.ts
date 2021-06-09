@@ -40,8 +40,12 @@ export default {
   },
 
   //  Product Feed Card
-  [MutationsTypes.SET_SELECTED_SHIPPING_SETTINGS](state: LocalState, payload: any) {
+  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS](state: LocalState, payload: any) {
     state.productFeed.settings[payload.name] = payload.data;
+  },
+
+  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_STATUS](state: LocalState, payload: any) {
+    state.productFeed.status[payload.name] = payload.data;
   },
 
   [MutationsTypes.TOGGLE_CONFIGURATION_STARTED](state: LocalState) {

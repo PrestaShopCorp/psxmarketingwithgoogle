@@ -90,7 +90,6 @@
           {{ $t("cta.learnAboutProductConfiguration") }}
         </a>
       </p>
-
       <stepper
         class="mt-2"
         :steps="steps"
@@ -204,21 +203,22 @@
           class="mx-n1"
         >
           <product-feed-card-report-card
-            status="success"
+            :status="targetCountriesStatus"
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
             :link-to="{type : 'routeStep', where: '/product-feed', step: 1}"
           />
           <product-feed-card-report-card
-            status="warning"
+            :status="shippingSettingsStatus"
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
             :link-to="{type : 'routeStep', where: '/product-feed', step: 1}"
           />
           <product-feed-card-report-card
-            status="success"
+            v-if="isUS"
+            :status="taxSettingsStatus"
             :title="$t('productFeedSettings.shipping.taxSettings')"
             :description="taxSettings"
             :link="$t('cta.editSettings')"
@@ -244,7 +244,7 @@
             link-to="#"
           /> -->
           <product-feed-card-report-card
-            status="success"
+            :status="attributeMappingStatus"
             :title="$t('productFeedSettings.steps.attributeMapping')"
             :description="attributeMapping.join(', ') + '...'"
             :link="$t('cta.editAttributeMapping')"
@@ -264,31 +264,27 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
-
 import Stepper from '../commons/stepper';
-import ProductFeedCardReportCard from './product-feed-card-report-card';
-import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
-import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 import ProductFeedSettingsShipping from './product-feed-settings-shipping';
+import ProductFeedCardReportCard from './product-feed-card-report-card';
+// NOT IN BATCH 1
+//  eslint-disable-next-line
+// import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
+// import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 
 export default {
   name: 'ProductFeedCard',
   components: {
     Stepper,
-    ProductFeedCardReportCard,
-    ProductFeedCardReportMappedCategoriesCard,
-    ProductFeedCardReportProductsCard,
     ProductFeedSettingsShipping,
+    ProductFeedCardReportCard,
+    // NOT IN BATCH 1
+    // ProductFeedCardReportMappedCategoriesCard,
+    // ProductFeedCardReportProductsCard,
   },
   data() {
     return {
-      enabledProductFeed: true,
-      nextSyncTime: '06/12/21 02:00',
-      lastSync: {
-        day: 'today',
-        time: '02:00',
-        totalProducts: 200,
-      },
+
       steps: [
         {
           title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
@@ -302,10 +298,20 @@ export default {
         {
           title: this.$i18n.t('productFeedSettings.steps.categoryMapping'),
         },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.exportFeed'),
-        },
+        // {
+        //   title: this.$i18n.t('productFeedSettings.steps.exportFeed'),
+        // },
       ],
+      // TODO : retrieve products from backend for totalProducts
+      lastSync: {
+        day: this.$options.filters.timeConverterToDate(
+          this.$store.state.productFeed.productFeed.status.lastSync,
+        ),
+        time: this.$options.filters.timeConverterToHour(
+          this.$store.state.productFeed.productFeed.status.lastSync,
+        ),
+        totalProducts: 200,
+      },
     };
   },
   props: {
@@ -327,29 +333,12 @@ export default {
       type: Number,
       default: 0,
     },
-    alert: {
-      type: String,
-      default: null,
-      validator(value) {
-        return [
-          null,
-          'Success',
-          'Failed',
-          'ShippingSettingsMissing',
-          'ProductFeedDeactivated',
-          'ProductFeedExists',
-          'GoogleIsReviewingProducts',
-        ].indexOf(value) !== -1;
-      },
-    },
+
     nbProductsReadyToSync: {
       type: Number,
     },
     nbProductsCantSync: {
       type: Number,
-    },
-    shippingSettings: {
-      type: String,
     },
     taxSettings: {
       type: String,
@@ -365,30 +354,59 @@ export default {
     },
   },
   computed: {
-    configurationStarted: {
-      get() {
-        return this.$store.state.productFeed.productFeed.configurationStarted;
-      },
+
+    nextSyncTime() {
+      return this.$options.filters.timeConverterToDate(
+        this.$store.state.productFeed.productFeed.status.nextSync,
+      );
     },
-    toConfigure: {
-      get() {
-        return !this.$store.state.productFeed.productFeed.isConfigured;
-      },
+    isUS() {
+      return this.targetCountries.includes('US');
     },
-    targetCountries: {
+    configurationStarted() {
+      return this.$store.state.productFeed.productFeed.configurationStarted;
+    },
+    toConfigure() {
+      return !this.$store.state.productFeed.productFeed.isConfigured;
+    },
+    targetCountries() {
+      return this.$store.state.productFeed.productFeed.settings.targetCountries;
+    },
+    shippingSettings() {
+      return this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings
+        ? this.$t('productFeedSettings.shipping.automatically')
+        : this.$t('productFeedSettings.shipping.manually');
+    },
+    shippingSettingsStatus() {
+      return this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings !== undefined ? 'success' : 'warning';
+    },
+    targetCountriesStatus() {
+      return this.$store.state.productFeed.productFeed.settings.targetCountries.length ? 'success' : 'warning';
+    },
+    attributeMappingStatus() {
+      return this.$store.state.productFeed.productFeed.settings.sellApparel || this.$store.state.productFeed.productFeed.settings.sellRefurbished ? 'success' : 'warning';
+    },
+    taxSettingsStatus() {
+    //  TODO retrieve tax settings from backend
+      return 'warning';
+    },
+    enabledProductFeed: {
       get() {
-        return this.$store.state.productFeed.productFeed.settings.targetCountries;
+        return this.$store.state.productFeed.productFeed.status.isSuspendSync;
+      },
+      set() {
+        this.$emit('disableSync');
       },
     },
     attributeMapping: {
-      //  TODO maybe refacto to get also the attribute long description if needed
+    //  TODO maybe refacto to get also the attribute long description if needed
       get() {
-        const array = [];
+        const arr = [];
         Object.keys(this.$store.state.productFeed.productFeed.settings.sellApparel)
           .forEach((key) => {
-            array.push(key);
+            arr.push(key);
           });
-        return array.concat(this.$store.state.productFeed.productFeed.settings.sellRefurbished);
+        return arr.concat(this.$store.state.productFeed.productFeed.settings.sellRefurbished);
       },
     },
 
@@ -439,6 +457,24 @@ export default {
     },
     hasMapping() {
       return this.categoriesMapped > 0;
+    },
+    alert() {
+      // TODO How to know if 'ProductFeedExists'
+      if (!this.$store.state.productFeed.productFeed.status.isSuspendSync) {
+        return 'ProductFeedDeactivated';
+      } if (this.$store.state.productFeed.productFeed.status.isSuspendSync) {
+        return 'GoogleIsReviewingProducts';
+      } if (this.$store.state.productFeed.productFeed.settings.successfulSyncs.length
+     && !this.$store.state.productFeed.productFeed.settings.failedSyncs) {
+        return 'Success';
+      } if (this.$store.state.productFeed.productFeed.settings.failedSyncs.length) {
+        return 'Failed';
+      } if (
+        this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings === undefined
+      ) {
+        return 'ShippingSettingsMissing';
+      }
+      return null;
     },
   },
   methods: {

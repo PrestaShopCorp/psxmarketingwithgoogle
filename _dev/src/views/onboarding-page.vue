@@ -62,11 +62,12 @@
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
         :is-enabled="true"
-        :to-configure="!productFeedIsConfigured"
+        @disableSync="onSyncDisabled"
       />
       <!-- <ProductFeedCard
         v-if="stepsAreCompleted.step1"
         :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
+        @disableSync="onSyncDisabled"
       /> -->
 
       <FreeListingCard
@@ -92,6 +93,10 @@
     <MerchantCenterAccountPopinDisconnect
       ref="mcaDisconnectModal"
     />
+
+    <ProductFeedPopinDisable
+      ref="productFeedDisableModal"
+    />
     <!-- Toast -->
     <PsToast
       variant="success"
@@ -110,6 +115,7 @@ import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
 import ProductFeedNotice from '../components/onboarding/product-feed-notice.vue';
+import ProductFeedPopinDisable from '../components/product-feed/product-feed-popin-disable.vue';
 import MerchantCenterAccountCard from '../components/merchant-center-account/merchant-center-account-card.vue';
 import ProductFeedCard from '../components/product-feed/product-feed-card.vue';
 import FreeListingCard from '../components/free-listing/free-listing-card.vue';
@@ -128,6 +134,7 @@ export default {
     ProductFeedNotice,
     MerchantCenterAccountCard,
     ProductFeedCard,
+    ProductFeedPopinDisable,
     FreeListingCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
@@ -165,6 +172,17 @@ export default {
       this.$bvModal.show(
         this.$refs.mcaDisconnectModal.$refs.modal.id,
       );
+    },
+    onSyncDisabled() {
+      if (this.$store.state.productFeed.productFeed.status.isSuspendSync) {
+        this.$bvModal.show(
+          this.$refs.productFeedDisableModal.$refs.modal.id,
+        );
+      } else {
+        this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION');
+        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_STATUS',
+          {name: 'isSuspendSync', data: !this.$store.state.productFeed.productFeed.status.isSuspendSync});
+      }
     },
   },
   computed: {

@@ -88,6 +88,8 @@
         </p>
         <div>
           <b-button
+            target="_blank"
+            :href="taxSettingsWithMerchandId"
             variant="secondary"
             class="mt-2"
           >
@@ -168,10 +170,18 @@ export default {
     PsSelect,
     ProductFeedSettingsFooter,
   },
-
+  data() {
+    return {
+      tax: null,
+    };
+  },
   computed: {
     isUS() {
       return this.countries.includes('US');
+    },
+    taxSettingsWithMerchandId() {
+      console.log('this', this.$store.state.accounts.googleMerchantAccount);
+      return `https://merchants.google.com/mc/tax/settings?a=${this.$store.state.accounts.googleMerchantAccount.id}`;
     },
     disableContinue() {
       /**
@@ -189,7 +199,7 @@ export default {
           ? this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings : null;
       },
       set(value) {
-        this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {
+        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'autoImportShippingSettings',
           data: value,
         });
@@ -201,21 +211,9 @@ export default {
           ? this.$store.state.productFeed.productFeed.settings.targetCountries : [];
       },
       set(value) {
-        this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS', {name: 'targetCountries', data: value});
+        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: value});
       },
     },
-    // NOT IN BATCH 1
-    // tax: {
-    //   get() {
-    //     return this.$store.state.productFeed.productFeed.settings.autoImportTaxSettings
-    //       ? this.$store.state.productFeed.productFeed.settings.autoImportTaxSettings : null;
-    //   },
-    //   set(value) {
-    //     this.$store.commit('productFeed/SET_SELECTED_SHIPPING_SETTINGS',
-    //   {name: 'autoImportTaxSettings', data: value});
-    //   },
-    // },
-
   },
   methods: {
     nextStep() {
@@ -223,11 +221,6 @@ export default {
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
-      // this.$store.commit('productFeed/UPDATE_STEPPER', 1);
-      // this.$store.commit('productFeed/TOGGLE_CONFIGURATION_STARTED');
-      // this.$router.push({
-      //   path: '/onboarding',
-      // });
     },
   },
   countriesSelectionOptions,

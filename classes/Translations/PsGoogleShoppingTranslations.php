@@ -212,7 +212,7 @@ class PsGoogleShoppingTranslations
                     'ifMultipleCountries' => $this->module->l('If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.', 'PsGoogleShoppingTranslations'),
                     'productAvailaibleIn' => $this->module->l('Products available in', 'PsGoogleShoppingTranslations'),
                     'placeholderSelect' => $this->module->l('XXXXXXXXX', 'PsGoogleShoppingTranslations'),
-                    'cantFindCountry' => $this->module->l("Can’t find a country? Only supported countries are listed. [Supported countries](//google.com){:target=\"_blank\"}\n\n Your shipping services must be configured for the country you are targeting. Please respect [country-specific shopping policies](//google.com){:target=\"_blank\"} and [local regulation](//google.com){:target=\"_blank\"}", 'PsGoogleShoppingTranslations'),
+                    'cantFindCountry' => $this->module->l("Can’t find a country? Only supported countries are listed. [Supported countries](//support.google.com/merchants/answer/160637?hl=en&ref_topic=9216868){:target=\"_blank\"}\n\n Your shipping services must be configured for the country you are targeting. Please respect [country-specific shopping policies](//google.com){:target=\"_blank\"} and [local regulation](//google.com){:target=\"_blank\"}", 'PsGoogleShoppingTranslations'),
                     'shippingSettings' => $this->module->l('Shipping settings', 'PsGoogleShoppingTranslations'),
                     'autoImportShipping' => $this->module->l('Automatically import shipping settings', 'PsGoogleShoppingTranslations'),
                     'autoImportShippingDescription' => $this->module->l('PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.', 'PsGoogleShoppingTranslations'),
@@ -435,6 +435,8 @@ class PsGoogleShoppingTranslations
                 'reviewProblems' => $this->module->l('Review problems', 'PsGoogleShoppingTranslations'),
                 'saveAndExport' => $this->module->l('Save and export', 'PsGoogleShoppingTranslations'),
                 'go' => $this->module->l('Go', 'PsGoogleShoppingTranslations'),
+                'saveAndExport' => $this->module->l('Save and export', 'PsGoogleShoppingTranslations'),
+                'continueWithoutSave' => $this->module->l('Continue without save', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
@@ -465,6 +467,8 @@ class PsGoogleShoppingTranslations
                 'textDisableProductFeed' => $this->module->l("Products will continue to show on Free Listings until the product feed has expired after 30 days.  \n  Smart shopping campaigns will remain active as long as there are still active products in the merchant center - you will need to pause your campaigns.", 'PsGoogleShoppingTranslations'),
                 'titleEnableFreeListing' => $this->module->l('Enable free listing?', 'PsGoogleShoppingTranslations'),
                 'textEnableFreeListing' => $this->module->l('This action will also cause the reactivation of the product feed.', 'PsGoogleShoppingTranslations'),
+                'titleCancelWithoutSaving' => $this->module->l('Cancel without saving?', 'PsGoogleShoppingTranslations'),
+                'textCancelProductFeed' => $this->module->l('You will lose all unsaved changes. You need to complete the whole process to submit your data.', 'PsGoogleShoppingTranslations'),
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configured', 'PsGoogleShoppingTranslations'),

@@ -22,7 +22,9 @@ export interface ProductFeedStatus {
   nextSync: string,
   lastSync: string;
   registerSyncData: any;
-  isSuspendSync: any;
+  failedSyncs: Array<string>;
+  successfulSyncs: Array<string>;
+  isSuspendSync: boolean;
 }
 
 export interface ProductFeedSettingsSellingApparel {
@@ -64,8 +66,10 @@ export const state: State = {
     status: {
       nextSync: '',
       lastSync: '',
+      failedSyncs: [],
+      successfulSyncs: [],
       registerSyncData: {},
-      isSuspendSync: null,
+      isSuspendSync: true,
     },
     settings: {
       autoImportTaxSettings: false,
