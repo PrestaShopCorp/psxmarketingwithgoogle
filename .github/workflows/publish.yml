@@ -82,7 +82,7 @@ jobs:
       - name: Prepare the integration zip
         run: |
           cd ${{ github.event.repository.name }}
-          zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip ${{ github.event.repository.name }}  -x '*.git*'
+          zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}-${{ github.event.release.tag_name }}_integration.zip ${{ github.event.repository.name }}  -x '*.git*'
 
       - name: Publish the integration zip
         uses: actions/upload-release-asset@v1.0.1
