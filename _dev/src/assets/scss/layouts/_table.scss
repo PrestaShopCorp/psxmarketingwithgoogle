@@ -178,6 +178,7 @@
 
       > [aria-sort="none"]:after {
         content: 'unfold_more';
+        color: $grey_darklight;
       }
 
       > [aria-sort="ascending"]:after {
