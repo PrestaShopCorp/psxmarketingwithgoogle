@@ -2,7 +2,7 @@ name: PHP tests
 on: [push, pull_request]
 jobs:
   php-linter:
-    name: PHP Syntax check 5.6|7.2|7.3
+    name: PHP Syntax check 7.3|7.4
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -77,3 +77,27 @@ jobs:
 
       - name: Run PHPUnit
         run: php vendor/bin/phpunit tests/unit
+
+  header-stamp:
+    name: Check license headers
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cache vendor folder
+        uses: actions/cache@v1
+        with:
+          path: vendor
+          key: php-${{ hashFiles('composer.lock') }}
+
+      - name: Cache composer folder
+        uses: actions/cache@v1
+        with:
+          path: ~/.composer/cache
+          key: php-composer-cache
+
+      - run: composer install
+
+      - name: Run Header Stamp in Dry Run mode
+        run: php vendor/bin/header-stamp --license=vendor/prestashop/header-stamp/assets/afl.txt --exclude=vendor,tests,_dev --dry-run
