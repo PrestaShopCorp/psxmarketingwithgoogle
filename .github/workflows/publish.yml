@@ -51,8 +51,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}.zip
-          asset_name: ${{ github.event.repository.name }}.zip
+          asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
+          asset_name: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip
 
   upload_release_asset_integration:
@@ -82,7 +82,7 @@ jobs:
       - name: Prepare the integration zip
         run: |
           cd ${{ github.event.repository.name }}
-          zip -r ${{ github.event.repository.name }}_integration.zip ${{ github.event.repository.name }}  -x '*.git*'
+          zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip ${{ github.event.repository.name }}  -x '*.git*'
 
       - name: Publish the integration zip
         uses: actions/upload-release-asset@v1.0.1
@@ -90,8 +90,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}_integration.zip
-          asset_name: ${{ github.event.repository.name }}_integration.zip
+          asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip
+          asset_name: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip
           asset_content_type: application/zip
 
   publish_to_marketplace:
@@ -108,7 +108,7 @@ jobs:
         with:
           repo: ${{ github.event.repository.full_name }}
           version: ${{ github.event.release.id }}
-          file: ${{ github.event.repository.name }}.zip
+          file: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
           token: ${{ secrets.JARVIS_TOKEN }}
 
       - name: Prepare publishing tool
@@ -116,7 +116,7 @@ jobs:
           composer global require prestashop/publish-on-marketplace
       - name: Release zip
         run: |
-          ~/.composer/vendor/bin/publish-on-marketplace --archive=$PWD/${{ github.event.repository.name }}.zip --metadata-json=$PWD/.github/mktp-metadata.json --changelog="${{ github.event.release.body }}" --debug
+          ~/.composer/vendor/bin/publish-on-marketplace --archive=$PWD/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip --metadata-json=$PWD/.github/mktp-metadata.json --changelog="${{ github.event.release.body }}" --debug
         env:
           MARKETPLACE_API_KEY: ${{ secrets.MARKETPLACE_API_KEY }}
 
