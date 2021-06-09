@@ -109,11 +109,12 @@ export default {
       try {
         await dispatch(
           ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
-          false, // overwrite
-          correlationId,
+          {overwrite: false, correlationId},
         );
       } catch (error) {
+        // TODO: !0: must know what is the error: if already claimed:
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.Overwrite);
+        // TODO !0: else, must propagate error
       }
     }
   },
@@ -335,9 +336,9 @@ export default {
 
   async [ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS](
     {rootState, state},
-    overwrite: boolean,
-    correlationId: string,
+    payload,
   ) {
+    const {overwrite, correlationId} = payload;
     const overwriteParam = `?overwrite=${overwrite ? 'true' : 'false'}`;
     const url = `${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/claim${overwriteParam}`;
     const response = await fetch(url, {
