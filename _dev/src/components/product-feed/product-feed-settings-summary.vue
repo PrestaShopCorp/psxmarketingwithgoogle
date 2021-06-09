@@ -212,15 +212,15 @@ export default {
       this.$store.commit('productFeed/UPDATE_STEPPER', 3);
     },
     cancel() {
-      if (window.confirm('Are you sure you want to cancel? Nothing will be saved')) {
-        this.$store.commit('productFeed/UPDATE_STEPPER', 1);
-        this.$router.push({
-          path: '/onboarding',
-        });
-      }
+      this.$emit('cancelProductFeedSettingsConfiguration');
     },
     saveAll() {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
+      this.$store.commit('productFeed/TOGGLE_CONFIGURATION_STARTED');
+      !this.$store.state.productFeed.productFeed.isConfigured ? this.$store.commit('productFeed/TOGGLE_CONFIGURATION_FINISHED') : '';
+      this.$router.push({
+        path: '/configuration',
+      });
     },
   },
   filters: {

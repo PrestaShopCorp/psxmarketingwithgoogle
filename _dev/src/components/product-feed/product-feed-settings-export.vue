@@ -337,12 +337,7 @@ export default {
       this.$store.commit('productFeed/UPDATE_STEPPER', 3);
     },
     cancel() {
-      if (window.confirm('Are you sure you want to cancel? Nothing will be saved')) {
-        this.$store.commit('productFeed/UPDATE_STEPPER', 1);
-        this.$router.push({
-          path: '/onboarding',
-        });
-      }
+      this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
   /**

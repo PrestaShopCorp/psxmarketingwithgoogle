@@ -84,6 +84,11 @@ export default {
       //  If one day we need to give a simple url we can add a different type in the condition below
       if (link.type === 'stepper') {
         this.$store.commit('productFeed/UPDATE_STEPPER', link.where);
+      } else if (link.type === 'routeStep') {
+        this.$router.push({
+          path: link.where,
+        });
+        this.$store.commit('productFeed/UPDATE_STEPPER', link.step);
       }
     },
   },

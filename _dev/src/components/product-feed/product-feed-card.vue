@@ -90,6 +90,7 @@
           {{ $t("cta.learnAboutProductConfiguration") }}
         </a>
       </p>
+
       <stepper
         class="mt-2"
         :steps="steps"
@@ -99,17 +100,14 @@
         class="d-flex justify-content-center justify-content-md-end mt-n1"
         v-if="isEnabled"
       >
-        <router-link
-          to="/product-feed"
+        <b-button
           v-if="!configurationStarted"
+          size="sm"
+          variant="primary"
+          @click="startConfiguration"
         >
-          <b-button
-            size="sm"
-            variant="primary"
-          >
-            {{ $t("cta.configureAndExportProductFeed") }}
-          </b-button>
-        </router-link>
+          {{ $t("cta.configureAndExportProductFeed") }}
+        </b-button>
         <product-feed-settings-shipping v-else />
       </div>
     </div>
@@ -167,7 +165,8 @@
           {{ $t('cta.forceSync') }}
         </b-button> -->
       </div>
-      <b-container
+      <!--  NOT IN BATCH 1 -->
+      <!-- <b-container
         fluid
         class="p-0 mb-2"
       >
@@ -190,7 +189,7 @@
             link-to="#"
           />
         </b-row>
-      </b-container>
+      </b-container> -->
       <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
         <h3 class="font-weight-600 ps_gs-fz-14 mb-0">
           {{ $t("productFeedSettings.breadcrumb2") }}
@@ -209,23 +208,24 @@
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
-            link-to="#"
+            :link-to="{type : 'routeStep', where: '/product-feed', step: 1}"
           />
           <product-feed-card-report-card
             status="warning"
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
-            link-to="#"
+            :link-to="{type : 'routeStep', where: '/product-feed', step: 1}"
           />
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.shipping.taxSettings')"
             :description="taxSettings"
             :link="$t('cta.editSettings')"
-            link-to="#"
+            :link-to="{type : 'routeStep', where: '/product-feed', step: 1}"
           />
-          <product-feed-card-report-card
+          <!--  NOT IN BATCH 1 -->
+          <!-- <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.steps.syncRules')"
             :description="syncRules.join(', ')"
@@ -233,7 +233,7 @@
             :link="$t('cta.editRules')"
             link-to="#"
           />
-          <product-feed-card-report-card
+           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedCard.excludedProducts')"
             :description="`
@@ -242,19 +242,20 @@
             :details="excludedProductsDetails.join(', ')"
             :link="$t('cta.editRules')"
             link-to="#"
-          />
+          /> -->
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.steps.attributeMapping')"
             :description="attributeMapping.join(', ') + '...'"
             :link="$t('cta.editAttributeMapping')"
-            link-to="#"
+            :link-to="{type : 'routeStep', where: '/product-feed', step: 3}"
           />
-          <product-feed-card-report-mapped-categories-card
+          <!--  NOT IN BATCH 1 -->
+          <!-- <product-feed-card-report-mapped-categories-card
             :has-mapping="hasMapping"
             :categories-mapped="categoriesMapped"
             :categories-total="categoriesTotal"
-          />
+          /> -->
         </b-row>
       </b-container>
     </div>
@@ -312,14 +313,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    toConfigure: {
-      type: Boolean,
-      default: true,
-    },
-    configurationStarted: {
-      type: Boolean,
-      default: false,
-    },
     syncStatus: {
       type: String,
       default: null,
@@ -355,9 +348,6 @@ export default {
     nbProductsCantSync: {
       type: Number,
     },
-    targetCountries: {
-      type: Array,
-    },
     shippingSettings: {
       type: String,
     },
@@ -373,11 +363,35 @@ export default {
     excludedProductsDetails: {
       type: Array,
     },
-    attributeMapping: {
-      type: Array,
-    },
   },
   computed: {
+    configurationStarted: {
+      get() {
+        return this.$store.state.productFeed.productFeed.configurationStarted;
+      },
+    },
+    toConfigure: {
+      get() {
+        return !this.$store.state.productFeed.productFeed.isConfigured;
+      },
+    },
+    targetCountries: {
+      get() {
+        return this.$store.state.productFeed.productFeed.settings.targetCountries;
+      },
+    },
+    attributeMapping: {
+      //  TODO maybe refacto to get also the attribute long description if needed
+      get() {
+        const array = [];
+        Object.keys(this.$store.state.productFeed.productFeed.settings.sellApparel)
+          .forEach((key) => {
+            array.push(key);
+          });
+        return array.concat(this.$store.state.productFeed.productFeed.settings.sellRefurbished);
+      },
+    },
+
     title() {
       if (this.syncStatus === 'schedule') {
         return {
@@ -425,6 +439,14 @@ export default {
     },
     hasMapping() {
       return this.categoriesMapped > 0;
+    },
+  },
+  methods: {
+    startConfiguration() {
+      this.$store.commit('productFeed/TOGGLE_CONFIGURATION_STARTED');
+      this.$router.push({
+        path: '/product-feed',
+      });
     },
   },
   googleUrl,

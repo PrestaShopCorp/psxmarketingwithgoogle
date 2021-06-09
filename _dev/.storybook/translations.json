@@ -388,7 +388,8 @@
       "understandAndContinue" : "Understand and continue",
       "reviewProblems": "Review problems",
       "saveAndExport" : "Save and export",
-      "go" : "Go"
+      "go" : "Go",
+      "continueWithoutSave" : "Continue without save"
     },
     "badge" : {
       "free" : "Free",
@@ -419,7 +420,9 @@
       "titleDisableProductFeed" : "Disable product feed?",
       "textDisableProductFeed" : "Products will continue to show on Free Listings until the product feed has expired after 30 days.  \nSmart shopping campaigns will remain active as long as there are still active products in the merchant center - you will need to pause your campaigns.",
       "titleEnableFreeListing" : "Enable free listing?",
-      "textEnableFreeListing" : "This action will also cause the reactivation of the product feed."
+      "textEnableFreeListing" : "This action will also cause the reactivation of the product feed.",
+      "titleCancelWithoutSaving" : "Cancel without saving?",
+      "textCancelProductFeed" : "You will lose all unsaved changes. You need to complete the whole process to submit your data."
     },
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configured",

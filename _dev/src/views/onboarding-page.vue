@@ -25,7 +25,7 @@
       :context="psAccountsContext"
     />
     <b-alert
-      v-if="shopInConflictPsAccount"
+      v-if="shopInConflictPsAccount && psAccountsContext.isShopContext && !shops.length"
       show
       variant="warning"
       class="mb-0 mt-3 mb-3"
@@ -61,8 +61,13 @@
       />
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
-        :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
+        :is-enabled="true"
+        :to-configure="!productFeedIsConfigured"
       />
+      <!-- <ProductFeedCard
+        v-if="stepsAreCompleted.step1"
+        :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
+      /> -->
 
       <FreeListingCard
         v-if="stepsAreCompleted.step1"
@@ -191,7 +196,7 @@ export default {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
     productFeedIsConfigured() {
-      return false;
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
     stepsAreCompleted() {
       return {

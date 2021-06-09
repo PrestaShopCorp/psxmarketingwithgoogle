@@ -47,6 +47,8 @@ export interface FreeListingStatus {
 }
 export interface State {
   productFeed: {
+    configurationStarted: boolean,
+    isConfigured: boolean,
     stepper: number,
     status: ProductFeedStatus,
     settings: ProductFeedSettingsStatus,
@@ -56,6 +58,8 @@ export interface State {
 
 export const state: State = {
   productFeed: {
+    configurationStarted: false,
+    isConfigured: false,
     stepper: 1,
     status: {
       nextSync: '',

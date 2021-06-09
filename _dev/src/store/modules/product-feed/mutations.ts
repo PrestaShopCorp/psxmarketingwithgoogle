@@ -44,6 +44,14 @@ export default {
     state.productFeed.settings[payload.name] = payload.data;
   },
 
+  [MutationsTypes.TOGGLE_CONFIGURATION_STARTED](state: LocalState) {
+    state.productFeed.configurationStarted = !state.productFeed.configurationStarted;
+  },
+
+  [MutationsTypes.TOGGLE_CONFIGURATION_FINISHED](state: LocalState) {
+    state.productFeed.isConfigured = !state.productFeed.isConfigured;
+  },
+
   [MutationsTypes.UPDATE_STEPPER](state: LocalState, payload: any) {
     state.productFeed.stepper = payload;
   },

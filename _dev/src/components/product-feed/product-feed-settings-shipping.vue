@@ -222,12 +222,12 @@ export default {
       this.$store.commit('productFeed/UPDATE_STEPPER', 2);
     },
     cancel() {
-      if (window.confirm('Are you sure you want to cancel? Nothing will be saved')) {
-        this.$store.commit('productFeed/UPDATE_STEPPER', 1);
-        this.$router.push({
-          path: '/onboarding',
-        });
-      }
+      this.$emit('cancelProductFeedSettingsConfiguration');
+      // this.$store.commit('productFeed/UPDATE_STEPPER', 1);
+      // this.$store.commit('productFeed/TOGGLE_CONFIGURATION_STARTED');
+      // this.$router.push({
+      //   path: '/onboarding',
+      // });
     },
   },
   countriesSelectionOptions,
