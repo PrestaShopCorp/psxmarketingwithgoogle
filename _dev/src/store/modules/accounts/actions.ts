@@ -236,10 +236,10 @@ export default {
     const resp = '';
 
     // After response for API, change statement for claiming to trigger watcher on MCA card
-    commit(MutationsTypes.SET_STATUS_ONLY_FOR_CLAIMING, false);
+    commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, false);
     setTimeout(() => {
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, resp);
-      commit(MutationsTypes.SET_STATUS_ONLY_FOR_CLAIMING, true);
+      commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
     }, 2000);
   },
 
@@ -332,13 +332,13 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    const json = response.json();
-    commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, json);
+    const json = await response.json();
+    commit(MutationsTypes.SAVE_WEBSITE_VERIFICATION_AND_CLAIMING_STATUS, json);
     return json;
   },
 
   async [ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS](
-    {rootState, state},
+    {rootState, state, commit},
     payload,
   ) {
     const {overwrite, correlationId} = payload;
@@ -357,7 +357,7 @@ export default {
       console.error(response);
       throw new HttpClientError(response.statusText, response.status);
     }
-    // TODO : we must commit something to have next step on display ?
+    commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
     return response.json();
   },
 };

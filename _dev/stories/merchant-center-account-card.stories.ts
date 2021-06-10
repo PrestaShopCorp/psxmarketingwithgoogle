@@ -50,7 +50,7 @@ const Template = (args, {argTypes}) => ({
       this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', {selectedAccount, correlationId: ''});
       setTimeout(() => {
         // @ts-ignore
-        this.$store.commit('accounts/SAVE_WEBSITE_CLAIMING_STATUS', {isClaimed: true, isVerified: true});
+        this.$store.commit('accounts/SAVE_WEBSITE_VERIFICATION_AND_CLAIMING_STATUS', {isClaimed: true, isVerified: true});
       }, 2000);
     },
     onMerchantCenterAccountDissociated() {
