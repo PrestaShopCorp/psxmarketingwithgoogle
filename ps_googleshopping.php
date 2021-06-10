@@ -186,9 +186,8 @@ class Ps_googleshopping extends Module
     public function hookDisplayHeader()
     {
         $configuration = $this->getService(ConfigurationAdapter::class);
-        $meta = base64_decode($configuration->get(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META));
 
-        return $meta;
+        return base64_decode($configuration->get(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META));
     }
 
     private function loadEnv()
