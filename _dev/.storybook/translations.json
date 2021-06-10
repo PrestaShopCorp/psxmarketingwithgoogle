@@ -20,17 +20,17 @@
         "content1" : {
           "title" : "Connect your store to Google Merchant Center",
           "text" : "Connecting your store to Google Merchant Center allows you to upload store and product data to Google. Your products will automatically sync to make relevant information available for free listings, Google Ads, and other Google services.",
-          "footer" : "You can create a new [Merchant Center account](//google.com){:target=\"_blank\"} or link an existing account. Note that you’ll need to meet the Merchant Center eligibility requirements in order to connect your store."
+          "footer" : "You can create a new [Merchant Center account](https://support.google.com/merchants/answer/7679093){:target=\"_blank\"} or link an existing account. Note that you’ll need to meet the Merchant Center [eligibility requirements](https://support.google.com/merchants/answer/9199328){:target=\"_blank\"} in order to connect your store."
         },
         "content2" : {
           "title" : "Reach online shoppers with free listings",
           "text" : "Free listings drive traffic by showcasing your products to customers who are actively looking for what you sell. Your products will appear on the Google Shopping tab, and can also appear on Google Search, Google Images, and Gmail depending on regional availability.",
-          "footer" : "[Learn more about free listings](//google.com){:target=\"_blank\"}"
+          "footer" : "[Learn more about free listings](https://support.google.com/merchants/answer/9826670){:target=\"_blank\"}"
         },
         "content3" : {
           "title" : "Boost store traffic and sales with Google Ads",
           "text" : "Smart Shopping campaigns help you reach even more customers and grow your business by promoting your products across Google Search, Shopping, YouTube, Gmail, and the Display Network. They use Google’s technology to optimize your ads and automatically show your products to customers who are more likely to buy and spend more.",
-          "footer" : "[Learn more about Smart Shopping campaigns](//google.com){:target=\"_blank\"}"
+          "footer" : "[Learn more about Smart Shopping campaigns](https://support.google.com/google-ads/answer/7674739?hl=en){:target=\"_blank\"}"
         }
       },
       "footer" : {
