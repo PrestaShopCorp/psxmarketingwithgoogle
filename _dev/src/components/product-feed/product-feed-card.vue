@@ -33,7 +33,6 @@
             :value="false"
             v-model="productFeedSyncEnabled"
             :checked="productFeedSyncEnabled"
-
           >
           <label for="example_off_3">{{ $t('cta.disabled') }}</label>
           <input
