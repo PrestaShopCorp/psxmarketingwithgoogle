@@ -88,7 +88,6 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             );
             $this->ajaxDie(json_encode(['success' => true, 'method' => 'insert']));
         }
-
     }
 
     /**

@@ -19,8 +19,8 @@
  */
 
 use Dotenv\Dotenv;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 use PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter;
+use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Installer;
 use PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller;
 use PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler;
