@@ -111,9 +111,6 @@
 </template>
 
 <script>
-import {
-  BIconExclamationCircle,
-} from 'bootstrap-vue';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
@@ -124,7 +121,6 @@ export default {
     };
   },
   components: {
-    BIconExclamationCircle,
     BadgeListRequirements,
   },
   props: {

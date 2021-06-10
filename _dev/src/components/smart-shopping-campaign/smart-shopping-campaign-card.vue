@@ -42,15 +42,11 @@
 </template>
 
 <script>
-import {
-  BIconExclamationCircle,
-} from 'bootstrap-vue';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
   name: 'SmartShoppingCampaignCard',
   components: {
-    BIconExclamationCircle,
     BadgeListRequirements,
   },
   data() {

@@ -28,7 +28,7 @@ export default {
   props: {
     badges: {
       type: Array,
-    }
+    },
   },
 };
 </script>
