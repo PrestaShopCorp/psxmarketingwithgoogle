@@ -86,4 +86,4 @@ jobs:
         run: terraform apply -auto-approve --var app_version=$SHA --var hash_id=$SHA
         env:
           SHA: ${{ github.sha }}
-#          GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+          GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
