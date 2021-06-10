@@ -4,6 +4,7 @@
     :title="$t('modal.titleDisableProductFeed')"
     v-bind="$attrs"
     ref="modal"
+    @cancel="cancelDisabledProductFeed"
     @ok="onProductFeedDisableConfirmation"
   >
     <VueShowdown
@@ -23,11 +24,6 @@
 import PsModal from '../commons/ps-modal';
 
 export default {
-  /**
-   * TODO:
-   * Handle all events:  close, click on cancel, click on ok, etc...
-   */
-
   name: 'ProductFeedPopinDisable',
   components: {
     PsModal,
@@ -35,8 +31,9 @@ export default {
   methods: {
     onProductFeedDisableConfirmation() {
       this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION');
-      this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_STATUS',
-        {name: 'isSuspendSync', data: !this.$store.state.productFeed.productFeed.status.isSuspendSync});
+    },
+    cancelDisabledProductFeed() {
+      console.log('je cancel');
     },
   },
 };

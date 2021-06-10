@@ -86,11 +86,11 @@ export default {
         'products',
         'google-taxonomies',
       ],
-      suspended: false,
+      suspended: true,
     };
     commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'lastSync', data: json.jobEndedAt});
     commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextSync', data: json.nextJobAt});
-    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'isSuspendSync', data: json.suspended});
+    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'isSyncEnabled', data: json.suspended});
     commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'successfulSyncs', data: json.successfulSyncs});
     commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'failedSyncs', data: json.failedSyncs});
     // } catch (error) {
@@ -116,6 +116,7 @@ export default {
   },
 
   async [ActionsTypes.TOGGLE_SYNCHRONIZATION]({commit, rootState}, payload: any) {
+    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_STATUS, {name: 'isSyncEnabled', data: !rootState.productFeed.productFeed.status.isSyncEnabled});
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/sync/suspend`, {
         method: 'POST',

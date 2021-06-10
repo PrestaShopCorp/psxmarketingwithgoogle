@@ -24,7 +24,7 @@ export interface ProductFeedStatus {
   registerSyncData: any;
   failedSyncs: Array<string>;
   successfulSyncs: Array<string>;
-  isSuspendSync: boolean;
+  isSyncEnabled: boolean;
 }
 
 export interface ProductFeedSettingsSellingApparel {
@@ -49,7 +49,7 @@ export interface FreeListingStatus {
 }
 export interface State {
   productFeed: {
-    configurationStarted: boolean,
+    isConfigurationStarted: boolean,
     isConfigured: boolean,
     stepper: number,
     status: ProductFeedStatus,
@@ -60,7 +60,7 @@ export interface State {
 
 export const state: State = {
   productFeed: {
-    configurationStarted: false,
+    isConfigurationStarted: false,
     isConfigured: false,
     stepper: 1,
     status: {
@@ -69,7 +69,7 @@ export const state: State = {
       failedSyncs: [],
       successfulSyncs: [],
       registerSyncData: {},
-      isSuspendSync: true,
+      isSyncEnabled: true,
     },
     settings: {
       autoImportTaxSettings: false,

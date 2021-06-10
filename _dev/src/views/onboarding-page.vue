@@ -62,9 +62,14 @@
 
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
+        :is-enabled="true"
+        @toggleSync="onSyncToggled"
+      />
+      <!-- <ProductFeedCard
+        v-if="stepsAreCompleted.step1"
         :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
         @disableSync="onSyncDisabled"
-      />
+      /> -->
 
       <FreeListingCard
         v-if="stepsAreCompleted.step1"
@@ -92,6 +97,7 @@
 
     <ProductFeedPopinDisable
       ref="productFeedDisableModal"
+
     />
     <!-- Toast -->
     <PsToast
@@ -169,15 +175,15 @@ export default {
         this.$refs.mcaDisconnectModal.$refs.modal.id,
       );
     },
-    onSyncDisabled() {
-      if (this.$store.state.productFeed.productFeed.status.isSuspendSync) {
+    onSyncToggled() {
+      // If user has sync already, we warn the user that the sync won't work anymore with modal
+      if (this.$store.state.productFeed.productFeed.status.isSyncEnabled) {
         this.$bvModal.show(
           this.$refs.productFeedDisableModal.$refs.modal.id,
         );
+      // Else (user has not sync) we toggle the sync for the user
       } else {
         this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION');
-        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_STATUS',
-          {name: 'isSuspendSync', data: !this.$store.state.productFeed.productFeed.status.isSuspendSync});
       }
     },
   },

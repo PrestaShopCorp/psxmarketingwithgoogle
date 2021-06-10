@@ -36,7 +36,7 @@ export default {
     state.productFeed.status.registerSyncData = payload;
   },
   [MutationsTypes.SET_SUSPENDED_DATA_SYNC](state: LocalState, payload: any) {
-    state.productFeed.status.isSuspendSync = payload;
+    state.productFeed.status.isSyncEnabled = payload;
   },
 
   //  Product Feed Card
@@ -49,7 +49,7 @@ export default {
   },
 
   [MutationsTypes.TOGGLE_CONFIGURATION_STARTED](state: LocalState) {
-    state.productFeed.configurationStarted = !state.productFeed.configurationStarted;
+    state.productFeed.isConfigurationStarted = !state.productFeed.isConfigurationStarted;
   },
 
   [MutationsTypes.TOGGLE_CONFIGURATION_FINISHED](state: LocalState) {

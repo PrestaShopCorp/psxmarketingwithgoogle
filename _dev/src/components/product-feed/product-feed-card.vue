@@ -24,30 +24,34 @@
       <div
         v-if="!toConfigure && isEnabled"
         class="ml-auto mb-0"
-      >
+      >{{productFeedSyncEnabled}}
         <span class="ps-switch ps-switch-sm">
           <input
+            @click.prevent="toggle"
             type="radio"
             name="switchEnable"
-            v-model="enabledProductFeed"
             :value="false"
+            v-model="productFeedSyncEnabled"
+            :checked="productFeedSyncEnabled"
+
           >
           <label for="example_off_3">{{ $t('cta.disabled') }}</label>
           <input
+            @click.prevent="toggle"
             type="radio"
             name="switchEnable"
-            v-model="enabledProductFeed"
             :value="true"
-            checked
+            v-model="productFeedSyncEnabled"
+            :checked="productFeedSyncEnabled"
           >
           <label for="example_on_3">{{ $t('cta.enabled') }}</label>
-          <span class="slide-button" />
+          <span class="slide-button"   />
         </span>
       </div>
     </div>
     <p
       class="ps_gs-fz-12"
-      v-if="!configurationStarted"
+      v-if="!isConfigurationStarted"
     >
       {{ $t("productFeedCard.intro") }}
     </p>
@@ -80,7 +84,7 @@
       </ul>
     </div>
     <div v-if="isEnabled && toConfigure">
-      <p v-if="!configurationStarted">
+      <p v-if="!isConfigurationStarted">
         {{ $t("productFeedCard.introToConfigure") }}<br>
         <a
           class="ps_gs-fz-12 text-muted"
@@ -100,7 +104,7 @@
         v-if="isEnabled"
       >
         <b-button
-          v-if="!configurationStarted"
+          v-if="!isConfigurationStarted"
           size="sm"
           variant="primary"
           @click="startConfiguration"
@@ -284,7 +288,7 @@ export default {
   },
   data() {
     return {
-
+      isSwitched: false,
       steps: [
         {
           title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
@@ -363,8 +367,8 @@ export default {
     isUS() {
       return this.targetCountries.includes('US');
     },
-    configurationStarted() {
-      return this.$store.state.productFeed.productFeed.configurationStarted;
+    isConfigurationStarted() {
+      return this.$store.state.productFeed.productFeed.isConfigurationStarted;
     },
     toConfigure() {
       return !this.$store.state.productFeed.productFeed.isConfigured;
@@ -390,13 +394,8 @@ export default {
     //  TODO retrieve tax settings from backend
       return 'warning';
     },
-    enabledProductFeed: {
-      get() {
-        return this.$store.state.productFeed.productFeed.status.isSuspendSync;
-      },
-      set() {
-        this.$emit('disableSync');
-      },
+    productFeedSyncEnabled() {
+        return this.$store.state.productFeed.productFeed.status.isSyncEnabled;
     },
     attributeMapping: {
     //  TODO maybe refacto to get also the attribute long description if needed
@@ -460,9 +459,9 @@ export default {
     },
     alert() {
       // TODO How to know if 'ProductFeedExists'
-      if (!this.$store.state.productFeed.productFeed.status.isSuspendSync) {
+      if (!this.$store.state.productFeed.productFeed.status.isSyncEnabled) {
         return 'ProductFeedDeactivated';
-      } if (this.$store.state.productFeed.productFeed.status.isSuspendSync) {
+      } if (this.$store.state.productFeed.productFeed.status.isSyncEnabled) {
         return 'GoogleIsReviewingProducts';
       } if (this.$store.state.productFeed.productFeed.settings.successfulSyncs.length
      && !this.$store.state.productFeed.productFeed.settings.failedSyncs) {
@@ -484,6 +483,9 @@ export default {
         path: '/product-feed',
       });
     },
+    toggle() {
+      this.$emit('toggleSync')
+    }
   },
   googleUrl,
 };
