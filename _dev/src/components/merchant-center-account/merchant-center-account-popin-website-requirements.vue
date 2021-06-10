@@ -259,9 +259,6 @@
 
 import googleUrl from '@/assets/json/googleUrl.json';
 
-import {
-  BIconExclamationCircle,
-} from 'bootstrap-vue';
 import PsModal from '../commons/ps-modal';
 import Stepper from '../commons/stepper';
 
@@ -270,7 +267,6 @@ export default {
   components: {
     PsModal,
     Stepper,
-    BIconExclamationCircle,
   },
   data() {
     return {
