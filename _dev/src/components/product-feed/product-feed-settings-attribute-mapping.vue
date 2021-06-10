@@ -43,14 +43,13 @@
                 {{ $t('productFeedSettings.attributeMapping.description') }}
                 <b-button
                   v-b-tooltip
-                  title="Tooltip!"
+                  :title="$t('tooltip.attributeMapping.description')"
                   variant="invisible"
                   class="ml-1 p-0 border-0 ps_gs-fz-12 color-grey_darklight"
                 >
                   <span class="material-icons-round mb-0 ps_gs-fz-12 align-middle">
                     error_outline
                   </span>
-                  <span class="sr-only">Tooltip!</span>
                 </b-button>
               </span>
             </b-td>

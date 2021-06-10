@@ -483,6 +483,14 @@ class PsGoogleShoppingTranslations
                 'approvalStatusStatus' => $this->module->l('placeholder', 'PsGoogleShoppingTranslations'),
                 'approvalStatusLang' => $this->module->l('placeholder', 'PsGoogleShoppingTranslations'),
                 'approvalStatusIssues' => $this->module->l('placeholder', 'PsGoogleShoppingTranslations'),
+                'attributeMapping' => [
+                    'description' => $this->module->l('All product details relevant to your customers', 'PsGoogleShoppingTranslations'),
+                    'condition' => $this->module->l('The condition of your product at time of sale (new, refurbished, used)', 'PsGoogleShoppingTranslations'),
+                    'color' => $this->module->l('Your product\'s color', 'PsGoogleShoppingTranslations'),
+                    'size' => $this->module->l('Your product\'s size', 'PsGoogleShoppingTranslations'),
+                    'ageGroup' => $this->module->l('The demographic for which your product is intended', 'PsGoogleShoppingTranslations'),
+                    'gender' => $this->module->l('The gender for which your product is intended', 'PsGoogleShoppingTranslations'),
+                ],
             ],
             'toast' => [
                 'googleAccountConnectedOnceSuccess' => $this->module->l('You have connected your Google account!', 'PsGoogleShoppingTranslations'),

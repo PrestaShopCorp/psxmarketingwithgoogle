@@ -17,7 +17,7 @@
         <b-button
           v-if="!isReport"
           v-b-tooltip
-          title="Tooltip!"
+          :title="$t(`tooltip.attributeMapping.${input}`)"
           variant="invisible"
           class="ml-1 p-0 border-0 ps_gs-fz-12 color-grey_darklight"
         >
