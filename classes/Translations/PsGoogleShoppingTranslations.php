@@ -444,7 +444,7 @@ class PsGoogleShoppingTranslations
                 'siteVerified' => $this->module->l('Site verified', 'PsGoogleShoppingTranslations'),
                 'productFeed' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),
                 'productFeedSettings' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),
-                'mca' => $this->module->l('Merchant Center account', 'PsGoogleShoppingTranslations'),
+                'merchantCenterAccount' => $this->module->l('Merchant Center account', 'PsGoogleShoppingTranslations'),
                 'googleAccount' => $this->module->l('Google account', 'PsGoogleShoppingTranslations'),
                 'paid' => $this->module->l('Paid', 'PsGoogleShoppingTranslations'),
                 'googleAdsAccount' => $this->module->l('Google Ads account', 'PsGoogleShoppingTranslations'),
@@ -466,6 +466,9 @@ class PsGoogleShoppingTranslations
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configured', 'PsGoogleShoppingTranslations'),
+                'merchantCenterAccountRequired' => $this->module->l('Requires Merchant center account configured', 'PsGoogleShoppingTranslations'),
+                'productFeedRequired' => $this->module->l('Requires Product feed configured', 'PsGoogleShoppingTranslations'),
+                'googleAdsAccountRequired' => $this->module->l('Requires Google Ads account configured', 'PsGoogleShoppingTranslations'),
                 'mustCheckAllRequirements' => $this->module->l('You must check if all requirements met.', 'PsGoogleShoppingTranslations'),
                 'mustAgreeGoogleTerms' => $this->module->l('You must agree the Google terms', 'PsGoogleShoppingTranslations'),
                 'approvalStatusStatus' => $this->module->l('placeholder', 'PsGoogleShoppingTranslations'),

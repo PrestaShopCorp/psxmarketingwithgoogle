@@ -34,40 +34,10 @@
     >
       {{ $t('smartShoppingCampaignCard.intro') }}
     </p>
-    <div
+    <BadgeListRequirements
       v-if="!isEnabled"
-      class="d-flex mt-3"
-    >
-      <span
-        class="mr-2"
-      >
-        <b-icon-exclamation-circle />
-      </span>
-      <ul class="list-inline mb-0">
-        <li
-          class="list-inline-item"
-          v-b-tooltip:googleShoppingApp.hover
-          title="Tooltip directive content"
-        >
-          <b-badge
-            variant="muted"
-          >
-            {{ $t('badge.productFeed') }}
-          </b-badge>
-        </li>
-        <li
-          class="list-inline-item"
-          v-b-tooltip:googleShoppingApp.hover
-          title="Tooltip directive content"
-        >
-          <b-badge
-            variant="muted"
-          >
-            {{ $t('badge.googleAdsAccount') }}
-          </b-badge>
-        </li>
-      </ul>
-    </div>
+      :badges="['productFeed', 'googleAdsAccount']"
+    />
   </b-card>
 </template>
 
@@ -75,11 +45,13 @@
 import {
   BIconExclamationCircle,
 } from 'bootstrap-vue';
+import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
   name: 'SmartShoppingCampaignCard',
   components: {
     BIconExclamationCircle,
+    BadgeListRequirements,
   },
   data() {
     return {

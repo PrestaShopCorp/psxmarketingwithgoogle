@@ -51,34 +51,10 @@
     >
       {{ $t("productFeedCard.intro") }}
     </p>
-    <div
+    <BadgeListRequirements
       v-if="!isEnabled"
-      class="d-flex mt-2"
-    >
-      <span class="material-icons-round mr-2 mb-0 ps_gs-fz-16 align-self-center">
-        error_outline
-      </span>
-      <ul class="list-inline mb-0">
-        <li
-          class="list-inline-item"
-          v-b-tooltip:googleShoppingApp.hover
-          title="Tooltip directive content"
-        >
-          <b-badge variant="muted">
-            {{ $t("badge.mca") }}
-          </b-badge>
-        </li>
-        <li
-          class="list-inline-item"
-          v-b-tooltip:googleShoppingApp.hover
-          title="Tooltip directive content"
-        >
-          <b-badge variant="muted">
-            {{ $t("badge.productFeedSettings") }}
-          </b-badge>
-        </li>
-      </ul>
-    </div>
+      :badges="['merchantCenterAccount']"
+    />
     <div v-if="isEnabled && toConfigure">
       <p>
         {{ $t("productFeedCard.introToConfigure") }}<br>
@@ -262,6 +238,7 @@ import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
 import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
+import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
   name: 'ProductFeedCard',
@@ -270,6 +247,7 @@ export default {
     ProductFeedCardReportCard,
     ProductFeedCardReportMappedCategoriesCard,
     ProductFeedCardReportProductsCard,
+    BadgeListRequirements,
   },
   data() {
     return {
