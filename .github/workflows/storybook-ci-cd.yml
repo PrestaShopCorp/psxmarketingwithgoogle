@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - master
-      - feature/ci-cd-storybook
-      - fix/storybook-ci-cd-workflow
+
 jobs:
   alpha:
     name: Alpha - Storybook
