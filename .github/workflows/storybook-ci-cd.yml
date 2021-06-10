@@ -19,17 +19,23 @@ jobs:
         with:
           terraform_version: 0.14.5
 
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.G_PROJECT_INTEGRATION }}
+          service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+          export_default_credentials: true
 
-      - name: Gcloud auth and write env file
-        run: |
-          echo $GOOGLE_APPLICATION_CREDENTIALS > /tmp/token.json
-          gcloud auth activate-service-account --key-file=/tmp/token.json
-          gcloud container clusters get-credentials essentials \
-          --zone europe-west1-c --project psessentials-integration
-          gcloud auth configure-docker
-          rm /tmp/token.json
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+#      - name: Gcloud auth and write env file
+#        run: |
+#          echo $GOOGLE_APPLICATION_CREDENTIALS > /tmp/token.json
+#          gcloud auth activate-service-account --key-file=/tmp/token.json
+#          gcloud container clusters get-credentials essentials \
+#          --zone europe-west1-c --project psessentials-integration
+#          gcloud auth configure-docker
+#          rm /tmp/token.json
+#        env:
+#          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
 
       - name: Terraform init
         working-directory: _dev/.cloud
@@ -37,8 +43,8 @@ jobs:
           terraform init
           terraform workspace select alpha
           terraform fmt
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+#        env:
+#          GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
 
       - name: Get the version
         id: get_tag
@@ -79,4 +85,4 @@ jobs:
         run: terraform apply -auto-approve --var app_version=$SHA --var hash_id=$SHA
         env:
           SHA: ${{ github.sha }}
-          GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+#          GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
