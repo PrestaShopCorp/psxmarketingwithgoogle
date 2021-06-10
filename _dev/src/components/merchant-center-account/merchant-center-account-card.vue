@@ -117,10 +117,7 @@
           class="mb-0 mt-3"
         >
           <p class="mb-0">
-            <strong>{{ $t('mcaCard.linkingFailed') }}</strong><br>
-            <span class="ps_gs-fz-12">
-              {{ $t('mcaCard.linkingFailedDescription') }}
-            </span>
+            {{ $t('mcaCard.linkingFailed') }}
           </p>
         </b-alert>
       </b-form>

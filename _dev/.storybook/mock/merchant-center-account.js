@@ -21,24 +21,4 @@ export const merchantCenterAccountConnected = {
   ],
 }
 
-export const merchandCenterAccountNotConnectedWithOverwriteClaim = {
-  ...merchantCenterAccountConnected,
-  claimError: 'Overwrite',
-}
-
-export const merchandCenterAccountNotConnectedWithExpiringError = {
-  ...merchantCenterAccountConnected,
-  claimError: 'Expiring',
-}
-
-export const merchandCenterAccountNotConnectedWithDisapprovedStatus = {
-  ...merchantCenterAccountConnected,
-  claimError: 'Disapproved',
-}
-
-export const merchandCenterAccountNotConnectedWithShopInfoMissing = {
-  ...merchantCenterAccountConnected,
-  claimError: 'ShopInfoMissing',
-}
-
 export default merchantCenterAccountConnected;

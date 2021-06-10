@@ -73,6 +73,7 @@
       "userIsNotAdmin" : "You need Administrator access",
       "googleMCA" : "Google Merchant Center account",
       "toUseGmcNeedsAdminAccess" : "To use an existing Google Merchant Center account, you must have Administrator access.",
+      "linkingFailed" : "You can't connect to your Merchant Center account right now. Try again later.",
       "verifyOrClaimingFailed" : "Account validation failed",
       "tryAgainLater" : "We can’t verify or claim the current site. Try again later."
     },

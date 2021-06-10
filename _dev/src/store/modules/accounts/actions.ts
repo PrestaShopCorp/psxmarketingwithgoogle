@@ -114,7 +114,6 @@ export default {
           throw error;
         }
       } catch (error) {
-        // TODO : create another error case: verification failed
         commit(
           MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
           WebsiteClaimErrorReason.VerifyOrClaimingFailed,
