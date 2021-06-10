@@ -33,63 +33,49 @@ jobs:
           --zone europe-west1-c --project psessentials-integration
           gcloud auth configure-docker
 
-#      - name: Gcloud auth and write env file
-#        run: |
-#          echo $GOOGLE_APPLICATION_CREDENTIALS > /tmp/token.json
-#          gcloud auth activate-service-account --key-file=/tmp/token.json
-#          gcloud container clusters get-credentials essentials \
-#          --zone europe-west1-c --project psessentials-integration
-#          gcloud auth configure-docker
-#          rm /tmp/token.json
-#        env:
-#          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
-
       - name: Terraform init
         working-directory: _dev/.cloud
         run: |
           terraform init
           terraform workspace select alpha
           terraform fmt
-#        env:
-#          GOOGLE_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
-#
-#      - name: Get the version
-#        id: get_tag
-#        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-#
-#      - name: Configure docker
-#        run: gcloud auth configure-docker
-#
-#      - name: Pull package
-#        continue-on-error: true
-#        run: docker pull "$REGISTRY/googleshopping-storybook-package:latest"
-#        env:
-#          REGISTRY: ${{ secrets.REGISTRY }}
-#
-#      - name: Build package
-#        working-directory: _dev
-#        run: |
-#          docker build \
-#            --target=package \
-#            --tag="$REGISTRY/googleshopping-storybook-package:latest" .
-#          docker push "$REGISTRY/googleshopping-storybook-package:latest"
-#        env:
-#          REGISTRY: ${{ secrets.REGISTRY }}
-#
-#      - name: Build and push finale image
-#        working-directory: _dev
-#        run: |
-#          docker build . \
-#            --tag="eu.gcr.io/psessentials-integration/googleshopping-storybook:latest" \
-#            --cache-from="eu.gcr.io/psessentials-integration/googleshopping-storybook-package:latest"
-#          docker push "eu.gcr.io/psessentials-integration/googleshopping-storybook:latest"
-#        env:
-#          TAG: ${{ steps.get_tag.outputs.TAG }}
-#          REGISTRY: ${{ secrets.REGISTRY }}
-#
+
+      - name: Get the version
+        id: get_tag
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      - name: Configure docker
+        run: gcloud auth configure-docker
+
+      - name: Pull package
+        continue-on-error: true
+        run: docker pull "$REGISTRY/googleshopping-storybook-package:latest"
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
+
+      - name: Build package
+        working-directory: _dev
+        run: |
+          docker build \
+            --target=package \
+            --tag="$REGISTRY/googleshopping-storybook-package:latest" .
+          docker push "$REGISTRY/googleshopping-storybook-package:latest"
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
+
+      - name: Build and push finale image
+        working-directory: _dev
+        run: |
+          docker build . \
+            --tag="eu.gcr.io/psessentials-integration/googleshopping-storybook:latest" \
+            --cache-from="eu.gcr.io/psessentials-integration/googleshopping-storybook-package:latest"
+          docker push "eu.gcr.io/psessentials-integration/googleshopping-storybook:latest"
+        env:
+          TAG: ${{ steps.get_tag.outputs.TAG }}
+          REGISTRY: ${{ secrets.REGISTRY }}
+
       - name: Terraform apply
         working-directory: _dev/.cloud
         run: terraform apply -auto-approve --var app_version=$SHA --var hash_id=$SHA
         env:
           SHA: ${{ github.sha }}
-#          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
