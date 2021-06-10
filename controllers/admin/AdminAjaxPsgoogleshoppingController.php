@@ -37,6 +37,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         parent::__construct();
         $this->bootstrap = false;
         $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
+        $this->ajax = true;
     }
 
     public function initContent()
@@ -46,47 +47,64 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 
     public function displayAjax()
     {
-        $action = Tools::getValue('action');
+        $inputs = json_decode(Tools::file_get_contents('php://input'), true);
+        $action = isset($inputs['action']) ? $inputs['action'] : null;
 
         switch ($action) {
-            case 'setWebsiteClaimHeader':
-                $this->setWebsiteClaimHeader();
+            case 'setWebsiteVerificationMeta':
+                $this->setWebsiteVerificationMeta($inputs);
                 break;
             case 'getCarrierValues':
                 $this->getCarrierValues();
                 break;
-            case 'toggleWebsiteClaim':
-                $this->toggleWebsiteClaim();
-                break;
             case 'toggleGmcLinkRegistration':
-                $this->toggleGmcLinkRegistration();
+                $this->toggleGmcLinkRegistration($inputs);
                 break;
             default:
+                http_response_code(400);
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
         }
     }
 
-    private function setWebsiteClaimHeader()
+    private function setWebsiteVerificationMeta(array $inputs)
     {
-        $websiteClaim = Tools::getValue('websiteClaim');
+        if (!isset($inputs['websiteVerificationMeta'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'error' => 'Missing Meta key',
+            ]));
+        }
+        $websiteVerificationMeta = $inputs['websiteVerificationMeta'];
 
-        $this->configurationAdapter->updateValue(Config::WEBSITE_CLAIM, $websiteClaim);
-    }
-
-    private function toggleWebsiteClaim()
-    {
-        $isEnabled = Tools::getValue('isWebsiteClaimEnabled');
-
-        $this->configurationAdapter->updateValue(Config::IS_WEBSITE_CLAIM_ENABLED, $isEnabled);
+        if ($websiteVerificationMeta === false) {
+            $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META);
+            $this->ajaxDie(json_encode(['success' => true, 'method' => 'delete']));
+        } else {
+            // base64 encoded to avoid prestashop sanitization
+            $this->configurationAdapter->updateValue(
+                Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META,
+                base64_encode($websiteVerificationMeta),
+            );
+            $this->ajaxDie(json_encode(['success' => true, 'method' => 'insert']));
+        }
     }
 
     /**
      * Registering the GMC link in the shop database allows us to know if there
      * will be a conflict with another shop using the same domain name.
      */
-    private function toggleGmcLinkRegistration()
+    private function toggleGmcLinkRegistration(array $inputs)
     {
-        if ((bool) Tools::getValue('isGmcLinked')) {
+        if (!isset($inputs['isGmcLinked'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'error' => 'Missing isGmcLinked key',
+            ]));
+        }
+
+        if ((bool) $inputs['isGmcLinked']) {
             $this->configurationAdapter->updateValue(Config::PS_GOOGLE_SHOPPING_GMC_IS_LINKED, true);
         } else {
             $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_SHOPPING_GMC_IS_LINKED);
@@ -102,5 +120,14 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $carrierLines = $carrierDataProvider->getFormattedData();
 
         $this->ajaxDie(json_encode($carrierLines));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function ajaxDie($value = null, $controller = null, $method = null)
+    {
+        header('Content-Type: application/json');
+        parent::ajaxDie($value, $controller, $method);
     }
 }

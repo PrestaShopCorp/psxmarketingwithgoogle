@@ -117,10 +117,7 @@
           class="mb-0 mt-3"
         >
           <p class="mb-0">
-            <strong>{{ $t('mcaCard.linkingFailed') }}</strong><br>
-            <span class="ps_gs-fz-12">
-              {{ $t('mcaCard.linkingFailedDescription') }}
-            </span>
+            {{ $t('mcaCard.linkingFailed') }}
           </p>
         </b-alert>
       </b-form>
@@ -163,7 +160,7 @@
           {{ $t(`badge.${mcaStatusBadge.text}`) }}
         </b-badge>
         <span
-          v-if="mcaConfigured === false"
+          v-if="isLinking"
           class="text-muted"
         >
           <i class="icon-busy icon-busy--dark mr-1" />
@@ -293,6 +290,19 @@
         </a>
       </p>
     </b-alert>
+    <b-alert
+      v-else-if="error === WebsiteClaimErrorReason.VerifyOrClaimingFailed"
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        <strong>{{ $t('mcaCard.verifyOrClaimingFailed') }}</strong><br>
+        <span class="ps_gs-fz-12">
+          {{ $t('mcaCard.tryAgainLater') }}
+        </span>
+      </p>
+    </b-alert>
     <MerchantCenterAccountPopinOverwriteClaim
       ref="mcaPopinOverrideClaim"
     />
@@ -370,6 +380,11 @@ export default {
             text: 'disapproved',
           };
         case WebsiteClaimErrorReason.Overwrite:
+          return {
+            color: 'warning',
+            text: 'pending',
+          };
+        case WebsiteClaimErrorReason.VerifyOrClaimingFailed:
           return {
             color: 'warning',
             text: 'pending',
