@@ -81,9 +81,9 @@ jobs:
 #          TAG: ${{ steps.get_tag.outputs.TAG }}
 #          REGISTRY: ${{ secrets.REGISTRY }}
 #
-#      - name: Terraform apply
-#        working-directory: _dev/.cloud
-#        run: terraform apply -auto-approve --var app_version=$SHA --var hash_id=$SHA
-#        env:
-#          SHA: ${{ github.sha }}
+      - name: Terraform apply
+        working-directory: _dev/.cloud
+        run: terraform apply -auto-approve --var app_version=$SHA --var hash_id=$SHA
+        env:
+          SHA: ${{ github.sha }}
 #          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
