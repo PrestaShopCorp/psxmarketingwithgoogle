@@ -91,7 +91,7 @@ export default {
       correlationId,
     );
 
-    if (!isVerified) {
+    if (!isVerified || !isClaimed) {
       try {
         const result = await dispatch(
           ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS,
@@ -99,22 +99,20 @@ export default {
         );
         isVerified = result.isVerified;
         isClaimed = result.isClaimed;
+
+        try {
+          await dispatch(
+            ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
+            {overwrite: false, correlationId},
+          );
+        } catch (error) {
+          // TODO: !0: must know what is the error: if already claimed:
+          commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.Overwrite);
+          // TODO !0: else, must propagate error
+        }
       } catch (error) {
         // TODO : create another error case: verification failed
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.LinkingFailed);
-      }
-    }
-
-    if (isVerified && !isClaimed) {
-      try {
-        await dispatch(
-          ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
-          {overwrite: false, correlationId},
-        );
-      } catch (error) {
-        // TODO: !0: must know what is the error: if already claimed:
-        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.Overwrite);
-        // TODO !0: else, must propagate error
       }
     }
   },
@@ -354,6 +352,7 @@ export default {
       console.error(response);
       throw new HttpClientError(response.statusText, response.status);
     }
+    // TODO : we must commit something to have next step on display ?
     return response.json();
   },
 };
