@@ -38,6 +38,7 @@
             :id="safeString($t(`mcaRequirements.${requirement}.title`))"
             v-model="selectedRequirements"
             :value="safeString($t(`mcaRequirements.${requirement}.title`))"
+            :disabled="!newMca"
           >
             <div>
               <span
@@ -74,10 +75,9 @@
             v-b-tooltip:googleShoppingApp
             :title="$t('mcaRequirements.websiteURLDescription')"
           >
-            <b-icon-exclamation-circle
-              variant="primary"
-              font-scale="0.75"
-            />
+            <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
+              error_outline
+            </span>
           </b-button>
         </div>
         <span class="d-block">
@@ -99,10 +99,9 @@
             v-b-tooltip:googleShoppingApp
             :title="$t('mcaRequirements.storeNameDescription')"
           >
-            <b-icon-exclamation-circle
-              variant="primary"
-              font-scale="0.75"
-            />
+            <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
+              error_outline
+            </span>
           </b-button>
         </div>
         <span class="d-block">
@@ -198,6 +197,7 @@
         {{ $t('mcaRequirements.footer') }}
       </a>
       <b-button
+        v-if="newMca"
         variant="outline-secondary"
         @click="cancel()"
       >
@@ -216,13 +216,13 @@
           {{ $t('cta.iCheckedAllRequirements') }}
         </b-button>
       </span>
-      <b-button
+      <!-- <b-button
         v-else
         variant="primary"
         @click="saveChangeExistingMca()"
       >
         {{ $t('cta.saveChange') }}
-      </b-button>
+      </b-button> -->
     </template>
     <template
       slot="modal-footer"
