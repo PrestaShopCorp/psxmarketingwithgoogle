@@ -435,7 +435,6 @@ class PsGoogleShoppingTranslations
                 'reviewProblems' => $this->module->l('Review problems', 'PsGoogleShoppingTranslations'),
                 'saveAndExport' => $this->module->l('Save and export', 'PsGoogleShoppingTranslations'),
                 'go' => $this->module->l('Go', 'PsGoogleShoppingTranslations'),
-                'saveAndExport' => $this->module->l('Save and export', 'PsGoogleShoppingTranslations'),
                 'continueWithoutSave' => $this->module->l('Continue without save', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
