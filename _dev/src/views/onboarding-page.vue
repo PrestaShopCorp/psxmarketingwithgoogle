@@ -57,7 +57,6 @@
         :is-linking="isMcaLinking"
         @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
         @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
-        :error="mcaError"
       />
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
@@ -99,7 +98,6 @@
 
 <script>
 import {MultiStoreSelector, PsAccounts} from 'prestashop_accounts_vue_components';
-import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
@@ -130,7 +128,6 @@ export default {
   data() {
     return {
       isMcaLinking: false,
-      mcaError: null,
     };
   },
   methods: {
@@ -144,10 +141,6 @@ export default {
         // must wait before to ask for status
         .then(() => new Promise((resolve) => setTimeout(resolve, 1000)))
         .then(() => this.$store.dispatch('accounts/TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS', correlationId))
-        .catch((error) => {
-          console.error(error);
-          this.mcaError = WebsiteClaimErrorReason.LinkingFailed;
-        })
         .finally(() => {
           this.isMcaLinking = false;
         });

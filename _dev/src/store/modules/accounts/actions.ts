@@ -107,12 +107,18 @@ export default {
           );
         } catch (error) {
           // TODO: !0: must know what is the error: if already claimed:
-          commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.Overwrite);
-          // TODO !0: else, must propagate error
+          if (0) {
+            commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.Overwrite);
+            return;
+          }
+          throw error;
         }
       } catch (error) {
         // TODO : create another error case: verification failed
-        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.LinkingFailed);
+        commit(
+          MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+          WebsiteClaimErrorReason.VerifyOrClaimingFailed,
+        );
       }
     }
   },

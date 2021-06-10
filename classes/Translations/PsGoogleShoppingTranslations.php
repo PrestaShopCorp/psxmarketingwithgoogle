@@ -121,6 +121,8 @@ class PsGoogleShoppingTranslations
                 'userIsNotAdmin' => $this->module->l('You need Administrator access', 'PsGoogleShoppingTranslations'),
                 'googleMCA' => $this->module->l('Google Merchant Center account', 'PsGoogleShoppingTranslations'),
                 'toUseGmcNeedsAdminAccess' => $this->module->l('To use an existing Google Merchant Center account, you must have Administrator access.', 'PsGoogleShoppingTranslations'),
+                'verifyOrClaimingFailed' => $this->module->l('Account validation failed', 'PsGoogleShoppingTranslations'),
+                'tryAgainLater' => $this->module->l('We can’t verify or claim the current site. Try again later.', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
