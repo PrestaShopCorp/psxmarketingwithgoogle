@@ -7,8 +7,8 @@ Vue.filter(
     const month = a.getMonth();
     const finalMonth = month < 10 ? `0${month}` : month;
     const day = a.getDate();
-    const finalDay = day < 10 ? `0${finalDay}` : day;
-    const time = `${day}/${finalMonth}/${year}`;
+    const finalDay = day < 10 ? `0${day}` : day;
+    const time = `${finalDay}/${finalMonth}/${year}`;
     return time;
   });
 
