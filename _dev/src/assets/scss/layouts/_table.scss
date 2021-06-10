@@ -14,29 +14,45 @@
   border-top-width: 1px;
 }
 
-@include media-breakpoint-down(sm) {
-  .ps_gs-table-products {
-    tbody {
-      tr {
-        display: flex !important;
-        flex-wrap: wrap;
-        padding-top: rem(8);
-        padding-bottom: rem(8);
+.ps_gs-table-products {
+  &__issues {
+    min-width: 140px;
+  }
+}
 
-        &:not(:last-child) {
-          border-bottom: 1px solid $gray-400;
-        }
+// ! TO KEEP
+// ! MIGHT BE USED IF FILTERING AND SORTING ARE NOT POSSIBLE
+// @include media-breakpoint-down(sm) {
+//   .ps_gs-table-products {
+//     tbody {
+//       tr {
+//         display: flex !important;
+//         flex-wrap: wrap;
+//         padding-top: rem(8);
+//         padding-bottom: rem(8);
 
-        td {
-          border: none;
-        }
-      }
-    }
+//         &:not(:last-child) {
+//           border-bottom: 1px solid $gray-400;
+//         }
 
-    &__status,
-    &__issue {
-      width: 100%;
-      margin-top: rem(-8);
+//         td {
+//           border: none;
+//         }
+//       }
+//     }
+
+//     &__status,
+//     &__issue {
+//       width: 100%;
+//       margin-top: rem(-8);
+//     }
+//   }
+// }
+
+.ps_gs-table-controls {
+  &__go-to {
+    input {
+      width: rem(80) !important;
     }
   }
 }
@@ -49,12 +65,14 @@
       order: 1;
     }
 
-    &__products-shown {
+    &__per-page {
       margin-left: auto;
+      margin-right: initial !important;
     }
 
     &__pagination {
       order: 2;
+      margin-top: rem(8) !important;
       width: auto;
 
       ul {
@@ -63,6 +81,7 @@
     }
 
     &__go-to {
+      margin-top: rem(8) !important;
       order: 2;
       width: auto;
       margin-left: auto;
@@ -78,6 +97,11 @@
   .ps_gs-table-controls {
     &::before {
       order: 2;
+    }
+
+    &__per-page {
+      margin-left: auto;
+      margin-right: initial !important;
     }
 
     &__pagination {
@@ -96,15 +120,13 @@
 
     &__go-to {
       order: 3;
-      width: 100%;
-    }
-  }
-}
+      margin-left: auto;
+      margin-right: auto;
 
-.ps_gs-table-controls {
-  &__go-to {
-    input {
-      max-width: 74px;
+      input {
+        width: rem(60) !important;
+        margin-left: auto;
+      }
     }
   }
 }
@@ -122,4 +144,88 @@
     font-weight: normal;
     color: $body-color;
   }
+}
+
+// Modify sort icon
+.table.b-table {
+  > thead,
+  > tfoot {
+    > tr {
+      > [aria-sort]:not(.b-table-sort-icon-left) {
+        background-image: none;
+      }
+
+      > [aria-sort] {
+        position: relative;
+      }
+
+      > [aria-sort="none"]:after,
+      > [aria-sort="ascending"]:after,
+      > [aria-sort="descending"]:after {
+        font-weight: 700;
+        font-family: 'Material Icons';
+        -webkit-font-feature-settings: 'liga';
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 0.45em;
+        text-decoration: none;
+        color: $primary;
+
+        position: absolute;
+        right: 0;
+        bottom: rem(6.4);
+      }
+
+      > [aria-sort="none"]:after {
+        content: 'unfold_more';
+        color: $grey_darklight;
+      }
+
+      > [aria-sort="ascending"]:after {
+        content: 'keyboard_arrow_up';
+      }
+
+      > [aria-sort="descending"]:after {
+        content: 'keyboard_arrow_down';
+      }
+    }
+  }
+}
+
+
+
+// Sticky column
+// Adds fake drop-shadow through ::before element
+// .is-pinned is added via a javascript observer
+.b-table-sticky-column {
+  left: -1px !important;
+}
+
+.b-table-sticky-column.is-pinned {
+  padding-left: .4em !important;
+}
+
+.b-table-sticky-column:before {
+  opacity: 0;
+  transition: opacity .3s ease-in;
+}
+
+.b-table-sticky-column.is-pinned:before {
+  content: '';
+  opacity: 1;
+  display: block;
+  position: absolute;
+  right: -20px;
+  width: 20px;
+  background-image: linear-gradient(to right, rgba(0,0,0,.1), transparent);
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+}
+
+th.b-table-sticky-column.is-pinned:before {
+  background-image: radial-gradient(closest-side, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+  background-position: 100% 150%;
+  background-size: 200% 50%;
+  background-repeat: no-repeat;
 }

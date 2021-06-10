@@ -268,6 +268,7 @@
       "intro" : "Enable the paid listing of your products with Smart Shopping Campaigns"
     },
     "productFeedPage" : {
+      "breadcrumb" : "Product status details",
       "syncStatus" : {
         "title" : "Sync status",
         "readyForExport" : "Product feed is ready for export",
@@ -288,6 +289,23 @@
         "disapprovedProducts" : "Not approved products",
         "productsInGoogleCatalog" : "Products in Google catalog: {0}",
         "approvalStatusList" : "Not synced, Active, Partially active, Expiring, Pending, Disapproved."
+      },
+      "approvalTable" : {
+        "description" : "Products with problems that couldn't be synced are listed below.",
+        "filterTitle" : "Display by Google validation status",
+        "filterAllStatus" : "All status",
+        "filterOnlyApproved" : "Only approved",
+        "filterOnlyPending" : "Only pending",
+        "filterOnlyNotApproved" : "Only not approved",
+        "tableHeaderID" : "ID",
+        "tableHeaderName" : "Name",
+        "tableHeaderGoogleValidation" : "Google validation",
+        "tableHeaderLanguage" : "Language",
+        "tableHeaderIssue" : "Issue",
+        "xResults" : "{0} results",
+        "perPageLabel" : "Show:",
+        "goToLabel" : "Go to page:",
+        "editX" : "Edit {0}"
       }
     },
     "help" : {
@@ -367,7 +385,8 @@
       "setupTaxSettings" : "Set up tax settings",
       "understandAndContinue" : "Understand and continue",
       "reviewProblems": "Review problems",
-      "saveAndExport" : "Save and export"
+      "saveAndExport" : "Save and export",
+      "go" : "Go"
     },
     "badge" : {
       "free" : "Free",
@@ -403,7 +422,10 @@
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configured",
       "mustCheckAllRequirements" : "You must check if all requirements met.",
-      "mustAgreeGoogleTerms" : "You must agree the Google terms"
+      "mustAgreeGoogleTerms" : "You must agree the Google terms",
+      "approvalStatusStatus" : "placeholder",
+      "approvalStatusLang" : "placeholder",
+      "approvalStatusIssues" : "placeholder"
     },
     "toast": {
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!"

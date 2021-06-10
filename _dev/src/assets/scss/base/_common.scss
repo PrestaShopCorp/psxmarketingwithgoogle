@@ -22,16 +22,15 @@ a[target="_blank"] {
     &:focus {
       color: $blue !important;
     }
-  }
-
-  &::after {
-    content: "launch";
-    font-family: 'Material Icons';
-    -webkit-font-feature-settings: 'liga';
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 0.45em;
-    text-decoration: none;
+    &::after {
+      content: "launch";
+      font-family: 'Material Icons';
+      -webkit-font-feature-settings: 'liga';
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.45em;
+      text-decoration: none;
+    }
   }
 }
 
