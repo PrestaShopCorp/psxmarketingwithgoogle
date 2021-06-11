@@ -20,17 +20,17 @@
         "content1" : {
           "title" : "Connect your store to Google Merchant Center",
           "text" : "Connecting your store to Google Merchant Center allows you to upload store and product data to Google. Your products will automatically sync to make relevant information available for free listings, Google Ads, and other Google services.",
-          "footer" : "You can create a new [Merchant Center account](https://support.google.com/merchants/answer/7679093){:target=\"_blank\"} or link an existing account. Note that you’ll need to meet the Merchant Center [eligibility requirements](https://support.google.com/merchants/answer/9199328){:target=\"_blank\"} in order to connect your store."
+          "footer" : "You can create a new [Merchant Center account]({0}){:target=\"_blank\"} or link an existing account. Note that you’ll need to meet the Merchant Center [eligibility requirements]({1}){:target=\"_blank\"} in order to connect your store."
         },
         "content2" : {
           "title" : "Reach online shoppers with free listings",
           "text" : "Free listings drive traffic by showcasing your products to customers who are actively looking for what you sell. Your products will appear on the Google Shopping tab, and can also appear on Google Search, Google Images, and Gmail depending on regional availability.",
-          "footer" : "[Learn more about free listings](https://support.google.com/merchants/answer/9826670){:target=\"_blank\"}"
+          "footer" : "[Learn more about free listings]({0}){:target=\"_blank\"}"
         },
         "content3" : {
           "title" : "Boost store traffic and sales with Google Ads",
           "text" : "Smart Shopping campaigns help you reach even more customers and grow your business by promoting your products across Google Search, Shopping, YouTube, Gmail, and the Display Network. They use Google’s technology to optimize your ads and automatically show your products to customers who are more likely to buy and spend more.",
-          "footer" : "[Learn more about Smart Shopping campaigns](https://support.google.com/google-ads/answer/7674739?hl=en){:target=\"_blank\"}"
+          "footer" : "[Learn more about Smart Shopping campaigns]({0}){:target=\"_blank\"}"
         }
       },
       "footer" : {
@@ -46,7 +46,6 @@
       "productFeedNotice" : "Google’s retail solutions can help you welcome more customers to your site or your store. After you get set up, you’ll have access to reports so you can see how well your ads are doing.",
       "warningMultistore":  "You can associate only one shop to your Prestashop Account.",
       "GMCAlreadyLinked":  "Your PrestaShop account is already linked to another store. You can associate only one store to a PrestaShop account. To associate this other store you have to unlink the associated one."
-
     },
     "psAccountCard" : {
       "disonboardedText" : "Authorize your account to manage your shop’s services",
@@ -63,11 +62,11 @@
     "mcaCard" : {
       "title" : "Make your products available to shoppers accross Google",
       "introDisabled" : "Associate your Merchant Center account to get your store and products information into Google",
-      "introEnabled" : "[Google Merchant Center](//google.com){:target=\"_blank\"} helps you get your store and product info into Google and make it available to shoppers across Google.",
+      "introEnabled" : "[Google Merchant Center]({0}){:target=\"_blank\"} helps you get your store and product info into Google and make it available to shoppers across Google.",
       "labelSelect" : "Connect an existing Merchant Center account",
       "claimCollides" : "Your current website claim collides with an existing claim",
       "claimOverwrite" : "To finalize your Google Merchant Center account creation, you need to overwrite the existing claim.",
-      "footerEU" : "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)](//google.com){:target=\"_blank\"}  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners](//google.com){:target=\"_blank\"}  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
+      "footerEU" : "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0}){:target=\"_blank\"}  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1}){:target=\"_blank\"}  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
       "shopInfoMissing" : "Shop information is missing",
       "shopInfoMissingDescription" : "To check if it is a validity issue or if you are not following our rules, please log in to your account at",
       "userIsNotAdmin" : "You need Administrator access",
@@ -125,7 +124,7 @@
       "businessPhone" : "Business phone number",
       "siteContainsAdultContent" : "My site contains adult content",
       "seePolicyAdultContent" : "See policy on adult-oriented content",
-      "labelReadAndAgree" : "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies](//google.com){:target=\"_blank\"}, including [Google’s Merchant Center terms of service](//google.com){:target=\"_blank\"}, [Shopping ads policies](//google.com){:target=\"_blank\"}, and [Google Ads Terms and Conditions](//google.com){:target=\"_blank\"}.",
+      "labelReadAndAgree" : "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies]({0}){:target=\"_blank\"}, including [Google’s Merchant Center terms of service]({1}){:target=\"_blank\"}, [Shopping ads policies]({2}){:target=\"_blank\"}, and [Google Ads Terms and Conditions]({3}){:target=\"_blank\"}.",
       "alert" : "If one of these requirements is missing, your Merchant Center account will be disapproved."
     },
     "productFeedCard" : {

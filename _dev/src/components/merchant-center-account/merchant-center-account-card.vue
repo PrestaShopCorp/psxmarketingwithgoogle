@@ -117,7 +117,10 @@
         <VueShowdown
           v-if="isEU"
           class="mt-4 mb-0 text-muted ps_gs-fz-12"
-          :markdown="$t('mcaCard.footerEU')"
+          :markdown="$t('mcaCard.footerEU', [
+              this.$options.googleUrl.comparisonShoppingServices,
+              this.$options.googleUrl.findCssPartners
+            ])"
           :extensions="['targetlink']"
         />
       </div>
@@ -346,7 +349,7 @@ export default {
     },
     message() {
       return this.isEnabled
-        ? this.$i18n.t('mcaCard.introEnabled')
+        ? this.$i18n.t('mcaCard.introEnabled', [this.$options.googleUrl.merchantCenterAccount])
         : this.$i18n.t('mcaCard.introDisabled');
     },
     mcaStatusBadge() {
