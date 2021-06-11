@@ -84,6 +84,7 @@ export enum WebsiteClaimErrorReason {
   Overwrite = 'Overwrite',
   ShopInfoMissing = 'ShopInfoMissing',
   LinkingFailed = 'LinkingFailed',
+  VerifyOrClaimingFailed = 'VerifyOrClaimingFailed',
 }
 
 export const state: State = {

@@ -18,6 +18,7 @@
  */
 
 import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
+import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
@@ -54,30 +55,70 @@ export default {
       dispatch,
       state,
     },
-    selectedAccount: contentApi.Schema$Account,
+    payload,
   ) {
-    try {
-      const route = `${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts/${selectedAccount.id}/link`;
-      const response = await fetch(route, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Bearer ${state.tokenPsAccounts}`,
-        },
-      });
-      const json = await response.json();
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
+    const {selectedAccount, correlationId} = payload;
+    const route = `${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts/${selectedAccount.id}/link`;
+    const response = await fetch(route, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
+        'x-correlation-id': correlationId,
+      },
+    });
+    const json = await response.json();
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
 
-      commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
-      dispatch(ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS);
-      dispatch(ActionsTypes.TOGGLE_GMC_LINK_REGISTRATION, true);
-      return true;
-    } catch (error) {
-      console.error(error);
-      throw error;
+    commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
+    dispatch(ActionsTypes.TOGGLE_GMC_LINK_REGISTRATION, true);
+  },
+
+  async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS](
+    {
+      commit,
+      rootState,
+      dispatch,
+      state,
+    },
+    correlationId: string,
+  ) {
+    let {isVerified, isClaimed} = await dispatch(
+      ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
+      correlationId,
+    );
+
+    if (!isVerified || !isClaimed) {
+      try {
+        const result = await dispatch(
+          ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS,
+          correlationId,
+        );
+        isVerified = result.isVerified;
+        isClaimed = result.isClaimed;
+
+        try {
+          await dispatch(
+            ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
+            {overwrite: false, correlationId},
+          );
+        } catch (error) {
+          // TODO: !0: must know what is the error: if already claimed:
+          if (0) {
+            commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.Overwrite);
+            return;
+          }
+          throw error;
+        }
+      } catch (error) {
+        commit(
+          MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+          WebsiteClaimErrorReason.VerifyOrClaimingFailed,
+        );
+      }
     }
   },
 
@@ -88,13 +129,12 @@ export default {
       body: JSON.stringify({
         action: 'toggleGmcLinkRegistration',
         isGmcLinked,
-        ajax: 1,
       }),
     });
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    return response;
+    return response.json();
   },
 
   // Comment to delete : launch toast Google account connected ONCE after connected
@@ -203,33 +243,30 @@ export default {
     }, 2000);
   },
 
-  /** Merchant Center Account - Website Claiming */
+  /** Merchant Center Account - Website verification */
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS]({dispatch, state}) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
     try {
-      // 1- Get site vrification token from Nest
-      const token = await dispatch(ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN, correlationId);
+      // 1- Get site verification token from Nest
+      const {token} = await dispatch(ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN, correlationId);
       // 2- Store token in shop
-      await dispatch(ActionsTypes.TOGGLE_WEBSITE_CLAIMING_SNIPPET, token);
+      await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, token);
       // 3- Request verification to Google via Nest
       await dispatch(ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE, correlationId);
       // 4- Retrieve verification results
-      let isVerified = false;
-      for (let i = 0; i < 5 && !isVerified; i += 1) {
-        // eslint-disable-next-line no-await-in-loop
-        const result = await dispatch(ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS, correlationId);
-        isVerified = result.isVerified;
-        // Wait before checking again
-        // eslint-disable-next-line no-await-in-loop
-        await new Promise((resolve) => setTimeout(resolve, (1000 + i * 1000)));
-      }
+      const {isVerified, isClaimed} = await dispatch(
+        ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
+        correlationId,
+      );
       if (!isVerified) {
         throw new Error('Website was not verified by Google');
       }
       // 5- Remove token from shop
-      await dispatch(ActionsTypes.TOGGLE_WEBSITE_CLAIMING_SNIPPET, false);
+      await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
+      return {isVerified, isClaimed};
     } catch (error) {
       console.error(error);
+      return {isVerified: false, isClaimed: false};
     }
   },
 
@@ -247,19 +284,19 @@ export default {
     return response.json();
   },
 
-  async [ActionsTypes.TOGGLE_WEBSITE_CLAIMING_SNIPPET]({rootState}, token: string|false) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingAdminUrl}`, {
+  async [ActionsTypes.SAVE_WEBSITE_VERIFICATION_META]({rootState}, token: string|false) {
+    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
-        action: 'toggleWebsiteClaim',
-        websiteClaim: token,
+        action: 'setWebsiteVerificationMeta',
+        websiteVerificationMeta: token,
       }),
     });
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    return response;
+    return response.json();
   },
 
   async [ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE](
@@ -298,5 +335,29 @@ export default {
     const json = response.json();
     commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, json);
     return json;
+  },
+
+  async [ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS](
+    {rootState, state},
+    payload,
+  ) {
+    const {overwrite, correlationId} = payload;
+    const overwriteParam = `?overwrite=${overwrite ? 'true' : 'false'}`;
+    const url = `${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/claim${overwriteParam}`;
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
+        'x-correlation-id': correlationId,
+      },
+    });
+    if (!response.ok) {
+      console.error(response);
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    // TODO : we must commit something to have next step on display ?
+    return response.json();
   },
 };

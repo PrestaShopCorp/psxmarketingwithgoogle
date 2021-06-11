@@ -72,7 +72,10 @@
       "shopInfoMissingDescription" : "To check if it is a validity issue or if you are not following our rules, please log in to your account at",
       "userIsNotAdmin" : "You need Administrator access",
       "googleMCA" : "Google Merchant Center account",
-      "toUseGmcNeedsAdminAccess" : "To use an existing Google Merchant Center account, you must have Administrator access."
+      "toUseGmcNeedsAdminAccess" : "To use an existing Google Merchant Center account, you must have Administrator access.",
+      "linkingFailed" : "You can't connect to your Merchant Center account right now. Try again later.",
+      "verifyOrClaimingFailed" : "Account validation failed",
+      "tryAgainLater" : "We can’t verify or claim the current site. Try again later."
     },
     "mcaRequirements" : {
       "steps": {
@@ -401,7 +404,7 @@
       "siteVerified" : "Site verified",
       "productFeed" : "Product feed",
       "productFeedSettings" : "Product feed settings",
-      "mca" : "Merchant Center account",
+      "merchantCenterAccount" : "Merchant Center account",
       "googleAccount" : "Google account",
       "paid" : "Paid",
       "googleAdsAccount" : "Google Ads account",
@@ -426,6 +429,9 @@
     },
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configured",
+      "merchantCenterAccountRequired" : "Requires Merchant center account configured",
+      "productFeedRequired" : "Requires Product feed configured",
+      "googleAdsAccountRequired" : "Requires Google Ads account configured",
       "mustCheckAllRequirements" : "You must check if all requirements met.",
       "mustAgreeGoogleTerms" : "You must agree the Google terms",
       "approvalStatusStatus" : "placeholder",
