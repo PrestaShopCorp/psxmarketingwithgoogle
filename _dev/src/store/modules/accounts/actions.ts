@@ -77,7 +77,8 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    commit(MutationsTypes.SAVE_GMC_ACCOUNT, selectedAccount);
+
+    commit(MutationsTypes.SAVE_GMC, selectedAccount);
   },
 
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS](
@@ -191,7 +192,15 @@ export default {
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
       if (json.account_id && json.merchant_id) {
-        dispatch(ActionsTypes.REQUEST_GOOGLE_MERCHANT_ACCOUNT_DETAILS);
+        commit(MutationsTypes.SAVE_GMC, {
+          id: json.account_id,
+          isVerified: false,
+          isClaimed: false,
+          websiteVerificationStatus: null,
+          claimError: '',
+          users: [],
+        });
+        dispatch(ActionsTypes.REQUEST_GMC_LIST);
       }
       return json;
     } catch (error) {
@@ -206,18 +215,7 @@ export default {
     return null;
   },
 
-  async [ActionsTypes.REQUEST_GOOGLE_MERCHANT_ACCOUNT_DETAILS]({
-    commit, state, rootState,
-  }) {
-    const gmc: contentApi.Schema$Account = {
-      // TODO !0: must query the linked GMC from Google to have details,
-    };
-    // commit(MutationsTypes.SAVE_GMC_ACCOUNT, gmc);
-    // TODO !0: then trigger TRIGGER_WEBSITE_VERIFICATION_PROCESS
-    return gmc;
-  },
-
-  async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_GMC_LIST]({
+  async [ActionsTypes.REQUEST_GMC_LIST]({
     commit, state, rootState,
   }) {
     try {
@@ -231,14 +229,15 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_GMC_LIST, json);
+      commit(MutationsTypes.SAVE_GMC_LIST, json);
+      // TODO !0: if state.googleMerchantAccount.id, then fill: commit(MutationsTypes.SAVE_GMC, {...});
     } catch (error) {
       console.error(error);
     }
   },
 
   [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, dispatch}) {
-    dispatch(ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT);
+    dispatch(ActionsTypes.DISSOCIATE_GMC);
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
@@ -246,9 +245,9 @@ export default {
     dispatch(ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED, false);
   },
 
-  [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit, dispatch, state}) {
+  [ActionsTypes.DISSOCIATE_GMC]({commit, dispatch, state}) {
     // ToDo: Add API calls if needed
-    commit(MutationsTypes.REMOVE_GMC_ACCOUNT);
+    commit(MutationsTypes.REMOVE_GMC);
   },
 
   [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {

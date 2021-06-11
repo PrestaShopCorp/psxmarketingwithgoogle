@@ -60,7 +60,7 @@ export default {
   [MutationsTypes.SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE](state: LocalState, response) {
     state.googleAccount.connectedOnce = response;
   },
-  [MutationsTypes.SAVE_GOOGLE_ACCOUNT_GMC_LIST](
+  [MutationsTypes.SAVE_GMC_LIST](
     state: LocalState,
     mcaSelectionOptions: contentApi.Schema$Account[],
   ) {
@@ -69,13 +69,13 @@ export default {
   /** End of Google Account mutations */
 
   /** Merchant Center Account mutations */
-  [MutationsTypes.SAVE_GMC_ACCOUNT](state: LocalState, selectedAccount: contentApi.Schema$Account) {
+  [MutationsTypes.SAVE_GMC](state: LocalState, selectedAccount: contentApi.Schema$Account) {
     state.googleMerchantAccount = {
       ...state.googleMerchantAccount,
       ...selectedAccount,
     };
   },
-  [MutationsTypes.REMOVE_GMC_ACCOUNT](state: LocalState) {
+  [MutationsTypes.REMOVE_GMC](state: LocalState) {
     state.googleMerchantAccount = {
       ...state.googleMerchantAccount,
       id: null,
