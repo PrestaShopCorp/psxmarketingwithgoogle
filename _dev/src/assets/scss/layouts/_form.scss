@@ -162,6 +162,15 @@
     background-size: 125%;
   }
 
+  .custom-control-input:checked:disabled~.custom-control-label:before {
+    border-color: $gray-300;
+  }
+
+  .custom-control-input:checked:disabled~.custom-control-label:after {
+    background-color: $gray-300;
+  }
+
+
   .custom-control-input:indeterminate~.custom-control-label:after {
     background-color: $grey_muted;
   }
