@@ -26,7 +26,7 @@ export interface ProductFeedStatus {
   successfulSyncs: Array<string>;
   isSyncEnabled: boolean;
 }
-
+// ToDo: Update key name so you match the data coming from the API
 export interface ProductFeedSettingsSellingApparel {
   color: string;
   size: string;

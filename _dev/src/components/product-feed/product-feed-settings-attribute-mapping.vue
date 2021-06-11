@@ -253,16 +253,10 @@ export default {
         return !!this.$store.state.productFeed.productFeed.settings.sellApparel.color;
       },
       set(value) {
-        if (value === false) {
-          return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-            name: 'sellApparel',
-            data: {},
-          });
-        }
-        // TODO : when user able to change the value by themselves remove hardcoded value
+        const data = value ? {condition: 'extra:color'} : {};
         return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'sellApparel',
-          data: {color: 'extra:color'},
+          data,
         });
       },
     },
@@ -271,16 +265,10 @@ export default {
         return !!this.$store.state.productFeed.productFeed.settings.sellRefurbished.condition;
       },
       set(value) {
-        if (value === false) {
-          return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-            name: 'sellRefurbished',
-            data: {},
-          });
-        }
-        // TODO : when user able to change the value by themselves remove hardcoded value
+        const data = value ? {condition: 'extra:condition'} : {};
         return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'sellRefurbished',
-          data: {condition: 'extra:condition'},
+          data,
         });
       },
     },
