@@ -116,7 +116,7 @@ export default {
   },
 
   async [ActionsTypes.TOGGLE_SYNCHRONIZATION]({commit, rootState}, payload: any) {
-    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_STATUS, {name: 'isSyncEnabled', data: !rootState.productFeed.productFeed.status.isSyncEnabled});
+    commit(MutationsTypes.SET_SUSPENDED_DATA_SYNC, !rootState.productFeed.productFeed.status.isSyncEnabled);
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/sync/suspend`, {
         method: 'POST',

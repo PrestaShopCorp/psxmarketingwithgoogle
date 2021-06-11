@@ -39,7 +39,7 @@ export default {
   [MutationsTypes.SET_REGISTERED_DATA_SYNC](state: LocalState, payload: any) {
     state.productFeed.status.registerSyncData = payload;
   },
-  [MutationsTypes.SET_SUSPENDED_DATA_SYNC](state: LocalState, payload: any) {
+  [MutationsTypes.SET_SUSPENDED_DATA_SYNC](state: LocalState, payload: boolean) {
     state.productFeed.status.isSyncEnabled = payload;
   },
 

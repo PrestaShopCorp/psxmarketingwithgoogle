@@ -19,8 +19,8 @@
 
 // ToDo: Replace every "any" in this file with the proper type
 export interface ProductFeedStatus {
-  nextSync: string,
-  lastSync: string;
+  nextSync?: string,
+  lastSync?: string;
   registerSyncData: any;
   failedSyncs: Array<string>;
   successfulSyncs: Array<string>;
@@ -64,8 +64,6 @@ export const state: State = {
     isConfigured: false,
     stepper: 1,
     status: {
-      nextSync: '',
-      lastSync: '',
       failedSyncs: [],
       successfulSyncs: [],
       registerSyncData: {},
