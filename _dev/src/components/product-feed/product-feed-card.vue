@@ -441,9 +441,6 @@ export default {
       }
       if (0 /* TODO: Check feed in under review */) {
         return 'GoogleIsReviewingProducts';
-      } if (this.getProductFeedSettings.successfulSyncs.length
-     && !this.getProductFeedSettings.failedSyncs) {
-        return 'Success';
       } if (this.getProductFeedSettings.failedSyncs.length) {
         return 'Failed';
       } if (
