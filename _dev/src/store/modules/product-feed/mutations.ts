@@ -44,9 +44,6 @@ export default {
     state.productFeed.settings[payload.name] = payload.data;
   },
 
-  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_STATUS](state: LocalState, payload: any) {
-    state.productFeed.status[payload.name] = payload.data;
-  },
 
   [MutationsTypes.TOGGLE_CONFIGURATION_STARTED](state: LocalState) {
     state.productFeed.isConfigurationStarted = !state.productFeed.isConfigurationStarted;
