@@ -33,7 +33,7 @@ export interface ProductFeedSettingsSellingApparel {
   age: any;
   gender: any;
 }
-export interface ProductFeedSettingsStatus {
+export interface ProductFeedSettings {
   autoImportTaxSettings: boolean;
   targetCountries: Array<string>;
   autoImportShippingSettings: boolean;
@@ -53,7 +53,7 @@ export interface State {
     isConfigured: boolean,
     stepper: number,
     status: ProductFeedStatus,
-    settings: ProductFeedSettingsStatus,
+    settings: ProductFeedSettings,
   },
   freeListing: FreeListingStatus;
 }

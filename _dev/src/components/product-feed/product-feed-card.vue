@@ -357,7 +357,9 @@ export default {
     },
   },
   computed: {
-
+    getProductFeedSettings() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'];
+    },
     nextSyncTime() {
       return this.$options.filters.timeConverterToDate(
         this.$store.state.productFeed.productFeed.status.nextSync,
@@ -373,21 +375,21 @@ export default {
       return !this.$store.state.productFeed.productFeed.isConfigured;
     },
     targetCountries() {
-      return this.$store.state.productFeed.productFeed.settings.targetCountries;
+      return this.getProductFeedSettings.targetCountries;
     },
     shippingSettings() {
-      return this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings
+      return this.getProductFeedSettings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
         : this.$t('productFeedSettings.shipping.manually');
     },
     shippingSettingsStatus() {
-      return this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings !== undefined ? 'success' : 'warning';
+      return this.getProductFeedSettings.autoImportShippingSettings !== undefined ? 'success' : 'warning';
     },
     targetCountriesStatus() {
-      return this.$store.state.productFeed.productFeed.settings.targetCountries.length ? 'success' : 'warning';
+      return this.getProductFeedSettings.targetCountries.length ? 'success' : 'warning';
     },
     attributeMappingStatus() {
-      return this.$store.state.productFeed.productFeed.settings.sellApparel || this.$store.state.productFeed.productFeed.settings.sellRefurbished ? 'success' : 'warning';
+      return this.getProductFeedSettings.sellApparel || this.getProductFeedSettings.sellRefurbished ? 'success' : 'warning';
     },
     taxSettingsStatus() {
     //  TODO retrieve tax settings from backend
@@ -405,11 +407,11 @@ export default {
     //  TODO maybe refacto to get also the attribute long description if needed
       get() {
         const arr = [];
-        Object.keys(this.$store.state.productFeed.productFeed.settings.sellApparel)
+        Object.keys(this.getProductFeedSettings.sellApparel)
           .forEach((key) => {
             arr.push(key);
           });
-        return arr.concat(this.$store.state.productFeed.productFeed.settings.sellRefurbished);
+        return arr.concat(this.getProductFeedSettings.sellRefurbished);
       },
     },
 
@@ -463,17 +465,17 @@ export default {
     },
     alert() {
       // TODO How to know if 'ProductFeedExists'
-      if (!this.$store.state.productFeed.productFeed.status.isSyncEnabled) {
+      if (!this.productFeedSyncEnabled) {
         return 'ProductFeedDeactivated';
-      } if (this.$store.state.productFeed.productFeed.status.isSyncEnabled) {
+      } if (this.productFeedSyncEnabled) {
         return 'GoogleIsReviewingProducts';
-      } if (this.$store.state.productFeed.productFeed.settings.successfulSyncs.length
-     && !this.$store.state.productFeed.productFeed.settings.failedSyncs) {
+      } if (this.getProductFeedSettings.successfulSyncs.length
+     && !this.getProductFeedSettings.failedSyncs) {
         return 'Success';
-      } if (this.$store.state.productFeed.productFeed.settings.failedSyncs.length) {
+      } if (this.getProductFeedSettings.failedSyncs.length) {
         return 'Failed';
       } if (
-        this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings === undefined
+        this.getProductFeedSettings.autoImportShippingSettings === undefined
       ) {
         return 'ShippingSettingsMissing';
       }

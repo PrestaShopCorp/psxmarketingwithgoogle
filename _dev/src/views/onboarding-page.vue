@@ -91,7 +91,6 @@
 
     <ProductFeedPopinDisable
       ref="productFeedDisableModal"
-
     />
     <!-- Toast -->
     <PsToast
