@@ -89,7 +89,7 @@
         <div>
           <b-button
             target="_blank"
-            :href="taxSettingsWithMerchandId"
+            :href="taxSettingsWithMerchantId"
             variant="secondary"
             class="mt-2"
           >
