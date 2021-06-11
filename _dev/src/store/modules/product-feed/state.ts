@@ -64,8 +64,6 @@ export const state: State = {
     isConfigured: false,
     stepper: 1,
     status: {
-      nextSync: '',
-      lastSync: '',
       failedSyncs: [],
       successfulSyncs: [],
       registerSyncData: {},
