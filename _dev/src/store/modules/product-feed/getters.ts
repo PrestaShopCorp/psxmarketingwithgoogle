@@ -20,6 +20,7 @@
 import {
   State as LocalState,
   ProductFeedSettings,
+  ProductFeedStatus,
 } from './state';
 import GettersTypes from './getters-types';
 
@@ -29,5 +30,8 @@ export default {
   },
   [GettersTypes.GET_PRODUCT_FEED_SETTINGS](state: LocalState): ProductFeedSettings {
     return state.productFeed.settings;
+  },
+  [GettersTypes.GET_PRODUCT_FEED_STATUS](state: LocalState): ProductFeedStatus {
+    return state.productFeed.status;
   },
 };

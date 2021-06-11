@@ -336,6 +336,9 @@ export default {
     getProductFeedSettings() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'];
     },
+    getProductFeedStatus() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
+    },
     nextSyncTime() {
       return this.$options.filters.timeConverterToDate(
         this.$store.state.productFeed.productFeed.status.nextSync,
@@ -441,7 +444,7 @@ export default {
       }
       if (0 /* TODO: Check feed in under review */) {
         return 'GoogleIsReviewingProducts';
-      } if (this.getProductFeedSettings.failedSyncs.length) {
+      } if (this.getProductFeedStatus.failedSyncs.length) {
         return 'Failed';
       } if (
         this.getProductFeedSettings.autoImportShippingSettings === undefined
