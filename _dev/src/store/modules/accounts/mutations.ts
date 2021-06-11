@@ -83,14 +83,14 @@ export default {
       claimError: '',
     };
   },
-  [MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS](
+  [MutationsTypes.SAVE_WEBSITE_VERIFICATION_AND_CLAIMING_STATUS](
     state: LocalState,
     websiteClaimingStatus: MerchantCenterAccountContext,
   ) {
     state.googleMerchantAccount.isClaimed = websiteClaimingStatus.isClaimed;
     state.googleMerchantAccount.isVerified = websiteClaimingStatus.isVerified;
   },
-  [MutationsTypes.SET_STATUS_ONLY_FOR_CLAIMING](state: LocalState, status: boolean) {
+  [MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS](state: LocalState, status: boolean) {
     state.googleMerchantAccount.isClaimed = status;
   },
   [MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING](state: LocalState, overrideClaimStatus: string) {
