@@ -39,7 +39,7 @@ export interface ProductFeedSettings {
   autoImportShippingSettings: boolean;
   exportProductsWithShortDescription: boolean;
   sellApparel: ProductFeedSettingsSellingApparel;
-  sellRefurbished: any
+  sellRefurbished: boolean
 }
 
 export interface FreeListingStatus {
@@ -80,7 +80,7 @@ export const state: State = {
         age: '',
         gender: '',
       },
-      sellRefurbished: [],
+      sellRefurbished: true,
     },
   },
   freeListing: {

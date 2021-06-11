@@ -331,10 +331,10 @@ export default {
 
   methods: {
     goBack() {
-      this.$store.commit('productFeed/UPDATE_STEPPER', 1);
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
     },
     nextStep() {
-      this.$store.commit('productFeed/UPDATE_STEPPER', 3);
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');

@@ -216,7 +216,7 @@ export default {
   },
   methods: {
     nextStep() {
-      this.$store.commit('productFeed/UPDATE_STEPPER', 2);
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');

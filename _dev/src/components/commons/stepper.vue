@@ -92,7 +92,7 @@ export default {
 
     goStep(index) {
       if (this.$store.state.productFeed.productFeed.stepper >= index) {
-        this.$store.commit('productFeed/UPDATE_STEPPER', index);
+        this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', index);
       }
     },
   },

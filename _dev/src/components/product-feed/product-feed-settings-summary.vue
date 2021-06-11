@@ -208,7 +208,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$store.commit('productFeed/UPDATE_STEPPER', 3);
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
@@ -216,9 +216,7 @@ export default {
     saveAll() {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
       this.$store.commit('productFeed/TOGGLE_CONFIGURATION_STARTED');
-      if (this.$store.state.productFeed.productFeed.isConfigured === false) {
-        this.$store.commit('productFeed/TOGGLE_CONFIGURATION_FINISHED');
-      }
+      this.$store.commit('productFeed/TOGGLE_CONFIGURATION_FINISHED', true);
       this.$router.push({
         path: '/configuration',
       });

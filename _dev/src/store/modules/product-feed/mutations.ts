@@ -56,11 +56,11 @@ export default {
     state.productFeed.isConfigurationStarted = !state.productFeed.isConfigurationStarted;
   },
 
-  [MutationsTypes.TOGGLE_CONFIGURATION_FINISHED](state: LocalState) {
-    state.productFeed.isConfigured = !state.productFeed.isConfigured;
+  [MutationsTypes.TOGGLE_CONFIGURATION_FINISHED](state: LocalState, payload: boolean) {
+    state.productFeed.isConfigured = payload;
   },
 
-  [MutationsTypes.UPDATE_STEPPER](state: LocalState, payload: number) {
+  [MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP](state: LocalState, payload: number) {
     state.productFeed.stepper = payload;
   },
 };

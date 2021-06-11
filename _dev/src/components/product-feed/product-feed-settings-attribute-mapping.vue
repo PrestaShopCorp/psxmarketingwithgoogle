@@ -287,10 +287,10 @@ export default {
   },
   methods: {
     goBack() {
-      this.$store.commit('productFeed/UPDATE_STEPPER', 2);
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
     },
     nextStep() {
-      this.$store.commit('productFeed/UPDATE_STEPPER', 4);
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');

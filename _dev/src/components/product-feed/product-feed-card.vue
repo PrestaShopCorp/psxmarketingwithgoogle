@@ -382,14 +382,16 @@ export default {
       },
     },
     attributeMapping: {
-    //  TODO maybe refacto to get also the attribute long description if needed
+    //  TODO maybe refacto to get also the attributes
+    //  long description /andrefursbished product
+    //  For now there are only booleans
       get() {
         const arr = [];
         Object.keys(this.getProductFeedSettings.sellApparel)
           .forEach((key) => {
             arr.push(key);
           });
-        return arr.concat(this.getProductFeedSettings.sellRefurbished);
+        return arr;
       },
     },
 
