@@ -401,7 +401,7 @@
       "siteVerified" : "Site verified",
       "productFeed" : "Product feed",
       "productFeedSettings" : "Product feed settings",
-      "mca" : "Merchant Center account",
+      "merchantCenterAccount" : "Merchant Center account",
       "googleAccount" : "Google account",
       "paid" : "Paid",
       "googleAdsAccount" : "Google Ads account",
@@ -424,6 +424,9 @@
     },
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configured",
+      "merchantCenterAccountRequired" : "Requires Merchant center account configured",
+      "productFeedRequired" : "Requires Product feed configured",
+      "googleAdsAccountRequired" : "Requires Google Ads account configured",
       "mustCheckAllRequirements" : "You must check if all requirements met.",
       "mustAgreeGoogleTerms" : "You must agree the Google terms",
       "approvalStatusStatus" : "placeholder",

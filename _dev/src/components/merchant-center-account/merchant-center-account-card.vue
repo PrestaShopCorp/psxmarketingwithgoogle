@@ -34,25 +34,10 @@
       :markdown="message"
       :extensions="['targetlink']"
     />
-    <div
+    <BadgeListRequirements
       v-if="!isEnabled"
-      class="d-flex pt-2"
-    >
-      <span class="material-icons-round mr-2 mb-0 ps_gs-fz-16 align-self-center">
-        error_outline
-      </span>
-      <ul class="list-inline mb-0">
-        <li
-          v-b-tooltip:googleShoppingApp
-          :title="$t('tooltip.googleAccountRequired')"
-          class="list-inline-item"
-        >
-          <b-badge variant="muted">
-            {{ $t('badge.googleAccount') }}
-          </b-badge>
-        </li>
-      </ul>
-    </div>
+      :badges="['googleAccount']"
+    />
     <div v-if="isEnabled && selectedMcaDetails.id === null">
       <b-form class="mb-2">
         <legend
@@ -315,11 +300,13 @@ import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
 import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
+import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
   name: 'MerchantCenterAccountCard',
   components: {
     MerchantCenterAccountPopinOverwriteClaim,
+    BadgeListRequirements,
   },
   data() {
     return {
