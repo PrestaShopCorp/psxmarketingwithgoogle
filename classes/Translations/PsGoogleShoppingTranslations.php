@@ -69,17 +69,17 @@ class PsGoogleShoppingTranslations
                     'content1' => [
                         'title' => $this->module->l('Connect your store to Google Merchant Center', 'PsGoogleShoppingTranslations'),
                         'text' => $this->module->l('Connecting your store to Google Merchant Center allows you to upload store and product data to Google. Your products will automatically sync to make relevant information available for free listings, Google Ads, and other Google services.', 'PsGoogleShoppingTranslations'),
-                        'footer' => $this->module->l('You can create a new [Merchant Center account](https://support.google.com/merchants/answer/7679093){:target="_blank"} or link an existing account. Note that you’ll need to meet the Merchant Center [eligibility requirements](https://support.google.com/merchants/answer/9199328){:target="_blank"} in order to connect your store.', 'PsGoogleShoppingTranslations'),
+                        'footer' => $this->module->l('You can create a new [Merchant Center account](https://support.google.com/merchants/answer/7679093)[:target="_blank"] or link an existing account. Note that you’ll need to meet the Merchant Center [eligibility requirements](https://support.google.com/merchants/answer/9199328)[:target="_blank"] in order to connect your store.', 'PsGoogleShoppingTranslations'),
                     ],
                     'content2' => [
                         'title' => $this->module->l('Reach online shoppers with free listings', 'PsGoogleShoppingTranslations'),
                         'text' => $this->module->l('Free listings drive traffic by showcasing your products to customers who are actively looking for what you sell. Your products will appear on the Google Shopping tab, and can also appear on Google Search, Google Images, and Gmail depending on regional availability.', 'PsGoogleShoppingTranslations'),
-                        'footer' => $this->module->l('[Learn more about free listings](https://support.google.com/merchants/answer/9826670){:target="_blank"}', 'PsGoogleShoppingTranslations'),
+                        'footer' => $this->module->l('[Learn more about free listings](https://support.google.com/merchants/answer/9826670)[:target="_blank"]', 'PsGoogleShoppingTranslations'),
                     ],
                     'content3' => [
                         'title' => $this->module->l('Boost store traffic and sales with Google Ads', 'PsGoogleShoppingTranslations'),
                         'text' => $this->module->l('Smart Shopping campaigns help you reach even more customers and grow your business by promoting your products across Google Search, Shopping, YouTube, Gmail, and the Display Network. They use Google’s technology to optimize your ads and automatically show your products to customers who are more likely to buy and spend more.', 'PsGoogleShoppingTranslations'),
-                        'footer' => $this->module->l('[Learn more about Smart Shopping campaigns](https://support.google.com/google-ads/answer/7674739?hl=en){:target="_blank"}', 'PsGoogleShoppingTranslations'),
+                        'footer' => $this->module->l('[Learn more about Smart Shopping campaigns](https://support.google.com/google-ads/answer/7674739?hl=en)[:target="_blank"]', 'PsGoogleShoppingTranslations'),
                     ],
                 ],
                 'footer' => [
@@ -111,7 +111,7 @@ class PsGoogleShoppingTranslations
             'mcaCard' => [
                 'title' => $this->module->l('Make your products available to shoppers accross Google', 'PsGoogleShoppingTranslations'),
                 'introDisabled' => $this->module->l('Associate your Merchant Center account to get your store and products information into Google', 'PsGoogleShoppingTranslations'),
-                'introEnabled' => $this->module->l('[Google Merchant Center](//google.com){:target="_blank"} helps you get your store and product info into Google and make it available to shoppers across Google.', 'PsGoogleShoppingTranslations'),
+                'introEnabled' => $this->module->l('[Google Merchant Center](//google.com)[:target="_blank"] helps you get your store and product info into Google and make it available to shoppers across Google.', 'PsGoogleShoppingTranslations'),
                 'labelSelect' => $this->module->l('Connect an existing Merchant Center account', 'PsGoogleShoppingTranslations'),
                 'claimCollides' => $this->module->l('Your current website claim collides with an existing claim', 'PsGoogleShoppingTranslations'),
                 'claimOverwrite' => $this->module->l('To finalize your Google Merchant Center account creation, you need to overwrite the existing claim.', 'PsGoogleShoppingTranslations'),
@@ -172,7 +172,7 @@ class PsGoogleShoppingTranslations
                 'businessPhone' => $this->module->l('Business phone number', 'PsGoogleShoppingTranslations'),
                 'siteContainsAdultContent' => $this->module->l('My site contains adult content', 'PsGoogleShoppingTranslations'),
                 'seePolicyAdultContent' => $this->module->l('See policy on adult-oriented content', 'PsGoogleShoppingTranslations'),
-                'labelReadAndAgree' => $this->module->l('By purchasing Shopping ads, I have read and agree to comply with [Google\'s terms and policies](//google.com){:target="_blank"}, including [Google’s Merchant Center terms of service](//google.com){:target="_blank"}, [Shopping ads policies](//google.com){:target="_blank"}, and [Google Ads Terms and Conditions](//google.com){:target="_blank"}.', 'PsGoogleShoppingTranslations'),
+                'labelReadAndAgree' => $this->module->l('By purchasing Shopping ads, I have read and agree to comply with [Google\'s terms and policies](//google.com)[:target="_blank"], including [Google’s Merchant Center terms of service](//google.com)[:target="_blank"], [Shopping ads policies](//google.com)[:target="_blank"], and [Google Ads Terms and Conditions](//google.com)[:target="_blank"].', 'PsGoogleShoppingTranslations'),
                 'alert' => $this->module->l('If one of these requirements is missing, your Merchant Center account will be disapproved.', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedCard' => [
@@ -186,8 +186,8 @@ class PsGoogleShoppingTranslations
                 'syncCantPerform' => $this->module->l('Synchronization can\'t perform', 'PsGoogleShoppingTranslations'),
                 'mappedCategories' => $this->module->l('{0}/{1} mapped categories', 'PsGoogleShoppingTranslations'),
                 'alertSuccess' => $this->module->l('You are successfully opted in. Once your products are approved, they can appear in Shopping tab search results.', 'PsGoogleShoppingTranslations'),
-                'alertFailed' => $this->module->l('The synchronization of your product feed failed. **[See possible reasons in Merchant Center]({0}){:target="_blank"}**', 'PsGoogleShoppingTranslations'),
-                'alertShippingSettingsMissing' => $this->module->l('Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. **[Add shipping settings]({0}){:target="_blank"}**', 'PsGoogleShoppingTranslations'),
+                'alertFailed' => $this->module->l('The synchronization of your product feed failed. **[See possible reasons in Merchant Center]({0})[:target="_blank"]**', 'PsGoogleShoppingTranslations'),
+                'alertShippingSettingsMissing' => $this->module->l('Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. **[Add shipping settings]({0})[:target="_blank"]**', 'PsGoogleShoppingTranslations'),
                 'alertProductFeedDeactivated' => $this->module->l('If the product sync is deactivated, there will be no new products pushed into the GMC. The account itself will continue to exist and the products will expire after 30 days. This stops the catalog items to show on both Free Listings and the ad campaigns.', 'PsGoogleShoppingTranslations'),
                 'alertProductFeedExists' => $this->module->l("**A product feed already exists**  \n  <small>To activate free listing feature, you need to overwrite the exisitng product feed.</small>", 'PsGoogleShoppingTranslations'),
                 'googleTaxonomyAssociation' => $this->module->l('Google Product taxonomy association', 'PsGoogleShoppingTranslations'),
@@ -329,7 +329,7 @@ class PsGoogleShoppingTranslations
                   'nextSync' => $this->module->l('Next synchronization: {0}', 'PsGoogleShoppingTranslations'),
                   'prescanTitle' => $this->module->l('Coming up next synchronization', 'PsGoogleShoppingTranslations'),
                   'scheduleOn' => $this->module->l('Synchronization scheduled on {0}', 'PsGoogleShoppingTranslations'),
-                  'alert' => $this->module->l('To solve the synchronization issue, go to Help tab or [contact the customer support service](//google.com){:target="_blank"}.', 'PsGoogleShoppingTranslations'),
+                  'alert' => $this->module->l('To solve the synchronization issue, go to Help tab or [contact the customer support service](//google.com)[:target="_blank"].', 'PsGoogleShoppingTranslations'),
                 ],
                 'productStatus' => [
                     'title' => $this->module->l('Product approval status', 'PsGoogleShoppingTranslations'),
