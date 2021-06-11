@@ -219,7 +219,7 @@
       <!-- <b-button
         v-else
         variant="primary"
-        @click="saveChangeExistingMca()"
+        @click="saveChangeExistingGmc()"
       >
         {{ $t('cta.saveChange') }}
       </b-button> -->
@@ -253,7 +253,7 @@
 <script>
 /**
  * TODO: Handle events (close, continue, etc...)
- * Handle Existing MCA, check requirements that are already checked
+ * Handle Existing GMC, check requirements that are already checked
  * by filling the data.selectedRequirements[]
  */
 
@@ -323,9 +323,9 @@ export default {
     cancel() {
       this.$refs.MerchantCenterAccountPopinNewMca.hide();
     },
-    saveChangeExistingMca() {
+    saveChangeExistingGmc() {
       /**
-       * TODO: Save change when existing MCA
+       * TODO: Save change when existing GMC
        */
     },
   },

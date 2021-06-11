@@ -77,7 +77,7 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
+    commit(MutationsTypes.SAVE_GMC_ACCOUNT, selectedAccount);
   },
 
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS](
@@ -190,6 +190,9 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
+      if (json.account_id && json.merchant_id) {
+        dispatch(ActionsTypes.REQUEST_GOOGLE_MERCHANT_ACCOUNT_DETAILS);
+      }
       return json;
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
@@ -201,6 +204,17 @@ export default {
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, error);
     }
     return null;
+  },
+
+  async [ActionsTypes.REQUEST_GOOGLE_MERCHANT_ACCOUNT_DETAILS]({
+    commit, state, rootState,
+  }) {
+    const gmc: contentApi.Schema$Account = {
+      // TODO !0: must query the linked GMC from Google to have details,
+    };
+    // commit(MutationsTypes.SAVE_GMC_ACCOUNT, gmc);
+    // TODO !0: then trigger TRIGGER_WEBSITE_VERIFICATION_PROCESS
+    return gmc;
   },
 
   async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_GMC_LIST]({
@@ -217,7 +231,7 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_MCA_LIST, json);
+      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_GMC_LIST, json);
     } catch (error) {
       console.error(error);
     }
@@ -234,14 +248,14 @@ export default {
 
   [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit, dispatch, state}) {
     // ToDo: Add API calls if needed
-    commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
+    commit(MutationsTypes.REMOVE_GMC_ACCOUNT);
   },
 
   [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {
     //  ToDo: Add API call for get new status
     const resp = '';
 
-    // After response for API, change statement for claiming to trigger watcher on MCA card
+    // After response for API, change statement for claiming to trigger watcher on GMC card
     commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, false);
     setTimeout(() => {
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, resp);
@@ -272,6 +286,8 @@ export default {
       return {isVerified, isClaimed};
     } catch (error) {
       console.error(error);
+      // Remove token anyway
+      await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
       return {isVerified: false, isClaimed: false};
     }
   },
