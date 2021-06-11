@@ -37,17 +37,21 @@
       />
       <product-feed-settings-shipping
         v-if="activeStep == 1"
+        @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
       <product-feed-settings-export
         v-if="activeStep == 2"
         v-bind="$attrs"
+        @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
       <product-feed-settings-attribute-mapping
         v-if="activeStep == 3"
+        @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
       <product-feed-settings-summary
         v-bind="$attrs"
         v-if="activeStep == 4"
+        @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
     </b-card-body>
   </b-card>
@@ -92,10 +96,15 @@ export default {
       ],
     };
   },
-  props: {
-    activeStep: {
-      type: Number,
-      required: true,
+  computed: {
+    // Where do we get the active step ? Is it in backend ? For now it is just in the store
+    activeStep() {
+      return this.$store.state.productFeed.productFeed.stepper;
+    },
+  },
+  methods: {
+    productFeedCancelProcess() {
+      this.$emit('cancelProductFeedProcess');
     },
   },
 };

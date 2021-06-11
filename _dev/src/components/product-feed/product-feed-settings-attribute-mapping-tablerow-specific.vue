@@ -37,14 +37,14 @@
       class="pb-0 align-top"
       :class="isReport ? 'pt-md-0 pb-md-1' : 'py-md-3'"
     >
-      <b-form-group class="mb-0 text-left">
-        {{
-          isReport
-            ? $t(`productFeedSettings.attributeMapping.${input}`)
-            : $t('productFeedSettings.attributeMapping.theXField', [
-              $t(`productFeedSettings.attributeMapping.${input}`)
-            ])
-        }}
+      <b-form-group
+        class="mb-0 text-left"
+        v-html="isReport
+          ? $t(`productFeedSettings.attributeMapping.${input}`)
+          : $t('productFeedSettings.attributeMapping.theXField', [
+            $t(`productFeedSettings.attributeMapping.${input}`)
+          ])"
+      >
         <!-- Not in Batch 1 -->
         <!-- <b-form-radio
           v-model="selectedRadio"

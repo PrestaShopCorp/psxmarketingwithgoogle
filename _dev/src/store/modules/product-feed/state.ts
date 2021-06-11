@@ -19,9 +19,32 @@
 
 // ToDo: Replace every "any" in this file with the proper type
 export interface ProductFeedStatus {
-  lastSync: any;
+  nextSync?: string,
+  lastSync?: string;
   registerSyncData: any;
-  isSuspendSync: any;
+  failedSyncs: Array<string>;
+  successfulSyncs: Array<string>;
+  isSyncEnabled: boolean;
+}
+// ToDo: Update key name so you match the data coming from the API
+export interface ProductFeedSettingsSellingApparel {
+  color: string;
+  size: string;
+  age: string;
+  gender: string;
+}
+
+export interface ProductFeedSettingsSellingRefurbished {
+  condition: string;
+}
+
+export interface ProductFeedSettings {
+  autoImportTaxSettings: boolean;
+  targetCountries: Array<string>;
+  autoImportShippingSettings: boolean;
+  exportProductsWithShortDescription: boolean;
+  sellApparel: ProductFeedSettingsSellingApparel;
+  sellRefurbished: ProductFeedSettingsSellingRefurbished,
 }
 
 export interface FreeListingStatus {
@@ -29,23 +52,42 @@ export interface FreeListingStatus {
   summaryValidationList: any;
   status: any;
 }
-
 export interface State {
   productFeed: {
+    isConfigurationStarted: boolean,
+    isConfigured: boolean,
+    stepper: number,
     status: ProductFeedStatus,
-    settings: any,
+    settings: ProductFeedSettings,
   },
   freeListing: FreeListingStatus;
 }
 
 export const state: State = {
   productFeed: {
+    isConfigurationStarted: false,
+    isConfigured: false,
+    stepper: 1,
     status: {
-      lastSync: {},
+      failedSyncs: [],
+      successfulSyncs: [],
       registerSyncData: {},
-      isSuspendSync: null,
+      isSyncEnabled: true,
     },
     settings: {
+      autoImportTaxSettings: false,
+      targetCountries: [],
+      autoImportShippingSettings: false,
+      exportProductsWithShortDescription: true,
+      sellApparel: {
+        color: 'extra:color',
+        size: 'extra:size',
+        age: 'extra:age-group',
+        gender: 'extra:gender-group',
+      },
+      sellRefurbished: {
+        condition: 'extra:condition',
+      },
     },
   },
   freeListing: {

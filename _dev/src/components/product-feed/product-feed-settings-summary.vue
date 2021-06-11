@@ -20,12 +20,12 @@
           <product-feed-card-next-sync-card
             icon="event"
             :title="$t('productFeedSettings.summary.date')"
-            :description="nextSyncDate"
+            :description="nextSyncDate | timeConverterToDate"
           />
           <product-feed-card-next-sync-card
             icon="schedule"
             :title="$t('productFeedSettings.summary.time')"
-            :description="nextSyncTime"
+            :description="nextSyncDate | timeConverterToHour"
           />
         </b-row>
       </b-container>
@@ -47,14 +47,14 @@
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
-            link-to="#"
+            :link-to="{type : 'stepper', where: 1}"
           />
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
-            link-to="#"
+            :link-to="{type : 'stepper', where: 1}"
           />
           <product-feed-card-report-card
             status="success"
@@ -135,6 +135,7 @@
     </section>
     <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
       <b-button
+        @click="goBack"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
@@ -142,6 +143,7 @@
         {{ $t("cta.back") }}
       </b-button>
       <b-button
+        @click="cancel"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
@@ -149,6 +151,7 @@
         {{ $t("cta.cancel") }}
       </b-button>
       <b-button
+        @click="saveAll"
         size="sm"
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
@@ -180,17 +183,19 @@ export default {
     BTableSimple,
   },
   data() {
+    // TODO : retrieve products from backend for nextSyncTotalProducts
     return {
-      enabledProductFeed: true,
       nextSyncTotalProducts: '210',
-      nextSyncDate: '06/12/21',
-      nextSyncTime: '2:00 AM',
-      targetCountries: ['France', 'United States'],
-      shippingSettings: 'Automatic',
+      nextSyncDate: this.$store.state.productFeed.productFeed.status.nextSync,
+      targetCountries: this.$store.state.productFeed.productFeed.settings.targetCountries,
+      shippingSettings:
+      this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings
+        ? this.$t('productFeedSettings.shipping.automatically')
+        : this.$t('productFeedSettings.shipping.manually'),
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
-      sellRefurbished: true,
-      sellApparel: true,
+      sellRefurbished: !!this.$store.state.productFeed.productFeed.settings.sellRefurbished.length,
+      sellApparel: !!this.$store.state.productFeed.productFeed.settings.sellApparel.color,
     };
   },
   computed: {
@@ -199,6 +204,22 @@ export default {
       if (this.sellRefurbished) tableOfSpecifics.push('refurbished');
       if (this.sellApparel) tableOfSpecifics.push('apparel and accessories');
       return tableOfSpecifics.join(', ');
+    },
+  },
+  methods: {
+    goBack() {
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+    },
+    cancel() {
+      this.$emit('cancelProductFeedSettingsConfiguration');
+    },
+    saveAll() {
+      this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
+      this.$store.commit('productFeed/TOGGLE_CONFIGURATION_STARTED');
+      this.$store.commit('productFeed/TOGGLE_CONFIGURATION_FINISHED', true);
+      this.$router.push({
+        path: '/configuration',
+      });
     },
   },
 };

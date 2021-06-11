@@ -17,8 +17,17 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import {} from './state';
-import GetterTypes from './getters-types';
+import {
+  State as LocalState,
+  ProductFeedSettings,
+} from './state';
+import GettersTypes from './getters-types';
 
 export default {
+  [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
+    return state.productFeed.isConfigured;
+  },
+  [GettersTypes.GET_PRODUCT_FEED_SETTINGS](state: LocalState): ProductFeedSettings {
+    return state.productFeed.settings;
+  },
 };

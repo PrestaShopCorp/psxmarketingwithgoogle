@@ -57,6 +57,7 @@
     </div>
     <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
       <b-button
+        @click="goBack"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
@@ -64,6 +65,7 @@
         {{ $t("cta.back") }}
       </b-button>
       <b-button
+        @click="cancel"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
@@ -71,6 +73,7 @@
         {{ $t("cta.cancel") }}
       </b-button>
       <b-button
+        @click="nextStep"
         size="sm"
         :disabled="disableContinue"
         class="mx-1 mt-3 mt-md-0 mr-md-0"
@@ -323,6 +326,18 @@ export default {
        * ! Some validation will be necessary in batch 2
        */
       return false;
+    },
+  },
+
+  methods: {
+    goBack() {
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
+    },
+    nextStep() {
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+    },
+    cancel() {
+      this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
   /**

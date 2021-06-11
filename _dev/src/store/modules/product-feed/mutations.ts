@@ -19,6 +19,10 @@
 import MutationsTypes from './mutations-types';
 import {State as LocalState} from './state';
 
+type payloadObject = {
+  name: string, data: string
+}
+
 export default {
   [MutationsTypes.SET_VALIDATION_LIST_STATEMENT](state: LocalState, payload: any) {
     state.freeListing.validationList = payload;
@@ -29,13 +33,30 @@ export default {
   [MutationsTypes.SET_FREE_LISTING_STATUS](state: LocalState, payload: any) {
     state.freeListing.status = payload;
   },
-  [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: any) {
-    state.productFeed.status.lastSync = payload;
+  [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
+    state.productFeed.status[payload.name] = payload.data;
   },
   [MutationsTypes.SET_REGISTERED_DATA_SYNC](state: LocalState, payload: any) {
     state.productFeed.status.registerSyncData = payload;
   },
-  [MutationsTypes.SET_SUSPENDED_DATA_SYNC](state: LocalState, payload: any) {
-    state.productFeed.status.isSuspendSync = payload;
+  [MutationsTypes.SET_SUSPENDED_DATA_SYNC](state: LocalState, payload: boolean) {
+    state.productFeed.status.isSyncEnabled = payload;
+  },
+
+  //  Product Feed Card
+  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS](state: LocalState, payload: payloadObject) {
+    state.productFeed.settings[payload.name] = payload.data;
+  },
+
+  [MutationsTypes.TOGGLE_CONFIGURATION_STARTED](state: LocalState) {
+    state.productFeed.isConfigurationStarted = !state.productFeed.isConfigurationStarted;
+  },
+
+  [MutationsTypes.TOGGLE_CONFIGURATION_FINISHED](state: LocalState, payload: boolean) {
+    state.productFeed.isConfigured = payload;
+  },
+
+  [MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP](state: LocalState, payload: number) {
+    state.productFeed.stepper = payload;
   },
 };

@@ -61,7 +61,9 @@
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
         :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
+        @toggleSync="onSyncToggled"
       />
+
       <FreeListingCard
         v-if="stepsAreCompleted.step1"
         :is-enabled="!shopInConflictPsAccount && productFeedIsConfigured"
@@ -85,6 +87,10 @@
     <MerchantCenterAccountPopinDisconnect
       ref="mcaDisconnectModal"
     />
+
+    <ProductFeedPopinDisable
+      ref="productFeedDisableModal"
+    />
     <!-- Toast -->
     <PsToast
       variant="success"
@@ -102,6 +108,7 @@ import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
 import ProductFeedNotice from '../components/onboarding/product-feed-notice.vue';
+import ProductFeedPopinDisable from '../components/product-feed/product-feed-popin-disable.vue';
 import MerchantCenterAccountCard from '../components/merchant-center-account/merchant-center-account-card.vue';
 import ProductFeedCard from '../components/product-feed/product-feed-card.vue';
 import FreeListingCard from '../components/free-listing/free-listing-card.vue';
@@ -120,6 +127,7 @@ export default {
     ProductFeedNotice,
     MerchantCenterAccountCard,
     ProductFeedCard,
+    ProductFeedPopinDisable,
     FreeListingCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
@@ -159,6 +167,17 @@ export default {
         this.$refs.mcaDisconnectModal.$refs.modal.id,
       );
     },
+    onSyncToggled() {
+      // If user has sync already, we warn the user that the sync won't work anymore with modal
+      if (this.$store.state.productFeed.productFeed.status.isSyncEnabled) {
+        this.$bvModal.show(
+          this.$refs.productFeedDisableModal.$refs.modal.id,
+        );
+      // Else (user has not sync) we toggle the sync for the user
+      } else {
+        this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION', true);
+      }
+    },
   },
   computed: {
     shopInConflictPsAccount() {
@@ -189,7 +208,7 @@ export default {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
     productFeedIsConfigured() {
-      return false;
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
     stepsAreCompleted() {
       return {

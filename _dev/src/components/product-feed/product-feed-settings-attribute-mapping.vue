@@ -61,15 +61,17 @@
                 <b-form-radio
                   v-model="selectedDescriptionLength"
                   name="descriptionRadio"
-                  value="long"
+                  :value="false"
                   class="mb-2"
+                  :checked="!selectedDescriptionLength"
                 >
                   {{ $t('productFeedSettings.attributeMapping.longDescription') }}
                 </b-form-radio>
                 <b-form-radio
                   v-model="selectedDescriptionLength"
                   name="descriptionRadio"
-                  value="short"
+                  :value="true"
+                  :checked="selectedDescriptionLength"
                 >
                   {{ $t('productFeedSettings.attributeMapping.shortDescription') }}
                 </b-form-radio>
@@ -178,13 +180,16 @@
     </section>
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
+        @click="goBack"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
       >
         {{ $t("cta.back") }}
       </b-button>
+
       <b-button
+        @click="cancel"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
         variant="outline-secondary"
@@ -192,6 +197,7 @@
         {{ $t("cta.cancel") }}
       </b-button>
       <b-button
+        @click="nextStep"
         size="sm"
         :disabled="disableContinue"
         class="mx-1 mt-3 mt-md-0 mr-md-0"
@@ -221,13 +227,62 @@ export default {
   },
   data() {
     return {
-      disableContinue: true,
-      sellRefurbished: false,
-      sellApparel: false,
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
-      selectedDescriptionLength: 'long',
+
     };
+  },
+  computed: {
+    disableContinue() {
+      return false;
+    },
+    selectedDescriptionLength: {
+      get() {
+        return this.$store.state.productFeed.productFeed.settings.exportProductsWithShortDescription
+        || null;
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
+          name: 'exportProductsWithShortDescription',
+          data: value,
+        });
+      },
+    },
+    sellApparel: {
+      get() {
+        return !!this.$store.state.productFeed.productFeed.settings.sellApparel.color;
+      },
+      set(value) {
+        const data = value ? {condition: 'extra:color'} : {};
+        return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
+          name: 'sellApparel',
+          data,
+        });
+      },
+    },
+    sellRefurbished: {
+      get() {
+        return !!this.$store.state.productFeed.productFeed.settings.sellRefurbished.condition;
+      },
+      set(value) {
+        const data = value ? {condition: 'extra:condition'} : {};
+        return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
+          name: 'sellRefurbished',
+          data,
+        });
+      },
+    },
+  },
+  methods: {
+    goBack() {
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
+    },
+    nextStep() {
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
+    },
+    cancel() {
+      this.$emit('cancelProductFeedSettingsConfiguration');
+    },
   },
 };
 </script>
