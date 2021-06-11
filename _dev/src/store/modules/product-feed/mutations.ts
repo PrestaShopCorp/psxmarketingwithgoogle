@@ -18,10 +18,10 @@
  */
 import MutationsTypes from './mutations-types';
 import {State as LocalState} from './state';
+
 type payloadObject = {
   name: string, data: string
 }
-
 
 export default {
   [MutationsTypes.SET_VALIDATION_LIST_STATEMENT](state: LocalState, payload: any) {
@@ -48,7 +48,7 @@ export default {
     state.productFeed.settings[payload.name] = payload.data;
   },
 
-  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_STATUS](state: LocalState, payload: payloadObject ) {
+  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_STATUS](state: LocalState, payload: payloadObject) {
     state.productFeed.status[payload.name] = payload.data;
   },
 
