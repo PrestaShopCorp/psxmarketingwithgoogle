@@ -1,4 +1,6 @@
 enum GetterTypes {
+    GET_PRODUCT_FEED_IS_CONFIGURED = 'GET_PRODUCT_FEED_IS_CONFIGURED',
+    GET_PRODUCT_FEED_SETTINGS = 'GET_PRODUCT_FEED_SETTINGS',
 }
 
 export {GetterTypes as default};

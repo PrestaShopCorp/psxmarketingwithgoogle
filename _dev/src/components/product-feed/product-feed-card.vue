@@ -27,18 +27,20 @@
       >
         <span class="ps-switch ps-switch-sm">
           <input
+            @click.prevent="toggle"
             type="radio"
             name="switchEnable"
-            v-model="enabledProductFeed"
             :value="false"
+            v-model="productFeedSyncEnabled"
+            :checked="productFeedSyncEnabled"
           >
           <label for="example_off_3">{{ $t('cta.disabled') }}</label>
           <input
+            @click="toggle"
             type="radio"
             name="switchEnable"
-            v-model="enabledProductFeed"
             :value="true"
-            checked
+            :checked="productFeedSyncEnabled"
           >
           <label for="example_on_3">{{ $t('cta.enabled') }}</label>
           <span class="slide-button" />
@@ -47,7 +49,7 @@
     </div>
     <p
       class="ps_gs-fz-12"
-      v-if="!isEnabled"
+      v-if="!isConfigurationStarted"
     >
       {{ $t("productFeedCard.intro") }}
     </p>
@@ -56,7 +58,7 @@
       :badges="['merchantCenterAccount']"
     />
     <div v-if="isEnabled && toConfigure">
-      <p>
+      <p v-if="!isConfigurationStarted">
         {{ $t("productFeedCard.introToConfigure") }}<br>
         <a
           class="ps_gs-fz-12 text-muted"
@@ -76,11 +78,14 @@
         v-if="isEnabled"
       >
         <b-button
+          v-if="!isConfigurationStarted"
           size="sm"
           variant="primary"
+          @click="startConfiguration"
         >
           {{ $t("cta.configureAndExportProductFeed") }}
         </b-button>
+        <product-feed-settings-shipping v-else />
       </div>
     </div>
     <div v-if="isEnabled && !toConfigure">
@@ -137,7 +142,8 @@
           {{ $t('cta.forceSync') }}
         </b-button> -->
       </div>
-      <b-container
+      <!--  NOT IN BATCH 1 -->
+      <!-- <b-container
         fluid
         class="p-0 mb-2"
       >
@@ -160,7 +166,7 @@
             link-to="#"
           />
         </b-row>
-      </b-container>
+      </b-container> -->
       <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
         <h3 class="font-weight-600 ps_gs-fz-14 mb-0">
           {{ $t("productFeedSettings.breadcrumb2") }}
@@ -175,27 +181,29 @@
           class="mx-n1"
         >
           <product-feed-card-report-card
-            status="success"
+            :status="targetCountriesStatus"
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
-            link-to="#"
+            :link-to="{type : 'routeStep', where: '/product-feed', step: 1}"
           />
           <product-feed-card-report-card
-            status="warning"
+            :status="shippingSettingsStatus"
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
-            link-to="#"
+            :link-to="{type : 'routeStep', where: '/product-feed', step: 1}"
           />
           <product-feed-card-report-card
-            status="success"
+            v-if="isUS"
+            :status="taxSettingsStatus"
             :title="$t('productFeedSettings.shipping.taxSettings')"
             :description="taxSettings"
             :link="$t('cta.editSettings')"
-            link-to="#"
+            :link-to="{type : 'routeStep', where: '/product-feed', step: 1}"
           />
-          <product-feed-card-report-card
+          <!--  NOT IN BATCH 1 -->
+          <!-- <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.steps.syncRules')"
             :description="syncRules.join(', ')"
@@ -203,7 +211,7 @@
             :link="$t('cta.editRules')"
             link-to="#"
           />
-          <product-feed-card-report-card
+           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedCard.excludedProducts')"
             :description="`
@@ -212,19 +220,20 @@
             :details="excludedProductsDetails.join(', ')"
             :link="$t('cta.editRules')"
             link-to="#"
-          />
+          /> -->
           <product-feed-card-report-card
-            status="success"
+            :status="attributeMappingStatus"
             :title="$t('productFeedSettings.steps.attributeMapping')"
             :description="attributeMapping.join(', ') + '...'"
             :link="$t('cta.editAttributeMapping')"
-            link-to="#"
+            :link-to="{type : 'routeStep', where: '/product-feed', step: 3}"
           />
-          <product-feed-card-report-mapped-categories-card
+          <!--  NOT IN BATCH 1 -->
+          <!-- <product-feed-card-report-mapped-categories-card
             :has-mapping="hasMapping"
             :categories-mapped="categoriesMapped"
             :categories-total="categoriesTotal"
-          />
+          /> -->
         </b-row>
       </b-container>
     </div>
@@ -233,31 +242,28 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
-
 import Stepper from '../commons/stepper';
+import ProductFeedSettingsShipping from './product-feed-settings-shipping';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
-import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
-import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
+//  eslint-disable-next-line
+// import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
+// import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
   name: 'ProductFeedCard',
   components: {
     Stepper,
+    ProductFeedSettingsShipping,
     ProductFeedCardReportCard,
-    ProductFeedCardReportMappedCategoriesCard,
-    ProductFeedCardReportProductsCard,
+    // NOT IN BATCH 1
+    // ProductFeedCardReportMappedCategoriesCard,
+    // ProductFeedCardReportProductsCard,
     BadgeListRequirements,
+
   },
   data() {
     return {
-      enabledProductFeed: true,
-      nextSyncTime: '06/12/21 02:00',
-      lastSync: {
-        day: 'today',
-        time: '02:00',
-        totalProducts: 200,
-      },
       steps: [
         {
           title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
@@ -271,20 +277,26 @@ export default {
         {
           title: this.$i18n.t('productFeedSettings.steps.categoryMapping'),
         },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.exportFeed'),
-        },
+        // {
+        //   title: this.$i18n.t('productFeedSettings.steps.exportFeed'),
+        // },
       ],
+      // TODO : retrieve products from backend for totalProducts
+      lastSync: {
+        day: this.$options.filters.timeConverterToDate(
+          this.$store.state.productFeed.productFeed.status.lastSync,
+        ),
+        time: this.$options.filters.timeConverterToHour(
+          this.$store.state.productFeed.productFeed.status.lastSync,
+        ),
+        totalProducts: 200,
+      },
     };
   },
   props: {
     isEnabled: {
       type: Boolean,
       default: false,
-    },
-    toConfigure: {
-      type: Boolean,
-      default: true,
     },
     syncStatus: {
       type: String,
@@ -300,32 +312,12 @@ export default {
       type: Number,
       default: 0,
     },
-    alert: {
-      type: String,
-      default: null,
-      validator(value) {
-        return [
-          null,
-          'Success',
-          'Failed',
-          'ShippingSettingsMissing',
-          'ProductFeedDeactivated',
-          'ProductFeedExists',
-          'GoogleIsReviewingProducts',
-        ].indexOf(value) !== -1;
-      },
-    },
+
     nbProductsReadyToSync: {
       type: Number,
     },
     nbProductsCantSync: {
       type: Number,
-    },
-    targetCountries: {
-      type: Array,
-    },
-    shippingSettings: {
-      type: String,
     },
     taxSettings: {
       type: String,
@@ -339,11 +331,61 @@ export default {
     excludedProductsDetails: {
       type: Array,
     },
-    attributeMapping: {
-      type: Array,
-    },
   },
   computed: {
+    getProductFeedSettings() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'];
+    },
+    nextSyncTime() {
+      return this.$options.filters.timeConverterToDate(
+        this.$store.state.productFeed.productFeed.status.nextSync,
+      );
+    },
+    isUS() {
+      return this.targetCountries.includes('US');
+    },
+    isConfigurationStarted() {
+      return this.$store.state.productFeed.productFeed.isConfigurationStarted;
+    },
+    toConfigure() {
+      return !this.$store.state.productFeed.productFeed.isConfigured;
+    },
+    targetCountries() {
+      return this.getProductFeedSettings.targetCountries;
+    },
+    shippingSettings() {
+      return this.getProductFeedSettings.autoImportShippingSettings
+        ? this.$t('productFeedSettings.shipping.automatically')
+        : this.$t('productFeedSettings.shipping.manually');
+    },
+    shippingSettingsStatus() {
+      return this.getProductFeedSettings.autoImportShippingSettings !== undefined ? 'success' : 'warning';
+    },
+    targetCountriesStatus() {
+      return this.getProductFeedSettings.targetCountries.length ? 'success' : 'warning';
+    },
+    attributeMappingStatus() {
+      return this.getProductFeedSettings.sellApparel || this.getProductFeedSettings.sellRefurbished ? 'success' : 'warning';
+    },
+    taxSettingsStatus() {
+    //  TODO retrieve tax settings from backend
+      return 'warning';
+    },
+    productFeedSyncEnabled() {
+      return this.$store.state.productFeed.productFeed.status.isSyncEnabled;
+    },
+    attributeMapping: {
+    //  TODO maybe refacto to get also the attribute long description or refurbished if needed
+      get() {
+        const arr = [];
+        Object.keys(this.getProductFeedSettings.sellApparel)
+          .forEach((key) => {
+            arr.push(key);
+          });
+        return arr;
+      },
+    },
+
     title() {
       if (this.syncStatus === 'schedule') {
         return {
@@ -391,6 +433,33 @@ export default {
     },
     hasMapping() {
       return this.categoriesMapped > 0;
+    },
+    alert() {
+      // TODO How to know if 'ProductFeedExists'
+      if (!this.productFeedSyncEnabled) {
+        return 'ProductFeedDeactivated';
+      }
+      if (0 /* TODO: Check feed in under review */) {
+        return 'GoogleIsReviewingProducts';
+      } if (this.getProductFeedSettings.failedSyncs.length) {
+        return 'Failed';
+      } if (
+        this.getProductFeedSettings.autoImportShippingSettings === undefined
+      ) {
+        return 'ShippingSettingsMissing';
+      }
+      return null;
+    },
+  },
+  methods: {
+    startConfiguration() {
+      this.$store.commit('productFeed/TOGGLE_CONFIGURATION_STARTED');
+      this.$router.push({
+        path: '/product-feed',
+      });
+    },
+    toggle() {
+      this.$emit('toggleSync');
     },
   },
   googleUrl,

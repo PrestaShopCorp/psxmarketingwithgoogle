@@ -54,6 +54,8 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ProductFeedCard },
   template: '<ProductFeedCard v-bind="$props" />',
+  beforeMount: args.beforeMount,
+
 });
 
 export const Disabled:any = Template.bind({});
@@ -72,7 +74,10 @@ EnabledToConfigure.args = {
 
 export const EnabledConfigured:any = Template.bind({});
 EnabledConfigured.args = {
+  beforeMount: function(this: any) {
+    this.$store.state.productFeed.productFeed.isConfigured = true;
+    this.$store.state.productFeed.productFeed.isConfigurationStarted = true;
+  },
   isEnabled: true,
-  toConfigure: false,
   ...basicArgs,
 };

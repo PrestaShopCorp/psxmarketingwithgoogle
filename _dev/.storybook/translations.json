@@ -168,10 +168,12 @@
         "ifMultipleCountries" : "If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.",
         "productAvailaibleIn" : "Products available in",
         "placeholderSelect" : "Select the countries where your products are available",
-        "cantFindCountry" : "Can’t find a country? Only supported countries are listed. [Supported countries](//google.com){:target=\"_blank\"}\n\n Your shipping services must be configured for the country you are targeting. Please respect [country-specific shopping policies](//google.com){:target=\"_blank\"} and [local regulation](//google.com){:target=\"_blank\"}",
+        "cantFindCountry" : "Can’t find a country? Only supported countries are listed. [Supported countries](//support.google.com/merchants/answer/160637?hl=en&ref_topic=9216868){:target=\"_blank\"}\n\n Your shipping services must be configured for the country you are targeting. Please respect [country-specific shopping policies](//google.com){:target=\"_blank\"} and [local regulation](//google.com){:target=\"_blank\"}",
         "shippingSettings" : "Shipping settings",
         "autoImportShipping" : "Automatically import shipping settings",
         "autoImportShippingDescription" : "PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.",
+        "automatically" : "Automatically",
+        "manually" : "Manually",
         "manualShipping" : "Manually set up shipping settings in Google Merchant Center",
         "manualShippingDescription" : "You will go to Google Merchant Center and enter your product shipping information yourself. Your products won’t sync until you do this.",
         "taxSettings" : "Tax settings",
@@ -389,7 +391,8 @@
       "understandAndContinue" : "Understand and continue",
       "reviewProblems": "Review problems",
       "saveAndExport" : "Save and export",
-      "go" : "Go"
+      "go" : "Go",
+      "continueWithoutSave" : "Continue without save"
     },
     "badge" : {
       "free" : "Free",
@@ -420,7 +423,9 @@
       "titleDisableProductFeed" : "Disable product feed?",
       "textDisableProductFeed" : "Products will continue to show on Free Listings until the product feed has expired after 30 days.  \nSmart shopping campaigns will remain active as long as there are still active products in the merchant center - you will need to pause your campaigns.",
       "titleEnableFreeListing" : "Enable free listing?",
-      "textEnableFreeListing" : "This action will also cause the reactivation of the product feed."
+      "textEnableFreeListing" : "This action will also cause the reactivation of the product feed.",
+      "titleCancelWithoutSaving" : "Cancel without saving?",
+      "textCancelProductFeed" : "You will lose all unsaved changes. You need to complete the whole process to submit your data."
     },
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configured",
@@ -434,7 +439,8 @@
       "approvalStatusIssues" : "placeholder"
     },
     "toast": {
-      "googleAccountConnectedOnceSuccess" : "You have connected your Google account!"
+      "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
+      "attributesMapppingSuccess": "Your attributes are successfully mapped. Once you click on ‘Save’ your products will be sent to Google"
     },
     "stepper": {
       "nextStep" : "Next: {0}",

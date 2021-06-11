@@ -28,6 +28,7 @@ import VueShowdown from "vue-showdown";
 
 // import showdown extension
 import "../showdown.js";
+import '../src/utils/Filters';
 
 // import css style
 // theme.css v1.7.5 from the Back-Office
