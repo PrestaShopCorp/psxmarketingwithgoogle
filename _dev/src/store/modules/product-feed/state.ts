@@ -81,7 +81,7 @@ export const state: State = {
       exportProductsWithShortDescription: true,
       sellApparel: {
         color: 'extra:color',
-        size: '"extra:size',
+        size: 'extra:size',
         age: 'extra:age-group',
         gender: 'extra:gender-group',
       },
