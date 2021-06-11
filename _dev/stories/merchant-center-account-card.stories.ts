@@ -47,7 +47,7 @@ const Template = (args, {argTypes}) => ({
   methods: {
     fakeConnection(selectedAccount) {
       // @ts-ignore
-      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', {selectedAccount, correlationId: ''});
+      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', {selectedAccount, correlationId: ''});
       setTimeout(() => {
         // @ts-ignore
         this.$store.commit('accounts/SAVE_WEBSITE_VERIFICATION_AND_CLAIMING_STATUS', {isClaimed: true, isVerified: true});

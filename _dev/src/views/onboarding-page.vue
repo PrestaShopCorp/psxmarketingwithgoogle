@@ -137,7 +137,7 @@ export default {
     onMerchantCenterAccountSelected(selectedAccount) {
       this.isMcaLinking = true;
       const correlationId = `${Math.floor(Date.now() / 1000)}`;
-      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_ACCOUNT', {selectedAccount, correlationId})
+      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', {selectedAccount, correlationId})
         // must wait before to ask for status
         .then(() => new Promise((resolve) => setTimeout(resolve, 1000)))
         .then(() => this.$store.dispatch('accounts/TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS', correlationId))
@@ -147,6 +147,7 @@ export default {
     },
     onGoogleAccountConnection() {
       this.$store.dispatch('accounts/SAVE_GOOGLE_CONNECTION_ONCE');
+      this.$store.dispatch('accounts/TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED', true);
     },
     onGoogleAccountDissociationRequest() {
       this.$bvModal.show(

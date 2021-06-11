@@ -57,8 +57,8 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             case 'getCarrierValues':
                 $this->getCarrierValues();
                 break;
-            case 'toggleGmcLinkRegistration':
-                $this->toggleGmcLinkRegistration($inputs);
+            case 'toggleGoogleAccountIsRegistered':
+                $this->toggleGoogleAccountIsRegistered($inputs);
                 break;
             default:
                 http_response_code(400);
@@ -91,23 +91,23 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
     }
 
     /**
-     * Registering the GMC link in the shop database allows us to know if there
+     * Registering the GOOGLE ACCOUNT link in the shop database allows us to know if there
      * will be a conflict with another shop using the same domain name.
      */
-    private function toggleGmcLinkRegistration(array $inputs)
+    private function toggleGoogleAccountIsRegistered(array $inputs)
     {
-        if (!isset($inputs['isGmcLinked'])) {
+        if (!isset($inputs['isGoogleAccountLinked'])) {
             http_response_code(400);
             $this->ajaxDie(json_encode([
                 'success' => false,
-                'error' => 'Missing isGmcLinked key',
+                'error' => 'Missing isGoogleAccountLinked key',
             ]));
         }
 
-        if ((bool) $inputs['isGmcLinked']) {
-            $this->configurationAdapter->updateValue(Config::PS_GOOGLE_SHOPPING_GMC_IS_LINKED, true);
+        if ((bool) $inputs['isGoogleAccountLinked']) {
+            $this->configurationAdapter->updateValue(Config::PS_GOOGLE_ACCOUNT_IS_LINKED, true);
         } else {
-            $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_SHOPPING_GMC_IS_LINKED);
+            $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_ACCOUNT_IS_LINKED);
         }
         $this->ajaxDie(json_encode(['success' => true]));
     }

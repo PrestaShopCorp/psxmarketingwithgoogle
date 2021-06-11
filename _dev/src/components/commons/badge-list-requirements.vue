@@ -29,6 +29,9 @@ export default {
     badges: {
       type: Array,
     },
+    isEnabled: {
+      type: Boolean,
+    },
   },
 };
 </script>
