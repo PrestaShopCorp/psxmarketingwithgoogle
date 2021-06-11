@@ -193,11 +193,6 @@ export default {
       if (json.account_id && json.merchant_id) {
         commit(MutationsTypes.SAVE_GMC, {
           id: json.account_id,
-          isVerified: false,
-          isClaimed: false,
-          websiteVerificationStatus: null,
-          claimError: '',
-          users: [],
         });
         // If GMC is already linked, must start by requesting GMC list, then look after the link GMC
         dispatch(ActionsTypes.REQUEST_GMC_LIST);
