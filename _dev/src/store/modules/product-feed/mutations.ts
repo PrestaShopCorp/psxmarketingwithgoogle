@@ -18,6 +18,10 @@
  */
 import MutationsTypes from './mutations-types';
 import {State as LocalState} from './state';
+type payloadObject = {
+  name: string, data: string
+}
+
 
 export default {
   [MutationsTypes.SET_VALIDATION_LIST_STATEMENT](state: LocalState, payload: any) {
@@ -29,7 +33,7 @@ export default {
   [MutationsTypes.SET_FREE_LISTING_STATUS](state: LocalState, payload: any) {
     state.freeListing.status = payload;
   },
-  [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: any) {
+  [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
     state.productFeed.status[payload.name] = payload.data;
   },
   [MutationsTypes.SET_REGISTERED_DATA_SYNC](state: LocalState, payload: any) {
@@ -40,11 +44,11 @@ export default {
   },
 
   //  Product Feed Card
-  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS](state: LocalState, payload: any) {
+  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS](state: LocalState, payload: payloadObject) {
     state.productFeed.settings[payload.name] = payload.data;
   },
 
-  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_STATUS](state: LocalState, payload: any) {
+  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_STATUS](state: LocalState, payload: payloadObject ) {
     state.productFeed.status[payload.name] = payload.data;
   },
 
@@ -56,7 +60,7 @@ export default {
     state.productFeed.isConfigured = !state.productFeed.isConfigured;
   },
 
-  [MutationsTypes.UPDATE_STEPPER](state: LocalState, payload: any) {
+  [MutationsTypes.UPDATE_STEPPER](state: LocalState, payload: number) {
     state.productFeed.stepper = payload;
   },
 };

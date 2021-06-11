@@ -261,6 +261,7 @@ export default {
             data: {},
           });
         }
+        // TODO : when user able to change the value by themselves remove hardcoded value
         return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'sellApparel',
           data: {color: ['red']},
@@ -278,6 +279,7 @@ export default {
             data: [],
           });
         }
+        // TODO : when user able to change the value by themselves remove hardcoded value
         return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'sellRefurbished',
           data: ['new'],

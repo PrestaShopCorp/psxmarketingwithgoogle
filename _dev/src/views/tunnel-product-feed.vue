@@ -31,8 +31,6 @@ export default {
     ProductFeedPopinCancel,
   },
   computed: {
-    // ? Where do we get the active step ? Is it in backend ?
-    // ? For now it is just in the store and 1 by default
     activeStep() {
       return this.$store.state.productFeed.productFeed.stepper;
     },

@@ -28,10 +28,10 @@ export interface ProductFeedStatus {
 }
 
 export interface ProductFeedSettingsSellingApparel {
-  color: any;
-  size: any;
-  age: any;
-  gender: any;
+  color: string;
+  size: string;
+  age: string;
+  gender: string;
 }
 export interface ProductFeedSettings {
   autoImportTaxSettings: boolean;
