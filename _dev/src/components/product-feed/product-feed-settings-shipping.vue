@@ -179,7 +179,7 @@ export default {
     isUS() {
       return this.countries.includes('US');
     },
-    taxSettingsWithMerchandId() {
+    taxSettingsWithMerchantId() {
       console.log('this', this.$store.state.accounts.googleMerchantAccount);
       return `https://merchants.google.com/mc/tax/settings?a=${this.$store.state.accounts.googleMerchantAccount.id}`;
     },
