@@ -103,7 +103,12 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
             'tokenPsAccounts' => $tokenPsAccounts,
             'psGoogleShoppingApiUrl' => $this->env->get('PSX_GOOGLE_SHOPPING_API_URL'),
             'psGoogleShoppingAdminUrl' => $this->context->link->getAdminLink('AdminPsgoogleshoppingModule'),
-            'psGoogleShoppingAdminAjaxUrl' => $this->context->link->getAdminLink('AdminAjaxPsgoogleshopping'),
+            'psGoogleShoppingAdminAjaxUrl' => $this->context->link->getAdminLink(
+                'AdminAjaxPsgoogleshopping',
+                true,
+                [],
+                ['ajax' => 1],
+            ),
             'isCountryMemberOfEuropeanUnion' => $this->module->getService(CountryRepository::class)->isCompatibleForCSS(),
             'psGoogleShoppingShopUrl' => $this->context->link->getBaseLink($this->context->shop->id),
         ]);

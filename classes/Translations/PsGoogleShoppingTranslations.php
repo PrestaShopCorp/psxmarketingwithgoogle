@@ -121,6 +121,9 @@ class PsGoogleShoppingTranslations
                 'userIsNotAdmin' => $this->module->l('You need Administrator access', 'PsGoogleShoppingTranslations'),
                 'googleMCA' => $this->module->l('Google Merchant Center account', 'PsGoogleShoppingTranslations'),
                 'toUseGmcNeedsAdminAccess' => $this->module->l('To use an existing Google Merchant Center account, you must have Administrator access.', 'PsGoogleShoppingTranslations'),
+                'linkingFailed' => $this->module->l('You can\'t connect to your Merchant Center account right now. Try again later.', 'PsGoogleShoppingTranslations'),
+                'verifyOrClaimingFailed' => $this->module->l('Account validation failed', 'PsGoogleShoppingTranslations'),
+                'tryAgainLater' => $this->module->l('We can’t verify or claim the current site. Try again later.', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
@@ -447,7 +450,7 @@ class PsGoogleShoppingTranslations
                 'siteVerified' => $this->module->l('Site verified', 'PsGoogleShoppingTranslations'),
                 'productFeed' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),
                 'productFeedSettings' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),
-                'mca' => $this->module->l('Merchant Center account', 'PsGoogleShoppingTranslations'),
+                'merchantCenterAccount' => $this->module->l('Merchant Center account', 'PsGoogleShoppingTranslations'),
                 'googleAccount' => $this->module->l('Google account', 'PsGoogleShoppingTranslations'),
                 'paid' => $this->module->l('Paid', 'PsGoogleShoppingTranslations'),
                 'googleAdsAccount' => $this->module->l('Google Ads account', 'PsGoogleShoppingTranslations'),
@@ -471,6 +474,9 @@ class PsGoogleShoppingTranslations
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configured', 'PsGoogleShoppingTranslations'),
+                'merchantCenterAccountRequired' => $this->module->l('Requires Merchant center account configured', 'PsGoogleShoppingTranslations'),
+                'productFeedRequired' => $this->module->l('Requires Product feed configured', 'PsGoogleShoppingTranslations'),
+                'googleAdsAccountRequired' => $this->module->l('Requires Google Ads account configured', 'PsGoogleShoppingTranslations'),
                 'mustCheckAllRequirements' => $this->module->l('You must check if all requirements met.', 'PsGoogleShoppingTranslations'),
                 'mustAgreeGoogleTerms' => $this->module->l('You must agree the Google terms', 'PsGoogleShoppingTranslations'),
                 'approvalStatusStatus' => $this->module->l('placeholder', 'PsGoogleShoppingTranslations'),
