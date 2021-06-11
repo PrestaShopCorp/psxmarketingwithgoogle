@@ -249,8 +249,6 @@ import ProductFeedCardReportCard from './product-feed-card-report-card';
 //  eslint-disable-next-line
 // import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
 // import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
-import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
-import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
@@ -262,8 +260,6 @@ export default {
     // NOT IN BATCH 1
     // ProductFeedCardReportMappedCategoriesCard,
     // ProductFeedCardReportProductsCard,
-    ProductFeedCardReportMappedCategoriesCard,
-    ProductFeedCardReportProductsCard,
     BadgeListRequirements,
 
   },
