@@ -118,8 +118,7 @@ export default {
   async [ActionsTypes.TOGGLE_SYNCHRONIZATION]({commit, rootState}, payload: boolean) {
     commit(MutationsTypes.SET_SUSPENDED_DATA_SYNC,
       !rootState.productFeed.productFeed.status.isSyncEnabled);
-    let route = '';
-    route = payload ? `${rootState.app.psGoogleShoppingApiUrl}/sync/register`
+    const route = payload ? `${rootState.app.psGoogleShoppingApiUrl}/sync/register`
       : `${rootState.app.psGoogleShoppingApiUrl}/sync/suspend`;
     try {
       const response = await fetch(route, {
