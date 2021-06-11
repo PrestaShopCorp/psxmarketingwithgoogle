@@ -115,11 +115,14 @@ export default {
     }
   },
 
-  async [ActionsTypes.TOGGLE_SYNCHRONIZATION]({commit, rootState}, payload: any) {
+  async [ActionsTypes.TOGGLE_SYNCHRONIZATION]({commit, rootState}, payload: boolean) {
     commit(MutationsTypes.SET_SUSPENDED_DATA_SYNC,
       !rootState.productFeed.productFeed.status.isSyncEnabled);
+    let route = '';
+    route = payload ? `${rootState.app.psGoogleShoppingApiUrl}/sync/register`
+      : `${rootState.app.psGoogleShoppingApiUrl}/sync/suspend`;
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/sync/suspend`, {
+      const response = await fetch(route, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify(payload),
@@ -147,11 +150,11 @@ export default {
       autoImportShippingSettings: false,
       autoImportTaxSettings: true,
       exportProductsWithShortDescription: true,
-      customConditionAttribute: ['old', 'used', 'new'],
-      customColorAttribute: ['blue', 'red'],
-      customSizeAttribute: ['S', 'M', 'L'],
-      customAgeGroupAttribute: 'children',
-      customGenderGroupAttribute: 'female',
+      customConditionAttribute: '',
+      customColorAttribute: 'extra:color',
+      customSizeAttribute: 'extra:size',
+      customAgeGroupAttribute: 'extra:age-group',
+      customGenderGroupAttribute: '',
       targetCountries: [
         'FR',
         'IT',
@@ -169,8 +172,10 @@ export default {
         gender: json.customGenderGroupAttribute,
       },
     });
-    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'sellRefurbished', data: json.customConditionAttribute});
-
+    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+      name: 'sellRefurbished',
+      data: json.customConditionAttribute,
+    });
     // } catch (error) {
     //   console.error(error);
     // }

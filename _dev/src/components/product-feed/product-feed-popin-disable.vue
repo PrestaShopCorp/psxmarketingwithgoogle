@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     onProductFeedDisableConfirmation() {
-      this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION');
+      this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION', false);
     },
   },
 };

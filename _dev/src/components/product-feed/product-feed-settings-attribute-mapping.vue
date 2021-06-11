@@ -262,25 +262,25 @@ export default {
         // TODO : when user able to change the value by themselves remove hardcoded value
         return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'sellApparel',
-          data: {color: ['red']},
+          data: {color: 'extra:color'},
         });
       },
     },
     sellRefurbished: {
       get() {
-        return !!this.$store.state.productFeed.productFeed.settings.sellRefurbished.length;
+        return !!this.$store.state.productFeed.productFeed.settings.sellRefurbished.condition;
       },
       set(value) {
         if (value === false) {
           return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
             name: 'sellRefurbished',
-            data: [],
+            data: {},
           });
         }
         // TODO : when user able to change the value by themselves remove hardcoded value
         return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'sellRefurbished',
-          data: ['new'],
+          data: {condition: 'extra:condition'},
         });
       },
     },

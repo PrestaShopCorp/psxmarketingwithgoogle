@@ -36,15 +36,14 @@
           >
           <label for="example_off_3">{{ $t('cta.disabled') }}</label>
           <input
-            @click.native="toggle"
+            @click="toggle"
             type="radio"
             name="switchEnable"
             :value="true"
-            v-model="productFeedSyncEnabled"
             :checked="productFeedSyncEnabled"
           >
           <label for="example_on_3">{{ $t('cta.enabled') }}</label>
-          <span class="slide-button"   />
+          <span class="slide-button" />
         </span>
       </div>
     </div>
@@ -265,7 +264,6 @@ export default {
   },
   data() {
     return {
-      isSwitched: false,
       steps: [
         {
           title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
@@ -373,18 +371,11 @@ export default {
     //  TODO retrieve tax settings from backend
       return 'warning';
     },
-    productFeedSyncEnabled: {
-      get() {
-        return this.$store.state.productFeed.productFeed.status.isSyncEnabled;
-      },
-      set() {
-        this.$emit('toggleSync');
-      },
+    productFeedSyncEnabled() {
+      return this.$store.state.productFeed.productFeed.status.isSyncEnabled;
     },
     attributeMapping: {
-    //  TODO maybe refacto to get also the attributes
-    //  long description /andrefursbished product
-    //  For now there are only booleans
+    //  TODO maybe refacto to get also the attribute long description or refurbished if needed
       get() {
         const arr = [];
         Object.keys(this.getProductFeedSettings.sellApparel)

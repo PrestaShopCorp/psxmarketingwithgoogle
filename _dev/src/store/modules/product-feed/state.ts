@@ -33,13 +33,18 @@ export interface ProductFeedSettingsSellingApparel {
   age: string;
   gender: string;
 }
+
+export interface ProductFeedSettingsSellingRefurbished {
+  condition: string;
+}
+
 export interface ProductFeedSettings {
   autoImportTaxSettings: boolean;
   targetCountries: Array<string>;
   autoImportShippingSettings: boolean;
   exportProductsWithShortDescription: boolean;
   sellApparel: ProductFeedSettingsSellingApparel;
-  sellRefurbished: boolean
+  sellRefurbished: ProductFeedSettingsSellingRefurbished,
 }
 
 export interface FreeListingStatus {
@@ -75,12 +80,14 @@ export const state: State = {
       autoImportShippingSettings: false,
       exportProductsWithShortDescription: true,
       sellApparel: {
-        color: '',
-        size: '',
-        age: '',
-        gender: '',
+        color: 'extra:color',
+        size: '"extra:size',
+        age: 'extra:age-group',
+        gender: 'extra:gender-group',
       },
-      sellRefurbished: true,
+      sellRefurbished: {
+        condition: 'extra:condition',
+      },
     },
   },
   freeListing: {

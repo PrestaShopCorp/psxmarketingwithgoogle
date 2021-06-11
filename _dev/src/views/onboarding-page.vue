@@ -174,7 +174,7 @@ export default {
         );
       // Else (user has not sync) we toggle the sync for the user
       } else {
-        this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION');
+        this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION', true);
       }
     },
   },

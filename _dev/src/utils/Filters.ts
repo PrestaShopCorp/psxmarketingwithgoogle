@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 Vue.filter(
   'timeConverterToDate', (timestamp : string) => {
-    if (timestamp.length) {
+    if (timestamp) {
       const a = new Date(timestamp);
       const year = a.getFullYear();
       const month = a.getMonth();
@@ -17,7 +17,7 @@ Vue.filter(
 
 Vue.filter(
   'timeConverterToHour', (timestamp : string) => {
-    if (!timestamp.length) {
+    if (!timestamp) {
       const a = new Date(timestamp);
       const hour = a.getHours();
       const min = a.getMinutes();

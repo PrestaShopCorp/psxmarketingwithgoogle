@@ -1,7 +1,6 @@
 <template>
   <div
-      v-if="!isEnabled"
-      class="d-flex pt-2"
+    class="d-flex pt-2"
   >
     <span class="material-icons-round mr-2 mb-0 ps_gs-fz-16 align-self-center">
       error_outline
@@ -15,7 +14,7 @@
         class="list-inline-item"
       >
         <b-badge variant="muted">
-        {{ $t(`badge.${badge}`) }}
+          {{ $t(`badge.${badge}`) }}
         </b-badge>
       </li>
     </ul>
