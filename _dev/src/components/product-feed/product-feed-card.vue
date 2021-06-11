@@ -284,10 +284,10 @@ export default {
       // TODO : retrieve products from backend for totalProducts
       lastSync: {
         day: this.$options.filters.timeConverterToDate(
-          this.$store.state.productFeed.productFeed.status.lastSync,
+          this.getProductFeedStatus.lastSync,
         ),
         time: this.$options.filters.timeConverterToHour(
-          this.$store.state.productFeed.productFeed.status.lastSync,
+          this.getProductFeedStatus.lastSync,
         ),
         totalProducts: 200,
       },
@@ -336,9 +336,12 @@ export default {
     getProductFeedSettings() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'];
     },
+    getProductFeedStatus() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
+    },
     nextSyncTime() {
       return this.$options.filters.timeConverterToDate(
-        this.$store.state.productFeed.productFeed.status.nextSync,
+        this.getProductFeedStatus.nextSync,
       );
     },
     isUS() {
@@ -372,7 +375,7 @@ export default {
       return 'warning';
     },
     productFeedSyncEnabled() {
-      return this.$store.state.productFeed.productFeed.status.isSyncEnabled;
+      return this.getProductFeedStatus.isSyncEnabled;
     },
     attributeMapping: {
     //  TODO maybe refacto to get also the attribute long description or refurbished if needed
@@ -441,7 +444,7 @@ export default {
       }
       if (0 /* TODO: Check feed in under review */) {
         return 'GoogleIsReviewingProducts';
-      } if (this.getProductFeedSettings.failedSyncs.length) {
+      } if (this.getProductFeedStatus.failedSyncs.length) {
         return 'Failed';
       } if (
         this.getProductFeedSettings.autoImportShippingSettings === undefined
