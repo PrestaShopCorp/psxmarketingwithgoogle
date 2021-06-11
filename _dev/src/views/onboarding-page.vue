@@ -59,17 +59,11 @@
         @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
         :error="mcaError"
       />
-
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
-        :is-enabled="true"
+        :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
         @toggleSync="onSyncToggled"
       />
-      <!-- <ProductFeedCard
-        v-if="stepsAreCompleted.step1"
-        :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
-        @disableSync="onSyncDisabled"
-      /> -->
 
       <FreeListingCard
         v-if="stepsAreCompleted.step1"
