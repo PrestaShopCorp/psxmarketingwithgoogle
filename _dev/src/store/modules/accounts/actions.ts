@@ -17,7 +17,6 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
@@ -200,6 +199,7 @@ export default {
           claimError: '',
           users: [],
         });
+        // If GMC is already linked, must start by requesting GMC list, then look after the link GMC
         dispatch(ActionsTypes.REQUEST_GMC_LIST);
       }
       return json;
@@ -216,7 +216,7 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_GMC_LIST]({
-    commit, state, rootState,
+    commit, state, rootState, dispatch,
   }) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
@@ -230,7 +230,13 @@ export default {
       }
       const json = await response.json();
       commit(MutationsTypes.SAVE_GMC_LIST, json);
-      // TODO !0: if state.googleMerchantAccount.id, then fill: commit(MutationsTypes.SAVE_GMC, {...});
+
+      // Now we have the GMC merchant's list, if he already linked one, then must fill it now
+      if (state?.googleMerchantAccount?.id) {
+        const linkedGmc = json.find((gmc) => gmc.id === state.googleMerchantAccount.id);
+        commit(MutationsTypes.SAVE_GMC, linkedGmc);
+        dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+      }
     } catch (error) {
       console.error(error);
     }
