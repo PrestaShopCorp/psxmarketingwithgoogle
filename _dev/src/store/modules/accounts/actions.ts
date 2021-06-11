@@ -25,7 +25,12 @@ import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT](
-    {commit, rootState, state},
+    {
+      commit,
+      rootState,
+      dispatch,
+      state,
+    },
     webhookUrl: String,
   ) {
     try {
@@ -48,7 +53,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.SAVE_SELECTED_GOOGLE_ACCOUNT](
+  async [ActionsTypes.SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT](
     {
       commit,
       rootState,
@@ -72,9 +77,7 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-
     commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
-    dispatch(ActionsTypes.TOGGLE_GMC_LINK_REGISTRATION, true);
   },
 
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS](
@@ -122,19 +125,22 @@ export default {
     }
   },
 
-  async [ActionsTypes.TOGGLE_GMC_LINK_REGISTRATION]({rootState}, isGmcLinked: boolean) {
+  async [ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED]({
+    rootState,
+  }, isGoogleAccountLinked: boolean) {
     const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
-        action: 'toggleGmcLinkRegistration',
-        isGmcLinked,
+        action: 'toggleGoogleAccountIsRegistered',
+        isGoogleAccountLinked,
       }),
     });
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    return response.json();
+    const finished = await response.json();
+    return finished;
   },
 
   // Comment to delete : launch toast Google account connected ONCE after connected
@@ -223,12 +229,12 @@ export default {
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
+    dispatch(ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED, false);
   },
 
   [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit, dispatch, state}) {
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
-    dispatch(ActionsTypes.TOGGLE_GMC_LINK_REGISTRATION, false);
   },
 
   [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {
