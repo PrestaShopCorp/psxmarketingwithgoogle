@@ -239,9 +239,7 @@ export default {
     selectedDescriptionLength: {
       get() {
         return this.$store.state.productFeed.productFeed.settings.exportProductsWithShortDescription
-        !== 'undefined'
-          ? this.$store.state.productFeed.productFeed.settings.exportProductsWithShortDescription
-          : null;
+        || null;
       },
       set(value) {
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
