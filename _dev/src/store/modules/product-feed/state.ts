@@ -19,7 +19,7 @@
 
 // ToDo: Replace every "any" in this file with the proper type
 export interface ProductFeedStatus {
-  nextSync: string,
+  nextSync?: string,
   lastSync: string;
   registerSyncData: any;
   failedSyncs: Array<string>;
