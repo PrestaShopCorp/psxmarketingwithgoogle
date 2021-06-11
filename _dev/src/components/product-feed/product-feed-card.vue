@@ -24,7 +24,7 @@
       <div
         v-if="!toConfigure && isEnabled"
         class="ml-auto mb-0"
-      >{{productFeedSyncEnabled}}
+      >
         <span class="ps-switch ps-switch-sm">
           <input
             @click.prevent="toggle"
@@ -36,7 +36,7 @@
           >
           <label for="example_off_3">{{ $t('cta.disabled') }}</label>
           <input
-            @click.prevent="toggle"
+            @click.native="toggle"
             type="radio"
             name="switchEnable"
             :value="true"
@@ -393,8 +393,13 @@ export default {
     //  TODO retrieve tax settings from backend
       return 'warning';
     },
-    productFeedSyncEnabled() {
+    productFeedSyncEnabled: {
+      get() {
         return this.$store.state.productFeed.productFeed.status.isSyncEnabled;
+      },
+      set() {
+        this.$emit('toggleSync');
+      },
     },
     attributeMapping: {
     //  TODO maybe refacto to get also the attribute long description if needed
@@ -483,8 +488,8 @@ export default {
       });
     },
     toggle() {
-      this.$emit('toggleSync')
-    }
+      this.$emit('toggleSync');
+    },
   },
   googleUrl,
 };

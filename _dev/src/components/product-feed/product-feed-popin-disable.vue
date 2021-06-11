@@ -4,7 +4,6 @@
     :title="$t('modal.titleDisableProductFeed')"
     v-bind="$attrs"
     ref="modal"
-    @cancel="cancelDisabledProductFeed"
     @ok="onProductFeedDisableConfirmation"
   >
     <VueShowdown
@@ -31,9 +30,6 @@ export default {
   methods: {
     onProductFeedDisableConfirmation() {
       this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION');
-    },
-    cancelDisabledProductFeed() {
-      console.log('je cancel');
     },
   },
 };
