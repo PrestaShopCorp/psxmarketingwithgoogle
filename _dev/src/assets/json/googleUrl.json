@@ -7,8 +7,19 @@
   "accurateContactInformation" : "//google.com",
   "secureCheckoutProcess" : "//google.com",
   "returnPolicy" : "//google.com",
-  "billingTerms" : "//google.com",
+  "billingTerms" : "https://support.google.com/merchants/answer/6150127?visit_id=637589299758281706-2298383669&rd=1#omission-of-relevant-information",
   "completeCheckoutProcess" : "//google.com",
   "policyAdultContent" : "//google.com",
-  "manageGoogleAccount" : "https://myaccount.google.com/"
+  "manageGoogleAccount" : "https://myaccount.google.com/",
+  "createNewMerchantCenter" : "https://support.google.com/merchants/answer/7679093",
+  "eligibilityRequirements" : "https://support.google.com/merchants/answer/9199328",
+  "learnAboutFreeListing" : "https://support.google.com/merchants/answer/9826670",
+  "learnAboutSmartShopingCampaigns" : "https://support.google.com/google-ads/answer/7674739",
+  "comparisonShoppingServices" : "https://support.google.com/merchants/answer/7558973",
+  "findCssPartners" : "https://comparisonshoppingpartners.withgoogle.com/find_a_partner/?page=0&seed=6501211",
+  "googleWebsiteRequirements" : "//google.com",
+  "googleTermsAndPolicies" : "//google.com",
+  "googleMerchantCenterTermsOfService" : "//google.com",
+  "googleAdsTermsAndConditions" : "//google.com",
+  "merchantCenterAccount" : "//google.com"
 }

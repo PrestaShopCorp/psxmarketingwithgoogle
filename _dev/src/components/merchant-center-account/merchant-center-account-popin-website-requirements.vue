@@ -179,7 +179,12 @@
           v-model="acceptsGoogleTerms"
         >
           <VueShowdown
-            :markdown="$t('mcaRequirements.labelReadAndAgree')"
+            :markdown="$t('mcaRequirements.labelReadAndAgree', [
+              this.$options.googleUrl.googleTermsAndPolicies,
+              this.$options.googleUrl.googleMerchantCenterTermsOfService,
+              this.$options.googleUrl.shoppingAdsPolicies,
+              this.$options.googleUrl.googleAdsTermsAndConditions
+            ])"
             :extensions="['targetlink']"
           />
         </b-form-checkbox>
@@ -191,7 +196,7 @@
     >
       <a
         class="ps_gs-fz-12 text-muted mr-sm-auto"
-        href="//google.com"
+        :href="$options.googleUrl.googleWebsiteRequirements"
         target="_blank"
       >
         {{ $t('mcaRequirements.footer') }}
