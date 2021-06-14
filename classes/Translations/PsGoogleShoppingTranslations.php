@@ -62,23 +62,23 @@ class PsGoogleShoppingTranslations
             'landingPage' => [
                 'header' => [
                     'title' => $this->module->l('PrestaShop Google Shopping', 'PsGoogleShoppingTranslations'),
-                    'text' => $this->module->l('PrestaShop Google Shopping makes it easy to connect your store with Google, so you can showcase your products to millions of shoppers across Google Search, Shopping, Gmail, YouTube, and the Display Network.', 'PsGoogleShoppingTranslations'),
+                    'text' => $this->module->l('Show your products on Google and reach millions of shoppers actively looking for what your offer across Google network.', 'PsGoogleShoppingTranslations'),
                     'reinsurance' => $this->module->l("- Easy setup \n- Cancel anytime", 'PsGoogleShoppingTranslations'),
                 ],
                 'content' => [
                     'content1' => [
-                        'title' => $this->module->l('Connect your store to Google Merchant Center', 'PsGoogleShoppingTranslations'),
-                        'text' => $this->module->l('Connecting your store to Google Merchant Center allows you to upload store and product data to Google. Your products will automatically sync to make relevant information available for free listings, Google Ads, and other Google services.', 'PsGoogleShoppingTranslations'),
-                        'footer' => $this->module->l('You can create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing account. Note that you’ll need to meet the Merchant Center [eligibility requirements]({1})[:target=\"_blank\"] in order to connect your store.', 'PsGoogleShoppingTranslations'),
+                        'title' => $this->module->l('1. Always show accurate product information', 'PsGoogleShoppingTranslations'),
+                        'text' => $this->module->l('Once you upload your store and products data to Google directly from PrestaShop these information will be available and automatically synced for free listings, Google Ads, and other Google services.', 'PsGoogleShoppingTranslations'),
+                        'footer' => $this->module->l('Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \n**To show your products on Google** you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]', 'PsGoogleShoppingTranslations'),
                     ],
                     'content2' => [
-                        'title' => $this->module->l('Reach online shoppers with free listings', 'PsGoogleShoppingTranslations'),
-                        'text' => $this->module->l('Free listings drive traffic by showcasing your products to customers who are actively looking for what you sell. Your products will appear on the Google Shopping tab, and can also appear on Google Search, Google Images, and Gmail depending on regional availability.', 'PsGoogleShoppingTranslations'),
+                        'title' => $this->module->l('2. Get your products found by interested shoppers', 'PsGoogleShoppingTranslations'),
+                        'text' => $this->module->l('Free listings let you list your products for free in the Shopping tab and show them to potential customers at the exact moment when they are looking for what your store offers.', 'PsGoogleShoppingTranslations'),
                         'footer' => $this->module->l('[Learn more about free listings]({0})[:target=\"_blank\"]', 'PsGoogleShoppingTranslations'),
                     ],
                     'content3' => [
-                        'title' => $this->module->l('Boost store traffic and sales with Google Ads', 'PsGoogleShoppingTranslations'),
-                        'text' => $this->module->l('Smart Shopping campaigns help you reach even more customers and grow your business by promoting your products across Google Search, Shopping, YouTube, Gmail, and the Display Network. They use Google’s technology to optimize your ads and automatically show your products to customers who are more likely to buy and spend more.', 'PsGoogleShoppingTranslations'),
+                        'title' => $this->module->l('3. Boost traffic and sales with Smart Shopping campaign', 'PsGoogleShoppingTranslations'),
+                        'text' => $this->module->l('Reach even more customers **with paid ads** and grow your **sale** by promoting your products **to the right customers** across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns**', 'PsGoogleShoppingTranslations'),
                         'footer' => $this->module->l('[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]', 'PsGoogleShoppingTranslations'),
                     ],
                 ],
@@ -385,7 +385,7 @@ class PsGoogleShoppingTranslations
                 'message' => $this->module->l("Can't see Google secured browser?  \n  Hit Continue to relaunch the window and finish configuration.  \n  You may need to activate popups in your browser to continue.", 'PsGoogleShoppingTranslations'),
             ],
             'cta' => [
-                'getStarted' => $this->module->l('Get started', 'PsGoogleShoppingTranslations'),
+                'startConfiguring' => $this->module->l('Start configuring', 'PsGoogleShoppingTranslations'),
                 'connect' => $this->module->l('Connect', 'PsGoogleShoppingTranslations'),
                 'dissociate' => $this->module->l('Dissociate', 'PsGoogleShoppingTranslations'),
                 'manageAccount' => $this->module->l('Manage account', 'PsGoogleShoppingTranslations'),

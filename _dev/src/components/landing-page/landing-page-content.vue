@@ -13,9 +13,10 @@
       <h3 class="ps_gs-landingpage-content__title mb-3">
         {{ contentTitle }}
       </h3>
-      <p class="ps_gs-landingpage-content__text">
-        {{ contentText }}
-      </p>
+      <VueShowdown
+        :markdown="contentText"
+        class="ps_gs-landingpage-content__text"
+      />
       <div
         class="ps_gs-landingpage-content__muted text-muted"
       >
