@@ -50,8 +50,7 @@
           v-if="!accessToken"
           class="ps_gs-fz-12 mb-0"
         >
-          {{ $t('googleAccountCard.introEnabled') }}<br>
-          <span class="text-muted ps_gs-fz-12">This step is mandatory</span>
+          {{ $t('googleAccountCard.introEnabled') }}<span class="text-danger">*</span>
         </p>
         <div
           v-else

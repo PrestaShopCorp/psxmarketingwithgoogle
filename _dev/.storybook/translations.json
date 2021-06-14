@@ -40,11 +40,11 @@
     },
     "onboarding" : {
       "sectionTitle" : {
-        "psAccount" : "Your PrestaShop account",
-        "freeListing" : "Activate your free product listings",
-        "smartShoppingCampaign" : "Launch your paid Smart Shopping campaign"
+        "psAccount" : "Connect your PrestaShop account",
+        "freeListing" : "Get your products on Google with free listings",
+        "smartShoppingCampaign" : "Reach more people with paid Smart Shopping campaign"
       },
-      "productFeedNotice" : "Google’s retail solutions can help you welcome more customers to your site or your store. After you get set up, you’ll have access to reports so you can see how well your ads are doing.",
+      "productFeedNotice" : "Google’s free listings and Smart Shopping campaigns can help you welcome more customers to your site or your store. After you get set up, you’ll have access to performance reports so you can see how well your ads are doing.",
       "warningMultistore":  "You can associate only one shop to your Prestashop Account.",
       "GMCAlreadyLinked":  "Your PrestaShop account is already linked to another store. You can associate only one store to a PrestaShop account. To associate this other store you have to unlink the associated one."
     },
@@ -54,15 +54,15 @@
     },
     "googleAccountCard" : {
       "title" : "Google account",
-      "introDisabled" : "When you are done connecting your PrestaShop account you will be able to connect your Google accounts.",
-      "introEnabled" : "A Google Account lets you access your Google Merchant Center and Google Ads accounts",
+      "introDisabled" : "Connect your Google account and associated with it Google Merchant Center to unlock free listing.",
+      "introEnabled" : "Access through PrestaShop module associated with your email account Google Merchant Center and Google Ads accounts.",
       "footerDissociating" : "Dissociating your Google account will disconnect your Google Merchant Center and your Google Ads accounts.",
       "alertCantConnect" : "You can't connect to your Google account right now. Refresh and try again later.",
       "alertTokenMissing" : "The account token is missing. Try again to connect to your Google account or switch to another one."
     },
     "mcaCard" : {
-      "title" : "Make your products available to shoppers accross Google",
-      "introDisabled" : "Associate your Merchant Center account to get your store and products information into Google",
+      "title" : "Merchant Center account",
+      "introDisabled" : "Associate your Merchant Center account with PrestaShop to ease synchronisation of your store and product data",
       "introEnabled" : "[Google Merchant Center]({0})[:target=\"_blank\"] helps you get your store and product info into Google and make it available to shoppers across Google.",
       "labelSelect" : "Connect an existing Merchant Center account",
       "claimCollides" : "Your current website claim collides with an existing claim",
@@ -130,8 +130,8 @@
       "alert" : "If one of these requirements is missing, your Merchant Center account will be disapproved."
     },
     "productFeedCard" : {
-      "title" : "Send your products data to Google",
-      "intro" : "Display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns with Product feed",
+      "title" : "Product feed settings",
+      "intro" : "Submit your store and product data directly to Merchant Center and always keep them up to date for free listing and ads.",
       "introToConfigure" : "Submitting your product data to Google in the correct format is important for creating successful ads and free listings for your products. We use this data to make sure that it's matched to the right queries.",
       "nextSync" : "Next synchronization: {0}",
       "syncFailedAt" : "Synchronization failed {0} at {1}",
@@ -264,7 +264,7 @@
     },
     "googleAdsAccountCard" : {
       "title" : "Connect your Google Ads account",
-      "intro" : "Create adverstising campaigns for your products: find the right audience at the right time",
+      "intro" : "Launch an advertising campaign for your products and reach more users across four different Google networks.",
       "text" : "Once connected you may need to configure your billing settings in your Google Ads account.",
       "labelSelect" : "Connect an existing Google Ads account",
       "id" : "Google Ads account ID"
@@ -355,7 +355,7 @@
       "createNewMCA" : "Create new Merchant Center account",
       "learnAboutAccountSuspension" : "Learn about account suspension",
       "learnAboutSiteClaiming" : "Learn about site claiming",
-      "learnAboutGoogleSolutions" : "Learn more about Google's retail solutions",
+      "learnMoreAboutSmartShoppingCampaigns" : "Learn more about Smart Shopping campaigns",
       "configureAndExportProductFeed" : "Configure and export product feed",
       "chooseAccount" : "Choose your account",
       "supportedCountries" : "Supported countries",
@@ -429,7 +429,7 @@
       "textCancelProductFeed" : "You will lose all unsaved changes. You need to complete the whole process to submit your data."
     },
     "tooltip" : {
-      "googleAccountRequired" : "Requires Google account configured",
+      "googleAccountRequired" : "Requires Google account configuration",
       "merchantCenterAccountRequired" : "Requires Merchant center account configured",
       "productFeedRequired" : "Requires Product feed configured",
       "googleAdsAccountRequired" : "Requires Google Ads account configured",

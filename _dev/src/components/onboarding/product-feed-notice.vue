@@ -10,7 +10,7 @@
       target="_blank"
       class="text-muted ps_gs-fz-12 px-2"
     >
-      {{ $t('cta.learnAboutGoogleSolutions') }}
+      {{ $t('cta.learnMoreAboutSmartShoppingCampaigns') }}
     </a>
   </b-card>
 </template>
