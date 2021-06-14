@@ -227,7 +227,7 @@ export default {
       commit(MutationsTypes.SAVE_GMC_LIST, json);
 
       // Now we have the GMC merchant's list, if he already linked one, then must fill it now
-      if (state?.googleMerchantAccount?.id) {
+      if (state.googleMerchantAccount.id) {
         const linkedGmc = json.find((gmc) => gmc.id === state.googleMerchantAccount.id);
         commit(MutationsTypes.SAVE_GMC, linkedGmc);
         dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
