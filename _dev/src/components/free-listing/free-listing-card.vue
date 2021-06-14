@@ -139,39 +139,42 @@ export default {
   },
   computed: {
     alert() {
-      console.log(this.$store.getters['productFeed/GET_STATUS_OF_FREE_LISTING']);
-      console.log(this.$store.getters['productFeed/GET_STATUS_OF_PRODUCT_FEED']);
-      console.log(this.$props);
-      if (this.$store.getters['productFeed/GET_STATUS_OF_FREE_LISTING'] === true
-      && this.$store.getters['productFeed/GET_STATUS_OF_PRODUCT_FEED'] === false) {
+      if (this.freeListingIsEnabled === true
+      && this.productSyncIsEnabled === false) {
         return {
           variant: 'warning',
           text: 'alertProductFeedDisabled',
         };
-      } if (this.$store.getters['productFeed/GET_STATUS_OF_FREE_LISTING'] === false
-      && this.$store.getters['productFeed/GET_STATUS_OF_PRODUCT_FEED'] === false
+      } if (this.freeListingIsEnabled === false
+      && this.productSyncIsEnabled === false
       && this.enabledFreeListing === false) {
         return {
           variant: 'warning',
           text: 'alertEnableFreeListingAndProductFeed',
         };
       }
-      if (this.$store.getters['productFeed/GET_STATUS_OF_FREE_LISTING'] === false
+      if (this.freeListingIsEnabled === false
       && this.firstTime === false
-      && this.$store.getters['productFeed/GET_STATUS_OF_PRODUCT_FEED'] === true) {
+      && this.productSyncIsEnabled === true) {
         return {
           variant: 'warning',
           text: 'alertEnableFreeListing',
         };
       } if (this.enabledFreeListing === true
-      && this.$store.getters['productFeed/GET_STATUS_OF_FREE_LISTING'] === true
-      && this.$store.getters['productFeed/GET_STATUS_OF_PRODUCT_FEED'] === true) {
+      && this.freeListingIsEnabled === true
+      && this.productSyncIsEnabled === true) {
         return {
           variant: 'success',
           text: 'alertActivationSuccess',
         };
       }
       return null;
+    },
+    productSyncIsEnabled() {
+      return this.$store.getters['productFeed/GET_SYNC_STATUS_OF_PRODUCT_FEED'];
+    },
+    freeListingIsEnabled() {
+      return this.$store.getters['productFeed/GET_FREE_LISTING_STATUS'];
     },
   },
   methods: {

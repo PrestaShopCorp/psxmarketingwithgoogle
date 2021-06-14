@@ -30,7 +30,6 @@
             @click.prevent="toggle"
             type="radio"
             name="switchEnable"
-            v-model="enabledProductFeed"
             @change="disableProductFeed"
             :value="false"
             :checked="productFeedSyncEnabled"
@@ -40,7 +39,6 @@
             @click="toggle"
             type="radio"
             name="switchEnable"
-            v-model="enabledProductFeed"
             @change="activateProductFeed"
             :value="true"
             :checked="productFeedSyncEnabled"
@@ -238,9 +236,6 @@
         </b-row>
       </b-container>
     </div>
-    <FreeListingPopinDisable
-      ref="PopinFreeListingDisable"
-    />
   </b-card>
 </template>
 
@@ -252,9 +247,6 @@ import ProductFeedCardReportCard from './product-feed-card-report-card';
 // import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
 // import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
-import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
-import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
-import FreeListingPopinDisable from '../free-listing/free-listing-popin-disable';
 
 export default {
   name: 'ProductFeedCard',
@@ -262,13 +254,9 @@ export default {
     Stepper,
     ProductFeedCardReportCard,
     // NOT IN BATCH 1
+    BadgeListRequirements,
     // ProductFeedCardReportMappedCategoriesCard,
     // ProductFeedCardReportProductsCard,
-    BadgeListRequirements,
-
-    ProductFeedCardReportMappedCategoriesCard,
-    ProductFeedCardReportProductsCard,
-    FreeListingPopinDisable,
   },
   data() {
     return {
@@ -475,8 +463,6 @@ export default {
     toggle() {
       this.$emit('toggleSync');
     },
-  },
-  methods: {
     disableProductFeed() {
       if (this.$refs.PopinFreeListingDisable) {
         this.$bvModal.show(
@@ -485,7 +471,7 @@ export default {
       }
     },
     activateProductFeed() {
-      this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_STATUS', true);
+      this.$store.dispatch('productFeed/SEND_FREE_LISTING_STATUS', true);
     },
   },
   googleUrl,
