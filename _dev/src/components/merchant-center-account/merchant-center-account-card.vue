@@ -89,12 +89,13 @@
             class="mt-3 mt-md-0 ml-md-3"
             @click="selectMerchantCenterAccount"
           >
-            {{ $t('cta.chooseExistingAccount') }}
+            {{ $t('cta.connect') }}
           </b-button>
         </div>
-        <p class="text-muted ps_gs-fz-12 mt-3 mt-md-0">
-          {{ $t('mcaCard.toUseGmcNeedsAdminAccess') }}
-        </p>
+        <VueShowdown
+          class="text-muted ps_gs-fz-12 mt-3 mt-md-0"
+          :markdown="$t('mcaCard.toUseGmcNeedsAdminAccess')"
+        />
         <b-alert
           v-if="error === WebsiteClaimErrorReason.LinkingFailed"
           show

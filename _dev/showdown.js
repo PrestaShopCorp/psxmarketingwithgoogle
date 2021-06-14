@@ -28,3 +28,14 @@ showdown.extension('targetlink', () => [
     },
   },
 ]);
+
+showdown.extension('no-p-tag',  () => [
+  {
+    type: 'output',
+    filter: function (text) {
+      // remove paragraphs
+      text = text.replace(/<\/?p[^>]*>/g, '');
+      return text;
+    },
+  },
+]);
