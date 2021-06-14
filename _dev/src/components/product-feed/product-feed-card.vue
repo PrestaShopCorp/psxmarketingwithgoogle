@@ -281,16 +281,6 @@ export default {
         //   title: this.$i18n.t('productFeedSettings.steps.exportFeed'),
         // },
       ],
-      // TODO : retrieve products from backend for totalProducts
-      lastSync: {
-        day: this.$options.filters.timeConverterToDate(
-          this.getProductFeedStatus.lastSync,
-        ),
-        time: this.$options.filters.timeConverterToHour(
-          this.getProductFeedStatus.lastSync,
-        ),
-        totalProducts: 200,
-      },
     };
   },
   props: {
@@ -388,7 +378,18 @@ export default {
         return arr;
       },
     },
-
+    // TODO : retrieve products from backend for totalProducts
+    lastSync() {
+      return {
+        day: this.$options.filters.timeConverterToDate(
+          this.getProductFeedStatus?.lastSync,
+        ),
+        time: this.$options.filters.timeConverterToHour(
+          this.getProductFeedStatus?.lastSync,
+        ),
+        totalProducts: 200,
+      };
+    },
     title() {
       if (this.syncStatus === 'schedule') {
         return {

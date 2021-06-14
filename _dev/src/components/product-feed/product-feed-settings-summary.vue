@@ -194,8 +194,6 @@ export default {
         : this.$t('productFeedSettings.shipping.manually'),
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
-      sellRefurbished: !!this.$store.state.productFeed.productFeed.settings.sellRefurbished.length,
-      sellApparel: !!this.$store.state.productFeed.productFeed.settings.sellApparel.color,
     };
   },
   computed: {
@@ -204,6 +202,16 @@ export default {
       if (this.sellRefurbished) tableOfSpecifics.push('refurbished');
       if (this.sellApparel) tableOfSpecifics.push('apparel and accessories');
       return tableOfSpecifics.join(', ');
+    },
+    sellApparel: {
+      get() {
+        return this.$store.getters['product-feed/GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES'];
+      },
+    },
+    sellRefurbished: {
+      get() {
+        return this.$store.getters['product-feed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
+      },
     },
   },
   methods: {

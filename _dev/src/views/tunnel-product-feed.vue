@@ -43,7 +43,9 @@ export default {
     },
   },
   beforeCreate() {
-    this.$store.dispatch('productFeed/GET_SHIPPING_SETTINGS');
+    if (!this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].targetCountries.length) {
+      this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
+    }
     this.$store.dispatch('productFeed/GET_LAST_SYNCHRONISATION');
   },
 

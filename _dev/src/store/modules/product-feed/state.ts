@@ -28,14 +28,14 @@ export interface ProductFeedStatus {
 }
 // ToDo: Update key name so you match the data coming from the API
 export interface ProductFeedSettingsSellingApparel {
-  color: string;
-  size: string;
-  age: string;
-  gender: string;
+  color?: string;
+  size?: string;
+  age?: string;
+  gender?: string;
 }
 
 export interface ProductFeedSettingsSellingRefurbished {
-  condition: string;
+  condition?: string;
 }
 
 export interface ProductFeedSettings {
