@@ -24,5 +24,8 @@
   "merchantCenterAccount" : "https://merchants.google.com/mc/overview?a=260544545&fmp=1&utm_id=gfr&utm_source=google.com&utm_medium=referral&gfr_referral=true&mcsubid=be-fr-web-g-mc-gfr",
   "learnAboutSiteClaiming" : "https://support.google.com/merchants/answer/176793",
   "requestiongReReview" : "https://support.google.com/merchants/contact/suspended",
-  "learnAboutAccountSuspension" : "//google.com"
+  "learnAboutAccountSuspension" : "//google.com",
+  "countrySpecificShoppingPolicies" : "https://support.google.com/merchants/answer/7387995",
+  "localRegulation" : "https://support.google.com/merchants/answer/7387995",
+  "supportedCountries" : "//google.com"
 }
