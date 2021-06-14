@@ -17,7 +17,6 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
@@ -77,7 +76,8 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
+
+    commit(MutationsTypes.SAVE_GMC, selectedAccount);
   },
 
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS](
@@ -190,6 +190,13 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
+      if (json.account_id && json.merchant_id) {
+        commit(MutationsTypes.SAVE_GMC, {
+          id: json.account_id,
+        });
+        // If GMC is already linked, must start by requesting GMC list, then look after the link GMC
+        dispatch(ActionsTypes.REQUEST_GMC_LIST);
+      }
       return json;
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
@@ -203,8 +210,8 @@ export default {
     return null;
   },
 
-  async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_GMC_LIST]({
-    commit, state, rootState,
+  async [ActionsTypes.REQUEST_GMC_LIST]({
+    commit, state, rootState, dispatch,
   }) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
@@ -217,14 +224,23 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_MCA_LIST, json);
+      commit(MutationsTypes.SAVE_GMC_LIST, json);
+
+      // Now we have the GMC merchant's list, if he already linked one, then must fill it now
+      if (state.googleMerchantAccount.id) {
+        const linkedGmc = json.find((gmc) => gmc.id === state.googleMerchantAccount.id);
+        if (linkedGmc) {
+          commit(MutationsTypes.SAVE_GMC, linkedGmc);
+          dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+        }
+      }
     } catch (error) {
       console.error(error);
     }
   },
 
   [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, dispatch}) {
-    dispatch(ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT);
+    dispatch(ActionsTypes.DISSOCIATE_GMC);
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
@@ -232,16 +248,16 @@ export default {
     dispatch(ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED, false);
   },
 
-  [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit, dispatch, state}) {
+  [ActionsTypes.DISSOCIATE_GMC]({commit, dispatch, state}) {
     // ToDo: Add API calls if needed
-    commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
+    commit(MutationsTypes.REMOVE_GMC);
   },
 
   [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {
     //  ToDo: Add API call for get new status
     const resp = '';
 
-    // After response for API, change statement for claiming to trigger watcher on MCA card
+    // After response for API, change statement for claiming to trigger watcher on GMC card
     commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, false);
     setTimeout(() => {
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, resp);
@@ -267,12 +283,13 @@ export default {
       if (!isVerified) {
         throw new Error('Website was not verified by Google');
       }
-      // 5- Remove token from shop
-      await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
       return {isVerified, isClaimed};
     } catch (error) {
       console.error(error);
       return {isVerified: false, isClaimed: false};
+    } finally {
+      // Remove token anyway
+      await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
     }
   },
 
