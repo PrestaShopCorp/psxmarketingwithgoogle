@@ -1,19 +1,19 @@
-import MerchantCenterAccountPopinOverwriteClaim from '../src/components/merchant-center-account/merchant-center-account-popin-overwrite-claim.vue'
+import MerchantCenterAccountPopinoverwrite from '../src/components/merchant-center-account/merchant-center-account-popin-overwrite-claim.vue'
 import OnboardingPage from '../src/views/onboarding-page.vue'
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 
 export default {
   title: 'Merchant Center Account/Popins/Overwrite Claim',
-  component: MerchantCenterAccountPopinOverwriteClaim, OnboardingPage,
+  component: MerchantCenterAccountPopinoverwrite, OnboardingPage,
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { MerchantCenterAccountPopinOverwriteClaim, OnboardingPage},
+  components: { MerchantCenterAccountPopinoverwrite, OnboardingPage},
   template: `
     <div>
       <OnboardingPage />
-      <MerchantCenterAccountPopinOverwriteClaim v-bind="$props" />
+      <MerchantCenterAccountPopinoverwrite v-bind="$props" />
     </div>
   `,
   beforeCreate(this: any) {
@@ -21,7 +21,7 @@ const Template = (args, { argTypes }) => ({
   },
 });
 
-export const OverwriteClaim:any = Template.bind({});
-OverwriteClaim.args = {
+export const overwrite:any = Template.bind({});
+overwrite.args = {
   visible: true,
 };

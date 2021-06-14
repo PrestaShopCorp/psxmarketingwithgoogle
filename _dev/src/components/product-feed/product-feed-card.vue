@@ -101,7 +101,7 @@
           class="mt-1"
         >
           <b-button variant="outline-secondary">
-            {{ $t('cta.overwriteProductFeed') }}
+            {{ $t('cta.overwrite') }}
           </b-button>
         </div>
       </b-alert>

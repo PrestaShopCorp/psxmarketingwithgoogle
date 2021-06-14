@@ -81,7 +81,7 @@ export interface State {
 }
 
 export enum WebsiteClaimErrorReason {
-  Disapproved = 'Disapproved',
+  Suspended = 'Suspended',
   Expiring = 'Expiring',
   Pending = 'Pending',
   Overwrite = 'Overwrite',

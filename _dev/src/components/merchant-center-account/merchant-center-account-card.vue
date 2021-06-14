@@ -181,27 +181,32 @@
           variant="outline-secondary"
           @click="dissociateMerchantCenterAccount"
         >
-          {{ $t("cta.dissociate") }}
+          {{ $t("cta.disconnect") }}
         </b-button>
       </div>
     </div>
     <b-alert
-      v-if="error === WebsiteClaimErrorReason.Disapproved"
+      v-if="error === WebsiteClaimErrorReason.Suspended"
       show
       variant="danger"
       class="mb-0 mt-3"
     >
-      <p class="mb-0">
-        <!-- not translated, in need to be dynamic -->
-        This is a danger alert with a link.
+      <VueShowdown
+        :markdown="$t('mcaCard.alertSuspended', [
+          $options.googleUrl.merchantCenterAccount,
+          $options.googleUrl.requestiongReReview
+        ])"
+        :extensions="['targetlink']"
+      />
+      <div class="text-muted">
         <a
-          href="//google.com"
+          :href="$options.googleUrl.learnAboutAccountSuspension"
           target="_blank"
           class="text-muted ps_gs-fz-12 font-weight-normal"
         >
           {{ $t('cta.learnAboutAccountSuspension') }}
         </a>
-      </p>
+      </div>
     </b-alert>
     <b-alert
       v-else-if="error === WebsiteClaimErrorReason.Expiring"
@@ -240,7 +245,7 @@
           variant="secondary"
           @click="overrideClaim"
         >
-          {{ $t("cta.overwriteClaim") }}
+          {{ $t("cta.overwrite") }}
         </b-button>
         <b-button
           size="sm"
@@ -251,7 +256,7 @@
           {{ $t("cta.switchAccount") }}
         </b-button>
         <a
-          href="//google.com"
+          :href="$options.googleUrl.learnAboutSiteClaiming"
           target="_blank"
           class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
         >
@@ -313,13 +318,13 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
-import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
+import MerchantCenterAccountPopinoverwrite from './merchant-center-account-popin-overwrite-claim';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
   name: 'MerchantCenterAccountCard',
   components: {
-    MerchantCenterAccountPopinOverwriteClaim,
+    MerchantCenterAccountPopinoverwrite,
     BadgeListRequirements,
   },
   data() {
@@ -375,10 +380,10 @@ export default {
             color: 'warning',
             text: 'expiring',
           };
-        case WebsiteClaimErrorReason.Disapproved:
+        case WebsiteClaimErrorReason.Suspended:
           return {
             color: 'danger',
-            text: 'disapproved',
+            text: 'suspended',
           };
         case WebsiteClaimErrorReason.Overwrite:
           return {

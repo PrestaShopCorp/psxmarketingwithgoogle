@@ -221,7 +221,7 @@
           @click="saveFirstStep()"
           :disabled="isStepOneReadyToValidate()"
         >
-          {{ $t('cta.iCheckedAllRequirements') }}
+          {{ $t('cta.storeMeetsRequirements') }}
         </b-button>
       </span>
       <!-- <b-button
@@ -229,7 +229,7 @@
         variant="primary"
         @click="saveChangeExistingGmc()"
       >
-        {{ $t('cta.saveChange') }}
+        {{ $t('cta.save') }}
       </b-button> -->
     </template>
     <template

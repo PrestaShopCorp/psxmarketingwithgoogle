@@ -1,8 +1,8 @@
 <template>
   <ps-modal
-    id="MerchantCenterAccountPopinOverwriteClaim"
+    id="MerchantCenterAccountPopinoverwrite"
     ref="modal"
-    :title="$t('modal.titleOverwriteClaim')"
+    :title="$t('modal.titleoverwrite')"
     v-bind="$attrs"
     @ok="onGMCOverrideClaim"
     @cancel="onChangeAccount"
@@ -11,13 +11,13 @@
   >
     <VueShowdown
       class="my-1"
-      :markdown="$t('modal.textOverwriteClaim')"
+      :markdown="$t('modal.textoverwrite')"
     />
     <template slot="modal-cancel">
       {{ $t('cta.switchAccount') }}
     </template>
     <template slot="modal-ok">
-      {{ $t('cta.overwriteClaim') }}
+      {{ $t('cta.overwrite') }}
     </template>
   </ps-modal>
 </template>
