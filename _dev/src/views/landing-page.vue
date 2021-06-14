@@ -36,6 +36,9 @@
           $options.googleUrl.learnAboutSmartShopingCampaigns
         ])"
       />
+      <p class="text-muted ps_gs-fz-12 mt-4 pb-1">
+        {{ $t('landingPage.content.notice') }}
+      </p>
       <hr class="my-4">
       <LandingPageFooter />
     </div>

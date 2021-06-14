@@ -78,9 +78,10 @@ class PsGoogleShoppingTranslations
                     ],
                     'content3' => [
                         'title' => $this->module->l('3. Boost traffic and sales with Smart Shopping campaign', 'PsGoogleShoppingTranslations'),
-                        'text' => $this->module->l('Reach even more customers **with paid ads** and grow your **sale** by promoting your products **to the right customers** across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns**', 'PsGoogleShoppingTranslations'),
+                        'text' => $this->module->l('Reach even more customers **with paid ads** and grow your **sale** by promoting your products **to the right customers** across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns*', 'PsGoogleShoppingTranslations'),
                         'footer' => $this->module->l('[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]', 'PsGoogleShoppingTranslations'),
                     ],
+                    'notice' => $this->module->l('*includes campaign optimization to show variety of ads of your products to customers most likely to buy them', 'PsGoogleShoppingTranslations')
                 ],
                 'footer' => [
                     'text' => $this->module->l('Make your first steps with PrestaShop Google Shopping!', 'PsGoogleShoppingTranslations'),

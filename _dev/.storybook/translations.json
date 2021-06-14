@@ -29,9 +29,10 @@
         },
         "content3" : {
           "title" : "3. Boost traffic and sales with Smart Shopping campaign",
-          "text" : "Reach even more customers **with paid ads** and grow your **sale** by promoting your products **to the right customers** across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns**",
+          "text" : "Reach even more customers **with paid ads** and grow your **sale** by promoting your products **to the right customers** across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns*",
           "footer" : "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
-        }
+        },
+        "notice" : "*includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
       },
       "footer" : {
         "text" : "Make your first steps with PrestaShop Google Shopping!"
