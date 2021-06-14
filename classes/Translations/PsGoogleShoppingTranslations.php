@@ -215,7 +215,7 @@ class PsGoogleShoppingTranslations
                     'ifMultipleCountries' => $this->module->l('If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.', 'PsGoogleShoppingTranslations'),
                     'productAvailaibleIn' => $this->module->l('Products available in', 'PsGoogleShoppingTranslations'),
                     'placeholderSelect' => $this->module->l('XXXXXXXXX', 'PsGoogleShoppingTranslations'),
-                    'cantFindCountry' => $this->module->l("Can’t find a country? Only supported countries are listed. [Supported countries](//support.google.com/merchants/answer/160637?hl=en&ref_topic=9216868){:target=\"_blank\"}\n\n Your shipping services must be configured for the country you are targeting. Please respect [country-specific shopping policies](//google.com){:target=\"_blank\"} and [local regulation](//google.com){:target=\"_blank\"}", 'PsGoogleShoppingTranslations'),
+                    'cantFindCountry' => $this->module->l("Can’t find a country? Only supported countries are listed. [Supported countries](//google.com)[:target=\"_blank\"]\n\n Your shipping services must be configured for the country you are targeting. Please respect [country-specific shopping policies](//google.com)[:target=\"_blank\"] and [local regulation](//google.com)[:target=\"_blank\"]", 'PsGoogleShoppingTranslations'),
                     'shippingSettings' => $this->module->l('Shipping settings', 'PsGoogleShoppingTranslations'),
                     'autoImportShipping' => $this->module->l('Automatically import shipping settings', 'PsGoogleShoppingTranslations'),
                     'autoImportShippingDescription' => $this->module->l('PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.', 'PsGoogleShoppingTranslations'),
@@ -244,7 +244,7 @@ class PsGoogleShoppingTranslations
                     'allCategories' => $this->module->l('All categories', 'PsGoogleShoppingTranslations'),
                     'labelSelectBrand' => $this->module->l('Select brand', 'PsGoogleShoppingTranslations'),
                     'placeholderSelectBrand' => $this->module->l('Search brand', 'PsGoogleShoppingTranslations'),
-                    'prohibitedContentNotice' => $this->module->l('Please review the [prohibited content guidelines](//google.com){:target=\"_blank\"} to ensure that products in your feed don’t violate these policies.', 'PsGoogleShoppingTranslations'),
+                    'prohibitedContentNotice' => $this->module->l('Please review the [prohibited content guidelines](//google.com)[:target="_blank"] to ensure that products in your feed don’t violate these policies.', 'PsGoogleShoppingTranslations'),
                     'frequency' => [
                         'daily' => $this->module->l('Daily', 'PsGoogleShoppingTranslations'),
                     ],
