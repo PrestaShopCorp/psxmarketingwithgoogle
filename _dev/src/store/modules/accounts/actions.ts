@@ -229,8 +229,10 @@ export default {
       // Now we have the GMC merchant's list, if he already linked one, then must fill it now
       if (state.googleMerchantAccount.id) {
         const linkedGmc = json.find((gmc) => gmc.id === state.googleMerchantAccount.id);
-        commit(MutationsTypes.SAVE_GMC, linkedGmc);
-        dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+        if (linkedGmc) {
+          commit(MutationsTypes.SAVE_GMC, linkedGmc);
+          dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+        }
       }
     } catch (error) {
       console.error(error);
@@ -281,14 +283,13 @@ export default {
       if (!isVerified) {
         throw new Error('Website was not verified by Google');
       }
-      // 5- Remove token from shop
-      await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
       return {isVerified, isClaimed};
     } catch (error) {
       console.error(error);
+      return {isVerified: false, isClaimed: false};
+    } finally {
       // Remove token anyway
       await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
-      return {isVerified: false, isClaimed: false};
     }
   },
 
