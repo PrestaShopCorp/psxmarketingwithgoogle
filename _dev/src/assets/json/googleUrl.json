@@ -27,5 +27,7 @@
   "learnAboutAccountSuspension" : "//google.com",
   "countrySpecificShoppingPolicies" : "https://support.google.com/merchants/answer/7387995",
   "localRegulation" : "https://support.google.com/merchants/answer/7387995",
-  "supportedCountries" : "//google.com"
+  "supportedCountries" : "//google.com",
+  "learnRequirementsProductSpeficifacion" : "https://support.google.com/merchants/answer/7052112",
+  "learnAboutAttributeMapping" : "https://support.google.com/merchants/answer/6324504"
 }

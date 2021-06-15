@@ -6,7 +6,7 @@
     <p class="text-muted">
       <a
         class="ps_gs-fz-12"
-        href="//google.com"
+        :href="$options.googleUrl.learnAboutAttributeMapping"
         target="_blank"
       >
         {{ $t('productFeedSettings.attributeMapping.learnAboutAttributeMapping') }}
@@ -170,7 +170,7 @@
           {{ $t('productFeedSettings.attributeMapping.footerNotice2') }}
           <br>
           <a
-            href="//google.com"
+            :href="$options.googleUrl.learnRequirementsProductSpeficifacion"
             target="_blank"
           >
             {{ $t('productFeedSettings.attributeMapping.learnRequirementsProductSpeficifacion') }}
@@ -203,7 +203,7 @@
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
       >
-        {{ $t("cta.saveAndContinue") }}
+        {{ $t("cta.continue") }}
       </b-button>
     </div>
     <product-feed-settings-footer />
@@ -211,6 +211,8 @@
 </template>
 
 <script>
+import googleUrl from '../../assets/json/googleUrl.json';
+
 import {
   BTableSimple,
 } from 'bootstrap-vue';
@@ -280,5 +282,6 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
+  googleUrl,
 };
 </script>

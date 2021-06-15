@@ -164,7 +164,7 @@
         "summary" : "Summary",
         "exportFeed" : "Export feed!"
       },
-      "noticeDataStored" : "Data are stored at each step but will be submitted only at the final step.",
+      "noticeDataStored" : "Settings are saved at each step, will be submitted only at the final step.",
       "shipping" : {
         "targetCountries" : "Target countries",
         "ifMultipleCountries" : "If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target=\"_blank\"] and [local regulation]({1})[:target=\"_blank\"]",
@@ -206,14 +206,14 @@
         "teaser" : {
           "title" : "Available in the next version",
           "badge" : "Coming soon",
-          "syncScheduleCustomization" : "Sync schedule customization",
+          "syncScheduleCustomization" : "Customized sync schedule",
           "exportOption" : "Export option",
           "specificProductExclusion" : "Specific product exclusion"
         }
       },
       "attributeMapping" : {
         "intro" : "Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.",
-        "learnAboutAttributeMapping" : "Learn more about attribute mapping",
+        "learnAboutAttributeMapping" : "Learn more about product data attributes",
         "introNotice" : "In addition to the attributes required for standard free listings, the following attributes are required to participate in enhanced listings. Performance may be limited unless you provide all attributes available in your region:",
         "genericTitle" : "Generic",
         "toDescribeProducts" : "To describe my product attributes, please use:",
@@ -232,21 +232,21 @@
         "gender" : "Gender",
         "theXField" : "The \"{0}\" field",
         "thisCustomField" : "This custom field",
-        "footerNotice1" : "These attributes are required for products for specific age group and apparel items for customers in Brazil, France, Germany, Japan, the UK, and the US.",
+        "footerNotice1" : "Attributes required for products for apparel items targeted to customers in Brazil, France, Germany, Japan, the UK, and the US.",
         "footerNotice2" : "We encourage submitting as many applicable attributes as possible to ensure accurate and comprehensive data.",
         "learnAboutShippingSettings" : "Learn more about shipping settings",
         "learnHowToSetupShippingSettings" : "Learn how to set up shipping",
-        "learnRequirementsProductSpeficifacion" : "Learn more about requirements for the Shopping product data specification",
+        "learnRequirementsProductSpeficifacion" : "Learn more about product feed specification",
         "weWillRecoverTheseAttributes" : "For your products we will recover these attributes:"
       },
       "summary" : {
         "title1" : "Next synchronisation",
-        "title2" : "Product feed settings summary",
+        "title2" : "Product feed summary",
         "xItems" : "{0} items",
         "productItems" : "Product items",
         "tableHeader1" : "Google Merchant Center",
         "tableHeader2" : "Prestashop",
-        "totalProducts" : "Total products",
+        "totalProducts" : "Number of products",
         "date" : "Date",
         "time" : "Time",
         "youSell" : "**You sell** {0}"
@@ -446,8 +446,8 @@
     },
     "toast": {
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
-      "attributesMapppingSuccess": "Your attributes are successfully mapped. Once you click on ‘Save’ your products will be sent to Google",
-      "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!"
+      "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!",
+      "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google"
     },
     "stepper": {
       "nextStep" : "Next: {0}",

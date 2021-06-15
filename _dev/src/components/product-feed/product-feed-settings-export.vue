@@ -79,7 +79,7 @@
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
       >
-        {{ $t("cta.understandAndContinue") }}
+        {{ $t("cta.continue") }}
       </b-button>
     </div>
     <product-feed-settings-footer />
