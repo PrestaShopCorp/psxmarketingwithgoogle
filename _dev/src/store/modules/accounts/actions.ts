@@ -236,6 +236,7 @@ export default {
         }
       }
     } catch (error) {
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.LinkingFailed);
       console.error(error);
     }
   },
