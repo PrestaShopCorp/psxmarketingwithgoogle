@@ -85,8 +85,8 @@ export default {
         'themes',
       ],
       failedSyncs: [
-        'products',
-        'google-taxonomies',
+        /* 'products',
+        'google-taxonomies', */
       ],
       suspended: true,
     };
@@ -149,17 +149,20 @@ export default {
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'autoImportTaxSettings', data: json.autoImportTaxSettings});
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'sellApparel',
-        data: {
-          color: json.customColorAttribute,
-          age: json.customAgeGroupAttribute,
-          size: json.customSizeAttribute,
-          gender: json.customGenderGroupAttribute,
-        },
+        data: Object.assign(
+          (json.customColorAttribute) ? {color: json.customColorAttribute} : {},
+          (json.customAgeGroupAttribute) ? {age: json.customAgeGroupAttribute} : {},
+          (json.customSizeAttribute) ? {size: json.customSizeAttribute} : {},
+          (json.customGenderGroupAttribute) ? {gender: json.customGenderGroupAttribute} : {},
+        ),
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'sellRefurbished',
-        data: json.customConditionAttribute,
+        data: Object.assign(
+          (json.customConditionAttribute) ? {condition: json.customConditionAttribute} : {},
+        ),
       });
+      commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
     } catch (error) {
       console.error(error);
     }
