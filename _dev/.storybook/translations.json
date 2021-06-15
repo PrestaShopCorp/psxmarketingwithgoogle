@@ -244,12 +244,14 @@
         "title2" : "Product feed summary",
         "xItems" : "{0} items",
         "productItems" : "Product items",
-        "tableHeader1" : "Google Merchant Center",
-        "tableHeader2" : "Prestashop",
+        "tableHeader1" : "Google product attribute",
+        "tableHeader2" : "Your product value",
         "totalProducts" : "Number of products",
         "date" : "Date",
         "time" : "Time",
-        "youSell" : "**You sell** {0}"
+        "youSell" : "**You sell** {0}",
+        "dataSyncSetUp" : "Data sync set up",
+        "productAttributes" : "Product attributes"
       }
     },
     "freeListingCard" : {
@@ -373,7 +375,7 @@
       "editCountries" : "Edit countries",
       "editSettings" : "Edit settings",
       "editRules" : "Edit rules",
-      "editAttributeMapping" : "Edit attribute mapping",
+      "editProductAttributes" : "Edit product attributes",
       "forceSync" : "Force sync",
       "createNewGoogleAdsAccount" : "Create new Google Ads account",
       "back" : "Back",
@@ -396,7 +398,8 @@
       "go" : "Go",
       "continueWithoutSave" : "Continue without save",
       "save" : "Save",
-      "disconnect" : "Disconnect"
+      "disconnect" : "Disconnect",
+      "export" : "Export"
     },
     "badge" : {
       "free" : "Free",
@@ -431,7 +434,7 @@
       "titleEnableFreeListing" : "Enable free listing?",
       "textEnableFreeListing" : "This action will also cause the reactivation of the product feed.",
       "titleCancelWithoutSaving" : "Cancel without saving?",
-      "textCancelProductFeed" : "You will lose all unsaved changes. You need to complete the whole process to submit your data."
+      "textCancelProductFeed" : "You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps."
     },
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configuration",

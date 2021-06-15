@@ -14,7 +14,7 @@
       {{ $t('cta.cancel') }}
     </template>
     <template slot="modal-ok">
-      {{ $t('cta.continueWithoutSave') }}
+      {{ $t('cta.continue') }}
     </template>
   </ps-modal>
 </template>
