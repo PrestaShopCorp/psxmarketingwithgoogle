@@ -48,10 +48,6 @@ export default {
     state.productFeed.settings[payload.name] = payload.data;
   },
 
-  [MutationsTypes.TOGGLE_CONFIGURATION_STARTED](state: LocalState) {
-    state.productFeed.isConfigurationStarted = !state.productFeed.isConfigurationStarted;
-  },
-
   [MutationsTypes.TOGGLE_CONFIGURATION_FINISHED](state: LocalState, payload: boolean) {
     state.productFeed.isConfigured = payload;
   },

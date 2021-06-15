@@ -49,7 +49,7 @@
     </div>
     <p
       class="ps_gs-fz-12"
-      v-if="!isConfigurationStarted"
+      v-if="!isEnabled"
     >
       {{ $t("productFeedCard.intro") }}
     </p>
@@ -58,7 +58,7 @@
       :badges="['merchantCenterAccount']"
     />
     <div v-if="isEnabled && toConfigure">
-      <p v-if="!isConfigurationStarted">
+      <p>
         {{ $t("productFeedCard.introToConfigure") }}<br>
         <a
           class="ps_gs-fz-12 text-muted"
@@ -78,14 +78,12 @@
         v-if="isEnabled"
       >
         <b-button
-          v-if="!isConfigurationStarted"
           size="sm"
           variant="primary"
           @click="startConfiguration"
         >
           {{ $t("cta.configureAndExportProductFeed") }}
         </b-button>
-        <product-feed-settings-shipping v-else />
       </div>
     </div>
     <div v-if="isEnabled && !toConfigure">
@@ -243,7 +241,6 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import Stepper from '../commons/stepper';
-import ProductFeedSettingsShipping from './product-feed-settings-shipping';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 //  eslint-disable-next-line
 // import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
@@ -254,7 +251,6 @@ export default {
   name: 'ProductFeedCard',
   components: {
     Stepper,
-    ProductFeedSettingsShipping,
     ProductFeedCardReportCard,
     // NOT IN BATCH 1
     // ProductFeedCardReportMappedCategoriesCard,
@@ -281,16 +277,6 @@ export default {
         //   title: this.$i18n.t('productFeedSettings.steps.exportFeed'),
         // },
       ],
-      // TODO : retrieve products from backend for totalProducts
-      lastSync: {
-        day: this.$options.filters.timeConverterToDate(
-          this.getProductFeedStatus.lastSync,
-        ),
-        time: this.$options.filters.timeConverterToHour(
-          this.getProductFeedStatus.lastSync,
-        ),
-        totalProducts: 200,
-      },
     };
   },
   props: {
@@ -347,9 +333,6 @@ export default {
     isUS() {
       return this.targetCountries.includes('US');
     },
-    isConfigurationStarted() {
-      return this.$store.state.productFeed.productFeed.isConfigurationStarted;
-    },
     toConfigure() {
       return !this.$store.state.productFeed.productFeed.isConfigured;
     },
@@ -388,7 +371,18 @@ export default {
         return arr;
       },
     },
-
+    // TODO : retrieve products from backend for totalProducts
+    lastSync() {
+      return {
+        day: this.$options.filters.timeConverterToDate(
+          this.getProductFeedStatus?.lastSync,
+        ),
+        time: this.$options.filters.timeConverterToHour(
+          this.getProductFeedStatus?.lastSync,
+        ),
+        totalProducts: 200,
+      };
+    },
     title() {
       if (this.syncStatus === 'schedule') {
         return {
@@ -456,7 +450,6 @@ export default {
   },
   methods: {
     startConfiguration() {
-      this.$store.commit('productFeed/TOGGLE_CONFIGURATION_STARTED');
       this.$router.push({
         path: '/product-feed',
       });
