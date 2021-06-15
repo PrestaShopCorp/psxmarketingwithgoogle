@@ -21,6 +21,7 @@ import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
+import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 
 export default {
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT](
@@ -89,6 +90,8 @@ export default {
     },
     correlationId: string,
   ) {
+    commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+
     let {isVerified, isClaimed} = await dispatch(
       ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
       correlationId,
@@ -109,8 +112,7 @@ export default {
             {overwrite: false, correlationId},
           );
         } catch (error) {
-          // TODO: !0: must know what is the error: if already claimed:
-          if (0) {
+          if (error instanceof NeedOverwriteError) {
             commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.Overwrite);
             return;
           }
@@ -254,16 +256,21 @@ export default {
     commit(MutationsTypes.REMOVE_GMC);
   },
 
-  [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {
-    //  ToDo: Add API call for get new status
-    const resp = '';
-
-    // After response for API, change statement for claiming to trigger watcher on GMC card
-    commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, false);
-    setTimeout(() => {
-      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, resp);
-      commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
-    }, 2000);
+  async [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit, dispatch}) {
+    try {
+      await dispatch(
+        ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
+        {overwrite: true},
+      );
+      commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, false);
+      setTimeout(() => {
+        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+        commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
+      }, 2000);
+    } catch (error) {
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+        WebsiteClaimErrorReason.VerifyOrClaimingFailed);
+    }
   },
 
   /** Merchant Center Account - Website verification */
@@ -378,7 +385,11 @@ export default {
       },
     });
     if (!response.ok) {
-      console.error(response);
+      const error = await response.json();
+
+      if (error.fromGoogle?.needOverwrite) {
+        throw new NeedOverwriteError(error, error.fromGoogle.error.code);
+      }
       throw new HttpClientError(response.statusText, response.status);
     }
     commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);

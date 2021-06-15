@@ -4,7 +4,7 @@
     ref="modal"
     :title="$t('modal.titleOverwriteClaim')"
     v-bind="$attrs"
-    @ok="onMCAOverrideClaim"
+    @ok="onGMCOverrideClaim"
     @cancel="onChangeAccount"
   >
     <VueShowdown
@@ -34,7 +34,7 @@ export default {
     PsModal,
   },
   methods: {
-    onMCAOverrideClaim() {
+    onGMCOverrideClaim() {
       this.$store.dispatch('accounts/REQUEST_TO_OVERRIDE_CLAIM');
     },
     onChangeAccount() {
