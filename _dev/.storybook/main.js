@@ -16,8 +16,6 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
- const path = require('path');
-
  module.exports = {
    "stories": [
      "../stories/**/*.stories.mdx",
@@ -32,16 +30,4 @@
     "presets": [
      "@storybook/preset-scss"
    ],
-   webpackFinal: async (config) => {
-     config.module.rules.push({
-       test: /\.scss$/,
-       use: ['style-loader', 'css-loader', 'sass-loader'],
-       include: path.resolve(__dirname, '../'),
-     });
-     config.resolve.alias = {
-       ...config.resolve.alias,
-       '@': path.resolve(__dirname, '../src/'),
-     };
-     return config;
-   },
  }
