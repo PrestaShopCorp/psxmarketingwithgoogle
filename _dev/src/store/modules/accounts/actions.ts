@@ -194,9 +194,10 @@ export default {
         commit(MutationsTypes.SAVE_GMC, {
           id: json.account_id,
         });
-        // If GMC is already linked, must start by requesting GMC list, then look after the link GMC
-        dispatch(ActionsTypes.REQUEST_GMC_LIST);
       }
+      // If GMC is already linked, must start by requesting GMC list, then look after the link GMC.
+      // Also needed if we didn't have linked the accounts yet, as the marchant has to pick one.
+      dispatch(ActionsTypes.REQUEST_GMC_LIST);
       return json;
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
