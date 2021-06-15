@@ -61,6 +61,7 @@
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
         :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
+        :is-configuration-started="false"
         @toggleSync="onSyncToggled"
       />
 

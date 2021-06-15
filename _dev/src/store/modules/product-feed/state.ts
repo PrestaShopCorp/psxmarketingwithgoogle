@@ -54,7 +54,6 @@ export interface FreeListingStatus {
 }
 export interface State {
   productFeed: {
-    isConfigurationStarted: boolean,
     isConfigured: boolean,
     stepper: number,
     status: ProductFeedStatus,
@@ -65,7 +64,6 @@ export interface State {
 
 export const state: State = {
   productFeed: {
-    isConfigurationStarted: false,
     isConfigured: false,
     stepper: 1,
     status: {

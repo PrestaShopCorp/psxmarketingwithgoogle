@@ -223,7 +223,6 @@ export default {
     },
     saveAll() {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
-      this.$store.commit('productFeed/TOGGLE_CONFIGURATION_STARTED');
       this.$store.commit('productFeed/TOGGLE_CONFIGURATION_FINISHED', true);
       this.$router.push({
         path: '/configuration',
