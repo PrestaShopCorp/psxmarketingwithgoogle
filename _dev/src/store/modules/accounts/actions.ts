@@ -239,21 +239,42 @@ export default {
     }
   },
 
-  [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, dispatch}) {
-    dispatch(ActionsTypes.DISSOCIATE_GMC);
+  async [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, state, dispatch}) {
+    const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    await dispatch(ActionsTypes.DISSOCIATE_GMC, correlationId);
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
     dispatch(ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED, false);
+    return true;
   },
 
-  [ActionsTypes.DISSOCIATE_GMC]({commit, dispatch, state}) {
-    // ToDo: Add API calls if needed
+  async [ActionsTypes.DISSOCIATE_GMC]({commit, rootState, state}, correlationId: string) {
+    if (!correlationId) {
+      // eslint-disable-next-line no-param-reassign
+      correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    }
+    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
+        'x-correlation-id': correlationId,
+      },
+    });
+    if (!response.ok) {
+      commit(
+        MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+        WebsiteClaimErrorReason.UnlinkFailed,
+      );
+      throw new HttpClientError(response.statusText, response.status);
+    }
     commit(MutationsTypes.REMOVE_GMC);
+    return true;
   },
 
-  [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {
+  async [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {
     //  ToDo: Add API call for get new status
     const resp = '';
 
@@ -263,6 +284,7 @@ export default {
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, resp);
       commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
     }, 2000);
+    return true;
   },
 
   /** Merchant Center Account - Website verification */

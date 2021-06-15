@@ -5,6 +5,8 @@
     :title="$t('modal.titleDisconnection')"
     v-bind="$attrs"
     @ok="onMerchantCenterAccountDissociationConfirmation"
+    :cancel-disabled="processing"
+    :ok-disabled="processing"
   >
     <VueShowdown
       class="my-1"
@@ -27,9 +29,21 @@ export default {
   components: {
     PsModal,
   },
+  data() {
+    return {
+      processing: false,
+    };
+  },
   methods: {
-    onMerchantCenterAccountDissociationConfirmation() {
-      this.$store.dispatch('accounts/DISSOCIATE_MERCHANT_CENTER_ACCOUNT');
+    onMerchantCenterAccountDissociationConfirmation(bvModalEvt) {
+      this.processing = true;
+      bvModalEvt.preventDefault();
+      this.$store.dispatch('accounts/DISSOCIATE_GMC').finally(
+        () => {
+          this.processing = false;
+          this.$bvModal.hide('MerchantCenterAccountPopinDisconnect');
+        },
+      );
     },
   },
 };

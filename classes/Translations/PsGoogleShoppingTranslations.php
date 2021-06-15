@@ -123,7 +123,8 @@ class PsGoogleShoppingTranslations
                 'toUseGmcNeedsAdminAccess' => $this->module->l('To use an existing Google Merchant Center account, you must have Administrator access.', 'PsGoogleShoppingTranslations'),
                 'linkingFailed' => $this->module->l('You can\'t connect to your Merchant Center account right now. Try again later.', 'PsGoogleShoppingTranslations'),
                 'verifyOrClaimingFailed' => $this->module->l('Account validation failed', 'PsGoogleShoppingTranslations'),
-                'tryAgainLater' => $this->module->l('We can’t verify or claim the current site. Try again later.', 'PsGoogleShoppingTranslations'),
+                'tryAgainLater' => $this->module->l('We can\'t verify or claim the current site. Try again later.', 'PsGoogleShoppingTranslations'),
+                'unlinkFailed' => $this->module->l('Disconnection failed. Please refresh the page and try again.', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
