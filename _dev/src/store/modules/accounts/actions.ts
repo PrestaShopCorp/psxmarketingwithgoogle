@@ -204,7 +204,6 @@ export default {
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
         // This is likely caused by a missing Google account, so let's retrieve the URL
-        // dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
         dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
         return null;
       }
