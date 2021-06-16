@@ -204,7 +204,7 @@ export default {
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
         // This is likely caused by a missing Google account, so let's retrieve the URL
-        dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
+        dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
         return null;
       }
       console.error(error);
@@ -243,18 +243,39 @@ export default {
     }
   },
 
-  [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, dispatch}) {
-    dispatch(ActionsTypes.DISSOCIATE_GMC);
+  async [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, state, dispatch}) {
+    const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    await dispatch(ActionsTypes.DISSOCIATE_GMC, correlationId);
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
     dispatch(ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED, false);
+    return true;
   },
 
-  [ActionsTypes.DISSOCIATE_GMC]({commit, dispatch, state}) {
-    // ToDo: Add API calls if needed
+  async [ActionsTypes.DISSOCIATE_GMC]({commit, rootState, state}, correlationId: string) {
+    if (!correlationId) {
+      // eslint-disable-next-line no-param-reassign
+      correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    }
+    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
+        'x-correlation-id': correlationId,
+      },
+    });
+    if (!response.ok) {
+      commit(
+        MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+        WebsiteClaimErrorReason.UnlinkFailed,
+      );
+      throw new HttpClientError(response.statusText, response.status);
+    }
     commit(MutationsTypes.REMOVE_GMC);
+    return true;
   },
 
   async [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit, dispatch}) {
@@ -272,6 +293,7 @@ export default {
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
         WebsiteClaimErrorReason.VerifyOrClaimingFailed);
     }
+    return true;
   },
 
   /** Merchant Center Account - Website verification */

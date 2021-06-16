@@ -291,6 +291,16 @@
         </span>
       </p>
     </b-alert>
+    <b-alert
+      v-if="error === WebsiteClaimErrorReason.UnlinkFailed"
+      show
+      variant="danger"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        {{ $t('mcaCard.unlinkFailed') }}
+      </p>
+    </b-alert>
     <MerchantCenterAccountPopinOverwriteClaim
       ref="mcaPopinOverrideClaim"
     />
