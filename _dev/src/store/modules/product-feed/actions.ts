@@ -200,4 +200,17 @@ export default {
     }
   },
 
+  async [ActionsTypes.GET_SHIPPING_SETTINGS]({rootState}) {
+    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'getCarrierValues',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    return response.json();
+  },
 };

@@ -1,0 +1,403 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+      "title": "Ajax requests to shop specification",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://{Shop domain}/{Admin folder}/",
+        "description": "Actual shop on which routes can be tested on",
+        "variables": {
+          "Shop domain": {
+            "default": "localhost"
+          },
+          "Admin folder": {
+            "default": "admin-dev"
+          }
+        }
+      },
+      {
+        "url": "https://mock-googleshopping-api.psessentials-integration.net/rest/Ajax+requests+to+shop+specification/1.0.0/",
+        "description": "Mock API"
+      }
+    ],
+    "paths": {
+      "/": {
+        "post": {
+          "operationId": "RequestAdminAjaxController",
+          "parameters": [
+            {
+              "name": "controller",
+              "in": "query",
+              "required": true,
+              "style": "form",
+              "explode": true,
+              "schema": {
+                "type": "string"
+              },
+              "example": "AdminAjaxPsgoogleshopping"
+            },
+            {
+              "name": "token",
+              "in": "query",
+              "description": "CSRF token used to avoid malicious POST requests",
+              "required": true,
+              "style": "form",
+              "explode": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Cookie",
+              "in": "header",
+              "description": "Authentication information to access PrestaShop backoffice",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/body"
+                },
+                "examples": {
+                  "getCarrierValues": {
+                    "description": "Retrieve all details about the carriers on the current shop\n",
+                    "value": {
+                      "action": "getCarrierValues"
+                    }
+                  },
+                  "setWebsiteVerificationMeta": {
+                    "description": "Set in the shop configuration table the meta used by Google to verify the domain\n",
+                    "value": {
+                      "action": "setWebsiteVerificationMeta",
+                      "websiteVerificationMeta": "IHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGljaCBpcyBhIGx1c3Qgb2Yg"
+                    }
+                  },
+                  "removeWebsiteVerificationMeta": {
+                    "description": "When the website verification is done, the meta is removed from the shop configuration table\n",
+                    "value": {
+                      "action": "setWebsiteVerificationMeta",
+                      "websiteVerificationMeta": false
+                    }
+                  },
+                  "toggleGoogleAccountIsRegisteredOn": {
+                    "description": "Specify the shop has been linked to a Google account, so all other shops of the same\nPrestaShop instance using the same domain should warn about being in conflict.\n",
+                    "value": {
+                      "action": "toggleGoogleAccountIsRegistered",
+                      "isGoogleAccountLinked": true
+                    }
+                  },
+                  "toggleGoogleAccountIsRegisteredOff": {
+                    "description": "Specify the shop is not linked anymore to a Google account, so any other shop of the\nsame PrestaShop can now use it.\n",
+                    "value": {
+                      "action": "toggleGoogleAccountIsRegistered",
+                      "isGoogleAccountLinked": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "This is fine",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "examples": {
+                    "setVerificationMeta": {
+                      "value": {
+                        "success": true,
+                        "method": "insert"
+                      }
+                    },
+                    "removeVerificationMeta": {
+                      "value": {
+                        "success": true,
+                        "method": "delete"
+                      }
+                    },
+                    "toggleGoogleAccountIsRegistered": {
+                      "value": {
+                        "success": true
+                      }
+                    },
+                    "carriers": {
+                      "value": [
+                        {
+                          "collection": "carriers",
+                          "id": "1",
+                          "properties": {
+                            "id_carrier": "1",
+                            "id_reference": "1",
+                            "name": "free carrier",
+                            "carrier_taxes_rates_group_id": "1",
+                            "url": "",
+                            "active": true,
+                            "deleted": false,
+                            "shipping_handling": 0,
+                            "free_shipping_starts_at_price": 5,
+                            "free_shipping_starts_at_weight": 50,
+                            "disable_carrier_when_out_of_range": false,
+                            "is_module": false,
+                            "is_free": true,
+                            "shipping_external": false,
+                            "need_range": false,
+                            "external_module_name": "",
+                            "max_width": 0,
+                            "max_height": 0,
+                            "max_depth": 0,
+                            "max_weight": 0,
+                            "grade": 0,
+                            "delay": "Free shipping!",
+                            "currency": "EUR",
+                            "weight_unit": "kg"
+                          }
+                        },
+                        {
+                          "collection": "carriers",
+                          "id": "2",
+                          "properties": {
+                            "id_carrier": "3",
+                            "id_reference": "2",
+                            "name": "basic carrier",
+                            "carrier_taxes_rates_group_id": "1",
+                            "url": "",
+                            "active": true,
+                            "deleted": false,
+                            "shipping_handling": 0,
+                            "free_shipping_starts_at_price": 5,
+                            "free_shipping_starts_at_weight": 50,
+                            "disable_carrier_when_out_of_range": false,
+                            "is_module": false,
+                            "is_free": true,
+                            "shipping_external": false,
+                            "need_range": false,
+                            "external_module_name": "",
+                            "max_width": 0,
+                            "max_height": 0,
+                            "max_depth": 0,
+                            "max_weight": 0,
+                            "grade": 0,
+                            "delay": "delivery in one day!",
+                            "currency": "EUR",
+                            "weight_unit": "kg"
+                          }
+                        },
+                        {
+                          "collection": "carrier_details",
+                          "id": "2-1-1-1",
+                          "properties": {
+                            "id_reference": "2",
+                            "id_carrier_detail": "1",
+                            "shipping_method": "range_price",
+                            "delimiter1": 0,
+                            "delimiter2": 100,
+                            "country_ids": "FR",
+                            "state_ids": "",
+                            "price": 5
+                          }
+                        },
+                        {
+                          "collection": "carrier_taxes",
+                          "id": "2-1",
+                          "properties": {
+                            "id_reference": "2",
+                            "id_carrier_tax": "1",
+                            "country_id": "FR",
+                            "state_ids": "",
+                            "tax_rate": 21
+                          }
+                        },
+                        {
+                          "collection": "carriers",
+                          "id": "7",
+                          "properties": {
+                            "id_carrier": "8",
+                            "id_reference": "7",
+                            "name": "test carrier",
+                            "carrier_taxes_rates_group_id": "1",
+                            "url": "",
+                            "active": true,
+                            "deleted": false,
+                            "shipping_handling": 2,
+                            "free_shipping_starts_at_price": 0,
+                            "free_shipping_starts_at_weight": 0,
+                            "disable_carrier_when_out_of_range": false,
+                            "is_module": false,
+                            "is_free": false,
+                            "shipping_external": false,
+                            "need_range": false,
+                            "external_module_name": "",
+                            "max_width": 0,
+                            "max_height": 0,
+                            "max_depth": 0,
+                            "max_weight": 0,
+                            "grade": 5,
+                            "delay": "delivery in 5 days",
+                            "currency": "EUR",
+                            "weight_unit": "kg"
+                          }
+                        },
+                        {
+                          "collection": "carrier_details",
+                          "id": "7-1-1-4",
+                          "properties": {
+                            "id_reference": "7",
+                            "id_carrier_detail": "4",
+                            "shipping_method": "range_price",
+                            "delimiter1": 0,
+                            "delimiter2": 100,
+                            "country_ids": "FR,LT",
+                            "state_ids": "",
+                            "price": 5
+                          }
+                        },
+                        {
+                          "collection": "carrier_details",
+                          "id": "7-1-1-5",
+                          "properties": {
+                            "id_reference": "7",
+                            "id_carrier_detail": "5",
+                            "shipping_method": "range_price",
+                            "delimiter1": 100,
+                            "delimiter2": 500,
+                            "country_ids": "FR,LT",
+                            "state_ids": "",
+                            "price": 10
+                          }
+                        },
+                        {
+                          "collection": "carrier_taxes",
+                          "id": "7-1",
+                          "properties": {
+                            "id_reference": "7",
+                            "id_carrier_tax": "1",
+                            "country_id": "FR",
+                            "state_ids": "",
+                            "tax_rate": 21
+                          }
+                        },
+                        {
+                          "collection": "carrier_taxes",
+                          "id": "7-1",
+                          "properties": {
+                            "id_reference": "7",
+                            "id_carrier_tax": "1",
+                            "country_id": "FR",
+                            "state_ids": "",
+                            "tax_rate": 21
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad parameter(s)",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/basicResponse"
+                  },
+                  "examples": {
+                    "missing-or-wrong-action": {
+                      "value": {
+                        "success": false,
+                        "message": "Action is missing or incorrect."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "getCarrierValuesRequest": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "action": "getCarrierValues"
+          }
+        },
+        "setWebsiteVerificationMetaRequest": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string"
+            },
+            "websiteVerificationMeta": {
+              "type": "string"
+            }
+          }
+        },
+        "removeWebsiteVerificationMetaRequest": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string"
+            },
+            "websiteVerificationMeta": {
+              "type": "boolean"
+            }
+          }
+        },
+        "toggleGoogleAccountIsRegisteredRequest": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string"
+            }
+          }
+        },
+        "basicResponse": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        },
+        "body": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/getCarrierValuesRequest"
+            },
+            {
+              "$ref": "#/components/schemas/setWebsiteVerificationMetaRequest"
+            },
+            {
+              "$ref": "#/components/schemas/removeWebsiteVerificationMetaRequest"
+            },
+            {
+              "$ref": "#/components/schemas/toggleGoogleAccountIsRegisteredRequest"
+            }
+          ]
+        }
+      }
+    }
+  }
