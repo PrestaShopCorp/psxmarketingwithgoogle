@@ -4,7 +4,7 @@
     ref="modal"
     :title="$t('modal.titleOverwriteClaim')"
     v-bind="$attrs"
-    @ok="onGmcOverrideClaim"
+    @ok="onGMCOverrideClaim"
     @cancel="onChangeAccount"
     :cancel-disabled="processing"
     :ok-disabled="processing"
@@ -36,7 +36,7 @@ export default {
     };
   },
   methods: {
-    onGmcOverrideClaim(bvModalEvt) {
+    onGMCOverrideClaim(bvModalEvt) {
       this.processing = true;
       bvModalEvt.preventDefault();
       this.$store.dispatch('accounts/REQUEST_TO_OVERRIDE_CLAIM').finally(

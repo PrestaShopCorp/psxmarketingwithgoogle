@@ -30,7 +30,6 @@ export default {
   methods: {
     onProductFeedCancelConfirmation() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
-      this.$store.commit('productFeed/TOGGLE_CONFIGURATION_STARTED');
       this.$router.push({
         path: '/onboarding',
       });

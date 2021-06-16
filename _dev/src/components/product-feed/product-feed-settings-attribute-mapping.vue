@@ -229,7 +229,6 @@ export default {
     return {
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
-
     };
   },
   computed: {
@@ -250,10 +249,10 @@ export default {
     },
     sellApparel: {
       get() {
-        return !!this.$store.state.productFeed.productFeed.settings.sellApparel.color;
+        return this.$store.getters['productFeed/GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES'];
       },
       set(value) {
-        const data = value ? {condition: 'extra:color'} : {};
+        const data = value ? {color: 'extra:color'} : {};
         return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'sellApparel',
           data,
@@ -262,7 +261,7 @@ export default {
     },
     sellRefurbished: {
       get() {
-        return !!this.$store.state.productFeed.productFeed.settings.sellRefurbished.condition;
+        return this.$store.getters['productFeed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
       },
       set(value) {
         const data = value ? {condition: 'extra:condition'} : {};

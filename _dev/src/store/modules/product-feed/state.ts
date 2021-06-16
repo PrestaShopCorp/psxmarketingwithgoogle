@@ -28,14 +28,14 @@ export interface ProductFeedStatus {
 }
 // ToDo: Update key name so you match the data coming from the API
 export interface ProductFeedSettingsSellingApparel {
-  color: string;
-  size: string;
-  age: string;
-  gender: string;
+  color?: string;
+  size?: string;
+  age?: string;
+  gender?: string;
 }
 
 export interface ProductFeedSettingsSellingRefurbished {
-  condition: string;
+  condition?: string;
 }
 
 export interface ProductFeedSettings {
@@ -54,7 +54,6 @@ export interface FreeListingStatus {
 }
 export interface State {
   productFeed: {
-    isConfigurationStarted: boolean,
     isConfigured: boolean,
     stepper: number,
     status: ProductFeedStatus,
@@ -65,7 +64,6 @@ export interface State {
 
 export const state: State = {
   productFeed: {
-    isConfigurationStarted: false,
     isConfigured: false,
     stepper: 1,
     status: {
