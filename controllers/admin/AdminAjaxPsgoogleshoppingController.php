@@ -72,7 +72,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             http_response_code(400);
             $this->ajaxDie(json_encode([
                 'success' => false,
-                'error' => 'Missing Meta key',
+                'message' => 'Missing Meta key',
             ]));
         }
         $websiteVerificationMeta = $inputs['websiteVerificationMeta'];
@@ -100,7 +100,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             http_response_code(400);
             $this->ajaxDie(json_encode([
                 'success' => false,
-                'error' => 'Missing isGoogleAccountLinked key',
+                'message' => 'Missing isGoogleAccountLinked key',
             ]));
         }
 
