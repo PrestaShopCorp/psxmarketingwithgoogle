@@ -56,7 +56,7 @@
             menu-class="ps-dropdown"
             no-flip
             size="sm"
-            :disabled="isLinking"
+            :disabled="isLinking || !!error"
           >
             <b-dropdown-item
               link-class="px-3"
