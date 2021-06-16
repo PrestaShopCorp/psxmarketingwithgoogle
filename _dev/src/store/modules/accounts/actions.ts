@@ -290,11 +290,11 @@ export default {
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
         commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
       }, 2000);
-      return true;
     } catch (error) {
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
         WebsiteClaimErrorReason.VerifyOrClaimingFailed);
     }
+    return true;
   },
 
   /** Merchant Center Account - Website verification */
