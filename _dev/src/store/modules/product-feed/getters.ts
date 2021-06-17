@@ -20,6 +20,7 @@
 import {
   State as LocalState,
   ProductFeedSettings,
+  ProductFeedStatus,
 } from './state';
 import GettersTypes from './getters-types';
 
@@ -29,5 +30,16 @@ export default {
   },
   [GettersTypes.GET_PRODUCT_FEED_SETTINGS](state: LocalState): ProductFeedSettings {
     return state.productFeed.settings;
+  },
+  [GettersTypes.GET_PRODUCT_FEED_STATUS](state: LocalState): ProductFeedStatus {
+    return state.productFeed.status;
+  },
+  [GettersTypes.GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES](state: LocalState): boolean {
+    return !!state.productFeed.settings.sellApparel
+      && !!Object.keys(state.productFeed.settings.sellApparel).length;
+  },
+  [GettersTypes.GET_MERCHANT_SELL_REFURBISHED_PRODUCTS](state: LocalState): boolean {
+    return !!state.productFeed.settings.sellRefurbished
+      && !!Object.keys(state.productFeed.settings.sellRefurbished).length;
   },
 };

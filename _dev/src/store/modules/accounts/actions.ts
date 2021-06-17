@@ -17,11 +17,11 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
+import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 
 export default {
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT](
@@ -77,7 +77,8 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    commit(MutationsTypes.SAVE_MCA_ACCOUNT, selectedAccount);
+
+    commit(MutationsTypes.SAVE_GMC, selectedAccount);
   },
 
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS](
@@ -89,6 +90,8 @@ export default {
     },
     correlationId: string,
   ) {
+    commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+
     let {isVerified, isClaimed} = await dispatch(
       ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
       correlationId,
@@ -109,8 +112,7 @@ export default {
             {overwrite: false, correlationId},
           );
         } catch (error) {
-          // TODO: !0: must know what is the error: if already claimed:
-          if (0) {
+          if (error instanceof NeedOverwriteError) {
             commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.Overwrite);
             return;
           }
@@ -190,11 +192,19 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
+      if (json.account_id && json.merchant_id) {
+        commit(MutationsTypes.SAVE_GMC, {
+          id: json.account_id,
+        });
+      }
+      // If GMC is already linked, must start by requesting GMC list, then look after the link GMC.
+      // Also needed if we didn't have linked the accounts yet, as the marchant has to pick one.
+      dispatch(ActionsTypes.REQUEST_GMC_LIST);
       return json;
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
         // This is likely caused by a missing Google account, so let's retrieve the URL
-        dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT);
+        dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
         return null;
       }
       console.error(error);
@@ -203,8 +213,8 @@ export default {
     return null;
   },
 
-  async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_GMC_LIST]({
-    commit, state, rootState,
+  async [ActionsTypes.REQUEST_GMC_LIST]({
+    commit, state, rootState, dispatch,
   }) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
@@ -217,36 +227,73 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_MCA_LIST, json);
+      commit(MutationsTypes.SAVE_GMC_LIST, json);
+
+      // Now we have the GMC merchant's list, if he already linked one, then must fill it now
+      if (state.googleMerchantAccount.id) {
+        const linkedGmc = json.find((gmc) => gmc.id === state.googleMerchantAccount.id);
+        if (linkedGmc) {
+          commit(MutationsTypes.SAVE_GMC, linkedGmc);
+          dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+        }
+      }
     } catch (error) {
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.LinkingFailed);
       console.error(error);
     }
   },
 
-  [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, dispatch}) {
-    dispatch(ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT);
+  async [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, state, dispatch}) {
+    const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    await dispatch(ActionsTypes.DISSOCIATE_GMC, correlationId);
     // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
     dispatch(ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED, false);
+    return true;
   },
 
-  [ActionsTypes.DISSOCIATE_MERCHANT_CENTER_ACCOUNT]({commit, dispatch, state}) {
-    // ToDo: Add API calls if needed
-    commit(MutationsTypes.REMOVE_MCA_ACCOUNT);
+  async [ActionsTypes.DISSOCIATE_GMC]({commit, rootState, state}, correlationId: string) {
+    if (!correlationId) {
+      // eslint-disable-next-line no-param-reassign
+      correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    }
+    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
+        'x-correlation-id': correlationId,
+      },
+    });
+    if (!response.ok) {
+      commit(
+        MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+        WebsiteClaimErrorReason.UnlinkFailed,
+      );
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    commit(MutationsTypes.REMOVE_GMC);
+    return true;
   },
 
-  [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit}) {
-    //  ToDo: Add API call for get new status
-    const resp = '';
-
-    // After response for API, change statement for claiming to trigger watcher on MCA card
-    commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, false);
-    setTimeout(() => {
-      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, resp);
-      commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
-    }, 2000);
+  async [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit, dispatch}) {
+    try {
+      await dispatch(
+        ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
+        {overwrite: true},
+      );
+      commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, false);
+      setTimeout(() => {
+        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+        commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
+      }, 2000);
+    } catch (error) {
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+        WebsiteClaimErrorReason.VerifyOrClaimingFailed);
+    }
+    return true;
   },
 
   /** Merchant Center Account - Website verification */
@@ -267,12 +314,13 @@ export default {
       if (!isVerified) {
         throw new Error('Website was not verified by Google');
       }
-      // 5- Remove token from shop
-      await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
       return {isVerified, isClaimed};
     } catch (error) {
       console.error(error);
       return {isVerified: false, isClaimed: false};
+    } finally {
+      // Remove token anyway
+      await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
     }
   },
 
@@ -360,7 +408,11 @@ export default {
       },
     });
     if (!response.ok) {
-      console.error(response);
+      const error = await response.json();
+
+      if (error.fromGoogle?.needOverwrite) {
+        throw new NeedOverwriteError(error, error.fromGoogle.error.code);
+      }
       throw new HttpClientError(response.statusText, response.status);
     }
     commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);

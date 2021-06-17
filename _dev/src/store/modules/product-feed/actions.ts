@@ -67,7 +67,9 @@ export default {
   async [ActionsTypes.GET_LAST_SYNCHRONISATION]({commit, rootState}) {
     //  TODO : CONNECT BACKEND
     // try {
-    //   const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/sync/status`);
+    //   const response = await fetch(
+    //     `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/status`
+    //   );
     //   if (!response.ok) {
     //     throw new HttpClientError(response.statusText, response.status);
     //   }
@@ -83,8 +85,8 @@ export default {
         'themes',
       ],
       failedSyncs: [
-        'products',
-        'google-taxonomies',
+        /* 'products',
+        'google-taxonomies', */
       ],
       suspended: true,
     };
@@ -118,8 +120,8 @@ export default {
   async [ActionsTypes.TOGGLE_SYNCHRONIZATION]({commit, rootState}, payload: boolean) {
     commit(MutationsTypes.SET_SUSPENDED_DATA_SYNC,
       !rootState.productFeed.productFeed.status.isSyncEnabled);
-    const route = payload ? `${rootState.app.psGoogleShoppingApiUrl}/sync/register`
-      : `${rootState.app.psGoogleShoppingApiUrl}/sync/suspend`;
+    const route = payload ? `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/register`
+      : `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/suspend`;
     try {
       const response = await fetch(route, {
         method: 'POST',
@@ -129,73 +131,86 @@ export default {
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
-      const json = await response.json();
+      response.json();
     } catch (error) {
       console.error(error);
     }
   },
 
-  async [ActionsTypes.GET_SHIPPING_SETTINGS]({commit, rootState}) {
-    // TODO : CONNECT BACKEND
-    // try {
-    //   const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/sync/settings`);
-    //   if (!response.ok) {
-    //     throw new HttpClientError(response.statusText, response.status);
-    //   }
-    //   const json = await response.json();
+  async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
+    try {
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/settings`);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      const json = await response.json();
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'autoImportShippingSettings', data: json.autoImportShippingSettings});
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'targetCountries', data: json.targetCountries});
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'autoImportTaxSettings', data: json.autoImportTaxSettings});
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'sellApparel',
+        data: Object.assign(
+          (json.customColorAttribute) ? {color: json.customColorAttribute} : {},
+          (json.customAgeGroupAttribute) ? {age: json.customAgeGroupAttribute} : {},
+          (json.customSizeAttribute) ? {size: json.customSizeAttribute} : {},
+          (json.customGenderGroupAttribute) ? {gender: json.customGenderGroupAttribute} : {},
+        ),
+      });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'sellRefurbished',
+        data: Object.assign(
+          (json.customConditionAttribute) ? {condition: json.customConditionAttribute} : {},
+        ),
+      });
+      commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
+    } catch (error) {
+      console.error(error);
+    }
+  },
 
-    // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
-    const json = {
-      autoImportShippingSettings: false,
-      autoImportTaxSettings: true,
-      exportProductsWithShortDescription: true,
-      customConditionAttribute: '',
-      customColorAttribute: 'extra:color',
-      customSizeAttribute: 'extra:size',
-      customAgeGroupAttribute: 'extra:age-group',
-      customGenderGroupAttribute: '',
-      targetCountries: [
-        'FR',
-        'IT',
-      ],
+  async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({state, rootState}) {
+    const productFeedSettings = state.productFeed.settings;
+    const newSettings = {
+      autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
+      autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
+      exportProductsWithShortDescription: productFeedSettings.exportProductsWithShortDescription,
+      targetCountries: productFeedSettings.targetCountries,
+      customConditionAttribute: productFeedSettings?.sellRefurbished?.condition || null,
+      customColorAttribute: productFeedSettings?.sellApparel?.color || null,
+      customSizeAttribute: productFeedSettings?.sellApparel?.size || null,
+      customAgeGroupAttribute: productFeedSettings?.sellApparel?.age || null,
+      customGenderGroupAttribute: productFeedSettings?.sellApparel?.gender || null,
     };
-    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'autoImportShippingSettings', data: json.autoImportShippingSettings});
-    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'targetCountries', data: json.targetCountries});
-    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {name: 'autoImportTaxSettings', data: json.autoImportTaxSettings});
-    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-      name: 'sellApparel',
-      data: {
-        color: json.customColorAttribute,
-        age: json.customAgeGroupAttribute,
-        size: json.customSizeAttribute,
-        gender: json.customGenderGroupAttribute,
-      },
-    });
-    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-      name: 'sellRefurbished',
-      data: json.customConditionAttribute,
-    });
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/settings`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+        body: JSON.stringify(newSettings),
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      response.json();
+    } catch (error) {
+      console.error(error);
+    }
   },
 
-  async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
-    console.log('rootstate', rootState.productFeed.productFeed.settings);
-    // TODO : CONNECT BACKEND
-    // try {
-    //   const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/sync/settings, {
-    //     method: 'POST',
-    //     headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-    //     body: JSON.stringify(payload),
-    //   });
-    //   if (!response.ok) {
-    //     throw new HttpClientError(response.statusText, response.status);
-    //   }
-    //   const json = await response.json();
-    // } catch (error) {
-    //   console.error(error);
-    // }
+  async [ActionsTypes.GET_SHIPPING_SETTINGS]({rootState}) {
+    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'getCarrierValues',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    return response.json();
   },
-
 };

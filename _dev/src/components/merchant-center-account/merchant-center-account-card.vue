@@ -52,11 +52,11 @@
             :text="mcaLabel(selectedMcaIndex) || $t('cta.selectAccount')"
             variant=" "
             class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
-            :toggle-class="{'ps-dropdown__placeholder' : !selectedMcaIndex}"
+            :toggle-class="{'ps-dropdown__placeholder' : selectedMcaIndex === null}"
             menu-class="ps-dropdown"
             no-flip
             size="sm"
-            :disabled="isLinking"
+            :disabled="isLinking || !!error"
           >
             <b-dropdown-item
               link-class="px-3"
@@ -117,7 +117,10 @@
         <VueShowdown
           v-if="isEU"
           class="mt-4 mb-0 text-muted ps_gs-fz-12"
-          :markdown="$t('mcaCard.footerEU')"
+          :markdown="$t('mcaCard.footerEU', [
+              this.$options.googleUrl.comparisonShoppingServices,
+              this.$options.googleUrl.findCssPartners
+            ])"
           :extensions="['targetlink']"
         />
       </div>
@@ -288,6 +291,16 @@
         </span>
       </p>
     </b-alert>
+    <b-alert
+      v-if="error === WebsiteClaimErrorReason.UnlinkFailed"
+      show
+      variant="danger"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        {{ $t('mcaCard.unlinkFailed') }}
+      </p>
+    </b-alert>
     <MerchantCenterAccountPopinOverwriteClaim
       ref="mcaPopinOverrideClaim"
     />
@@ -346,7 +359,7 @@ export default {
     },
     message() {
       return this.isEnabled
-        ? this.$i18n.t('mcaCard.introEnabled')
+        ? this.$i18n.t('mcaCard.introEnabled', [this.$options.googleUrl.merchantCenterAccount])
         : this.$i18n.t('mcaCard.introDisabled');
     },
     mcaStatusBadge() {

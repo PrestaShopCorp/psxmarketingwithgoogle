@@ -4,8 +4,10 @@
     ref="modal"
     :title="$t('modal.titleOverwriteClaim')"
     v-bind="$attrs"
-    @ok="onMCAOverrideClaim"
+    @ok="onGMCOverrideClaim"
     @cancel="onChangeAccount"
+    :cancel-disabled="processing"
+    :ok-disabled="processing"
   >
     <VueShowdown
       class="my-1"
@@ -24,21 +26,35 @@
 import PsModal from '../commons/ps-modal';
 
 export default {
-  /**
-   * TODO:
-   * Handle all events:  close, click on cancel, click on ok, etc...
-   */
-
   name: 'MerchantCenterAccountPopinOverwriteClaim',
   components: {
     PsModal,
   },
+  data() {
+    return {
+      processing: false,
+    };
+  },
   methods: {
-    onMCAOverrideClaim() {
-      this.$store.dispatch('accounts/REQUEST_TO_OVERRIDE_CLAIM');
+    onGMCOverrideClaim(bvModalEvt) {
+      this.processing = true;
+      bvModalEvt.preventDefault();
+      this.$store.dispatch('accounts/REQUEST_TO_OVERRIDE_CLAIM').finally(
+        () => {
+          this.processing = false;
+          this.$bvModal.hide('MerchantCenterAccountPopinOverwriteClaim');
+        },
+      );
     },
-    onChangeAccount() {
-      this.$store.dispatch('accounts/DISSOCIATE_MERCHANT_CENTER_ACCOUNT');
+    onChangeAccount(bvModalEvt) {
+      this.processing = true;
+      bvModalEvt.preventDefault();
+      this.$store.dispatch('accounts/DISSOCIATE_GMC').finally(
+        () => {
+          this.processing = false;
+          this.$bvModal.hide('MerchantCenterAccountPopinOverwriteClaim');
+        },
+      );
     },
   },
 };

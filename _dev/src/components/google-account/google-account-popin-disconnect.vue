@@ -27,9 +27,21 @@ export default {
   components: {
     PsModal,
   },
+  data() {
+    return {
+      processing: false,
+    };
+  },
   methods: {
-    onGoogleAccountDissociationConfirmation() {
-      this.$store.dispatch('accounts/DISSOCIATE_GOOGLE_ACCOUNT');
+    onGoogleAccountDissociationConfirmation(bvModalEvt) {
+      this.processing = true;
+      bvModalEvt.preventDefault();
+      this.$store.dispatch('accounts/DISSOCIATE_GOOGLE_ACCOUNT').finally(
+        () => {
+          this.processing = false;
+          this.$bvModal.hide('GoogleAccountPopinDisconnect');
+        },
+      );
     },
   },
 };
