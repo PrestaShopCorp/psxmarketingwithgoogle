@@ -145,11 +145,6 @@ export default {
     return finished;
   },
 
-  [ActionsTypes.SAVE_GOOGLE_CONNECTION_ONCE](
-    {commit},
-  ) {
-    commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE, true);
-  },
 
   async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}) {
     const urlState = btoa(JSON.stringify({
