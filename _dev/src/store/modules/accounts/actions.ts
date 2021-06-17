@@ -145,13 +145,6 @@ export default {
     return finished;
   },
 
-  // Comment to delete : launch toast Google account connected ONCE after connected
-  [ActionsTypes.SAVE_GOOGLE_CONNECTION_ONCE](
-    {commit},
-  ) {
-    commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE, true);
-  },
-
   async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}) {
     const urlState = btoa(JSON.stringify({
       redirectUri: rootState.app.psGoogleShoppingAdminUrl,

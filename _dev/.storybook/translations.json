@@ -440,7 +440,8 @@
     },
     "toast": {
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
-      "attributesMapppingSuccess": "Your attributes are successfully mapped. Once you click on ‘Save’ your products will be sent to Google"
+      "attributesMapppingSuccess": "Your attributes are successfully mapped. Once you click on ‘Save’ your products will be sent to Google",
+      "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!"
     },
     "stepper": {
       "nextStep" : "Next: {0}",

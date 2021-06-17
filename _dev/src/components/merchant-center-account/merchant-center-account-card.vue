@@ -118,9 +118,9 @@
           v-if="isEU"
           class="mt-4 mb-0 text-muted ps_gs-fz-12"
           :markdown="$t('mcaCard.footerEU', [
-              this.$options.googleUrl.comparisonShoppingServices,
-              this.$options.googleUrl.findCssPartners
-            ])"
+            this.$options.googleUrl.comparisonShoppingServices,
+            this.$options.googleUrl.findCssPartners
+          ])"
           :extensions="['targetlink']"
         />
       </div>

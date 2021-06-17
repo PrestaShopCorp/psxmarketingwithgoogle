@@ -487,6 +487,7 @@ class PsGoogleShoppingTranslations
             'toast' => [
                 'googleAccountConnectedOnceSuccess' => $this->module->l('You have connected your Google account!', 'PsGoogleShoppingTranslations'),
                 'attributesMapppingSuccess' => $this->module->l('Your attributes are successfully mapped. Once you click on ‘Save’ your products will be sent to Google', 'PsGoogleShoppingTranslations'),
+                'MCAConnectedOnceSuccess' => $this->module->l('You have connected your Merchant Center account!', 'PsGoogleShoppingTranslations'),
             ],
             'stepper' => [
                 'nextStep' => $this->module->l('Next: {0}', 'PsGoogleShoppingTranslations'),

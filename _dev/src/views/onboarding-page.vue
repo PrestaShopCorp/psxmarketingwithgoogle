@@ -92,13 +92,13 @@
     <ProductFeedPopinDisable
       ref="productFeedDisableModal"
     />
-    <!-- Toast -->
+    <!-- Toasts -->
     <PsToast
       variant="success"
-      :visible="googleAccountConnectedOnce"
+      :visible="googleAccountConnectedOnce || merchantCenterAccountConnectedOnce"
       toaster="b-toaster-top-right"
     >
-      <p>{{ $t('toast.googleAccountConnectedOnceSuccess') }}</p>
+      <p>{{ insideToast }}</p>
     </PsToast>
   </div>
 </template>
@@ -152,10 +152,11 @@ export default {
         .then(() => this.$store.dispatch('accounts/TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS', correlationId))
         .finally(() => {
           this.isMcaLinking = false;
+          this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
         });
     },
     onGoogleAccountConnection() {
-      this.$store.dispatch('accounts/SAVE_GOOGLE_CONNECTION_ONCE');
+      this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
       this.$store.dispatch('accounts/TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED', true);
     },
     onGoogleAccountDissociationRequest() {
@@ -205,6 +206,12 @@ export default {
     merchantCenterAccountIsChosen() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
+    merchantCenterAccountIsOnboarded() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
+    },
+    merchantCenterAccountConnectedOnce() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_CONNECTED_ONCE'];
+    },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
@@ -219,6 +226,14 @@ export default {
           && this.productFeedIsConfigured,
         step3: false,
       };
+    },
+    insideToast() {
+      if (this.googleAccountConnectedOnce) {
+        return this.$t('toast.googleAccountConnectedOnceSuccess');
+      } if (this.merchantCenterAccountConnectedOnce) {
+        return this.$t('toast.MCAConnectedOnceSuccess');
+      }
+      return '';
     },
   },
   mounted() {

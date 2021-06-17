@@ -1,5 +1,6 @@
 export const googleAccountNotConnected = {
     access_token: '',
+    connectedOnce: false,
     details: {},
     mcaSelectionOptions: [],
 };
@@ -113,5 +114,11 @@ export const googleAccountConnected = {
         },
     ]
 };
+
+export const googleAccountConnectedOnce = {
+   ...googleAccountConnected,
+   connectedOnce: true,
+};
+
 
 export default googleAccountConnected;

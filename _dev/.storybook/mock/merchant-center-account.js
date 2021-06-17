@@ -2,6 +2,7 @@ export const merchantCenterAccountNotConnected = {
     websiteVerificationStatus: null,
     isClaimed: false,
     isVerified: false,
+    connectedOnce: false,
     id: null,
     claimError: null,
     users: [],
@@ -20,5 +21,10 @@ export const merchantCenterAccountConnected = {
       // ToDo: Fill it with mocked data
   ],
 }
+
+export const merchantCenterAccountConnectedOnce = {
+    ...merchantCenterAccountConnected,
+    connectedOnce: true,
+};
 
 export default merchantCenterAccountConnected;
