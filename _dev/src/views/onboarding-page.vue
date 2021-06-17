@@ -152,7 +152,7 @@ export default {
         .then(() => this.$store.dispatch('accounts/TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS', correlationId))
         .finally(() => {
           this.isMcaLinking = false;
-          this.$store.dispatch('accounts/SAVE_MCA_CONNECTED_ONCE');
+          this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
         });
     },
     onGoogleAccountConnection() {
@@ -244,7 +244,7 @@ export default {
       this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
     }
   },
- watch: {
+  watch: {
     merchantCenterAccountIsChosen(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');

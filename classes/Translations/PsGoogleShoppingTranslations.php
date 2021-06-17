@@ -494,6 +494,7 @@ class PsGoogleShoppingTranslations
                 'lastStep' => $this->module->l('Last step', 'PsGoogleShoppingTranslations'),
             ],
         ];
+        
         return $translations;
     }
 }
