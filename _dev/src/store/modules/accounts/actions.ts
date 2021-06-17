@@ -145,7 +145,6 @@ export default {
     return finished;
   },
 
-
   async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}) {
     const urlState = btoa(JSON.stringify({
       redirectUri: rootState.app.psGoogleShoppingAdminUrl,
