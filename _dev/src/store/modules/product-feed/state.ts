@@ -19,23 +19,22 @@
 
 // ToDo: Replace every "any" in this file with the proper type
 export interface ProductFeedStatus {
-  nextSync?: string,
-  lastSync?: string;
-  registerSyncData: any;
+  nextJobAt?: string,
+  jobEndedAt?: string;
+  shopHealthy: boolean;
   failedSyncs: Array<string>;
   successfulSyncs: Array<string>;
-  isSyncEnabled: boolean;
+  enabled: boolean;
 }
-// ToDo: Update key name so you match the data coming from the API
 export interface ProductFeedSettingsSellingApparel {
-  color?: string;
-  size?: string;
-  age?: string;
-  gender?: string;
+  customColorAttribute?: string;
+  customSizeAttribute?: string;
+  customAgeGroupAttribute?: string;
+  customGenderGroupAttribute?: string;
 }
 
 export interface ProductFeedSettingsSellingRefurbished {
-  condition?: string;
+  customConditionAttribute?: string;
 }
 
 export interface ProductFeedSettings {
@@ -47,11 +46,6 @@ export interface ProductFeedSettings {
   sellRefurbished: ProductFeedSettingsSellingRefurbished,
 }
 
-export interface FreeListingStatus {
-  validationList: any;
-  summaryValidationList: any;
-  status: any;
-}
 export interface State {
   productFeed: {
     isConfigured: boolean,
@@ -59,7 +53,6 @@ export interface State {
     status: ProductFeedStatus,
     settings: ProductFeedSettings,
   },
-  freeListing: FreeListingStatus;
 }
 
 export const state: State = {
@@ -69,8 +62,8 @@ export const state: State = {
     status: {
       failedSyncs: [],
       successfulSyncs: [],
-      registerSyncData: {},
-      isSyncEnabled: true,
+      enabled: false,
+      shopHealthy: true,
     },
     settings: {
       autoImportTaxSettings: false,
@@ -78,19 +71,14 @@ export const state: State = {
       autoImportShippingSettings: false,
       exportProductsWithShortDescription: true,
       sellApparel: {
-        color: 'extra:color',
-        size: 'extra:size',
-        age: 'extra:age-group',
-        gender: 'extra:gender-group',
+        customColorAttribute: 'extra:color',
+        customSizeAttribute: 'extra:size',
+        customAgeGroupAttribute: 'extra:age-group',
+        customGenderGroupAttribute: 'extra:gender-group',
       },
       sellRefurbished: {
-        condition: 'extra:condition',
+        customConditionAttribute: 'extra:condition',
       },
     },
-  },
-  freeListing: {
-    validationList: {},
-    summaryValidationList: [],
-    status: false,
   },
 };

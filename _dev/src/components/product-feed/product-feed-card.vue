@@ -327,7 +327,7 @@ export default {
     },
     nextSyncTime() {
       return this.$options.filters.timeConverterToDate(
-        this.getProductFeedStatus.nextSync,
+        this.getProductFeedStatus.nextJobAt,
       );
     },
     isUS() {
@@ -358,7 +358,7 @@ export default {
       return 'warning';
     },
     productFeedSyncEnabled() {
-      return this.getProductFeedStatus.isSyncEnabled;
+      return !this.getProductFeedStatus.enabled;
     },
     attributeMapping: {
     //  TODO maybe refacto to get also the attribute long description or refurbished if needed
@@ -375,10 +375,10 @@ export default {
     lastSync() {
       return {
         day: this.$options.filters.timeConverterToDate(
-          this.getProductFeedStatus?.lastSync,
+          this.getProductFeedStatus?.jobEndedAt,
         ),
         time: this.$options.filters.timeConverterToHour(
-          this.getProductFeedStatus?.lastSync,
+          this.getProductFeedStatus?.jobEndedAt,
         ),
         totalProducts: 200,
       };

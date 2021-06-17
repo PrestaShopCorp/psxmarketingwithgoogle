@@ -17,14 +17,11 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-enum ActionsTypes {
-  /** PRODUCT FEED SETTINGS CARD */
-  GET_LAST_SYNCHRONISATION = 'GET_LAST_SYNCHRONISATION',
-  REGISTER_SYNCHRONISATION = 'REGISTER_SYNCHRONISATION',
-  TOGGLE_SYNCHRONIZATION = 'TOGGLE_SYNCHRONIZATION',
-  GET_PRODUCT_FEED_SETTINGS = 'GET_PRODUCT_FEED_SETTINGS',
-  SEND_PRODUCT_FEED_SETTINGS = 'SEND_PRODUCT_FEED_SETTINGS',
-  GET_SHIPPING_SETTINGS = 'GET_SHIPPING_SETTINGS',
-}
+import {
+  State as LocalState,
+} from './state';
+import GettersTypes from './getters-types';
 
-export {ActionsTypes as default};
+export default {
+
+};

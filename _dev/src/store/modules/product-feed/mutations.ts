@@ -24,23 +24,11 @@ type payloadObject = {
 }
 
 export default {
-  [MutationsTypes.SET_VALIDATION_LIST_STATEMENT](state: LocalState, payload: any) {
-    state.freeListing.validationList = payload;
-  },
-  [MutationsTypes.SET_SUMMARY_VALIDATION](state: LocalState, payload: any) {
-    state.freeListing.summaryValidationList = payload;
-  },
-  [MutationsTypes.SET_FREE_LISTING_STATUS](state: LocalState, payload: any) {
-    state.freeListing.status = payload;
-  },
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
     state.productFeed.status[payload.name] = payload.data;
   },
-  [MutationsTypes.SET_REGISTERED_DATA_SYNC](state: LocalState, payload: any) {
-    state.productFeed.status.registerSyncData = payload;
-  },
   [MutationsTypes.SET_SUSPENDED_DATA_SYNC](state: LocalState, payload: boolean) {
-    state.productFeed.status.isSyncEnabled = payload;
+    state.productFeed.status.enabled = payload;
   },
 
   //  Product Feed Card

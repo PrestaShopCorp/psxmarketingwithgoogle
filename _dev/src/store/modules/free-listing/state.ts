@@ -17,14 +17,19 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-enum ActionsTypes {
-  /** PRODUCT FEED SETTINGS CARD */
-  GET_LAST_SYNCHRONISATION = 'GET_LAST_SYNCHRONISATION',
-  REGISTER_SYNCHRONISATION = 'REGISTER_SYNCHRONISATION',
-  TOGGLE_SYNCHRONIZATION = 'TOGGLE_SYNCHRONIZATION',
-  GET_PRODUCT_FEED_SETTINGS = 'GET_PRODUCT_FEED_SETTINGS',
-  SEND_PRODUCT_FEED_SETTINGS = 'SEND_PRODUCT_FEED_SETTINGS',
-  GET_SHIPPING_SETTINGS = 'GET_SHIPPING_SETTINGS',
+export interface FreeListingStatus {
+  validationList: any;
+  summaryValidationList: any;
+  status: any;
+}
+export interface State {
+  freeListing: FreeListingStatus;
 }
 
-export {ActionsTypes as default};
+export const state: State = {
+  freeListing: {
+    validationList: {},
+    summaryValidationList: [],
+    status: false,
+  },
+};

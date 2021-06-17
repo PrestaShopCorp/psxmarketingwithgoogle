@@ -16,15 +16,17 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import MutationsTypes from './mutations-types';
+import {State as LocalState} from './state';
 
-enum ActionsTypes {
-  /** PRODUCT FEED SETTINGS CARD */
-  GET_LAST_SYNCHRONISATION = 'GET_LAST_SYNCHRONISATION',
-  REGISTER_SYNCHRONISATION = 'REGISTER_SYNCHRONISATION',
-  TOGGLE_SYNCHRONIZATION = 'TOGGLE_SYNCHRONIZATION',
-  GET_PRODUCT_FEED_SETTINGS = 'GET_PRODUCT_FEED_SETTINGS',
-  SEND_PRODUCT_FEED_SETTINGS = 'SEND_PRODUCT_FEED_SETTINGS',
-  GET_SHIPPING_SETTINGS = 'GET_SHIPPING_SETTINGS',
-}
-
-export {ActionsTypes as default};
+export default {
+  [MutationsTypes.SET_VALIDATION_LIST_STATEMENT](state: LocalState, payload: any) {
+    state.freeListing.validationList = payload;
+  },
+  [MutationsTypes.SET_SUMMARY_VALIDATION](state: LocalState, payload: any) {
+    state.freeListing.summaryValidationList = payload;
+  },
+  [MutationsTypes.SET_FREE_LISTING_STATUS](state: LocalState, payload: any) {
+    state.freeListing.status = payload;
+  },
+};
