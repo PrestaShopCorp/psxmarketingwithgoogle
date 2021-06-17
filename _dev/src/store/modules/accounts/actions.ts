@@ -145,7 +145,7 @@ export default {
     return finished;
   },
 
-  [ActionsTypes.SAVE_MCA_CONNECTION_ONCE](
+  [ActionsTypes.SAVE_MCA_CONNECTED_ONCE](
     {commit},
   ) {
     commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
