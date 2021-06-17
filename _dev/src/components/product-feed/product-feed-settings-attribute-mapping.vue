@@ -252,7 +252,7 @@ export default {
         return this.$store.getters['productFeed/GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES'];
       },
       set(value) {
-        const data = value ? {color: 'extra:color'} : {};
+        const data = value ? {customColorAttribute: 'extra:color'} : {};
         return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'sellApparel',
           data,
@@ -264,7 +264,7 @@ export default {
         return this.$store.getters['productFeed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
       },
       set(value) {
-        const data = value ? {condition: 'extra:condition'} : {};
+        const data = value ? {customConditionAttribute: 'extra:condition'} : {};
         return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'sellRefurbished',
           data,
