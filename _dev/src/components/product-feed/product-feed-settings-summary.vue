@@ -183,13 +183,12 @@ export default {
     BTableSimple,
   },
   data() {
-    // TODO : retrieve products from backend for nextSyncTotalProducts
     return {
-      nextSyncTotalProducts: '210',
-      nextSyncDate: this.$store.state.productFeed.productFeed.status.nextJobAt,
-      targetCountries: this.$store.state.productFeed.productFeed.settings.targetCountries,
+      nextSyncTotalProducts: this.$store.state.productFeed.settings.productsPerBatchSync,
+      nextSyncDate: this.$store.state.productFeed.status.nextJobAt,
+      targetCountries: this.$store.state.productFeed.settings.targetCountries,
       shippingSettings:
-      this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings
+      this.$store.state.productFeed.settings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
         : this.$t('productFeedSettings.shipping.manually'),
       refurbishedInputs: ['condition'],

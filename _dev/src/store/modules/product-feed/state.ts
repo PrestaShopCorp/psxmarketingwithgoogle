@@ -26,59 +26,51 @@ export interface ProductFeedStatus {
   successfulSyncs: Array<string>;
   enabled: boolean;
 }
-export interface ProductFeedSettingsSellingApparel {
+export interface ProductFeedSettingsAttributeMapping {
   customColorAttribute?: string;
   customSizeAttribute?: string;
   customAgeGroupAttribute?: string;
   customGenderGroupAttribute?: string;
-}
-
-export interface ProductFeedSettingsSellingRefurbished {
   customConditionAttribute?: string;
 }
 
 export interface ProductFeedSettings {
   autoImportTaxSettings: boolean;
   targetCountries: Array<string>;
+  productsPerBatchSync: number;
   autoImportShippingSettings: boolean;
   exportProductsWithShortDescription: boolean;
-  sellApparel: ProductFeedSettingsSellingApparel;
-  sellRefurbished: ProductFeedSettingsSellingRefurbished,
+  attributeMapping: ProductFeedSettingsAttributeMapping;
 }
 
 export interface State {
-  productFeed: {
     isConfigured: boolean,
     stepper: number,
     status: ProductFeedStatus,
     settings: ProductFeedSettings,
-  },
 }
 
 export const state: State = {
-  productFeed: {
-    isConfigured: false,
-    stepper: 1,
-    status: {
-      failedSyncs: [],
-      successfulSyncs: [],
-      enabled: false,
-      shopHealthy: true,
-    },
-    settings: {
-      autoImportTaxSettings: false,
-      targetCountries: [],
-      autoImportShippingSettings: false,
-      exportProductsWithShortDescription: true,
-      sellApparel: {
-        customColorAttribute: 'extra:color',
-        customSizeAttribute: 'extra:size',
-        customAgeGroupAttribute: 'extra:age-group',
-        customGenderGroupAttribute: 'extra:gender-group',
-      },
-      sellRefurbished: {
-        customConditionAttribute: 'extra:condition',
-      },
+  isConfigured: false,
+  stepper: 1,
+  status: {
+    failedSyncs: [],
+    successfulSyncs: [],
+    enabled: false,
+    shopHealthy: true,
+  },
+  settings: {
+    autoImportTaxSettings: false,
+    targetCountries: [],
+    productsPerBatchSync: 0,
+    autoImportShippingSettings: false,
+    exportProductsWithShortDescription: true,
+    attributeMapping: {
+      customColorAttribute: 'extra:color',
+      customSizeAttribute: 'extra:size',
+      customAgeGroupAttribute: 'extra:age-group',
+      customGenderGroupAttribute: 'extra:gender-group',
+      customConditionAttribute: 'extra:condition',
     },
   },
 };

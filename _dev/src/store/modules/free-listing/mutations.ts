@@ -21,12 +21,12 @@ import {State as LocalState} from './state';
 
 export default {
   [MutationsTypes.SET_VALIDATION_LIST_STATEMENT](state: LocalState, payload: any) {
-    state.freeListing.validationList = payload;
+    state.validationList = payload;
   },
   [MutationsTypes.SET_SUMMARY_VALIDATION](state: LocalState, payload: any) {
-    state.freeListing.summaryValidationList = payload;
+    state.summaryValidationList = payload;
   },
   [MutationsTypes.SET_FREE_LISTING_STATUS](state: LocalState, payload: any) {
-    state.freeListing.status = payload;
+    state.status = payload;
   },
 };

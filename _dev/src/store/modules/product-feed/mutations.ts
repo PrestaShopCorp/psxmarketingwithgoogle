@@ -25,22 +25,47 @@ type payloadObject = {
 
 export default {
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
-    state.productFeed.status[payload.name] = payload.data;
+    state.status[payload.name] = payload.data;
   },
   [MutationsTypes.SET_SUSPENDED_DATA_SYNC](state: LocalState, payload: boolean) {
-    state.productFeed.status.enabled = payload;
+    state.status.enabled = payload;
   },
 
   //  Product Feed Card
   [MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS](state: LocalState, payload: payloadObject) {
-    state.productFeed.settings[payload.name] = payload.data;
+    state.settings[payload.name] = payload.data;
   },
 
   [MutationsTypes.TOGGLE_CONFIGURATION_FINISHED](state: LocalState, payload: boolean) {
-    state.productFeed.isConfigured = payload;
+    state.isConfigured = payload;
   },
 
   [MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP](state: LocalState, payload: number) {
-    state.productFeed.stepper = payload;
+    state.stepper = payload;
+  },
+
+  [MutationsTypes.TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_REFURBISHED](
+    state: LocalState, payload: boolean,
+  ) {
+    if (payload) {
+      state.settings.attributeMapping.customConditionAttribute = 'extra:condition';
+    } else {
+      state.settings.attributeMapping.customConditionAttribute = '';
+    }
+  },
+  [MutationsTypes.TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_SELL_APPAREL](
+    state: LocalState, payload: boolean,
+  ) {
+    if (payload) {
+      state.settings.attributeMapping.customColorAttribute = 'extra:color';
+      state.settings.attributeMapping.customSizeAttribute = 'extra:size';
+      state.settings.attributeMapping.customAgeGroupAttribute = 'extra:age-group';
+      state.settings.attributeMapping.customGenderGroupAttribute = 'extra:gender-group';
+    } else {
+      state.settings.attributeMapping.customColorAttribute = '';
+      state.settings.attributeMapping.customSizeAttribute = '';
+      state.settings.attributeMapping.customAgeGroupAttribute = '';
+      state.settings.attributeMapping.customGenderGroupAttribute = '';
+    }
   },
 };

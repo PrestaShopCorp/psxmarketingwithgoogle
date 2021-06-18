@@ -194,8 +194,8 @@ export default {
     },
     shippingSettings: {
       get() {
-        return this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings !== 'undefined'
-          ? this.$store.state.productFeed.productFeed.settings.autoImportShippingSettings : null;
+        return this.$store.state.productFeed.settings.autoImportShippingSettings !== 'undefined'
+          ? this.$store.state.productFeed.settings.autoImportShippingSettings : null;
       },
       set(value) {
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
@@ -206,8 +206,8 @@ export default {
     },
     countries: {
       get() {
-        return this.$store.state.productFeed.productFeed.settings.targetCountries
-          ? this.$store.state.productFeed.productFeed.settings.targetCountries : [];
+        return this.$store.state.productFeed.settings.targetCountries
+          ? this.$store.state.productFeed.settings.targetCountries : [];
       },
       set(value) {
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: value});

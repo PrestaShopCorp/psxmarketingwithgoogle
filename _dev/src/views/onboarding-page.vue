@@ -171,7 +171,7 @@ export default {
     },
     onSyncToggled() {
       // If user has sync already, we warn the user that the sync won't work anymore with modal
-      if (this.$store.state.productFeed.productFeed.status.enabled) {
+      if (this.$store.state.productFeed.status.enabled) {
         this.$bvModal.show(
           this.$refs.productFeedDisableModal.$refs.modal.id,
         );

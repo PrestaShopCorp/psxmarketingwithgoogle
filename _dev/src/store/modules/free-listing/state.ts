@@ -17,19 +17,17 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-export interface FreeListingStatus {
+export interface State {
   validationList: any;
   summaryValidationList: any;
   status: any;
 }
-export interface State {
-  freeListing: FreeListingStatus;
+export interface state {
+   FreeListingStatus;
 }
 
 export const state: State = {
-  freeListing: {
-    validationList: {},
-    summaryValidationList: [],
-    status: false,
-  },
+  validationList: {},
+  summaryValidationList: [],
+  status: false,
 };

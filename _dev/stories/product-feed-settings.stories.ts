@@ -26,7 +26,7 @@ ShippingSettings.args = {
     this.$store.state.productFeed = Object.assign(
       this.$store.state.productFeed,
     );
-    this.$store.state.productFeed.productFeed.stepper = 1
+    this.$store.state.productFeed.stepper = 1
   },
 }
 
@@ -37,7 +37,7 @@ ExportSettings.args = {
     this.$store.state.productFeed = Object.assign(
       this.$store.state.productFeed,
     );
-    this.$store.state.productFeed.productFeed.stepper = 2
+    this.$store.state.productFeed.stepper = 2
   },
 }
 
@@ -47,7 +47,7 @@ AttributeMapping.args = {
     this.$store.state.productFeed = Object.assign(
       this.$store.state.productFeed,
     );
-    this.$store.state.productFeed.productFeed.stepper = 3
+    this.$store.state.productFeed.stepper = 3
   },
 }
 
@@ -57,6 +57,6 @@ Summary.args = {
     this.$store.state.productFeed = Object.assign(
       this.$store.state.productFeed,
     );
-    this.$store.state.productFeed.productFeed.stepper = 4
+    this.$store.state.productFeed.stepper = 4
   },
 }

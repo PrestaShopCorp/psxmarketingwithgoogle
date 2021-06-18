@@ -57,26 +57,9 @@ export default {
     // }
   },
 
-  async [ActionsTypes.REGISTER_SYNCHRONISATION]({commit, rootState}, payload: any) {
-    try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      const json = await response.json();
-      commit(MutationsTypes.SET_REGISTERED_DATA_SYNC, json);
-    } catch (error) {
-      console.error(error);
-    }
-  },
-
   async [ActionsTypes.TOGGLE_SYNCHRONIZATION]({commit, rootState}, payload: boolean) {
     commit(MutationsTypes.SET_SUSPENDED_DATA_SYNC,
-      !rootState.productFeed.productFeed.status.enabled);
+      !rootState.productFeed.status.enabled);
     const route = payload ? `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/register`
       : `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/suspend`;
     try {
@@ -111,27 +94,28 @@ export default {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'sellApparel',
-        data: Object.assign(
-          (json.customColorAttribute) ? {
-            customColorAttribute: json.customColorAttribute,
-          } : {},
-          (json.customAgeGroupAttribute) ? {
-            customAgeGroupAttribute: json.customAgeGroupAttribute,
-          } : {},
-          (json.customSizeAttribute) ? {
-            customSizeAttribute: json.customSizeAttribute,
-          } : {},
-          (json.customGenderGroupAttribute) ? {
-            customGenderGroupAttribute: json.customGenderGroupAttribute,
-          } : {},
-        ),
+        name: 'productsPerBatchSync', data: json.productsPerBatchSync,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'sellRefurbished',
+        name: 'exportProductsWithShortDescription', data: json.exportProductsWithShortDescription,
+      });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'attributeMapping',
         data: Object.assign(
-          (json.customConditionAttribute) ? {
-            customConditionAttribute: json.customConditionAttribute,
+          (json.attributeMapping.customColorAttribute) ? {
+            customColorAttribute: json.attributeMapping.customColorAttribute,
+          } : {},
+          (json.attributeMapping.customAgeGroupAttribute) ? {
+            customAgeGroupAttribute: json.attributeMapping.customAgeGroupAttribute,
+          } : {},
+          (json.attributeMapping.customSizeAttribute) ? {
+            customSizeAttribute: json.attributeMapping.customSizeAttribute,
+          } : {},
+          (json.attributeMapping.customGenderGroupAttribute) ? {
+            customGenderGroupAttribute: json.attributeMapping.customGenderGroupAttribute,
+          } : {},
+          (json.attributeMapping.customConditionAttribute) ? {
+            customConditionAttribute: json.attributeMapping.customConditionAttribute,
           } : {},
         ),
       });
@@ -142,21 +126,21 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({state, rootState}) {
-    const productFeedSettings = state.productFeed.settings;
+    const productFeedSettings = state.settings;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
       exportProductsWithShortDescription: productFeedSettings.exportProductsWithShortDescription,
       targetCountries: productFeedSettings.targetCountries,
-      customConditionAttribute: productFeedSettings?.sellRefurbished?.customConditionAttribute
+      customConditionAttribute: productFeedSettings?.attributeMapping?.customConditionAttribute
       || null,
-      customColorAttribute: productFeedSettings?.sellApparel?.customColorAttribute
+      customColorAttribute: productFeedSettings?.attributeMapping?.customColorAttribute
       || null,
-      customSizeAttribute: productFeedSettings?.sellApparel?.customSizeAttribute
+      customSizeAttribute: productFeedSettings?.attributeMapping?.customSizeAttribute
       || null,
-      customAgeGroupAttribute: productFeedSettings?.sellApparel?.customAgeGroupAttribute
+      customAgeGroupAttribute: productFeedSettings?.attributeMapping?.customAgeGroupAttribute
       || null,
-      customGenderGroupAttribute: productFeedSettings?.sellApparel?.customGenderGroupAttribute
+      customGenderGroupAttribute: productFeedSettings?.attributeMapping?.customGenderGroupAttribute
       || null,
     };
     try {

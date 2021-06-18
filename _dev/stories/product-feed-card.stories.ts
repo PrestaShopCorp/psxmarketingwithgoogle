@@ -75,7 +75,7 @@ EnabledToConfigure.args = {
 export const EnabledConfigured:any = Template.bind({});
 EnabledConfigured.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed.productFeed.isConfigured = true;
+    this.$store.state.productFeed.isConfigured = true;
   },
   isEnabled: true,
   ...basicArgs,
