@@ -185,7 +185,7 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
-      if (json.account_id && json.merchant_id) {
+      if (json.account_id) {
         commit(MutationsTypes.SAVE_GMC, {
           id: json.account_id,
         });
