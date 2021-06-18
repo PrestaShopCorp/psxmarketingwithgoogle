@@ -31,7 +31,7 @@ export default {
       type: String,
     },
     description: {
-      type: String,
+      type: [String, Number],
     },
     icon: {
       type: String,

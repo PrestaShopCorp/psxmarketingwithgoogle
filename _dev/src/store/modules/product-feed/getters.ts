@@ -26,20 +26,21 @@ import GettersTypes from './getters-types';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
-    return state.productFeed.isConfigured;
+    return state.isConfigured;
   },
   [GettersTypes.GET_PRODUCT_FEED_SETTINGS](state: LocalState): ProductFeedSettings {
-    return state.productFeed.settings;
+    return state.settings;
   },
   [GettersTypes.GET_PRODUCT_FEED_STATUS](state: LocalState): ProductFeedStatus {
-    return state.productFeed.status;
+    return state.status;
   },
   [GettersTypes.GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES](state: LocalState): boolean {
-    return !!state.productFeed.settings.sellApparel
-      && !!Object.keys(state.productFeed.settings.sellApparel).length;
+    return !!state.settings.attributeMapping?.customColorAttribute
+          || !!state.settings.attributeMapping?.customSizeAttribute
+          || !!state.settings.attributeMapping?.customAgeGroupAttribute
+          || !!state.settings.attributeMapping?.customGenderGroupAttribute;
   },
   [GettersTypes.GET_MERCHANT_SELL_REFURBISHED_PRODUCTS](state: LocalState): boolean {
-    return !!state.productFeed.settings.sellRefurbished
-      && !!Object.keys(state.productFeed.settings.sellRefurbished).length;
+    return !!state.settings.attributeMapping?.customConditionAttribute;
   },
 };

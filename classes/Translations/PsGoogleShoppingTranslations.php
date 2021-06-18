@@ -215,7 +215,7 @@ class PsGoogleShoppingTranslations
                     'targetCountries' => $this->module->l('Target countries', 'PsGoogleShoppingTranslations'),
                     'ifMultipleCountries' => $this->module->l('If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.', 'PsGoogleShoppingTranslations'),
                     'productAvailaibleIn' => $this->module->l('Products available in', 'PsGoogleShoppingTranslations'),
-                    'placeholderSelect' => $this->module->l('XXXXXXXXX', 'PsGoogleShoppingTranslations'),
+                    'placeholderSelect' => $this->module->l('Select the countries where your products are available', 'PsGoogleShoppingTranslations'),
                     'cantFindCountry' => $this->module->l("Can’t find a country? Only supported countries are listed. [Supported countries](//google.com)[:target=\"_blank\"]\n\n Your shipping services must be configured for the country you are targeting. Please respect [country-specific shopping policies](//google.com)[:target=\"_blank\"] and [local regulation](//google.com)[:target=\"_blank\"]", 'PsGoogleShoppingTranslations'),
                     'shippingSettings' => $this->module->l('Shipping settings', 'PsGoogleShoppingTranslations'),
                     'autoImportShipping' => $this->module->l('Automatically import shipping settings', 'PsGoogleShoppingTranslations'),

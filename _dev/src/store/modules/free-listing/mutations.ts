@@ -16,20 +16,17 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import MutationsTypes from './mutations-types';
+import {State as LocalState} from './state';
 
-enum MutationsTypes {
-    /** PRODUCT FEED SETTINGS CARD */
-    SET_LAST_SYNCHRONISATION = 'SET_LAST_SYNCHRONISATION',
-    SET_SUSPENDED_DATA_SYNC = 'SET_SUSPENDED_DATA_SYNC',
-    SET_SELECTED_PRODUCT_FEED_SETTINGS = 'SET_SELECTED_PRODUCT_FEED_SETTINGS',
-    SET_SELECTED_PRODUCT_FEED_STATUS = 'SET_SELECTED_PRODUCT_FEED_STATUS',
-    TOGGLE_CONFIGURATION_FINISHED = 'TOGGLE_CONFIGURATION_FINISHED',
-    SET_ACTIVE_CONFIGURATION_STEP = 'SET_ACTIVE_CONFIGURATION_STEP',
-    TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_SELL_APPAREL =
-    'TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_SELL_APPAREL',
-    TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_REFURBISHED =
-    'TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_REFURBISHED',
-
-}
-
-export {MutationsTypes as default};
+export default {
+  [MutationsTypes.SET_VALIDATION_LIST_STATEMENT](state: LocalState, payload: any) {
+    state.validationList = payload;
+  },
+  [MutationsTypes.SET_SUMMARY_VALIDATION](state: LocalState, payload: any) {
+    state.summaryValidationList = payload;
+  },
+  [MutationsTypes.SET_FREE_LISTING_STATUS](state: LocalState, payload: any) {
+    state.status = payload;
+  },
+};

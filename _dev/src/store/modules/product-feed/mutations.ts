@@ -24,35 +24,50 @@ type payloadObject = {
 }
 
 export default {
-  [MutationsTypes.SET_VALIDATION_LIST_STATEMENT](state: LocalState, payload: any) {
-    state.freeListing.validationList = payload;
-  },
-  [MutationsTypes.SET_SUMMARY_VALIDATION](state: LocalState, payload: any) {
-    state.freeListing.summaryValidationList = payload;
-  },
-  [MutationsTypes.SET_FREE_LISTING_STATUS](state: LocalState, payload: any) {
-    state.freeListing.status = payload;
-  },
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
-    state.productFeed.status[payload.name] = payload.data;
-  },
-  [MutationsTypes.SET_REGISTERED_DATA_SYNC](state: LocalState, payload: any) {
-    state.productFeed.status.registerSyncData = payload;
+    state.status[payload.name] = payload.data;
   },
   [MutationsTypes.SET_SUSPENDED_DATA_SYNC](state: LocalState, payload: boolean) {
-    state.productFeed.status.isSyncEnabled = payload;
+    state.status.enabled = payload;
   },
 
   //  Product Feed Card
   [MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS](state: LocalState, payload: payloadObject) {
-    state.productFeed.settings[payload.name] = payload.data;
+    state.settings[payload.name] = payload.data;
   },
 
   [MutationsTypes.TOGGLE_CONFIGURATION_FINISHED](state: LocalState, payload: boolean) {
-    state.productFeed.isConfigured = payload;
+    state.isConfigured = payload;
   },
 
   [MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP](state: LocalState, payload: number) {
-    state.productFeed.stepper = payload;
+    state.stepper = payload;
+  },
+
+  [MutationsTypes.TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_REFURBISHED](
+    state: LocalState, payload: boolean,
+  ) {
+    if (payload) {
+      state.settings.attributeMapping.customConditionAttribute = 'extra:condition';
+    } else {
+      delete state.settings.attributeMapping.customConditionAttribute;
+    }
+    state.settings.attributeMapping = {...state.settings.attributeMapping};
+  },
+  [MutationsTypes.TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_SELL_APPAREL](
+    state: LocalState, payload: boolean,
+  ) {
+    if (payload) {
+      state.settings.attributeMapping.customColorAttribute = 'extra:color';
+      state.settings.attributeMapping.customSizeAttribute = 'extra:size';
+      state.settings.attributeMapping.customAgeGroupAttribute = 'extra:age-group';
+      state.settings.attributeMapping.customGenderGroupAttribute = 'extra:gender-group';
+    } else {
+      delete state.settings.attributeMapping.customColorAttribute;
+      delete state.settings.attributeMapping.customSizeAttribute;
+      delete state.settings.attributeMapping.customAgeGroupAttribute;
+      delete state.settings.attributeMapping.customGenderGroupAttribute;
+    }
+    state.settings.attributeMapping = {...state.settings.attributeMapping};
   },
 };

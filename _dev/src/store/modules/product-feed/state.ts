@@ -19,78 +19,58 @@
 
 // ToDo: Replace every "any" in this file with the proper type
 export interface ProductFeedStatus {
-  nextSync?: string,
-  lastSync?: string;
-  registerSyncData: any;
+  nextJobAt?: string,
+  jobEndedAt?: string;
+  shopHealthy: boolean;
   failedSyncs: Array<string>;
   successfulSyncs: Array<string>;
-  isSyncEnabled: boolean;
+  enabled: boolean;
 }
-// ToDo: Update key name so you match the data coming from the API
-export interface ProductFeedSettingsSellingApparel {
-  color?: string;
-  size?: string;
-  age?: string;
-  gender?: string;
-}
-
-export interface ProductFeedSettingsSellingRefurbished {
-  condition?: string;
+export interface ProductFeedSettingsAttributeMapping {
+  customColorAttribute?: string;
+  customSizeAttribute?: string;
+  customAgeGroupAttribute?: string;
+  customGenderGroupAttribute?: string;
+  customConditionAttribute?: string;
 }
 
 export interface ProductFeedSettings {
   autoImportTaxSettings: boolean;
   targetCountries: Array<string>;
+  productsPerBatchSync: number;
   autoImportShippingSettings: boolean;
   exportProductsWithShortDescription: boolean;
-  sellApparel: ProductFeedSettingsSellingApparel;
-  sellRefurbished: ProductFeedSettingsSellingRefurbished,
+  attributeMapping: ProductFeedSettingsAttributeMapping;
 }
 
-export interface FreeListingStatus {
-  validationList: any;
-  summaryValidationList: any;
-  status: any;
-}
 export interface State {
-  productFeed: {
     isConfigured: boolean,
     stepper: number,
     status: ProductFeedStatus,
     settings: ProductFeedSettings,
-  },
-  freeListing: FreeListingStatus;
 }
 
 export const state: State = {
-  productFeed: {
-    isConfigured: false,
-    stepper: 1,
-    status: {
-      failedSyncs: [],
-      successfulSyncs: [],
-      registerSyncData: {},
-      isSyncEnabled: true,
-    },
-    settings: {
-      autoImportTaxSettings: false,
-      targetCountries: [],
-      autoImportShippingSettings: false,
-      exportProductsWithShortDescription: true,
-      sellApparel: {
-        color: 'extra:color',
-        size: 'extra:size',
-        age: 'extra:age-group',
-        gender: 'extra:gender-group',
-      },
-      sellRefurbished: {
-        condition: 'extra:condition',
-      },
-    },
+  isConfigured: false,
+  stepper: 1,
+  status: {
+    failedSyncs: [],
+    successfulSyncs: [],
+    enabled: false,
+    shopHealthy: true,
   },
-  freeListing: {
-    validationList: {},
-    summaryValidationList: [],
-    status: false,
+  settings: {
+    autoImportTaxSettings: false,
+    targetCountries: [],
+    productsPerBatchSync: 0,
+    autoImportShippingSettings: false,
+    exportProductsWithShortDescription: true,
+    attributeMapping: {
+      customColorAttribute: 'extra:color',
+      customSizeAttribute: 'extra:size',
+      customAgeGroupAttribute: 'extra:age-group',
+      customGenderGroupAttribute: 'extra:gender-group',
+      customConditionAttribute: 'extra:condition',
+    },
   },
 };

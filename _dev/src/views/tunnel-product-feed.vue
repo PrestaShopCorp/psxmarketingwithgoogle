@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     activeStep() {
-      return this.$store.state.productFeed.productFeed.stepper;
+      return this.$store.state.productFeed.stepper;
     },
   },
   methods: {

@@ -327,14 +327,14 @@ export default {
     },
     nextSyncTime() {
       return this.$options.filters.timeConverterToDate(
-        this.getProductFeedStatus.nextSync,
+        this.getProductFeedStatus.nextJobAt,
       );
     },
     isUS() {
       return this.targetCountries.includes('US');
     },
     toConfigure() {
-      return !this.$store.state.productFeed.productFeed.isConfigured;
+      return !this.$store.state.productFeed.isConfigured;
     },
     targetCountries() {
       return this.getProductFeedSettings.targetCountries;
@@ -351,36 +351,42 @@ export default {
       return this.getProductFeedSettings.targetCountries.length ? 'success' : 'warning';
     },
     attributeMappingStatus() {
-      return this.getProductFeedSettings.sellApparel || this.getProductFeedSettings.sellRefurbished ? 'success' : 'warning';
+      return this.getProductFeedSettings.attributeMapping ? 'success' : 'warning';
     },
     taxSettingsStatus() {
-    //  TODO retrieve tax settings from backend
+    // TODO retrieve tax settings from backend
       return 'warning';
     },
     productFeedSyncEnabled() {
-      return this.getProductFeedStatus.isSyncEnabled;
+      return this.getProductFeedStatus.enabled;
     },
     attributeMapping: {
-    //  TODO maybe refacto to get also the attribute long description or refurbished if needed
+    // TODO BATCH 2 refacto when dynamic fields
+    // TODO  BATCH 2 + to push also the long description attribute if needed
       get() {
         const arr = [];
-        Object.keys(this.getProductFeedSettings.sellApparel)
+        Object.keys(this.getProductFeedSettings.attributeMapping)
           .forEach((key) => {
-            arr.push(key);
+            // Because the variables names contain "custom" and "Attribute"
+            if (key === 'customColorAttribute') {
+              arr.push('Color', 'Age', 'Gender', 'Size');
+            }
+            if (key === 'customConditionAttribute') {
+              arr.push('Condition');
+            }
           });
         return arr;
       },
     },
-    // TODO : retrieve products from backend for totalProducts
     lastSync() {
       return {
         day: this.$options.filters.timeConverterToDate(
-          this.getProductFeedStatus?.lastSync,
+          this.getProductFeedStatus?.jobEndedAt,
         ),
         time: this.$options.filters.timeConverterToHour(
-          this.getProductFeedStatus?.lastSync,
+          this.getProductFeedStatus?.jobEndedAt,
         ),
-        totalProducts: 200,
+        totalProducts: this.getProductFeedSettings.productsPerBatchSync,
       };
     },
     title() {

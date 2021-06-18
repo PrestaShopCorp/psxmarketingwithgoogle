@@ -235,28 +235,27 @@ export default {
     disableContinue() {
       return false;
     },
-    selectedDescriptionLength: {
-      get() {
-        return this.$store.state.productFeed.productFeed.settings.exportProductsWithShortDescription
-        || null;
-      },
-      set(value) {
-        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-          name: 'exportProductsWithShortDescription',
-          data: value,
-        });
-      },
-    },
+    // Not in batch 1
+    // selectedDescriptionLength: {
+    //   get() {
+    //     return this.$store.state.productFeed.settings.exportProductsWithShortDescription
+    //     || null;
+    //   },
+    //   set(value) {
+    //     this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
+    //       name: 'exportProductsWithShortDescription',
+    //       data: value,
+    //     });
+    //   },
+    // },
     sellApparel: {
       get() {
         return this.$store.getters['productFeed/GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES'];
       },
       set(value) {
-        const data = value ? {color: 'extra:color'} : {};
-        return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-          name: 'sellApparel',
-          data,
-        });
+        return this.$store.commit(
+          'productFeed/TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_SELL_APPAREL', value,
+        );
       },
     },
     sellRefurbished: {
@@ -264,11 +263,9 @@ export default {
         return this.$store.getters['productFeed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
       },
       set(value) {
-        const data = value ? {condition: 'extra:condition'} : {};
-        return this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-          name: 'sellRefurbished',
-          data,
-        });
+        return this.$store.commit(
+          'productFeed/TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_REFURBISHED', value,
+        );
       },
     },
   },
