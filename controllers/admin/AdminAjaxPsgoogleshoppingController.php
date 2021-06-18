@@ -105,9 +105,9 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         }
 
         if ((bool) $inputs['isGoogleAccountLinked']) {
-            $this->configurationAdapter->updateValue(Config::PS_GOOGLE_ACCOUNT_IS_LINKED, true);
+            $this->configurationAdapter->updateValue(Config::PS_GOOGLE_SHOPPING_ACCOUNT_IS_LINKED, true);
         } else {
-            $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_ACCOUNT_IS_LINKED);
+            $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_SHOPPING_ACCOUNT_IS_LINKED);
         }
         $this->ajaxDie(json_encode(['success' => true]));
     }

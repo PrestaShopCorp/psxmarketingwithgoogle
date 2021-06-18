@@ -35,7 +35,7 @@ class ShopRepository
         $sql->from('shop_url', 'su');
         $sql->leftJoin('configuration', 'c', 'su.id_shop = c.id_shop');
 
-        $sql->where('c.name LIKE "' . Config::PS_GOOGLE_ACCOUNT_IS_LINKED . '"');
+        $sql->where('c.name LIKE "' . Config::PS_GOOGLE_SHOPPING_ACCOUNT_IS_LINKED . '"');
 
         return Db::getInstance()->executeS($sql);
     }
