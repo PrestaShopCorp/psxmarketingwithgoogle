@@ -35,16 +35,12 @@ export default {
     return state.status;
   },
   [GettersTypes.GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES](state: LocalState): boolean {
-    return !!state.settings.attributeMapping
-        && (
-          !!state.settings.attributeMapping.customColorAttribute
-          || !!state.settings.attributeMapping.customSizeAttribute
-          || !!state.settings.attributeMapping.customAgeGroupAttribute
-          || !!state.settings.attributeMapping.customGenderGroupAttribute
-        );
+    return !!state.settings.attributeMapping?.customColorAttribute
+          || !!state.settings.attributeMapping?.customSizeAttribute
+          || !!state.settings.attributeMapping?.customAgeGroupAttribute
+          || !!state.settings.attributeMapping?.customGenderGroupAttribute;
   },
   [GettersTypes.GET_MERCHANT_SELL_REFURBISHED_PRODUCTS](state: LocalState): boolean {
-    return !!state.settings.attributeMapping
-    && !!state.settings.attributeMapping.customConditionAttribute;
+    return !!state.settings.attributeMapping?.customConditionAttribute;
   },
 };
