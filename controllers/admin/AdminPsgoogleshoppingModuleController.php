@@ -38,6 +38,11 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
      */
     private $multishopDataProvider;
 
+    /**
+     * @var CountryRepository
+     */
+    private $countryRepository;
+
     public function __construct()
     {
         parent::__construct();
@@ -45,6 +50,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
 
         $this->multishopDataProvider = $this->module->getService(MultishopDataProvider::class);
         $this->env = $this->module->getService(Env::class);
+        $this->countryRepository = $this->module->getService(CountryRepository::class);
     }
 
     public function initContent()
@@ -109,8 +115,9 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
                 [],
                 ['ajax' => 1],
             ),
-            'isCountryMemberOfEuropeanUnion' => $this->module->getService(CountryRepository::class)->isCompatibleForCSS(),
+            'isCountryMemberOfEuropeanUnion' => $this->countryRepository->isCompatibleForCSS(),
             'psGoogleShoppingShopUrl' => $this->context->link->getBaseLink($this->context->shop->id),
+            'psGoogleShoppingActiveCountries' => $this->countryRepository->getActiveCountries(),
         ]);
 
         $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');

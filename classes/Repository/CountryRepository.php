@@ -81,6 +81,21 @@ class CountryRepository
         return $this->countryIsoCodeCache[$cacheKey];
     }
 
+    public function getActiveCountries(): array
+    {
+        $query = $this->getBaseQuery();
+
+        $query->select('iso_code');
+        $query->where('active = ' . true);
+
+        $isoCodes = [];
+        foreach ($this->db->executeS($query) as $country) {
+            $isoCodes[] = $country['iso_code'];
+        }
+
+        return $isoCodes;
+    }
+
     /**
      * isCompatibleForCSS
      *
