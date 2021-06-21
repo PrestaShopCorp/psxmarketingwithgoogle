@@ -47,12 +47,12 @@ export default {
     }
   },
 
-  async [ActionsTypes.SEND_FREE_LISTING_STATEMENT]({commit, rootState}, payload: any) {
-    try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`, {
+  async [ActionsTypes.SEND_FREE_LISTING_STATUS]({commit, rootState}, enabled: boolean) {
+    /*try {
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/free-listings/settings`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify(payload),
+        body: JSON.stringify(enabled),
       });
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
@@ -60,8 +60,9 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SET_FREE_LISTING_STATUS, json);
     } catch (error) {
-      console.error(error);
-    }
+        console.error(error);
+    }*/
+    commit(MutationsTypes.SET_FREE_LISTING_STATUS, enabled);
   },
 
 };

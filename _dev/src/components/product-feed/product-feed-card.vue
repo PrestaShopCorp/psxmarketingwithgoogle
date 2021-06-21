@@ -471,7 +471,7 @@ export default {
       }
     },
     activateProductFeed() {
-      this.$store.dispatch('productFeed/SEND_FREE_LISTING_STATUS', true);
+      this.$store.dispatch('freeListing/SEND_FREE_LISTING_STATUS', true);
     },
   },
   googleUrl,

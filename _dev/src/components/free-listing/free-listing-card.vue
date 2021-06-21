@@ -139,30 +139,30 @@ export default {
   },
   computed: {
     alert() {
-      if (this.freeListingIsEnabled === true
-      && this.productSyncIsEnabled === false) {
+      if (this.freeListingStatus === true
+      && this.productFeedIsEnabled === false) {
         return {
           variant: 'warning',
           text: 'alertProductFeedDisabled',
         };
-      } if (this.freeListingIsEnabled === false
-      && this.productSyncIsEnabled === false
+      } if (this.freeListingStatus === false
+      && this.productFeedIsEnabled === false
       && this.enabledFreeListing === false) {
         return {
           variant: 'warning',
           text: 'alertEnableFreeListingAndProductFeed',
         };
       }
-      if (this.freeListingIsEnabled === false
+      if (this.freeListingStatus === false
       && this.firstTime === false
-      && this.productSyncIsEnabled === true) {
+      && this.productFeedIsEnabled === true) {
         return {
           variant: 'warning',
           text: 'alertEnableFreeListing',
         };
       } if (this.enabledFreeListing === true
-      && this.freeListingIsEnabled === true
-      && this.productSyncIsEnabled === true) {
+      && this.freeListingStatus === true
+      && this.productFeedIsEnabled === true) {
         return {
           variant: 'success',
           text: 'alertActivationSuccess',
@@ -170,11 +170,11 @@ export default {
       }
       return null;
     },
-    productSyncIsEnabled() {
-      return this.$store.getters['productFeed/GET_SYNC_STATUS_OF_PRODUCT_FEED'];
+    productFeedIsEnabled() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].enabled;
     },
-    freeListingIsEnabled() {
-      return this.$store.getters['productFeed/GET_FREE_LISTING_STATUS'];
+    freeListingStatus() {
+      return this.$store.getters['freeListing/GET_FREE_LISTING_STATUS'];
     },
   },
   methods: {

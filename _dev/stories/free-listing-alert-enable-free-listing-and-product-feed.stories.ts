@@ -10,7 +10,8 @@ const Template = (args, { argTypes }) => ({
   components: { FreeListingCard },
   template: '<FreeListingCard v-bind="$props" />',
   beforeCreate(this: any) {
-    this.$store.state.productFeed = alertEnableFreeListingAndProductFeed;
+    this.$store.state.productFeed = alertEnableFreeListingAndProductFeed.productFeed;
+    this.$store.state.freeListing = alertEnableFreeListingAndProductFeed.freeListing;
   },
 });
 

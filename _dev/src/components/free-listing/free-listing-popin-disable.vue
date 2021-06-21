@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     disableProductFeed() {
-      this.$store.dispatch('productFeed/SEND_FREE_LISTING_STATUS', false);
+      this.$store.dispatch('freeListing/SEND_FREE_LISTING_STATUS', false);
     },
   },
 };

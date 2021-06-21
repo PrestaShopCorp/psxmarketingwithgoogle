@@ -31,9 +31,6 @@ export default {
   [GettersTypes.GET_PRODUCT_FEED_SETTINGS](state: LocalState): ProductFeedSettings {
     return state.settings;
   },
-  [GettersTypes.GET_SYNC_STATUS_OF_PRODUCT_FEED](state: LocalState): boolean {
-    return state.productFeed.status.isSyncEnabled;
-  },
   [GettersTypes.GET_PRODUCT_FEED_STATUS](state: LocalState): ProductFeedStatus {
     return state.status;
   },
@@ -45,8 +42,5 @@ export default {
   },
   [GettersTypes.GET_MERCHANT_SELL_REFURBISHED_PRODUCTS](state: LocalState): boolean {
     return !!state.settings.attributeMapping?.customConditionAttribute;
-  },
-  [GettersTypes.GET_FREE_LISTING_STATUS](state: LocalState): boolean {
-    return state.freeListing.enabled;
   },
 };

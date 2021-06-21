@@ -1,25 +1,24 @@
 export const productFeed = {
-  isConfigurationStarted: false,
   isConfigured: false,
   stepper: 1,
   status: {
     failedSyncs: [],
     successfulSyncs: [],
-    registerSyncData: {},
+    enabled: false,
+    shopHealthy: true,
   },
   settings: {
     autoImportTaxSettings: false,
     targetCountries: [],
+    productsPerBatchSync: 0,
     autoImportShippingSettings: false,
     exportProductsWithShortDescription: true,
-    sellApparel: {
-      color: 'extra:color',
-      size: 'extra:size',
-      age: 'extra:age-group',
-      gender: 'extra:gender-group',
-    },
-    sellRefurbished: {
-      condition: 'extra:condition',
+    attributeMapping: {
+      customColorAttribute: 'extra:color',
+      customSizeAttribute: 'extra:size',
+      customAgeGroupAttribute: 'extra:age-group',
+      customGenderGroupAttribute: 'extra:gender-group',
+      customConditionAttribute: 'extra:condition',
     },
   },
 };
@@ -34,7 +33,7 @@ export const alertSuccessValidation = {
   "productFeed": {
     ...productFeed,
     status: {
-      isSyncEnabled: true,
+      enabled: true,
     }
   },
   "freeListing": {
@@ -47,7 +46,7 @@ export const alertEnableFreeListing = {
   "productFeed": {
     ...productFeed,
     status: {
-      isSyncEnabled: true,
+      enabled: true,
     }
   },
   "freeListing": {
@@ -60,7 +59,7 @@ export const alertEnableFreeListingAndProductFeed = {
   "productFeed": {
     ...productFeed,
     status: {
-      isSyncEnabled: false,
+      enabled: false,
     }
   },
   "freeListing": {
@@ -73,7 +72,7 @@ export const alertDisableProductFeed = {
   "productFeed": {
     ...productFeed,
     status: {
-      isSyncEnabled: false,
+      enabled: false,
     }
   },
   "freeListing": {

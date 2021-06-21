@@ -23,5 +23,7 @@ import {
 import GettersTypes from './getters-types';
 
 export default {
-
+  [GettersTypes.GET_FREE_LISTING_STATUS](state: LocalState): boolean {
+    return state.enabled;
+  },
 };
