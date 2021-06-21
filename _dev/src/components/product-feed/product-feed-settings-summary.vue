@@ -167,7 +167,7 @@
 
 <script>
 import {BTableSimple} from 'bootstrap-vue';
-
+import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
@@ -186,7 +186,7 @@ export default {
     return {
       nextSyncTotalProducts: this.$store.state.productFeed.settings.productsPerBatchSync,
       nextSyncDate: this.$store.state.productFeed.status.nextJobAt,
-      targetCountries: this.$store.state.productFeed.settings.targetCountries,
+      // targetCountries: this.$store.state.productFeed.settings.targetCountries,
       shippingSettings:
       this.$store.state.productFeed.settings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
@@ -212,6 +212,19 @@ export default {
         return this.$store.getters['product-feed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
       },
     },
+    targetCountries() {
+      // change country code into name with the json list
+      const datas = this.$store.state.productFeed.settings.targetCountries;
+      const countries = this.$options.countriesSelectionOptions;
+      const final = [];
+      datas.map((data) => countries.forEach((country) => {
+        if (data === country.code) {
+          final.push(country.country);
+        }
+        return final;
+      }));
+      return final;
+    },
   },
   methods: {
     goBack() {
@@ -228,5 +241,6 @@ export default {
       });
     },
   },
+  countriesSelectionOptions,
 };
 </script>

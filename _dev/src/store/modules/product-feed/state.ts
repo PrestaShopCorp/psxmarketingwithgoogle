@@ -63,14 +63,8 @@ export const state: State = {
     autoImportTaxSettings: false,
     targetCountries: [],
     productsPerBatchSync: 0,
-    autoImportShippingSettings: false,
+    autoImportShippingSettings: true,
     exportProductsWithShortDescription: true,
-    attributeMapping: {
-      customColorAttribute: 'extra:color',
-      customSizeAttribute: 'extra:size',
-      customAgeGroupAttribute: 'extra:age-group',
-      customGenderGroupAttribute: 'extra:gender-group',
-      customConditionAttribute: 'extra:condition',
-    },
+    attributeMapping: {},
   },
 };

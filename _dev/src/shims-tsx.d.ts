@@ -9,6 +9,7 @@ declare global {
 
     interface Window {
       psAccountShopInConflict: boolean,
+      psGoogleShoppingActiveCountries: Array<string>,
       contextPsAccounts: any;
       translations: any;
       i18nSettings: any;

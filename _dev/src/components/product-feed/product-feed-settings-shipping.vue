@@ -206,8 +206,9 @@ export default {
     },
     countries: {
       get() {
-        return this.$store.state.productFeed.settings.targetCountries
-          ? this.$store.state.productFeed.settings.targetCountries : [];
+        return this.$store.state.productFeed.settings.targetCountries.length
+          ? this.$store.state.productFeed.settings.targetCountries
+          : this.$store.getters['accounts/GET_PS_GOOGLE_SHOPPING_ACTIVE_COUNTRIES'];
       },
       set(value) {
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: value});

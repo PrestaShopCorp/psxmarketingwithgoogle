@@ -237,6 +237,7 @@ export default {
     },
   },
   mounted() {
+    console.log(window);
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty
