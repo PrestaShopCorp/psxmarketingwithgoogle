@@ -248,24 +248,26 @@ export default {
   },
 
   async [ActionsTypes.DISSOCIATE_GMC]({commit, rootState, state}, correlationId: string) {
-    if (!correlationId) {
-      // eslint-disable-next-line no-param-reassign
-      correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
-    }
-    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
-      method: 'DELETE',
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${state.tokenPsAccounts}`,
-        'x-correlation-id': correlationId,
-      },
-    });
-    if (!response.ok) {
-      commit(
-        MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-        WebsiteClaimErrorReason.UnlinkFailed,
-      );
-      throw new HttpClientError(response.statusText, response.status);
+    if (state.googleMerchantAccount.id) {
+      if (!correlationId) {
+        // eslint-disable-next-line no-param-reassign
+        correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+      }
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+          'x-correlation-id': correlationId,
+        },
+      });
+      if (!response.ok) {
+        commit(
+          MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+          WebsiteClaimErrorReason.UnlinkFailed,
+        );
+        throw new HttpClientError(response.statusText, response.status);
+      }
     }
     commit(MutationsTypes.REMOVE_GMC);
     return true;
