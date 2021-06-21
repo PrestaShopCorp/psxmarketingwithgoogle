@@ -56,8 +56,8 @@
       "introDisabled" : "When you are done connecting your PrestaShop account you will be able to connect your Google accounts.",
       "introEnabled" : "A Google Account lets you access your Google Merchant Center and Google Ads accounts",
       "footerDissociating" : "Dissociating your Google account will disconnect your Google Merchant Center and your Google Ads accounts.",
-      "alertCantConnect" : "You can't connect to your Google account right now. Try again later.",
-      "alertTokenMissing" : "The account token is missing. Try again to connect to your Google Merchant Center account or switch to another one."
+      "alertCantConnect" : "You can't connect to your Google account right now. Refresh and try again later.",
+      "alertTokenMissing" : "The account token is missing. Try again to connect to your Google account or switch to another one."
     },
     "mcaCard" : {
       "title" : "Make your products available to shoppers accross Google",
