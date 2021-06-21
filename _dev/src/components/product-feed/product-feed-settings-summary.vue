@@ -186,7 +186,6 @@ export default {
     return {
       nextSyncTotalProducts: this.$store.state.productFeed.settings.productsPerBatchSync,
       nextSyncDate: this.$store.state.productFeed.status.nextJobAt,
-      // targetCountries: this.$store.state.productFeed.settings.targetCountries,
       shippingSettings:
       this.$store.state.productFeed.settings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
