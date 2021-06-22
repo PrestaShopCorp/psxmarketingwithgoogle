@@ -105,8 +105,8 @@ class PsGoogleShoppingTranslations
                 'introDisabled' => $this->module->l('When you are done connecting your PrestaShop account you will be able to connect your Google accounts.', 'PsGoogleShoppingTranslations'),
                 'introEnabled' => $this->module->l('A Google Account lets you access your Google Merchant Center and Google Ads accounts', 'PsGoogleShoppingTranslations'),
                 'footerDissociating' => $this->module->l('Dissociating your Google account will disconnect your Google Merchant Center and your Google Ads accounts.', 'PsGoogleShoppingTranslations'),
-                'alertCantConnect' => $this->module->l('You can\'t connect to your Google account right now. Try again later.', 'PsGoogleShoppingTranslations'),
-                'alertTokenMissing' => $this->module->l('The account token is missing. Try again to connect to your Google Merchant Center account or switch to another one.', 'PsGoogleShoppingTranslations'),
+                'alertCantConnect' => $this->module->l('You can\'t connect to your Google account right now. Refresh and try again later.', 'PsGoogleShoppingTranslations'),
+                'alertTokenMissing' => $this->module->l('The account token is missing. Try again to connect to your Google account or switch to another one.', 'PsGoogleShoppingTranslations'),
             ],
             'mcaCard' => [
                 'title' => $this->module->l('Make your products available to shoppers accross Google', 'PsGoogleShoppingTranslations'),
