@@ -48,7 +48,7 @@ export default {
   },
 
   async [ActionsTypes.SEND_FREE_LISTING_STATUS]({commit, rootState}, enabled: boolean) {
-    /* try {
+    try {
       const resp = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/free-listings/settings`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
@@ -60,9 +60,8 @@ export default {
       const json = await resp.json();
       commit(MutationsTypes.SET_FREE_LISTING_STATUS, json);
     } catch (error) {
-        console.error(error);
-    } */
-    commit(MutationsTypes.SET_FREE_LISTING_STATUS, enabled);
+      console.error(error);
+    }
   },
 
 };

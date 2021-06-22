@@ -1,5 +1,7 @@
 import FreeListingCard from '../src/components/free-listing/free-listing-card.vue'
-import {alertDisableProductFeed} from '../.storybook/mock/product-feed';
+import {disableProductFeed} from '../.storybook/mock/product-feed';
+import {enableFreeListing} from '../.storybook/mock/free-listing';
+
 export default {
   title: 'Free listing/Card/Alert',
   component: FreeListingCard,
@@ -10,8 +12,8 @@ const Template = (args, { argTypes }) => ({
   components: { FreeListingCard },
   template: '<FreeListingCard v-bind="$props" />',
   beforeCreate(this: any) {
-    this.$store.state.productFeed = alertDisableProductFeed.productFeed;
-    this.$store.state.freeListing = alertDisableProductFeed.freeListing;
+    this.$store.state.productFeed = disableProductFeed;
+    this.$store.state.freeListing = enableFreeListing;
   },
 });
 

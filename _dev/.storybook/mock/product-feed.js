@@ -23,63 +23,19 @@ export const productFeed = {
   },
 };
 
-export const freeListing = {
-  validationList: {},
-  summaryValidationList: [],
-  status: false,
-};
-
-export const alertSuccessValidation = {
-  "productFeed": {
-    ...productFeed,
-    status: {
-      enabled: true,
-    }
-  },
-  "freeListing": {
-    ...freeListing,
-    enabled: true,
-  }
-};
-
-export const alertEnableFreeListing = {
-  "productFeed": {
-    ...productFeed,
-    status: {
-      enabled: true,
-    }
-  },
-  "freeListing": {
-    ...freeListing,
-    enabled: false,
-  }
-}
-
-export const alertEnableFreeListingAndProductFeed = {
-  "productFeed": {
-    ...productFeed,
-    status: {
-      enabled: false,
-    }
-  },
-  "freeListing": {
-    ...freeListing,
-    enabled: false,
-  }
-}
-
-export const alertDisableProductFeed = {
-  "productFeed": {
-    ...productFeed,
-    status: {
-      enabled: false,
-    }
-  },
-  "freeListing": {
-    ...freeListing,
+export const enableProductFeed = {
+  ...productFeed,
+  status: {
     enabled: true,
   }
 }
 
+export const disableProductFeed = {
+  ...productFeed,
+  status: {
+    enabled: false,
+  }
+}
 
-export default alertSuccessValidation;
+
+export default enableProductFeed;

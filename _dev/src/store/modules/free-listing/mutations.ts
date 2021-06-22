@@ -26,7 +26,7 @@ export default {
   [MutationsTypes.SET_SUMMARY_VALIDATION](state: LocalState, payload: any) {
     state.summaryValidationList = payload;
   },
-  [MutationsTypes.SET_FREE_LISTING_STATUS](state: LocalState, enabled: any) {
+  [MutationsTypes.SET_FREE_LISTING_STATUS](state: LocalState, enabled: boolean) {
     state.enabled = enabled;
   },
 };
