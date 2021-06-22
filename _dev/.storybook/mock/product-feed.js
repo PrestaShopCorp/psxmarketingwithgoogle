@@ -12,8 +12,8 @@ export const productFeed = {
     targetCountries: [],
     productsPerBatchSync: 0,
     autoImportShippingSettings: false,
-    exportProductsWithShortDescription: true,
     attributeMapping: {
+      exportProductsWithShortDescription: false,
       customColorAttribute: 'extra:color',
       customSizeAttribute: 'extra:size',
       customAgeGroupAttribute: 'extra:age-group',
