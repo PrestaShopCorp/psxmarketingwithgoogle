@@ -167,7 +167,7 @@
 
 <script>
 import {BTableSimple} from 'bootstrap-vue';
-
+import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
@@ -186,7 +186,6 @@ export default {
     return {
       nextSyncTotalProducts: this.$store.state.productFeed.settings.productsPerBatchSync,
       nextSyncDate: this.$store.state.productFeed.status.nextJobAt,
-      targetCountries: this.$store.state.productFeed.settings.targetCountries,
       shippingSettings:
       this.$store.state.productFeed.settings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
@@ -212,6 +211,24 @@ export default {
         return this.$store.getters['product-feed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
       },
     },
+    targetCountries() {
+      // change country code into name with the json list
+      const datas = this.$store.state.productFeed.settings.targetCountries.length
+        ? this.$store.state.productFeed.settings.targetCountries
+        : this.$store.getters['accounts/GET_PS_GOOGLE_SHOPPING_ACTIVE_COUNTRIES'];
+      const countries = this.$options.countriesSelectionOptions;
+      const final = [];
+      datas.map((data) => {
+        for (let i = 0; i <= countries.length; i += 1) {
+          if (data === countries[i].code) {
+            final.push(countries[i].country);
+            break;
+          }
+        }
+        return final;
+      });
+      return final;
+    },
   },
   methods: {
     goBack() {
@@ -228,5 +245,6 @@ export default {
       });
     },
   },
+  countriesSelectionOptions,
 };
 </script>
