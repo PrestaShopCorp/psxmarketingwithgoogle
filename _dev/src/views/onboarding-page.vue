@@ -92,7 +92,11 @@
     <ProductFeedPopinDisable
       ref="productFeedDisableModal"
     />
-    <!-- Toasts -->
+
+    <FreeListingPopinDisable
+      ref="PopinFreeListingDisable"
+    />
+    <!-- Toast -->
     <PsToast
       variant="success"
       :visible="googleAccountConnectedOnce || merchantCenterAccountConnectedOnce"
@@ -115,6 +119,7 @@ import ProductFeedCard from '../components/product-feed/product-feed-card.vue';
 import FreeListingCard from '../components/free-listing/free-listing-card.vue';
 import GoogleAccountPopinDisconnect from '../components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
+import FreeListingPopinDisable from '../components/free-listing/free-listing-popin-disable';
 import PsToast from '../components/commons/ps-toast';
 
 export default {
@@ -133,6 +138,7 @@ export default {
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
     PsToast,
+    FreeListingPopinDisable,
   },
   data() {
     return {

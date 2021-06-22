@@ -30,8 +30,8 @@
             @click.prevent="toggle"
             type="radio"
             name="switchEnable"
+            @change="disableProductFeed"
             :value="false"
-            v-model="productFeedSyncEnabled"
             :checked="productFeedSyncEnabled"
           >
           <label for="example_off_3">{{ $t('cta.disabled') }}</label>
@@ -39,6 +39,7 @@
             @click="toggle"
             type="radio"
             name="switchEnable"
+            @change="activateProductFeed"
             :value="true"
             :checked="productFeedSyncEnabled"
           >
@@ -253,10 +254,9 @@ export default {
     Stepper,
     ProductFeedCardReportCard,
     // NOT IN BATCH 1
+    BadgeListRequirements,
     // ProductFeedCardReportMappedCategoriesCard,
     // ProductFeedCardReportProductsCard,
-    BadgeListRequirements,
-
   },
   data() {
     return {
@@ -462,6 +462,16 @@ export default {
     },
     toggle() {
       this.$emit('toggleSync');
+    },
+    disableProductFeed() {
+      if (this.$refs.PopinFreeListingDisable) {
+        this.$bvModal.show(
+          this.$refs.PopinFreeListingDisable.$refs.modal.id,
+        );
+      }
+    },
+    activateProductFeed() {
+      this.$store.dispatch('freeListing/SEND_FREE_LISTING_STATUS', true);
     },
   },
   googleUrl,

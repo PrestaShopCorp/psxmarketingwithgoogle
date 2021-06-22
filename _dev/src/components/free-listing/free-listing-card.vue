@@ -132,14 +132,52 @@ export default {
       type: Boolean,
       default: true,
     },
-    alert: {
-      type: Object,
-      default: null,
-    },
     enabledFreeListing: {
       type: Boolean,
       default: false,
     },
+  },
+  computed: {
+    alert() {
+      if (this.freeListingStatus === true
+      && this.productFeedIsEnabled === false) {
+        return {
+          variant: 'warning',
+          text: 'alertProductFeedDisabled',
+        };
+      } if (this.freeListingStatus === false
+      && this.productFeedIsEnabled === false
+      && this.enabledFreeListing === false) {
+        return {
+          variant: 'warning',
+          text: 'alertEnableFreeListingAndProductFeed',
+        };
+      }
+      if (this.freeListingStatus === false
+      && this.firstTime === false
+      && this.productFeedIsEnabled === true) {
+        return {
+          variant: 'warning',
+          text: 'alertEnableFreeListing',
+        };
+      } if (this.enabledFreeListing === true
+      && this.freeListingStatus === true
+      && this.productFeedIsEnabled === true) {
+        return {
+          variant: 'success',
+          text: 'alertActivationSuccess',
+        };
+      }
+      return null;
+    },
+    productFeedIsEnabled() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].enabled;
+    },
+    freeListingStatus() {
+      return this.$store.getters['freeListing/GET_FREE_LISTING_STATUS'];
+    },
+  },
+  methods: {
   },
 };
 </script>

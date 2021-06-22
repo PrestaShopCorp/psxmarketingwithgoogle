@@ -42,7 +42,6 @@ export interface ProductFeedSettings {
   exportProductsWithShortDescription: boolean;
   attributeMapping: ProductFeedSettingsAttributeMapping;
 }
-
 export interface State {
     isConfigured: boolean,
     stepper: number,
