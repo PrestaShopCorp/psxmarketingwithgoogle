@@ -15,9 +15,12 @@
   margin-bottom: 20px;
 }
 
-& > *:not(.nav) {
+& > *:not(.ps_gs-sticky-head) {
   padding-left: 15px;
   padding-right: 15px;
+  max-width: 959px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round');
