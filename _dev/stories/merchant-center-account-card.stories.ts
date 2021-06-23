@@ -93,12 +93,12 @@ ConnectedWithClaimExpiringError.args = {
   },
 };
 
-export const ConnectedWithSuspended:any = Template.bind({});
-ConnectedWithSuspended.args = {
+export const ConnectedWithDisapproved:any = Template.bind({});
+ConnectedWithDisapproved.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    claimError: WebsiteClaimErrorReason.Suspended,
+    claimError: WebsiteClaimErrorReason.Disapproved,
   },
 };
 
