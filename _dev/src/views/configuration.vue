@@ -1,6 +1,7 @@
 <template>
   <div id="configuration">
-    <landing-page v-if="!psAccountsIsOnboarded" />
+    <multistore v-if="!psAccountIsOnboarded && shops.length" />
+    <landing-page v-else-if="!psAccountIsOnboarded " />
     <onboarding-page v-else />
   </div>
 </template>
@@ -8,12 +9,15 @@
 <script>
 import {defineComponent} from '@vue/composition-api';
 import LandingPage from './landing-page.vue';
+import Multistore from './multistore.vue';
 import OnboardingPage from './onboarding-page.vue';
 
 export default defineComponent({
   name: 'configuration',
   components: {
-    LandingPage, OnboardingPage,
+    LandingPage,
+    OnboardingPage,
+    Multistore,
   },
   props: {
   },
@@ -33,6 +37,9 @@ export default defineComponent({
   computed: {
     psAccountsIsOnboarded() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
+    },
+    shops() {
+      return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
     },
   },
 });

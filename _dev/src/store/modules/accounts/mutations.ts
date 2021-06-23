@@ -48,6 +48,7 @@ export default {
   [MutationsTypes.REMOVE_GOOGLE_ACCOUNT](state: LocalState) {
     state.googleAccount.access_token = '';
     state.googleAccount.expiry_date = 0;
+    state.googleAccount.details = {};
   },
   [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string|Error) {
     state.googleAccount.authenticationUrl = url;

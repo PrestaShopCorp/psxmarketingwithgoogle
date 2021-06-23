@@ -6,24 +6,7 @@
       :is-enabled="true"
       :is-done="stepsAreCompleted.step1"
     />
-    <b-alert
-      v-if="!psAccountsContext.isShopContext && shops.length"
-      show
-      variant="warning"
-      class="mb-0 mt-3 mb-3"
-    >
-      {{ $t('onboarding.warningMultistore') }}
-    </b-alert>
-    <MultiStoreSelector
-      v-if="!psAccountsContext.isShopContext && shops.length"
-      :shops="shops"
-      @shop-selected="onShopSelected($event)"
-    />
-    <ps-accounts
-      v-else-if="!shopInConflictPsAccount"
-      class="ps_gs-ps-account-card"
-      :context="psAccountsContext"
-    />
+
     <b-alert
       v-if="shopInConflictPsAccount"
       show
@@ -32,6 +15,11 @@
     >
       {{ $t('onboarding.GMCAlreadyLinked') }}
     </b-alert>
+    <ps-accounts
+      v-if="!shopInConflictPsAccount"
+      class="ps_gs-ps-account-card"
+      :context="psAccountsContext"
+    />
     <template v-if="psAccountsContext.isShopContext">
       <section-title
         :step-number="2"
@@ -92,11 +80,10 @@
     <ProductFeedPopinDisable
       ref="productFeedDisableModal"
     />
-
-    <FreeListingPopinDisable
+     <FreeListingPopinDisable
       ref="PopinFreeListingDisable"
     />
-    <!-- Toast -->
+    <!-- Toasts -->
     <PsToast
       variant="success"
       :visible="googleAccountConnectedOnce || merchantCenterAccountConnectedOnce"
@@ -108,7 +95,7 @@
 </template>
 
 <script>
-import {MultiStoreSelector, PsAccounts} from 'prestashop_accounts_vue_components';
+import {PsAccounts} from 'prestashop_accounts_vue_components';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
@@ -119,14 +106,12 @@ import ProductFeedCard from '../components/product-feed/product-feed-card.vue';
 import FreeListingCard from '../components/free-listing/free-listing-card.vue';
 import GoogleAccountPopinDisconnect from '../components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
-import FreeListingPopinDisable from '../components/free-listing/free-listing-popin-disable';
 import PsToast from '../components/commons/ps-toast';
 
 export default {
   name: 'OnboardingPage',
   components: {
     PsAccounts,
-    MultiStoreSelector,
     SectionTitle,
     GoogleAccountCard,
     GoogleAdsAccountCard,
@@ -138,7 +123,6 @@ export default {
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
     PsToast,
-    FreeListingPopinDisable,
   },
   data() {
     return {
@@ -146,9 +130,6 @@ export default {
     };
   },
   methods: {
-    onShopSelected(shopSelected) {
-      window.location.href = shopSelected.url;
-    },
     onMerchantCenterAccountSelected(selectedAccount) {
       this.isMcaLinking = true;
       const correlationId = `${Math.floor(Date.now() / 1000)}`;
