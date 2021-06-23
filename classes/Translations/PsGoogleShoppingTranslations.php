@@ -180,7 +180,7 @@ class PsGoogleShoppingTranslations
                 'alert' => $this->module->l('Your store will be reviewed so if one of these requirements is missing, your account will be suspended.', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedCard' => [
-                'title' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),
+                'title' => $this->module->l('Automatically sync your products data with Google', 'PsGoogleShoppingTranslations'),
                 'intro' => $this->module->l('Submit your store and product data directly to Merchant Center and always keep them up to date for free listing and ads.', 'PsGoogleShoppingTranslations'),
                 'introToConfigure' => $this->module->l('It\'s important to submit them in the correct format, as Google uses this data to make sure your products match the right queries.'),
                 'nextSync' => $this->module->l('Next synchronization: {0}', 'PsGoogleShoppingTranslations'),
@@ -200,7 +200,7 @@ class PsGoogleShoppingTranslations
                 'excludedProducts' => $this->module->l('Excluded products', 'PsGoogleShoppingTranslations'),
                 'productsReadyToBeSynced' => $this->module->l('Products ready to be synced', 'PsGoogleShoppingTranslations'),
                 'productsWithProblems' => $this->module->l('Products with problems', 'PsGoogleShoppingTranslations'),
-                'alertGoogleIsReviewingProducts' => $this->module->l("Google is currently reviewing your products.  \n\nOnce approved, your products can appear in Shopping tab search results.", 'PsGoogleShoppingTranslations'),
+                'alertGoogleIsReviewingProducts' => $this->module->l("You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.", 'PsGoogleShoppingTranslations'),
             ],
             'productFeedSettings' => [
                 'breadcrumb1' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),

@@ -132,7 +132,7 @@
       "alert" : "Your store will be reviewed so if one of these requirements is missing, your account will be suspended."
     },
     "productFeedCard" : {
-      "title" : "Product feed settings",
+      "title" : "Automatically sync your products data with Google",
       "intro" : "Submit your store and product data directly to Merchant Center and always keep them up to date for free listing and ads.",
       "introToConfigure" : "It's important to submit them in the correct format, as Google uses this data to make sure your products match the right queries.",
       "nextSync" : "Next synchronization: {0}",
@@ -152,7 +152,7 @@
       "excludedProducts" : "Excluded products",
       "productsReadyToBeSynced" : "Products ready to be synced",
       "productsWithProblems" : "Products with problems",
-      "alertGoogleIsReviewingProducts": "Google is currently reviewing your products.  \n\nOnce approved, your products can appear in Shopping tab search results."
+      "alertGoogleIsReviewingProducts": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads."
     },
     "productFeedSettings" : {
       "breadcrumb1" : "Product feed",
