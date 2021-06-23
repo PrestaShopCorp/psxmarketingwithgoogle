@@ -83,7 +83,7 @@
     <ProductFeedPopinDisable
       ref="productFeedDisableModal"
     />
-     <FreeListingPopinDisable
+    <FreeListingPopinDisable
       ref="PopinFreeListingDisable"
     />
     <!-- Toasts -->

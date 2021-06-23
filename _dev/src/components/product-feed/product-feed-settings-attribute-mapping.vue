@@ -211,11 +211,10 @@
 </template>
 
 <script>
-import googleUrl from '../../assets/json/googleUrl.json';
-
 import {
   BTableSimple,
 } from 'bootstrap-vue';
+import googleUrl from '../../assets/json/googleUrl.json';
 
 import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';

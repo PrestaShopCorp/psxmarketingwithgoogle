@@ -318,13 +318,13 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
-import MerchantCenterAccountPopinoverwrite from './merchant-center-account-popin-overwrite-claim';
+import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
   name: 'MerchantCenterAccountCard',
   components: {
-    MerchantCenterAccountPopinoverwrite,
+    MerchantCenterAccountPopinOverwriteClaim,
     BadgeListRequirements,
   },
   data() {
