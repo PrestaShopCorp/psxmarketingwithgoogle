@@ -1,5 +1,6 @@
 export const productFeed = {
   isConfigured: false,
+  psGoogleShoppingActiveCountries: ['FR'],
   stepper: 1,
   status: {
     failedSyncs: [],
@@ -9,7 +10,7 @@ export const productFeed = {
   },
   settings: {
     autoImportTaxSettings: false,
-    targetCountries: ['FR'],
+    targetCountries: [],
     productsPerBatchSync: 0,
     autoImportShippingSettings: false,
     attributeMapping: {

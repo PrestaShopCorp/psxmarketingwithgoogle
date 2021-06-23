@@ -72,7 +72,6 @@ export type MerchantCenterAccountContext = contentApi.Schema$Account & {
 
 export interface State {
   psAccountShopInConflict: boolean,
-  psGoogleShoppingActiveCountries: Array<string>,
   contextPsAccounts: PrestaShopAccountsContext|any;
   shopIdPsAccounts: string;
   tokenPsAccounts: string;
@@ -93,7 +92,6 @@ export enum WebsiteClaimErrorReason {
 
 export const state: State = {
   psAccountShopInConflict: false,
-  psGoogleShoppingActiveCountries: [],
   contextPsAccounts: {},
   shopIdPsAccounts: '',
   tokenPsAccounts: '',

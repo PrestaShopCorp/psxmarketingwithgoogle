@@ -338,9 +338,7 @@ export default {
       return !this.$store.state.productFeed.isConfigured;
     },
     targetCountries() {
-      const datas = this.getProductFeedSettings.targetCountries.length
-        ? this.getProductFeedSettings.targetCountries
-        : this.$store.getters['accounts/GET_PS_GOOGLE_SHOPPING_ACTIVE_COUNTRIES'];
+      const datas = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
       const countries = this.$options.countriesSelectionOptions;
       return this.$options.filters.changeCountryCodeToName(datas, countries);
     },

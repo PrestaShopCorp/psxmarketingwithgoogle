@@ -43,4 +43,8 @@ export default {
   [GettersTypes.GET_MERCHANT_SELL_REFURBISHED_PRODUCTS](state: LocalState): boolean {
     return !!state.settings.attributeMapping?.customConditionAttribute;
   },
+  [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> {
+    return state.settings.targetCountries.length ? state.settings.targetCountries
+      : state.psGoogleShoppingActiveCountries;
+  },
 };
