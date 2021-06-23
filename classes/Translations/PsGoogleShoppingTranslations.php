@@ -62,29 +62,29 @@ class PsGoogleShoppingTranslations
             'landingPage' => [
                 'header' => [
                     'title' => $this->module->l('PrestaShop Google Shopping', 'PsGoogleShoppingTranslations'),
-                    'text' => $this->module->l('Show your products on Google and reach millions of shoppers actively looking for what your offer across Google network.', 'PsGoogleShoppingTranslations'),
+                    'text' => $this->module->l('Show your products on Google and reach millions of shoppers actively looking for what you offer across Google network.', 'PsGoogleShoppingTranslations'),
                     'reinsurance' => $this->module->l("- Easy setup \n- Cancel anytime", 'PsGoogleShoppingTranslations'),
                 ],
                 'content' => [
                     'content1' => [
-                        'title' => $this->module->l('1. Always show accurate product information', 'PsGoogleShoppingTranslations'),
-                        'text' => $this->module->l('Once you upload your store and products data to Google directly from PrestaShop these information will be available and automatically synced for free listings, Google Ads, and other Google services.', 'PsGoogleShoppingTranslations'),
-                        'footer' => $this->module->l('Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \n**To show your products on Google** you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]', 'PsGoogleShoppingTranslations'),
-                    ],
-                    'content2' => [
-                        'title' => $this->module->l('2. Get your products found by interested shoppers', 'PsGoogleShoppingTranslations'),
-                        'text' => $this->module->l('Free listings let you list your products for free in the Shopping tab and show them to potential customers at the exact moment when they are looking for what your store offers.', 'PsGoogleShoppingTranslations'),
+                        'title' => $this->module->l('Get your products found by interested shoppers', 'PsGoogleShoppingTranslations'),
+                        'text' => $this->module->l('Free listings let you list your products for free in the Shopping tab and show them to potential customers at the exact moment when they are looking for what your store offers*.', 'PsGoogleShoppingTranslations'),
                         'footer' => $this->module->l('[Learn more about free listings]({0})[:target=\"_blank\"]', 'PsGoogleShoppingTranslations'),
                     ],
+                    'content2' => [
+                        'title' => $this->module->l('Always show accurate product information', 'PsGoogleShoppingTranslations'),
+                        'text' => $this->module->l('Once you upload your store and products data to Google directly from PrestaShop these information will be available and automatically synced for free listings, Google Ads, and other Google services.', 'PsGoogleShoppingTranslations'),
+                        'footer' => $this->module->l('Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]', 'PsGoogleShoppingTranslations'),
+                    ],
                     'content3' => [
-                        'title' => $this->module->l('3. Boost traffic and sales with Smart Shopping campaign', 'PsGoogleShoppingTranslations'),
-                        'text' => $this->module->l('Reach even more customers **with paid ads** and grow your **sale** by promoting your products **to the right customers** across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns*', 'PsGoogleShoppingTranslations'),
+                        'title' => $this->module->l('Boost traffic and sales with Smart Shopping campaign', 'PsGoogleShoppingTranslations'),
+                        'text' => $this->module->l('Reach even more customers with paid ads and grow your sale by promoting your products to the right customers across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns**', 'PsGoogleShoppingTranslations'),
                         'footer' => $this->module->l('[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]', 'PsGoogleShoppingTranslations'),
                     ],
-                    'notice' => $this->module->l('*includes campaign optimization to show variety of ads of your products to customers most likely to buy them', 'PsGoogleShoppingTranslations')
+                    'notice' => $this->module->l("*depending on regional availability   \n **includes campaign optimization to show variety of ads of your products to customers most likely to buy them", 'PsGoogleShoppingTranslations')
                 ],
                 'footer' => [
-                    'text' => $this->module->l('Make your first steps with PrestaShop Google Shopping!', 'PsGoogleShoppingTranslations'),
+                    'text' => $this->module->l('Get your products found on Google with [Module Name]', 'PsGoogleShoppingTranslations'),
                 ],
             ],
             'onboarding' => [
@@ -93,8 +93,8 @@ class PsGoogleShoppingTranslations
                     'freeListing' => $this->module->l('Get your products on Google with free listings', 'PsGoogleShoppingTranslations'),
                     'smartShoppingCampaign' => $this->module->l('Reach more people with paid Smart Shopping campaign', 'PsGoogleShoppingTranslations'),
                 ],
-                'productFeedNotice' => $this->module->l('Google’s free listings and Smart Shopping campaigns can help you welcome more customers to your site or your store. After you get set up, you’ll have access to performance reports so you can see how well your ads are doing.', 'PsGoogleShoppingTranslations'),
-                'warningMultistore' => $this->module->l('You can associate only one shop to your Prestashop Account.', 'PsGoogleShoppingTranslations'),
+                'productFeedNotice' => $this->module->l('Help customers to find your products more easily on Google and list them for free with free listing. Free listing help reach more customers and get them to visit your site.', 'PsGoogleShoppingTranslations'),
+                'warningMultistore' => $this->module->l("You can associate only one store to a PrestaShop account.   \n If you need to associate another store you will have to unlink the associated store.", 'PsGoogleShoppingTranslations'),
                 'GMCAlreadyLinked' => $this->module->l('Your PrestaShop account is already linked to another store. You can associate only one store to a PrestaShop account. To associate this other store you have to unlink the associated one.', 'PsGoogleShoppingTranslations'),
             ],
             'psAccountCard' => [
@@ -105,9 +105,10 @@ class PsGoogleShoppingTranslations
                 'title' => $this->module->l('Google account', 'PsGoogleShoppingTranslations'),
                 'introDisabled' => $this->module->l('Connect your Google account and associated with it Google Merchant Center to unlock free listing.', 'PsGoogleShoppingTranslations'),
                 'introEnabled' => $this->module->l('Access through PrestaShop module associated with your email account Google Merchant Center and Google Ads accounts.', 'PsGoogleShoppingTranslations'),
-                'footerDissociating' => $this->module->l('Disconnecting your Google account will remove access to Merchant Center and your Google Ads accounts via module.', 'PsGoogleShoppingTranslations'),
+                'footerDissociating' => $this->module->l('PrestaShop uses this account to manage and sync Merchant Center and Google Ads accounts.', 'PsGoogleShoppingTranslations'),
                 'alertCantConnect' => $this->module->l('You can\'t connect to your Google account right now. Try again later.', 'PsGoogleShoppingTranslations'),
                 'alertTokenMissing' => $this->module->l('The account token is missing. Try again to connect to your Google Merchant Center account or switch to another one.', 'PsGoogleShoppingTranslations'),
+                'stepIsMandatory' => $this->module->l('*This step is mandatory', 'PsGoogleShoppingTranslations'),
             ],
             'mcaCard' => [
                 'title' => $this->module->l('Merchant Center account', 'PsGoogleShoppingTranslations'),
@@ -133,7 +134,7 @@ class PsGoogleShoppingTranslations
                     'shopInfo' => $this->module->l('Store information', 'PsGoogleShoppingTranslations'),
                 ],
                 'title' => $this->module->l('Create new Merchant Center account', 'PsGoogleShoppingTranslations'),
-                'legend' => $this->module->l('To **participate in free listing and advertise on Google** you must acknowledge and **comply with below requirements**:', 'PsGoogleShoppingTranslations'),
+                'legend' => $this->module->l('To participate in free listing and advertise on Google you must acknowledge and comply with below requirements:', 'PsGoogleShoppingTranslations'),
                 'legend2' => $this->module->l("Store's website URL needs to be verified and claimed before you can upload products data.  \nLearn how to verify and claim your website.", 'PsGoogleShoppingTranslations'),
                 'footer' => $this->module->l('Read full version of Google store requirements', 'PsGoogleShoppingTranslations'),
                 'shoppingAdsPolicies' => [
@@ -206,7 +207,7 @@ class PsGoogleShoppingTranslations
                 'breadcrumb2' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),
                 'steps' => [
                   'shippingSettings' => $this->module->l('Targeting & shipping', 'PsGoogleShoppingTranslations'),
-                  'syncRules' => $this->module->l('Data sync set-up', 'PsGoogleShoppingTranslations'),
+                  'syncRules' => $this->module->l('Feed sync set-up', 'PsGoogleShoppingTranslations'),
                   'attributeMapping' => $this->module->l('Product attributes', 'PsGoogleShoppingTranslations'),
                   'categoryMapping' => $this->module->l('Category mapping', 'PsGoogleShoppingTranslations'),
                   'summary' => $this->module->l('Summary', 'PsGoogleShoppingTranslations'),
@@ -235,7 +236,7 @@ class PsGoogleShoppingTranslations
                 ],
                 'export' => [
                     'synchronizationSchedule' => $this->module->l('Export synchronization schedule', 'PsGoogleShoppingTranslations'),
-                    'synchronizationTime' => $this->module->l('Synchronization time', 'PsGoogleShoppingTranslations'),
+                    'synchronizationTime' => $this->module->l('Sync time', 'PsGoogleShoppingTranslations'),
                     'timeZone' => $this->module->l('Time zone', 'PsGoogleShoppingTranslations'),
                     'exporMethod' => $this->module->l('Export method', 'PsGoogleShoppingTranslations'),
                     'allProducts' => $this->module->l('All products', 'PsGoogleShoppingTranslations'),
@@ -262,11 +263,11 @@ class PsGoogleShoppingTranslations
                 'attributeMapping' => [
                     'intro' => $this->module->l('Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.', 'PsGoogleShoppingTranslations'),
                     'learnAboutAttributeMapping' => $this->module->l('Learn more about product data attributes', 'PsGoogleShoppingTranslations'),
-                    'introNotice' => $this->module->l('In addition to the attributes required for standard free listings, the following attributes are required to participate in enhanced listings. Performance may be limited unless you provide all attributes available in your region:', 'PsGoogleShoppingTranslations'),
+                    'introNotice' => $this->module->l('Describe your product data using attributes. Additionally to required minimum for standard free listing, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.', 'PsGoogleShoppingTranslations'),
                     'genericTitle' => $this->module->l('Generic', 'PsGoogleShoppingTranslations'),
-                    'toDescribeProducts' => $this->module->l('To describe my product attributes, please use:', 'PsGoogleShoppingTranslations'),
+                    'toDescribeProducts' => $this->module->l('Create title and description for my product attributes using:', 'PsGoogleShoppingTranslations'),
                     'googleAttribute' => $this->module->l('Google product attribute', 'PsGoogleShoppingTranslations'),
-                    'prestashopAttribute' => $this->module->l('PrestaShop product attribute', 'PsGoogleShoppingTranslations'),
+                    'prestashopAttribute' => $this->module->l('Your product value', 'PsGoogleShoppingTranslations'),
                     'description' => $this->module->l('Description', 'PsGoogleShoppingTranslations'),
                     'longDescription' => $this->module->l('Long description', 'PsGoogleShoppingTranslations'),
                     'shortDescription' => $this->module->l('Short description', 'PsGoogleShoppingTranslations'),
@@ -321,7 +322,7 @@ class PsGoogleShoppingTranslations
                 'id' => $this->module->l('Google Ads account ID', 'PsGoogleShoppingTranslations'),
             ],
             'smartShoppingCampaignCard' => [
-                'title' => $this->module->l('Promote your products with Smart Shopping campaign', 'PsGoogleShoppingTranslations'),
+                'title' => $this->module->l('Reach more people with paid Smart Shopping campaign', 'PsGoogleShoppingTranslations'),
                 'intro' => $this->module->l('Enable the paid listing of your products with Smart Shopping Campaigns', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedPage' => [
@@ -402,11 +403,11 @@ class PsGoogleShoppingTranslations
                 'connectAccount' => $this->module->l('Connect account', 'PsGoogleShoppingTranslations'),
                 'connectingAccount' => $this->module->l('Connecting account...', 'PsGoogleShoppingTranslations'),
                 'chooseExistingAccount' => $this->module->l('Choose existing account', 'PsGoogleShoppingTranslations'),
-                'createNewMCA' => $this->module->l('Create new Merchant Center account', 'PsGoogleShoppingTranslations'),
+                'createNewAccount' => $this->module->l('Create new account', 'PsGoogleShoppingTranslations'),
                 'learnAboutAccountSuspension' => $this->module->l('Learn about account suspension', 'PsGoogleShoppingTranslations'),
                 'learnAboutSiteClaiming' => $this->module->l('Learn about site claiming', 'PsGoogleShoppingTranslations'),
                 'learnMoreAboutSmartShoppingCampaigns' => $this->module->l('Learn more about Smart Shopping campaigns', 'PsGoogleShoppingTranslations'),
-                'configureAndExportProductFeed' => $this->module->l('Configure product feed', 'PsGoogleShoppingTranslations'),
+                'configureAndExportProductFeed' => $this->module->l('Export feed', 'PsGoogleShoppingTranslations'),
                 'chooseAccount' => $this->module->l('Choose your account', 'PsGoogleShoppingTranslations'),
                 'supportedCountries' => $this->module->l('Supported countries', 'PsGoogleShoppingTranslations'),
                 'cancel' => $this->module->l('Cancel', 'PsGoogleShoppingTranslations'),
@@ -447,6 +448,7 @@ class PsGoogleShoppingTranslations
                 'save' => $this->module->l('Save', 'PsGoogleShoppingTranslations'),
                 'disconnect' => $this->module->l('Disconnect', 'PsGoogleShoppingTranslations'),
                 'export' => $this->module->l('Export', 'PsGoogleShoppingTranslations'),
+                'learnAboutFreeListing' => $this->module->l('Lean more about free listing', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
@@ -481,6 +483,7 @@ class PsGoogleShoppingTranslations
                 'textEnableFreeListing' => $this->module->l('This action will also cause the reactivation of the product feed.', 'PsGoogleShoppingTranslations'),
                 'titleCancelWithoutSaving' => $this->module->l('Cancel without saving?', 'PsGoogleShoppingTranslations'),
                 'textCancelProductFeed' => $this->module->l('You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps.', 'PsGoogleShoppingTranslations'),
+                'titleQuitWithoutSaving' => $this->module->l('Quit without saving?', 'PsGoogleShoppingTranslations'),
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configuration', 'PsGoogleShoppingTranslations'),

@@ -113,7 +113,7 @@
             class="left material-icons mr-2"
             aria-hidden="true"
           >person_add</i><!--
-          --><span class="align-middle">{{ $t('cta.createNewMCA') }}</span>
+          --><span class="align-middle">{{ $t('cta.createNewAccount') }}</span>
         </a>
         <VueShowdown
           v-if="isEU"
@@ -218,7 +218,7 @@
         <!-- not translated, in need to be dynamic -->
         This is a warning alert with a link.
         <a
-          href="//google.com"
+          :href="$options.googleUrl.learnAboutAccountSuspension"
           target="_blank"
           class="text-muted ps_gs-fz-12 font-weight-normal"
         >

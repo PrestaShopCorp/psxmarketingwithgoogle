@@ -13,29 +13,29 @@
     "landingPage" : {
       "header" : {
         "title" : "PrestaShop Google Shopping",
-        "text" : "Show your products on Google and reach millions of shoppers actively looking for what your offer across Google network.",
+        "text" : "Show your products on Google and reach millions of shoppers actively looking for what you offer across Google network.",
         "reinsurance" : "- Easy setup \n- Cancel anytime"
       },
       "content" : {
         "content1" : {
-          "title" : "1. Always show accurate product information",
-          "text" : "Once you upload your store and products data to Google directly from PrestaShop these information will be available and automatically synced for free listings, Google Ads, and other Google services.",
-          "footer" : "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \n**To show your products on Google** you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
-        },
-        "content2" : {
-          "title" : "2. Get your products found by interested shoppers",
-          "text" : "Free listings let you list your products for free in the Shopping tab and show them to potential customers at the exact moment when they are looking for what your store offers.",
+          "title" : "Get your products found by interested shoppers",
+          "text" : "Free listings let you list your products for free in the Shopping tab and show them to potential customers at the exact moment when they are looking for what your store offers*.",
           "footer" : "[Learn more about free listings]({0})[:target=\"_blank\"]"
         },
+        "content2" : {
+          "title" : "Always show accurate product information",
+          "text" : "Once you upload your store and products data to Google directly from PrestaShop these information will be available and automatically synced for free listings, Google Ads, and other Google services.",
+          "footer" : "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
+        },
         "content3" : {
-          "title" : "3. Boost traffic and sales with Smart Shopping campaign",
-          "text" : "Reach even more customers **with paid ads** and grow your **sale** by promoting your products **to the right customers** across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns*",
+          "title" : "Boost traffic and sales with Smart Shopping campaign",
+          "text" : "Reach even more customers with paid ads and grow your sale by promoting your products to the right customers across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns**",
           "footer" : "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
         },
-        "notice" : "*includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
+        "notice" : "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
       },
       "footer" : {
-        "text" : "Make your first steps with PrestaShop Google Shopping!"
+        "text" : "Get your products found on Google with [Module Name]"
       }
     },
     "onboarding" : {
@@ -44,8 +44,8 @@
         "freeListing" : "Get your products on Google with free listings",
         "smartShoppingCampaign" : "Reach more people with paid Smart Shopping campaign"
       },
-      "productFeedNotice" : "Google’s free listings and Smart Shopping campaigns can help you welcome more customers to your site or your store. After you get set up, you’ll have access to performance reports so you can see how well your ads are doing.",
-      "warningMultistore":  "You can associate only one shop to your Prestashop Account.",
+      "productFeedNotice" : "Help customers to find your products more easily on Google and list them for free with free listing. Free listing help reach more customers and get them to visit your site.",
+      "warningMultistore":  "You can associate only one store to a PrestaShop account.   \n If you need to associate another store you will have to unlink the associated store.",
       "GMCAlreadyLinked":  "Your PrestaShop account is already linked to another store. You can associate only one store to a PrestaShop account. To associate this other store you have to unlink the associated one."
     },
     "psAccountCard" : {
@@ -56,9 +56,10 @@
       "title" : "Google account",
       "introDisabled" : "Connect your Google account and associated with it Google Merchant Center to unlock free listing.",
       "introEnabled" : "Access through PrestaShop module associated with your email account Google Merchant Center and Google Ads accounts.",
-      "footerDissociating" : "Disconnecting your Google account will remove access to Merchant Center and your Google Ads accounts via module.",
+      "footerDissociating" : "PrestaShop uses this account to manage and sync Merchant Center and Google Ads accounts.",
       "alertCantConnect" : "You can't connect to your Google account right now. Try again later.",
-      "alertTokenMissing" : "The account token is missing. Try again to connect to your Google Merchant Center account or switch to another one."
+      "alertTokenMissing" : "The account token is missing. Try again to connect to your Google Merchant Center account or switch to another one.",
+      "stepIsMandatory" :"*This step is mandatory"
     },
     "mcaCard" : {
       "title" : "Merchant Center account",
@@ -85,7 +86,7 @@
         "shopInfo" : "Store information"
       },
       "title" : "Create new Merchant Center account",
-      "legend" : "To **participate in free listing and advertise on Google** you must acknowledge and **comply with below requirements**:",
+      "legend" : "To participate in free listing and advertise on Google you must acknowledge and comply with below requirements:",
       "legend2" : "Store's website URL needs to be verified and claimed before you can upload products data.  \nLearn how to verify and claim your website.",
       "footer" : "Read full version of Google store requirements",
       "shoppingAdsPolicies" : {
@@ -158,7 +159,7 @@
       "breadcrumb2" : "Product feed settings",
       "steps" : {
         "shippingSettings" : "Targeting & shipping",
-        "syncRules" : "Data sync set-up",
+        "syncRules" : "Feed sync set-up",
         "attributeMapping" : "Product attributes",
         "categoryMapping" : "Category mapping",
         "summary" : "Summary",
@@ -187,7 +188,7 @@
       },
       "export" : {
         "synchronizationSchedule" : "Export synchronization schedule",
-        "synchronizationTime" : "Synchronization time",
+        "synchronizationTime" : "Sync time",
         "timeZone" : "Time zone",
         "exportMethod" : "Export method",
         "allProducts" : "Export all products",
@@ -214,11 +215,11 @@
       "attributeMapping" : {
         "intro" : "Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.",
         "learnAboutAttributeMapping" : "Learn more about product data attributes",
-        "introNotice" : "In addition to the attributes required for standard free listings, the following attributes are required to participate in enhanced listings. Performance may be limited unless you provide all attributes available in your region:",
+        "introNotice" : "Describe your product data using attributes. Additionally to required minimum for standard free listing, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
         "genericTitle" : "Generic",
-        "toDescribeProducts" : "To describe my product attributes, please use:",
+        "toDescribeProducts" : "Create title and description for my product attributes using:",
         "googleAttribute" : "Google product attribute",
-        "prestashopAttribute" : "PrestaShop product attribute",
+        "prestashopAttribute" : "Your product value",
         "description" : "Description",
         "longDescription" : "Long description",
         "shortDescription" : "Short description",
@@ -273,7 +274,7 @@
       "id" : "Google Ads account ID"
     },
     "smartShoppingCampaignCard" : {
-      "title" : "Promote your products with Smart Shopping campaign",
+      "title" : "Reach more people with paid Smart Shopping campaign",
       "intro" : "Enable the paid listing of your products with Smart Shopping Campaigns"
     },
     "productFeedPage" : {
@@ -355,11 +356,11 @@
       "connectAccount" : "Connect account",
       "connectingAccount" : "Connecting account...",
       "chooseExistingAccount" : "Choose existing account",
-      "createNewMCA" : "Create new Merchant Center account",
+      "createNewAccount" : "Create new account",
       "learnAboutAccountSuspension" : "Learn about account suspension",
       "learnAboutSiteClaiming" : "Learn about site claiming",
       "learnMoreAboutSmartShoppingCampaigns" : "Learn more about Smart Shopping campaigns",
-      "configureAndExportProductFeed" : "Configure product feed",
+      "configureAndExportProductFeed" : "Export feed",
       "chooseAccount" : "Choose your account",
       "supportedCountries" : "Supported countries",
       "cancel" : "Cancel",
@@ -399,7 +400,8 @@
       "continueWithoutSave" : "Continue without save",
       "save" : "Save",
       "disconnect" : "Disconnect",
-      "export" : "Export"
+      "export" : "Export",
+      "": "Lean more about free listing"
     },
     "badge" : {
       "free" : "Free",
@@ -434,7 +436,8 @@
       "titleEnableFreeListing" : "Enable free listing?",
       "textEnableFreeListing" : "This action will also cause the reactivation of the product feed.",
       "titleCancelWithoutSaving" : "Cancel without saving?",
-      "textCancelProductFeed" : "You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps."
+      "textCancelProductFeed" : "You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps.",
+      "titleQuitWithoutSaving" : "Quit without saving?"
     },
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configuration",

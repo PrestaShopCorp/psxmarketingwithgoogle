@@ -14,6 +14,9 @@
       class="mb-0 mt-3 mb-3"
     >
       {{ $t('onboarding.GMCAlreadyLinked') }}
+      <VueShowdown
+        :markdown="$t('onboarding.warningMultistore')"
+      />
     </b-alert>
     <ps-accounts
       v-if="!shopInConflictPsAccount"

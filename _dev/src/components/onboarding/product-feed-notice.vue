@@ -9,14 +9,18 @@
     <a
       target="_blank"
       class="text-muted ps_gs-fz-12 px-2"
+      :href="$options.googleUrl.learnAboutFreeListing"
     >
-      {{ $t('cta.learnMoreAboutSmartShoppingCampaigns') }}
+      {{ $t('cta.learnAboutFreeListing') }}
     </a>
   </b-card>
 </template>
 
 <script>
+import googleUrl from '@/assets/json/googleUrl.json';
+
 export default {
   name: 'ProductFeedNotice',
+  googleUrl,
 };
 </script>

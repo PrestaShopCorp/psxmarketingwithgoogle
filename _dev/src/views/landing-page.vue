@@ -4,20 +4,11 @@
       <LandingPageHeader />
       <hr class="my-4">
       <LandingPageContent
-        content-image="Google-Shopping-Tab-img.png"
-        :content-title="$t('landingPage.content.content2.title')"
-        :content-text="$t('landingPage.content.content2.text')"
-        :content-footer="$t('landingPage.content.content2.footer', [
-          $options.googleUrl.learnAboutFreeListing
-        ])"
-      />
-      <LandingPageContent
         content-image="Merchant-Center-img.png"
         :content-title="$t('landingPage.content.content1.title')"
         :content-text="$t('landingPage.content.content1.text')"
         :content-footer="$t('landingPage.content.content1.footer', [
-          $options.googleUrl.createNewMerchantCenter,
-          $options.googleUrl.eligibilityRequirements
+          $options.googleUrl.learnAboutFreeListing
         ])"
       />
       <LandingPageContent
@@ -25,8 +16,9 @@
         :content-title="$t('landingPage.content.content2.title')"
         :content-text="$t('landingPage.content.content2.text')"
         :content-footer="$t('landingPage.content.content2.footer', [
-            $options.googleUrl.learnAboutFreeListing
-          ])"
+          $options.googleUrl.createNewMerchantCenter,
+          $options.googleUrl.eligibilityRequirements
+        ])"
       />
       <LandingPageContent
         content-image="Google-Ads-img.png"
@@ -36,9 +28,10 @@
           $options.googleUrl.learnAboutSmartShopingCampaigns
         ])"
       />
-      <p class="text-muted ps_gs-fz-12 mt-4 pb-1">
-        {{ $t('landingPage.content.notice') }}
-      </p>
+      <VueShowdown
+        :markdown="$t('landingPage.content.notice')"
+        class="text-muted ps_gs-fz-12 mt-4 pb-1"
+      />
       <hr class="my-4">
       <LandingPageFooter />
     </div>
