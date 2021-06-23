@@ -21,6 +21,7 @@ import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 
 import {
   State as LocalState,
+  GoogleMerchantAccount,
   PrestaShopAccountsContext,
   GoogleAccountContext,
   MerchantCenterAccountContext,
@@ -60,7 +61,7 @@ export default {
     return state.googleAccount;
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT_MCA_LIST](state: LocalState)
-    : contentApi.Schema$Account[] | null {
+    : GoogleMerchantAccount[] | null {
     return state.googleAccount.mcaSelectionOptions;
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT_CONNECTED_ONCE](state: LocalState) : boolean {

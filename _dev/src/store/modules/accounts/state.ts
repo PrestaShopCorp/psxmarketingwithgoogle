@@ -37,9 +37,15 @@ export interface PrestaShopAccountsContext {
   shops: object[],
 }
 
+export interface GoogleMerchantAccount extends contentApi.Schema$Account {
+  aggregatorId?: string;
+  aggregatorName?: string;
+  subAccountNotManagedByPrestashop?: boolean;
+}
+
 export interface GoogleAccount {
   details: oauthApi.Schema$Userinfo,
-  mcaSelectionOptions: contentApi.Schema$Account[] | null,
+  mcaSelectionOptions: GoogleMerchantAccount[] | null,
 }
 
 export interface GoogleAccountToken {
@@ -59,7 +65,7 @@ export type GoogleAccountContext = GoogleAccount
   status?: string,
 }
 
-export type MerchantCenterAccountContext = contentApi.Schema$Account & {
+export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   // Allow the spinner to be displayed while claiming is done
   isVerified: boolean,
   isClaimed: boolean,

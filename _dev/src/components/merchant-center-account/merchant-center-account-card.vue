@@ -49,7 +49,7 @@
           <b-dropdown
             id="mcaSelection"
             ref="mcaSelection"
-            :text="mcaLabel(selectedMcaIndex) || $t('cta.selectAccount')"
+            :text="gmcLabel(selectedMcaIndex) || $t('cta.selectAccount')"
             variant=" "
             class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
             :toggle-class="{'ps-dropdown__placeholder' : selectedMcaIndex === null}"
@@ -69,13 +69,13 @@
               v-for="(option, index) in mcaSelectionOptions"
               :key="option.id"
               @click="selectedMcaIndex = index"
-              :disabled="!isMcaUserAdmin(index)"
+              :disabled="!isGmcUserAdmin(index)"
               variant="dark"
               link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
             >
-              <span class="mr-auto">{{ mcaLabel(index) }}</span>
+              <span class="mr-auto">{{ gmcLabel(index) }}</span>
               <span
-                v-if="!isMcaUserAdmin(index)"
+                v-if="!isGmcUserAdmin(index)"
                 class="ps_gs-fz-12"
               >
                 {{ $t('mcaCard.userIsNotAdmin') }}
@@ -344,6 +344,7 @@ export default {
   computed: {
     mcaSelectionOptions() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
+      // TODO : rework this to have optgroups ?
     },
     mcaListLoading() {
       return this.mcaSelectionOptions === null;
@@ -411,13 +412,19 @@ export default {
         );
       }
     },
-    mcaLabel(index) {
+    gmcLabel(index) {
+      // TODO : rework this if we use optgroups in dropdown
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
-        return `${this.mcaSelectionOptions[index].name} - ${this.mcaSelectionOptions[index].id}`;
+        const gmc = this.mcaSelectionOptions[index];
+        const nameAndId = `${gmc.name} - ${gmc.id}${gmc.subAccountNotManagedByPrestashop ? ' (not managed by PrestaShop)' : ''}`;
+        if (gmc.aggregatorName) {
+          return `[${gmc.aggregatorName}] ${nameAndId}`;
+        }
+        return nameAndId;
       }
       return null;
     },
-    isMcaUserAdmin(index) {
+    isGmcUserAdmin(index) {
       if (!this.mcaSelectionOptions || !this.mcaSelectionOptions[index]) {
         return false;
       }
