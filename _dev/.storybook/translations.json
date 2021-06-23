@@ -436,7 +436,15 @@
       "mustAgreeGoogleTerms" : "You must agree the Google terms",
       "approvalStatusStatus" : "placeholder",
       "approvalStatusLang" : "placeholder",
-      "approvalStatusIssues" : "placeholder"
+      "approvalStatusIssues" : "placeholder",
+      "attributeMapping" : {
+        "description" : "All product details relevant to your customers",
+        "condition" : "The condition of your product at time of sale (new, refurbished, used)",
+        "color" : "Your product's color",
+        "size" : "Your product's size",
+        "ageGroup" : "The demographic for which your product is intended",
+        "gender" : "The gender for which your product is intended"
+      }
     },
     "toast": {
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
