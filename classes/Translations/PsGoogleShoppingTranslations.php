@@ -81,7 +81,7 @@ class PsGoogleShoppingTranslations
                         'text' => $this->module->l('Reach even more customers with paid ads and grow your sale by promoting your products to the right customers across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns**', 'PsGoogleShoppingTranslations'),
                         'footer' => $this->module->l('[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]', 'PsGoogleShoppingTranslations'),
                     ],
-                    'notice' => $this->module->l("*depending on regional availability   \n **includes campaign optimization to show variety of ads of your products to customers most likely to buy them", 'PsGoogleShoppingTranslations')
+                    'notice' => $this->module->l("*depending on regional availability   \n **includes campaign optimization to show variety of ads of your products to customers most likely to buy them", 'PsGoogleShoppingTranslations'),
                 ],
                 'footer' => [
                     'text' => $this->module->l('Get your products found on Google with [Module Name]', 'PsGoogleShoppingTranslations'),
@@ -200,7 +200,7 @@ class PsGoogleShoppingTranslations
                 'excludedProducts' => $this->module->l('Excluded products', 'PsGoogleShoppingTranslations'),
                 'productsReadyToBeSynced' => $this->module->l('Products ready to be synced', 'PsGoogleShoppingTranslations'),
                 'productsWithProblems' => $this->module->l('Products with problems', 'PsGoogleShoppingTranslations'),
-                'alertGoogleIsReviewingProducts' => $this->module->l("You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.", 'PsGoogleShoppingTranslations'),
+                'alertGoogleIsReviewingProducts' => $this->module->l('You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedSettings' => [
                 'breadcrumb1' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),
@@ -216,10 +216,10 @@ class PsGoogleShoppingTranslations
                 'noticeDataStored' => $this->module->l('Settings are saved at each step, will be submitted only at the final step.', 'PsGoogleShoppingTranslations'),
                 'shipping' => [
                     'targetCountries' => $this->module->l('Target countries', 'PsGoogleShoppingTranslations'),
-                    'ifMultipleCountries' => $this->module->l("If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target=\"_blank\"] and [local regulation]({1})[:target=\"_blank\"]", 'PsGoogleShoppingTranslations'),
+                    'ifMultipleCountries' => $this->module->l('If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target="_blank"] and [local regulation]({1})[:target="_blank"]', 'PsGoogleShoppingTranslations'),
                     'productAvailaibleIn' => $this->module->l('My products are available in', 'PsGoogleShoppingTranslations'),
                     'placeholderSelect' => $this->module->l('Select the countries where your products are available', 'PsGoogleShoppingTranslations'),
-                    'cantFindCountry' => $this->module->l("Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]", 'PsGoogleShoppingTranslations'),
+                    'cantFindCountry' => $this->module->l('Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target="_blank"]', 'PsGoogleShoppingTranslations'),
                     'shippingSettings' => $this->module->l('Shipping settings', 'PsGoogleShoppingTranslations'),
                     'autoImportShipping' => $this->module->l('Import automatically shipping settings', 'PsGoogleShoppingTranslations'),
                     'autoImportShippingDescription' => $this->module->l('PrestaShop will try to automatically import your shipping information from your store settings. However you may be asked to provide additional information if we are unable to sync them.', 'PsGoogleShoppingTranslations'),
@@ -474,7 +474,7 @@ class PsGoogleShoppingTranslations
                 'titleoverwrite' => $this->module->l('Overwrite existing claim?', 'PsGoogleShoppingTranslations'),
                 'textDisconnectGoogleAccount' => $this->module->l('You are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.', 'PsGoogleShoppingTranslations'),
                 'textDisconnectMCA' => $this->module->l('Disconnecting your Merchant Center will remove access to your Google Ads in this module and pause any running campaign. ', 'PsGoogleShoppingTranslations'),
-                'textoverwrite' => $this->module->l("Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  /nIf you are running a different Shopping campaign, we recommend pausing it.", 'PsGoogleShoppingTranslations'),
+                'textoverwrite' => $this->module->l('Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  /nIf you are running a different Shopping campaign, we recommend pausing it.', 'PsGoogleShoppingTranslations'),
                 'titleDisableFreeListing' => $this->module->l('Disable free listing?', 'PsGoogleShoppingTranslations'),
                 'textDisableFreeListing' => $this->module->l("By this action, your products will no longer be advertised on Google Shopping and your running campaigns will be paused.  \n  Your catalog export will be still running.", 'PsGoogleShoppingTranslations'),
                 'titleDisableProductFeed' => $this->module->l('Disable product feed?', 'PsGoogleShoppingTranslations'),
