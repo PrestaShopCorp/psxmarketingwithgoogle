@@ -1,5 +1,6 @@
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue'
 import Stepper from '../src/components/commons/stepper.vue'
+import {productFeed} from '../.storybook/mock/product-feed';
 
 export default {
   title: 'Product feed/Settings',
@@ -23,9 +24,7 @@ const Template = (args, { argTypes }) => ({
 export const ShippingSettings:any = Template.bind({});
 ShippingSettings.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign(
-      this.$store.state.productFeed,
-    );
+    this.$store.state.productFeed = productFeed;
     this.$store.state.productFeed.stepper = 1
   },
 }
@@ -34,9 +33,7 @@ ShippingSettings.args = {
 export const ExportSettings:any = Template.bind({});
 ExportSettings.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign(
-      this.$store.state.productFeed,
-    );
+    this.$store.state.productFeed =  productFeed;
     this.$store.state.productFeed.stepper = 2
   },
 }
@@ -44,9 +41,7 @@ ExportSettings.args = {
 export const AttributeMapping:any = Template.bind({});
 AttributeMapping.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign(
-      this.$store.state.productFeed,
-    );
+    this.$store.state.productFeed = productFeed;
     this.$store.state.productFeed.stepper = 3
   },
 }
@@ -54,9 +49,7 @@ AttributeMapping.args = {
 export const Summary:any = Template.bind({});
 Summary.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign(
-      this.$store.state.productFeed,
-    );
+    this.$store.state.productFeed = productFeed;
     this.$store.state.productFeed.stepper = 4
   },
 }

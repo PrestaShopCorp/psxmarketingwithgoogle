@@ -44,9 +44,6 @@ export default {
   [GetterTypes.GET_PS_ACCOUNTS_SHOP_IN_CONFLICT](state: LocalState) : boolean {
     return state.psAccountShopInConflict;
   },
-  [GetterTypes.GET_PS_GOOGLE_SHOPPING_ACTIVE_COUNTRIES](state: LocalState) : Array<string> {
-    return state.psGoogleShoppingActiveCountries;
-  },
 
   /* Google Account */
   [GetterTypes.GET_GOOGLE_ACCOUNT_IS_ONBOARDED](state: LocalState): boolean {

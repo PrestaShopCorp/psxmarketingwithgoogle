@@ -213,21 +213,9 @@ export default {
     },
     targetCountries() {
       // change country code into name with the json list
-      const datas = this.$store.state.productFeed.settings.targetCountries.length
-        ? this.$store.state.productFeed.settings.targetCountries
-        : this.$store.getters['accounts/GET_PS_GOOGLE_SHOPPING_ACTIVE_COUNTRIES'];
+      const datas = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
       const countries = this.$options.countriesSelectionOptions;
-      const final = [];
-      datas.map((data) => {
-        for (let i = 0; i <= countries.length; i += 1) {
-          if (data === countries[i].code) {
-            final.push(countries[i].country);
-            break;
-          }
-        }
-        return final;
-      });
-      return final;
+      return this.$options.filters.changeCountryCodeToName(datas, countries);
     },
   },
   methods: {

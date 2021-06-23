@@ -243,6 +243,7 @@
 import googleUrl from '@/assets/json/googleUrl.json';
 import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
+import countriesSelectionOptions from '../../assets/json/countries.json';
 //  eslint-disable-next-line
 // import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
 // import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
@@ -337,7 +338,9 @@ export default {
       return !this.$store.state.productFeed.isConfigured;
     },
     targetCountries() {
-      return this.getProductFeedSettings.targetCountries;
+      const datas = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
+      const countries = this.$options.countriesSelectionOptions;
+      return this.$options.filters.changeCountryCodeToName(datas, countries);
     },
     shippingSettings() {
       return this.getProductFeedSettings.autoImportShippingSettings
@@ -348,7 +351,7 @@ export default {
       return this.getProductFeedSettings.autoImportShippingSettings !== undefined ? 'success' : 'warning';
     },
     targetCountriesStatus() {
-      return this.getProductFeedSettings.targetCountries.length ? 'success' : 'warning';
+      return this.targetCountries.length ? 'success' : 'warning';
     },
     attributeMappingStatus() {
       return this.getProductFeedSettings.attributeMapping ? 'success' : 'warning';
@@ -475,5 +478,6 @@ export default {
     },
   },
   googleUrl,
+  countriesSelectionOptions,
 };
 </script>

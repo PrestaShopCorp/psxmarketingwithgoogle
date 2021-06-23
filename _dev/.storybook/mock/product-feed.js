@@ -1,5 +1,6 @@
 export const productFeed = {
   isConfigured: false,
+  psGoogleShoppingActiveCountries: ['FR'],
   stepper: 1,
   status: {
     failedSyncs: [],
