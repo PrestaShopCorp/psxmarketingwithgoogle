@@ -176,7 +176,7 @@ export default {
     };
   },
   computed: {
-     countries: {
+    countries: {
       get() {
         return this.$store.state.productFeed.settings.targetCountries.length
           ? this.$store.state.productFeed.settings.targetCountries
@@ -214,7 +214,7 @@ export default {
         });
       },
     },
-   
+
   },
   methods: {
     nextStep() {
