@@ -77,7 +77,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
+  async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, state, rootState}) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/settings`, {
         method: 'GET',
@@ -88,9 +88,11 @@ export default {
         },
       });
       if (!response.ok) {
+        console.log('reponseget', response);
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
+      console.log('json', json);
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportShippingSettings', data: json.autoImportShippingSettings,
       });
@@ -164,6 +166,7 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       response.json();
+      console.log('reponse', response.json);
     } catch (error) {
       console.error(error);
     }
