@@ -2,6 +2,18 @@
   <div id="googleShoppingApp">
     <div class="ps_gs-sticky-head">
       <Menu>
+        <template v-if="productFeedIsConfigured">
+          <MenuItem
+            route="/product-feed"
+          >
+            {{ $t('general.tabs.productFeed') }}
+          </MenuItem>
+          <MenuItem
+            route="/paid-marketing"
+          >
+            {{ $t('general.tabs.paidMarketing') }}
+          </MenuItem>
+        </template>
         <MenuItem :route="this.$route.name === 'configuration' ? '/onboarding' : '/configuration'">
           {{ $t('general.tabs.configuration') }}
         </MenuItem>
@@ -29,6 +41,11 @@ export default {
   components: {
     Menu,
     MenuItem,
+  },
+  computed: {
+    productFeedIsConfigured() {
+      return this.$store.state.productFeed.isConfigured;
+    },
   },
 };
 </script>

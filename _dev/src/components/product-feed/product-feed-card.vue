@@ -460,7 +460,7 @@ export default {
   methods: {
     startConfiguration() {
       this.$router.push({
-        path: '/product-feed',
+        path: '/product-feed-settings',
       });
     },
     toggle() {
