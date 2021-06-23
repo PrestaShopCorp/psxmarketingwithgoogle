@@ -9,7 +9,7 @@ export const productFeed = {
   },
   settings: {
     autoImportTaxSettings: false,
-    targetCountries: [],
+    targetCountries: ['FR'],
     productsPerBatchSync: 0,
     autoImportShippingSettings: false,
     attributeMapping: {
