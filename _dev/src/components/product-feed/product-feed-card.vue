@@ -342,17 +342,7 @@ export default {
         ? this.getProductFeedSettings.targetCountries
         : this.$store.getters['accounts/GET_PS_GOOGLE_SHOPPING_ACTIVE_COUNTRIES'];
       const countries = this.$options.countriesSelectionOptions;
-      const final = [];
-      datas.map((data) => {
-        for (let i = 0; i <= countries.length; i += 1) {
-          if (data === countries[i].code) {
-            final.push(countries[i].country);
-            break;
-          }
-        }
-        return final;
-      });
-      return final;
+      return this.$options.filters.changeCountryCodeToName(datas, countries);
     },
     shippingSettings() {
       return this.getProductFeedSettings.autoImportShippingSettings
