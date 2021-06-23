@@ -66,6 +66,8 @@
   .ps-dropdown {
     border-radius: 0 0 4px 4px;
     cursor: default;
+    max-height: rem(25 * 5.5);
+    overflow: auto;
 
     &__placeholder {
       color: $gray-450;
