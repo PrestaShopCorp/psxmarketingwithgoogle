@@ -3,9 +3,8 @@ import mutations from './mutations';
 import actions from './actions';
 import {state as initialState} from './state';
 
-
 const {
-  psGoogleShoppingActiveCountries
+  psGoogleShoppingActiveCountries,
 }: any = window;
 
 const state = Object.assign(
@@ -20,5 +19,3 @@ export default {
   mutations,
   actions,
 };
-
-
