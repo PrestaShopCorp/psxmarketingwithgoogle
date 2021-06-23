@@ -80,6 +80,9 @@
     <ProductFeedPopinDisable
       ref="productFeedDisableModal"
     />
+     <FreeListingPopinDisable
+      ref="PopinFreeListingDisable"
+    />
     <!-- Toasts -->
     <PsToast
       variant="success"
