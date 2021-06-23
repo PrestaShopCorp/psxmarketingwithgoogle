@@ -21,6 +21,7 @@
 namespace PrestaShop\Module\PrestashopGoogleShopping\Repository;
 
 use Context;
+use Country;
 use Db;
 use DbQuery;
 
@@ -40,7 +41,7 @@ class CountryRepository
 
     private $country;
 
-    public function __construct(Db $db, Context $context, \Country $country)
+    public function __construct(Db $db, Context $context, Country $country)
     {
         $this->db = $db;
         $this->context = $context;
@@ -94,6 +95,14 @@ class CountryRepository
         }
 
         return $isoCodes;
+    }
+
+    public function getShopDefaultCountry(): array
+    {
+        return [
+            'name' => $this->country->name[$this->context->language->id],
+            'iso_code' => $this->country->iso_code,
+        ];
     }
 
     /**
