@@ -21,6 +21,7 @@ import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import MutationsTypes from './mutations-types';
 import {
   State as LocalState,
+  GoogleMerchantAccount,
   GoogleAccount,
   GoogleAccountToken,
   MerchantCenterAccountContext,
@@ -63,14 +64,14 @@ export default {
   },
   [MutationsTypes.SAVE_GMC_LIST](
     state: LocalState,
-    mcaSelectionOptions: contentApi.Schema$Account[],
+    mcaSelectionOptions: GoogleMerchantAccount[],
   ) {
     state.googleAccount.mcaSelectionOptions = mcaSelectionOptions;
   },
   /** End of Google Account mutations */
 
   /** Merchant Center Account mutations */
-  [MutationsTypes.SAVE_GMC](state: LocalState, selectedAccount: contentApi.Schema$Account) {
+  [MutationsTypes.SAVE_GMC](state: LocalState, selectedAccount: GoogleMerchantAccount) {
     state.googleMerchantAccount = {
       ...state.googleMerchantAccount,
       ...selectedAccount,

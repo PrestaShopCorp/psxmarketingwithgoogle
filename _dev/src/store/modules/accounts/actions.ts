@@ -63,7 +63,9 @@ export default {
     payload,
   ) {
     const {selectedAccount, correlationId} = payload;
-    const route = `${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts/${selectedAccount.id}/link`;
+    const url = rootState.app.psGoogleShoppingApiUrl;
+    const aggregator = selectedAccount.aggregatorId ? `?aggregator_id=${selectedAccount.aggregatorId}` : '';
+    const route = `${url}/merchant-accounts/${selectedAccount.id}/link${aggregator}`;
     const response = await fetch(route, {
       method: 'POST',
       headers: {

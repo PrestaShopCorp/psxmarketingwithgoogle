@@ -129,6 +129,7 @@ class PsGoogleShoppingTranslations
                 'verifyOrClaimingFailed' => $this->module->l('Account validation failed', 'PsGoogleShoppingTranslations'),
                 'tryAgainLater' => $this->module->l('We can’t verify or claim the current site. Try again later.', 'PsGoogleShoppingTranslations'),
                 'alertSuspended' => $this->module->l('Go to your [Merchant Center account]({0})[:target=\"_blank\"] to see more details on the reason. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"]', 'PsGoogleShoppingTranslations'),
+                'notManaged' => $this->module->l('(not managed by PrestaShop)', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
