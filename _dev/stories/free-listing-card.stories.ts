@@ -1,6 +1,6 @@
 import FreeListingCard from '../src/components/free-listing/free-listing-card.vue'
-import {enableProductFeed, disableProductFeed} from '../.storybook/mock/product-feed';
-import {enableFreeListing, disableFreeListing} from '../.storybook/mock/free-listing';
+import {productFeedEnabled, productFeedDisabled} from '../.storybook/mock/product-feed';
+import {freeListingEnabled, freeListingDisabled} from '../.storybook/mock/free-listing';
 
 export default {
   title: 'Free listing/Card',
@@ -17,11 +17,21 @@ const Template = (args, { argTypes }) => ({
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
+  firstTime: true,
+  beforeCreate(this: any) {
+    this.$store.state.productFeed = productFeedEnabled
+    this.$store.state.freeListing = freeListingDisabled
+  },
 }
 
 export const Enabled:any = Template.bind({});
 Enabled.args = {
   isEnabled: true,
+  firstTime: true,
+  beforeCreate(this: any) {
+    this.$store.state.productFeed = productFeedEnabled
+    this.$store.state.freeListing = freeListingEnabled
+  },
 }
 
 export const AlertEnableFreeListing:any = Template.bind({});
@@ -30,8 +40,8 @@ AlertEnableFreeListing.args = {
   firstTime: false,
   enabledFreeListing: false,
   beforeCreate(this: any) {
-    this.$store.state.productFeed = enableProductFeed
-    this.$store.state.freeListing = disableFreeListing
+    this.$store.state.productFeed = productFeedEnabled
+    this.$store.state.freeListing = freeListingDisabled
   },
 }
 
@@ -41,8 +51,8 @@ AlertActivationSuccess.args = {
   firstTime: false,
   enabledFreeListing: true,
   beforeCreate(this: any) {
-    this.$store.state.productFeed = enableProductFeed
-    this.$store.state.freeListing = enableFreeListing
+    this.$store.state.productFeed = productFeedEnabled
+    this.$store.state.freeListing = freeListingEnabled
   },
 }
 
@@ -52,8 +62,8 @@ AlertEnableFreeListingAndProductFeed.args = {
   firstTime: false,
   enabledFreeListing: false,
   beforeCreate(this: any) {
-    this.$store.state.productFeed = disableProductFeed;
-    this.$store.state.freeListing = disableFreeListing;
+    this.$store.state.productFeed = productFeedDisabled;
+    this.$store.state.freeListing = freeListingDisabled;
   },
 }
 
@@ -63,7 +73,7 @@ AlertProductFeedDisabled.args = {
   firstTime: false,
   enabledFreeListing: true,
   beforeCreate(this: any) {
-    this.$store.state.productFeed = disableProductFeed;
-    this.$store.state.freeListing = enableFreeListing;
+    this.$store.state.productFeed = productFeedDisabled;
+    this.$store.state.freeListing = freeListingEnabled;
   },
 }
