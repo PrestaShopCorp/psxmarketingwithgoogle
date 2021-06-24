@@ -416,7 +416,8 @@ export default {
       // TODO : rework this if we use optgroups in dropdown
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         const gmc = this.mcaSelectionOptions[index];
-        const nameAndId = `${gmc.name} - ${gmc.id}${gmc.subAccountNotManagedByPrestashop ? ' (not managed by PrestaShop)' : ''}`;
+        const managed = gmc.subAccountNotManagedByPrestashop ? this.$t('mcaCard.notManaged') : '';
+        const nameAndId = `${gmc.name} - ${gmc.id} ${managed}`;
         if (gmc.aggregatorName) {
           return `[${gmc.aggregatorName}] ${nameAndId}`;
         }

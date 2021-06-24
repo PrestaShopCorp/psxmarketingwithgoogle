@@ -125,6 +125,7 @@ class PsGoogleShoppingTranslations
                 'verifyOrClaimingFailed' => $this->module->l('Account validation failed', 'PsGoogleShoppingTranslations'),
                 'tryAgainLater' => $this->module->l('We can\'t verify or claim the current site. Try again later.', 'PsGoogleShoppingTranslations'),
                 'unlinkFailed' => $this->module->l('Disconnection failed. Please refresh the page and try again.', 'PsGoogleShoppingTranslations'),
+                'notManaged' => $this->module->l('(not managed by PrestaShop)', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
