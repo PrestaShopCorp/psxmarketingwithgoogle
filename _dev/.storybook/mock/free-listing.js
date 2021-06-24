@@ -4,14 +4,14 @@ export const freeListing = {
   status: false,
 };
 
-export const enableFreeListing = {
+export const freeListingEnabled = {
   ...freeListing,
   enabled: true,
 };
 
-export const disableFreeListing = {
+export const freeListingDisabled = {
   ...freeListing,
   enabled: false,
 };
 
-export default enableFreeListing;
+export default freeListingEnabled;
