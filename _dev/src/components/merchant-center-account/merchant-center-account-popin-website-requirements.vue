@@ -14,9 +14,12 @@
       class="my-1"
       v-if="stepActiveData === 1"
     >
-      <legend class="font-weight-normal ps_gs-fz-14 mb-2 bg-transparent border-0">
-        {{ $t('mcaRequirements.legend') }}
-      </legend>
+      <VueShowdown
+        tag="legend"
+        class="font-weight-normal ps_gs-fz-14 mb-2 bg-transparent border-0"
+        :markdown="$t('mcaRequirements.legend')"
+        :extensions="['no-p-tag']"
+      />
       <b-alert
         v-if="!newMca"
         variant="warning"
@@ -218,7 +221,7 @@
           @click="saveFirstStep()"
           :disabled="isStepOneReadyToValidate()"
         >
-          {{ $t('cta.iCheckedAllRequirements') }}
+          {{ $t('cta.storeMeetsRequirements') }}
         </b-button>
       </span>
       <!-- <b-button
@@ -226,7 +229,7 @@
         variant="primary"
         @click="saveChangeExistingGmc()"
       >
-        {{ $t('cta.saveChange') }}
+        {{ $t('cta.save') }}
       </b-button> -->
     </template>
     <template

@@ -88,6 +88,7 @@ export enum WebsiteClaimErrorReason {
   LinkingFailed = 'LinkingFailed',
   VerifyOrClaimingFailed = 'VerifyOrClaimingFailed',
   UnlinkFailed = 'UnlinkFailed',
+
 }
 
 export const state: State = {

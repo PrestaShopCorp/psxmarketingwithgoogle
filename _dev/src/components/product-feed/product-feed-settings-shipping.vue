@@ -4,9 +4,13 @@
       :label="$t('productFeedSettings.shipping.targetCountries')"
       label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
-      <p>
-        {{ $t('productFeedSettings.shipping.ifMultipleCountries') }}
-      </p>
+      <VueShowdown
+        :markdown="$t('productFeedSettings.shipping.ifMultipleCountries', [
+          $options.googleUrl.countrySpecificShoppingPolicies,
+          $options.googleUrl.localRegulation
+        ])"
+        :extensions="['targetlink']"
+      />
       <label class="mb-2">
         {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
@@ -22,7 +26,9 @@
       />
       <VueShowdown
         class="text-muted my-1 ps_gs-fz-12"
-        :markdown="$t('productFeedSettings.shipping.cantFindCountry')"
+        :markdown="$t('productFeedSettings.shipping.cantFindCountry', [
+          $options.googleUrl.supportedCountries
+        ])"
         :extensions="['targetlink']"
       />
     </b-form-group>
@@ -43,9 +49,10 @@
           <span class="font-weight-normal mb-1">
             {{ $t('productFeedSettings.shipping.autoImportShipping') }}
           </span>
-          <p class="text-muted ps_gs-fz-12 mb-0">
-            {{ $t('productFeedSettings.shipping.autoImportShippingDescription') }}
-          </p>
+          <VueShowdown
+            class="text-muted ps_gs-fz-12 mb-0"
+            :markdown="$t('productFeedSettings.shipping.autoImportShippingDescription')"
+          />
         </div>
       </b-form-radio>
       <b-form-radio
@@ -60,9 +67,10 @@
           <span class="font-weight-normal mb-1">
             {{ $t('productFeedSettings.shipping.manualShipping') }}
           </span>
-          <p class="text-muted ps_gs-fz-12 mb-0">
-            {{ $t('productFeedSettings.shipping.manualShippingDescription') }}
-          </p>
+          <VueShowdown
+            class="text-muted ps_gs-fz-12 mb-0"
+            :markdown="$t('productFeedSettings.shipping.manualShippingDescription')"
+          />
         </div>
       </b-form-radio>
     </b-form-group>
@@ -93,7 +101,7 @@
             variant="secondary"
             class="mt-2"
           >
-            {{ $t('cta.setupTaxSettings') }}
+            {{ $t('cta.setupTax') }}
           </b-button>
         </div>
       </b-alert>
@@ -160,6 +168,7 @@
 </template>
 
 <script>
+import googleUrl from '@/assets/json/googleUrl.json';
 import PsSelect from '../commons/ps-select';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
@@ -223,5 +232,6 @@ export default {
     },
   },
   countriesSelectionOptions,
+  googleUrl,
 };
 </script>

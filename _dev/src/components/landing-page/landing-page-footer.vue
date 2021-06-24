@@ -10,7 +10,7 @@
           variant="primary"
           @click="hideLandingPage"
         >
-          {{ $t('cta.getStarted') }}
+          {{ $t('cta.startConfiguring') }}
         </b-button>
       </b-col>
     </b-row>

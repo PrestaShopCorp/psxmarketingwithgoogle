@@ -101,7 +101,7 @@
           class="mt-1"
         >
           <b-button variant="outline-secondary">
-            {{ $t('cta.overwriteProductFeed') }}
+            {{ $t('cta.overwrite') }}
           </b-button>
         </div>
       </b-alert>
@@ -224,7 +224,7 @@
             :status="attributeMappingStatus"
             :title="$t('productFeedSettings.steps.attributeMapping')"
             :description="attributeMapping.join(', ') + '...'"
-            :link="$t('cta.editAttributeMapping')"
+            :link="$t('cta.editProductAttributes')"
             :link-to="{type : 'routeStep', where: '/product-feed', step: 3}"
           />
           <!--  NOT IN BATCH 1 -->

@@ -15,38 +15,39 @@
     "landingPage" : {
       "header" : {
         "title" : "PrestaShop Google Shopping",
-        "text" : "PrestaShop Google Shopping makes it easy to connect your store with Google, so you can showcase your products to millions of shoppers across Google Search, Shopping, Gmail, YouTube, and the Display Network.",
+        "text" : "Show your products on Google and reach millions of shoppers actively looking for what you offer across Google network.",
         "reinsurance" : "- Easy setup \n- Cancel anytime"
       },
       "content" : {
         "content1" : {
-          "title" : "Connect your store to Google Merchant Center",
-          "text" : "Connecting your store to Google Merchant Center allows you to upload store and product data to Google. Your products will automatically sync to make relevant information available for free listings, Google Ads, and other Google services.",
-          "footer" : "You can create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing account. Note that you’ll need to meet the Merchant Center [eligibility requirements]({1})[:target=\"_blank\"] in order to connect your store."
-        },
-        "content2" : {
-          "title" : "Reach online shoppers with free listings",
-          "text" : "Free listings drive traffic by showcasing your products to customers who are actively looking for what you sell. Your products will appear on the Google Shopping tab, and can also appear on Google Search, Google Images, and Gmail depending on regional availability.",
+          "title" : "Get your products found by interested shoppers",
+          "text" : "Free listings let you list your products for free in the Shopping tab and show them to potential customers at the exact moment when they are looking for what your store offers*.",
           "footer" : "[Learn more about free listings]({0})[:target=\"_blank\"]"
         },
+        "content2" : {
+          "title" : "Always show accurate product information",
+          "text" : "Once you upload your store and products data to Google directly from PrestaShop these information will be available and automatically synced for free listings, Google Ads, and other Google services.",
+          "footer" : "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
+        },
         "content3" : {
-          "title" : "Boost store traffic and sales with Google Ads",
-          "text" : "Smart Shopping campaigns help you reach even more customers and grow your business by promoting your products across Google Search, Shopping, YouTube, Gmail, and the Display Network. They use Google’s technology to optimize your ads and automatically show your products to customers who are more likely to buy and spend more.",
+          "title" : "Boost traffic and sales with Smart Shopping campaign",
+          "text" : "Reach even more customers with paid ads and grow your sale by promoting your products to the right customers across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns**",
           "footer" : "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
-        }
+        },
+        "notice" : "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
       },
       "footer" : {
-        "text" : "Make your first steps with PrestaShop Google Shopping!"
+        "text" : "Get your products found on Google with [Module Name]"
       }
     },
     "onboarding" : {
       "sectionTitle" : {
-        "psAccount" : "Your PrestaShop account",
-        "freeListing" : "Activate your free product listings",
-        "smartShoppingCampaign" : "Launch your paid Smart Shopping campaign"
+        "psAccount" : "Connect your PrestaShop account",
+        "freeListing" : "Get your products on Google with free listings",
+        "smartShoppingCampaign" : "Reach more people with paid Smart Shopping campaign"
       },
-      "productFeedNotice" : "Google’s retail solutions can help you welcome more customers to your site or your store. After you get set up, you’ll have access to reports so you can see how well your ads are doing.",
-      "warningMultistore":  "You can associate only one shop to your Prestashop Account.",
+      "productFeedNotice" : "Help customers to find your products more easily on Google and list them for free with free listing. Free listing help reach more customers and get them to visit your site.",
+      "warningMultistore":  "You can associate only one store to a PrestaShop account.   \n If you need to associate another store you will have to unlink the associated store.",
       "GMCAlreadyLinked":  "Your PrestaShop account is already linked to another store. You can associate only one store to a PrestaShop account. To associate this other store you have to unlink the associated one."
     },
     "psAccountCard" : {
@@ -55,139 +56,141 @@
     },
     "googleAccountCard" : {
       "title" : "Google account",
-      "introDisabled" : "When you are done connecting your PrestaShop account you will be able to connect your Google accounts.",
-      "introEnabled" : "A Google Account lets you access your Google Merchant Center and Google Ads accounts",
-      "footerDissociating" : "Dissociating your Google account will disconnect your Google Merchant Center and your Google Ads accounts.",
-      "alertCantConnect" : "You can't connect to your Google account right now. Refresh and try again later.",
-      "alertTokenMissing" : "The account token is missing. Try again to connect to your Google account or switch to another one."
+      "introDisabled" : "Connect your Google account and associated with it Google Merchant Center to unlock free listing.",
+      "introEnabled" : "Access through PrestaShop module associated with your email account Google Merchant Center and Google Ads accounts.",
+      "footerDissociating" : "PrestaShop uses this account to manage and sync Merchant Center and Google Ads accounts.",
+      "alertCantConnect" : "You can't connect to your Google account right now. Try again later.",
+      "alertTokenMissing" : "The account token is missing. Try again to connect to your Google Merchant Center account or switch to another one.",
+      "stepIsMandatory" :"*This step is mandatory"
     },
     "mcaCard" : {
-      "title" : "Make your products available to shoppers accross Google",
-      "introDisabled" : "Associate your Merchant Center account to get your store and products information into Google",
+      "title" : "Merchant Center account",
+      "introDisabled" : "Associate your Merchant Center account with PrestaShop to ease synchronisation of your store and product data",
       "introEnabled" : "[Google Merchant Center]({0})[:target=\"_blank\"] helps you get your store and product info into Google and make it available to shoppers across Google.",
-      "labelSelect" : "Connect an existing Merchant Center account",
-      "claimCollides" : "Your current website claim collides with an existing claim",
-      "claimOverwrite" : "To finalize your Google Merchant Center account creation, you need to overwrite the existing claim.",
+      "labelSelect" : "Connect an existing account",
+      "claimCollides" : "Your website has been already claimed.",
+      "claimOverwrite" : "To finish Merchant Center account creation, you need to overwrite the existing claim.",
       "footerEU" : "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
       "shopInfoMissing" : "Shop information is missing",
       "shopInfoMissingDescription" : "To check if it is a validity issue or if you are not following our rules, please log in to your account at",
       "userIsNotAdmin" : "You need Administrator access",
       "googleMCA" : "Google Merchant Center account",
-      "toUseGmcNeedsAdminAccess" : "To use an existing Google Merchant Center account, you must have Administrator access.",
+      "toUseGmcNeedsAdminAccess" : "To use an existing Merchant Center account, you must have **Admin** access.",
       "linkingFailed" : "You can't connect to your Merchant Center account right now. Try again later.",
       "verifyOrClaimingFailed" : "Account validation failed",
+      "unlinkFailed" : "Disconnection failed. Please refresh the page and try again.",
       "tryAgainLater" : "We can’t verify or claim the current site. Try again later.",
-      "unlinkFailed" : "Disconnection failed. Please refresh the page and try again."
+      "alertSuspended" : "Go to your [Merchant Center account]({0})[:target=\"_blank\"] to see more details on the reason. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"]."
     },
     "mcaRequirements" : {
       "steps": {
-        "websiteRequirements" : "Shopping website requirements",
-        "shopInfo" : "Shop information"
+        "websiteRequirements" : "Online store requirements",
+        "shopInfo" : "Store information"
       },
       "title" : "Create new Merchant Center account",
-      "legend" : "To use Google Ads, you must acknowledge that you meet these requirements by checking these boxes.",
-      "legend2" : "Before you can upload product data, your store’s website URL needs to be verified and claimed.  \nVerification lets Google know you are the authorized owner of your website. Claiming associates your website URL with your Google Merchant Center account.",
-      "footer" : "Learn about shopping website requirements",
+      "legend" : "To participate in free listing and advertise on Google you must acknowledge and comply with below requirements:",
+      "legend2" : "Store's website URL needs to be verified and claimed before you can upload products data.  \nLearn how to verify and claim your website.",
+      "footer" : "Read full version of Google store requirements",
       "shoppingAdsPolicies" : {
-        "title" : "Shopping Ads policies",
+        "title" : "Comply with Shopping ads policies",
         "description" : "Don’t promote prohibited content or use prohibited practice to advertise. Respect restricted content policy and quality standards for your ads and website.",
-        "link" : "See Shopping Ads policies"
+        "link" : "Read Shopping ads policies"
       },
       "accurateContactInformation" : {
-        "title" : "Accurate contact information",
-        "description" : "According to the policy provide users with the information that they need to make informed decisions (currently 2 out of 3: e-mail, phone number or physical address)",
-        "link" : "Discover how to provide relevant information"
+        "title" : "Provide accurate contact information",
+        "description" : "Website needs to display sufficient - at least 2 out of 3 required - and accurate contact information (phone number, physical address and/or email)",
+        "link" : "Discover how to add contact information"
       },
       "secureCheckoutProcess" : {
-        "title" : "Secure checkout process and collection of personal data",
+        "title" : "Provide secure checkout & collection of personal data",
         "description" : "Do not misuse information about user, nor collect it for unclear purposes or without appropriate security measures.",
         "link" : "Learn about irresponsible data collection & use"
       },
       "returnPolicy" : {
-        "title" : "Return policy",
-        "description" : "Provide users with the information that they need to make informed decisions.",
-        "link" : "Discover how to set up return policies"
+        "title" : "Provide clear return and refund policy",
+        "description" : "Return and refund policy needs to be clear (include requirement and timelines) and easy to access on your website.",
+        "link" : "Learn how to set up return policies"
       },
       "billingTerms" : {
-        "title" : "Billing terms and conditions",
-        "description" : "Provide users with the information that they need to make informed decisions.",
-        "link" : "See Merchant Center guidelines"
+        "title" : "Provide billing terms and conditions",
+        "description" : "Website needs to clearly and visibly disclose payment options and all expenses that user will bare, before and after purchase.",
+        "link" : "Read Merchant Center guidelines"
       },
       "completeCheckoutProcess" : {
-        "title" : "Complete checkout process",
-        "description" : "Avoid abuse",
-        "link" : "See checkout requirements"
+        "title" : "Provide complete checkout process",
+        "description" : "Users need to be able to successully complete purchase process.",
+        "link" : "Learn about checkout requirements"
       },
       "websiteURL" : "Website URL",
       "websiteURLDescription" : "The website used to create your Merchant Center account",
       "storeName" : "Store name",
-      "storeNameDescription" : "This name will appear in your Shopping ads.",
+      "storeNameDescription" : "This name will appear in your free listing and Shopping ads.",
       "businessLocation" : "Business location",
       "businessAddress" : "Business address",
       "businessPhone" : "Business phone number",
-      "siteContainsAdultContent" : "My site contains adult content",
+      "siteContainsAdultContent" : "My website contains adult content",
       "seePolicyAdultContent" : "See policy on adult-oriented content",
       "labelReadAndAgree" : "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies]({0})[:target=\"_blank\"], including [Google’s Merchant Center terms of service]({1})[:target=\"_blank\"], [Shopping ads policies]({2})[:target=\"_blank\"], and [Google Ads Terms and Conditions]({3})[:target=\"_blank\"].",
-      "alert" : "If one of these requirements is missing, your Merchant Center account will be disapproved."
+      "alert" : "Your store will be reviewed so if one of these requirements is missing, your account will be suspended."
     },
     "productFeedCard" : {
-      "title" : "Send your products data to Google",
-      "intro" : "Display your products either free on Google Shopping tab and/or paid Smart Shopping campaigns with Product feed",
-      "introToConfigure" : "Submitting your product data to Google in the correct format is important for creating successful ads and free listings for your products. We use this data to make sure that it's matched to the right queries.",
+      "title" : "Automatically sync your products data with Google",
+      "intro" : "Submit your store and product data directly to Merchant Center and always keep them up to date for free listing and ads.",
+      "introToConfigure" : "It's important to submit them in the correct format, as Google uses this data to make sure your products match the right queries.",
       "nextSync" : "Next synchronization: {0}",
       "syncFailedAt" : "Synchronization failed {0} at {1}",
       "syncSuccess" : "{0} products synced {1} at {2}",
       "syncBusy" : "Sync progressing...",
       "syncCantPerform" : "Synchronization can't perform",
       "mappedCategories" : "{0}/{1} mapped categories",
-      "alertSuccess" : "You are successfully opted in. Once your products are approved, they can appear in Shopping tab search results.",
+      "alertSuccess" : "You have successfully synced your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
       "alertFailed" : "The synchronization of your product feed failed. **[See possible reasons in Merchant Center]({0})[:target=\"_blank\"]**",
       "alertShippingSettingsMissing" : "Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. **[Add shipping settings]({0})[:target=\"_blank\"]**",
       "alertProductFeedDeactivated" : "If the product sync is deactivated, there will be no new products pushed into the GMC. The account itself will continue to exist and the products will expire after 30 days. This stops the catalog items to show on both Free Listings and the ad campaigns.",
-      "alertProductFeedExists" : "**A product feed already exists**  \n<small>To activate free listing feature, you need to overwrite the exisitng product feed.</small>",
+      "alertProductFeedExists" : "**A product feed already exists**  \n<small>Your product feed already exists. You need to overwrite it to sync your PrestaShop product feed. </small>",
       "googleTaxonomyAssociation" : "Google Product taxonomy association",
       "optional" : "Optional",
       "attributeDescription" : "With these attributes, you can organize your advertising campaigns in Google Ads and override the category automatically assigned by Google in some cases.",
       "excludedProducts" : "Excluded products",
       "productsReadyToBeSynced" : "Products ready to be synced",
       "productsWithProblems" : "Products with problems",
-      "alertGoogleIsReviewingProducts": "Google is currently reviewing your products.  \n\nOnce approved, your products can appear in Shopping tab search results."
+      "alertGoogleIsReviewingProducts": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads."
     },
     "productFeedSettings" : {
       "breadcrumb1" : "Product feed",
       "breadcrumb2" : "Product feed settings",
       "steps" : {
-        "shippingSettings" : "Shipping settings",
-        "syncRules" : "Synchronization rules",
-        "attributeMapping" : "Attribute mapping",
+        "shippingSettings" : "Targeting & shipping",
+        "syncRules" : "Feed sync set-up",
+        "attributeMapping" : "Product attributes",
         "categoryMapping" : "Category mapping",
         "summary" : "Summary",
         "exportFeed" : "Export feed!"
       },
-      "noticeDataStored" : "Data are stored at each step but will be submitted only at the final step.",
+      "noticeDataStored" : "Settings are saved at each step, will be submitted only at the final step.",
       "shipping" : {
         "targetCountries" : "Target countries",
-        "ifMultipleCountries" : "If multiple countries are selected, each product price will automatically be converted to the correct currency in Google. Your store must support the appropriate shipping and tax rates for customers in each selected country.",
-        "productAvailaibleIn" : "Products available in",
+        "ifMultipleCountries" : "If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target=\"_blank\"] and [local regulation]({1})[:target=\"_blank\"]",
+        "productAvailaibleIn" : "My products are available in",
         "placeholderSelect" : "Select the countries where your products are available",
-        "cantFindCountry" : "Can’t find a country? Only supported countries are listed. [Supported countries](//google.com)[:target=\"_blank\"]\n\n Your shipping services must be configured for the country you are targeting. Please respect [country-specific shopping policies](//google.com)[:target=\"_blank\"] and [local regulation](//google.com)[:target=\"_blank\"]",
+        "cantFindCountry" : "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
         "shippingSettings" : "Shipping settings",
-        "autoImportShipping" : "Automatically import shipping settings",
-        "autoImportShippingDescription" : "PrestaShop will try to automatically import your shipping information from your store settings. You may need to provide additional information if we are unable to sync them automatically.",
+        "autoImportShipping" : "Import automatically shipping settings",
+        "autoImportShippingDescription" : "PrestaShop will try to automatically import your shipping information from your store settings. However you may be asked to provide additional information if we are unable to sync them.",
         "automatically" : "Automatically",
         "manually" : "Manually",
-        "manualShipping" : "Manually set up shipping settings in Google Merchant Center",
-        "manualShippingDescription" : "You will go to Google Merchant Center and enter your product shipping information yourself. Your products won’t sync until you do this.",
+        "manualShipping" : "Set up manually shipping settings in Merchant Center",
+        "manualShippingDescription" : "You **need to** go to Merchant Center and enter your shipping information yourself. Your products won’t sync until you complete this step.",
         "taxSettings" : "Tax settings",
         "taxSettingsDescription" : "So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect. Select how you want to set up tax settings.",
         "autoImportTax" : "Automatically import tax settings",
         "manualImportTax" : "Manually set up tax settings in Google Merchant Center",
         "appliedOnlyForUsa" : "(applied only for the USA)",
-        "alertTaxes" : "So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect."
+        "alertTaxes" : "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products."
       },
       "export" : {
         "synchronizationSchedule" : "Export synchronization schedule",
-        "synchronizationTime" : "Synchronization time",
+        "synchronizationTime" : "Sync time",
         "timeZone" : "Time zone",
         "exportMethod" : "Export method",
         "allProducts" : "Export all products",
@@ -206,19 +209,19 @@
         "teaser" : {
           "title" : "Available in the next version",
           "badge" : "Coming soon",
-          "syncScheduleCustomization" : "Sync schedule customization",
+          "syncScheduleCustomization" : "Customized sync schedule",
           "exportOption" : "Export option",
           "specificProductExclusion" : "Specific product exclusion"
         }
       },
       "attributeMapping" : {
         "intro" : "Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.",
-        "learnAboutAttributeMapping" : "Learn more about attribute mapping",
-        "introNotice" : "In addition to the attributes required for standard free listings, the following attributes are required to participate in enhanced listings. Performance may be limited unless you provide all attributes available in your region:",
+        "learnAboutAttributeMapping" : "Learn more about product data attributes",
+        "introNotice" : "Describe your product data using attributes. Additionally to required minimum for standard free listing, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
         "genericTitle" : "Generic",
-        "toDescribeProducts" : "To describe my product attributes, please use:",
+        "toDescribeProducts" : "Create title and description for my product attributes using:",
         "googleAttribute" : "Google product attribute",
-        "prestashopAttribute" : "PrestaShop product attribute",
+        "prestashopAttribute" : "Your product value",
         "description" : "Description",
         "longDescription" : "Long description",
         "shortDescription" : "Short description",
@@ -232,32 +235,34 @@
         "gender" : "Gender",
         "theXField" : "The \"{0}\" field",
         "thisCustomField" : "This custom field",
-        "footerNotice1" : "These attributes are required for products for specific age group and apparel items for customers in Brazil, France, Germany, Japan, the UK, and the US.",
+        "footerNotice1" : "Attributes required for products for apparel items targeted to customers in Brazil, France, Germany, Japan, the UK, and the US.",
         "footerNotice2" : "We encourage submitting as many applicable attributes as possible to ensure accurate and comprehensive data.",
         "learnAboutShippingSettings" : "Learn more about shipping settings",
         "learnHowToSetupShippingSettings" : "Learn how to set up shipping",
-        "learnRequirementsProductSpeficifacion" : "Learn more about requirements for the Shopping product data specification",
+        "learnRequirementsProductSpeficifacion" : "Learn more about product feed specification",
         "weWillRecoverTheseAttributes" : "For your products we will recover these attributes:"
       },
       "summary" : {
         "title1" : "Next synchronisation",
-        "title2" : "Product feed settings summary",
+        "title2" : "Product feed summary",
         "xItems" : "{0} items",
         "productItems" : "Product items",
-        "tableHeader1" : "Google Merchant Center",
-        "tableHeader2" : "Prestashop",
-        "totalProducts" : "Total products",
+        "tableHeader1" : "Google product attribute",
+        "tableHeader2" : "Your product value",
+        "totalProducts" : "Number of products",
         "date" : "Date",
         "time" : "Time",
-        "youSell" : "**You sell** {0}"
+        "youSell" : "**You sell** {0}",
+        "dataSyncSetUp" : "Data sync set up",
+        "productAttributes" : "Product attributes"
       }
     },
     "freeListingCard" : {
-      "title" : "Free listing for Google Shopping tab",
-      "intro" : "Enable the free listing of your products on the Google Shopping tab",
+      "title" : "Show your products with free listing",
+      "intro" : "Showcase your product for free in organically-ranked listing on Shopping tab.",
       "learnFreeListing" : "Learn more about free listing",
       "seeFreeListing" : "See my free listing in Merchant Center",
-      "googleDelay" : "Google usually takes 3-5 business days to review products.",
+      "googleDelay" : "It takes 3-5 business days to review products",
       "alertActivationSuccess" : "You have successfully activated the free listing of your products for Google Shopping tab for free.",
       "alertEnableFreeListing" : "Enable free listing to display your products on Google Shopping tab for free.",
       "alertProductFeedDisabled" : "The synchronization of your product feed is disabled. Products are still visible on your free listing but they will not be updated anymore and they will disappear from your free listing after 30 days.",
@@ -265,13 +270,13 @@
     },
     "googleAdsAccountCard" : {
       "title" : "Connect your Google Ads account",
-      "intro" : "Create adverstising campaigns for your products: find the right audience at the right time",
+      "intro" : "Launch an advertising campaign for your products and reach more users across four different Google networks.",
       "text" : "Once connected you may need to configure your billing settings in your Google Ads account.",
       "labelSelect" : "Connect an existing Google Ads account",
       "id" : "Google Ads account ID"
     },
     "smartShoppingCampaignCard" : {
-      "title" : "Smart Shopping Campaign",
+      "title" : "Reach more people with paid Smart Shopping campaign",
       "intro" : "Enable the paid listing of your products with Smart Shopping Campaigns"
     },
     "productFeedPage" : {
@@ -290,7 +295,7 @@
       "productStatus" : {
         "title" : "Product approval status",
         "description" : "After submitting your product feed, your products will be reviewed and assigned one of 6 statuses",
-        "alert" : "Google usually takes 3-5 business days to review products.",
+        "alert" : "It takes 3-5 business days to review products",
         "approvedProducts" : "Approved products",
         "pendingProducts" : "Pending products",
         "disapprovedProducts" : "Not approved products",
@@ -340,11 +345,11 @@
       "message" : "Can't see Google secured browser?  \nHit Continue to relaunch the window and finish configuration.\n\nYou may need to activate popups in your browser to continue."
     },
     "cta" : {
-      "getStarted" : "Get started",
+      "startConfiguring" : "Start configuring",
       "connect" : "Connect",
       "dissociate" : "Dissociate",
       "manageAccount" : "Manage account",
-      "overwriteClaim" : "Overwrite claim",
+      "overwrite" : "Overwrite",
       "switchAccount" : "Switch account",
       "continue" : "Continue",
       "disabled" : "Disabled",
@@ -353,11 +358,11 @@
       "connectAccount" : "Connect account",
       "connectingAccount" : "Connecting account...",
       "chooseExistingAccount" : "Choose existing account",
-      "createNewMCA" : "Create new Merchant Center account",
+      "createNewAccount" : "Create new account",
       "learnAboutAccountSuspension" : "Learn about account suspension",
       "learnAboutSiteClaiming" : "Learn about site claiming",
-      "learnAboutGoogleSolutions" : "Learn more about Google's retail solutions",
-      "configureAndExportProductFeed" : "Configure and export product feed",
+      "learnMoreAboutSmartShoppingCampaigns" : "Learn more about Smart Shopping campaigns",
+      "configureAndExportProductFeed" : "Export feed",
       "chooseAccount" : "Choose your account",
       "supportedCountries" : "Supported countries",
       "cancel" : "Cancel",
@@ -365,7 +370,7 @@
       "selectAccount" : "Select account",
       "addMapping" : "Add mapping",
       "modifyMapping" : "Modify mapping",
-      "learnAboutProductConfiguration" : "Learn more about product configuration",
+      "learnAboutProductConfiguration" : "Learn more about product data specification",
       "overwriteProductFeed" : "Overwrite product feed",
       "trackProductStatus" : "Track Product approval status",
       "whyDidntWork" : "Check out why it didn’t work",
@@ -373,7 +378,7 @@
       "editCountries" : "Edit countries",
       "editSettings" : "Edit settings",
       "editRules" : "Edit rules",
-      "editAttributeMapping" : "Edit attribute mapping",
+      "editProductAttributes" : "Edit product attributes",
       "forceSync" : "Force sync",
       "createNewGoogleAdsAccount" : "Create new Google Ads account",
       "back" : "Back",
@@ -384,17 +389,21 @@
       "disableProductFeed" : "Disable product feed",
       "enableFreeListingAndProductFeed" : "Enable free listing and product feed",
       "checkRequirements" : "Check requirements",
-      "iCheckedAllRequirements" : "I checked all requirements",
+      "storeMeetsRequirements" : "My store meets all requirements",
       "createAccount" : "Create account",
       "saveChange" : "Save change",
       "close" : "Close",
       "viewDetailedStatuses" : "View all detailed statuses",
-      "setupTaxSettings" : "Set up tax settings",
+      "setupTax" : "Set up taxes",
       "understandAndContinue" : "Understand and continue",
       "reviewProblems": "Review problems",
       "saveAndExport" : "Save and export",
       "go" : "Go",
-      "continueWithoutSave" : "Continue without save"
+      "continueWithoutSave" : "Continue without save",
+      "save" : "Save",
+      "disconnect" : "Disconnect",
+      "export" : "Export",
+      "": "Lean more about free listing"
     },
     "badge" : {
       "free" : "Free",
@@ -412,14 +421,16 @@
       "googleAdsAccount" : "Google Ads account",
       "readyToSync" : "Ready-to-sync",
       "cantSync" : "Can’t be synced",
-      "close" : "Close"
+      "close" : "Close",
+      "suspended" : "Suspended"
     },
     "modal" : {
+      "titleDisconnectionMerchantCenter" : "Disconnect your Merchant Center?",
       "titleDisconnection" : "Confirm disconnection?",
-      "titleOverwriteClaim" : "Overwrite existing claim",
+      "titleoverwrite" : "Overwrite existing claim?",
       "textDisconnectGoogleAccount" : "You are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.",
-      "textDisconnectMCA" : "You are about to disconnect Google Merchant Center account. This will remove access to Google Merchant Center and Google Ads accounts.",
-      "textOverwriteClaim" : "The existing claim will be overwritten. This action will impact the previous account to become inactive and the existing campaigns - free listings and Google Shopping campaigns - tied to that claim to be paused.  \nIf you are running a different Google Shopping campaign, we recommend pausing the campaign.",
+      "textDisconnectMCA" : "Disconnecting your Merchant Center will remove access to your Google Ads in this module and pause any running campaign. ",
+      "textoverwrite" : "Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  /nIf you are running a different Shopping campaign, we recommend pausing it.",
       "titleDisableFreeListing" : "Disable free listing?",
       "textDisableFreeListing" : "By this action, your products will no longer be advertised on Google Shopping and your running campaigns will be paused.  \nYour catalog export will be still running.",
       "titleDisableProductFeed" : "Disable product feed?",
@@ -427,15 +438,16 @@
       "titleEnableFreeListing" : "Enable free listing?",
       "textEnableFreeListing" : "This action will also cause the reactivation of the product feed.",
       "titleCancelWithoutSaving" : "Cancel without saving?",
-      "textCancelProductFeed" : "You will lose all unsaved changes. You need to complete the whole process to submit your data."
+      "textCancelProductFeed" : "You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps.",
+      "titleQuitWithoutSaving" : "Quit without saving?"
     },
     "tooltip" : {
-      "googleAccountRequired" : "Requires Google account configured",
-      "merchantCenterAccountRequired" : "Requires Merchant center account configured",
-      "productFeedRequired" : "Requires Product feed configured",
+      "googleAccountRequired" : "Requires Google account configuration",
+      "merchantCenterAccountRequired" : "Requires Merchant Center account configuration",
+      "productFeedRequired" : "Requires product feed configuration",
       "googleAdsAccountRequired" : "Requires Google Ads account configured",
-      "mustCheckAllRequirements" : "You must check if all requirements met.",
-      "mustAgreeGoogleTerms" : "You must agree the Google terms",
+      "mustCheckAllRequirements" : "You must check all requirements.",
+      "mustAgreeGoogleTerms" : "You must agree to the Google terms and conditions",
       "approvalStatusStatus" : "placeholder",
       "approvalStatusLang" : "placeholder",
       "approvalStatusIssues" : "placeholder",
@@ -450,8 +462,8 @@
     },
     "toast": {
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
-      "attributesMapppingSuccess": "Your attributes are successfully mapped. Once you click on ‘Save’ your products will be sent to Google",
-      "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!"
+      "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!",
+      "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google"
     },
     "stepper": {
       "nextStep" : "Next: {0}",

@@ -58,14 +58,16 @@
           />
           <product-feed-card-report-card
             status="success"
-            :title="'Sync schedule'"
+            :title="$t('productFeedSettings.summary.dataSyncSetUp')"
             :description="'Sync daily at 2:00 AM'"
             :details="'(UTC+01:00) Normal time in Central Europe (Paris)'"
             size="full"
           />
           <product-feed-card-report-card
             status="success"
-            :title="'Mapped attributes'"
+            :title="$t('productFeedSettings.summary.productAttributes')"
+            :link="$t('cta.editProductAttributes')"
+            :link-to="{type : 'stepper', where: 3}"
             size="full"
           >
             <b-table-simple
@@ -148,7 +150,7 @@
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
       >
-        {{ $t("cta.saveAndExport") }}
+        {{ $t("cta.export") }}
       </b-button>
     </div>
     <product-feed-settings-footer

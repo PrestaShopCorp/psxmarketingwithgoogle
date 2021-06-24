@@ -84,8 +84,8 @@ ConnectedWithOverrideClaim.args = {
   },
 };
 
-export const ConnectedWithClaimDisapproved:any = Template.bind({});
-ConnectedWithClaimDisapproved.args = {
+export const ConnectedWithClaimExpiringError:any = Template.bind({});
+ConnectedWithClaimExpiringError.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
@@ -93,8 +93,8 @@ ConnectedWithClaimDisapproved.args = {
   },
 };
 
-export const ConnectedWithExpiringError:any = Template.bind({});
-ConnectedWithExpiringError.args = {
+export const ConnectedWithDisapproved:any = Template.bind({});
+ConnectedWithDisapproved.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,

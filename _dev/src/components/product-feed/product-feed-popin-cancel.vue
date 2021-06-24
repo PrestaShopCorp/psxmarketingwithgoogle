@@ -2,7 +2,7 @@
   <ps-modal
     id="ProductFeedPopinCancel"
     ref="modal"
-    :title="$t('modal.titleCancelWithoutSaving')"
+    :title="$t('modal.titleQuitWithoutSaving')"
     v-bind="$attrs"
     @ok="onProductFeedCancelConfirmation"
   >
@@ -14,7 +14,7 @@
       {{ $t('cta.cancel') }}
     </template>
     <template slot="modal-ok">
-      {{ $t('cta.continueWithoutSave') }}
+      {{ $t('cta.continue') }}
     </template>
   </ps-modal>
 </template>
