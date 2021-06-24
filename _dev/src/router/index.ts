@@ -31,7 +31,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/product-feed-settings',
-    name: 'tunnel',
+    name: 'product-feed-settings',
     component: TunnelProductFeed,
   },
   {
