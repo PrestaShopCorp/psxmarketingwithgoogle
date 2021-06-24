@@ -58,14 +58,16 @@
           />
           <product-feed-card-report-card
             status="success"
-            :title="'Sync schedule'"
+            :title="$t('productFeedSettings.summary.dataSyncSetUp')"
             :description="'Sync daily at 2:00 AM'"
             :details="'(UTC+01:00) Normal time in Central Europe (Paris)'"
             size="full"
           />
           <product-feed-card-report-card
             status="success"
-            :title="'Mapped attributes'"
+            :title="$t('productFeedSettings.summary.productAttributes')"
+            :link="$t('cta.editProductAttributes')"
+            :link-to="{type : 'stepper', where: 3}"
             size="full"
           >
             <b-table-simple
@@ -135,14 +137,6 @@
     </section>
     <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
       <b-button
-        @click="goBack"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t("cta.back") }}
-      </b-button>
-      <b-button
         @click="cancel"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
@@ -156,11 +150,16 @@
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
       >
-        {{ $t("cta.saveAndExport") }}
+        {{ $t("cta.export") }}
       </b-button>
     </div>
     <product-feed-settings-footer
       :message="$t('freeListingCard.googleDelay')"
+    />
+    <VueShowdown
+      :markdown="$t('productFeedSettings.export.prohibitedContentNotice')"
+      :extensions="['targetlink']"
+      class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-n3"
     />
   </div>
 </template>
@@ -213,27 +212,12 @@ export default {
     },
     targetCountries() {
       // change country code into name with the json list
-      const datas = this.$store.state.productFeed.settings.targetCountries.length
-        ? this.$store.state.productFeed.settings.targetCountries
-        : this.$store.getters['accounts/GET_PS_GOOGLE_SHOPPING_ACTIVE_COUNTRIES'];
+      const datas = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
       const countries = this.$options.countriesSelectionOptions;
-      const final = [];
-      datas.map((data) => {
-        for (let i = 0; i <= countries.length; i += 1) {
-          if (data === countries[i].code) {
-            final.push(countries[i].country);
-            break;
-          }
-        }
-        return final;
-      });
-      return final;
+      return this.$options.filters.changeCountryCodeToName(datas, countries);
     },
   },
   methods: {
-    goBack() {
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
-    },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },

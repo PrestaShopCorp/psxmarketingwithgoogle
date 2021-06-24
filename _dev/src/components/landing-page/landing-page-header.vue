@@ -29,7 +29,7 @@
         class="my-2"
         @click="hideLandingPage"
       >
-        {{ $t('cta.getStarted') }}
+        {{ $t('cta.startConfiguring') }}
       </b-button>
 
       <div class="ps_gs-landingpage-header__benefits text-muted">

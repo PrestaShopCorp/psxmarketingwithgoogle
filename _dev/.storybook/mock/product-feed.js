@@ -1,5 +1,6 @@
 export const productFeed = {
   isConfigured: false,
+  psGoogleShoppingActiveCountries: ['FR'],
   stepper: 1,
   status: {
     failedSyncs: [],
@@ -23,14 +24,14 @@ export const productFeed = {
   },
 };
 
-export const enableProductFeed = {
+export const productFeedEnabled = {
   ...productFeed,
   status: {
     enabled: true,
   }
 }
 
-export const disableProductFeed = {
+export const productFeedDisabled = {
   ...productFeed,
   status: {
     enabled: false,
@@ -38,4 +39,4 @@ export const disableProductFeed = {
 }
 
 
-export default enableProductFeed;
+export default productFeedEnabled;

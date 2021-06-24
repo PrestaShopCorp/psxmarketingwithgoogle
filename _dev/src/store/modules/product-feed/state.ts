@@ -44,6 +44,7 @@ export interface ProductFeedSettings {
 }
 export interface State {
     isConfigured: boolean,
+    psGoogleShoppingActiveCountries: Array<string>,
     stepper: number,
     status: ProductFeedStatus,
     settings: ProductFeedSettings,
@@ -51,6 +52,7 @@ export interface State {
 
 export const state: State = {
   isConfigured: false,
+  psGoogleShoppingActiveCountries: [],
   stepper: 1,
   status: {
     failedSyncs: [],

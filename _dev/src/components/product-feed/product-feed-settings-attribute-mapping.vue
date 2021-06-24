@@ -6,7 +6,7 @@
     <p class="text-muted">
       <a
         class="ps_gs-fz-12"
-        href="//google.com"
+        :href="$options.googleUrl.learnAboutAttributeMapping"
         target="_blank"
       >
         {{ $t('productFeedSettings.attributeMapping.learnAboutAttributeMapping') }}
@@ -43,14 +43,13 @@
                 {{ $t('productFeedSettings.attributeMapping.description') }}
                 <b-button
                   v-b-tooltip
-                  title="Tooltip!"
+                  :title="$t('tooltip.attributeMapping.description')"
                   variant="invisible"
-                  class="ml-1 p-0 border-0 ps_gs-fz-12 color-grey_darklight"
+                  class="ml-1 p-0 border-0 ps_gs-fz-16 mb-0 color-grey_darklight"
                 >
-                  <span class="material-icons-round mb-0 ps_gs-fz-12 align-middle">
+                  <span class="material-icons-round mb-0 ps_gs-fz-16 align-middle">
                     error_outline
                   </span>
-                  <span class="sr-only">Tooltip!</span>
                 </b-button>
               </span>
             </b-td>
@@ -170,7 +169,7 @@
           {{ $t('productFeedSettings.attributeMapping.footerNotice2') }}
           <br>
           <a
-            href="//google.com"
+            :href="$options.googleUrl.learnRequirementsProductSpeficifacion"
             target="_blank"
           >
             {{ $t('productFeedSettings.attributeMapping.learnRequirementsProductSpeficifacion') }}
@@ -179,15 +178,6 @@
       </div>
     </section>
     <div class="d-md-flex text-center justify-content-end mt-3">
-      <b-button
-        @click="goBack"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t("cta.back") }}
-      </b-button>
-
       <b-button
         @click="cancel"
         size="sm"
@@ -203,7 +193,7 @@
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
       >
-        {{ $t("cta.saveAndContinue") }}
+        {{ $t("cta.continue") }}
       </b-button>
     </div>
     <product-feed-settings-footer />
@@ -214,6 +204,7 @@
 import {
   BTableSimple,
 } from 'bootstrap-vue';
+import googleUrl from '../../assets/json/googleUrl.json';
 
 import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
@@ -270,9 +261,6 @@ export default {
     },
   },
   methods: {
-    goBack() {
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
-    },
     nextStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
     },
@@ -280,5 +268,6 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
+  googleUrl,
 };
 </script>

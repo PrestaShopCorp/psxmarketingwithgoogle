@@ -78,7 +78,6 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
 
 export interface State {
   psAccountShopInConflict: boolean,
-  psGoogleShoppingActiveCountries: Array<string>,
   contextPsAccounts: PrestaShopAccountsContext|any;
   shopIdPsAccounts: string;
   tokenPsAccounts: string;
@@ -95,11 +94,11 @@ export enum WebsiteClaimErrorReason {
   LinkingFailed = 'LinkingFailed',
   VerifyOrClaimingFailed = 'VerifyOrClaimingFailed',
   UnlinkFailed = 'UnlinkFailed',
+
 }
 
 export const state: State = {
   psAccountShopInConflict: false,
-  psGoogleShoppingActiveCountries: [],
   contextPsAccounts: {},
   shopIdPsAccounts: '',
   tokenPsAccounts: '',

@@ -3,9 +3,10 @@ import VueRouter, {RouteConfig} from 'vue-router';
 import Configuration from '../views/configuration.vue';
 import OnboardingPage from '../views/onboarding-page.vue';
 import TunnelProductFeed from '../views/tunnel-product-feed.vue';
+import ProductFeedPage from '../views/product-feed-page.vue';
+import PaidMarketingPage from '../views/paid-marketing-page.vue';
 import Help from '../views/help.vue';
 import Store from '../store';
-import MutationsTypes from '../store/modules/accounts/mutations-types';
 
 Vue.use(VueRouter);
 
@@ -29,14 +30,24 @@ const routes: Array<RouteConfig> = [
     component: OnboardingPage,
   },
   {
+    path: '/product-feed-settings',
     name: 'tunnel',
-    path: '/product-feed',
     component: TunnelProductFeed,
   },
   {
     path: '/help',
     name: 'help',
     component: Help,
+  },
+  {
+    path: '/product-feed',
+    name: 'product-feed',
+    component: ProductFeedPage,
+  },
+  {
+    path: '/paid-marketing',
+    name: 'paid-marketing',
+    component: PaidMarketingPage,
   },
   {
     path: '/',

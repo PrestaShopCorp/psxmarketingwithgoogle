@@ -2,7 +2,7 @@
   <ps-modal
     id="MerchantCenterAccountPopinDisconnect"
     ref="modal"
-    :title="$t('modal.titleDisconnection')"
+    :title="$t('modal.titleDisconnectionMerchantCenter')"
     v-bind="$attrs"
     @ok="onMerchantCenterAccountDissociationConfirmation"
     :cancel-disabled="processing"
@@ -16,7 +16,7 @@
       {{ $t('cta.cancel') }}
     </template>
     <template slot="modal-ok">
-      {{ $t('cta.disconnectAccount') }}
+      {{ $t('cta.disconnect') }}
     </template>
   </ps-modal>
 </template>
