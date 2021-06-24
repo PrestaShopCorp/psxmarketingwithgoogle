@@ -179,15 +179,6 @@
     </section>
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
-        @click="goBack"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t("cta.back") }}
-      </b-button>
-
-      <b-button
         @click="cancel"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
@@ -269,9 +260,6 @@ export default {
     },
   },
   methods: {
-    goBack() {
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
-    },
     nextStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
     },
