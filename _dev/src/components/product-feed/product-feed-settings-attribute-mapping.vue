@@ -45,9 +45,9 @@
                   v-b-tooltip
                   :title="$t('tooltip.attributeMapping.description')"
                   variant="invisible"
-                  class="ml-1 p-0 border-0 ps_gs-fz-12 color-grey_darklight"
+                  class="ml-1 p-0 border-0 ps_gs-fz-16 mb-0 color-grey_darklight"
                 >
-                  <span class="material-icons-round mb-0 ps_gs-fz-12 align-middle">
+                  <span class="material-icons-round mb-0 ps_gs-fz-16 align-middle">
                     error_outline
                   </span>
                 </b-button>
@@ -179,15 +179,6 @@
     </section>
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
-        @click="goBack"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t("cta.back") }}
-      </b-button>
-
-      <b-button
         @click="cancel"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
@@ -269,9 +260,6 @@ export default {
     },
   },
   methods: {
-    goBack() {
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
-    },
     nextStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
     },

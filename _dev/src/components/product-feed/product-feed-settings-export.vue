@@ -57,14 +57,6 @@
     </div>
     <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
       <b-button
-        @click="goBack"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t("cta.back") }}
-      </b-button>
-      <b-button
         @click="cancel"
         size="sm"
         class="mx-1 mt-3 mt-md-0"
@@ -83,11 +75,6 @@
       </b-button>
     </div>
     <product-feed-settings-footer />
-    <VueShowdown
-      :markdown="$t('productFeedSettings.export.prohibitedContentNotice')"
-      :extensions="['targetlink']"
-      class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-n3"
-    />
   </div>
   <!-- This is not in batch 1 -->
   <!--
@@ -330,9 +317,6 @@ export default {
   },
 
   methods: {
-    goBack() {
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
-    },
     nextStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
     },
