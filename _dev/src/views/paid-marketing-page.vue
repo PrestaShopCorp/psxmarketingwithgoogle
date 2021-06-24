@@ -1,6 +1,6 @@
 <template>
   <div>
-    coucou bis
+    Paid Marketing Tab
   </div>
 </template>
 
