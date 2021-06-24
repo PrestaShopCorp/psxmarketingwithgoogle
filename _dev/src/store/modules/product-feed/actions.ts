@@ -79,7 +79,14 @@ export default {
 
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/settings`);
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/settings`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+      });
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
