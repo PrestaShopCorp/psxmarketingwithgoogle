@@ -2,9 +2,11 @@
   "en" : {
     "general" : {
       "tabs" : {
-          "configuration" : "Configure",
-          "catalog" : "Product catalog",
-          "help" : "Help"
+        "productFeed": "Product Feed",
+        "paidMarketing": "Paid Marketing",
+        "configuration" : "Configure",
+        "catalog" : "Product catalog",
+        "help" : "Help"
       }
     },
     "configuration" : {

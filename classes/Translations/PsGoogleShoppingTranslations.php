@@ -51,6 +51,8 @@ class PsGoogleShoppingTranslations
         $translations[$locale] = [
             'general' => [
                 'tabs' => [
+                    'productFeed' => $this->module->l('Product Feed', 'PsGoogleShoppingTranslations'),
+                    'paidMarketing' => $this->module->l('Paid Marketing', 'PsGoogleShoppingTranslations'),
                     'configuration' => $this->module->l('Configure', 'PsGoogleShoppingTranslations'),
                     'catalog' => $this->module->l('Product catalog', 'PsGoogleShoppingTranslations'),
                     'help' => $this->module->l('Help', 'PsGoogleShoppingTranslations'),

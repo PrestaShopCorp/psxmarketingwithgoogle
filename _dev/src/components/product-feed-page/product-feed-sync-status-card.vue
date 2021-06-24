@@ -126,12 +126,6 @@ export default {
     nbProductsCantSync: {
       type: Number,
     },
-    nextSyncTime: {
-      type: String,
-    },
-    lastSyncTime: {
-      type: String,
-    },
   },
 
   computed: {
@@ -154,6 +148,12 @@ export default {
         color: 'success',
         message: this.$i18n.t('productFeedPage.syncStatus.syncProcessed'),
       };
+    },
+    nextSyncTime() {
+      return this.$options.filters.timeConverterToDate(this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt);
+    },
+    lastSyncTime() {
+      return this.$options.filters.timeConverterToDate(this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].jobEndedAt);
     },
   },
   googleUrl,
