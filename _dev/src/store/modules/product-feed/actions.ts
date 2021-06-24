@@ -21,7 +21,7 @@ import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
-  async [ActionsTypes.GET_LAST_SYNCHRONISATION]({commit, rootState}) {
+  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootState}) {
     //  TODO : CONNECT BACKEND
     // try {
     //   const response = await fetch(

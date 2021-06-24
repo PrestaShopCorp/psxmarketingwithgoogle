@@ -8,11 +8,11 @@
           >
             {{ $t('general.tabs.productFeed') }}
           </MenuItem>
-          <MenuItem
+          <!-- <MenuItem
             route="/paid-marketing"
           >
             {{ $t('general.tabs.paidMarketing') }}
-          </MenuItem>
+          </MenuItem> -->
         </template>
         <MenuItem :route="this.$route.name === 'configuration' ? '/onboarding' : '/configuration'">
           {{ $t('general.tabs.configuration') }}
