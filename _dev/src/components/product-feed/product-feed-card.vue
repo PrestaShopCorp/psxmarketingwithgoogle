@@ -184,14 +184,14 @@
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
-            :link-to="{type : 'routeStep', where: '/product-feed', step: 1}"
+            :link-to="{type : 'routeStep', name: 'product-feed-settings', step: 1}"
           />
           <product-feed-card-report-card
             :status="shippingSettingsStatus"
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
-            :link-to="{type : 'routeStep', where: '/product-feed', step: 1}"
+            :link-to="{type : 'routeStep', name: 'product-feed-settings', step: 1}"
           />
           <product-feed-card-report-card
             v-if="isUS"
@@ -199,7 +199,7 @@
             :title="$t('productFeedSettings.shipping.taxSettings')"
             :description="taxSettings"
             :link="$t('cta.editSettings')"
-            :link-to="{type : 'routeStep', where: '/product-feed', step: 1}"
+            :link-to="{type : 'routeStep', name: 'product-feed-settings', step: 1}"
           />
           <!--  NOT IN BATCH 1 -->
           <!-- <product-feed-card-report-card
@@ -225,7 +225,7 @@
             :title="$t('productFeedSettings.steps.attributeMapping')"
             :description="attributeMapping.join(', ') + '...'"
             :link="$t('cta.editProductAttributes')"
-            :link-to="{type : 'routeStep', where: '/product-feed', step: 3}"
+            :link-to="{type : 'routeStep', name: 'product-feed-settings', step: 3}"
           />
           <!--  NOT IN BATCH 1 -->
           <!-- <product-feed-card-report-mapped-categories-card

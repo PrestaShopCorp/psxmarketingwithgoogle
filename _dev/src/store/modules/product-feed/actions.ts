@@ -109,20 +109,20 @@ export default {
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'attributeMapping',
         data: Object.assign(
-          (json.attributeMapping.customColorAttribute) ? {
-            customColorAttribute: json.attributeMapping.customColorAttribute,
+          (json.attributeMapping?.customColorAttribute) ? {
+            customColorAttribute: json.attributeMapping?.customColorAttribute,
           } : {},
-          (json.attributeMapping.customAgeGroupAttribute) ? {
-            customAgeGroupAttribute: json.attributeMapping.customAgeGroupAttribute,
+          (json.attributeMapping?.customAgeGroupAttribute) ? {
+            customAgeGroupAttribute: json.attributeMapping?.customAgeGroupAttribute,
           } : {},
-          (json.attributeMapping.customSizeAttribute) ? {
-            customSizeAttribute: json.attributeMapping.customSizeAttribute,
+          (json.attributeMapping?.customSizeAttribute) ? {
+            customSizeAttribute: json.attributeMapping?.customSizeAttribute,
           } : {},
-          (json.attributeMapping.customGenderGroupAttribute) ? {
-            customGenderGroupAttribute: json.attributeMapping.customGenderGroupAttribute,
+          (json.attributeMapping?.customGenderGroupAttribute) ? {
+            customGenderGroupAttribute: json.attributeMapping?.customGenderGroupAttribute,
           } : {},
-          (json.attributeMapping.customConditionAttribute) ? {
-            customConditionAttribute: json.attributeMapping.customConditionAttribute,
+          (json.attributeMapping?.customConditionAttribute) ? {
+            customConditionAttribute: json.attributeMapping?.customConditionAttribute,
           } : {},
         ),
       });
