@@ -300,7 +300,6 @@ export default {
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
           WebsiteClaimErrorReason.VerifyOrClaimingFailed);
       }
-
     }
     return true;
   },

@@ -306,7 +306,13 @@
       <p class="mb-0">
         <strong>{{ $t('mcaCard.overwriteFailed') }}</strong><br>
         <span class="ps_gs-fz-12">
-          {{ $t('mcaCard.overwriteToBeDoneManually', [merchantCenterWebsitePageUrl, websiteUrl]) }}
+          <VueShowdown
+            :markdown="$t('mcaCard.overwriteToBeDoneManually', [
+              merchantCenterWebsitePageUrl,
+              websiteUrl,
+            ])"
+            :extensions="['targetlink']"
+          />
         </span>
       </p>
     </b-alert>
