@@ -21,6 +21,7 @@
 use PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 use PrestaShop\Module\PrestashopGoogleShopping\Provider\CarrierDataProvider;
+use PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository;
 
 class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 {
@@ -32,11 +33,17 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
      */
     private $configurationAdapter;
 
+    /**
+     * @var CountryRepository
+     */
+    private $countryRepository;
+
     public function __construct()
     {
         parent::__construct();
         $this->bootstrap = false;
         $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
+        $this->countryRepository = $this->module->getService(CountryRepository::class);
         $this->ajax = true;
     }
 
@@ -56,6 +63,9 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
                 break;
             case 'getCarrierValues':
                 $this->getCarrierValues();
+                break;
+            case 'getShopConfigurationForGMC':
+                $this->getShopConfigurationForGMC();
                 break;
             case 'toggleGoogleAccountIsRegistered':
                 $this->toggleGoogleAccountIsRegistered($inputs);
@@ -88,6 +98,29 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             );
             $this->ajaxDie(json_encode(['success' => true, 'method' => 'insert']));
         }
+    }
+
+    private function getShopConfigurationForGMC()
+    {
+        $this->ajaxDie(json_encode([
+            'shop' => [
+                'name' => $this->context->shop->name,
+                'url' => $this->context->link->getBaseLink($this->context->shop->id),
+            ],
+            'store' => [
+                /*
+                 * Based on structure available on Google documentation
+                 * @see https://developers.google.com/shopping-content/reference/rest/v2.1/accounts#AccountAddress
+                 */
+                'streetAddress' => trim($this->configurationAdapter->get('PS_SHOP_ADDR1')
+                    . ' '
+                    . $this->configurationAdapter->get('PS_SHOP_ADDR2')),
+                'locality' => $this->configurationAdapter->get('PS_SHOP_CITY'),
+                'region' => State::getNameById($this->configurationAdapter->get('PS_SHOP_STATE_ID')),
+                'postalCode' => $this->configurationAdapter->get('PS_SHOP_CODE'),
+                'country' => $this->countryRepository->getShopDefaultCountry(),
+            ],
+        ]));
     }
 
     /**
