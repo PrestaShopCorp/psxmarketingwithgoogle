@@ -2,24 +2,24 @@
   <b-modal
     v-bind="$attrs"
     v-on="$listeners"
-    modalClass="ps_gs-modal"
-    titleClass="ps_gs-modal__title"
-    headerClass="ps_gs-modal__header"
-    contentClass="ps_gs-modal__content"
-    footerClass="ps_gs-modal__footer"
-    cancelVariant="outline-secondary"
+    modal-class="ps_gs-modal"
+    title-class="ps_gs-modal__title"
+    header-class="ps_gs-modal__header"
+    content-class="ps_gs-modal__content"
+    footer-class="ps_gs-modal__footer"
+    cancel-variant="outline-secondary"
     :static="true"
-    :headerCloseLabel="$t('cta.close')"
+    :header-close-label="$t('cta.close')"
   >
     <slot />
   </b-modal>
 </template>
 <script>
-import { BModal } from "bootstrap-vue";
+import {BModal} from 'bootstrap-vue';
 
 export default {
   name: 'PsModal',
   inheritAttrs: false,
-  components: { BModal },
+  components: {BModal},
 };
 </script>
