@@ -397,7 +397,7 @@ export default {
     },
     mcaSelectionOptionsAndGroups() {
       if (!this.mcaSelectionOptions) {
-        return null;
+        return [];
       }
       const list = this.mcaSelectionOptions
         .map((account) => {
