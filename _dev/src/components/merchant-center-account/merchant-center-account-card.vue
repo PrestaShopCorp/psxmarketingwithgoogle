@@ -108,13 +108,16 @@
         </b-alert>
       </b-form>
       <div class="mt-3">
-        <a href="#">
-          <i
-            class="left material-icons mr-2"
+        <b-button
+          variant="invisible"
+          class="p-0 border-0 font-weight-normal mb-0 text-primary"
+        >
+        <i
+            class="left material-icons mr-2 ps_gs-fz-24"
             aria-hidden="true"
           >person_add</i><!--
           --><span class="align-middle">{{ $t('cta.createNewAccount') }}</span>
-        </a>
+        </b-button>
         <VueShowdown
           v-if="isEU"
           class="mt-4 mb-0 text-muted ps_gs-fz-12"
