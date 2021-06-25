@@ -94,7 +94,7 @@
                 variant="dark"
                 link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
               >
-                <span class="mr-auto">{{ gmcLabel(option.i) }}</span>
+                <span class="mr-auto">{{ gmcLabel(option.i, true) }}</span>
                 <span
                   v-if="!isGmcUserAdmin(option.i)"
                   class="ps_gs-fz-12"
@@ -399,7 +399,15 @@ export default {
       if (!this.mcaSelectionOptions) {
         return null;
       }
-      const list = this.mcaSelectionOptions.map((account, i) => ({i, ...account}));
+      const list = this.mcaSelectionOptions
+        .map((account) => {
+          if (account.aggregatorName) {
+            const managed = account.subAccountNotManagedByPrestashop ? this.$t('mcaCard.notManaged') : '';
+            return {...account, aggregatorName: `${account.aggregatorName} ${managed}`};
+          }
+          return account;
+        })
+        .map((account, i) => ({i, ...account}));
       const groups = list
         .filter((gmc) => !!gmc.aggregatorName)
         .map((account) => account.aggregatorName)
@@ -482,15 +490,12 @@ export default {
         );
       }
     },
-    gmcLabel(index) {
+    gmcLabel(index, inGroup = false) {
       // TODO : rework this if we use optgroups in dropdown
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         const gmc = this.mcaSelectionOptions[index];
-        const managed = gmc.subAccountNotManagedByPrestashop ? this.$t('mcaCard.notManaged') : '';
+        const managed = (!inGroup && gmc.subAccountNotManagedByPrestashop) ? this.$t('mcaCard.notManaged') : '';
         const nameAndId = `${gmc.name} - ${gmc.id} ${managed}`;
-        if (gmc.aggregatorName) {
-          return `[${gmc.aggregatorName}] ${nameAndId}`;
-        }
         return nameAndId;
       }
       return null;
