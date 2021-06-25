@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "PS Google Shopping- PrestaShop ajax calls",
+    "title": "PS Google Shopping- Shop ajax calls",
     "version": "1.0.0"
   },
   "servers": [
@@ -18,7 +18,7 @@
       }
     },
     {
-      "url": "https://mock-googleshopping-api.psessentials-integration.net/rest/Ajax+requests+to+shop+specification/1.0.0/",
+      "url": "https://mock-googleshopping-api.psessentials-integration.net/rest/PS+Google+Shopping-+Shop+ajax+calls/1.0.0/",
       "description": "Mock API"
     }
   ],
@@ -80,11 +80,10 @@
                     "action": "getShopConfigurationForGMC"
                   }
                 },
-                "setWebsiteVerificationMeta": {
-                  "description": "Set in the shop configuration table the meta used by Google to verify the domain\n",
+                "getWebsiteRequirementStatus": {
+                  "description": "Get the status of website requirements prior GMC creation",
                   "value": {
-                    "action": "setWebsiteVerificationMeta",
-                    "websiteVerificationMeta": "IHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGljaCBpcyBhIGx1c3Qgb2Yg"
+                    "action": "getWebsiteRequirementStatus"
                   }
                 },
                 "removeWebsiteVerificationMeta": {
@@ -92,6 +91,26 @@
                   "value": {
                     "action": "setWebsiteVerificationMeta",
                     "websiteVerificationMeta": false
+                  }
+                },
+                "setWebsiteRequirementStatus": {
+                  "description": "Update website requirements status\n",
+                  "value": {
+                    "action": "setWebsiteRequirementStatus",
+                    "requirements": {
+                      "shoppingAdsPolicies": true,
+                      "accurateContactInformation": true,
+                      "secureCheckoutProcessAndCollectionOfPersonalData": true,
+                      "billingTermsAndCollections": true,
+                      "completeCheckoutProcess": true
+                    }
+                  }
+                },
+                "setWebsiteVerificationMeta": {
+                  "description": "Set in the shop configuration table the meta used by Google to verify the domain\n",
+                  "value": {
+                    "action": "setWebsiteVerificationMeta",
+                    "websiteVerificationMeta": "IHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGljaCBpcyBhIGx1c3Qgb2Yg"
                   }
                 },
                 "toggleGoogleAccountIsRegisteredOn": {
@@ -122,23 +141,6 @@
                   "items": {}
                 },
                 "examples": {
-                  "setVerificationMeta": {
-                    "value": {
-                      "success": true,
-                      "method": "insert"
-                    }
-                  },
-                  "removeVerificationMeta": {
-                    "value": {
-                      "success": true,
-                      "method": "delete"
-                    }
-                  },
-                  "toggleGoogleAccountIsRegistered": {
-                    "value": {
-                      "success": true
-                    }
-                  },
                   "getShopConfigurationForGMC": {
                     "value": {
                       "shop": {
@@ -155,6 +157,39 @@
                           "iso_code": "US"
                         }
                       }
+                    }
+                  },
+                  "getWebsiteRequirementStatus": {
+                    "value": {
+                      "requirements": {
+                        "shoppingAdsPolicies": true,
+                        "accurateContactInformation": true,
+                        "secureCheckoutProcessAndCollectionOfPersonalData": true,
+                        "billingTermsAndCollections": true,
+                        "completeCheckoutProcess": true
+                      }
+                    }
+                  },
+                  "removeVerificationMeta": {
+                    "value": {
+                      "success": true,
+                      "method": "delete"
+                    }
+                  },
+                  "setVerificationMeta": {
+                    "value": {
+                      "success": true,
+                      "method": "insert"
+                    }
+                  },
+                  "toggleGoogleAccountIsRegistered": {
+                    "value": {
+                      "success": true
+                    }
+                  },
+                  "setWebsiteRequirementStatus": {
+                    "value": {
+                      "success": true
                     }
                   },
                   "carriers": {
@@ -355,6 +390,9 @@
   "components": {
     "schemas": {
       "getCarrierValuesRequest": {
+        "required": [
+          "action"
+        ],
         "type": "object",
         "properties": {
           "action": {
@@ -366,6 +404,10 @@
         }
       },
       "setWebsiteVerificationMetaRequest": {
+        "required": [
+          "action",
+          "websiteVerificationMeta"
+        ],
         "type": "object",
         "properties": {
           "action": {
@@ -376,7 +418,31 @@
           }
         }
       },
+      "getWebsiteRequirementStatusRequest": {
+        "required": [
+          "action",
+          "requirements"
+        ],
+        "type": "object",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/websiteRequirementsStatus"
+          }
+        ]
+      },
       "removeWebsiteVerificationMetaRequest": {
+        "required": [
+          "action",
+          "websiteVerificationMeta"
+        ],
         "type": "object",
         "properties": {
           "action": {
@@ -388,6 +454,9 @@
         }
       },
       "toggleGoogleAccountIsRegisteredRequest": {
+        "required": [
+          "action"
+        ],
         "type": "object",
         "properties": {
           "action": {
@@ -406,10 +475,21 @@
           }
         }
       },
+      "websiteRequirementsStatus": {
+        "type": "object",
+        "properties": {
+          "requirements": {
+            "$ref": "#/components/schemas/websiteRequirementsStatus_requirements"
+          }
+        }
+      },
       "body": {
         "oneOf": [
           {
             "$ref": "#/components/schemas/getCarrierValuesRequest"
+          },
+          {
+            "$ref": "#/components/schemas/getWebsiteRequirementStatusRequest"
           },
           {
             "$ref": "#/components/schemas/setWebsiteVerificationMetaRequest"
@@ -421,6 +501,26 @@
             "$ref": "#/components/schemas/toggleGoogleAccountIsRegisteredRequest"
           }
         ]
+      },
+      "websiteRequirementsStatus_requirements": {
+        "type": "object",
+        "properties": {
+          "shoppingAdsPolicies": {
+            "type": "boolean"
+          },
+          "accurateContactInformation": {
+            "type": "boolean"
+          },
+          "secureCheckoutProcessAndCollectionOfPersonalData": {
+            "type": "boolean"
+          },
+          "billingTermsAndCollections": {
+            "type": "boolean"
+          },
+          "completeCheckoutProcess": {
+            "type": "boolean"
+          }
+        }
       }
     }
   }
