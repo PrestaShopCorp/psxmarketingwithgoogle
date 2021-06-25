@@ -66,21 +66,43 @@
               <i class="icon-busy icon-busy--dark" />
             </b-dropdown-item>
             <b-dropdown-item
-              v-for="(option, index) in mcaSelectionOptions"
+              v-for="(option) in mcaSelectionOptionsAndGroups[0]"
               :key="option.id"
-              @click="selectedMcaIndex = index"
-              :disabled="!isGmcUserAdmin(index)"
+              @click="selectedMcaIndex = option.i"
+              :disabled="!isGmcUserAdmin(option.i)"
               variant="dark"
               link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
             >
-              <span class="mr-auto">{{ gmcLabel(index) }}</span>
+              <span class="mr-auto">{{ gmcLabel(option.i) }}</span>
               <span
-                v-if="!isGmcUserAdmin(index)"
+                v-if="!isGmcUserAdmin(option.i)"
                 class="ps_gs-fz-12"
               >
                 {{ $t('mcaCard.userIsNotAdmin') }}
               </span>
             </b-dropdown-item>
+            <b-dropdown-group
+              v-for="(group, index) in mcaSelectionOptionsAndGroups[1]"
+              :key="index"
+              :header="group.mca"
+            >
+              <b-dropdown-item
+                v-for="(option) in group.gmcs"
+                :key="option.id"
+                @click="selectedMcaIndex = option.i"
+                :disabled="!isGmcUserAdmin(option.i)"
+                variant="dark"
+                link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+              >
+                <span class="mr-auto">{{ gmcLabel(option.i) }}</span>
+                <span
+                  v-if="!isGmcUserAdmin(option.i)"
+                  class="ps_gs-fz-12"
+                >
+                {{ $t('mcaCard.userIsNotAdmin') }}
+              </span>
+              </b-dropdown-item>
+            </b-dropdown-group>
           </b-dropdown>
           <b-button
             size="sm"
@@ -372,7 +394,20 @@ export default {
   computed: {
     mcaSelectionOptions() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
-      // TODO : rework this to have optgroups ?
+    },
+    mcaSelectionOptionsAndGroups() {
+      if (!this.mcaSelectionOptions) {
+        return null;
+      }
+      const list = this.mcaSelectionOptions.map((account, i) => ({i, ...account}));
+      const groups = list
+        .filter((gmc) => !!gmc.aggregatorName)
+        .map((account) => account.aggregatorName)
+        .filter((v, i, a) => a.indexOf(v) === i);
+      return [
+        list.filter((gmc) => !gmc.aggregatorName),
+        groups.map((mca) => ({mca, gmcs: list.filter((gmc) => gmc.aggregatorName === mca)})),
+      ];
     },
     mcaListLoading() {
       return this.mcaSelectionOptions === null;
