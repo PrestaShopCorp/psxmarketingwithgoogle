@@ -4,7 +4,7 @@
     :title="popinTitle"
     v-bind="$attrs"
     scrollable
-    ref="MerchantCenterAccountPopinNewMca"
+    ref="modal"
   >
     <Stepper
       v-if="newMca"
@@ -42,6 +42,7 @@
             v-model="selectedRequirements"
             :value="safeString($t(`mcaRequirements.${requirement}.title`))"
             :disabled="!newMca"
+            @change="getCurrentCheckbox(selectedRequirements)"
           >
             <div>
               <span
@@ -323,13 +324,16 @@ export default {
     saveFirstStep() {
       this.stepActiveData = 2;
     },
+    getCurrentCheckbox(checkboxList) {
+      this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', checkboxList);
+    },
     ok() {
       /**
        * TODO
        */
     },
     cancel() {
-      this.$refs.MerchantCenterAccountPopinNewMca.hide();
+      this.$refs.modal.hide();
     },
     saveChangeExistingGmc() {
       /**
@@ -369,6 +373,7 @@ export default {
   },
   mounted() {
     this.stepActiveData = this.stepActive;
+    this.selectedRequirements = this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'];
   },
   googleUrl,
 };
