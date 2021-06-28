@@ -84,7 +84,7 @@ ConnectedWithOverrideClaim.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    claimError: WebsiteClaimErrorReason.Overwrite,
+    gmcStatus: WebsiteClaimErrorReason.Overwrite,
   },
 };
 
@@ -93,7 +93,7 @@ ConnectedWithClaimExpiringError.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    claimError: WebsiteClaimErrorReason.Expiring,
+    gmcStatus: WebsiteClaimErrorReason.Expiring,
   },
 };
 
@@ -102,7 +102,7 @@ ConnectedWithDisapproved.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    claimError: WebsiteClaimErrorReason.Disapproved,
+    gmcStatus: WebsiteClaimErrorReason.Disapproved,
   },
 };
 
@@ -111,7 +111,7 @@ ConnectedAndShopInfoMissing.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    claimError: WebsiteClaimErrorReason.ShopInfoMissing,
+    gmcStatus: WebsiteClaimErrorReason.ShopInfoMissing,
   },
 };
 
@@ -120,7 +120,7 @@ ConnectedButVerifyOrClaimingFailed.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    claimError: WebsiteClaimErrorReason.VerifyOrClaimingFailed,
+    gmcStatus: WebsiteClaimErrorReason.VerifyOrClaimingFailed,
   },
 };
 
@@ -135,7 +135,7 @@ EnabledLinkingFailed.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountNotConnected,
-    claimError: WebsiteClaimErrorReason.LinkingFailed,
+    gmcStatus: WebsiteClaimErrorReason.LinkingFailed,
   },
 };
 
@@ -144,6 +144,6 @@ EnabledDisapproved.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    claimError: WebsiteClaimErrorReason.Disapproved,
+    gmcStatus: WebsiteClaimErrorReason.Disapproved,
   },
 };

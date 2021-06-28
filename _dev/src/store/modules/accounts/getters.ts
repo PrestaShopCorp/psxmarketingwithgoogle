@@ -24,7 +24,7 @@ import {
   GoogleMerchantAccount,
   PrestaShopAccountsContext,
   GoogleAccountContext,
-  MerchantCenterAccountContext,
+  MerchantCenterAccountContext, WebsiteClaimErrorReason,
 } from './state';
 import GetterTypes from './getters-types';
 
@@ -76,8 +76,9 @@ export default {
   [GetterTypes.GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL](state: LocalState) : String|Error {
     return state.googleAccount.authenticationUrl;
   },
-  [GetterTypes.GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS](state: LocalState) : String {
-    return state.googleMerchantAccount.claimError;
+  [GetterTypes.GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS](state: LocalState)
+    : WebsiteClaimErrorReason|null {
+    return state.googleMerchantAccount.gmcStatus;
   },
   [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_CONNECTED_ONCE](state: LocalState) : boolean {
     return state.googleMerchantAccount.connectedOnce;

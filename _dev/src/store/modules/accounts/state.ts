@@ -69,9 +69,7 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   // Allow the spinner to be displayed while claiming is done
   isVerified: boolean,
   isClaimed: boolean,
-  claimError: string,
-  // Allow displaying the error message
-  websiteVerificationStatus: WebsiteClaimErrorReason|null,
+  gmcStatus: WebsiteClaimErrorReason|null,
   // Display toast component once
   connectedOnce: boolean,
 };
@@ -114,8 +112,7 @@ export const state: State = {
     id: null,
     isVerified: false,
     isClaimed: false,
-    websiteVerificationStatus: null,
-    claimError: '',
+    gmcStatus: null,
     users: [],
     connectedOnce: false,
   },
