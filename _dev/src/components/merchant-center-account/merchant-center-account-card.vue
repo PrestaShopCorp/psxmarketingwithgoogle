@@ -84,7 +84,7 @@
             <b-dropdown-group
               v-for="(group, index) in mcaSelectionOptionsAndGroups[1]"
               :key="index"
-              :header="group.mca"
+              :header="`${group.mca.name} ${group.mca.info}`"
             >
               <b-dropdown-item
                 v-for="(option) in group.gmcs"
@@ -99,8 +99,8 @@
                   v-if="!isGmcUserAdmin(option.i)"
                   class="ps_gs-fz-12"
                 >
-                {{ $t('mcaCard.userIsNotAdmin') }}
-              </span>
+                  {{ $t('mcaCard.userIsNotAdmin') }}
+                </span>
               </b-dropdown-item>
             </b-dropdown-group>
           </b-dropdown>
@@ -134,7 +134,7 @@
           variant="invisible"
           class="p-0 border-0 font-weight-normal mb-0 text-primary"
         >
-        <i
+          <i
             class="left material-icons mr-2 ps_gs-fz-24"
             aria-hidden="true"
           >person_add</i><!--
@@ -359,6 +359,7 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
+import uniqBy from 'lodash.uniqby';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
@@ -402,19 +403,22 @@ export default {
       const list = this.mcaSelectionOptions
         .map((account) => {
           if (account.aggregatorName) {
-            const managed = account.subAccountNotManagedByPrestashop ? this.$t('mcaCard.notManaged') : '';
-            return {...account, aggregatorName: `${account.aggregatorName} ${managed}`};
+            const managed = account.subAccountNotManagedByPrestashop ? this.$t('mcaCard.notManaged') : null;
+            return {...account, aggregatorManagement: managed};
           }
           return account;
         })
         .map((account, i) => ({i, ...account}));
-      const groups = list
-        .filter((gmc) => !!gmc.aggregatorName)
-        .map((account) => account.aggregatorName)
-        .filter((v, i, a) => a.indexOf(v) === i);
+      const groups = uniqBy(
+        list
+          .filter((gmc) => !!gmc.aggregatorName)
+          .map((account) => ({name: account.aggregatorName, info: account.aggregatorManagement})),
+        'name',
+      );
+      console.log('#######', groups);
       return [
         list.filter((gmc) => !gmc.aggregatorName),
-        groups.map((mca) => ({mca, gmcs: list.filter((gmc) => gmc.aggregatorName === mca)})),
+        groups.map((mca) => ({mca, gmcs: list.filter((gmc) => gmc.aggregatorName === mca.name)})),
       ];
     },
     mcaListLoading() {
