@@ -73,26 +73,45 @@
               variant="dark"
               link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
             >
-              <span class="mr-auto">{{ gmcLabel(option.i) }}</span>
+              <span class="mr-2">
+                {{ gmcLabel(option.i) }}
+              </span>
+              <span
+                v-if="option.subAccountNotManagedByPrestashop"
+                class="ps_gs-fz-12"
+              >
+                {{$t('mcaCard.notManaged')}}
+              </span>
               <span
                 v-if="!isGmcUserAdmin(option.i)"
-                class="ps_gs-fz-12"
+                class="ps_gs-fz-12 ml-auto"
               >
                 {{ $t('mcaCard.userIsNotAdmin') }}
               </span>
             </b-dropdown-item>
             <b-dropdown-group
+              header-classes="px-0"
               v-for="(group, index) in mcaSelectionOptionsAndGroups[1]"
               :key="index"
-              :header="`${group.mca.name} ${group.mca.info}`"
             >
+              <template #header>
+                <div class="text-muted px-3">
+                  <span class="font-weight-600 ps_gs-fz-13 mr-2">
+                    {{group.mca.name}}
+                  </span>
+                  <span class="ps_gs-fz-12">
+                    {{group.mca.info}}
+                  </span>
+                </div>
+              </template>
+
               <b-dropdown-item
                 v-for="(option) in group.gmcs"
                 :key="option.id"
                 @click="selectedMcaIndex = option.i"
                 :disabled="!isGmcUserAdmin(option.i)"
                 variant="dark"
-                link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+                link-class="d-flex flex-wrap flex-md-nowrap align-items-center pl-4 pr-3"
               >
                 <span class="mr-auto">{{ gmcLabel(option.i, true) }}</span>
                 <span
@@ -498,8 +517,7 @@ export default {
       // TODO : rework this if we use optgroups in dropdown
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         const gmc = this.mcaSelectionOptions[index];
-        const managed = (!inGroup && gmc.subAccountNotManagedByPrestashop) ? this.$t('mcaCard.notManaged') : '';
-        const nameAndId = `${gmc.name} - ${gmc.id} ${managed}`;
+        const nameAndId = `${gmc.name} - ${gmc.id}`;
         return nameAndId;
       }
       return null;

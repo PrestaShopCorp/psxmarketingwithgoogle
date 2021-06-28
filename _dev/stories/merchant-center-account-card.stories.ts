@@ -44,6 +44,7 @@ const Template = (args, {argTypes}) => ({
     this.$store.state.accounts.googleAccount = googleAccountConnected;
     this.$store.state.accounts.googleMerchantAccount = args.initialMcaStatus;
   },
+  mounted: args.mounted,
   methods: {
     fakeConnection(selectedAccount) {
       // @ts-ignore
@@ -73,6 +74,9 @@ export const EnabledNotConnected:any = Template.bind({});
 EnabledNotConnected.args = {
   isEnabled: true,
   initialMcaStatus: merchantCenterAccountNotConnected,
+  mounted: function(this: any) {
+    this.$store.state.accounts.googleAccount.details.email = "jean.peuplu@prestashop.com"
+  }
 };
 
 export const ConnectedWithOverrideClaim:any = Template.bind({});
