@@ -130,6 +130,8 @@ class PsGoogleShoppingTranslations
                 'tryAgainLater' => $this->module->l('We can’t verify or claim the current site. Try again later.', 'PsGoogleShoppingTranslations'),
                 'alertSuspended' => $this->module->l('Go to your [Merchant Center account]({0})[:target=\"_blank\"] to see more details on the reason. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"]', 'PsGoogleShoppingTranslations'),
                 'notManaged' => $this->module->l('(not managed by PrestaShop)', 'PsGoogleShoppingTranslations'),
+                'overwriteFailed' => $this->module->l('Website URL claim failed', 'PsGoogleShoppingTranslations'),
+                'overwriteToBeDoneManually' => $this->module->l('Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [

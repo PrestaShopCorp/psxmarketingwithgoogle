@@ -22,6 +22,7 @@ import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
+import CannotOverwriteError from '../../../utils/CannotOverwriteError';
 
 export default {
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT](
@@ -108,23 +109,26 @@ export default {
         isVerified = result.isVerified;
         isClaimed = result.isClaimed;
 
-        try {
-          await dispatch(
-            ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
-            {overwrite: false, correlationId},
-          );
-        } catch (error) {
-          if (error instanceof NeedOverwriteError) {
-            commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.Overwrite);
-            return;
-          }
-          throw error;
+        if (!result.isVerified) {
+          return;
         }
-      } catch (error) {
-        commit(
-          MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-          WebsiteClaimErrorReason.VerifyOrClaimingFailed,
+
+        await dispatch(
+          ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
+          {overwrite: false, correlationId},
         );
+      } catch (error) {
+        if (error instanceof NeedOverwriteError) {
+          commit(
+            MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+            WebsiteClaimErrorReason.Overwrite,
+          );
+        } else {
+          commit(
+            MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+            WebsiteClaimErrorReason.VerifyOrClaimingFailed,
+          );
+        }
       }
     }
   },
@@ -287,8 +291,13 @@ export default {
         commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
       }, 2000);
     } catch (error) {
-      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-        WebsiteClaimErrorReason.VerifyOrClaimingFailed);
+      if (error instanceof CannotOverwriteError) {
+        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+          WebsiteClaimErrorReason.OverwriteFailed);
+      } else {
+        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+          WebsiteClaimErrorReason.VerifyOrClaimingFailed);
+      }
     }
     return true;
   },
@@ -409,6 +418,9 @@ export default {
 
       if (error.fromGoogle?.needOverwrite) {
         throw new NeedOverwriteError(error, error.fromGoogle.error.code);
+      }
+      if (error.fromGoogle?.cannotOverwrite) {
+        throw new CannotOverwriteError(error, error.fromGoogle.error.code);
       }
       throw new HttpClientError(response.statusText, response.status);
     }

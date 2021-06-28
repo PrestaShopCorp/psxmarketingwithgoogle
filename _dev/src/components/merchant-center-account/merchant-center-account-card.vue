@@ -301,6 +301,25 @@
       </p>
     </b-alert>
     <b-alert
+      v-else-if="error === WebsiteClaimErrorReason.OverwriteFailed"
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        <strong>{{ $t('mcaCard.overwriteFailed') }}</strong><br>
+        <span class="ps_gs-fz-12">
+          <VueShowdown
+            :markdown="$t('mcaCard.overwriteToBeDoneManually', [
+              merchantCenterWebsitePageUrl,
+              websiteUrl,
+            ])"
+            :extensions="['targetlink']"
+          />
+        </span>
+      </p>
+    </b-alert>
+    <b-alert
       v-if="error === WebsiteClaimErrorReason.UnlinkFailed"
       show
       variant="danger"
@@ -405,6 +424,13 @@ export default {
             text: 'active',
           };
       }
+    },
+    merchantCenterWebsitePageUrl() {
+      const {id} = this.$store.state.accounts.googleMerchantAccount;
+      return `https://merchants.google.com/mc/settings/website?a=${id}`;
+    },
+    websiteUrl() {
+      return this.$store.state.accounts.googleMerchantAccount.websiteUrl;
     },
   },
   methods: {
