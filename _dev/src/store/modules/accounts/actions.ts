@@ -109,28 +109,26 @@ export default {
         isVerified = result.isVerified;
         isClaimed = result.isClaimed;
 
-        if (result.isVerified) {
-          try {
-            await dispatch(
-              ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
-              {overwrite: false, correlationId},
-            );
-          } catch (error) {
-            if (error instanceof NeedOverwriteError) {
-              commit(
-                MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-                WebsiteClaimErrorReason.Overwrite,
-              );
-              return;
-            }
-            throw error;
-          }
+        if (!result.isVerified) {
+          return;
         }
-      } catch (error) {
-        commit(
-          MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-          WebsiteClaimErrorReason.VerifyOrClaimingFailed,
+
+        await dispatch(
+          ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
+          {overwrite: false, correlationId},
         );
+      } catch (error) {
+        if (error instanceof NeedOverwriteError) {
+          commit(
+            MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+            WebsiteClaimErrorReason.Overwrite,
+          );
+        } else {
+          commit(
+            MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+            WebsiteClaimErrorReason.VerifyOrClaimingFailed,
+          );
+        }
       }
     }
   },
