@@ -67,6 +67,12 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             case 'getShopConfigurationForGMC':
                 $this->getShopConfigurationForGMC();
                 break;
+            case 'getWebsiteRequirementStatus':
+                $this->getWebsiteRequirementStatus();
+                break;
+            case 'setWebsiteRequirementStatus':
+                $this->setWebsiteRequirementStatus($inputs);
+                break;
             case 'toggleGoogleAccountIsRegistered':
                 $this->toggleGoogleAccountIsRegistered($inputs);
                 break;
@@ -153,6 +159,55 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $carrierLines = $carrierDataProvider->getFormattedData();
 
         $this->ajaxDie(json_encode($carrierLines));
+    }
+
+    private function getWebsiteRequirementStatus()
+    {
+        $requirements = json_decode($this->configurationAdapter->get(Config::PS_GOOGLE_SHOPPING_WEBSITE_REQUIREMENTS_STATUS))
+            ?: (object) [];
+
+        $this->ajaxDie(json_encode([
+            'requirements' => $requirements,
+        ]));
+    }
+
+    private function setWebsiteRequirementStatus(array $inputs)
+    {
+        if (!isset($inputs['requirements'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing requirements key',
+            ]));
+        }
+
+        $requirements = $inputs['requirements'];
+
+        $allowedKeys = [
+            'shoppingAdsPolicies',
+            'accurateContactInformation',
+            'secureCheckoutProcessAndCollectionOfPersonalData',
+            'returnPolicy',
+            'billingTermsAndCollections',
+            'completeCheckoutProcess',
+        ];
+
+        foreach ($requirements as $key => $value) {
+            if (!in_array($key, $allowedKeys)) {
+                $this->ajaxDie(json_encode([
+                    'success' => false,
+                    'message' => 'Unknown requirement key ' . $key,
+                ]));
+            }
+            $requirements[$key] = (bool) $value;
+        }
+
+        $this->configurationAdapter->updateValue(
+            Config::PS_GOOGLE_SHOPPING_WEBSITE_REQUIREMENTS_STATUS,
+            json_encode($requirements)
+        );
+
+        $this->ajaxDie(json_encode(['success' => true]));
     }
 
     /**
