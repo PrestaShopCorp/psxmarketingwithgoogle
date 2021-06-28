@@ -431,7 +431,7 @@ export default {
     {rootState},
     payload: Array<String>,
   ) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingAdminUrl}`, {
+    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
@@ -446,8 +446,8 @@ export default {
   },
   async [ActionsTypes.REQUEST_WEBSITE_REQUIREMENTS]({rootState, commit}) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingAdminUrl}`, {
-        method: 'GET',
+      const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+        method: 'POST',
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify({
           action: 'getWebsiteRequirementStatus',
@@ -456,10 +456,11 @@ export default {
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
+
       const json = await response.json();
       commit(MutationsTypes.SAVE_WEBSITE_REQUIREMENTS, json);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  },
 };

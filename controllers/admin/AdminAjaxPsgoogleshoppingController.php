@@ -164,7 +164,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
     private function getWebsiteRequirementStatus()
     {
         $requirements = json_decode($this->configurationAdapter->get(Config::PS_GOOGLE_SHOPPING_WEBSITE_REQUIREMENTS_STATUS))
-            ?: (object) [];
+            ?: [];
 
         $this->ajaxDie(json_encode([
             'requirements' => $requirements,
@@ -192,14 +192,22 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             'completeCheckoutProcess',
         ];
 
+        if (empty($requirements)) {
+            $this->configurationAdapter->updateValue(
+                Config::PS_GOOGLE_SHOPPING_WEBSITE_REQUIREMENTS_STATUS,
+                json_encode($requirements)
+            );
+            $this->ajaxDie(json_encode(['success' => true]));
+        }
+
         foreach ($requirements as $key => $value) {
-            if (!in_array($key, $allowedKeys)) {
+            if (!in_array($value, $allowedKeys)) {
                 $this->ajaxDie(json_encode([
                     'success' => false,
                     'message' => 'Unknown requirement key ' . $key,
                 ]));
             }
-            $requirements[$key] = (bool) $value;
+            $requirements[$key] = $value;
         }
 
         $this->configurationAdapter->updateValue(

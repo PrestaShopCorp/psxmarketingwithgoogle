@@ -99,5 +99,5 @@ export default {
   },
   [GetterTypes.GET_WEBSITE_REQUIREMENTS](state: LocalState) {
     return state.googleMerchantAccount.websiteRequirements;
-  }
+  },
 };

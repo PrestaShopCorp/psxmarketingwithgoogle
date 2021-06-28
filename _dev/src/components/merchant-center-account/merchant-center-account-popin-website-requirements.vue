@@ -40,9 +40,9 @@
             class="ps_gs-checkbox"
             :id="safeString($t(`mcaRequirements.${requirement}.title`))"
             v-model="selectedRequirements"
-            :value="safeString($t(`mcaRequirements.${requirement}.title`))"
+            :value="requirement"
             :disabled="!newMca"
-            @change="getCurrentCheckbox(selectedRequirements)"
+            @change="getCurrentCheckbox"
           >
             <div>
               <span
@@ -324,13 +324,11 @@ export default {
     saveFirstStep() {
       this.stepActiveData = 2;
     },
-    getCurrentCheckbox(checkboxList) {
-      this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', checkboxList);
+    getCurrentCheckbox() {
+      this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
     },
     ok() {
-      /**
-       * TODO
-       */
+      this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', []);
     },
     cancel() {
       this.$refs.modal.hide();
@@ -373,7 +371,11 @@ export default {
   },
   mounted() {
     this.stepActiveData = this.stepActive;
-    this.selectedRequirements = this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'];
+    if (this.newMca === true) {
+      this.$store.dispatch('accounts/REQUEST_WEBSITE_REQUIREMENTS').then(() => {
+        this.selectedRequirements = this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'];
+      });
+    }
   },
   googleUrl,
 };
