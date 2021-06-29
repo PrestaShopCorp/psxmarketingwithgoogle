@@ -112,5 +112,9 @@ export default {
   [MutationsTypes.SAVE_SHOP_INFORMATIONS](state: LocalState, shopInformations: ShopInformations) {
     state.googleMerchantAccount.shopInfo = shopInformations;
   },
+  [MutationsTypes.SAVE_GMC_CREATED](state: LocalState, gmcCreatedInformation) {
+    state.googleMerchantAccount.id = gmcCreatedInformation.account_id;
+    state.googleMerchantAccount.aggregatorId = gmcCreatedInformation.aggregator_id;
+  },
   /** End of Merchant Center Account mutations */
 };
