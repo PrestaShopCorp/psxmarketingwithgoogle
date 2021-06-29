@@ -192,7 +192,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             'completeCheckoutProcess',
         ];
 
-        if (!empty($requirements)) {
+        if (!empty($requirements) || is_array($requirements)) {
             foreach ($requirements as $key => $value) {
                 if (!in_array($value, $allowedKeys)) {
                     $this->ajaxDie(json_encode([

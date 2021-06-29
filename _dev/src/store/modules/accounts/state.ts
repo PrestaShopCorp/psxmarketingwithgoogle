@@ -72,7 +72,7 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   isSuspended: boolean,
   isEnhancedFreeListingCompliant: boolean,
   gmcStatus: WebsiteClaimErrorReason|null,
-  websiteRequirements: any,
+  websiteRequirements: Array<String>,
   // Display toast component once
   connectedOnce: boolean,
 };

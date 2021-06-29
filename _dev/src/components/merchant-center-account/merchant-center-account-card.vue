@@ -471,7 +471,7 @@ export default {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
     },
     mcaIsConnected() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED'];
+      return !(this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED']);
     },
     error() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS'];
