@@ -456,10 +456,10 @@
       "approvalStatusIssues" : "placeholder",
       "attributeMapping" : {
         "description" : "All product details relevant to your customers",
-        "condition" : "The condition of your product at time of sale (new, refurbished, used)",
+        "condition" : "The condition of your product at time of sale.",
         "color" : "Your product's color",
         "size" : "Your product's size",
-        "ageGroup" : "The demographic for which your product is intended",
+        "ageGroup" : "The demographic for which your product is intended (if product is dedicated to specific age group)",
         "gender" : "The gender for which your product is intended"
       }
     },
