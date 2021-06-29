@@ -14,7 +14,7 @@
       {{ $t('cta.cancel') }}
     </template>
     <template slot="modal-ok">
-      {{ $t('cta.overwriteProductFeed') }}
+      {{ $t('cta.overwrite') }}
     </template>
   </ps-modal>
 </template>
