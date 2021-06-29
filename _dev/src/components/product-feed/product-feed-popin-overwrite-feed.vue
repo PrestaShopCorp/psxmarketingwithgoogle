@@ -30,7 +30,7 @@ export default {
   methods: {
     onProductFeedOverwriteConfirmation() {
       // TODO: handle method
-    }
+    },
   },
 };
 </script>
