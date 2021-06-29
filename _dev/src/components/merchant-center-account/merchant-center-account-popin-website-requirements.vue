@@ -129,6 +129,7 @@
         <b-form-input
           id="inputBusinessAddress"
           :value="shopInformations.store.streetAddress"
+          readonly
           class="maxw-sm-420"
         />
       </b-form-group>
@@ -141,6 +142,7 @@
         <b-form-input
           id="inputBusinessPhoneNumber"
           :value="shopInformations.store.phone"
+          readonly
           class="maxw-sm-420"
         />
       </b-form-group>
@@ -328,7 +330,12 @@ export default {
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
     },
     ok() {
-      this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', []);
+      this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', {
+        shop_url: this.shopInformations.shop.url,
+        shop_name: this.shopInformations.shop.name,
+        location: this.shopInformations.store.country.iso_code,
+        adult_content: this.containsAdultContent,
+      });
     },
     cancel() {
       this.$refs.modal.hide();

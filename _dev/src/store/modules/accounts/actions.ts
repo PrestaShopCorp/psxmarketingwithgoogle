@@ -482,4 +482,28 @@ export default {
       console.log(error);
     }
   },
+  async [ActionsTypes.REQUEST_TO_SAVE_NEW_GMC]({
+    rootState, dispatch, state, commit,
+  }, payload) {
+    try {
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+
+      const json = await response.json();
+      dispatch(ActionsTypes.SEND_WEBSITE_REQUIREMENTS, []);
+      commit(MutationsTypes.SAVE_GMC_CREATED, json);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

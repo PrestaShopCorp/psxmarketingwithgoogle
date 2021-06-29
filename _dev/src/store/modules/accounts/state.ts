@@ -94,6 +94,7 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   // Display toast component once
   connectedOnce: boolean,
   shopInfo: ShopInformations,
+  aggregatorId? : string,
 };
 
 export interface State {
