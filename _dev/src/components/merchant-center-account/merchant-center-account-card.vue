@@ -390,7 +390,7 @@
       ref="mcaPopinOverrideClaim"
     />
     <MerchantCenterAccountPopinWebsiteRequirements
-      :new-mca="mcaIsConnected"
+      :new-mca="mcaIsNotConnected"
       ref="MerchantCenterAccountPopinNewMca"
     />
   </b-card>
@@ -470,7 +470,7 @@ export default {
     selectedMcaDetails() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
     },
-    mcaIsConnected() {
+    mcaIsNotConnected() {
       return !(this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED']);
     },
     error() {
