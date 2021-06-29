@@ -21,7 +21,7 @@ a[target="_blank"] {
       color: $blue !important;
     }
     &::after {
-      content: "launch";
+      content: "\e895"; // "launch" icon
       font-family: 'Material Icons';
       -webkit-font-feature-settings: 'liga';
       display: inline-block;

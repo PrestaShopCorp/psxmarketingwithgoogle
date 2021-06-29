@@ -20,7 +20,7 @@
       }
 
       &::before {
-        content: "done";
+        content: "\e876"; // "done" icon
         display: inline-block;
         vertical-align: middle;
         margin-right: rem(8);
