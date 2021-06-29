@@ -66,21 +66,62 @@
               <i class="icon-busy icon-busy--dark" />
             </b-dropdown-item>
             <b-dropdown-item
-              v-for="(option, index) in mcaSelectionOptions"
+              v-for="(option) in mcaSelectionOptionsAndGroups[0]"
               :key="option.id"
-              @click="selectedMcaIndex = index"
-              :disabled="!isGmcUserAdmin(index)"
+              @click="selectedMcaIndex = option.i"
+              :disabled="!isGmcUserAdmin(option.i)"
               variant="dark"
               link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
             >
-              <span class="mr-auto">{{ gmcLabel(index) }}</span>
+              <span class="mr-2">
+                {{ gmcLabel(option.i) }}
+              </span>
               <span
-                v-if="!isGmcUserAdmin(index)"
+                v-if="option.subAccountNotManagedByPrestashop"
                 class="ps_gs-fz-12"
+              >
+                {{ $t('mcaCard.notManaged') }}
+              </span>
+              <span
+                v-if="!isGmcUserAdmin(option.i)"
+                class="ps_gs-fz-12 ml-auto"
               >
                 {{ $t('mcaCard.userIsNotAdmin') }}
               </span>
             </b-dropdown-item>
+            <b-dropdown-group
+              header-classes="px-0"
+              v-for="(group, index) in mcaSelectionOptionsAndGroups[1]"
+              :key="index"
+            >
+              <template #header>
+                <div class="text-muted px-3">
+                  <span class="font-weight-600 ps_gs-fz-13 mr-2">
+                    {{ group.mca.name }}
+                  </span>
+                  <span class="ps_gs-fz-12">
+                    {{ group.mca.info }}
+                  </span>
+                </div>
+              </template>
+
+              <b-dropdown-item
+                v-for="(option) in group.gmcs"
+                :key="option.id"
+                @click="selectedMcaIndex = option.i"
+                :disabled="!isGmcUserAdmin(option.i)"
+                variant="dark"
+                link-class="d-flex flex-wrap flex-md-nowrap align-items-center pl-4 pr-3"
+              >
+                <span class="mr-auto">{{ gmcLabel(option.i, true) }}</span>
+                <span
+                  v-if="!isGmcUserAdmin(option.i)"
+                  class="ps_gs-fz-12"
+                >
+                  {{ $t('mcaCard.userIsNotAdmin') }}
+                </span>
+              </b-dropdown-item>
+            </b-dropdown-group>
           </b-dropdown>
           <b-button
             size="sm"
@@ -112,7 +153,7 @@
           variant="invisible"
           class="p-0 border-0 font-weight-normal mb-0 text-primary"
         >
-        <i
+          <i
             class="left material-icons mr-2 ps_gs-fz-24"
             aria-hidden="true"
           >person_add</i><!--
@@ -337,6 +378,7 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
+import uniqBy from 'lodash.uniqby';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
@@ -372,7 +414,30 @@ export default {
   computed: {
     mcaSelectionOptions() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
-      // TODO : rework this to have optgroups ?
+    },
+    mcaSelectionOptionsAndGroups() {
+      if (!this.mcaSelectionOptions) {
+        return [];
+      }
+      const list = this.mcaSelectionOptions
+        .map((account) => {
+          if (account.aggregatorName) {
+            const managed = account.subAccountNotManagedByPrestashop ? this.$t('mcaCard.notManaged') : null;
+            return {...account, aggregatorManagement: managed};
+          }
+          return account;
+        })
+        .map((account, i) => ({i, ...account}));
+      const groups = uniqBy(
+        list
+          .filter((gmc) => !!gmc.aggregatorName)
+          .map((account) => ({name: account.aggregatorName, info: account.aggregatorManagement})),
+        'name',
+      );
+      return [
+        list.filter((gmc) => !gmc.aggregatorName),
+        groups.map((mca) => ({mca, gmcs: list.filter((gmc) => gmc.aggregatorName === mca.name)})),
+      ];
     },
     mcaListLoading() {
       return this.mcaSelectionOptions === null;
@@ -451,11 +516,7 @@ export default {
       // TODO : rework this if we use optgroups in dropdown
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         const gmc = this.mcaSelectionOptions[index];
-        const managed = gmc.subAccountNotManagedByPrestashop ? this.$t('mcaCard.notManaged') : '';
-        const nameAndId = `${gmc.name} - ${gmc.id} ${managed}`;
-        if (gmc.aggregatorName) {
-          return `[${gmc.aggregatorName}] ${nameAndId}`;
-        }
+        const nameAndId = `${gmc.name} - ${gmc.id}`;
         return nameAndId;
       }
       return null;

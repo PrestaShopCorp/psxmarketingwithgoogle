@@ -66,12 +66,20 @@
   .ps-dropdown {
     border-radius: 0 0 4px 4px;
     cursor: default;
-    max-height: rem(25 * 5.5);
+    max-height: rem(42 * 8.5);
     overflow: auto;
 
     &__placeholder {
       color: $gray-450;
     }
+  }
+
+  hr {
+    margin: 0;
+  }
+
+  li + li .dropdown-header {
+    border-top: 1px solid $gray-450;
   }
 }
 
