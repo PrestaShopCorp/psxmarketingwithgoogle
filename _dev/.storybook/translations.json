@@ -266,8 +266,8 @@
       "learnFreeListing" : "Learn more about free listing",
       "seeFreeListing" : "See my free listing in Merchant Center",
       "googleDelay" : "It takes 3-5 business days to review products",
-      "alertActivationSuccess" : "You have successfully activated the free listing of your products for Google Shopping tab for free.",
-      "alertEnableFreeListing" : "Enable free listing to display your products on Google Shopping tab for free.",
+      "alertActivationSuccess" : "You have successfully activated the free listing of your products in Shopping tab.",
+      "alertEnableFreeListing" : "Enable free listing to show your products on Shopping tab for free.",
       "alertProductFeedDisabled" : "The synchronization of your product feed is disabled. Products are still visible on your free listing but they will not be updated anymore and they will disappear from your free listing after 30 days.",
       "alertEnableFreeListingAndProductFeed" : "Enable free listing to display your products on Google Shopping tab for free. This action will cause the reactivation of the product feed."
     },
@@ -306,21 +306,27 @@
         "approvalStatusList" : "Not synced, Active, Partially active, Expiring, Pending, Disapproved."
       },
       "approvalTable" : {
-        "description" : "Products with problems that couldn't be synced are listed below.",
-        "filterTitle" : "Display by Google validation status",
-        "filterAllStatus" : "All status",
-        "filterOnlyApproved" : "Only approved",
-        "filterOnlyPending" : "Only pending",
-        "filterOnlyNotApproved" : "Only not approved",
+        "description" : "The status of products that are synced with Merchant Center",
+        "filterTitle" : "Filter by availability",
+        "filterAllStatus" : "All",
+        "filterOnlyApproved" : "Approved",
+        "filterOnlyPending" : "Pending",
+        "filterOnlyNotApproved" : "Not approved",
         "tableHeaderID" : "ID",
         "tableHeaderName" : "Name",
-        "tableHeaderGoogleValidation" : "Google validation",
+        "tableHeaderGoogleValidation" : "Availablity for Google",
         "tableHeaderLanguage" : "Language",
-        "tableHeaderIssue" : "Issue",
+        "tableHeaderIssue" : "Reason",
         "xResults" : "{0} results",
         "perPageLabel" : "Show:",
         "goToLabel" : "Go to page:",
         "editX" : "Edit {0}"
+      },
+      "errorReason" : {
+        "fieldXMissing" : "A required field is missing: {0}",
+        "incorrectInfos" : "Typos and other missing or incorrect information",
+        "invalidDatafeedLocation" : "Invalid data feed file location",
+        "incorrectPrice" : "Missing or incorrect prices"
       }
     },
     "help" : {
@@ -451,9 +457,9 @@
       "googleAdsAccountRequired" : "Requires Google Ads account configured",
       "mustCheckAllRequirements" : "You must check all requirements.",
       "mustAgreeGoogleTerms" : "You must agree to the Google terms and conditions",
-      "approvalStatusStatus" : "placeholder",
+      "approvalStatusStatus" : "Availability of your products for free listings and ads",
       "approvalStatusLang" : "placeholder",
-      "approvalStatusIssues" : "placeholder",
+      "approvalStatusIssues" : "Reason why your product is not approved for Google",
       "attributeMapping" : {
         "description" : "All product details relevant to your customers",
         "condition" : "The condition of your product at time of sale.",
