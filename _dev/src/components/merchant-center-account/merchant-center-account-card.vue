@@ -80,7 +80,7 @@
                 v-if="option.subAccountNotManagedByPrestashop"
                 class="ps_gs-fz-12"
               >
-                {{$t('mcaCard.notManaged')}}
+                {{ $t('mcaCard.notManaged') }}
               </span>
               <span
                 v-if="!isGmcUserAdmin(option.i)"
@@ -97,10 +97,10 @@
               <template #header>
                 <div class="text-muted px-3">
                   <span class="font-weight-600 ps_gs-fz-13 mr-2">
-                    {{group.mca.name}}
+                    {{ group.mca.name }}
                   </span>
                   <span class="ps_gs-fz-12">
-                    {{group.mca.info}}
+                    {{ group.mca.info }}
                   </span>
                 </div>
               </template>
@@ -434,7 +434,6 @@ export default {
           .map((account) => ({name: account.aggregatorName, info: account.aggregatorManagement})),
         'name',
       );
-      console.log('#######', groups);
       return [
         list.filter((gmc) => !gmc.aggregatorName),
         groups.map((mca) => ({mca, gmcs: list.filter((gmc) => gmc.aggregatorName === mca.name)})),
@@ -513,7 +512,7 @@ export default {
         );
       }
     },
-    gmcLabel(index, inGroup = false) {
+    gmcLabel(index) {
       // TODO : rework this if we use optgroups in dropdown
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         const gmc = this.mcaSelectionOptions[index];
