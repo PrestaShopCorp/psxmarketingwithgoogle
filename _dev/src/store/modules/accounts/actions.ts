@@ -463,4 +463,23 @@ export default {
       console.log(error);
     }
   },
+  async [ActionsTypes.REQUEST_SHOP_INFORMATIONS]({rootState, commit}) {
+    try {
+      const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        body: JSON.stringify({
+          action: 'getShopConfigurationForGMC',
+        }),
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+
+      const json = await response.json();
+      commit(MutationsTypes.SAVE_SHOP_INFORMATIONS, json);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

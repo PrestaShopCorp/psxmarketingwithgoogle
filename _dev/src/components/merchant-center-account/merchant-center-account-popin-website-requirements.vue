@@ -85,7 +85,7 @@
           </b-button>
         </div>
         <span class="d-block">
-          {{ infosWebsiteURL }}
+          {{ shopInformations.shop.url }}
         </span>
         <VueShowdown
           class="font-weight-normal ps_gs-fz-12 text-muted mb-3 pb-2"
@@ -109,7 +109,7 @@
           </b-button>
         </div>
         <span class="d-block">
-          {{ infosStoreName }}
+          {{ shopInformations.shop.name }}
         </span>
       </section>
       <section class="mb-3">
@@ -117,7 +117,7 @@
           {{ $t('mcaRequirements.businessLocation') }}
         </h3>
         <span class="d-block">
-          {{ infosBusinessLocation }}
+          {{ shopInformations.store.country.iso_code }}
         </span>
       </section>
       <b-form-group
@@ -128,7 +128,7 @@
       >
         <b-form-input
           id="inputBusinessAddress"
-          :value="businessAddress"
+          :value="shopInformations.store.streetAddress"
           class="maxw-sm-420"
         />
       </b-form-group>
@@ -140,7 +140,7 @@
       >
         <b-form-input
           id="inputBusinessPhoneNumber"
-          :value="businessPhone"
+          :value="shopInformations.store.phone"
           class="maxw-sm-420"
         />
       </b-form-group>
@@ -297,8 +297,8 @@ export default {
           title: this.$i18n.t('mcaRequirements.steps.shopInfo'),
         },
       ],
-      businessAddress: this.infosBusinessAddress || '',
       businessPhone: this.infosBusinessPhone || '',
+      shopInformations: {},
       containsAdultContent: null,
       acceptsGoogleTerms: false,
     };
@@ -340,18 +340,6 @@ export default {
     },
   },
   props: {
-    infosWebsiteURL: {
-      type: String,
-    },
-    infosStoreName: {
-      type: String,
-    },
-    infosBusinessLocation: {
-      type: String,
-    },
-    infosBusinessAddress: {
-      type: String,
-    },
     infosBusinessPhone: {
       type: String,
     },
@@ -374,6 +362,9 @@ export default {
     if (this.newMca === true) {
       this.$store.dispatch('accounts/REQUEST_WEBSITE_REQUIREMENTS').then(() => {
         this.selectedRequirements = this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'];
+      });
+      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS').then(() => {
+        this.shopInformations = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
       });
     }
   },

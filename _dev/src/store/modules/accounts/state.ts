@@ -48,6 +48,24 @@ export interface GoogleAccount {
   mcaSelectionOptions: GoogleMerchantAccount[] | null,
 }
 
+export interface ShopInformations {
+  shop: {
+    name: string,
+    url: string,
+  },
+  store: {
+    streetAddress: string,
+    locality: string,
+    region: string,
+    postalCode: string,
+    country: {
+      name: string,
+      isoCode: string,
+    },
+    phone: string,
+  }
+}
+
 export interface GoogleAccountToken {
   // eslint-disable-next-line camelcase
   access_token: string|Error,
@@ -75,6 +93,7 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   websiteRequirements: Array<String>,
   // Display toast component once
   connectedOnce: boolean,
+  shopInfo: ShopInformations,
 };
 
 export interface State {
@@ -122,5 +141,22 @@ export const state: State = {
     users: [],
     connectedOnce: false,
     websiteRequirements: [],
+    shopInfo: {
+      shop: {
+        name: '',
+        url: '',
+      },
+      store: {
+        streetAddress: '',
+        locality: '',
+        region: '',
+        postalCode: '',
+        country: {
+          name: '',
+          isoCode: '',
+        },
+        phone: '',
+      },
+    },
   },
 };
