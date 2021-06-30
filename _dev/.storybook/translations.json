@@ -448,7 +448,9 @@
       "textEnableFreeListing" : "This action will also cause the reactivation of the product feed.",
       "titleCancelWithoutSaving" : "Cancel without saving?",
       "textCancelProductFeed" : "You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps.",
-      "titleQuitWithoutSaving" : "Quit without saving?"
+      "titleQuitWithoutSaving" : "Quit without saving?",
+      "titleOverwriteProductFeed" : "Overwrite existing product feed?",
+      "textOverwriteProductFeed" : "Overwriting your existing product feed will delete it. You will need to configure new product feed."
     },
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configuration",

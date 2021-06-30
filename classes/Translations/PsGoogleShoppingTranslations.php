@@ -495,6 +495,8 @@ class PsGoogleShoppingTranslations
                 'titleCancelWithoutSaving' => $this->module->l('Cancel without saving?', 'PsGoogleShoppingTranslations'),
                 'textCancelProductFeed' => $this->module->l('You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps.', 'PsGoogleShoppingTranslations'),
                 'titleQuitWithoutSaving' => $this->module->l('Quit without saving?', 'PsGoogleShoppingTranslations'),
+                'titleOverwriteProductFeed' => $this->module->l('Overwrite existing product feed?', 'PsGoogleShoppingTranslations'),
+                'textOverwriteProductFeed' => $this->module->l('Overwriting your existing product feed will delete it. You will need to configure new product feed.', 'PsGoogleShoppingTranslations'),
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configuration', 'PsGoogleShoppingTranslations'),
