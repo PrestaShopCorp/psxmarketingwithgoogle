@@ -19,8 +19,15 @@ jobs:
           cmd: npm
           path: ./_dev
 
-      - name: Install composer dependencies
-        run: composer install --no-dev -o
+
+      - name: Install dev composer dependencies
+        run: composer install
+
+      - name: Generate index.php
+        run: vendor/bin/autoindex
+
+      - name: Install prod composer dependencies
+        run: composer install --no-dev
 
       - name: Clean-up project
         uses: PrestaShopCorp/github-action-clean-before-deploy@v1.0
