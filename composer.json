@@ -5,6 +5,7 @@
         "preferred-install": "dist",
         "optimize-autoloader": true,
         "prepend-autoloader": false,
+        "classmap-authoritative": true,
         "platform": {
             "php": "7.3"
         }
