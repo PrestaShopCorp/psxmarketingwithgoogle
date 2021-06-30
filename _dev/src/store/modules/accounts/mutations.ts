@@ -90,6 +90,8 @@ export default {
   ) {
     state.googleMerchantAccount.isClaimed = websiteClaimingStatus.isClaimed;
     state.googleMerchantAccount.isVerified = websiteClaimingStatus.isVerified;
+    state.googleMerchantAccount.isSuspended = websiteClaimingStatus.isSuspended;
+    state.googleMerchantAccount.isEnhancedFreeListingCompliant = websiteClaimingStatus.isEnhancedFreeListingCompliant;
   },
   [MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS](state: LocalState, status: boolean) {
     state.googleMerchantAccount.isClaimed = status;

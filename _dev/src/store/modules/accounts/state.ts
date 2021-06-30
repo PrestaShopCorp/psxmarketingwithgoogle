@@ -59,16 +59,14 @@ export type GoogleAccountContext = GoogleAccount
 & GoogleAccountToken & {
   authenticationUrl: string|Error,
   connectedOnce: boolean,
-
-  from?: string,
-  message?: string,
-  status?: string,
 }
 
 export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   // Allow the spinner to be displayed while claiming is done
   isVerified: boolean,
   isClaimed: boolean,
+  isSuspended: boolean,
+  isEnhancedFreeListingCompliant: boolean,
   gmcStatus: WebsiteClaimErrorReason|null,
   // Display toast component once
   connectedOnce: boolean,
@@ -84,7 +82,6 @@ export interface State {
 }
 
 export enum WebsiteClaimErrorReason {
-  Disapproved = 'Disapproved',
   Expiring = 'Expiring',
   Pending = 'Pending',
   Overwrite = 'Overwrite',
@@ -93,6 +90,8 @@ export enum WebsiteClaimErrorReason {
   VerifyOrClaimingFailed = 'VerifyOrClaimingFailed',
   UnlinkFailed = 'UnlinkFailed',
   OverwriteFailed = 'OverwriteFailed',
+  IneligibleForFreeListing = 'IneligibleForFreeListing',
+  Suspended = 'Suspended',
 }
 
 export const state: State = {
@@ -112,6 +111,8 @@ export const state: State = {
     id: null,
     isVerified: false,
     isClaimed: false,
+    isSuspended: false,
+    isEnhancedFreeListingCompliant: true,
     gmcStatus: null,
     users: [],
     connectedOnce: false,

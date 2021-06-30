@@ -253,7 +253,7 @@
       </div>
     </b-alert>
     <b-alert
-      v-else-if="error === WebsiteClaimErrorReason.Expiring"
+      v-else-if="error === WebsiteClaimErrorReason.Suspended"
       show
       variant="warning"
       class="mb-0 mt-3"
