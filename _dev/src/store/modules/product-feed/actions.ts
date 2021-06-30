@@ -113,9 +113,6 @@ export default {
         name: 'syncSchedule', data: json.syncSchedule,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'productsPerBatchSync', data: json.productsPerBatchSync,
-      });
-      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'attributeMapping',
         data: Object.assign(
           (json.attributeMapping?.exportProductsWithShortDescription) ? {
