@@ -157,7 +157,7 @@
       "excludedProducts" : "Excluded products",
       "productsReadyToBeSynced" : "Products ready to be synced",
       "productsWithProblems" : "Products with problems",
-      "alertGoogleIsReviewingProducts": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads."
+      "alertGoogleIsReviewingProducts": "Google is currently reviewing your products. Once approved, your products can appear in Shopping tab search results."
     },
     "productFeedSettings" : {
       "breadcrumb1" : "Product feed",
@@ -218,6 +218,8 @@
         }
       },
       "attributeMapping" : {
+        "sellApparelAndAccessories" : "Apparel and Accessories",
+        "sellRefurbishedProducts" : "Refurbished",
         "intro" : "Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.",
         "learnAboutAttributeMapping" : "Learn more about product data attributes",
         "introNotice" : "Describe your product data using attributes. Additionally to required minimum for standard free listing, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
@@ -477,6 +479,7 @@
     "toast": {
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
       "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!",
+      "productFeedConfiguredOnceSuccess" : "You are successfully opted in. Once your products are approved, they can appear in Google Shopping tab search results.",
       "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google"
     },
     "stepper": {

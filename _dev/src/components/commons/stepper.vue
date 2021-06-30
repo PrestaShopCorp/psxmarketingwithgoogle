@@ -18,7 +18,6 @@
       >
         <div
           class="ps_gs-stepper-step__step d-flex align-items-center justify-content-center"
-          @click="goStep(index+1)"
         >
           <b-icon-check
             v-if="isComplete(index)"
@@ -41,9 +40,8 @@
         <div
           class="ps_gs-stepper-step__title px-2"
           :data-nextStep="nextStepMsg(index)"
-        >
-          {{ step.title }}
-        </div>
+          v-html="step.title"
+        />
       </component>
     </li>
   </ol>
@@ -89,17 +87,16 @@ export default {
       }
       return this.$i18n.t('stepper.lastStep');
     },
-
-    goStep(index) {
-      if (this.$store.state.productFeed.stepper >= index) {
-        this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', index);
-      }
-    },
   },
   computed: {
     mutableActiveStep: {
       get() {
         return this.activeStep;
+      },
+      set(value) {
+        if (this.mutableActiveStep >= value) {
+          this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', value);
+        }
       },
     },
   },

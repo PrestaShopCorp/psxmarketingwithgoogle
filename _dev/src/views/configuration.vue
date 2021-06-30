@@ -1,7 +1,7 @@
 <template>
   <div id="configuration">
-    <multistore v-if="!psAccountIsOnboarded && shops.length" />
-    <landing-page v-else-if="!psAccountIsOnboarded " />
+    <multistore v-if="!psAccountsIsOnboarded && shops.length" />
+    <landing-page v-else-if="!psAccountsIsOnboarded" />
     <onboarding-page v-else />
   </div>
 </template>

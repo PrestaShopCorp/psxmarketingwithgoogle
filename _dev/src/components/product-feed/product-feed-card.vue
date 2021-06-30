@@ -21,32 +21,6 @@
           {{ $t("productFeedCard.title") }}
         </b-card-text>
       </div>
-      <div
-        v-if="!toConfigure && isEnabled"
-        class="ml-auto mb-0"
-      >
-        <span class="ps-switch ps-switch-sm">
-          <input
-            @click.prevent="toggle"
-            type="radio"
-            name="switchEnable"
-            @change="disableProductFeed"
-            :value="false"
-            :checked="productFeedSyncEnabled"
-          >
-          <label for="example_off_3">{{ $t('cta.disabled') }}</label>
-          <input
-            @click="toggle"
-            type="radio"
-            name="switchEnable"
-            @change="activateProductFeed"
-            :value="true"
-            :checked="productFeedSyncEnabled"
-          >
-          <label for="example_on_3">{{ $t('cta.enabled') }}</label>
-          <span class="slide-button" />
-        </span>
-      </div>
     </div>
     <p
       class="ps_gs-fz-12"
@@ -445,7 +419,7 @@ export default {
       if (!this.productFeedSyncEnabled) {
         return 'ProductFeedDeactivated';
       }
-      if (0 /* TODO: Check feed in under review */) {
+      if (!this.toConfigure /* TODO: Check feed in under review */) {
         return 'GoogleIsReviewingProducts';
       } if (this.getProductFeedStatus.failedSyncs.length) {
         return 'Failed';
@@ -463,19 +437,7 @@ export default {
         path: '/product-feed-settings',
       });
     },
-    toggle() {
-      this.$emit('toggleSync');
-    },
-    disableProductFeed() {
-      if (this.$refs.PopinFreeListingDisable) {
-        this.$bvModal.show(
-          this.$refs.PopinFreeListingDisable.$refs.modal.id,
-        );
-      }
-    },
-    activateProductFeed() {
-      this.$store.dispatch('freeListing/SEND_FREE_LISTING_STATUS', true);
-    },
+
   },
   googleUrl,
   countriesSelectionOptions,

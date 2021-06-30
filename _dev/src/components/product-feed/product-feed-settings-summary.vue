@@ -47,14 +47,14 @@
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
-            :link-to="{type : 'stepper', where: 1}"
+            :link-to="{type : 'stepper', name: 1}"
           />
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
-            :link-to="{type : 'stepper', where: 1}"
+            :link-to="{type : 'stepper', name: 1}"
           />
           <product-feed-card-report-card
             status="success"
@@ -67,7 +67,7 @@
             status="success"
             :title="$t('productFeedSettings.summary.productAttributes')"
             :link="$t('cta.editProductAttributes')"
-            :link-to="{type : 'stepper', where: 3}"
+            :link-to="{type : 'stepper', name: 3}"
             size="full"
           >
             <b-table-simple
@@ -194,21 +194,21 @@ export default {
     };
   },
   computed: {
-    specificProducts() {
-      const tableOfSpecifics = [];
-      if (this.sellRefurbished) tableOfSpecifics.push('refurbished');
-      if (this.sellApparel) tableOfSpecifics.push('apparel and accessories');
-      return tableOfSpecifics.join(', ');
-    },
     sellApparel: {
       get() {
-        return this.$store.getters['product-feed/GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES'];
+        return this.$store.getters['productFeed/GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES'];
       },
     },
     sellRefurbished: {
       get() {
-        return this.$store.getters['product-feed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
+        return this.$store.getters['productFeed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
       },
+    },
+    specificProducts() {
+      const tableOfSpecifics = [];
+      tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellRefurbishedProducts'));
+      if (this.sellApparel) tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellApparelAndAccessories'));
+      return tableOfSpecifics;
     },
     targetCountries() {
       // change country code into name with the json list
@@ -224,6 +224,7 @@ export default {
     saveAll() {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
       this.$store.commit('productFeed/TOGGLE_CONFIGURATION_FINISHED', true);
+      this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', true);
       this.$router.push({
         path: '/configuration',
       });

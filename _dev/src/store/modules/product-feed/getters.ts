@@ -28,6 +28,9 @@ export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
     return state.isConfigured;
   },
+  [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED_ONCE](state: LocalState): boolean {
+    return state.isConfiguredOnce;
+  },
   [GettersTypes.GET_PRODUCT_FEED_SETTINGS](state: LocalState): ProductFeedSettings {
     return state.settings;
   },
@@ -43,8 +46,7 @@ export default {
   [GettersTypes.GET_MERCHANT_SELL_REFURBISHED_PRODUCTS](state: LocalState): boolean {
     return !!state.settings.attributeMapping?.customConditionAttribute;
   },
-  [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> {
-    return state.settings.targetCountries.length ? state.settings.targetCountries
-      : state.psGoogleShoppingActiveCountries;
+  [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
+    return state.settings.targetCountries ?? state.psGoogleShoppingActiveCountries;
   },
 };

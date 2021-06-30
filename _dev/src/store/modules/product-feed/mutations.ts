@@ -40,6 +40,9 @@ export default {
     state.isConfigured = payload;
   },
 
+  [MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE](state: LocalState, payload: boolean) {
+    state.isConfiguredOnce = payload;
+  },
   [MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP](state: LocalState, payload: number) {
     state.stepper = payload;
   },

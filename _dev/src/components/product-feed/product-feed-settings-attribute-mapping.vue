@@ -228,16 +228,6 @@ export default {
     },
     // Not in batch 1
     // selectedDescriptionLength: {
-    //   get() {
-    //     return this.$store.state.productFeed.settings.exportProductsWithShortDescription
-    //     || null;
-    //   },
-    //   set(value) {
-    //     this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-    //       name: 'exportProductsWithShortDescription',
-    //       data: value,
-    //     });
-    //   },
     // },
     sellApparel: {
       get() {
