@@ -53,6 +53,7 @@
         v-if="stepsAreCompleted.step1"
         :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
         :is-configuration-started="false"
+        :sync-status="syncStatus"
         @toggleSync="onSyncToggled"
       />
 
@@ -129,6 +130,7 @@ export default {
   data() {
     return {
       isMcaLinking: false,
+      syncStatus: 'schedule',
     };
   },
   methods: {
