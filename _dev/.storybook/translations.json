@@ -83,7 +83,9 @@
       "alertSuspended" : "Go to your [Merchant Center account]({0})[:target=\"_blank\"] to see more details on the reason. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"].",
       "notManaged" : "(not managed by PrestaShop)",
       "overwriteFailed": "Website URL claim failed",
-      "overwriteToBeDoneManually": "Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}"
+      "overwriteToBeDoneManually": "Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}",
+      "ineligibleForFreeListing" : "Your account is ineligible for free enhanced listings on Google",
+      "ineligibleForFreeListingDescription" : "Please examine product-level disapprovals as well as your overall account."
     },
     "mcaRequirements" : {
       "steps": {
@@ -436,7 +438,10 @@
       "readyToSync" : "Ready-to-sync",
       "cantSync" : "Can’t be synced",
       "close" : "Close",
-      "suspended" : "Suspended"
+      "suspended" : "Suspended",
+      "ineligibleForFreeListing" : "Ineligible for free listing",
+      "urlUnclaimed" : "Url unclaimed",
+      "urlUnverified" : "Url unverified"
     },
     "modal" : {
       "titleDisconnectionMerchantCenter" : "Disconnect your Merchant Center?",

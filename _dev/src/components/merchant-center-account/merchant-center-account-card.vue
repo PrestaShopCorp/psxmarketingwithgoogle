@@ -370,6 +370,19 @@
         {{ $t('mcaCard.unlinkFailed') }}
       </p>
     </b-alert>
+    <b-alert
+      v-if="error === WebsiteClaimErrorReason.IneligibleForFreeListing"
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        <strong>{{ $t('mcaCard.ineligibleForFreeListing') }}</strong><br>
+        <span class="ps_gs-fz-12">
+          {{ $t('mcaCard.ineligibleForFreeListingDescription') }}
+        </span>
+      </p>
+    </b-alert>
     <MerchantCenterAccountPopinOverwriteClaim
       ref="mcaPopinOverrideClaim"
     />
@@ -476,12 +489,17 @@ export default {
         case WebsiteClaimErrorReason.Overwrite:
           return {
             color: 'warning',
-            text: 'pending',
+            text: 'urlUnclaimed',
           };
         case WebsiteClaimErrorReason.VerifyOrClaimingFailed:
           return {
             color: 'warning',
-            text: 'pending',
+            text: 'urlUnverified',
+          };
+        case WebsiteClaimErrorReason.IneligibleForFreeListing:
+          return {
+            color: 'warning',
+            text: 'ineligibleForFreeListing',
           };
         default:
           return {
