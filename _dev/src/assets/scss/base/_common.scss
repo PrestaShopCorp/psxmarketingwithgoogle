@@ -4,9 +4,9 @@ a[target="_blank"].text-muted {
 }
 
 a[target="_blank"] {
-  color: inherit !important;
-
+  
   &:not(.btn) {
+    color: inherit !important;
     text-decoration: underline;
 
     &:active,

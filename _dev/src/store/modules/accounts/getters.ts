@@ -84,7 +84,7 @@ export default {
     if (state.googleMerchantAccount.isSuspended) {
       return WebsiteClaimErrorReason.Suspended;
     }
-    if (state.googleMerchantAccount.isEnhancedFreeListingCompliant) {
+    if (!state.googleMerchantAccount.isEnhancedFreeListingCompliant) {
       return WebsiteClaimErrorReason.IneligibleForFreeListing;
     }
     return null;

@@ -59,6 +59,10 @@ export type GoogleAccountContext = GoogleAccount
 & GoogleAccountToken & {
   authenticationUrl: string|Error,
   connectedOnce: boolean,
+
+  from?: string,
+  message?: string,
+  status?: string,
 }
 
 export type MerchantCenterAccountContext = GoogleMerchantAccount & {
@@ -82,15 +86,16 @@ export interface State {
 }
 
 export enum WebsiteClaimErrorReason {
-  Expiring = 'Expiring',
-  Pending = 'Pending',
-  Overwrite = 'Overwrite',
-  ShopInfoMissing = 'ShopInfoMissing',
+  // States with warnings
   LinkingFailed = 'LinkingFailed',
-  VerifyOrClaimingFailed = 'VerifyOrClaimingFailed',
+  ShopInfoMissing = 'ShopInfoMissing',
+  OverwriteNeeded = 'OverwriteNeeded',
+  AccountValidationFailed = 'AccountValidationFailed',
+  OverwriteNeededWithManualAction = 'OverwriteNeededWithManualAction',
   UnlinkFailed = 'UnlinkFailed',
   OverwriteFailed = 'OverwriteFailed',
   IneligibleForFreeListing = 'IneligibleForFreeListing',
+  // States with errors
   Suspended = 'Suspended',
 }
 

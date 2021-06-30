@@ -29,5 +29,6 @@
   "localRegulation" : "https://support.google.com/merchants/answer/7387995",
   "supportedCountries" : "//google.com",
   "learnRequirementsProductSpeficifacion" : "https://support.google.com/merchants/answer/7052112",
-  "learnAboutAttributeMapping" : "https://support.google.com/merchants/answer/7052112"
+  "learnAboutAttributeMapping" : "https://support.google.com/merchants/answer/7052112",
+  "addWebsiteAddress" : "//google.com"
 }

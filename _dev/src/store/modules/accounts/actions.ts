@@ -87,7 +87,6 @@ export default {
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS](
     {
       commit,
-      rootState,
       dispatch,
       state,
     },
@@ -119,14 +118,17 @@ export default {
         );
       } catch (error) {
         if (error instanceof NeedOverwriteError) {
+          const errorType = state.googleMerchantAccount.aggregatorId
+            ? WebsiteClaimErrorReason.OverwriteNeededWithManualAction
+            : WebsiteClaimErrorReason.OverwriteNeeded;
           commit(
             MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-            WebsiteClaimErrorReason.Overwrite,
+            errorType,
           );
         } else {
           commit(
             MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-            WebsiteClaimErrorReason.VerifyOrClaimingFailed,
+            WebsiteClaimErrorReason.AccountValidationFailed,
           );
         }
       }
@@ -296,7 +298,7 @@ export default {
           WebsiteClaimErrorReason.OverwriteFailed);
       } else {
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-          WebsiteClaimErrorReason.VerifyOrClaimingFailed);
+          WebsiteClaimErrorReason.AccountValidationFailed);
       }
     }
     return true;

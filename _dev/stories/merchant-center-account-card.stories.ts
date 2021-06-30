@@ -94,8 +94,8 @@ Connected.args = {
   initialMcaStatus: merchantCenterAccountConnected,
 };
 
-export const ConnectedAndShopInfoMissing:any = Template.bind({});
-ConnectedAndShopInfoMissing.args = {
+export const ShopInfoMissing:any = Template.bind({});
+ShopInfoMissing.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
@@ -103,31 +103,30 @@ ConnectedAndShopInfoMissing.args = {
   },
 };
 
-export const ConnectedWithOverrideClaim:any = Template.bind({});
-ConnectedWithOverrideClaim.args = {
+export const OverwriteNeeded:any = Template.bind({});
+OverwriteNeeded.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    gmcStatus: WebsiteClaimErrorReason.Overwrite,
+    gmcStatus: WebsiteClaimErrorReason.OverwriteNeeded,
   },
 };
 
-
-export const ConnectedButVerifyOrClaimingFailed:any = Template.bind({});
-ConnectedButVerifyOrClaimingFailed.args = {
+export const OverwriteNeededWithManualAction:any = Template.bind({});
+OverwriteNeededWithManualAction.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    gmcStatus: WebsiteClaimErrorReason.VerifyOrClaimingFailed,
+    gmcStatus: WebsiteClaimErrorReason.OverwriteNeededWithManualAction,
   },
 };
 
-export const ConnectedWithClaimExpiringError:any = Template.bind({});
-ConnectedWithClaimExpiringError.args = {
+export const AccountValidationFailed:any = Template.bind({});
+AccountValidationFailed.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    gmcStatus: WebsiteClaimErrorReason.Expiring,
+    gmcStatus: WebsiteClaimErrorReason.AccountValidationFailed,
   },
 };
 
@@ -136,7 +135,7 @@ IneligibleForFreeListing.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    gmcStatus: WebsiteClaimErrorReason.IneligibleForFreeListing,
+    isEnhancedFreeListingCompliant: false,
   },
 };
 
@@ -145,6 +144,15 @@ Suspended.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    gmcStatus: WebsiteClaimErrorReason.Suspended,
+    isSuspended: true,
+  },
+};
+
+export const UnlinkFailed:any = Template.bind({});
+UnlinkFailed.args = {
+  isEnabled: true,
+  initialMcaStatus: {
+    ...merchantCenterAccountConnected,
+    gmcStatus: WebsiteClaimErrorReason.UnlinkFailed,
   },
 };
