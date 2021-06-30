@@ -205,7 +205,7 @@ class PsGoogleShoppingTranslations
                 'excludedProducts' => $this->module->l('Excluded products', 'PsGoogleShoppingTranslations'),
                 'productsReadyToBeSynced' => $this->module->l('Products ready to be synced', 'PsGoogleShoppingTranslations'),
                 'productsWithProblems' => $this->module->l('Products with problems', 'PsGoogleShoppingTranslations'),
-                'alertGoogleIsReviewingProducts' => $this->module->l('You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.', 'PsGoogleShoppingTranslations'),
+                'alertGoogleIsReviewingProducts' => $this->module->l('Google is currently reviewing your products. Once approved, your products can appear in Shopping tab search results.', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedSettings' => [
                 'breadcrumb1' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),
@@ -277,6 +277,8 @@ class PsGoogleShoppingTranslations
                     'longDescription' => $this->module->l('Long description', 'PsGoogleShoppingTranslations'),
                     'shortDescription' => $this->module->l('Short description', 'PsGoogleShoppingTranslations'),
                     'specificTitle' => $this->module->l('Specific', 'PsGoogleShoppingTranslations'),
+                    'sellApparelAndAccessories' => $this->module->l('Apparel and Accessories', 'PsGoogleShoppingTranslations'),
+                    'sellRefurbishedProducts' => $this->module->l('Refurbished', 'PsGoogleShoppingTranslations'),
                     'sellRefurbished' => $this->module->l('Do you sell refurbished products ?', 'PsGoogleShoppingTranslations'),
                     'sellApparel' => $this->module->l('Do you sell apparel and accessories ?', 'PsGoogleShoppingTranslations'),
                     'condition' => $this->module->l('Condition', 'PsGoogleShoppingTranslations'),
@@ -524,6 +526,7 @@ class PsGoogleShoppingTranslations
             'toast' => [
                 'googleAccountConnectedOnceSuccess' => $this->module->l('You have connected your Google account!', 'PsGoogleShoppingTranslations'),
                 'MCAConnectedOnceSuccess' => $this->module->l('You have connected your Merchant Center account!', 'PsGoogleShoppingTranslations'),
+                'productFeedConfiguredOnceSuccess' => $this->module->l('You are successfully opted in. Once your products are approved, they can appear in Google Shopping tab search results.', 'PsGoogleShoppingTranslations'),
                 'attributesMapppingSuccess' => $this->module->l('Your product attributes have been successfully saved. Review summary then click "Export" to submit them to Google', 'PsGoogleShoppingTranslations'),
             ],
             'stepper' => [
