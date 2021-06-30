@@ -47,7 +47,6 @@ export default {
     state.stepper = payload;
   },
 
-
   [MutationsTypes.TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_REFURBISHED](
     state: LocalState, payload: boolean,
   ) {

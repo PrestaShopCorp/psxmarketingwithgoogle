@@ -197,7 +197,7 @@ export default {
     sellApparel: {
       get() {
         return this.$store.getters['productFeed/GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES'];
-      }
+      },
     },
     sellRefurbished: {
       get() {

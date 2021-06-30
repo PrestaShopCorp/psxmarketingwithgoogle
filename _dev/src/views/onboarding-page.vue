@@ -86,7 +86,9 @@
     <!-- Toasts -->
     <PsToast
       variant="success"
-      :visible="googleAccountConnectedOnce || merchantCenterAccountConnectedOnce || productFeedIsConfiguredOnce"
+      :visible="googleAccountConnectedOnce
+        || merchantCenterAccountConnectedOnce
+        || productFeedIsConfiguredOnce"
       toaster="b-toaster-top-right"
     >
       <p>{{ insideToast }}</p>
@@ -223,7 +225,7 @@ export default {
       } if (this.merchantCenterAccountConnectedOnce) {
         return this.$t('toast.MCAConnectedOnceSuccess');
       } if (this.productFeedIsConfiguredOnce) {
-        return this.$t('toast.productFeedConfiguredOnceSuccess')
+        return this.$t('toast.productFeedConfiguredOnceSuccess');
       }
       return '';
     },
