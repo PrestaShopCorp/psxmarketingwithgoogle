@@ -284,26 +284,29 @@
     },
     "productFeedPage" : {
       "breadcrumb" : "Product status details",
+      "alert" :{
+        "googleIsReviewing" : "Google is currently reviewing your products.  \n Once approved, your products can appear in Shopping tab search results."
+      },
       "syncStatus" : {
-        "title" : "Sync status",
+        "title" : "Synchronization status",
         "readyForExport" : "Product feed is ready for export",
-        "syncProcessed" : "Synchronization processed",
-        "syncFailed" : "Synchronization failed",
-        "nextSync" : "Next synchronization: {0}",
-        "lastSync" : "Last synchronization: {0}",
+        "syncProcessed" : "Sync in progress / completed",
+        "syncFailed" : "Sync not successful",
+        "nextSync" : "Next sync: {0}",
+        "lastSync" : "Last sync: {0}",
         "prescanTitle" : "Coming up next synchronization",
         "scheduleOn" : "Synchronization scheduled on {0}",
-        "alert" : "To solve the synchronization issue, go to Help tab or [contact the customer support service](//google.com)[:target=\"_blank\"]."
+        "alert" : "Product sync was not successful. Check possible reasons in Merchant Center or contact customer support."
       },
       "productStatus" : {
-        "title" : "Product approval status",
-        "description" : "After submitting your product feed, your products will be reviewed and assigned one of 6 statuses",
+        "title" : "Products status",
+        "description" : "The status of your products that are synced with your Merchant Center.",
         "alert" : "It takes 3-5 business days to review products",
-        "approvedProducts" : "Approved products",
-        "pendingProducts" : "Pending products",
-        "disapprovedProducts" : "Not approved products",
-        "productsInGoogleCatalog" : "Products in Google catalog: {0}",
-        "approvalStatusList" : "Not synced, Active, Partially active, Expiring, Pending, Disapproved."
+        "approvedProducts" : "Approved",
+        "pendingProducts" : "Pending",
+        "disapprovedProducts" : "Not approved",
+        "productsInGoogleCatalog" : "Number of products: {0}",
+        "approvalStatusList" : "Approved, Pending, Not approved"
       },
       "approvalTable" : {
         "description" : "The status of products that are synced with Merchant Center",
@@ -402,7 +405,7 @@
       "createAccount" : "Create account",
       "saveChange" : "Save change",
       "close" : "Close",
-      "viewDetailedStatuses" : "View all detailed statuses",
+      "viewDetailedStatuses" : "View detailed product status",
       "setupTax" : "Set up taxes",
       "understandAndContinue" : "Understand and continue",
       "reviewProblems": "Review problems",
@@ -412,7 +415,7 @@
       "save" : "Save",
       "disconnect" : "Disconnect",
       "export" : "Export",
-      "": "Lean more about free listing"
+      "learnAboutFreeListing": "Lean more about free listing"
     },
     "badge" : {
       "free" : "Free",
@@ -441,7 +444,7 @@
       "textDisconnectMCA" : "Disconnecting your Merchant Center will remove access to your Google Ads in this module and pause any running campaign. ",
       "textoverwrite" : "Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  /nIf you are running a different Shopping campaign, we recommend pausing it.",
       "titleDisableFreeListing" : "Disable free listing?",
-      "textDisableFreeListing" : "By this action, your products will no longer be advertised on Google Shopping and your running campaigns will be paused.  \nYour catalog export will be still running.",
+      "textDisableFreeListing" : "By disabling free listings your products will no longer be available for organic listing on Shopping tab.  \n However your product feed will stay available.",
       "titleDisableProductFeed" : "Disable product feed?",
       "textDisableProductFeed" : "Products will continue to show on Free Listings until the product feed has expired after 30 days.  \nSmart shopping campaigns will remain active as long as there are still active products in the merchant center - you will need to pause your campaigns.",
       "titleEnableFreeListing" : "Enable free listing?",
