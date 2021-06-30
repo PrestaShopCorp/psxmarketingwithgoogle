@@ -1,7 +1,7 @@
 <template>
   <div id="configuration">
     <multistore v-if="!psAccountIsOnboarded && shops.length" />
-    <landing-page v-else-if="!psAccountIsOnboarded " />
+    <landing-page v-else-if="!psAccountIsOnboarded" />
     <onboarding-page v-else />
   </div>
 </template>
@@ -35,7 +35,7 @@ export default defineComponent({
   methods: {
   },
   computed: {
-    psAccountsIsOnboarded() {
+    psAccountIsOnboarded() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
     },
     shops() {

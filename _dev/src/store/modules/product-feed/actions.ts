@@ -19,13 +19,20 @@
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
+import productFeed from '.';
 
 export default {
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootState}) {
-    //  TODO : CONNECT BACKEND
     // try {
     //   const response = await fetch(
-    //     `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/status`
+    //     `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/status`, {
+    //       method: 'GET',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         Accept: 'application/json',
+    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+    //       },
+    //     }
     //   );
     //   if (!response.ok) {
     //     throw new HttpClientError(response.statusText, response.status);
@@ -88,11 +95,9 @@ export default {
         },
       });
       if (!response.ok) {
-        console.log('reponseget', response);
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      console.log('json', json);
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportShippingSettings', data: json.autoImportShippingSettings,
       });
@@ -106,11 +111,18 @@ export default {
         name: 'productsPerBatchSync', data: json.productsPerBatchSync,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'exportProductsWithShortDescription', data: json.exportProductsWithShortDescription,
+        name: 'syncSchedule', data: json.syncSchedule,
+      });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'productsPerBatchSync', data: json.productsPerBatchSync,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'attributeMapping',
         data: Object.assign(
+          (json.attributeMapping?.exportProductsWithShortDescription) ? {
+            exportProductsWithShortDescription:
+            json.attributeMapping?.exportProductsWithShortDescription,
+          } : {},
           (json.attributeMapping?.customColorAttribute) ? {
             customColorAttribute: json.attributeMapping?.customColorAttribute,
           } : {},
@@ -121,7 +133,8 @@ export default {
             customSizeAttribute: json.attributeMapping?.customSizeAttribute,
           } : {},
           (json.attributeMapping?.customGenderGroupAttribute) ? {
-            customGenderGroupAttribute: json.attributeMapping?.customGenderGroupAttribute,
+            customGenderGroupAttribute:
+            json.attributeMapping?.customGenderGroupAttribute,
           } : {},
           (json.attributeMapping?.customConditionAttribute) ? {
             customConditionAttribute: json.attributeMapping?.customConditionAttribute,
@@ -139,18 +152,24 @@ export default {
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
-      exportProductsWithShortDescription: productFeedSettings.exportProductsWithShortDescription,
       targetCountries: productFeedSettings.targetCountries,
-      customConditionAttribute: productFeedSettings?.attributeMapping?.customConditionAttribute
-      || null,
-      customColorAttribute: productFeedSettings?.attributeMapping?.customColorAttribute
-      || null,
-      customSizeAttribute: productFeedSettings?.attributeMapping?.customSizeAttribute
-      || null,
-      customAgeGroupAttribute: productFeedSettings?.attributeMapping?.customAgeGroupAttribute
-      || null,
-      customGenderGroupAttribute: productFeedSettings?.attributeMapping?.customGenderGroupAttribute
-      || null,
+      attributeMapping: {
+        exportProductsWithShortDescription:
+        productFeedSettings?.attributeMapping?.exportProductsWithShortDescription
+        || null,
+        customConditionAttribute: productFeedSettings?.attributeMapping?.customConditionAttribute
+        || null,
+        customColorAttribute: productFeedSettings?.attributeMapping?.customColorAttribute
+        || null,
+        customSizeAttribute: productFeedSettings?.attributeMapping?.customSizeAttribute
+        || null,
+        customAgeGroupAttribute: productFeedSettings?.attributeMapping?.customAgeGroupAttribute
+        || null,
+        customGenderGroupAttribute:
+        productFeedSettings?.attributeMapping?.customGenderGroupAttribute
+        || null,
+      },
+
     };
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/settings`, {
@@ -166,7 +185,6 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       response.json();
-      console.log('reponse', response.json);
     } catch (error) {
       console.error(error);
     }

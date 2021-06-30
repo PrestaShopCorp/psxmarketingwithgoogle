@@ -80,16 +80,13 @@
       ref="mcaDisconnectModal"
     />
 
-    <ProductFeedPopinDisable
-      ref="productFeedDisableModal"
-    />
     <FreeListingPopinDisable
       ref="PopinFreeListingDisable"
     />
     <!-- Toasts -->
     <PsToast
       variant="success"
-      :visible="googleAccountConnectedOnce || merchantCenterAccountConnectedOnce"
+      :visible="googleAccountConnectedOnce || merchantCenterAccountConnectedOnce || productFeedIsConfiguredOnce"
       toaster="b-toaster-top-right"
     >
       <p>{{ insideToast }}</p>
@@ -103,7 +100,7 @@ import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
 import ProductFeedNotice from '../components/onboarding/product-feed-notice.vue';
-import ProductFeedPopinDisable from '../components/product-feed/product-feed-popin-disable.vue';
+import FreeListingPopinDisable from '../components/free-listing/free-listing-popin-disable.vue';
 import MerchantCenterAccountCard from '../components/merchant-center-account/merchant-center-account-card.vue';
 import ProductFeedCard from '../components/product-feed/product-feed-card.vue';
 import FreeListingCard from '../components/free-listing/free-listing-card.vue';
@@ -121,7 +118,7 @@ export default {
     ProductFeedNotice,
     MerchantCenterAccountCard,
     ProductFeedCard,
-    ProductFeedPopinDisable,
+    FreeListingPopinDisable,
     FreeListingCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
@@ -202,6 +199,9 @@ export default {
     merchantCenterAccountConnectedOnce() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_CONNECTED_ONCE'];
     },
+    productFeedIsConfiguredOnce() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED_ONCE'];
+    },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
@@ -222,6 +222,8 @@ export default {
         return this.$t('toast.googleAccountConnectedOnceSuccess');
       } if (this.merchantCenterAccountConnectedOnce) {
         return this.$t('toast.MCAConnectedOnceSuccess');
+      } if (this.productFeedIsConfiguredOnce) {
+        return this.$t('toast.productFeedConfiguredOnceSuccess')
       }
       return '';
     },
@@ -238,6 +240,7 @@ export default {
     merchantCenterAccountIsChosen(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
+        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
       }
     },
   },

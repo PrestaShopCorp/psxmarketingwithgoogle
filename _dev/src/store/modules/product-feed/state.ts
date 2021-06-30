@@ -17,7 +17,6 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-// ToDo: Replace every "any" in this file with the proper type
 export interface ProductFeedStatus {
   nextJobAt?: string,
   jobEndedAt?: string;
@@ -27,6 +26,7 @@ export interface ProductFeedStatus {
   enabled: boolean;
 }
 export interface ProductFeedSettingsAttributeMapping {
+  exportProductsWithShortDescription?: boolean;
   customColorAttribute?: string;
   customSizeAttribute?: string;
   customAgeGroupAttribute?: string;
@@ -36,14 +36,15 @@ export interface ProductFeedSettingsAttributeMapping {
 
 export interface ProductFeedSettings {
   autoImportTaxSettings: boolean;
-  targetCountries: Array<string>;
-  productsPerBatchSync: number;
+  targetCountries: Array<string> | null;
+  productsPerBatchSync?: number;
   autoImportShippingSettings: boolean;
-  exportProductsWithShortDescription: boolean;
   attributeMapping: ProductFeedSettingsAttributeMapping;
+  syncSchedule?: string,
 }
 export interface State {
     isConfigured: boolean,
+    isConfiguredOnce: boolean,
     psGoogleShoppingActiveCountries: Array<string>,
     stepper: number,
     status: ProductFeedStatus,
@@ -52,6 +53,7 @@ export interface State {
 
 export const state: State = {
   isConfigured: false,
+  isConfiguredOnce: false,
   psGoogleShoppingActiveCountries: [],
   stepper: 1,
   status: {
@@ -62,10 +64,10 @@ export const state: State = {
   },
   settings: {
     autoImportTaxSettings: false,
-    targetCountries: [],
+    targetCountries: null,
     productsPerBatchSync: 0,
     autoImportShippingSettings: true,
-    exportProductsWithShortDescription: true,
     attributeMapping: {},
+    syncSchedule: '1 * * * * *',
   },
 };
