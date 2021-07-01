@@ -206,17 +206,12 @@ export default {
     },
     specificProducts() {
       const tableOfSpecifics = [];
-<<<<<<< HEAD
       if (this.sellRefurbished) {
         tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellRefurbishedProducts'));
       }
       if (this.sellApparel) {
         tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellApparelAndAccessories'));
       }
-=======
-      if (this.sellRefurbished) tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellRefurbishedProducts'));
-      if (this.sellApparel) tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellApparelAndAccessories'));
->>>>>>> 985cff14bb88a70ea6898b2b331fc57f6b93911c
       return tableOfSpecifics;
     },
     targetCountries() {
