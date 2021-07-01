@@ -1,4 +1,5 @@
 import ProductFeedCard from '../src/components/product-feed/product-feed-card.vue'
+import { productFeed, productFeedEnabled, productFeedIsConfigured } from '../.storybook/mock/product-feed';
 
 const categoriesTotal = 17;
 const basicArgs = {
@@ -60,23 +61,42 @@ const Template = (args, { argTypes }) => ({
 
 export const Disabled:any = Template.bind({});
 Disabled.args = {
-  isEnabled: false,
-  toConfigure: true,
-  ...basicArgs,
-};
-
-export const EnabledToConfigure:any = Template.bind({});
-EnabledToConfigure.args = {
-  isEnabled: true,
-  toConfigure: true,
-  ...basicArgs,
-};
-
-export const EnabledConfigured:any = Template.bind({});
-EnabledConfigured.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed.isConfigured = true;
+    this.$store.state.productFeed = productFeed;
+  },
+  isEnabled: false,
+  ...basicArgs,
+};
+
+export const Enabled:any = Template.bind({});
+Enabled.args = {
+  beforeMount: function(this: any) {
+    this.$store.state.productFeed = productFeed;
   },
   isEnabled: true,
   ...basicArgs,
 };
+
+export const Configured:any = Template.bind({});
+Configured.args = {
+  beforeMount: function(this: any) {
+    this.$store.state.productFeed = productFeedIsConfigured;
+  },
+  isEnabled: true,
+  ...basicArgs,
+  syncStatus: 'schedule',
+};
+
+// Won't work until updates on the product-feed-card.vue
+export const failedSyncs:any = Template.bind({});
+failedSyncs.args = {
+  beforeMount: function(this: any) {
+    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.productFeed.status.failedSyncs = [0,2,3];
+  },
+  isEnabled: true,
+  ...basicArgs,
+  syncStatus: 'failed',
+};
+
+// Todo: Handle all error cases
