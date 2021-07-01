@@ -2,6 +2,8 @@ export const merchantCenterAccountNotConnected = {
     websiteVerificationStatus: null,
     isClaimed: false,
     isVerified: false,
+    isSuspended: false,
+    isEnhancedFreeListingCompliant: true,
     connectedOnce: false,
     id: null,
     claimError: null,

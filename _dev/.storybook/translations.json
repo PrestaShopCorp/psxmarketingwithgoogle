@@ -77,13 +77,16 @@
       "googleMCA" : "Google Merchant Center account",
       "toUseGmcNeedsAdminAccess" : "To use an existing Merchant Center account, you must have **Admin** access.",
       "linkingFailed" : "You can't connect to your Merchant Center account right now. Try again later.",
-      "verifyOrClaimingFailed" : "Account validation failed",
+      "AccountValidationFailed" : "Account validation failed",
       "unlinkFailed" : "Disconnection failed. Please refresh the page and try again.",
       "tryAgainLater" : "We can’t verify or claim the current site. Try again later.",
       "alertSuspended" : "Go to your [Merchant Center account]({0})[:target=\"_blank\"] to see more details on the reason. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"].",
       "notManaged" : "(not managed by PrestaShop)",
       "overwriteFailed": "Website URL claim failed",
-      "overwriteToBeDoneManually": "Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}"
+      "overwriteToBeDoneManually": "Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}",
+      "ineligibleForFreeListing" : "Your account is ineligible for free enhanced listings on Google",
+      "ineligibleForFreeListingDescription" : "Please examine product-level disapprovals as well as your overall account.",
+      "claimOverwriteWithManualAction" : "To finalize your Google Merchant Center account connection, you need to provide your website URL in your Google Merchant Center account."
     },
     "mcaRequirements" : {
       "steps": {
@@ -417,7 +420,8 @@
       "save" : "Save",
       "disconnect" : "Disconnect",
       "export" : "Export",
-      "learnAboutFreeListing": "Lean more about free listing"
+      "learnAboutFreeListing": "Lean more about free listing",
+      "addWebsiteAddress" : "Add website address"
     },
     "badge" : {
       "free" : "Free",
@@ -436,7 +440,10 @@
       "readyToSync" : "Ready-to-sync",
       "cantSync" : "Can’t be synced",
       "close" : "Close",
-      "suspended" : "Suspended"
+      "suspended" : "Suspended",
+      "ineligibleForFreeListing" : "Ineligible for free listing",
+      "urlUnclaimed" : "Url unclaimed",
+      "urlUnverified" : "Url unverified"
     },
     "modal" : {
       "titleDisconnectionMerchantCenter" : "Disconnect your Merchant Center?",

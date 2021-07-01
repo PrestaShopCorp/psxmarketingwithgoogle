@@ -132,6 +132,9 @@ class PsGoogleShoppingTranslations
                 'notManaged' => $this->module->l('(not managed by PrestaShop)', 'PsGoogleShoppingTranslations'),
                 'overwriteFailed' => $this->module->l('Website URL claim failed', 'PsGoogleShoppingTranslations'),
                 'overwriteToBeDoneManually' => $this->module->l('Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}', 'PsGoogleShoppingTranslations'),
+                'ineligibleForFreeListing' => $this->module->l('Your account is ineligible for free enhanced listings on Google', 'PsGoogleShoppingTranslations'),
+                'ineligibleForFreeListingDescription' => $this->module->l('Please examine product-level disapprovals as well as your overall account.', 'PsGoogleShoppingTranslations'),
+                'claimOverwriteWithManualAction' => $this->module->l('To finalize your Google Merchant Center account connection, you need to provide your website URL in your Google Merchant Center account.', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
@@ -466,6 +469,7 @@ class PsGoogleShoppingTranslations
                 'disconnect' => $this->module->l('Disconnect', 'PsGoogleShoppingTranslations'),
                 'export' => $this->module->l('Export', 'PsGoogleShoppingTranslations'),
                 'learnAboutFreeListing' => $this->module->l('Lean more about free listing', 'PsGoogleShoppingTranslations'),
+                'addWebsiteAddress' => $this->module->l('Add website address', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
@@ -484,6 +488,9 @@ class PsGoogleShoppingTranslations
                 'readyToSync' => $this->module->l('Ready-to-sync', 'PsGoogleShoppingTranslations'),
                 'cantSync' => $this->module->l('Can’t be synced', 'PsGoogleShoppingTranslations'),
                 'suspended' => $this->module->l('Suspended', 'PsGoogleShoppingTranslations'),
+                'ineligibleForFreeListing' => $this->module->l('Ineligible for free listing', 'PsGoogleShoppingTranslations'),
+                'urlUnclaimed' => $this->module->l('Url unclaimed', 'PsGoogleShoppingTranslations'),
+                'urlUnverified' => $this->module->l('Url unverified', 'PsGoogleShoppingTranslations'),
             ],
             'modal' => [
                 'titleDisconnectionMerchantCenter' => $this->module->l('Disconnect your Merchant Center?', 'PsGoogleShoppingTranslations'),

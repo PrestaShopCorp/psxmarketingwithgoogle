@@ -88,8 +88,10 @@ export default {
     state: LocalState,
     websiteClaimingStatus: MerchantCenterAccountContext,
   ) {
-    state.googleMerchantAccount.isClaimed = websiteClaimingStatus.isClaimed;
-    state.googleMerchantAccount.isVerified = websiteClaimingStatus.isVerified;
+    state.googleMerchantAccount = {
+      ...state.googleMerchantAccount,
+      ...websiteClaimingStatus,
+    };
   },
   [MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS](state: LocalState, status: boolean) {
     state.googleMerchantAccount.isClaimed = status;

@@ -253,7 +253,7 @@
       </div>
     </b-alert>
     <b-alert
-      v-else-if="error === WebsiteClaimErrorReason.Expiring"
+      v-else-if="error === WebsiteClaimErrorReason.Suspended"
       show
       variant="warning"
       class="mb-0 mt-3"
@@ -271,7 +271,7 @@
       </p>
     </b-alert>
     <b-alert
-      v-else-if="error === WebsiteClaimErrorReason.Overwrite"
+      v-else-if="error === WebsiteClaimErrorReason.OverwriteNeeded"
       show
       variant="warning"
       class="mb-0 mt-3"
@@ -290,6 +290,45 @@
           @click="overrideClaim"
         >
           {{ $t("cta.overwrite") }}
+        </b-button>
+        <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 mr-md-3"
+          variant="outline-secondary"
+          @click="dissociateMerchantCenterAccount"
+        >
+          {{ $t("cta.switchAccount") }}
+        </b-button>
+        <a
+          :href="$options.googleUrl.learnAboutSiteClaiming"
+          target="_blank"
+          class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
+        >
+          {{ $t('cta.learnAboutSiteClaiming') }}
+        </a>
+      </div>
+    </b-alert>
+    <b-alert
+      v-else-if="error === WebsiteClaimErrorReason.OverwriteNeededWithManualAction"
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        <strong>{{ $t('mcaCard.claimCollides') }}</strong><br>
+        <span class="ps_gs-fz-12">
+          {{ $t('mcaCard.claimOverwriteWithManualAction') }}
+        </span>
+      </p>
+      <div class="d-md-flex text-center align-items-center mt-2">
+        <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 text-white"
+          variant="secondary"
+          :href="$options.googleUrl.addWebsiteAddress"
+          target="_blank"
+        >
+          {{ $t("cta.addWebsiteAddress") }}
         </b-button>
         <b-button
           size="sm"
@@ -329,13 +368,13 @@
       </p>
     </b-alert>
     <b-alert
-      v-else-if="error === WebsiteClaimErrorReason.VerifyOrClaimingFailed"
+      v-else-if="error === WebsiteClaimErrorReason.AccountValidationFailed"
       show
       variant="warning"
       class="mb-0 mt-3"
     >
       <p class="mb-0">
-        <strong>{{ $t('mcaCard.verifyOrClaimingFailed') }}</strong><br>
+        <strong>{{ $t('mcaCard.AccountValidationFailed') }}</strong><br>
         <span class="ps_gs-fz-12">
           {{ $t('mcaCard.tryAgainLater') }}
         </span>
@@ -368,6 +407,19 @@
     >
       <p class="mb-0">
         {{ $t('mcaCard.unlinkFailed') }}
+      </p>
+    </b-alert>
+    <b-alert
+      v-if="error === WebsiteClaimErrorReason.IneligibleForFreeListing"
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        <strong>{{ $t('mcaCard.ineligibleForFreeListing') }}</strong><br>
+        <span class="ps_gs-fz-12">
+          {{ $t('mcaCard.ineligibleForFreeListingDescription') }}
+        </span>
       </p>
     </b-alert>
     <MerchantCenterAccountPopinOverwriteClaim
@@ -473,15 +525,25 @@ export default {
             color: 'danger',
             text: 'suspended',
           };
-        case WebsiteClaimErrorReason.Overwrite:
+        case WebsiteClaimErrorReason.OverwriteNeeded:
           return {
             color: 'warning',
-            text: 'pending',
+            text: 'urlUnclaimed',
           };
-        case WebsiteClaimErrorReason.VerifyOrClaimingFailed:
+        case WebsiteClaimErrorReason.AccountValidationFailed:
           return {
             color: 'warning',
-            text: 'pending',
+            text: 'urlUnverified',
+          };
+        case WebsiteClaimErrorReason.OverwriteNeededWithManualAction:
+          return {
+            color: 'warning',
+            text: 'urlUnclaimed',
+          };
+        case WebsiteClaimErrorReason.IneligibleForFreeListing:
+          return {
+            color: 'warning',
+            text: 'ineligibleForFreeListing',
           };
         default:
           return {
