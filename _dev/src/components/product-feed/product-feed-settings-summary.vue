@@ -206,8 +206,12 @@ export default {
     },
     specificProducts() {
       const tableOfSpecifics = [];
-      if (this.sellRefurbished) tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellRefurbishedProducts'));
-      if (this.sellApparel) tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellApparelAndAccessories'));
+      if (this.sellRefurbished) {
+        tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellRefurbishedProducts'));
+      }
+      if (this.sellApparel) {
+        tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellApparelAndAccessories'));
+      }
       return tableOfSpecifics;
     },
     targetCountries() {
