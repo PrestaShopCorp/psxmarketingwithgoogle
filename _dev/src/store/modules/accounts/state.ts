@@ -93,7 +93,6 @@ export enum WebsiteClaimErrorReason {
   AccountValidationFailed = 'AccountValidationFailed',
   OverwriteNeededWithManualAction = 'OverwriteNeededWithManualAction',
   UnlinkFailed = 'UnlinkFailed',
-  OverwriteFailed = 'OverwriteFailed',
   IneligibleForFreeListing = 'IneligibleForFreeListing',
   // States with errors
   Suspended = 'Suspended',

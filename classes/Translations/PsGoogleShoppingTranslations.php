@@ -134,7 +134,7 @@ class PsGoogleShoppingTranslations
                 'overwriteToBeDoneManually' => $this->module->l('Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}', 'PsGoogleShoppingTranslations'),
                 'ineligibleForFreeListing' => $this->module->l('Your account is ineligible for free enhanced listings on Google', 'PsGoogleShoppingTranslations'),
                 'ineligibleForFreeListingDescription' => $this->module->l('Please examine product-level disapprovals as well as your overall account.', 'PsGoogleShoppingTranslations'),
-                'claimOverwriteWithManualAction' => $this->module->l('To finalize your Google Merchant Center account connection, you need to provide your website URL in your Google Merchant Center account.', 'PsGoogleShoppingTranslations'),
+                'claimOverwriteWithManualAction' => $this->module->l('To finalize your Google Merchant Center account connection, you need to provide your website URL ({0}) in your Google Merchant Center account.', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
