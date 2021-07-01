@@ -253,24 +253,6 @@
       </div>
     </b-alert>
     <b-alert
-      v-else-if="error === WebsiteClaimErrorReason.Suspended"
-      show
-      variant="warning"
-      class="mb-0 mt-3"
-    >
-      <p class="mb-0">
-        <!-- not translated, in need to be dynamic -->
-        This is a warning alert with a link.
-        <a
-          :href="$options.googleUrl.learnAboutAccountSuspension"
-          target="_blank"
-          class="text-muted ps_gs-fz-12 font-weight-normal"
-        >
-          {{ $t('cta.learnAboutAccountSuspension') }}
-        </a>
-      </p>
-    </b-alert>
-    <b-alert
       v-else-if="error === WebsiteClaimErrorReason.OverwriteNeeded"
       show
       variant="warning"
@@ -317,15 +299,15 @@
       <p class="mb-0">
         <strong>{{ $t('mcaCard.claimCollides') }}</strong><br>
         <span class="ps_gs-fz-12">
-          {{ $t('mcaCard.claimOverwriteWithManualAction') }}
+          {{ $t('mcaCard.claimOverwriteWithManualAction', [websiteUrl]) }}
         </span>
       </p>
       <div class="d-md-flex text-center align-items-center mt-2">
         <b-button
           size="sm"
-          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 text-white"
+          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 text-white text-decoration-none"
           variant="secondary"
-          :href="$options.googleUrl.addWebsiteAddress"
+          :href="merchantCenterWebsitePageUrl"
           target="_blank"
         >
           {{ $t("cta.addWebsiteAddress") }}
@@ -379,45 +361,6 @@
           {{ $t('mcaCard.tryAgainLater') }}
         </span>
       </p>
-    </b-alert>
-    <b-alert
-      v-else-if="error === WebsiteClaimErrorReason.OverwriteFailed"
-      show
-      variant="warning"
-      class="mb-0 mt-3"
-    >
-      <p class="mb-0">
-        <strong>{{ $t('mcaCard.claimCollides') }}</strong><br>
-        <span class="ps_gs-fz-12">
-          {{ $t('mcaCard.claimOverwriteWithManualAction', [websiteUrl]) }}
-        </span>
-      </p>
-      <div class="d-md-flex text-center align-items-center mt-2">
-        <b-button
-          size="sm"
-          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 text-white text-decoration-none"
-          variant="secondary"
-          :href="merchantCenterWebsitePageUrl"
-          target="_blank"
-        >
-          {{ $t("cta.addWebsiteAddress") }}
-        </b-button>
-        <b-button
-          size="sm"
-          class="mx-1 mt-3 mt-md-0 mr-md-3"
-          variant="outline-secondary"
-          @click="dissociateMerchantCenterAccount"
-        >
-          {{ $t("cta.switchAccount") }}
-        </b-button>
-        <a
-          :href="$options.googleUrl.learnAboutSiteClaiming"
-          target="_blank"
-          class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
-        >
-          {{ $t('cta.learnAboutSiteClaiming') }}
-        </a>
-      </div>
     </b-alert>
     <b-alert
       v-if="error === WebsiteClaimErrorReason.UnlinkFailed"
@@ -556,11 +499,6 @@ export default {
             text: 'urlUnverified',
           };
         case WebsiteClaimErrorReason.OverwriteNeededWithManualAction:
-          return {
-            color: 'warning',
-            text: 'urlUnclaimed',
-          };
-        case WebsiteClaimErrorReason.OverwriteFailed:
           return {
             color: 'warning',
             text: 'urlUnclaimed',

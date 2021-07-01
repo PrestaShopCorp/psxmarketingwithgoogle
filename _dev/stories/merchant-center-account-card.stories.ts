@@ -156,12 +156,3 @@ UnlinkFailed.args = {
     gmcStatus: WebsiteClaimErrorReason.UnlinkFailed,
   },
 };
-
-export const OverwriteFailed:any = Template.bind({});
-OverwriteFailed.args = {
-  isEnabled: true,
-  initialMcaStatus: {
-    ...merchantCenterAccountConnected,
-    gmcStatus: WebsiteClaimErrorReason.OverwriteFailed,
-  },
-};
