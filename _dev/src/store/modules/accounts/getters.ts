@@ -71,7 +71,9 @@ export default {
   },
   [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED](state: LocalState) : boolean {
     return !!(state.googleMerchantAccount.id
-      && state.googleMerchantAccount.isClaimed && state.googleMerchantAccount.isVerified);
+      && state.googleMerchantAccount.isClaimed
+      && state.googleMerchantAccount.isVerified
+      && !state.googleMerchantAccount.isSuspended);
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL](state: LocalState) : String|Error {
     return state.googleAccount.authenticationUrl;
