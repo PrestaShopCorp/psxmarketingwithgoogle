@@ -38,5 +38,10 @@ export const productFeedDisabled = {
   }
 }
 
+export const productFeedIsConfigured = {
+  ...productFeedEnabled,
+  isConfigured: true,
+}
+
 
 export default productFeedEnabled;
