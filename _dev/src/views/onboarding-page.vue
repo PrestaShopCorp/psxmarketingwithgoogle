@@ -87,6 +87,7 @@
     <!-- Toasts -->
     <PsToast
       variant="success"
+      @hidden="toastIsClosed"
       :visible="googleAccountConnectedOnce
         || merchantCenterAccountConnectedOnce
         || productFeedIsConfiguredOnce"
@@ -169,6 +170,15 @@ export default {
       // Else (user has not sync) we toggle the sync for the user
       } else {
         this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION', true);
+      }
+    },
+    toastIsClosed() {
+      if (this.googleAccountConnectedOnce) {
+        this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
+      } else if (this.merchantCenterAccountConnectedOnce) {
+        this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
+      } else if (this.productFeedIsConfiguredOnce) {
+        this.$store.commit('accounts/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
       }
     },
   },

@@ -29,6 +29,7 @@ export default {
   },
   beforeCreate() {
     this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
+    this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
   },
 
 };

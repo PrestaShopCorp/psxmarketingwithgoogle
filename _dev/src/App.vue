@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     productFeedIsConfigured() {
-      return this.$store.state.productFeed.isConfigured;
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
   },
 };

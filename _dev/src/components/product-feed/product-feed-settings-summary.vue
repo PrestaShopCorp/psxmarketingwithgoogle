@@ -90,7 +90,7 @@
                 <b-tr>
                   <b-td class="pb-0 align-top pt-md-0 pb-md-1">
                     <span class="d-flex align-items-center">
-                      {{ $t('productFeedSettings.summary.productItems') }}
+                      {{ $t('productFeedSettings.attributeMapping.description') }}
                       <span
                         class="material-icons-round ml-auto ps_gs-fz-20
                           mr-md-2 mb-0 align-middle text-success"
@@ -206,7 +206,7 @@ export default {
     },
     specificProducts() {
       const tableOfSpecifics = [];
-      tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellRefurbishedProducts'));
+      if (this.sellRefurbished) tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellRefurbishedProducts'));
       if (this.sellApparel) tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellApparelAndAccessories'));
       return tableOfSpecifics;
     },
