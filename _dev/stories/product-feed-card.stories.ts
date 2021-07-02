@@ -1,5 +1,5 @@
 import ProductFeedCard from '../src/components/product-feed/product-feed-card.vue'
-import { productFeed, productFeedEnabled, productFeedIsConfigured } from '../.storybook/mock/product-feed';
+import { productFeed, productFeedMissingFields, productFeedIsConfigured } from '../.storybook/mock/product-feed';
 
 const categoriesTotal = 17;
 const basicArgs = {
@@ -14,6 +14,7 @@ const basicArgs = {
   syncRulesDetails: ['Nike', 'Adidas', 'Reebok'],
   excludedProductsDetails: ['123956 - Totebag sunset', '123460 - Color block printed scarf', '975357 - Totebag electric blue', '3456231- Tartiflette savoyarde'],
   attributeMapping: ['Long description', 'condition', 'color'],
+  
 }
 
 export default {
@@ -65,26 +66,35 @@ Disabled.args = {
     this.$store.state.productFeed = productFeed;
   },
   isEnabled: false,
-  ...basicArgs,
 };
 
-export const Enabled:any = Template.bind({});
-Enabled.args = {
-  beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeed;
-  },
-  isEnabled: true,
-  ...basicArgs,
-};
+// ! Not used anymore, no more switch
+// export const Enabled:any = Template.bind({});
+// Enabled.args = {
+//   beforeMount: function(this: any) {
+//     this.$store.state.productFeed = productFeed;
+//   },
+//   isEnabled: true,
+//   ...basicArgs,
+// };
 
 export const Configured:any = Template.bind({});
 Configured.args = {
   beforeMount: function(this: any) {
     this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.productFeed.status.failedSyncs = [];
   },
   isEnabled: true,
-  ...basicArgs,
   syncStatus: 'schedule',
+};
+
+export const FieldsMissing:any = Template.bind({});
+FieldsMissing.args = {
+  beforeMount: function(this: any) {
+    this.$store.state.productFeed = productFeedMissingFields;
+    this.$store.state.productFeed.status.failedSyncs = ['foo', 'bar'];
+  },
+  isEnabled: true,
 };
 
 // Won't work until updates on the product-feed-card.vue
@@ -92,11 +102,9 @@ export const failedSyncs:any = Template.bind({});
 failedSyncs.args = {
   beforeMount: function(this: any) {
     this.$store.state.productFeed = productFeedIsConfigured;
-    this.$store.state.productFeed.status.failedSyncs = [0,2,3];
+    this.$store.state.productFeed.status.failedSyncs = ['foo', 'bar'];
   },
   isEnabled: true,
-  ...basicArgs,
-  syncStatus: 'failed',
 };
 
 // Todo: Handle all error cases

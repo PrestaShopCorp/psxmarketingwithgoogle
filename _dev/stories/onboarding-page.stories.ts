@@ -1,5 +1,6 @@
 import OnboardingPage from '../src/views/onboarding-page.vue'
 import {initialStateApp} from '../.storybook/mock/state-app';
+import {productFeedIsConfiguredOnce, productFeedEnabled} from '../.storybook/mock/product-feed';
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {googleAccountNotConnected, googleAccountConnected, googleAccountConnectedOnce} from "../.storybook/mock/google-account";
 import {merchantCenterAccountNotConnected, merchantCenterAccountConnected, merchantCenterAccountConnectedOnce} from "../.storybook/mock/merchant-center-account";
@@ -61,5 +62,21 @@ ProductFeed.args = {
     this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
     this.$store.state.accounts.googleAccount = googleAccountConnected;
     this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountConnectedOnce;
+    this.$store.state.productFeed = productFeedEnabled;
+
+  },
+};
+
+export const FreeListing:any = TemplatePsAccount.bind({});
+FreeListing.args = {
+  beforeMount(this: any) {
+    this.$store.state.app = Object.assign(
+      this.$store.state.app,
+      initialStateApp
+    );
+    this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
+    this.$store.state.accounts.googleAccount = googleAccountConnected;
+    this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountConnected;
+    this.$store.state.productFeed = productFeedIsConfiguredOnce;
   },
 };

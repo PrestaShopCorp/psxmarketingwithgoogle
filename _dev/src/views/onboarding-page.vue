@@ -52,9 +52,6 @@
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
         :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
-        :is-configuration-started="false"
-        :sync-status="syncStatus"
-        @toggleSync="onSyncToggled"
       />
 
       <FreeListingCard
@@ -131,7 +128,6 @@ export default {
   data() {
     return {
       isMcaLinking: false,
-      syncStatus: 'schedule',
     };
   },
   methods: {
