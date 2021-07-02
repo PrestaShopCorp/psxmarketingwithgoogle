@@ -186,20 +186,19 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $allowedKeys = [
             'shoppingAdsPolicies',
             'accurateContactInformation',
-            'secureCheckoutProcessAndCollectionOfPersonalData',
+            'secureCheckoutProcess',
             'returnPolicy',
-            'billingTermsAndCollections',
+            'billingTerms',
             'completeCheckoutProcess',
         ];
 
-        foreach ($requirements as $key => $value) {
+        foreach ($requirements as $value) {
             if (!in_array($value, $allowedKeys)) {
                 $this->ajaxDie(json_encode([
                     'success' => false,
                     'message' => 'Unknown requirement key ' . $value,
                 ]));
             }
-            $requirements[$key] = $value;
         }
 
         $this->configurationAdapter->updateValue(
