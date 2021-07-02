@@ -61,6 +61,8 @@ export const state: State = {
     successfulSyncs: [],
     enabled: false,
     shopHealthy: true,
+    jobEndedAt: '',
+    nextJobAt: '',
   },
   settings: {
     autoImportTaxSettings: false,

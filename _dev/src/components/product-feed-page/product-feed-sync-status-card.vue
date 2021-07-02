@@ -3,6 +3,7 @@
     no-body
     class="ps_gs-onboardingcard px-0"
   >
+    {{ nbProductsReadyToSync }}
     <b-card-header
       header-tag="h3"
       header-class="px-3 py-3 font-weight-600 ps_gs-fz-16"
@@ -113,22 +114,27 @@ export default {
     // ProductFeedCardReportProductsCard,
   },
   props: {
-    syncStatus: {
-      type: String,
-      validator(value) {
-        return ['processed', 'failed', 'schedule'].indexOf(value) !== -1;
-      },
-      required: true,
-    },
-    nbProductsReadyToSync: {
-      type: Number,
-    },
+  // TODO : how to know this number ? Is it the total length of the failedSyncs
     nbProductsCantSync: {
       type: Number,
     },
   },
 
   computed: {
+    getProductFeedStatus() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
+    },
+    nbProductsReadyToSync() {
+      return this.$store.state.productFeed.settings.productsPerBatchSync;
+    },
+    syncStatus() {
+      // TODO : retrieve other status : schedule
+      // TODO : how to know status from api ?
+      if (this.getProductFeedStatus.failedSyncs.length) {
+        return 'failed';
+      }
+      return 'processed';
+    },
     title() {
       if (this.syncStatus === 'schedule') {
         return {
@@ -150,11 +156,12 @@ export default {
       };
     },
     nextSyncTime() {
-      return this.$options.filters.timeConverterToDate(this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt);
+      return this.$options.filters.timeConverterToDate(this.getProductFeedStatus.nextJobAt);
     },
     lastSyncTime() {
-      return this.$options.filters.timeConverterToDate(this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].jobEndedAt);
+      return this.$options.filters.timeConverterToDate(this.getProductFeedStatus.jobEndedAt);
     },
+
   },
   googleUrl,
 };
