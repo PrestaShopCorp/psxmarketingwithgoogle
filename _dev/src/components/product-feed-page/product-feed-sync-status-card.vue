@@ -3,7 +3,6 @@
     no-body
     class="ps_gs-onboardingcard px-0"
   >
-    {{ nbProductsReadyToSync }}
     <b-card-header
       header-tag="h3"
       header-class="px-3 py-3 font-weight-600 ps_gs-fz-16"

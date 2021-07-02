@@ -48,8 +48,8 @@ export default {
         'themes',
       ],
       failedSyncs: [
-        'products',
-        'google-taxonomies',
+        // 'products',
+        // 'google-taxonomies',
       ],
       enabled: true,
     };
