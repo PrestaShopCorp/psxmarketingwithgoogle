@@ -47,7 +47,7 @@
           >
             <i
               v-if="!newMca"
-              class="material-icons text-success mr-2">
+              class="material-icons text-success mr-2 ps_gs-fz-18">
               check
             </i>
             <div>
