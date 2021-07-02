@@ -335,6 +335,8 @@ export default {
         shop_name: this.shopInformations.shop.name,
         location: this.shopInformations.store.country.iso_code,
         adult_content: this.containsAdultContent,
+      }).then(() => {
+        this.$refs.modal.hide();
       });
     },
     cancel() {
