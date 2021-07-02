@@ -500,8 +500,22 @@ export default {
       }
 
       const json = await response.json();
-      dispatch(ActionsTypes.SEND_WEBSITE_REQUIREMENTS, []);
+      const correlationId = `${Math.floor(Date.now() / 1000)}`;
+      const accountId = json.account_id;
+      console.log(json);
       commit(MutationsTypes.SAVE_GMC_CREATED, json);
+      await dispatch(ActionsTypes.SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT, {accountId, correlationId})
+        .then(() => new Promise((resolve) => setTimeout(resolve, 1000)))
+        .then(() => dispatch(
+          ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS, correlationId,
+        ))
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
+        });
+      await dispatch(ActionsTypes.SEND_WEBSITE_REQUIREMENTS, []);
     } catch (error) {
       console.log(error);
     }
