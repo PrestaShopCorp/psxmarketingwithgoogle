@@ -22,9 +22,9 @@
       />
       <b-alert
         v-if="!newMca"
-        variant="warning"
+        variant="info"
         show
-        class="my-3"
+        class="mt-3 mb-2"
       >
         <p class="mb-0">
           {{ $t('mcaRequirements.alert') }}
@@ -36,14 +36,20 @@
           :key="$t(`mcaRequirements.${requirement}.title`)"
           class="d-flex border-bottom py-3 pl-2 ml-1"
         >
-          <b-form-checkbox
+          <component
+            :is="newMca ? 'b-form-checkbox' : 'div'"
             class="ps_gs-checkbox"
+            :class="{'d-flex': !newMca}"
             :id="safeString($t(`mcaRequirements.${requirement}.title`))"
             v-model="selectedRequirements"
-            :value="requirement"
-            :disabled="!newMca"
+            :value="newMca ? requirement : null"
             @change="getCurrentCheckbox"
           >
+            <i
+              v-if="!newMca"
+              class="material-icons text-success mr-2">
+              check
+            </i>
             <div>
               <span
                 class="ps_gs-fz-14 font-weight-normal mb-1"
@@ -60,7 +66,7 @@
                 </a>
               </p>
             </div>
-          </b-form-checkbox>
+          </component>
         </li>
       </ul>
     </form>
