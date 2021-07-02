@@ -94,4 +94,10 @@ export default {
   [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_CONNECTED_ONCE](state: LocalState) : boolean {
     return state.googleMerchantAccount.connectedOnce;
   },
+  [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED](state: LocalState): boolean {
+    return !!state.googleMerchantAccount.id;
+  },
+  [GetterTypes.GET_WEBSITE_REQUIREMENTS](state: LocalState) {
+    return state.googleMerchantAccount.websiteRequirements;
+  },
 };

@@ -97,13 +97,13 @@
                   "description": "Update website requirements status\n",
                   "value": {
                     "action": "setWebsiteRequirementStatus",
-                    "requirements": {
-                      "shoppingAdsPolicies": true,
-                      "accurateContactInformation": true,
-                      "secureCheckoutProcessAndCollectionOfPersonalData": true,
-                      "billingTermsAndCollections": true,
-                      "completeCheckoutProcess": true
-                    }
+                    "requirements": [
+                      "shoppingAdsPolicies",
+                      "accurateContactInformation",
+                      "secureCheckoutProcessAndCollectionOfPersonalData",
+                      "billingTermsAndCollections",
+                      "completeCheckoutProcess"
+                    ]
                   }
                 },
                 "setWebsiteVerificationMeta": {
@@ -161,13 +161,12 @@
                   },
                   "getWebsiteRequirementStatus": {
                     "value": {
-                      "requirements": {
-                        "shoppingAdsPolicies": true,
-                        "accurateContactInformation": true,
-                        "secureCheckoutProcessAndCollectionOfPersonalData": true,
-                        "billingTermsAndCollections": true,
-                        "completeCheckoutProcess": true
-                      }
+                      "requirements": [
+                        "accurateContactInformation",
+                        "secureCheckoutProcessAndCollectionOfPersonalData",
+                        "billingTermsAndCollections",
+                        "completeCheckoutProcess"
+                      ]
                     }
                   },
                   "removeVerificationMeta": {

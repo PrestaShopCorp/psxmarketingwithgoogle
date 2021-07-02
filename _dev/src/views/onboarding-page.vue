@@ -104,9 +104,9 @@ import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
 import ProductFeedNotice from '../components/onboarding/product-feed-notice.vue';
-import FreeListingPopinDisable from '../components/free-listing/free-listing-popin-disable.vue';
 import MerchantCenterAccountCard from '../components/merchant-center-account/merchant-center-account-card.vue';
 import ProductFeedCard from '../components/product-feed/product-feed-card.vue';
+import FreeListingPopinDisable from '../components/free-listing/free-listing-popin-disable.vue';
 import FreeListingCard from '../components/free-listing/free-listing-card.vue';
 import GoogleAccountPopinDisconnect from '../components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
@@ -122,11 +122,11 @@ export default {
     ProductFeedNotice,
     MerchantCenterAccountCard,
     ProductFeedCard,
-    FreeListingPopinDisable,
     FreeListingCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
     PsToast,
+    FreeListingPopinDisable,
   },
   data() {
     return {

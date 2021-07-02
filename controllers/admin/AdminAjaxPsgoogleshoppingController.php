@@ -164,7 +164,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
     private function getWebsiteRequirementStatus()
     {
         $requirements = json_decode($this->configurationAdapter->get(Config::PS_GOOGLE_SHOPPING_WEBSITE_REQUIREMENTS_STATUS))
-            ?: (object) [];
+            ?: [];
 
         $this->ajaxDie(json_encode([
             'requirements' => $requirements,
@@ -173,11 +173,11 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 
     private function setWebsiteRequirementStatus(array $inputs)
     {
-        if (!isset($inputs['requirements'])) {
+        if (!isset($inputs['requirements']) || !is_array($inputs['requirements'])) {
             http_response_code(400);
             $this->ajaxDie(json_encode([
                 'success' => false,
-                'message' => 'Missing requirements key',
+                'message' => 'Missing requirements key or value must be an array',
             ]));
         }
 
@@ -186,20 +186,19 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $allowedKeys = [
             'shoppingAdsPolicies',
             'accurateContactInformation',
-            'secureCheckoutProcessAndCollectionOfPersonalData',
+            'secureCheckoutProcess',
             'returnPolicy',
-            'billingTermsAndCollections',
+            'billingTerms',
             'completeCheckoutProcess',
         ];
 
-        foreach ($requirements as $key => $value) {
-            if (!in_array($key, $allowedKeys)) {
+        foreach ($requirements as $value) {
+            if (!in_array($value, $allowedKeys)) {
                 $this->ajaxDie(json_encode([
                     'success' => false,
-                    'message' => 'Unknown requirement key ' . $key,
+                    'message' => 'Unknown requirement key ' . $value,
                 ]));
             }
-            $requirements[$key] = (bool) $value;
         }
 
         $this->configurationAdapter->updateValue(

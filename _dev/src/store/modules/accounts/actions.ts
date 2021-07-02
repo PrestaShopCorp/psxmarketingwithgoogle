@@ -426,4 +426,41 @@ export default {
     commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
     return response.json();
   },
+
+  async [ActionsTypes.SEND_WEBSITE_REQUIREMENTS](
+    {rootState},
+    payload: Array<String>,
+  ) {
+    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'setWebsiteRequirementStatus',
+        requirements: payload,
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    return response.json();
+  },
+  async [ActionsTypes.REQUEST_WEBSITE_REQUIREMENTS]({rootState, commit}) {
+    try {
+      const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        body: JSON.stringify({
+          action: 'getWebsiteRequirementStatus',
+        }),
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+
+      const json = await response.json();
+      commit(MutationsTypes.SAVE_WEBSITE_REQUIREMENTS, json);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

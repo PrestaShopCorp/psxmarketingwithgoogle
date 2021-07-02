@@ -152,6 +152,7 @@
         <b-button
           variant="invisible"
           class="p-0 border-0 font-weight-normal mb-0 text-primary"
+          @click="checkWebsiteRequirements"
         >
           <i
             class="left material-icons mr-2 ps_gs-fz-24"
@@ -388,6 +389,10 @@
     <MerchantCenterAccountPopinOverwriteClaim
       ref="mcaPopinOverrideClaim"
     />
+    <MerchantCenterAccountPopinWebsiteRequirements
+      :new-mca="mcaIsNotConnected"
+      ref="MerchantCenterAccountPopinNewMca"
+    />
   </b-card>
 </template>
 
@@ -399,12 +404,14 @@ import {
 } from '../../store/modules/accounts/state';
 import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
 import BadgeListRequirements from '../commons/badge-list-requirements';
+import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
 
 export default {
   name: 'MerchantCenterAccountCard',
   components: {
     MerchantCenterAccountPopinOverwriteClaim,
     BadgeListRequirements,
+    MerchantCenterAccountPopinWebsiteRequirements,
   },
   data() {
     return {
@@ -462,6 +469,9 @@ export default {
     },
     selectedMcaDetails() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
+    },
+    mcaIsNotConnected() {
+      return !(this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED']);
     },
     error() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS'];
@@ -569,8 +579,11 @@ export default {
       }
     },
     checkWebsiteRequirements() {
-      /**
-       * TODO: Handle opening of Popup */
+      if (this.$refs.MerchantCenterAccountPopinNewMca) {
+        this.$bvModal.show(
+          this.$refs.MerchantCenterAccountPopinNewMca.$refs.modal.id,
+        );
+      }
     },
   },
   updated() {
