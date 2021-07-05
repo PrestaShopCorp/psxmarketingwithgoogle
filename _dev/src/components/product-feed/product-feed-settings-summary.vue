@@ -227,9 +227,6 @@ export default {
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
-    checkForAutomaticImport() {
-
-    },
     saveAll() {
       this.disabledExportButton = true;
       if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
