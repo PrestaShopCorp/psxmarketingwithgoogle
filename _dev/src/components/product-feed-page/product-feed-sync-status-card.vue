@@ -113,8 +113,15 @@ export default {
     // ProductFeedCardReportProductsCard,
   },
   props: {
+<<<<<<< HEAD
   // TODO : how to know this number ? Is it the total length of the failedSyncs
 
+=======
+
+    nbProductsReadyToSync: {
+      type: Number,
+    },
+>>>>>>> 659db49e18ead5561954785956a766aa771cfbe5
     nbProductsCantSync: {
       type: Number,
     },
