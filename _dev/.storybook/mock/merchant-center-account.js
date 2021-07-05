@@ -33,4 +33,24 @@ export const merchantCenterAccountConnectedOnce = {
     connectedOnce: true,
 };
 
+export const merchantCenterAccountCreation = {
+  ...merchantCenterAccountNotConnected,
+  websiteRequirements: [],
+  shopInfo: {
+    shop:{
+      name: "PrestaShop",
+      url: "http://maxps-dev.ngrok.io/"
+    },
+    store:{
+      country:{
+        locality: "Paris",
+        phone: "0658585858",
+      },
+      postalCode: "75015",
+      region: "FR",
+      streetAddress:"12 rue d'amsterdam",
+    }
+  }
+}
+
 export default merchantCenterAccountConnected;
