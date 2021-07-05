@@ -228,13 +228,15 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     saveAll() {
-      this.disabledExportButton = true;
       if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
         this.$store.dispatch('productFeed/GET_SHIPPING_SETTINGS')
           .then(() => {
             this.postDatas();
           });
+      } else {
+        this.postDatas();
       }
+      this.disabledExportButton = true;
     },
     postDatas() {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
@@ -243,9 +245,6 @@ export default {
       this.$router.push({
         path: '/configuration',
       });
-    },
-    beforeCreate() {
-      this.disabledExportButton = false;
     },
   },
   countriesSelectionOptions,
