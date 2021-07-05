@@ -78,6 +78,11 @@ export default {
       ...selectedAccount,
     };
   },
+  [MutationsTypes.ADD_NEW_GMC](state: LocalState, googleMerchantAccount: GoogleMerchantAccount) {
+    if (state.googleAccount.mcaSelectionOptions) {
+      state.googleAccount.mcaSelectionOptions.push(googleMerchantAccount);
+    }
+  },
   [MutationsTypes.REMOVE_GMC](state: LocalState) {
     state.googleMerchantAccount = {
       ...state.googleMerchantAccount,

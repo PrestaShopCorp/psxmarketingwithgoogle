@@ -501,20 +501,32 @@ export default {
       }
 
       const json = await response.json();
-      const correlationId = `${Math.floor(Date.now() / 1000)}`;
       const accountId = json.account_id;
+      const newGmc = {
+        aggregatorId: json.aggregator_id,
+        kind: 'content#account',
+        id: accountId,
+        name: payload.shop_name,
+        websiteUrl: payload.shop_url,
+        adultContent: payload.adult_content,
+        users: [
+          {
+            emailAddress: rootState.accounts.googleAccount.details.email,
+            admin :true
+          }
+        ],
+        businessInformation: {
+          address: {
+            country: payload.location
+          }
+        },
+        subAccountNotManagedByPrestashop:false
+      };
 
-      commit(MutationsTypes.SAVE_GMC, {id: accountId});
+      commit(MutationsTypes.ADD_NEW_GMC, newGmc);
+      commit(MutationsTypes.SAVE_GMC, newGmc);
 
-      await dispatch(ActionsTypes.REQUEST_GMC_LIST);
-      await dispatch(ActionsTypes.SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT, {accountId, correlationId})
-        .then(() => new Promise((resolve) => setTimeout(resolve, 1000)))
-        .then(() => {
-          dispatch(
-            ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS, correlationId,
-          );
-          commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
-        });
+      await dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
       await dispatch(ActionsTypes.SEND_WEBSITE_REQUIREMENTS, []);
     } catch (error) {
       console.log(error);
