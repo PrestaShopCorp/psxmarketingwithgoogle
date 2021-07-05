@@ -43,7 +43,7 @@
         >
           <product-feed-card-report-products-sync-card
             variant="success"
-            :nb-products="this.validationSummary.activeItems"
+            :nb-products="validationSummary.activeItems"
             :is-sync-in-progress="isSyncInProgress"
           />
           <product-feed-card-report-products-sync-card
