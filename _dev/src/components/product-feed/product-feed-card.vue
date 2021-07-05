@@ -259,13 +259,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    syncStatus: {
-      type: String,
-      default: null,
-      validator(value) {
-        return [null, 'success', 'warning', 'failed', 'schedule'].indexOf(value) !== -1;
-      },
-    },
     categoriesTotal: {
       type: Number,
     },
@@ -415,20 +408,31 @@ export default {
       return this.categoriesMapped > 0;
     },
     alert() {
-      // TODO How to know if 'ProductFeedExists'
+      // TODO : how to know status from api ? + date of failed sync ?
       if (!this.productFeedSyncEnabled) {
         return 'ProductFeedDeactivated';
       }
-      if (!this.toConfigure /* TODO: Check feed in under review */) {
-        return 'GoogleIsReviewingProducts';
-      } if (this.getProductFeedStatus.failedSyncs.length) {
+      if (this.getProductFeedStatus.failedSyncs.length) {
         return 'Failed';
-      } if (
+      }
+      if (
         this.getProductFeedSettings.autoImportShippingSettings === undefined
       ) {
         return 'ShippingSettingsMissing';
       }
+      // TODO: Check feed is under review
+      // else if {
+      //   return 'GoogleIsReviewingProducts';
+      // }
       return null;
+    },
+    syncStatus() {
+      // TODO : retrieve other status : schedule and warning
+      // TODO : how to know status from api ? + date of failed sync ?
+      if (this.getProductFeedStatus.failedSyncs.length) {
+        return 'failed';
+      }
+      return 'success';
     },
   },
   methods: {

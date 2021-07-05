@@ -1,5 +1,6 @@
 export const productFeed = {
   isConfigured: false,
+  isConfiguredOnce: false,
   psGoogleShoppingActiveCountries: ['FR'],
   stepper: 1,
   status: {
@@ -7,11 +8,13 @@ export const productFeed = {
     successfulSyncs: [],
     enabled: false,
     shopHealthy: true,
+    jobEndedAt: "",
+    nextJobAt: "",
   },
   settings: {
     autoImportTaxSettings: false,
-    targetCountries: [],
-    productsPerBatchSync: 0,
+    targetCountries: ['FR'],
+    productsPerBatchSync: 200,
     autoImportShippingSettings: false,
     attributeMapping: {
       exportProductsWithShortDescription: false,
@@ -21,6 +24,7 @@ export const productFeed = {
       customGenderGroupAttribute: 'extra:gender-group',
       customConditionAttribute: 'extra:condition',
     },
+    syncSchedule: '1 * * * * *',
   },
 };
 
@@ -43,5 +47,27 @@ export const productFeedIsConfigured = {
   isConfigured: true,
 }
 
+
+export const productFeedMissingFields = {
+  ...productFeedIsConfigured,
+  settings: {
+    targetCountries: [],
+    attributeMapping: {},
+    autoImportShippingSettings: false,
+  }
+}
+
+
+export const productFeedIsConfiguredOnce = {
+  ...productFeedIsConfigured,
+  isConfiguredOnce: true,
+}
+
+export const productFeedStatusSyncFailed = {
+  ...productFeedEnabled,
+  status: {
+    failedSyncs: ['fail'],
+  }
+}
 
 export default productFeedEnabled;

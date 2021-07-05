@@ -83,12 +83,17 @@ export type GoogleAccountContext = GoogleAccount
   status?: string,
 }
 
+export type ShoppingWebsiteStatusFlag = {
+  status: boolean;
+  documentation?: Array<string>;
+}
+
 export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   // Allow the spinner to be displayed while claiming is done
   isVerified: boolean,
   isClaimed: boolean,
-  isSuspended: boolean,
-  isEnhancedFreeListingCompliant: boolean,
+  isSuspended: ShoppingWebsiteStatusFlag,
+  isEnhancedFreeListingCompliant: ShoppingWebsiteStatusFlag,
   gmcStatus: WebsiteClaimErrorReason|null,
   websiteRequirements: Array<String>,
   // Display toast component once
@@ -136,8 +141,12 @@ export const state: State = {
     id: null,
     isVerified: false,
     isClaimed: false,
-    isSuspended: false,
-    isEnhancedFreeListingCompliant: true,
+    isSuspended: {
+      status: false,
+    },
+    isEnhancedFreeListingCompliant: {
+      status: true,
+    },
     gmcStatus: null,
     users: [],
     connectedOnce: false,

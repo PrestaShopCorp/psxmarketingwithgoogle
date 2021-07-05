@@ -74,7 +74,7 @@ export default {
     return !!(state.googleMerchantAccount.id
       && state.googleMerchantAccount.isClaimed
       && state.googleMerchantAccount.isVerified
-      && !state.googleMerchantAccount.isSuspended);
+      && !state.googleMerchantAccount.isSuspended.status);
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL](state: LocalState) : String|Error {
     return state.googleAccount.authenticationUrl;
@@ -84,10 +84,10 @@ export default {
     if (state.googleMerchantAccount.gmcStatus) {
       return state.googleMerchantAccount.gmcStatus;
     }
-    if (state.googleMerchantAccount.isSuspended) {
+    if (state.googleMerchantAccount.isSuspended.status) {
       return WebsiteClaimErrorReason.Suspended;
     }
-    if (!state.googleMerchantAccount.isEnhancedFreeListingCompliant) {
+    if (!state.googleMerchantAccount.isEnhancedFreeListingCompliant.status) {
       return WebsiteClaimErrorReason.IneligibleForFreeListing;
     }
     return null;
