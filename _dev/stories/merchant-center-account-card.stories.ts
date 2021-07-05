@@ -135,7 +135,9 @@ IneligibleForFreeListing.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    isEnhancedFreeListingCompliant: false,
+    isEnhancedFreeListingCompliant: {
+      status: false,
+    },
   },
 };
 
@@ -144,7 +146,9 @@ Suspended.args = {
   isEnabled: true,
   initialMcaStatus: {
     ...merchantCenterAccountConnected,
-    isSuspended: true,
+    isSuspended: {
+      status: true,
+    },
   },
 };
 
