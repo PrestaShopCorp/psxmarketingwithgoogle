@@ -114,7 +114,6 @@ export default {
   },
   props: {
   // TODO : how to know this number ? Is it the total length of the failedSyncs
-
     nbProductsCantSync: {
       type: Number,
     },
