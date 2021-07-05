@@ -125,6 +125,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
                 'region' => State::getNameById($this->configurationAdapter->get('PS_SHOP_STATE_ID')),
                 'postalCode' => $this->configurationAdapter->get('PS_SHOP_CODE'),
                 'country' => $this->countryRepository->getShopDefaultCountry(),
+                'phone' => $this->configurationAdapter->get('PS_SHOP_PHONE'),
             ],
         ]));
     }
