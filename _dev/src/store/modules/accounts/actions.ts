@@ -512,15 +512,15 @@ export default {
         users: [
           {
             emailAddress: rootState.accounts.googleAccount.details.email,
-            admin :true
-          }
+            admin: true,
+          },
         ],
         businessInformation: {
           address: {
-            country: payload.location
-          }
+            country: payload.location,
+          },
         },
-        subAccountNotManagedByPrestashop:false
+        subAccountNotManagedByPrestashop: false,
       };
 
       commit(MutationsTypes.ADD_NEW_GMC, newGmc);
