@@ -92,7 +92,7 @@
           </b-button>
         </div>
         <span class="d-block">
-          {{ infosWebsiteURL }}
+          {{ shopInformations.shop.url }}
         </span>
         <VueShowdown
           class="font-weight-normal ps_gs-fz-12 text-muted mb-3 pb-2"
@@ -116,7 +116,7 @@
           </b-button>
         </div>
         <span class="d-block">
-          {{ infosStoreName }}
+          {{ shopInformations.shop.name }}
         </span>
       </section>
       <section class="mb-3">
@@ -124,7 +124,7 @@
           {{ $t('mcaRequirements.businessLocation') }}
         </h3>
         <span class="d-block">
-          {{ infosBusinessLocation }}
+          {{ shopInformations.store.country.iso_code }}
         </span>
       </section>
       <b-form-group
@@ -135,7 +135,8 @@
       >
         <b-form-input
           id="inputBusinessAddress"
-          :value="businessAddress"
+          :value="shopInformations.store.streetAddress"
+          readonly
           class="maxw-sm-420"
         />
       </b-form-group>
@@ -147,7 +148,8 @@
       >
         <b-form-input
           id="inputBusinessPhoneNumber"
-          :value="businessPhone"
+          :value="shopInformations.store.phone"
+          readonly
           class="maxw-sm-420"
         />
       </b-form-group>
@@ -272,9 +274,7 @@
  * Handle Existing GMC, check requirements that are already checked
  * by filling the data.selectedRequirements[]
  */
-
 import googleUrl from '@/assets/json/googleUrl.json';
-
 import PsModal from '../commons/ps-modal';
 import Stepper from '../commons/stepper';
 
@@ -295,7 +295,6 @@ export default {
         'billingTerms',
         'completeCheckoutProcess',
       ],
-      selectedRequirements: [],
       steps: [
         {
           title: this.$i18n.t('mcaRequirements.steps.websiteRequirements'),
@@ -304,7 +303,6 @@ export default {
           title: this.$i18n.t('mcaRequirements.steps.shopInfo'),
         },
       ],
-      businessAddress: this.infosBusinessAddress || '',
       businessPhone: this.infosBusinessPhone || '',
       containsAdultContent: null,
       acceptsGoogleTerms: false,
@@ -335,7 +333,14 @@ export default {
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
     },
     ok() {
-      this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', []);
+      this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', {
+        shop_url: this.shopInformations.shop.url,
+        shop_name: this.shopInformations.shop.name,
+        location: this.shopInformations.store.country.iso_code,
+        adult_content: this.containsAdultContent,
+      }).then(() => {
+        this.$refs.modal.hide();
+      });
     },
     cancel() {
       this.$refs.modal.hide();
@@ -347,18 +352,6 @@ export default {
     },
   },
   props: {
-    infosWebsiteURL: {
-      type: String,
-    },
-    infosStoreName: {
-      type: String,
-    },
-    infosBusinessLocation: {
-      type: String,
-    },
-    infosBusinessAddress: {
-      type: String,
-    },
     infosBusinessPhone: {
       type: String,
     },
@@ -375,13 +368,18 @@ export default {
     popinTitle() {
       return this.newMca ? this.$i18n.t('mcaRequirements.title') : this.$i18n.t('mcaRequirements.steps.websiteRequirements');
     },
+    shopInformations() {
+      return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
+    },
+    selectedRequirements() {
+      return this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'];
+    },
   },
   mounted() {
     this.stepActiveData = this.stepActive;
     if (this.newMca === true) {
-      this.$store.dispatch('accounts/REQUEST_WEBSITE_REQUIREMENTS').then(() => {
-        this.selectedRequirements = this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'];
-      });
+      this.$store.dispatch('accounts/REQUEST_WEBSITE_REQUIREMENTS');
+      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
     }
   },
   googleUrl,

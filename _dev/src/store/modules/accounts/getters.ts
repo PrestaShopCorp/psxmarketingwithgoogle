@@ -24,7 +24,7 @@ import {
   GoogleMerchantAccount,
   PrestaShopAccountsContext,
   GoogleAccountContext,
-  MerchantCenterAccountContext, WebsiteClaimErrorReason,
+  MerchantCenterAccountContext, WebsiteClaimErrorReason, ShopInformations,
 } from './state';
 import GetterTypes from './getters-types';
 
@@ -99,5 +99,8 @@ export default {
   },
   [GetterTypes.GET_WEBSITE_REQUIREMENTS](state: LocalState) {
     return state.googleMerchantAccount.websiteRequirements;
+  },
+  [GetterTypes.GET_SHOP_INFORMATIONS](state: LocalState): ShopInformations {
+    return state.googleMerchantAccount.shopInfo;
   },
 };

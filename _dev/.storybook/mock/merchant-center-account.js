@@ -12,6 +12,7 @@ export const merchantCenterAccountNotConnected = {
     id: null,
     claimError: null,
     users: [],
+    websiteRequirements: [],
 };
 
 export const merchantCenterAccountConnected = {
@@ -35,20 +36,21 @@ export const merchantCenterAccountConnectedOnce = {
 
 export const merchantCenterAccountCreation = {
   ...merchantCenterAccountNotConnected,
-  websiteRequirements: [],
   shopInfo: {
-    shop:{
+    shop: {
       name: "PrestaShop",
       url: "http://maxps-dev.ngrok.io/"
     },
     store:{
-      country:{
-        locality: "Paris",
-        phone: "0658585858",
+      country: {
+        iso_code: "FR",
+        name: "France",
       },
+      locality: "Paris",
+      phone: "0658585858",
       postalCode: "75015",
-      region: "FR",
-      streetAddress:"12 rue d'amsterdam",
+      region: false,
+      streetAddress: "12 rue d'amsterdam",
     }
   }
 }

@@ -1,4 +1,5 @@
 import MerchantCenterAccountPopinWebsiteRequirements from '../src/components/merchant-center-account/merchant-center-account-popin-website-requirements.vue'
+import {merchantCenterAccountCreation} from '../.storybook/mock/merchant-center-account';
 
 export default {
   title: 'Merchant Center Account/Popins/Website Requirements',
@@ -13,16 +14,15 @@ const Template = (args, { argTypes }) => ({
       <MerchantCenterAccountPopinWebsiteRequirements v-bind="$props" />
     </div>
   `,
+  beforeMount(this: any) {
+    this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountCreation;
+    console.log(this.$store.state);
+  },
 });
 
 export const NewMcaStepOne:any = Template.bind({});
 NewMcaStepOne.args = {
   visible: true,
-  infosWebsiteURL: 'maysonroyer.com',
-  infosStoreName: 'Maison Royer',
-  infosBusinessLocation: 'France',
-  infosBusinessAddress: 'La Morelière - 85500 Les Herbiers',
-  infosBusinessPhone: '+33 2 51 92 04 25',
   stepActive: 1,
   newMca: true,
 };
@@ -30,11 +30,6 @@ NewMcaStepOne.args = {
 export const NewMcaStepTwo:any = Template.bind({});
 NewMcaStepTwo.args = {
   visible: true,
-  infosWebsiteURL: 'maysonroyer.com',
-  infosStoreName: 'Maison Royer',
-  infosBusinessLocation: 'France',
-  infosBusinessAddress: 'La Morelière - 85500 Les Herbiers',
-  infosBusinessPhone: '+33 2 51 92 04 25',
   stepActive: 2,
   newMca: true,
 };
@@ -42,10 +37,5 @@ NewMcaStepTwo.args = {
 export const CheckRequirements:any = Template.bind({});
 CheckRequirements.args = {
   visible: true,
-  infosWebsiteURL: 'maysonroyer.com',
-  infosStoreName: 'Maison Royer',
-  infosBusinessLocation: 'France',
-  infosBusinessAddress: 'La Morelière - 85500 Les Herbiers',
-  infosBusinessPhone: '+33 2 51 92 04 25',
   newMca: false,
 };
