@@ -439,7 +439,6 @@ export default {
         requirements: payload,
       }),
     });
-    console.log(response);
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }

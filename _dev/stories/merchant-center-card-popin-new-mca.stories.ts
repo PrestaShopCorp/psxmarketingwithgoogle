@@ -16,7 +16,6 @@ const Template = (args, { argTypes }) => ({
   `,
   beforeMount(this: any) {
     this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountCreation;
-    console.log(this.$store.state);
   },
 });
 
