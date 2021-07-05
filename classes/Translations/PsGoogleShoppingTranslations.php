@@ -97,7 +97,6 @@ class PsGoogleShoppingTranslations
                 ],
                 'productFeedNotice' => $this->module->l('Help customers to find your products more easily on Google and list them for free with free listing. Free listing help reach more customers and get them to visit your site.', 'PsGoogleShoppingTranslations'),
                 'warningMultistore' => $this->module->l("You can associate only one store to a PrestaShop account.   \n If you need to associate another store you will have to unlink the associated store.", 'PsGoogleShoppingTranslations'),
-                'GMCAlreadyLinked' => $this->module->l('Your PrestaShop account is already linked to another store. You can associate only one store to a PrestaShop account. To associate this other store you have to unlink the associated one.', 'PsGoogleShoppingTranslations'),
             ],
             'psAccountCard' => [
                 'disonboardedText' => $this->module->l('Authorize your account to manage your shop’s services', 'PsGoogleShoppingTranslations'),
