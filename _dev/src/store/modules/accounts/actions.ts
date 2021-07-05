@@ -495,6 +495,7 @@ export default {
         },
         body: JSON.stringify(payload),
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -503,7 +504,9 @@ export default {
       const correlationId = `${Math.floor(Date.now() / 1000)}`;
       const accountId = json.account_id;
 
-      commit(MutationsTypes.SAVE_GMC, json);
+      commit(MutationsTypes.SAVE_GMC, {id: accountId});
+
+      await dispatch(ActionsTypes.REQUEST_GMC_LIST);
       await dispatch(ActionsTypes.SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT, {accountId, correlationId})
         .then(() => new Promise((resolve) => setTimeout(resolve, 1000)))
         .then(() => {
