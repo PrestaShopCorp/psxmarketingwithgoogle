@@ -138,6 +138,8 @@ export enum WebsiteClaimErrorReason {
   OverwriteNeededWithManualAction = 'OverwriteNeededWithManualAction',
   UnlinkFailed = 'UnlinkFailed',
   IneligibleForFreeListing = 'IneligibleForFreeListing',
+  PendingCheck = 'PendingCheck', // TODO !0: Amaury ne l'a pas encore fait ?
+  PendingCreation = 'PendingCreation',
   // States with errors
   Suspended = 'Suspended',
 }

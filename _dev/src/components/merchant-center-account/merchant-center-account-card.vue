@@ -201,6 +201,13 @@
           {{ $t('badge.checkingSiteClaim') }}
         </span>
         <span
+          v-if="loaderText"
+          class="text-muted"
+        >
+          <i class="icon-busy icon-busy--dark mr-1" />
+          {{ $t(`badge.${loaderText}`) }}
+        </span>
+        <span
           v-if="displaySiteVerified"
           class="text-muted"
         >
@@ -484,6 +491,7 @@ export default {
     mcaStatusBadge() {
       switch (this.error) {
         case WebsiteClaimErrorReason.Pending:
+        case WebsiteClaimErrorReason.PendingCheck:
           return {
             color: 'warning',
             text: 'pending',
@@ -518,6 +526,11 @@ export default {
             color: 'warning',
             text: 'ineligibleForFreeListing',
           };
+        case WebsiteClaimErrorReason.PendingCreation:
+          return {
+            color: 'warning',
+            text: 'pendingCreation',
+          };
         default:
           return {
             color: 'success',
@@ -531,6 +544,16 @@ export default {
     },
     websiteUrl() {
       return this.$store.state.accounts.googleMerchantAccount.websiteUrl;
+    },
+    loaderText() {
+      switch (this.error) {
+        case WebsiteClaimErrorReason.PendingCreation:
+          return 'creatingGmc';
+        case WebsiteClaimErrorReason.PendingCheck:
+          return 'pendingCheck';
+        default:
+          return null;
+      }
     },
   },
   methods: {

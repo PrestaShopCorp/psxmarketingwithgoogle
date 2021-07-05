@@ -92,7 +92,7 @@ export default {
     },
     correlationId: string,
   ) {
-    commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+    commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCheck);
 
     let {isVerified, isClaimed} = await dispatch(
       ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
@@ -512,22 +512,25 @@ export default {
         users: [
           {
             emailAddress: rootState.accounts.googleAccount.details.email,
-            admin :true
-          }
+            admin: true,
+          },
         ],
         businessInformation: {
           address: {
-            country: payload.location
-          }
+            country: payload.location,
+          },
         },
-        subAccountNotManagedByPrestashop:false
+        subAccountNotManagedByPrestashop: false,
       };
 
       commit(MutationsTypes.ADD_NEW_GMC, newGmc);
       commit(MutationsTypes.SAVE_GMC, newGmc);
-
-      await dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
       await dispatch(ActionsTypes.SEND_WEBSITE_REQUIREMENTS, []);
+
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCreation);
+      setTimeout(async () => {
+        await dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+      }, 60000);
     } catch (error) {
       console.log(error);
     }
