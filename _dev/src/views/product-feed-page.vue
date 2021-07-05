@@ -22,14 +22,10 @@ export default {
     ProductFeedProductStatusCard,
   },
 
-  computed: {
-    productFeedStatus() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
-    },
-  },
   beforeCreate() {
     this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
     this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
+    this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
   },
 
 };

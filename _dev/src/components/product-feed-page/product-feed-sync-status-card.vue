@@ -113,13 +113,7 @@ export default {
     // ProductFeedCardReportProductsCard,
   },
   props: {
-    syncStatus: {
-      type: String,
-      validator(value) {
-        return ['processed', 'failed', 'schedule'].indexOf(value) !== -1;
-      },
-      required: true,
-    },
+
     nbProductsReadyToSync: {
       type: Number,
     },
@@ -129,14 +123,29 @@ export default {
   },
 
   computed: {
+    productFeedStatus() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
+    },
+    syncStatus() {
+      //  TODO : find status in progress
+      if (this.productFeedStatus.failedSyncs.length) {
+        return 'failed';
+      }
+      return 'success';
+    },
+    productFeedSettings() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'];
+    },
     title() {
-      if (this.syncStatus === 'schedule') {
-        return {
-          icon: 'schedule',
-          color: 'primary',
-          message: this.$i18n.t('productFeedPage.syncStatus.readyForExport'),
-        };
-      } if (this.syncStatus === 'failed') {
+      //  TODO : find status in progress
+      // if (this.syncStatus === 'schedule') {
+      //   return {
+      //     icon: 'schedule',
+      //     color: 'primary',
+      //     message: this.$i18n.t('productFeedPage.syncStatus.readyForExport'),
+      //   };
+      // }
+      if (this.syncStatus === 'failed') {
         return {
           icon: 'error_outline',
           color: 'danger',
@@ -150,10 +159,10 @@ export default {
       };
     },
     nextSyncTime() {
-      return this.$options.filters.timeConverterToDate(this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt);
+      return this.$options.filters.timeConverterToDate(this.productFeedStatus.nextJobAt);
     },
     lastSyncTime() {
-      return this.$options.filters.timeConverterToDate(this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].jobEndedAt);
+      return this.$options.filters.timeConverterToDate(this.productFeedStatus.jobEndedAt);
     },
   },
   googleUrl,

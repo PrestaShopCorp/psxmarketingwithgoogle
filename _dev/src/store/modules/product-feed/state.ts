@@ -35,6 +35,7 @@ export interface ProductFeedSettingsAttributeMapping {
 }
 
 export interface ProductFeedSettings {
+  shippingSettings: Array<object>,
   autoImportTaxSettings: boolean;
   targetCountries: Array<string> | null;
   productsPerBatchSync?: number;
@@ -42,6 +43,14 @@ export interface ProductFeedSettings {
   attributeMapping: ProductFeedSettingsAttributeMapping;
   syncSchedule?: string,
 }
+
+export interface ProductFeedValidationSummary {
+  activeItems: number,
+    expiringItems: number,
+    pendingItems: number,
+    disapprovedItems: number
+}
+
 export interface State {
     isConfigured: boolean,
     isConfiguredOnce: boolean,
@@ -49,6 +58,7 @@ export interface State {
     stepper: number,
     status: ProductFeedStatus,
     settings: ProductFeedSettings,
+    validationSummary : ProductFeedValidationSummary,
 }
 
 export const state: State = {
@@ -63,11 +73,18 @@ export const state: State = {
     shopHealthy: true,
   },
   settings: {
+    shippingSettings: [],
     autoImportTaxSettings: false,
     targetCountries: null,
     productsPerBatchSync: 0,
     autoImportShippingSettings: true,
     attributeMapping: {},
     syncSchedule: '1 * * * * *',
+  },
+  validationSummary: {
+    activeItems: 113,
+    expiringItems: 13,
+    pendingItems: 23,
+    disapprovedItems: 57,
   },
 };

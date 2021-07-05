@@ -149,6 +149,7 @@ export default {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
       targetCountries: productFeedSettings.targetCountries,
+      shippingSettings: productFeedSettings.shippingSettings,
       attributeMapping: {
         exportProductsWithShortDescription:
         productFeedSettings?.attributeMapping?.exportProductsWithShortDescription
@@ -165,7 +166,6 @@ export default {
         productFeedSettings?.attributeMapping?.customGenderGroupAttribute
         || null,
       },
-
     };
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/settings`, {
@@ -186,7 +186,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_SHIPPING_SETTINGS]({rootState}) {
+  async [ActionsTypes.GET_SHIPPING_SETTINGS]({rootState, commit}) {
     const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
@@ -197,6 +197,32 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    return response.json();
+    const result = await response.json();
+    commit(MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS, result);
+    return result;
+  },
+
+  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {
+    // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
+    // const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/validation/summary`, {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Accept: 'application/json',
+    //     Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+    //   },
+    // });
+    const json = {
+      activeItems: 113,
+      expiringItems: 13,
+      pendingItems: 23,
+      disapprovedItems: 57,
+    };
+    commit(MutationsTypes.SET_VALIDATION_SUMMARY, json);
+
+    // if (!response.ok) {
+    //   throw new HttpClientError(response.statusText, response.status);
+    // }
+    // return response.json();
   },
 };

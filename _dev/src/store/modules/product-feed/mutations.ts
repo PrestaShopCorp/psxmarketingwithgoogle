@@ -23,6 +23,19 @@ type payloadObject = {
   name: string, data: string
 }
 
+type payloadArrayShipping = [{
+  collection: string,
+  id: string,
+  properties: object
+}]
+
+type payloadObjectSummary = {
+  activeItems: number,
+  expiringItems: number,
+  pendingItems: number,
+  disapprovedItems: number
+}
+
 export default {
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
     state.status[payload.name] = payload.data;
@@ -72,5 +85,15 @@ export default {
       delete state.settings.attributeMapping.customGenderGroupAttribute;
     }
     state.settings.attributeMapping = {...state.settings.attributeMapping};
+  },
+
+  [MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS](state: LocalState, payload:
+    payloadArrayShipping,
+  ) {
+    state.settings.shippingSettings = payload;
+  },
+  [MutationsTypes.SET_VALIDATION_SUMMARY](state: LocalState, payload: payloadObjectSummary,
+  ) {
+    state.validationSummary = payload;
   },
 };

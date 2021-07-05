@@ -178,7 +178,7 @@ export default {
       } else if (this.merchantCenterAccountConnectedOnce) {
         this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
       } else if (this.productFeedIsConfiguredOnce) {
-        this.$store.commit('accounts/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
+        this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
       }
     },
   },

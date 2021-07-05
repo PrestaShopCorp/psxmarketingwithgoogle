@@ -146,6 +146,7 @@
       </b-button>
       <b-button
         @click="saveAll"
+        :disabled="disabledExportButton"
         size="sm"
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
@@ -183,6 +184,7 @@ export default {
   },
   data() {
     return {
+      disabledExportButton: false,
       nextSyncTotalProducts: this.$store.state.productFeed.settings.productsPerBatchSync,
       nextSyncDate: this.$store.state.productFeed.status.nextJobAt,
       shippingSettings:
@@ -225,13 +227,28 @@ export default {
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
+    checkForAutomaticImport() {
+
+    },
     saveAll() {
+      this.disabledExportButton = true;
+      if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
+        this.$store.dispatch('productFeed/GET_SHIPPING_SETTINGS')
+          .then(() => {
+            this.postDatas();
+          });
+      }
+    },
+    postDatas() {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
       this.$store.commit('productFeed/TOGGLE_CONFIGURATION_FINISHED', true);
       this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', true);
       this.$router.push({
         path: '/configuration',
       });
+    },
+    beforeCreate() {
+      this.disabledExportButton = false;
     },
   },
   countriesSelectionOptions,

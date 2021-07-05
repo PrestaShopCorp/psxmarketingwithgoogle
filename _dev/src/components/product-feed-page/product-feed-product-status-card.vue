@@ -43,17 +43,17 @@
         >
           <product-feed-card-report-products-sync-card
             variant="success"
-            :nb-products="nbProductsSuccess"
+            :nb-products="this.validationSummary.activeItems"
             :is-sync-in-progress="isSyncInProgress"
           />
           <product-feed-card-report-products-sync-card
             variant="warning"
-            :nb-products="nbProductsPending"
+            :nb-products="this.validationSummary.pendingItems"
             :is-sync-in-progress="isSyncInProgress"
           />
           <product-feed-card-report-products-sync-card
             variant="danger"
-            :nb-products="nbProductsDisapproved"
+            :nb-products="this.validationSummary.disapprovedItems"
             :is-sync-in-progress="isSyncInProgress"
           />
         </b-row>
@@ -71,10 +71,7 @@
 </template>
 
 <script>
-/**
- * TODO: Handle products number
- * TODO: Add linkTo "View all detailed statuses"
- */
+// TODO: Add linkTo "View all detailed statuses"
 
 import {
   BAlert,
@@ -89,26 +86,19 @@ export default {
     productFeedCardReportProductsSyncCard,
   },
   props: {
+    //  TODO : retrieve it from sync/status
     isSyncInProgress: {
       type: Boolean,
       default: false,
     },
-    nbProductsSuccess: {
-      type: Number,
-      default: 0,
-    },
-    nbProductsPending: {
-      type: Number,
-      default: 0,
-    },
-    nbProductsDisapproved: {
-      type: Number,
-      default: 0,
-    },
   },
   computed: {
+    validationSummary() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_VALIDATION_SUMMARY'];
+    },
     nbProductsTotal() {
-      return this.nbProductsSuccess + this.nbProductsPending + this.nbProductsDisapproved;
+      return this.validationSummary.activeItems + this.validationSummary.pendingItems
+      + this.validationSummary.disapprovedItems;
     },
   },
 };
