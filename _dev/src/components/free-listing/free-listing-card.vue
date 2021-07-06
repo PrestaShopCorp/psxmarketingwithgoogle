@@ -154,6 +154,8 @@ export default {
           text: 'alertCantEnableFreeListing',
         };
       }
+
+      // TODO: remove unused cases
       if (this.freeListingStatus === true
       && this.productFeedIsEnabled === false) {
         return {
