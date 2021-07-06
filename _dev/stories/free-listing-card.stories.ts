@@ -27,7 +27,8 @@ Disabled.args = {
 export const Enabled:any = Template.bind({});
 Enabled.args = {
   isEnabled: true,
-  firstTime: true,
+  firstTime: false,
+  enabledFreeListing: true,
   beforeCreate(this: any) {
     this.$store.state.productFeed = productFeedEnabled
     this.$store.state.freeListing = freeListingEnabled
@@ -45,35 +46,26 @@ AlertEnableFreeListing.args = {
   },
 }
 
-export const AlertActivationSuccess:any = Template.bind({});
-AlertActivationSuccess.args = {
-  isEnabled: true,
-  firstTime: false,
-  enabledFreeListing: true,
-  beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedEnabled
-    this.$store.state.freeListing = freeListingEnabled
-  },
-}
-
-export const AlertEnableFreeListingAndProductFeed:any = Template.bind({});
-AlertEnableFreeListingAndProductFeed.args = {
+// TODO : case to handle (store state, etc...)
+export const AlertCountryNotEligible:any = Template.bind({});
+AlertCountryNotEligible.args = {
   isEnabled: true,
   firstTime: false,
   enabledFreeListing: false,
   beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedDisabled;
-    this.$store.state.freeListing = freeListingDisabled;
+    this.$store.state.productFeed = productFeedEnabled
+    this.$store.state.freeListing = freeListingDisabled
   },
 }
 
-export const AlertProductFeedDisabled:any = Template.bind({});
-AlertProductFeedDisabled.args = {
+// TODO : case to handle (store state, etc...)
+export const AlertCantEnableFreeListing:any = Template.bind({});
+AlertCantEnableFreeListing.args = {
   isEnabled: true,
   firstTime: false,
-  enabledFreeListing: true,
+  enabledFreeListing: false,
   beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedDisabled;
-    this.$store.state.freeListing = freeListingEnabled;
+    this.$store.state.productFeed = productFeedEnabled
+    this.$store.state.freeListing = freeListingDisabled
   },
 }
