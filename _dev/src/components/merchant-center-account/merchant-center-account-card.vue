@@ -245,9 +245,11 @@
       />
       <div class="text-muted">
         <a
-          :href="$options.googleUrl.learnAboutAccountSuspension"
+          v-for="(link, index) in selectedMcaDetails.isSuspended.documentation"
+          :key="index"
+          :href="link"
           target="_blank"
-          class="text-muted ps_gs-fz-12 font-weight-normal"
+          class="d-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
         >
           {{ $t('cta.learnAboutAccountSuspension') }}
         </a>
@@ -383,6 +385,17 @@
         <strong>{{ $t('mcaCard.ineligibleForFreeListing') }}</strong><br>
         <span class="ps_gs-fz-12">
           {{ $t('mcaCard.ineligibleForFreeListingDescription') }}
+        </span>
+        <span class="text-muted">
+          <a
+            v-for="(link, index) in selectedMcaDetails.isEnhancedFreeListingCompliant.documentation"
+            :key="index"
+            :href="link"
+            target="_blank"
+            class="d-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
+          >
+            {{ $t('cta.learnAboutFreeListing') }}
+          </a>
         </span>
       </p>
     </b-alert>
