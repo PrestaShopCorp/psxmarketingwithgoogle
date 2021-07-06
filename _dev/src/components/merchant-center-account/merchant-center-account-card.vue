@@ -571,7 +571,6 @@ export default {
       }
     },
     gmcLabel(index) {
-      // TODO : rework this if we use optgroups in dropdown
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         const gmc = this.mcaSelectionOptions[index];
         const nameAndId = `${gmc.name} - ${gmc.id}`;
