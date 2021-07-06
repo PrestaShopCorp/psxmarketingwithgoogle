@@ -24,7 +24,8 @@ import {
   GoogleMerchantAccount,
   PrestaShopAccountsContext,
   GoogleAccountContext,
-  MerchantCenterAccountContext, WebsiteClaimErrorReason,
+  MerchantCenterAccountContext,
+  WebsiteClaimErrorReason,
   ShopInformations,
 } from './state';
 import GetterTypes from './getters-types';

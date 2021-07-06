@@ -63,26 +63,6 @@ export default {
     // }
   },
 
-  async [ActionsTypes.TOGGLE_SYNCHRONIZATION]({commit, rootState}, payload: boolean) {
-    commit(MutationsTypes.SET_SUSPENDED_DATA_SYNC,
-      !rootState.productFeed.status.enabled);
-    const route = payload ? `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/register`
-      : `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/suspend`;
-    try {
-      const response = await fetch(route, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      response.json();
-    } catch (error) {
-      console.error(error);
-    }
-  },
-
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, state, rootState}) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/settings`, {

@@ -47,8 +47,7 @@
         "smartShoppingCampaign" : "Reach more people with paid Smart Shopping campaign"
       },
       "productFeedNotice" : "Help customers to find your products more easily on Google and list them for free with free listing. Free listing help reach more customers and get them to visit your site.",
-      "warningMultistore":  "You can associate only one store to a PrestaShop account.   \n If you need to associate another store you will have to unlink the associated store.",
-      "GMCAlreadyLinked":  "Your PrestaShop account is already linked to another store. You can associate only one store to a PrestaShop account. To associate this other store you have to unlink the associated one."
+      "warningMultistore":  "You can associate only one store to a PrestaShop account.   \n If you need to associate another store you will have to unlink the associated store."
     },
     "psAccountCard" : {
       "disonboardedText" : "Authorize your account to manage your shop’s services",
@@ -457,9 +456,7 @@
       "textoverwrite" : "Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  /nIf you are running a different Shopping campaign, we recommend pausing it.",
       "titleDisableFreeListing" : "Disable free listing?",
       "textDisableFreeListing" : "By disabling free listings your products will no longer be available for organic listing on Shopping tab.  \n However your product feed will stay available.",
-      "titleDisableProductFeed" : "Disable product feed sync?",
-      "textDisableProductFeed" : "After disabling your product feed sync your products data won't be updated. However they still be available for free listing and advertising for next 30 days. After that time any active campaign will be paused.",
-      "titleEnableFreeListing" : "Enable free listing?",
+     "titleEnableFreeListing" : "Enable free listing?",
       "textEnableFreeListing" : "This action will also cause the reactivation of the product feed.",
       "titleCancelWithoutSaving" : "Cancel without saving?",
       "textCancelProductFeed" : "You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps.",

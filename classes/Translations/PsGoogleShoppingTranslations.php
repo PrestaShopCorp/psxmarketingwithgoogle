@@ -97,7 +97,6 @@ class PsGoogleShoppingTranslations
                 ],
                 'productFeedNotice' => $this->module->l('Help customers to find your products more easily on Google and list them for free with free listing. Free listing help reach more customers and get them to visit your site.', 'PsGoogleShoppingTranslations'),
                 'warningMultistore' => $this->module->l("You can associate only one store to a PrestaShop account.   \n If you need to associate another store you will have to unlink the associated store.", 'PsGoogleShoppingTranslations'),
-                'GMCAlreadyLinked' => $this->module->l('Your PrestaShop account is already linked to another store. You can associate only one store to a PrestaShop account. To associate this other store you have to unlink the associated one.', 'PsGoogleShoppingTranslations'),
             ],
             'psAccountCard' => [
                 'disonboardedText' => $this->module->l('Authorize your account to manage your shop’s services', 'PsGoogleShoppingTranslations'),
@@ -504,8 +503,6 @@ class PsGoogleShoppingTranslations
                 'textoverwrite' => $this->module->l('Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  /nIf you are running a different Shopping campaign, we recommend pausing it.', 'PsGoogleShoppingTranslations'),
                 'titleDisableFreeListing' => $this->module->l('Disable free listing?', 'PsGoogleShoppingTranslations'),
                 'textDisableFreeListing' => $this->module->l("By disabling free listings your products will no longer be available for organic listing on Shopping tab.  \n However your product feed will stay available.", 'PsGoogleShoppingTranslations'),
-                'titleDisableProductFeed' => $this->module->l('Disable product feed sync?', 'PsGoogleShoppingTranslations'),
-                'textDisableProductFeed' => $this->module->l("After disabling your product feed sync your products data won't be updated. However they still be available for free listing and advertising for next 30 days. After that time any active campaign will be paused.", 'PsGoogleShoppingTranslations'),
                 'titleEnableFreeListing' => $this->module->l('Enable free listing?', 'PsGoogleShoppingTranslations'),
                 'textEnableFreeListing' => $this->module->l('This action will also cause the reactivation of the product feed.', 'PsGoogleShoppingTranslations'),
                 'titleCancelWithoutSaving' => $this->module->l('Cancel without saving?', 'PsGoogleShoppingTranslations'),

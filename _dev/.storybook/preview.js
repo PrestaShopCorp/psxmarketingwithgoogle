@@ -112,6 +112,7 @@ export const parameters = {
             'LandingPage'
           ],
         'Onboarding',
+        'Multistore',
           [
             'Components',
               ['SectionTitle', 'Notice - Product feed', 'Card - PS Account', 'Card - Google Account', 'Card - MCA', 'Card - Product feed', 'Card - Free listing', 'Settings - Poduct feed'] ,
@@ -125,6 +126,7 @@ export const parameters = {
         'Free listing',
         'Google Ads Account',
         'Smart Shopping Campaign',
+        'Product Feed Page',
         'Basic Components',
       ],
     },

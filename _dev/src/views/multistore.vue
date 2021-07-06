@@ -38,18 +38,6 @@ export default {
     onShopSelected(shopSelected) {
       window.location.href = shopSelected.url;
     },
-
-    onSyncToggled() {
-      // If user has sync already, we warn the user that the sync won't work anymore with modal
-      if (this.$store.state.productFeed.status.enabled) {
-        this.$bvModal.show(
-          this.$refs.productFeedDisableModal.$refs.modal.id,
-        );
-      // Else (user has not sync) we toggle the sync for the user
-      } else {
-        this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION', true);
-      }
-    },
   },
   computed: {
 

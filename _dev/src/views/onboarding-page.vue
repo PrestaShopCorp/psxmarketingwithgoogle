@@ -13,7 +13,6 @@
       variant="warning"
       class="mb-0 mt-3 mb-3"
     >
-      {{ $t('onboarding.GMCAlreadyLinked') }}
       <VueShowdown
         :markdown="$t('onboarding.warningMultistore')"
       />
@@ -156,17 +155,6 @@ export default {
       this.$bvModal.show(
         this.$refs.mcaDisconnectModal.$refs.modal.id,
       );
-    },
-    onSyncToggled() {
-      // If user has sync already, we warn the user that the sync won't work anymore with modal
-      if (this.$store.state.productFeed.status.enabled) {
-        this.$bvModal.show(
-          this.$refs.productFeedDisableModal.$refs.modal.id,
-        );
-      // Else (user has not sync) we toggle the sync for the user
-      } else {
-        this.$store.dispatch('productFeed/TOGGLE_SYNCHRONIZATION', true);
-      }
     },
     toastIsClosed() {
       if (this.googleAccountConnectedOnce) {

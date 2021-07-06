@@ -47,7 +47,8 @@
           >
             <i
               v-if="!newMca"
-              class="material-icons text-success mr-2 ps_gs-fz-18">
+              class="material-icons text-success mr-2 ps_gs-fz-18"
+            >
               check
             </i>
             <div>
@@ -273,9 +274,7 @@
  * Handle Existing GMC, check requirements that are already checked
  * by filling the data.selectedRequirements[]
  */
-
 import googleUrl from '@/assets/json/googleUrl.json';
-
 import PsModal from '../commons/ps-modal';
 import Stepper from '../commons/stepper';
 
@@ -296,7 +295,6 @@ export default {
         'billingTerms',
         'completeCheckoutProcess',
       ],
-      selectedRequirements: [],
       steps: [
         {
           title: this.$i18n.t('mcaRequirements.steps.websiteRequirements'),
@@ -306,7 +304,7 @@ export default {
         },
       ],
       businessPhone: this.infosBusinessPhone || '',
-      shopInformations: {},
+      selectedRequirements: [],
       containsAdultContent: null,
       acceptsGoogleTerms: false,
     };
@@ -371,6 +369,9 @@ export default {
     popinTitle() {
       return this.newMca ? this.$i18n.t('mcaRequirements.title') : this.$i18n.t('mcaRequirements.steps.websiteRequirements');
     },
+    shopInformations() {
+      return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
+    },
   },
   mounted() {
     this.stepActiveData = this.stepActive;
@@ -378,9 +379,7 @@ export default {
       this.$store.dispatch('accounts/REQUEST_WEBSITE_REQUIREMENTS').then(() => {
         this.selectedRequirements = this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'];
       });
-      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS').then(() => {
-        this.shopInformations = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
-      });
+      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
     }
   },
   googleUrl,

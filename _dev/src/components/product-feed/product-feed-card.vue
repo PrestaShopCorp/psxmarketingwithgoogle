@@ -97,12 +97,12 @@
         <p class="ps_gs-fz-12 text-muted mb-0">
           {{ $t("productFeedPage.syncStatus.scheduleOn", [nextSyncTime]) }}
         </p>
-        <a
-          href=""
+        <router-link
           class="font-weight-600 ps_gs-fz-13 text-right ml-auto"
+          to="/product-feed"
         >
           {{ $t('cta.trackProductStatus') }}
-        </a>
+        </router-link>
         <!-- Not in free plan -->
         <!-- <b-button
           v-if="syncStatus === 'failed'"

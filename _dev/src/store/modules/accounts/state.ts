@@ -37,6 +37,24 @@ export interface PrestaShopAccountsContext {
   shops: object[],
 }
 
+export interface ShopInformations {
+  shop: {
+    name: string,
+    url: string,
+  },
+  store: {
+    streetAddress: string,
+    locality: string,
+    region: string,
+    postalCode: string,
+    country: {
+      name: string,
+      isoCode: string,
+    },
+    phone: string,
+  }
+}
+
 export interface GoogleMerchantAccount extends contentApi.Schema$Account {
   aggregatorId?: string;
   aggregatorName?: string;
