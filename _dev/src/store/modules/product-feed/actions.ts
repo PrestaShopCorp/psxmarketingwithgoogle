@@ -107,9 +107,11 @@ export default {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        // ! Not send by API yet
         name: 'productsPerBatchSync', data: json.productsPerBatchSync,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        // ! Not send by API yet
         name: 'syncSchedule', data: json.syncSchedule,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
@@ -205,12 +207,15 @@ export default {
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {
     // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
     // const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/validation/summary`, {
-    //   method: 'GET',
+    //   method: 'POST',
     //   headers: {
     //     'Content-Type': 'application/json',
     //     Accept: 'application/json',
     //     Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
     //   },
+    // body: JSON.stringify({
+    //   action: 'getProductsReadyToSync',
+    // }),
     // });
     const json = {
       activeItems: 113,
@@ -224,5 +229,20 @@ export default {
     //   throw new HttpClientError(response.statusText, response.status);
     // }
     // return response.json();
+  },
+
+  async [ActionsTypes.GET_TOTAL_PRODUCTS]({rootState, commit}) {
+    // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
+    // const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+    //   method: 'GET',
+    //   headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+    // });
+    // if (!response.ok) {
+    //   throw new HttpClientError(response.statusText, response.status);
+    // }
+    // const result = await response.json();
+    const result = 12;
+    commit(MutationsTypes.SAVE_TOTAL_PRODUCTS, result);
+    return result;
   },
 };

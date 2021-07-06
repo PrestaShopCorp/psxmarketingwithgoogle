@@ -50,6 +50,9 @@ export default {
   [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
     return state.settings.targetCountries ?? state.psGoogleShoppingActiveCountries;
   },
+  [GettersTypes.GET_TOTAL_PRODUCTS](state: LocalState) :number {
+    return state.totalProducts;
+  },
 
   [GettersTypes.GET_PRODUCT_FEED_VALIDATION_SUMMARY](state: LocalState) :
   ProductFeedValidationSummary {

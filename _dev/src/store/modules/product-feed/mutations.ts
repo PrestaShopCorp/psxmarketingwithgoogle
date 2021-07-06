@@ -17,7 +17,10 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import MutationsTypes from './mutations-types';
-import {State as LocalState} from './state';
+import {
+  State as LocalState,
+  ProductFeedValidationSummary,
+} from './state';
 
 type payloadObject = {
   name: string, data: string
@@ -28,13 +31,6 @@ type payloadArrayShipping = [{
   id: string,
   properties: object
 }]
-
-type payloadObjectSummary = {
-  activeItems: number,
-  expiringItems: number,
-  pendingItems: number,
-  disapprovedItems: number
-}
 
 export default {
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
@@ -92,8 +88,12 @@ export default {
   ) {
     state.settings.shippingSettings = payload;
   },
-  [MutationsTypes.SET_VALIDATION_SUMMARY](state: LocalState, payload: payloadObjectSummary,
+  [MutationsTypes.SET_VALIDATION_SUMMARY](state: LocalState, payload: ProductFeedValidationSummary,
   ) {
     state.validationSummary = payload;
+  },
+  [MutationsTypes.SAVE_TOTAL_PRODUCTS](state: LocalState, payload: number,
+  ) {
+    state.totalProducts = payload;
   },
 };

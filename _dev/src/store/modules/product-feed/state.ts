@@ -45,16 +45,17 @@ export interface ProductFeedSettings {
 }
 
 export interface ProductFeedValidationSummary {
-  activeItems: number,
-    expiringItems: number,
-    pendingItems: number,
-    disapprovedItems: number
+  activeItems: number|null,
+    expiringItems: number|null,
+    pendingItems: number|null,
+    disapprovedItems: number|null
 }
 
 export interface State {
     isConfigured: boolean,
     isConfiguredOnce: boolean,
     psGoogleShoppingActiveCountries: Array<string>,
+    totalProducts: number,
     stepper: number,
     status: ProductFeedStatus,
     settings: ProductFeedSettings,
@@ -65,6 +66,7 @@ export const state: State = {
   isConfigured: false,
   isConfiguredOnce: false,
   psGoogleShoppingActiveCountries: [],
+  totalProducts: 0,
   stepper: 1,
   status: {
     failedSyncs: [],
