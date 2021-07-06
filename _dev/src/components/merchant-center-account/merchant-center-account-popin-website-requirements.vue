@@ -339,6 +339,8 @@ export default {
         shop_name: this.shopInformations.shop.name,
         location: this.shopInformations.store.country.iso_code,
         adult_content: this.containsAdultContent,
+        address: this.shopInformations.store.streetAddress,
+        phone: this.shopInformations.store.phone,
       }).then(() => {
         this.$refs.modal.hide();
       });
