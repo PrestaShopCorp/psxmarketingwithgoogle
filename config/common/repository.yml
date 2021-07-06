@@ -16,6 +16,9 @@ services:
       - '@ps_googleshopping.context'
       - '@ps_googleshopping.country'
 
+  PrestaShop\Module\PrestashopGoogleShopping\Repository\ProductRepository:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Repository\ProductRepository
+
   PrestaShop\Module\PrestashopGoogleShopping\Repository\ShopRepository:
     class: PrestaShop\Module\PrestashopGoogleShopping\Repository\ShopRepository
 

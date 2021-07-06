@@ -22,6 +22,7 @@ use PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
 use PrestaShop\Module\PrestashopGoogleShopping\Provider\CarrierDataProvider;
 use PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository;
+use PrestaShop\Module\PrestashopGoogleShopping\Repository\ProductRepository;
 
 class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 {
@@ -38,12 +39,18 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
      */
     private $countryRepository;
 
+    /**
+     * @var ProductRepository
+     */
+    protected $productRepository;
+
     public function __construct()
     {
         parent::__construct();
         $this->bootstrap = false;
         $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
         $this->countryRepository = $this->module->getService(CountryRepository::class);
+        $this->productRepository = $this->module->getService(ProductRepository::class);
         $this->ajax = true;
     }
 
@@ -63,6 +70,9 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
                 break;
             case 'getCarrierValues':
                 $this->getCarrierValues();
+                break;
+            case 'getProductsReadyToSync':
+                $this->getProductsReadyToSync($inputs);
                 break;
             case 'getShopConfigurationForGMC':
                 $this->getShopConfigurationForGMC();
@@ -104,6 +114,16 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
             );
             $this->ajaxDie(json_encode(['success' => true, 'method' => 'insert']));
         }
+    }
+
+    private function getProductsReadyToSync(array $inputs)
+    {
+        $this->ajaxDie(json_encode([
+            'total' => $this->productRepository->getProductsTotal(
+                $this->context->shop->id,
+                ['onlyActive' => true]
+            ),
+        ]));
     }
 
     private function getShopConfigurationForGMC()
