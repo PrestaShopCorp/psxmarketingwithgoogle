@@ -39,7 +39,7 @@ export const merchantCenterAccountCreation = {
   shopInfo: {
     shop: {
       name: "PrestaShop",
-      url: "http://maxps-dev.ngrok.io/"
+      url: "http://perdu.com/"
     },
     store:{
       country: {
