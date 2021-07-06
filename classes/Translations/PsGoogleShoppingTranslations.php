@@ -478,7 +478,7 @@ class PsGoogleShoppingTranslations
                 'disapproved' => $this->module->l('Disapproved', 'PsGoogleShoppingTranslations'),
                 'pendingCreation' => $this->module->l('Pending', 'PsGoogleShoppingTranslations'),
                 'creatingGmc' => $this->module->l('Waiting for account creation. Please stay here a minute...', 'PsGoogleShoppingTranslations'),
-                'pendingCheck' => $this->module->l('... ? TODO', 'PsGoogleShoppingTranslations'),
+                'pendingCheck' => $this->module->l('We are checking your GMC status...', 'PsGoogleShoppingTranslations'),
                 'checkingSiteClaim' => $this->module->l('Checking your site claim...', 'PsGoogleShoppingTranslations'),
                 'siteVerified' => $this->module->l('Site verified', 'PsGoogleShoppingTranslations'),
                 'productFeed' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),

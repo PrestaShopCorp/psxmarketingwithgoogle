@@ -428,7 +428,7 @@
       "disapproved" : "Disapproved",
       "pendingCreation" : "Pending",
       "creatingGmc" : "Waiting for account creation. Please stay here a minute...",
-      "pendingCheck" : "... ? TODO",
+      "pendingCheck" : "We are checking your GMC status...",
       "pending" : "Pending",
       "expiring" : "Expiring",
       "checkingSiteClaim" : "Checking your site claim...",
