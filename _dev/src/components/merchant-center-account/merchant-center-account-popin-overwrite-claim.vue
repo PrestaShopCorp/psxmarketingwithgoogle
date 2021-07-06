@@ -42,7 +42,7 @@ export default {
       this.$store.dispatch('accounts/REQUEST_TO_OVERRIDE_CLAIM').finally(
         () => {
           this.processing = false;
-          this.$bvModal.hide('MerchantCenterAccountPopinOverwriteClaim');
+          this.$bvModal.hide('MerchantCenterAccountPopinoverwrite');
         },
       );
     },
@@ -52,7 +52,7 @@ export default {
       this.$store.dispatch('accounts/DISSOCIATE_GMC').finally(
         () => {
           this.processing = false;
-          this.$bvModal.hide('MerchantCenterAccountPopinOverwriteClaim');
+          this.$bvModal.hide('MerchantCenterAccountPopinoverwrite');
         },
       );
     },

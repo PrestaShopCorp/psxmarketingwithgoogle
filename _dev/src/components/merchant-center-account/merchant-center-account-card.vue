@@ -194,11 +194,11 @@
           {{ $t(`badge.${mcaStatusBadge.text}`) }}
         </b-badge>
         <span
-          v-if="isLinking"
+          v-if="loaderText"
           class="text-muted"
         >
           <i class="icon-busy icon-busy--dark mr-1" />
-          {{ $t('badge.checkingSiteClaim') }}
+          {{ $t(`badge.${loaderText}`) }}
         </span>
         <span
           v-if="displaySiteVerified"
@@ -484,6 +484,7 @@ export default {
     mcaStatusBadge() {
       switch (this.error) {
         case WebsiteClaimErrorReason.Pending:
+        case WebsiteClaimErrorReason.PendingCheck:
           return {
             color: 'warning',
             text: 'pending',
@@ -518,6 +519,11 @@ export default {
             color: 'warning',
             text: 'ineligibleForFreeListing',
           };
+        case WebsiteClaimErrorReason.PendingCreation:
+          return {
+            color: 'warning',
+            text: 'pendingCreation',
+          };
         default:
           return {
             color: 'success',
@@ -531,6 +537,19 @@ export default {
     },
     websiteUrl() {
       return this.$store.state.accounts.googleMerchantAccount.websiteUrl;
+    },
+    loaderText() {
+      if (this.isLinking) {
+        return 'checkingSiteClaim';
+      }
+      switch (this.error) {
+        case WebsiteClaimErrorReason.PendingCreation:
+          return 'creatingGmc';
+        case WebsiteClaimErrorReason.PendingCheck:
+          return 'pendingCheck';
+        default:
+          return null;
+      }
     },
   },
   methods: {
@@ -548,7 +567,6 @@ export default {
       }
     },
     gmcLabel(index) {
-      // TODO : rework this if we use optgroups in dropdown
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         const gmc = this.mcaSelectionOptions[index];
         const nameAndId = `${gmc.name} - ${gmc.id}`;

@@ -92,7 +92,7 @@ export default {
     },
     correlationId: string,
   ) {
-    commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+    commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCheck);
 
     let {isVerified, isClaimed} = await dispatch(
       ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
@@ -129,6 +129,8 @@ export default {
           );
         }
       }
+    } else {
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
     }
   },
 
@@ -444,6 +446,7 @@ export default {
     }
     return response.json();
   },
+
   async [ActionsTypes.REQUEST_WEBSITE_REQUIREMENTS]({rootState, commit}) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
@@ -463,6 +466,7 @@ export default {
       console.log(error);
     }
   },
+
   async [ActionsTypes.REQUEST_SHOP_INFORMATIONS]({rootState, commit}) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
@@ -478,6 +482,60 @@ export default {
 
       const json = await response.json();
       commit(MutationsTypes.SAVE_SHOP_INFORMATIONS, json);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async [ActionsTypes.REQUEST_TO_SAVE_NEW_GMC]({
+    rootState, dispatch, state, commit,
+  }, payload) {
+    try {
+      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+
+      const json = await response.json();
+      const accountId = json.account_id;
+      const newGmc = {
+        aggregatorId: json.aggregator_id,
+        kind: 'content#account',
+        id: accountId,
+        name: payload.shop_name,
+        websiteUrl: payload.shop_url,
+        adultContent: payload.adult_content,
+        users: [
+          {
+            emailAddress: rootState.accounts.googleAccount.details.email,
+            admin: true,
+          },
+        ],
+        businessInformation: {
+          address: {
+            country: payload.location,
+          },
+        },
+        subAccountNotManagedByPrestashop: false,
+      };
+
+      commit(MutationsTypes.ADD_NEW_GMC, newGmc);
+      commit(MutationsTypes.SAVE_GMC, newGmc);
+      await dispatch(ActionsTypes.SEND_WEBSITE_REQUIREMENTS, []);
+
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCreation);
+      setTimeout(async () => {
+        await dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+      }, 60000);
     } catch (error) {
       console.log(error);
     }
