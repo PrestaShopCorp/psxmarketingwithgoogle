@@ -1,7 +1,7 @@
 import {state as initialState} from './state';
 import getters from './getters';
 
-const {
+/*const {
   psGoogleShoppingApiUrl,
   psGoogleShoppingAdminUrl,
   psGoogleShoppingAdminAjaxUrl,
@@ -16,7 +16,9 @@ const state = Object.assign(
   {psGoogleShoppingAdminAjaxUrl} || '',
   {psGoogleShoppingShopUrl} || '',
   {isCountryMemberOfEuropeanUnion} || false,
-);
+);*/
+
+const state = {};
 
 /**
  * Return minimal state with common data for all other stores

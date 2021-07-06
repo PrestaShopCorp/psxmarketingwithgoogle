@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Vuex from 'vuex';
 import {BootstrapVue} from 'bootstrap-vue';
 import VueCollapse from 'vue2-collapse';
 import psAccountsVueComponents from 'prestashop_accounts_vue_components';
@@ -17,10 +18,11 @@ Vue.use(BootstrapVue);
 Vue.use(VueCollapse);
 Vue.use(psAccountsVueComponents, {locale: i18n.locale});
 Vue.use(VueShowdown);
+Vue.use(Vuex);
 
 new Vue({
   router,
-  store,
+  store: new Vuex.Store(store),
   i18n,
   render: (h) => h(App),
 }).$mount('#googleShoppingApp');

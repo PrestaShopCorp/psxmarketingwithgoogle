@@ -26,3 +26,7 @@ views/js/chunk-vendors.js
 tests/integration/config.json
 .terraform/
 microcks/
+
+# Generated jest test result
+_dev/.jest-test-results.json
+

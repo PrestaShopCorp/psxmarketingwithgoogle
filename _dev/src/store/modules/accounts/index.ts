@@ -3,7 +3,7 @@ import mutations from './mutations';
 import actions from './actions';
 import {state as initialState} from './state';
 
-const {
+/*const {
   psAccountShopInConflict,
   contextPsAccounts,
   shopIdPsAccounts,
@@ -16,7 +16,9 @@ const state = Object.assign(
   {contextPsAccounts} || {},
   {shopIdPsAccounts} || '',
   {tokenPsAccounts} || '',
-);
+);*/
+
+const state = {};
 
 export default {
   namespaced: true,
