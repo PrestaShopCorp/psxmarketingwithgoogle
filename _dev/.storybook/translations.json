@@ -272,8 +272,8 @@
       "googleDelay" : "It takes 3-5 business days to review products",
       "alertActivationSuccess" : "You have successfully activated the free listing of your products in Shopping tab.",
       "alertEnableFreeListing" : "Enable free listing to show your products on Shopping tab for free.",
-      "alertProductFeedDisabled" : "The synchronization of your product feed is disabled. Products are still visible on your free listing but they will not be updated anymore and they will disappear from your free listing after 30 days.",
-      "alertEnableFreeListingAndProductFeed" : "Enable free listing to display your products on Google Shopping tab for free. This action will cause the reactivation of the product feed."
+      "alertCantEnableFreeListing" : "You can't enable free listing right now. Try again later.",
+      "alertCountryNotEligible" : "You have selected one or more target countries that are not eligible for free listings and ads."
     },
     "googleAdsAccountCard" : {
       "title" : "Connect your Google Ads account",

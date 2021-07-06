@@ -139,6 +139,23 @@ export default {
   },
   computed: {
     alert() {
+      // TODO: handle Country not eligible
+      if (1) {
+        return {
+          variant: 'warning',
+          text: 'alertCountryNotEligible',
+        };
+      }
+      // TODO: handle Can't enable free listing
+      // in this case, the switch toggle should be hidden
+      if (1) {
+        return {
+          variant: 'warning',
+          text: 'alertCantEnableFreeListing',
+        };
+      }
+
+      // TODO: remove unused cases
       if (this.freeListingStatus === true
       && this.productFeedIsEnabled === false) {
         return {

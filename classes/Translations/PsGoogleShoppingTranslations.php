@@ -320,8 +320,8 @@ class PsGoogleShoppingTranslations
                 'googleDelay' => $this->module->l('It takes 3-5 business days to review products', 'PsGoogleShoppingTranslations'),
                 'alertActivationSuccess' => $this->module->l('You have successfully activated the free listing of your products in Shopping tab.', 'PsGoogleShoppingTranslations'),
                 'alertEnableFreeListing' => $this->module->l('Enable free listing to show your products on Shopping tab for free.', 'PsGoogleShoppingTranslations'),
-                'alertProductFeedDisabled' => $this->module->l('The synchronization of your product feed is disabled. Products are still visible on your free listing but they will not be updated anymore and they will disappear from your free listing after 30 days.', 'PsGoogleShoppingTranslations'),
-                'alertEnableFreeListingAndProductFeed' => $this->module->l('Enable free listing to display your products on Google Shopping tab for free. This action will cause the reactivation of the product feed.', 'PsGoogleShoppingTranslations'),
+                'alertCantEnableFreeListing' => $this->module->l('You can\'t enable free listing right now. Try again later.', 'PsGoogleShoppingTranslations'),
+                'alertCountryNotEligible' => $this->module->l('You have selected one or more target countries that are not eligible for free listings and ads.', 'PsGoogleShoppingTranslations'),
             ],
             'googleAdsAccountCard' => [
                 'title' => $this->module->l('Connect your Google Ads account', 'PsGoogleShoppingTranslations'),

@@ -9,13 +9,18 @@
       <li
         v-for="badge in badges"
         :key="badge.name"
-        v-b-tooltip:googleShoppingApp
-        :title="$t(`tooltip.${badge}Required`)"
         class="list-inline-item"
       >
-        <b-badge variant="muted">
-          {{ $t(`badge.${badge}`) }}
-        </b-badge>
+        <b-button
+          variant="invisible"
+          class="m-0 p-0"
+          v-b-tooltip:googleShoppingApp
+          :title="$t(`tooltip.${badge}Required`)"
+        >
+          <b-badge variant="muted">
+            {{ $t(`badge.${badge}`) }}
+          </b-badge>
+        </b-button>
       </li>
     </ul>
   </div>
