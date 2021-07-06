@@ -129,6 +129,8 @@ export default {
           );
         }
       }
+    } else {
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
     }
   },
 
@@ -444,6 +446,7 @@ export default {
     }
     return response.json();
   },
+
   async [ActionsTypes.REQUEST_WEBSITE_REQUIREMENTS]({rootState, commit}) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
@@ -463,6 +466,7 @@ export default {
       console.log(error);
     }
   },
+
   async [ActionsTypes.REQUEST_SHOP_INFORMATIONS]({rootState, commit}) {
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
@@ -482,6 +486,7 @@ export default {
       console.log(error);
     }
   },
+
   async [ActionsTypes.REQUEST_TO_SAVE_NEW_GMC]({
     rootState, dispatch, state, commit,
   }, payload) {
