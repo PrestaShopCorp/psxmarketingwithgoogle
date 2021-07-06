@@ -341,6 +341,8 @@ export default {
         adult_content: this.containsAdultContent,
         address: this.shopInformations.store.streetAddress,
         phone: this.shopInformations.store.phone,
+        postal_code: this.shopInformations.store.postalCode,
+        locality: this.shopInformations.store.locality,
       }).then(() => {
         this.$refs.modal.hide();
       });
