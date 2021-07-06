@@ -1,19 +1,17 @@
 import OnboardingPage from '../src/views/onboarding-page.vue'
 import {initialStateApp} from '../.storybook/mock/state-app';
 import {contextPsAccountsNotConnected} from "../.storybook/mock/ps-accounts";
-import {googleAccountNotConnected, googleAccountConnected} from "../.storybook/mock/google-account";
-import {merchantCenterAccountNotConnected, merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
-import Actions from '../.storybook/mock/actions-accounts';
+import {googleAccountNotConnected} from "../.storybook/mock/google-account";
+import {merchantCenterAccountNotConnected} from "../.storybook/mock/merchant-center-account";
 
 export default {
-  title: 'Multistore/OnboardingPage',
+  title: 'Multistore/ShopHasChanged',
 };
 
 const TemplatePsAccount = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { OnboardingPage },
   template: `
-
     <OnboardingPage/>
   `,
   beforeMount: args.beforeMount,
