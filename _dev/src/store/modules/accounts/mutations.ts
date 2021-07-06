@@ -25,6 +25,7 @@ import {
   GoogleAccount,
   GoogleAccountToken,
   MerchantCenterAccountContext, WebsiteClaimErrorReason,
+  ShopInformations,
 } from './state';
 
 export default {
@@ -107,6 +108,9 @@ export default {
   },
   [MutationsTypes.SAVE_WEBSITE_REQUIREMENTS](state: LocalState, requirementsList) {
     state.googleMerchantAccount.websiteRequirements = requirementsList.requirements;
+  },
+  [MutationsTypes.SAVE_SHOP_INFORMATIONS](state: LocalState, shopInformations: ShopInformations) {
+    state.googleMerchantAccount.shopInfo = shopInformations;
   },
   /** End of Merchant Center Account mutations */
 };

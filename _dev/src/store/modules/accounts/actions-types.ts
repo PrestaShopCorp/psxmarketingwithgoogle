@@ -41,6 +41,7 @@ enum ActionsTypes {
   /** Merchant Center Account - Website Requirements */
   SEND_WEBSITE_REQUIREMENTS = 'SEND_WEBSITE_REQUIREMENTS',
   REQUEST_WEBSITE_REQUIREMENTS = 'REQUEST_WEBSITE_REQUIREMENTS',
+  REQUEST_SHOP_INFORMATIONS = 'REQUEST_SHOP_INFORMATIONS',
 }
 
 export {ActionsTypes as default};

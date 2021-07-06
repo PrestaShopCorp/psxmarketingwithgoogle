@@ -37,6 +37,24 @@ export interface PrestaShopAccountsContext {
   shops: object[],
 }
 
+export interface ShopInformations {
+  shop: {
+    name: string,
+    url: string,
+  },
+  store: {
+    streetAddress: string,
+    locality: string,
+    region: string,
+    postalCode: string,
+    country: {
+      name: string,
+      isoCode: string,
+    },
+    phone: string,
+  }
+}
+
 export interface GoogleMerchantAccount extends contentApi.Schema$Account {
   aggregatorId?: string;
   aggregatorName?: string;
@@ -80,6 +98,8 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   websiteRequirements: Array<String>,
   // Display toast component once
   connectedOnce: boolean,
+  shopInfo: ShopInformations,
+  aggregatorId? : string,
 };
 
 export interface State {
@@ -131,5 +151,22 @@ export const state: State = {
     users: [],
     connectedOnce: false,
     websiteRequirements: [],
+    shopInfo: {
+      shop: {
+        name: '',
+        url: '',
+      },
+      store: {
+        streetAddress: '',
+        locality: '',
+        region: '',
+        postalCode: '',
+        country: {
+          name: '',
+          isoCode: '',
+        },
+        phone: '',
+      },
+    },
   },
 };
