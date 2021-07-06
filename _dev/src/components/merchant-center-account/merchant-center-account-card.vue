@@ -194,13 +194,6 @@
           {{ $t(`badge.${mcaStatusBadge.text}`) }}
         </b-badge>
         <span
-          v-if="isLinking"
-          class="text-muted"
-        >
-          <i class="icon-busy icon-busy--dark mr-1" />
-          {{ $t('badge.checkingSiteClaim') }}
-        </span>
-        <span
           v-if="loaderText"
           class="text-muted"
         >
@@ -546,6 +539,9 @@ export default {
       return this.$store.state.accounts.googleMerchantAccount.websiteUrl;
     },
     loaderText() {
+      if (this.isLinking) {
+        return 'checkingSiteClaim';
+      }
       switch (this.error) {
         case WebsiteClaimErrorReason.PendingCreation:
           return 'creatingGmc';
