@@ -57,6 +57,7 @@ class PsGoogleShoppingTranslations
                     'catalog' => $this->module->l('Product catalog', 'PsGoogleShoppingTranslations'),
                     'help' => $this->module->l('Help', 'PsGoogleShoppingTranslations'),
                 ],
+                'refreshPage' => $this->module->l('Refresh page', 'PsGoogleShoppingTranslations'),
             ],
             'configuration' => [
                 'introduction' => $this->module->l('Configuration Page !', 'PsGoogleShoppingTranslations'),
@@ -320,7 +321,7 @@ class PsGoogleShoppingTranslations
                 'seeFreeListing' => $this->module->l('See my free listing in Merchant Center', 'PsGoogleShoppingTranslations'),
                 'googleDelay' => $this->module->l('It takes 3-5 business days to review products', 'PsGoogleShoppingTranslations'),
                 'alertActivationSuccess' => $this->module->l('You have successfully activated the free listing of your products in Shopping tab.', 'PsGoogleShoppingTranslations'),
-                'alertEnableFreeListing' => $this->module->l('Enable free listing to show your products on Shopping tab for free.', 'PsGoogleShoppingTranslations'),
+                'alertEnableFreeListing' => $this->module->l('Enable free listing to show your products on Google Shopping tab for free.', 'PsGoogleShoppingTranslations'),
                 'alertCantEnableFreeListing' => $this->module->l('You can\'t enable free listing right now. Try again later.', 'PsGoogleShoppingTranslations'),
                 'alertCountryNotEligible' => $this->module->l('You have selected one or more target countries that are not eligible for free listings and ads.', 'PsGoogleShoppingTranslations'),
             ],

@@ -26,4 +26,7 @@ export default {
   [GettersTypes.GET_FREE_LISTING_STATUS](state: LocalState): boolean {
     return state.enabled;
   },
+  [GettersTypes.GET_FREE_LISTING_STATUS_API](state: LocalState): boolean {
+    return state.errorAPI;
+  },
 };

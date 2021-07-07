@@ -56,6 +56,7 @@
       <FreeListingCard
         v-if="stepsAreCompleted.step1"
         :is-enabled="!shopInConflictPsAccount && productFeedIsConfigured"
+        :error-a-p-i="false"
       />
       <section-title
         :step-number="3"

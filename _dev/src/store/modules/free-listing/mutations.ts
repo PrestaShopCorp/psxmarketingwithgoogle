@@ -29,4 +29,7 @@ export default {
   [MutationsTypes.SET_FREE_LISTING_STATUS](state: LocalState, enabled: boolean) {
     state.enabled = enabled;
   },
+  [MutationsTypes.SET_ERROR_API](state: LocalState, enabled: boolean) {
+    state.errorAPI = enabled;
+  },
 };

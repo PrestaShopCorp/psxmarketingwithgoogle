@@ -7,7 +7,8 @@
         "configuration" : "Configure",
         "catalog" : "Product catalog",
         "help" : "Help"
-      }
+      },
+      "refreshPage" : "Refresh page"
     },
     "configuration" : {
         "introduction" : "Configuration Page !"
@@ -271,7 +272,7 @@
       "seeFreeListing" : "See my free listing in Merchant Center",
       "googleDelay" : "It takes 3-5 business days to review products",
       "alertActivationSuccess" : "You have successfully activated the free listing of your products in Shopping tab.",
-      "alertEnableFreeListing" : "Enable free listing to show your products on Shopping tab for free.",
+      "alertEnableFreeListing" : "Enable free listing to show your products on Google Shopping tab for free.",
       "alertCantEnableFreeListing" : "You can't enable free listing right now. Try again later.",
       "alertCountryNotEligible" : "You have selected one or more target countries that are not eligible for free listings and ads."
     },

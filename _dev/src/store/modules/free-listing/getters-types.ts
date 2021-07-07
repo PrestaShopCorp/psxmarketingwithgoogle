@@ -1,5 +1,6 @@
 enum GetterTypes {
   GET_FREE_LISTING_STATUS = 'GET_FREE_LISTING_STATUS',
+  GET_FREE_LISTING_STATUS_API = 'GET_FREE_LISTING_STATUS_API',
 }
 
 export {GetterTypes as default};
