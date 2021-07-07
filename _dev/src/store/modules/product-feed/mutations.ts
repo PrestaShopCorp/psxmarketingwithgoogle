@@ -17,11 +17,20 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import MutationsTypes from './mutations-types';
-import {State as LocalState} from './state';
+import {
+  State as LocalState,
+  ProductFeedValidationSummary,
+} from './state';
 
 type payloadObject = {
   name: string, data: string
 }
+
+type payloadArrayShipping = [{
+  collection: string,
+  id: string,
+  properties: object
+}]
 
 export default {
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
@@ -72,5 +81,19 @@ export default {
       delete state.settings.attributeMapping.customGenderGroupAttribute;
     }
     state.settings.attributeMapping = {...state.settings.attributeMapping};
+  },
+
+  [MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS](state: LocalState, payload:
+    payloadArrayShipping,
+  ) {
+    state.settings.shippingSettings = payload;
+  },
+  [MutationsTypes.SET_VALIDATION_SUMMARY](state: LocalState, payload: ProductFeedValidationSummary,
+  ) {
+    state.validationSummary = payload;
+  },
+  [MutationsTypes.SAVE_TOTAL_PRODUCTS](state: LocalState, payload: number,
+  ) {
+    state.totalProducts = payload;
   },
 };

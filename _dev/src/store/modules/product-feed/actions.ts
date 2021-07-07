@@ -87,9 +87,11 @@ export default {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        // ! Not send by API yet
         name: 'productsPerBatchSync', data: json.productsPerBatchSync,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        // ! Not send by API yet
         name: 'syncSchedule', data: json.syncSchedule,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
@@ -129,6 +131,7 @@ export default {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
       targetCountries: productFeedSettings.targetCountries,
+      shippingSettings: productFeedSettings.shippingSettings,
       attributeMapping: {
         exportProductsWithShortDescription:
         productFeedSettings?.attributeMapping?.exportProductsWithShortDescription
@@ -145,7 +148,6 @@ export default {
         productFeedSettings?.attributeMapping?.customGenderGroupAttribute
         || null,
       },
-
     };
     try {
       const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/settings`, {
@@ -166,7 +168,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_SHIPPING_SETTINGS]({rootState}) {
+  async [ActionsTypes.GET_SHIPPING_SETTINGS]({rootState, commit}) {
     const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
@@ -177,6 +179,50 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    return response.json();
+    const result = await response.json();
+    commit(MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS, result);
+    return result;
+  },
+
+  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {
+    // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
+    // const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/validation/summary`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Accept: 'application/json',
+    //     Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+    //   },
+    // body: JSON.stringify({
+    //   action: 'getProductsReadyToSync',
+    // }),
+    // });
+    const json = {
+      activeItems: 113,
+      expiringItems: 13,
+      pendingItems: 23,
+      disapprovedItems: 57,
+    };
+    commit(MutationsTypes.SET_VALIDATION_SUMMARY, json);
+
+    // if (!response.ok) {
+    //   throw new HttpClientError(response.statusText, response.status);
+    // }
+    // return response.json();
+  },
+
+  async [ActionsTypes.GET_TOTAL_PRODUCTS]({rootState, commit}) {
+    // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
+    // const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+    //   method: 'GET',
+    //   headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+    // });
+    // if (!response.ok) {
+    //   throw new HttpClientError(response.statusText, response.status);
+    // }
+    // const result = await response.json();
+    const result = 12;
+    commit(MutationsTypes.SAVE_TOTAL_PRODUCTS, result);
+    return result;
   },
 };

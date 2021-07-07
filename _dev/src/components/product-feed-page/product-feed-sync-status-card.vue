@@ -135,13 +135,15 @@ export default {
       return 'processed';
     },
     title() {
-      if (this.syncStatus === 'schedule') {
-        return {
-          icon: 'schedule',
-          color: 'primary',
-          message: this.$i18n.t('productFeedPage.syncStatus.readyForExport'),
-        };
-      } if (this.syncStatus === 'failed') {
+      //  TODO : find status in progress
+      // if (this.syncStatus === 'schedule') {
+      //   return {
+      //     icon: 'schedule',
+      //     color: 'primary',
+      //     message: this.$i18n.t('productFeedPage.syncStatus.readyForExport'),
+      //   };
+      // }
+      if (this.syncStatus === 'failed') {
         return {
           icon: 'error_outline',
           color: 'danger',

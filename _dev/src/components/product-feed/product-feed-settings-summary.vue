@@ -25,7 +25,7 @@
           <product-feed-card-next-sync-card
             icon="schedule"
             :title="$t('productFeedSettings.summary.time')"
-            :description="nextSyncDate | timeConverterToHour"
+            description="1am"
           />
         </b-row>
       </b-container>
@@ -146,6 +146,7 @@
       </b-button>
       <b-button
         @click="saveAll"
+        :disabled="disabledExportButton"
         size="sm"
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
@@ -183,8 +184,7 @@ export default {
   },
   data() {
     return {
-      nextSyncTotalProducts: this.$store.state.productFeed.settings.productsPerBatchSync,
-      nextSyncDate: this.$store.state.productFeed.status.nextJobAt,
+      disabledExportButton: false,
       shippingSettings:
       this.$store.state.productFeed.settings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
@@ -202,6 +202,16 @@ export default {
     sellRefurbished: {
       get() {
         return this.$store.getters['productFeed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
+      },
+    },
+    nextSyncDate: {
+      get() {
+        return this.$store.state.productFeed.status.nextJobAt;
+      },
+    },
+    nextSyncTotalProducts: {
+      get() {
+        return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS'];
       },
     },
     specificProducts() {
@@ -226,6 +236,17 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     saveAll() {
+      if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
+        this.$store.dispatch('productFeed/GET_SHIPPING_SETTINGS')
+          .then(() => {
+            this.postDatas();
+          });
+      } else {
+        this.postDatas();
+      }
+      this.disabledExportButton = true;
+    },
+    postDatas() {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
       this.$store.commit('productFeed/TOGGLE_CONFIGURATION_FINISHED', true);
       this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', true);

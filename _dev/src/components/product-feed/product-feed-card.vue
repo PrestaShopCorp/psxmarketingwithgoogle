@@ -353,9 +353,7 @@ export default {
         day: this.$options.filters.timeConverterToDate(
           this.getProductFeedStatus?.jobEndedAt,
         ),
-        time: this.$options.filters.timeConverterToHour(
-          this.getProductFeedStatus?.jobEndedAt,
-        ),
+        time: '1am',
         totalProducts: this.getProductFeedSettings.productsPerBatchSync,
       };
     },
