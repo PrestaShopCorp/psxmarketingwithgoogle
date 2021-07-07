@@ -6,7 +6,6 @@
       :is-enabled="true"
       :is-done="stepsAreCompleted.step1"
     />
-
     <b-alert
       v-if="shopInConflictPsAccount"
       show
@@ -192,9 +191,6 @@ export default {
     merchantCenterAccountIsChosen() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
-    merchantCenterAccountIsOnboarded() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
-    },
     merchantCenterAccountConnectedOnce() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_CONNECTED_ONCE'];
     },
@@ -240,6 +236,11 @@ export default {
       if (oldVal === false && newVal === true) {
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
+      }
+    },
+    productFeedIsConfigured(newVal, oldVal) {
+      if (oldVal === false && newVal === true) {
+        this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS');
       }
     },
   },
