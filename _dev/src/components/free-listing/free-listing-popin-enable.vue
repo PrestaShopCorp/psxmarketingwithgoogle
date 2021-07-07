@@ -12,7 +12,7 @@
       {{ $t("cta.cancel") }}
     </template>
     <template slot="modal-ok">
-      {{ $t("cta.enableFreeListingAndProductFeed") }}
+      {{ $t("cta.enableFreeListing") }}
     </template>
   </ps-modal>
 </template>
