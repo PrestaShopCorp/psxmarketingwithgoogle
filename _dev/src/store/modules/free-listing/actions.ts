@@ -56,8 +56,8 @@ export default {
           body: JSON.stringify(enabled),
         });
       if (!resp.ok) {
-        throw new HttpClientError(resp.statusText, resp.status);
         commit(MutationsTypes.SET_ERROR_API, true);
+        throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
       commit(MutationsTypes.SET_ERROR_API, false);

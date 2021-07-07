@@ -177,9 +177,6 @@ export default {
     toggle() {
       this.$store.dispatch('freeListing/SEND_FREE_LISTING_STATUS', !this.freeListingStatus);
     },
-    switchToggle() {
-      console.log('swtch anyay');
-    },
     refresh() {
       this.$router.go();
     },
