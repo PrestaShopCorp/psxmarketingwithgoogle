@@ -49,20 +49,17 @@ export default {
 
   async [ActionsTypes.SEND_FREE_LISTING_STATUS]({commit, rootState}, enabled: boolean) {
     try {
-      // const resp = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/free-listings/settings`
-      // , {
-      //   method: 'POST',
-      //   headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      //   body: JSON.stringify(enabled),
-      // });
-      // if (!resp.ok) {
-      //   throw new HttpClientError(resp.statusText, resp.status);
-      // commit(MutationsTypes.SET_ERROR_API, true);
-
-      // }
-      // const json = await resp.json();
-      // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
-      const json = enabled;
+      const resp = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/free-listings/settings`,
+        {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+          body: JSON.stringify(enabled),
+        });
+      if (!resp.ok) {
+        throw new HttpClientError(resp.statusText, resp.status);
+        commit(MutationsTypes.SET_ERROR_API, true);
+      }
+      const json = await resp.json();
       commit(MutationsTypes.SET_ERROR_API, false);
       commit(MutationsTypes.SET_FREE_LISTING_STATUS, json);
     } catch (error) {

@@ -394,6 +394,8 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     const json = await response.json();
+    console.log(json);
+
     commit(MutationsTypes.SAVE_WEBSITE_VERIFICATION_AND_CLAIMING_STATUS, json);
     return json;
   },
