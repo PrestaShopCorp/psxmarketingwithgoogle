@@ -31,14 +31,8 @@ export const productFeed = {
 export const productFeedEnabled = {
   ...productFeed,
   status: {
+    ...productFeed.status,
     enabled: true,
-  }
-}
-
-export const productFeedDisabled = {
-  ...productFeed,
-  status: {
-    enabled: false,
   }
 }
 
@@ -51,12 +45,12 @@ export const productFeedIsConfigured = {
 export const productFeedMissingFields = {
   ...productFeedIsConfigured,
   settings: {
+    ...productFeedIsConfigured.settings,
     targetCountries: [],
     attributeMapping: {},
     autoImportShippingSettings: false,
   }
 }
-
 
 export const productFeedIsConfiguredOnce = {
   ...productFeedIsConfigured,
@@ -66,6 +60,7 @@ export const productFeedIsConfiguredOnce = {
 export const productFeedStatusSyncFailed = {
   ...productFeedEnabled,
   status: {
+    ...productFeedEnabled.status,
     failedSyncs: ['fail'],
   }
 }
