@@ -569,8 +569,7 @@ export default {
     gmcLabel(index) {
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         const gmc = this.mcaSelectionOptions[index];
-        const nameAndId = `${gmc.name} - ${gmc.id}`;
-        return nameAndId;
+        return `${gmc.id} - ${gmc.name}`;
       }
       return null;
     },
