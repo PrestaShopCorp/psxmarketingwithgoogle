@@ -31,7 +31,7 @@
         {{ $t('productFeedPage.productStatus.alert') }}
       </b-alert>
       <h3 class="font-weight-600 ps_gs-fz-14 my-3 pt-2">
-        {{ $t('productFeedPage.productStatus.productsInGoogleCatalog', [nbProductsTotal]) }}
+        {{ $t('productFeedPage.productStatus.productsSubmittedToGoogle', [nbProductsTotal]) }}
       </h3>
       <b-container
         fluid

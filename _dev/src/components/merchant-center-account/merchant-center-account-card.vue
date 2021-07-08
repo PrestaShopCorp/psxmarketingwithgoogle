@@ -246,9 +246,10 @@
       variant="danger"
       class="mb-0 mt-3"
     >
+      <strong>{{ $t('mcaCard.alertSuspended') }}</strong><br>
       <VueShowdown
-        :markdown="$t('mcaCard.alertSuspended', [
-          $options.googleUrl.merchantCenterAccount,
+        :markdown="$t('mcaCard.alertSuspendedDescription', [
+          merchantCenterWebsitePageUrl.overview,
           $options.googleUrl.requestiongReReview
         ])"
         :extensions="['targetlink']"
@@ -265,7 +266,7 @@
           >
             {{ link }}
           </a><!-- comment is necessary to have the comma next to the link
-          -->{{ index !==  selectedMcaDetails.isSuspended.documentation.length - 1 ? ', ' : ''}}
+          -->{{ index !== selectedMcaDetails.isSuspended.documentation.length - 1 ? ', ' : '' }}
         </template>
       </span>
     </b-alert>
@@ -288,7 +289,7 @@
           variant="secondary"
           @click="overrideClaim"
         >
-          {{ $t("cta.overwrite") }}
+          {{ $t("cta.transferClaim") }}
         </b-button>
         <b-button
           size="sm"
@@ -324,7 +325,7 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 text-white text-decoration-none"
           variant="secondary"
-          :href="merchantCenterWebsitePageUrl"
+          :href="merchantCenterWebsitePageUrl.website"
           target="_blank"
         >
           {{ $t("cta.addWebsiteAddress") }}
@@ -354,16 +355,13 @@
     >
       <p class="mb-0">
         <strong>{{ $t('mcaCard.shopInfoMissing') }}</strong><br>
-        <span class="ps_gs-fz-12">
-          {{ $t('mcaCard.shopInfoMissingDescription') }}
-        </span><br>
-        <a
-          class="ps_gs-fz-12 text-muted"
-          :href="$options.googleUrl.loginMCA"
-          target="_blank"
-        >
-          {{ $options.googleUrl.loginMCA }}
-        </a>
+        <VueShowdown
+          class="ps_gs-fz-12"
+          :markdown="$t('mcaCard.shopInfoMissingDescription', [
+            merchantCenterWebsitePageUrl.businessInfo
+          ])"
+          :extensions="['targetlink']"
+        />
       </p>
     </b-alert>
     <b-alert
@@ -414,7 +412,7 @@
             </a><!-- comment is necessary to have the comma next to the link
             -->{{
               index
-                !==  selectedMcaDetails.isEnhancedFreeListingCompliant.documentation.length - 1
+                !== selectedMcaDetails.isEnhancedFreeListingCompliant.documentation.length - 1
                 ? ', ' : ''
               }}
           </template>
@@ -537,22 +535,22 @@ export default {
         case WebsiteClaimErrorReason.OverwriteNeeded:
           return {
             color: 'warning',
-            text: 'urlUnclaimed',
+            text: 'pending',
           };
         case WebsiteClaimErrorReason.AccountValidationFailed:
           return {
             color: 'warning',
-            text: 'urlUnverified',
+            text: 'pending',
           };
         case WebsiteClaimErrorReason.OverwriteNeededWithManualAction:
           return {
             color: 'warning',
-            text: 'urlUnclaimed',
+            text: 'pending',
           };
         case WebsiteClaimErrorReason.IneligibleForFreeListing:
           return {
             color: 'warning',
-            text: 'ineligibleForFreeListing',
+            text: 'pending',
           };
         case WebsiteClaimErrorReason.PendingCreation:
           return {
@@ -568,7 +566,11 @@ export default {
     },
     merchantCenterWebsitePageUrl() {
       const {id} = this.$store.state.accounts.googleMerchantAccount;
-      return `https://merchants.google.com/mc/settings/website?a=${id}`;
+      return {
+        website: `https://merchants.google.com/mc/settings/website?a=${id}`,
+        businessInfo: `https://merchants.google.com/mc/merchantprofile/businessinfo?a=${id}`,
+        overview: `https://merchants.google.com/mc/overview?a=${id}`,
+      };
     },
     websiteUrl() {
       return this.$store.state.accounts.googleMerchantAccount.websiteUrl;
