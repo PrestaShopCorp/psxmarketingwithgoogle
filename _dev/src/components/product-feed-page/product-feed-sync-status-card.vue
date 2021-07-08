@@ -130,7 +130,7 @@ export default {
       if (this.getProductFeedStatus.failedSyncs.length) {
         return 'failed';
       }
-      if(!this.getProductFeedStatus.failedSyncs.length 
+      if (!this.getProductFeedStatus.failedSyncs.length
       && !this.getProductFeedStatus.successfulSyncs.length) {
         return 'schedule';
       }

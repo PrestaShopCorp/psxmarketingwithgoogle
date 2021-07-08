@@ -22,14 +22,14 @@ export default {
     ProductFeedProductStatusCard,
   },
   computed: {
-      getProductFeedStatus() {
+    getProductFeedStatus() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
-     syncStatus() {
+    syncStatus() {
       if (this.getProductFeedStatus.failedSyncs.length) {
         return 'failed';
       }
-      if(!this.getProductFeedStatus.failedSyncs.length 
+      if (!this.getProductFeedStatus.failedSyncs.length
       && !this.getProductFeedStatus.successfulSyncs.length) {
         return 'schedule';
       }
