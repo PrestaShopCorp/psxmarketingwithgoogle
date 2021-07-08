@@ -21,7 +21,6 @@ export interface State {
   validationList: any;
   summaryValidationList: any;
   status: boolean;
-  enabled: boolean;
   errorAPI: boolean;
 }
 export interface state {
@@ -32,6 +31,5 @@ export const state: State = {
   validationList: {},
   summaryValidationList: [],
   status: false,
-  enabled: false,
   errorAPI: false,
 };
