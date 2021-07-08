@@ -66,6 +66,16 @@
               <i class="icon-busy icon-busy--dark" />
             </b-dropdown-item>
             <b-dropdown-item
+              v-if="!mcaListLoading && mcaSelectionOptionsAndGroups.length == 0"
+              :disabled="true"
+              variant="dark"
+              link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+            >
+              <span class="mr-2">
+                {{ $t('mcaCard.noExistingAccount') }}
+              </span>
+            </b-dropdown-item>
+            <b-dropdown-item
               v-for="(option) in mcaSelectionOptionsAndGroups[0]"
               :key="option.id"
               @click="selectedMcaIndex = option.i"
