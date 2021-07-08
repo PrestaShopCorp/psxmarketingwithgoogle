@@ -5,7 +5,7 @@ export const productFeed = {
   stepper: 1,
   status: {
     failedSyncs: [],
-    successfulSyncs: [],
+    successfulSyncs: ['oc'],
     enabled: false,
     shopHealthy: true,
     jobEndedAt: "",
@@ -25,6 +25,12 @@ export const productFeed = {
       customConditionAttribute: 'extra:condition',
     },
     syncSchedule: '1 * * * * *',
+  },
+  validationSummary: {
+    activeItems: 113,
+    expiringItems: 13,
+    pendingItems: 23,
+    disapprovedItems: 57,
   },
 };
 
@@ -62,6 +68,28 @@ export const productFeedStatusSyncFailed = {
   status: {
     ...productFeedEnabled.status,
     failedSyncs: ['fail'],
+    jobEndedAt: "12.05",
+    nextJobAt: "12.05",
+  }
+}
+
+export const productFeedStatusSyncSchedule = {
+  ...productFeedEnabled,
+  status: {
+    ...productFeedEnabled.status,
+    failedSyncs: [],
+    successfulSyncs: [],
+    nextJobAt: "12.05",
+  }
+}
+export const productFeedStatusSyncSuccess = {
+  ...productFeedEnabled,
+  status: {
+    ...productFeedEnabled.status,
+    failedSyncs: [],
+    successfulSyncs: ['what', 'a', 'success'],
+    jobEndedAt: "12.05",
+    nextJobAt: "12.05",
   }
 }
 
