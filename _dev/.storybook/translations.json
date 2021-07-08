@@ -59,7 +59,7 @@
       "introEnabled" : "Access through PrestaShop module associated with your email account Google Merchant Center and Google Ads accounts.",
       "footerDissociating" : "PrestaShop uses this account to manage and sync Merchant Center and Google Ads accounts.",
       "alertCantConnect" : "You can't connect to your Google account right now. Try again later.",
-      "alertTokenMissing" : "The account token is missing. Try again to connect to your Google Merchant Center account or switch to another one.",
+      "alertTokenMissing" : "We weren't able to authenticate your account. Try again or switch to another account.",
       "stepIsMandatory" :"*This step is mandatory"
     },
     "mcaCard" : {
@@ -72,7 +72,7 @@
       "footerEU" : "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
       "shopInfoMissing" : "Shop information is missing",
       "shopInfoMissingDescription" : "To check if it is a validity issue or if you are not following our rules, please log in to your account at",
-      "userIsNotAdmin" : "You need Administrator access",
+      "userIsNotAdmin" : "You need Admin access",
       "googleMCA" : "Google Merchant Center account",
       "toUseGmcNeedsAdminAccess" : "To use an existing Merchant Center account, you must have **Admin** access.",
       "linkingFailed" : "You can't connect to your Merchant Center account right now. Try again later.",
@@ -80,7 +80,7 @@
       "unlinkFailed" : "Disconnection failed. Please refresh the page and try again.",
       "tryAgainLater" : "We can’t verify or claim the current site. Try again later.",
       "alertSuspended" : "Go to your [Merchant Center account]({0})[:target=\"_blank\"] to see more details on the reason. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"].",
-      "notManaged" : "(not managed by PrestaShop)",
+      "notManaged" : "Not associated with PrestaShop",
       "overwriteFailed": "Website URL claim failed",
       "overwriteToBeDoneManually": "Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}",
       "ineligibleForFreeListing" : "Your account is ineligible for free enhanced listings on Google",
@@ -141,7 +141,7 @@
     },
     "productFeedCard" : {
       "title" : "Automatically sync your products data with Google",
-      "intro" : "Submit your store and product data directly to Merchant Center and always keep them up to date for free listing and ads.",
+      "intro" : "Submit your product data directly to your Merchant Center and keep them always up to date for free listing and ads.",
       "introToConfigure" : "It's important to submit them in the correct format, as Google uses this data to make sure your products match the right queries.",
       "nextSync" : "Next synchronization: {0}",
       "syncFailedAt" : "Synchronization failed {0} at {1}",
@@ -160,7 +160,7 @@
       "excludedProducts" : "Excluded products",
       "productsReadyToBeSynced" : "Products ready to be synced",
       "productsWithProblems" : "Products with problems",
-      "alertGoogleIsReviewingProducts": "Google is currently reviewing your products. Once approved, your products can appear in Shopping tab search results."
+      "alertGoogleIsReviewingProducts": "Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads."
     },
     "productFeedSettings" : {
       "breadcrumb1" : "Product feed",
