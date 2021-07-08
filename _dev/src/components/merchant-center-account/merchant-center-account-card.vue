@@ -243,17 +243,21 @@
         ])"
         :extensions="['targetlink']"
       />
-      <div class="text-muted">
-        <a
+      <span class="text-muted d-block">
+        <template
           v-for="(link, index) in selectedMcaDetails.isSuspended.documentation"
-          :key="index"
-          :href="link"
-          target="_blank"
-          class="d-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
         >
-          {{ $t('cta.learnAboutAccountSuspension') }}
-        </a>
-      </div>
+          <a
+            :key="index"
+            :href="link"
+            target="_blank"
+            class="text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
+          >
+            {{ link }}
+          </a><!-- comment is necessary to have the comma next to the link
+          -->{{ index !==  selectedMcaDetails.isSuspended.documentation.length - 1 ? ', ' : ''}}
+        </template>
+      </span>
     </b-alert>
     <b-alert
       v-else-if="error === WebsiteClaimErrorReason.OverwriteNeeded"
@@ -386,16 +390,24 @@
         <span class="ps_gs-fz-12">
           {{ $t('mcaCard.ineligibleForFreeListingDescription') }}
         </span>
-        <span class="text-muted">
-          <a
+        <span class="d-block text-muted">
+          <template
             v-for="(link, index) in selectedMcaDetails.isEnhancedFreeListingCompliant.documentation"
-            :key="index"
-            :href="link"
-            target="_blank"
-            class="d-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
           >
-            {{ $t('cta.learnAboutFreeListing') }}
-          </a>
+            <a
+              :key="index"
+              :href="link"
+              target="_blank"
+              class="ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
+            >
+              {{ link }}
+            </a><!-- comment is necessary to have the comma next to the link
+            -->{{
+              index
+                !==  selectedMcaDetails.isEnhancedFreeListingCompliant.documentation.length - 1
+                ? ', ' : ''
+              }}
+          </template>
         </span>
       </p>
     </b-alert>

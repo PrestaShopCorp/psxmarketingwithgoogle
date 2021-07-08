@@ -4,7 +4,7 @@ a[target="_blank"].text-muted {
 }
 
 a[target="_blank"] {
-  
+
   &:not(.btn) {
     color: inherit !important;
     text-decoration: underline;
@@ -26,7 +26,7 @@ a[target="_blank"] {
       -webkit-font-feature-settings: 'liga';
       display: inline-block;
       vertical-align: middle;
-      margin-left: 0.45em;
+      margin-left: 0.18em;
       text-decoration: none;
     }
   }
