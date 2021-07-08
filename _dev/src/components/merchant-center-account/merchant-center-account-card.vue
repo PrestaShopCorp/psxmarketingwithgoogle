@@ -266,7 +266,7 @@
           >
             {{ link }}
           </a><!-- comment is necessary to have the comma next to the link
-          -->{{ index !==  selectedMcaDetails.isSuspended.documentation.length - 1 ? ', ' : ''}}
+          -->{{ index !== selectedMcaDetails.isSuspended.documentation.length - 1 ? ', ' : '' }}
         </template>
       </span>
     </b-alert>
@@ -412,7 +412,7 @@
             </a><!-- comment is necessary to have the comma next to the link
             -->{{
               index
-                !==  selectedMcaDetails.isEnhancedFreeListingCompliant.documentation.length - 1
+                !== selectedMcaDetails.isEnhancedFreeListingCompliant.documentation.length - 1
                 ? ', ' : ''
               }}
           </template>
@@ -569,8 +569,8 @@ export default {
       return {
         website: `https://merchants.google.com/mc/settings/website?a=${id}`,
         businessInfo: `https://merchants.google.com/mc/merchantprofile/businessinfo?a=${id}`,
-        overview: `https://merchants.google.com/mc/overview?a=${id}`
-      }
+        overview: `https://merchants.google.com/mc/overview?a=${id}`,
+      };
     },
     websiteUrl() {
       return this.$store.state.accounts.googleMerchantAccount.websiteUrl;

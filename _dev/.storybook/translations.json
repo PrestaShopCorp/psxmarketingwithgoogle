@@ -46,7 +46,7 @@
         "freeListing" : "Get your products on Google with free listings",
         "smartShoppingCampaign" : "Reach more people with paid Smart Shopping campaign"
       },
-      "productFeedNotice" : "Help customers to find your products more easily on Google and list them for free with free listing. Free listing help reach more customers and get them to visit your site.",
+      "productFeedNotice" : "Help customers to find your products more easily on Google and list them for free with free listings. Free listings help reach more customers and get them to visit your site.",
       "warningMultistore":  "You can associate only one store to a PrestaShop account.   \n If you need to associate another store you will have to unlink the associated store."
     },
     "psAccountCard" : {
@@ -55,7 +55,7 @@
     },
     "googleAccountCard" : {
       "title" : "Google account",
-      "introDisabled" : "Connect your Google account and associated with it Google Merchant Center to unlock free listing.",
+      "introDisabled" : "Connect your Google account and associated with it Google Merchant Center to unlock free listings.",
       "introEnabled" : "Access through PrestaShop module associated with your email account Google Merchant Center and Google Ads accounts.",
       "footerDissociating" : "PrestaShop uses this account to manage and sync Merchant Center and Google Ads accounts.",
       "alertCantConnect" : "You can't connect to your Google account right now. Try again later.",
@@ -95,7 +95,7 @@
         "shopInfo" : "Store information"
       },
       "title" : "Create new Merchant Center account",
-      "legend" : "To participate in free listing and advertise on Google you must acknowledge and comply with below requirements:",
+      "legend" : "To participate in free listings and advertise on Google you must acknowledge and comply with below requirements:",
       "legend2" : "Store's website URL needs to be verified and claimed before you can upload products data.  \nLearn how to verify and claim your website.",
       "footer" : "Read full version of Google store requirements",
       "shoppingAdsPolicies" : {
@@ -131,7 +131,7 @@
       "websiteURL" : "Website URL",
       "websiteURLDescription" : "The website used to create your Merchant Center account",
       "storeName" : "Store name",
-      "storeNameDescription" : "This name will appear in your free listing and Shopping ads.",
+      "storeNameDescription" : "This name will appear in your free listings and Shopping ads.",
       "businessLocation" : "Business location",
       "businessAddress" : "Business address",
       "businessPhone" : "Business phone number",
@@ -142,7 +142,7 @@
     },
     "productFeedCard" : {
       "title" : "Automatically sync your products data with Google",
-      "intro" : "Submit your product data directly to your Merchant Center and keep them always up to date for free listing and ads.",
+      "intro" : "Submit your product data directly to your Merchant Center and keep them always up to date for free listings and ads.",
       "introToConfigure" : "It's important to submit them in the correct format, as Google uses this data to make sure your products match the right queries.",
       "nextSync" : "Next synchronization: {0}",
       "syncFailedAt" : "Synchronization failed {0} at {1}",
@@ -226,7 +226,7 @@
         "sellRefurbishedProducts" : "Refurbished",
         "intro" : "Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.",
         "learnAboutAttributeMapping" : "Learn more about product data attributes",
-        "introNotice" : "Describe your product data using attributes. Additionally to required minimum for standard free listing, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
+        "introNotice" : "Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
         "genericTitle" : "Generic",
         "toDescribeProducts" : "Create title and description for my product attributes using:",
         "googleAttribute" : "Google product attribute",
@@ -267,14 +267,14 @@
       }
     },
     "freeListingCard" : {
-      "title" : "Show your products with free listing",
+      "title" : "Show your products with free listings",
       "intro" : "Showcase your product for free in organically-ranked listing on Shopping tab.",
-      "learnFreeListing" : "Learn more about free listing",
-      "seeFreeListing" : "See my free listing in Merchant Center",
+      "learnFreeListing" : "Learn more about free listings",
+      "seeFreeListing" : "See my free listings in Merchant Center",
       "googleDelay" : "It takes 3-5 business days to review products",
-      "alertActivationSuccess" : "You have successfully activated the free listing of your products in Shopping tab.",
-      "alertEnableFreeListing" : "Enable free listing to show your products on Shopping tab for free.",
-      "alertCantEnableFreeListing" : "You can't enable free listing right now. Try again later.",
+      "alertActivationSuccess" : "You have successfully activated the free listings of your products in Shopping tab.",
+      "alertEnableFreeListing" : "Enable free listings to show your products on Shopping tab for free.",
+      "alertCantEnableFreeListing" : "You can't enable free listings right now. Try again later.",
       "alertCountryNotEligible" : "You have selected one or more target countries that are not eligible for free listings and ads."
     },
     "googleAdsAccountCard" : {
@@ -291,7 +291,7 @@
     "productFeedPage" : {
       "breadcrumb" : "Product status details",
       "alert" :{
-        "googleIsReviewing" : "Google is currently reviewing your products.  \n Once approved, your products can appear in Shopping tab search results."
+        "googleIsReviewing" : "Your products are being reviewed.  \n It might take 3-5 days to review your products. Once approved, your products will be available for free listings and ads."
       },
       "syncStatus" : {
         "title" : "Synchronization status",
@@ -311,7 +311,7 @@
         "approvedProducts" : "Approved",
         "pendingProducts" : "Pending",
         "disapprovedProducts" : "Not approved",
-        "productsInGoogleCatalog" : "Number of products: {0}",
+        "productsSubmittedToGoogle" : "Products submitted to Google: {0}",
         "approvalStatusList" : "Approved, Pending, Not approved"
       },
       "approvalTable" : {
@@ -372,7 +372,7 @@
       "continue" : "Continue",
       "disabled" : "Disabled",
       "enabled" : "Enabled",
-      "enableFreeListing" : "Enable free listing",
+      "enableFreeListing" : "Enable free listings",
       "connectAccount" : "Connect account",
       "connectingAccount" : "Connecting account...",
       "chooseExistingAccount" : "Choose existing account",
@@ -405,7 +405,7 @@
       "no" : "No",
       "disable" : "Disable",
       "disableProductFeed" : "Disable product feed",
-      "enableFreeListingAndProductFeed" : "Enable free listing and product feed",
+      "enableFreeListingAndProductFeed" : "Enable free listings and product feed",
       "checkRequirements" : "Check requirements",
       "storeMeetsRequirements" : "My store meets all requirements",
       "createAccount" : "Create account",
@@ -421,7 +421,7 @@
       "save" : "Save",
       "disconnect" : "Disconnect",
       "export" : "Export",
-      "learnAboutFreeListing": "Lean more about free listing",
+      "learnAboutFreeListing": "Lean more about free listings",
       "addWebsiteAddress" : "Add website address",
       "transferClaim" : "Transfer claim"
     },
@@ -446,7 +446,7 @@
       "cantSync" : "Can’t be synced",
       "close" : "Close",
       "suspended" : "Suspended",
-      "ineligibleForFreeListing" : "Ineligible for free listing",
+      "ineligibleForFreeListing" : "Ineligible for free listings",
       "urlUnclaimed" : "Url unclaimed",
       "urlUnverified" : "Url unverified"
     },
@@ -457,9 +457,9 @@
       "textDisconnectGoogleAccount" : "You are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.",
       "textDisconnectMCA" : "Disconnecting your Merchant Center will remove access to your Google Ads in this module and pause any running campaign. ",
       "textoverwrite" : "Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  /nIf you are running a different Shopping campaign, we recommend pausing it.",
-      "titleDisableFreeListing" : "Disable free listing?",
+      "titleDisableFreeListing" : "Disable free listings?",
       "textDisableFreeListing" : "By disabling free listings your products will no longer be available for organic listing on Shopping tab.  \n However your product feed will stay available.",
-     "titleEnableFreeListing" : "Enable free listing?",
+     "titleEnableFreeListing" : "Enable free listings?",
       "textEnableFreeListing" : "This action will also cause the reactivation of the product feed.",
       "titleCancelWithoutSaving" : "Cancel without saving?",
       "textCancelProductFeed" : "You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps.",
