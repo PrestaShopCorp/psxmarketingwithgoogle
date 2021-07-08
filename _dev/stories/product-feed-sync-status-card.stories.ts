@@ -1,5 +1,5 @@
 import ProductFeedSyncStatusCard from '../src/components/product-feed-page/product-feed-sync-status-card.vue';
-
+import {productFeedStatusSyncSchedule, productFeedStatusSyncSuccess,productFeedStatusSyncFailed} from '../.storybook/mock/product-feed';
 const commonProps = {
   nbProductsReadyToSync: 150,
   nbProductsCantSync: 5,
@@ -10,37 +10,35 @@ const commonProps = {
 export default {
   title: 'Product Feed Page/Sync Status',
   component: ProductFeedSyncStatusCard,
-  argTypes: {
-    syncStatus: {
-      control: {
-        type: 'select',
-        // @ts-ignore
-        options: ['schedule', 'processed', 'failed'],
-      },
-    },
-  },
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ProductFeedSyncStatusCard },
   template: '<ProductFeedSyncStatusCard v-bind="$props" />',
+  beforeMount: args.beforeMount,
 });
 
 export const SyncStatusSchedule:any = Template.bind({});
 SyncStatusSchedule.args = {
   ...commonProps,
-  syncStatus: 'schedule',
+  beforeMount(this: any) {
+    this.$store.state.productFeed = productFeedStatusSyncSchedule;
+  },
 };
 
 export const SyncStatusProcessed:any = Template.bind({});
 SyncStatusProcessed.args = {
   ...commonProps,
-  syncStatus: 'processed',
+  beforeMount(this: any) {
+    this.$store.state.productFeed = productFeedStatusSyncSuccess;
+  },
 };
 
 export const SyncStatusFailed:any = Template.bind({});
 SyncStatusFailed.args = {
   ...commonProps,
-  syncStatus: 'failed',
+  beforeMount(this: any) {
+    this.$store.state.productFeed = productFeedStatusSyncFailed;
+  },
 };

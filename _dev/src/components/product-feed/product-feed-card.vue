@@ -425,16 +425,9 @@ export default {
       return null;
     },
     syncStatus() {
-      // TODO : retrieve other statu 'warning'
+      // TODO : retrieve other status 'warning'
       // TODO : how to know status from api ? + date of failed sync ?
-      if (!this.getProductFeedStatus.failedSyncs.length
-      && !this.getProductFeedStatus.successfulSyncs.length) {
-        return 'schedule';
-      }
-      if (this.getProductFeedStatus.failedSyncs.length) {
-        return 'failed';
-      }
-      return 'success';
+      return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
   },
   methods: {

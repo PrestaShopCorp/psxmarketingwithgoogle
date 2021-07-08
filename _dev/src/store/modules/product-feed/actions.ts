@@ -169,7 +169,7 @@ export default {
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/validation/summary`, {
+    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/product-feeds/validation/summary`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

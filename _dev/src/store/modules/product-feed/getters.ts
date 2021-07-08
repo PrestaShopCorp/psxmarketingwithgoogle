@@ -58,4 +58,14 @@ export default {
   ProductFeedValidationSummary {
     return state.validationSummary;
   },
+  [GettersTypes.GET_SYNC_STATUS](state: LocalState) : string {
+    if (!state.status.failedSyncs.length
+      && !state.status.successfulSyncs.length) {
+      return 'schedule';
+    }
+    if (state.status.failedSyncs.length) {
+      return 'failed';
+    }
+    return 'success';
+  },
 };

@@ -127,22 +127,16 @@ export default {
       return this.$store.state.productFeed.settings.productsPerBatchSync;
     },
     syncStatus() {
-      // TODO : retrieve other status : schedule
-      // TODO : how to know status from api ?
-      if (this.getProductFeedStatus.failedSyncs.length) {
-        return 'failed';
-      }
-      return 'processed';
+      return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
     title() {
-      //  TODO : find status in progress
-      // if (this.syncStatus === 'schedule') {
-      //   return {
-      //     icon: 'schedule',
-      //     color: 'primary',
-      //     message: this.$i18n.t('productFeedPage.syncStatus.readyForExport'),
-      //   };
-      // }
+      if (this.syncStatus === 'schedule') {
+        return {
+          icon: 'schedule',
+          color: 'primary',
+          message: this.$i18n.t('productFeedPage.syncStatus.readyForExport'),
+        };
+      }
       if (this.syncStatus === 'failed') {
         return {
           icon: 'error_outline',
