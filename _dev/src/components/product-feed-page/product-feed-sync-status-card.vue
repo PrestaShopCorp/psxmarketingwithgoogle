@@ -127,14 +127,7 @@ export default {
       return this.$store.state.productFeed.settings.productsPerBatchSync;
     },
     syncStatus() {
-      if (this.getProductFeedStatus.failedSyncs.length) {
-        return 'failed';
-      }
-      if (!this.getProductFeedStatus.failedSyncs.length
-      && !this.getProductFeedStatus.successfulSyncs.length) {
-        return 'schedule';
-      }
-      return 'processed';
+      return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
     title() {
       if (this.syncStatus === 'schedule') {
