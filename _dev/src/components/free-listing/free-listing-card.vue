@@ -26,26 +26,32 @@
         </b-card-text>
       </div>
       <div
-        v-if="!firstTime"
         class="ml-auto mb-0"
       >
-        <span class="ps-switch ps-switch-sm">
+        <span
+          class="ps-switch ps-switch-sm"
+          v-if="productFeedIsEnabled"
+        >
           <input
+            @change="toggle"
+            :disabled="errorAPI"
             type="radio"
             name="switchEnable"
-            v-model="enabledFreeListing"
             :value="false"
+            :checked="freeListingStatus == false"
           >
           <label for="example_off_3">{{ $t('cta.disabled') }}</label>
           <input
+            @change="toggle"
+            :disabled="errorAPI"
             type="radio"
             name="switchEnable"
-            v-model="enabledFreeListing"
             :value="true"
-            checked
+            :checked="freeListingStatus == true"
           >
           <label for="example_on_3">{{ $t('cta.enabled') }}</label>
           <span class="slide-button" />
+
         </span>
       </div>
     </div>
@@ -76,22 +82,7 @@
           </a>
         </li>
       </ul>
-      <div
-        v-if="firstTime"
-        class="d-md-flex justify-content-md-end align-items-center text-center mt-3"
-      >
-        <p class="text-muted ps_gs-fz-12 mb-3 mb-md-0 text-left">
-          {{ $t('freeListingCard.googleDelay') }}
-        </p>
-        <b-button
-          size="sm"
-          :disabled="ctaIsDisabled"
-          variant="primary"
-          class="ml-md-3"
-        >
-          {{ $t('cta.enableFreeListing') }}
-        </b-button>
-      </div>
+
       <b-alert
         v-if="alert"
         :variant="alert.variant"
@@ -101,6 +92,14 @@
         <p class="mb-0">
           {{ $t(`freeListingCard.${alert.text}`) }}
         </p>
+        <b-button
+          v-if="errorAPI"
+          class="mx-1 mt-3"
+          variant="outline-secondary"
+          @click="refresh"
+        >
+          {{ $t('general.refreshPage') }}
+        </b-button>
       </b-alert>
     </template>
     <BadgeListRequirements
@@ -115,11 +114,6 @@ import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
   name: 'FreeListingCard',
-  data() {
-    return {
-      ctaIsDisabled: false,
-    };
-  },
   components: {
     BadgeListRequirements,
   },
@@ -128,57 +122,39 @@ export default {
       type: Boolean,
       default: false,
     },
-    firstTime: {
-      type: Boolean,
-      default: true,
-    },
-    enabledFreeListing: {
-      type: Boolean,
-      default: false,
-    },
   },
+
   computed: {
     alert() {
-      // TODO: handle Country not eligible
-      if (1) {
-        return {
-          variant: 'warning',
-          text: 'alertCountryNotEligible',
-        };
-      }
-      // TODO: handle Can't enable free listing
-      // in this case, the switch toggle should be hidden
-      if (1) {
+      if (this.errorAPI) {
         return {
           variant: 'warning',
           text: 'alertCantEnableFreeListing',
         };
       }
-
-      // TODO: remove unused cases
       if (this.freeListingStatus === true
       && this.productFeedIsEnabled === false) {
         return {
           variant: 'warning',
           text: 'alertProductFeedDisabled',
         };
-      } if (this.freeListingStatus === false
-      && this.productFeedIsEnabled === false
-      && this.enabledFreeListing === false) {
-        return {
-          variant: 'warning',
-          text: 'alertEnableFreeListingAndProductFeed',
-        };
       }
       if (this.freeListingStatus === false
-      && this.firstTime === false
       && this.productFeedIsEnabled === true) {
         return {
           variant: 'warning',
           text: 'alertEnableFreeListing',
         };
-      } if (this.enabledFreeListing === true
-      && this.freeListingStatus === true
+      }
+
+      // TODO: handle Country not eligible
+      // if (1) {
+      //   return {
+      //     variant: 'warning',
+      //     text: 'alertCountryNotEligible',
+      //   };
+      // }
+      if (this.freeListingStatus === true
       && this.productFeedIsEnabled === true) {
         return {
           variant: 'success',
@@ -193,8 +169,17 @@ export default {
     freeListingStatus() {
       return this.$store.getters['freeListing/GET_FREE_LISTING_STATUS'];
     },
+    errorAPI() {
+      return this.$store.getters['freeListing/GET_FREE_LISTING_STATUS_API'];
+    },
   },
   methods: {
+    toggle() {
+      this.$store.dispatch('freeListing/SEND_FREE_LISTING_STATUS', !this.freeListingStatus);
+    },
+    refresh() {
+      this.$router.go();
+    },
   },
 };
 </script>

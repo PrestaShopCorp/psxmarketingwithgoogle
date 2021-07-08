@@ -22,45 +22,29 @@ import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootState}) {
-    // try {
-    //   const response = await fetch(
-    //     `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/status`, {
-    //       method: 'GET',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         Accept: 'application/json',
-    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-    //       },
-    //     }
-    //   );
-    //   if (!response.ok) {
-    //     throw new HttpClientError(response.statusText, response.status);
-    //   }
-    //   const json = await response.json();
-    // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
-    const json = {
-      jobEndedAt: '2021-04-13T13:59:01.440Z',
-      nextJobAt: '2021-05-13T13:59:01.440Z',
-      shopHealthy: true,
-      successfulSyncs: [
-        'info',
-        'modules',
-        'themes',
-      ],
-      failedSyncs: [
-        // 'products',
-        // 'google-taxonomies',
-      ],
-      enabled: true,
-    };
-    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'jobEndedAt', data: json.jobEndedAt});
-    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextJobAt', data: json.nextJobAt});
-    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'enabled', data: json.enabled});
-    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'successfulSyncs', data: json.successfulSyncs});
-    commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'failedSyncs', data: json.failedSyncs});
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      const response = await fetch(
+        `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/status`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        },
+      );
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      const json = await response.json();
+      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'jobEndedAt', data: json.jobEndedAt});
+      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextJobAt', data: json.nextJobAt});
+      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'enabled', data: json.enabled});
+      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'successfulSyncs', data: json.successfulSyncs});
+      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'failedSyncs', data: json.failedSyncs});
+    } catch (error) {
+      console.error(error);
+    }
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, state, rootState}) {
@@ -185,44 +169,35 @@ export default {
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {
-    // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
-    // const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/validation/summary`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Accept: 'application/json',
-    //     Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-    //   },
-    // body: JSON.stringify({
-    //   action: 'getProductsReadyToSync',
-    // }),
-    // });
-    const json = {
-      activeItems: 113,
-      expiringItems: 13,
-      pendingItems: 23,
-      disapprovedItems: 57,
-    };
-    commit(MutationsTypes.SET_VALIDATION_SUMMARY, json);
-
-    // if (!response.ok) {
-    //   throw new HttpClientError(response.statusText, response.status);
-    // }
-    // return response.json();
+    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/validation/summary`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+      },
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
+    commit(MutationsTypes.SET_VALIDATION_SUMMARY, result);
+    return result;
   },
 
   async [ActionsTypes.GET_TOTAL_PRODUCTS]({rootState, commit}) {
-    // ! FOR TESTING ONLY / WAINTING FOR THE BACKEND TO BE CONNECTED AND CALLED
-    // const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
-    //   method: 'GET',
-    //   headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-    // });
-    // if (!response.ok) {
-    //   throw new HttpClientError(response.statusText, response.status);
-    // }
-    // const result = await response.json();
-    const result = 12;
-    commit(MutationsTypes.SAVE_TOTAL_PRODUCTS, result);
+    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'getProductsReadyToSync',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
+    commit(MutationsTypes.SAVE_TOTAL_PRODUCTS, Number(result.total));
     return result;
   },
 };

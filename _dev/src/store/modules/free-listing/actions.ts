@@ -47,18 +47,42 @@ export default {
     }
   },
 
-  async [ActionsTypes.SEND_FREE_LISTING_STATUS]({commit, rootState}, enabled: boolean) {
+  async [ActionsTypes.GET_FREE_LISTING_STATUS]({commit, rootState}, enabled: boolean) {
     try {
-      const resp = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/free-listings/settings`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify(enabled),
-      });
+      const resp = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/free-listings/settings`,
+        {
+          method: 'GET',
+          headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        });
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      commit(MutationsTypes.SET_FREE_LISTING_STATUS, json);
+      commit(MutationsTypes.SET_FREE_LISTING_STATUS, json.enabled);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async [ActionsTypes.SEND_FREE_LISTING_STATUS]({commit, rootState}, enabled: boolean) {
+    try {
+      const resp = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/free-listings/toggle`,
+        {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+          body: JSON.stringify({
+            is_enabled: enabled,
+          }),
+        });
+      if (!resp.ok) {
+        commit(MutationsTypes.SET_ERROR_API, true);
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+
+      const json = await resp.json();
+      commit(MutationsTypes.SET_ERROR_API, false);
+      // ! It looks like the API always sends back "true"
+      //  ! So i don't use its response
+      commit(MutationsTypes.SET_FREE_LISTING_STATUS, enabled);
     } catch (error) {
       console.error(error);
     }

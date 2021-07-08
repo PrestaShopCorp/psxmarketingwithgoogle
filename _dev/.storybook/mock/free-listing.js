@@ -2,6 +2,8 @@ export const freeListing = {
   validationList: {},
   summaryValidationList: [],
   status: false,
+  enabled: false,
+  errorAPI: false,
 };
 
 export const freeListingEnabled = {
@@ -12,6 +14,15 @@ export const freeListingEnabled = {
 export const freeListingDisabled = {
   ...freeListing,
   enabled: false,
+};
+
+export const freeListingErrorAPI = {
+  ...freeListingDisabled,
+  errorAPI: true,
+};
+
+export const freeListingCountryNotEligible = {
+  ...freeListingDisabled,
 };
 
 export default freeListingEnabled;

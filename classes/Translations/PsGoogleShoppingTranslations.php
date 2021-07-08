@@ -57,6 +57,7 @@ class PsGoogleShoppingTranslations
                     'catalog' => $this->module->l('Product catalog', 'PsGoogleShoppingTranslations'),
                     'help' => $this->module->l('Help', 'PsGoogleShoppingTranslations'),
                 ],
+                'refreshPage' => $this->module->l('Refresh page', 'PsGoogleShoppingTranslations'),
             ],
             'configuration' => [
                 'introduction' => $this->module->l('Configuration Page !', 'PsGoogleShoppingTranslations'),
@@ -126,6 +127,7 @@ class PsGoogleShoppingTranslations
                 'toUseGmcNeedsAdminAccess' => $this->module->l('To use an existing Merchant Center account, you must have **Admin** access.', 'PsGoogleShoppingTranslations'),
                 'linkingFailed' => $this->module->l('You can\'t connect to your Merchant Center account right now. Try again later.', 'PsGoogleShoppingTranslations'),
                 'AccountValidationFailed' => $this->module->l('Account validation failed.', 'PsGoogleShoppingTranslations'),
+                'unlinkFailed' => $this->module->l('Disconnection failed. Please refresh the page and try again.', 'PsGoogleShoppingTranslations'),
                 'verifyOrClaimingFailed' => $this->module->l('Account validation failed', 'PsGoogleShoppingTranslations'),
                 'tryAgainLater' => $this->module->l('We can’t verify or claim the current site. Try again later.', 'PsGoogleShoppingTranslations'),
                 'alertSuspended' => $this->module->l('Your account has been suspended.', 'PsGoogleShoppingTranslations'),

@@ -425,8 +425,12 @@ export default {
       return null;
     },
     syncStatus() {
-      // TODO : retrieve other status : schedule and warning
+      // TODO : retrieve other statu 'warning'
       // TODO : how to know status from api ? + date of failed sync ?
+      if (!this.getProductFeedStatus.failedSyncs.length
+      && !this.getProductFeedStatus.successfulSyncs.length) {
+        return 'schedule';
+      }
       if (this.getProductFeedStatus.failedSyncs.length) {
         return 'failed';
       }

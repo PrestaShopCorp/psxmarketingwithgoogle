@@ -7,7 +7,8 @@
         "configuration" : "Configure",
         "catalog" : "Product catalog",
         "help" : "Help"
-      }
+      },
+      "refreshPage" : "Refresh page"
     },
     "configuration" : {
         "introduction" : "Configuration Page !"

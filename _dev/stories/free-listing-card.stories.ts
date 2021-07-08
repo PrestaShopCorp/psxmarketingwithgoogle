@@ -1,6 +1,6 @@
 import FreeListingCard from '../src/components/free-listing/free-listing-card.vue'
 import {productFeedEnabled, productFeedDisabled} from '../.storybook/mock/product-feed';
-import {freeListingEnabled, freeListingDisabled} from '../.storybook/mock/free-listing';
+import {freeListingEnabled, freeListingDisabled, freeListingErrorAPI, freeListingCountryNotEligible} from '../.storybook/mock/free-listing';
 
 export default {
   title: 'Free listing/Card',
@@ -47,18 +47,17 @@ AlertEnableFreeListing.args = {
 }
 
 // TODO : case to handle (store state, etc...)
-export const AlertCountryNotEligible:any = Template.bind({});
-AlertCountryNotEligible.args = {
-  isEnabled: true,
-  firstTime: false,
-  enabledFreeListing: false,
-  beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedEnabled
-    this.$store.state.freeListing = freeListingDisabled
-  },
-}
+// export const AlertCountryNotEligible:any = Template.bind({});
+// AlertCountryNotEligible.args = {
+//   isEnabled: true,
+//   firstTime: false,
+//   enabledFreeListing: false,
+//   beforeCreate(this: any) {
+//     this.$store.state.productFeed = productFeedEnabled
+//     this.$store.state.freeListing = freeListingCountryNotEligible
+//   },
+// }
 
-// TODO : case to handle (store state, etc...)
 export const AlertCantEnableFreeListing:any = Template.bind({});
 AlertCantEnableFreeListing.args = {
   isEnabled: true,
@@ -66,6 +65,6 @@ AlertCantEnableFreeListing.args = {
   enabledFreeListing: false,
   beforeCreate(this: any) {
     this.$store.state.productFeed = productFeedEnabled
-    this.$store.state.freeListing = freeListingDisabled
+    this.$store.state.freeListing = freeListingErrorAPI
   },
 }
