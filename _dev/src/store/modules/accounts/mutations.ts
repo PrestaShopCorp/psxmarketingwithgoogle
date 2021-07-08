@@ -88,6 +88,14 @@ export default {
       ...state.googleMerchantAccount,
       id: null,
       gmcStatus: null,
+      isVerified: false,
+      isClaimed: false,
+      isSuspended: {
+        status: false,
+      },
+      isEnhancedFreeListingCompliant: {
+        status: true,
+      },
     };
   },
   [MutationsTypes.SAVE_WEBSITE_VERIFICATION_AND_CLAIMING_STATUS](
