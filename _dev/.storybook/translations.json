@@ -70,8 +70,8 @@
       "claimCollides" : "Your website has been already claimed.",
       "claimOverwrite" : "To finish Merchant Center account creation, you need to overwrite the existing claim.",
       "footerEU" : "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
-      "shopInfoMissing" : "Shop information is missing",
-      "shopInfoMissingDescription" : "To check if it is a validity issue or if you are not following our rules, please log in to your account at",
+      "shopInfoMissing" : "Store information is missing",
+      "shopInfoMissingDescription" : "To complete missing store information please go to your [Merchant Center account]({0})[:target=\"_blank\"].",
       "userIsNotAdmin" : "You need Admin access",
       "googleMCA" : "Google Merchant Center account",
       "toUseGmcNeedsAdminAccess" : "To use an existing Merchant Center account, you must have **Admin** access.",
@@ -79,7 +79,8 @@
       "AccountValidationFailed" : "Account validation failed",
       "unlinkFailed" : "Disconnection failed. Please refresh the page and try again.",
       "tryAgainLater" : "We can’t verify or claim the current site. Try again later.",
-      "alertSuspended" : "Go to your [Merchant Center account]({0})[:target=\"_blank\"] to see more details on the reason. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"].",
+      "alertSuspended" : "Your account has been suspended.",
+      "alertSuspendedDescription" : "To see more details on the reasons for suspension, please visit your [Merchant Center account]({0})[:target=\"_blank\"]. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"].",
       "notManaged" : "Not associated with PrestaShop",
       "overwriteFailed": "Website URL claim failed",
       "overwriteToBeDoneManually": "Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}",
@@ -421,7 +422,8 @@
       "disconnect" : "Disconnect",
       "export" : "Export",
       "learnAboutFreeListing": "Lean more about free listing",
-      "addWebsiteAddress" : "Add website address"
+      "addWebsiteAddress" : "Add website address",
+      "transferClaim" : "Transfer claim"
     },
     "badge" : {
       "free" : "Free",
