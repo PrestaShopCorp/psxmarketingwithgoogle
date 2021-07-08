@@ -80,9 +80,9 @@ export default {
 
       const json = await resp.json();
       commit(MutationsTypes.SET_ERROR_API, false);
-      // ! It looks like the API send back the wrong status
-      // and we're forced to save the opposite?
-      commit(MutationsTypes.SET_FREE_LISTING_STATUS, !json.is_enabled);
+      // ! It looks like the API always sends back "true"
+      //  ! So i don't use its response
+      commit(MutationsTypes.SET_FREE_LISTING_STATUS, enabled);
     } catch (error) {
       console.error(error);
     }
