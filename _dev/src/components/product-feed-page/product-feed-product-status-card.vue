@@ -85,17 +85,16 @@ export default {
     BAlert,
     productFeedCardReportProductsSyncCard,
   },
-  props: {
-    //  TODO : retrieve it from sync/status
-    isSyncInProgress: {
-      type: Boolean,
-      default: false,
-    },
-  },
   computed: {
     validationSummary() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_VALIDATION_SUMMARY'];
     },
+    getProductFeedStatus() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
+    },
+      isSyncInProgress() {
+       return !this.getProductFeedStatus.failedSyncs.length && !this.getProductFeedStatus.successfulSyncs.length;
+      },
     nbProductsTotal() {
       return this.validationSummary.activeItems + this.validationSummary.pendingItems
       + this.validationSummary.disapprovedItems;

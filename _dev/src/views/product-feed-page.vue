@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-alert
-      show
+      :show="syncStatus === 'processed' || 'schedule'"
       variant="success"
       class="mb-0 mt-3 mb-3"
     >
@@ -21,7 +21,21 @@ export default {
     ProductFeedSyncStatusCard,
     ProductFeedProductStatusCard,
   },
-
+  computed: {
+      getProductFeedStatus() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
+    },
+     syncStatus() {
+      if (this.getProductFeedStatus.failedSyncs.length) {
+        return 'failed';
+      }
+      if(!this.getProductFeedStatus.failedSyncs.length 
+      && !this.getProductFeedStatus.successfulSyncs.length) {
+        return 'schedule';
+      }
+      return 'processed';
+    },
+  },
   beforeCreate() {
     this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
     this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
