@@ -79,6 +79,26 @@ Enabled.args = {
   }
 };
 
+export const EnabledSpinner:any = Template.bind({});
+EnabledSpinner.args = {
+  isEnabled: true,
+  initialMcaStatus: merchantCenterAccountNotConnected,
+  mounted: function(this: any) {
+    // This is not the correct state to show spinner but it works...
+    this.$store.state.accounts.googleAccount.mcaSelectionOptions = null
+  }
+};
+
+
+export const EnabledButNoAccount:any = Template.bind({});
+EnabledButNoAccount.args = {
+  isEnabled: true,
+  initialMcaStatus: merchantCenterAccountNotConnected,
+  mounted: function(this: any) {
+    this.$store.state.accounts.googleAccount.mcaSelectionOptions = undefined
+  }
+};
+
 export const EnabledLinkingFailed:any = Template.bind({});
 EnabledLinkingFailed.args = {
   isEnabled: true,
