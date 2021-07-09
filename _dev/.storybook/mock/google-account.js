@@ -25,7 +25,7 @@ export const googleAccountConnected = {
     expiry_date: 999999999999999,
     details: {
         email: 'v.godard@maisonroyer.com',
-        picture: '//source.unsplash.com/38x38',
+        picture: '//source.unsplash.com/bul_3zwYI6E/38x38',
     },
     mcaSelectionOptions: [
       {
