@@ -16,6 +16,7 @@ const Template = (args, { argTypes }) => ({
 
 export const Disabled:any = Template.bind({});
 Disabled.args = {
+  isEnabled: false,
   beforeCreate(this: any) {
     this.$store.state.productFeed = productFeedIsConfigured
     this.$store.state.freeListing = freeListingDisabled
