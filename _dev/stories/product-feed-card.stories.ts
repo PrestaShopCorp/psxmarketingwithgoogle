@@ -68,15 +68,14 @@ Disabled.args = {
   isEnabled: false,
 };
 
-// ! Not used anymore, no more switch
-// export const Enabled:any = Template.bind({});
-// Enabled.args = {
-//   beforeMount: function(this: any) {
-//     this.$store.state.productFeed = productFeed;
-//   },
-//   isEnabled: true,
-//   ...basicArgs,
-// };
+export const NotConfigured:any = Template.bind({});
+NotConfigured.args = {
+  beforeMount: function(this: any) {
+    this.$store.state.productFeed = productFeed;
+  },
+  isEnabled: true,
+  ...basicArgs,
+};
 
 export const Configured:any = Template.bind({});
 Configured.args = {
