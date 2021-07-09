@@ -54,7 +54,7 @@
 
       <FreeListingCard
         v-if="stepsAreCompleted.step1"
-        :is-enabled="stepsAreCompleted.step2"
+        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
         :error-a-p-i="false"
       />
       <section-title
