@@ -327,9 +327,6 @@ export default {
     // TODO retrieve tax settings from backend
       return 'warning';
     },
-    productFeedSyncEnabled() {
-      return this.getProductFeedStatus.enabled;
-    },
     attributeMapping: {
     // TODO BATCH 2 refacto when dynamic fields
     // TODO  BATCH 2 + to push also the long description attribute if needed
@@ -407,9 +404,6 @@ export default {
     },
     alert() {
       // TODO : how to know status from api ? + date of failed sync ?
-      if (!this.productFeedSyncEnabled) {
-        return 'ProductFeedDeactivated';
-      }
       if (this.getProductFeedStatus.failedSyncs.length) {
         return 'Failed';
       }
