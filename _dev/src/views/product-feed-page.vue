@@ -22,9 +22,6 @@ export default {
     ProductFeedProductStatusCard,
   },
   computed: {
-    getProductFeedStatus() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
-    },
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },

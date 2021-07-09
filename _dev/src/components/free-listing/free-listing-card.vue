@@ -164,7 +164,7 @@ export default {
       return null;
     },
     productFeedIsEnabled() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].enabled;
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
     freeListingStatus() {
       return this.$store.getters['freeListing/GET_FREE_LISTING_STATUS'];
