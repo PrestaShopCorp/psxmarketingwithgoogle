@@ -23,7 +23,7 @@ export interface ProductFeedStatus {
   shopHealthy: boolean;
   failedSyncs: Array<string>;
   successfulSyncs: Array<string>;
-  enabled: boolean;
+  syncSchedule?: string
 }
 export interface ProductFeedSettingsAttributeMapping {
   exportProductsWithShortDescription?: boolean;
@@ -71,7 +71,6 @@ export const state: State = {
   status: {
     failedSyncs: [],
     successfulSyncs: [],
-    enabled: false,
     shopHealthy: true,
     jobEndedAt: '',
     nextJobAt: '',

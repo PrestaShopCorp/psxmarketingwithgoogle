@@ -6,7 +6,6 @@ export const productFeed = {
   status: {
     failedSyncs: [],
     successfulSyncs: ['oc'],
-    enabled: false,
     shopHealthy: true,
     jobEndedAt: "",
     nextJobAt: "",
@@ -34,16 +33,10 @@ export const productFeed = {
   },
 };
 
-export const productFeedEnabled = {
-  ...productFeed,
-  status: {
-    ...productFeed.status,
-    enabled: true,
-  }
-}
+
 
 export const productFeedIsConfigured = {
-  ...productFeedEnabled,
+  ...productFeed,
   isConfigured: true,
 }
 
@@ -64,9 +57,9 @@ export const productFeedIsConfiguredOnce = {
 }
 
 export const productFeedStatusSyncFailed = {
-  ...productFeedEnabled,
+  ...productFeedIsConfigured,
   status: {
-    ...productFeedEnabled.status,
+    ...productFeedIsConfigured.status,
     failedSyncs: ['fail'],
     jobEndedAt: "12.05",
     nextJobAt: "12.05",
@@ -74,18 +67,18 @@ export const productFeedStatusSyncFailed = {
 }
 
 export const productFeedStatusSyncSchedule = {
-  ...productFeedEnabled,
+  ...productFeedIsConfigured,
   status: {
-    ...productFeedEnabled.status,
+    ...productFeedIsConfigured.status,
     failedSyncs: [],
     successfulSyncs: [],
     nextJobAt: "12.05",
   }
 }
 export const productFeedStatusSyncSuccess = {
-  ...productFeedEnabled,
+  ...productFeedIsConfigured,
   status: {
-    ...productFeedEnabled.status,
+    ...productFeedIsConfigured.status,
     failedSyncs: [],
     successfulSyncs: ['what', 'a', 'success'],
     jobEndedAt: "12.05",

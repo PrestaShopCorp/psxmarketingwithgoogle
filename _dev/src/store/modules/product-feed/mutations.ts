@@ -36,10 +36,6 @@ export default {
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
     state.status[payload.name] = payload.data;
   },
-  [MutationsTypes.SET_SUSPENDED_DATA_SYNC](state: LocalState, payload: boolean) {
-    state.status.enabled = payload;
-  },
-
   //  Product Feed Card
   [MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS](state: LocalState, payload: payloadObject) {
     state.settings[payload.name] = payload.data;

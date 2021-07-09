@@ -2,18 +2,17 @@ export const freeListing = {
   validationList: {},
   summaryValidationList: [],
   status: false,
-  enabled: false,
   errorAPI: false,
 };
 
 export const freeListingEnabled = {
   ...freeListing,
-  enabled: true,
+  status: true,
 };
 
 export const freeListingDisabled = {
   ...freeListing,
-  enabled: false,
+  status: false,
 };
 
 export const freeListingErrorAPI = {
