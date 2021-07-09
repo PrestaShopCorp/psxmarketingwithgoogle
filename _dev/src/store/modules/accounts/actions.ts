@@ -19,6 +19,7 @@
 
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
+import MutationsTypesProductFeed from '../product-feed/mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
@@ -277,6 +278,7 @@ export default {
       }
     }
     commit(MutationsTypes.REMOVE_GMC);
+    commit(`productFeed/${MutationsTypesProductFeed.TOGGLE_CONFIGURATION_FINISHED}`, false, {root: true});
     return true;
   },
 
