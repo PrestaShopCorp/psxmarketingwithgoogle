@@ -86,4 +86,3 @@ export const productFeedStatusSyncSuccess = {
   }
 }
 
-export default productFeedEnabled;

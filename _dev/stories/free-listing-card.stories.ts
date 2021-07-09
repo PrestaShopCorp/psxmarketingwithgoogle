@@ -1,5 +1,5 @@
 import FreeListingCard from '../src/components/free-listing/free-listing-card.vue'
-import {productFeedIsConfigured, productFeedDisabled} from '../.storybook/mock/product-feed';
+import {productFeedIsConfigured} from '../.storybook/mock/product-feed';
 import {freeListingEnabled, freeListingDisabled, freeListingErrorAPI, freeListingCountryNotEligible} from '../.storybook/mock/free-listing';
 
 export default {
@@ -13,6 +13,7 @@ const Template = (args, { argTypes }) => ({
   template: '<FreeListingCard v-bind="$props" />',
   beforeCreate : args.beforeCreate,
 });
+
 
 export const Disabled:any = Template.bind({});
 Disabled.args = {
