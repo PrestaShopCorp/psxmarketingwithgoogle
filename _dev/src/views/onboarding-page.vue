@@ -56,6 +56,7 @@
         v-if="stepsAreCompleted.step1"
         :is-enabled="!shopInConflictPsAccount && productFeedIsConfigured"
         :error-a-p-i="false"
+        @openPopin="togglePopinFreeListingDisabled"
       />
       <section-title
         :step-number="3"
@@ -163,6 +164,13 @@ export default {
         this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
       } else if (this.productFeedIsConfiguredOnce) {
         this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
+      }
+    },
+    togglePopinFreeListingDisabled() {
+      if (this.$refs.PopinFreeListingDisable) {
+        this.$bvModal.show(
+          this.$refs.PopinFreeListingDisable.$refs.modal.id,
+        );
       }
     },
   },

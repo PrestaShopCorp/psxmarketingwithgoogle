@@ -26,6 +26,7 @@
      "@storybook/addon-essentials",
      "@storybook/addon-knobs",
      "@storybook/addon-a11y",
+     "@storybook/addon-actions",
     ],
     "presets": [
      "@storybook/preset-scss"
