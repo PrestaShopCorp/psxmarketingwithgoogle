@@ -156,6 +156,16 @@
           <p class="mb-0">
             {{ $t('mcaCard.linkingFailed') }}
           </p>
+          <div class="d-md-flex text-center align-items-center mt-2">
+            <b-button
+              size="sm"
+              class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
+              variant="outline-secondary"
+              @click="refresh"
+            >
+              {{ $t('general.refreshPage') }}
+            </b-button>
+          </div>
         </b-alert>
       </b-form>
       <div class="mt-3">
@@ -196,7 +206,14 @@
       class="d-flex flex-wrap flex-md-nowrap justify-content-between"
     >
       <div class="d-flex align-items-center">
-        <strong>{{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}</strong>
+        <a
+          :href="merchantCenterWebsitePageUrl.overview"
+          :title="$t('cta.goToYourX', [$t('badge.merchantCenterAccount')])"
+          target="_blank"
+          class="external_link-no_icon link-regular"
+        >
+          <strong>{{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}</strong>
+        </a>
         <b-badge
           class="mx-3"
           :variant="mcaStatusBadge.color"
@@ -280,25 +297,7 @@
         <strong>{{ $t('mcaCard.claimCollides') }}</strong><br>
         <span class="ps_gs-fz-12">
           {{ $t('mcaCard.claimOverwrite') }}
-        </span>
-      </p>
-      <div class="d-md-flex text-center align-items-center mt-2">
-        <b-button
-          size="sm"
-          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
-          variant="secondary"
-          @click="overrideClaim"
-        >
-          {{ $t("cta.transferClaim") }}
-        </b-button>
-        <b-button
-          size="sm"
-          class="mx-1 mt-3 mt-md-0 mr-md-3"
-          variant="outline-secondary"
-          @click="dissociateMerchantCenterAccount"
-        >
-          {{ $t("cta.switchAccount") }}
-        </b-button>
+        </span><br>
         <a
           :href="$options.googleUrl.learnAboutSiteClaiming"
           target="_blank"
@@ -306,6 +305,16 @@
         >
           {{ $t('cta.learnAboutSiteClaiming') }}
         </a>
+      </p>
+      <div class="d-md-flex text-center align-items-center mt-2">
+        <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
+          variant="outline-secondary"
+          @click="overrideClaim"
+        >
+          {{ $t("cta.transferClaim") }}
+        </b-button>
       </div>
     </b-alert>
     <b-alert
@@ -318,26 +327,7 @@
         <strong>{{ $t('mcaCard.claimCollides') }}</strong><br>
         <span class="ps_gs-fz-12">
           {{ $t('mcaCard.claimOverwriteWithManualAction', [websiteUrl]) }}
-        </span>
-      </p>
-      <div class="d-md-flex text-center align-items-center mt-2">
-        <b-button
-          size="sm"
-          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 text-white text-decoration-none"
-          variant="secondary"
-          :href="merchantCenterWebsitePageUrl.website"
-          target="_blank"
-        >
-          {{ $t("cta.addWebsiteAddress") }}
-        </b-button>
-        <b-button
-          size="sm"
-          class="mx-1 mt-3 mt-md-0 mr-md-3"
-          variant="outline-secondary"
-          @click="dissociateMerchantCenterAccount"
-        >
-          {{ $t("cta.switchAccount") }}
-        </b-button>
+        </span><br>
         <a
           :href="$options.googleUrl.learnAboutSiteClaiming"
           target="_blank"
@@ -345,6 +335,17 @@
         >
           {{ $t('cta.learnAboutSiteClaiming') }}
         </a>
+      </p>
+      <div class="d-md-flex text-center align-items-center mt-2">
+        <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 text-decoration-none"
+          variant="outline-secondary"
+          :href="merchantCenterWebsitePageUrl.website"
+          target="_blank"
+        >
+          {{ $t("cta.addWebsiteAddress") }}
+        </b-button>
       </div>
     </b-alert>
     <b-alert
@@ -638,6 +639,9 @@ export default {
           this.$refs.MerchantCenterAccountPopinNewMca.$refs.modal.id,
         );
       }
+    },
+    refresh() {
+      this.$router.go();
     },
   },
   updated() {
