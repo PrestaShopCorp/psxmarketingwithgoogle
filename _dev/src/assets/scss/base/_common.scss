@@ -1,9 +1,9 @@
-.text-muted a[target="_blank"],
-a[target="_blank"].text-muted {
+.text-muted a[target="_blank"]:not(.external_link-no_icon),
+a[target="_blank"].text-muted:not(.external_link-no_icon) {
   color: $grey_muted !important;
 }
 
-a[target="_blank"] {
+a[target="_blank"]:not(.external_link-no_icon) {
 
   &:not(.btn) {
     color: inherit !important;
@@ -60,6 +60,10 @@ a[target="_blank"] {
     border-bottom-color: $blue_light;
     border-left-color: $blue;
   }
+}
+
+.link-regular {
+  color: inherit;
 }
 
 .badge {

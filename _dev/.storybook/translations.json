@@ -424,7 +424,8 @@
       "export" : "Export",
       "learnAboutFreeListing": "Lean more about free listings",
       "addWebsiteAddress" : "Add website address",
-      "transferClaim" : "Transfer claim"
+      "transferClaim" : "Transfer claim",
+      "goToYourX" : "Go to your {0}"
     },
     "badge" : {
       "free" : "Free",

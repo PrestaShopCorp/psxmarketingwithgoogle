@@ -1,0 +1,7 @@
+.alert .btn-outline-secondary {
+  color: $secondary;
+
+  &:hover, &:focus {
+    color: $white;
+  }
+}

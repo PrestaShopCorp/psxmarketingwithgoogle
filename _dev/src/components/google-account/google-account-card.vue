@@ -62,7 +62,14 @@
             height="38"
             alt=""
           >
-          <strong>{{ user.details.email }}</strong>
+          <a
+            :href="$options.googleUrl.manageGoogleAccount"
+            :title="$t('cta.goToYourX', [$t('badge.googleAccount')])"
+            target="_blank"
+            class="external_link-no_icon link-regular"
+          >
+            <strong>{{ user.details.email }}</strong>
+          </a>
         </div>
         <div
           v-if="!accessToken"
@@ -72,7 +79,7 @@
             size="sm"
             variant="primary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
-            :disabled="isConnecting || !authenticationUrl"
+            :disabled="isConnecting || error === 'CantConnect'"
             @click="openPopup"
           >
             <template v-if="!isConnecting">
@@ -132,7 +139,22 @@
       variant="warning"
       class="mb-0 mt-3"
     >
-      {{ error }}
+      <p class="mb-0">
+        {{ $t(`googleAccountCard.alert${error}`)}}
+      </p>
+      <div
+        v-if="error === 'CantConnect'"
+        class="d-md-flex text-center align-items-center mt-2"
+      >
+        <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
+          variant="outline-secondary"
+          @click="refresh"
+        >
+          {{ $t('general.refreshPage') }}
+        </b-button>
+      </div>
     </b-alert>
   </b-card>
 </template>
@@ -200,14 +222,14 @@ export default {
         && this.user.authenticationUrl
         && this.user.authenticationUrl instanceof Error
       ) {
-        return this.$i18n.t('googleAccountCard.alertCantConnect');
+        return 'CantConnect';
       }
 
       if (this.user
         && this.user.access_token
         && this.user.access_token instanceof Error
       ) {
-        return this.$i18n.t('googleAccountCard.alertTokenMissing');
+        return 'TokenMissing';
       }
 
       return null;
@@ -296,9 +318,10 @@ export default {
     dissociateGoogleAccount() {
       this.$emit('dissociateGoogleAccount');
     },
+    refresh() {
+      this.$router.go();
+    },
   },
   googleUrl,
 };
 </script>
-
-<style></style>
