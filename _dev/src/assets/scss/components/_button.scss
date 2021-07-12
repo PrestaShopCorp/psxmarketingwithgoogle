@@ -1,5 +1,15 @@
 .alert .btn-outline-secondary {
   color: $secondary;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    color: $white;
+  }
+}
+
+.alert .btn-secondary {
+  color: $white;
+  text-decoration: none;
 
   &:hover, &:focus {
     color: $white;

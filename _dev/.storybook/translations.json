@@ -188,7 +188,7 @@
         "automatically" : "Automatically",
         "manually" : "Manually",
         "manualShipping" : "Set up manually shipping settings in Merchant Center",
-        "manualShippingDescription" : "You **need to** go to Merchant Center and enter your shipping information yourself. Your products won’t sync until you complete this step.",
+        "manualShippingDescription" : "You need to go to Merchant Center and enter your shipping information yourself. Your products won’t sync until you complete this step.",
         "taxSettings" : "Tax settings",
         "taxSettingsDescription" : "So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect. Select how you want to set up tax settings.",
         "autoImportTax" : "Automatically import tax settings",
@@ -307,7 +307,7 @@
       },
       "productStatus" : {
         "title" : "Products status",
-        "description" : "The status of your products that are synced with your Merchant Center.",
+        "description" : "After submitting your product feed, it will take 3-5 business days to review it.",
         "alert" : "It takes 3-5 business days to review products",
         "approvedProducts" : "Approved",
         "pendingProducts" : "Pending",

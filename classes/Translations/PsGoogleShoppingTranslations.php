@@ -238,7 +238,7 @@ class PsGoogleShoppingTranslations
                     'manualShipping' => $this->module->l('Set up manually shipping settings in Merchant Center', 'PsGoogleShoppingTranslations'),
                     'automatically' => $this->module->l('Automatically', 'PsGoogleShoppingTranslations'),
                     'manually' => $this->module->l('Manually', 'PsGoogleShoppingTranslations'),
-                    'manualShippingDescription' => $this->module->l('You **need to** go to Merchant Center and enter your shipping information yourself. Your products won’t sync until you complete this step.', 'PsGoogleShoppingTranslations'),
+                    'manualShippingDescription' => $this->module->l('You need to go to Merchant Center and enter your shipping information yourself. Your products won’t sync until you complete this step.', 'PsGoogleShoppingTranslations'),
                     'taxSettings' => $this->module->l('Tax settings', 'PsGoogleShoppingTranslations'),
                     'taxSettingsDescription' => $this->module->l('So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect. Select how you want to set up tax settings.', 'PsGoogleShoppingTranslations'),
                     'autoImportTax' => $this->module->l('Automatically import tax settings', 'PsGoogleShoppingTranslations'),
@@ -357,7 +357,7 @@ class PsGoogleShoppingTranslations
                 ],
                 'productStatus' => [
                     'title' => $this->module->l('Product status', 'PsGoogleShoppingTranslations'),
-                    'description' => $this->module->l('The status of your products that are synced with your Merchant Center.', 'PsGoogleShoppingTranslations'),
+                    'description' => $this->module->l('After submitting your product feed, it will take 3-5 business days to review it.', 'PsGoogleShoppingTranslations'),
                     'alert' => $this->module->l('It takes 3-5 business days to review products', 'PsGoogleShoppingTranslations'),
                     'approvedProducts' => $this->module->l('Approved', 'PsGoogleShoppingTranslations'),
                     'pendingProducts' => $this->module->l('Pending', 'PsGoogleShoppingTranslations'),

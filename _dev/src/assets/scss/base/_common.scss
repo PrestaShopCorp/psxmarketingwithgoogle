@@ -100,3 +100,7 @@ a[target="_blank"]:not(.external_link-no_icon) {
   margin-right: 0.5ch;
   color: $danger;
 }
+
+.ps_gs-cursor-disabled {
+  cursor: not-allowed;
+}
