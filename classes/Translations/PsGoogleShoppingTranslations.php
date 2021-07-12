@@ -475,6 +475,7 @@ class PsGoogleShoppingTranslations
                 'learnAboutFreeListing' => $this->module->l('Lean more about free listings', 'PsGoogleShoppingTranslations'),
                 'addWebsiteAddress' => $this->module->l('Add website address', 'PsGoogleShoppingTranslations'),
                 'transferClaim' => $this->module->l('Transfer claim', 'PsGoogleShoppingTranslations'),
+                'goToYourX' => $this->module->l('Go to your {0}', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),
