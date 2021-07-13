@@ -17,7 +17,7 @@ Vue.filter(
 
 Vue.filter(
   'timeConverterToHour', (timestamp : string) => {
-    if (!timestamp) {
+    if (timestamp) {
       const a = new Date(timestamp);
       const hour = a.getHours();
       const min = a.getMinutes();
