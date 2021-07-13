@@ -56,38 +56,17 @@
       </div>
     </div>
     <p
-      class="ps_gs-fz-12"
-      :class="isEnabled ? 'mb-0' : 'mb-2'"
+      class="ps_gs-fz-14 mb-2"
+      v-if="!isEnabled"
     >
       {{ $t('freeListingCard.intro') }}
     </p>
     <template v-if="isEnabled">
-      <ul
-        class="list-inline text-muted ps_gs-fz-12 mb-0"
-      >
-        <li class="list-inline-item">
-          <a
-            href="//google.com"
-            target="_blank"
-          >
-            {{ $t('freeListingCard.learnFreeListing') }}
-          </a>
-        </li>
-        <li class="list-inline-item">
-          <a
-            href="//google.com"
-            target="_blank"
-          >
-            {{ $t('freeListingCard.seeFreeListing') }}
-          </a>
-        </li>
-      </ul>
-
       <b-alert
         v-if="alert"
         :variant="alert.variant"
         show
-        class="mb-0 mt-3"
+        class="mb-0"
       >
         <p class="mb-0">
           {{ $t(`freeListingCard.${alert.text}`) }}
@@ -106,6 +85,18 @@
           </b-button>
         </div>
       </b-alert>
+      <ul
+        class="list-inline text-muted ps_gs-fz-12 mb-0 mt-3"
+      >
+        <li class="list-inline-item">
+          <a
+            :href="$options.googleUrl.learnAboutFreeListing"
+            target="_blank"
+          >
+            {{ $t('freeListingCard.learnFreeListing') }}
+          </a>
+        </li>
+      </ul>
     </template>
     <BadgeListRequirements
       v-if="!isEnabled"
@@ -115,6 +106,7 @@
 </template>
 
 <script>
+import googleUrl from '../../assets/json/googleUrl.json';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
@@ -189,5 +181,6 @@ export default {
       this.$emit('openPopin');
     },
   },
+  googleUrl,
 };
 </script>

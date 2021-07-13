@@ -12,7 +12,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { FreeListingCard,FreeListingPopinDisable },
-  template: 
+  template:
   `<div>
     <FreeListingCard v-bind="$props" @openPopin="togglePopinFreeListingDisabled"/>
     <FreeListingPopinDisable ref="PopinFreeListingDisable"/>
@@ -30,8 +30,6 @@ const Template = (args, { argTypes }) => ({
   beforeMount(this: any) {
     this.$store.state.freeListing = args.initialMcaStatus;
   },
-  mounted: args.mounted,
-
 });
 
 
@@ -70,14 +68,27 @@ AlertEnableFreeListing.args = {
 }
 
 // TODO : case to handle (store state, etc...)
-// export const AlertCountryNotEligible:any = Template.bind({});
-// AlertCountryNotEligible.args = {
-//   isEnabled: true,
-//   initialMcaStatus: freeListingCountryNotEligible,
-//   beforeCreate(this: any) {
-//     this.$store.state.productFeed = productFeedIsConfigured
-//   },
-// }
+export const AlertCountryNotEligible:any = Template.bind({});
+AlertCountryNotEligible.args = {
+  isEnabled: true,
+  initialMcaStatus: freeListingCountryNotEligible,
+  beforeCreate(this: any) {
+    this.$store.state.productFeed = productFeedIsConfigured
+    console.log(AlertCountryNotEligible.template)
+  },
+}
+// ! Add BIG warning: not developed yet
+AlertCountryNotEligible.decorators = [() => ({
+  template: `
+    <div>
+      <h2>
+        ⚠️ TODO: Handle state, this story isn't developed yet ⚠️
+      </h2>
+      <story />
+    </div>
+  `
+})];
+
 
 export const AlertCantEnableFreeListing:any = Template.bind({});
 AlertCantEnableFreeListing.args = {
