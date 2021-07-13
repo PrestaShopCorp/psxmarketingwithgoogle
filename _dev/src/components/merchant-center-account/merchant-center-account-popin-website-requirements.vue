@@ -338,10 +338,8 @@ export default {
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
     },
     ok() {
-      const phoneNumber = !this.shopInformations.shop.phone
-        ? this.businessPhone : this.shopInformations.shop.phone;
-      const addr = !this.shopInformations.shop.streetAddress
-        ? this.businessAddr : this.shopInformations.shop.streetAddress;
+      const phoneNumber = this.shopInformations.shop.phone || this.businessPhone;
+      const addr = this.shopInformations.shop.streetAddress || this.businessAddr;
 
       this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', {
         shop_url: this.shopInformations.shop.url,
