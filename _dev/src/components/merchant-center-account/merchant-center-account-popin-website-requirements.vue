@@ -135,8 +135,9 @@
       >
         <b-form-input
           id="inputBusinessAddress"
-          :value="shopInformations.store.streetAddress"
-          readonly
+          :value="businessAddr"
+          v-model="businessAddr"
+          :readonly="!!shopInformations.store.streetAddress"
           class="maxw-sm-420"
         />
       </b-form-group>
@@ -148,8 +149,9 @@
       >
         <b-form-input
           id="inputBusinessPhoneNumber"
-          :value="shopInformations.store.phone"
-          readonly
+          :value="businessPhone"
+          v-model="businessPhone"
+          :readonly="!!shopInformations.store.phone"
           class="maxw-sm-420"
         />
       </b-form-group>
@@ -303,7 +305,8 @@ export default {
           title: this.$i18n.t('mcaRequirements.steps.shopInfo'),
         },
       ],
-      businessPhone: this.infosBusinessPhone || '',
+      businessPhone: '',
+      businessAddr: '',
       selectedRequirements: [],
       containsAdultContent: null,
       acceptsGoogleTerms: false,
@@ -321,11 +324,12 @@ export default {
       return !(this.selectedRequirements.length === this.requirements.length);
     },
     isStepTwoReadyToValidate() {
-      /**
-       * TODO: Form step 2 validation
-       * Adds businessAddress and businessPhoneto the validation
-       */
-      return !(this.acceptsGoogleTerms && (this.containsAdultContent != null));
+      return !(
+        this.acceptsGoogleTerms
+        && (this.containsAdultContent != null)
+        && this.businessAddr
+        && this.businessPhone
+      );
     },
     saveFirstStep() {
       this.stepActiveData = 2;
@@ -334,13 +338,16 @@ export default {
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
     },
     ok() {
+      const phoneNumber = this.shopInformations.shop.phone || this.businessPhone;
+      const addr = this.shopInformations.shop.streetAddress || this.businessAddr;
+
       this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', {
         shop_url: this.shopInformations.shop.url,
         shop_name: this.shopInformations.shop.name,
         location: this.shopInformations.store.country.iso_code,
         adult_content: this.containsAdultContent,
-        address: this.shopInformations.store.streetAddress,
-        phone: this.shopInformations.store.phone,
+        address: addr,
+        phone: phoneNumber,
         postal_code: this.shopInformations.store.postalCode,
         locality: this.shopInformations.store.locality,
       }).then(() => {
@@ -357,9 +364,6 @@ export default {
     },
   },
   props: {
-    infosBusinessPhone: {
-      type: String,
-    },
     stepActive: {
       type: Number,
       default: 1,
@@ -383,7 +387,12 @@ export default {
       this.$store.dispatch('accounts/REQUEST_WEBSITE_REQUIREMENTS').then(() => {
         this.selectedRequirements = this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'];
       });
-      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
+      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS').then(() => {
+        const {phone} = this.shopInformations.store;
+        const {streetAddress} = this.shopInformations.store;
+        this.businessPhone = phone || '';
+        this.businessAddr = streetAddress || '';
+      });
     }
   },
   googleUrl,
