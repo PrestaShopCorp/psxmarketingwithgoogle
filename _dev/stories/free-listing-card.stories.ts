@@ -1,6 +1,8 @@
 import FreeListingCard from '../src/components/free-listing/free-listing-card.vue'
-import {productFeedEnabled, productFeedDisabled} from '../.storybook/mock/product-feed';
+import FreeListingPopinDisable from '../src/components/free-listing/free-listing-popin-disable.vue'
+import {productFeedIsConfigured} from '../.storybook/mock/product-feed';
 import {freeListingEnabled, freeListingDisabled, freeListingErrorAPI, freeListingCountryNotEligible} from '../.storybook/mock/free-listing';
+import {initialStateApp} from '../.storybook/mock/state-app';
 
 export default {
   title: 'Free listing/Card',
@@ -9,40 +11,61 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { FreeListingCard },
-  template: '<FreeListingCard v-bind="$props" />',
+  components: { FreeListingCard,FreeListingPopinDisable },
+  template: 
+  `<div>
+    <FreeListingCard v-bind="$props" @openPopin="togglePopinFreeListingDisabled"/>
+    <FreeListingPopinDisable ref="PopinFreeListingDisable"/>
+  </div>`,
   beforeCreate : args.beforeCreate,
+  methods:{
+    togglePopinFreeListingDisabled() {
+      // @ts-ignore
+      this.$bvModal.show(
+        // @ts-ignore
+        this.$refs.PopinFreeListingDisable.$refs.modal.id,
+      );
+    },
+  },
+  beforeMount(this: any) {
+    this.$store.state.freeListing = args.initialMcaStatus;
+  },
+  mounted: args.mounted,
+
 });
+
 
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
-  firstTime: true,
+  initialMcaStatus: freeListingDisabled,
   beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedEnabled
-    this.$store.state.freeListing = freeListingDisabled
+    this.$store.state.productFeed = productFeedIsConfigured
   },
 }
 
 export const Enabled:any = Template.bind({});
+// TODO : why the card is not reseting when changing story
 Enabled.args = {
+  beforeMount(this: any) {
+    this.$store.state.app = Object.assign(
+      this.$store.state.app,
+      initialStateApp
+    )
+  },
   isEnabled: true,
-  firstTime: false,
-  enabledFreeListing: true,
+  initialMcaStatus: freeListingEnabled,
   beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedEnabled
-    this.$store.state.freeListing = freeListingEnabled
+    this.$store.state.productFeed = productFeedIsConfigured
   },
 }
 
 export const AlertEnableFreeListing:any = Template.bind({});
 AlertEnableFreeListing.args = {
   isEnabled: true,
-  firstTime: false,
-  enabledFreeListing: false,
+  initialMcaStatus: freeListingDisabled,
   beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedEnabled
-    this.$store.state.freeListing = freeListingDisabled
+    this.$store.state.productFeed = productFeedIsConfigured
   },
 }
 
@@ -50,21 +73,18 @@ AlertEnableFreeListing.args = {
 // export const AlertCountryNotEligible:any = Template.bind({});
 // AlertCountryNotEligible.args = {
 //   isEnabled: true,
-//   firstTime: false,
-//   enabledFreeListing: false,
+//   initialMcaStatus: freeListingCountryNotEligible,
 //   beforeCreate(this: any) {
-//     this.$store.state.productFeed = productFeedEnabled
-//     this.$store.state.freeListing = freeListingCountryNotEligible
+//     this.$store.state.productFeed = productFeedIsConfigured
 //   },
 // }
 
 export const AlertCantEnableFreeListing:any = Template.bind({});
 AlertCantEnableFreeListing.args = {
   isEnabled: true,
-  firstTime: false,
-  enabledFreeListing: false,
+  initialMcaStatus: freeListingErrorAPI,
   beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedEnabled
-    this.$store.state.freeListing = freeListingErrorAPI
+    this.$store.state.productFeed = productFeedIsConfigured
+    // this.$store.state.freeListing = freeListingErrorAPI
   },
 }

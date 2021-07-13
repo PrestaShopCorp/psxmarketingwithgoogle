@@ -18,12 +18,12 @@
  */
 
 export interface ProductFeedStatus {
-  nextJobAt?: string,
+  nextJobAt?: string;
   jobEndedAt?: string;
   shopHealthy: boolean;
   failedSyncs: Array<string>;
   successfulSyncs: Array<string>;
-  enabled: boolean;
+  syncSchedule?: string;
 }
 export interface ProductFeedSettingsAttributeMapping {
   exportProductsWithShortDescription?: boolean;
@@ -35,31 +35,31 @@ export interface ProductFeedSettingsAttributeMapping {
 }
 
 export interface ProductFeedSettings {
-  shippingSettings: Array<object>,
+  shippingSettings: Array<object>;
   autoImportTaxSettings: boolean;
   targetCountries: Array<string> | null;
   productsPerBatchSync?: number;
   autoImportShippingSettings: boolean;
   attributeMapping: ProductFeedSettingsAttributeMapping;
-  syncSchedule?: string,
+  syncSchedule?: string;
 }
 
 export interface ProductFeedValidationSummary {
   activeItems: number|null,
-    expiringItems: number|null,
-    pendingItems: number|null,
-    disapprovedItems: number|null
+  expiringItems: number|null,
+  pendingItems: number|null,
+  disapprovedItems: number|null,
 }
 
 export interface State {
-    isConfigured: boolean,
-    isConfiguredOnce: boolean,
-    psGoogleShoppingActiveCountries: Array<string>,
-    totalProducts: number,
-    stepper: number,
-    status: ProductFeedStatus,
-    settings: ProductFeedSettings,
-    validationSummary : ProductFeedValidationSummary,
+  isConfigured: boolean,
+  isConfiguredOnce: boolean,
+  psGoogleShoppingActiveCountries: Array<string>,
+  totalProducts: number,
+  stepper: number,
+  status: ProductFeedStatus,
+  settings: ProductFeedSettings,
+  validationSummary : ProductFeedValidationSummary,
 }
 
 export const state: State = {
@@ -71,7 +71,6 @@ export const state: State = {
   status: {
     failedSyncs: [],
     successfulSyncs: [],
-    enabled: false,
     shopHealthy: true,
     jobEndedAt: '',
     nextJobAt: '',

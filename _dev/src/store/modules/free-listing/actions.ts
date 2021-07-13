@@ -70,7 +70,7 @@ export default {
           method: 'POST',
           headers: {'Content-Type': 'application/json', Accept: 'application/json'},
           body: JSON.stringify({
-            is_enabled: enabled,
+            enabled,
           }),
         });
       if (!resp.ok) {

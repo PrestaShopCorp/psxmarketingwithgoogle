@@ -39,9 +39,10 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'jobEndedAt', data: json.jobEndedAt});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextJobAt', data: json.nextJobAt});
-      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'enabled', data: json.enabled});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'successfulSyncs', data: json.successfulSyncs});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'failedSyncs', data: json.failedSyncs});
+      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'syncSchedule', data: json.syncSchedule});
+      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'shopHealthy', data: json.shopHealthy});
     } catch (error) {
       console.error(error);
     }
