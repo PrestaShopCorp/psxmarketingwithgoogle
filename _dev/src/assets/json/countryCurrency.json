@@ -657,9 +657,9 @@
   {
     "country": "South Korea",
     "currency": "KRW",
-    "shoppingOngletAvailable": true,
+    "shoppingOngletAvailable": false,
     "onBeta": true,
-    "enterpriseNumberNeeded": false,
+    "enterpriseNumberNeeded": true,
     "shoppingFrAvailable": false,
     "code": "KR"
   },
