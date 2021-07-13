@@ -5,7 +5,7 @@ Vue.filter(
     if (timestamp) {
       const a = new Date(timestamp);
       const year = a.getFullYear();
-      const month = a.getMonth();
+      const month = a.getMonth() + 1;
       const finalMonth = month < 10 ? `0${month}` : month;
       const day = a.getDate();
       const finalDay = day < 10 ? `0${day}` : day;

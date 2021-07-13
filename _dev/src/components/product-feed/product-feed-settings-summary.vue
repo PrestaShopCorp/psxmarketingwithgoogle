@@ -25,7 +25,7 @@
           <product-feed-card-next-sync-card
             icon="schedule"
             :title="$t('productFeedSettings.summary.time')"
-            description="1am"
+            description="2am"
           />
         </b-row>
       </b-container>
