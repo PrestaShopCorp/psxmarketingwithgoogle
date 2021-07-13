@@ -21,38 +21,41 @@ import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
-  async [ActionsTypes.GET_VALIDATION_LIST]({commit, rootState}) {
-    try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      const json = await response.json();
-      commit(MutationsTypes.SET_VALIDATION_LIST_STATEMENT, json);
-    } catch (error) {
-      console.error(error);
-    }
-  },
+  // async [ActionsTypes.GET_VALIDATION_LIST]({commit, rootState}) {
+  //   try {
+  //     const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
+  //     if (!response.ok) {
+  //       throw new HttpClientError(response.statusText, response.status);
+  //     }
+  //     const json = await response.json();
+  //     commit(MutationsTypes.SET_VALIDATION_LIST_STATEMENT, json);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // },
 
-  async [ActionsTypes.GET_SUMMARY_VALIDATION]({commit, rootState}) {
-    try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      const json = await response.json();
-      commit(MutationsTypes.SET_SUMMARY_VALIDATION, json);
-    } catch (error) {
-      console.error(error);
-    }
-  },
+  // async [ActionsTypes.GET_SUMMARY_VALIDATION]({commit, rootState}) {
+  //   try {
+  //     const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
+  //     if (!response.ok) {
+  //       throw new HttpClientError(response.statusText, response.status);
+  //     }
+  //     const json = await response.json();
+  //     commit(MutationsTypes.SET_SUMMARY_VALIDATION, json);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // },
 
-  async [ActionsTypes.GET_FREE_LISTING_STATUS]({commit, rootState}, enabled: boolean) {
+  async [ActionsTypes.GET_FREE_LISTING_STATUS]({commit, rootState}) {
     try {
       const resp = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/free-listings/settings`,
         {
           method: 'GET',
-          headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
         });
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
@@ -68,7 +71,11 @@ export default {
       const resp = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/free-listings/toggle`,
         {
           method: 'POST',
-          headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
           body: JSON.stringify({
             enabled,
           }),
@@ -77,12 +84,9 @@ export default {
         commit(MutationsTypes.SET_ERROR_API, true);
         throw new HttpClientError(resp.statusText, resp.status);
       }
-
       const json = await resp.json();
       commit(MutationsTypes.SET_ERROR_API, false);
-      // ! It looks like the API always sends back "true"
-      //  ! So i don't use its response
-      commit(MutationsTypes.SET_FREE_LISTING_STATUS, enabled);
+      commit(MutationsTypes.SET_FREE_LISTING_STATUS, json.enabled);
     } catch (error) {
       console.error(error);
     }

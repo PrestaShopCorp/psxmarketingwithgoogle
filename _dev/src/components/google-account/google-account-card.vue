@@ -140,7 +140,7 @@
       class="mb-0 mt-3"
     >
       <p class="mb-0">
-        {{ $t(`googleAccountCard.alert${error}`)}}
+        {{ $t(`googleAccountCard.alert${error}`) }}
       </p>
       <div
         v-if="error === 'CantConnect'"
