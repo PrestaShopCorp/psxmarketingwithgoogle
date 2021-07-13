@@ -45,7 +45,7 @@
                   v-b-tooltip
                   :title="$t('tooltip.attributeMapping.description')"
                   variant="invisible"
-                  class="ml-1 p-0 border-0 ps_gs-fz-16 mb-0 color-grey_darklight"
+                  class="ml-1 p-0 border-0 ps_gs-fz-16 mb-0 text-grey_darklight"
                 >
                   <span class="material-icons-round mb-0 ps_gs-fz-16 align-middle">
                     error_outline

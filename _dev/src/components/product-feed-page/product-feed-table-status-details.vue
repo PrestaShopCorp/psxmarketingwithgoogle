@@ -75,7 +75,7 @@
               v-b-tooltip:googleShoppingApp
               :title="$t('tooltip.approvalStatusStatus')"
             >
-              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+              <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
             </b-button>
           </div>
         </template>
@@ -88,7 +88,7 @@
               v-b-tooltip:googleShoppingApp
               :title="$t('tooltip.approvalStatusLang')"
             >
-              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+              <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
             </b-button>
           </div>
         </template>
@@ -103,7 +103,7 @@
               v-b-tooltip:googleShoppingApp
               :title="$t('tooltip.approvalStatusIssues')"
             >
-              <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+              <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
             </b-button>
           </div>
         </template>
@@ -228,7 +228,7 @@
                   v-b-tooltip:googleShoppingApp
                   :title="'placeholder'"
                 >
-                  <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+                  <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
                 </b-button>
               </div>
             </b-th>
@@ -241,7 +241,7 @@
                   v-b-tooltip:googleShoppingApp
                   :title="'placeholder'"
                 >
-                  <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+                  <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
                 </b-button>
               </div>
             </b-th>
@@ -254,7 +254,7 @@
                   v-b-tooltip:googleShoppingApp
                   :title="'placeholder'"
                 >
-                  <i class="material-icons ps_gs-fz-14 color-grey_darklight">info_outline</i>
+                  <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
                 </b-button>
               </div>
             </b-th>
