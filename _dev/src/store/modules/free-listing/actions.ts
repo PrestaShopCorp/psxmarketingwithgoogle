@@ -72,6 +72,7 @@ export default {
         {
           method: 'POST',
           headers: {
+            'Content-Type': 'application/json',
             Accept: 'application/json',
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
