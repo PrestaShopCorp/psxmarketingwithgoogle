@@ -85,7 +85,6 @@ export default {
       }
 
       const json = await resp.json();
-      console.log('jeheyeye', json);
       commit(MutationsTypes.SET_ERROR_API, false);
       // ! It looks like the API always sends back "true"
       //  ! So i don't use its response
