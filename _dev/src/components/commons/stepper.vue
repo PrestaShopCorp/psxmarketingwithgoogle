@@ -94,8 +94,13 @@ export default {
         return this.activeStep;
       },
       set(value) {
+        // might need refacto to be of general used instead of depending on the route ?
         if (this.mutableActiveStep >= value) {
-          this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', value);
+          if (this.$route.name === 'product-feed-settings') {
+            this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', value);
+          } else {
+            this.$emit('changeStep', value);
+          }
         }
       },
     },

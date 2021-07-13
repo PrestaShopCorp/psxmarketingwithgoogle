@@ -8,8 +8,9 @@
   >
     <Stepper
       v-if="newMca"
-      :activeStep="stepActiveData"
+      :active-step="stepActiveData"
       :steps="steps"
+      @changeStep="stepToChange($event)"
     />
     <form
       class="my-1"
@@ -334,6 +335,9 @@ export default {
     },
     saveFirstStep() {
       this.stepActiveData = 2;
+    },
+    stepToChange(value) {
+      this.stepActiveData = value;
     },
     getCurrentCheckbox() {
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
