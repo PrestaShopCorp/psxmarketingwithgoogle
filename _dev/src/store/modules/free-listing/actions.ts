@@ -84,12 +84,9 @@ export default {
         commit(MutationsTypes.SET_ERROR_API, true);
         throw new HttpClientError(resp.statusText, resp.status);
       }
-
       const json = await resp.json();
       commit(MutationsTypes.SET_ERROR_API, false);
-      // ! It looks like the API always sends back "true"
-      //  ! So i don't use its response
-      commit(MutationsTypes.SET_FREE_LISTING_STATUS, enabled);
+      commit(MutationsTypes.SET_FREE_LISTING_STATUS, json.enabled);
     } catch (error) {
       console.error(error);
     }
