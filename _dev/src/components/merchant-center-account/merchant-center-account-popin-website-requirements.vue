@@ -8,6 +8,7 @@
   >
     <Stepper
       v-if="newMca"
+      :activeStep="stepActiveData"
       :steps="steps"
     />
     <form
