@@ -49,8 +49,10 @@ import LandingPageFooter from '../components/landing-page/landing-page-footer';
 export default {
   name: 'LandingPage',
   components: {
-    VueShowdown, LandingPageHeader,
-    LandingPageContent, LandingPageFooter,
+    VueShowdown,
+    LandingPageHeader,
+    LandingPageContent,
+    LandingPageFooter,
   },
   googleUrl,
 };

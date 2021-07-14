@@ -18,11 +18,10 @@ Vue.use(BootstrapVue);
 Vue.use(VueCollapse);
 Vue.use(psAccountsVueComponents, {locale: i18n.locale});
 Vue.use(VueShowdown);
-Vue.use(Vuex);
 
 new Vue({
   router,
-  store: new Vuex.Store(store),
+  store,
   i18n,
   render: (h) => h(App),
 }).$mount('#googleShoppingApp');

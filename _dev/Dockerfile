@@ -12,6 +12,7 @@ FROM package as builder
 
 WORKDIR /app
 ADD . .
+RUN yarn run test:generate-output
 RUN yarn run build-storybook
 
 

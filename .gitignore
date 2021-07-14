@@ -29,4 +29,4 @@ microcks/
 
 # Generated jest test result
 _dev/.jest-test-results.json
-
+_dev/storybook-static
