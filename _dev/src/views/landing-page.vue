@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import VueShowdown from 'vue-showdown';
 import googleUrl from '@/assets/json/googleUrl.json';
 
 import LandingPageHeader from '../components/landing-page/landing-page-header';
@@ -48,7 +49,8 @@ import LandingPageFooter from '../components/landing-page/landing-page-footer';
 export default {
   name: 'LandingPage',
   components: {
-    LandingPageHeader, LandingPageContent, LandingPageFooter,
+    VueShowdown, LandingPageHeader,
+    LandingPageContent, LandingPageFooter,
   },
   googleUrl,
 };

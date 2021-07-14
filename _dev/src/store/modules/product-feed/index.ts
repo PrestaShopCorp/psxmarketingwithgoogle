@@ -3,16 +3,14 @@ import mutations from './mutations';
 import actions from './actions';
 import {state as initialState} from './state';
 
-/*const {
+const {
   psGoogleShoppingActiveCountries,
 }: any = window;
 
 const state = Object.assign(
   initialState,
   {psGoogleShoppingActiveCountries} || {},
-);*/
-
-const state = {};
+);
 
 export default {
   namespaced: true,

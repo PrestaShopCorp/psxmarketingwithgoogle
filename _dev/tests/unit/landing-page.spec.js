@@ -1,15 +1,14 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+/**
+ * @jest-environment jsdom
+ */
+
+// Import this file first to init mock on window
+import { localVue } from './init.js';
+
+import { shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
-import VueRouter from 'vue-router';
 import LandingPage from '@/views/landing-page.vue';
 import store from '@/store';
-import i18n from '@/lib/i18n';
-
-var window = {};
-
-const localVue = createLocalVue();
-localVue.use(Vuex);
-localVue.use(VueRouter);
 
 describe('landing-page.vue', () => {
   it('show all the onboarding details', () => {
@@ -21,9 +20,10 @@ describe('landing-page.vue', () => {
         },
       })),
       localVue,
-      i18n,
+      // Can't get it with import because of the var window
+      i18n: require('@/lib/i18n'),
     });
 
-    expect(wrapper.find('.ps_gs-landingpage').isVisible()).toBe(false);
+    expect(wrapper.find('.ps_gs-landingpage').isVisible()).toBe(true);
   });
 });
