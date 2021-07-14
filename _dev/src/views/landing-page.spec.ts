@@ -6,10 +6,10 @@
 
 import {shallowMount} from '@vue/test-utils';
 import LandingPage from '@/views/landing-page.vue';
-import {commonOptions} from './init.js';
+import {commonOptions} from '@/../tests/init';
 
 describe('landing-page.vue', () => {
-  it('show all the onboarding details', () => {
+  it('shows all the onboarding details', () => {
     const wrapper = shallowMount(LandingPage, {
       ...commonOptions,
     });

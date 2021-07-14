@@ -16,5 +16,5 @@ LandingPageView.args = {
 };
 
 LandingPageView.parameters = {
-  jest: ['landing-page.spec.js'],
+  jest: ['landing-page.spec.ts'],
 };
