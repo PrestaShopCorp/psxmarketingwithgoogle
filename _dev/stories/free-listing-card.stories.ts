@@ -17,7 +17,7 @@ const Template = (args, { argTypes }) => ({
     <FreeListingCard v-bind="$props" @openPopin="togglePopinFreeListingDisabled"/>
     <FreeListingPopinDisable ref="PopinFreeListingDisable"/>
   </div>`,
-  beforeCreate : args.beforeCreate,
+  beforeMount : args.beforeMount,
   methods:{
     togglePopinFreeListingDisabled() {
       // @ts-ignore
@@ -27,43 +27,35 @@ const Template = (args, { argTypes }) => ({
       );
     },
   },
-  beforeMount(this: any) {
-    this.$store.state.freeListing = args.initialMcaStatus;
-  },
 });
 
 
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
-  initialMcaStatus: freeListingDisabled,
-  beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured
+  beforeMount(this: any) {
+    this.$store.state.productFeed = productFeedIsConfigured;
   },
 }
 
 export const Enabled:any = Template.bind({});
 // TODO : why the card is not reseting when changing story
 Enabled.args = {
-  beforeMount(this: any) {
-    this.$store.state.app = Object.assign(
-      this.$store.state.app,
-      initialStateApp
-    )
-  },
   isEnabled: true,
-  initialMcaStatus: freeListingEnabled,
-  beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured
+  beforeMount(this: any) {
+    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.freeListing.errorAPI = false;
+    this.$store.state.freeListing.status = true;
   },
 }
 
 export const AlertEnableFreeListing:any = Template.bind({});
 AlertEnableFreeListing.args = {
   isEnabled: true,
-  initialMcaStatus: freeListingDisabled,
-  beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured
+  beforeMount(this: any) {
+    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.freeListing.errorAPI = false;
+    this.$store.state.freeListing.status = false;
   },
 }
 
@@ -71,12 +63,11 @@ AlertEnableFreeListing.args = {
 export const AlertCountryNotEligible:any = Template.bind({});
 AlertCountryNotEligible.args = {
   isEnabled: true,
-  initialMcaStatus: freeListingCountryNotEligible,
-  beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured
-    console.log(AlertCountryNotEligible.template)
+  beforeMount(this: any) {
+    this.$store.state.productFeed = productFeedIsConfigured;
   },
 }
+
 // ! Add BIG warning: not developed yet
 AlertCountryNotEligible.decorators = [() => ({
   template: `
@@ -93,9 +84,8 @@ AlertCountryNotEligible.decorators = [() => ({
 export const AlertCantEnableFreeListing:any = Template.bind({});
 AlertCantEnableFreeListing.args = {
   isEnabled: true,
-  initialMcaStatus: freeListingErrorAPI,
-  beforeCreate(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured
-    // this.$store.state.freeListing = freeListingErrorAPI
+  beforeMount(this: any) {
+    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.freeListing.errorAPI = true;
   },
 }
