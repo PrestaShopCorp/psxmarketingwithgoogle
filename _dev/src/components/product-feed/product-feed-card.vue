@@ -165,7 +165,7 @@
         <div class="mt-1">
           <b-button
             variant="outline-secondary"
-            :to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
+            @click="goToProductFeedSettings(1)"
           >
             {{ $t("cta.addShippingInfo") }}
           </b-button>
@@ -471,6 +471,12 @@ export default {
       this.$router.push({
         path: '/product-feed-settings',
       });
+    },
+    goToProductFeedSettings(step) {
+      this.$router.push({
+        name: 'product-feed-settings',
+      });
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', step);
     },
   },
   googleUrl,
