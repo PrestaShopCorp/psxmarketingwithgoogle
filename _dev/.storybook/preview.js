@@ -16,31 +16,31 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-import { configure, addDecorator } from "@storybook/vue";
-import { select } from '@storybook/addon-knobs'
-import Vue from "vue";
-import Vuex from "vuex";
+import { configure, addDecorator } from '@storybook/vue';
+import { select } from '@storybook/addon-knobs';
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 // import vue plugins
-import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
-import VueI18n from "vue-i18n";
-import VueShowdown from "vue-showdown";
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
+import VueI18n from 'vue-i18n';
+import VueShowdown from 'vue-showdown';
 
 // import jest
 import { withTests } from '@storybook/addon-jest';
 
 // import showdown extension
-import "../showdown.js";
+import '../showdown.js';
 import '../src/utils/Filters';
 
 // import css style
 // theme.css v1.7.5 from the Back-Office
 // all font import are commented to avoid 404
-import "!style-loader!css-loader?url=false!./assets/theme.css";
+import '!style-loader!css-loader?url=false!./assets/theme.css';
 // shame.css is a set of rules to better mimic the BO behavior in a shameful way
-import "!style-loader!css-loader?url=false!./assets/shame.css";
+import '!style-loader!css-loader?url=false!./assets/shame.css';
 // app.scss all the styles for the module
-import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
+import '!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss';
 
 // Test utils
 import {cloneStore} from '@/../tests/store';
@@ -52,18 +52,42 @@ Vue.use(BootstrapVue, BootstrapVueIcons);
 Vue.use(VueShowdown);
 
 // import language file
-const message = require("./translations.json");
+const message = require('./translations.json');
 
 // i18n and store
 Vue.use(VueI18n);
 Vue.use(Vuex);
 
+<<<<<<< HEAD
+||||||| constructed merge base
+import store from "../src/store";
+=======
+import store from '../src/store';
+>>>>>>> Simplify storybook preview.js
 addDecorator(() => ({
-  template: "<story/>",
+  template: `
+   <div
+     class='nobootstrap'
+     style='
+       background: none;
+       padding: 0;
+       min-width: 0;
+   '>
+     <div id='googleShoppingApp'>
+       <div class='ps_gs-sticky-head'>
+         <b-toaster
+           name='b-toaster-top-right'
+           class='ps_gs-toaster-top-right'
+         />
+       </div>
+       <story />
+     </div>
+   </div>
+   `,
   i18n: new VueI18n({
     defaultLocale: 'en',
     locale: 'en',
-    locales: [ 'en', 'ar' ],
+    locales: ['en', 'ar'],
     messages: {
       en: message.en,
       ar: message.ar,
@@ -96,24 +120,24 @@ addDecorator(
   })
 );
 
-configure(require.context("../src", true, /\.stories\.(ts|js|md)x?$/), module);
+configure(require.context('../src', true, /\.stories\.(ts|js|md)x?$/), module);
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   backgrounds: {
-    default: "backOffice",
+    default: 'backOffice',
     values: [
       {
-        name: "backOffice",
-        value: "#F1F1F1",
+        name: 'backOffice',
+        value: '#F1F1F1',
       },
       {
-        name: "white",
-        value: "#ffffff",
+        name: 'white',
+        value: '#ffffff',
       },
       {
-        name: "black",
-        value: "#000000",
+        name: 'black',
+        value: '#000000',
       },
     ],
   },
@@ -121,19 +145,24 @@ export const parameters = {
     storySort: {
       order: [
         'LandingPage',
-          [
-            'Components',
-              ['Header', 'Content', 'Footer'] ,
-            'LandingPage'
-          ],
+        ['Components', ['Header', 'Content', 'Footer'], 'LandingPage'],
         'Onboarding',
         'Multistore',
+        [
+          'Components',
           [
-            'Components',
-              ['SectionTitle', 'Notice - Product feed', 'Card - PS Account', 'Card - Google Account', 'Card - MCA', 'Card - Product feed', 'Card - Free listing', 'Settings - Poduct feed'] ,
-            'OnboardingPage',
-              ['Header', 'Content', 'Footer'] ,
+            'SectionTitle',
+            'Notice - Product feed',
+            'Card - PS Account',
+            'Card - Google Account',
+            'Card - MCA',
+            'Card - Product feed',
+            'Card - Free listing',
+            'Settings - Poduct feed',
           ],
+          'OnboardingPage',
+          ['Header', 'Content', 'Footer'],
+        ],
         'PS Account',
         'Google Account',
         'Merchant Center Account',
@@ -147,25 +176,3 @@ export const parameters = {
     },
   },
 };
-export const decorators = [
-  () => ({
-    template: `
-      <div
-        class="nobootstrap"
-        style="
-          background: none;
-          padding: 0;
-          min-width: 0;
-        ">
-        <div id="googleShoppingApp">
-        <div class="ps_gs-sticky-head">
-        <b-toaster
-          name="b-toaster-top-right"
-          class="ps_gs-toaster-top-right"
-        />
-      </div>
-        <story /></div>
-      </div>
-      `
-  }),
-];
