@@ -20,6 +20,7 @@
 use PrestaShop\Module\PrestashopGoogleShopping\Config\Env;
 use PrestaShop\Module\PrestashopGoogleShopping\Provider\MultishopDataProvider;
 use PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository;
+use PrestaShop\Module\PrestashopGoogleShopping\Repository\CurrencyRepository;
 use PrestaShop\Module\Ps_googleshopping\Translations\PsGoogleShoppingTranslations;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 
@@ -43,6 +44,11 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
      */
     private $countryRepository;
 
+    /**
+     * @var CurrencyRepository
+     */
+    private $currencyRepository;
+
     public function __construct()
     {
         parent::__construct();
@@ -51,6 +57,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
         $this->multishopDataProvider = $this->module->getService(MultishopDataProvider::class);
         $this->env = $this->module->getService(Env::class);
         $this->countryRepository = $this->module->getService(CountryRepository::class);
+        $this->currencyRepository = $this->module->getService(currencyRepository::class);
     }
 
     public function initContent()
@@ -118,6 +125,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
             'isCountryMemberOfEuropeanUnion' => $this->countryRepository->isCompatibleForCSS(),
             'psGoogleShoppingShopUrl' => $this->context->link->getBaseLink($this->context->shop->id),
             'psGoogleShoppingActiveCountries' => $this->countryRepository->getActiveCountries(),
+            'psGoogleShoppingShopCurrency' => $this->currencyRepository->getShopCurrency(),
         ]);
 
         $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');

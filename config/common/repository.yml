@@ -16,6 +16,11 @@ services:
       - '@ps_googleshopping.context'
       - '@ps_googleshopping.country'
 
+  PrestaShop\Module\PrestashopGoogleShopping\Repository\CurrencyRepository:
+    class: PrestaShop\Module\PrestashopGoogleShopping\Repository\CurrencyRepository
+    arguments:
+      - '@ps_googleshopping.currency'
+
   PrestaShop\Module\PrestashopGoogleShopping\Repository\ProductRepository:
     class: PrestaShop\Module\PrestashopGoogleShopping\Repository\ProductRepository
 
