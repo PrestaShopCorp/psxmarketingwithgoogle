@@ -86,3 +86,7 @@ export const productFeedStatusSyncSuccess = {
   }
 }
 
+export const productFeedErrorAPI = {
+...productFeed,
+errorAPI: true,
+}

@@ -1,5 +1,5 @@
 import ProductFeedCard from '../src/components/product-feed/product-feed-card.vue'
-import { productFeed, productFeedMissingFields, productFeedIsConfigured } from '../.storybook/mock/product-feed';
+import { productFeed, productFeedMissingFields, productFeedIsConfigured, productFeedErrorAPI } from '../.storybook/mock/product-feed';
 
 const categoriesTotal = 17;
 const basicArgs = {
@@ -152,8 +152,8 @@ ConfiguredTax.args = {
 export const ApiError:any = Template.bind({});
 ApiError.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeed;
-  },
+    this.$store.state.productFeed = productFeedErrorAPI;
+},
   isEnabled: true,
 };
 // ! Add BIG warning: not developed yet

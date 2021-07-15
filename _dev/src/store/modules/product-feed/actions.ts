@@ -59,6 +59,7 @@ export default {
         },
       });
       if (!response.ok) {
+        commit(MutationsTypes.API_ERROR, true);
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
@@ -110,7 +111,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({state, rootState}) {
+  async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({state, rootState, commit}) {
     const productFeedSettings = state.settings;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
@@ -145,6 +146,7 @@ export default {
         body: JSON.stringify(newSettings),
       });
       if (!response.ok) {
+        commit(MutationsTypes.API_ERROR, true);
         throw new HttpClientError(response.statusText, response.status);
       }
       response.json();

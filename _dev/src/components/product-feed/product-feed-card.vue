@@ -441,6 +441,12 @@ export default {
       return this.categoriesMapped > 0;
     },
     alert() {
+      // TODO FOR AMAURY : product feed api error (last card in Figma)
+      //    if (
+      //       this.$store.state.errorAPI === true;
+      //     ) {
+      //       return 'NEWERRORTOHANDLE';
+      //     }
       // TODO : how to know status from api ? + date of failed sync ?
       if (this.getProductFeedStatus.failedSyncs.length) {
         return 'Failed';
