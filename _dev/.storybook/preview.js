@@ -26,6 +26,9 @@ import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
 import VueI18n from "vue-i18n";
 import VueShowdown from "vue-showdown";
 
+// import jest
+import { withTests } from '@storybook/addon-jest';
+
 // import showdown extension
 import "../showdown.js";
 import '../src/utils/Filters';
@@ -39,6 +42,9 @@ import "!style-loader!css-loader?url=false!./assets/shame.css";
 // app.scss all the styles for the module
 import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
 
+// jest results file
+import results from '../.jest-test-results.json';
+
 Vue.use(BootstrapVue, BootstrapVueIcons);
 Vue.use(VueShowdown);
 
@@ -47,6 +53,7 @@ const message = require("./translations.json");
 
 // i18n and store
 Vue.use(VueI18n);
+Vue.use(Vuex);
 
 import store from "../src/store";
 addDecorator(() => ({
@@ -80,6 +87,12 @@ addDecorator(() => ({
   },
   store,
 }));
+
+addDecorator(
+  withTests({
+    results,
+  })
+);
 
 configure(require.context("../src", true, /\.stories\.(ts|js|md)x?$/), module);
 

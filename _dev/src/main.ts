@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Vuex from 'vuex';
 import {BootstrapVue} from 'bootstrap-vue';
 import VueCollapse from 'vue2-collapse';
 import psAccountsVueComponents from 'prestashop_accounts_vue_components';
