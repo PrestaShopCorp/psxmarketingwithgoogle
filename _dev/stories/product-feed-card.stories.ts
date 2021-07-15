@@ -188,3 +188,14 @@ ApiError.args = {
   },
   isEnabled: true,
 };
+// ! Add BIG warning: not developed yet
+ApiError.decorators = [() => ({
+  template: `
+    <div>
+      <h2>
+        ⚠️ TODO: Handle state, this story isn't developed yet ⚠️
+      </h2>
+      <story />
+    </div>
+  `
+})];
