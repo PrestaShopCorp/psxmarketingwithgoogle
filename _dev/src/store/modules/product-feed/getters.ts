@@ -60,6 +60,11 @@ export default {
   },
   [GettersTypes.GET_SYNC_STATUS](state: LocalState) : string {
     if (!state.status.failedSyncs.length
+      && !state.status.successfulSyncs.length
+      && state.settings.autoImportShippingSettings === undefined) {
+      return 'warning';
+    }
+    if (!state.status.failedSyncs.length
       && !state.status.successfulSyncs.length) {
       return 'schedule';
     }

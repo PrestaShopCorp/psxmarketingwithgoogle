@@ -63,8 +63,8 @@
     </div>
     <div v-if="isEnabled && !toConfigure">
       <b-alert
-        :variant="alertVariant"
-        :show="!!alert"
+        variant="warning"
+        :show="!!alert && alert !== 'ShippingSettingsMissing'"
       >
         <VueShowdown
           :markdown="!!alert && $t(`productFeedCard.alert${alert}`, alertLink)"
@@ -75,34 +75,39 @@
           class="mt-1"
         >
           <b-button variant="outline-secondary">
-            {{ $t('cta.overwrite') }}
+            {{ $t("cta.overwrite") }}
           </b-button>
         </div>
       </b-alert>
-      <h3
-        class="font-weight-600 ps_gs-fz-14 d-flex align-items-center"
-      >
+      <h3 class="font-weight-600 ps_gs-fz-14 d-flex align-items-center">
         <i
           class="ps_gs-fz-20 mr-2"
-          :class="[
-            `text-${title.color}`,
-            title.materialClass || 'material-icons'
-          ]"
+          :class="[`text-${title.color}`, title.materialClass || 'material-icons']"
         >
           {{ title.icon }}
         </i>
         <span>{{ title.message }}</span>
       </h3>
-      <div class="d-sm-flex align-items-end mb-1">
+      <div
+        v-if="syncStatus !== 'warning'"
+        class="d-sm-flex align-items-end mb-1"
+      >
         <p class="ps_gs-fz-12 text-muted mb-0">
-          {{ $t("productFeedPage.syncStatus.scheduleOn", [nextSyncTime]) }}
+          {{ syncStatus === 'schedule'
+            ? $t("productFeedPage.syncStatus.scheduleOn", [nextSyncTime])
+            : $t("productFeedCard.nextSync", [nextSyncTime])
+          }}
         </p>
-        <router-link
-          class="font-weight-600 ps_gs-fz-13 text-right ml-auto"
+        <b-button
+          variant="invisible"
+          class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 ml-auto"
+          :class="syncStatus === 'schedule' ? 'text-secondary' : 'text-primary'"
+          :disabled="syncStatus === 'schedule'"
+          :aria-disabled="syncStatus === 'schedule'"
           to="/product-feed"
         >
-          {{ $t('cta.trackProductStatus') }}
-        </router-link>
+          {{ $t("cta.trackProductStatus") }}
+        </b-button>
         <!-- Not in free plan -->
         <!-- <b-button
           v-if="syncStatus === 'failed'"
@@ -145,6 +150,27 @@
           {{ $t("productFeedSettings.breadcrumb2") }}
         </h3>
       </div>
+      <b-alert
+        variant="warning"
+        :show="!!alert && alert === 'ShippingSettingsMissing'"
+      >
+        <p class="mb-2">
+          <strong class="font-weight-600">{{
+            $t("productFeedCard.alertShippingSettingsMissing")
+          }}</strong><br>
+          <span class="ps_gs-fz-12">
+            {{ $t("productFeedCard.alertShippingSettingsMissingDescription") }}
+          </span>
+        </p>
+        <div class="mt-1">
+          <b-button
+            variant="outline-secondary"
+            :to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
+          >
+            {{ $t("cta.addShippingInfo") }}
+          </b-button>
+        </div>
+      </b-alert>
       <b-container
         fluid
         class="p-0 mb-0"
@@ -158,14 +184,14 @@
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
-            :link-to="{type : 'routeStep', name: 'product-feed-settings', step: 1}"
+            :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
           />
           <product-feed-card-report-card
             :status="shippingSettingsStatus"
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
-            :link-to="{type : 'routeStep', name: 'product-feed-settings', step: 1}"
+            :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
           />
           <product-feed-card-report-card
             v-if="isUS"
@@ -173,7 +199,7 @@
             :title="$t('productFeedSettings.shipping.taxSettings')"
             :description="taxSettings"
             :link="$t('cta.editSettings')"
-            :link-to="{type : 'routeStep', name: 'product-feed-settings', step: 1}"
+            :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
           />
           <!--  NOT IN BATCH 1 -->
           <!-- <product-feed-card-report-card
@@ -199,7 +225,7 @@
             :title="$t('productFeedSettings.steps.attributeMapping')"
             :description="attributeMapping.join(', ') + '...'"
             :link="$t('cta.editProductAttributes')"
-            :link-to="{type : 'routeStep', name: 'product-feed-settings', step: 3}"
+            :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 3 }"
           />
           <!--  NOT IN BATCH 1 -->
           <!-- <product-feed-card-report-mapped-categories-card
@@ -273,9 +299,6 @@ export default {
     nbProductsCantSync: {
       type: Number,
     },
-    taxSettings: {
-      type: String,
-    },
     syncRules: {
       type: Array,
     },
@@ -299,7 +322,7 @@ export default {
       );
     },
     isUS() {
-      return this.targetCountries.includes('US');
+      return this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'].includes('US');
     },
     toConfigure() {
       return !this.$store.state.productFeed.isConfigured;
@@ -310,12 +333,17 @@ export default {
       return this.$options.filters.changeCountryCodeToName(datas, countries);
     },
     shippingSettings() {
+      if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {
+        return this.$t('productFeedCard.missingInformation');
+      }
       return this.getProductFeedSettings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
         : this.$t('productFeedSettings.shipping.manually');
     },
     shippingSettingsStatus() {
-      return this.getProductFeedSettings.autoImportShippingSettings !== undefined ? 'success' : 'warning';
+      return this.getProductFeedSettings.autoImportShippingSettings !== undefined
+        ? 'success'
+        : 'warning';
     },
     targetCountriesStatus() {
       return this.targetCountries.length ? 'success' : 'warning';
@@ -323,25 +351,33 @@ export default {
     attributeMappingStatus() {
       return this.getProductFeedSettings.attributeMapping ? 'success' : 'warning';
     },
+    taxSettings() {
+      if (this.getProductFeedSettings.autoImportTaxSettings === undefined) {
+        return this.$t('productFeedCard.missingInformation');
+      }
+      return this.getProductFeedSettings.autoImportTaxSettings
+        ? this.$t('productFeedSettings.shipping.automatically')
+        : this.$t('productFeedSettings.shipping.manually');
+    },
     taxSettingsStatus() {
-    // TODO retrieve tax settings from backend
-      return 'warning';
+      // TODO BATCH 2
+      // TODO retrieve tax settings from backend
+      return 'success';
     },
     attributeMapping: {
-    // TODO BATCH 2 refacto when dynamic fields
-    // TODO  BATCH 2 + to push also the long description attribute if needed
+      // TODO BATCH 2 refacto when dynamic fields
+      // TODO  BATCH 2 + to push also the long description attribute if needed
       get() {
         const arr = [];
-        Object.keys(this.getProductFeedSettings.attributeMapping)
-          .forEach((key) => {
-            // Because the variables names contain "custom" and "Attribute"
-            if (key === 'customColorAttribute') {
-              arr.push('Color', 'Age', 'Gender', 'Size');
-            }
-            if (key === 'customConditionAttribute') {
-              arr.push('Condition');
-            }
-          });
+        Object.keys(this.getProductFeedSettings.attributeMapping).forEach((key) => {
+          // Because the variables names contain "custom" and "Attribute"
+          if (key === 'customColorAttribute') {
+            arr.push('Color', 'Age', 'Gender', 'Size');
+          }
+          if (key === 'customConditionAttribute') {
+            arr.push('Condition');
+          }
+        });
         return arr;
       },
     },
@@ -363,7 +399,8 @@ export default {
           color: 'primary',
           message: this.$i18n.t('productFeedPage.syncStatus.readyForExport'),
         };
-      } if (this.syncStatus === 'failed') {
+      }
+      if (this.syncStatus === 'failed') {
         return {
           icon: 'error_outline',
           color: 'danger',
@@ -372,7 +409,8 @@ export default {
             this.lastSync.time,
           ]),
         };
-      } if (this.syncStatus === 'warning') {
+      }
+      if (this.syncStatus === 'warning') {
         return {
           icon: 'warning',
           color: 'warning',
@@ -390,13 +428,11 @@ export default {
         ]),
       };
     },
-    alertVariant() {
-      return this.alert === 'Success' ? 'success' : 'warning';
-    },
     alertLink() {
       if (this.alert === 'Failed') {
         return [this.$options.googleUrl.syncFailed];
-      } if (this.alert === 'ShippingSettingsMissing') {
+      }
+      if (this.alert === 'ShippingSettingsMissing') {
         return [this.$options.googleUrl.shippingSettingsMissing];
       }
       return null;
@@ -409,14 +445,18 @@ export default {
       if (this.getProductFeedStatus.failedSyncs.length) {
         return 'Failed';
       }
-      if (
-        this.getProductFeedSettings.autoImportShippingSettings === undefined
-      ) {
+      if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {
         return 'ShippingSettingsMissing';
       }
-      // TODO: Check feed is under review
-      // else if {
-      //   return 'GoogleIsReviewingProducts';
+      if (
+        !this.getProductFeedStatus.failedSyncs.length
+        && !this.getProductFeedStatus.successfulSyncs.length
+      ) {
+        return 'Success';
+      }
+      // TODO: ProductFeedExists > Overwrite needed
+      // if (something) {
+      //   return 'ProductFeedExists';
       // }
       return null;
     },
@@ -432,7 +472,6 @@ export default {
         path: '/product-feed-settings',
       });
     },
-
   },
   googleUrl,
   countriesSelectionOptions,

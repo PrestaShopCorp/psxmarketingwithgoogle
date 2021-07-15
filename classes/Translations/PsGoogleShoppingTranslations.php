@@ -201,8 +201,8 @@ class PsGoogleShoppingTranslations
                 'syncBusy' => $this->module->l('Sync progressing...', 'PsGoogleShoppingTranslations'),
                 'syncCantPerform' => $this->module->l('Synchronization can\'t perform', 'PsGoogleShoppingTranslations'),
                 'mappedCategories' => $this->module->l('{0}/{1} mapped categories', 'PsGoogleShoppingTranslations'),
-                'alertSuccess' => $this->module->l('You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.', 'PsGoogleShoppingTranslations'),
-                'alertFailed' => $this->module->l('The synchronization of your product feed failed. **[See possible reasons in Merchant Center]({0})[:target="_blank"]**', 'PsGoogleShoppingTranslations'),
+                'alertSuccess' => $this->module->l("You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.", 'PsGoogleShoppingTranslations'),
+                'alertFailed' => $this->module->l('Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target="_blank"] or contact customer support.', 'PsGoogleShoppingTranslations'),
                 'alertShippingSettingsMissing' => $this->module->l('Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. **[Add shipping settings]({0})[:target="_blank"]**', 'PsGoogleShoppingTranslations'),
                 'alertProductFeedDeactivated' => $this->module->l('If the product sync is deactivated, there will be no new products pushed into the GMC. The account itself will continue to exist and the products will expire after 30 days. This stops the catalog items to show on both Free Listings and the ad campaigns.', 'PsGoogleShoppingTranslations'),
                 'alertProductFeedExists' => $this->module->l("**A product feed already exists**  \n  <small>Your product feed already exists. You need to overwrite it to sync your PrestaShop product feed.</small>", 'PsGoogleShoppingTranslations'),
@@ -213,6 +213,7 @@ class PsGoogleShoppingTranslations
                 'productsReadyToBeSynced' => $this->module->l('Products ready to be synced', 'PsGoogleShoppingTranslations'),
                 'productsWithProblems' => $this->module->l('Products with problems', 'PsGoogleShoppingTranslations'),
                 'alertGoogleIsReviewingProducts' => $this->module->l("Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.", 'PsGoogleShoppingTranslations'),
+                'missingInformation' => $this->module->l('Missing information', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedSettings' => [
                 'breadcrumb1' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),
@@ -476,6 +477,7 @@ class PsGoogleShoppingTranslations
                 'addWebsiteAddress' => $this->module->l('Add website address', 'PsGoogleShoppingTranslations'),
                 'transferClaim' => $this->module->l('Transfer claim', 'PsGoogleShoppingTranslations'),
                 'goToYourX' => $this->module->l('Go to your {0}', 'PsGoogleShoppingTranslations'),
+                'addShippingInfo' => $this->module->l('Add shipping info', 'PsGoogleShoppingTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsGoogleShoppingTranslations'),

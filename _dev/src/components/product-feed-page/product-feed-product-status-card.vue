@@ -13,8 +13,7 @@
       body-class="p-3"
     >
       <p>
-        <!-- {{ $t('productFeedPage.productStatus.description') }} -->
-        After submitting your product feed, it will take 3-5 business days to review it.
+        {{ $t('productFeedPage.productStatus.description') }}
       </p>
       <h3 class="d-flex align-items-center font-weight-600 ps_gs-fz-14 my-3 pt-2">
         <i
@@ -25,8 +24,8 @@
         </i>
         {{
           isSyncInProgress
-          ? $t('productFeedPage.syncStatus.readyForExport')
-          : $t('productFeedPage.productStatus.productsSubmittedToGoogle', [nbProductsTotal])
+            ? $t('productFeedPage.syncStatus.readyForExport')
+            : $t('productFeedPage.productStatus.productsSubmittedToGoogle', [nbProductsTotal])
         }}
       </h3>
       <b-container
@@ -72,16 +71,11 @@
 <script>
 // TODO: Add linkTo "View all detailed statuses"
 
-import {
-  BAlert,
-} from 'bootstrap-vue';
-
 import productFeedCardReportProductsSyncCard from '../product-feed/product-feed-card-report-products-sync-card';
 
 export default {
   name: 'ProductFeedSyncStatusCard',
   components: {
-    BAlert,
     productFeedCardReportProductsSyncCard,
   },
   computed: {
