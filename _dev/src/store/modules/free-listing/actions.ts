@@ -85,6 +85,7 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
+      console.log('jeheyeye', json);
       commit(MutationsTypes.SET_ERROR_API, false);
       commit(MutationsTypes.SET_FREE_LISTING_STATUS, json.enabled);
     } catch (error) {
