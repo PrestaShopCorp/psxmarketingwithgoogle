@@ -151,7 +151,7 @@
       "syncBusy" : "Sync progressing...",
       "syncCantPerform" : "Synchronization can't perform",
       "mappedCategories" : "{0}/{1} mapped categories",
-      "alertSuccess" : "You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.",
+      "alertFeedSettingSubmissionSuccess" : "You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.",
       "alertFailed" : "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact customer support.",
       "alertShippingSettingsMissing" : "Your shipping information is missing.",
       "alertShippingSettingsMissingDescription" : "To successfully sync your product data, add shipping info.",

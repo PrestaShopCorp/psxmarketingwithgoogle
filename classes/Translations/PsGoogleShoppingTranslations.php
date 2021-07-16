@@ -201,7 +201,7 @@ class PsGoogleShoppingTranslations
                 'syncBusy' => $this->module->l('Sync progressing...', 'PsGoogleShoppingTranslations'),
                 'syncCantPerform' => $this->module->l('Synchronization can\'t perform', 'PsGoogleShoppingTranslations'),
                 'mappedCategories' => $this->module->l('{0}/{1} mapped categories', 'PsGoogleShoppingTranslations'),
-                'alertSuccess' => $this->module->l("You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.", 'PsGoogleShoppingTranslations'),
+                'alertFeedSettingSubmissionSuccess' => $this->module->l("You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.", 'PsGoogleShoppingTranslations'),
                 'alertFailed' => $this->module->l('Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target="_blank"] or contact customer support.', 'PsGoogleShoppingTranslations'),
                 'alertShippingSettingsMissing' => $this->module->l('Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. **[Add shipping settings]({0})[:target="_blank"]**', 'PsGoogleShoppingTranslations'),
                 'alertProductFeedDeactivated' => $this->module->l('If the product sync is deactivated, there will be no new products pushed into the GMC. The account itself will continue to exist and the products will expire after 30 days. This stops the catalog items to show on both Free Listings and the ad campaigns.', 'PsGoogleShoppingTranslations'),

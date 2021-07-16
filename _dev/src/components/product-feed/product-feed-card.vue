@@ -452,7 +452,7 @@ export default {
         !this.getProductFeedStatus.failedSyncs.length
         && !this.getProductFeedStatus.successfulSyncs.length
       ) {
-        return 'Success';
+        return 'FeedSettingSubmissionSuccess';
       }
       // TODO: ProductFeedExists > Overwrite needed
       // if (something) {

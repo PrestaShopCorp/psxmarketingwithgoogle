@@ -58,38 +58,6 @@ NotConfigured.args = {
   ...basicArgs,
 };
 
-/*
-export const Configured:any = Template.bind({});
-Configured.args = {
-  beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
-    this.$store.state.productFeed.status.failedSyncs = [];
-  },
-  isEnabled: true,
-  syncStatus: 'schedule',
-};
-
-export const FieldsMissing:any = Template.bind({});
-FieldsMissing.args = {
-  beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeedMissingFields;
-    this.$store.state.productFeed.status.failedSyncs = ['foo', 'bar'];
-  },
-  isEnabled: true,
-};
-
-// TODO
-// Won't work until updates on the product-feed-card.vue
-export const failedSyncs:any = Template.bind({});
-failedSyncs.args = {
-  beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
-    this.$store.state.productFeed.status.failedSyncs = ['foo', 'bar'];
-  },
-  isEnabled: true,
-};
-*/
-
 // Todo: Handle all error cases
 
 export const ReadyForExport:any = Template.bind({});
