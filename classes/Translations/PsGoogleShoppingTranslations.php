@@ -214,6 +214,7 @@ class PsGoogleShoppingTranslations
                 'productsWithProblems' => $this->module->l('Products with problems', 'PsGoogleShoppingTranslations'),
                 'alertGoogleIsReviewingProducts' => $this->module->l("Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.", 'PsGoogleShoppingTranslations'),
                 'missingInformation' => $this->module->l('Missing information', 'PsGoogleShoppingTranslations'),
+                'alertErrorApi' => $this->module->l('You can\'t send your products data to Google right now. Try again later.', 'PsGoogleShoppingTranslations'),
             ],
             'productFeedSettings' => [
                 'breadcrumb1' => $this->module->l('Product feed', 'PsGoogleShoppingTranslations'),

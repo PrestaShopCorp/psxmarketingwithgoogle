@@ -56,10 +56,34 @@
           size="sm"
           variant="primary"
           @click="startConfiguration"
+          :disabled="isErrorApi"
         >
           {{ $t("cta.configureAndExportProductFeed") }}
         </b-button>
       </div>
+    </div>
+    <div
+      v-if="isErrorApi"
+      class="mt-3"
+    >
+      <b-alert
+        variant="warning"
+        show
+      >
+        <VueShowdown
+          :markdown="$t('productFeedCard.alertErrorApi')"
+        />
+        <div
+          class="mt-1"
+        >
+          <b-button
+            @click="refresh"
+            variant="outline-secondary"
+          >
+            {{ $t("general.refreshPage") }}
+          </b-button>
+        </div>
+      </b-alert>
     </div>
     <div v-if="isEnabled && !toConfigure">
       <b-alert
@@ -441,12 +465,6 @@ export default {
       return this.categoriesMapped > 0;
     },
     alert() {
-      // TODO FOR AMAURY : product feed api error (last card in Figma)
-      //    if (
-      //       this.$store.state.errorAPI === true;
-      //     ) {
-      //       return 'NEWERRORTOHANDLE';
-      //     }
       // TODO : how to know status from api ? + date of failed sync ?
       if (this.getProductFeedStatus.failedSyncs.length) {
         return 'Failed';
@@ -471,6 +489,9 @@ export default {
       // TODO : how to know status from api ? + date of failed sync ?
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
+    isErrorApi() {
+      return this.$store.state.productFeed.errorAPI;
+    },
   },
   methods: {
     startConfiguration() {
@@ -483,6 +504,9 @@ export default {
         name: 'product-feed-settings',
       });
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', step);
+    },
+    refresh() {
+      this.$router.go();
     },
   },
   googleUrl,
