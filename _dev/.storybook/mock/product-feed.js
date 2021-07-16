@@ -31,6 +31,7 @@ export const productFeed = {
     pendingItems: 23,
     disapprovedItems: 57,
   },
+  errorAPI: false,
 };
 
 

@@ -88,6 +88,7 @@ Failed.args = {
       nextJobAt: date,
     };
     this.$store.state.productFeed.settings.autoImportShippingSettings = true;
+    this.$store.state.productFeed.errorAPI = true;
   },
   isEnabled: true,
 };
@@ -153,6 +154,7 @@ export const ApiError:any = Template.bind({});
 ApiError.args = {
   beforeMount: function(this: any) {
     this.$store.state.productFeed = productFeedErrorAPI;
+    this.$store.state.productFeed.errorAPI = true;
 },
   isEnabled: true,
 };
