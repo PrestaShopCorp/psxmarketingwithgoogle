@@ -120,8 +120,6 @@ addDecorator(
   })
 );
 
-configure(require.context('../src', true, /\.stories\.(ts|js|md)x?$/), module);
-
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   backgrounds: {
