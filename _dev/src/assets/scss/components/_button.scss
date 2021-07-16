@@ -1,7 +1,21 @@
+.btn-sm {
+  font-size: rem(14);
+}
+
 .alert .btn-outline-secondary {
   color: $secondary;
+  text-decoration: none;
 
-  &:hover, &:focus {
+  &:hover {
+    color: $white;
+  }
+}
+
+.alert .btn-secondary {
+  color: $white;
+  text-decoration: none;
+
+  &:hover {
     color: $white;
   }
 }

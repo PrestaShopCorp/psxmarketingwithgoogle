@@ -11,8 +11,8 @@
         <img
           class="mr-3"
           :src="isEnabled
-            ? require('@/assets/images/Google-Ads-icon.svg')
-            : require('@/assets/images/Google-Ads-icon-grey.svg')"
+            ? require('@/assets/images/Google-Commercial-icon.svg')
+            : require('@/assets/images/Google-Commercial-icon-grey.svg')"
           width="40"
           height="40"
           alt=""

@@ -14,24 +14,19 @@
     >
       <p>
         {{ $t('productFeedPage.productStatus.description') }}
-        <b-button
-          v-b-tooltip
-          :title="$t('productFeedPage.productStatus.approvalStatusList')"
-          variant="invisible"
-          class="ml-1 p-0 border-0"
-        >
-          <i class="material-icons-round ps_gs-fz-14 mb-0">
-            error_outline
-          </i>
-        </b-button>
       </p>
-      <b-alert
-        show
-      >
-        {{ $t('productFeedPage.productStatus.alert') }}
-      </b-alert>
-      <h3 class="font-weight-600 ps_gs-fz-14 my-3 pt-2">
-        {{ $t('productFeedPage.productStatus.productsSubmittedToGoogle', [nbProductsTotal]) }}
+      <h3 class="d-flex align-items-center font-weight-600 ps_gs-fz-14 my-3 pt-2">
+        <i
+          class="material-icons ps_gs-fz-14 mr-2 text-primary"
+          v-if="isSyncInProgress"
+        >
+          schedule
+        </i>
+        {{
+          isSyncInProgress
+            ? $t('productFeedPage.syncStatus.readyForExport')
+            : $t('productFeedPage.productStatus.productsSubmittedToGoogle', [nbProductsTotal])
+        }}
       </h3>
       <b-container
         fluid
@@ -58,12 +53,15 @@
           />
         </b-row>
         <div class="text-right mt-1">
-          <a
-            href="#"
-            class="font-weight-600 ps_gs-fz-13"
+          <b-button
+            variant="invisible"
+            class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13"
+            :class="isSyncInProgress ? 'text-secondary' : 'text-primary'"
+            :disabled="isSyncInProgress"
+            :aria-disabled="isSyncInProgress"
           >
             {{ $t('cta.viewDetailedStatuses') }}
-          </a>
+          </b-button>
         </div>
       </b-container>
     </b-card-body>
@@ -73,16 +71,11 @@
 <script>
 // TODO: Add linkTo "View all detailed statuses"
 
-import {
-  BAlert,
-} from 'bootstrap-vue';
-
 import productFeedCardReportProductsSyncCard from '../product-feed/product-feed-card-report-products-sync-card';
 
 export default {
   name: 'ProductFeedSyncStatusCard',
   components: {
-    BAlert,
     productFeedCardReportProductsSyncCard,
   },
   computed: {
