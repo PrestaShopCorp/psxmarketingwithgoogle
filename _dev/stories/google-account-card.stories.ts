@@ -56,23 +56,23 @@ NotConnectedAndNoAuthenticationUrlYet.args = {
 export const NotConnectedAndCanNotGetAuthenticationUrl:any = Template.bind({});
 NotConnectedAndCanNotGetAuthenticationUrl.args = {
   isEnabled: true,
-  user: googleAccountFailedToRetrieveAuthenticationUrl,
+  user: Object.assign({}, googleAccountFailedToRetrieveAuthenticationUrl),
 };
 
 export const NotConnected:any = Template.bind({});
 NotConnected.args = {
   isEnabled: true,
-  user: googleAccountNotConnectedButAuthenticationUrlOK,
+  user: Object.assign({}, googleAccountNotConnectedButAuthenticationUrlOK),
 };
 
 export const CouldNotConnect:any = Template.bind({});
 CouldNotConnect.args = {
   isEnabled: true,
-  user: googleAccountFailedToRetrieveToken,
+  user: Object.assign({}, googleAccountFailedToRetrieveToken),
 };
 
 export const Connected:any = Template.bind({});
 Connected.args = {
   isEnabled: true,
-  user: googleAccountConnected,
+  user: Object.assign({}, googleAccountConnected),
 };

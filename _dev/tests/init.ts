@@ -34,9 +34,14 @@ config.mocks.$t = (key) => {
 
   return property;
 };
+config.mocks.$i18n = {
+  t: config.mocks.$t,
+};
 
 export const commonOptions = {
   localVue,
 };
+
+export {cloneStore} from './store';
 
 export default commonOptions;

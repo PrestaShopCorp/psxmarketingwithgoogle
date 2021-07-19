@@ -1,5 +1,5 @@
-import MerchantCenterAccountCard from '../src/components/merchant-center-account/merchant-center-account-card.vue';
-import MerchantCenterAccountPopinDisconnect from '../src/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
+import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
+import MerchantCenterAccountPopinDisconnect from '@/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import {initialStateApp} from '../.storybook/mock/state-app';
 import {googleAccountConnected} from '../.storybook/mock/google-account';
 import {
@@ -38,11 +38,12 @@ const Template = (args, {argTypes}) => ({
     </div>`,
   beforeMount(this: any) {
     this.$store.state.app = Object.assign(
+      {},
       this.$store.state.app,
       initialStateApp
     );
-    this.$store.state.accounts.googleAccount = googleAccountConnected;
-    this.$store.state.accounts.googleMerchantAccount = args.initialMcaStatus;
+    this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
+    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, args.initialMcaStatus);
   },
   mounted: args.mounted,
   methods: {
@@ -102,91 +103,107 @@ EnabledButNoAccount.args = {
 export const EnabledLinkingFailed:any = Template.bind({});
 EnabledLinkingFailed.args = {
   isEnabled: true,
-  initialMcaStatus: {
-    ...merchantCenterAccountNotConnected,
-    gmcStatus: WebsiteClaimErrorReason.LinkingFailed,
-  },
+  initialMcaStatus: Object.assign({}, 
+    merchantCenterAccountNotConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.LinkingFailed,
+    }
+  ),
 };
 
 export const Connected:any = Template.bind({});
 Connected.args = {
   isEnabled: true,
-  initialMcaStatus: merchantCenterAccountConnected,
+  initialMcaStatus: Object.assign({}, merchantCenterAccountConnected),
 };
 
 export const ShopInfoMissing:any = Template.bind({});
 ShopInfoMissing.args = {
   isEnabled: true,
-  initialMcaStatus: {
-    ...merchantCenterAccountConnected,
-    gmcStatus: WebsiteClaimErrorReason.ShopInfoMissing,
-  },
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.ShopInfoMissing,
+    },
+  )
 };
 
 export const OverwriteNeeded:any = Template.bind({});
 OverwriteNeeded.args = {
   isEnabled: true,
-  initialMcaStatus: {
-    ...merchantCenterAccountConnected,
-    gmcStatus: WebsiteClaimErrorReason.OverwriteNeeded,
-  },
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.OverwriteNeeded,
+    },
+  ),
 };
 
 export const OverwriteNeededWithManualAction:any = Template.bind({});
 OverwriteNeededWithManualAction.args = {
   isEnabled: true,
-  initialMcaStatus: {
-    ...merchantCenterAccountConnected,
-    gmcStatus: WebsiteClaimErrorReason.OverwriteNeededWithManualAction,
-  },
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.OverwriteNeededWithManualAction,
+    },
+  ),
 };
 
 export const AccountValidationFailed:any = Template.bind({});
 AccountValidationFailed.args = {
   isEnabled: true,
-  initialMcaStatus: {
-    ...merchantCenterAccountConnected,
-    gmcStatus: WebsiteClaimErrorReason.AccountValidationFailed,
-  },
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.AccountValidationFailed,
+    },
+  ),
 };
 
 export const IneligibleForFreeListing:any = Template.bind({});
 IneligibleForFreeListing.args = {
   isEnabled: true,
-  initialMcaStatus: {
-    ...merchantCenterAccountConnected,
-    isEnhancedFreeListingCompliant: {
-      status: false,
-      documentation: [
-        'https://google.com/first-link',
-        'https://google.com/second-link-that-is-purely-a-placeholder',
-        'https://google.com/this-could-be-a-link-to-the-documentation-who-knows',
-        'https://google.com/who-am-i-to-judge',
-      ]
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      isEnhancedFreeListingCompliant: {
+        status: false,
+        documentation: [
+          'https://google.com/first-link',
+          'https://google.com/second-link-that-is-purely-a-placeholder',
+          'https://google.com/this-could-be-a-link-to-the-documentation-who-knows',
+          'https://google.com/who-am-i-to-judge',
+        ]
+      },
     },
-  },
+  ),
 };
 
 export const Suspended:any = Template.bind({});
 Suspended.args = {
   isEnabled: true,
-  initialMcaStatus: {
-    ...merchantCenterAccountConnected,
-    isSuspended: {
-      status: true,
-      documentation: [
-        'https://google.com/first-link',
-        'https://google.com/second-link',
-      ]
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      isSuspended: {
+        status: true,
+        documentation: [
+          'https://google.com/first-link',
+          'https://google.com/second-link',
+        ]
+      },
     },
-  },
+  ),
 };
 
 export const UnlinkFailed:any = Template.bind({});
 UnlinkFailed.args = {
   isEnabled: true,
-  initialMcaStatus: {
-    ...merchantCenterAccountConnected,
-    gmcStatus: WebsiteClaimErrorReason.UnlinkFailed,
-  },
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.UnlinkFailed,
+    },
+  ),
 };

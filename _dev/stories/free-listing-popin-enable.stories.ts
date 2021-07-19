@@ -15,7 +15,7 @@ const Template = (args, { argTypes }) => ({
     </div>
   `,
   beforeCreate(this: any) {
-    this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
+    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
   },
 });
 

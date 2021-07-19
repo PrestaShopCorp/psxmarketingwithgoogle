@@ -18,15 +18,15 @@ const Template = (args, { argTypes }) => ({
 
 export const NotConnected:any = Template.bind({});
 NotConnected.args = {
-  context: contextPsAccountsNotConnected,
+  context: Object.assign({}, contextPsAccountsNotConnected),
 }
 
 export const Connected:any = Template.bind({});
 Connected.args = {
-  context: contextPsAccountsConnected,
+  context: Object.assign({}, contextPsAccountsConnected),
 }
 
 export const ConnectedAndValidated:any = Template.bind({});
 ConnectedAndValidated.args = {
-  context: contextPsAccountsConnectedAndValidated,
+  context: Object.assign({}, contextPsAccountsConnectedAndValidated),
 }

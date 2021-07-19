@@ -23,7 +23,7 @@ export const SyncStatusSchedule:any = Template.bind({});
 SyncStatusSchedule.args = {
   ...commonProps,
   beforeMount(this: any) {
-    this.$store.state.productFeed = productFeedStatusSyncSchedule;
+    this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncSchedule);
   },
 };
 
@@ -31,7 +31,7 @@ export const SyncStatusProcessed:any = Template.bind({});
 SyncStatusProcessed.args = {
   ...commonProps,
   beforeMount(this: any) {
-    this.$store.state.productFeed = productFeedStatusSyncSuccess;
+    this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncSuccess);
   },
 };
 
@@ -39,6 +39,6 @@ export const SyncStatusFailed:any = Template.bind({});
 SyncStatusFailed.args = {
   ...commonProps,
   beforeMount(this: any) {
-    this.$store.state.productFeed = productFeedStatusSyncFailed;
+    this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncFailed);
   },
 };

@@ -42,6 +42,9 @@ import "!style-loader!css-loader?url=false!./assets/shame.css";
 // app.scss all the styles for the module
 import "!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss";
 
+// Test utils
+import {cloneStore} from '@/../tests/store';
+
 // jest results file
 import results from '../.jest-test-results.json';
 
@@ -55,7 +58,6 @@ const message = require("./translations.json");
 Vue.use(VueI18n);
 Vue.use(Vuex);
 
-import store from "../src/store";
 addDecorator(() => ({
   template: "<story/>",
   i18n: new VueI18n({
@@ -85,7 +87,7 @@ addDecorator(() => ({
       immediate: true,
     },
   },
-  store,
+  store: new Vuex.Store(cloneStore()),
 }));
 
 addDecorator(

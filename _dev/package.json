@@ -21,6 +21,7 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.1",
     "debounce": "^1.2.1",
+    "lodash.clonedeep": "^4.5.0",
     "lodash.uniqby": "^4.7.0",
     "prestakit": "^1.2.2",
     "prestashop_accounts_vue_components": "^1.5.6",

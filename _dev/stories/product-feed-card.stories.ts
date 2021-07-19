@@ -44,8 +44,7 @@ const Template = (args, { argTypes }) => ({
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeed;
-    this.$store.state.productFeed.errorAPI = false;
+    this.$store.state.productFeed = Object.assign({}, productFeed);
   },
   isEnabled: false,
 };
@@ -53,8 +52,7 @@ Disabled.args = {
 export const NotConfigured:any = Template.bind({});
 NotConfigured.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeed;
-    this.$store.state.productFeed.errorAPI = false;
+    this.$store.state.productFeed = Object.assign({}, productFeed);
   },
   isEnabled: true,
   ...basicArgs,
@@ -65,7 +63,7 @@ NotConfigured.args = {
 export const ReadyForExport:any = Template.bind({});
 ReadyForExport.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
     this.$store.state.productFeed.status = {
       failedSyncs: [],
       successfulSyncs: [],
@@ -82,7 +80,7 @@ ReadyForExport.args = {
 export const Failed:any = Template.bind({});
 Failed.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
     this.$store.state.productFeed.status = {
       failedSyncs: ['foo'],
       successfulSyncs: [],
@@ -99,7 +97,7 @@ Failed.args = {
 export const SettingMissing:any = Template.bind({});
 SettingMissing.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
     this.$store.state.productFeed.status = {
       failedSyncs: [],
       successfulSyncs: [],
@@ -116,8 +114,7 @@ SettingMissing.args = {
 export const OverwriteNeeded:any = Template.bind({});
 OverwriteNeeded.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeed;
-    this.$store.state.productFeed.errorAPI = false;
+    this.$store.state.productFeed = Object.assign({}, productFeed);
   },
   isEnabled: true,
 };
@@ -136,7 +133,7 @@ OverwriteNeeded.decorators = [() => ({
 export const ConfiguredNoTax:any = Template.bind({});
 ConfiguredNoTax.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
     this.$store.state.productFeed.settings.targetCountries = ['FR'];
     this.$store.state.productFeed.settings.autoImportShippingSettings = true;
     this.$store.state.productFeed.status.successfulSyncs = [date];
@@ -148,7 +145,7 @@ ConfiguredNoTax.args = {
 export const ConfiguredTax:any = Template.bind({});
 ConfiguredTax.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
     this.$store.state.productFeed.settings.targetCountries = ['FR', 'US'];
     this.$store.state.productFeed.settings.autoImportShippingSettings = true;
     this.$store.state.productFeed.status.successfulSyncs = [date];
@@ -160,8 +157,7 @@ ConfiguredTax.args = {
 export const ApiError:any = Template.bind({});
 ApiError.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeedErrorAPI;
-    this.$store.state.productFeed.errorAPI = true;
+    this.$store.state.productFeed = Object.assign({}, productFeed);
   },
   isEnabled: true,
 };

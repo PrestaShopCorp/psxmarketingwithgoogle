@@ -23,7 +23,7 @@ export const SyncInProgress:any = Template.bind({});
 SyncInProgress.args = {
   ...commonProps,
   beforeMount(this: any) {
-    this.$store.state.productFeed = productFeedStatusSyncSchedule;
+    this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncSchedule);
   },
 };
 
@@ -31,6 +31,6 @@ export const Default:any = Template.bind({});
 Default.args = {
   ...commonProps,
   beforeMount(this: any) {
-    this.$store.state.productFeed = productFeedStatusSyncSuccess;
+    this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncSuccess);
   },  
 };
