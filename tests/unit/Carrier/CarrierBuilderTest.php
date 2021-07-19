@@ -511,7 +511,7 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
         $countryRepo = $this->getMockBuilder(CountryRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $countryRepo->expects($this->any())->method('getCountyIsoCodesByZoneId')->willReturn($mockedCountryIsoCode);
+        $countryRepo->expects($this->any())->method('getCountryIsoCodesByZoneId')->willReturn($mockedCountryIsoCode);
 
         return $countryRepo;
     }

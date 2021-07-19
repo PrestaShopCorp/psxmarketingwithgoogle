@@ -61,7 +61,7 @@ class CountryRepository
         return $query;
     }
 
-    public function getCountyIsoCodesByZoneId(int $zoneId, bool $active = true): array
+    public function getCountryIsoCodesByZoneId(int $zoneId, bool $active = true): array
     {
         $cacheKey = $zoneId . '-' . (int) $active;
 

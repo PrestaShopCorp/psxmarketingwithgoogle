@@ -105,6 +105,11 @@ class CarrierBuilder
 
         $carrierLine->setShippingHandling($this->getShippingHandlePrice((bool) $carrier->shipping_handling));
 
+        $countryIsoCodes = [];
+        foreach ($carrier->getZones() as $zone) {
+            $countryIsoCodes = array_merge($countryIsoCodes, $this->countryRepository->getCountryIsoCodesByZoneId($zone['id_zone']));
+        }
+
         $carrierLine
             ->setIdCarrier((int) $carrier->id)
             ->setIdReference((int) $carrier->id_reference)
@@ -126,7 +131,8 @@ class CarrierBuilder
             ->setGrade($carrier->grade)
             ->setDelay($carrier->delay)
             ->setCurrency($currencyIsoCode)
-            ->setWeightUnit($weightUnit);
+            ->setWeightUnit($weightUnit)
+            ->setCountryIsoCodes($countryIsoCodes);
 
         $deliveryPriceByRanges = $this->carrierRepository->getDeliveryPriceByRange($carrier);
 
@@ -137,7 +143,6 @@ class CarrierBuilder
         }
 
         $carrierDetails = [];
-        $carrierTaxes = [];
         foreach ($deliveryPriceByRanges as $deliveryPriceByRange) {
             $range = $this->carrierRepository->getCarrierRange($deliveryPriceByRange);
             if (!$range) {
@@ -148,10 +153,9 @@ class CarrierBuilder
                 if ($carrierDetail) {
                     $carrierDetails[] = $carrierDetail;
                 }
-
             }
         }
-        
+
         $carrierLine->setCarrierDetails($carrierDetails);
 
         return $carrierLine;
@@ -179,7 +183,7 @@ class CarrierBuilder
         $carrierDetail->setZoneId($zone['id_zone']);
         $carrierDetail->setRangeId($range->id);
 
-        $countryIsoCodes = $this->countryRepository->getCountyIsoCodesByZoneId($zone['id_zone']);
+        $countryIsoCodes = $this->countryRepository->getCountryIsoCodesByZoneId($zone['id_zone']);
         if (!$countryIsoCodes) {
             return null;
         }
@@ -213,7 +217,7 @@ class CarrierBuilder
         $carrierTax->setTaxRate($carrierTaxesByZone['rate']);
 
         return [
-            $carrierTax
+            $carrierTax,
         ];
     }
 

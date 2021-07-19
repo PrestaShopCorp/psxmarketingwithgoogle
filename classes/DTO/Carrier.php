@@ -150,6 +150,11 @@ class Carrier implements JsonSerializable
     private $weightUnit;
 
     /**
+     * @var array
+     */
+    private $countryIsoCodes;
+
+    /**
      * @var CarrierDetail[]
      */
     private $carrierDetails = [];
@@ -459,6 +464,18 @@ class Carrier implements JsonSerializable
         return $this;
     }
 
+    public function getCountryIsoCodes(): array
+    {
+        return $this->countryIsoCodes;
+    }
+
+    public function setCountryIsoCodes(array $countryIsoCodes): Carrier
+    {
+        $this->countryIsoCodes = $countryIsoCodes;
+
+        return $this;
+    }
+
     public function getCarrierDetails(): array
     {
         return $this->carrierDetails;
@@ -515,6 +532,7 @@ class Carrier implements JsonSerializable
                 'delay' => (string) $this->getDelay(),
                 'currency' => (string) $this->getCurrency(),
                 'weight_unit' => (string) $this->getWeightUnit(),
+                'country_ids' => (string) implode(',', $this->getCountryIsoCodes()),
             ],
         ];
 
