@@ -55,10 +55,8 @@
         <div class="text-right mt-1">
           <b-button
             variant="invisible"
+            @click="displayReporting"
             class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13"
-            :class="isSyncInProgress ? 'text-secondary' : 'text-primary'"
-            :disabled="isSyncInProgress"
-            :aria-disabled="isSyncInProgress"
           >
             {{ $t('cta.viewDetailedStatuses') }}
           </b-button>
@@ -78,6 +76,11 @@ export default {
   components: {
     productFeedCardReportProductsSyncCard,
   },
+  data() {
+    return {
+      visible: false,
+    };
+  },
   computed: {
     validationSummary() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_VALIDATION_SUMMARY'];
@@ -92,6 +95,11 @@ export default {
     nbProductsTotal() {
       return this.validationSummary.activeItems + this.validationSummary.pendingItems
       + this.validationSummary.disapprovedItems;
+    },
+  },
+  methods: {
+    displayReporting() {
+      this.$emit('showProductReporting', true);
     },
   },
 };
