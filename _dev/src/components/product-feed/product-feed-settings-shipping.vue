@@ -18,12 +18,27 @@
         v-model="countries"
         :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
         :reduce="country => country.code"
-        :options="$options.countriesSelectionOptions"
+        :options="sortCountries"
         :deselect-from-dropdown="true"
         class="ps_gs-v-select maxw-sm-500"
+        :selectable="country => country.disabled"
         multiple
         label="country"
-      />
+      >
+        <template #option="{ country }">
+          <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
+            <span class="mr-2">
+              {{ country }}
+            </span>
+            <span
+              v-if="!isCompatibleWithCurrency(country)"
+              class="ps_gs-fz-12 ml-auto"
+            >
+              {{ $t('productFeedSettings.steps.shippingSettingsErrors') }}
+            </span>
+          </div>
+        </template>
+      </ps-select>
       <VueShowdown
         class="text-muted my-1 ps_gs-fz-12"
         :markdown="$t('productFeedSettings.shipping.cantFindCountry', [
@@ -31,13 +46,6 @@
         ])"
         :extensions="['targetlink']"
       />
-      <span
-        v-if="error"
-        class="text-muted ps_gs-fz-12"
-        style="color:red;"
-      >
-        {{ error }}
-      </span>
     </b-form-group>
     <b-form-group
       class="mt-4"
@@ -189,7 +197,6 @@ export default {
   data() {
     return {
       tax: null,
-      error: null,
     };
   },
   computed: {
@@ -198,14 +205,21 @@ export default {
         return this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
       },
       set(value) {
-        const getLastCountrySelected = value.slice(-1)[0];
-        if (this.isCompatibleWithCurrency(getLastCountrySelected) === undefined) {
-          this.error = 'This country is not eligible with your currency';
-          return;
-        }
-        this.error = null;
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: value});
       },
+    },
+    sortCountries() {
+      countriesSelectionOptions.forEach((el) => {
+        if (el.currency === this.currency) {
+          el.disabled = true;
+        } else {
+          el.disabled = false;
+        }
+      });
+      return countriesSelectionOptions;
+    },
+    currency() {
+      return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
     isUS() {
       return this.countries.includes('US');
@@ -244,12 +258,10 @@ export default {
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
-    isCompatibleWithCurrency(countrySelected) {
-      const currency = this.$store.getters['app/GET_CURRENT_CURRENCY'];
-      const countriesFilteredByCurrency = countriesSelectionOptions.filter(
-        (country) => country.currency === currency,
-      );
-      return countriesFilteredByCurrency.find((country) => country.code === countrySelected);
+    isCompatibleWithCurrency(country) {
+      const actualCountry = countriesSelectionOptions.find((el) => el.country === country);
+
+      return actualCountry.currency === this.currency;
     },
   },
   countriesSelectionOptions,
