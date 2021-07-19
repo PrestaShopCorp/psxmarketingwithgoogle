@@ -9,22 +9,21 @@ import {commonOptions, cloneStore} from '@/../tests/init';
 import {shallowMount} from '@vue/test-utils';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
-import { BAlert } from 'bootstrap-vue';
+import BootstrapVue, {BAlert} from 'bootstrap-vue';
 import {
   merchantCenterAccountNotConnected,
   merchantCenterAccountConnected,
 } from '../../../.storybook/mock/merchant-center-account';
-import BootstrapVue from 'bootstrap-vue';
 
 describe('merchant-center-account-card.vue', () => {
   it('does show almot nothing when it is not actived yet', () => {
     const wrapper = shallowMount(MerchantCenterAccountCard, {
-        propsData: {
-          isEnabled: false,
-        },
-        ...commonOptions,
-        store: new Vuex.Store(cloneStore()),
-      });
+      propsData: {
+        isEnabled: false,
+      },
+      ...commonOptions,
+      store: new Vuex.Store(cloneStore()),
+    });
     wrapper.vm.$refs.mcaSelection = undefined;
 
     // Check disabled state
@@ -37,12 +36,12 @@ describe('merchant-center-account-card.vue', () => {
 
   it('does show almost nothing when it is not actived yet', () => {
     const wrapper = shallowMount(MerchantCenterAccountCard, {
-        propsData: {
-          isEnabled: false,
-        },
-        ...commonOptions,
-        store: new Vuex.Store(cloneStore()),
-      });
+      propsData: {
+        isEnabled: false,
+      },
+      ...commonOptions,
+      store: new Vuex.Store(cloneStore()),
+    });
 
     // Check disabled state
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(true);
@@ -54,12 +53,12 @@ describe('merchant-center-account-card.vue', () => {
 
   it('show the link to create an account when enabled', () => {
     const wrapper = shallowMount(MerchantCenterAccountCard, {
-        propsData: {
-          isEnabled: true,
-        },
-        ...commonOptions,
-        store: new Vuex.Store(cloneStore()),
-      });
+      propsData: {
+        isEnabled: true,
+      },
+      ...commonOptions,
+      store: new Vuex.Store(cloneStore()),
+    });
 
     // Check enabled state
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(false);

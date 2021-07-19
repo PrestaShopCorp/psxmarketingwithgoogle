@@ -1,4 +1,4 @@
-import {cloneDeep} from 'lodash';
+import cloneDeep from 'lodash.clonedeep';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import app from '@/store/modules/app';
@@ -15,11 +15,11 @@ export const cloneStore = () => {
       accounts: cloneDeep(accounts),
       productFeed: cloneDeep(productFeed),
       freeListing: cloneDeep(freeListing),
-    }
+    },
   };
   return store;
 };
 
 export default {
-  cloneStore
+  cloneStore,
 };

@@ -433,13 +433,13 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import uniqBy from 'lodash.uniqby';
+import VueShowdown from 'vue-showdown';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
 import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
-import VueShowdown from 'vue-showdown';
 
 export default {
   name: 'MerchantCenterAccountCard',
