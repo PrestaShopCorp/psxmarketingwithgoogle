@@ -58,12 +58,6 @@ const message = require('./translations.json');
 Vue.use(VueI18n);
 Vue.use(Vuex);
 
-<<<<<<< HEAD
-||||||| constructed merge base
-import store from "../src/store";
-=======
-import store from '../src/store';
->>>>>>> Simplify storybook preview.js
 addDecorator(() => ({
   template: `
    <div
