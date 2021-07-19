@@ -130,6 +130,8 @@ class CarrierBuilder
 
         $deliveryPriceByRanges = $this->carrierRepository->getDeliveryPriceByRange($carrier);
 
+        $carrierLine->setCarrierTaxes($this->buildCarrierTaxes($carrier));
+
         if (!$deliveryPriceByRanges) {
             return $carrierLine;
         }
@@ -147,15 +149,10 @@ class CarrierBuilder
                     $carrierDetails[] = $carrierDetail;
                 }
 
-                $carrierTax = $this->buildCarrierTaxes($carrier, $zone['id_zone']);
-                if ($carrierTax) {
-                    $carrierTaxes[] = $carrierTax;
-                }
             }
         }
-
+        
         $carrierLine->setCarrierDetails($carrierDetails);
-        $carrierLine->setCarrierTaxes($carrierTaxes);
 
         return $carrierLine;
     }
@@ -194,13 +191,16 @@ class CarrierBuilder
         return $carrierDetail;
     }
 
-    private function buildCarrierTaxes(Carrier $carrier, int $zoneId): ?CarrierTax
+    /**
+     * @return array<CarrierTax>
+     */
+    private function buildCarrierTaxes(Carrier $carrier): array
     {
         $taxRulesGroupId = (int) $carrier->getIdTaxRulesGroup();
-        $carrierTaxesByZone = $this->taxRepository->getCarrierTaxesByZone($zoneId, $taxRulesGroupId);
+        $carrierTaxesByZone = $this->taxRepository->getCarrierTaxesByTaxRulesGroupId($taxRulesGroupId);
 
         if (!$carrierTaxesByZone[0]['country_iso_code']) {
-            return null;
+            return [];
         }
 
         $carrierTaxesByZone = $carrierTaxesByZone[0];
@@ -208,12 +208,13 @@ class CarrierBuilder
         $carrierTax = new CarrierTax();
         $carrierTax->setCarrierReference($carrier->id_reference);
         $carrierTax->setTaxRulesGroupId($taxRulesGroupId);
-        $carrierTax->setZoneId($zoneId);
         $carrierTax->setCountryIsoCode((string) $carrierTaxesByZone['country_iso_code']);
         $carrierTax->setStateIsoCodes((string) $carrierTaxesByZone['state_iso_code']);
         $carrierTax->setTaxRate($carrierTaxesByZone['rate']);
 
-        return $carrierTax;
+        return [
+            $carrierTax
+        ];
     }
 
     private function getShippingHandlePrice(bool $shippingHandling): float
