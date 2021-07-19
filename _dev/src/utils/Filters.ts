@@ -31,7 +31,6 @@ Vue.filter(
 Vue.filter(
   'changeCountryCodeToName', (countriesGiven : Array<string>, totalCountries : Array<{code: string; country: string}>) => {
     const final : string[] = [];
-    console.log(totalCountries)
       countriesGiven.map((data) => {
         for (let i = 0; i < totalCountries.length; i += 1) {
           console.log(totalCountries[i])
