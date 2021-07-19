@@ -12,7 +12,7 @@
     "build-storybook": "build-storybook",
     "test:generate-output": "vue-cli-service test:unit --json --outputFile=.jest-test-results.json",
     "test:unit": "vue-cli-service test:unit",
-    "chromatic": "npx chromatic --project-token 8e3c11a08ebf"
+    "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes"
   },
   "dependencies": {
     "@googleapis/content": "^1.2.0",
