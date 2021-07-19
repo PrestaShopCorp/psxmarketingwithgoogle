@@ -1,5 +1,5 @@
 import FreeListingPopinDisable from '../src/components/free-listing/free-listing-popin-disable.vue'
-import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
+import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 
 export default {
   title: 'Free Listing/Popins/Disable',
@@ -15,7 +15,7 @@ const Template = (args, { argTypes }) => ({
     </div>
   `,
   beforeCreate(this: any) {
-    this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
+    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
   },
 });
 

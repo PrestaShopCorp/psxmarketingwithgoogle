@@ -34,17 +34,15 @@ export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
   beforeMount(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
   },
 }
 
 export const Enabled:any = Template.bind({});
-// TODO : why the card is not reseting when changing story
 Enabled.args = {
   isEnabled: true,
   beforeMount(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
-    this.$store.state.freeListing.errorAPI = false;
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
     this.$store.state.freeListing.status = true;
   },
 }
@@ -53,9 +51,7 @@ export const AlertEnableFreeListing:any = Template.bind({});
 AlertEnableFreeListing.args = {
   isEnabled: true,
   beforeMount(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
-    this.$store.state.freeListing.errorAPI = false;
-    this.$store.state.freeListing.status = false;
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
   },
 }
 
@@ -64,7 +60,7 @@ export const AlertCountryNotEligible:any = Template.bind({});
 AlertCountryNotEligible.args = {
   isEnabled: true,
   beforeMount(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
   },
 }
 
@@ -85,7 +81,7 @@ export const AlertCantEnableFreeListing:any = Template.bind({});
 AlertCantEnableFreeListing.args = {
   isEnabled: true,
   beforeMount(this: any) {
-    this.$store.state.productFeed = productFeedIsConfigured;
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
     this.$store.state.freeListing.errorAPI = true;
   },
 }

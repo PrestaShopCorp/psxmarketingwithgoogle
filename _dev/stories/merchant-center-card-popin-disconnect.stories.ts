@@ -19,9 +19,9 @@ const Template = (args, { argTypes }) => ({
     </div>
   `,
   beforeCreate(this: any) {
-    this.$store.state.accounts.contextPsAccounts = contextPsAccountsConnectedAndValidated;
-    this.$store.state.accounts.googleAccount = googleAccountConnected;
-    this.$store.state.accounts.googleMerchantAccount = merchantCenterAccountConnected;
+    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
+    this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
+    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
   },
 });
 
