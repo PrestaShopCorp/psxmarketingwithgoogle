@@ -188,12 +188,6 @@ export default {
         },
       });
       if (!response.ok) {
-        if (response.status === 412) {
-          commit(MutationsTypes.ERROR_API_GOOGLE_ACCOUNT);
-        }
-        if (response.status === 500) {
-          commit(MutationsTypes.ERROR_API_GOOGLE_ACCOUNT_TOKEN_MISSING);
-        }
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();

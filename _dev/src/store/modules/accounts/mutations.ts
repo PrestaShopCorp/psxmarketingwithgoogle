@@ -55,12 +55,6 @@ export default {
   [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string|Error) {
     state.googleAccount.authenticationUrl = url;
   },
-  [MutationsTypes.ERROR_API_GOOGLE_ACCOUNT](state: LocalState, url: string|Error) {
-    state.googleAccount.authenticationUrl = new Error();
-  },
-  [MutationsTypes.ERROR_API_GOOGLE_ACCOUNT_TOKEN_MISSING](state: LocalState, url: string|Error) {
-    state.googleAccount.access_token = new Error();
-  },
   [MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE](state: LocalState, googleResponse) {
     state.googleAccount.from = googleResponse.from;
     state.googleAccount.message = googleResponse.message;
