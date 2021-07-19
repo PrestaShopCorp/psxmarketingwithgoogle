@@ -31,6 +31,13 @@
         ])"
         :extensions="['targetlink']"
       />
+      <span
+        v-if="error"
+        class="text-muted ps_gs-fz-12"
+        style="color:red;"
+      >
+        {{ error }}
+      </span>
     </b-form-group>
     <b-form-group
       class="mt-4"
@@ -182,6 +189,7 @@ export default {
   data() {
     return {
       tax: null,
+      error: null,
     };
   },
   computed: {
@@ -190,6 +198,12 @@ export default {
         return this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
       },
       set(value) {
+        const getLastCountrySelected = value.slice(-1)[0];
+        if (this.isCompatibleWithCurrency(getLastCountrySelected) === undefined) {
+          this.error = 'This country is not eligible with your currency';
+          return;
+        }
+        this.error = null;
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: value});
       },
     },
@@ -229,6 +243,13 @@ export default {
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
+    },
+    isCompatibleWithCurrency(countrySelected) {
+      const currency = this.$store.getters['app/GET_CURRENT_CURRENCY'];
+      const countriesFilteredByCurrency = countriesSelectionOptions.filter(
+        (country) => country.currency === currency,
+      );
+      return countriesFilteredByCurrency.find((country) => country.code === countrySelected);
     },
   },
   countriesSelectionOptions,

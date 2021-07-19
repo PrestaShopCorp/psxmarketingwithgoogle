@@ -22,6 +22,7 @@ export interface State {
   psGoogleShoppingAdminUrl: string;
   psGoogleShoppingAdminAjaxUrl: string;
   psGoogleShoppingShopUrl: string;
+  psGoogleShoppingShopCurrency: string,
 }
 
 export const state: State = {
@@ -30,4 +31,5 @@ export const state: State = {
   psGoogleShoppingAdminAjaxUrl: '',
   psGoogleShoppingShopUrl: '',
   isCountryMemberOfEuropeanUnion: false,
+  psGoogleShoppingShopCurrency: '',
 };
