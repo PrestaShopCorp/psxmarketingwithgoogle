@@ -7,7 +7,7 @@ const {
   psGoogleShoppingAdminAjaxUrl,
   psGoogleShoppingShopUrl,
   isCountryMemberOfEuropeanUnion,
-  psGoogleShoppingCurrency,
+  psGoogleShoppingShopCurrency,
 }: any = window;
 
 const state = Object.assign(
@@ -17,7 +17,7 @@ const state = Object.assign(
   {psGoogleShoppingAdminAjaxUrl} || '',
   {psGoogleShoppingShopUrl} || '',
   {isCountryMemberOfEuropeanUnion} || false,
-  {psGoogleShoppingCurrency} || '',
+  {psGoogleShoppingShopCurrency} || {},
 );
 
 /**

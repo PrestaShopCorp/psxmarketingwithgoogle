@@ -24,6 +24,6 @@ export default {
     return state.isCountryMemberOfEuropeanUnion;
   },
   [GettersTypes.GET_CURRENT_CURRENCY](state: LocalState): string {
-    return state.psGoogleShoppingShopCurrency;
+    return state.psGoogleShoppingShopCurrency.isoCode;
   },
 };
