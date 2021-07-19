@@ -188,6 +188,12 @@ export default {
         },
       });
       if (!response.ok) {
+        if (response.status === 412) {
+          commit(MutationsTypes.ERROR_API_GOOGLE_ACCOUNT);
+        }
+        if (response.status === 500) {
+          commit(MutationsTypes.ERROR_API_GOOGLE_ACCOUNT_TOKEN_MISSING);
+        }
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
@@ -244,10 +250,22 @@ export default {
     }
   },
 
-  async [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, state, dispatch}) {
+  async [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({
+    commit, rootState, state, dispatch,
+  }) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
+        'x-correlation-id': correlationId,
+      },
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
     await dispatch(ActionsTypes.DISSOCIATE_GMC, correlationId);
-    // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);

@@ -160,11 +160,6 @@
 </template>
 
 <script>
-/**
- * TODO: Handle error cases (x2)
- * "Can't connect" and "Token missing"
- * When "Can't connect", CTA should be disabled
- */
 
 import googleUrl from '@/assets/json/googleUrl.json';
 

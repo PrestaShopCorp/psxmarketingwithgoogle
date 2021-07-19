@@ -3,8 +3,8 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import translations from '../.storybook/translations.json';
 
-let windowSpy; let
-  localVue;
+let windowSpy;
+let localVue;
 const defaultLocale = 'en';
 
 beforeEach(() => {

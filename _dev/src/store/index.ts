@@ -7,11 +7,13 @@ import freeListing from './modules/free-listing';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export const store = {
   modules: {
     app,
     accounts,
     productFeed,
     freeListing,
   },
-});
+};
+
+export default new Vuex.Store(store);
