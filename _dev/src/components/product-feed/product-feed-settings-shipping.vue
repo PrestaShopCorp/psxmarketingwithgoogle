@@ -210,11 +210,7 @@ export default {
     },
     sortCountries() {
       countriesSelectionOptions.forEach((el) => {
-        if (el.currency === this.currency) {
-          el.disabled = true;
-        } else {
-          el.disabled = false;
-        }
+        el.disabled = !!(el.currency === this.currency);
       });
       return countriesSelectionOptions;
     },
