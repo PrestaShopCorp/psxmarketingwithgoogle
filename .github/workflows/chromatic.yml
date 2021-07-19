@@ -3,9 +3,11 @@
 # Workflow name
 name: 'Chromatic'
 
-# Event for the workflow
-on: pull_request
-
+# On pull request merged to master
+on:
+  push:
+    branches:
+      - master
 # List of jobs
 jobs:
   chromatic-deployment:
@@ -16,11 +18,13 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install dependencies
         run: yarn
+
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         # Chromatic GitHub Action options
         with:
+          workingDir: ./_dev/
           token: ${{ secrets.GITHUB_TOKEN }}
-          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
+          # 👇 Chromatic projectToken
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
