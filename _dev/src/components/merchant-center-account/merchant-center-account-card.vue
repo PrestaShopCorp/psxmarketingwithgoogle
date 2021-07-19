@@ -439,6 +439,7 @@ import {
 import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
+import VueShowdown from 'vue-showdown';
 
 export default {
   name: 'MerchantCenterAccountCard',
@@ -446,6 +447,7 @@ export default {
     MerchantCenterAccountPopinOverwriteClaim,
     BadgeListRequirements,
     MerchantCenterAccountPopinWebsiteRequirements,
+    VueShowdown,
   },
   data() {
     return {
@@ -629,7 +631,7 @@ export default {
       return isAdmin;
     },
     setFocusOnSelectMCA() {
-      if (this.$refs.mcaSelection) {
+      if (this.$refs.mcaSelection?.$refs?.toggle) {
         this.$refs.mcaSelection.$refs.toggle.focus();
       }
     },

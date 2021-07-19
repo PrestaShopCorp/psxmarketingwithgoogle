@@ -1,7 +1,7 @@
 import {config, createLocalVue} from '@vue/test-utils';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import translations from '../.storybook/translations.json';
+import translations from '../.storybook/translations.json'; 
 
 let windowSpy; let
   localVue;
@@ -34,9 +34,14 @@ config.mocks.$t = (key) => {
 
   return property;
 };
+config.mocks.$i18n = {
+  t: config.mocks.$t,
+};
 
 export const commonOptions = {
   localVue,
 };
+
+export { cloneStore } from './store';
 
 export default commonOptions;
