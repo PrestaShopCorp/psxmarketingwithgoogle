@@ -6,7 +6,7 @@ export default {
   argTypes: {
     contentImage: {
       control: { type: 'select'},
-      options: ['Google-Ads-img.png', 'Merchant-Center-img.png', 'Google-Shopping-Tab-img.png'],
+      options: ['Google-Commercial-img.png', 'Merchant-Center-img.png', 'Google-Shopping-Tab-img.png'],
     },
   },
 };
@@ -19,7 +19,7 @@ const Template = (args, { argTypes }) => ({
 
 export const Content:any = Template.bind({});
 Content.args = {
-  contentImage: 'Google-Ads-img.png',
+  contentImage: 'Google-Commercial-img.png',
   contentTitle: 'Connect your store to Google Merchant Center',
   contentText: 'Connecting your store to Google Merchant Center allows you to upload store and product data to Google. Your products will automatically sync to make relevant information available for free listings, Google Ads, and other Google services.',
   contentFooter: 'You can create a new [Merchant Center account](//tartiflette.com){:target=\"_blank\"} or link an existing account. Note that you’ll need to meet the Merchant Center eligibility requirements in order to connect your store.'
