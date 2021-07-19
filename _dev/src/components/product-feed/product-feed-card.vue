@@ -56,10 +56,34 @@
           size="sm"
           variant="primary"
           @click="startConfiguration"
+          :disabled="isErrorApi"
         >
           {{ $t("cta.configureAndExportProductFeed") }}
         </b-button>
       </div>
+    </div>
+    <div
+      v-if="isErrorApi"
+      class="mt-3"
+    >
+      <b-alert
+        variant="warning"
+        show
+      >
+        <VueShowdown
+          :markdown="$t('productFeedCard.alertErrorApi')"
+        />
+        <div
+          class="mt-1"
+        >
+          <b-button
+            @click="refresh"
+            variant="outline-secondary"
+          >
+            {{ $t("general.refreshPage") }}
+          </b-button>
+        </div>
+      </b-alert>
     </div>
     <div v-if="isEnabled && !toConfigure">
       <b-alert
@@ -465,6 +489,9 @@ export default {
       // TODO : how to know status from api ? + date of failed sync ?
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
+    isErrorApi() {
+      return this.$store.state.productFeed.errorAPI;
+    },
   },
   methods: {
     startConfiguration() {
@@ -477,6 +504,9 @@ export default {
         name: 'product-feed-settings',
       });
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', step);
+    },
+    refresh() {
+      this.$router.go();
     },
   },
   googleUrl,

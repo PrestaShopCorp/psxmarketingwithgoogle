@@ -92,4 +92,8 @@ export default {
   ) {
     state.totalProducts = payload;
   },
+  [MutationsTypes.API_ERROR](state: LocalState, payload: boolean,
+  ) {
+    state.errorAPI = payload;
+  },
 };

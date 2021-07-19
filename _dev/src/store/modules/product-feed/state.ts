@@ -52,6 +52,7 @@ export interface ProductFeedValidationSummary {
 }
 
 export interface State {
+  errorAPI: boolean
   isConfigured: boolean,
   isConfiguredOnce: boolean,
   psGoogleShoppingActiveCountries: Array<string>,
@@ -63,6 +64,7 @@ export interface State {
 }
 
 export const state: State = {
+  errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
   psGoogleShoppingActiveCountries: [],

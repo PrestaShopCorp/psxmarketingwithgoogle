@@ -164,7 +164,8 @@
       "productsReadyToBeSynced" : "Products ready to be synced",
       "productsWithProblems" : "Products with problems",
       "alertGoogleIsReviewingProducts": "Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.",
-      "missingInformation" : "Missing information"
+      "missingInformation" : "Missing information",
+      "alertErrorApi" : "You can't send your products data to Google right now. Try again later."
     },
     "productFeedSettings" : {
       "breadcrumb1" : "Product feed",

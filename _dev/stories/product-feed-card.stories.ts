@@ -1,5 +1,5 @@
 import ProductFeedCard from '../src/components/product-feed/product-feed-card.vue'
-import { productFeed, productFeedMissingFields, productFeedIsConfigured } from '../.storybook/mock/product-feed';
+import { productFeed, productFeedMissingFields, productFeedIsConfigured, productFeedErrorAPI } from '../.storybook/mock/product-feed';
 
 const categoriesTotal = 17;
 const basicArgs = {
@@ -45,6 +45,7 @@ export const Disabled:any = Template.bind({});
 Disabled.args = {
   beforeMount: function(this: any) {
     this.$store.state.productFeed = productFeed;
+    this.$store.state.productFeed.errorAPI = false;
   },
   isEnabled: false,
 };
@@ -53,6 +54,7 @@ export const NotConfigured:any = Template.bind({});
 NotConfigured.args = {
   beforeMount: function(this: any) {
     this.$store.state.productFeed = productFeed;
+    this.$store.state.productFeed.errorAPI = false;
   },
   isEnabled: true,
   ...basicArgs,
@@ -72,6 +74,7 @@ ReadyForExport.args = {
       nextJobAt: date,
     };
     this.$store.state.productFeed.settings.autoImportShippingSettings = true;
+    this.$store.state.productFeed.errorAPI = false;
   },
   isEnabled: true,
 };
@@ -88,6 +91,7 @@ Failed.args = {
       nextJobAt: date,
     };
     this.$store.state.productFeed.settings.autoImportShippingSettings = true;
+    this.$store.state.productFeed.errorAPI = false;
   },
   isEnabled: true,
 };
@@ -104,6 +108,7 @@ SettingMissing.args = {
       nextJobAt: date,
     };
     this.$store.state.productFeed.settings.autoImportShippingSettings = undefined;
+    this.$store.state.productFeed.errorAPI = false;
   },
   isEnabled: true,
 };
@@ -112,6 +117,7 @@ export const OverwriteNeeded:any = Template.bind({});
 OverwriteNeeded.args = {
   beforeMount: function(this: any) {
     this.$store.state.productFeed = productFeed;
+    this.$store.state.productFeed.errorAPI = false;
   },
   isEnabled: true,
 };
@@ -134,6 +140,7 @@ ConfiguredNoTax.args = {
     this.$store.state.productFeed.settings.targetCountries = ['FR'];
     this.$store.state.productFeed.settings.autoImportShippingSettings = true;
     this.$store.state.productFeed.status.successfulSyncs = [date];
+    this.$store.state.productFeed.errorAPI = false;
   },
   isEnabled: true,
 };
@@ -145,6 +152,7 @@ ConfiguredTax.args = {
     this.$store.state.productFeed.settings.targetCountries = ['FR', 'US'];
     this.$store.state.productFeed.settings.autoImportShippingSettings = true;
     this.$store.state.productFeed.status.successfulSyncs = [date];
+    this.$store.state.productFeed.errorAPI = false;
   },
   isEnabled: true,
 };
@@ -152,18 +160,8 @@ ConfiguredTax.args = {
 export const ApiError:any = Template.bind({});
 ApiError.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = productFeed;
+    this.$store.state.productFeed = productFeedErrorAPI;
+    this.$store.state.productFeed.errorAPI = true;
   },
   isEnabled: true,
 };
-// ! Add BIG warning: not developed yet
-ApiError.decorators = [() => ({
-  template: `
-    <div>
-      <h2>
-        ⚠️ TODO: Handle state, this story isn't developed yet ⚠️
-      </h2>
-      <story />
-    </div>
-  `
-})];

@@ -31,6 +31,7 @@ export const productFeed = {
     pendingItems: 23,
     disapprovedItems: 57,
   },
+  errorAPI: false,
 };
 
 
@@ -86,3 +87,7 @@ export const productFeedStatusSyncSuccess = {
   }
 }
 
+export const productFeedErrorAPI = {
+...productFeed,
+errorAPI: true,
+}
