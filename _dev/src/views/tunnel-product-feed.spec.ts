@@ -20,20 +20,17 @@ describe('tunnel-product-feed.vue', () => {
       GET_PRODUCT_FEED_SYNC_STATUS: jest.fn(),
       GET_TOTAL_PRODUCTS: jest.fn(),
     };
-    store = new Vuex.Store({
-      modules: {
-        productFeed: {
-          actions,
-          namespaced: true,
-        },
-      },
-    });
+    store = cloneStore();
+    store.modules.productFeed.actions =  Object.assign({}, 
+      store.modules.productFeed.actions, 
+      actions,
+    );
   });
 
   it('dispatches actions before Create', () => {
     const wrapper = shallowMount(TunnelProductFeed, {
       ...commonOptions,
-      store,
+      store : new Vuex.Store(store),
     });
     expect(actions.GET_PRODUCT_FEED_SETTINGS).toHaveBeenCalled();
     expect(actions.GET_PRODUCT_FEED_SYNC_STATUS).toHaveBeenCalled();
