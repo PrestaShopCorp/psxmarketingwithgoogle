@@ -87,9 +87,9 @@ export const state: State = {
     syncSchedule: '1 * * * * *',
   },
   validationSummary: {
-    activeItems: 113,
-    expiringItems: 13,
-    pendingItems: 23,
-    disapprovedItems: 57,
+    activeItems: null,
+    expiringItems: null,
+    pendingItems: null,
+    disapprovedItems: null,
   },
 };

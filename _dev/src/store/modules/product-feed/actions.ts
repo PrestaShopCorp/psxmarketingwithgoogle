@@ -59,7 +59,6 @@ export default {
         },
       });
       if (!response.ok) {
-        commit(MutationsTypes.API_ERROR, true);
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
@@ -73,11 +72,9 @@ export default {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        // ! Not send by API yet
         name: 'productsPerBatchSync', data: json.productsPerBatchSync,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        // ! Not send by API yet
         name: 'syncSchedule', data: json.syncSchedule,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
@@ -108,6 +105,9 @@ export default {
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
     } catch (error) {
       console.error(error);
+      if (error.code !== 404) {
+        commit(MutationsTypes.API_ERROR, true);
+      }
     }
   },
 
