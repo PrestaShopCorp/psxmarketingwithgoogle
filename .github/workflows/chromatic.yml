@@ -22,7 +22,7 @@ jobs:
         run: |
           cd _dev
           npm install
-      - name: Run test as .jset-test-results.json is mandatory
+      - name: Run tests
         run: |
           cd _dev
           npm run test:generate-output
