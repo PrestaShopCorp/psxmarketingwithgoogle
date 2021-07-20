@@ -255,9 +255,9 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     isCompatibleWithCurrency(country) {
-      const actualCountry = countriesSelectionOptions.find((el) => el.country === country);
+      const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
 
-      return actualCountry.currency === this.currency;
+      return currentCountry.currency === this.currency;
     },
   },
   countriesSelectionOptions,
