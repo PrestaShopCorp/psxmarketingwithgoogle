@@ -281,7 +281,7 @@
             target="_blank"
             class="text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
           >
-            {{ $t('mcaCard.linkLearnMoreAbout', issue.title) }}
+            {{ $t('mcaCard.linkLearnMoreAbout', [issue.title]) }}
           </a><!-- comment is necessary to have the comma next to the link
           -->{{ index !== selectedMcaDetails.isSuspended.issues.length - 1 ? ', ' : '' }}
         </template>

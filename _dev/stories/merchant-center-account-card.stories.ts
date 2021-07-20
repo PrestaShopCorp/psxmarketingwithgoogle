@@ -169,7 +169,7 @@ Suspended.args = {
     {
       isSuspended: {
         status: true,
-        documentation: [
+        issues: [
           {
             id: 'editorial_and_professional_standards_destination_url_down_policy',
             title:
