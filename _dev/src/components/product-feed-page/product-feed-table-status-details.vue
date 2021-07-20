@@ -27,103 +27,70 @@
       <p>
         {{ $t('productFeedPage.approvalTable.description') }}
       </p>
-      <b-table
+      <b-table-simple
         id="table-products"
         class="ps_gs-table-products mb-3"
         variant="light"
         responsive="md"
-        :items="items"
-        :fields="fields"
-        show-empty
       >
-        <!-- Custom head rendering -->
-        <template #head(status)="data">
-          <div class="d-flex align-items-center">
-            <span>{{ data.label }}</span>
-            <b-button
-              variant="invisible"
-              class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('tooltip.approvalStatusStatus')"
-            >
-              <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-            </b-button>
-          </div>
-        </template>
-        <template #head(lang)="data">
-          <div class="d-flex align-items-center">
-            <span>{{ data.label }}</span>
-            <b-button
-              variant="invisible"
-              class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('tooltip.approvalStatusLang')"
-            >
-              <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-            </b-button>
-          </div>
-        </template>
-        <template #head(issues)="data">
-          <div
-            class="d-flex align-items-center ps_gs-table-products__issues"
+      <b-thead>
+        <b-tr>
+          <b-th
+            v-for="(field, index) in fields"
+            :key="index"
           >
-            <span>{{ data.label }}</span>
-            <b-button
-              variant="invisible"
-              class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('tooltip.approvalStatusIssues')"
+            {{field.label}}
+          </b-th>
+        </b-tr>
+      </b-thead>
+
+      <b-tbody>
+        <template v-for="(product) in items">
+          <template v-for="(status) in product.statuses">
+            <template v-for="(lang) in status[1]">
+            <b-tr
+              :key="lang.id"
             >
-              <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-            </b-button>
-          </div>
-        </template>
-        <!-- Custom cell rendering -->
-        <template #cell(name)="data">
-          <a
-            class="ps_gs-fz-12"
-            href="#"
-            :title="$t('productFeedPage.approvalTable.editX', [data.item.name])"
-          >{{ data.item.name }}</a>
-          <template
-            v-if="!!data.item.variant"
-          >
-            <template
-              v-for="(attribute) in data.item.variant.attributes"
-            >
-              <span
-                class="text-muted text-capitalize ps_gs-fz-12"
-                v-for="(value, key, index) in attribute"
-                :key="index"
-              >
-                <br>
-                {{ key }} - {{ value }}
-              </span>
+              <b-td>
+                {{product.id}}
+              </b-td>
+              <b-td>
+                <a
+                  class="ps_gs-fz-12"
+                  href="#"
+                  :title="$t('productFeedPage.approvalTable.editX', [product.name])"
+                >
+                  {{ product.name }}
+                </a>
+              </b-td>
+              <b-td>
+                <b-badge
+                  :variant="badgeColor(status[0])"
+                  class="ps_gs-fz-12 text-capitalize"
+                >
+                  {{ status[0] }}
+                </b-badge>
+              </b-td>
+              <b-td>
+                <b-badge
+                  variant="primary"
+                  class="ps_gs-fz-12"
+                >
+                  {{ lang }}
+                </b-badge>
+              </b-td>
+              <b-td>
+                <span class="ps_gs-fz-10" v-if="status[0] === 'disapproved'">
+                  {{ product.issues.length > 0 ? product.issues.join(', ') : '' }}
+                </span>
+              </b-td>
+            </b-tr>
             </template>
           </template>
         </template>
-        <template #cell(status)="data">
-          <b-badge
-            :variant="badgeColor(data.item.status)"
-            class="ps_gs-fz-12 text-capitalize"
-          >
-            {{ data.item.status }}
-          </b-badge>
-        </template>
-        <template #cell(lang)="data">
-          <b-badge
-            variant="primary"
-            class="ps_gs-fz-12"
-          >
-            {{ data.item.lang }}
-          </b-badge>
-        </template>
-        <template #cell(issues)="data">
-          <span class="ps_gs-fz-10">
-            {{ data.item.issues.length > 0 ? data.item.issues.join(', ') : '' }}
-          </span>
-        </template>
-      </b-table>
+      </b-tbody>
+
+      </b-table-simple>
       <div
         class="psgoogleshopping-lazy-loading"
         v-if="loading"
@@ -371,20 +338,16 @@ export default {
   data() {
     return {
       loading: false,
-      items: Products.slice(1, 20),
+      items: Products.results.slice(0, 15),
       selectedFilterQuantityToShow: '20',
       fields: [
         {
           key: 'id',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderID'),
-          sortable: true,
-          // stickyColumn: true,
         },
         {
           key: 'name',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
-          sortable: true,
-          stickyColumn: true,
         },
         {
           key: 'status',
