@@ -16,7 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-import { configure, addDecorator } from '@storybook/vue';
+import { addDecorator } from '@storybook/vue';
 import { select } from '@storybook/addon-knobs';
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -52,7 +52,8 @@ Vue.use(BootstrapVue, BootstrapVueIcons);
 Vue.use(VueShowdown);
 
 // import language file
-const message = require('./translations.json');
+const messages = require('./translations.json');
+const locales = Object.keys(messages);
 
 // i18n and store
 Vue.use(VueI18n);
@@ -81,17 +82,17 @@ addDecorator(() => ({
   i18n: new VueI18n({
     defaultLocale: 'en',
     locale: 'en',
-    locales: ['en', 'ar'],
+    locales: locales,
     messages: {
-      en: message.en,
-      ar: message.ar,
+      en: messages.en,
+      ar: messages.ar,
     },
   }),
   // add a props to toggle language
   props: {
     storybookLocale: {
       type: String,
-      default: select('I18n locale', ['en', 'ar'], 'en'),
+      default: select('I18n locale', locales, 'en'),
     },
   },
   watch: {
