@@ -8,11 +8,4 @@ if (!fs.existsSync('.jest-test-results.json')) {
 
     `,
   );
-} else {
-  console.log(`
-    .jest-test-results.json exists
-    Proceed script execution
-
-    `,
-  );
 }

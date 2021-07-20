@@ -1,10 +1,13 @@
-# .github/workflows/chromatic.yml
+# based on .github/workflows/chromatic.yml
 
 # Workflow name
 name: 'Chromatic'
 
 # Event for the workflow
-on: push
+on:
+  push:
+    branches:
+      - master
 
 # List of jobs
 jobs:
@@ -22,6 +25,7 @@ jobs:
         run: |
           cd _dev
           npm install
+        # Tests are mandatory to build storybook
       - name: Run tests
         run: |
           cd _dev
@@ -33,5 +37,5 @@ jobs:
         with:
           workingDir: ./_dev
           token: ${{ secrets.GITHUB_TOKEN }}
-          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
+          # 👇 Chromatic projectToken
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
