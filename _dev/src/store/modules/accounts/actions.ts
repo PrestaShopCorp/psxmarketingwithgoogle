@@ -244,10 +244,22 @@ export default {
     }
   },
 
-  async [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({commit, state, dispatch}) {
+  async [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({
+    commit, rootState, state, dispatch,
+  }) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
+        'x-correlation-id': correlationId,
+      },
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
     await dispatch(ActionsTypes.DISSOCIATE_GMC, correlationId);
-    // ToDo: Add API calls if needed
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
