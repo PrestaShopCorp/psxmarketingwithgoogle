@@ -1,6 +1,7 @@
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue'
 import Stepper from '../src/components/commons/stepper.vue'
 import {productFeed} from '../.storybook/mock/product-feed';
+import {initialStateApp} from '../.storybook/mock/state-app';
 
 export default {
   title: 'Product feed/Settings',
@@ -25,6 +26,7 @@ export const ShippingSettings:any = Template.bind({});
 ShippingSettings.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({}, productFeed);
+    this.$store.state.app = Object.assign({}, initialStateApp);
     this.$store.state.productFeed.stepper = 1
   },
 }
