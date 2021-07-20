@@ -27,27 +27,6 @@
       <p>
         {{ $t('productFeedPage.approvalTable.description') }}
       </p>
-      <p class="font-weight-600 mb-1">
-        {{ $t('productFeedPage.approvalTable.filterTitle') }}
-      </p>
-      <b-dropdown
-        id="filterProducts"
-        ref="filterProducts"
-        :text="selectedFilterStatus"
-        variant=" "
-        class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250 mb-4"
-        menu-class="ps-dropdown"
-        no-flip
-        size="sm"
-      >
-        <b-dropdown-item
-          v-for="(option, index) in filterProductsOptions"
-          :key="index"
-          @click="selectedFilterStatus = option"
-        >
-          {{ option }}
-        </b-dropdown-item>
-      </b-dropdown>
       <b-table
         id="table-products"
         class="ps_gs-table-products mb-3"
@@ -55,15 +34,7 @@
         responsive="md"
         :items="items"
         :fields="fields"
-        :current-page="currentPage"
-        :per-page="perPage"
-        :filter="filter"
-        :filter-included-fields="filterOn"
-        :sort-by.sync="sortBy"
-        :sort-desc.sync="sortDesc"
-        :sort-direction="sortDirection"
         show-empty
-        @filtered="onFiltered"
       >
         <!-- Custom head rendering -->
         <template #head(status)="data">
@@ -153,54 +124,13 @@
           </span>
         </template>
       </b-table>
-      <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
-        <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
-          {{ $t('productFeedPage.approvalTable.xResults', [totalProducts]) }}
-        </span>
-        <div class="d-flex align-items-center mr-auto ps_gs-table-controls__per-page">
-          <label
-            for="per-page-select"
-            class="mb-0 mr-2"
-          >
-            {{ $t('productFeedPage.approvalTable.perPageLabel') }}
-          </label>
-          <b-form-select
-            id="per-page-select"
-            v-model="perPage"
-            :options="pageOptions"
-            label="Show:"
-            size="sm"
-          />
-        </div>
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="totalRows"
-          :per-page="perPage"
-          align="fill"
-          class="my-0 ps_gs-table-controls__pagination"
+      <div
+        class="psgoogleshopping-lazy-loading"
+        v-if="loading"
+      >
+        <div
+          id="spinner"
         />
-        <b-input-group
-          class="w-auto ml-auto ps_gs-table-controls__go-to
-          d-flex align-items-center"
-        >
-          <label
-            for="go-to-page"
-            class="mb-0 mr-2"
-          >
-            {{ $t('productFeedPage.approvalTable.goToLabel') }}
-          </label>
-          <b-form-input
-            id="go-to-page"
-            class="flex-grow-0 align-self-stretch"
-            size="sm"
-            v-model="pageToGoTo"
-          />
-          <b-input-group-append>
-            <b-button variant="primary">
-              {{ $t('cta.go') }}
-            </b-button>
-          </b-input-group-append>
-        </b-input-group>
       </div>
 
       <!-- OLD TABLE -->
@@ -440,25 +370,8 @@ export default {
   },
   data() {
     return {
-      totalRows: 1,
-      currentPage: 1,
-      perPage: 10,
-      pageOptions: [2, 10, 20, 50, 100],
-      sortBy: '',
-      sortDesc: false,
-      sortDirection: 'asc',
-      filter: null,
-      filterOn: [],
-      pageToGoTo: '',
+      loading: false,
       items: Products.slice(1, 20),
-      totalProducts: Products.length,
-      selectedFilterStatus: this.$i18n.t('productFeedPage.approvalTable.filterAllStatus'),
-      filterProductsOptions: [
-        this.$i18n.t('productFeedPage.approvalTable.filterAllStatus'),
-        this.$i18n.t('productFeedPage.approvalTable.filterOnlyApproved'),
-        this.$i18n.t('productFeedPage.approvalTable.filterOnlyPending'),
-        this.$i18n.t('productFeedPage.approvalTable.filterOnlyNotApproved'),
-      ],
       selectedFilterQuantityToShow: '20',
       fields: [
         {
@@ -488,21 +401,8 @@ export default {
       ],
     };
   },
-  computed: {
-    rows() {
-      return this.items.length;
-    },
-    sortOptions() {
-      // Create an options list from our fields
-      return this.fields
-        .filter((f) => f.sortable)
-        .map((f) => ({text: f.label, value: f.key}));
-    },
-  },
   mounted() {
-    // Set the initial number of items
-    this.totalRows = this.items.length;
-
+    window.addEventListener('scroll', this.handleScroll);
     // Observer to add class to sticky columns when they are stuck
     document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
       if (i) {
@@ -522,6 +422,9 @@ export default {
       });
     };
   },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
     badgeColor(status) {
       if (status === 'approved') {
@@ -531,12 +434,56 @@ export default {
       }
       return 'danger';
     },
-    onFiltered(filteredItems) {
-      // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
+    handleScroll() {
+      const de = document.documentElement;
+      if (this.loading === false && de.scrollTop + window.innerHeight
+          === de.scrollHeight
+      ) {
+        let nextToken = '';
+        this.loading = true;
+        this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUES', nextToken).then((res) => {
+          if (res.results) {
+            window.removeEventListener('scroll', this.handleScroll);
+          }
+          this.items.push(res.results);
+          nextToken = res.nextToken;
+        }).catch((error) => {
+          console.error(error);
+          window.removeEventListener('scroll', this.handleScroll);
+        }).then(() => {
+          setTimeout(() => {
+            this.loading = false;
+          }, 500);
+        });
+      }
     },
   },
 };
 
 </script>
+<style lang="scss" scoped>
+.psgoogleshopping-lazy-loading {
+  width: 100%;
+  height: 40px;
+  #spinner {
+    color: #fff;
+    background-color: #fff;
+    width: 2rem !important;
+    height: 2rem !important;
+    border-radius: 2.5rem;
+    border-right-color: #25b9d7;
+    border-bottom-color: #25b9d7;
+    border-width: .1875rem;
+    border-style: solid;
+    font-size: 0;
+    outline: none;
+    display: inline-block;
+    border-left-color: #bbcdd2;
+    border-top-color: #bbcdd2;
+    -webkit-animation: rotating 2s linear infinite;
+    animation: rotating 2s linear infinite;
+    position: absolute;
+    left: calc(50% - 0.6rem);
+  }
+}
+</style>
