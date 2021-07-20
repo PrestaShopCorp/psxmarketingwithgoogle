@@ -44,7 +44,7 @@ class CurrencyRepository
     public function getShopCurrency(): array
     {
         return [
-            'iso_code' => $this->currency->iso_code,
+            'isoCode' => $this->currency->iso_code,
         ];
     }
 }

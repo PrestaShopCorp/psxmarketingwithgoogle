@@ -185,6 +185,7 @@
         "productAvailaibleIn" : "My products are available in",
         "placeholderSelect" : "Select the countries where your products are available",
         "cantFindCountry" : "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
+        "shippingSettingsErrors" : "This country is not compatible with your currency",
         "shippingSettings" : "Shipping settings",
         "autoImportShipping" : "Import automatically shipping settings",
         "autoImportShippingDescription" : "PrestaShop will try to automatically import your shipping information from your store settings. However you may be asked to provide additional information if we are unable to sync them.",

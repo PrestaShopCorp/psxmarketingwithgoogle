@@ -221,6 +221,7 @@ class PsGoogleShoppingTranslations
                 'breadcrumb2' => $this->module->l('Product feed settings', 'PsGoogleShoppingTranslations'),
                 'steps' => [
                   'shippingSettings' => $this->module->l('Targeting & shipping', 'PsGoogleShoppingTranslations'),
+                  'shippingSettingsErrors' => $this->module->l('This country is not compatible with your currency', 'PsGoogleShoppingTranslations'),
                   'syncRules' => $this->module->l('Feed sync set-up', 'PsGoogleShoppingTranslations'),
                   'attributeMapping' => $this->module->l('Product attributes', 'PsGoogleShoppingTranslations'),
                   'categoryMapping' => $this->module->l('Category mapping', 'PsGoogleShoppingTranslations'),

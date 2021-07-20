@@ -23,4 +23,7 @@ export default {
   [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
     return state.isCountryMemberOfEuropeanUnion;
   },
+  [GettersTypes.GET_CURRENT_CURRENCY](state: LocalState): string {
+    return state.psGoogleShoppingShopCurrency.isoCode;
+  },
 };

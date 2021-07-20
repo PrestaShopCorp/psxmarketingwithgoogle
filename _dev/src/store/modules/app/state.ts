@@ -22,6 +22,11 @@ export interface State {
   psGoogleShoppingAdminUrl: string;
   psGoogleShoppingAdminAjaxUrl: string;
   psGoogleShoppingShopUrl: string;
+  psGoogleShoppingShopCurrency: ShopCurrency,
+}
+
+export interface ShopCurrency {
+  isoCode: string;
 }
 
 export const state: State = {
@@ -30,4 +35,7 @@ export const state: State = {
   psGoogleShoppingAdminAjaxUrl: '',
   psGoogleShoppingShopUrl: '',
   isCountryMemberOfEuropeanUnion: false,
+  psGoogleShoppingShopCurrency: {
+    isoCode: '',
+  },
 };

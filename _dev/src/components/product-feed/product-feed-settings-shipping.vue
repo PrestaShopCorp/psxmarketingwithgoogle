@@ -18,12 +18,27 @@
         v-model="countries"
         :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
         :reduce="country => country.code"
-        :options="$options.countriesSelectionOptions"
+        :options="sortCountries"
         :deselect-from-dropdown="true"
         class="ps_gs-v-select maxw-sm-500"
+        :selectable="country => country.disabled"
         multiple
         label="country"
-      />
+      >
+        <template #option="{ country }">
+          <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
+            <span class="mr-2">
+              {{ country }}
+            </span>
+            <span
+              v-if="!isCompatibleWithCurrency(country)"
+              class="ps_gs-fz-12 ml-auto"
+            >
+              {{ $t('productFeedSettings.steps.shippingSettingsErrors') }}
+            </span>
+          </div>
+        </template>
+      </ps-select>
       <VueShowdown
         class="text-muted my-1 ps_gs-fz-12"
         :markdown="$t('productFeedSettings.shipping.cantFindCountry', [
@@ -193,6 +208,15 @@ export default {
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: value});
       },
     },
+    sortCountries() {
+      countriesSelectionOptions.forEach((el) => {
+        el.disabled = !!(el.currency === this.currency);
+      });
+      return countriesSelectionOptions;
+    },
+    currency() {
+      return this.$store.getters['app/GET_CURRENT_CURRENCY'];
+    },
     isUS() {
       return this.countries.includes('US');
     },
@@ -229,6 +253,11 @@ export default {
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
+    },
+    isCompatibleWithCurrency(country) {
+      const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
+
+      return currentCountry.currency === this.currency;
     },
   },
   countriesSelectionOptions,
