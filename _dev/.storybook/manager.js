@@ -21,5 +21,7 @@
 
  addons.setConfig({
    theme,
-   showRoots: true,
+   sidebar: {
+    showRoots: true,
+  },
  });
