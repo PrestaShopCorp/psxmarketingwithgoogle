@@ -5,6 +5,9 @@ export const initialStateApp = {
     psGoogleShoppingAdminAjaxUrl: 'https://mock-googleshopping-api.psessentials-integration.net/rest/Ajax+requests+to+shop+specification/1.0.0/',
     shopIdPsAccounts: '',
     tokenPsAccounts: '',
+    psGoogleShoppingShopCurrency: {
+      isoCode: 'EUR',
+    },
 };
 
 export default initialStateApp;
