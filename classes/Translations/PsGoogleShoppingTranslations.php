@@ -139,6 +139,7 @@ class PsGoogleShoppingTranslations
                 'ineligibleForFreeListingDescription' => $this->module->l('Please examine product-level disapprovals as well as your overall account.', 'PsGoogleShoppingTranslations'),
                 'claimOverwriteWithManualAction' => $this->module->l('To finalize your Google Merchant Center account connection, you need to provide your website URL ({0}) in your Google Merchant Center account.', 'PsGoogleShoppingTranslations'),
                 'noExistingAccount' => $this->module->l('No existing account', 'PsGoogleShoppingTranslations'),
+                'linkLearnMoreAbout' => $this->module->l('Learn more about "{0}"', 'PsGoogleShoppingTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [

@@ -85,7 +85,7 @@ export type GoogleAccountContext = GoogleAccount
 
 export type ShoppingWebsiteStatusFlag = {
   status: boolean;
-  documentation?: Array<string>;
+  issues?: Array<contentApi.Schema$AccountStatusAccountLevelIssue>;
 }
 
 export type MerchantCenterAccountContext = GoogleMerchantAccount & {
@@ -119,7 +119,6 @@ export enum WebsiteClaimErrorReason {
   AccountValidationFailed = 'AccountValidationFailed',
   OverwriteNeededWithManualAction = 'OverwriteNeededWithManualAction',
   UnlinkFailed = 'UnlinkFailed',
-  IneligibleForFreeListing = 'IneligibleForFreeListing',
   PendingCheck = 'PendingCheck',
   PendingCreation = 'PendingCreation',
   // States with errors

@@ -161,25 +161,6 @@ AccountValidationFailed.args = {
   ),
 };
 
-export const IneligibleForFreeListing:any = Template.bind({});
-IneligibleForFreeListing.args = {
-  isEnabled: true,
-  initialMcaStatus: Object.assign({},
-    merchantCenterAccountConnected,
-    {
-      isEnhancedFreeListingCompliant: {
-        status: false,
-        documentation: [
-          'https://google.com/first-link',
-          'https://google.com/second-link-that-is-purely-a-placeholder',
-          'https://google.com/this-could-be-a-link-to-the-documentation-who-knows',
-          'https://google.com/who-am-i-to-judge',
-        ]
-      },
-    },
-  ),
-};
-
 export const Suspended:any = Template.bind({});
 Suspended.args = {
   isEnabled: true,
@@ -189,8 +170,24 @@ Suspended.args = {
       isSuspended: {
         status: true,
         documentation: [
-          'https://google.com/first-link',
-          'https://google.com/second-link',
+          {
+            id: 'editorial_and_professional_standards_destination_url_down_policy',
+            title:
+              'Account suspended due to policy violation: landing page not working',
+            country: 'US',
+            severity: 'critical',
+            documentation:
+              'https://google.com/first-link',
+          },
+          {
+            id: 'editorial_and_professional_standards_destination_url_down_policy',
+            title:
+              'Account suspended due to policy violation: Oh no',
+            country: 'US',
+            severity: 'critical',
+            documentation:
+              'https://google.com/second-link',
+          },
         ]
       },
     },
