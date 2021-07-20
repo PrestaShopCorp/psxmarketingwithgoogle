@@ -8,10 +8,12 @@
     "lint": "vue-cli-service lint --no-fix",
     "lint-fix": "vue-cli-service lint --fix",
     "dev": "vue-cli-service build --no-clean --mode development --watch",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "storybook": "npm run check-for-jest-test-output && start-storybook -p 6006",
+    "build-storybook": "npm run check-for-jest-test-output && build-storybook",
     "test:generate-output": "vue-cli-service test:unit --json --outputFile=.jest-test-results.json",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "chromatic": "npm run check-for-jest-test-output && chromatic --exit-zero-on-changes",
+    "check-for-jest-test-output": "node checkForJestTestOutput.js"
   },
   "dependencies": {
     "@googleapis/content": "^1.2.0",
@@ -68,6 +70,7 @@
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
     "babel-preset-vue": "^2.0.2",
+    "chromatic": "^5.10.0-canary.0",
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prestashop": "0.0.2",
