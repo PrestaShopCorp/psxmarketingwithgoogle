@@ -63,7 +63,7 @@
       </div>
     </div>
     <div
-      v-if="isErrorApi"
+      v-if="isEnabled && isErrorApi"
       class="mt-3"
     >
       <b-alert
