@@ -32,7 +32,7 @@
       v-if="!isEnabled"
       :badges="['merchantCenterAccount']"
     />
-    <div v-if="isEnabled && toConfigure">
+    <div v-if="(isEnabled && toConfigure) || isErrorApi">
       <p>
         {{ $t("productFeedCard.introToConfigure") }}<br>
         <a
@@ -85,7 +85,7 @@
         </div>
       </b-alert>
     </div>
-    <div v-if="isEnabled && !toConfigure">
+    <div v-if="isEnabled && !toConfigure && !isErrorApi">
       <b-alert
         variant="warning"
         :show="!!alert && alert !== 'ShippingSettingsMissing'"
