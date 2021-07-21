@@ -157,7 +157,7 @@ ConfiguredTax.args = {
 export const ApiError:any = Template.bind({});
 ApiError.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeed);
+    this.$store.state.productFeed = Object.assign({}, productFeedErrorAPI);
   },
   isEnabled: true,
 };
