@@ -16,7 +16,7 @@ const basicArgs = {
   attributeMapping: ['Long description', 'condition', 'color'],
 }
 
-const date = new Date();
+const date = new Date('July 21, 2021 03:24:00');
 
 export default {
   title: 'Product feed/Card',
