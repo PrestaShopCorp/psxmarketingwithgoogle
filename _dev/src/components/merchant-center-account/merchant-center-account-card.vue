@@ -273,17 +273,17 @@
       />
       <span class="text-muted d-block">
         <template
-          v-for="(link, index) in selectedMcaDetails.isSuspended.documentation"
+          v-for="(issue, index) in selectedMcaDetails.isSuspended.issues"
         >
           <a
             :key="index"
-            :href="link"
+            :href="issue.documentation"
             target="_blank"
             class="text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
           >
-            {{ link }}
+            {{ $t('mcaCard.linkLearnMoreAbout', [issue.title]) }}
           </a><!-- comment is necessary to have the comma next to the link
-          -->{{ index !== selectedMcaDetails.isSuspended.documentation.length - 1 ? ', ' : '' }}
+          -->{{ index !== selectedMcaDetails.isSuspended.issues.length - 1 ? ', ' : '' }}
         </template>
       </span>
     </b-alert>
@@ -386,38 +386,6 @@
     >
       <p class="mb-0">
         {{ $t('mcaCard.unlinkFailed') }}
-      </p>
-    </b-alert>
-    <b-alert
-      v-if="error === WebsiteClaimErrorReason.IneligibleForFreeListing"
-      show
-      variant="warning"
-      class="mb-0 mt-3"
-    >
-      <p class="mb-0">
-        <strong>{{ $t('mcaCard.ineligibleForFreeListing') }}</strong><br>
-        <span class="ps_gs-fz-12">
-          {{ $t('mcaCard.ineligibleForFreeListingDescription') }}
-        </span>
-        <span class="d-block text-muted">
-          <template
-            v-for="(link, index) in selectedMcaDetails.isEnhancedFreeListingCompliant.documentation"
-          >
-            <a
-              :key="index"
-              :href="link"
-              target="_blank"
-              class="ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
-            >
-              {{ link }}
-            </a><!-- comment is necessary to have the comma next to the link
-            -->{{
-              index
-                !== selectedMcaDetails.isEnhancedFreeListingCompliant.documentation.length - 1
-                ? ', ' : ''
-              }}
-          </template>
-        </span>
       </p>
     </b-alert>
     <MerchantCenterAccountPopinOverwriteClaim
@@ -546,11 +514,6 @@ export default {
             text: 'pending',
           };
         case WebsiteClaimErrorReason.OverwriteNeededWithManualAction:
-          return {
-            color: 'warning',
-            text: 'pending',
-          };
-        case WebsiteClaimErrorReason.IneligibleForFreeListing:
           return {
             color: 'warning',
             text: 'pending',

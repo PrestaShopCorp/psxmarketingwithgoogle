@@ -88,7 +88,8 @@
       "ineligibleForFreeListing" : "Your account is ineligible for free enhanced listings on Google",
       "ineligibleForFreeListingDescription" : "Please examine product-level disapprovals as well as your overall account.",
       "claimOverwriteWithManualAction" : "To finalize your Google Merchant Center account connection, you need to provide your website URL ({0}) in your Google Merchant Center account.",
-      "noExistingAccount": "No existing account"
+      "noExistingAccount": "No existing account",
+      "linkLearnMoreAbout": "Learn more about \"{0}\""
     },
     "mcaRequirements" : {
       "steps": {
