@@ -447,7 +447,7 @@ export default {
     MerchantCenterAccountPopinOverwriteClaim,
     BadgeListRequirements,
     MerchantCenterAccountPopinWebsiteRequirements,
-    VueShowdown
+    VueShowdown,
   },
   data() {
     return {
