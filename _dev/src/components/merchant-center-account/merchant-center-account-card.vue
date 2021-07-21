@@ -274,16 +274,22 @@
       <span class="text-muted d-block">
         <template
           v-for="(issue, index) in selectedMcaDetails.isSuspended.issues"
-        >
-          <a
+        ><!--
+            comment is necessary to have the comma next to the link
+          --><span
+v-if="index !== 0"
+          class="mr-2"
+:key="index"
+          >, </span><!--
+            comment is necessary to have the comma next to the link
+          --><a
             :key="index"
             :href="issue.documentation"
             target="_blank"
             class="text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
           >
             {{ $t('mcaCard.linkLearnMoreAbout', [issue.title]) }}
-          </a><!-- comment is necessary to have the comma next to the link
-          -->{{ index !== selectedMcaDetails.isSuspended.issues.length - 1 ? ', ' : '' }}
+          </a>
         </template>
       </span>
     </b-alert>
@@ -401,7 +407,7 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import uniqBy from 'lodash.uniqby';
-import VueShowdown from 'vue-showdown';
+import {VueShowdown} from 'vue-showdown';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
