@@ -1,4 +1,5 @@
 export const freeListing = {
+  isActivatedOnce: false,
   validationList: {},
   summaryValidationList: [],
   status: false,
