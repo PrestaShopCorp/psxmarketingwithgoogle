@@ -72,9 +72,6 @@ export default {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'productsPerBatchSync', data: json.productsPerBatchSync,
-      });
-      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'syncSchedule', data: json.syncSchedule,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {

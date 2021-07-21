@@ -38,7 +38,6 @@ export interface ProductFeedSettings {
   shippingSettings: Array<object>;
   autoImportTaxSettings: boolean;
   targetCountries: Array<string> | null;
-  productsPerBatchSync?: number;
   autoImportShippingSettings: boolean;
   attributeMapping: ProductFeedSettingsAttributeMapping;
   syncSchedule?: string;
@@ -81,7 +80,6 @@ export const state: State = {
     shippingSettings: [],
     autoImportTaxSettings: false,
     targetCountries: null,
-    productsPerBatchSync: 0,
     autoImportShippingSettings: true,
     attributeMapping: {},
     syncSchedule: '1 * * * * *',
