@@ -103,7 +103,7 @@ EnabledButNoAccount.args = {
 export const EnabledLinkingFailed:any = Template.bind({});
 EnabledLinkingFailed.args = {
   isEnabled: true,
-  initialMcaStatus: Object.assign({}, 
+  initialMcaStatus: Object.assign({},
     merchantCenterAccountNotConnected,
     {
       gmcStatus: WebsiteClaimErrorReason.LinkingFailed,
@@ -191,6 +191,9 @@ Suspended.args = {
         documentation: [
           'https://google.com/first-link',
           'https://google.com/second-link',
+          'https://google.com/second-link-that-is-purely-a-placeholder',
+          'https://google.com/this-could-be-a-link-to-the-documentation-who-knows',
+          'https://google.com/who-am-i-to-judge',
         ]
       },
     },

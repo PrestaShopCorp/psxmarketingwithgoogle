@@ -274,16 +274,18 @@
       <span class="text-muted d-block">
         <template
           v-for="(link, index) in selectedMcaDetails.isSuspended.documentation"
-        >
-          <a
+        ><!--
+            comment is necessary to have the comma next to the link
+          --><span v-if="index !== 0" class="mr-2" :key="index">, </span><!--
+            comment is necessary to have the comma next to the link
+          --><a
             :key="index"
             :href="link"
             target="_blank"
             class="text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
           >
             {{ link }}
-          </a><!-- comment is necessary to have the comma next to the link
-          -->{{ index !== selectedMcaDetails.isSuspended.documentation.length - 1 ? ', ' : '' }}
+          </a>
         </template>
       </span>
     </b-alert>
@@ -402,20 +404,18 @@
         <span class="d-block text-muted">
           <template
             v-for="(link, index) in selectedMcaDetails.isEnhancedFreeListingCompliant.documentation"
-          >
-            <a
+         ><!--
+            comment is necessary to have the comma next to the link
+          --><span v-if="index !== 0" class="mr-2" :key="index">, </span><!--
+            comment is necessary to have the comma next to the link
+          --><a
               :key="index"
               :href="link"
               target="_blank"
               class="ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
             >
               {{ link }}
-            </a><!-- comment is necessary to have the comma next to the link
-            -->{{
-              index
-                !== selectedMcaDetails.isEnhancedFreeListingCompliant.documentation.length - 1
-                ? ', ' : ''
-              }}
+            </a>
           </template>
         </span>
       </p>
@@ -433,7 +433,7 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import uniqBy from 'lodash.uniqby';
-import VueShowdown from 'vue-showdown';
+import { VueShowdown } from 'vue-showdown';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
