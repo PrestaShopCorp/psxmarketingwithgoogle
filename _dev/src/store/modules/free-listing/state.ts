@@ -18,6 +18,7 @@
  */
 
 export interface State {
+  isActivatedOnce: boolean;
   validationList: any;
   summaryValidationList: any;
   status: boolean;
@@ -28,6 +29,7 @@ export interface state {
 }
 
 export const state: State = {
+  isActivatedOnce: false,
   validationList: {},
   summaryValidationList: [],
   status: false,

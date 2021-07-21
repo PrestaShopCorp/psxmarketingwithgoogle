@@ -35,6 +35,7 @@ export default {
   methods: {
     disableProductFeed() {
       this.$store.dispatch('freeListing/SEND_FREE_LISTING_STATUS', false);
+      this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', false);
     },
   },
 };
