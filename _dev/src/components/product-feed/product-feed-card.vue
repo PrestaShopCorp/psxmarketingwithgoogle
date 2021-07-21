@@ -23,7 +23,7 @@
       </div>
     </div>
     <p
-      class="ps_gs-fz-12"
+      class="mb-1"
       v-if="!isEnabled"
     >
       {{ $t("productFeedCard.intro") }}

@@ -18,7 +18,7 @@
           height="40"
           alt=""
         >
-        <b-card-text class="text-left mb-0 ps_gs-fz-12">
+        <b-card-text class="text-left mb-0">
           {{ $t('googleAdsAccountCard.intro') }}
         </b-card-text>
       </div>
