@@ -433,6 +433,7 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import uniqBy from 'lodash.uniqby';
+import VueShowdown from 'vue-showdown';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
@@ -446,6 +447,7 @@ export default {
     MerchantCenterAccountPopinOverwriteClaim,
     BadgeListRequirements,
     MerchantCenterAccountPopinWebsiteRequirements,
+    VueShowdown
   },
   data() {
     return {
