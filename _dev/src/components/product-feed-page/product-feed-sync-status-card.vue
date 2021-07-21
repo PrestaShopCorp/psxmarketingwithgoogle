@@ -124,7 +124,7 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
     nbProductsReadyToSync() {
-      return this.$store.state.productFeed.settings.totalProducts;
+      return this.$store.state.productFeed.totalProducts;
     },
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
