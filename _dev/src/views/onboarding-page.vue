@@ -83,11 +83,16 @@
     />
     <!-- Toasts -->
     <PsToast
+      v-if="googleAccountConnectedOnce
+        || merchantCenterAccountConnectedOnce
+        || productFeedIsConfiguredOnce
+        || freeListingIsActivatedOnce"
       variant="success"
       @hidden="toastIsClosed"
       :visible="googleAccountConnectedOnce
         || merchantCenterAccountConnectedOnce
-        || productFeedIsConfiguredOnce"
+        || productFeedIsConfiguredOnce
+        || freeListingIsActivatedOnce"
       toaster="b-toaster-top-right"
     >
       <p>{{ insideToast }}</p>
@@ -164,6 +169,8 @@ export default {
         this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
       } else if (this.productFeedIsConfiguredOnce) {
         this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
+      } else if (this.freeListingIsActivatedOnce) {
+        this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', false);
       }
     },
     togglePopinFreeListingDisabled() {
@@ -205,6 +212,9 @@ export default {
     productFeedIsConfiguredOnce() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED_ONCE'];
     },
+    freeListingIsActivatedOnce() {
+      return this.$store.getters['freeListing/GET_FREE_LISTING_IS_ACTIVATED_ONCE'];
+    },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
@@ -227,6 +237,8 @@ export default {
         return this.$t('toast.MCAConnectedOnceSuccess');
       } if (this.productFeedIsConfiguredOnce) {
         return this.$t('toast.productFeedConfiguredOnceSuccess');
+      } if (this.freeListingIsActivatedOnce) {
+        return this.$t('toast.alertActivationSuccess');
       }
       return '';
     },

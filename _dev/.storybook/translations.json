@@ -278,7 +278,6 @@
       "learnFreeListing" : "Learn more about free listings",
       "seeFreeListing" : "See my free listings in Merchant Center",
       "googleDelay" : "It takes 3-5 business days to review products",
-      "alertActivationSuccess" : "You have successfully activated the free listings of your products in Shopping tab.",
       "alertEnableFreeListing" : "Enable free listings to show your products on Shopping tab for free.",
       "alertCantEnableFreeListing" : "You can't enable free listings right now. Try again later.",
       "alertCountryNotEligible" : "You have selected one or more target countries that are not eligible for free listings and ads."
@@ -495,6 +494,7 @@
       }
     },
     "toast": {
+      "alertActivationSuccess" : "You have successfully activated the free listings of your products in Shopping tab.",
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
       "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!",
       "productFeedConfiguredOnceSuccess" : "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",

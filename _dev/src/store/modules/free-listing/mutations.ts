@@ -32,4 +32,7 @@ export default {
   [MutationsTypes.SET_ERROR_API](state: LocalState, enabled: boolean) {
     state.errorAPI = enabled;
   },
+  [MutationsTypes.SAVE_ACTIVATED_ONCE](state: LocalState, payload: boolean) {
+    state.isActivatedOnce = payload;
+  },
 };

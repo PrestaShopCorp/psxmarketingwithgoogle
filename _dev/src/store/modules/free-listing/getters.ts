@@ -29,4 +29,7 @@ export default {
   [GettersTypes.GET_FREE_LISTING_STATUS_API](state: LocalState): boolean {
     return state.errorAPI;
   },
+  [GettersTypes.GET_FREE_LISTING_IS_ACTIVATED_ONCE](state: LocalState): boolean {
+    return state.isActivatedOnce;
+  },
 };

@@ -151,13 +151,6 @@ export default {
       //     text: 'alertCountryNotEligible',
       //   };
       // }
-      if (this.freeListingStatus === true
-      && this.productFeedIsEnabled === true) {
-        return {
-          variant: 'success',
-          text: 'alertActivationSuccess',
-        };
-      }
       return null;
     },
     productFeedIsEnabled() {
@@ -173,6 +166,7 @@ export default {
   methods: {
     toggle() {
       this.$store.dispatch('freeListing/SEND_FREE_LISTING_STATUS', !this.freeListingStatus);
+      this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', true);
     },
     refresh() {
       this.$router.go();

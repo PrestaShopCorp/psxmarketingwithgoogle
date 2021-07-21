@@ -327,7 +327,6 @@ class PsGoogleShoppingTranslations
                 'learnFreeListing' => $this->module->l('Learn more about free listings', 'PsGoogleShoppingTranslations'),
                 'seeFreeListing' => $this->module->l('See my free listings in Merchant Center', 'PsGoogleShoppingTranslations'),
                 'googleDelay' => $this->module->l('It takes 3-5 business days to review products', 'PsGoogleShoppingTranslations'),
-                'alertActivationSuccess' => $this->module->l('You have successfully activated the free listings of your products in Shopping tab.', 'PsGoogleShoppingTranslations'),
                 'alertEnableFreeListing' => $this->module->l('Enable free listings to show your products on Shopping tab for free.', 'PsGoogleShoppingTranslations'),
                 'alertCantEnableFreeListing' => $this->module->l('You can\'t enable free listings right now. Try again later.', 'PsGoogleShoppingTranslations'),
                 'alertCountryNotEligible' => $this->module->l('You have selected one or more target countries that are not eligible for free listings and ads.', 'PsGoogleShoppingTranslations'),
@@ -543,6 +542,7 @@ class PsGoogleShoppingTranslations
                 ],
             ],
             'toast' => [
+                'alertActivationSuccess' => $this->module->l('You have successfully activated the free listings of your products in Shopping tab.', 'PsGoogleShoppingTranslations'),
                 'googleAccountConnectedOnceSuccess' => $this->module->l('You have connected your Google account!', 'PsGoogleShoppingTranslations'),
                 'MCAConnectedOnceSuccess' => $this->module->l('You have connected your Merchant Center account!', 'PsGoogleShoppingTranslations'),
                 'productFeedConfiguredOnceSuccess' => $this->module->l('You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.', 'PsGoogleShoppingTranslations'),
