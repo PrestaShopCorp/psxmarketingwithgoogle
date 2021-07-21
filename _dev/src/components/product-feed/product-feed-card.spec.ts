@@ -32,7 +32,7 @@ describe('merchant-center-account-card.vue', () => {
       store: new Vuex.Store(cloneStore()),
     });
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(true);
-    expect(wrapper.findComponent(BadgeListRequirements)).toBeTruthy();
+    expect(wrapper.findComponent(BadgeListRequirements).exists()).toBeTruthy();
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
   });
 
@@ -44,10 +44,10 @@ describe('merchant-center-account-card.vue', () => {
       ...commonOptions,
       store: new Vuex.Store(cloneStore()),
     });
-    expect(wrapper.findComponent(Stepper)).toBeTruthy();
+    expect(wrapper.findComponent(Stepper).exists()).toBeTruthy();
     expect(wrapper.findComponent(Stepper).props('activeStep')).toBe(1);
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
-    expect(wrapper.findComponent(BButton)).toBeTruthy();
+    expect(wrapper.findComponent(BButton).exists()).toBeTruthy();
   });
 
   it('shows button and triggers configration on click', async () => {
