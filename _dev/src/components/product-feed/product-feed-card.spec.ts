@@ -47,7 +47,7 @@ describe('merchant-center-account-card.vue', () => {
     expect(wrapper.findComponent(Stepper).exists()).toBeTruthy();
     expect(wrapper.findComponent(Stepper).props('activeStep')).toBe(1);
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
-    expect(wrapper.findComponent(BButton).exists()).toBeTruthy();
+    expect(wrapper.find('b-button').exists()).toBeTruthy();
   });
 
   it('shows button and triggers configration on click', async () => {
