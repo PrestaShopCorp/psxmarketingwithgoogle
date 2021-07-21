@@ -413,7 +413,7 @@ export default {
         time: this.$options.filters.timeConverterToHour(
           this.getProductFeedStatus?.jobEndedAt,
         ),
-        totalProducts: this.getProductFeedSettings.productsPerBatchSync,
+        totalProducts: this.getProductFeedSettings.totalProducts,
       };
     },
     title() {
