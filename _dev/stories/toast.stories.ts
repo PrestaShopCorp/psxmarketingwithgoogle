@@ -10,7 +10,6 @@ const Template = (args, { argTypes }) => ({
   components: { PsToast },
   template: `
     <div>
-      <b-toaster name="b-toaster-top-right" class="ps_gs-toaster-top-right"/>
       <ps-toast
         variant="success"
         :visible="visible"
