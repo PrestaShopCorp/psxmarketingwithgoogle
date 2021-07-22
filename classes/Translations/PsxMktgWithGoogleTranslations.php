@@ -124,7 +124,7 @@ class PsxMktgWithGoogleTranslations
                 'shopInfoMissingDescription' => $this->module->l('To complete missing store information please go to your [Merchant Center account]({0})[:target="_blank"].', 'PsxMktgWithGoogleTranslations'),
                 'userIsNotAdmin' => $this->module->l('You need Admin access', 'PsxMktgWithGoogleTranslations'),
                 'googleMCA' => $this->module->l('Google Merchant Center account', 'PsxMktgWithGoogleTranslations'),
-                'toUseGmcNeedsAdminAccess' => $this->module->l('To use an existing Merchant Center account, you must have **Admin** access.', 'PsxMktgWithGoogleTranslations'),
+                'toUseGmcNeedsAdminAccess' => $this->module->l('To use an existing Merchant Center account, you must have Admin access.', 'PsxMktgWithGoogleTranslations'),
                 'linkingFailed' => $this->module->l('You can\'t connect to your Merchant Center account right now. Try again later.', 'PsxMktgWithGoogleTranslations'),
                 'AccountValidationFailed' => $this->module->l('Account validation failed.', 'PsxMktgWithGoogleTranslations'),
                 'unlinkFailed' => $this->module->l('Disconnection failed. Please refresh the page and try again.', 'PsxMktgWithGoogleTranslations'),
