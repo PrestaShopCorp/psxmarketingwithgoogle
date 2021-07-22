@@ -16,10 +16,8 @@ import VueShowdown from 'vue-showdown';
 
 import {
   productFeed,
-  productFeedIsConfigured
+  productFeedIsConfigured,
 } from '../../../.storybook/mock/product-feed';
-
-
 
 describe('merchant-center-account-card.vue', () => {
   const mockRoute = {
