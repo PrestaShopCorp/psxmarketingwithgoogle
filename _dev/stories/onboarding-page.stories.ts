@@ -8,6 +8,7 @@ import Actions from '../.storybook/mock/actions-accounts';
 
 export default {
   title: 'Onboarding/OnboardingPage',
+  component: 'OnboardingPage',
 };
 
 const TemplatePsAccount = (args, { argTypes }) => ({
