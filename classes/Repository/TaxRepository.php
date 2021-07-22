@@ -59,9 +59,9 @@ class TaxRepository
         return $query;
     }
 
-    public function getCarrierTaxesByZone(int $zoneId, int $taxRulesGroupId, bool $active = true): array
+    public function getCarrierTaxesByTaxRulesGroupId(int $taxRulesGroupId, bool $active = true): array
     {
-        $cacheKey = $zoneId . '-' . (int) $taxRulesGroupId . '-' . (int) $active;
+        $cacheKey = (int) $taxRulesGroupId . '-' . (int) $active;
 
         if (!isset($this->countryIsoCodeCache[$cacheKey])) {
             $query = $this->getBaseQuery();
@@ -73,7 +73,6 @@ class TaxRepository
             $query->where('c.active = ' . (bool) $active);
             $query->where('s.active = ' . (bool) $active . ' OR s.active IS NULL');
             $query->where('t.active = ' . (bool) $active);
-            $query->where('c.id_zone = ' . (int) $zoneId . ' OR s.id_zone = ' . (int) $zoneId);
             $query->where('c.iso_code IS NOT NULL');
 
             $this->countryIsoCodeCache[$cacheKey] = $this->db->executeS($query);
