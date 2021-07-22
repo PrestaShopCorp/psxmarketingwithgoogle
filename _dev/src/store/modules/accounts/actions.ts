@@ -79,6 +79,10 @@ export default {
     });
     const json = await response.json();
     if (!response.ok) {
+      commit(
+        MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+        WebsiteClaimErrorReason.LinkingFailed,
+      );
       throw new HttpClientError(response.statusText, response.status);
     }
 

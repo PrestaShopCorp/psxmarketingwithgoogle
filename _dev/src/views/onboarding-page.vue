@@ -142,10 +142,12 @@ export default {
       this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', {selectedAccount, correlationId})
         // must wait before to ask for status
         .then(() => new Promise((resolve) => setTimeout(resolve, 1000)))
-        .then(() => this.$store.dispatch('accounts/TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS', correlationId))
+        .then(() => {
+          this.$store.dispatch('accounts/TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS', correlationId);
+          this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
+        })
         .finally(() => {
           this.isMcaLinking = false;
-          this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
         });
     },
     onGoogleAccountConnection() {
