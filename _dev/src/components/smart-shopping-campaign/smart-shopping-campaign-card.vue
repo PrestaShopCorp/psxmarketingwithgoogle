@@ -29,8 +29,7 @@
       </div>
     </div>
     <p
-      class="ps_gs-fz-12"
-      :class="isEnabled ? 'mb-0' : 'mb-2'"
+      :class="isEnabled ? 'mb-0' : 'mb-1'"
     >
       {{ $t('smartShoppingCampaignCard.intro') }}
     </p>

@@ -56,7 +56,8 @@
       </div>
     </div>
     <p
-      class="ps_gs-fz-14 mb-2"
+      class="mb-1"
+      v-if="!isEnabled"
     >
       {{ $t('freeListingCard.intro') }}
     </p>

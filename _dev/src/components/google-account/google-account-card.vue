@@ -2,7 +2,7 @@
   <b-card
     no-body
     class="ps_gs-onboardingcard p-3"
-    :class="{ 'ps_gs-onboardingcard--disabled' : !isEnabled }"
+    :class="{ 'ps_gs-onboardingcard--disabled-grey' : !isEnabled }"
   >
     <template
       v-if="!isEnabled"
@@ -17,7 +17,7 @@
           height="40"
         >
         <b-card-text
-          class="text-left mb-0 ps_gs-fz-12"
+          class="text-left mb-0"
         >
           {{ $t('googleAccountCard.introDisabled') }}
         </b-card-text>
@@ -48,7 +48,7 @@
       <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
         <p
           v-if="!accessToken"
-          class="ps_gs-fz-12 mb-0"
+          class="mb-0"
         >
           {{ $t('googleAccountCard.introEnabled') }}<br>
         </p>
@@ -78,7 +78,7 @@
           <b-button
             size="sm"
             variant="primary"
-            class="mx-1 mt-3 mt-md-0 mr-md-0"
+            class="mx-1 mt-3 mt-md-0 mr-md-0 ml-md-3"
             :disabled="isConnecting || error === 'CantConnect'"
             @click="openPopup"
           >
