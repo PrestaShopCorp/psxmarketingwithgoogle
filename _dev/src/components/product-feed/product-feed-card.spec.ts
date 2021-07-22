@@ -19,8 +19,6 @@ import {
   productFeedIsConfigured,
 } from '../../../.storybook/mock/product-feed';
 
-
-
 describe('merchant-center-account-card.vue', () => {
   const mockRoute = {
     path: '/product-feed-settings',
@@ -34,14 +32,14 @@ describe('merchant-center-account-card.vue', () => {
     storeDisabledOrNotConfigured = cloneStore();
     storeDisabledOrNotConfigured.modules.productFeed.state = {
       ...storeDisabledOrNotConfigured.modules.productFeed.state,
-      ...productFeed
+      ...productFeed,
     };
     storeConfigured = cloneStore();
     storeConfigured.modules.productFeed.state = {
       ...storeConfigured.modules.productFeed.state,
-      ...productFeedIsConfigured
+      ...productFeedIsConfigured,
     };
-  })
+  });
 
   let storeDisabledOrNotConfigured;
   let storeConfigured;
