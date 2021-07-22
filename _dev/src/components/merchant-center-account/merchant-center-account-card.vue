@@ -28,12 +28,13 @@
         </b-card-text>
       </div>
     </div>
-    <p
+    <VueShowdown
       class="mb-1"
+      tag="p"
+      :markdown="message"
+      :extensions="['targetlink', 'no-p-tag']"
       v-if="selectedMcaDetails.id === null"
-    >
-      {{ message }}
-    </p>
+    />
     <BadgeListRequirements
       v-if="!isEnabled"
       :badges="['googleAccount']"
