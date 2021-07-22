@@ -18,11 +18,11 @@
  */
 export interface State {
   isCountryMemberOfEuropeanUnion: boolean;
-  psGoogleShoppingApiUrl: string;
-  psGoogleShoppingAdminUrl: string;
-  psGoogleShoppingAdminAjaxUrl: string;
-  psGoogleShoppingShopUrl: string;
-  psGoogleShoppingShopCurrency: ShopCurrency,
+  psxMktgWithGoogleApiUrl: string;
+  psxMktgWithGoogleAdminUrl: string;
+  psxMktgWithGoogleAdminAjaxUrl: string;
+  psxMktgWithGoogleShopUrl: string;
+  psxMktgWithGoogleShopCurrency: ShopCurrency,
 }
 
 export interface ShopCurrency {
@@ -30,12 +30,12 @@ export interface ShopCurrency {
 }
 
 export const state: State = {
-  psGoogleShoppingApiUrl: '',
-  psGoogleShoppingAdminUrl: '',
-  psGoogleShoppingAdminAjaxUrl: '',
-  psGoogleShoppingShopUrl: '',
+  psxMktgWithGoogleApiUrl: '',
+  psxMktgWithGoogleAdminUrl: '',
+  psxMktgWithGoogleAdminAjaxUrl: '',
+  psxMktgWithGoogleShopUrl: '',
   isCountryMemberOfEuropeanUnion: false,
-  psGoogleShoppingShopCurrency: {
+  psxMktgWithGoogleShopCurrency: {
     isoCode: '',
   },
 };

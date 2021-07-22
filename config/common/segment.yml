@@ -1,5 +1,5 @@
 services:
-  PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment:
-    class: 'PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment'
+  PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment:
+    class: 'PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment'
     arguments:
-      - '@ps_googleshopping.context'
+      - '@psxmarketingwithgoogle.context'

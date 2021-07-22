@@ -1,40 +1,40 @@
 services:
-  ps_googleshopping.context:
+  psxmarketingwithgoogle.context:
     class: 'Context'
-    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getContext']
+    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getContext']
 
-  ps_googleshopping.controller:
+  psxmarketingwithgoogle.controller:
     class: 'Controller'
-    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getController']
+    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getController']
 
-  ps_googleshopping.cookie:
+  psxmarketingwithgoogle.cookie:
     class: 'Cookie'
-    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getCookie']
+    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getCookie']
 
-  ps_googleshopping.language:
+  psxmarketingwithgoogle.language:
     class: 'Language'
-    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getLanguage']
+    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getLanguage']
 
-  ps_googleshopping.currency:
+  psxmarketingwithgoogle.currency:
     class: 'Currency'
-    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getCurrency']
+    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getCurrency']
 
-  ps_googleshopping.smarty:
+  psxmarketingwithgoogle.smarty:
     class: 'Smarty'
-    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getSmarty']
+    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getSmarty']
 
-  ps_googleshopping.country:
+  psxmarketingwithgoogle.country:
     class: 'Country'
-    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getCountry']
+    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getCountry']
 
-  ps_googleshopping.shop:
+  psxmarketingwithgoogle.shop:
     class: 'Shop'
-    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getShop']
+    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getShop']
 
-  ps_googleshopping.link:
+  psxmarketingwithgoogle.link:
     class: 'Shop'
-    factory: ['PrestaShop\Module\PrestashopGoogleShopping\Factory\ContextFactory', 'getLink']
+    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getLink']
 
-  ps_googleshopping.db:
+  psxmarketingwithgoogle.db:
     class: Db
     factory: [ 'Db', 'getInstance' ]

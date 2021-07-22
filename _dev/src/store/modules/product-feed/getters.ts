@@ -48,7 +48,7 @@ export default {
     return !!state.settings.attributeMapping?.customConditionAttribute;
   },
   [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
-    return state.settings.targetCountries ?? state.psGoogleShoppingActiveCountries;
+    return state.settings.targetCountries ?? state.psxMktgWithGoogleActiveCountries;
   },
   [GettersTypes.GET_TOTAL_PRODUCTS](state: LocalState) :number {
     return state.totalProducts;

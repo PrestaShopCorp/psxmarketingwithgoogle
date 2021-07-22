@@ -5,7 +5,7 @@ parameters:
   paths:
     - ../../classes
     - ../../controllers
-    - ../../ps_googleshopping.php
+    - ../../psxmarketingwithgoogle.php
   reportUnmatchedIgnoredErrors: false
   checkMissingIterableValueType: false
   ignoreErrors:

@@ -18,10 +18,10 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Factory;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Factory;
 
 use GuzzleHttp\Client;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Env;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Env;
 
 class ApiClientFactory implements ApiClientFactoryInterface
 {
@@ -32,7 +32,7 @@ class ApiClientFactory implements ApiClientFactoryInterface
 
     public function __construct(Env $env)
     {
-        $this->apiUrl = $env->get('PSX_GOOGLE_SHOPPING_API_URL');
+        $this->apiUrl = $env->get('PSX_MKTG_WITH_GOOGLE_API_URL');
     }
 
     public function createClient()

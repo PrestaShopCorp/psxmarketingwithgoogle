@@ -18,10 +18,10 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Provider;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\ShopRepository;
-use PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ShopRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment;
 use Shop;
 
 class MultishopDataProvider

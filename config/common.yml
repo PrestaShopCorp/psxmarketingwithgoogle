@@ -9,8 +9,8 @@ imports:
   - { resource: common/segment.yml }
 
 services:
-  ps_googleshopping:
-    class: 'Ps_googleshopping'
+  psxmarketingwithgoogle:
+    class: 'PsxMarketingWithGoogle'
     factory: ['Module', 'getInstanceByName']
     arguments:
-      - 'ps_googleshopping'
+      - 'psxmarketingwithgoogle'

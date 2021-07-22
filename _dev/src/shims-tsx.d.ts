@@ -9,13 +9,13 @@ declare global {
 
     interface Window {
       psAccountShopInConflict: boolean,
-      psGoogleShoppingActiveCountries: Array<string>,
+      psxMktgWithGoogleActiveCountries: Array<string>,
       contextPsAccounts: any;
       translations: any;
       i18nSettings: any;
-      psGoogleShoppingApiUrl: String;
-      psGoogleShoppingAdminUrl: String;
-      psGoogleShoppingShopUrl: String;
+      psxMktgWithGoogleApiUrl: String;
+      psxMktgWithGoogleAdminUrl: String;
+      psxMktgWithGoogleShopUrl: String;
       shopIdPsAccounts: String;
       tokenPsAccounts: String;
     }

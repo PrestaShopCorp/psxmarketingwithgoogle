@@ -18,13 +18,13 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Exception;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Exception;
 
 use Exception;
 
-class GoogleShoppingInstallerException extends Exception
+class MktgWithGoogleInstallerException extends Exception
 {
-    const GOOGLE_SHOPPING_INSTALL_EXCEPTION = 1;
+    const MKTG_WITH_GOOGLE_INSTALL_EXCEPTION = 1;
 
-    const GOOGLE_SHOPPING_UNINSTALL_EXCEPTION = 2;
+    const MKTG_WITH_GOOGLE_UNINSTALL_EXCEPTION = 2;
 }

@@ -23,7 +23,7 @@ import HttpClientError from '../../../utils/HttpClientError';
 export default {
   // async [ActionsTypes.GET_VALIDATION_LIST]({commit, rootState}) {
   //   try {
-  //     const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
+  //     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/...`);
   //     if (!response.ok) {
   //       throw new HttpClientError(response.statusText, response.status);
   //     }
@@ -36,7 +36,7 @@ export default {
 
   // async [ActionsTypes.GET_SUMMARY_VALIDATION]({commit, rootState}) {
   //   try {
-  //     const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/...`);
+  //     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/...`);
   //     if (!response.ok) {
   //       throw new HttpClientError(response.statusText, response.status);
   //     }
@@ -49,7 +49,7 @@ export default {
 
   async [ActionsTypes.GET_FREE_LISTING_STATUS]({commit, rootState}) {
     try {
-      const resp = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/free-listings/settings`,
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/free-listings/settings`,
         {
           method: 'GET',
           headers: {
@@ -68,7 +68,7 @@ export default {
   },
   async [ActionsTypes.SEND_FREE_LISTING_STATUS]({commit, rootState}, enabled: boolean) {
     try {
-      const resp = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/free-listings/toggle`,
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/free-listings/toggle`,
         {
           method: 'POST',
           headers: {

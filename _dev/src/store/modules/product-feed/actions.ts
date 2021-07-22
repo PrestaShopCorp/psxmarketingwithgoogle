@@ -24,7 +24,7 @@ export default {
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootState}) {
     try {
       const response = await fetch(
-        `${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/status`, {
+        `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/status`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export default {
 
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, state, rootState}) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/settings`, {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ export default {
       },
     };
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/incremental-sync/settings`, {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ export default {
   },
 
   async [ActionsTypes.GET_SHIPPING_SETTINGS]({rootState, commit}) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
@@ -171,7 +171,7 @@ export default {
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/product-feeds/validation/summary`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/validation/summary`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -188,7 +188,7 @@ export default {
   },
 
   async [ActionsTypes.GET_TOTAL_PRODUCTS]({rootState, commit}) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({

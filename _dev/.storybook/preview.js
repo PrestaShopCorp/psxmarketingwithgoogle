@@ -68,7 +68,7 @@ addDecorator(() => ({
        padding: 0;
        min-width: 0;
    '>
-     <div id='googleShoppingApp'>
+     <div id='psxMktgWithGoogleApp'>
        <div class='ps_gs-sticky-head'>
          <b-toaster
            name='b-toaster-top-right'

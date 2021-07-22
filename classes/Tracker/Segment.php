@@ -18,10 +18,10 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Tracker;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Tracker;
 
 use Context;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 
 class Segment implements TrackerInterface
 {
@@ -54,7 +54,7 @@ class Segment implements TrackerInterface
      */
     private function init()
     {
-        \Segment::init(Config::PSX_GOOGLE_SHOPPING_SEGMENT_API_KEY);
+        \Segment::init(Config::PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY);
     }
 
     /**
@@ -97,7 +97,7 @@ class Segment implements TrackerInterface
                 ],
             ],
             'properties' => array_merge([
-                'module' => 'ps_googleshopping',
+                'module' => 'psxmarketingwithgoogle',
             ], $this->options),
         ]);
 

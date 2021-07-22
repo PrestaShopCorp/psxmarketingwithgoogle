@@ -1,5 +1,5 @@
 {
-    "name": "prestashop/ps_googleshopping",
+    "name": "prestashop/psxmarketingwithgoogle",
     "description": "",
     "config": {
         "preferred-install": "dist",
@@ -25,18 +25,18 @@
     },
     "autoload": {
         "psr-4": {
-            "PrestaShop\\Module\\PrestashopGoogleShopping\\": "classes/"
+            "PrestaShop\\Module\\PsxMarketingWithGoogle\\": "classes/"
         },
         "classmap": [
-            "ps_googleshopping.php",
+            "psxmarketingwithgoogle.php",
             "controllers/",
             "classes/"
         ]
     },
     "autoload-dev": {
         "psr-4": {
-            "PrestaShop\\Module\\PrestashopGoogleShopping\\Tests\\Unit\\": "tests/unit",
-            "PrestaShop\\Module\\PrestashopGoogleShopping\\Tests\\Integration\\": "tests/integration"
+            "PrestaShop\\Module\\PsxMarketingWithGoogle\\Tests\\Unit\\": "tests/unit",
+            "PrestaShop\\Module\\PsxMarketingWithGoogle\\Tests\\Integration\\": "tests/integration"
         }
     },
     "author": "PrestaShop",

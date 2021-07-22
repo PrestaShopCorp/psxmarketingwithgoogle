@@ -18,11 +18,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 
 use Module;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
-use Ps_googleshopping;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PsxMarketingWithGoogle;
 use Raven_Client;
 
 /**
@@ -42,19 +42,19 @@ class ErrorHandler
 
     public function __construct()
     {
-        /** @var Ps_googleshopping */
-        $module = Module::getInstanceByName('ps_googleshopping');
+        /** @var PsxMarketingWithGoogle */
+        $module = Module::getInstanceByName('psxmarketingwithgoogle');
 
         $this->client = new Raven_Client(
-            Config::PSX_GOOGLE_SHOPPING_SENTRY_CREDENTIALS,
+            Config::PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS,
             [
                 'level' => 'warning',
                 'tags' => [
                     'php_version' => phpversion(),
-                    'ps_googleshopping_version' => $module->version,
+                    'psxmarketingwithgoogle_version' => $module->version,
                     'prestashop_version' => _PS_VERSION_,
-                    'ps_googleshoping_is_enabled' => \Module::isEnabled('ps_googleshopping'),
-                    'ps_googleshoping_is_installed' => \Module::isInstalled('ps_googleshopping'),
+                    'psxmarketingwithgoogle_is_enabled' => \Module::isEnabled('psxmarketingwithgoogle'),
+                    'psxmarketingwithgoogle_is_installed' => \Module::isInstalled('psxmarketingwithgoogle'),
                 ],
             ]
         );

@@ -1,6 +1,6 @@
 services:
-  PrestaShop\Module\PrestashopGoogleShopping\Provider\MultishopDataProvider:
-    class: PrestaShop\Module\PrestashopGoogleShopping\Provider\MultishopDataProvider
+  PrestaShop\Module\PsxMarketingWithGoogle\Provider\MultishopDataProvider:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\MultishopDataProvider
     arguments:
-      - '@PrestaShop\Module\PrestashopGoogleShopping\Repository\ShopRepository'
-      - '@PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\ShopRepository'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment'

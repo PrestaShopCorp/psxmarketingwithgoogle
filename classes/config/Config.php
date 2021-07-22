@@ -18,11 +18,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Config;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Config;
 
 class Config
 {
-    const PSX_GOOGLE_SHOPPING_API_URL = 'https://googleshopping-api.psessentials.net';
+    const PSX_MKTG_WITH_GOOGLE_API_URL = 'https://googleshopping-api.psessentials.net';
 
     const HOOK_LIST = [
         'displayBackOfficeHeader',
@@ -36,10 +36,10 @@ class Config
         'AdminPsgoogleshippingModule',
     ];
 
-    const PSX_GOOGLE_SHOPPING_SENTRY_CREDENTIALS = 'https://205f0aa236aa46b8883ac8ded58f4839@o471790.ingest.sentry.io/5532403';
-    const PSX_GOOGLE_SHOPPING_SEGMENT_API_KEY = 'GnGf1m503biLVjo3a52nplV1becA0kiv';
+    const PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS = 'https://205f0aa236aa46b8883ac8ded58f4839@o471790.ingest.sentry.io/5532403';
+    const PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY = 'GnGf1m503biLVjo3a52nplV1becA0kiv';
 
-    const PS_GOOGLE_SHOPPING_ACCOUNT_IS_LINKED = 'PS_GOOGLE_SHOPPING_ACCOUNT_IS_LINKED';
-    const PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META = 'PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META';
-    const PS_GOOGLE_SHOPPING_WEBSITE_REQUIREMENTS_STATUS = 'PS_GOOGLE_SHOPPING_WEBSITE_REQUIREMENTS_STATUS';
+    const PSX_MKTG_WITH_GOOGLE_ACCOUNT_IS_LINKED = 'PSX_MKTG_WITH_GOOGLE_ACCOUNT_IS_LINKED';
+    const PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META = 'PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META';
+    const PSX_MKTG_WITH_GOOGLE_WEBSITE_REQUIREMENTS_STATUS = 'PSX_MKTG_WITH_GOOGLE_WEBSITE_REQUIREMENTS_STATUS';
 }

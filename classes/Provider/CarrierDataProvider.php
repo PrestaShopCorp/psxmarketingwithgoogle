@@ -18,15 +18,15 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Provider;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
 use Carrier;
 use Currency;
 use Language;
-use PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter;
-use PrestaShop\Module\PrestashopGoogleShopping\Builder\CarrierBuilder;
-use PrestaShop\Module\PrestashopGoogleShopping\DTO\Carrier as DTOCarrier;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\CarrierRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
+use PrestaShop\Module\PsxMarketingWithGoogle\Builder\CarrierBuilder;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\Carrier as DTOCarrier;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CarrierRepository;
 use RangePrice;
 use RangeWeight;
 

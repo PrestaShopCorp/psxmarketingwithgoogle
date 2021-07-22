@@ -1,5 +1,5 @@
 export const contextPsAccountsNotConnected = {
-    psxName: "ps_googleshopping",
+    psxName: "psxmarketingwithgoogle",
     psIs17: true,
     psAccountsIsInstalled: true,
     psAccountsInstallLink: null,

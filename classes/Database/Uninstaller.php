@@ -18,14 +18,14 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Database;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Database;
 
 use Exception;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
-use PrestaShop\Module\PrestashopGoogleShopping\Exception\GoogleShoppingInstallerException;
-use PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\TabRepository;
-use PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Exception\MktgWithGoogleInstallerException;
+use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler\ErrorHandler;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\TabRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment;
 
 class Uninstaller
 {
@@ -54,7 +54,7 @@ class Uninstaller
     private $errorHandler;
 
     public function __construct(
-        \Ps_googleshopping $module,
+        \PsxMarketingWithGoogle $module,
         TabRepository $tabRepository,
         Segment $segment,
         ErrorHandler $errorHandler
@@ -105,9 +105,9 @@ class Uninstaller
             $uninstallTabCompleted = $uninstallTabCompleted && $this->uninstallMarketingTab();
         } catch (Exception $e) {
             $this->errorHandler->handle(
-                new GoogleShoppingInstallerException(
+                new MktgWithGoogleInstallerException(
                     'Failed to uninstall module tabs',
-                    GoogleShoppingInstallerException::GOOGLE_SHOPPING_UNINSTALL_EXCEPTION,
+                    MktgWithGoogleInstallerException::MKTG_WITH_GOOGLE_UNINSTALL_EXCEPTION,
                     $e
                 ),
                 $e->getCode(),
@@ -147,9 +147,9 @@ class Uninstaller
             include dirname(__FILE__) . '/../../sql/uninstall.php';
         } catch (\Exception $e) {
             $this->errorHandler->handle(
-                new GoogleShoppingInstallerException(
+                new MktgWithGoogleInstallerException(
                     'Failed to uninstall database tables',
-                    GoogleShoppingInstallerException::GOOGLE_SHOPPING_UNINSTALL_EXCEPTION,
+                    MktgWithGoogleInstallerException::MKTG_WITH_GOOGLE_UNINSTALL_EXCEPTION,
                     $e
                 ),
                 $e->getCode(),

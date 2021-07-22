@@ -13,7 +13,7 @@ services:
     image: prestashop/prestashop:1.7
     container_name: ps17_php
     volumes:
-      - ./:/var/www/html/modules/ps_googleshopping
+      - ./:/var/www/html/modules/psxmarketingwithgoogle
     environment:
       DB_SERVER: mysql
       DB_PASSWD: root

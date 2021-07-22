@@ -85,7 +85,7 @@
           <b-button
             class="ml-1 p-0 d-flex"
             variant="text"
-            v-b-tooltip:googleShoppingApp
+            v-b-tooltip:psxMktgWithGoogleApp
             :title="$t('mcaRequirements.websiteURLDescription')"
           >
             <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
@@ -109,7 +109,7 @@
           <b-button
             class="ml-1 p-0 d-flex"
             variant="text"
-            v-b-tooltip:googleShoppingApp
+            v-b-tooltip:psxMktgWithGoogleApp
             :title="$t('mcaRequirements.storeNameDescription')"
           >
             <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
@@ -227,7 +227,7 @@
       </b-button>
       <span
         v-if="newMca"
-        v-b-tooltip:googleShoppingApp
+        v-b-tooltip:psxMktgWithGoogleApp
         :title="isStepOneReadyToValidate() ? $t('tooltip.mustCheckAllRequirements') : ''"
       >
         <b-button
@@ -257,7 +257,7 @@
         {{ $t('cta.cancel') }}
       </b-button>
       <span
-        v-b-tooltip:googleShoppingApp
+        v-b-tooltip:psxMktgWithGoogleApp
         :title="isStepTwoReadyToValidate() ? $t('tooltip.mustAgreeGoogleTerms') : ''"
       >
         <b-button

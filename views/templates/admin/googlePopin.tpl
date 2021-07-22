@@ -18,7 +18,7 @@
  *}
  <html>
   <head>
-    <title>PrestaShop Google Shopping</title>
+    <title>Marketing With Google</title>
     <meta charset="utf-8">
     <meta name="robots" content="NOFOLLOW, NOINDEX">
     <style lang="css">

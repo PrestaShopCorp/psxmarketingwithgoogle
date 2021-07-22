@@ -18,11 +18,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Repository;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
 use Db;
 use DbQuery;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 
 class ShopRepository
 {
@@ -35,7 +35,7 @@ class ShopRepository
         $sql->from('shop_url', 'su');
         $sql->leftJoin('configuration', 'c', 'su.id_shop = c.id_shop');
 
-        $sql->where('c.name LIKE "' . Config::PS_GOOGLE_SHOPPING_ACCOUNT_IS_LINKED . '"');
+        $sql->where('c.name LIKE "' . Config::PSX_MKTG_WITH_GOOGLE_ACCOUNT_IS_LINKED . '"');
 
         return Db::getInstance()->executeS($sql);
     }

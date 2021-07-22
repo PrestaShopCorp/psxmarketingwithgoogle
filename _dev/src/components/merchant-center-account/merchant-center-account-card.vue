@@ -51,7 +51,7 @@
             ref="mcaSelection"
             :text="gmcLabel(selectedMcaIndex) || $t('cta.selectAccount')"
             variant=" "
-            class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered"
+            class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
             :toggle-class="{'ps-dropdown__placeholder' : selectedMcaIndex === null}"
             menu-class="ps-dropdown"
             no-flip
