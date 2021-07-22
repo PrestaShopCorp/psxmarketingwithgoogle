@@ -8,15 +8,13 @@ import {commonOptions, cloneStore} from '@/../tests/init';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
 import {shallowMount} from '@vue/test-utils';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
-import ProductFeedCardReportCard from  '@/components/product-feed/product-feed-card-report-card.vue';
+import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import Stepper from '@/components/commons/stepper.vue';
 import BootstrapVue, {BAlert, BButton} from 'bootstrap-vue';
 import {
   productFeed,
-  productFeedIsConfigured
+  productFeedIsConfigured,
 } from '../../../.storybook/mock/product-feed';
-
-
 
 describe('merchant-center-account-card.vue', () => {
   const mockRoute = {
@@ -31,14 +29,14 @@ describe('merchant-center-account-card.vue', () => {
     storeDisabledOrNotConfigured = cloneStore();
     storeDisabledOrNotConfigured.modules.productFeed.state = {
       ...storeDisabledOrNotConfigured.modules.productFeed.state,
-      ...productFeed
+      ...productFeed,
     };
     storeConfigured = cloneStore();
     storeConfigured.modules.productFeed.state = {
       ...storeConfigured.modules.productFeed.state,
-      ...productFeedIsConfigured
+      ...productFeedIsConfigured,
     };
-  })
+  });
 
   it('is disabled when not activated', () => {
     const wrapper = shallowMount(ProductFeedCard, {
