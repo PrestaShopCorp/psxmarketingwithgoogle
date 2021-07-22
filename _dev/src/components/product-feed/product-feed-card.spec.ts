@@ -6,14 +6,17 @@ import Vuex from 'vuex';
 // Import this file first to init mock on window
 import {commonOptions, cloneStore} from '@/../tests/init';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
-
 import {shallowMount} from '@vue/test-utils';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
+import ProductFeedCardReportCard from  '@/components/product-feed/product-feed-card-report-card.vue';
 import Stepper from '@/components/commons/stepper.vue';
 import BootstrapVue, {BAlert, BButton} from 'bootstrap-vue';
 import {
   productFeed,
+  productFeedIsConfigured
 } from '../../../.storybook/mock/product-feed';
+
+
 
 describe('merchant-center-account-card.vue', () => {
   const mockRoute = {
@@ -22,6 +25,20 @@ describe('merchant-center-account-card.vue', () => {
   const mockRouter = {
     push: jest.fn(),
   };
+  let storeDisabledOrNotConfigured;
+  let storeConfigured;
+  beforeEach(() => {
+    storeDisabledOrNotConfigured = cloneStore();
+    storeDisabledOrNotConfigured.modules.productFeed.state = {
+      ...storeDisabledOrNotConfigured.modules.productFeed.state,
+      ...productFeed
+    };
+    storeConfigured = cloneStore();
+    storeConfigured.modules.productFeed.state = {
+      ...storeConfigured.modules.productFeed.state,
+      ...productFeedIsConfigured
+    };
+  })
 
   it('is disabled when not activated', () => {
     const wrapper = shallowMount(ProductFeedCard, {
@@ -29,7 +46,7 @@ describe('merchant-center-account-card.vue', () => {
         isEnabled: false,
       },
       ...commonOptions,
-      store: new Vuex.Store(cloneStore()),
+      store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(true);
     expect(wrapper.findComponent(BadgeListRequirements).exists()).toBeTruthy();
@@ -42,7 +59,7 @@ describe('merchant-center-account-card.vue', () => {
         isEnabled: true,
       },
       ...commonOptions,
-      store: new Vuex.Store(cloneStore()),
+      store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
     expect(wrapper.findComponent(Stepper).exists()).toBeTruthy();
     expect(wrapper.findComponent(Stepper).props('activeStep')).toBe(1);
@@ -60,7 +77,7 @@ describe('merchant-center-account-card.vue', () => {
         isEnabled: true,
       },
       ...commonOptions,
-      store: new Vuex.Store(cloneStore()),
+      store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
     await wrapper.find('b-button').trigger('click');
     expect(mockRouter.push).toHaveBeenCalledTimes(1);
