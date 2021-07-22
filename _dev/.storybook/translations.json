@@ -75,7 +75,7 @@
       "shopInfoMissingDescription" : "To complete missing store information please go to your [Merchant Center account]({0})[:target=\"_blank\"].",
       "userIsNotAdmin" : "You need Admin access",
       "googleMCA" : "Google Merchant Center account",
-      "toUseGmcNeedsAdminAccess" : "To use an existing Merchant Center account, you must have **Admin** access.",
+      "toUseGmcNeedsAdminAccess" : "To use an existing Merchant Center account, you must have Admin access.",
       "linkingFailed" : "You can't connect to your Merchant Center account right now. Try again later.",
       "AccountValidationFailed" : "Account validation failed",
       "unlinkFailed" : "Disconnection failed. Please refresh the page and try again.",
