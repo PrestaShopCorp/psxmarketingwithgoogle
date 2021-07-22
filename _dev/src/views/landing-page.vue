@@ -25,7 +25,7 @@
         :content-title="$t('landingPage.content.content3.title')"
         :content-text="$t('landingPage.content.content3.text')"
         :content-footer="$t('landingPage.content.content3.footer', [
-          $options.googleUrl.learnAboutSmartShopingCampaigns
+          $options.googleUrl.learnAboutSmartShoppingCampaigns
         ])"
       />
       <VueShowdown

@@ -3,10 +3,10 @@
 $inputTranslationsPath = __DIR__ . '/../../translations';
 $outputTranslationsJsonFile = __DIR__ . '/../../_dev/.storybook/translations.json';
 
-require_once __DIR__ . '/../../classes/Translations/PsGoogleShoppingTranslations.php';
-$translationsClassName = 'PrestaShop\Module\Ps_GoogleShopping\Translations\PsGoogleShoppingTranslations';
+require_once __DIR__ . '/../../classes/Translations/PsxMktgWithGoogleTranslations.php';
+$translationsClassName = 'PrestaShop\Module\PsxMarketingWithGoogle\Translations\PsxMktgWithGoogleTranslations';
 
-define('MODULE_NAME', 'ps_googleshopping');
+define('MODULE_NAME', 'psxmarketingwithgoogle');
 
 /* -- End of data to customize -- */
 

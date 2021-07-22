@@ -18,7 +18,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Exception;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Exception;
 
 use Exception;
 

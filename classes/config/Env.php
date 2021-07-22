@@ -18,7 +18,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Config;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Config;
 
 /**
  * This class allows to retrieve config data that can be overwritten by a .env file.

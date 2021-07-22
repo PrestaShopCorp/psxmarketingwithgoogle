@@ -1,8 +1,7 @@
-# ps_googleshopping
+# Marketing With Google (psxmarketingwithgoogle)
 
-## microcks
 
-### setup
+## Setup
 ### Development
 
 #### Environment customization
@@ -16,12 +15,12 @@ keys that can be found in `classes/config/Config.php`.
 For instance to modify the base URL of the services for a local one:
 
 ```
-PSX_GOOGLE_SHOPPING_API_URL=https://localhost:8080
+PSX_MKTG_WITH_GOOGLE_API_URL=https://localhost:8080
 ```
 
 #### Microcks
 
-To use microcks replace the default PSX_GOOGLE_SHOPPING_API_URL from Config.php by filling an `.env` file with:
+To use microcks replace the default PSX_MKTG_WITH_GOOGLE_API_URL from Config.php by filling an `.env` file with:
 ```
-PSX_GOOGLE_SHOPPING_API_URL=https://mock-googleshopping-api.psessentials-integration.net/rest/PS+Google+Shopping+all-in-one/1.0/
+PSX_MKTG_WITH_GOOGLE_API_URL=https://mock-googleshopping-api.psessentials-integration.net/rest/PS+Google+Shopping+all-in-one/1.0/
 ```

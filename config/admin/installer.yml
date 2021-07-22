@@ -1,15 +1,15 @@
 services:
-  PrestaShop\Module\PrestashopGoogleShopping\Database\Installer:
-    class: PrestaShop\Module\PrestashopGoogleShopping\Database\Installer
+  PrestaShop\Module\PsxMarketingWithGoogle\Database\Installer:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Database\Installer
     arguments:
-      - '@ps_googleshopping'
-      - '@PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment'
-      - '@PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler'
+      - '@psxmarketingwithgoogle'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler\ErrorHandler'
 
-  PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller:
-    class: PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller
+  PrestaShop\Module\PsxMarketingWithGoogle\Database\Uninstaller:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Database\Uninstaller
     arguments:
-      - '@ps_googleshopping'
-      - '@PrestaShop\Module\PrestashopGoogleShopping\Repository\TabRepository'
-      - '@PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment'
-      - '@PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler'
+      - '@psxmarketingwithgoogle'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\TabRepository'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler\ErrorHandler'

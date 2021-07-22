@@ -18,15 +18,15 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-use PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
-use PrestaShop\Module\PrestashopGoogleShopping\Provider\CarrierDataProvider;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\ProductRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository;
 
-class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
+class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 {
-    /** @var Ps_googleshopping */
+    /** @var PsxMarketingWithGoogle */
     public $module;
 
     /**
@@ -104,12 +104,12 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         $websiteVerificationMeta = $inputs['websiteVerificationMeta'];
 
         if ($websiteVerificationMeta === false) {
-            $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META);
+            $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META);
             $this->ajaxDie(json_encode(['success' => true, 'method' => 'delete']));
         } else {
             // base64 encoded to avoid prestashop sanitization
             $this->configurationAdapter->updateValue(
-                Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META,
+                Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META,
                 base64_encode($websiteVerificationMeta),
             );
             $this->ajaxDie(json_encode(['success' => true, 'method' => 'insert']));
@@ -165,9 +165,9 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         }
 
         if ((bool) $inputs['isGoogleAccountLinked']) {
-            $this->configurationAdapter->updateValue(Config::PS_GOOGLE_SHOPPING_ACCOUNT_IS_LINKED, true);
+            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_ACCOUNT_IS_LINKED, true);
         } else {
-            $this->configurationAdapter->deleteByName(Config::PS_GOOGLE_SHOPPING_ACCOUNT_IS_LINKED);
+            $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_ACCOUNT_IS_LINKED);
         }
         $this->ajaxDie(json_encode(['success' => true]));
     }
@@ -184,7 +184,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
 
     private function getWebsiteRequirementStatus()
     {
-        $requirements = json_decode($this->configurationAdapter->get(Config::PS_GOOGLE_SHOPPING_WEBSITE_REQUIREMENTS_STATUS))
+        $requirements = json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_REQUIREMENTS_STATUS))
             ?: [];
 
         $this->ajaxDie(json_encode([
@@ -223,7 +223,7 @@ class AdminAjaxPsgoogleshoppingController extends ModuleAdminController
         }
 
         $this->configurationAdapter->updateValue(
-            Config::PS_GOOGLE_SHOPPING_WEBSITE_REQUIREMENTS_STATUS,
+            Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_REQUIREMENTS_STATUS,
             json_encode($requirements)
         );
 

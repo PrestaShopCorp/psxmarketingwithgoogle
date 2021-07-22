@@ -3,13 +3,13 @@
 namespace Carrier;
 
 use Carrier;
-use PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter;
-use PrestaShop\Module\PrestashopGoogleShopping\Builder\CarrierBuilder;
-use PrestaShop\Module\PrestashopGoogleShopping\DTO\CarrierDetail;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\CarrierRepository;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\StateRepository;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\TaxRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
+use PrestaShop\Module\PsxMarketingWithGoogle\Builder\CarrierBuilder;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\CarrierDetail;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CarrierRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\StateRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\TaxRepository;
 use RangePrice;
 use RangeWeight;
 

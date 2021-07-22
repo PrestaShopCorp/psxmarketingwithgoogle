@@ -2,22 +2,22 @@ import {state as initialState} from './state';
 import getters from './getters';
 
 const {
-  psGoogleShoppingApiUrl,
-  psGoogleShoppingAdminUrl,
-  psGoogleShoppingAdminAjaxUrl,
-  psGoogleShoppingShopUrl,
+  psxMktgWithGoogleApiUrl,
+  psxMktgWithGoogleAdminUrl,
+  psxMktgWithGoogleAdminAjaxUrl,
+  psxMktgWithGoogleShopUrl,
   isCountryMemberOfEuropeanUnion,
-  psGoogleShoppingShopCurrency,
+  psxMktgWithGoogleShopCurrency,
 }: any = window;
 
 const state = Object.assign(
   initialState,
-  {psGoogleShoppingApiUrl} || '',
-  {psGoogleShoppingAdminUrl} || '',
-  {psGoogleShoppingAdminAjaxUrl} || '',
-  {psGoogleShoppingShopUrl} || '',
+  {psxMktgWithGoogleApiUrl} || '',
+  {psxMktgWithGoogleAdminUrl} || '',
+  {psxMktgWithGoogleAdminAjaxUrl} || '',
+  {psxMktgWithGoogleShopUrl} || '',
   {isCountryMemberOfEuropeanUnion} || false,
-  {psGoogleShoppingShopCurrency} || {},
+  {psxMktgWithGoogleShopCurrency} || {},
 );
 
 /**

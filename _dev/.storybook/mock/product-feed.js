@@ -2,7 +2,7 @@ export const productFeed = {
   errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
-  psGoogleShoppingActiveCountries: [],
+  psxMktgWithGoogleActiveCountries: [],
   totalProducts: 0,
   stepper: 1,
   status: {

@@ -18,19 +18,19 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Builder;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Builder;
 
 use Carrier;
 use Currency;
 use Language;
-use PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter;
-use PrestaShop\Module\PrestashopGoogleShopping\DTO\Carrier as DTOCarrier;
-use PrestaShop\Module\PrestashopGoogleShopping\DTO\CarrierDetail;
-use PrestaShop\Module\PrestashopGoogleShopping\DTO\CarrierTax;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\CarrierRepository;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\StateRepository;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\TaxRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\Carrier as DTOCarrier;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\CarrierDetail;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\CarrierTax;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CarrierRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\StateRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\TaxRepository;
 use RangePrice;
 use RangeWeight;
 

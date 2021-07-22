@@ -1,5 +1,5 @@
 <template>
-  <div id="googleShoppingApp">
+  <div id="psxMktgWithGoogleApp">
     <div class="ps_gs-sticky-head">
       <Menu>
         <template v-if="productFeedIsConfigured">

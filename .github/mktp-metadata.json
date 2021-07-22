@@ -1,7 +1,7 @@
 {
     "id_product" : "",
-    "technical_name" : "ps_googleshopping",
-    "display_name" : "PS googleshopping",
+    "technical_name" : "psxmarketingwithgoogle",
+    "display_name" : "Marketing With Google",
     "channel" : "stable",
     "type_upgrade" : "updatemin",
     "product_type" : "module",

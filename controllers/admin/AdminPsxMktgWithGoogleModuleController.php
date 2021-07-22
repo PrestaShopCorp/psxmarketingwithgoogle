@@ -17,16 +17,16 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Env;
-use PrestaShop\Module\PrestashopGoogleShopping\Provider\MultishopDataProvider;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\CountryRepository;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\CurrencyRepository;
-use PrestaShop\Module\Ps_googleshopping\Translations\PsGoogleShoppingTranslations;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Env;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\MultishopDataProvider;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Translations\PsxMktgWithGoogleTranslations;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 
-class AdminPsgoogleshoppingModuleController extends ModuleAdminController
+class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 {
-    /** @var Ps_googleshopping */
+    /** @var PsxMarketingWithGoogle */
     public $module;
 
     /**
@@ -65,14 +65,14 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
         // from google response
         if (Tools::getValue('message') !== false || Tools::getValue('from') !== false) {
             $this->ajax = true;
-            $this->content = $this->context->smarty->fetch('module:ps_googleshopping/views/templates/admin/googlePopin.tpl');
+            $this->content = $this->context->smarty->fetch('module:psxmarketingwithgoogle/views/templates/admin/googlePopin.tpl');
 
             return;
         }
 
         $this->context->smarty->assign([
             'pathApp' => $this->module->getPathUri() . 'views/js/app.js',
-            'psGoogleShoppingControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsgoogleshopping'),
+            'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
             'chunkVendor' => $this->module->getPathUri() . 'views/js/chunk-vendors.js',
         ]);
 
@@ -90,13 +90,13 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
             ->getPsAccountsPresenter()
             ->present($this->module->name),
             'psAccountShopInConflict' => $this->multishopDataProvider->isCurrentShopInConflict($this->context->shop),
-            'translations' => (new PsGoogleShoppingTranslations($this->module))->getTranslations(),
+            'translations' => (new PsxMktgWithGoogleTranslations($this->module))->getTranslations(),
             'i18nSettings' => [
                 'isoCode' => $this->context->language->iso_code,
                 'languageLocale' => $this->context->language->language_code,
             ],
             'psGoogleRetrieveFaq' => $this->context->link->getAdminLink(
-                'AdminAjaxPsgoogleshopping',
+                'AdminAjaxPsxMktgWithGoogle',
                 true,
                 [],
                 [
@@ -105,7 +105,7 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
                 ]
             ),
             'psGoogleCallEventBus' => $this->context->link->getAdminLink(
-                'AdminAjaxPsgoogleshopping',
+                'AdminAjaxPsxMktgWithGoogle',
                 true,
                 [],
                 [
@@ -114,18 +114,18 @@ class AdminPsgoogleshoppingModuleController extends ModuleAdminController
             ),
             'shopIdPsAccounts' => $shopIdPsAccounts,
             'tokenPsAccounts' => $tokenPsAccounts,
-            'psGoogleShoppingApiUrl' => $this->env->get('PSX_GOOGLE_SHOPPING_API_URL'),
-            'psGoogleShoppingAdminUrl' => $this->context->link->getAdminLink('AdminPsgoogleshoppingModule'),
-            'psGoogleShoppingAdminAjaxUrl' => $this->context->link->getAdminLink(
-                'AdminAjaxPsgoogleshopping',
+            'psxMktgWithGoogleApiUrl' => $this->env->get('PSX_MKTG_WITH_GOOGLE_API_URL'),
+            'psxMktgWithGoogleAdminUrl' => $this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule'),
+            'psxMktgWithGoogleAdminAjaxUrl' => $this->context->link->getAdminLink(
+                'AdminAjaxPsxMktgWithGoogle',
                 true,
                 [],
                 ['ajax' => 1],
             ),
             'isCountryMemberOfEuropeanUnion' => $this->countryRepository->isCompatibleForCSS(),
-            'psGoogleShoppingShopUrl' => $this->context->link->getBaseLink($this->context->shop->id),
-            'psGoogleShoppingActiveCountries' => $this->countryRepository->getActiveCountries(),
-            'psGoogleShoppingShopCurrency' => $this->currencyRepository->getShopCurrency(),
+            'psxMktgWithGoogleShopUrl' => $this->context->link->getBaseLink($this->context->shop->id),
+            'psxMktgWithGoogleActiveCountries' => $this->countryRepository->getActiveCountries(),
+            'psxMktgWithGoogleShopCurrency' => $this->currencyRepository->getShopCurrency(),
         ]);
 
         $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');

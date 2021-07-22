@@ -18,7 +18,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Adapter;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Adapter;
 
 use Configuration;
 use Shop;

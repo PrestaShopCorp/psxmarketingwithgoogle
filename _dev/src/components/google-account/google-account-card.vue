@@ -270,7 +270,7 @@ export default {
       const p = 'scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=450,height=628';
       this.popup = window.open(
         this.user.authenticationUrl,
-        'ps_google_shopping_onboarding',
+        'psx_mktg_with_onboarding',
         p,
       );
       this.popup.focus();

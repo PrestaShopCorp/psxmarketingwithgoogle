@@ -19,13 +19,13 @@
  */
 
 use Dotenv\Dotenv;
-use PrestaShop\Module\PrestashopGoogleShopping\Adapter\ConfigurationAdapter;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
-use PrestaShop\Module\PrestashopGoogleShopping\Database\Installer;
-use PrestaShop\Module\PrestashopGoogleShopping\Database\Uninstaller;
-use PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler;
-use PrestaShop\Module\PrestashopGoogleShopping\Repository\TabRepository;
-use PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment;
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Database\Installer;
+use PrestaShop\Module\PsxMarketingWithGoogle\Database\Uninstaller;
+use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler\ErrorHandler;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\TabRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment;
 use PrestaShop\ModuleLibServiceContainer\DependencyInjection\ServiceContainer;
 
 if (!defined('_PS_VERSION_')) {
@@ -34,7 +34,7 @@ if (!defined('_PS_VERSION_')) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-class Ps_googleshopping extends Module
+class PsxMarketingWithGoogle extends Module
 {
     /**
      * @var ServiceContainer
@@ -70,18 +70,18 @@ class Ps_googleshopping extends Module
 
     public function __construct()
     {
-        $this->name = 'ps_googleshopping';
+        $this->name = 'psxmarketingwithgoogle';
         $this->tab = 'advertising_marketing';
         $this->version = '1.0.0';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
         $this->module_key = '';
-        $this->controllerAdmin = 'AdminAjaxPsgoogleshopping';
+        $this->controllerAdmin = 'AdminAjaxPsxMktgWithGoogle';
         $this->bootstrap = false;
 
         parent::__construct();
 
-        $this->displayName = $this->l('PS Google shopping');
+        $this->displayName = $this->l('Marketing with Google');
         $this->description = $this->l('');
         $this->psVersionIs17 = (bool) version_compare(_PS_VERSION_, '1.7', '>=');
         $this->css_path = $this->_path . 'views/css/';
@@ -175,7 +175,7 @@ class Ps_googleshopping extends Module
         // We filter the default parameters so the extra ones remain present on the controller we redirect to.
         unset($_GET['controller'], $_GET['configure'], $_GET['token'], $_GET['controllerUri']);
 
-        Tools::redirectAdmin($this->context->link->getAdminLink('AdminPsgoogleshoppingModule') . '&' . http_build_query($_GET));
+        Tools::redirectAdmin($this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule') . '&' . http_build_query($_GET));
     }
 
     public function hookDisplayBackOfficeHeader()
@@ -187,7 +187,7 @@ class Ps_googleshopping extends Module
     {
         $configuration = $this->getService(ConfigurationAdapter::class);
 
-        return base64_decode($configuration->get(Config::PS_GOOGLE_SHOPPING_WEBSITE_VERIFICATION_META));
+        return base64_decode($configuration->get(Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META));
     }
 
     private function loadEnv()

@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "PS Google Shopping- Shop ajax calls",
+    "title": "Mktg With Google - Shop ajax calls",
     "version": "1.0.0"
   },
   "servers": [
@@ -36,7 +36,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "AdminAjaxPsgoogleshopping"
+            "example": "AdminAjaxPsxMktgWithGoogle"
           },
           {
             "name": "token",

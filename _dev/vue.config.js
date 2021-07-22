@@ -33,5 +33,5 @@ module.exports = {
   filenameHashing: false,
   outputDir: '../views/',
   assetsDir: '',
-  publicPath: '../modules/ps_googleshopping/views/',
+  publicPath: '../modules/psxmarketingwithgoogle/views/',
 };

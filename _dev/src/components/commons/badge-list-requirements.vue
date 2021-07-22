@@ -14,7 +14,7 @@
         <b-button
           variant="invisible"
           class="m-0 p-0"
-          v-b-tooltip:googleShoppingApp
+          v-b-tooltip:psxMktgWithGoogleApp
           :title="$t(`tooltip.${badge}Required`)"
         >
           <b-badge variant="muted">

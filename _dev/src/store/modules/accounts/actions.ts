@@ -36,7 +36,7 @@ export default {
     webhookUrl: String,
   ) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/account/onboard`, {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/account/onboard`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ export default {
     payload,
   ) {
     const {selectedAccount, correlationId} = payload;
-    const url = rootState.app.psGoogleShoppingApiUrl;
+    const url = rootState.app.psxMktgWithGoogleApiUrl;
     const aggregator = selectedAccount.aggregatorId ? `?aggregator_id=${selectedAccount.aggregatorId}` : '';
     const route = `${url}/merchant-accounts/${selectedAccount.id}/link${aggregator}`;
     const response = await fetch(route, {
@@ -138,7 +138,7 @@ export default {
   async [ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED]({
     rootState,
   }, isGoogleAccountLinked: boolean) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
@@ -155,12 +155,12 @@ export default {
 
   async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}) {
     const urlState = btoa(JSON.stringify({
-      redirectUri: rootState.app.psGoogleShoppingAdminUrl,
+      redirectUri: rootState.app.psxMktgWithGoogleAdminUrl,
       shopId: state.shopIdPsAccounts,
-      shopUrl: rootState.app.psGoogleShoppingShopUrl,
+      shopUrl: rootState.app.psxMktgWithGoogleShopUrl,
     }));
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth/authorized-url?state=${urlState}`, {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/oauth/authorized-url?state=${urlState}`, {
         headers: {
           Accept: 'application/json',
           Authorization: `Bearer ${state.tokenPsAccounts}`,
@@ -181,7 +181,7 @@ export default {
     commit, state, rootState, dispatch,
   }) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth`, {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/oauth`, {
         headers: {
           Accept: 'application/json',
           Authorization: `Bearer ${state.tokenPsAccounts}`,
@@ -218,7 +218,7 @@ export default {
     commit, state, rootState, dispatch,
   }) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/merchant-accounts`, {
         headers: {
           Accept: 'application/json',
           Authorization: `Bearer ${state.tokenPsAccounts}`,
@@ -248,7 +248,7 @@ export default {
     commit, rootState, state, dispatch,
   }) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
-    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/oauth`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/oauth`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
@@ -273,7 +273,7 @@ export default {
         // eslint-disable-next-line no-param-reassign
         correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
       }
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts`, {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/merchant-accounts`, {
         method: 'DELETE',
         headers: {
           Accept: 'application/json',
@@ -346,7 +346,7 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({rootState, state}, correlationId: string) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/token`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-websites/site-verification/token`, {
       headers: {
         Accept: 'application/json',
         Authorization: `Bearer ${state.tokenPsAccounts}`,
@@ -360,7 +360,7 @@ export default {
   },
 
   async [ActionsTypes.SAVE_WEBSITE_VERIFICATION_META]({rootState}, token: string|false) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
@@ -378,7 +378,7 @@ export default {
     {rootState, state},
     correlationId: string,
   ) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/verify`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-websites/site-verification/verify`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -397,7 +397,7 @@ export default {
     {rootState, state, commit},
     correlationId: string,
   ) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/status`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-websites/site-verification/status`, {
       headers: {
         Accept: 'application/json',
         Authorization: `Bearer ${state.tokenPsAccounts}`,
@@ -418,7 +418,7 @@ export default {
   ) {
     const {overwrite, correlationId} = payload;
     const overwriteParam = `?overwrite=${overwrite ? 'true' : 'false'}`;
-    const url = `${rootState.app.psGoogleShoppingApiUrl}/shopping-websites/site-verification/claim${overwriteParam}`;
+    const url = `${rootState.app.psxMktgWithGoogleApiUrl}/shopping-websites/site-verification/claim${overwriteParam}`;
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -447,7 +447,7 @@ export default {
     {rootState},
     payload: Array<String>,
   ) {
-    const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
@@ -463,7 +463,7 @@ export default {
 
   async [ActionsTypes.REQUEST_WEBSITE_REQUIREMENTS]({rootState, commit}) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify({
@@ -483,7 +483,7 @@ export default {
 
   async [ActionsTypes.REQUEST_SHOP_INFORMATIONS]({rootState, commit}) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingAdminAjaxUrl}`, {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify({
@@ -505,7 +505,7 @@ export default {
     rootState, dispatch, state, commit,
   }, payload) {
     try {
-      const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/merchant-accounts/`, {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/merchant-accounts/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

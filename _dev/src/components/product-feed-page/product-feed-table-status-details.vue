@@ -35,7 +35,7 @@
         ref="filterProducts"
         :text="selectedFilterStatus"
         variant=" "
-        class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered maxw-sm-250 mb-4"
+        class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250 mb-4"
         menu-class="ps-dropdown"
         no-flip
         size="sm"
@@ -72,7 +72,7 @@
             <b-button
               variant="invisible"
               class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:googleShoppingApp
+              v-b-tooltip:psxMktgWithGoogleApp
               :title="$t('tooltip.approvalStatusStatus')"
             >
               <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
@@ -85,7 +85,7 @@
             <b-button
               variant="invisible"
               class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:googleShoppingApp
+              v-b-tooltip:psxMktgWithGoogleApp
               :title="$t('tooltip.approvalStatusLang')"
             >
               <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
@@ -100,7 +100,7 @@
             <b-button
               variant="invisible"
               class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:googleShoppingApp
+              v-b-tooltip:psxMktgWithGoogleApp
               :title="$t('tooltip.approvalStatusIssues')"
             >
               <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
@@ -225,7 +225,7 @@
                 <b-button
                   variant="invisible"
                   class="p-0 mt-0 ml-1 border-0"
-                  v-b-tooltip:googleShoppingApp
+                  v-b-tooltip:psxMktgWithGoogleApp
                   :title="'placeholder'"
                 >
                   <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
@@ -238,7 +238,7 @@
                 <b-button
                   variant="invisible"
                   class="p-0 mt-0 ml-1 border-0"
-                  v-b-tooltip:googleShoppingApp
+                  v-b-tooltip:psxMktgWithGoogleApp
                   :title="'placeholder'"
                 >
                   <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
@@ -251,7 +251,7 @@
                 <b-button
                   variant="invisible"
                   class="p-0 mt-0 ml-1 border-0"
-                  v-b-tooltip:googleShoppingApp
+                  v-b-tooltip:psxMktgWithGoogleApp
                   :title="'placeholder'"
                 >
                   <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
@@ -328,7 +328,7 @@
             ref="filterQuantityToShow"
             :text="selectedFilterQuantityToShow"
             variant=" "
-            class="flex-grow-1 ps-dropdown ps_googleshopping-dropdown bordered w-auto ml-2"
+            class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered w-auto ml-2"
             menu-class="ps-dropdown"
             no-flip
             size="sm"

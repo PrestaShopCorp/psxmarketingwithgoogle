@@ -18,15 +18,15 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PrestashopGoogleShopping\Database;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Database;
 
 use Exception;
 use Language;
-use PrestaShop\Module\PrestashopGoogleShopping\Config\Config;
-use PrestaShop\Module\PrestashopGoogleShopping\Exception\GoogleShoppingInstallerException;
-use PrestaShop\Module\PrestashopGoogleShopping\Handler\ErrorHandler\ErrorHandler;
-use PrestaShop\Module\PrestashopGoogleShopping\Tracker\Segment;
-use Ps_googleshopping;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Exception\MktgWithGoogleInstallerException;
+use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler\ErrorHandler;
+use PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment;
+use PsxMarketingWithGoogle;
 use Tab;
 
 class Installer
@@ -50,7 +50,7 @@ class Installer
      */
     private $errorHandler;
 
-    public function __construct(Ps_googleshopping $module, Segment $segment, ErrorHandler $errorHandler)
+    public function __construct(PsxMarketingWithGoogle $module, Segment $segment, ErrorHandler $errorHandler)
     {
         $this->module = $module;
         $this->segment = $segment;
@@ -62,7 +62,7 @@ class Installer
      */
     public function install()
     {
-        $this->segment->setMessage('PS Google shopping installed');
+        $this->segment->setMessage('PSX Marketing With Google installed');
         $this->segment->track();
 
         return $this->installConfiguration() &&
@@ -127,12 +127,12 @@ class Installer
                     );
             } catch (Exception $e) {
                 $this->errorHandler->handle(
-                    new GoogleShoppingInstallerException(
+                    new MktgWithGoogleInstallerException(
                         'Failed to install module tabs',
-                        GoogleShoppingInstallerException::GOOGLE_SHOPPING_INSTALL_EXCEPTION,
+                        MktgWithGoogleInstallerException::MKTG_WITH_GOOGLE_INSTALL_EXCEPTION,
                         $e
                     ),
-                    GoogleShoppingInstallerException::GOOGLE_SHOPPING_INSTALL_EXCEPTION,
+                    MktgWithGoogleInstallerException::MKTG_WITH_GOOGLE_INSTALL_EXCEPTION,
                     false
                 );
                 $this->errors[] = sprintf($this->module->l('Failed to install %1s tab', self::CLASS_NAME), $tab['className']);
@@ -175,9 +175,9 @@ class Installer
             include dirname(__FILE__) . '/../../sql/install.php';
         } catch (\Exception $e) {
             $this->errorHandler->handle(
-                new GoogleShoppingInstallerException(
+                new MktgWithGoogleInstallerException(
                     'Failed to install database tables',
-                    GoogleShoppingInstallerException::GOOGLE_SHOPPING_UNINSTALL_EXCEPTION,
+                    MktgWithGoogleInstallerException::MKTG_WITH_GOOGLE_UNINSTALL_EXCEPTION,
                     $e
                 ),
                 $e->getCode(),
@@ -203,15 +203,15 @@ class Installer
                 'icon' => 'campaign',
             ],
             [
-                'className' => 'AdminPsgoogleshoppingModule',
+                'className' => 'AdminPsxMktgWithGoogleModule',
                 'parent' => 'Marketing',
-                'name' => 'Google shopping',
+                'name' => 'Google',
                 'module' => $this->module->name,
                 'active' => true,
                 'icon' => '',
             ],
             [
-                'className' => 'AdminAjaxPsgoogleshopping',
+                'className' => 'AdminAjaxPsxMktgWithGoogle',
                 'parent' => -1,
                 'name' => $this->module->name,
                 'module' => $this->module->name,
