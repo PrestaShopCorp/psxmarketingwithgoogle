@@ -30,7 +30,6 @@ export default {
     {
       commit,
       rootState,
-      dispatch,
       state,
     },
     webhookUrl: String,
@@ -59,7 +58,6 @@ export default {
     {
       commit,
       rootState,
-      dispatch,
       state,
     },
     payload,
@@ -77,7 +75,6 @@ export default {
         'x-correlation-id': correlationId,
       },
     });
-    const json = await response.json();
     if (!response.ok) {
       commit(
         MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
@@ -86,6 +83,7 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
 
+    const json = await response.json();
     commit(MutationsTypes.SAVE_GMC, selectedAccount);
   },
 
