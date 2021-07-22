@@ -28,27 +28,60 @@ export const productFeed = {
   },
 };
 
-
+export const productFeedIsReadyForExport = {
+  ...productFeed,
+  isConfigured: true,
+  settings: {
+    ...productFeed.settings,
+    targetCountries: ['FR'],
+    attributeMapping: {
+      exportProductsWithShortDescription: false,
+      customColorAttribute: 'extra:color',
+      customSizeAttribute: 'extra:size',
+      customAgeGroupAttribute: 'extra:age-group',
+      customGenderGroupAttribute: 'extra:gender-group',
+      customConditionAttribute: 'extra:condition',
+    },
+  }
+};
 
 export const productFeedIsConfigured = {
   ...productFeed,
   isConfigured: true,
+  status: {
+    ...productFeed.status,
+    jobEndedAt: new Date('July 21, 2021 03:24:00'),
+    nextJobAt: new Date('July 22, 2021 03:24:00'),
+    successfulSyncs: [new Date('July 21, 2021 03:24:00')],
+  },
+  settings: {
+    ...productFeed.settings,
+    targetCountries: ['FR'],
+    attributeMapping: {
+      exportProductsWithShortDescription: false,
+      customColorAttribute: 'extra:color',
+      customSizeAttribute: 'extra:size',
+      customAgeGroupAttribute: 'extra:age-group',
+      customGenderGroupAttribute: 'extra:gender-group',
+      customConditionAttribute: 'extra:condition',
+    },
+  }
 }
 
+export const productFeedIsConfiguredWithTax = {
+  ...productFeedIsConfigured,
+  settings: {
+    ...productFeedIsConfigured.settings,
+    targetCountries: ['FR', 'US'],
+  }
+}
 
 export const productFeedMissingFields = {
   ...productFeedIsConfigured,
   settings: {
     ...productFeedIsConfigured.settings,
-    targetCountries: [],
-    attributeMapping: {},
-    autoImportShippingSettings: false,
+    autoImportShippingSettings: undefined,
   }
-}
-
-export const productFeedIsConfiguredOnce = {
-  ...productFeedIsConfigured,
-  isConfiguredOnce: true,
 }
 
 export const productFeedStatusSyncFailed = {
@@ -61,6 +94,11 @@ export const productFeedStatusSyncFailed = {
   }
 }
 
+export const productFeedErrorAPI = {
+...productFeed,
+errorAPI: true,
+}
+
 export const productFeedStatusSyncSchedule = {
   ...productFeedIsConfigured,
   status: {
@@ -70,6 +108,7 @@ export const productFeedStatusSyncSchedule = {
     nextJobAt: "12.05",
   }
 }
+
 export const productFeedStatusSyncSuccess = {
   ...productFeedIsConfigured,
   status: {
@@ -78,10 +117,16 @@ export const productFeedStatusSyncSuccess = {
     successfulSyncs: ['what', 'a', 'success'],
     jobEndedAt: "12.05",
     nextJobAt: "12.05",
-  }
+  },
+  validationSummary: {
+    activeItems: 5,
+    expiringItems: 2,
+    pendingItems: 7,
+    disapprovedItems: 1,
+  },
 }
 
-export const productFeedErrorAPI = {
-...productFeed,
-errorAPI: true,
+export const productFeedIsConfiguredOnce = {
+  ...productFeedIsConfigured,
+  isConfiguredOnce: true,
 }
