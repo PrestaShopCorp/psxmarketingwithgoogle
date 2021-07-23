@@ -316,20 +316,10 @@ export default {
       type: Number,
       default: 0,
     },
-
-    nbProductsReadyToSync: {
-      type: Number,
-    },
-    nbProductsCantSync: {
-      type: Number,
-    },
     syncRules: {
       type: Array,
     },
     syncRulesDetails: {
-      type: Array,
-    },
-    excludedProductsDetails: {
       type: Array,
     },
   },
@@ -490,6 +480,18 @@ export default {
     },
     isErrorApi() {
       return this.$store.state.productFeed.errorAPI;
+    },
+    allValidationSummary() {
+      return this.$store.state.productFeed.validationSummary;
+    },
+    nbProductsCantSync() {
+      return this.allValidationSummary.disapprovedItems;
+    },
+    nbProductsReadyToSync() {
+      return this.allValidationSummary.activeItems;
+    },
+    excludedProductsDetails() {
+      return this.allValidationSummary.disapprovedItems;
     },
   },
   methods: {
