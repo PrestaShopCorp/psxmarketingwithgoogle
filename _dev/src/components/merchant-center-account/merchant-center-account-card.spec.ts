@@ -5,10 +5,7 @@ import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import {cloneStore} from '@/../tests/init';
-<<<<<<< HEAD
 import config from '@/../tests/init';
-=======
->>>>>>> ec1796a1 (test error with vue showdown)
 
 import {shallowMount} from '@vue/test-utils';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
