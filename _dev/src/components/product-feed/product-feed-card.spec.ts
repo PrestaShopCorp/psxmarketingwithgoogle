@@ -11,6 +11,7 @@ import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import Stepper from '@/components/commons/stepper.vue';
 import BootstrapVue, {BAlert, BButton} from 'bootstrap-vue';
+import VueShowdown from 'vue-showdown';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 
 import {
@@ -25,7 +26,7 @@ describe('merchant-center-account-card.vue', () => {
   const mockRouter = {
     push: jest.fn(),
   };
- 
+
   let storeDisabledOrNotConfigured;
   let storeConfigured;
   beforeEach(() => {
@@ -82,15 +83,15 @@ describe('merchant-center-account-card.vue', () => {
     expect(mockRouter.push).toHaveBeenCalledTimes(1);
     expect(mockRouter.push).toHaveBeenCalledWith(mockRoute);
   });
-  
+
   it('shows product feed card ready if already configured', () => {
-    const timeConverterToDate = jest.fn(); 
-    localVue.filter('timeConverterToDate', timeConverterToDate)
-    const timeConverterToHour = jest.fn(); 
-    localVue.filter('timeConverterToHour', timeConverterToHour)
-    const changeCountryCodeToName = jest.fn(); 
-    changeCountryCodeToName.mockImplementation(() => [])
-    localVue.filter('changeCountryCodeToName', changeCountryCodeToName)
+    const timeConverterToDate = jest.fn();
+    localVue.filter('timeConverterToDate', timeConverterToDate);
+    const timeConverterToHour = jest.fn();
+    localVue.filter('timeConverterToHour', timeConverterToHour);
+    const changeCountryCodeToName = jest.fn();
+    changeCountryCodeToName.mockImplementation(() => []);
+    localVue.filter('changeCountryCodeToName', changeCountryCodeToName);
     const wrapper = shallowMount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
@@ -105,5 +106,6 @@ describe('merchant-center-account-card.vue', () => {
     expect(timeConverterToDate).toHaveBeenCalledTimes(2);
     expect(timeConverterToHour).toHaveBeenCalledTimes(1);
     expect(changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
 });

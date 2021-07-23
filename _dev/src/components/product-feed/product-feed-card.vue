@@ -265,6 +265,7 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
+import {VueShowdown} from 'vue-showdown';
 import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import countriesSelectionOptions from '../../assets/json/countries.json';
@@ -272,7 +273,6 @@ import countriesSelectionOptions from '../../assets/json/countries.json';
 // import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
 // import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
-import {VueShowdown} from 'vue-showdown';
 
 export default {
   name: 'ProductFeedCard',
