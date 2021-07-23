@@ -217,7 +217,7 @@ export default {
     commit(MutationsTypes.SAVE_TOTAL_PRODUCTS, Number(result.total));
     return result;
   },
-  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUES]({rootState}, nextPage) {
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({rootState}, nextPage) {
     const nextToken = nextPage ? `?nextToken=${nextPage}` : '';
     const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/product-feeds/validation/list${nextToken}`, {
       method: 'GET',

@@ -1,18 +1,9 @@
 <template>
-  <b-card
-    no-body
-    class="ps_gs-onboardingcard"
-  >
-    <b-card-header
-      header-tag="nav"
-      header-class="px-3 py-1"
-    >
+  <b-card no-body class="ps_gs-onboardingcard">
+    <b-card-header header-tag="nav" header-class="px-3 py-1">
       <ol class="list-inline mb-0 d-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
-          <a
-            href=""
-            class="d-flex align-items-center ps_gs-breadcrumb__link"
-          >
+          <a href="" class="d-flex align-items-center ps_gs-breadcrumb__link">
             {{ $t('productFeedSettings.breadcrumb1') }}
           </a>
         </li>
@@ -21,9 +12,7 @@
         </li>
       </ol>
     </b-card-header>
-    <b-card-body
-      body-class="p-3 mt-2"
-    >
+    <b-card-body body-class="p-3 mt-2">
       <p>
         {{ $t('productFeedPage.approvalTable.description') }}
       </p>
@@ -33,71 +22,54 @@
         variant="light"
         responsive="md"
       >
-      <b-thead>
-        <b-tr>
-          <b-th
-            v-for="(field, index) in fields"
-            :key="index"
-          >
-            {{field.label}}
-          </b-th>
-        </b-tr>
-      </b-thead>
+        <b-thead>
+          <b-tr>
+            <b-th v-for="(field, index) in fields" :key="index">
+              {{ field.label }}
+            </b-th>
+          </b-tr>
+        </b-thead>
 
-      <b-tbody>
-        <template v-for="(product) in items">
-          <template v-for="(status) in product.statuses">
-            <template v-for="(lang) in status[1]">
-            <b-tr
-              :key="lang.id"
-            >
-              <b-td>
-                {{product.id}}
-              </b-td>
-              <b-td>
-                <a
-                  class="ps_gs-fz-12"
-                  href="#"
-                  :title="$t('productFeedPage.approvalTable.editX', [product.name])"
-                >
-                  {{ product.name }}
-                </a>
-              </b-td>
-              <b-td>
-                <b-badge
-                  :variant="badgeColor(status[0])"
-                  class="ps_gs-fz-12 text-capitalize"
-                >
-                  {{ status[0] }}
-                </b-badge>
-              </b-td>
-              <b-td>
-                <b-badge
-                  variant="primary"
-                  class="ps_gs-fz-12"
-                >
-                  {{ lang }}
-                </b-badge>
-              </b-td>
-              <b-td>
-                <span class="ps_gs-fz-10" v-if="status[0] === 'disapproved'">
-                  {{ product.issues.length > 0 ? product.issues.join(', ') : '' }}
-                </span>
-              </b-td>
-            </b-tr>
+        <b-tbody>
+          <template v-for="product in items">
+            <template v-for="status in product.statuses">
+              <template v-for="lang in status[1]">
+                <b-tr :key="lang.id">
+                  <b-td>
+                    {{ product.id }}
+                  </b-td>
+                  <b-td>
+                    <a
+                      class="ps_gs-fz-12"
+                      href="#"
+                      :title="$t('productFeedPage.approvalTable.editX', [product.name])"
+                    >
+                      {{ product.name }}
+                    </a>
+                  </b-td>
+                  <b-td>
+                    <b-badge :variant="badgeColor(status[0])" class="ps_gs-fz-12 text-capitalize">
+                      {{ status[0] }}
+                    </b-badge>
+                  </b-td>
+                  <b-td>
+                    <b-badge variant="primary" class="ps_gs-fz-12">
+                      {{ lang }}
+                    </b-badge>
+                  </b-td>
+                  <b-td>
+                    <span class="ps_gs-fz-10" v-if="status[0] === 'disapproved'">
+                      {{ product.issues.length > 0 ? product.issues.join(', ') : '' }}
+                    </span>
+                  </b-td>
+                </b-tr>
+              </template>
             </template>
           </template>
-        </template>
-      </b-tbody>
-
+        </b-tbody>
       </b-table-simple>
-      <div
-        class="psgoogleshopping-lazy-loading"
-        v-if="loading"
-      >
-        <div
-          id="spinner"
-        />
+      <div class="psgoogleshopping-lazy-loading" v-if="loading">
+        <div id="spinner" />
       </div>
 
       <!-- OLD TABLE -->
@@ -333,8 +305,7 @@ import {Products} from '@/../fixtures/products.js';
 
 export default {
   name: 'ProductFeedTableStatusDetails',
-  components: {
-  },
+  components: {},
   data() {
     return {
       loading: false,
@@ -369,13 +340,15 @@ export default {
     // Observer to add class to sticky columns when they are stuck
     document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
       if (i) {
-        const observer = new IntersectionObserver((entries) => {
-          observerCallback(entries, observer, i);
-        },
-        {
-          root: document.querySelector('.ps_gs-table-products'),
-          threshold: 1,
-        });
+        const observer = new IntersectionObserver(
+          (entries) => {
+            observerCallback(entries, observer, i);
+          },
+          {
+            root: document.querySelector('.ps_gs-table-products'),
+            threshold: 1,
+          },
+        );
         observer.observe(i);
       }
     });
@@ -392,37 +365,48 @@ export default {
     badgeColor(status) {
       if (status === 'approved') {
         return 'success';
-      } if (status === 'pending') {
+      }
+      if (status === 'pending') {
         return 'warning';
       }
       return 'danger';
     },
     handleScroll() {
       const de = document.documentElement;
-      if (this.loading === false && de.scrollTop + window.innerHeight
-          === de.scrollHeight
-      ) {
+      if (this.loading === false && de.scrollTop + window.innerHeight === de.scrollHeight) {
         let nextToken = '';
+        let firstCall = null;
         this.loading = true;
-        this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUES', nextToken).then((res) => {
-          if (res.results) {
+        this.$store
+          .dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', nextToken)
+          .then((res) => {
+            nextToken = res.nextToken;
+            // case for end of product list
+            if (nextToken === '' && firstCall === false && res.results.length > 0) {
+              window.removeEventListener('scroll', this.handleScroll);
+            }
+            if (res.results.length === 0) {
+              window.removeEventListener('scroll', this.handleScroll);
+            }
+            if (nextToken && res.results.length > 0) {
+              firstCall = true;
+            }
+            this.items.push(res.results);
+            firstCall = false;
+          })
+          .catch((error) => {
+            console.error(error);
             window.removeEventListener('scroll', this.handleScroll);
-          }
-          this.items.push(res.results);
-          nextToken = res.nextToken;
-        }).catch((error) => {
-          console.error(error);
-          window.removeEventListener('scroll', this.handleScroll);
-        }).then(() => {
-          setTimeout(() => {
-            this.loading = false;
-          }, 500);
-        });
+          })
+          .then(() => {
+            setTimeout(() => {
+              this.loading = false;
+            }, 500);
+          });
       }
     },
   },
 };
-
 </script>
 <style lang="scss" scoped>
 .psgoogleshopping-lazy-loading {
@@ -436,7 +420,7 @@ export default {
     border-radius: 2.5rem;
     border-right-color: #25b9d7;
     border-bottom-color: #25b9d7;
-    border-width: .1875rem;
+    border-width: 0.1875rem;
     border-style: solid;
     font-size: 0;
     outline: none;
