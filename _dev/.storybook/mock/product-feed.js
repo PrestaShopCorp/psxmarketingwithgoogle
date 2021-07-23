@@ -6,9 +6,7 @@ export const productFeed = {
   totalProducts: 0,
   stepper: 1,
   status: {
-    failedSyncs: [],
-    successfulSyncs: [],
-    shopHealthy: true,
+    success: true,
     jobEndedAt: '',
     nextJobAt: '',
   },
@@ -88,7 +86,7 @@ export const productFeedStatusSyncFailed = {
   ...productFeedIsConfigured,
   status: {
     ...productFeedIsConfigured.status,
-    failedSyncs: ['fail'],
+    success: false,
     jobEndedAt: "12.05",
     nextJobAt: "12.05",
   }
@@ -103,9 +101,9 @@ export const productFeedStatusSyncSchedule = {
   ...productFeedIsConfigured,
   status: {
     ...productFeedIsConfigured.status,
-    failedSyncs: [],
-    successfulSyncs: [],
+    success: false,
     nextJobAt: "12.05",
+    jobEndedAt: null,
   }
 }
 
@@ -113,8 +111,7 @@ export const productFeedStatusSyncSuccess = {
   ...productFeedIsConfigured,
   status: {
     ...productFeedIsConfigured.status,
-    failedSyncs: [],
-    successfulSyncs: ['what', 'a', 'success'],
+    success: true,
     jobEndedAt: "12.05",
     nextJobAt: "12.05",
   },
