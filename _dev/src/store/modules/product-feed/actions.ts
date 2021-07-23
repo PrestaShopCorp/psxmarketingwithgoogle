@@ -37,10 +37,15 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'jobEndedAt', data: json.jobEndedAt});
+      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {
+        name: 'jobEndedAt', data: '2021-07-24T02:00:00.000Z',
+      });
+      // commit(MutationsTypes.SET_LAST_SYNCHRONISATION,
+      //  {name: 'jobEndedAt', data: json.jobEndedAt});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextJobAt', data: json.nextJobAt});
-      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'success', data: json.success});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'syncSchedule', data: json.syncSchedule});
+      // commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'success', data: json.success});
+      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'success', data: true});
     } catch (error) {
       console.error(error);
     }
@@ -111,7 +116,8 @@ export default {
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
-      targetCountries: productFeedSettings.targetCountries,
+      targetCountries: productFeedSettings.targetCountries
+      ?? state.psxMktgWithGoogleActiveCountries,
       shippingSettings: productFeedSettings.shippingSettings,
       attributeMapping: {
         exportProductsWithShortDescription:

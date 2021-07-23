@@ -112,12 +112,6 @@ export default {
   components: {
     // ProductFeedCardReportProductsCard,
   },
-  props: {
-  // TODO : how to know this number ? Is it the total length of the failedSyncs
-    nbProductsCantSync: {
-      type: Number,
-    },
-  },
 
   computed: {
     getProductFeedStatus() {
@@ -125,6 +119,12 @@ export default {
     },
     nbProductsReadyToSync() {
       return this.$store.state.productFeed.totalProducts;
+    },
+    allValidationSummary() {
+      return this.$store.state.productFeed.validationSummary;
+    },
+    nbProductsCantSync() {
+      return this.allValidationSummary.disapprovedItems;
     },
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
