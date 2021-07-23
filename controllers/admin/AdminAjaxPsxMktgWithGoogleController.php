@@ -63,7 +63,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     {
         $inputs = json_decode(Tools::file_get_contents('php://input'), true);
         $action = isset($inputs['action']) ? $inputs['action'] : null;
-
         switch ($action) {
             case 'setWebsiteVerificationMeta':
                 $this->setWebsiteVerificationMeta($inputs);

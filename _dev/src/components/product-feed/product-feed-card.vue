@@ -455,7 +455,6 @@ export default {
       return this.categoriesMapped > 0;
     },
     alert() {
-      // TODO : how to know status from api ? + date of failed sync ?
       if (this.getProductFeedStatus.success === false && this.getProductFeedStatus.jobEndedAt) {
         return 'Failed';
       }
@@ -474,8 +473,6 @@ export default {
       return null;
     },
     syncStatus() {
-      // TODO : retrieve other status 'warning'
-      // TODO : how to know status from api ? + date of failed sync ?
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
     isErrorApi() {
