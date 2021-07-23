@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import ProductFeedProductStatusCard from '../components/product-feed-page/product-feed-product-status-card.vue';
-import ProductFeedSyncStatusCard from '../components/product-feed-page/product-feed-sync-status-card.vue';
-import ProductFeedTableStatusDetails from '../components/product-feed-page/product-feed-table-status-details.vue';
+import ProductFeedProductStatusCard from '@/components/product-feed-page/product-feed-product-status-card';
+import ProductFeedSyncStatusCard from '@/components/product-feed-page/product-feed-sync-status-card';
+import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
 
 export default {
   components: {
