@@ -273,6 +273,7 @@ import countriesSelectionOptions from '../../assets/json/countries.json';
 // import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
 // import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
+import {VueShowdown} from 'vue-showdown';
 
 export default {
   name: 'ProductFeedCard',

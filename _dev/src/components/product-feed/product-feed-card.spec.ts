@@ -26,21 +26,7 @@ describe('merchant-center-account-card.vue', () => {
   const mockRouter = {
     push: jest.fn(),
   };
-  let storeDisabledOrNotConfigured;
-  let storeConfigured;
-  beforeEach(() => {
-    storeDisabledOrNotConfigured = cloneStore();
-    storeDisabledOrNotConfigured.modules.productFeed.state = {
-      ...storeDisabledOrNotConfigured.modules.productFeed.state,
-      ...productFeed,
-    };
-    storeConfigured = cloneStore();
-    storeConfigured.modules.productFeed.state = {
-      ...storeConfigured.modules.productFeed.state,
-      ...productFeedIsConfigured,
-    };
-  });
-
+ 
   let storeDisabledOrNotConfigured;
   let storeConfigured;
   beforeEach(() => {
