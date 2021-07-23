@@ -4,13 +4,15 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {commonOptions, cloneStore} from '@/../tests/init';
+import {localVue, cloneStore} from '@/../tests/init';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
 import {shallowMount} from '@vue/test-utils';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import Stepper from '@/components/commons/stepper.vue';
 import BootstrapVue, {BAlert, BButton} from 'bootstrap-vue';
+import countriesSelectionOptions from '../../assets/json/countries.json';
+
 import {
   productFeed,
   productFeedIsConfigured,
@@ -23,6 +25,7 @@ describe('merchant-center-account-card.vue', () => {
   const mockRouter = {
     push: jest.fn(),
   };
+ 
   let storeDisabledOrNotConfigured;
   let storeConfigured;
   beforeEach(() => {
@@ -43,7 +46,6 @@ describe('merchant-center-account-card.vue', () => {
       propsData: {
         isEnabled: false,
       },
-      ...commonOptions,
       store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(true);
@@ -56,7 +58,6 @@ describe('merchant-center-account-card.vue', () => {
       propsData: {
         isEnabled: true,
       },
-      ...commonOptions,
       store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
     expect(wrapper.findComponent(Stepper).exists()).toBeTruthy();
@@ -74,11 +75,35 @@ describe('merchant-center-account-card.vue', () => {
       propsData: {
         isEnabled: true,
       },
-      ...commonOptions,
+      ...localVue,
       store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
     await wrapper.find('b-button').trigger('click');
     expect(mockRouter.push).toHaveBeenCalledTimes(1);
     expect(mockRouter.push).toHaveBeenCalledWith(mockRoute);
+  });
+  
+  it('shows product feed card ready if already configured', () => {
+    const timeConverterToDate = jest.fn(); 
+    localVue.filter('timeConverterToDate', timeConverterToDate)
+    const timeConverterToHour = jest.fn(); 
+    localVue.filter('timeConverterToHour', timeConverterToHour)
+    const changeCountryCodeToName = jest.fn(); 
+    changeCountryCodeToName.mockImplementation(() => [])
+    localVue.filter('changeCountryCodeToName', changeCountryCodeToName)
+    const wrapper = shallowMount(ProductFeedCard, {
+      propsData: {
+        isEnabled: true,
+      },
+      mocks: {
+        $router: mockRouter,
+      },
+      localVue,
+      store: new Vuex.Store(storeConfigured),
+    });
+    expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
+    expect(timeConverterToDate).toHaveBeenCalledTimes(2);
+    expect(timeConverterToHour).toHaveBeenCalledTimes(1);
+    expect(changeCountryCodeToName).toHaveBeenCalledTimes(1);
   });
 });
