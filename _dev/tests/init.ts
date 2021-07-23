@@ -2,7 +2,11 @@ import {config, createLocalVue} from '@vue/test-utils';
 import Vuex from 'vuex';
 import translations from '../.storybook/translations.json';
 
+<<<<<<< HEAD
 let windowSpy;
+=======
+let windowSpy; 
+>>>>>>> ee4e6b4d (unit testing)
 export let localVue;
 const defaultLocale = 'en';
 
@@ -36,5 +40,9 @@ config.mocks.$i18n = {
   t: config.mocks.$t,
 };
 
+<<<<<<< HEAD
 export default {config};
 export {cloneStore} from './store';
+=======
+export {cloneStore} from './store';
+>>>>>>> ee4e6b4d (unit testing)
