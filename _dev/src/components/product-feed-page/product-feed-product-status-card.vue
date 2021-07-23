@@ -51,6 +51,12 @@
             :nb-products="validationSummary.disapprovedItems"
             :is-sync-in-progress="isSyncInProgress"
           />
+          <product-feed-card-report-products-sync-card
+            variant="warning"
+            :is-expired="true"
+            :nb-products="validationSummary.expiringItems"
+            :is-sync-in-progress="isSyncInProgress"
+          />
         </b-row>
         <div class="text-right mt-1">
           <b-button

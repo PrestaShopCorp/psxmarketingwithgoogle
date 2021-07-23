@@ -365,6 +365,7 @@ class PsxMktgWithGoogleTranslations
                     'alert' => $this->module->l('It takes 3-5 business days to review products', 'PsxMktgWithGoogleTranslations'),
                     'approvedProducts' => $this->module->l('Approved', 'PsxMktgWithGoogleTranslations'),
                     'pendingProducts' => $this->module->l('Pending', 'PsxMktgWithGoogleTranslations'),
+                    'expiringProducts' => $this->module->l('Expiring', 'PsxMktgWithGoogleTranslations'),
                     'disapprovedProducts' => $this->module->l('Not approved', 'PsxMktgWithGoogleTranslations'),
                     'productsSubmittedToGoogle' => $this->module->l('Products submitted to Google: {0}', 'PsxMktgWithGoogleTranslations'),
                     'approvalStatusList' => $this->module->l('Approved, Pending, Not approved', 'PsxMktgWithGoogleTranslations'),

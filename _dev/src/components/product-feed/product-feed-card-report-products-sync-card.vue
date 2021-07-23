@@ -42,6 +42,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isExpired: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     cardTitle() {
@@ -50,10 +54,16 @@ export default {
           icon: 'error_outline',
           text: this.$i18n.t('productFeedPage.productStatus.disapprovedProducts'),
         };
-      } if (this.variant === 'warning') {
+      } if (this.variant === 'warning' && !this.isExpired) {
         return {
           icon: 'autorenew',
           text: this.$i18n.t('productFeedPage.productStatus.pendingProducts'),
+        };
+      }
+      if (this.variant === 'warning' && this.isExpired) {
+        return {
+          icon: 'error_outline',
+          text: this.$i18n.t('productFeedPage.productStatus.expiringProducts'),
         };
       }
       // Act as if (this.variant === 'success')
