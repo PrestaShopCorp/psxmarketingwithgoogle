@@ -2,7 +2,7 @@ import {config, createLocalVue} from '@vue/test-utils';
 import Vuex from 'vuex';
 import translations from '../.storybook/translations.json';
 
-let windowSpy; 
+let windowSpy;
 export let localVue;
 const defaultLocale = 'en';
 

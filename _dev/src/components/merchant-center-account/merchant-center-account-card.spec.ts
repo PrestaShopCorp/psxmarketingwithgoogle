@@ -4,7 +4,7 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {commonOptions, cloneStore} from '@/../tests/init';
+import {cloneStore} from '@/../tests/init';
 
 import {shallowMount} from '@vue/test-utils';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
@@ -21,7 +21,6 @@ describe('merchant-center-account-card.vue', () => {
       propsData: {
         isEnabled: false,
       },
-      ...commonOptions,
       store: new Vuex.Store(cloneStore()),
     });
     wrapper.vm.$refs.mcaSelection = undefined;
@@ -39,7 +38,6 @@ describe('merchant-center-account-card.vue', () => {
       propsData: {
         isEnabled: false,
       },
-      ...commonOptions,
       store: new Vuex.Store(cloneStore()),
     });
 
@@ -56,7 +54,6 @@ describe('merchant-center-account-card.vue', () => {
       propsData: {
         isEnabled: true,
       },
-      ...commonOptions,
       store: new Vuex.Store(cloneStore()),
     });
 
