@@ -92,8 +92,8 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
     isSyncInProgress() {
-      return !this.getProductFeedStatus.failedSyncs.length
-      && !this.getProductFeedStatus.successfulSyncs.length;
+      return this.getProductFeedStatus.success === false
+      && this.getProductFeedStatus.jobEndedAt === null;
     },
     nbProductsTotal() {
       return this.validationSummary.activeItems + this.validationSummary.pendingItems

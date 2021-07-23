@@ -466,15 +466,14 @@ export default {
     },
     alert() {
       // TODO : how to know status from api ? + date of failed sync ?
-      if (this.getProductFeedStatus.failedSyncs.length) {
+      if (this.getProductFeedStatus.success === false && this.getProductFeedStatus.jobEndedAt) {
         return 'Failed';
       }
       if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {
         return 'ShippingSettingsMissing';
       }
       if (
-        !this.getProductFeedStatus.failedSyncs.length
-        && !this.getProductFeedStatus.successfulSyncs.length
+        this.getProductFeedStatus.success
       ) {
         return 'FeedSettingSubmissionSuccess';
       }
