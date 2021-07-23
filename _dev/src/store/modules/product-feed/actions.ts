@@ -32,8 +32,7 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         },
-        );
-        console.log('heyy',response);
+      );
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
