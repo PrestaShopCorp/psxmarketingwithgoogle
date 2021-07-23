@@ -3,10 +3,14 @@ import Vuex from 'vuex';
 import translations from '../.storybook/translations.json';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 let windowSpy;
 =======
 let windowSpy; 
 >>>>>>> ee4e6b4d (unit testing)
+=======
+let windowSpy;
+>>>>>>> ec1796a1 (test error with vue showdown)
 export let localVue;
 const defaultLocale = 'en';
 
@@ -41,8 +45,12 @@ config.mocks.$i18n = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default {config};
 export {cloneStore} from './store';
 =======
 export {cloneStore} from './store';
 >>>>>>> ee4e6b4d (unit testing)
+=======
+export {cloneStore} from './store';
+>>>>>>> ec1796a1 (test error with vue showdown)
