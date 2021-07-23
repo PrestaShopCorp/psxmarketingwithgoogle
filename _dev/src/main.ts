@@ -19,6 +19,7 @@ Vue.use(VueCollapse);
 Vue.use(psAccountsVueComponents, {locale: i18n.locale});
 Vue.use(VueShowdown);
 
+
 new Vue({
   router,
   store,
