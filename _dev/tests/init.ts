@@ -3,7 +3,8 @@ import Vuex from 'vuex';
 import translations from '../.storybook/translations.json';
 
 let windowSpy;
-let localVue;
+ /* eslint-disable no-eval */ 
+let localVue; 
 const defaultLocale = 'en';
 
 beforeEach(() => {
