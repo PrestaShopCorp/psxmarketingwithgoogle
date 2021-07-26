@@ -4,7 +4,7 @@ import translations from '../.storybook/translations.json';
 
 let windowSpy;
  /* eslint-disable-line  */ 
-let localVue; 
+let localVue;
 const defaultLocale = 'en';
 
 beforeEach(() => {
