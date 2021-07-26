@@ -96,14 +96,14 @@ EnabledButNoAccount.args = {
   isEnabled: true,
   initialMcaStatus: merchantCenterAccountNotConnected,
   mounted: function(this: any) {
-    this.$store.state.accounts.googleAccount.mcaSelectionOptions = undefined
+    this.$store.state.accounts.googleAccount.mcaSelectionOptions = []
   }
 };
 
 export const EnabledLinkingFailed:any = Template.bind({});
 EnabledLinkingFailed.args = {
   isEnabled: true,
-  initialMcaStatus: Object.assign({}, 
+  initialMcaStatus: Object.assign({},
     merchantCenterAccountNotConnected,
     {
       gmcStatus: WebsiteClaimErrorReason.LinkingFailed,

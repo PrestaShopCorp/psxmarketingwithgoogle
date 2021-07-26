@@ -67,7 +67,7 @@
               <i class="icon-busy icon-busy--dark" />
             </b-dropdown-item>
             <b-dropdown-item
-              v-if="!mcaListLoading && !mcaSelectionOptionsAndGroups.length"
+              v-if="!mcaListLoading && mcaSelectionOptionsAndGroups[0].length === 0"
               :disabled="true"
               variant="dark"
               link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
