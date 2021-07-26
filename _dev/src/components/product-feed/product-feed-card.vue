@@ -91,7 +91,7 @@
         :show="!!alert && alert !== 'ShippingSettingsMissing'"
       >
         <VueShowdown
-          :markdown="!!alert && $t(`productFeedCard.alert${alert}`, alertLink)"
+          :markdown="$t(`productFeedCard.alert${alert}`, alertLink)"
           :extensions="['targetlink']"
         />
         <div

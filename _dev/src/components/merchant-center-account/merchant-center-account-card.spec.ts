@@ -5,6 +5,7 @@ import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import {cloneStore} from '@/../tests/init';
+import config from '@/../tests/init';
 
 import {shallowMount} from '@vue/test-utils';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
@@ -22,6 +23,7 @@ describe('merchant-center-account-card.vue', () => {
         isEnabled: false,
       },
       store: new Vuex.Store(cloneStore()),
+      ...config,
     });
     wrapper.vm.$refs.mcaSelection = undefined;
 

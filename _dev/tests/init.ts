@@ -36,4 +36,5 @@ config.mocks.$i18n = {
   t: config.mocks.$t,
 };
 
+export default {config};
 export {cloneStore} from './store';
