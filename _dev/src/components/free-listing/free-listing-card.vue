@@ -31,7 +31,6 @@
       >
         <span
           class="ps-switch ps-switch-sm"
-          v-if="productFeedIsEnabled"
         >
           <input
             @click.prevent="openPopinDisabled"
@@ -153,9 +152,6 @@ export default {
       //   };
       // }
       return null;
-    },
-    productFeedIsEnabled() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
     freeListingStatus() {
       return this.$store.getters['freeListing/GET_FREE_LISTING_STATUS'];
