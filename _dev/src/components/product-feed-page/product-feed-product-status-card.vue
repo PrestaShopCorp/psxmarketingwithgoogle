@@ -62,10 +62,7 @@
           <b-button
             variant="invisible"
             @click="displayReporting"
-            class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13"
-            :class="isSyncInProgress ? 'text-secondary' : 'text-primary'"
-            :disabled="isSyncInProgress"
-            :aria-disabled="isSyncInProgress"
+            class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13"
           >
             {{ $t('cta.viewDetailedStatuses') }}
           </b-button>
@@ -104,10 +101,15 @@ export default {
       return this.validationSummary.activeItems + this.validationSummary.pendingItems
       + this.validationSummary.disapprovedItems;
     },
+    getGMCInformations() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
+    },
   },
   methods: {
     displayReporting() {
-      this.$emit('showProductReporting', true);
+      // this.$emit('showProductReporting', true);
+      // Now we just generate link for redirect merchant for products statuses
+      window.open(`https://merchants.google.com/mc/products/diagnostics?a=${this.getGMCInformations.id}`);
     },
   },
 };
