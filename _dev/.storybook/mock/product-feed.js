@@ -1,4 +1,5 @@
 export const productFeed = {
+  isSyncSummaryLoadingInProgress: false,
   errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
@@ -93,18 +94,23 @@ export const productFeedStatusSyncFailed = {
 }
 
 export const productFeedErrorAPI = {
-...productFeed,
-errorAPI: true,
+  ...productFeed,
+  errorAPI: true,
 }
 
-export const productFeedStatusSyncSchedule = {
+export const productFeedSyncSummaryInProgress = {
+  ...productFeed,
+  isSyncSummaryLoadingInProgress: true,
+}
+
+export const productFeedStatusSyncScheduled = {
   ...productFeedIsConfigured,
   status: {
     ...productFeedIsConfigured.status,
     success: false,
     nextJobAt: "12.05",
     jobEndedAt: null,
-  }
+  },
 }
 
 export const productFeedStatusSyncSuccess = {

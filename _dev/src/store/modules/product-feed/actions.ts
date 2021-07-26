@@ -187,7 +187,6 @@ export default {
       }
       const result = await response.json();
       commit(MutationsTypes.SET_VALIDATION_SUMMARY, result);
-      return result;
     } catch (error) {
       console.error(error);
       // Todo: handle error with SET_SYNC_SUMMARY_ERROR

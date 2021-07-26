@@ -10,7 +10,7 @@
           class="ps_gs-fz-20 mr-2"
           :class="
             [cardTitle.icon === 'warning' ? 'material-icons-round' : 'material-icons',
-            `text-${variant}`]
+             `text-${variant}`]
           "
         >
           {{ cardTitle.icon }}
@@ -23,7 +23,12 @@
         <span v-if="isLoadingInProgress === true">
           <span class="icon-busy icon-busy--dark" />
         </span>
-        <span v-else>{{ nbProducts }}</span>
+        <span
+          v-else
+          data-test-id="nb-products"
+        >
+          {{ nbProductsText }}
+        </span>
       </div>
     </div>
   </b-col>
@@ -40,7 +45,7 @@ export default {
       },
     },
     nbProducts: {
-      type: Number|null,
+      type: [Number, null],
       default: null,
     },
     isLoadingInProgress: {
