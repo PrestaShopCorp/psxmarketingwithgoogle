@@ -10,7 +10,7 @@
           class="ps_gs-fz-20 mr-2"
           :class="
             [cardTitle.icon === 'warning' ? 'material-icons-round' : 'material-icons',
-             `text-${variant}`]
+            `text-${variant}`]
           "
         >
           {{ cardTitle.icon }}
