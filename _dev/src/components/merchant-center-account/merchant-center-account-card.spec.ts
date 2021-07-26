@@ -4,8 +4,7 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {cloneStore} from '@/../tests/init';
-import config from '@/../tests/init';
+import config, {cloneStore} from '@/../tests/init';
 
 import {shallowMount} from '@vue/test-utils';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';

@@ -4,8 +4,7 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {localVue, cloneStore} from '@/../tests/init';
-import config from '@/../tests/init';
+import config, {localVue, cloneStore} from '@/../tests/init';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
 import {shallowMount} from '@vue/test-utils';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
