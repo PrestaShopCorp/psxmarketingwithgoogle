@@ -20,7 +20,7 @@
       <div
         class="text-center font-weight-600 ps_gs-fz-20 mt-1"
       >
-        <span v-if="isSyncInProgress === true">
+        <span v-if="isLoadingInProgress === true">
           <span class="icon-busy icon-busy--dark" />
         </span>
         <span v-else>{{ nbProducts }}</span>
@@ -40,10 +40,10 @@ export default {
       },
     },
     nbProducts: {
-      type: Number,
-      default: 0,
+      type: Number|null,
+      default: null,
     },
-    isSyncInProgress: {
+    isLoadingInProgress: {
       type: Boolean,
       default: false,
     },
@@ -57,6 +57,12 @@ export default {
     },
   },
   computed: {
+    nbProductsText() {
+      if (this.nbProducts !== null) {
+        return this.nbProducts;
+      }
+      return '--';
+    },
     cardTitle() {
       if (this.variant === 'danger') {
         return {

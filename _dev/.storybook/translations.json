@@ -318,7 +318,7 @@
         "pendingProducts" : "Pending",
         "expiringProducts" : "Expiring",
         "disapprovedProducts" : "Not approved",
-        "productsSubmittedToGoogle" : "Products submitted to Google: {0}",
+        "productsSubmittedToGoogle" : "Total number of products: {0}",
         "approvalStatusList" : "Approved, Pending, Not approved"
       },
       "approvalTable" : {

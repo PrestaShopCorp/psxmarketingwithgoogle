@@ -39,23 +39,23 @@
           <product-feed-card-report-products-sync-card
             variant="success"
             :nb-products="validationSummary.activeItems"
-            :is-sync-in-progress="isSyncInProgress"
+            :is-loading-in-progress="isSyncSummaryLoadingInProgress"
           />
           <product-feed-card-report-products-sync-card
             variant="primary"
             :nb-products="validationSummary.pendingItems"
-            :is-sync-in-progress="isSyncInProgress"
+            :is-loading-in-progress="isSyncSummaryLoadingInProgress"
           />
           <product-feed-card-report-products-sync-card
             variant="warning"
             :is-expired="true"
             :nb-products="validationSummary.expiringItems"
-            :is-sync-in-progress="isSyncInProgress"
+            :is-loading-in-progress="isSyncSummaryLoadingInProgress"
           />
           <product-feed-card-report-products-sync-card
             variant="danger"
             :nb-products="validationSummary.disapprovedItems"
-            :is-sync-in-progress="isSyncInProgress"
+            :is-loading-in-progress="isSyncSummaryLoadingInProgress"
           />
         </b-row>
         <div class="text-right mt-1">
@@ -96,6 +96,9 @@ export default {
     },
     isSyncInProgress() {
       return this.getProductFeedStatus.jobEndedAt === null;
+    },
+    isSyncSummaryLoadingInProgress() {
+      return this.$store.state.productFeed.isSyncSummaryLoadingInProgress;
     },
     nbProductsTotal() {
       return this.validationSummary.activeItems + this.validationSummary.pendingItems
