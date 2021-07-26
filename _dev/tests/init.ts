@@ -2,9 +2,8 @@ import {config, createLocalVue} from '@vue/test-utils';
 import Vuex from 'vuex';
 import translations from '../.storybook/translations.json';
 
-
-let windowSpy; 
-let localVue;
+let windowSpy;
+let localVue; // eslint-disable-line no-mutable-exports
 const defaultLocale = 'en';
 
 beforeEach(() => {
@@ -41,4 +40,4 @@ export default {config};
 
 export {cloneStore} from './store';
 
-export {localVue}
+export {localVue};
