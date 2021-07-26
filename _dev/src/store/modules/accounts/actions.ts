@@ -230,7 +230,9 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      commit(MutationsTypes.SAVE_GMC_LIST, json);
+      const gmcList = json.length === 0 ? undefined : json;
+
+      commit(MutationsTypes.SAVE_GMC_LIST, gmcList);
 
       // Now we have the GMC merchant's list, if he already linked one, then must fill it now
       if (state.googleMerchantAccount.id) {
