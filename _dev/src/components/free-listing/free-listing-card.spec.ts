@@ -4,7 +4,8 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {commonOptions, cloneStore} from '@/../tests/init';
+import { cloneStore} from '@/../tests/init';
+import config from '@/../tests/init';
 
 import {shallowMount} from '@vue/test-utils';
 import FreeListingCard from '@/components/free-listing/free-listing-card.vue';
@@ -15,7 +16,7 @@ describe('free-listing.vue / disabled', () => {
       propsData: {
         isEnabled: false,
       },
-      ...commonOptions,
+      ...config,
       store: new Vuex.Store(cloneStore()),
     });
 
@@ -30,7 +31,7 @@ describe('free-listing.vue / enabled', () => {
       propsData: {
         isEnabled: true,
       },
-      ...commonOptions,
+      ...config,
       store: new Vuex.Store(cloneStore()),
     });
 
