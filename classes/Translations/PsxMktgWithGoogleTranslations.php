@@ -513,7 +513,7 @@ class PsxMktgWithGoogleTranslations
                 'titleoverwrite' => $this->module->l('Overwrite existing claim?', 'PsxMktgWithGoogleTranslations'),
                 'textDisconnectGoogleAccount' => $this->module->l('You are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.', 'PsxMktgWithGoogleTranslations'),
                 'textDisconnectMCA' => $this->module->l('Disconnecting your Merchant Center will remove access to your Google Ads in this module and pause any running campaign. ', 'PsxMktgWithGoogleTranslations'),
-                'textoverwrite' => $this->module->l('Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  /nIf you are running a different Shopping campaign, we recommend pausing it.', 'PsxMktgWithGoogleTranslations'),
+                'textoverwrite' => $this->module->l("Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  \nIf you are running a different Shopping campaign, we recommend pausing it.", 'PsxMktgWithGoogleTranslations'),
                 'titleDisableFreeListing' => $this->module->l('Disable free listings?', 'PsxMktgWithGoogleTranslations'),
                 'textDisableFreeListing' => $this->module->l("By disabling free listings your products will no longer be available for organic listing on Shopping tab.  \n However your product feed will stay available.", 'PsxMktgWithGoogleTranslations'),
                 'titleEnableFreeListing' => $this->module->l('Enable free listings?', 'PsxMktgWithGoogleTranslations'),

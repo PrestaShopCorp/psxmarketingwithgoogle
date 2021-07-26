@@ -465,7 +465,7 @@
       "titleoverwrite" : "Overwrite existing claim?",
       "textDisconnectGoogleAccount" : "You are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.",
       "textDisconnectMCA" : "Disconnecting your Merchant Center will remove access to your Google Ads in this module and pause any running campaign. ",
-      "textoverwrite" : "Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  /nIf you are running a different Shopping campaign, we recommend pausing it.",
+      "textoverwrite" : "Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  \nIf you are running a different Shopping campaign, we recommend pausing it.",
       "titleDisableFreeListing" : "Disable free listings?",
       "textDisableFreeListing" : "By disabling free listings your products will no longer be available for organic listing on Shopping tab.  \n However your product feed will stay available.",
      "titleEnableFreeListing" : "Enable free listings?",
