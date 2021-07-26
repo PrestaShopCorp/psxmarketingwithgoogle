@@ -620,7 +620,6 @@ export default {
     this.setFocusOnSelectMCA();
   },
   mounted() {
-    console.log(this.mcaSelectionOptionsAndGroups[0].length);
     this.setFocusOnSelectMCA();
   },
   watch: {
