@@ -14,8 +14,8 @@ const Template = (args, { argTypes }) => ({
   beforeMount: args.beforeMount,
 });
 
-export const SyncInProgress:any = Template.bind({});
-SyncInProgress.args = {
+export const ReadyForExport:any = Template.bind({});
+ReadyForExport.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncSchedule);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, googleAccountConnected);
