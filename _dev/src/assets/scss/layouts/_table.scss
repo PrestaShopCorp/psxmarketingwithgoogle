@@ -18,6 +18,14 @@
   &__issues {
     min-width: 140px;
   }
+
+  table {
+    border-collapse: separate;
+  }
+
+  tbody tr:first-child td {
+    border: none;
+  }
 }
 
 // ! TO KEEP
