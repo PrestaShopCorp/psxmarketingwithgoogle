@@ -46,7 +46,7 @@ describe('merchant-center-account-card.vue', () => {
     const wrapper = shallowMount(ProductFeedCard, {
       propsData: {
         isEnabled: false,
-        badges: []
+        badges: [],
       },
       ...config,
       store: new Vuex.Store(storeDisabledOrNotConfigured),

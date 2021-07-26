@@ -21,7 +21,7 @@ describe('merchant-center-account-card.vue', () => {
     const wrapper = shallowMount(MerchantCenterAccountCard, {
       propsData: {
         isEnabled: false,
-        badges: []
+        badges: [],
       },
       store: new Vuex.Store(cloneStore()),
       ...config,
@@ -40,7 +40,7 @@ describe('merchant-center-account-card.vue', () => {
     const wrapper = shallowMount(MerchantCenterAccountCard, {
       propsData: {
         isEnabled: false,
-        badges: []
+        badges: [],
       },
       store: new Vuex.Store(cloneStore()),
     });
@@ -57,7 +57,7 @@ describe('merchant-center-account-card.vue', () => {
     const wrapper = shallowMount(MerchantCenterAccountCard, {
       propsData: {
         isEnabled: true,
-        badges: []
+        badges: [],
       },
       store: new Vuex.Store(cloneStore()),
     });
