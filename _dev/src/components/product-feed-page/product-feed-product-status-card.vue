@@ -42,19 +42,19 @@
             :is-sync-in-progress="isSyncInProgress"
           />
           <product-feed-card-report-products-sync-card
-            variant="warning"
+            variant="primary"
             :nb-products="validationSummary.pendingItems"
-            :is-sync-in-progress="isSyncInProgress"
-          />
-          <product-feed-card-report-products-sync-card
-            variant="danger"
-            :nb-products="validationSummary.disapprovedItems"
             :is-sync-in-progress="isSyncInProgress"
           />
           <product-feed-card-report-products-sync-card
             variant="warning"
             :is-expired="true"
             :nb-products="validationSummary.expiringItems"
+            :is-sync-in-progress="isSyncInProgress"
+          />
+          <product-feed-card-report-products-sync-card
+            variant="danger"
+            :nb-products="validationSummary.disapprovedItems"
             :is-sync-in-progress="isSyncInProgress"
           />
         </b-row>
