@@ -67,7 +67,7 @@
               <i class="icon-busy icon-busy--dark" />
             </b-dropdown-item>
             <b-dropdown-item
-              v-if="!mcaListLoading && mcaSelectionOptionsAndGroups.length === 0"
+              v-if="!mcaListLoading && mcaSelectionOptionsAndGroups.length"
               :disabled="true"
               variant="dark"
               link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
@@ -620,7 +620,6 @@ export default {
     this.setFocusOnSelectMCA();
   },
   mounted() {
-    console.log(this.mcaSelectionOptionsAndGroups[0].length);
     this.setFocusOnSelectMCA();
   },
   watch: {
