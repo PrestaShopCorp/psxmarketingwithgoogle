@@ -62,8 +62,7 @@ export default {
     if (state.settings.autoImportShippingSettings === undefined) {
       return 'warning';
     }
-    if (state.status.success === false
-      && state.status.jobEndedAt === null) {
+    if (state.status.jobEndedAt === null) {
       return 'schedule';
     }
     if (state.status.success === false) {

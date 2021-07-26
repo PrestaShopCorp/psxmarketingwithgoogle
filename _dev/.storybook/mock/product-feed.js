@@ -50,7 +50,7 @@ export const productFeedIsConfigured = {
     ...productFeed.status,
     jobEndedAt: new Date('July 21, 2021 03:24:00'),
     nextJobAt: new Date('July 22, 2021 03:24:00'),
-    successfulSyncs: [new Date('July 21, 2021 03:24:00')],
+    success : true,
   },
   settings: {
     ...productFeed.settings,
