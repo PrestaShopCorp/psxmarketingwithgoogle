@@ -3,6 +3,7 @@
     id="MerchantCenterAccountPopinNewMca"
     :title="popinTitle"
     v-bind="$attrs"
+    @close="cancel"
     scrollable
     ref="modal"
   >
@@ -361,6 +362,7 @@ export default {
     },
     cancel() {
       this.$refs.modal.hide();
+      this.stepActiveData = 1;
     },
     saveChangeExistingGmc() {
       /**
