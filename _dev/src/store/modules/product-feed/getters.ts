@@ -59,16 +59,13 @@ export default {
     return state.validationSummary;
   },
   [GettersTypes.GET_SYNC_STATUS](state: LocalState) : string {
-    if (!state.status.failedSyncs.length
-      && !state.status.successfulSyncs.length
-      && state.settings.autoImportShippingSettings === undefined) {
+    if (state.settings.autoImportShippingSettings === undefined) {
       return 'warning';
     }
-    if (!state.status.failedSyncs.length
-      && !state.status.successfulSyncs.length) {
+    if (state.status.jobEndedAt === null) {
       return 'schedule';
     }
-    if (state.status.failedSyncs.length) {
+    if (state.status.success === false) {
       return 'failed';
     }
     return 'success';

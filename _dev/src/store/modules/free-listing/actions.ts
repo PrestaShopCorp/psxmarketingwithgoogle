@@ -21,32 +21,6 @@ import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
-  // async [ActionsTypes.GET_VALIDATION_LIST]({commit, rootState}) {
-  //   try {
-  //     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/...`);
-  //     if (!response.ok) {
-  //       throw new HttpClientError(response.statusText, response.status);
-  //     }
-  //     const json = await response.json();
-  //     commit(MutationsTypes.SET_VALIDATION_LIST_STATEMENT, json);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // },
-
-  // async [ActionsTypes.GET_SUMMARY_VALIDATION]({commit, rootState}) {
-  //   try {
-  //     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/...`);
-  //     if (!response.ok) {
-  //       throw new HttpClientError(response.statusText, response.status);
-  //     }
-  //     const json = await response.json();
-  //     commit(MutationsTypes.SET_SUMMARY_VALIDATION, json);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // },
-
   async [ActionsTypes.GET_FREE_LISTING_STATUS]({commit, rootState}) {
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/free-listings/settings`,

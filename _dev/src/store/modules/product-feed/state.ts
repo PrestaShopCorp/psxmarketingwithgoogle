@@ -19,10 +19,8 @@
 
 export interface ProductFeedStatus {
   nextJobAt?: string;
-  jobEndedAt?: string;
-  shopHealthy: boolean;
-  failedSyncs: Array<string>;
-  successfulSyncs: Array<string>;
+  jobEndedAt?: string|null;
+  success: boolean;
   syncSchedule?: string;
 }
 export interface ProductFeedSettingsAttributeMapping {
@@ -70,9 +68,7 @@ export const state: State = {
   totalProducts: 0,
   stepper: 1,
   status: {
-    failedSyncs: [],
-    successfulSyncs: [],
-    shopHealthy: true,
+    success: false,
     jobEndedAt: '',
     nextJobAt: '',
   },

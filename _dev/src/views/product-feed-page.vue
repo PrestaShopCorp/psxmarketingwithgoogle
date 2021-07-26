@@ -3,11 +3,11 @@
     <product-feed-table-status-details v-if="visible" />
     <template v-else>
       <b-alert
-        :show="syncStatus === 'success' || 'schedule'"
+        :show="syncStatus === 'success'"
         variant="success"
         class="mb-0 mt-3 mb-3"
       >
-        {{ $t('productFeedCard.alertSuccess') }}
+        {{ $t('productFeedPage.alert.alertSuccess') }}
       </b-alert>
       <product-feed-sync-status-card />
       <product-feed-product-status-card @showProductReporting="displayReporting" />
@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import ProductFeedProductStatusCard from '../components/product-feed-page/product-feed-product-status-card';
-import ProductFeedSyncStatusCard from '../components/product-feed-page/product-feed-sync-status-card';
-import ProductFeedTableStatusDetails from '../components/product-feed-page/product-feed-table-status-details';
+import ProductFeedProductStatusCard from '@/components/product-feed-page/product-feed-product-status-card';
+import ProductFeedSyncStatusCard from '@/components/product-feed-page/product-feed-sync-status-card';
+import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
 
 export default {
   components: {

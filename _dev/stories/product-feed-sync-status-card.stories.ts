@@ -1,8 +1,6 @@
 import ProductFeedSyncStatusCard from '../src/components/product-feed-page/product-feed-sync-status-card.vue';
 import {productFeedStatusSyncSchedule, productFeedStatusSyncSuccess,productFeedStatusSyncFailed} from '../.storybook/mock/product-feed';
 const commonProps = {
-  nbProductsReadyToSync: 150,
-  nbProductsCantSync: 5,
   nextSyncTime: '06/12/21 02:00',
   lastSyncTime: '21/05/21 02:00',
 }

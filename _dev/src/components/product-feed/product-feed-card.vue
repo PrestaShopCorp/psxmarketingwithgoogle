@@ -316,20 +316,10 @@ export default {
       type: Number,
       default: 0,
     },
-
-    nbProductsReadyToSync: {
-      type: Number,
-    },
-    nbProductsCantSync: {
-      type: Number,
-    },
     syncRules: {
       type: Array,
     },
     syncRulesDetails: {
-      type: Array,
-    },
-    excludedProductsDetails: {
       type: Array,
     },
   },
@@ -465,16 +455,14 @@ export default {
       return this.categoriesMapped > 0;
     },
     alert() {
-      // TODO : how to know status from api ? + date of failed sync ?
-      if (this.getProductFeedStatus.failedSyncs.length) {
+      if (this.getProductFeedStatus.success === false && this.getProductFeedStatus.jobEndedAt) {
         return 'Failed';
       }
       if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {
         return 'ShippingSettingsMissing';
       }
       if (
-        !this.getProductFeedStatus.failedSyncs.length
-        && !this.getProductFeedStatus.successfulSyncs.length
+        this.getProductFeedStatus.success
       ) {
         return 'FeedSettingSubmissionSuccess';
       }
@@ -485,12 +473,22 @@ export default {
       return null;
     },
     syncStatus() {
-      // TODO : retrieve other status 'warning'
-      // TODO : how to know status from api ? + date of failed sync ?
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
     isErrorApi() {
       return this.$store.state.productFeed.errorAPI;
+    },
+    allValidationSummary() {
+      return this.$store.state.productFeed.validationSummary;
+    },
+    nbProductsCantSync() {
+      return this.allValidationSummary.disapprovedItems;
+    },
+    nbProductsReadyToSync() {
+      return this.allValidationSummary.activeItems;
+    },
+    excludedProductsDetails() {
+      return this.allValidationSummary.disapprovedItems;
     },
   },
   methods: {

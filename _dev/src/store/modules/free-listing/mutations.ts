@@ -20,12 +20,6 @@ import MutationsTypes from './mutations-types';
 import {State as LocalState} from './state';
 
 export default {
-  [MutationsTypes.SET_VALIDATION_LIST_STATEMENT](state: LocalState, payload: any) {
-    state.validationList = payload;
-  },
-  [MutationsTypes.SET_SUMMARY_VALIDATION](state: LocalState, payload: any) {
-    state.summaryValidationList = payload;
-  },
   [MutationsTypes.SET_FREE_LISTING_STATUS](state: LocalState, enabled: boolean) {
     state.status = enabled;
   },

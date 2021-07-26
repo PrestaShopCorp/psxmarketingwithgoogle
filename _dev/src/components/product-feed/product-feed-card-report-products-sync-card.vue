@@ -1,13 +1,17 @@
 <template>
   <b-col
     cols
-    class="ps_gs-productfeed-report-card ps_gs-productfeed-report-card--33"
+    class="ps_gs-productfeed-report-card"
+    :class="size && `ps_gs-productfeed-report-card--${size}`"
   >
     <div class="px-3 py-2">
       <div class="d-flex align-items-center font-weight-600 ps_gs-fz-13">
         <i
-          class="material-icons ps_gs-fz-20 mr-2"
-          :class="`text-${variant}`"
+          class="ps_gs-fz-20 mr-2"
+          :class="
+            [cardTitle.icon === 'warning' ? 'material-icons-round' : 'material-icons',
+            `text-${variant}`]
+          "
         >
           {{ cardTitle.icon }}
         </i>
@@ -15,9 +19,10 @@
       </div>
       <div
         class="text-center font-weight-600 ps_gs-fz-20 mt-1"
-        :class="`text-${variant}`"
       >
-        <span v-if="isSyncInProgress === true">-</span>
+        <span v-if="isSyncInProgress === true">
+          <span class="icon-busy icon-busy--dark" />
+        </span>
         <span v-else>{{ nbProducts }}</span>
       </div>
     </div>
@@ -31,7 +36,7 @@ export default {
     variant: {
       type: String,
       validator(value) {
-        return ['success', 'warning', 'danger'].indexOf(value) !== -1;
+        return ['success', 'warning', 'danger', 'primary'].indexOf(value) !== -1;
       },
     },
     nbProducts: {
@@ -42,6 +47,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    isExpired: {
+      type: Boolean,
+      default: false,
+    },
+    size: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
     cardTitle() {
@@ -50,10 +63,16 @@ export default {
           icon: 'error_outline',
           text: this.$i18n.t('productFeedPage.productStatus.disapprovedProducts'),
         };
-      } if (this.variant === 'warning') {
+      } if (this.variant === 'primary' && !this.isExpired) {
         return {
           icon: 'autorenew',
           text: this.$i18n.t('productFeedPage.productStatus.pendingProducts'),
+        };
+      }
+      if (this.variant === 'warning' && this.isExpired) {
+        return {
+          icon: 'warning',
+          text: this.$i18n.t('productFeedPage.productStatus.expiringProducts'),
         };
       }
       // Act as if (this.variant === 'success')

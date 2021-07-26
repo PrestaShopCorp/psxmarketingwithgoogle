@@ -296,7 +296,8 @@
     "productFeedPage" : {
       "breadcrumb" : "Product status details",
       "alert" :{
-        "googleIsReviewing" : "Your products are being reviewed.  \n It might take 3-5 days to review your products. Once approved, your products will be available for free listings and ads."
+        "googleIsReviewing" : "Your products are being reviewed.  \n It might take 3-5 days to review your products. Once approved, your products will be available for free listings and ads.",
+        "alertSuccess" : "You are successfully opted in. Once your products are approved, they can appear in Google Shopping tab search results."
       },
       "syncStatus" : {
         "title" : "Synchronization status",
@@ -315,6 +316,7 @@
         "alert" : "It takes 3-5 business days to review products",
         "approvedProducts" : "Approved",
         "pendingProducts" : "Pending",
+        "expiringProducts" : "Expiring",
         "disapprovedProducts" : "Not approved",
         "productsSubmittedToGoogle" : "Products submitted to Google: {0}",
         "approvalStatusList" : "Approved, Pending, Not approved"

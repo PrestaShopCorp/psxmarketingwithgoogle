@@ -39,10 +39,8 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'jobEndedAt', data: json.jobEndedAt});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextJobAt', data: json.nextJobAt});
-      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'successfulSyncs', data: json.successfulSyncs});
-      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'failedSyncs', data: json.failedSyncs});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'syncSchedule', data: json.syncSchedule});
-      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'shopHealthy', data: json.shopHealthy});
+      commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'success', data: json.success});
     } catch (error) {
       console.error(error);
     }
@@ -108,12 +106,15 @@ export default {
     }
   },
 
-  async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({state, rootState, commit}) {
+  async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
+    state, rootState, getters, commit,
+  }) {
     const productFeedSettings = state.settings;
+    const targetCountries = getters.GET_ACTIVE_COUNTRIES;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
-      targetCountries: productFeedSettings.targetCountries,
+      targetCountries,
       shippingSettings: productFeedSettings.shippingSettings,
       attributeMapping: {
         exportProductsWithShortDescription:

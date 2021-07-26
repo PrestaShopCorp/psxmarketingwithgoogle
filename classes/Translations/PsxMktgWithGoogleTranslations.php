@@ -346,6 +346,7 @@ class PsxMktgWithGoogleTranslations
                 'breadcrumb' => $this->module->l('Product status details', 'PsxMktgWithGoogleTranslations'),
                 'alert' => [
                   'googleIsReviewing' => $this->module->l("Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.", 'PsxMktgWithGoogleTranslations'),
+                  'alertSuccess' => $this->module->l('You are successfully opted in. Once your products are approved, they can appear in Google Shopping tab search results.', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'syncStatus' => [
                   'title' => $this->module->l('Synchronization status', 'PsxMktgWithGoogleTranslations'),
@@ -364,6 +365,7 @@ class PsxMktgWithGoogleTranslations
                     'alert' => $this->module->l('It takes 3-5 business days to review products', 'PsxMktgWithGoogleTranslations'),
                     'approvedProducts' => $this->module->l('Approved', 'PsxMktgWithGoogleTranslations'),
                     'pendingProducts' => $this->module->l('Pending', 'PsxMktgWithGoogleTranslations'),
+                    'expiringProducts' => $this->module->l('Expiring', 'PsxMktgWithGoogleTranslations'),
                     'disapprovedProducts' => $this->module->l('Not approved', 'PsxMktgWithGoogleTranslations'),
                     'productsSubmittedToGoogle' => $this->module->l('Products submitted to Google: {0}', 'PsxMktgWithGoogleTranslations'),
                     'approvalStatusList' => $this->module->l('Approved, Pending, Not approved', 'PsxMktgWithGoogleTranslations'),
