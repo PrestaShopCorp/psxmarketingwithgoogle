@@ -27,6 +27,7 @@
       </div>
       <div
         class="ml-auto mb-0"
+        v-if="isEnabled"
       >
         <span
           class="ps-switch ps-switch-sm"
