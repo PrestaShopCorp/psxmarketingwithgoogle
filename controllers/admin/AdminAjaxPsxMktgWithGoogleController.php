@@ -23,6 +23,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository;
+use PrestaShop\ModuleLibFaq\Faq;
 
 class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 {
@@ -84,6 +85,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 break;
             case 'toggleGoogleAccountIsRegistered':
                 $this->toggleGoogleAccountIsRegistered($inputs);
+                break;
+            case 'retrieveFaq':
+                $this->retrieveFaq();
                 break;
             default:
                 http_response_code(400);
@@ -236,5 +240,59 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     {
         header('Content-Type: application/json');
         parent::ajaxDie($value, $controller, $method);
+    }
+
+    /**
+     * Retrieve the faq
+     */
+    public function retrieveFaq()
+    {
+        $faq = new Faq($this->module->module_key, _PS_VERSION_, $this->context->language->iso_code);
+
+        $this->ajaxDie(
+            json_encode(
+                [
+                    'faq' => $faq->getFaq(),
+                    'doc' => $this->getUserDocumentation(),
+                    'contactUs' => 'support-google@prestashop.com',
+                ]
+            )
+        );
+    }
+
+    /**
+     * Get the documentation url depending on the current language
+     *
+     * @return string
+     */
+    private function getUserDocumentation()
+    {
+        $isoCode = $this->context->language->iso_code;
+        $baseUrl = 'https://storage.googleapis.com/psessentials-documentation/' . $this->module->name;
+
+        if (!$this->checkFileExist($baseUrl . '/user_guide_' . $isoCode . '.pdf')) {
+            $isoCode = 'en';
+        }
+
+        return $baseUrl . '/user_guide_' . $isoCode . '.pdf';
+    }
+
+    /**
+     * Use cUrl to get HTTP headers and detect any HTTP 404
+     *
+     * @param string $docUrl
+     *
+     * @return bool
+     */
+    private function checkFileExist($docUrl)
+    {
+        $ch = curl_init($docUrl);
+
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_exec($ch);
+        $retcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        return $retcode < 400;
     }
 }
