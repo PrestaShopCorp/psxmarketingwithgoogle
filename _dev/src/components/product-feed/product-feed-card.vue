@@ -169,7 +169,7 @@
           />
         </b-row>
       </b-container> -->
-      <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
+      <div class="d-flex justify-content-between align-items-center mb-3 mt-3 pt-2">
         <h3 class="font-weight-600 ps_gs-fz-14 mb-0">
           {{ $t("productFeedSettings.breadcrumb2") }}
         </h3>
@@ -201,7 +201,7 @@
       </b-alert>
       <b-container
         fluid
-        class="p-0 mb-0"
+        class="p-0 mb-0 mt-n1"
       >
         <b-row
           no-gutters
