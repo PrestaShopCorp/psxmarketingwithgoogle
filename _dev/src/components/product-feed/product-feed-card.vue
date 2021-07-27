@@ -450,9 +450,6 @@ export default {
       if (this.alert === 'Failed') {
         return [this.$options.googleUrl.syncFailed];
       }
-      if (this.alert === 'ShippingSettingsMissing') {
-        return [this.$options.googleUrl.shippingSettingsMissing];
-      }
       return null;
     },
     hasMapping() {
