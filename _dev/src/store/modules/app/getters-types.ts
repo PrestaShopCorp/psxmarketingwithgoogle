@@ -1,6 +1,7 @@
 enum GetterTypes {
   GET_IS_COUNTRY_MEMBER_OF_EU = 'GET_IS_COUNTRY_MEMBER_OF_EU',
   GET_CURRENT_CURRENCY = 'GET_CURRENT_CURRENCY',
+  GET_DOC_AND_FAQ = 'GET_DOC_AND_FAQ',
 }
 
 export {GetterTypes as default};

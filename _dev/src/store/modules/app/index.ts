@@ -1,5 +1,7 @@
 import {state as initialState} from './state';
 import getters from './getters';
+import actions from './actions';
+import mutations from './mutations';
 
 const {
   psxMktgWithGoogleApiUrl,
@@ -26,5 +28,7 @@ const state = Object.assign(
 export default {
   namespaced: true,
   state,
+  mutations,
+  actions,
   getters,
 };

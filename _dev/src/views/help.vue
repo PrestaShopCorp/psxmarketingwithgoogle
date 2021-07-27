@@ -22,9 +22,7 @@
     class="ps-google-help-tab"
   >
     <faq
-      :faq="faq"
-      :contact-us-link="contactUsLink"
-      :doc-link="docLink"
+      :informations="helpInformations"
       :loading="loading"
       class="m-3"
     />
@@ -40,43 +38,24 @@ export default defineComponent({
   components: {
     faq,
   },
-  props: {
-    psGoogleRetrieveFaq: {
-      type: String,
-      required: false,
-      default: () => global.psGoogleRetrieveFaq,
-    },
-  },
   data() {
     return {
-      faq: {},
-      docLink: '',
-      contactUsLink: '',
       loading: true,
     };
   },
   created() {
-    this.fetchFaq();
+    this.fetchHelpInformations();
+  },
+  computed: {
+    helpInformations() {
+      return this.$store.getters['app/GET_DOC_AND_FAQ'];
+    },
   },
   methods: {
-    fetchFaq() {
-      fetch(this.psGoogleRetrieveFaq)
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(res.statusText || res.status);
-          }
-          return res.json();
-        })
-        .then((resp) => {
-          this.faq = resp.faq;
-          this.docLink = resp.doc;
-          this.contactUsLink = resp.contactUs;
-          this.loading = false;
-        })
-        .catch((error) => {
-          console.error(error);
-          this.loading = false;
-        });
+    fetchHelpInformations() {
+      this.$store.dispatch('app/REQUEST_DOC_AND_FAQ').then(() => {
+        this.loading = false;
+      });
     },
   },
 });

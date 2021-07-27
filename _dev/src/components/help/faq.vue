@@ -55,8 +55,7 @@
             <div class="mt-2">
               <b-button
                 variant="link"
-                @click="contactUs"
-                :href="`mailto:` + contactUsLink"
+                :href="`mailto:` + informations.contactUs"
               >
                 {{ $t("help.help.contactUs") }}
                 <i class="material-icons">arrow_right_alt</i>
@@ -77,7 +76,7 @@
               class="spinner"
             />
           </div>
-          <template v-else-if="faq && faq.categories">
+          <template v-else-if="informations.faq && informations.faq.categories">
             <div
               class="my-3"
               v-for="(categorie, index) in faq.categories"
@@ -126,8 +125,11 @@
 import {defineComponent} from '@vue/composition-api';
 
 export default defineComponent({
-  props: ['faq', 'contactUsLink', 'docLink', 'loading'],
+  props: ['informations', 'loading'],
   methods: {
+    getDocumentation() {
+      window.open(this.$props.informations.doc, '_blank');
+    },
   },
 });
 </script>

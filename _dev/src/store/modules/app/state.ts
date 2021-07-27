@@ -22,11 +22,18 @@ export interface State {
   psxMktgWithGoogleAdminUrl: string;
   psxMktgWithGoogleAdminAjaxUrl: string;
   psxMktgWithGoogleShopUrl: string;
-  psxMktgWithGoogleShopCurrency: ShopCurrency,
+  psxMktgWithGoogleShopCurrency: ShopCurrency;
+  psxMktgWithGoogleDocumentAndFaq: HelpInformations;
 }
 
 export interface ShopCurrency {
   isoCode: string;
+}
+
+export interface HelpInformations {
+  faq: object;
+  doc: string;
+  contactUs: string;
 }
 
 export const state: State = {
@@ -37,5 +44,10 @@ export const state: State = {
   isCountryMemberOfEuropeanUnion: false,
   psxMktgWithGoogleShopCurrency: {
     isoCode: '',
+  },
+  psxMktgWithGoogleDocumentAndFaq: {
+    faq: {},
+    doc: '',
+    contactUs: '',
   },
 };

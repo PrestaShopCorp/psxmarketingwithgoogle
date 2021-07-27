@@ -16,17 +16,9 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-import GettersTypes from './getters-types';
-import {State as LocalState, HelpInformations} from './state';
 
-export default {
-  [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
-    return state.isCountryMemberOfEuropeanUnion;
-  },
-  [GettersTypes.GET_CURRENT_CURRENCY](state: LocalState): string {
-    return state.psxMktgWithGoogleShopCurrency.isoCode;
-  },
-  [GettersTypes.GET_DOC_AND_FAQ](state: LocalState): HelpInformations {
-    return state.psxMktgWithGoogleDocumentAndFaq;
-  },
-};
+enum MutationsTypes {
+  SAVE_DOC_AND_FAQ = 'SAVE_DOC_AND_FAQ',
+}
+
+export {MutationsTypes as default};

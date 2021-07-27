@@ -16,17 +16,33 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-import GettersTypes from './getters-types';
-import {State as LocalState, HelpInformations} from './state';
+
+import MutationsTypes from './mutations-types';
+import ActionsTypes from './actions-types';
+import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
-  [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
-    return state.isCountryMemberOfEuropeanUnion;
-  },
-  [GettersTypes.GET_CURRENT_CURRENCY](state: LocalState): string {
-    return state.psxMktgWithGoogleShopCurrency.isoCode;
-  },
-  [GettersTypes.GET_DOC_AND_FAQ](state: LocalState): HelpInformations {
-    return state.psxMktgWithGoogleDocumentAndFaq;
+  async [ActionsTypes.REQUEST_DOC_AND_FAQ](
+    {
+      commit,
+      rootState,
+    },
+  ) {
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        body: JSON.stringify({
+          action: 'retrieveFaq',
+        }),
+      });
+      const json = await response.json();
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      commit(MutationsTypes.SAVE_DOC_AND_FAQ, json);
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
