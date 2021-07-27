@@ -238,6 +238,9 @@ export default {
         if (linkedGmc) {
           commit(MutationsTypes.SAVE_GMC, linkedGmc);
           dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+        } else {
+          console.log(`GMC ${state.googleMerchantAccount.id} not found, try to search again in 15s`);
+          setTimeout(() => dispatch(ActionsTypes.REQUEST_GMC_LIST), 15000);
         }
       }
     } catch (error) {
