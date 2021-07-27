@@ -30,6 +30,12 @@ export const productFeed = {
 export const productFeedIsReadyForExport = {
   ...productFeed,
   isConfigured: true,
+  status: {
+    ...productFeed.status,
+    jobEndedAt: null,
+    nextJobAt: new Date('July 22, 2021 03:24:00'),
+    success : true,
+  },
   settings: {
     ...productFeed.settings,
     targetCountries: ['FR'],
