@@ -87,7 +87,7 @@ class PsxMktgWithGoogleTranslations
                     'notice' => $this->module->l("*depending on regional availability   \n **includes campaign optimization to show variety of ads of your products to customers most likely to buy them", 'PsxMktgWithGoogleTranslations'),
                 ],
                 'footer' => [
-                    'text' => $this->module->l('Get your products found on Google with [Module Name]', 'PsxMktgWithGoogleTranslations'),
+                    'text' => $this->module->l('Get your products found on Google with PS Marketing with Google', 'PsxMktgWithGoogleTranslations'),
                 ],
             ],
             'onboarding' => [
