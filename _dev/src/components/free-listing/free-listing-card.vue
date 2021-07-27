@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import googleUrl from '../../assets/json/googleUrl.json';
+import googleUrl from '@/assets/json/googleUrl.json';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {

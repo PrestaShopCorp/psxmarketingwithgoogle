@@ -264,7 +264,7 @@ class PsxMktgWithGoogleTranslations
                     'allCategories' => $this->module->l('All categories', 'PsxMktgWithGoogleTranslations'),
                     'labelSelectBrand' => $this->module->l('Select brand', 'PsxMktgWithGoogleTranslations'),
                     'placeholderSelectBrand' => $this->module->l('Search brand', 'PsxMktgWithGoogleTranslations'),
-                    'prohibitedContentNotice' => $this->module->l('Please review the [prohibited content guidelines](//google.com)[:target="_blank"] to ensure that products in your feed don’t violate these policies.', 'PsxMktgWithGoogleTranslations'),
+                    'prohibitedContentNotice' => $this->module->l('Please review the [prohibited content guidelines]({0})[:target="_blank"] to ensure that products in your feed don’t violate these policies.', 'PsxMktgWithGoogleTranslations'),
                     'frequency' => [
                         'daily' => $this->module->l('Daily', 'PsxMktgWithGoogleTranslations'),
                     ],
@@ -450,7 +450,7 @@ class PsxMktgWithGoogleTranslations
                 'overwriteProductFeed' => $this->module->l('Overwrite product feed', 'PsxMktgWithGoogleTranslations'),
                 'trackProductStatus' => $this->module->l('Track Product approval status', 'PsxMktgWithGoogleTranslations'),
                 'whyDidntWork' => $this->module->l('Check out why it didn’t work', 'PsxMktgWithGoogleTranslations'),
-                'aboutProductCategory' => $this->module->l('About Google product category', 'PsxMktgWithGoogleTranslations'),
+                'aboutProductCategory' => $this->module->l('List of Google product categories', 'PsxMktgWithGoogleTranslations'),
                 'editCountries' => $this->module->l('Edit countries', 'PsxMktgWithGoogleTranslations'),
                 'editSettings' => $this->module->l('Edit settings', 'PsxMktgWithGoogleTranslations'),
                 'editRules' => $this->module->l('Edit rules', 'PsxMktgWithGoogleTranslations'),
