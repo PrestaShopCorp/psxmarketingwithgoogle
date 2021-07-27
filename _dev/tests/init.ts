@@ -3,8 +3,8 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import translations from '../.storybook/translations.json';
 
-let windowSpy; let
-  localVue;
+let windowSpy;
+let localVue; // eslint-disable-line 
 const defaultLocale = 'en';
 
 beforeEach(() => {
@@ -16,7 +16,6 @@ beforeEach(() => {
 
   localVue = createLocalVue();
   localVue.use(Vuex);
-  localVue.use(VueRouter);
 });
 
 afterEach(() => {
@@ -37,11 +36,8 @@ config.mocks.$t = (key) => {
 config.mocks.$i18n = {
   t: config.mocks.$t,
 };
-
-export const commonOptions = {
-  localVue,
-};
+export default {config};
 
 export {cloneStore} from './store';
 
-export default commonOptions;
+export {localVue};

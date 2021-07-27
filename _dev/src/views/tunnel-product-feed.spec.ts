@@ -3,7 +3,7 @@
  */
 
 // Import this file first to init mock on window
-import {commonOptions, cloneStore} from '@/../tests/init';
+import config, {cloneStore} from '@/../tests/init';
 
 // shallowMount creates the components without its children. Mount creates them all
 
@@ -29,7 +29,7 @@ describe('tunnel-product-feed.vue', () => {
 
   it('dispatches actions before Create', () => {
     const wrapper = shallowMount(TunnelProductFeed, {
-      ...commonOptions,
+      ...config,
       store: new Vuex.Store(store),
     });
     expect(actions.GET_PRODUCT_FEED_SETTINGS).toHaveBeenCalled();
