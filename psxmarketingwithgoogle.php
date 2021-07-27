@@ -32,8 +32,6 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-require_once __DIR__ . '/vendor/autoload.php';
-
 class PsxMarketingWithGoogle extends Module
 {
     /**
@@ -90,6 +88,13 @@ class PsxMarketingWithGoogle extends Module
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall this module?');
         $this->ps_versions_compliancy = ['min' => '1.7.7.0', 'max' => _PS_VERSION_];
 
+        // If PHP is not compliant, we will not load composer and the autoloader
+        if (!$this->isPhpVersionCompliant()) {
+            return;
+        }
+
+        require_once __DIR__ . '/vendor/autoload.php';
+
         if ($this->serviceContainer === null) {
             $this->serviceContainer = new ServiceContainer($this->name, $this->getLocalPath());
         }
@@ -109,7 +114,7 @@ class PsxMarketingWithGoogle extends Module
 
     public function install()
     {
-        if (70300 > PHP_VERSION_ID) {
+        if (!$this->isPhpVersionCompliant()) {
             $this->_errors[] = $this->l('This requires PHP 7.3 to work properly. Please upgrade your server configuration.');
 
             return false;
@@ -164,8 +169,8 @@ class PsxMarketingWithGoogle extends Module
             $this->getService(ErrorHandler::class)
         );
 
-        return $uninstaller->uninstall() &&
-            parent::uninstall();
+        return $uninstaller->uninstall()
+            && parent::uninstall();
     }
 
     public function getContent()
@@ -196,5 +201,10 @@ class PsxMarketingWithGoogle extends Module
             $dotenv = Dotenv::create(__DIR__);
             $dotenv->load();
         }
+    }
+
+    private function isPhpVersionCompliant()
+    {
+        return 70300 <= PHP_VERSION_ID;
     }
 }

@@ -2,6 +2,15 @@
 
 
 ## Setup
+
+Run composer
+
+```
+composer install
+# or
+make docker-build-composer
+```
+
 ### Development
 
 #### Environment customization
