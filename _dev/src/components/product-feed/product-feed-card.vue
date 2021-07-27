@@ -179,12 +179,12 @@
         :show="!!alert && alert === 'ShippingSettingsMissing'"
       >
         <p class="mb-2">
-          <strong class="font-weight-600">{{
-            $t("productFeedCard.alertShippingSettingsMissing")
-          }}</strong><br>
-          <span class="ps_gs-fz-12">
-            {{ $t("productFeedCard.alertShippingSettingsMissingDescription") }}
-          </span>
+          <strong class="font-weight-600">
+            <VueShowdown
+              :markdown="$t('productFeedCard.alertShippingSettingsMissing')"
+              :extensions="['targetlink']"
+            />
+          </strong><br>
         </p>
         <div class="mt-1">
           <b-button
