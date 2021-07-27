@@ -456,7 +456,6 @@ export default {
       return this.categoriesMapped > 0;
     },
     alert() {
-      console.log(this.getProductFeedStatus);
       if (this.getProductFeedStatus.success === false && this.getProductFeedStatus.jobEndedAt) {
         return 'Failed';
       }
