@@ -14,7 +14,7 @@
             {{ $t('general.tabs.paidMarketing') }}
           </MenuItem> -->
         </template>
-        <MenuItem :route="this.$route.name === 'configuration' ? '/onboarding' : '/configuration'">
+        <MenuItem route="/">
           {{ $t('general.tabs.configuration') }}
         </MenuItem>
         <MenuItem
