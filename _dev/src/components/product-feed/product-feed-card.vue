@@ -184,7 +184,11 @@
               :markdown="$t('productFeedCard.alertShippingSettingsMissing')"
               :extensions="['targetlink']"
             />
-          </strong><br>
+          </strong>
+          <span class="ps_gs-fz-12">
+            {{ $t("productFeedCard.alertShippingSettingsMissingDescription") }}
+          </span>
+          <br>
         </p>
         <div class="mt-1">
           <b-button
