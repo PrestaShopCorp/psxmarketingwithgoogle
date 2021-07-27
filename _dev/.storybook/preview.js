@@ -150,6 +150,7 @@ export const parameters = {
       },
     ],
   },
+  chromatic: { delay: 500 },
   options: {
     storySort: {
       order: [
