@@ -128,7 +128,7 @@
           :class="syncStatus === 'schedule' ? 'text-secondary' : 'text-primary'"
           :disabled="syncStatus === 'schedule'"
           :aria-disabled="syncStatus === 'schedule'"
-          to="/product-feed"
+          to="product-feed"
         >
           {{ $t("cta.trackProductStatus") }}
         </b-button>
