@@ -87,7 +87,7 @@
     </div>
     <div v-if="isEnabled && !toConfigure && !isErrorApi">
       <b-alert
-        variant="warning"
+        :variant="alert === 'FeedSettingSubmissionSuccess' ? 'info' : 'warning'"
         :show="!!alert && alert !== 'ShippingSettingsMissing'"
       >
         <VueShowdown
@@ -456,6 +456,7 @@ export default {
       return this.categoriesMapped > 0;
     },
     alert() {
+      console.log(this.getProductFeedStatus);
       if (this.getProductFeedStatus.success === false && this.getProductFeedStatus.jobEndedAt) {
         return 'Failed';
       }
@@ -463,7 +464,7 @@ export default {
         return 'ShippingSettingsMissing';
       }
       if (
-        this.getProductFeedStatus.success
+        this.getProductFeedStatus.jobEndedAt === null
       ) {
         return 'FeedSettingSubmissionSuccess';
       }
