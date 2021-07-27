@@ -116,7 +116,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'tokenPsAccounts' => $tokenPsAccounts,
             'psVersion' => _PS_VERSION_,
             'psxMktgWithGoogleModuleVersion' => $this->module->version,
-            'psxMktgWithGoogleSegmentId' => $this->env->get('PSX_MKTG_WITH_GOOGLE_API_KEY'),
+            'psxMktgWithGoogleSegmentId' => $this->env->get('PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY'),
             'psxMktgWithGoogleApiUrl' => $this->env->get('PSX_MKTG_WITH_GOOGLE_API_URL'),
             'psxMktgWithGoogleAdminUrl' => $this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule'),
             'psxMktgWithGoogleAdminAjaxUrl' => $this->context->link->getAdminLink(

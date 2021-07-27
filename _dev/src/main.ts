@@ -39,11 +39,12 @@ new Vue({
       }
 
       const psAccountContext = this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
+      const userId = this.$store.state.accounts.shopIdPsAccounts;
 
-      if (psAccountContext.currentShop.id) {
+      if (userId) {
         // @ts-ignore
-        this.$segment.identify(psAccountContext.currentShop.id, {
-          name: psAccountContext.currentShop.url,
+        this.$segment.identify(userId, {
+          name: psAccountContext.currentShop.domainSsl,
           email: psAccountContext.user.email,
           language: this.$i18n.locale,
           version_ps: this.$store.state.app.psVersion,
