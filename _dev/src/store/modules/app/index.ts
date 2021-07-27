@@ -10,6 +10,8 @@ const {
   psxMktgWithGoogleShopUrl,
   isCountryMemberOfEuropeanUnion,
   psxMktgWithGoogleShopCurrency,
+  psVersion,
+  psxMktgWithGoogleModuleVersion,
 }: any = window;
 
 const state = Object.assign(
@@ -20,6 +22,8 @@ const state = Object.assign(
   {psxMktgWithGoogleShopUrl} || '',
   {isCountryMemberOfEuropeanUnion} || false,
   {psxMktgWithGoogleShopCurrency} || {},
+  {psVersion} || '',
+  {psxMktgWithGoogleModuleVersion} || '',
 );
 
 /**
