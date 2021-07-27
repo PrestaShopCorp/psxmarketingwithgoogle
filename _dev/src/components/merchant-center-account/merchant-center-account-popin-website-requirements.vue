@@ -57,9 +57,8 @@
             <div>
               <span
                 class="ps_gs-fz-14 font-weight-normal mb-1"
-              >
-                {{ $t(`mcaRequirements.${requirement}.title`) }}
-              </span>
+                v-html="$t(`mcaRequirements.${requirement}.title`)"
+              />
               <p class="ps_gs-fz-12 text-muted">
                 {{ $t(`mcaRequirements.${requirement}.description`) }}<br>
                 <a
