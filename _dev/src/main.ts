@@ -13,7 +13,6 @@ import './utils/Filters';
 // import showdown extension
 import '../showdown.js';
 
-
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.use(VueCollapse);
