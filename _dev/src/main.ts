@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import {BootstrapVue} from 'bootstrap-vue';
 import VueCollapse from 'vue2-collapse';
 import psAccountsVueComponents from 'prestashop_accounts_vue_components';
+import VueSegment from '@prestashopcorp/segment-vue';
 import VueShowdown from 'vue-showdown';
 import router from './router';
 import store from './store';
@@ -18,10 +19,38 @@ Vue.use(BootstrapVue);
 Vue.use(VueCollapse);
 Vue.use(psAccountsVueComponents, {locale: i18n.locale});
 Vue.use(VueShowdown);
+Vue.use(VueSegment, {
+  // @ts-ignore
+  id: global.psxMktgWithGoogleSegmentId,
+  router,
+  debug: process.env.NODE_ENV !== 'production',
+  pageCategory: '[MKTGWG]',
+});
 
 new Vue({
   router,
   store,
   i18n,
+  methods: {
+    identifySegment() {
+      // @ts-ignore
+      if (!this.$segment) {
+        return;
+      }
+
+      const psAccountContext = this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
+
+      if (psAccountContext.currentShop.id) {
+        // @ts-ignore
+        this.$segment.identify(psAccountContext.currentShop.id, {
+          name: psAccountContext.currentShop.url,
+          email: psAccountContext.user.email,
+          language: this.$i18n.locale,
+          version_ps: this.$store.state.app.psVersion,
+          mktgwg_module_version: this.$store.state.app.psxMktgWithGoogleModuleVersion,
+        });
+      }
+    },
+  },
   render: (h) => h(App),
 }).$mount('#psxMktgWithGoogleApp');
