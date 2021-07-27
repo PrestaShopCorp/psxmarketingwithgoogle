@@ -4,21 +4,23 @@
       <Menu>
         <template v-if="productFeedIsConfigured">
           <MenuItem
-            route="/product-feed"
+            :route="{name: 'product-feed'}"
           >
             {{ $t('general.tabs.productFeed') }}
           </MenuItem>
           <!-- <MenuItem
-            route="/paid-marketing"
+            :route="{name: 'paid-marketing'}"
           >
             {{ $t('general.tabs.paidMarketing') }}
           </MenuItem> -->
         </template>
-        <MenuItem route="/">
+        <MenuItem
+          :route="{name: 'configuration'}"
+        >
           {{ $t('general.tabs.configuration') }}
         </MenuItem>
         <MenuItem
-          route="/help"
+          :route="{name: 'help'}"
         >
           {{ $t('general.tabs.help') }}
         </MenuItem>

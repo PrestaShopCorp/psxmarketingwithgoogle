@@ -12,20 +12,20 @@ Vue.use(VueRouter);
 
 const initialPath = (to, from, next) => {
   if (from.path === '/' && Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED']) {
-    next('/configuration');
+    next({name: 'configuration'});
   } else {
-    next('/onboarding');
+    next({name: 'onboarding'});
   }
 };
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/onboarding',
+    path: '/configuration',
     name: 'configuration',
     component: Configuration,
   },
   {
-    path: '/configuration',
+    path: '/configuration/onboarding',
     name: 'onboarding',
     component: OnboardingPage,
   },
@@ -51,6 +51,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/',
+    name: 'root',
     beforeEnter: initialPath,
   },
 ];
