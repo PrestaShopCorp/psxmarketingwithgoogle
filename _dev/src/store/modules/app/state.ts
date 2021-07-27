@@ -24,6 +24,8 @@ export interface State {
   psxMktgWithGoogleShopUrl: string;
   psxMktgWithGoogleShopCurrency: ShopCurrency;
   psxMktgWithGoogleDocumentAndFaq: HelpInformations;
+  psVersion: string;
+  psxMktgWithGoogleModuleVersion: string;
 }
 
 export interface ShopCurrency {
@@ -50,4 +52,6 @@ export const state: State = {
     doc: '',
     contactUs: '',
   },
+  psxMktgWithGoogleModuleVersion: '',
+  psVersion: '',
 };

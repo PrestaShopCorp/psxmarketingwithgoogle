@@ -18,6 +18,9 @@ declare global {
       psxMktgWithGoogleShopUrl: String;
       shopIdPsAccounts: String;
       tokenPsAccounts: String;
+      psxMktgWithGoogleModuleVersion: String,
+      psVersion: String,
+      psxMktgWithGoogleSegmentId: String,
     }
   //   interface IntrinsicElements {
   //     [elem: string]: any;

@@ -49,5 +49,13 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
   },
+  created() {
+    this.$root.identifySegment();
+  },
+  watch: {
+    $route() {
+      this.$root.identifySegment();
+    },
+  },
 };
 </script>
