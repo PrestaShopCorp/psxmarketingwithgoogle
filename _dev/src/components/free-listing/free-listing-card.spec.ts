@@ -25,6 +25,12 @@ describe('free-listing.vue / disabled', () => {
 });
 
 describe('free-listing.vue / enabled', () => {
+  let mockRouter;
+
+  beforeEach(() => {
+    mockRouter = {go: jest.fn()};
+  });
+
   it('switch is shown when card is enabled', () => {
     const wrapper = shallowMount(FreeListingCard, {
       propsData: {
@@ -52,5 +58,28 @@ describe('free-listing.vue / enabled', () => {
 
     // Check if toggle switch is disabled
     expect(wrapper.find('.ps-switch [type="radio"]').attributes('disabled')).toBe('disabled');
+  });
+
+  it('refresh button available when there is an API error and calls refresh function', async () => {
+    const wrapper = shallowMount(FreeListingCard, {
+      mocks: {
+        $router: mockRouter,
+      },
+      propsData: {
+        isEnabled: true,
+      },
+      ...commonOptions,
+      store: new Vuex.Store(cloneStore()),
+      beforeMount(this: any) {
+        this.$store.state.freeListing.errorAPI = true;
+      },
+    });
+
+    // Check if refresh button exists
+    expect(wrapper.find('[data-test-id="btn-refresh"]').exists()).toBeTruthy();
+
+    // Check if $router.go() has been called when refresh btn is clicked
+    await wrapper.find('[data-test-id="btn-refresh"]').trigger('click');
+    expect(mockRouter.go).toHaveBeenCalledTimes(1);
   });
 });
