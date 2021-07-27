@@ -92,6 +92,9 @@ export default {
   ) {
     state.totalProducts = payload;
   },
+  [MutationsTypes.SET_SYNC_SUMMARY_LOADING](state: LocalState, isLoading: boolean) {
+    state.isSyncSummaryLoadingInProgress = isLoading;
+  },
   [MutationsTypes.API_ERROR](state: LocalState, payload: boolean,
   ) {
     state.errorAPI = payload;

@@ -172,20 +172,27 @@ export default {
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/validation/summary`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-      },
-    });
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
+    commit(MutationsTypes.SET_SYNC_SUMMARY_LOADING, true);
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/validation/summary`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      const result = await response.json();
+      commit(MutationsTypes.SET_VALIDATION_SUMMARY, result);
+    } catch (error) {
+      console.error(error);
+      // Todo: handle error with SET_SYNC_SUMMARY_ERROR
+    } finally {
+      commit(MutationsTypes.SET_SYNC_SUMMARY_LOADING, false);
     }
-    const result = await response.json();
-    commit(MutationsTypes.SET_VALIDATION_SUMMARY, result);
-    return result;
   },
 
   async [ActionsTypes.GET_TOTAL_PRODUCTS]({rootState, commit}) {

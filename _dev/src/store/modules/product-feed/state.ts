@@ -49,6 +49,7 @@ export interface ProductFeedValidationSummary {
 }
 
 export interface State {
+  isSyncSummaryLoadingInProgress: boolean,
   errorAPI: boolean
   isConfigured: boolean,
   isConfiguredOnce: boolean,
@@ -61,6 +62,7 @@ export interface State {
 }
 
 export const state: State = {
+  isSyncSummaryLoadingInProgress: false,
   errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
