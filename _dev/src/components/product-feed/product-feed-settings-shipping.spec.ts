@@ -55,59 +55,51 @@ describe('product-feed-settings-shipping.vue', () => {
     expect(wrapper.find('b-button').exists()).toBeTruthy();
   });
 
-  //    it('shows button continue and triggers next step on click', async () => {
-  //      const wrapper = shallowMount(ProductFeedCard, {
-  //        ...config,
-  //        propsData: {
-  //          isEnabled: true,
-  //        },
-  //        ...localVue,
-  //        store: new Vuex.Store(storeStepOne),
-  //      });
-  //      expect(wrapper.find('b-button'));
-  //      await wrapper.find(".commit").trigger("click");
-  //      expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledTimes(1);
-  //      expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledWith(2);
-  //    });
+  it('shows button continue and triggers next step on click', async () => {
+    const wrapper = shallowMount(ProductFeedCard, {
+      mocks: {
+        $route: mockRoute,
+        $router: mockRouter,
+      },
+      ...config,
+      propsData: {
+        isEnabled: true,
+      },
+      ...localVue,
+      store: new Vuex.Store(storeStepOne),
+    });
+    await expect(wrapper.find('b-button').trigger('click'));
+    expect(mockRouter.push).toHaveBeenCalledTimes(1);
+    expect(mockRouter.push).toHaveBeenCalledWith(mockRoute);
+    //   TODO : check for commit to be send
+    //  expect(wrapper.find(".commit"));
+    //  expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledTimes(1);
+    //  expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledWith(2);
+  });
 
-  //    it('shows button cancel and triggers previous step on click', async () => {
-  //      const wrapper = shallowMount(ProductFeedCard, {
-  //        ...config,
-  //        propsData: {
-  //          isEnabled: true,
-  //        },
-  //        ...localVue,
-  //        store: new Vuex.Store(storeStepOne),
-  //      });
-  //      const button = wrapper.find('b-button')
-  //      await button.trigger('click');
-  //      expect(wrapper.emitted('cancelProductFeedSettingsConfiguration')).toBeTruthy();
+  it('shows button cancel and triggers previous step on click', async () => {
+    const wrapper = shallowMount(ProductFeedCard, {
+      ...config,
+      mocks: {
+        $route: mockRoute,
+        $router: mockRouter,
+      },
+      propsData: {
+        isEnabled: true,
+      },
+      ...localVue,
+      store: new Vuex.Store(storeStepOne),
+    });
+    await expect(wrapper.find('b-button').trigger('click'));
+    wrapper.vm.$emit('cancelProductFeedSettingsConfiguration');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('cancelProductFeedSettingsConfiguration')).toBeTruthy();
+    expect(mockRouter.push).toHaveBeenCalledTimes(2);
+    expect(mockRouter.push).toHaveBeenCalledWith(mockRoute);
+  });
 
-  //    });
+  //  it('shows input target countries with good datas', () => {
+  //   TODO : check for inputs to be well filled
 
-//    it('shows input target countries with good datas', () => {
-//      const timeConverterToDate = jest.fn();
-//      localVue.filter('timeConverterToDate', timeConverterToDate);
-//      const timeConverterToHour = jest.fn();
-//      localVue.filter('timeConverterToHour', timeConverterToHour);
-//      const changeCountryCodeToName = jest.fn();
-//      changeCountryCodeToName.mockImplementation(() => []);
-//      localVue.filter('changeCountryCodeToName', changeCountryCodeToName);
-//      const wrapper = shallowMount(ProductFeedCard, {
-//        propsData: {
-//          isEnabled: true,
-//        },
-//        ...config,
-//        mocks: {
-//          $router: mockRouter,
-//        },
-//        localVue,
-//        store: new Vuex.Store(storeStepOne),
-//      });
-//      expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
-//      expect(timeConverterToDate).toHaveBeenCalledTimes(2);
-//      expect(timeConverterToHour).toHaveBeenCalledTimes(1);
-//      expect(changeCountryCodeToName).toHaveBeenCalledTimes(1);
-//      expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
-//    });
+  //  });
 });
