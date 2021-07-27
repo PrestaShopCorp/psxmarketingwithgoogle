@@ -87,7 +87,7 @@
     </div>
     <div v-if="isEnabled && !toConfigure && !isErrorApi">
       <b-alert
-        variant="warning"
+        :variant="alert === 'FeedSettingSubmissionSuccess' ? 'info' : 'warning'"
         :show="!!alert && alert !== 'ShippingSettingsMissing'"
       >
         <VueShowdown
