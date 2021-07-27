@@ -36,7 +36,7 @@ export default {
   name: 'MenuItem',
   props: {
     route: {
-      type: String,
+      type: [String, Object],
       default: '',
     },
     onboardingRequired: {
