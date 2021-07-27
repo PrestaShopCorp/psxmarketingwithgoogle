@@ -57,7 +57,7 @@
         <p class="ps_gs-fz-12 mb-0 flex-grow-1">
           {{ $t('productFeedCard.attributeDescription') }}<br>
           <a
-            href="//google.com"
+            :href="$options.googleUrl.googleProductCategories"
             target="_blank"
             class="text-muted"
           >
@@ -76,6 +76,8 @@
 </template>
 
 <script>
+import googleUrl from '@/assets/json/googleUrl.json';
+
 import {
   BIconstack,
   BIconCheck,
@@ -100,5 +102,6 @@ export default {
       type: Number,
     },
   },
+  googleUrl,
 };
 </script>

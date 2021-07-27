@@ -158,7 +158,8 @@
       :message="$t('freeListingCard.googleDelay')"
     />
     <VueShowdown
-      :markdown="$t('productFeedSettings.export.prohibitedContentNotice')"
+      :markdown="$t('productFeedSettings.export.prohibitedContentNotice',
+      [$options.googleUrl.prohibitedContentGuidelines])"
       :extensions="['targetlink']"
       class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-n3"
     />
@@ -166,6 +167,8 @@
 </template>
 
 <script>
+import googleUrl from '@/assets/json/googleUrl.json';
+
 import {BTableSimple} from 'bootstrap-vue';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
@@ -254,5 +257,6 @@ export default {
     },
   },
   countriesSelectionOptions,
+  googleUrl,
 };
 </script>

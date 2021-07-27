@@ -215,7 +215,7 @@
         "allCategories" : "All categories",
         "labelSelectBrand" : "Select brand",
         "placeholderSelectBrand" : "Search brand",
-        "prohibitedContentNotice" : "Please review the [prohibited content guidelines](//google.com)[:target=\"_blank\"] to ensure that products in your feed don’t violate these policies.",
+        "prohibitedContentNotice" : "Please review the [prohibited content guidelines]({0})[:target=\"_blank\"] to ensure that products in your feed don’t violate these policies.",
         "frequency" : {
           "daily" : "Daily"
         },
@@ -399,7 +399,7 @@
       "overwriteProductFeed" : "Overwrite product feed",
       "trackProductStatus" : "Track Product approval status",
       "whyDidntWork" : "Check out why it didn’t work",
-      "aboutProductCategory" : "About Google product category",
+      "aboutProductCategory" : "List of Google product categories",
       "editCountries" : "Edit countries",
       "editSettings" : "Edit settings",
       "editRules" : "Edit rules",

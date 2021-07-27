@@ -1,7 +1,6 @@
 {
-  "productConfiguration" : "//google.com",
+  "productConfiguration" : "https://support.google.com/merchants/answer/7052112",
   "syncFailed" : "https://support.google.com/merchants/answer/188476",
-  "shippingSettingsMissing" : "//google.com",
   "loginMCA" : "https://merchants.google",
   "shoppingAdsPolicies" : "https://support.google.com/merchants/answer/6149970",
   "accurateContactInformation" : "https://support.google.com/merchants/answer/6363310/follow-the-merchant-center-guidelines",
@@ -24,11 +23,11 @@
   "merchantCenterAccount" : "https://merchants.google.com/mc/overview",
   "learnAboutSiteClaiming" : "https://support.google.com/merchants/answer/176793",
   "requestiongReReview" : "https://support.google.com/merchants/contact/suspended",
-  "learnAboutAccountSuspension" : "//google.com",
   "countrySpecificShoppingPolicies" : "https://support.google.com/merchants/answer/7387995",
   "localRegulation" : "https://support.google.com/merchants/answer/7387995",
-  "supportedCountries" : "//google.com",
+  "supportedCountries" : "https://support.google.com/merchants/answer/160637",
   "learnRequirementsProductSpeficifacion" : "https://support.google.com/merchants/answer/7052112",
   "learnAboutAttributeMapping" : "https://support.google.com/merchants/answer/7052112",
-  "addWebsiteAddress" : "//google.com"
+  "prohibitedContentGuidelines" : "https://support.google.com/merchants/answer/6149970",
+  "googleProductCategories" : "https://support.google.com/merchants/answer/6324436"
 }
