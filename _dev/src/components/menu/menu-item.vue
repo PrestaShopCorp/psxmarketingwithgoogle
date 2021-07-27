@@ -19,10 +19,9 @@
 <template>
   <li
     class="nav-item"
-    v-if="!onboardingRequired"
   >
     <router-link
-      active-class="active"
+      :active-class="active"
       class="nav-link"
       :to="route"
     >
@@ -39,9 +38,9 @@ export default {
       type: String,
       default: '',
     },
-    onboardingRequired: {
-      type: Boolean,
-      default: false,
+    active: {
+      type: String,
+      default: null,
     },
   },
 };
