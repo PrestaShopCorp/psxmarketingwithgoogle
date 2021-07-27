@@ -57,7 +57,6 @@
     </div>
     <p
       class="mb-1"
-      v-if="!isEnabled"
     >
       {{ $t('freeListingCard.intro') }}
     </p>
@@ -66,7 +65,7 @@
         v-if="alert"
         :variant="alert.variant"
         show
-        class="mb-0"
+        class="mb-0 mt-3"
       >
         <p class="mb-0">
           {{ $t(`freeListingCard.${alert.text}`) }}
