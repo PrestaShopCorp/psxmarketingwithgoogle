@@ -37,4 +37,20 @@ describe('free-listing.vue / enabled', () => {
     // Check if toggle switch is visible
     expect(wrapper.find('.ps-switch').exists()).toBeTruthy();
   });
+
+  it('switch is disabled when there is an API error', () => {
+    const wrapper = shallowMount(FreeListingCard, {
+      propsData: {
+        isEnabled: true,
+      },
+      ...commonOptions,
+      store: new Vuex.Store(cloneStore()),
+      beforeMount(this: any) {
+        this.$store.state.freeListing.errorAPI = true;
+      },
+    });
+
+    // Check if toggle switch is disabled
+    expect(wrapper.find('.ps-switch [type="radio"]').attributes('disabled')).toBe('disabled');
+  });
 });
