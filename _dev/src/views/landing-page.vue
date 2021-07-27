@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import VueShowdown from 'vue-showdown';
+import {VueShowdown} from 'vue-showdown';
 import googleUrl from '@/assets/json/googleUrl.json';
 
 import LandingPageHeader from '../components/landing-page/landing-page-header';
