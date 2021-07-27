@@ -140,6 +140,8 @@ class PsxMktgWithGoogleTranslations
                 'claimOverwriteWithManualAction' => $this->module->l('To finalize your Google Merchant Center account connection, you need to provide your website URL ({0}) in your Google Merchant Center account.', 'PsxMktgWithGoogleTranslations'),
                 'noExistingAccount' => $this->module->l('No existing account', 'PsxMktgWithGoogleTranslations'),
                 'linkLearnMoreAbout' => $this->module->l('Learn more about "{0}"', 'PsxMktgWithGoogleTranslations'),
+                'newGmcNotListed' => $this->module->l('Waiting for your account to be published', 'PsxMktgWithGoogleTranslations'),
+                'newGmcNotListedDescription' => $this->module->l('If you just created a new account, it means Google is still building it. You have to wait or come back later. This operation can take up to 10 minutes on Google side.', 'PsxMktgWithGoogleTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [

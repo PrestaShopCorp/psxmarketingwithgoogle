@@ -89,7 +89,9 @@
       "ineligibleForFreeListingDescription" : "Please examine product-level disapprovals as well as your overall account.",
       "claimOverwriteWithManualAction" : "To finalize your Google Merchant Center account connection, you need to provide your website URL ({0}) in your Google Merchant Center account.",
       "noExistingAccount": "No existing account",
-      "linkLearnMoreAbout": "Learn more about \"{0}\""
+      "linkLearnMoreAbout": "Learn more about \"{0}\"",
+      "newGmcNotListed": "Waiting for your account to be published",
+      "newGmcNotListedDescription": "If you just created a new account, it means Google is still building it. You have to wait or come back later. This operation can take up to 10 minutes on Google side."
     },
     "mcaRequirements" : {
       "steps": {

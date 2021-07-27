@@ -25,3 +25,7 @@ new Vue({
   i18n,
   render: (h) => h(App),
 }).$mount('#psxMktgWithGoogleApp');
+
+console.error('#################################################');
+console.error('### SHOP ID:  ', window.shopIdPsAccounts, '  ###');
+console.error('#################################################');

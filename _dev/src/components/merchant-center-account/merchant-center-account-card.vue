@@ -202,8 +202,21 @@
     >
       {{ $t('mcaCard.googleMCA') }}
     </p>
+    <b-alert
+      v-if="isLinkedGmcStillCreating"
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        <strong>{{ $t('mcaCard.newGmcNotListed') }}</strong><br>
+        <span class="ps_gs-fz-12">
+          {{ $t('mcaCard.newGmcNotListedDescription') }}
+        </span>
+      </p>
+    </b-alert>
     <div
-      v-if="isEnabled && selectedMcaDetails.id !== null"
+      v-if="isLinkedGmcFullyFetched"
       class="d-flex flex-wrap flex-md-nowrap justify-content-between"
     >
       <div class="d-flex align-items-center">
@@ -560,6 +573,18 @@ export default {
         default:
           return null;
       }
+    },
+    isLinkedGmcStillCreating() {
+      return this.isEnabled
+        && this.selectedMcaDetails.id !== null
+        && !this.mcaListLoading
+        && this.selectedMcaDetails.gmcStatus === null;
+    },
+    isLinkedGmcFullyFetched() {
+      return this.isEnabled
+        && this.selectedMcaDetails.id !== null
+        && !this.mcaListLoading
+        && this.selectedMcaDetails.gmcStatus !== null;
     },
   },
   methods: {

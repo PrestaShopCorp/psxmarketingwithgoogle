@@ -239,6 +239,9 @@ export default {
         if (linkedGmc) {
           commit(MutationsTypes.SAVE_GMC, linkedGmc);
           dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+        } else {
+          console.log(`GMC ${state.googleMerchantAccount.id} not found, try to search again in 15s`);
+          setTimeout(() => dispatch(ActionsTypes.REQUEST_GMC_LIST), 15000);
         }
       }
     } catch (error) {
@@ -251,6 +254,7 @@ export default {
     commit, rootState, state, dispatch,
   }) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    await dispatch(ActionsTypes.DISSOCIATE_GMC, correlationId);
     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/oauth`, {
       method: 'DELETE',
       headers: {
@@ -262,7 +266,6 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    await dispatch(ActionsTypes.DISSOCIATE_GMC, correlationId);
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
