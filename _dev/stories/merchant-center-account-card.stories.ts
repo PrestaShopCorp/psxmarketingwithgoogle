@@ -68,13 +68,13 @@ const Template = (args, {argTypes}) => ({
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
-  initialMcaStatus: merchantCenterAccountNotConnected,
+  initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
 };
 
 export const Enabled:any = Template.bind({});
 Enabled.args = {
   isEnabled: true,
-  initialMcaStatus: merchantCenterAccountNotConnected,
+  initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
   mounted: function(this: any) {
     this.$store.state.accounts.googleAccount.details.email = "jean.peuplu@prestashop.com"
   }
@@ -83,7 +83,7 @@ Enabled.args = {
 export const EnabledSpinner:any = Template.bind({});
 EnabledSpinner.args = {
   isEnabled: true,
-  initialMcaStatus: merchantCenterAccountNotConnected,
+  initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
   mounted: function(this: any) {
     // This is not the correct state to show spinner but it works...
     this.$store.state.accounts.googleAccount.mcaSelectionOptions = null
@@ -94,16 +94,16 @@ EnabledSpinner.args = {
 export const EnabledButNoAccount:any = Template.bind({});
 EnabledButNoAccount.args = {
   isEnabled: true,
-  initialMcaStatus: merchantCenterAccountNotConnected,
+  initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
   mounted: function(this: any) {
-    this.$store.state.accounts.googleAccount.mcaSelectionOptions = undefined
+    this.$store.state.accounts.googleAccount.mcaSelectionOptions = [];
   }
 };
 
 export const EnabledLinkingFailed:any = Template.bind({});
 EnabledLinkingFailed.args = {
   isEnabled: true,
-  initialMcaStatus: Object.assign({}, 
+  initialMcaStatus: Object.assign({},
     merchantCenterAccountNotConnected,
     {
       gmcStatus: WebsiteClaimErrorReason.LinkingFailed,
@@ -204,3 +204,4 @@ UnlinkFailed.args = {
     },
   ),
 };
+

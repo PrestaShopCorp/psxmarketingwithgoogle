@@ -67,7 +67,7 @@
               <i class="icon-busy icon-busy--dark" />
             </b-dropdown-item>
             <b-dropdown-item
-              v-if="!mcaListLoading && !mcaSelectionOptionsAndGroups.length"
+              v-if="!mcaListLoading && mcaSelectionOptionsAndGroups.length === 0"
               :disabled="true"
               variant="dark"
               link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
@@ -449,7 +449,7 @@ export default {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
     },
     mcaSelectionOptionsAndGroups() {
-      if (!this.mcaSelectionOptions) {
+      if (!this.mcaSelectionOptions?.length) {
         return [];
       }
       const list = this.mcaSelectionOptions
