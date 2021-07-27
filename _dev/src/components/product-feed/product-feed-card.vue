@@ -179,9 +179,13 @@
         :show="!!alert && alert === 'ShippingSettingsMissing'"
       >
         <p class="mb-2">
-          <strong class="font-weight-600">{{
-            $t("productFeedCard.alertShippingSettingsMissing")
-          }}</strong><br>
+          <VueShowdown
+            tag="strong"
+            class="font-weight-600"
+            :markdown="$t('productFeedCard.alertShippingSettingsMissing')"
+            :extensions="['targetlink', 'no-p-tag']"
+          />
+          <br>
           <span class="ps_gs-fz-12">
             {{ $t("productFeedCard.alertShippingSettingsMissingDescription") }}
           </span>
@@ -445,9 +449,6 @@ export default {
     alertLink() {
       if (this.alert === 'Failed') {
         return [this.$options.googleUrl.syncFailed];
-      }
-      if (this.alert === 'ShippingSettingsMissing') {
-        return [this.$options.googleUrl.shippingSettingsMissing];
       }
       return null;
     },
