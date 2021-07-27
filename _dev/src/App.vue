@@ -52,5 +52,10 @@ export default {
   created() {
     this.$root.identifySegment();
   },
+  watch: {
+    $route() {
+      this.$root.identifySegment();
+    },
+  },
 };
 </script>
