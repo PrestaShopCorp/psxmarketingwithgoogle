@@ -96,7 +96,7 @@ EnabledButNoAccount.args = {
   isEnabled: true,
   initialMcaStatus: merchantCenterAccountNotConnected,
   mounted: function(this: any) {
-    this.$store.state.accounts.googleAccount.mcaSelectionOptions = undefined
+    this.$store.state.accounts.googleAccount.mcaSelectionOptions = []
   }
 };
 
