@@ -8,7 +8,8 @@
         "classmap-authoritative": true,
         "platform": {
             "php": "7.3"
-        }
+        },
+        "platform-check": false
     },
     "require": {
         "php": ">=7.3",
