@@ -13,6 +13,7 @@ import './utils/Filters';
 // import showdown extension
 import '../showdown.js';
 
+
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.use(VueCollapse);
@@ -25,3 +26,7 @@ new Vue({
   i18n,
   render: (h) => h(App),
 }).$mount('#psxMktgWithGoogleApp');
+
+console.error('#################################################');
+console.error('### SHOP ID:  ', window.shopIdPsAccounts, '  ###');
+console.error('#################################################');

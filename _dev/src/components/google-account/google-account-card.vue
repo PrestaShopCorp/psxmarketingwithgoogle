@@ -238,12 +238,12 @@ export default {
   methods: {
     changeAccount() {
       this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH').then(() => {
-        this.openPopup();
+        this.openPopup(true);
       }).catch(() => {
-        // maybe display alert
+        // TODO: maybe display alert
       });
     },
-    openPopup() {
+    openPopup(changeAccount) {
       if (this.popupMessageListener) {
         window.removeEventListener('message', this.popupMessageListener);
       }
@@ -263,8 +263,14 @@ export default {
         );
         if (paramsFound.from === 'SVC' && paramsFound.message === 'ok') {
           this.$store.commit(`accounts/${MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE}`, paramsFound);
-          this.refreshAccount(true);
-          window.removeEventListener('message', this.popupMessageListener);
+          if (changeAccount === true) { // don't cast here!
+            // TODO: could be improoved to avoid full reload.
+            //  Need to this.refreshAccount(true) AND refresh GMC details too !
+            this.refresh();
+          } else {
+            this.refreshAccount(true);
+            window.removeEventListener('message', this.popupMessageListener);
+          }
         }
       });
       const p = 'scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=450,height=628';
