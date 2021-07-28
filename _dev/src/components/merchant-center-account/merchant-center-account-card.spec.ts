@@ -28,7 +28,7 @@ describe('merchant-center-account-card.vue', () => {
 
     // Check disabled state
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(true);
-    expect(wrapper.findComponent(BadgeListRequirements)).toBeTruthy();
+    expect(wrapper.findComponent(BadgeListRequirements).exists()).toBeTruthy();
     // Check existing GMC list, selected account details are not displayed
     expect(wrapper.find('#mcaSelection').exists()).toBeFalsy();
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
