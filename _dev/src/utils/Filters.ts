@@ -1,8 +1,8 @@
 import Vue from 'vue';
 
 import dayjs from 'dayjs';
-const timezone = require('dayjs/plugin/timezone'); // dependent on utc plugin
-const utc = require('dayjs/plugin/utc');
+import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
+import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
