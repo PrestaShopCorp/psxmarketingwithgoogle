@@ -555,7 +555,7 @@ export default {
 
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCreation);
       setTimeout(async () => {
-        await dispatch(ActionsTypes.REQUEST_GMC_LIST); // TODO !0: tester cela
+        await dispatch(ActionsTypes.REQUEST_GMC_LIST);
       }, 60000);
     } catch (error) {
       console.log(error);
