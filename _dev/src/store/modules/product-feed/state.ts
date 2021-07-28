@@ -53,7 +53,7 @@ export interface State {
   errorAPI: boolean
   isConfigured: boolean,
   isConfiguredOnce: boolean,
-  psxMktgWithGoogleActiveCountries: Array<string>,
+  psxMtgWithGoogleActiveShopCountry: Array<string>,
   totalProducts: number,
   stepper: number,
   status: ProductFeedStatus,
@@ -66,7 +66,7 @@ export const state: State = {
   errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
-  psxMktgWithGoogleActiveCountries: [],
+  psxMtgWithGoogleActiveShopCountry: [],
   totalProducts: 0,
   stepper: 1,
   status: {

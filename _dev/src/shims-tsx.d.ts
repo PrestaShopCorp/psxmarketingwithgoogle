@@ -9,7 +9,7 @@ declare global {
 
     interface Window {
       psAccountShopInConflict: boolean,
-      psxMktgWithGoogleActiveCountries: Array<string>,
+      psxMtgWithGoogleActiveShopCountry: Array<string>,
       contextPsAccounts: any;
       translations: any;
       i18nSettings: any;

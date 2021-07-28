@@ -22,7 +22,6 @@
         :deselect-from-dropdown="true"
         class="ps_gs-v-select maxw-sm-500"
         :selectable="country => country.disabled"
-        multiple
         label="country"
       >
         <template #option="{ country }">
@@ -205,7 +204,7 @@ export default {
         return this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
       },
       set(value) {
-        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: value});
+        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: [value]});
       },
     },
     sortCountries() {
