@@ -83,4 +83,17 @@ describe('free-listing.vue / enabled', () => {
     await wrapper.find('[data-test-id="btn-refresh"]').trigger('click');
     expect(mockRouter.go).toHaveBeenCalledTimes(1);
   });
+
+  it('Clicking on the toggle when the free listing is enabled emmit the event to open a popup', async () => {
+    const wrapper = shallowMount(FreeListingCard, {
+      propsData: {
+        isEnabled: true,
+      },
+      store: new Vuex.Store(cloneStore()),
+    });
+
+    // Check if openPopin event has been emmited when toggle is clicked
+    await wrapper.find('.ps-switch [type="radio"]').trigger('click');
+    expect(wrapper.emitted('openPopin')).toBeTruthy();
+  });
 });
