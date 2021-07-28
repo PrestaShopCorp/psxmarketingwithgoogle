@@ -31,7 +31,7 @@ describe('free-listing.vue / enabled', () => {
     mockRouter = {go: jest.fn()};
   });
 
-  it('switch is shown when card is enabled', () => {
+  it('switch is shown and not disabled when card is enabled', () => {
     const wrapper = shallowMount(FreeListingCard, {
       propsData: {
         isEnabled: true,
@@ -40,8 +40,9 @@ describe('free-listing.vue / enabled', () => {
       store: new Vuex.Store(cloneStore()),
     });
 
-    // Check if toggle switch is visible
+    // Check if toggle switch is visible and not disabled
     expect(wrapper.find('.ps-switch').exists()).toBeTruthy();
+    expect(wrapper.find('.ps-switch [type="radio"]').attributes('disabled')).toBeFalsy();
   });
 
   it('switch is disabled when there is an API error', () => {
