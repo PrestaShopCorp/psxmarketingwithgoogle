@@ -71,7 +71,7 @@ describe('product-feed-settings-shipping.vue', () => {
     expect(wrapper.find('.commit'));
     expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledTimes(1);
     expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP)
-    .toHaveBeenCalledWith(expect.anything(), 2);
+      .toHaveBeenCalledWith(expect.anything(), 2);
   });
 
   it('shows button cancel and triggers previous step on click', async () => {
