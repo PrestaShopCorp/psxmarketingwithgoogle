@@ -133,7 +133,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     {
         $this->ajaxDie(json_encode([
             'shop' => [
-                'name' => $this->context->shop->name,
+                'name' => Shop::isFeatureActive()
+                    ? $this->context->shop->name
+                    : $this->configurationAdapter->get('PS_SHOP_NAME'),
                 'url' => $this->context->link->getBaseLink($this->context->shop->id),
             ],
             'store' => [
