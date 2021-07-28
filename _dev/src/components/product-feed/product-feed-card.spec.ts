@@ -17,7 +17,7 @@ import {
 
 describe('merchant-center-account-card.vue', () => {
   const mockRoute = {
-    path: '/product-feed-settings',
+    name: 'product-feed-settings',
   };
   const mockRouter = {
     push: jest.fn(),

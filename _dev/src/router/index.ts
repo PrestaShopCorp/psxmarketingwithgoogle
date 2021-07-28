@@ -30,7 +30,7 @@ const routes: Array<RouteConfig> = [
     component: OnboardingPage,
   },
   {
-    path: '/product-feed-settings',
+    path: '/configuration/product-feed-settings',
     name: 'product-feed-settings',
     component: TunnelProductFeed,
   },

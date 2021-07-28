@@ -60,6 +60,7 @@
         </b-row>
         <div class="text-right mt-1">
           <b-button
+            v-if="productsSent"
             variant="invisible"
             @click="displayReporting"
             class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13"
@@ -106,6 +107,12 @@ export default {
     },
     getGMCInformations() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
+    },
+    productsSent() {
+      return this.validationSummary.pendingItems !== null
+      || this.validationSummary.activeItems !== null
+      || this.validationSummary.expiringItems !== null
+      || this.validationSummary.disapprovedItems !== null;
     },
   },
   methods: {

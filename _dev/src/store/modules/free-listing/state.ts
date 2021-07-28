@@ -32,6 +32,6 @@ export const state: State = {
   isActivatedOnce: false,
   validationList: {},
   summaryValidationList: [],
-  status: false,
+  status: true,
   errorAPI: false,
 };
