@@ -70,7 +70,8 @@ describe('product-feed-settings-shipping.vue', () => {
     await expect(wrapper.find('[data-test-id="continueButton"]').trigger('click'));
     expect(wrapper.find('.commit'));
     expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledTimes(1);
-    expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledWith(expect.anything(), 2);
+    expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP)
+    .toHaveBeenCalledWith(expect.anything(), 2);
   });
 
   it('shows button cancel and triggers previous step on click', async () => {
