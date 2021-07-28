@@ -49,7 +49,7 @@ describe('free-listing.vue / enabled', () => {
       propsData: {
         isEnabled: true,
       },
-      ...commonOptions,
+      ...config,
       store: new Vuex.Store(cloneStore()),
       beforeMount(this: any) {
         this.$store.state.freeListing.errorAPI = true;
@@ -68,7 +68,7 @@ describe('free-listing.vue / enabled', () => {
       propsData: {
         isEnabled: true,
       },
-      ...commonOptions,
+      ...config,
       store: new Vuex.Store(cloneStore()),
       beforeMount(this: any) {
         this.$store.state.freeListing.errorAPI = true;
