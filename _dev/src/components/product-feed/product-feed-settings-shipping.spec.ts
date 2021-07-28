@@ -7,7 +7,8 @@ import Vuex from 'vuex';
 import config, {localVue, cloneStore} from '@/../tests/init';
 import {shallowMount} from '@vue/test-utils';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
-import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
+import ProductFeedSettingsShipping from '@/components/product-feed/product-feed-settings-shipping.vue';
+import ProductFeedSettingsShippingReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import Stepper from '@/components/commons/stepper.vue';
 import VueShowdown from 'vue-showdown';
 
@@ -16,14 +17,12 @@ import {
   productFeed,
   productFeedIsConfigured,
 } from '../../../.storybook/mock/product-feed';
+import {
+  initialStateApp,
+} from '../../../.storybook/mock/state-app';
 
 describe('product-feed-settings-shipping.vue', () => {
-  const mockRoute = {
-    path: '/product-feed-settings',
-  };
-  const mockRouter = {
-    push: jest.fn(),
-  };
+
 
   let mutationsCloned;
   let storeStepOne;
@@ -36,6 +35,12 @@ describe('product-feed-settings-shipping.vue', () => {
       ...storeStepOne.modules.productFeed.state,
       ...productFeed,
     };
+
+    storeStepOne.modules.app.state= {
+      ...storeStepOne.modules.app.state,
+      ...initialStateApp,
+    };
+
     storeStepOne.modules.productFeed.mutations = {
       ...storeStepOne.modules.productFeed.mutations,
       ...mutationsCloned,
@@ -56,11 +61,7 @@ describe('product-feed-settings-shipping.vue', () => {
   });
 
   it('shows button continue and triggers next step on click', async () => {
-    const wrapper = shallowMount(ProductFeedCard, {
-      mocks: {
-        $route: mockRoute,
-        $router: mockRouter,
-      },
+    const wrapper = shallowMount(ProductFeedSettingsShipping, {
       ...config,
       propsData: {
         isEnabled: true,
@@ -69,21 +70,15 @@ describe('product-feed-settings-shipping.vue', () => {
       store: new Vuex.Store(storeStepOne),
     });
     await expect(wrapper.find('b-button').trigger('click'));
-    expect(mockRouter.push).toHaveBeenCalledTimes(1);
-    expect(mockRouter.push).toHaveBeenCalledWith(mockRoute);
     //   TODO : check for commit to be send
-    //  expect(wrapper.find(".commit"));
+     expect(wrapper.find(".commit"));
     //  expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledTimes(1);
     //  expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledWith(2);
   });
 
   it('shows button cancel and triggers previous step on click', async () => {
-    const wrapper = shallowMount(ProductFeedCard, {
+    const wrapper = shallowMount(ProductFeedSettingsShipping, {
       ...config,
-      mocks: {
-        $route: mockRoute,
-        $router: mockRouter,
-      },
       propsData: {
         isEnabled: true,
       },
@@ -94,8 +89,6 @@ describe('product-feed-settings-shipping.vue', () => {
     wrapper.vm.$emit('cancelProductFeedSettingsConfiguration');
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('cancelProductFeedSettingsConfiguration')).toBeTruthy();
-    expect(mockRouter.push).toHaveBeenCalledTimes(2);
-    expect(mockRouter.push).toHaveBeenCalledWith(mockRoute);
   });
 
   //  it('shows input target countries with good datas', () => {

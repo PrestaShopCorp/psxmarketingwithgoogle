@@ -187,12 +187,13 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import PsSelect from '../commons/ps-select';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
-
+import {VueShowdown} from 'vue-showdown'
 export default {
   name: 'ProductFeedSettingsShipping',
   components: {
     PsSelect,
     ProductFeedSettingsFooter,
+    VueShowdown
   },
   data() {
     return {
