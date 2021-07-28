@@ -3,7 +3,7 @@ export const productFeed = {
   errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
-  psxMktgWithGoogleActiveCountries: [],
+  psxMtgWithGoogleActiveShopCountry: [],
   totalProducts: 0,
   stepper: 1,
   status: {

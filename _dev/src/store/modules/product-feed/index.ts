@@ -4,12 +4,12 @@ import actions from './actions';
 import {state as initialState} from './state';
 
 const {
-  psxMktgWithGoogleActiveCountries,
+  psxMtgWithGoogleActiveShopCountry,
 }: any = window;
 
 const state = Object.assign(
   initialState,
-  {psxMktgWithGoogleActiveCountries} || {},
+  {psxMtgWithGoogleActiveShopCountry} || {},
 );
 
 export default {
