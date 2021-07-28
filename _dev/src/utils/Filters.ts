@@ -1,5 +1,13 @@
 import Vue from 'vue';
 
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault('Europe/London');
+
 Vue.filter(
   'timeConverterToDate', (timestamp : string) => {
     if (timestamp) {
@@ -18,9 +26,9 @@ Vue.filter(
 Vue.filter(
   'timeConverterToHour', (timestamp : string) => {
     if (timestamp) {
-      const a = new Date(timestamp);
-      const hour = a.getHours();
-      const min = a.getMinutes();
+      const a = dayjs.tz(timestamp);
+      const hour = a.hour();
+      const min = a.minute();
       const finalMin = min < 10 ? `0${min}` : min;
       const time = `${hour}:${finalMin}`;
       return time;

@@ -124,10 +124,7 @@
         </p>
         <b-button
           variant="invisible"
-          class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 ml-auto"
-          :class="syncStatus === 'schedule' ? 'text-secondary' : 'text-primary'"
-          :disabled="syncStatus === 'schedule'"
-          :aria-disabled="syncStatus === 'schedule'"
+          class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 ml-auto text-primary"
           to="product-feed"
         >
           {{ $t("cta.trackProductStatus") }}
