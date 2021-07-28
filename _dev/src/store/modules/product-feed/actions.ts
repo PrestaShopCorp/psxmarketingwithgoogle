@@ -150,7 +150,6 @@ export default {
       response.json();
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
-      // }
     } catch (error) {
       console.error(error);
     }
