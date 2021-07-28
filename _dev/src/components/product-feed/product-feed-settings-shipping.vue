@@ -168,6 +168,7 @@
         {{ $t('cta.cancel') }}
       </b-button>
       <b-button
+        data-test-id="continueButton"
         @click="nextStep"
         size="sm"
         :disabled="disableContinue"
@@ -183,6 +184,7 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
+import {VueShowdown} from 'vue-showdown';
 import PsSelect from '../commons/ps-select';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
@@ -192,6 +194,7 @@ export default {
   components: {
     PsSelect,
     ProductFeedSettingsFooter,
+    VueShowdown,
   },
   data() {
     return {

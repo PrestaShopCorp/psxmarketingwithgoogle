@@ -3,7 +3,7 @@
  */
 
 // Import this file first to init mock on window
-import {commonOptions} from '@/../tests/init';
+import config from '@/../tests/init';
 
 import {shallowMount} from '@vue/test-utils';
 import ProductFeedCardReportProductsSyncCard from '@/components/product-feed/product-feed-card-report-products-sync-card.vue';
@@ -11,7 +11,7 @@ import ProductFeedCardReportProductsSyncCard from '@/components/product-feed/pro
 describe('product-feed-card-report-products-sync-card.vue / Product status', () => {
   it('shows spinners when API is being called', () => {
     const wrapper = shallowMount(ProductFeedCardReportProductsSyncCard, {
-      ...commonOptions,
+      ...config,
       propsData: {
         isLoadingInProgress: true,
       },
@@ -22,7 +22,7 @@ describe('product-feed-card-report-products-sync-card.vue / Product status', () 
 
   it('shows dashes when value is null', () => {
     const wrapper = shallowMount(ProductFeedCardReportProductsSyncCard, {
-      ...commonOptions,
+      ...config,
       propsData: {
         isLoadingInProgress: false,
         nbProducts: null,
@@ -34,7 +34,7 @@ describe('product-feed-card-report-products-sync-card.vue / Product status', () 
 
   it('shows the actual value when it gets a number', () => {
     const wrapper = shallowMount(ProductFeedCardReportProductsSyncCard, {
-      ...commonOptions,
+      ...config,
       propsData: {
         isLoadingInProgress: false,
         nbProducts: 42,

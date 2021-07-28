@@ -91,7 +91,7 @@
         :show="!!alert && alert !== 'ShippingSettingsMissing'"
       >
         <VueShowdown
-          :markdown="!!alert && $t(`productFeedCard.alert${alert}`, alertLink)"
+          :markdown="$t(`productFeedCard.alert${alert}`, alertLink)"
           :extensions="['targetlink']"
         />
         <div
@@ -266,6 +266,7 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
+import {VueShowdown} from 'vue-showdown';
 import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import countriesSelectionOptions from '../../assets/json/countries.json';
@@ -281,6 +282,7 @@ export default {
     ProductFeedCardReportCard,
     // NOT IN BATCH 1
     BadgeListRequirements,
+    VueShowdown,
     // ProductFeedCardReportMappedCategoriesCard,
     // ProductFeedCardReportProductsCard,
   },
