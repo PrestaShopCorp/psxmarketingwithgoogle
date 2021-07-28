@@ -159,6 +159,9 @@ export default {
     errorAPI() {
       return this.$store.getters['freeListing/GET_FREE_LISTING_STATUS_API'];
     },
+    productFeedIsEnabled() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
+    },
   },
   methods: {
     toggle() {

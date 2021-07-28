@@ -21,6 +21,7 @@ export const freeListingErrorAPI = {
   errorAPI: true,
 };
 
+// TODO : case to handle
 export const freeListingCountryNotEligible = {
   ...freeListingDisabled,
 };
