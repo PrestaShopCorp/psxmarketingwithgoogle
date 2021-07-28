@@ -266,7 +266,7 @@
         "productItems" : "Product items",
         "tableHeader1" : "Google product attribute",
         "tableHeader2" : "Your product value",
-        "totalProducts" : "Number of products",
+        "totalProducts" : "Active products ready for sync",
         "date" : "Date",
         "time" : "Time",
         "youSell" : "**You sell** {0}",

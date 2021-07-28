@@ -316,7 +316,7 @@ class PsxMktgWithGoogleTranslations
                     'productItems' => $this->module->l('Product items', 'PsxMktgWithGoogleTranslations'),
                     'tableHeader1' => $this->module->l('Google product attribute', 'PsxMktgWithGoogleTranslations'),
                     'tableHeader2' => $this->module->l('Your product value', 'PsxMktgWithGoogleTranslations'),
-                    'totalProducts' => $this->module->l('Number of products', 'PsxMktgWithGoogleTranslations'),
+                    'totalProducts' => $this->module->l('Active products ready for sync', 'PsxMktgWithGoogleTranslations'),
                     'date' => $this->module->l('Date', 'PsxMktgWithGoogleTranslations'),
                     'time' => $this->module->l('Time', 'PsxMktgWithGoogleTranslations'),
                     'youSell' => $this->module->l('**You sell** {0}', 'PsxMktgWithGoogleTranslations'),
