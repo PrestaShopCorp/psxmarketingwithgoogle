@@ -446,6 +446,7 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
+    commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
     return response.json();
   },
 

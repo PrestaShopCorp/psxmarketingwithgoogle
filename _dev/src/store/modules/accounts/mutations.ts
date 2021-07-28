@@ -109,9 +109,6 @@ export default {
   },
   [MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS](state: LocalState, status: boolean) {
     state.googleMerchantAccount.isClaimed = status;
-    if (status && state.googleMerchantAccount.gmcStatus === 'PendingCheck') {
-      state.googleMerchantAccount.gmcStatus = null;
-    }
   },
   [MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING](
     state: LocalState,
