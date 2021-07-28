@@ -24,7 +24,7 @@ Vue.use(VueSegment, {
   id: global.psxMktgWithGoogleSegmentId,
   router,
   debug: process.env.NODE_ENV !== 'production',
-  pageCategory: '[MKTGWG]',
+  pageCategory: '[GGL]',
 });
 
 new Vue({
@@ -48,7 +48,7 @@ new Vue({
           email: psAccountContext.user.email,
           language: this.$i18n.locale,
           version_ps: this.$store.state.app.psVersion,
-          mktgwg_module_version: this.$store.state.app.psxMktgWithGoogleModuleVersion,
+          ggl_module_version: this.$store.state.app.psxMktgWithGoogleModuleVersion,
         });
       }
     },
