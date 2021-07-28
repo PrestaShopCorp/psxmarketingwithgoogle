@@ -79,7 +79,7 @@ describe('merchant-center-account-card.vue / API errors', () => {
       propsData: {
         isEnabled: true,
       },
-      ...commonOptions,
+      ...config,
       store: new Vuex.Store(cloneStore()),
     });
 
