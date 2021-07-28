@@ -214,6 +214,14 @@
           {{ $t('mcaCard.newGmcNotListedDescription') }}
         </span>
       </p>
+      <b-button
+        class="mx-3 mt-3 mr-0 "
+        size="sm"
+        variant="outline-secondary"
+        @click="dissociateMerchantCenterAccount"
+      >
+        {{ $t("cta.disconnect") }}
+      </b-button>
     </b-alert>
     <div
       v-if="isLinkedGmcFullyFetched"
@@ -578,13 +586,14 @@ export default {
       return this.isEnabled
         && this.selectedMcaDetails.id !== null
         && !this.mcaListLoading
-        && this.selectedMcaDetails.gmcStatus === null;
+        && (this.selectedMcaDetails.name === null || this.selectedMcaDetails.name === undefined);
     },
     isLinkedGmcFullyFetched() {
       return this.isEnabled
         && this.selectedMcaDetails.id !== null
         && !this.mcaListLoading
-        && this.selectedMcaDetails.gmcStatus !== null;
+        && this.selectedMcaDetails.name !== null
+        && this.selectedMcaDetails.name !== undefined;
     },
   },
   methods: {

@@ -446,6 +446,7 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
+    commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
     return response.json();
   },
 
@@ -554,7 +555,7 @@ export default {
 
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCreation);
       setTimeout(async () => {
-        await dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+        await dispatch(ActionsTypes.REQUEST_GMC_LIST);
       }, 60000);
     } catch (error) {
       console.log(error);
