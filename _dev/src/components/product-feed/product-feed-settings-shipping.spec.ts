@@ -22,8 +22,6 @@ import {
 } from '../../../.storybook/mock/state-app';
 
 describe('product-feed-settings-shipping.vue', () => {
-
-
   let mutationsCloned;
   let storeStepOne;
   beforeEach(() => {
@@ -36,7 +34,7 @@ describe('product-feed-settings-shipping.vue', () => {
       ...productFeed,
     };
 
-    storeStepOne.modules.app.state= {
+    storeStepOne.modules.app.state = {
       ...storeStepOne.modules.app.state,
       ...initialStateApp,
     };
@@ -71,7 +69,7 @@ describe('product-feed-settings-shipping.vue', () => {
     });
     await expect(wrapper.find('b-button').trigger('click'));
     //   TODO : check for commit to be send
-     expect(wrapper.find(".commit"));
+    expect(wrapper.find('.commit'));
     //  expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledTimes(1);
     //  expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledWith(2);
   });
