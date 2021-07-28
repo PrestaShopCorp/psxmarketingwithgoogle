@@ -492,7 +492,7 @@ export default {
   methods: {
     startConfiguration() {
       this.$router.push({
-        path: '/product-feed-settings',
+        name: 'product-feed-settings',
       });
     },
     goToProductFeedSettings(step) {
