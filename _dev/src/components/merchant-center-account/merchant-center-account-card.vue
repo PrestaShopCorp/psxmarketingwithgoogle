@@ -40,7 +40,7 @@
       :badges="['googleAccount']"
     />
     <div v-if="isEnabled && selectedMcaDetails.id === null">
-      <b-form class="mb-2">
+      <b-form class="mb-2 mt-3">
         <legend
           class="mb-1 h4 font-weight-600 bg-transparent border-0"
         >
@@ -196,17 +196,11 @@
       ToDo: Consider moving the "associated state" in a dedicated component
       As we only use data from the vuex store
     -->
-    <p
-      v-if="isEnabled && selectedMcaDetails.id !== null"
-      class="mb-0"
-    >
-      {{ $t('mcaCard.googleMCA') }}
-    </p>
     <b-alert
       v-if="isLinkedGmcStillCreating"
       show
       variant="warning"
-      class="mb-0 mt-3"
+      class="mb-0 mt-2"
     >
       <p class="mb-0">
         <strong>{{ $t('mcaCard.newGmcNotListed') }}</strong><br>
@@ -214,14 +208,16 @@
           {{ $t('mcaCard.newGmcNotListedDescription') }}
         </span>
       </p>
-      <b-button
-        class="mx-3 mt-3 mr-0 "
-        size="sm"
-        variant="outline-secondary"
-        @click="dissociateMerchantCenterAccount"
-      >
-        {{ $t("cta.disconnect") }}
-      </b-button>
+      <div class="d-md-flex text-center align-items-center mt-2">
+        <b-button
+          class="btn mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
+          size="sm"
+          variant="outline-secondary"
+          @click="dissociateMerchantCenterAccount"
+        >
+          {{ $t("cta.disconnect") }}
+        </b-button>
+      </div>
     </b-alert>
     <div
       v-if="isLinkedGmcFullyFetched"
