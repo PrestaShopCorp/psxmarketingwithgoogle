@@ -118,6 +118,17 @@ Connected.args = {
   initialMcaStatus: Object.assign({}, merchantCenterAccountConnected),
 };
 
+export const ConnectedButApiFails:any = Template.bind({});
+ConnectedButApiFails.args = {
+  isEnabled: true,
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.LinkingFailed,
+    }
+  ),
+};
+
 export const ShopInfoMissing:any = Template.bind({});
 ShopInfoMissing.args = {
   isEnabled: true,
