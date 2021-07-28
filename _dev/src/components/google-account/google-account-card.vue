@@ -107,7 +107,7 @@
             class="mx-1 mt-3 mt-md-0"
             @click="dissociateGoogleAccount"
           >
-            {{ $t('cta.dissociate') }}
+            {{ $t('cta.disconnect') }}
           </b-button>
           <b-button
             size="sm"

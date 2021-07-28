@@ -40,7 +40,7 @@
       :badges="['googleAccount']"
     />
     <div v-if="isEnabled && selectedMcaDetails.id === null">
-      <b-form class="mb-2">
+      <b-form class="mb-2 mt-3">
         <legend
           class="mb-1 h4 font-weight-600 bg-transparent border-0"
         >
@@ -196,12 +196,6 @@
       ToDo: Consider moving the "associated state" in a dedicated component
       As we only use data from the vuex store
     -->
-    <p
-      v-if="isEnabled && selectedMcaDetails.id !== null"
-      class="mb-0"
-    >
-      {{ $t('mcaCard.googleMCA') }}
-    </p>
     <b-alert
       v-if="isLinkedGmcStillCreating"
       show
