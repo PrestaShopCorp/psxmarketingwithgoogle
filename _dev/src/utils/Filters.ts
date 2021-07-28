@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-const dayjs = require('dayjs');
+import dayjs from 'dayjs';
 const timezone = require('dayjs/plugin/timezone'); // dependent on utc plugin
 const utc = require('dayjs/plugin/utc');
 
