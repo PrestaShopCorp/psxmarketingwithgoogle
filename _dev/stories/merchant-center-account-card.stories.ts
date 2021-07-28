@@ -5,6 +5,7 @@ import {googleAccountConnected} from '../.storybook/mock/google-account';
 import {
   merchantCenterAccountNotConnected,
   merchantCenterAccountConnected,
+  merchantCenterNewGmcNotListed,
 } from '../.storybook/mock/merchant-center-account';
 import {WebsiteClaimErrorReason} from '../src/store/modules/accounts/state';
 
@@ -205,3 +206,10 @@ UnlinkFailed.args = {
   ),
 };
 
+export const newGmcNotListed:any = Template.bind({});
+newGmcNotListed.args = {
+  isEnabled: true,
+  initialMcaStatus: Object.assign({},
+    merchantCenterNewGmcNotListed
+  ),
+};

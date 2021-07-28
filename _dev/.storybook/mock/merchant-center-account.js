@@ -55,4 +55,10 @@ export const merchantCenterAccountCreation = {
   }
 }
 
+export const merchantCenterNewGmcNotListed = {
+  ...merchantCenterAccountConnected,
+  id: '246797534',
+  name: null,
+}
+
 export default merchantCenterAccountConnected;

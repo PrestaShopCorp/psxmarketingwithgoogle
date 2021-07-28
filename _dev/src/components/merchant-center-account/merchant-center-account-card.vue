@@ -200,7 +200,7 @@
       v-if="isLinkedGmcStillCreating"
       show
       variant="warning"
-      class="mb-0 mt-3"
+      class="mb-0 mt-2"
     >
       <p class="mb-0">
         <strong>{{ $t('mcaCard.newGmcNotListed') }}</strong><br>
@@ -208,14 +208,16 @@
           {{ $t('mcaCard.newGmcNotListedDescription') }}
         </span>
       </p>
-      <b-button
-        class="mx-3 mt-3 mr-0 "
-        size="sm"
-        variant="outline-secondary"
-        @click="dissociateMerchantCenterAccount"
-      >
-        {{ $t("cta.disconnect") }}
-      </b-button>
+      <div class="d-md-flex text-center align-items-center mt-2">
+        <b-button
+          class="btn mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
+          size="sm"
+          variant="outline-secondary"
+          @click="dissociateMerchantCenterAccount"
+        >
+          {{ $t("cta.disconnect") }}
+        </b-button>
+      </div>
     </b-alert>
     <div
       v-if="isLinkedGmcFullyFetched"
