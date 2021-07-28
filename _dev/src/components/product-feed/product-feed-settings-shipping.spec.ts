@@ -67,11 +67,10 @@ describe('product-feed-settings-shipping.vue', () => {
       ...localVue,
       store: new Vuex.Store(storeStepOne),
     });
-    await expect(wrapper.find('b-button').trigger('click'));
-    //   TODO : check for commit to be send
+    await expect(wrapper.find('[data-test-id="continueButton"]').trigger('click'));
     expect(wrapper.find('.commit'));
-    //  expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledTimes(1);
-    //  expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledWith(2);
+    expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledTimes(1);
+    expect(mutationsCloned.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledWith(expect.anything(), 2);
   });
 
   it('shows button cancel and triggers previous step on click', async () => {
@@ -88,9 +87,4 @@ describe('product-feed-settings-shipping.vue', () => {
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('cancelProductFeedSettingsConfiguration')).toBeTruthy();
   });
-
-  //  it('shows input target countries with good datas', () => {
-  //   TODO : check for inputs to be well filled
-
-  //  });
 });

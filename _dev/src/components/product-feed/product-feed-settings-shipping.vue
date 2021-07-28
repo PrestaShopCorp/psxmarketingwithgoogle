@@ -169,6 +169,7 @@
         {{ $t('cta.cancel') }}
       </b-button>
       <b-button
+        data-test-id="continueButton"
         @click="nextStep"
         size="sm"
         :disabled="disableContinue"
