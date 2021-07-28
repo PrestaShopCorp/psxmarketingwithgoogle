@@ -148,26 +148,6 @@
           class="text-muted ps_gs-fz-12 mt-3 mt-md-0"
           :markdown="$t('mcaCard.toUseGmcNeedsAdminAccess')"
         />
-        <b-alert
-          v-if="error === WebsiteClaimErrorReason.LinkingFailed"
-          show
-          variant="warning"
-          class="mb-0 mt-3"
-        >
-          <p class="mb-0">
-            {{ $t('mcaCard.linkingFailed') }}
-          </p>
-          <div class="d-md-flex text-center align-items-center mt-2">
-            <b-button
-              size="sm"
-              class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
-              variant="outline-secondary"
-              @click="refresh"
-            >
-              {{ $t('general.refreshPage') }}
-            </b-button>
-          </div>
-        </b-alert>
       </b-form>
       <div class="mt-3">
         <b-button
@@ -412,6 +392,26 @@ v-if="index !== 0"
         {{ $t('mcaCard.unlinkFailed') }}
       </p>
     </b-alert>
+    <b-alert
+      v-if="error === WebsiteClaimErrorReason.LinkingFailed"
+      show
+      variant="warning"
+      class="mb-0 mt-3"
+    >
+      <p class="mb-0">
+        {{ $t('mcaCard.linkingFailed') }}
+      </p>
+      <div class="d-md-flex text-center align-items-center mt-2">
+        <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
+          variant="outline-secondary"
+          @click="refresh"
+        >
+          {{ $t('general.refreshPage') }}
+        </b-button>
+      </div>
+    </b-alert>
     <MerchantCenterAccountPopinOverwriteClaim
       ref="mcaPopinOverrideClaim"
     />
@@ -426,6 +426,7 @@ v-if="index !== 0"
 import googleUrl from '@/assets/json/googleUrl.json';
 import uniqBy from 'lodash.uniqby';
 import {VueShowdown} from 'vue-showdown';
+import {BAlert} from 'bootstrap-vue';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
@@ -440,6 +441,7 @@ export default {
     BadgeListRequirements,
     MerchantCenterAccountPopinWebsiteRequirements,
     VueShowdown,
+    BAlert,
   },
   data() {
     return {
