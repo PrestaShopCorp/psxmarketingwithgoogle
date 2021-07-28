@@ -107,7 +107,7 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, rootState, getters, commit, dispatch,
+    state, rootState, getters, commit,
   }) {
     const productFeedSettings = state.settings;
     const targetCountries = getters.GET_ACTIVE_COUNTRIES;
@@ -147,11 +147,6 @@ export default {
         commit(MutationsTypes.API_ERROR, true);
         throw new HttpClientError(response.statusText, response.status);
       }
-      //  else if (getters.GET_SYNC_STATUS === 'failed') {
-      //     response.json();
-      //     commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
-      // } else {
-
       response.json();
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
