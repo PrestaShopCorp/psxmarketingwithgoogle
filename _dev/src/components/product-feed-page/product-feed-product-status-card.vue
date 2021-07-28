@@ -62,7 +62,10 @@
           <b-button
             variant="invisible"
             @click="displayReporting"
-            class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13"
+            :class="merchantHasNoProductExported ? 'text-secondary' : 'text-primary'"
+            :disabled="merchantHasNoProductExported"
+            :aria-disabled="merchantHasNoProductExported"
+            class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13"
           >
             {{ $t('cta.viewDetailedStatuses') }}
           </b-button>
@@ -99,6 +102,9 @@ export default {
     },
     isSyncSummaryLoadingInProgress() {
       return this.$store.state.productFeed.isSyncSummaryLoadingInProgress;
+    },
+    merchantHasNoProductExported() {
+      return this.nbProductsTotal <= 0 || this.nbProductsTotal === null;
     },
     nbProductsTotal() {
       return this.validationSummary.activeItems + this.validationSummary.pendingItems
