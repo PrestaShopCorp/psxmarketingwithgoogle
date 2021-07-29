@@ -228,7 +228,8 @@ export default {
         step1: this.psAccountsIsOnboarded,
         step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
-          && this.productFeedIsConfigured,
+          && this.productFeedIsConfigured
+          && false, // TODO: In the 1st batch version, we don't have Google Ads.
         step3: false,
       };
     },
