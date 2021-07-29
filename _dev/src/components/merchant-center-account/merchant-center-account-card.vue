@@ -57,7 +57,7 @@
             menu-class="ps-dropdown"
             no-flip
             size="sm"
-            :disabled="isLinking || !!error"
+            :disabled="isLinking || !!error || shopIsOnMaintenanceMode"
           >
             <b-dropdown-item
               link-class="px-3"
@@ -137,7 +137,7 @@
           <b-button
             size="sm"
             variant="primary"
-            :disabled="selectedMcaIndex === null || isLinking"
+            :disabled="selectedMcaIndex === null || isLinking || shopIsOnMaintenanceMode"
             class="mt-3 mt-md-0 ml-md-3"
             @click="selectMerchantCenterAccount"
           >
@@ -153,14 +153,45 @@
         <b-button
           variant="invisible"
           class="p-0 border-0 font-weight-normal mb-0 text-primary"
+          :class="shopIsOnMaintenanceMode ? 'bg-transparent text-secondary' : ''"
           @click="checkWebsiteRequirements"
+          :disabled="shopIsOnMaintenanceMode"
         >
           <i
             class="left material-icons mr-2 ps_gs-fz-24"
             aria-hidden="true"
           >person_add</i><!--
-          --><span class="align-middle">{{ $t('cta.createNewAccount') }}</span>
+          --><span
+                class="align-middle"
+              >{{ $t('cta.createNewAccount') }}
+            </span>
         </b-button>
+
+        <b-alert
+          v-if="shopIsOnMaintenanceMode"
+          show
+          variant="warning"
+          class="mb-0 mt-2"
+        >
+          <VueShowdown
+            class="mb-0"
+            :markdown="$t('mcaCard.shopMaintenance')"
+            :extensions="['no-p-tag']"
+            tag='p'
+          />
+          <div class="d-md-flex text-center align-items-center mt-2">
+            <b-button
+              class="btn mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
+              size="sm"
+              variant="outline-secondary"
+              :href="this.$store.state.app.psxMktgWithGoogleMaintenanceSettingsUrl"
+              target="_blank"
+            >
+              {{ $t("cta.shopMaintenanceBtn") }}
+            </b-button>
+          </div>
+        </b-alert>
+
         <VueShowdown
           v-if="isEU"
           class="mt-4 mb-0 text-muted ps_gs-fz-12"
@@ -489,6 +520,10 @@ export default {
         list.filter((gmc) => !gmc.aggregatorName),
         groups.map((mca) => ({mca, gmcs: list.filter((gmc) => gmc.aggregatorName === mca.name)})),
       ];
+    },
+    shopIsOnMaintenanceMode() {
+      return this.$store.getters['app/GET_STATUS_SHOP_MAINTENANCE']
+       && !this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
     mcaListLoading() {
       return this.mcaSelectionOptions === null;
