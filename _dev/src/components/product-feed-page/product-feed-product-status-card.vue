@@ -12,10 +12,7 @@
     <b-card-body
       body-class="p-3"
     >
-      <p>
-        {{ $t('productFeedPage.productStatus.description') }}
-      </p>
-      <h3 class="d-flex align-items-center font-weight-600 ps_gs-fz-14 my-3 pt-2">
+      <h3 class="d-flex align-items-center font-weight-600 ps_gs-fz-14 mb-2">
         <i
           class="material-icons ps_gs-fz-14 mr-2 text-primary"
           v-if="isSyncInProgress"
@@ -28,6 +25,9 @@
             : $t('productFeedPage.productStatus.productsSubmittedToGoogle', [nbProductsTotal])
         }}
       </h3>
+      <p>
+        {{ $t('productFeedPage.productStatus.description') }}
+      </p>
       <b-container
         fluid
         class="p-0"
