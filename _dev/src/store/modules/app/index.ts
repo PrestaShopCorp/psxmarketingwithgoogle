@@ -12,6 +12,7 @@ const {
   psxMktgWithGoogleShopCurrency,
   psVersion,
   psxMktgWithGoogleModuleVersion,
+  psxMktgWithGoogleMaintenanceSettingsUrl,
 }: any = window;
 
 const state = Object.assign(
@@ -24,6 +25,7 @@ const state = Object.assign(
   {psxMktgWithGoogleShopCurrency} || {},
   {psVersion} || '',
   {psxMktgWithGoogleModuleVersion} || '',
+  {psxMktgWithGoogleMaintenanceSettingsUrl} || '',
 );
 
 /**

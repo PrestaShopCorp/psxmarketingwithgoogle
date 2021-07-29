@@ -29,4 +29,7 @@ export default {
   [GettersTypes.GET_DOC_AND_FAQ](state: LocalState): HelpInformations {
     return state.psxMktgWithGoogleDocumentAndFaq;
   },
+  [GettersTypes.GET_STATUS_SHOP_MAINTENANCE](state: LocalState): boolean {
+    return state.shopIsOnMaintenanceMode;
+  },
 };

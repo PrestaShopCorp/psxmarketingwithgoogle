@@ -1,6 +1,6 @@
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
 import MerchantCenterAccountPopinDisconnect from '@/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
-import {initialStateApp} from '../.storybook/mock/state-app';
+import {initialStateApp, stateWithMaintenanceModeOn} from '../.storybook/mock/state-app';
 import {googleAccountConnected} from '../.storybook/mock/google-account';
 import {
   merchantCenterAccountNotConnected,
@@ -223,4 +223,17 @@ newGmcNotListed.args = {
   initialMcaStatus: Object.assign({},
     merchantCenterNewGmcNotListed
   ),
+};
+
+export const MaintenanceModeDetected:any = Template.bind({});
+MaintenanceModeDetected.args = {
+  isEnabled: true,
+  initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
+  mounted (this: any) {
+    this.$store.state.app = Object.assign(
+      {},
+      this.$store.state.app,
+      stateWithMaintenanceModeOn
+    );
+  },
 };

@@ -125,6 +125,9 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
                 [],
                 ['ajax' => 1],
             ),
+            'psxMktgWithGoogleMaintenanceSettingsUrl' => Tools::getShopDomainSsl(true) . $this->context->link->getAdminLink(
+                'AdminMaintenance'
+            ),
             'isCountryMemberOfEuropeanUnion' => $this->countryRepository->isCompatibleForCSS(),
             'psxMktgWithGoogleShopUrl' => $this->context->link->getBaseLink($this->context->shop->id),
             'psxMktgWithGoogleActiveCountries' => $this->countryRepository->getActiveCountries(),

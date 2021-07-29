@@ -8,6 +8,13 @@ export const initialStateApp = {
     psxMktgWithGoogleShopCurrency: {
       isoCode: 'EUR',
     },
+    psxMktgWithGoogleMaintenanceSettingsUrl: '',
+    shopIsOnMaintenanceMode: false,
 };
+
+export const stateWithMaintenanceModeOn = {
+  ...initialStateApp,
+  shopIsOnMaintenanceMode: true,
+}
 
 export default initialStateApp;

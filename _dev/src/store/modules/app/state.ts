@@ -26,6 +26,8 @@ export interface State {
   psxMktgWithGoogleDocumentAndFaq: HelpInformations;
   psVersion: string;
   psxMktgWithGoogleModuleVersion: string;
+  shopIsOnMaintenanceMode: boolean;
+  psxMktgWithGoogleMaintenanceSettingsUrl: string;
 }
 
 export interface ShopCurrency {
@@ -54,4 +56,6 @@ export const state: State = {
   },
   psxMktgWithGoogleModuleVersion: '',
   psVersion: '',
+  psxMktgWithGoogleMaintenanceSettingsUrl: '',
+  shopIsOnMaintenanceMode: document.getElementById('maintenance-mode') !== null,
 };
