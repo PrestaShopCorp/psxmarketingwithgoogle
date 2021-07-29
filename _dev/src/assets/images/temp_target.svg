@@ -1,0 +1,18 @@
+<svg width="109" height="108" viewBox="0 0 109 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="54" cy="54" r="54" fill="#D41B65"/>
+<circle cx="54" cy="54" r="43" fill="#FFFCFD"/>
+<circle cx="54" cy="54" r="32" fill="#D41B65"/>
+<circle cx="54" cy="54" r="21" fill="#FFFCFD"/>
+<circle cx="54" cy="54" r="10" fill="#D41B65"/>
+<line x1="54.2322" y1="53.2322" x2="85.2322" y2="22.2322" stroke="#241B34" stroke-width="5"/>
+<line x1="55.2929" y1="54.2929" x2="86.2929" y2="23.2929" stroke="#473866" stroke-width="2"/>
+<path d="M83.5682 24.5795L97.0682 11.0795V0.0794983L83.5682 13.5795V24.5795Z" fill="#241B34"/>
+<path d="M108.068 11.1243L94.5682 24.6243L83.5682 24.6243L97.0682 11.1243L108.068 11.1243Z" fill="#473866"/>
+<circle cx="54.2333" cy="53.2098" r="2.477" fill="#241B34"/>
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="51" y="50" width="6" height="6">
+<circle cx="54.2333" cy="53.2098" r="2.477" fill="#241B34"/>
+</mask>
+<g mask="url(#mask0)">
+<line x1="50.1436" y1="59.4422" x2="81.1436" y2="28.4422" stroke="#473866" stroke-width="2"/>
+</g>
+</svg>

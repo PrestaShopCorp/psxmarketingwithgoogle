@@ -275,9 +275,9 @@
         ><!--
             comment is necessary to have the comma next to the link
           --><span
-v-if="index !== 0"
+          v-if="index !== 0"
           class="mr-2"
-:key="index"
+          :key="'span-' + index"
           >, </span><!--
             comment is necessary to have the comma next to the link
           --><a
@@ -285,9 +285,8 @@ v-if="index !== 0"
             :href="issue.documentation"
             target="_blank"
             class="text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
-          >
-            {{ $t('mcaCard.linkLearnMoreAbout', [issue.title]) }}
-          </a>
+            v-html="$t('mcaCard.linkLearnMoreAbout', [issue.title])"
+          />
         </template>
       </span>
     </b-alert>
