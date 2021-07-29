@@ -14,7 +14,3 @@ const Template = (args, { argTypes }) => ({
 export const LandingPageView:any = Template.bind({});
 LandingPageView.args = {
 };
-
-LandingPageView.parameters = {
-  jest: ['landing-page.spec.ts'],
-};
