@@ -524,10 +524,7 @@ export default {
     },
     shopIsOnMaintenanceMode() {
       return this.$store.getters['app/GET_STATUS_SHOP_MAINTENANCE']
-       && !this.merchantAlreadyLinkedAndClaimed;
-    },
-    merchantAlreadyLinkedAndClaimed() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
+       && !this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
     mcaListLoading() {
       return this.mcaSelectionOptions === null;
