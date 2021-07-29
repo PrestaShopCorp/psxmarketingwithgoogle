@@ -184,7 +184,8 @@
               class="btn mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
               size="sm"
               variant="outline-secondary"
-              @click="redirectToMaintenanceSettings"
+              :href="this.$store.state.app.psxMktgWithGoogleMaintenanceSettingsUrl"
+              target="_blank"
             >
               {{ $t("cta.shopMaintenanceBtn") }}
             </b-button>
@@ -634,10 +635,6 @@ export default {
   methods: {
     selectMerchantCenterAccount() {
       this.$emit('selectMerchantCenterAccount', this.mcaSelectionOptions[this.selectedMcaIndex]);
-    },
-    redirectToMaintenanceSettings() {
-      const url = this.$store.state.app.psxMktgWithGoogleMaintenanceSettingsUrl;
-      window.open(url);
     },
     dissociateMerchantCenterAccount() {
       this.$emit('dissociateMerchantCenterAccount');
