@@ -364,13 +364,13 @@ class PsxMktgWithGoogleTranslations
                 ],
                 'productStatus' => [
                     'title' => $this->module->l('Product status', 'PsxMktgWithGoogleTranslations'),
-                    'description' => $this->module->l('After submitting your product feed, it will take 3-5 business days to review it.', 'PsxMktgWithGoogleTranslations'),
+                    'description' => $this->module->l("The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.  \nA pending product won't show in ads or free listings because it's being reviewed by Google.  \nExpiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.", 'PsxMktgWithGoogleTranslations'),
                     'alert' => $this->module->l('It takes 3-5 business days to review products', 'PsxMktgWithGoogleTranslations'),
                     'approvedProducts' => $this->module->l('Approved', 'PsxMktgWithGoogleTranslations'),
                     'pendingProducts' => $this->module->l('Pending', 'PsxMktgWithGoogleTranslations'),
                     'expiringProducts' => $this->module->l('Expiring', 'PsxMktgWithGoogleTranslations'),
                     'disapprovedProducts' => $this->module->l('Not approved', 'PsxMktgWithGoogleTranslations'),
-                    'productsSubmittedToGoogle' => $this->module->l('Total number of products: {0}', 'PsxMktgWithGoogleTranslations'),
+                    'productsSubmittedToGoogle' => $this->module->l('Active products submitted to Google: {0}', 'PsxMktgWithGoogleTranslations'),
                     'approvalStatusList' => $this->module->l('Approved, Pending, Not approved', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'approvalTable' => [
