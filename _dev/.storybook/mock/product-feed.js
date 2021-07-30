@@ -38,7 +38,7 @@ export const productFeedIsReadyForExport = {
   },
   settings: {
     ...productFeed.settings,
-    targetCountries: ['FR'],
+    targetCountries: 'FR',
     attributeMapping: {
       exportProductsWithShortDescription: false,
       customColorAttribute: 'extra:color',
@@ -61,7 +61,7 @@ export const productFeedIsConfigured = {
   },
   settings: {
     ...productFeed.settings,
-    targetCountries: ['FR'],
+    targetCountries: 'FR',
     attributeMapping: {
       exportProductsWithShortDescription: false,
       customColorAttribute: 'extra:color',
@@ -77,7 +77,7 @@ export const productFeedIsConfiguredWithTax = {
   ...productFeedIsConfigured,
   settings: {
     ...productFeedIsConfigured.settings,
-    targetCountries: ['FR', 'US'],
+    targetCountries: 'FR',
   }
 }
 
