@@ -24,9 +24,8 @@ export default {
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootState}) {
     const params = {
       lang: window.i18nSettings.languageLocale.split('-')[0],
-      timezone: 'CEST',
     };
-    const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/status/?lang=${params.lang}&tz=${params.timezone}`;
+    const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/status/?lang=${params.lang}`;
 
     try {
       const response = await fetch(url, {
@@ -54,9 +53,8 @@ export default {
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
     const params = {
       lang: window.i18nSettings.languageLocale.split('-')[0],
-      timezone: 'CEST',
     };
-    const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings/?lang=${params.lang}&tz=${params.timezone}`;
+    const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings/?lang=${params.lang}`;
     try {
       const response = await fetch(url, {
         method: 'GET',
