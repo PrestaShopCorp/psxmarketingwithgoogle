@@ -51,6 +51,7 @@ export default {
   },
   created() {
     this.$root.identifySegment();
+    console.log(this.$store);
   },
   watch: {
     $route() {
