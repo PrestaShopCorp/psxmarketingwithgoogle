@@ -20,6 +20,7 @@
         :reduce="country => country.code"
         :options="sortCountries"
         :deselect-from-dropdown="true"
+        :clearable="false"
         class="ps_gs-v-select maxw-sm-500"
         :selectable="country => country.disabled"
         label="country"
