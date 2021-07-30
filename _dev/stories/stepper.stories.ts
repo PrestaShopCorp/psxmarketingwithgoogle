@@ -27,4 +27,5 @@ HorizontalStepper.args = {
       title: "Summary",
     },
   ],
+  activeStep: 3
 }
