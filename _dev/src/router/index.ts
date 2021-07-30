@@ -12,7 +12,7 @@ Vue.use(VueRouter);
 
 const initialPath = (to, from, next) => {
   if (from.path === '/'
-    && (Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED']
+    && (!Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED']
       || Store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'].length)
   ) {
     next({name: 'configuration'});
