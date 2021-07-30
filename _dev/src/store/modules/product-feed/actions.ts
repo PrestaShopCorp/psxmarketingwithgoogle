@@ -64,7 +64,7 @@ export default {
         name: 'autoImportShippingSettings', data: json.autoImportShippingSettings,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'targetCountries', data: json.targetCountries,
+        name: 'targetCountries', data: json.targetCountries[0],
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
@@ -110,7 +110,7 @@ export default {
     state, rootState, getters, commit,
   }) {
     const productFeedSettings = state.settings;
-    const targetCountries = getters.GET_ACTIVE_COUNTRIES;
+    const targetCountries = [getters.GET_ACTIVE_COUNTRIES];
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
@@ -189,7 +189,6 @@ export default {
       commit(MutationsTypes.SET_VALIDATION_SUMMARY, result);
     } catch (error) {
       console.error(error);
-      // Todo: handle error with SET_SYNC_SUMMARY_ERROR
     } finally {
       commit(MutationsTypes.SET_SYNC_SUMMARY_LOADING, false);
     }

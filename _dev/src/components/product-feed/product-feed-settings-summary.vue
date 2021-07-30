@@ -230,8 +230,8 @@ export default {
     targetCountries() {
       // change country code into name with the json list
       const datas = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
-      const countries = this.$options.countriesSelectionOptions;
-      return this.$options.filters.changeCountryCodeToName(datas, countries);
+      const country = this.$options.countriesSelectionOptions;
+      return this.$options.filters.changeCountryCodeToName(datas, country);
     },
   },
   methods: {

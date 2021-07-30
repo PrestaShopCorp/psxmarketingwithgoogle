@@ -177,7 +177,7 @@
             class="mb-0"
             :markdown="$t('mcaCard.shopMaintenance')"
             :extensions="['no-p-tag']"
-            tag='p'
+            tag="p"
           />
           <div class="d-md-flex text-center align-items-center mt-2">
             <b-button
