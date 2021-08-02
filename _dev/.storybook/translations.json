@@ -184,7 +184,7 @@
       },
       "noticeDataStored" : "Settings are saved at each step, will be submitted only at the final step.",
       "shipping" : {
-        "targetCountries" : "Target countries",
+        "targetCountries" : "Target country",
         "ifMultipleCountries" : "If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target=\"_blank\"] and [local regulation]({1})[:target=\"_blank\"]",
         "productAvailaibleIn" : "My products are available in",
         "placeholderSelect" : "Select the countries where your products are available",
@@ -202,7 +202,8 @@
         "autoImportTax" : "Automatically import tax settings",
         "manualImportTax" : "Manually set up tax settings in Google Merchant Center",
         "appliedOnlyForUsa" : "(applied only for the USA)",
-        "alertTaxes" : "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products."
+        "alertTaxes" : "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.",
+        "cantSelectCountryWithDifferentCurrency" : "You can't select country with currency that differs from your main shop."
       },
       "export" : {
         "synchronizationSchedule" : "Export synchronization schedule",
@@ -283,7 +284,7 @@
       "googleDelay" : "It takes 3-5 business days to review products",
       "alertEnableFreeListing" : "Enable free listings to show your products on Shopping tab for free.",
       "alertCantEnableFreeListing" : "You can't enable free listings right now. Try again later.",
-      "alertCountryNotEligible" : "You have selected one or more target countries that are not eligible for free listings and ads."
+      "alertCountryNotEligible" : "The target country you have selected is not eligible for free listings and ads."
     },
     "googleAdsAccountCard" : {
       "title" : "Connect your Google Ads account",
@@ -403,7 +404,7 @@
       "trackProductStatus" : "Track Product approval status",
       "whyDidntWork" : "Check out why it didn’t work",
       "aboutProductCategory" : "List of Google product categories",
-      "editCountries" : "Edit countries",
+      "editCountries" : "Edit country",
       "editSettings" : "Edit settings",
       "editRules" : "Edit rules",
       "shopMaintenanceBtn": "Go to maintenance settings",
