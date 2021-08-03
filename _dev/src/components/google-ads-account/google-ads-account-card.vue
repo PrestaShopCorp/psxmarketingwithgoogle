@@ -78,6 +78,10 @@
               {{ $t('cta.chooseExistingAccount') }}
             </b-button>
           </div>
+          <VueShowdown
+            class="text-muted ps_gs-fz-12 mt-3 mt-md-0"
+            :markdown="$t('googleAdsAccountCard.toUseGAdsNeedsAdminAccess')"
+          />
         </b-form>
         <div class="mt-3">
           <a href="#">

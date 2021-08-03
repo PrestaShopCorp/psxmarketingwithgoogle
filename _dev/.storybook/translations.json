@@ -291,7 +291,8 @@
       "intro" : "Launch an advertising campaign for your products and reach more users across four different Google networks.",
       "text" : "Once connected you may need to configure your billing settings in your Google Ads account.",
       "labelSelect" : "Connect an existing Google Ads account",
-      "id" : "Google Ads account ID"
+      "id" : "Google Ads account ID",
+      "toUseGAdsNeedsAdminAccess" : "To use an existing Google Ads account, you must have Admin access."
     },
     "smartShoppingCampaignCard" : {
       "title" : "Reach more people with paid Smart Shopping campaign",

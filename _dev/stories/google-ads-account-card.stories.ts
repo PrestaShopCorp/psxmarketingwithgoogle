@@ -8,7 +8,11 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { GoogleAdsAccountCard },
-  template: '<GoogleAdsAccountCard ref="googleAdsAccount" v-bind="$props" @selectGoogleAdsAccount="fakeConnection"/>',
+  template: `
+    <div>
+      <GoogleAdsAccountCard ref="googleAdsAccount" v-bind="$props" @selectGoogleAdsAccount="fakeConnection"/>
+    </div>
+  `,
   methods: {
     fakeConnection: function(this: any) {
       this.$refs.googleAdsAccount.$data.googleAdsAccountConfigured = true;

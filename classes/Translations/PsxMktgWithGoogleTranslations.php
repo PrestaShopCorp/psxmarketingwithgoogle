@@ -342,6 +342,7 @@ class PsxMktgWithGoogleTranslations
                 'text' => $this->module->l('Once connected you may need to configure your billing settings in your Google Ads account.', 'PsxMktgWithGoogleTranslations'),
                 'labelSelect' => $this->module->l('Connect an existing Google Ads account', 'PsxMktgWithGoogleTranslations'),
                 'id' => $this->module->l('Google Ads account ID', 'PsxMktgWithGoogleTranslations'),
+                'toUseGAdsNeedsAdminAccess' => $this->module->l('To use an existing Google Ads account, you must have Admin access.', 'PsxMktgWithGoogleTranslations'),
             ],
             'smartShoppingCampaignCard' => [
                 'title' => $this->module->l('Reach more people with paid Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
