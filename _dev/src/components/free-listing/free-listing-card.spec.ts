@@ -22,8 +22,8 @@ describe('free-listing.vue / disabled', () => {
       propsData: Disabled.args,
       beforeMount: Disabled.args.beforeMount,
       stubs: {
-        BadgeListRequirements: true
-      }
+        BadgeListRequirements: true,
+      },
     });
 
     // Check if toggle switch is hidden

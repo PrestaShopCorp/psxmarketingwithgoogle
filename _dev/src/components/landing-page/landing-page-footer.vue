@@ -19,13 +19,8 @@
 </template>
 
 <script>
-import {VueShowdown} from 'vue-showdown';
-
 export default {
   name: 'LandingPageFooter',
-  components: {
-    VueShowdown,
-  },
   data() {
     return {
     };

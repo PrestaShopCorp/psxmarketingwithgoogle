@@ -16,7 +16,7 @@ describe('landing-page-header.vue', () => {
 
     // Check if onHideLanding event has been emmited when btn is clicked
     await wrapper.find('[data-test-id="lp-header-cta"]').trigger('click');
-    const rootWrapper = createWrapper(wrapper.vm.$root)
+    const rootWrapper = createWrapper(wrapper.vm.$root);
 
     expect(rootWrapper.emitted('onHideLanding')).toBeTruthy();
   });
