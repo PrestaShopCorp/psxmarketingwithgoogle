@@ -9,6 +9,7 @@
           size="sm"
           variant="primary"
           @click="hideLandingPage"
+          data-test-id="lp-footer-cta"
         >
           {{ $t('cta.startConfiguring') }}
         </b-button>
@@ -18,9 +19,13 @@
 </template>
 
 <script>
+import {VueShowdown} from 'vue-showdown';
 
 export default {
   name: 'LandingPageFooter',
+  components: {
+    VueShowdown,
+  },
   data() {
     return {
     };
