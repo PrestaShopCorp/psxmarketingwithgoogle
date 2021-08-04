@@ -6,17 +6,24 @@ import Vuex from 'vuex';
 // Import this file first to init mock on window
 import config, {cloneStore} from '@/../tests/init';
 
-import {shallowMount} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import FreeListingCard from '@/components/free-listing/free-listing-card.vue';
+import {
+  Disabled,
+  Enabled,
+  AlertEnableFreeListing,
+  AlertCantEnableFreeListing,
+} from '@/../stories/free-listing-card.stories';
 
 describe('free-listing.vue / disabled', () => {
   it('switch is hidden when card is disabled', () => {
-    const wrapper = shallowMount(FreeListingCard, {
-      propsData: {
-        isEnabled: false,
-      },
-      ...config,
+    const wrapper = mount(FreeListingCard, {
       store: new Vuex.Store(cloneStore()),
+      propsData: Disabled.args,
+      beforeMount: Disabled.args.beforeMount,
+      stubs: {
+        BadgeListRequirements: true
+      }
     });
 
     // Check if toggle switch is hidden
@@ -32,12 +39,10 @@ describe('free-listing.vue / enabled', () => {
   });
 
   it('switch is shown and not disabled when card is enabled', () => {
-    const wrapper = shallowMount(FreeListingCard, {
-      propsData: {
-        isEnabled: true,
-      },
-      ...config,
+    const wrapper = mount(FreeListingCard, {
       store: new Vuex.Store(cloneStore()),
+      propsData: Enabled.args,
+      beforeMount: Enabled.args.beforeMount,
     });
 
     // Check if toggle switch is visible and not disabled
@@ -46,34 +51,25 @@ describe('free-listing.vue / enabled', () => {
   });
 
   it('switch is disabled when there is an API error', () => {
-    const wrapper = shallowMount(FreeListingCard, {
-      propsData: {
-        isEnabled: true,
-      },
-      ...config,
+    const wrapper = mount(FreeListingCard, {
       store: new Vuex.Store(cloneStore()),
-      beforeMount(this: any) {
-        this.$store.state.freeListing.errorAPI = true;
-      },
+      propsData: AlertCantEnableFreeListing.args,
+      beforeMount: AlertCantEnableFreeListing.args.beforeMount,
     });
 
     // Check if toggle switch is disabled
+    expect(wrapper.find('.ps-switch').exists()).toBeTruthy();
     expect(wrapper.find('.ps-switch [type="radio"]').attributes('disabled')).toBe('disabled');
   });
 
   it('refresh button available when there is an API error and calls refresh function', async () => {
-    const wrapper = shallowMount(FreeListingCard, {
+    const wrapper = mount(FreeListingCard, {
       mocks: {
         $router: mockRouter,
       },
-      propsData: {
-        isEnabled: true,
-      },
-      ...config,
       store: new Vuex.Store(cloneStore()),
-      beforeMount(this: any) {
-        this.$store.state.freeListing.errorAPI = true;
-      },
+      propsData: AlertCantEnableFreeListing.args,
+      beforeMount: AlertCantEnableFreeListing.args.beforeMount,
     });
 
     // Check if refresh button exists
@@ -85,11 +81,10 @@ describe('free-listing.vue / enabled', () => {
   });
 
   it('Clicking on the toggle when the free listing is enabled emmit the event to open a popup', async () => {
-    const wrapper = shallowMount(FreeListingCard, {
-      propsData: {
-        isEnabled: true,
-      },
+    const wrapper = mount(FreeListingCard, {
       store: new Vuex.Store(cloneStore()),
+      propsData: Enabled.args,
+      beforeMount: Enabled.args.beforeMount,
     });
 
     // Check if openPopin event has been emmited when toggle is clicked
