@@ -39,6 +39,7 @@
         variant="primary"
         class="my-2"
         @click="hideLandingPage"
+        data-test-id="lp-header-cta"
       >
         {{ $t('cta.startConfiguring') }}
       </b-button>
@@ -53,8 +54,13 @@
 </template>
 
 <script>
+import {VueShowdown} from 'vue-showdown';
+
 export default {
   name: 'LandingPageHeader',
+  components: {
+    VueShowdown,
+  },
   data() {
     return {
     };
