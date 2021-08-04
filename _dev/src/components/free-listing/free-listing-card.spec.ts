@@ -91,4 +91,15 @@ describe('free-listing.vue / enabled', () => {
     await wrapper.find('.ps-switch [type="radio"]').trigger('click');
     expect(wrapper.emitted('openPopin')).toBeTruthy();
   });
+
+  it('When free listing is not activated there is an alert', async () => {
+    const wrapper = mount(FreeListingCard, {
+      store: new Vuex.Store(cloneStore()),
+      propsData: AlertEnableFreeListing.args,
+      beforeMount: AlertEnableFreeListing.args.beforeMount,
+    });
+
+    // There is an alert when the free listing is not activated
+    expect(wrapper.find('b-alert')).toBeTruthy();
+  });
 });

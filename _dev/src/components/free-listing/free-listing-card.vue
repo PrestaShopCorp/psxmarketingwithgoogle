@@ -39,8 +39,9 @@
             name="switchEnable"
             :value="false"
             :checked="freeListingStatus == false"
+            id="switch_off_freelisting"
           >
-          <label for="example_off_3">{{ $t('cta.disabled') }}</label>
+          <label for="switch_off_freelisting">{{ $t('cta.disabled') }}</label>
           <input
             @change="toggle"
             :disabled="errorAPI"
@@ -48,8 +49,9 @@
             name="switchEnable"
             :value="true"
             :checked="freeListingStatus == true"
+            id="switch_on_freelisting"
           >
-          <label for="example_on_3">{{ $t('cta.enabled') }}</label>
+          <label for="switch_on_freelisting">{{ $t('cta.enabled') }}</label>
           <span class="slide-button" />
 
         </span>
