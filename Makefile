@@ -2,7 +2,7 @@
 VERSION ?= $(shell git describe --tags 2> /dev/null || echo "0.0.0")
 PHP ?= $(shell which php 2> /dev/null)
 SEM_VERSION ?= $(shell echo ${VERSION} | sed 's/^v//')
-MODULE ?= $(shell basename ${PWD})
+MODULE ?= $(shell perl -ne 'print and last if s/.*<name>(.*)<\/name>.*/\1/;' < config.xml)
 PACKAGE ?= "${MODULE}-${VERSION}"
 
 # target: default                                - Calling build by default
