@@ -22,16 +22,20 @@ import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootState}) {
+    const params = {
+      lang: window.i18nSettings.languageLocale.split('-')[0],
+    };
+    const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/status/?lang=${params.lang}`;
+
     try {
-      const response = await fetch(
-        `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/status`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
         },
+      },
       );
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
@@ -46,9 +50,13 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, state, rootState}) {
+  async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
+    const params = {
+      lang: window.i18nSettings.languageLocale.split('-')[0],
+    };
+    const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings/?lang=${params.lang}`;
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
+      const response = await fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
