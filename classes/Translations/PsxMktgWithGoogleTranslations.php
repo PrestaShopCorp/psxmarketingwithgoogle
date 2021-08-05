@@ -235,7 +235,7 @@ class PsxMktgWithGoogleTranslations
                 ],
                 'noticeDataStored' => $this->module->l('Settings are saved at each step, will be submitted only at the final step.', 'PsxMktgWithGoogleTranslations'),
                 'shipping' => [
-                    'targetCountries' => $this->module->l('Target countries', 'PsxMktgWithGoogleTranslations'),
+                    'targetCountries' => $this->module->l('Target country', 'PsxMktgWithGoogleTranslations'),
                     'ifMultipleCountries' => $this->module->l('If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target="_blank"] and [local regulation]({1})[:target="_blank"]', 'PsxMktgWithGoogleTranslations'),
                     'productAvailaibleIn' => $this->module->l('My products are available in', 'PsxMktgWithGoogleTranslations'),
                     'placeholderSelect' => $this->module->l('Select the countries where your products are available', 'PsxMktgWithGoogleTranslations'),
@@ -253,6 +253,7 @@ class PsxMktgWithGoogleTranslations
                     'manualImportTax' => $this->module->l('Manually set up tax settings in Google Merchant Center', 'PsxMktgWithGoogleTranslations'),
                     'appliedOnlyForUsa' => $this->module->l('(applied only for the USA)', 'PsxMktgWithGoogleTranslations'),
                     'alertTaxes' => $this->module->l('You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.', 'PsxMktgWithGoogleTranslations'),
+                    'cantSelectCountryWithDifferentCurrency' => $this->module->l("You can't select country with currency that differs from your main shop.", 'PsxMktgWithGoogleTranslations'),
                 ],
                 'export' => [
                     'synchronizationSchedule' => $this->module->l('Export synchronization schedule', 'PsxMktgWithGoogleTranslations'),
@@ -333,7 +334,7 @@ class PsxMktgWithGoogleTranslations
                 'googleDelay' => $this->module->l('It takes 3-5 business days to review products', 'PsxMktgWithGoogleTranslations'),
                 'alertEnableFreeListing' => $this->module->l('Enable free listings to show your products on Shopping tab for free.', 'PsxMktgWithGoogleTranslations'),
                 'alertCantEnableFreeListing' => $this->module->l('You can\'t enable free listings right now. Try again later.', 'PsxMktgWithGoogleTranslations'),
-                'alertCountryNotEligible' => $this->module->l('You have selected one or more target countries that are not eligible for free listings and ads.', 'PsxMktgWithGoogleTranslations'),
+                'alertCountryNotEligible' => $this->module->l('The target country you have selected is not eligible for free listings and ads.', 'PsxMktgWithGoogleTranslations'),
             ],
             'googleAdsAccountCard' => [
                 'title' => $this->module->l('Connect your Google Ads account', 'PsxMktgWithGoogleTranslations'),
@@ -456,7 +457,7 @@ class PsxMktgWithGoogleTranslations
                 'whyDidntWork' => $this->module->l('Check out why it didn’t work', 'PsxMktgWithGoogleTranslations'),
                 'shopMaintenanceBtn' => $this->module->l('Go to maintenance settings', 'PsxMktgWithGoogleTranslations'),
                 'aboutProductCategory' => $this->module->l('List of Google product categories', 'PsxMktgWithGoogleTranslations'),
-                'editCountries' => $this->module->l('Edit countries', 'PsxMktgWithGoogleTranslations'),
+                'editCountries' => $this->module->l('Edit country', 'PsxMktgWithGoogleTranslations'),
                 'editSettings' => $this->module->l('Edit settings', 'PsxMktgWithGoogleTranslations'),
                 'editRules' => $this->module->l('Edit rules', 'PsxMktgWithGoogleTranslations'),
                 'editProductAttributes' => $this->module->l('Edit product attributes', 'PsxMktgWithGoogleTranslations'),
