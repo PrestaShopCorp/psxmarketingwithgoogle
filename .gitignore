@@ -19,6 +19,7 @@ views/js/chunk-vendors.js
 .idea/
 
 .php_cs.cache
+.env
 .env.integ
 
 .idea/
