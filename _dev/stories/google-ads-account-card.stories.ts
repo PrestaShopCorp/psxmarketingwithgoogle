@@ -10,7 +10,10 @@ const Template = (args, { argTypes }) => ({
   components: { GoogleAdsAccountCard },
   template: `
     <div>
-      <GoogleAdsAccountCard ref="googleAdsAccount" v-bind="$props" @selectGoogleAdsAccount="fakeConnection"/>
+      <GoogleAdsAccountCard
+        ref="googleAdsAccount"
+        v-bind="$props"
+        @selectGoogleAdsAccount="fakeConnection"/>
     </div>
   `,
   methods: {
@@ -32,8 +35,22 @@ Disabled.args = {
   isConnected: false,
 };
 
-export const EnabledNotConnected:any = Template.bind({});
-EnabledNotConnected.args = {
+export const Enabled:any = Template.bind({});
+Enabled.args = {
+  isEnabled: true,
+  isConnected: false,
+};
+
+// TODO: todo
+export const EnabledSpinner:any = Template.bind({});
+EnabledSpinner.args = {
+  isEnabled: true,
+  isConnected: false,
+};
+
+// TODO: todo
+export const EnabledButNoAccount:any = Template.bind({});
+EnabledButNoAccount.args = {
   isEnabled: true,
   isConnected: false,
 };
@@ -42,4 +59,25 @@ export const EnabledConnected:any = Template.bind({});
 EnabledConnected.args = {
   isEnabled: true,
   isConnected: true,
+};
+
+// TODO: todo
+export const ApiFailed:any = Template.bind({});
+ApiFailed.args = {
+  isEnabled: true,
+  isConnected: false,
+};
+
+// TODO: todo
+export const Suspended:any = Template.bind({});
+Suspended.args = {
+  isEnabled: true,
+  isConnected: false,
+};
+
+// TODO: todo
+export const Canceled:any = Template.bind({});
+Canceled.args = {
+  isEnabled: true,
+  isConnected: false,
 };
