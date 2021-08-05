@@ -254,7 +254,6 @@ export default {
     commit, rootState, state, dispatch,
   }) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
-    await dispatch(ActionsTypes.DISSOCIATE_GMC, correlationId);
     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/oauth`, {
       method: 'DELETE',
       headers: {
@@ -266,6 +265,10 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
+
+    commit(MutationsTypes.REMOVE_GMC);
+    commit(`productFeed/${MutationsTypesProductFeed.TOGGLE_CONFIGURATION_FINISHED}`, false, {root: true});
+
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
