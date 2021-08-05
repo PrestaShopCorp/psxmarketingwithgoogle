@@ -1,5 +1,11 @@
 .ps_gs-landingpage {
+  $root: '.ps_gs-landingpage';
+
   padding: rem(24);
+
+  &#{$root}--small-padding {
+    padding: rem(16);
+  }
 
   @include media-breakpoint-up(md) {
     padding: rem(32);
