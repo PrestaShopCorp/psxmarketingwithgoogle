@@ -348,6 +348,8 @@ class PsxMktgWithGoogleTranslations
                 'alertNeedRefreshAfterBilling' => $this->module->l('Once filled in your billing info in your Google Ads account, refresh the page to view updates.', 'PsxMktgWithGoogleTranslations'),
                 'alertSuspended' => $this->module->l('You need to resolve issues in your Google Ads account.', 'PsxMktgWithGoogleTranslations'),
                 'alertCancelled' => $this->module->l('You need to reactivate your account in your Google Ads account.', 'PsxMktgWithGoogleTranslations'),
+                'learnAboutAccountSuspension' => $this->module->l('Learn about account suspension', 'PsxMktgWithGoogleTranslations'),
+                'learnAboutAccountCancellation' => $this->module->l('Learn about account cancellation', 'PsxMktgWithGoogleTranslations'),
             ],
             'smartShoppingCampaignCard' => [
                 'title' => $this->module->l('Reach more people with paid Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),

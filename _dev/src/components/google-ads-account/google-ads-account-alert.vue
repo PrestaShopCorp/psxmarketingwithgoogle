@@ -48,6 +48,18 @@ export default {
     error: {
       type: String,
       default: null,
+      validator(value) {
+        if (value === null) {
+          return true;
+        }
+        return [
+          'CantConnect',
+          'BillingSettingsMissing',
+          'NeedRefreshAfterBilling',
+          'Suspended',
+          'Cancelled',
+        ].indexOf(value) !== -1;
+      },
     },
   },
   methods: {
@@ -93,7 +105,7 @@ export default {
             text: this.$i18n.t('googleAdsAccountCard.alertSuspended',
               [googleUrl.googleAdsAccount]),
             link: {
-              label: 'Learn about account suspension',
+              label: this.$i18n.t('googleAdsAccountCard.learnAboutAccountSuspension'),
               url: this.$options.googleUrl.googleAdsAccountSuspension,
             },
           };
@@ -103,7 +115,7 @@ export default {
             text: this.$i18n.t('googleAdsAccountCard.alertCancelled',
               [googleUrl.googleAdsAccount]),
             link: {
-              label: 'Learn about account cancellation',
+              label: this.$i18n.t('googleAdsAccountCard.learnAboutAccountCancellation'),
               url: this.$options.googleUrl.googleAdsAccountCancellation,
             },
           };

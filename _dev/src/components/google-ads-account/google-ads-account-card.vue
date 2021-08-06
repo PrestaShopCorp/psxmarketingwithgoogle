@@ -199,7 +199,7 @@ export default {
   data() {
     return {
       // TODO error is to be replaced with a computed like in MCA
-      error: 'foo',
+      error: 'Suspended',
       selected: null,
       googleAdsAccountConfigured: false,
       /**
@@ -263,16 +263,15 @@ export default {
             color: 'danger',
             text: 'canceled',
           };
+        case 'CantConnect':
+          return null;
         case 'BillingSettingsMissing':
         case 'NeedRefreshAfterBilling':
+        default:
           return {
             color: 'success',
             text: 'active',
           };
-        case 'CantConnect':
-          return null;
-        default:
-          return null;
       }
     },
   },
