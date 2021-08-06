@@ -495,6 +495,7 @@ class PsxMktgWithGoogleTranslations
                 'goToYourX' => $this->module->l('Go to your {0}', 'PsxMktgWithGoogleTranslations'),
                 'addShippingInfo' => $this->module->l('Add shipping info', 'PsxMktgWithGoogleTranslations'),
                 'createSmartShoppingCampaign' => $this->module->l('Create Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
+                'addBillingSettings' => $this->module->l('Add billing settings', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),

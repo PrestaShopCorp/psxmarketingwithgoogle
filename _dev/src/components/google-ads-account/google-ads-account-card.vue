@@ -20,6 +20,13 @@
         >
         <b-card-text class="text-left mb-0">
           {{ $t('googleAdsAccountCard.intro') }}
+          <!-- TODO: add the condition -->
+          <i
+            v-if="true"
+            class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
+          >
+            check_circle
+          </i>
         </b-card-text>
       </div>
     </template>
@@ -51,7 +58,7 @@
             <b-dropdown
               id="googleAdsAccountSelection"
               ref="googleAdsAccountSelection"
-              :text="selected || $t('cta.selectAccount')"
+              :text="googleAdsLabel(selected) || $t('cta.selectAccount')"
               variant=" "
               class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
               :toggle-class="{'ps-dropdown__placeholder' : !selected}"
@@ -59,13 +66,30 @@
               no-flip
               size="sm"
             >
+            <b-dropdown-item
+              link-class="px-3"
+              :disabled="true"
+              v-if="listLoading"
+            >
+              <i class="icon-busy icon-busy--dark" />
+            </b-dropdown-item>
+            <b-dropdown-item
+              v-if="!listLoading && googleAdsAccountSelectionOptions.length === 0"
+              :disabled="true"
+              variant="dark"
+              link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+            >
+              <span class="mr-2">
+                {{ $t('mcaCard.noExistingAccount') }}
+              </span>
+            </b-dropdown-item>
               <b-dropdown-item
-                v-for="option in googleAdsAccountSelectionOptions"
-                :key="option.text"
-                @click="selected = option.text"
+                v-for="(option) in googleAdsAccountSelectionOptions"
+                :key="option.id"
+                @click="selected = option"
                 variant="dark"
               >
-                {{ option.text }}
+                {{ option.id }} - {{option.name}}
               </b-dropdown-item>
             </b-dropdown>
             <b-button
@@ -75,7 +99,7 @@
               class="mt-3 mt-md-0 ml-md-3"
               @click="selectGoogleAdsAccount"
             >
-              {{ $t('cta.chooseExistingAccount') }}
+              {{ $t('cta.connect') }}
             </b-button>
           </div>
           <VueShowdown
@@ -83,6 +107,99 @@
             :markdown="$t('googleAdsAccountCard.toUseGAdsNeedsAdminAccess')"
           />
         </b-form>
+        <b-alert
+          show
+          variant="warning"
+          class="mb-0 mt-3"
+        >
+          <p class="mb-0">
+            Could not connect your Google Ads account, it's on our side, please give it another try.
+          </p>
+          <div class="d-md-flex text-center align-items-center mt-2">
+            <b-button
+              size="sm"
+              class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
+              variant="outline-secondary"
+              @click="refresh"
+            >
+              {{ $t('general.refreshPage') }}
+            </b-button>
+          </div>
+        </b-alert>
+        <b-alert
+          show
+          variant="warning"
+          class="mb-0 mt-3"
+        >
+          <p class="mb-0">
+            To launch Smart Shopping campaigns, you need to add your billing settings in your Google Ads account.
+          </p>
+          <div class="d-md-flex text-center align-items-center mt-2">
+            <b-button
+              size="sm"
+              class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
+              variant="outline-secondary"
+              @click="refresh"
+              href="//google.com"
+              target="_blank"
+            >
+              {{ $t('cta.addBillingSettings') }}
+            </b-button>
+          </div>
+        </b-alert>
+        <b-alert
+          show
+          variant="warning"
+          class="mb-0 mt-3"
+        >
+          <p class="mb-0">
+            Once filled in your billing info in your Google Ads account, refresh the page to view updates.
+          </p>
+          <div class="d-md-flex text-center align-items-center mt-2">
+            <b-button
+              size="sm"
+              class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
+              variant="outline-secondary"
+              @click="refresh"
+            >
+              {{ $t('general.refreshPage') }}
+            </b-button>
+          </div>
+        </b-alert>
+        <b-alert
+          show
+          variant="danger"
+          class="mb-0 mt-3"
+        >
+          <div class="ps_gs-fz-12">
+            <VueShowdown
+              tag="p"
+              class="mb-0 ps_gs-fz-12 d-inline"
+              :markdown="'You need to resolve issues in your Google Ads account.'"
+              :extensions="['no-p-tag', 'target_link']"
+            />
+            <a class="text-muted" href="http://google.com/423987654" target="_blank">
+              Learn about account suspension
+            </a>
+          </div>
+        </b-alert>
+        <b-alert
+          show
+          variant="danger"
+          class="mb-0 mt-3"
+        >
+          <div class="ps_gs-fz-12">
+            <VueShowdown
+              tag="p"
+              class="mb-0 ps_gs-fz-12 d-inline"
+              :markdown="'You need to reactivate your account in your Google Ads account.'"
+              :extensions="['no-p-tag', 'target_link']"
+            />
+            <a class="text-muted" href="http://google.com/423987654" target="_blank">
+              Learn about account cancellation
+            </a>
+          </div>
+        </b-alert>
         <div class="mt-3">
           <a href="#">
             <i
@@ -100,12 +217,22 @@
         v-if="googleAdsAccountConfigured"
         class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
       >
-        <p
-          class="mb-0"
-        >
-          {{ $t('googleAdsAccountCard.id') }}<br>
-          <strong class="font-weight-600">{{ selected }}</strong>
-        </p>
+        <div class="d-flex align-items-center">
+          <a
+            :href="'//google.com'"
+            :title="$t('cta.goToYourX', [$t('badge.googleAdsAccount')])"
+            target="_blank"
+            class="external_link-no_icon link-regular"
+          >
+            <strong>{{ selected.name }} - {{ selected.id }}</strong>
+          </a>
+          <b-badge
+            class="mx-3"
+            variant="success"
+          >
+            {{ $t(`badge.active`) }}
+          </b-badge>
+        </div>
         <div
           v-if="!googleAdsAccountConfigured"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
@@ -161,19 +288,16 @@ export default {
        */
       googleAdsAccountSelectionOptions: [
         {
-          text: '987-654-3210',
+          "id": "4150564877",
+          "name": "Lui Corpette",
         },
         {
-          text: '987-3210-654',
+          "id": "4150564874",
+          "name": "Tata Corpette",
         },
         {
-          text: '027-654-3210',
-        },
-        {
-          text: '357-884-3210',
-        },
-        {
-          text: '912-015-3710',
+          "id": "4150564875",
+          "name": "Tutu Corpette",
         },
       ],
     };
@@ -191,6 +315,21 @@ export default {
   methods: {
     selectGoogleAdsAccount() {
       this.$emit('selectGoogleAdsAccount');
+    },
+    googleAdsLabel(account) {
+      if (this.selected) {
+        return `${account.id} - ${account.name}`;
+      }
+      return null;
+    },
+    refresh() {
+      this.$router.go();
+    },
+  },
+  computed: {
+    listLoading() {
+      // TODO
+      return false
     },
   },
 };
