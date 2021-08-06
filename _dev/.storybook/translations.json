@@ -292,7 +292,12 @@
       "text" : "Once connected you may need to configure your billing settings in your Google Ads account.",
       "labelSelect" : "Connect an existing Google Ads account",
       "id" : "Google Ads account ID",
-      "toUseGAdsNeedsAdminAccess" : "To use an existing Google Ads account, you must have Admin access."
+      "toUseGAdsNeedsAdminAccess" : "To use an existing Google Ads account, you must have Admin access.",
+      "alertCantConnect" : "Could not connect your Google Ads account, it's on our side, please give it another try.",
+      "alertBillingSettingsMissing" : "To launch Smart Shopping campaigns, you need to add your billing settings in your Google Ads account.",
+      "alertNeedRefreshAfterBilling" : "Once filled in your billing info in your Google Ads account, refresh the page to view updates.",
+      "alertSuspended" : "You need to resolve issues in your Google Ads account.",
+      "alertCancelled" : "You need to reactivate your account in your Google Ads account."
     },
     "smartShoppingCampaignCard" : {
       "title" : "Reach more people with paid Smart Shopping campaign",
@@ -382,6 +387,7 @@
     "cta" : {
       "startConfiguring" : "Start configuring",
       "connect" : "Connect",
+      "connecting" : "Connecting...",
       "dissociate" : "Dissociate",
       "manageAccount" : "Manage account",
       "overwrite" : "Overwrite",
@@ -470,7 +476,8 @@
       "suspended" : "Suspended",
       "ineligibleForFreeListing" : "Ineligible for free listings",
       "urlUnclaimed" : "Url unclaimed",
-      "urlUnverified" : "Url unverified"
+      "urlUnverified" : "Url unverified",
+      "canceled": "Canceled"
     },
     "modal" : {
       "titleDisconnectionMerchantCenter" : "Disconnect your Merchant Center?",

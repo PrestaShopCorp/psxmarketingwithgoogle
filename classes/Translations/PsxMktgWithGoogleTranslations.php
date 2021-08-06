@@ -343,6 +343,11 @@ class PsxMktgWithGoogleTranslations
                 'labelSelect' => $this->module->l('Connect an existing Google Ads account', 'PsxMktgWithGoogleTranslations'),
                 'id' => $this->module->l('Google Ads account ID', 'PsxMktgWithGoogleTranslations'),
                 'toUseGAdsNeedsAdminAccess' => $this->module->l('To use an existing Google Ads account, you must have Admin access.', 'PsxMktgWithGoogleTranslations'),
+                'alertCantConnect' => $this->module->l('Could not connect your Google Ads account, it\'s on our side, please give it another try.', 'PsxMktgWithGoogleTranslations'),
+                'alertBillingSettingsMissing' => $this->module->l('To launch Smart Shopping campaigns, you need to add your billing settings in your Google Ads account.', 'PsxMktgWithGoogleTranslations'),
+                'alertNeedRefreshAfterBilling' => $this->module->l('Once filled in your billing info in your Google Ads account, refresh the page to view updates.', 'PsxMktgWithGoogleTranslations'),
+                'alertSuspended' => $this->module->l('You need to resolve issues in your Google Ads account.', 'PsxMktgWithGoogleTranslations'),
+                'alertCancelled' => $this->module->l('You need to reactivate your account in your Google Ads account.', 'PsxMktgWithGoogleTranslations'),
             ],
             'smartShoppingCampaignCard' => [
                 'title' => $this->module->l('Reach more people with paid Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
@@ -432,6 +437,7 @@ class PsxMktgWithGoogleTranslations
             'cta' => [
                 'startConfiguring' => $this->module->l('Start configuring', 'PsxMktgWithGoogleTranslations'),
                 'connect' => $this->module->l('Connect', 'PsxMktgWithGoogleTranslations'),
+                'connecting' => $this->module->l('Connecting...', 'PsxMktgWithGoogleTranslations'),
                 'dissociate' => $this->module->l('Dissociate', 'PsxMktgWithGoogleTranslations'),
                 'manageAccount' => $this->module->l('Manage account', 'PsxMktgWithGoogleTranslations'),
                 'overwrite' => $this->module->l('Overwrite', 'PsxMktgWithGoogleTranslations'),
@@ -520,6 +526,7 @@ class PsxMktgWithGoogleTranslations
                 'ineligibleForFreeListing' => $this->module->l('Ineligible for free listings', 'PsxMktgWithGoogleTranslations'),
                 'urlUnclaimed' => $this->module->l('Url unclaimed', 'PsxMktgWithGoogleTranslations'),
                 'urlUnverified' => $this->module->l('Url unverified', 'PsxMktgWithGoogleTranslations'),
+                'canceled' => $this->module->l('Canceled', 'PsxMktgWithGoogleTranslations'),
             ],
             'modal' => [
                 'titleDisconnectionMerchantCenter' => $this->module->l('Disconnect your Merchant Center?', 'PsxMktgWithGoogleTranslations'),

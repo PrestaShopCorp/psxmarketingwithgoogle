@@ -29,5 +29,8 @@
   "learnRequirementsProductSpeficifacion" : "https://support.google.com/merchants/answer/7052112",
   "learnAboutAttributeMapping" : "https://support.google.com/merchants/answer/7052112",
   "prohibitedContentGuidelines" : "https://support.google.com/merchants/answer/6149970",
-  "googleProductCategories" : "https://support.google.com/merchants/answer/6324436"
+  "googleProductCategories" : "https://support.google.com/merchants/answer/6324436",
+  "googleAdsAccount" : "https//ads.google.com",
+  "googleAdsAccountCancellation" : "https://support.google.com/google-ads/answer/7619129",
+  "googleAdsAccountSuspension" : "https://support.google.com/google-ads/answer/9841640"
 }
