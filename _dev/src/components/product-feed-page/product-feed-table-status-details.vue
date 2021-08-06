@@ -1,9 +1,18 @@
 <template>
-  <b-card no-body class="ps_gs-onboardingcard">
-    <b-card-header header-tag="nav" header-class="px-3 py-1">
+  <b-card
+    no-body
+    class="ps_gs-onboardingcard"
+  >
+    <b-card-header
+      header-tag="nav"
+      header-class="px-3 py-1"
+    >
       <ol class="list-inline mb-0 d-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
-          <a href="" class="d-flex align-items-center ps_gs-breadcrumb__link">
+          <a
+            href=""
+            class="d-flex align-items-center ps_gs-breadcrumb__link"
+          >
             {{ $t('productFeedSettings.breadcrumb1') }}
           </a>
         </li>
@@ -24,51 +33,78 @@
       >
         <b-thead>
           <b-tr>
-            <b-th v-for="(field, index) in fields" :key="index">
+            <b-th
+              v-for="(field, index) in fields"
+              :key="index"
+            >
               {{ field.label }}
             </b-th>
           </b-tr>
         </b-thead>
 
         <b-tbody>
-          <template v-for="product in items">
-            <template v-for="status in product.statuses">
-              <template v-for="lang in status[1]">
-                <b-tr :key="lang.id">
-                  <b-td>
-                    {{ product.id }}
-                  </b-td>
-                  <b-td>
+          <template v-for="(product, index) in items">
+            <b-tr :key="index">
+              <b-td class="align-top">
+                {{ product.id }}
+              </b-td>
+              <b-td class="align-top">
+                <a
+                  class="external_link-no_icon"
+                  :href="getProductBaseUrl.replace('/1?', `/${product.id}?`)"
+                  target="_blank"
+                  :title="$t('productFeedPage.approvalTable.editX', [product.name])"
+                >
+                  {{ product.name }}
+                </a>
+              </b-td>
+              <b-td class="align-top">
+                {{ product.attribute > 0 ? product.attribute : '' }}
+              </b-td>
+              <b-td class="align-top">
+                <b-badge
+                  :variant="badgeColor(getActualStatus(product)[0])"
+                  class="ps_gs-fz-12 text-capitalize"
+                >
+                  {{ getActualStatus(product)[0] }}
+                </b-badge>
+              </b-td>
+              <b-td class="align-top">
+                <b-badge
+                  variant="primary"
+                  class="ps_gs-fz-12"
+                >
+                  {{ getActualStatus(product)[1] }}
+                </b-badge>
+              </b-td>
+              <b-td class="align-top">
+                <ul
+                  class="list-unstyled mb-0"
+                  v-if="getActualStatus(product)[0] === 'disapproved'"
+                >
+                  <li
+                    v-for="(issue, indexIssues) in getIssues(product)"
+                    :key="indexIssues"
+                  >
                     <a
-                      class="ps_gs-fz-12"
-                      href="#"
-                      :title="$t('productFeedPage.approvalTable.editX', [product.name])"
+                      class="text-decoration-none"
+                      :href="issue.documentation"
+                      :title="issue.detail"
+                      target="_blank"
                     >
-                      {{ product.name }}
+                      {{ issue.description }}
                     </a>
-                  </b-td>
-                  <b-td>
-                    <b-badge :variant="badgeColor(status[0])" class="ps_gs-fz-12 text-capitalize">
-                      {{ status[0] }}
-                    </b-badge>
-                  </b-td>
-                  <b-td>
-                    <b-badge variant="primary" class="ps_gs-fz-12">
-                      {{ lang }}
-                    </b-badge>
-                  </b-td>
-                  <b-td>
-                    <span class="ps_gs-fz-10" v-if="status[0] === 'disapproved'">
-                      {{ product.issues.length > 0 ? product.issues.join(', ') : '' }}
-                    </span>
-                  </b-td>
-                </b-tr>
-              </template>
-            </template>
+                  </li>
+                </ul>
+              </b-td>
+            </b-tr>
           </template>
         </b-tbody>
       </b-table-simple>
-      <div class="psgoogleshopping-lazy-loading" v-if="loading">
+      <div
+        class="psgoogleshopping-lazy-loading"
+        v-if="loading"
+      >
         <div id="spinner" />
       </div>
 
@@ -321,6 +357,10 @@ export default {
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
         },
         {
+          key: 'attribute',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderAttributeID'),
+        },
+        {
           key: 'status',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderGoogleValidation'),
         },
@@ -334,6 +374,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    getProductBaseUrl() {
+      return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
@@ -370,6 +415,28 @@ export default {
         return 'warning';
       }
       return 'danger';
+    },
+    getActualStatus(product) {
+      let status = [];
+      product.statuses.forEach((el) => {
+        if (el[0] === 'disapproved') {
+          status = el;
+        }
+      });
+      return status;
+    },
+    getIssues(product) {
+      const issues = [];
+      product.issues.forEach((el) => {
+        if (el.resolution === 'merchant_action') {
+          issues.push({
+            description: el.description,
+            documentation: el.documentation,
+            detail: el.detail,
+          });
+        }
+      });
+      return issues;
     },
     handleScroll() {
       const de = document.documentElement;

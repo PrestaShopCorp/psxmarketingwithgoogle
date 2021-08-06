@@ -117,9 +117,9 @@ export default {
   },
   methods: {
     displayReporting() {
-      // this.$emit('showProductReporting', true);
+      this.$emit('showProductReporting', true);
       // Now we just generate link for redirect merchant for products statuses
-      window.open(`https://merchants.google.com/mc/products/diagnostics?a=${this.getGMCInformations.id}`);
+      // window.open(`https://merchants.google.com/mc/products/diagnostics?a=${this.getGMCInformations.id}`);
     },
   },
 };

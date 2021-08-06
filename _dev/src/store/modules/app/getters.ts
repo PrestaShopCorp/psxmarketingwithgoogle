@@ -32,4 +32,7 @@ export default {
   [GettersTypes.GET_STATUS_SHOP_MAINTENANCE](state: LocalState): boolean {
     return state.shopIsOnMaintenanceMode;
   },
+  [GettersTypes.GET_PRODUCT_DETAIL_BASE_URL](state: LocalState): string {
+    return state.psxMktgWithGoogleProductDetailUrl;
+  },
 };

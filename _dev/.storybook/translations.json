@@ -333,6 +333,7 @@
         "filterOnlyPending" : "Pending",
         "filterOnlyNotApproved" : "Not approved",
         "tableHeaderID" : "ID",
+        "tableHeaderAttributeID" : "Attribute",
         "tableHeaderName" : "Name",
         "tableHeaderGoogleValidation" : "Availablity for Google",
         "tableHeaderLanguage" : "Language",
