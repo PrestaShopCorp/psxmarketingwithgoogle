@@ -403,7 +403,9 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS](
-    {rootState, state, commit},
+    {
+      rootState, state, commit, dispatch,
+    },
     correlationId: string,
   ) {
     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-websites/site-verification/status`, {

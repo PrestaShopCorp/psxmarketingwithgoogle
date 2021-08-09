@@ -1,4 +1,5 @@
 import GoogleAdsAccountCard from '../src/components/google-ads-account/google-ads-account-card.vue'
+import {googleAdsNotChosen, googleAdsAccountChosen} from '../.storybook/mock/google-ads';
 
 export default {
   title: 'Google Ads Account/Card',
@@ -16,76 +17,101 @@ const Template = (args, { argTypes }) => ({
         @selectGoogleAdsAccount="fakeConnection"/>
     </div>
   `,
+  beforeMount: args.beforeMount,
+
   methods: {
     fakeConnection: function(this: any) {
       this.$refs.googleAdsAccount.$data.googleAdsAccountConfigured = true;
     },
   },
-  mounted(this: any) {
-    if (args.isConnected === true) {
-      this.$refs.googleAdsAccount.$data.googleAdsAccountConfigured = true;
-      this.$refs.googleAdsAccount.$data.selected = {
-        'id': '4150564877',
-        'name': 'Lui Corpette',
-      }
-    };
-  },
+ 
 });
 
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
+  },
 };
 
 export const Enabled:any = Template.bind({});
 Enabled.args = {
   isEnabled: true,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
+  },
 };
 
-// TODO: todo
+
 export const EnabledSpinner:any = Template.bind({});
 EnabledSpinner.args = {
   isEnabled: true,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
+    this.$store.state.googleAds.list = null;
+  },
+  
 };
 
-// TODO: todo
 export const EnabledButNoAccount:any = Template.bind({});
 EnabledButNoAccount.args = {
   isEnabled: true,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
+    this.$store.state.googleAds.list = [];
+  }
 };
 
 export const EnabledConnected:any = Template.bind({});
 EnabledConnected.args = {
   isEnabled: true,
-  isConnected: true,
-};
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+  },
+}
 
-// TODO: todo
 export const CantConnect:any = Template.bind({});
 CantConnect.args = {
   isEnabled: true,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
+    this.$store.state.googleAds.status = 'CantConnect';
+  }
 };
 
-// TODO: todo
 export const Suspended:any = Template.bind({});
 Suspended.args = {
   isEnabled: true,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.googleAds.status = 'Suspended';
+  }
 };
 
-// TODO: todo
 export const BillingSettingsMissing:any = Template.bind({});
 BillingSettingsMissing.args = {
   isEnabled: true,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.googleAds.status = 'BillingSettingsMissing';
+  }
 };
 
-// TODO: todo
 export const NeedRefreshAfterBilling:any = Template.bind({});
 NeedRefreshAfterBilling.args = {
   isEnabled: true,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.googleAds.status = 'NeedRefreshAfterBilling';
+  }
 };
 
-// TODO: todo
 export const Canceled:any = Template.bind({});
 Canceled.args = {
   isEnabled: true,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.googleAds.status = 'Cancelled';
+  }
 };
