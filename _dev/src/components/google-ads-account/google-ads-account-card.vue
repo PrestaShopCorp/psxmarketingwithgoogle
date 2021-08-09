@@ -20,7 +20,6 @@
         >
         <b-card-text class="text-left mb-0">
           {{ $t('googleAdsAccountCard.intro') }}
-          <!-- TODO: add the condition -->
         </b-card-text>
       </div>
     </template>

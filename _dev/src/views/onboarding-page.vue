@@ -151,7 +151,6 @@ export default {
         });
     },
     onGoogleAdsAccountSelected(event) {
-      console.log(event);
       this.$store.dispatch('googleAds/SEND_GOOGLE_ADS_ACCOUNT', event);
     },
     onGoogleAccountConnection() {
