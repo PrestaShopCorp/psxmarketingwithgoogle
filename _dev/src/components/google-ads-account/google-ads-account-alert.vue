@@ -87,7 +87,7 @@ export default {
             button: {
               type: 'link',
               label: this.$i18n.t('cta.addBillingSettings'),
-              url: '//placeholder.com/foo',
+              url: this.$options.googleUrl.googleAdsAccount,
             },
           };
         case 'NeedRefreshAfterBilling':

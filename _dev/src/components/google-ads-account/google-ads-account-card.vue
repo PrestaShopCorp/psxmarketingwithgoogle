@@ -22,7 +22,7 @@
           {{ $t('googleAdsAccountCard.intro') }}
           <!-- TODO: add the condition -->
           <i
-            v-if="true"
+            v-if="false"
             class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
           >
             check_circle
