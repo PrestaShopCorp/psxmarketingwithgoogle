@@ -66,6 +66,7 @@
               no-flip
               size="sm"
             >
+              <!-- START > SPINNER -->
               <b-dropdown-item
                 link-class="px-3"
                 :disabled="true"
@@ -73,6 +74,8 @@
               >
                 <i class="icon-busy icon-busy--dark" />
               </b-dropdown-item>
+              <!-- END > SPINNED -->
+              <!-- START > NO EXISTING ACCOUNT -->
               <b-dropdown-item
                 v-if="!listLoading && googleAdsAccountSelectionOptions.length === 0"
                 :disabled="true"
@@ -83,14 +86,27 @@
                   {{ $t('mcaCard.noExistingAccount') }}
                 </span>
               </b-dropdown-item>
+              <!-- END > NO EXISTING ACCOUNT -->
+              <!-- START > REGULAR LIST -->
               <b-dropdown-item
-                v-for="(option) in googleAdsAccountSelectionOptions"
+                v-for="(option, index) in googleAdsAccountSelectionOptions"
                 :key="option.id"
                 @click="selected = option"
+                :disabled="!isAdmin(index)"
                 variant="dark"
+                link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
               >
-                {{ option.id }} - {{ option.name }}
+                <span class="mr-2">
+                  {{ option.id }} - {{ option.name }}
+                </span>
+                <span
+                  v-if="!isAdmin(index)"
+                  class="ps_gs-fz-12 ml-auto"
+                >
+                  {{ $t('mcaCard.userIsNotAdmin') }}
+                </span>
               </b-dropdown-item>
+              <!-- END > REGULAR LIST -->
             </b-dropdown>
             <b-button
               size="sm"
@@ -236,6 +252,10 @@ export default {
         return `${account.id} - ${account.name}`;
       }
       return null;
+    },
+    isAdmin(account) {
+      // TODO
+      return account % 2 === 0;
     },
     refresh() {
       this.$router.go();
