@@ -291,7 +291,15 @@
       "intro" : "Launch an advertising campaign for your products and reach more users across four different Google networks.",
       "text" : "Once connected you may need to configure your billing settings in your Google Ads account.",
       "labelSelect" : "Connect an existing Google Ads account",
-      "id" : "Google Ads account ID"
+      "id" : "Google Ads account ID",
+      "toUseGAdsNeedsAdminAccess" : "To use an existing Google Ads account, you must have Admin access.",
+      "alertCantConnect" : "Could not connect your Google Ads account, it's on our side, please give it another try.",
+      "alertBillingSettingsMissing" : "To launch Smart Shopping campaigns, you need to add your billing settings in your Google Ads account.",
+      "alertNeedRefreshAfterBilling" : "Once filled in your billing info in your Google Ads account, refresh the page to view updates.",
+      "alertSuspended" : "You need to resolve issues in your Google Ads account.",
+      "alertCancelled" : "You need to reactivate your account in your Google Ads account.",
+      "learnAboutAccountSuspension": "Learn about account suspension",
+      "learnAboutAccountCancellation": "Learn about account cancellation"
     },
     "smartShoppingCampaignCard" : {
       "title" : "Reach more people with paid Smart Shopping campaign",
@@ -381,6 +389,7 @@
     "cta" : {
       "startConfiguring" : "Start configuring",
       "connect" : "Connect",
+      "connecting" : "Connecting...",
       "dissociate" : "Dissociate",
       "manageAccount" : "Manage account",
       "overwrite" : "Overwrite",
@@ -443,7 +452,8 @@
       "transferClaim" : "Transfer claim",
       "goToYourX" : "Go to your {0}",
       "addShippingInfo" : "Add shipping info",
-      "createSmartShoppingCampaign" : "Create Smart Shopping campaign"
+      "createSmartShoppingCampaign" : "Create Smart Shopping campaign",
+      "addBillingSettings" : "Add billing settings"
     },
     "badge" : {
       "free" : "Free",
@@ -468,7 +478,8 @@
       "suspended" : "Suspended",
       "ineligibleForFreeListing" : "Ineligible for free listings",
       "urlUnclaimed" : "Url unclaimed",
-      "urlUnverified" : "Url unverified"
+      "urlUnverified" : "Url unverified",
+      "canceled": "Canceled"
     },
     "modal" : {
       "titleDisconnectionMerchantCenter" : "Disconnect your Merchant Center?",

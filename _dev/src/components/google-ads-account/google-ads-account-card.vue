@@ -20,6 +20,13 @@
         >
         <b-card-text class="text-left mb-0">
           {{ $t('googleAdsAccountCard.intro') }}
+          <!-- TODO: add the condition -->
+          <i
+            v-if="false"
+            class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
+          >
+            check_circle
+          </i>
         </b-card-text>
       </div>
     </template>
@@ -51,7 +58,7 @@
             <b-dropdown
               id="googleAdsAccountSelection"
               ref="googleAdsAccountSelection"
-              :text="selected || $t('cta.selectAccount')"
+              :text="googleAdsLabel(selected) || $t('cta.selectAccount')"
               variant=" "
               class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
               :toggle-class="{'ps-dropdown__placeholder' : !selected}"
@@ -59,14 +66,47 @@
               no-flip
               size="sm"
             >
+              <!-- START > SPINNER -->
               <b-dropdown-item
-                v-for="option in googleAdsAccountSelectionOptions"
-                :key="option.text"
-                @click="selected = option.text"
-                variant="dark"
+                link-class="px-3"
+                :disabled="true"
+                v-if="listLoading"
               >
-                {{ option.text }}
+                <i class="icon-busy icon-busy--dark" />
               </b-dropdown-item>
+              <!-- END > SPINNED -->
+              <!-- START > NO EXISTING ACCOUNT -->
+              <b-dropdown-item
+                v-if="!listLoading && googleAdsAccountSelectionOptions.length === 0"
+                :disabled="true"
+                variant="dark"
+                link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+              >
+                <span class="mr-2">
+                  {{ $t('mcaCard.noExistingAccount') }}
+                </span>
+              </b-dropdown-item>
+              <!-- END > NO EXISTING ACCOUNT -->
+              <!-- START > REGULAR LIST -->
+              <b-dropdown-item
+                v-for="(option, index) in googleAdsAccountSelectionOptions"
+                :key="option.id"
+                @click="selected = option"
+                :disabled="!isAdmin(index)"
+                variant="dark"
+                link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+              >
+                <span class="mr-2">
+                  {{ option.id }} - {{ option.name }}
+                </span>
+                <span
+                  v-if="!isAdmin(index)"
+                  class="ps_gs-fz-12 ml-auto"
+                >
+                  {{ $t('mcaCard.userIsNotAdmin') }}
+                </span>
+              </b-dropdown-item>
+              <!-- END > REGULAR LIST -->
             </b-dropdown>
             <b-button
               size="sm"
@@ -75,10 +115,17 @@
               class="mt-3 mt-md-0 ml-md-3"
               @click="selectGoogleAdsAccount"
             >
-              {{ $t('cta.chooseExistingAccount') }}
+              {{ $t('cta.connect') }}
             </b-button>
           </div>
+          <VueShowdown
+            class="text-muted ps_gs-fz-12 mt-3 mt-md-0"
+            :markdown="$t('googleAdsAccountCard.toUseGAdsNeedsAdminAccess')"
+          />
         </b-form>
+        <GoogleAdsAccountAlert
+          :error="error"
+        />
         <div class="mt-3">
           <a href="#">
             <i
@@ -96,12 +143,23 @@
         v-if="googleAdsAccountConfigured"
         class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
       >
-        <p
-          class="mb-0"
-        >
-          {{ $t('googleAdsAccountCard.id') }}<br>
-          <strong class="font-weight-600">{{ selected }}</strong>
-        </p>
+        <div class="d-flex align-items-center">
+          <a
+            :href="'//google.com'"
+            :title="$t('cta.goToYourX', [$t('badge.googleAdsAccount')])"
+            target="_blank"
+            class="external_link-no_icon link-regular"
+          >
+            <strong>{{ selected.name }} - {{ selected.id }}</strong>
+          </a>
+          <b-badge
+            v-if="gAdsAccountStatusBadge !== null"
+            :variant="gAdsAccountStatusBadge.color"
+            class="mx-3"
+          >
+            {{ $t(`badge.${gAdsAccountStatusBadge.text}`) }}
+          </b-badge>
+        </div>
         <div
           v-if="!googleAdsAccountConfigured"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
@@ -116,7 +174,7 @@
               {{ $t('cta.connectAccount') }}
             </template>
             <template v-else>
-              {{ $t('cta.connectingAccount') }}
+              {{ $t('cta.connecting') }}
               <span class="ml-1 icon-busy" />
             </template>
           </b-button>
@@ -136,7 +194,7 @@
         </div>
       </div>
       <p
-        v-if="!isConnected"
+        v-if="!googleAdsAccountConfigured"
         class="mt-3 mb-0 ps_gs-fz-12 text-muted"
       >
         {{ $t('googleAdsAccountCard.text') }}
@@ -146,10 +204,18 @@
 </template>
 
 <script>
+import googleUrl from '@/assets/json/googleUrl.json';
+import GoogleAdsAccountAlert from './google-ads-account-alert.vue';
+
 export default {
   name: 'GoogleAdsAccountCard',
+  components: {
+    GoogleAdsAccountAlert,
+  },
   data() {
     return {
+      // TODO error is to be replaced with a computed like in MCA
+      error: 'Suspended',
       selected: null,
       googleAdsAccountConfigured: false,
       /**
@@ -157,19 +223,16 @@ export default {
        */
       googleAdsAccountSelectionOptions: [
         {
-          text: '987-654-3210',
+          id: '4150564877',
+          name: 'Lui Corpette',
         },
         {
-          text: '987-3210-654',
+          id: '4150564874',
+          name: 'Tata Corpette',
         },
         {
-          text: '027-654-3210',
-        },
-        {
-          text: '357-884-3210',
-        },
-        {
-          text: '912-015-3710',
+          id: '4150564875',
+          name: 'Tutu Corpette',
         },
       ],
     };
@@ -179,15 +242,59 @@ export default {
       type: Boolean,
       default: false,
     },
-    isConnected: {
-      type: Boolean,
-      default: false,
-    },
   },
   methods: {
     selectGoogleAdsAccount() {
       this.$emit('selectGoogleAdsAccount');
     },
+    googleAdsLabel(account) {
+      if (this.selected) {
+        return `${account.id} - ${account.name}`;
+      }
+      return null;
+    },
+    isAdmin(account) {
+      // TODO
+      return account % 2 === 0;
+    },
+    refresh() {
+      this.$router.go();
+    },
   },
+  computed: {
+    listLoading() {
+      // TODO
+      return false;
+    },
+    // TODO
+    // error() {
+    //   return 'foo';
+    // },
+    // TODO
+    gAdsAccountStatusBadge() {
+      switch (this.error) {
+        case 'Suspended':
+          return {
+            color: 'danger',
+            text: 'suspended',
+          };
+        case 'Cancelled':
+          return {
+            color: 'danger',
+            text: 'canceled',
+          };
+        case 'CantConnect':
+          return null;
+        case 'BillingSettingsMissing':
+        case 'NeedRefreshAfterBilling':
+        default:
+          return {
+            color: 'success',
+            text: 'active',
+          };
+      }
+    },
+  },
+  googleUrl,
 };
 </script>

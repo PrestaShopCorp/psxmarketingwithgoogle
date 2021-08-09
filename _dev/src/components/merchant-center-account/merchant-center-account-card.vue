@@ -388,16 +388,17 @@
       variant="warning"
       class="mb-0 mt-3"
     >
-      <p class="mb-0">
-        <strong>{{ $t('mcaCard.shopInfoMissing') }}</strong><br>
+      <div>
+        <strong>{{ $t('mcaCard.shopInfoMissing') }}</strong>
         <VueShowdown
-          class="ps_gs-fz-12"
+          class="mb-0 ps_gs-fz-12"
+          tag="p"
           :markdown="$t('mcaCard.shopInfoMissingDescription', [
             merchantCenterWebsitePageUrl.businessInfo
           ])"
-          :extensions="['targetlink']"
+          :extensions="['targetlink', 'no-p-tag']"
         />
-      </p>
+      </div>
     </b-alert>
     <b-alert
       v-else-if="error === WebsiteClaimErrorReason.AccountValidationFailed"
