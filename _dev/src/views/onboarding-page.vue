@@ -268,6 +268,7 @@ export default {
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
       this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
     }
+    this.$store.dispatch('googleAds/ET_GOOGLE_ADS_LIST');
   },
   watch: {
     merchantCenterAccountIsChosen(newVal, oldVal) {
