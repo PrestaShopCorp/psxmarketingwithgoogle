@@ -66,7 +66,7 @@
       />
       <google-ads-account-card
         :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
-        :is-connected="false"
+        @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
       />
     </template>
     <!-- Modals -->
@@ -150,6 +150,10 @@ export default {
           this.isMcaLinking = false;
         });
     },
+    onGoogleAdsAccountSelected(event) {
+      console.log(event);
+      this.$store.dispatch('googleAds/SEND_GOOGLE_ADS_ACCOUNT', event);
+    },
     onGoogleAccountConnection() {
       this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
       this.$store.dispatch('accounts/TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED', true);
@@ -228,8 +232,7 @@ export default {
         step1: this.psAccountsIsOnboarded,
         step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
-          && this.productFeedIsConfigured
-          && false, // TODO: In the 1st batch version, we don't have Google Ads.
+          && this.productFeedIsConfigured,
         step3: false,
       };
     },
@@ -253,12 +256,14 @@ export default {
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
       this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
     }
+    this.$store.dispatch('googleAds/ET_GOOGLE_ADS_LIST');
   },
   watch: {
     merchantCenterAccountIsChosen(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
+        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
       }
     },
     productFeedIsConfigured(newVal, oldVal) {

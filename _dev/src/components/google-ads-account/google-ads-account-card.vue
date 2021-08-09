@@ -21,12 +21,6 @@
         <b-card-text class="text-left mb-0">
           {{ $t('googleAdsAccountCard.intro') }}
           <!-- TODO: add the condition -->
-          <i
-            v-if="false"
-            class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
-          >
-            check_circle
-          </i>
         </b-card-text>
       </div>
     </template>
@@ -46,6 +40,12 @@
         <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
           {{ $t('googleAdsAccountCard.title') }}
         </b-card-text>
+        <i
+          v-if="googleAdsAccountConfigured && !error"
+          class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
+        >
+          check_circle
+        </i>
       </div>
       <div v-if="isEnabled && !googleAdsAccountConfigured">
         <b-form class="mt-3 mb-2">
@@ -56,6 +56,7 @@
           </legend>
           <div class="d-md-flex text-center">
             <b-dropdown
+              :disabled="error === 'CantConnect'"
               id="googleAdsAccountSelection"
               ref="googleAdsAccountSelection"
               :text="googleAdsLabel(selected) || $t('cta.selectAccount')"
@@ -89,10 +90,10 @@
               <!-- END > NO EXISTING ACCOUNT -->
               <!-- START > REGULAR LIST -->
               <b-dropdown-item
-                v-for="(option, index) in googleAdsAccountSelectionOptions"
+                v-for="(option) in googleAdsAccountSelectionOptions"
                 :key="option.id"
                 @click="selected = option"
-                :disabled="!isAdmin(index)"
+                :disabled="isAdmin(option)"
                 variant="dark"
                 link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
               >
@@ -100,7 +101,7 @@
                   {{ option.id }} - {{ option.name }}
                 </span>
                 <span
-                  v-if="!isAdmin(index)"
+                  v-if="isAdmin(option)"
                   class="ps_gs-fz-12 ml-auto"
                 >
                   {{ $t('mcaCard.userIsNotAdmin') }}
@@ -123,9 +124,6 @@
             :markdown="$t('googleAdsAccountCard.toUseGAdsNeedsAdminAccess')"
           />
         </b-form>
-        <GoogleAdsAccountAlert
-          :error="error"
-        />
         <div class="mt-3">
           <a href="#">
             <i
@@ -138,7 +136,6 @@
           </a>
         </div>
       </div>
-
       <div
         v-if="googleAdsAccountConfigured"
         class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
@@ -200,6 +197,9 @@
         {{ $t('googleAdsAccountCard.text') }}
       </p>
     </template>
+    <GoogleAdsAccountAlert
+      :error="error"
+    />
   </b-card>
 </template>
 
@@ -214,27 +214,8 @@ export default {
   },
   data() {
     return {
-      // TODO error is to be replaced with a computed like in MCA
-      error: 'Suspended',
-      selected: null,
-      googleAdsAccountConfigured: false,
-      /**
-       * TODO: To replace with actual datas
-       */
-      googleAdsAccountSelectionOptions: [
-        {
-          id: '4150564877',
-          name: 'Lui Corpette',
-        },
-        {
-          id: '4150564874',
-          name: 'Tata Corpette',
-        },
-        {
-          id: '4150564875',
-          name: 'Tutu Corpette',
-        },
-      ],
+      selected: this.$store.state.googleAds.accountChosen
+        ? this.$store.state.googleAds.accountChosen : null,
     };
   },
   props: {
@@ -245,7 +226,7 @@ export default {
   },
   methods: {
     selectGoogleAdsAccount() {
-      this.$emit('selectGoogleAdsAccount');
+      this.$emit('selectGoogleAdsAccount', this.selected);
     },
     googleAdsLabel(account) {
       if (this.selected) {
@@ -254,23 +235,28 @@ export default {
       return null;
     },
     isAdmin(account) {
-      // TODO
-      return account % 2 === 0;
+      // !! MIGHT NEED REFACTO if no isAdmin is sent by the API
+      // !! CF merchand center account card isGmcUserAdmin
+      return account.isAdmin === true;
     },
     refresh() {
       this.$router.go();
     },
   },
   computed: {
-    listLoading() {
-      // TODO
-      return false;
+    googleAdsAccountConfigured() {
+      return !!this.$store.state.googleAds.accountChosen;
     },
-    // TODO
-    // error() {
-    //   return 'foo';
-    // },
-    // TODO
+
+    listLoading() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_LIST_OPTIONS'] == null;
+    },
+    error() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_STATUS'];
+    },
+    googleAdsAccountSelectionOptions() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_LIST_OPTIONS'];
+    },
     gAdsAccountStatusBadge() {
       switch (this.error) {
         case 'Suspended':
