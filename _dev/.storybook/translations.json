@@ -460,7 +460,7 @@
       "active" : "Active",
       "disapproved" : "Disapproved",
       "pendingCreation" : "Pending",
-      "creatingGmc" : "Creating account in a minute.....",
+      "creatingGmc" : "Creating account in a few minutes...",
       "pendingCheck" : "We are checking your GMC status...",
       "pending" : "Pending",
       "expiring" : "Expiring",
