@@ -57,10 +57,10 @@
               :disabled="error === 'CantConnect'"
               id="googleAdsAccountSelection"
               ref="googleAdsAccountSelection"
-              :text="googleAdsLabel(selected) || $t('cta.selectAccount')"
+              :text="googleAdsLabel(selectedIndex) || $t('cta.selectAccount')"
               variant=" "
               class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
-              :toggle-class="{'ps-dropdown__placeholder' : !selected}"
+              :toggle-class="{'ps-dropdown__placeholder' : selectedIndex === null}"
               menu-class="ps-dropdown"
               no-flip
               size="sm"
@@ -88,9 +88,9 @@
               <!-- END > NO EXISTING ACCOUNT -->
               <!-- START > REGULAR LIST -->
               <b-dropdown-item
-                v-for="(option) in googleAdsAccountSelectionOptions"
+                v-for="(option, index) in googleAdsAccountSelectionOptions"
                 :key="option.id"
-                @click="selected = option"
+                @click="selectedIndex = index"
                 :disabled="isAdmin(option)"
                 variant="dark"
                 link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
@@ -110,7 +110,7 @@
             <b-button
               size="sm"
               variant="primary"
-              :disabled="!selected"
+              :disabled="selectedIndex === null"
               class="mt-3 mt-md-0 ml-md-3"
               @click="selectGoogleAdsAccount"
             >
@@ -139,7 +139,7 @@
         </div>
       </div>
       <div
-        v-if="googleAdsAccountConfigured"
+        v-if="googleAdsAccountConfigured && isGoogleAdsAccountFullyFetched"
         class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
       >
         <div class="d-flex align-items-center">
@@ -149,7 +149,7 @@
             target="_blank"
             class="external_link-no_icon link-regular"
           >
-            <strong>{{ selected.name }} - {{ selected.id }}</strong>
+            <strong>{{ accountChosen.id }} - {{ accountChosen.name }}</strong>
           </a>
           <b-badge
             v-if="gAdsAccountStatusBadge !== null"
@@ -218,9 +218,7 @@ export default {
   },
   data() {
     return {
-      selected: this.accountChosen ? this.accountChosen : {
-        name: 'coucou',
-      },
+      selectedIndex: null,
     };
   },
   props: {
@@ -231,11 +229,12 @@ export default {
   },
   methods: {
     selectGoogleAdsAccount() {
-      this.$emit('selectGoogleAdsAccount', this.selected);
+      this.$emit('selectGoogleAdsAccount', this.googleAdsAccountSelectionOptions[this.selectedIndex]);
     },
-    googleAdsLabel(account) {
-      if (this.selected) {
-        return `${account.id} - ${account.name}`;
+    googleAdsLabel(index) {
+      if (this.googleAdsAccountSelectionOptions && this.googleAdsAccountSelectionOptions[index]) {
+        const ga = this.googleAdsAccountSelectionOptions[index];
+        return `${ga.id} - ${ga.name}`;
       }
       return null;
     },
@@ -250,10 +249,11 @@ export default {
     dissociateGoogleAdsAccount() {
       this.$emit('dissociationGoogleAdsAccount');
     },
+
   },
   computed: {
     googleAdsAccountConfigured() {
-      return !!this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'] !== null;
     },
     accountChosen() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
@@ -290,7 +290,14 @@ export default {
           };
       }
     },
+    isGoogleAdsAccountFullyFetched() {
+      return this.isEnabled
+        && !this.listLoading
+        && this.accountChosen.name !== null
+        && this.accountChosen.name !== undefined;
+    },
   },
+
   googleUrl,
 };
 </script>

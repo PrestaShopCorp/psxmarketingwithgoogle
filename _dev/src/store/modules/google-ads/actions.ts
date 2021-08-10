@@ -1,3 +1,6 @@
+// TODO WHEN API OK :
+// Retrieve when error is Suspended / BillingSettingsMissing /NeedRefreshAfterBilling/ Cancelled
+
 /**
  * 2007-2021 PrestaShop and Contributors
  *
@@ -33,6 +36,7 @@ export default {
     //     });
     //   if (!resp.ok) {
     //     throw new HttpClientError(resp.statusText, resp.status);
+    // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect',
     //   }
     //   const json = await resp.json();
     //   commit(MutationsTypes.SET_GOOGLE_ADS_LIST, json);
@@ -69,6 +73,8 @@ export default {
     //     });
     //   if (!resp.ok) {
     //     throw new HttpClientError(resp.statusText, resp.status);
+    // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect',
+    // );
     //   }
     //   const json = await resp.json();
     //   commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, json);
@@ -99,6 +105,8 @@ export default {
     //     });
     //   if (!resp.ok) {
     //     throw new HttpClientError(resp.statusText, resp.status);
+    // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect',
+
     //   }
     //   const json = await resp.json();
     //   commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, {
@@ -129,6 +137,8 @@ export default {
     //   });
     //   if (!response.ok) {
     //     console.log('dissociate failed');
+    // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '',
+
     //     throw new HttpClientError(response.statusText, response.status);
     // }
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);

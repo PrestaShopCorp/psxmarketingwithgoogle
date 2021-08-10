@@ -80,7 +80,7 @@ export const EnabledConnected:any = Template.bind({});
 EnabledConnected.args = {
   isEnabled: true,
   beforeMount(this: any) {
-    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);``
   },
 }
 
