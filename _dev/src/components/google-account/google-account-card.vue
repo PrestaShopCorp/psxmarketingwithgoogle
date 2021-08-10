@@ -81,6 +81,7 @@
             class="mx-1 mt-3 mt-md-0 mr-md-0 ml-md-3"
             :disabled="isConnecting || error === 'CantConnect'"
             @click="openPopup"
+            data-test-id="btn-connect"
           >
             <template v-if="!isConnecting">
               {{ $t('cta.connectAccount') }}
@@ -151,6 +152,7 @@
           class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
           variant="outline-secondary"
           @click="refresh"
+          data-test-id="btn-refresh"
         >
           {{ $t('general.refreshPage') }}
         </b-button>

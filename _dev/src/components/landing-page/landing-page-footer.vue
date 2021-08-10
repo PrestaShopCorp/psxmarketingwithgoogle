@@ -9,6 +9,7 @@
           size="sm"
           variant="primary"
           @click="hideLandingPage"
+          data-test-id="lp-footer-cta"
         >
           {{ $t('cta.startConfiguring') }}
         </b-button>
@@ -18,7 +19,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'LandingPageFooter',
   data() {
