@@ -123,6 +123,10 @@
             :markdown="$t('googleAdsAccountCard.toUseGAdsNeedsAdminAccess')"
           />
         </b-form>
+        <GoogleAdsAccountAlert
+          v-if="error === 'CantConnect'"
+          :error="error"
+        />
         <div class="mt-3">
           <a href="#">
             <i
@@ -186,7 +190,7 @@
             target="_blank"
             @click="dissociateGoogleAdsAccount()"
           >
-            {{ $t('cta.dissociate') }}
+            {{ $t('cta.disconnect') }}
           </b-button>
         </div>
       </div>
@@ -198,6 +202,7 @@
       </p>
     </template>
     <GoogleAdsAccountAlert
+      v-if="error !== 'CantConnect'"
       :error="error"
     />
   </b-card>
