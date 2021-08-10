@@ -184,6 +184,7 @@
             variant="outline-secondary"
             class="mt-3 mt-md-0"
             target="_blank"
+            @click="dissociateGoogleAdsAccount()"
           >
             {{ $t('cta.dissociate') }}
           </b-button>
@@ -240,6 +241,9 @@ export default {
     },
     refresh() {
       this.$router.go();
+    },
+    dissociateGoogleAdsAccount() {
+      this.$emit('dissociationGoogleAdsAccount');
     },
   },
   computed: {

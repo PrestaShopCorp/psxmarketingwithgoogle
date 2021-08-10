@@ -26,7 +26,7 @@ export default {
   [MutationsTypes.SET_GOOGLE_ADS_STATUS](state: LocalState, payload: string) {
     state.status = payload;
   },
-  [MutationsTypes.SET_GOOGLE_ADS_ACCOUNT](state: LocalState, payload: object) {
+  [MutationsTypes.SET_GOOGLE_ADS_ACCOUNT](state: LocalState, payload: object|null) {
     state.accountChosen = payload;
   },
 };
