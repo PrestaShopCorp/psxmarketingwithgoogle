@@ -23,7 +23,7 @@ import HttpClientError from '../../../utils/HttpClientError';
 export default {
   async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit, rootState}) {
     // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/google-ads`,
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/google-ads/list`,
     //     {
     //       method: 'GET',
     //       headers: {
@@ -38,21 +38,47 @@ export default {
     //   commit(MutationsTypes.SET_GOOGLE_ADS_LIST, json);
     commit(MutationsTypes.SET_GOOGLE_ADS_LIST, [
       {
-        id: '4150564877',
+        id: 4150564877,
         name: 'Lui Corpette',
         isAdmin: false,
       },
       {
-        id: '4150564874',
+        id: 4150564874,
         name: 'Tata Corpette',
         isAdmin: false,
       },
       {
-        id: '4150564875',
+        id: 4150564875,
         name: 'Tutu Corpette',
         isAdmin: true,
       },
     ]);
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  },
+  async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT]({commit, rootState}) {
+    // try {
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/google-ads`,
+    //     {
+    //       method: 'GET',
+    //       headers: {
+    //         Accept: 'application/json',
+    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+    //       },
+    //     });
+    //   if (!resp.ok) {
+    //     throw new HttpClientError(resp.statusText, resp.status);
+    //   }
+    //   const json = await resp.json();
+    //   commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, json);
+    commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT,
+      {
+        id: 4150564877,
+        name: 'Lui Corpette',
+        isAdmin: false,
+      },
+    );
     // } catch (error) {
     //   console.error(error);
     // }
@@ -75,10 +101,15 @@ export default {
     //     throw new HttpClientError(resp.statusText, resp.status);
     //   }
     //   const json = await resp.json();
-    // commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, json);
+    //   commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, {
+    //   id: json.id,
+    //   name: json.name,
+    //   isAdmin: json.isAdmin,
+    // });
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, {
-      id: '4150564874',
+      id: 4150564874,
       name: 'Tata Corpette',
+      isAdmin: false,
     });
     // } catch (error) {
     //   console.error(error);

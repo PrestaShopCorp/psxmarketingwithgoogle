@@ -233,6 +233,9 @@ export default {
     freeListingIsActivatedOnce() {
       return this.$store.getters['freeListing/GET_FREE_LISTING_IS_ACTIVATED_ONCE'];
     },
+    getGoogleAdsAccount() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+    },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
@@ -275,6 +278,7 @@ export default {
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
         this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
+        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
       }
     },
     productFeedIsConfigured(newVal, oldVal) {
@@ -282,6 +286,7 @@ export default {
         this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS');
       }
     },
+
   },
 };
 </script>
