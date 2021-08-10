@@ -1,4 +1,3 @@
-<!-- NOTHING DONE YET -->
 <template>
   <b-card
     no-body
@@ -219,8 +218,9 @@ export default {
   },
   data() {
     return {
-      selected: this.$store.state.googleAds.accountChosen
-        ? this.$store.state.googleAds.accountChosen : null,
+      selected: this.accountChosen ? this.accountChosen : {
+      name: "coucou"
+    }
     };
   },
   props: {
@@ -253,9 +253,11 @@ export default {
   },
   computed: {
     googleAdsAccountConfigured() {
-      return !!this.$store.state.googleAds.accountChosen;
+      return !!this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
-
+    accountChosen() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+    },
     listLoading() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_LIST_OPTIONS'] == null;
     },

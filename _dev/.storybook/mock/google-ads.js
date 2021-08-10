@@ -3,17 +3,17 @@ export const googleAdsNotChosen = {
   accountChosen: null,
   list: [
     {
-      id: '4150564877',
+      id: 4150564877,
       name: 'Lui Corpette',
       isAdmin: false,
     },
     {
-      id: '4150564874',
+      id: 4150564874,
       name: 'Tata Corpette',
       isAdmin: false,
     },
     {
-      id: '4150564875',
+      id: 4150564875,
       name: 'Tutu Corpette',
       isAdmin: true,
     },
@@ -23,7 +23,7 @@ export const googleAdsNotChosen = {
 export const googleAdsAccountChosen = {
   ...googleAdsAccountChosen,
   accountChosen:  {
-    id: '4150564874',
+    id: 4150564874,
     name: 'Tata Corpette',
     isAdmin: false,
   },

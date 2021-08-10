@@ -28,5 +28,6 @@ export default {
   },
   [MutationsTypes.SET_GOOGLE_ADS_ACCOUNT](state: LocalState, payload: object|null) {
     state.accountChosen = payload;
+    console.log('accountChosen', state.accountChosen);
   },
 };

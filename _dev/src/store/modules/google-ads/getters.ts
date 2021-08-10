@@ -29,4 +29,7 @@ export default {
   [GettersTypes.GET_GOOGLE_ADS_LIST_OPTIONS](state: LocalState): Array<object> {
     return state.list;
   },
+  [GettersTypes.GET_GOOGLE_ADS_ACCOUNT_CHOSEN](state: LocalState): object|null {
+    return state.accountChosen;
+  },
 };
