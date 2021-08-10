@@ -1,4 +1,5 @@
-import GoogleAdsAccountCard from '../src/components/google-ads-account/google-ads-account-card.vue'
+import GoogleAdsAccountCard from '../src/components/google-ads-account/google-ads-account-card.vue';
+import GoogleAdsAccountPopinDisconnect from '../src/components/google-ads-account/google-ads-account-popin-disconnect.vue';
 import {googleAdsNotChosen, googleAdsAccountChosen} from '../.storybook/mock/google-ads';
 
 export default {
@@ -8,13 +9,18 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { GoogleAdsAccountCard },
+  components: { GoogleAdsAccountCard, GoogleAdsAccountPopinDisconnect },
   template: `
     <div>
       <GoogleAdsAccountCard
         ref="googleAdsAccount"
         v-bind="$props"
-        @selectGoogleAdsAccount="fakeConnection"/>
+        @selectGoogleAdsAccount="fakeConnection"
+        @dissociationGoogleAdsAccount="onGoogleAdsAccountDissociationRequest"
+        />
+        <GoogleAdsAccountPopinDisconnect
+        ref="GoogleAdsAccountPopinDisconnect"
+      />
     </div>
   `,
   beforeMount: args.beforeMount,
@@ -22,6 +28,13 @@ const Template = (args, { argTypes }) => ({
   methods: {
     fakeConnection: function(this: any) {
       this.$refs.googleAdsAccount.$data.googleAdsAccountConfigured = true;
+    },
+    onGoogleAdsAccountDissociationRequest() {
+      // @ts-ignore
+      this.$bvModal.show(
+        // @ts-ignore
+        this.$refs.GoogleAdsAccountPopinDisconnect.$refs.modal.id,
+      );
     },
   },
  
