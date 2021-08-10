@@ -21,7 +21,7 @@ export const googleAdsNotChosen = {
 };
 
 export const googleAdsAccountChosen = {
-  ...googleAdsAccountChosen,
+  ...googleAdsNotChosen,
   accountChosen:  {
     id: 4150564874,
     name: 'Tata Corpette',
