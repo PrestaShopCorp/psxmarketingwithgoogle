@@ -97,4 +97,21 @@ describe('google-ads-account.vue / enabled', () => {
     // Check that the dropdown is disabled
     expect(wrapper.find('#googleAdsAccountSelection').attributes('disabled')).toBeTruthy();
   });
+
+  // TODO: it.skip because it's not done yet
+  it.skip('Clicking on disconnect emmit the event to open a popup', async () => {
+    const wrapper = mount(GoogleAccountCard, {
+      store: new Vuex.Store(cloneStore()),
+      propsData: EnabledConnected.args,
+      beforeMount: EnabledConnected.args.beforeMount,
+      stubs: {
+        VueShowdown: true,
+      },
+    });
+
+    // TODO: Needs to add the data-test-id attribute to have this test pass
+    // Check if openPopin event has been emmited when disconnect button is clicked
+    await wrapper.find('[data-test-id="btn-disconnect"]').trigger('click');
+    expect(wrapper.emitted('dissociationGoogleAdsAccount')).toBeTruthy();
+  });
 });
