@@ -572,6 +572,8 @@ class PsxMktgWithGoogleTranslations
                 'titleQuitWithoutSaving' => $this->module->l('Quit without saving?', 'PsxMktgWithGoogleTranslations'),
                 'titleOverwriteProductFeed' => $this->module->l('Overwrite existing product feed?', 'PsxMktgWithGoogleTranslations'),
                 'textOverwriteProductFeed' => $this->module->l('Overwriting your existing product feed will delete it. You will need to configure new product feed.', 'PsxMktgWithGoogleTranslations'),
+                'titleDisconnectionGoogleAds' => $this->module->l('Disconnect Google Ads account?', 'PsxMktgWithGoogleTranslations'),
+                'textDisconnectGoogleAds' => $this->module->l('You are about to disconnect your Google Ads account. You won\'t be able to run Smart Shopping campaigns. Your previous Smart Shopping campaigns are still running. ', 'PsxMktgWithGoogleTranslations'),
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configuration', 'PsxMktgWithGoogleTranslations'),

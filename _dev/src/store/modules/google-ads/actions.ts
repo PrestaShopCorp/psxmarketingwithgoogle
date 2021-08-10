@@ -84,5 +84,24 @@ export default {
     //   console.error(error);
     // }
   },
+  async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState, state},
+    correlationId: string) {
+    // eslint-disable-next-line no-param-reassign
+    //     correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    //   const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/google-ads`, {
+    //     method: 'DELETE',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       Authorization: `Bearer ${state.tokenPsAccounts}`,
+    //       'x-correlation-id': correlationId,
+    //     },
+    //   });
+    //   if (!response.ok) {
+    //     console.log('dissociate failed');
+    //     throw new HttpClientError(response.statusText, response.status);
+    // }
+    commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);
+    return true;
+  },
 
 };
