@@ -1,14 +1,14 @@
 /**
  * @jest-environment jsdom
  */
- import Vuex from 'vuex';
+import Vuex from 'vuex';
 
- // Import this file first to init mock on window
- import config, {cloneStore} from '@/../tests/init';
+// Import this file first to init mock on window
+import config, {cloneStore} from '@/../tests/init';
 
- import {mount, shallowMount} from '@vue/test-utils';
- import GoogleAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
- import {
+import {mount, shallowMount} from '@vue/test-utils';
+import GoogleAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
+import {
   Disabled,
   Enabled,
   EnabledButNoAccount,
@@ -18,9 +18,9 @@
   BillingSettingsMissing,
   NeedRefreshAfterBilling,
   Canceled,
- } from '@/../stories/google-ads-account-card.stories';
+} from '@/../stories/google-ads-account-card.stories';
 
- describe('google-ads-account.vue / disabled', () => {
+describe('google-ads-account.vue / disabled', () => {
   it('card is greyed out when card is disabled', () => {
     const wrapper = mount(GoogleAccountCard, {
       store: new Vuex.Store(cloneStore()),
@@ -68,8 +68,23 @@ describe('google-ads-account.vue / enabled', () => {
     expect(wrapper.find('#googleAdsAccountSelection + .btn').attributes('disabled')).toBeTruthy();
   });
 
-  it.todo('there is a specific message when list is empty');
-  it.skip('dropdown is disabled when API error',() => {
+  // TODO: it.skip because it's not done yet
+  it.skip('there is a specific message when list is empty', () => {
+    const wrapper = mount(GoogleAccountCard, {
+      store: new Vuex.Store(cloneStore()),
+      propsData: EnabledButNoAccount.args,
+      beforeMount: EnabledButNoAccount.args.beforeMount,
+      stubs: {
+        VueShowdown: true,
+      },
+    });
+
+    // Check that the dropdown is disabled
+    expect(wrapper.find('[data-test-id="message-empty-list"]').exists()).toBeTruthy();
+  });
+
+  // TODO: it.skip because it's not done yet
+  it.skip('dropdown is disabled when API error', () => {
     const wrapper = mount(GoogleAccountCard, {
       store: new Vuex.Store(cloneStore()),
       propsData: CantConnect.args,
