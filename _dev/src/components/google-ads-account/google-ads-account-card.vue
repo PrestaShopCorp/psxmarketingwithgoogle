@@ -219,8 +219,8 @@ export default {
   data() {
     return {
       selected: this.accountChosen ? this.accountChosen : {
-      name: "coucou"
-    }
+        name: 'coucou',
+      },
     };
   },
   props: {
