@@ -512,7 +512,7 @@ class PsxMktgWithGoogleTranslations
                 'expiring' => $this->module->l('Expiring', 'PsxMktgWithGoogleTranslations'),
                 'disapproved' => $this->module->l('Disapproved', 'PsxMktgWithGoogleTranslations'),
                 'pendingCreation' => $this->module->l('Pending', 'PsxMktgWithGoogleTranslations'),
-                'creatingGmc' => $this->module->l('Creating account in a minute.....', 'PsxMktgWithGoogleTranslations'),
+                'creatingGmc' => $this->module->l('Creating account in a few minutes...', 'PsxMktgWithGoogleTranslations'),
                 'pendingCheck' => $this->module->l('We are checking your GMC status...', 'PsxMktgWithGoogleTranslations'),
                 'checkingSiteClaim' => $this->module->l('Checking your site claim...', 'PsxMktgWithGoogleTranslations'),
                 'siteVerified' => $this->module->l('Site verified', 'PsxMktgWithGoogleTranslations'),
