@@ -58,16 +58,16 @@
         :error-a-p-i="false"
         @openPopin="togglePopinFreeListingDisabled"
       />
-      <GoogleAdsAccountCard
-        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
-        @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
-        @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
-      />
       <section-title
         :step-number="3"
         :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
         :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
         :is-done="stepsAreCompleted.step3"
+      />
+      <GoogleAdsAccountCard
+        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
+        @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
+        @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
       />
       <SmartShoppingCampaignCard
         :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step3"
