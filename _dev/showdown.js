@@ -6,7 +6,7 @@ import showdown from 'showdown';
  * Extension found on showdown github repository:
  * https://github.com/showdownjs/showdown/issues/222#issuecomment-234141081
  */
-showdown.extension('targetlink', () => [
+ showdown.extension('targetlink', () => [
   {
     type: 'lang',
     regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\[\:target=((?:&quot;|\\")?["']?)(.*?)\6]/g,
@@ -21,6 +21,23 @@ showdown.extension('targetlink', () => [
 
       if (typeof target !== 'undefined' && target !== '' && target !== null) {
         result += ` target="${target}"`;
+      }
+
+      result += `>${linkText}</a>`;
+      return result;
+    },
+  },
+]);
+
+showdown.extension('className', () => [
+  {
+    type: 'lang',
+    regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\[\:class=((?:&quot;|\\")?["']?)(.*?)\6]/g,
+    replace(wholematch, linkText, url, a, b, title, c, className) {
+      let result = `<a href="${url}"`;
+
+      if (typeof className !== 'undefined' && className !== '' && className !== null) {
+        result += ` class="${className}"`;
       }
 
       result += `>${linkText}</a>`;

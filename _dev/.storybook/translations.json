@@ -323,7 +323,7 @@
       },
       "terms" : {
         "title" : "Terms of service for Google Program",
-        "description" : "By purchasing Shopping ads, I agree to comply with [Google Ads terms and conditions]({0})[:target=\"_blank\"]",
+        "description" : "By purchasing Shopping ads, I agree to comply with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]",
         "label" : "I have read and accept these terms"
       }
     },

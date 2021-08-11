@@ -142,7 +142,7 @@
         :markdown="$t('googleAdsAccountNew.terms.description', [
           $options.googleUrl.googleAdsTermsAndCondition
         ])"
-        :extensions="['targetlink']"
+        :extensions="['targetlink', 'className']"
       />
       <div
         class="d-flex"
