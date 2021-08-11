@@ -58,16 +58,19 @@
         :error-a-p-i="false"
         @openPopin="togglePopinFreeListingDisabled"
       />
+      <GoogleAdsAccountCard
+        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
+        @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
+        @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
+      />
       <section-title
         :step-number="3"
         :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
         :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
         :is-done="stepsAreCompleted.step3"
       />
-      <GoogleAdsAccountCard
-        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
-        @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
-        @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
+      <SmartShoppingCampaignCard
+        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step3"
       />
     </template>
     <!-- Modals -->
@@ -118,6 +121,7 @@ import FreeListingCard from '../components/free-listing/free-listing-card.vue';
 import GoogleAccountPopinDisconnect from '../components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/google-ads-account-popin-disconnect.vue';
+import SmartShoppingCampaignCard from '../components/smart-shopping-campaign/smart-shopping-campaign-card.vue';
 import PsToast from '../components/commons/ps-toast';
 
 export default {
@@ -131,6 +135,7 @@ export default {
     MerchantCenterAccountCard,
     ProductFeedCard,
     FreeListingCard,
+    SmartShoppingCampaignCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
     GoogleAdsAccountPopinDisconnect,
@@ -236,6 +241,9 @@ export default {
     getGoogleAdsAccount() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
+    googleAdsAccountIsChosen() {
+      return this.getGoogleAdsAccount && this.getGoogleAdsAccount.name.length > 0;
+    },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
@@ -248,7 +256,7 @@ export default {
         step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
           && this.productFeedIsConfigured,
-        step3: false,
+        step3: this.googleAdsAccountIsChosen,
       };
     },
     insideToast() {
