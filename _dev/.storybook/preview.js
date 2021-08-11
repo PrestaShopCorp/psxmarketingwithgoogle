@@ -121,6 +121,11 @@ addDecorator((story, context) => ({
       },
       immediate: true,
     },
+    beforeCreate: () => {
+      window.i18nSettings = {
+        languageLocale: 'en' // needed in _dev/src/store/modules/product-feed/actions.ts
+      }
+    },
   },
   store: new Vuex.Store(cloneStore()),
 }));
