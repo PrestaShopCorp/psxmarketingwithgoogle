@@ -16,7 +16,7 @@ const Template = (args, { argTypes }) => ({
         ref="googleAdsAccount"
         v-bind="$props"
         @selectGoogleAdsAccount="fakeConnection"
-        @dissociationGoogleAdsAccount="onGoogleAdsAccountDissociationRequest"
+        @disconnectionGoogleAdsAccount="onGoogleAdsAccountDissociationRequest"
         />
         <GoogleAdsAccountPopinDisconnect
         ref="GoogleAdsAccountPopinDisconnect"

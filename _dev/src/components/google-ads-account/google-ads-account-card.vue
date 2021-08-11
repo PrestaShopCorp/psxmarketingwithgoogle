@@ -187,7 +187,7 @@
             variant="outline-secondary"
             class="mt-3 mt-md-0"
             target="_blank"
-            @click="dissociateGoogleAdsAccount()"
+            @click="disconnectGoogleAdsAccount()"
           >
             {{ $t('cta.disconnect') }}
           </b-button>
@@ -246,8 +246,8 @@ export default {
     refresh() {
       this.$router.go();
     },
-    dissociateGoogleAdsAccount() {
-      this.$emit('dissociationGoogleAdsAccount');
+    disconnectGoogleAdsAccount() {
+      this.$emit('disconnectionGoogleAdsAccount');
     },
 
   },
