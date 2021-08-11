@@ -93,6 +93,7 @@
           size="lg"
           class="ml-sm-4 ps_gs-switch"
           v-model="sellRefurbished"
+          data-test-id="checkbox-sellRefurbished"
         >
           <span class="ps_gs-fz-14">
             {{
@@ -132,6 +133,7 @@
           stacked="md"
           class="mx-n1"
           table-class="border-bottom-0 table-firstline-borderless ps_gs-table-attribute-mapping"
+          data-test-id="tutu"
         >
           <b-thead>
             <b-tr>
@@ -153,6 +155,7 @@
             </template>
             <template v-if="sellApparel">
               <product-feed-settings-attribute-mapping-tablerow-specific
+                data-test-id="tutu"
                 v-for="input in apparelInputs"
                 :key="input"
                 :input="input"
