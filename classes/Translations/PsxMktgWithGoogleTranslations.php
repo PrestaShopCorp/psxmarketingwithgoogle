@@ -351,6 +351,32 @@ class PsxMktgWithGoogleTranslations
                 'learnAboutAccountSuspension' => $this->module->l('Learn about account suspension', 'PsxMktgWithGoogleTranslations'),
                 'learnAboutAccountCancellation' => $this->module->l('Learn about account cancellation', 'PsxMktgWithGoogleTranslations'),
             ],
+            'googleAdsAccountNew' => [
+                'steps' => [
+                  'email' => $this->module->l('Email', 'PsxMktgWithGoogleTranslations'),
+                  'businessInfo' => $this->module->l('Business info', 'PsxMktgWithGoogleTranslations'),
+                  'termsOfService' => $this->module->l('Terms of service', 'PsxMktgWithGoogleTranslations'),
+                ],
+                'email' => [
+                  'title' => $this->module->l('Your Google email address', 'PsxMktgWithGoogleTranslations'),
+                  'description' => $this->module->l("This information will be used to create your account.  \nGoogle email address below is the one provided during your Google account connection.", 'PsxMktgWithGoogleTranslations'),
+                ],
+                'business' => [
+                  'title' => $this->module->l('Business information', 'PsxMktgWithGoogleTranslations'),
+                  'description' => $this->module->l("Both time zone and currency settings are used to determine how you\'re billed.  \n**You can never change the currency** you choose for your account, so choose it carefully.", 'PsxMktgWithGoogleTranslations'),
+                  'labelCountry' => $this->module->l('Billing country', 'PsxMktgWithGoogleTranslations'),
+                  'placeholderCountry' => $this->module->l('Select your billing country', 'PsxMktgWithGoogleTranslations'),
+                  'labelTimeZone' => $this->module->l('Time Zone', 'PsxMktgWithGoogleTranslations'),
+                  'placeholderTimeZone' => $this->module->l('Select your time zone', 'PsxMktgWithGoogleTranslations'),
+                  'labelCurrency' => $this->module->l('Currency', 'PsxMktgWithGoogleTranslations'),
+                  'placeholderCurrency' => $this->module->l('Select your currency', 'PsxMktgWithGoogleTranslations'),
+                ],
+                'terms' => [
+                  'title' => $this->module->l('Terms of service for Google Program', 'PsxMktgWithGoogleTranslations'),
+                  'description' => $this->module->l('By purchasing Shopping ads, I agree to comply with [Google Ads terms and conditions]({0})[:target="_blank"]', 'PsxMktgWithGoogleTranslations'),
+                  'label' => $this->module->l('I have read and accept these terms', 'PsxMktgWithGoogleTranslations'),
+                ],
+            ],
             'smartShoppingCampaignCard' => [
                 'title' => $this->module->l('Reach more people with paid Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
                 'intro' => $this->module->l('Enable the paid listing of your products with Smart Shopping Campaigns', 'PsxMktgWithGoogleTranslations'),
