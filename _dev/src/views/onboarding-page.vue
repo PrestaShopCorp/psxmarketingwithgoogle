@@ -67,7 +67,7 @@
       <GoogleAdsAccountCard
         :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
         @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
-        @dissociationGoogleAdsAccount="onGoogleAdsAccountDissociationRequest"
+        @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
       />
     </template>
     <!-- Modals -->
@@ -175,7 +175,7 @@ export default {
         this.$refs.mcaDisconnectModal.$refs.modal.id,
       );
     },
-    onGoogleAdsAccountDissociationRequest() {
+    onGoogleAdsAccountDisconnectionRequest() {
       this.$bvModal.show(
         this.$refs.GoogleAdsAccountPopinDisconnect.$refs.modal.id,
       );
