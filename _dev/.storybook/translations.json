@@ -316,7 +316,7 @@
         "description" : "Both time zone and currency settings are used to determine how you're billed.  \n**You can never change the currency** you choose for your account, so choose it carefully.",
         "labelCountry" : "Billing country",
         "placeholderCountry" : "Select your billing country",
-        "labelTimeZone" : "Time Zone",
+        "labelTimeZone" : "Time zone",
         "placeholderTimeZone" : "Select your time zone",
         "labelCurrency" : "Currency",
         "placeholderCurrency" : "Select your currency"

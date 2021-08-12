@@ -366,7 +366,7 @@ class PsxMktgWithGoogleTranslations
                   'description' => $this->module->l("Both time zone and currency settings are used to determine how you\'re billed.  \n**You can never change the currency** you choose for your account, so choose it carefully.", 'PsxMktgWithGoogleTranslations'),
                   'labelCountry' => $this->module->l('Billing country', 'PsxMktgWithGoogleTranslations'),
                   'placeholderCountry' => $this->module->l('Select your billing country', 'PsxMktgWithGoogleTranslations'),
-                  'labelTimeZone' => $this->module->l('Time Zone', 'PsxMktgWithGoogleTranslations'),
+                  'labelTimeZone' => $this->module->l('Time zone', 'PsxMktgWithGoogleTranslations'),
                   'placeholderTimeZone' => $this->module->l('Select your time zone', 'PsxMktgWithGoogleTranslations'),
                   'labelCurrency' => $this->module->l('Currency', 'PsxMktgWithGoogleTranslations'),
                   'placeholderCurrency' => $this->module->l('Select your currency', 'PsxMktgWithGoogleTranslations'),
