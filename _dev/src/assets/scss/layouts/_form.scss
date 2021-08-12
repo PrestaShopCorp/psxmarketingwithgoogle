@@ -71,7 +71,16 @@
 
     &__placeholder {
       color: $gray-450;
+
+      &:after {
+        color: $grey_dark;
+      }
     }
+
+  }
+
+  .dropdown-toggle {
+    padding-right: 6px;
   }
 
   hr {
