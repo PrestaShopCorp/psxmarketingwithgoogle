@@ -21,10 +21,33 @@ export interface State {
   status: null|string,
   accountChosen: null|object,
   list: Array<object>,
+  shopInfos: ShopInformations
+}
+
+export interface ShopInformations {
+  country: {
+      // eslint-disable-next-line camelcase
+    iso_code: null|string,
+    name: null|string
+  },
+  currency: null|string,
+  timeZone: null|object
 }
 
 export const state: State = {
   status: null,
   accountChosen: null,
   list: [],
+  shopInfos: {
+    country: {
+      // eslint-disable-next-line camelcase
+      iso_code: null,
+      name: null,
+    },
+    currency: 'EUR',
+    timeZone: {
+      text: null,
+      offset: null,
+    },
+  },
 };

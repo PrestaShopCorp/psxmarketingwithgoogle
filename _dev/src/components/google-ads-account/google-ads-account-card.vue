@@ -126,7 +126,10 @@
           v-if="error === 'CantConnect'"
           :error="error"
         />
-        <div class="mt-3">
+        <div
+          class="mt-3"
+          @click="openPopinNewAccount"
+        >
           <a href="#">
             <i
               class="left material-icons mr-2"
@@ -248,6 +251,9 @@ export default {
     },
     disconnectGoogleAdsAccount() {
       this.$emit('disconnectionGoogleAdsAccount');
+    },
+    openPopinNewAccount() {
+      this.$emit('creationGoogleAdsAccount');
     },
 
   },

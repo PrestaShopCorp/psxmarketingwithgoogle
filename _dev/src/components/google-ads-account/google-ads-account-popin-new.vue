@@ -16,7 +16,7 @@
       v-if="stepActiveData === 1"
     >
       <h6 class="ps_gs-fz-16 font-weight-600 mb-1">
-        {{ $t('googleAdsAccountNew.email.title') }}
+        {{ $t("googleAdsAccountNew.email.title") }}
       </h6>
       <VueShowdown
         class="mb-3 pb-2"
@@ -37,7 +37,7 @@
     >
       <section class="mb-3">
         <h6 class="ps_gs-fz-16 mb-0 font-weight-600">
-          {{ $t('googleAdsAccountNew.business.title') }}
+          {{ $t("googleAdsAccountNew.business.title") }}
         </h6>
         <VueShowdown
           class="mb-3 pb-2"
@@ -47,21 +47,22 @@
           class="font-weight-600 mb-0"
           for="selectBillingCountry"
         >
-          {{ $t('googleAdsAccountNew.business.labelCountry') }}
+          {{ $t("googleAdsAccountNew.business.labelCountry") }}
         </label>
         <ps-select
           v-model="selectedBillingCountry"
           :placeholder="$t('googleAdsAccountNew.business.placeholderCountry')"
-          :reduce="country => country.code"
           :options="this.$options.countriesSelectionOptions"
           :deselect-from-dropdown="true"
           :clearable="false"
           class="ps_gs-v-select"
-          label="country"
+          label="name"
           id="selectBillingCountry"
         >
           <template #option="{ country }">
-            <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
+            <div
+              class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3"
+            >
               <span class="mr-2">
                 {{ country }}
               </span>
@@ -72,15 +73,20 @@
           class="font-weight-600 mb-0 mt-3 pt-2"
           for="selectBillingCountry"
         >
-          {{ $t('googleAdsAccountNew.business.labelTimeZone') }}
+          {{ $t("googleAdsAccountNew.business.labelTimeZone") }}
         </label>
         <b-dropdown
           id="selectTimezone"
           ref="selectTimezone"
-          :text="selectedTimeZone || $t('googleAdsAccountNew.business.placeholderTimeZone')"
+          :text="
+            selectedTimeZone ||
+              $t('googleAdsAccountNew.business.placeholderTimeZone')
+          "
           variant=" "
           class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
-          :toggle-class="{'ps-dropdown__placeholder' : selectedTimeZone === null}"
+          :toggle-class="{
+            'ps-dropdown__placeholder': selectedTimeZone === null,
+          }"
           menu-class="ps-dropdown"
           no-flip
           size="sm"
@@ -88,8 +94,8 @@
           <b-dropdown-item
             v-for="(option, index) in $options.timezones"
             :key="index"
-            :value="option.offset"
-            @click="selectedTimeZone = option.text"
+            :value="option"
+            @click="selectedTimeZone = option"
             variant="dark"
             link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
           >
@@ -102,29 +108,34 @@
           class="font-weight-600 mb-0 mt-3 pt-2"
           for="selectBillingCountry"
         >
-          {{ $t('googleAdsAccountNew.business.labelCurrency') }}
+          {{ $t("googleAdsAccountNew.business.labelCurrency") }}
         </label>
         <b-dropdown
           id="selectTimezone"
           ref="selectTimezone"
-          :text="selectedCurrency || $t('googleAdsAccountNew.business.placeholderCurrency')"
+          :text="
+            selectedCurrency ||
+              $t('googleAdsAccountNew.business.placeholderCurrency')
+          "
           variant=" "
           class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
-          :toggle-class="{'ps-dropdown__placeholder' : selectedCurrency === null}"
+          :toggle-class="{
+            'ps-dropdown__placeholder': selectedCurrency === null,
+          }"
           menu-class="ps-dropdown"
           no-flip
           size="sm"
         >
           <b-dropdown-item
-            v-for="(option, index) in $options.timezones"
+            v-for="(option, index) in currencies"
             :key="index"
-            :value="option.offset"
-            @click="selectedCurrency = option.text"
+            :value="option"
+            @click="selectedCurrency = option"
             variant="dark"
             link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
           >
             <span class="mr-2">
-              {{ option.text }}
+              {{ option }}
             </span>
           </b-dropdown-item>
         </b-dropdown>
@@ -135,25 +146,23 @@
       v-if="stepActiveData === 3"
     >
       <h6 class="ps_gs-fz-16 font-weight-600 mb-1">
-        {{ $t('googleAdsAccountNew.terms.title') }}
+        {{ $t("googleAdsAccountNew.terms.title") }}
       </h6>
       <VueShowdown
         class="mb-3 pb-2"
-        :markdown="$t('googleAdsAccountNew.terms.description', [
-          $options.googleUrl.googleAdsTermsAndCondition
-        ])"
+        :markdown="
+          $t('googleAdsAccountNew.terms.description', [
+            $options.googleUrl.googleAdsTermsAndCondition,
+          ])
+        "
         :extensions="['targetlink', 'className']"
       />
-      <div
-        class="d-flex"
-      >
+      <div class="d-flex">
         <b-form-checkbox
           class="ps_gs-checkbox"
           v-model="acceptsGoogleTerms"
         >
-          <VueShowdown
-            :markdown="$t('googleAdsAccountNew.terms.label')"
-          />
+          <VueShowdown :markdown="$t('googleAdsAccountNew.terms.label')" />
         </b-form-checkbox>
       </div>
     </div>
@@ -167,20 +176,21 @@
         :href="$options.googleUrl.learnAboutTimeZoneAndCurrency"
         target="_blank"
       >
-        {{ $t('cta.learnAboutTimeZoneAndCurrency') }}
+        {{ $t("cta.learnAboutTimeZoneAndCurrency") }}
       </a>
       <b-button
         variant="outline-secondary"
-        @click="cancel()"
+        @click="cancel"
       >
-        {{ $t('cta.cancel') }}
+        {{ $t("cta.cancel") }}
       </b-button>
       <b-button
         variant="primary"
-        @click="saveSecondStep()"
+        @click="stepToChange(stepActiveData + 1)"
         class="mr-md-0"
+        :disabled="stepActiveData === 2 && fieldsEmpty()"
       >
-        {{ $t('cta.continue') }}
+        {{ $t("cta.continue") }}
       </b-button>
     </template>
     <template
@@ -189,20 +199,24 @@
     >
       <b-button
         variant="outline-secondary"
-        @click="cancel()"
+        @click="cancel"
       >
-        {{ $t('cta.cancel') }}
+        {{ $t("cta.cancel") }}
       </b-button>
       <span
         v-b-tooltip:psxMktgWithGoogleApp
-        :title="isStepThreeReadyToValidate() ? $t('tooltip.mustAgreeGoogleAdsTerms') : ''"
+        :title="
+          isStepThreeReadyToValidate()
+            ? $t('tooltip.mustAgreeGoogleAdsTerms')
+            : ''
+        "
       >
         <b-button
           variant="primary"
           @click="ok()"
           :disabled="isStepThreeReadyToValidate()"
         >
-          {{ $t('cta.createAccount') }}
+          {{ $t("cta.createAccount") }}
         </b-button>
       </span>
     </template>
@@ -216,6 +230,7 @@ import countriesSelectionOptions from '../../assets/json/countries.json';
 import PsModal from '../commons/ps-modal';
 import Stepper from '../commons/stepper';
 import PsSelect from '../commons/ps-select.vue';
+import {GoogleAccountContext} from '../../store/modules/accounts/state';
 
 export default {
   name: 'MerchantCenterAccountPopinWebsiteRequirements',
@@ -224,8 +239,10 @@ export default {
     Stepper,
     PsSelect,
   },
+
   data() {
     return {
+      stepActive: 1,
       stepActiveData: 1,
       steps: [
         {
@@ -238,40 +255,90 @@ export default {
           title: this.$i18n.t('googleAdsAccountNew.steps.termsOfService'),
         },
       ],
-      user: {
-        details: {
-          email: 'v.godard@maisonroyer.com',
-          picture: '//source.unsplash.com/bul_3zwYI6E/38x38',
-        },
-      },
-      selectedBillingCountry: null,
-      selectedTimeZone: null,
-      selectedCurrency: null,
       acceptsGoogleTerms: false,
     };
   },
   methods: {
-    saveSecondStep() {
-      this.stepActiveData = 3;
-    },
     stepToChange(value) {
       this.stepActiveData = value;
     },
-    ok() {
-    },
+    ok() {},
     cancel() {
+      this.$refs.modal.hide();
     },
     isStepThreeReadyToValidate() {
       return !this.acceptsGoogleTerms;
     },
+    fieldsEmpty() {
+      if (
+        this.selectedTimeZone === null
+        || this.selectedCurrency === null
+        || this.selectedBillingCountry === null
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
   props: {
-    stepActive: {
-      type: Number,
-      default: 1,
+    user: {
+      type: GoogleAccountContext,
+      default: null,
     },
   },
   computed: {
+    shopInformations() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_SHOP_INFORMATIONS'];
+    },
+    selectedTimeZone: {
+      get() {
+        return this.shopInformations.timeZone.text;
+      },
+      set(value) {
+        this.$store.commit('googleAds/UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS', {
+          name: 'timeZone',
+          data: {
+            offset: value.offset,
+            text: value.text,
+          },
+        });
+      },
+    },
+    selectedBillingCountry: {
+      get() {
+        return this.shopInformations.country
+        && this.shopInformations.country.name !== null
+          ? this.shopInformations.country : null;
+      },
+      set(value) {
+        console.log(value);
+        this.$store.commit('googleAds/UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS', {
+          name: 'country',
+          data: {
+            name: value.country,
+            iso_code: value.code,
+          },
+        });
+      },
+    },
+    selectedCurrency: {
+      get() {
+        return this.shopInformations.currency;
+      },
+      set(value) {
+        this.$store.commit('googleAds/UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS', {
+          name: 'currency',
+          data: value,
+        });
+      },
+    },
+    currencies() {
+      return this.$options.countriesSelectionOptions
+        .map((e) => e.currency)
+        .reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]),
+        )
+        .sort();
+    },
   },
   mounted() {
     this.stepActiveData = this.stepActive;

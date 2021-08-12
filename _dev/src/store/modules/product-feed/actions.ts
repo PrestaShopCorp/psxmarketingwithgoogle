@@ -107,8 +107,10 @@ export default {
       });
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
     } catch (error) {
-      console.error(error);
-      if (error.code !== 404) {
+      if (error.code === 404) {
+        console.log('Incremental-Sync settings not found: ask user to configure it');
+      } else {
+        console.error(`HttpClientError: ${error}`);
         commit(MutationsTypes.API_ERROR, true);
       }
     }

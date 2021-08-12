@@ -204,6 +204,7 @@
         "appliedOnlyForUsa" : "(applied only for the USA)",
         "alertTaxes" : "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.",
         "cantSelectCountryWithDifferentCurrency" : "You can't select country with currency that differs from your main shop."
+      
       },
       "export" : {
         "synchronizationSchedule" : "Export synchronization schedule",
