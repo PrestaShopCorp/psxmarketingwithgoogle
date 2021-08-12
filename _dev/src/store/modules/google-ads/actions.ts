@@ -85,6 +85,20 @@ export default {
         isAdmin: false,
       },
     );
+    commit(MutationsTypes.UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS,
+      {
+        country: {
+          // eslint-disable-next-line camelcase
+          iso_code: 'FR',
+          name: 'France',
+        },
+        currency: 'EUR',
+        timeZone: {
+          text: null,
+          offset: null,
+        },
+      },
+    );
     // } catch (error) {
     //   console.error(error);
     // }

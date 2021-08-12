@@ -68,6 +68,7 @@
         :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
         @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
         @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
+        @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
       />
       <SmartShoppingCampaignCard
         :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step3"
@@ -88,6 +89,12 @@
 
     <GoogleAdsAccountPopinDisconnect
       ref="GoogleAdsAccountPopinDisconnect"
+    />
+
+    <GoogleAdsPopinNew
+      ref="GoogleAdsAccountPopinNew"
+      :user="getGoogleAccount"
+      @cancelGoogleAdsCreationNewAccount="onGoogleAdsAccountTogglePopin"
     />
     <!-- Toasts -->
     <PsToast
@@ -121,6 +128,7 @@ import FreeListingCard from '../components/free-listing/free-listing-card.vue';
 import GoogleAccountPopinDisconnect from '../components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/google-ads-account-popin-disconnect.vue';
+import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
 import SmartShoppingCampaignCard from '../components/smart-shopping-campaign/smart-shopping-campaign-card.vue';
 import PsToast from '../components/commons/ps-toast';
 
@@ -139,6 +147,7 @@ export default {
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
     GoogleAdsAccountPopinDisconnect,
+    GoogleAdsPopinNew,
     PsToast,
     FreeListingPopinDisable,
   },
@@ -185,6 +194,16 @@ export default {
         this.$refs.GoogleAdsAccountPopinDisconnect.$refs.modal.id,
       );
     },
+    onGoogleAdsAccountTogglePopin() {
+      this.$bvModal.show(
+        this.$refs.GoogleAdsAccountPopinNew.$refs.modal.id,
+      );
+    },
+    // onCancelGoogleAdsCreationNewAccount() {
+    //   this.$bvModal.show(
+    //     this.$refs.GoogleAdsAccountPopinNew.$refs.modal.id,
+    //   );
+    // },
     toastIsClosed() {
       if (this.googleAccountConnectedOnce) {
         this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
@@ -256,7 +275,8 @@ export default {
         step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
           && this.productFeedIsConfigured,
-        step3: this.googleAdsAccountIsChosen,
+        step3: this.productFeedIsConfigured
+        && this.googleAdsAccountIsChosen,
       };
     },
     insideToast() {
