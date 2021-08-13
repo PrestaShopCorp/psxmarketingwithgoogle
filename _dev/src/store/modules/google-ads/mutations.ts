@@ -22,15 +22,7 @@ import {State as LocalState} from './state';
 type payloadObject = {
   name: string, data: string
 }
-type payloadObjectShopInfos = {
-  country: {
-  // eslint-disable-next-line camelcase
-  iso_code: null|string,
-  name: null|string
-},
-  currency: null|string,
-  timeZone: null|object
-}
+
 export default {
   [MutationsTypes.SET_GOOGLE_ADS_LIST](state: LocalState, payload: Array<object>) {
     state.list = payload;
@@ -43,8 +35,10 @@ export default {
   },
   [MutationsTypes.UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS](
     state: LocalState, payload: payloadObject) {
-    console.log(payload);
     state.shopInfos[payload.name] = payload.data;
-    console.log('state final', state);
+  },
+  [MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT](
+    state: LocalState, payload: payloadObject) {
+    state.list.push(payload);
   },
 };

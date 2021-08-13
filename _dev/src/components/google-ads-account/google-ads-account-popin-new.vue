@@ -262,7 +262,15 @@ export default {
     stepToChange(value) {
       this.stepActiveData = value;
     },
-    ok() {},
+    ok() {
+      this.$store.dispatch('googleAds/SAVE_NEW_GOOGLE_ADS_ACCOUNT', {
+        user: this.user,
+        shopInfos: this.shopInformations,
+      })
+        .then(() => {
+          this.$refs.modal.hide();
+        });
+    },
     cancel() {
       this.$refs.modal.hide();
     },
@@ -311,7 +319,6 @@ export default {
           ? this.shopInformations.country : null;
       },
       set(value) {
-        console.log(value);
         this.$store.commit('googleAds/UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS', {
           name: 'country',
           data: {
