@@ -28,7 +28,7 @@
           :alt="user.details.email"
           class="mr-3 rounded-circle"
         >
-        <strong>{{ user.details.email }}</strong>
+        <strong class="text-break">{{ user.details.email }}</strong>
       </div>
     </div>
     <form
@@ -242,7 +242,6 @@ export default {
 
   data() {
     return {
-      stepActive: 1,
       stepActiveData: 1,
       steps: [
         {
@@ -346,10 +345,7 @@ export default {
         )
         .sort();
     },
-  },
-  mounted() {
-    this.stepActiveData = this.stepActive;
-  },
+},
   googleUrl,
   countriesSelectionOptions,
   timezones,

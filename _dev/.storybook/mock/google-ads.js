@@ -1,6 +1,18 @@
 export const googleAdsNotChosen = {
   status: null,
   accountChosen: null,
+  shopInfos: {
+    country: {
+      // eslint-disable-next-line camelcase
+      iso_code: null,
+      name: null,
+    },
+    currency: 'DIR',
+    timeZone: {
+      text: null,
+      offset: null,
+    },
+  },
   list: [
     {
       id: 4150564877,
