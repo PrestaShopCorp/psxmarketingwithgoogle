@@ -54,6 +54,7 @@
         </p>
         <div
           v-else
+          class="d-flex align-items-center p-3 border rounded"
         >
           <img
             class="mr-3 rounded-circle"
@@ -66,7 +67,7 @@
             :href="$options.googleUrl.manageGoogleAccount"
             :title="$t('cta.goToYourX', [$t('badge.googleAccount')])"
             target="_blank"
-            class="external_link-no_icon link-regular"
+            class="external_link-no_icon link-regular text-break"
           >
             <strong>{{ user.details.email }}</strong>
           </a>
