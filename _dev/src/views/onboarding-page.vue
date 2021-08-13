@@ -172,7 +172,7 @@ export default {
         });
     },
     onGoogleAdsAccountSelected(event) {
-      this.$store.dispatch('googleAds/SEND_GOOGLE_ADS_ACCOUNT', event);
+      this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', event);
     },
     onGoogleAccountConnection() {
       this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);

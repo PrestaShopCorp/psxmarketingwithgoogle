@@ -33,7 +33,6 @@ export default {
     return state.accountChosen;
   },
   [GettersTypes.GET_GOOGLE_ADS_SHOP_INFORMATIONS](state: LocalState): object|null {
-    console.log('1', state.shopInfos);
     return state.shopInfos;
   },
 };
