@@ -1,4 +1,6 @@
 .ps_gs-modal {
+  overflow-y: auto;
+
   &__header {
     border: none;
     min-height: auto;
