@@ -52,7 +52,6 @@
         <ps-select
           v-model="selectedBillingCountry"
           :placeholder="$t('googleAdsAccountNew.business.placeholderCountry')"
-          :reduce="country => country.code"
           :options="this.$options.countriesSelectionOptions"
           :deselect-from-dropdown="true"
           :clearable="false"
