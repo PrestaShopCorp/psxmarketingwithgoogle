@@ -28,11 +28,28 @@
         </b-card-text>
       </div>
     </div>
-    <p
-      :class="isEnabled ? 'mb-0' : 'mb-1'"
-    >
-      {{ $t('smartShoppingCampaignCard.intro') }}
-    </p>
+
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
+      <VueShowdown
+        tag="p"
+        :markdown="$t('smartShoppingCampaignCard.intro')"
+        :class="isEnabled ? 'mb-0' : 'mb-1'"
+        :extensions="['no-p-tag']"
+      />
+      <div
+        v-if="isEnabled"
+        class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center align-self-end"
+      >
+        <b-button
+          size="sm"
+          variant="primary"
+          class="mx-1 mt-3 mt-md-0 mr-md-0 ml-md-3"
+          data-test-id="btn-create-campaign"
+        >
+          {{ $t('cta.createCampaign') }}
+        </b-button>
+      </div>
+    </div>
     <BadgeListRequirements
       v-if="!isEnabled"
       :badges="['productFeed', 'googleAdsAccount']"

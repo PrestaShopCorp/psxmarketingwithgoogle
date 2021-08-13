@@ -378,8 +378,8 @@ class PsxMktgWithGoogleTranslations
                 ],
             ],
             'smartShoppingCampaignCard' => [
-                'title' => $this->module->l('Reach more people with paid Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
-                'intro' => $this->module->l('Enable the paid listing of your products with Smart Shopping Campaigns', 'PsxMktgWithGoogleTranslations'),
+                'title' => $this->module->l('Boost your sales with Smart Shopping Campaigns', 'PsxMktgWithGoogleTranslations'),
+                'intro' => $this->module->l("Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time.", 'PsxMktgWithGoogleTranslations'),
             ],
             'productFeedPage' => [
                 'breadcrumb' => $this->module->l('Product status details', 'PsxMktgWithGoogleTranslations'),
@@ -530,6 +530,7 @@ class PsxMktgWithGoogleTranslations
                 'addShippingInfo' => $this->module->l('Add shipping info', 'PsxMktgWithGoogleTranslations'),
                 'createSmartShoppingCampaign' => $this->module->l('Create Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
                 'addBillingSettings' => $this->module->l('Add billing settings', 'PsxMktgWithGoogleTranslations'),
+                'createCampaign' => $this->module->l('Create campaign', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),

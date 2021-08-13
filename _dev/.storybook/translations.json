@@ -328,8 +328,8 @@
       }
     },
     "smartShoppingCampaignCard" : {
-      "title" : "Reach more people with paid Smart Shopping campaign",
-      "intro" : "Enable the paid listing of your products with Smart Shopping Campaigns"
+      "title" : "Boost your sales with Smart Shopping Campaigns",
+      "intro" : "Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time."
     },
     "productFeedPage" : {
       "breadcrumb" : "Product status details",
@@ -480,7 +480,8 @@
       "addShippingInfo" : "Add shipping info",
       "createSmartShoppingCampaign" : "Create Smart Shopping campaign",
       "addBillingSettings" : "Add billing settings",
-      "learnAboutTimeZoneAndCurrency" : "Learn more about currency and time zone settings"
+      "learnAboutTimeZoneAndCurrency" : "Learn more about currency and time zone settings",
+      "createCampaign" : "Create campaign"
     },
     "badge" : {
       "free" : "Free",
