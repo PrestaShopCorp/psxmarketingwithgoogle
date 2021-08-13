@@ -531,7 +531,7 @@ class PsxMktgWithGoogleTranslations
                 'createSmartShoppingCampaign' => $this->module->l('Create Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
                 'addBillingSettings' => $this->module->l('Add billing settings', 'PsxMktgWithGoogleTranslations'),
                 'createCampaign' => $this->module->l('Create campaign', 'PsxMktgWithGoogleTranslations'),
-                'learnAboutTimeZoneAndCurrency' => $this->module->l("Learn more about currency and time zone settings", 'PsxMktgWithGoogleTranslations'),
+                'learnAboutTimeZoneAndCurrency' => $this->module->l('Learn more about currency and time zone settings', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),
