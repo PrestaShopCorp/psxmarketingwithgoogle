@@ -346,7 +346,7 @@ export default {
         )
         .sort();
     },
-},
+  },
   googleUrl,
   countriesSelectionOptions,
   timezones,
