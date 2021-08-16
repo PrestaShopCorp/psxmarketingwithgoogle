@@ -19,12 +19,17 @@
 
 import {
   State as LocalState,
+  GoogleAdsErrorReason,
 } from './state';
 import GettersTypes from './getters-types';
 
 export default {
-  [GettersTypes.GET_GOOGLE_ADS_STATUS](state: LocalState): string|null {
-    return state.status;
+  [GettersTypes.GET_GOOGLE_ADS_STATUS](state: LocalState)
+    : GoogleAdsErrorReason|null {
+    if (state.status) {
+      return state.status;
+    }
+    return null;
   },
   [GettersTypes.GET_GOOGLE_ADS_LIST_OPTIONS](state: LocalState): Array<object> {
     return state.list;

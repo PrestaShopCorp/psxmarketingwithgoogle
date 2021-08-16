@@ -18,10 +18,18 @@
  */
 
 export interface State {
-  status: null|string,
+  status: null|GoogleAdsErrorReason,
   accountChosen: null|object,
   list: Array<object>,
   shopInfos: ShopInformations
+}
+
+export enum GoogleAdsErrorReason {
+  NeedRefreshAfterBilling = 'NeedRefreshAfterBilling',
+  CantConnect = 'CantConnect',
+  BillingSettingsMissing = 'BillingSettingsMissing',
+  Cancelled = 'Cancelled',
+  Suspended = 'Suspended',
 }
 
 export interface ShopInformations {

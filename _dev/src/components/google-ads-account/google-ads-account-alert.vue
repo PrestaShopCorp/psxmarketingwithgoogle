@@ -41,6 +41,9 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
+import {
+  GoogleAdsErrorReason,
+} from '../../store/modules/google-ads/state';
 
 export default {
   name: 'GoogleAdsAccountAlert',
@@ -62,6 +65,12 @@ export default {
       },
     },
   },
+  data() {
+    return {
+      GoogleAdsErrorReason,
+
+    };
+  },
   methods: {
     refresh() {
       this.$router.go();
@@ -71,7 +80,7 @@ export default {
     gAdsAccountAlert() {
       // TODO has to define the right conditions
       switch (this.error) {
-        case 'CantConnect':
+        case GoogleAdsErrorReason.CantConnect:
           return {
             color: 'warning',
             text: this.$i18n.t('googleAdsAccountCard.alertCantConnect'),
@@ -80,7 +89,7 @@ export default {
               label: this.$i18n.t('general.refreshPage'),
             },
           };
-        case 'BillingSettingsMissing':
+        case GoogleAdsErrorReason.BillingSettingsMissing:
           return {
             color: 'warning',
             text: this.$i18n.t('googleAdsAccountCard.alertBillingSettingsMissing'),
@@ -90,7 +99,7 @@ export default {
               url: this.$options.googleUrl.googleAdsAccount,
             },
           };
-        case 'NeedRefreshAfterBilling':
+        case GoogleAdsErrorReason.NeedRefreshAfterBilling:
           return {
             color: 'warning',
             text: this.$i18n.t('googleAdsAccountCard.alertNeedRefreshAfterBilling'),
@@ -99,7 +108,7 @@ export default {
               label: this.$i18n.t('general.refreshPage'),
             },
           };
-        case 'Suspended':
+        case GoogleAdsErrorReason.Suspended:
           return {
             color: 'danger',
             text: this.$i18n.t('googleAdsAccountCard.alertSuspended',
@@ -109,7 +118,7 @@ export default {
               url: this.$options.googleUrl.googleAdsAccountSuspension,
             },
           };
-        case 'Cancelled':
+        case GoogleAdsErrorReason.Cancelled:
           return {
             color: 'danger',
             text: this.$i18n.t('googleAdsAccountCard.alertCancelled',

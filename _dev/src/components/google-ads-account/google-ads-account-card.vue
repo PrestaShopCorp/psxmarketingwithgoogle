@@ -54,7 +54,7 @@
           </legend>
           <div class="d-md-flex text-center">
             <b-dropdown
-              :disabled="error === 'CantConnect'"
+              :disabled="error === GoogleAdsErrorReason.CantConnect"
               id="googleAdsAccountSelection"
               ref="googleAdsAccountSelection"
               :text="googleAdsLabel(selectedIndex) || $t('cta.selectAccount')"
@@ -123,7 +123,7 @@
           />
         </b-form>
         <GoogleAdsAccountAlert
-          v-if="error === 'CantConnect'"
+          v-if="error === GoogleAdsErrorReason.CantConnect"
           :error="error"
         />
         <div
@@ -213,6 +213,9 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import GoogleAdsAccountAlert from './google-ads-account-alert.vue';
+import {
+  GoogleAdsErrorReason,
+} from '../../store/modules/google-ads/state';
 
 export default {
   name: 'GoogleAdsAccountCard',
@@ -222,6 +225,7 @@ export default {
   data() {
     return {
       selectedIndex: null,
+      GoogleAdsErrorReason,
     };
   },
   props: {
@@ -265,7 +269,7 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
     listLoading() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_LIST_OPTIONS'] == null;
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_LIST_OPTIONS'] === null;
     },
     error() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_STATUS'];
@@ -275,20 +279,20 @@ export default {
     },
     gAdsAccountStatusBadge() {
       switch (this.error) {
-        case 'Suspended':
+        case GoogleAdsErrorReason.Suspended:
           return {
             color: 'danger',
             text: 'suspended',
           };
-        case 'Cancelled':
+        case GoogleAdsErrorReason.Cancelled:
           return {
             color: 'danger',
             text: 'canceled',
           };
-        case 'CantConnect':
+        case GoogleAdsErrorReason.CantConnect:
           return null;
-        case 'BillingSettingsMissing':
-        case 'NeedRefreshAfterBilling':
+        case GoogleAdsErrorReason.BillingSettingsMissing:
+        case GoogleAdsErrorReason.NeedRefreshAfterBilling:
         default:
           return {
             color: 'success',
