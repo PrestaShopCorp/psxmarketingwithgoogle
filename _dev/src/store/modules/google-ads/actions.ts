@@ -26,7 +26,7 @@ import HttpClientError from '../../../utils/HttpClientError';
 export default {
   async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit, rootState}) {
     // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/google-ads/list`,
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/list`,
     //     {
     //       method: 'GET',
     //       headers: {
@@ -63,7 +63,7 @@ export default {
   },
   async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT]({commit, rootState}) {
     // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/google-ads`,
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads`,
     //     {
     //       method: 'GET',
     //       headers: {
@@ -105,7 +105,7 @@ export default {
   },
   async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT]({commit, rootState, dispatch}, payload: object) {
     // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/google-ads`,
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads`,
     //     {
     //       method: 'POST',
     //       headers: {
@@ -140,7 +140,7 @@ export default {
     correlationId: string) {
     // eslint-disable-next-line no-param-reassign
     //     correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
-    //   const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/google-ads`, {
+    //   const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads`, {
     //     method: 'DELETE',
     //     headers: {
     //       Accept: 'application/json',
@@ -161,7 +161,7 @@ export default {
   async [ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT]({commit, rootState}, payload: object) {
     // const id = payload.id
     // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/google-ads/${id}`,
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/${id}`,
     //     {
     //       method: 'POST',
     //       headers: {
