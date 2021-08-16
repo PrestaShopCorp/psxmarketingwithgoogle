@@ -73,7 +73,7 @@
           class="font-weight-600 mb-0 mt-3 pt-2"
           for="selectBillingCountry"
         >
-          {{ $t("googleAdsAccountNew.business.labelTimeZone") }}
+          {{ $t('googleAdsAccountNew.business.labelTimeZone') }}
         </label>
         <b-dropdown
           id="selectTimezone"

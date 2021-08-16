@@ -1,7 +1,7 @@
 import GoogleAdsAccountCard from '../src/components/google-ads-account/google-ads-account-card.vue';
 import GoogleAdsAccountPopinDisconnect from '../src/components/google-ads-account/google-ads-account-popin-disconnect.vue';
 import {googleAdsNotChosen, googleAdsAccountChosen} from '../.storybook/mock/google-ads';
-
+import {GoogleAdsErrorReason} from '../src/store/modules/google-ads/state'
 export default {
   title: 'Google Ads Account/Card',
   component: GoogleAdsAccountCard,
@@ -89,7 +89,7 @@ CantConnect.args = {
   isEnabled: true,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
-    this.$store.state.googleAds.status = 'CantConnect';
+    this.$store.state.googleAds.status = GoogleAdsErrorReason.CantConnect;
   }
 };
 
@@ -98,7 +98,7 @@ Suspended.args = {
   isEnabled: true,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
-    this.$store.state.googleAds.status = 'Suspended';
+    this.$store.state.googleAds.status = GoogleAdsErrorReason.Suspended;
   }
 };
 
@@ -107,7 +107,7 @@ BillingSettingsMissing.args = {
   isEnabled: true,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
-    this.$store.state.googleAds.status = 'BillingSettingsMissing';
+    this.$store.state.googleAds.status = GoogleAdsErrorReason.BillingSettingsMissing;
   }
 };
 
@@ -116,7 +116,7 @@ NeedRefreshAfterBilling.args = {
   isEnabled: true,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
-    this.$store.state.googleAds.status = 'NeedRefreshAfterBilling';
+    this.$store.state.googleAds.status = GoogleAdsErrorReason.NeedRefreshAfterBilling;
   }
 };
 
@@ -125,6 +125,6 @@ Canceled.args = {
   isEnabled: true,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
-    this.$store.state.googleAds.status = 'Cancelled';
+    this.$store.state.googleAds.status = GoogleAdsErrorReason.Cancelled;
   }
 };

@@ -34,7 +34,7 @@ export enum GoogleAdsErrorReason {
 
 export interface ShopInformations {
   country: {
-      // eslint-disable-next-line camelcase
+    // eslint-disable-next-line camelcase
     iso_code: null|string,
     name: null|string
   },
