@@ -345,7 +345,7 @@ export default {
   data() {
     return {
       loading: false,
-      items: Products.results.slice(0, 15),
+      items: Products.results.slice(0, 17),
       selectedFilterQuantityToShow: '20',
       fields: [
         {
@@ -420,6 +420,8 @@ export default {
       let status = [];
       product.statuses.forEach((el) => {
         if (el[0] === 'disapproved') {
+          status = el;
+        } else {
           status = el;
         }
       });
