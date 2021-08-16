@@ -61,9 +61,12 @@ export default {
     //   console.error(error);
     // }
   },
-  async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT]({commit, rootState}) {
+  async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT]({
+    commit, rootState, dispatch, state,
+  }) {
+    const id = rootState.accounts.googleAccount.account_id;
     // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads`,
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/${id}`,
     //     {
     //       method: 'GET',
     //       headers: {
@@ -85,6 +88,31 @@ export default {
         isAdmin: false,
       },
     );
+    dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
+
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  },
+  async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS]({
+    commit, rootState, dispatch, state,
+  }) {
+    // const id = rootState.googleAds.accountChosen.id;
+    // try {
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/shopInfos/${id}`,
+    //     {
+    //       method: 'GET',
+    //       headers: {
+    //         Accept: 'application/json',
+    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+    //       },
+    //     });
+    //   if (!resp.ok) {
+    //     throw new HttpClientError(resp.statusText, resp.status);
+    // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect',
+    // );
+    //   }
+    //   const json = await resp.json();
     commit(MutationsTypes.UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS,
       {
         country: {
@@ -99,10 +127,12 @@ export default {
         },
       },
     );
+
     // } catch (error) {
     //   console.error(error);
     // }
   },
+
   async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT]({commit, rootState, dispatch}, payload: object) {
     // try {
     //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads`,
@@ -131,6 +161,7 @@ export default {
     };
     commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUser);
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUser);
+    dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
 
     // } catch (error) {
     //   console.error(error);
@@ -158,7 +189,7 @@ export default {
     return true;
   },
 
-  async [ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT]({commit, rootState}, payload: object) {
+  async [ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT]({commit}, dispatch, payload: object) {
     // const id = payload.id
     // try {
     //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/${id}`,
@@ -185,6 +216,7 @@ export default {
     //   isAdmin: json.isAdmin,
     // });
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, payload);
+    dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
     // } catch (error) {
     //   console.error(error);
     // }
