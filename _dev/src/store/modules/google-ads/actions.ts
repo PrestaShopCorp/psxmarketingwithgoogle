@@ -189,7 +189,7 @@ export default {
     return true;
   },
 
-  async [ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT]({commit}, dispatch, payload: object) {
+  async [ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT]({commit, dispatch}, payload: object) {
     // const id = payload.id
     // try {
     //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/${id}`,
