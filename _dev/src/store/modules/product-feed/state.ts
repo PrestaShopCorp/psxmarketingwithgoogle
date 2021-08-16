@@ -61,6 +61,12 @@ export interface State {
   validationSummary : ProductFeedValidationSummary,
 }
 
+export enum ProductStatues {
+  Disapproved = 'disapproved',
+  Pending = 'pending',
+  Approved = 'approved',
+}
+
 export const state: State = {
   isSyncSummaryLoadingInProgress: false,
   errorAPI: false,

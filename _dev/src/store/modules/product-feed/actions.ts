@@ -219,7 +219,7 @@ export default {
   },
   async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({rootState}, nextPage) {
     const nextToken = nextPage ? `?nextToken=${nextPage}` : '';
-    const response = await fetch(`${rootState.app.psGoogleShoppingApiUrl}/product-feeds/validation/list${nextToken}`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/validation/list${nextToken}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
