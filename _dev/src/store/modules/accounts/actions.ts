@@ -49,8 +49,8 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error(`Could not trigger onboarding to google account: ${error?.message}`);
     }
   },
 
@@ -173,8 +173,8 @@ export default {
       }
       const json = await response.json();
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error(`Could not request route to google auth: ${error?.message}`);
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, error);
     }
   },
@@ -204,13 +204,13 @@ export default {
       // Also needed if we didn't have linked the accounts yet, as the marchant has to pick one.
       dispatch(ActionsTypes.REQUEST_GMC_LIST);
       return json;
-    } catch (error) {
+    } catch (error: any) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
         // This is likely caused by a missing Google account, so let's retrieve the URL
         dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
         return null;
       }
-      console.error(error);
+      console.error(`Could not request google account details: ${error?.message}`);
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, error);
     }
     return null;
@@ -244,9 +244,9 @@ export default {
           setTimeout(() => dispatch(ActionsTypes.REQUEST_GMC_LIST), 15000);
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.LinkingFailed);
-      console.error(error);
+      console.error(`Could not request GMC list: ${error?.message}`);
     }
   },
 
@@ -345,8 +345,8 @@ export default {
         throw new Error('Website was not verified by Google');
       }
       return {isVerified, isClaimed};
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error(`Could not trigger website verification process: ${error?.message}`);
       return {isVerified: false, isClaimed: false};
     } finally {
       // Remove token anyway
@@ -486,8 +486,8 @@ export default {
 
       const json = await response.json();
       commit(MutationsTypes.SAVE_WEBSITE_REQUIREMENTS, json);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.error(`Could not request website requirements: ${error?.message}`);
     }
   },
 
@@ -506,8 +506,8 @@ export default {
 
       const json = await response.json();
       commit(MutationsTypes.SAVE_SHOP_INFORMATIONS, json);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.error(`Could not request shop information: ${error?.message}`);
     }
   },
 
@@ -560,8 +560,8 @@ export default {
       setTimeout(async () => {
         await dispatch(ActionsTypes.REQUEST_GMC_LIST);
       }, 60000);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.error(`Could not save new GMC: ${error?.message}`);
     }
   },
 };
