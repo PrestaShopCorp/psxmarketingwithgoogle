@@ -57,7 +57,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         $this->multishopDataProvider = $this->module->getService(MultishopDataProvider::class);
         $this->env = $this->module->getService(Env::class);
         $this->countryRepository = $this->module->getService(CountryRepository::class);
-        $this->currencyRepository = $this->module->getService(currencyRepository::class);
+        $this->currencyRepository = $this->module->getService(CurrencyRepository::class);
     }
 
     public function initContent()

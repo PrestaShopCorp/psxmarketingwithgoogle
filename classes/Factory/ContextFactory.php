@@ -20,7 +20,9 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Factory;
 
+use Configuration;
 use Context;
+use Currency;
 
 class ContextFactory
 {
@@ -34,9 +36,19 @@ class ContextFactory
         return Context::getContext()->language;
     }
 
+    /**
+     * Return the currency present in the context, or the default one
+     * when the context doesn't have a currency yet (i.e when user session is empty).
+     *
+     * @return Currency
+     */
     public static function getCurrency()
     {
-        return Context::getContext()->currency;
+        if (Context::getContext()->currency !== null) {
+            return Context::getContext()->currency;
+        }
+
+        return new Currency((int) Configuration::get('PS_CURRENCY_DEFAULT'));
     }
 
     public static function getSmarty()
