@@ -151,7 +151,9 @@
           id="inputBusinessPhoneNumber"
           :value="businessPhone"
           v-model="businessPhone"
+          @change="verifyPhone"
           :readonly="!!shopInformations.store.phone"
+          :state="phoneFormatError"
           class="maxw-sm-420"
         />
       </b-form-group>
@@ -307,6 +309,7 @@ export default {
       ],
       businessPhone: '',
       businessAddr: '',
+      phoneFormatError: null,
       selectedRequirements: [],
       containsAdultContent: null,
       acceptsGoogleTerms: false,
@@ -326,6 +329,7 @@ export default {
     isStepTwoReadyToValidate() {
       return !(
         this.acceptsGoogleTerms
+        && this.phoneFormatError
         && (this.containsAdultContent != null)
         && this.businessAddr
         && this.businessPhone
@@ -339,6 +343,9 @@ export default {
     },
     getCurrentCheckbox() {
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
+    },
+    verifyPhone() {
+      this.phoneFormatError = (!!this.businessPhone.match(/^[+0-9. ()/-]*$/));
     },
     ok() {
       const phoneNumber = this.shopInformations.shop.phone || this.businessPhone;
