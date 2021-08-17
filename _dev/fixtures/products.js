@@ -9,8 +9,16 @@ export const Products = {
       lang: 'apMAGsPJ9eSZJo6wjtR1FC',
       name: 'Affiche encadrée The best is yet to come',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR', 'EN'],
+        },
+        {
+          destination: 'Free Listing',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -43,8 +51,16 @@ export const Products = {
       lang: 'kw8jtrbJqbEHiEYPMe1GPt',
       name: 'Pull imprimé colibri',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -99,8 +115,16 @@ export const Products = {
       lang: '72Hu48p5Z7rG9s8gSzyTHd',
       name: 'Carnet de notes Renard',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -133,8 +157,16 @@ export const Products = {
       lang: 'ogV1uBEKnJ1RraDHyffW7T',
       name: 'Affiche encadrée The best is yet to come',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -167,8 +199,16 @@ export const Products = {
       lang: 'fbgX8GZVZZCLd8aCee2L23',
       name: 'Mug The adventure begins',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -201,8 +241,16 @@ export const Products = {
       lang: 'x6usSD6JhhBNDvsWfFp8UJ',
       name: 'T-shirt imprimé colibri',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -246,8 +294,16 @@ export const Products = {
       lang: 'nV5rRzinxe8L3aQYoV9Qhg',
       name: 'Carnet de notes Ours brun',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -280,8 +336,16 @@ export const Products = {
       lang: '5htk3tP391GzDZ7aSvVaiE',
       name: 'Pull imprimé colibri',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -336,8 +400,16 @@ export const Products = {
       lang: 'bnHvv8B9z9Kv8F4BoCML36',
       name: 'Affiche encadrée Today is a good day',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -370,8 +442,16 @@ export const Products = {
       lang: 'tVw9xxb4swazicRx2ZPPn3',
       name: 'Affiche encadrée The adventure begins',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -404,8 +484,16 @@ export const Products = {
       lang: 'bYzGXCx9f7LWVzrJQJ3Luo',
       name: 'Carnet de notes Renard',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -438,8 +526,16 @@ export const Products = {
       lang: 'sw25ufeeYgJ3C7K4urGeZF',
       name: 'Coussin ours brun',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -472,8 +568,16 @@ export const Products = {
       lang: 'r4GqLofHK27qcPiR7nu9Hn',
       name: 'Illustration vectorielle Ours brun',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -506,8 +610,16 @@ export const Products = {
       lang: '4PdqaAfaiLgnPDVN73eVKJ',
       name: 'Affiche encadrée The best is yet to come',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {
@@ -540,8 +652,16 @@ export const Products = {
       lang: 'ttNfcbYSqyLNvYqn3Ds2em',
       name: 'Coussin colibri',
       statuses: [
-        ['pending', 'FR'],
-        ['disapproved', 'FR'],
+        {
+          destination: 'Shopping',
+          status: 'pending',
+          countries: ['FR'],
+        },
+        {
+          destination: 'Shopping',
+          status: 'disapproved',
+          countries: ['FR'],
+        },
       ],
       issues: [
         {

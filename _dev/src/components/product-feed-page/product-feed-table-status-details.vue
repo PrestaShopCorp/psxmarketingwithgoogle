@@ -43,61 +43,69 @@
         </b-thead>
 
         <b-tbody>
-          <template v-for="(product, index) in items">
-            <b-tr :key="index">
-              <b-td class="align-top">
-                {{ product.id }}
-              </b-td>
-              <b-td class="align-top">
-                <a
-                  class="external_link-no_icon"
-                  :href="getProductBaseUrl.replace('/1?', `/${product.id}?`)"
-                  target="_blank"
-                  :title="$t('productFeedPage.approvalTable.editX', [product.name])"
-                >
-                  {{ product.name }}
-                </a>
-              </b-td>
-              <b-td class="align-top">
-                {{ product.attribute > 0 ? product.attribute : '' }}
-              </b-td>
-              <b-td class="align-top">
-                <b-badge
-                  :variant="badgeColor(getActualStatus(product)[0])"
-                  class="ps_gs-fz-12 text-capitalize"
-                >
-                  {{ getActualStatus(product)[0] }}
-                </b-badge>
-              </b-td>
-              <b-td class="align-top">
-                <b-badge
-                  variant="primary"
-                  class="ps_gs-fz-12"
-                >
-                  {{ getActualStatus(product)[1] }}
-                </b-badge>
-              </b-td>
-              <b-td class="align-top">
-                <ul
-                  class="list-unstyled mb-0"
-                  v-if="getActualStatus(product)[0] === 'disapproved'"
-                >
-                  <li
-                    v-for="(issue, indexIssues) in getIssues(product)"
-                    :key="indexIssues"
-                  >
+          <template v-for="(product) in items">
+            <template v-for="(statusInfo) in product.statuses">
+              <template v-for="(lang) in statusInfo.countries">
+                <b-tr :key="lang.index">
+                  <b-td class="align-top">
+                    {{ product.id }}
+                  </b-td>
+                  <b-td class="align-top">
                     <a
-                      class="text-decoration-none"
-                      :href="issue.documentation"
-                      :title="issue.detail"
+                      class="external_link-no_icon"
+                      :href="!isNaN(product.id)
+                      ? getProductBaseUrl.replace('/1?', `/${product.id}?`) : null"
                       target="_blank"
+                      :title="$t('productFeedPage.approvalTable.editX', [product.name])"
                     >
-                      {{ issue.description }}
+                      {{ product.name }}
                     </a>
-                  </li>
-                </ul>
-              </b-td>
-            </b-tr>
+                  </b-td>
+                  <b-td class="align-top">
+                    {{ product.attribute > 0 ? product.attribute : '' }}
+                  </b-td>
+                  <b-td class="align-top">
+                    {{ statusInfo.destination }}
+                  </b-td>
+                  <b-td class="align-top">
+                    <b-badge
+                      :variant="badgeColor(statusInfo.status)"
+                      class="ps_gs-fz-12 text-capitalize"
+                    >
+                      {{ statusInfo.status }}
+                    </b-badge>
+                  </b-td>
+                  <b-td class="align-top">
+                    <b-badge
+                      variant="primary"
+                      class="ps_gs-fz-12"
+                    >
+                      {{ lang }}
+                    </b-badge>
+                  </b-td>
+                  <b-td class="align-top">
+                    <ul
+                      class="list-unstyled mb-0"
+                      v-if="statusInfo.status === ProductStatues.Disapproved"
+                    >
+                      <li
+                        v-for="(issue, indexIssues) in getIssues(product)"
+                        :key="indexIssues"
+                      >
+                        <a
+                          class="text-decoration-none"
+                          :href="issue.documentation"
+                          :title="issue.detail"
+                          target="_blank"
+                        >
+                          {{ issue.description }}
+                        </a>
+                      </li>
+                    </ul>
+                  </b-td>
+                </b-tr>
+              </template>
+            </template>
           </template>
         </b-tbody>
       </b-table-simple>
@@ -338,6 +346,7 @@
 
 <script>
 import {Products} from '@/../fixtures/products.js';
+import {ProductStatues} from '../../store/modules/product-feed/state';
 
 export default {
   name: 'ProductFeedTableStatusDetails',
@@ -345,8 +354,9 @@ export default {
   data() {
     return {
       loading: false,
-      items: Products.results.slice(0, 17),
-      selectedFilterQuantityToShow: '20',
+      items: Products.results,
+      ProductStatues,
+      selectedFilterQuantityToShow: '100',
       fields: [
         {
           key: 'id',
@@ -359,6 +369,10 @@ export default {
         {
           key: 'attribute',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderAttributeID'),
+        },
+        {
+          key: 'destination',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderDestination'),
         },
         {
           key: 'status',
@@ -408,27 +422,19 @@ export default {
   },
   methods: {
     badgeColor(status) {
-      if (status === 'approved') {
+      if (status === ProductStatues.Approved) {
         return 'success';
       }
-      if (status === 'pending') {
+      if (status === ProductStatues.Pending) {
         return 'warning';
       }
       return 'danger';
     },
-    getActualStatus(product) {
-      let status = [];
-      product.statuses.forEach((el) => {
-        if (el[0] === 'disapproved') {
-          status = el;
-        } else {
-          status = el;
-        }
-      });
-      return status;
-    },
     getIssues(product) {
       const issues = [];
+      if (!('issues' in product)) {
+        return issues;
+      }
       product.issues.forEach((el) => {
         if (el.resolution === 'merchant_action') {
           issues.push({
@@ -460,7 +466,9 @@ export default {
             if (nextToken && res.results.length > 0) {
               firstCall = true;
             }
-            this.items.push(res.results);
+            res.results.forEach((el) => {
+              this.items.push(el);
+            });
             firstCall = false;
           })
           .catch((error) => {
