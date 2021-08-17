@@ -19,8 +19,8 @@
 
 export interface State {
   status: null|GoogleAdsErrorReason,
-  accountChosen: null|object,
-  list: Array<object>,
+  accountChosen: null|AccountInformations,
+  list: Array<AccountInformations>,
   shopInfos: ShopInformations
 }
 
@@ -40,6 +40,12 @@ export interface ShopInformations {
   },
   currency: null|string,
   timeZone: null|object
+}
+export interface AccountInformations {
+    id: string,
+    name: string,
+    isAdmin: boolean,
+    isTestAccount: boolean,
 }
 
 export const state: State = {

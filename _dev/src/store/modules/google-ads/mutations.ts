@@ -17,20 +17,24 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import MutationsTypes from './mutations-types';
-import {State as LocalState, GoogleAdsErrorReason} from './state';
+import {
+  State as LocalState,
+  GoogleAdsErrorReason,
+  AccountInformations,
+} from './state';
 
 type payloadObject = {
   name: string, data: string
 }
 
 export default {
-  [MutationsTypes.SET_GOOGLE_ADS_LIST](state: LocalState, payload: Array<object>) {
+  [MutationsTypes.SET_GOOGLE_ADS_LIST](state: LocalState, payload: Array<AccountInformations>) {
     state.list = payload;
   },
   [MutationsTypes.SET_GOOGLE_ADS_STATUS](state: LocalState, payload: GoogleAdsErrorReason) {
     state.status = payload;
   },
-  [MutationsTypes.SET_GOOGLE_ADS_ACCOUNT](state: LocalState, payload: object|null) {
+  [MutationsTypes.SET_GOOGLE_ADS_ACCOUNT](state: LocalState, payload: AccountInformations|null) {
     state.accountChosen = payload;
   },
   [MutationsTypes.UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS](
@@ -38,7 +42,7 @@ export default {
     state.shopInfos[payload.name] = payload.data;
   },
   [MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT](
-    state: LocalState, payload: payloadObject) {
+    state: LocalState, payload: AccountInformations) {
     state.list.push(payload);
   },
 };

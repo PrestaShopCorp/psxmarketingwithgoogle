@@ -35,26 +35,29 @@ export default {
     //       },
     //     });
     //   if (!resp.ok) {
+    //     commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
     //     throw new HttpClientError(resp.statusText, resp.status);
-    // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect',
     //   }
     //   const json = await resp.json();
     //   commit(MutationsTypes.SET_GOOGLE_ADS_LIST, json);
     commit(MutationsTypes.SET_GOOGLE_ADS_LIST, [
       {
-        id: 4150564877,
+        id: '415-056-4877',
         name: 'Lui Corpette',
         isAdmin: false,
+        isTestAccount: true,
       },
       {
-        id: 4150564874,
+        id: '415-056-4874',
         name: 'Tata Corpette',
         isAdmin: false,
+        isTestAccount: false,
       },
       {
-        id: 4150564875,
+        id: '415-056-4875',
         name: 'Tutu Corpette',
         isAdmin: true,
+        isTestAccount: false,
       },
     ]);
     // } catch (error) {
@@ -83,9 +86,10 @@ export default {
     //   commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, json);
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT,
       {
-        id: 4150564877,
-        name: 'Lui Corpette',
-        isAdmin: false,
+        id: '415-056-4875',
+        name: 'Tutu Corpette',
+        isAdmin: true,
+        isTestAccount: true,
       },
     );
     dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
@@ -155,9 +159,10 @@ export default {
     //   const json = await resp.json();
 
     const newUser = {
-      id: 4152564877,
-      name: 'TOUTOUTOUTOU',
-      isAdmin: false,
+      id: '417-056-4875',
+      name: 'TOUTOUTOUTOUTOU',
+      isAdmin: true,
+      isTestAccount: true,
     };
     commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUser);
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUser);

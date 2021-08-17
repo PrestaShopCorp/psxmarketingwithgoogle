@@ -20,6 +20,7 @@
 import {
   State as LocalState,
   GoogleAdsErrorReason,
+  AccountInformations,
 } from './state';
 import GettersTypes from './getters-types';
 
@@ -31,10 +32,10 @@ export default {
     }
     return null;
   },
-  [GettersTypes.GET_GOOGLE_ADS_LIST_OPTIONS](state: LocalState): Array<object> {
+  [GettersTypes.GET_GOOGLE_ADS_LIST_OPTIONS](state: LocalState): Array<AccountInformations> {
     return state.list;
   },
-  [GettersTypes.GET_GOOGLE_ADS_ACCOUNT_CHOSEN](state: LocalState): object|null {
+  [GettersTypes.GET_GOOGLE_ADS_ACCOUNT_CHOSEN](state: LocalState): AccountInformations|null {
     return state.accountChosen;
   },
   [GettersTypes.GET_GOOGLE_ADS_SHOP_INFORMATIONS](state: LocalState): object|null {

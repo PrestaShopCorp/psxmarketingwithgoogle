@@ -74,6 +74,7 @@
       "shopInfoMissing" : "Store information is missing",
       "shopInfoMissingDescription" : "To complete missing store information please go to your [Merchant Center account]({0})[:target=\"_blank\"].",
       "userIsNotAdmin" : "You need Admin access",
+      "userIsTestAccount" : "This is a test account",
       "googleMCA" : "Google Merchant Center account",
       "shopMaintenance": "You cannot connect a Google Merchant Center account while Maintenance mode is active.  \n Please change your shop parameters.",
       "toUseGmcNeedsAdminAccess" : "To use an existing Merchant Center account, you must have Admin access.",
@@ -508,7 +509,8 @@
       "ineligibleForFreeListing" : "Ineligible for free listings",
       "urlUnclaimed" : "Url unclaimed",
       "urlUnverified" : "Url unverified",
-      "canceled": "Canceled"
+      "canceled": "Canceled",
+      "testAccount": "Test Account"
     },
     "modal" : {
       "titleDisconnectionMerchantCenter" : "Disconnect your Merchant Center?",

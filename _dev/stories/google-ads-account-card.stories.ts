@@ -1,6 +1,6 @@
 import GoogleAdsAccountCard from '../src/components/google-ads-account/google-ads-account-card.vue';
 import GoogleAdsAccountPopinDisconnect from '../src/components/google-ads-account/google-ads-account-popin-disconnect.vue';
-import {googleAdsNotChosen, googleAdsAccountChosen} from '../.storybook/mock/google-ads';
+import {googleAdsNotChosen, googleAdsAccountChosen, googleAdsAccountChosenisTestAccount} from '../.storybook/mock/google-ads';
 import {GoogleAdsErrorReason} from '../src/store/modules/google-ads/state'
 export default {
   title: 'Google Ads Account/Card',
@@ -120,6 +120,13 @@ NeedRefreshAfterBilling.args = {
   }
 };
 
+export const TestAccount:any = Template.bind({});
+TestAccount.args = {
+  isEnabled: true,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosenisTestAccount);
+  }
+};
 export const Canceled:any = Template.bind({});
 Canceled.args = {
   isEnabled: true,

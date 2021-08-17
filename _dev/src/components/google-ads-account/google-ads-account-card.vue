@@ -104,6 +104,12 @@
                 >
                   {{ $t('mcaCard.userIsNotAdmin') }}
                 </span>
+                <span
+                  v-if="isTestAccount(option)"
+                  class="ps_gs-fz-12 ml-auto"
+                >
+                  {{ $t('mcaCard.userIsTestAccount') }}
+                </span>
               </b-dropdown-item>
               <!-- END > REGULAR LIST -->
             </b-dropdown>
@@ -160,6 +166,13 @@
             class="mx-3"
           >
             {{ $t(`badge.${gAdsAccountStatusBadge.text}`) }}
+          </b-badge>
+          <b-badge
+            v-if="testAccountBadge !== null"
+            :variant="testAccountBadge.color"
+            class="mx-1"
+          >
+            {{ $t(`badge.${testAccountBadge.text}`) }}
           </b-badge>
         </div>
         <div
@@ -250,6 +263,9 @@ export default {
       // !! CF merchand center account card isGmcUserAdmin
       return account.isAdmin === true;
     },
+    isTestAccount(account) {
+      return account.isTestAccount === true;
+    },
     refresh() {
       this.$router.go();
     },
@@ -262,21 +278,22 @@ export default {
 
   },
   computed: {
-    googleAdsAccountConfigured() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'] !== null;
-    },
     accountChosen() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
-    listLoading() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_LIST_OPTIONS'] === null;
-    },
-    error() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_STATUS'];
+    googleAdsAccountConfigured() {
+      return this.accountChosen !== null;
     },
     googleAdsAccountSelectionOptions() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_LIST_OPTIONS'];
     },
+    listLoading() {
+      return this.googleAdsAccountSelectionOptions === null;
+    },
+    error() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_STATUS'];
+    },
+
     gAdsAccountStatusBadge() {
       switch (this.error) {
         case GoogleAdsErrorReason.Suspended:
@@ -299,6 +316,15 @@ export default {
             text: 'active',
           };
       }
+    },
+    testAccountBadge() {
+      if (this.accountChosen && this.isTestAccount(this.accountChosen)) {
+        return {
+          color: 'warning',
+          text: 'testAccount',
+        };
+      }
+      return null;
     },
     isGoogleAdsAccountFullyFetched() {
       return this.isEnabled
