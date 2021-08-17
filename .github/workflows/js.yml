@@ -6,13 +6,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.0.0
+        uses: actions/checkout@v2
+      
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: npm
+          cache-dependency-path: '_dev/package-lock.json'
 
       - name: Lint JS files
-        uses: PrestaShopCorp/github-action-lint-js/12@v1.0
-        with:
-          cmd: npm
-          path: ./_dev
+        working-directory: _dev
+        run: |
+          npm install
+          npm run lint
 
   unit-tests:
     name: JS Unit tests
@@ -21,8 +27,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: npm
+          cache-dependency-path: '_dev/package-lock.json'
+
       - name: Install & run
+        working-directory: _dev
         run: |
-          cd _dev
           npm install
           npm run test:unit

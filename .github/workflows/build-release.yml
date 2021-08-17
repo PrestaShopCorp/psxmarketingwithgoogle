@@ -11,14 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.0.0
+        uses: actions/checkout@v2
 
-      - name: Build JS dependencies
-        uses: PrestaShopCorp/github-action-build-js/12@v1.0
+      - uses: actions/setup-node@v2
         with:
-          cmd: npm
-          path: ./_dev
-
+          node-version: '14'
+          cache: npm
+          cache-dependency-path: '_dev/package-lock.json'
+      
+      - name: Install & build
+        working-directory: _dev
+        run: |
+          npm install
+          npm run build
 
       - name: Install dev composer dependencies
         run: composer install
