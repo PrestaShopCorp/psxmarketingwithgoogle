@@ -50,7 +50,7 @@ export default {
       }
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
     } catch (error) {
-      console.error(error);
+      console.error(`Could not trigger onboarding to google account: ${(<any>error)?.message}`);
     }
   },
 
@@ -174,7 +174,7 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
     } catch (error) {
-      console.error(error);
+      console.error(`Could not request route to google auth: ${(<any>error)?.message}`);
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, error);
     }
   },
@@ -210,7 +210,7 @@ export default {
         dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
         return null;
       }
-      console.error(error);
+      console.error(`Could not request google account details: ${(<any>error)?.message}`);
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, error);
     }
     return null;
@@ -246,7 +246,7 @@ export default {
       }
     } catch (error) {
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.LinkingFailed);
-      console.error(error);
+      console.error(`Could not request GMC list: ${(<any>error)?.message}`);
     }
   },
 
@@ -346,7 +346,7 @@ export default {
       }
       return {isVerified, isClaimed};
     } catch (error) {
-      console.error(error);
+      console.error(`Could not trigger website verification process: ${(<any>error)?.message}`);
       return {isVerified: false, isClaimed: false};
     } finally {
       // Remove token anyway
@@ -487,7 +487,7 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SAVE_WEBSITE_REQUIREMENTS, json);
     } catch (error) {
-      console.log(error);
+      console.error(`Could not request website requirements: ${(<any>error)?.message}`);
     }
   },
 
@@ -507,7 +507,7 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.SAVE_SHOP_INFORMATIONS, json);
     } catch (error) {
-      console.log(error);
+      console.error(`Could not request shop information: ${(<any>error)?.message}`);
     }
   },
 
@@ -561,7 +561,7 @@ export default {
         await dispatch(ActionsTypes.REQUEST_GMC_LIST);
       }, 60000);
     } catch (error) {
-      console.log(error);
+      console.error(`Could not save new GMC: ${(<any>error)?.message}`);
     }
   },
 };
