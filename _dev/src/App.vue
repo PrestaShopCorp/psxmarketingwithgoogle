@@ -9,7 +9,7 @@
             {{ $t('general.tabs.productFeed') }}
           </MenuItem>
           <MenuItem
-            v-if="googleAdsIsChosen"
+            v-if="googleAdsChosen"
             :route="{name: 'paid-marketing'}"
           >
             {{ $t('general.tabs.paidMarketing') }}
@@ -49,7 +49,7 @@ export default {
     productFeedIsConfigured() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
-    googleAdsIsChosen() {
+    googleAdsChosen() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
   },

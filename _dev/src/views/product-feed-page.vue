@@ -43,18 +43,23 @@ export default {
     displayReporting() {
       this.visible = true;
     },
-  },
-  beforeCreate() {
-    this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
-    this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-    this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
+    async getDatas() {
+      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
+      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
+      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
+      await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
+      await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
+    },
   },
   mounted() {
-    if (!this.productFeedIsConfigured) {
-      this.$router.push({
-        name: 'onboarding',
+    this.getDatas()
+      .then(() => {
+        if (!this.productFeedIsConfigured) {
+          this.$router.push({
+            name: 'onboarding',
+          });
+        }
       });
-    }
   },
 
 };
