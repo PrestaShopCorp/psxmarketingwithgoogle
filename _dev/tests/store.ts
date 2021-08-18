@@ -5,6 +5,7 @@ import app from '@/store/modules/app';
 import accounts from '@/store/modules/accounts';
 import productFeed from '@/store/modules/product-feed';
 import freeListing from '@/store/modules/free-listing';
+import googleAds from '@/store/modules/google-ads';
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ export const cloneStore = () => {
       app: cloneDeep(app),
       accounts: cloneDeep(accounts),
       productFeed: cloneDeep(productFeed),
+      googleAds: cloneDeep(googleAds),
       freeListing: cloneDeep(freeListing),
     },
   };

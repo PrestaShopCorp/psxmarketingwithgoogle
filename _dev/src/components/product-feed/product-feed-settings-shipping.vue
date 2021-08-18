@@ -255,7 +255,6 @@ export default {
         });
       },
     },
-
   },
   methods: {
     nextStep() {

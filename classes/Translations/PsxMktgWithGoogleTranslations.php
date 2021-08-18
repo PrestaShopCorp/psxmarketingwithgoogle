@@ -123,6 +123,7 @@ class PsxMktgWithGoogleTranslations
                 'shopInfoMissing' => $this->module->l('Store information is missing', 'PsxMktgWithGoogleTranslations'),
                 'shopInfoMissingDescription' => $this->module->l('To complete missing store information please go to your [Merchant Center account]({0})[:target="_blank"].', 'PsxMktgWithGoogleTranslations'),
                 'userIsNotAdmin' => $this->module->l('You need Admin access', 'PsxMktgWithGoogleTranslations'),
+                'userIsTestAccount' => $this->module->l('This is a test account', 'PsxMktgWithGoogleTranslations'),
                 'googleMCA' => $this->module->l('Google Merchant Center account', 'PsxMktgWithGoogleTranslations'),
                 'toUseGmcNeedsAdminAccess' => $this->module->l('To use an existing Merchant Center account, you must have Admin access.', 'PsxMktgWithGoogleTranslations'),
                 'linkingFailed' => $this->module->l('You can\'t connect to your Merchant Center account right now. Try again later.', 'PsxMktgWithGoogleTranslations'),
@@ -531,6 +532,7 @@ class PsxMktgWithGoogleTranslations
                 'createSmartShoppingCampaign' => $this->module->l('Create Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
                 'addBillingSettings' => $this->module->l('Add billing settings', 'PsxMktgWithGoogleTranslations'),
                 'createCampaign' => $this->module->l('Create campaign', 'PsxMktgWithGoogleTranslations'),
+                'learnAboutTimeZoneAndCurrency' => $this->module->l('Learn more about currency and time zone settings', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),
@@ -573,6 +575,8 @@ class PsxMktgWithGoogleTranslations
                 'titleQuitWithoutSaving' => $this->module->l('Quit without saving?', 'PsxMktgWithGoogleTranslations'),
                 'titleOverwriteProductFeed' => $this->module->l('Overwrite existing product feed?', 'PsxMktgWithGoogleTranslations'),
                 'textOverwriteProductFeed' => $this->module->l('Overwriting your existing product feed will delete it. You will need to configure new product feed.', 'PsxMktgWithGoogleTranslations'),
+                'titleDisconnectionGoogleAds' => $this->module->l('Disconnect Google Ads account?', 'PsxMktgWithGoogleTranslations'),
+                'textDisconnectGoogleAds' => $this->module->l('You are about to disconnect your Google Ads account. You won\'t be able to run Smart Shopping campaigns. Your previous Smart Shopping campaigns are still running. ', 'PsxMktgWithGoogleTranslations'),
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configuration', 'PsxMktgWithGoogleTranslations'),

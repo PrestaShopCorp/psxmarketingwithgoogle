@@ -74,6 +74,7 @@
       "shopInfoMissing" : "Store information is missing",
       "shopInfoMissingDescription" : "To complete missing store information please go to your [Merchant Center account]({0})[:target=\"_blank\"].",
       "userIsNotAdmin" : "You need Admin access",
+      "userIsTestAccount" : "This is a test account",
       "googleMCA" : "Google Merchant Center account",
       "shopMaintenance": "You cannot connect a Google Merchant Center account while Maintenance mode is active.  \n Please change your shop parameters.",
       "toUseGmcNeedsAdminAccess" : "To use an existing Merchant Center account, you must have Admin access.",
@@ -204,6 +205,7 @@
         "appliedOnlyForUsa" : "(applied only for the USA)",
         "alertTaxes" : "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.",
         "cantSelectCountryWithDifferentCurrency" : "You can't select country with currency that differs from your main shop."
+      
       },
       "export" : {
         "synchronizationSchedule" : "Export synchronization schedule",
@@ -524,7 +526,9 @@
       "textCancelProductFeed" : "You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps.",
       "titleQuitWithoutSaving" : "Quit without saving?",
       "titleOverwriteProductFeed" : "Overwrite existing product feed?",
-      "textOverwriteProductFeed" : "Overwriting your existing product feed will delete it. You will need to configure new product feed."
+      "textOverwriteProductFeed" : "Overwriting your existing product feed will delete it. You will need to configure new product feed.",
+      "titleDisconnectionGoogleAds" : "Disconnect Google Ads account?",
+      "textDisconnectGoogleAds" : "You are about to disconnect your Google Ads account. You won't be able to run Smart Shopping campaigns. Your previous Smart Shopping campaigns are still running."
     },
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configuration",

@@ -35,16 +35,31 @@ export default {
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
+    productFeedIsConfigured() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
+    },
   },
   methods: {
     displayReporting() {
       this.visible = true;
     },
+    async getDatas() {
+      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
+      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
+      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
+      await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
+      await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
+    },
   },
-  beforeCreate() {
-    this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
-    this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-    this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
+  mounted() {
+    this.getDatas()
+      .then(() => {
+        if (!this.productFeedIsConfigured) {
+          this.$router.push({
+            name: 'onboarding',
+          });
+        }
+      });
   },
 
 };

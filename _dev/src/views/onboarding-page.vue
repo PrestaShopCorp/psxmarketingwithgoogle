@@ -64,9 +64,14 @@
         :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
         :is-done="stepsAreCompleted.step3"
       />
-      <google-ads-account-card
+      <GoogleAdsAccountCard
         :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
-        :is-connected="false"
+        @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
+        @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
+        @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
+      />
+      <SmartShoppingCampaignCard
+        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step3"
       />
     </template>
     <!-- Modals -->
@@ -80,6 +85,16 @@
 
     <FreeListingPopinDisable
       ref="PopinFreeListingDisable"
+    />
+
+    <GoogleAdsAccountPopinDisconnect
+      ref="GoogleAdsAccountPopinDisconnect"
+    />
+
+    <GoogleAdsPopinNew
+      ref="GoogleAdsAccountPopinNew"
+      :user="getGoogleAccount"
+      @cancelGoogleAdsCreationNewAccount="onGoogleAdsAccountTogglePopin"
     />
     <!-- Toasts -->
     <PsToast
@@ -112,6 +127,9 @@ import FreeListingPopinDisable from '../components/free-listing/free-listing-pop
 import FreeListingCard from '../components/free-listing/free-listing-card.vue';
 import GoogleAccountPopinDisconnect from '../components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
+import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/google-ads-account-popin-disconnect.vue';
+import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
+import SmartShoppingCampaignCard from '../components/smart-shopping-campaign/smart-shopping-campaign-card.vue';
 import PsToast from '../components/commons/ps-toast';
 
 export default {
@@ -125,8 +143,11 @@ export default {
     MerchantCenterAccountCard,
     ProductFeedCard,
     FreeListingCard,
+    SmartShoppingCampaignCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
+    GoogleAdsAccountPopinDisconnect,
+    GoogleAdsPopinNew,
     PsToast,
     FreeListingPopinDisable,
   },
@@ -150,10 +171,14 @@ export default {
           this.isMcaLinking = false;
         });
     },
+    onGoogleAdsAccountSelected(event) {
+      this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', event);
+    },
     onGoogleAccountConnection() {
       this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
       this.$store.dispatch('accounts/TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED', true);
     },
+
     onGoogleAccountDissociationRequest() {
       this.$bvModal.show(
         this.$refs.googleAccountDisconnectModal.$refs.modal.id,
@@ -164,6 +189,21 @@ export default {
         this.$refs.mcaDisconnectModal.$refs.modal.id,
       );
     },
+    onGoogleAdsAccountDisconnectionRequest() {
+      this.$bvModal.show(
+        this.$refs.GoogleAdsAccountPopinDisconnect.$refs.modal.id,
+      );
+    },
+    onGoogleAdsAccountTogglePopin() {
+      this.$bvModal.show(
+        this.$refs.GoogleAdsAccountPopinNew.$refs.modal.id,
+      );
+    },
+    // onCancelGoogleAdsCreationNewAccount() {
+    //   this.$bvModal.show(
+    //     this.$refs.GoogleAdsAccountPopinNew.$refs.modal.id,
+    //   );
+    // },
     toastIsClosed() {
       if (this.googleAccountConnectedOnce) {
         this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
@@ -217,6 +257,12 @@ export default {
     freeListingIsActivatedOnce() {
       return this.$store.getters['freeListing/GET_FREE_LISTING_IS_ACTIVATED_ONCE'];
     },
+    getGoogleAdsAccount() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+    },
+    googleAdsAccountIsChosen() {
+      return this.getGoogleAdsAccount && this.getGoogleAdsAccount.name.length > 0;
+    },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
@@ -228,9 +274,9 @@ export default {
         step1: this.psAccountsIsOnboarded,
         step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
-          && this.productFeedIsConfigured
-          && false, // TODO: In the 1st batch version, we don't have Google Ads.
-        step3: false,
+          && this.productFeedIsConfigured,
+        step3: this.productFeedIsConfigured
+        && this.googleAdsAccountIsChosen,
       };
     },
     insideToast() {
@@ -259,6 +305,8 @@ export default {
       if (oldVal === false && newVal === true) {
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
+        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
+        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
       }
     },
     productFeedIsConfigured(newVal, oldVal) {
@@ -266,6 +314,7 @@ export default {
         this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS');
       }
     },
+
   },
 };
 </script>

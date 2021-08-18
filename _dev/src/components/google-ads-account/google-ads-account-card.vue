@@ -1,4 +1,3 @@
-<!-- NOTHING DONE YET -->
 <template>
   <b-card
     no-body
@@ -20,13 +19,6 @@
         >
         <b-card-text class="text-left mb-0">
           {{ $t('googleAdsAccountCard.intro') }}
-          <!-- TODO: add the condition -->
-          <i
-            v-if="false"
-            class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
-          >
-            check_circle
-          </i>
         </b-card-text>
       </div>
     </template>
@@ -46,6 +38,12 @@
         <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
           {{ $t('googleAdsAccountCard.title') }}
         </b-card-text>
+        <i
+          v-if="googleAdsAccountConfigured && !error"
+          class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
+        >
+          check_circle
+        </i>
       </div>
       <div v-if="isEnabled && !googleAdsAccountConfigured">
         <b-form class="mt-3 mb-2">
@@ -56,12 +54,13 @@
           </legend>
           <div class="d-md-flex text-center">
             <b-dropdown
+              :disabled="error === GoogleAdsErrorReason.CantConnect"
               id="googleAdsAccountSelection"
               ref="googleAdsAccountSelection"
-              :text="googleAdsLabel(selected) || $t('cta.selectAccount')"
+              :text="googleAdsLabel(selectedIndex) || $t('cta.selectAccount')"
               variant=" "
               class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
-              :toggle-class="{'ps-dropdown__placeholder' : !selected}"
+              :toggle-class="{'ps-dropdown__placeholder' : selectedIndex === null}"
               menu-class="ps-dropdown"
               no-flip
               size="sm"
@@ -91,8 +90,8 @@
               <b-dropdown-item
                 v-for="(option, index) in googleAdsAccountSelectionOptions"
                 :key="option.id"
-                @click="selected = option"
-                :disabled="!isAdmin(index)"
+                @click="selectedIndex = index"
+                :disabled="isAdmin(option)"
                 variant="dark"
                 link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
               >
@@ -100,10 +99,16 @@
                   {{ option.id }} - {{ option.name }}
                 </span>
                 <span
-                  v-if="!isAdmin(index)"
+                  v-if="isAdmin(option)"
                   class="ps_gs-fz-12 ml-auto"
                 >
                   {{ $t('mcaCard.userIsNotAdmin') }}
+                </span>
+                <span
+                  v-if="isTestAccount(option)"
+                  class="ps_gs-fz-12 ml-auto"
+                >
+                  {{ $t('mcaCard.userIsTestAccount') }}
                 </span>
               </b-dropdown-item>
               <!-- END > REGULAR LIST -->
@@ -111,7 +116,7 @@
             <b-button
               size="sm"
               variant="primary"
-              :disabled="!selected"
+              :disabled="selectedIndex === null"
               class="mt-3 mt-md-0 ml-md-3"
               @click="selectGoogleAdsAccount"
             >
@@ -124,9 +129,13 @@
           />
         </b-form>
         <GoogleAdsAccountAlert
+          v-if="error === GoogleAdsErrorReason.CantConnect"
           :error="error"
         />
-        <div class="mt-3">
+        <div
+          class="mt-3"
+          @click="openPopinNewAccount"
+        >
           <a href="#">
             <i
               class="left material-icons mr-2"
@@ -138,9 +147,8 @@
           </a>
         </div>
       </div>
-
       <div
-        v-if="googleAdsAccountConfigured"
+        v-if="googleAdsAccountConfigured && isGoogleAdsAccountFullyFetched"
         class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
       >
         <div class="d-flex align-items-center">
@@ -150,7 +158,7 @@
             target="_blank"
             class="external_link-no_icon link-regular"
           >
-            <strong>{{ selected.name }} - {{ selected.id }}</strong>
+            <strong>{{ accountChosen.id }} - {{ accountChosen.name }}</strong>
           </a>
           <b-badge
             v-if="gAdsAccountStatusBadge !== null"
@@ -158,6 +166,13 @@
             class="mx-3"
           >
             {{ $t(`badge.${gAdsAccountStatusBadge.text}`) }}
+          </b-badge>
+          <b-badge
+            v-if="testAccountBadge !== null"
+            :variant="testAccountBadge.color"
+            class="mx-1"
+          >
+            {{ $t(`badge.${testAccountBadge.text}`) }}
           </b-badge>
         </div>
         <div
@@ -188,8 +203,9 @@
             variant="outline-secondary"
             class="mt-3 mt-md-0"
             target="_blank"
+            @click="disconnectGoogleAdsAccount()"
           >
-            {{ $t('cta.dissociate') }}
+            {{ $t('cta.disconnect') }}
           </b-button>
         </div>
       </div>
@@ -200,12 +216,19 @@
         {{ $t('googleAdsAccountCard.text') }}
       </p>
     </template>
+    <GoogleAdsAccountAlert
+      v-if="error !== 'CantConnect'"
+      :error="error"
+    />
   </b-card>
 </template>
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import GoogleAdsAccountAlert from './google-ads-account-alert.vue';
+import {
+  GoogleAdsErrorReason,
+} from '../../store/modules/google-ads/state';
 
 export default {
   name: 'GoogleAdsAccountCard',
@@ -214,27 +237,8 @@ export default {
   },
   data() {
     return {
-      // TODO error is to be replaced with a computed like in MCA
-      error: 'Suspended',
-      selected: null,
-      googleAdsAccountConfigured: false,
-      /**
-       * TODO: To replace with actual datas
-       */
-      googleAdsAccountSelectionOptions: [
-        {
-          id: '4150564877',
-          name: 'Lui Corpette',
-        },
-        {
-          id: '4150564874',
-          name: 'Tata Corpette',
-        },
-        {
-          id: '4150564875',
-          name: 'Tutu Corpette',
-        },
-      ],
+      selectedIndex: null,
+      GoogleAdsErrorReason,
     };
   },
   props: {
@@ -245,48 +249,67 @@ export default {
   },
   methods: {
     selectGoogleAdsAccount() {
-      this.$emit('selectGoogleAdsAccount');
+      this.$emit('selectGoogleAdsAccount', this.googleAdsAccountSelectionOptions[this.selectedIndex]);
     },
-    googleAdsLabel(account) {
-      if (this.selected) {
-        return `${account.id} - ${account.name}`;
+    googleAdsLabel(index) {
+      if (this.googleAdsAccountSelectionOptions && this.googleAdsAccountSelectionOptions[index]) {
+        const ga = this.googleAdsAccountSelectionOptions[index];
+        return `${ga.id} - ${ga.name}`;
       }
       return null;
     },
     isAdmin(account) {
-      // TODO
-      return account % 2 === 0;
+      // !! MIGHT NEED REFACTO if no isAdmin is sent by the API
+      // !! CF merchand center account card isGmcUserAdmin
+      return account.isAdmin === true;
+    },
+    isTestAccount(account) {
+      return account.isTestAccount === true;
     },
     refresh() {
       this.$router.go();
     },
+    disconnectGoogleAdsAccount() {
+      this.$emit('disconnectionGoogleAdsAccount');
+    },
+    openPopinNewAccount() {
+      this.$emit('creationGoogleAdsAccount');
+    },
+
   },
   computed: {
-    listLoading() {
-      // TODO
-      return false;
+    accountChosen() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
-    // TODO
-    // error() {
-    //   return 'foo';
-    // },
-    // TODO
+    googleAdsAccountConfigured() {
+      return this.accountChosen !== null;
+    },
+    googleAdsAccountSelectionOptions() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_LIST_OPTIONS'];
+    },
+    listLoading() {
+      return this.googleAdsAccountSelectionOptions === null;
+    },
+    error() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_STATUS'];
+    },
+
     gAdsAccountStatusBadge() {
       switch (this.error) {
-        case 'Suspended':
+        case GoogleAdsErrorReason.Suspended:
           return {
             color: 'danger',
             text: 'suspended',
           };
-        case 'Cancelled':
+        case GoogleAdsErrorReason.Cancelled:
           return {
             color: 'danger',
             text: 'canceled',
           };
-        case 'CantConnect':
+        case GoogleAdsErrorReason.CantConnect:
           return null;
-        case 'BillingSettingsMissing':
-        case 'NeedRefreshAfterBilling':
+        case GoogleAdsErrorReason.BillingSettingsMissing:
+        case GoogleAdsErrorReason.NeedRefreshAfterBilling:
         default:
           return {
             color: 'success',
@@ -294,7 +317,23 @@ export default {
           };
       }
     },
+    testAccountBadge() {
+      if (this.accountChosen && this.isTestAccount(this.accountChosen)) {
+        return {
+          color: 'warning',
+          text: 'testAccount',
+        };
+      }
+      return null;
+    },
+    isGoogleAdsAccountFullyFetched() {
+      return this.isEnabled
+        && !this.listLoading
+        && this.accountChosen.name !== null
+        && this.accountChosen.name !== undefined;
+    },
   },
+
   googleUrl,
 };
 </script>
