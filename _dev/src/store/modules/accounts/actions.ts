@@ -562,7 +562,7 @@ export default {
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCreation);
       setTimeout(async () => {
         await dispatch(ActionsTypes.REQUEST_GMC_LIST);
-      }, 60000);
+      }, 20000);
     } catch (error) {
       console.error(`Could not save new GMC: ${(<any>error)?.message}`);
     }

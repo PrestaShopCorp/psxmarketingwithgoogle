@@ -143,7 +143,7 @@ class PsxMktgWithGoogleTranslations
                 'noExistingAccount' => $this->module->l('No existing account', 'PsxMktgWithGoogleTranslations'),
                 'linkLearnMoreAbout' => $this->module->l('Learn more about "{0}"', 'PsxMktgWithGoogleTranslations'),
                 'newGmcNotListed' => $this->module->l('Waiting for your account to be published', 'PsxMktgWithGoogleTranslations'),
-                'newGmcNotListedDescription' => $this->module->l('If you just created a new account, it means Google is still building it. You have to wait or come back later. This operation can take up to 10 minutes on Google side. In other cases, check that your GMC is still existing, and that you still have rights on it.', 'PsxMktgWithGoogleTranslations'),
+                'newGmcNotListedDescription' => $this->module->l('If you just created a new account, it means Google is still building it. You have to wait or come back later. This operation can take up to 5 minutes on Google side. In other cases, check that your GMC is still existing, and that you still have rights on it.', 'PsxMktgWithGoogleTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
@@ -543,7 +543,7 @@ class PsxMktgWithGoogleTranslations
                 'expiring' => $this->module->l('Expiring', 'PsxMktgWithGoogleTranslations'),
                 'disapproved' => $this->module->l('Disapproved', 'PsxMktgWithGoogleTranslations'),
                 'pendingCreation' => $this->module->l('Pending', 'PsxMktgWithGoogleTranslations'),
-                'creatingGmc' => $this->module->l('Creating account in a few minutes...', 'PsxMktgWithGoogleTranslations'),
+                'creatingGmc' => $this->module->l('Creating account in a few seconds...', 'PsxMktgWithGoogleTranslations'),
                 'pendingCheck' => $this->module->l('We are checking your GMC status...', 'PsxMktgWithGoogleTranslations'),
                 'checkingSiteClaim' => $this->module->l('Checking your site claim...', 'PsxMktgWithGoogleTranslations'),
                 'siteVerified' => $this->module->l('Site verified', 'PsxMktgWithGoogleTranslations'),
