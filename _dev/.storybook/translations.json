@@ -509,8 +509,7 @@
       "ineligibleForFreeListing" : "Ineligible for free listings",
       "urlUnclaimed" : "Url unclaimed",
       "urlUnverified" : "Url unverified",
-      "canceled": "Canceled",
-      "testAccount": "Test Account"
+      "canceled": "Canceled"
     },
     "modal" : {
       "titleDisconnectionMerchantCenter" : "Disconnect your Merchant Center?",
