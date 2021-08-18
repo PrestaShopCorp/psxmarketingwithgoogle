@@ -19,7 +19,7 @@ import {
   NeedRefreshAfterBilling,
   Canceled,
 } from '@/../stories/google-ads-account-card.stories';
-import { BButton } from 'bootstrap-vue';
+import {BButton} from 'bootstrap-vue';
 
 describe('google-ads-account.vue / disabled', () => {
   it('card is greyed out when card is disabled', () => {
@@ -109,5 +109,39 @@ describe('google-ads-account.vue / enabled', () => {
     // Check if openPopin event has been emmited when disconnect button is clicked
     await wrapper.find('[data-test-id="btn-disconnect"]').trigger('click');
     expect(wrapper.emitted('disconnectionGoogleAdsAccount')).toBeTruthy();
+  });
+
+  it('badge and alert are red when status is Canceled', () => {
+    const wrapper = mount(GoogleAccountCard, {
+      store: new Vuex.Store(cloneStore()),
+      propsData: Canceled.args,
+      beforeMount: Canceled.args.beforeMount,
+      stubs: {
+        VueShowdown: true,
+      },
+    });
+
+    // Check if b-badge has the variant props set to danger
+    expect(wrapper.find('b-badge[variant="danger"]').exists()).toBeTruthy();
+
+    // Check if b-alert has the variant props set to danger
+    expect(wrapper.find('b-alert[variant="danger"]').exists()).toBeTruthy();
+  });
+
+  it('badge and alert are red when status is Suspended', () => {
+    const wrapper = mount(GoogleAccountCard, {
+      store: new Vuex.Store(cloneStore()),
+      propsData: Suspended.args,
+      beforeMount: Suspended.args.beforeMount,
+      stubs: {
+        VueShowdown: true,
+      },
+    });
+
+    // Check if b-badge has the variant props set to danger
+    expect(wrapper.find('b-badge[variant="danger"]').exists()).toBeTruthy();
+
+    // Check if b-alert has the variant props set to danger
+    expect(wrapper.find('b-alert[variant="danger"]').exists()).toBeTruthy();
   });
 });
