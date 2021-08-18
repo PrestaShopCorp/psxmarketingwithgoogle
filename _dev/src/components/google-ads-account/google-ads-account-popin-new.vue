@@ -233,7 +233,7 @@ import PsSelect from '../commons/ps-select.vue';
 import {GoogleAccountContext} from '../../store/modules/accounts/state';
 
 export default {
-  name: 'MerchantCenterAccountPopinWebsiteRequirements',
+  name: 'GoogleAdsAccountPopinNew',
   components: {
     PsModal,
     Stepper,
