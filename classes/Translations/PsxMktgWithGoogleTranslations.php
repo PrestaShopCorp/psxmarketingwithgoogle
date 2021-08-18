@@ -558,6 +558,7 @@ class PsxMktgWithGoogleTranslations
                 'urlUnclaimed' => $this->module->l('Url unclaimed', 'PsxMktgWithGoogleTranslations'),
                 'urlUnverified' => $this->module->l('Url unverified', 'PsxMktgWithGoogleTranslations'),
                 'canceled' => $this->module->l('Canceled', 'PsxMktgWithGoogleTranslations'),
+                'testAccount' => $this->module->l('Test', 'PsxMktgWithGoogleTranslations'),
             ],
             'modal' => [
                 'titleDisconnectionMerchantCenter' => $this->module->l('Disconnect your Merchant Center?', 'PsxMktgWithGoogleTranslations'),
