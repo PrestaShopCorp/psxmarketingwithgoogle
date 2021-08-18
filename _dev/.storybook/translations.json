@@ -231,7 +231,6 @@
           "syncScheduleCustomization" : "Customized sync schedule",
           "exportOption" : "Export option",
           "specificProductExclusion" : "Specific product exclusion",
-          "testAccount": "Test"
         }
       },
       "attributeMapping" : {
@@ -510,7 +509,8 @@
       "ineligibleForFreeListing" : "Ineligible for free listings",
       "urlUnclaimed" : "Url unclaimed",
       "urlUnverified" : "Url unverified",
-      "canceled": "Canceled"
+      "canceled": "Canceled",
+      "testAccount": "Test"
     },
     "modal" : {
       "titleDisconnectionMerchantCenter" : "Disconnect your Merchant Center?",
