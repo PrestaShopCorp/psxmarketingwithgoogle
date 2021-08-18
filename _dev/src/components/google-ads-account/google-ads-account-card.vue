@@ -80,6 +80,7 @@
                 :disabled="true"
                 variant="dark"
                 link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+                data-test-id="message-empty-list"
               >
                 <span class="mr-2">
                   {{ $t('mcaCard.noExistingAccount') }}
@@ -203,6 +204,7 @@
             variant="outline-secondary"
             class="mt-3 mt-md-0"
             target="_blank"
+            data-test-id="btn-disconnect"
             @click="disconnectGoogleAdsAccount()"
           >
             {{ $t('cta.disconnect') }}
