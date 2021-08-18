@@ -64,11 +64,11 @@ export const productFeedIsConfigured = {
     targetCountries: 'FR',
     attributeMapping: {
       exportProductsWithShortDescription: false,
-      customColorAttribute: 'extra:color',
-      customSizeAttribute: 'extra:size',
-      customAgeGroupAttribute: 'extra:age-group',
-      customGenderGroupAttribute: 'extra:gender-group',
-      customConditionAttribute: 'extra:condition',
+      // customColorAttribute: 'extra:color',
+      // customSizeAttribute: 'extra:size',
+      // customAgeGroupAttribute: 'extra:age-group',
+      // customGenderGroupAttribute: 'extra:gender-group',
+      // customConditionAttribute: 'extra:condition',
     },
   }
 }
