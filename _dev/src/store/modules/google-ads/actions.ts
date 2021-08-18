@@ -25,44 +25,24 @@ import HttpClientError from '../../../utils/HttpClientError';
 
 export default {
   async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit, rootState}) {
-    // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/list`,
-    //     {
-    //       method: 'GET',
-    //       headers: {
-    //         Accept: 'application/json',
-    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-    //       },
-    //     });
-    //   if (!resp.ok) {
-    //     commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
-    //     throw new HttpClientError(resp.statusText, resp.status);
-    //   }
-    //   const json = await resp.json();
-    //   commit(MutationsTypes.SET_GOOGLE_ADS_LIST, json);
-    commit(MutationsTypes.SET_GOOGLE_ADS_LIST, [
-      {
-        id: '415-056-4877',
-        name: 'Lui Corpette',
-        isAdmin: false,
-        isTestAccount: true,
-      },
-      {
-        id: '415-056-4874',
-        name: 'Tata Corpette',
-        isAdmin: false,
-        isTestAccount: false,
-      },
-      {
-        id: '415-056-4875',
-        name: 'Tutu Corpette',
-        isAdmin: true,
-        isTestAccount: false,
-      },
-    ]);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/list`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+      if (!resp.ok) {
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+      const json = await resp.json();
+      commit(MutationsTypes.SET_GOOGLE_ADS_LIST, json);
+    } catch (error) {
+      console.error(error);
+    }
   },
   async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT]({
     commit, rootState, dispatch, state,
@@ -153,11 +133,9 @@ export default {
     //     });
     //   if (!resp.ok) {
     //     throw new HttpClientError(resp.statusText, resp.status);
-    // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect',
-
+    //     // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect')
     //   }
-    //   const json = await resp.json();
-
+    // const json = await resp.json();
     const newUser = {
       id: '417-056-4875',
       name: 'TOUTOUTOUTOUTOU',
@@ -167,7 +145,6 @@ export default {
     commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUser);
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUser);
     dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
-
     // } catch (error) {
     //   console.error(error);
     // }

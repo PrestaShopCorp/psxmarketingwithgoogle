@@ -92,7 +92,7 @@
                 v-for="(option, index) in googleAdsAccountSelectionOptions"
                 :key="option.id"
                 @click="selectedIndex = index"
-                :disabled="isAdmin(option)"
+                :disabled="!isAdmin(option)"
                 variant="dark"
                 link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
               >
@@ -100,7 +100,7 @@
                   {{ option.id }} - {{ option.name }}
                 </span>
                 <span
-                  v-if="isAdmin(option)"
+                  v-if="!isAdmin(option)"
                   class="ps_gs-fz-12 ml-auto"
                 >
                   {{ $t('mcaCard.userIsNotAdmin') }}
