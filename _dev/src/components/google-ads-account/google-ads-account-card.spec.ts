@@ -4,9 +4,9 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import config, {cloneStore} from '@/../tests/init';
+import {cloneStore} from '@/../tests/init';
 
-import {mount, shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import GoogleAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import {
   Disabled,
@@ -19,7 +19,6 @@ import {
   NeedRefreshAfterBilling,
   Canceled,
 } from '@/../stories/google-ads-account-card.stories';
-import {BButton} from 'bootstrap-vue';
 
 describe('google-ads-account.vue / disabled', () => {
   it('card is greyed out when card is disabled', () => {
