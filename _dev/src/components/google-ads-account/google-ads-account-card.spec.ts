@@ -30,6 +30,12 @@ describe('google-ads-account.vue / disabled', () => {
 
     // Check if the card is greyed out
     expect(wrapper.find('.ps_gs-onboardingcard').classes()).toContain('ps_gs-onboardingcard--disabled-grey');
+
+    // Check if there is no b-alert
+    expect(wrapper.find('b-alert').exists()).toBeFalsy();
+
+    // Check that the dropdown doesn't exist
+    expect(wrapper.find('#googleAdsAccountSelection').exists()).toBeFalsy();
   });
 });
 
@@ -46,6 +52,7 @@ describe('google-ads-account.vue / enabled', () => {
 
     // Check enabled state
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled-grey')).toBe(false);
+
     // Check button to create an account exists
     expect(wrapper.find('a .material-icons').text()).toBe('person_add');
   });
