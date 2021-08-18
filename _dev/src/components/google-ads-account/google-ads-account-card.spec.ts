@@ -19,6 +19,7 @@ import {
   NeedRefreshAfterBilling,
   Canceled,
 } from '@/../stories/google-ads-account-card.stories';
+import { BButton } from 'bootstrap-vue';
 
 describe('google-ads-account.vue / disabled', () => {
   it('card is greyed out when card is disabled', () => {
@@ -50,7 +51,7 @@ describe('google-ads-account.vue / enabled', () => {
     expect(wrapper.find('a .material-icons').text()).toBe('person_add');
   });
 
-  it.skip('dropdown should be available when card is enabled', () => {
+  it('dropdown should be available when card is enabled', () => {
     const wrapper = mount(GoogleAccountCard, {
       store: new Vuex.Store(cloneStore()),
       propsData: Enabled.args,
@@ -64,12 +65,10 @@ describe('google-ads-account.vue / enabled', () => {
     expect(wrapper.find('#googleAdsAccountSelection').attributes('disabled')).toBeFalsy();
 
     // Check that the connect button is disabled as now account is selected
-    // TODO > Have a correct selector when I'll be able to modify the markup
-    expect(wrapper.find('#googleAdsAccountSelection + .btn').attributes('disabled')).toBeTruthy();
+    expect(wrapper.find('#googleAdsAccountSelection + b-button').attributes('disabled')).toBeTruthy();
   });
 
-  // TODO: it.skip because it's not done yet
-  it.skip('there is a specific message when list is empty', () => {
+  it('there is a specific message when list is empty', () => {
     const wrapper = mount(GoogleAccountCard, {
       store: new Vuex.Store(cloneStore()),
       propsData: EnabledButNoAccount.args,
@@ -83,8 +82,7 @@ describe('google-ads-account.vue / enabled', () => {
     expect(wrapper.find('[data-test-id="message-empty-list"]').exists()).toBeTruthy();
   });
 
-  // TODO: it.skip because it's not done yet
-  it.skip('dropdown is disabled when API error', () => {
+  it('dropdown is disabled when API error', () => {
     const wrapper = mount(GoogleAccountCard, {
       store: new Vuex.Store(cloneStore()),
       propsData: CantConnect.args,
@@ -98,8 +96,7 @@ describe('google-ads-account.vue / enabled', () => {
     expect(wrapper.find('#googleAdsAccountSelection').attributes('disabled')).toBeTruthy();
   });
 
-  // TODO: it.skip because it's not done yet
-  it.skip('Clicking on disconnect emmit the event to open a popup', async () => {
+  it('clicking on disconnect emmit the event to open a popup', async () => {
     const wrapper = mount(GoogleAccountCard, {
       store: new Vuex.Store(cloneStore()),
       propsData: EnabledConnected.args,
@@ -109,9 +106,8 @@ describe('google-ads-account.vue / enabled', () => {
       },
     });
 
-    // TODO: Needs to add the data-test-id attribute to have this test pass
     // Check if openPopin event has been emmited when disconnect button is clicked
     await wrapper.find('[data-test-id="btn-disconnect"]').trigger('click');
-    expect(wrapper.emitted('dissociationGoogleAdsAccount')).toBeTruthy();
+    expect(wrapper.emitted('disconnectionGoogleAdsAccount')).toBeTruthy();
   });
 });
