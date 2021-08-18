@@ -54,7 +54,7 @@
         </p>
         <div
           v-else
-          class="d-flex align-items-center p-3 border rounded"
+          class="d-flex align-items-center p-3"
         >
           <img
             class="mr-3 rounded-circle"
