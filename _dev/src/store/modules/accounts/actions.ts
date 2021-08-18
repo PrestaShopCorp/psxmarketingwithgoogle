@@ -585,7 +585,9 @@ export default {
       if (linkedGmc) {
         commit(MutationsTypes.SAVE_GMC, linkedGmc);
         dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
-      } else throw new Error('Failed to find GMC!');
+      } else {
+        throw new Error('Failed to find GMC!');
+      }
     } catch (error) {
       console.error(error);
       console.log(`GMC ${state.googleMerchantAccount.id} not found, try to search again in 15s`);
