@@ -240,8 +240,9 @@ export default {
           commit(MutationsTypes.SAVE_GMC, linkedGmc);
           dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
         } else {
-          console.log(`GMC ${state.googleMerchantAccount.id} not found, try to search again in 15s`);
-          setTimeout(() => dispatch(ActionsTypes.REQUEST_GMC_LIST), 15000);
+          // Cannot find linked GMC. Maybe it's a freshly created one, in this case previous HTTP
+          //  call has failed. Then try another way...
+          dispatch(ActionsTypes.REQUEST_NEW_GMC_DETAILS);
         }
       }
     } catch (error) {
@@ -565,5 +566,33 @@ export default {
     } catch (error) {
       console.error(`Could not save new GMC: ${(<any>error)?.message}`);
     }
+  },
+
+  async [ActionsTypes.REQUEST_NEW_GMC_DETAILS]({
+    commit, rootState, state, dispatch,
+  }) {
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/merchant-accounts/${state.googleMerchantAccount.id}`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      const linkedGmc = await response.json();
+      if (linkedGmc) {
+        commit(MutationsTypes.SAVE_GMC, linkedGmc);
+        dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+      } else {
+        throw new Error('Failed to find GMC!');
+      }
+    } catch (error) {
+      console.error(error);
+      console.log(`GMC ${state.googleMerchantAccount.id} not found, try to search again in 15s`);
+      setTimeout(() => dispatch(ActionsTypes.REQUEST_GMC_LIST), 15000);
+    }
+    return null;
   },
 };
