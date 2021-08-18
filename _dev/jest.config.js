@@ -1,3 +1,5 @@
+global.process.env.BOOTSTRAP_VUE_NO_WARN = true
+
 module.exports = {
   moduleFileExtensions: [
     'js',
