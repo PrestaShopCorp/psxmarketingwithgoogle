@@ -13,6 +13,7 @@ const {
   psVersion,
   psxMktgWithGoogleModuleVersion,
   psxMktgWithGoogleMaintenanceSettingsUrl,
+  psxMktgWithGoogleProductDetailUrl,
 }: any = window;
 
 const state = Object.assign(
@@ -26,6 +27,7 @@ const state = Object.assign(
   {psVersion} || '',
   {psxMktgWithGoogleModuleVersion} || '',
   {psxMktgWithGoogleMaintenanceSettingsUrl} || '',
+  {psxMktgWithGoogleProductDetailUrl} || '',
 );
 
 /**

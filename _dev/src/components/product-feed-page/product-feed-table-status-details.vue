@@ -21,186 +21,99 @@
         </li>
       </ol>
     </b-card-header>
-    <b-card-body
-      body-class="p-3 mt-2"
-    >
+    <b-card-body body-class="p-3 mt-2">
       <p>
         {{ $t('productFeedPage.approvalTable.description') }}
       </p>
-      <p class="font-weight-600 mb-1">
-        {{ $t('productFeedPage.approvalTable.filterTitle') }}
-      </p>
-      <b-dropdown
-        id="filterProducts"
-        ref="filterProducts"
-        :text="selectedFilterStatus"
-        variant=" "
-        class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250 mb-4"
-        menu-class="ps-dropdown"
-        no-flip
-        size="sm"
-      >
-        <b-dropdown-item
-          v-for="(option, index) in filterProductsOptions"
-          :key="index"
-          @click="selectedFilterStatus = option"
-        >
-          {{ option }}
-        </b-dropdown-item>
-      </b-dropdown>
-      <b-table
+      <b-table-simple
         id="table-products"
         class="ps_gs-table-products mb-3"
         variant="light"
         responsive="md"
-        :items="items"
-        :fields="fields"
-        :current-page="currentPage"
-        :per-page="perPage"
-        :filter="filter"
-        :filter-included-fields="filterOn"
-        :sort-by.sync="sortBy"
-        :sort-desc.sync="sortDesc"
-        :sort-direction="sortDirection"
-        show-empty
-        @filtered="onFiltered"
       >
-        <!-- Custom head rendering -->
-        <template #head(status)="data">
-          <div class="d-flex align-items-center">
-            <span>{{ data.label }}</span>
-            <b-button
-              variant="invisible"
-              class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('tooltip.approvalStatusStatus')"
+        <b-thead>
+          <b-tr>
+            <b-th
+              v-for="(field, index) in fields"
+              :key="index"
             >
-              <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-            </b-button>
-          </div>
-        </template>
-        <template #head(lang)="data">
-          <div class="d-flex align-items-center">
-            <span>{{ data.label }}</span>
-            <b-button
-              variant="invisible"
-              class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('tooltip.approvalStatusLang')"
-            >
-              <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-            </b-button>
-          </div>
-        </template>
-        <template #head(issues)="data">
-          <div
-            class="d-flex align-items-center ps_gs-table-products__issues"
-          >
-            <span>{{ data.label }}</span>
-            <b-button
-              variant="invisible"
-              class="p-0 mt-0 ml-1 border-0"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('tooltip.approvalStatusIssues')"
-            >
-              <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-            </b-button>
-          </div>
-        </template>
-        <!-- Custom cell rendering -->
-        <template #cell(name)="data">
-          <a
-            class="ps_gs-fz-12"
-            href="#"
-            :title="$t('productFeedPage.approvalTable.editX', [data.item.name])"
-          >{{ data.item.name }}</a>
-          <template
-            v-if="!!data.item.variant"
-          >
-            <template
-              v-for="(attribute) in data.item.variant.attributes"
-            >
-              <span
-                class="text-muted text-capitalize ps_gs-fz-12"
-                v-for="(value, key, index) in attribute"
-                :key="index"
-              >
-                <br>
-                {{ key }} - {{ value }}
-              </span>
+              {{ field.label }}
+            </b-th>
+          </b-tr>
+        </b-thead>
+
+        <b-tbody>
+          <template v-for="(product) in items">
+            <template v-for="(statusInfo) in product.statuses">
+              <template v-for="(lang) in statusInfo.countries">
+                <b-tr :key="lang.index">
+                  <b-td class="align-top">
+                    {{ product.id }}
+                  </b-td>
+                  <b-td class="align-top">
+                    <a
+                      class="external_link-no_icon"
+                      :href="!isNaN(product.id)
+                      ? getProductBaseUrl.replace('/1?', `/${product.id}?`) : null"
+                      target="_blank"
+                      :title="$t('productFeedPage.approvalTable.editX', [product.name])"
+                    >
+                      {{ product.name }}
+                    </a>
+                  </b-td>
+                  <b-td class="align-top">
+                    {{ product.attribute > 0 ? product.attribute : '' }}
+                  </b-td>
+                  <b-td class="align-top">
+                    {{ statusInfo.destination }}
+                  </b-td>
+                  <b-td class="align-top">
+                    <b-badge
+                      :variant="badgeColor(statusInfo.status)"
+                      class="ps_gs-fz-12 text-capitalize"
+                    >
+                      {{ statusInfo.status }}
+                    </b-badge>
+                  </b-td>
+                  <b-td class="align-top">
+                    <b-badge
+                      variant="primary"
+                      class="ps_gs-fz-12"
+                    >
+                      {{ lang }}
+                    </b-badge>
+                  </b-td>
+                  <b-td class="align-top">
+                    <ul
+                      class="list-unstyled mb-0"
+                      v-if="statusInfo.status === ProductStatues.Disapproved"
+                    >
+                      <li
+                        v-for="(issue, indexIssues) in getIssues(product)"
+                        :key="indexIssues"
+                      >
+                        <a
+                          class="text-decoration-none"
+                          :href="issue.documentation"
+                          :title="issue.detail"
+                          target="_blank"
+                        >
+                          {{ issue.description }}
+                        </a>
+                      </li>
+                    </ul>
+                  </b-td>
+                </b-tr>
+              </template>
             </template>
           </template>
-        </template>
-        <template #cell(status)="data">
-          <b-badge
-            :variant="badgeColor(data.item.status)"
-            class="ps_gs-fz-12 text-capitalize"
-          >
-            {{ data.item.status }}
-          </b-badge>
-        </template>
-        <template #cell(lang)="data">
-          <b-badge
-            variant="primary"
-            class="ps_gs-fz-12"
-          >
-            {{ data.item.lang }}
-          </b-badge>
-        </template>
-        <template #cell(issues)="data">
-          <span class="ps_gs-fz-10">
-            {{ data.item.issues.length > 0 ? data.item.issues.join(', ') : '' }}
-          </span>
-        </template>
-      </b-table>
-      <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
-        <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
-          {{ $t('productFeedPage.approvalTable.xResults', [totalProducts]) }}
-        </span>
-        <div class="d-flex align-items-center mr-auto ps_gs-table-controls__per-page">
-          <label
-            for="per-page-select"
-            class="mb-0 mr-2"
-          >
-            {{ $t('productFeedPage.approvalTable.perPageLabel') }}
-          </label>
-          <b-form-select
-            id="per-page-select"
-            v-model="perPage"
-            :options="pageOptions"
-            label="Show:"
-            size="sm"
-          />
-        </div>
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="totalRows"
-          :per-page="perPage"
-          align="fill"
-          class="my-0 ps_gs-table-controls__pagination"
-        />
-        <b-input-group
-          class="w-auto ml-auto ps_gs-table-controls__go-to
-          d-flex align-items-center"
-        >
-          <label
-            for="go-to-page"
-            class="mb-0 mr-2"
-          >
-            {{ $t('productFeedPage.approvalTable.goToLabel') }}
-          </label>
-          <b-form-input
-            id="go-to-page"
-            class="flex-grow-0 align-self-stretch"
-            size="sm"
-            v-model="pageToGoTo"
-          />
-          <b-input-group-append>
-            <b-button variant="primary">
-              {{ $t('cta.go') }}
-            </b-button>
-          </b-input-group-append>
-        </b-input-group>
+        </b-tbody>
+      </b-table-simple>
+      <div
+        class="psgoogleshopping-lazy-loading"
+        v-if="loading"
+      >
+        <div id="spinner" />
       </div>
 
       <!-- OLD TABLE -->
@@ -433,45 +346,33 @@
 
 <script>
 import {Products} from '@/../fixtures/products.js';
+import {ProductStatues} from '../../store/modules/product-feed/state';
 
 export default {
   name: 'ProductFeedTableStatusDetails',
-  components: {
-  },
+  components: {},
   data() {
     return {
-      totalRows: 1,
-      currentPage: 1,
-      perPage: 10,
-      pageOptions: [2, 10, 20, 50, 100],
-      sortBy: '',
-      sortDesc: false,
-      sortDirection: 'asc',
-      filter: null,
-      filterOn: [],
-      pageToGoTo: '',
-      items: Products.slice(1, 20),
-      totalProducts: Products.length,
-      selectedFilterStatus: this.$i18n.t('productFeedPage.approvalTable.filterAllStatus'),
-      filterProductsOptions: [
-        this.$i18n.t('productFeedPage.approvalTable.filterAllStatus'),
-        this.$i18n.t('productFeedPage.approvalTable.filterOnlyApproved'),
-        this.$i18n.t('productFeedPage.approvalTable.filterOnlyPending'),
-        this.$i18n.t('productFeedPage.approvalTable.filterOnlyNotApproved'),
-      ],
-      selectedFilterQuantityToShow: '20',
+      loading: false,
+      items: Products.results,
+      ProductStatues,
+      selectedFilterQuantityToShow: '100',
       fields: [
         {
           key: 'id',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderID'),
-          sortable: true,
-          // stickyColumn: true,
         },
         {
           key: 'name',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
-          sortable: true,
-          stickyColumn: true,
+        },
+        {
+          key: 'attribute',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderAttributeID'),
+        },
+        {
+          key: 'destination',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderDestination'),
         },
         {
           key: 'status',
@@ -489,30 +390,24 @@ export default {
     };
   },
   computed: {
-    rows() {
-      return this.items.length;
-    },
-    sortOptions() {
-      // Create an options list from our fields
-      return this.fields
-        .filter((f) => f.sortable)
-        .map((f) => ({text: f.label, value: f.key}));
+    getProductBaseUrl() {
+      return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
     },
   },
   mounted() {
-    // Set the initial number of items
-    this.totalRows = this.items.length;
-
+    window.addEventListener('scroll', this.handleScroll);
     // Observer to add class to sticky columns when they are stuck
     document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
       if (i) {
-        const observer = new IntersectionObserver((entries) => {
-          observerCallback(entries, observer, i);
-        },
-        {
-          root: document.querySelector('.ps_gs-table-products'),
-          threshold: 1,
-        });
+        const observer = new IntersectionObserver(
+          (entries) => {
+            observerCallback(entries, observer, i);
+          },
+          {
+            root: document.querySelector('.ps_gs-table-products'),
+            threshold: 1,
+          },
+        );
         observer.observe(i);
       }
     });
@@ -522,21 +417,95 @@ export default {
       });
     };
   },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
     badgeColor(status) {
-      if (status === 'approved') {
+      if (status === ProductStatues.Approved) {
         return 'success';
-      } if (status === 'pending') {
+      }
+      if (status === ProductStatues.Pending) {
         return 'warning';
       }
       return 'danger';
     },
-    onFiltered(filteredItems) {
-      // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
+    getIssues(product) {
+      const issues = [];
+      if (!('issues' in product)) {
+        return issues;
+      }
+      product.issues.forEach((el) => {
+        if (el.resolution === 'merchant_action') {
+          issues.push({
+            description: el.description,
+            documentation: el.documentation,
+            detail: el.detail,
+          });
+        }
+      });
+      return issues;
+    },
+    handleScroll() {
+      const de = document.documentElement;
+      if (this.loading === false && de.scrollTop + window.innerHeight === de.scrollHeight) {
+        let nextToken = '';
+        let firstCall = null;
+        this.loading = true;
+        this.$store
+          .dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', nextToken)
+          .then((res) => {
+            nextToken = res.nextToken;
+            // case for end of product list
+            if (nextToken === '' && firstCall === false && res.results.length > 0) {
+              window.removeEventListener('scroll', this.handleScroll);
+            }
+            if (res.results.length === 0) {
+              window.removeEventListener('scroll', this.handleScroll);
+            }
+            if (nextToken && res.results.length > 0) {
+              firstCall = true;
+            }
+            this.items.concat(res.results);
+            firstCall = false;
+          })
+          .catch((error) => {
+            console.error(error);
+            window.removeEventListener('scroll', this.handleScroll);
+          })
+          .then(() => {
+            setTimeout(() => {
+              this.loading = false;
+            }, 500);
+          });
+      }
     },
   },
 };
-
 </script>
+<style lang="scss" scoped>
+.psgoogleshopping-lazy-loading {
+  width: 100%;
+  height: 40px;
+  #spinner {
+    color: #fff;
+    background-color: #fff;
+    width: 2rem !important;
+    height: 2rem !important;
+    border-radius: 2.5rem;
+    border-right-color: #25b9d7;
+    border-bottom-color: #25b9d7;
+    border-width: 0.1875rem;
+    border-style: solid;
+    font-size: 0;
+    outline: none;
+    display: inline-block;
+    border-left-color: #bbcdd2;
+    border-top-color: #bbcdd2;
+    -webkit-animation: rotating 2s linear infinite;
+    animation: rotating 2s linear infinite;
+    position: absolute;
+    left: calc(50% - 0.6rem);
+  }
+}
+</style>

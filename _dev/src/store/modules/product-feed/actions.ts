@@ -219,4 +219,20 @@ export default {
     commit(MutationsTypes.SAVE_TOTAL_PRODUCTS, Number(result.total));
     return result;
   },
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({rootState}, nextPage) {
+    const nextToken = nextPage ? `?nextToken=${nextPage}` : '';
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/validation/list${nextToken}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+      },
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
+    return result;
+  },
 };
