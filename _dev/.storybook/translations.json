@@ -230,7 +230,8 @@
           "badge" : "Coming soon",
           "syncScheduleCustomization" : "Customized sync schedule",
           "exportOption" : "Export option",
-          "specificProductExclusion" : "Specific product exclusion"
+          "specificProductExclusion" : "Specific product exclusion",
+          "testAccount": "Test"
         }
       },
       "attributeMapping" : {
