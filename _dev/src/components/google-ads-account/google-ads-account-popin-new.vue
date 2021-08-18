@@ -71,7 +71,7 @@
         </ps-select>
         <label
           class="font-weight-600 mb-0 mt-3 pt-2"
-          for="selectBillingCountry"
+          for="selectTimezone"
         >
           {{ $t('googleAdsAccountNew.business.labelTimeZone') }}
         </label>
@@ -106,13 +106,13 @@
         </b-dropdown>
         <label
           class="font-weight-600 mb-0 mt-3 pt-2"
-          for="selectBillingCountry"
+          for="selectCurrency"
         >
           {{ $t("googleAdsAccountNew.business.labelCurrency") }}
         </label>
         <b-dropdown
-          id="selectTimezone"
-          ref="selectTimezone"
+          id="selectCurrency"
+          ref="selectCurrency"
           :text="
             selectedCurrency ||
               $t('googleAdsAccountNew.business.placeholderCurrency')
@@ -233,7 +233,7 @@ import PsSelect from '../commons/ps-select.vue';
 import {GoogleAccountContext} from '../../store/modules/accounts/state';
 
 export default {
-  name: 'MerchantCenterAccountPopinWebsiteRequirements',
+  name: 'GoogleAdsAccountPopinNew',
   components: {
     PsModal,
     Stepper,
