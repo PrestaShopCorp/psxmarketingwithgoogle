@@ -466,7 +466,7 @@ export default {
             if (nextToken && res.results.length > 0) {
               firstCall = true;
             }
-            this.items.concat(res.results);
+            this.items = this.items.concat(res.results);
             firstCall = false;
           })
           .catch((error) => {
