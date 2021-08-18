@@ -15,7 +15,11 @@ import VueShowdown from 'vue-showdown';
 
 import {
   productFeed,
+  productFeedMissingFields,
   productFeedIsConfigured,
+  productFeedIsReadyForExport,
+  productFeedStatusSyncFailed,
+  productFeedErrorAPI,
 } from '../../../.storybook/mock/product-feed';
 
 describe('merchant-center-account-card.vue', () => {
@@ -32,6 +36,7 @@ describe('merchant-center-account-card.vue', () => {
   let storeApiError;
   let storeReadyForExport;
   let storeSyncFailed;
+  
   beforeEach(() => {
     storeDisabledOrNotConfigured = cloneStore();
     storeDisabledOrNotConfigured.modules.productFeed.state = {
