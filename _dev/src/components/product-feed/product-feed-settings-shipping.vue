@@ -60,6 +60,7 @@
       label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
       <b-form-radio
+        data-test-id="radioButton"
         :checked="shippingSettings"
         v-model="shippingSettings"
         name="shippingSettingsRadio"

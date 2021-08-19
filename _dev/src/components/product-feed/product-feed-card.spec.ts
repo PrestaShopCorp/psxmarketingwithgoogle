@@ -4,21 +4,25 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import config, {localVue, cloneStore} from '@/../tests/init';
+import config, {localVue, cloneStore, filters} from '@/../tests/init';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
-import {shallowMount} from '@vue/test-utils';
+import {shallowMount, mount} from '@vue/test-utils';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import Stepper from '@/components/commons/stepper.vue';
 import BootstrapVue, {BAlert} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
-
 import {
   productFeed,
+  productFeedIsReadyForExport,
   productFeedIsConfigured,
+  productFeedIsConfiguredWithTax,
+  productFeedMissingFields,
+  productFeedStatusSyncFailed,
+  productFeedErrorAPI,
 } from '../../../.storybook/mock/product-feed';
 
-describe('merchant-center-account-card.vue', () => {
+describe('product-feed-card.vue', () => {
   const mockRoute = {
     name: 'product-feed-settings',
   };
@@ -28,6 +32,10 @@ describe('merchant-center-account-card.vue', () => {
 
   let storeDisabledOrNotConfigured;
   let storeConfigured;
+  let storeMissingFields;
+  let storeApiError;
+  let storeReadyForExport;
+  let storeSyncFailed;
   beforeEach(() => {
     storeDisabledOrNotConfigured = cloneStore();
     storeDisabledOrNotConfigured.modules.productFeed.state = {
@@ -38,6 +46,26 @@ describe('merchant-center-account-card.vue', () => {
     storeConfigured.modules.productFeed.state = {
       ...storeConfigured.modules.productFeed.state,
       ...productFeedIsConfigured,
+    };
+    storeMissingFields = cloneStore();
+    storeMissingFields.modules.productFeed.state = {
+      ...storeMissingFields.modules.productFeed.state,
+      ...productFeedMissingFields,
+    };
+    storeApiError = cloneStore();
+    storeApiError.modules.productFeed.state = {
+      ...storeApiError.modules.productFeed.state,
+      ...productFeedErrorAPI,
+    };
+    storeReadyForExport = cloneStore();
+    storeReadyForExport.modules.productFeed.state = {
+      ...storeReadyForExport.modules.productFeed.state,
+      ...productFeedIsReadyForExport,
+    };
+    storeSyncFailed = cloneStore();
+    storeSyncFailed.modules.productFeed.state = {
+      ...storeSyncFailed.modules.productFeed.state,
+      ...productFeedStatusSyncFailed,
     };
   });
 
@@ -88,13 +116,6 @@ describe('merchant-center-account-card.vue', () => {
   });
 
   it('shows product feed card ready if already configured', () => {
-    const timeConverterToDate = jest.fn();
-    localVue.filter('timeConverterToDate', timeConverterToDate);
-    const timeConverterToHour = jest.fn();
-    localVue.filter('timeConverterToHour', timeConverterToHour);
-    const changeCountryCodeToName = jest.fn();
-    changeCountryCodeToName.mockImplementation(() => []);
-    localVue.filter('changeCountryCodeToName', changeCountryCodeToName);
     const wrapper = shallowMount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
@@ -106,10 +127,105 @@ describe('merchant-center-account-card.vue', () => {
       localVue,
       store: new Vuex.Store(storeConfigured),
     });
+    expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
-    expect(timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(timeConverterToHour).toHaveBeenCalledTimes(1);
-    expect(changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
+    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
+  });
+
+  it('shows product feed card ready for export at first configuration', () => {
+    const wrapper = shallowMount(ProductFeedCard, {
+      propsData: {
+        isEnabled: true,
+      },
+      ...config,
+      mocks: {
+        $router: mockRouter,
+      },
+      localVue,
+      stubs: {
+        VueShowdown: true,
+      },
+      store: new Vuex.Store(storeReadyForExport),
+    });
+    expect(wrapper.find('b-alert')).toBeTruthy();
+    expect(wrapper.find('b-alert').attributes('variant')).toBe('info');
+    expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
+    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
+  });
+
+  it('shows alert when missing infos', () => {
+    const wrapper = mount(ProductFeedCard, {
+      propsData: {
+        isEnabled: true,
+      },
+      ...config,
+      mocks: {
+        $router: mockRouter,
+      },
+      localVue,
+      store: new Vuex.Store(storeMissingFields),
+      stubs: {
+        VueShowdown: true,
+      },
+    });
+
+    expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
+    expect(filters.timeConverterToDate).not.toHaveBeenCalled();
+    expect(filters.timeConverterToHour).not.toHaveBeenCalled();
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
+    expect(wrapper.find('b-alert')).toBeTruthy();
+    expect(wrapper.find('b-alert').attributes('variant')).toBe('warning');
+    expect(wrapper.find('b-button').text()).toEqual('Add shipping info');
+    expect(wrapper.find('p').text()).toBe('To successfully sync your product data, add shipping info.');
+  });
+
+  it('shows error when api error', () => {
+    const wrapper = shallowMount(ProductFeedCard, {
+      propsData: {
+        isEnabled: true,
+        ...config,
+      },
+      stubs: {
+        VueShowdown: true,
+        BAlert,
+      },
+      store: new Vuex.Store(storeApiError),
+    });
+    expect(wrapper.findComponent(Stepper).exists()).toBeTruthy();
+    expect(wrapper.findComponent(Stepper).props('activeStep')).toBe(1);
+    expect(wrapper.find('b-button').attributes('disabled')).toBe('true');
+    expect(wrapper.find('b-button').text()).toEqual('Export feed');
+    expect(wrapper.findComponent(BAlert).exists()).toBeTruthy();
+    expect(wrapper.findComponent(BAlert).find('b-button').text()).toEqual('Refresh page');
+  });
+
+  it('shows error when sync failed', () => {
+    const wrapper = mount(ProductFeedCard, {
+      propsData: {
+        isEnabled: true,
+      },
+      ...config,
+      mocks: {
+        $router: mockRouter,
+      },
+      localVue,
+      store: new Vuex.Store(storeSyncFailed),
+      stubs: {
+        VueShowdown: true,
+      },
+    });
+    expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
+    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
+    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
+    expect(wrapper.find('b-alert')).toBeTruthy();
+    expect(wrapper.find('b-alert').attributes('variant')).toBe('warning');
   });
 });

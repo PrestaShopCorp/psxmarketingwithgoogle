@@ -6,16 +6,25 @@ import translations from '../.storybook/translations.json';
 let windowSpy;
 let localVue; // eslint-disable-line 
 const defaultLocale = 'en';
+let filters; // eslint-disable-line 
 
 beforeEach(() => {
   windowSpy = jest.spyOn(window, 'window', 'get');
-
   windowSpy.mockImplementation(() => ({
     // add data needed in window
   }));
-
   localVue = createLocalVue();
   localVue.use(Vuex);
+
+  filters = {
+    timeConverterToDate: jest.fn(),
+    timeConverterToHour: jest.fn(),
+    changeCountryCodeToName: jest.fn().mockImplementation(() => []),
+  };
+
+  localVue.filter('timeConverterToDate', filters.timeConverterToDate);
+  localVue.filter('timeConverterToHour', filters.timeConverterToHour);
+  localVue.filter('changeCountryCodeToName', filters.changeCountryCodeToName);
 });
 
 afterEach(() => {
@@ -40,4 +49,4 @@ export default {config};
 
 export {cloneStore} from './store';
 
-export {localVue};
+export {localVue, filters};

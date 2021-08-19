@@ -8,6 +8,7 @@ import {
   productFeedStatusSyncFailed,
   productFeedErrorAPI,
 } from '../.storybook/mock/product-feed';
+import {initialStateApp} from '../.storybook/mock/state-app';
 
 export default {
   title: 'Product feed/Card',
@@ -28,6 +29,7 @@ Disabled.args = {
     this.$store.state.productFeed = Object.assign({}, productFeed);
   },
   isEnabled: false,
+  badges: [],
 };
 
 export const NotConfigured:any = Template.bind({});
@@ -92,6 +94,7 @@ ConfiguredNoTax.args = {
   isEnabled: true,
 };
 
+// TODO batch 2
 export const ConfiguredTax:any = Template.bind({});
 ConfiguredTax.args = {
   beforeMount: function(this: any) {
