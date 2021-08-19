@@ -4,7 +4,7 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import config, {localVue, cloneStore} from '@/../tests/init';
+import config, {localVue, cloneStore, filters} from '@/../tests/init';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
 import {shallowMount, mount} from '@vue/test-utils';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
@@ -22,7 +22,7 @@ import {
   productFeedErrorAPI,
 } from '../../../.storybook/mock/product-feed';
 
-describe('merchant-center-account-card.vue', () => {
+describe('product-feed-card.vue', () => {
   const mockRoute = {
     name: 'product-feed-settings',
   };
@@ -116,13 +116,6 @@ describe('merchant-center-account-card.vue', () => {
   });
 
   it('shows product feed card ready if already configured', () => {
-    const timeConverterToDate = jest.fn();
-    localVue.filter('timeConverterToDate', timeConverterToDate);
-    const timeConverterToHour = jest.fn();
-    localVue.filter('timeConverterToHour', timeConverterToHour);
-    const changeCountryCodeToName = jest.fn();
-    changeCountryCodeToName.mockImplementation(() => []);
-    localVue.filter('changeCountryCodeToName', changeCountryCodeToName);
     const wrapper = shallowMount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
@@ -136,20 +129,13 @@ describe('merchant-center-account-card.vue', () => {
     });
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
-    expect(timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(timeConverterToHour).toHaveBeenCalledTimes(1);
-    expect(changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
+    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
 
   it('shows product feed card ready for export at first configuration', () => {
-    const timeConverterToDate = jest.fn();
-    localVue.filter('timeConverterToDate', timeConverterToDate);
-    const timeConverterToHour = jest.fn();
-    localVue.filter('timeConverterToHour', timeConverterToHour);
-    const changeCountryCodeToName = jest.fn();
-    changeCountryCodeToName.mockImplementation(() => []);
-    localVue.filter('changeCountryCodeToName', changeCountryCodeToName);
     const wrapper = shallowMount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
@@ -167,20 +153,12 @@ describe('merchant-center-account-card.vue', () => {
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('info');
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
-    expect(timeConverterToDate).toHaveBeenCalledTimes(1);
-    expect(changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
 
   it('shows alert when missing infos', () => {
-    const timeConverterToDate = jest.fn();
-    localVue.filter('timeConverterToDate', timeConverterToDate);
-    const timeConverterToHour = jest.fn();
-    localVue.filter('timeConverterToHour', timeConverterToHour);
-    const changeCountryCodeToName = jest.fn();
-    changeCountryCodeToName.mockImplementation(() => []);
-    localVue.filter('changeCountryCodeToName', changeCountryCodeToName);
-
     const wrapper = mount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
@@ -195,10 +173,11 @@ describe('merchant-center-account-card.vue', () => {
         VueShowdown: true,
       },
     });
+
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
-    expect(timeConverterToDate).not.toHaveBeenCalled();
-    expect(timeConverterToHour).not.toHaveBeenCalled();
-    expect(changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.timeConverterToDate).not.toHaveBeenCalled();
+    expect(filters.timeConverterToHour).not.toHaveBeenCalled();
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('warning');
@@ -227,14 +206,6 @@ describe('merchant-center-account-card.vue', () => {
   });
 
   it('shows error when sync failed', () => {
-    const timeConverterToDate = jest.fn();
-    localVue.filter('timeConverterToDate', timeConverterToDate);
-    const timeConverterToHour = jest.fn();
-    localVue.filter('timeConverterToHour', timeConverterToHour);
-    const changeCountryCodeToName = jest.fn();
-    changeCountryCodeToName.mockImplementation(() => []);
-    localVue.filter('changeCountryCodeToName', changeCountryCodeToName);
-
     const wrapper = mount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
@@ -250,9 +221,9 @@ describe('merchant-center-account-card.vue', () => {
       },
     });
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
-    expect(timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(timeConverterToHour).toHaveBeenCalledTimes(1);
-    expect(changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
+    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('warning');
