@@ -65,7 +65,7 @@ describe('product-feed-settings-shipping.vue', () => {
 
     const input = wrapper.findComponent(PsSelect);
     expect(input.exists()).toBeTruthy();
-    expect(input.props('value')).toEqual([]);
+    expect(input.props('value')).toEqual('FR');
   });
 
   it('shows button radio with auto and manually import settings with prefill', () => {

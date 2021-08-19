@@ -54,7 +54,7 @@
                     <a
                       class="external_link-no_icon"
                       :href="!isNaN(product.id)
-                      ? getProductBaseUrl.replace('/1?', `/${product.id}?`) : null"
+                        ? getProductBaseUrl.replace('/1?', `/${product.id}?`) : null"
                       target="_blank"
                       :title="$t('productFeedPage.approvalTable.editX', [product.name])"
                     >

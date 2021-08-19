@@ -14,7 +14,7 @@ export const productFeed = {
   settings: {
     shippingSettings: [],
     autoImportTaxSettings: false,
-    targetCountries: null,
+    targetCountries: 'FR',
     autoImportShippingSettings: true,
     attributeMapping: {},
     syncSchedule: '1 * * * * *',
