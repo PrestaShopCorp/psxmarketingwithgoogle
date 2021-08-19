@@ -242,7 +242,6 @@ export default {
 
   data() {
     return {
-      stepActive: 1,
       stepActiveData: 1,
       steps: [
         {
