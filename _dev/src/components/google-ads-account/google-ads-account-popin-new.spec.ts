@@ -153,7 +153,9 @@ describe('google-ads-account.vue / step 3', () => {
     await wrapper.setData({stepActiveData: 3});
     const checkboxWrapper = wrapper.find('[type=checkbox]');
 
+    // Check if the checkbox is lacking the attribute checked
     expect(checkboxWrapper.attributes('checked')).toBeUndefined();
+    // Check if the button is disabled
     expect(wrapper.find('button.btn-primary').attributes('disabled')).toBe('disabled');
   });
 
@@ -163,8 +165,10 @@ describe('google-ads-account.vue / step 3', () => {
     });
     await wrapper.setData({stepActiveData: 3});
     const checkboxWrapper = wrapper.find('[type=checkbox]');
+    // Set the checkbox to checked
     await checkboxWrapper.setChecked();
 
+    // Check if the button is not disabled
     expect(wrapper.find('button.btn-primary').attributes('disabled')).toBeUndefined();
   });
 });
