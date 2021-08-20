@@ -60,6 +60,7 @@ test-back:
 # target: test-front                   	 - Launch the tests front (does not work linter is not configured)
 test-front:
 	docker-compose run --rm node sh -c "npm --prefix=./_dev run lint"
+	docker-compose run --rm node sh -c "npm --prefix=./_dev run test"
 
 # target: fix-lint			             - Launch php cs fixer and npm run lint
 fix-lint:
