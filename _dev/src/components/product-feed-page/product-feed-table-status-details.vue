@@ -354,7 +354,6 @@ export default {
     return {
       loading: false,
       nextToken: null,
-      firstCall: false,
       items: [],
       ProductStatues,
       selectedFilterQuantityToShow: '100',
@@ -396,7 +395,7 @@ export default {
     },
   },
   mounted() {
-    this.getItems();
+    this.getItems(null);
     window.addEventListener('scroll', this.handleScroll);
     // Observer to add class to sticky columns when they are stuck
     document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
@@ -423,12 +422,28 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
-    getItems() {
-      this.firstCall = true;
-      this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', null)
+    getItems(token) {
+      this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', token)
         .then((res) => {
-          this.nextToken = res.nextToken;
+          if (!res.nextToken) {
+            // IF api does not send token, it means there are no results anymore.
+            // We remove the scroll event
+            window.removeEventListener('scroll', this.handleScroll);
+          } else {
+            // ELSE API gave us a token which means it still has results
+            // so we can keep scrolling and sending another GET with the token
+            this.nextToken = res.nextToken;
+          }
+          // In any case, we add to our items array the last results the API sent us
           this.mapResults(res);
+        }).catch((error) => {
+          console.error(error);
+          window.removeEventListener('scroll', this.handleScroll);
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.loading = false;
+          }, 500);
         });
     },
     mapResults(res) {
@@ -473,31 +488,31 @@ export default {
       const de = document.documentElement;
       if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight - 1) {
         this.loading = true;
-        if (this.firstCall) {
-          this.$store
-            .dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', this.nextToken)
-            .then((res) => {
-              this.nextToken = res.nextToken;
-              // case for end of product list
-              if (!this.nextToken) {
-                this.mapResults(res);
-                this.firstCall = false;
-              } else {
-                this.mapResults(res);
-                this.firstCall = false;
-              }
-            })
-            .catch((error) => {
-              console.error(error);
-              window.removeEventListener('scroll', this.handleScroll);
-              this.nextToken = null;
-            })
-            .then(() => {
-              setTimeout(() => {
-                this.loading = false;
-              }, 500);
-            });
-        }
+        this.getItems(this.nextToken);
+        // if (this.firstCall) {
+        //   this.$store
+        //     .dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', this.nextToken)
+        //     .then((res) => {
+        //       this.nextToken = res.nextToken;
+        //       // case for end of product list
+        //       if (!this.nextToken) {
+        //         this.mapResults(res);
+        //       } else {
+        //         window.removeEventListener('scroll', this.handleScroll);
+        //         this.nextToken = null;
+        //       }
+        //     })
+        //     .catch((error) => {
+        //       console.error(error);
+        //       window.removeEventListener('scroll', this.handleScroll);
+        //       this.nextToken = null;
+        //     })
+        //     .then(() => {
+        //       setTimeout(() => {
+        //         this.loading = false;
+        //       }, 500);
+        //     });
+        // }
         this.loading = false;
       }
     },
