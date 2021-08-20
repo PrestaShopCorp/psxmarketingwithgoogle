@@ -14,10 +14,10 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: "14"
           cache: npm
-          cache-dependency-path: '_dev/package-lock.json'
-      
+          cache-dependency-path: "_dev/package-lock.json"
+
       - name: Install & build
         working-directory: _dev
         run: |
@@ -48,8 +48,7 @@ jobs:
 
       - name: Prepare the production zip
         run: |
-          cd ${{ github.event.repository.name }}
-          zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip ${{ github.event.repository.name }} -x '*.git*'
+          zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip ${{ github.event.repository.name }} -x '*.git*' -x '*/_dev/*'
 
       - name: Publish the production zip
         uses: actions/upload-release-asset@v1.0.1
@@ -87,8 +86,7 @@ jobs:
 
       - name: Prepare the integration zip
         run: |
-          cd ${{ github.event.repository.name }}
-          zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip ${{ github.event.repository.name }}  -x '*.git*'
+          zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip ${{ github.event.repository.name }}  -x '*.git*' -x '*/_dev/*'
 
       - name: Publish the integration zip
         uses: actions/upload-release-asset@v1.0.1
@@ -130,13 +128,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.release.prerelease == false
     steps:
-    - uses: actions/checkout@v2
-    - name: Sentry Release
-      uses: getsentry/action-release@v1.0.0
-      env:
-        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-        SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-        SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-      with:
-        environment: production
-        version: ${{ github.ref }}
+      - uses: actions/checkout@v2
+      - name: Sentry Release
+        uses: getsentry/action-release@v1.0.0
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: production
+          version: ${{ github.ref }}
