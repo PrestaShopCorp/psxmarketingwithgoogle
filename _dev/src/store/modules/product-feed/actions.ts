@@ -234,7 +234,7 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     const result = await response.json();
-    console.log('response api', result);
+    // console.log('response api', result);
     return result;
   },
 };
