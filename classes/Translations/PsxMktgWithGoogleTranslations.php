@@ -101,7 +101,7 @@ class PsxMktgWithGoogleTranslations
                 ],
                 'productFeedNotice' => $this->module->l('Help customers to find your products more easily on Google and list them for free with free listings. Free listings help reach more customers and get them to visit your site.', 'PsxMktgWithGoogleTranslations'),
             ],
-            "multiShopSelector" => [
+            'multiShopSelector' => [
                 'title' => $this->module->l('Multi-store mode activated', 'PsxMktgWithGoogleTranslations'),
                 'subtitle' => $this->module->l('You must configure your stores one by one for this service but you will be able to use the same account.', 'PsxMktgWithGoogleTranslations'),
                 'selectStore' => $this->module->l('Please select the first store to configure from the list below', 'PsxMktgWithGoogleTranslations'),
