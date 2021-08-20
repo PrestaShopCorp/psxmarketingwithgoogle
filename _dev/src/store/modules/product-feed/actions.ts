@@ -220,8 +220,7 @@ export default {
     return result;
   },
   async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({rootState}, nextPage) {
-    const nextToken = nextPage ? `?nextToken=${nextPage}` : '';
-    // console.log('NEXT TOKEN', nextToken);
+    const nextToken = nextPage ? `?next_token=${nextPage}` : '';
     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/validation/list${nextToken}`, {
       method: 'GET',
       headers: {
@@ -234,7 +233,6 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     const result = await response.json();
-    // console.log('response api', result);
     return result;
   },
 };

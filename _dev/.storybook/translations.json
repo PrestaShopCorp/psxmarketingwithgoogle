@@ -374,6 +374,7 @@
         "tableHeaderName" : "Name",
         "tableHeaderGoogleValidation" : "Availablity for Google",
         "tableHeaderLanguage" : "Language",
+        "tableHeaderCountry" : "Country",
         "tableHeaderIssue" : "Reason",
         "xResults" : "{0} results",
         "perPageLabel" : "Show:",
