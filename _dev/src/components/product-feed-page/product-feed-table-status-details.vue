@@ -480,13 +480,8 @@ export default {
               this.nextToken = res.nextToken;
               // case for end of product list
               if (!this.nextToken) {
-                if (this.firstCall) {
-                  this.mapResults(res);
-                  this.firstCall = false;
-                } else {
-                  window.removeEventListener('scroll', this.handleScroll);
-                  this.nextToken = null;
-                }
+                this.mapResults(res);
+                this.firstCall = false;
               } else {
                 this.mapResults(res);
                 this.firstCall = false;
