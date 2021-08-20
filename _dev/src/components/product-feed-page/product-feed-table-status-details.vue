@@ -459,7 +459,6 @@ export default {
         this.$store
           .dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', this.nextToken)
           .then((res) => {
-            console.log('res', res);
             this.nextToken = res.nextToken;
             // case for end of product list
             if (this.nextToken === '' && this.firstCall === false && res.results.length > 0) {
