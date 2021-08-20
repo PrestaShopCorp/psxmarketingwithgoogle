@@ -26,7 +26,6 @@
         {{ $t('productFeedPage.approvalTable.description') }}
       </p>
       <b-table-simple
-        striped
         id="table-products"
         class="ps_gs-table-products mb-3"
         variant="light"
@@ -362,12 +361,10 @@ export default {
       fields: [
         {
           key: 'id',
-          sortable: true,
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderID'),
         },
         {
           key: 'name',
-          sortable: true,
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
         },
         {
