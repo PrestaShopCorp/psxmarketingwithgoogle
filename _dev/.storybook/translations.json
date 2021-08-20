@@ -51,7 +51,6 @@
         "smartShoppingCampaign" : "Reach more people with paid Smart Shopping campaign"
       },
       "productFeedNotice" : "Help customers to find your products more easily on Google and list them for free with free listings. Free listings help reach more customers and get them to visit your site.",
-      "warningMultistore":  "You can associate only one store to a PrestaShop account.   \n If you need to associate another store you will have to unlink the associated store."
     },
     "multiShopSelector": {
       "title": "Multi-store mode activated",

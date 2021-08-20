@@ -21,7 +21,6 @@
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Env;
-use PrestaShop\Module\PsxMarketingWithGoogle\Provider\MultishopDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Translations\PsxMktgWithGoogleTranslations;
@@ -38,10 +37,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
     private $env;
 
     /**
-     * @var MultishopDataProvider
-     */
-    private $multishopDataProvider;
-
     /**
      * @var ConfigurationAdapter
      */
@@ -62,7 +57,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         parent::__construct();
         $this->bootstrap = false;
 
-        $this->multishopDataProvider = $this->module->getService(MultishopDataProvider::class);
         $this->env = $this->module->getService(Env::class);
         $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
         $this->countryRepository = $this->module->getService(CountryRepository::class);
@@ -98,7 +92,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'contextPsAccounts' => (object) $this->module->getService(PsAccounts::class)
             ->getPsAccountsPresenter()
             ->present($this->module->name),
-            'psAccountShopInConflict' => $this->multishopDataProvider->isCurrentShopInConflict($this->context->shop),
             'translations' => (new PsxMktgWithGoogleTranslations($this->module))->getTranslations(),
             'i18nSettings' => [
                 'isoCode' => $this->context->language->iso_code,

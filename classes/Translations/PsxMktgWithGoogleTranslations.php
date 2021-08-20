@@ -100,7 +100,6 @@ class PsxMktgWithGoogleTranslations
                     'smartShoppingCampaign' => $this->module->l('Reach more people with paid Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'productFeedNotice' => $this->module->l('Help customers to find your products more easily on Google and list them for free with free listings. Free listings help reach more customers and get them to visit your site.', 'PsxMktgWithGoogleTranslations'),
-                'warningMultistore' => $this->module->l("You can associate only one store to a PrestaShop account.   \n If you need to associate another store you will have to unlink the associated store.", 'PsxMktgWithGoogleTranslations'),
             ],
             "multiShopSelector" => [
                 'title' => $this->module->l('Multi-store mode activated', 'PsxMktgWithGoogleTranslations'),

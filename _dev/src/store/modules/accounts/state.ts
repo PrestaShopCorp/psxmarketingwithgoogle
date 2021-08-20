@@ -104,7 +104,6 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
 };
 
 export interface State {
-  psAccountShopInConflict: boolean,
   contextPsAccounts: PrestaShopAccountsContext|any;
   shopIdPsAccounts: string;
   tokenPsAccounts: string;
@@ -127,7 +126,6 @@ export enum WebsiteClaimErrorReason {
 }
 
 export const state: State = {
-  psAccountShopInConflict: false,
   contextPsAccounts: {},
   shopIdPsAccounts: '',
   tokenPsAccounts: '',

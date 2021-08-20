@@ -8,7 +8,6 @@ declare global {
   //   interface ElementClass extends Vue {}
 
     interface Window {
-      psAccountShopInConflict: boolean,
       psxMtgWithGoogleDefaultShopCountry: Array<string>,
       contextPsAccounts: any;
       translations: any;

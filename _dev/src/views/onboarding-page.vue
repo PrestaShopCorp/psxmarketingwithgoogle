@@ -6,18 +6,7 @@
       :is-enabled="true"
       :is-done="stepsAreCompleted.step1"
     />
-    <b-alert
-      v-if="shopInConflictPsAccount"
-      show
-      variant="warning"
-      class="mb-0 mt-3 mb-3"
-    >
-      <VueShowdown
-        :markdown="$t('onboarding.warningMultistore')"
-      />
-    </b-alert>
     <ps-accounts
-      v-if="!shopInConflictPsAccount"
       class="ps_gs-ps-account-card"
       :context="psAccountsContext"
     />
@@ -25,14 +14,14 @@
       <section-title
         :step-number="2"
         :step-title="$t('onboarding.sectionTitle.freeListing')"
-        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step1"
+        :is-enabled="stepsAreCompleted.step1"
         :is-done="stepsAreCompleted.step2"
       />
       <ProductFeedNotice
         v-if="stepsAreCompleted.step1"
       />
       <google-account-card
-        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step1"
+        :is-enabled="stepsAreCompleted.step1"
         :user="getGoogleAccount"
         :is-connected="googleAccountIsOnboarded"
         @connectGoogleAccount="onGoogleAccountConnection"
@@ -40,7 +29,7 @@
       />
       <MerchantCenterAccountCard
         v-if="stepsAreCompleted.step1"
-        :is-enabled="!shopInConflictPsAccount && googleAccountIsOnboarded"
+        :is-enabled="googleAccountIsOnboarded"
         :is-connected="merchantCenterAccountIsChosen"
         :is-e-u="showCSSForMCA"
         :is-linking="isMcaLinking"
@@ -49,31 +38,31 @@
       />
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
-        :is-enabled="!shopInConflictPsAccount && merchantCenterAccountIsChosen"
+        :is-enabled="merchantCenterAccountIsChosen"
       />
 
       <FreeListingCard
         v-if="stepsAreCompleted.step1"
-        :is-enabled="!shopInConflictPsAccount && productFeedIsConfigured"
+        :is-enabled="productFeedIsConfigured"
         :error-a-p-i="false"
         @openPopin="togglePopinFreeListingDisabled"
       />
       <section-title
         :step-number="3"
         :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
-        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
+        :is-enabled="stepsAreCompleted.step2"
         :is-done="stepsAreCompleted.step3"
       />
       <GoogleAdsAccountCard
-        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step2"
+        :is-enabled="stepsAreCompleted.step2"
         @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
         @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
         @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
       />
       <SmartShoppingCampaignCard
-        :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step3"
+        :is-enabled="stepsAreCompleted.step3"
         @openPopin="onOpenPopinActivateTracking"
-      />
+||||||| merged common ancestors
     </template>
     <!-- Modals -->
     <GoogleAccountPopinDisconnect
@@ -235,9 +224,6 @@ export default {
     },
   },
   computed: {
-    shopInConflictPsAccount() {
-      return this.$store.getters['accounts/GET_PS_ACCOUNTS_SHOP_IN_CONFLICT'];
-    },
     psAccountsContext() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
     },

@@ -4,7 +4,6 @@ import actions from './actions';
 import {state as initialState} from './state';
 
 const {
-  psAccountShopInConflict,
   contextPsAccounts,
   shopIdPsAccounts,
   tokenPsAccounts,
@@ -12,7 +11,6 @@ const {
 
 const state = Object.assign(
   initialState,
-  {psAccountShopInConflict} || {},
   {contextPsAccounts} || {},
   {shopIdPsAccounts} || '',
   {tokenPsAccounts} || '',
