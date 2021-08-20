@@ -42,7 +42,7 @@ jobs:
     needs: build
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v1
         with:
           name: ${{ github.event.repository.name }}
 
@@ -67,7 +67,7 @@ jobs:
     needs: build
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v1
         with:
           name: ${{ github.event.repository.name }}
 
@@ -132,7 +132,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Sentry Release
-      uses: getsentry/action-release@v1.0.0
+      uses: getsentry/action-release@v1
       env:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
