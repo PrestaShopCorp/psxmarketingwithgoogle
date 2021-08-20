@@ -1,6 +1,6 @@
 <template>
   <div>
-    <product-feed-table-status-details v-if="visible" />
+    <product-feed-table-status-details v-if="$route.path === '/product-feed/status'" />
     <template v-else>
       <b-alert
         :show="syncStatus === 'success'"
@@ -10,7 +10,7 @@
         {{ $t('productFeedPage.alert.alertSuccess') }}
       </b-alert>
       <product-feed-sync-status-card />
-      <product-feed-product-status-card @showProductReporting="displayReporting" />
+      <product-feed-product-status-card />
     </template>
   </div>
 </template>
@@ -26,11 +26,6 @@ export default {
     ProductFeedProductStatusCard,
     ProductFeedTableStatusDetails,
   },
-  data() {
-    return {
-      visible: false,
-    };
-  },
   computed: {
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
@@ -40,9 +35,6 @@ export default {
     },
   },
   methods: {
-    displayReporting() {
-      this.visible = true;
-    },
     async getDatas() {
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');

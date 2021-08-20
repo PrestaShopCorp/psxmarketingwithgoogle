@@ -117,7 +117,9 @@ export default {
   },
   methods: {
     displayReporting() {
-      this.$emit('showProductReporting', true);
+      this.$router.push({
+        path: '/product-feed/status',
+      });
       // Now we just generate link for redirect merchant for products statuses
       // window.open(`https://merchants.google.com/mc/products/diagnostics?a=${this.getGMCInformations.id}`);
     },
