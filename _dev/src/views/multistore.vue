@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {MultiStoreSelector} from 'prestashop_accounts_vue_components';
+import MultiStoreSelector from '@/components/multistore/multi-store-selector.vue';
 import LandingPage from './landing-page.vue';
 
 export default {
