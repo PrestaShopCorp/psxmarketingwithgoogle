@@ -489,7 +489,6 @@ export default {
       if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight - 1) {
         this.loading = true;
         this.getItems(this.nextToken);
-        this.loading = false;
       }
     },
   },
