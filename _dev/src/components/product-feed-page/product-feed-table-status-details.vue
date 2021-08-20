@@ -489,30 +489,6 @@ export default {
       if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight - 1) {
         this.loading = true;
         this.getItems(this.nextToken);
-        // if (this.firstCall) {
-        //   this.$store
-        //     .dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', this.nextToken)
-        //     .then((res) => {
-        //       this.nextToken = res.nextToken;
-        //       // case for end of product list
-        //       if (!this.nextToken) {
-        //         this.mapResults(res);
-        //       } else {
-        //         window.removeEventListener('scroll', this.handleScroll);
-        //         this.nextToken = null;
-        //       }
-        //     })
-        //     .catch((error) => {
-        //       console.error(error);
-        //       window.removeEventListener('scroll', this.handleScroll);
-        //       this.nextToken = null;
-        //     })
-        //     .then(() => {
-        //       setTimeout(() => {
-        //         this.loading = false;
-        //       }, 500);
-        //     });
-        // }
         this.loading = false;
       }
     },
