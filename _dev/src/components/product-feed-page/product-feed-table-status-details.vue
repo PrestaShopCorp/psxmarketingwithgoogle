@@ -345,7 +345,6 @@
 </template>
 
 <script>
-import {Products} from '@/../fixtures/products.js';
 import {ProductStatues} from '../../store/modules/product-feed/state';
 
 export default {
@@ -354,7 +353,9 @@ export default {
   data() {
     return {
       loading: false,
-      items: Products.results,
+      nextToken: '',
+      firstCall: false,
+      items: null,
       ProductStatues,
       selectedFilterQuantityToShow: '100',
       fields: [
@@ -395,6 +396,7 @@ export default {
     },
   },
   mounted() {
+    this.getItems();
     window.addEventListener('scroll', this.handleScroll);
     // Observer to add class to sticky columns when they are stuck
     document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
@@ -421,6 +423,10 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    getItems() {
+      this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES')
+        .then((res) => { this.items = res.results; });
+    },
     badgeColor(status) {
       if (status === ProductStatues.Approved) {
         return 'success';
@@ -448,26 +454,24 @@ export default {
     },
     handleScroll() {
       const de = document.documentElement;
-      if (this.loading === false && de.scrollTop + window.innerHeight === de.scrollHeight) {
-        let nextToken = '';
-        let firstCall = null;
+      if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight) {
         this.loading = true;
         this.$store
-          .dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', nextToken)
+          .dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', this.nextToken)
           .then((res) => {
-            nextToken = res.nextToken;
+            this.nextToken = res.nextToken;
             // case for end of product list
-            if (nextToken === '' && firstCall === false && res.results.length > 0) {
+            if (this.nextToken === '' && this.firstCall === false && res.results.length > 0) {
               window.removeEventListener('scroll', this.handleScroll);
             }
             if (res.results.length === 0) {
               window.removeEventListener('scroll', this.handleScroll);
             }
-            if (nextToken && res.results.length > 0) {
-              firstCall = true;
+            if (this.nextToken && res.results.length > 0) {
+              this.firstCall = true;
             }
             this.items = this.items.concat(res.results);
-            firstCall = false;
+            this.firstCall = false;
           })
           .catch((error) => {
             console.error(error);
@@ -481,6 +485,7 @@ export default {
       }
     },
   },
+
 };
 </script>
 <style lang="scss" scoped>

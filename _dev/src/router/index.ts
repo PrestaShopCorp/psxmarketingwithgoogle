@@ -48,12 +48,22 @@ const routes: Array<RouteConfig> = [
     component: ProductFeedPage,
   },
   {
+    path: '/product-feed/status',
+    name: 'product-feed-status',
+    component: ProductFeedPage,
+  },
+  {
     path: '/paid-marketing',
     name: 'paid-marketing',
     component: PaidMarketingPage,
   },
   {
     path: '/',
+    name: 'root',
+    beforeEnter: initialPath,
+  },
+  {
+    path: '/*',
     name: 'root',
     beforeEnter: initialPath,
   },
