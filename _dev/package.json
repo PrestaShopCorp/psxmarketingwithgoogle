@@ -3,7 +3,6 @@
   "version": "1.4.4",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --no-clean",
     "lint": "vue-cli-service lint --no-fix",
     "lint-fix": "vue-cli-service lint --fix",

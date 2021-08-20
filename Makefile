@@ -55,6 +55,7 @@ tests: test-back test-front
 # target: test-back                    	 - Launch the tests back
 test-back:
 	docker-compose run --rm php sh -c "vendor/bin/php-cs-fixer fix --dry-run --diff --using-cache=no --diff-format udiff";
+	docker-compose run --rm php sh -c "vendor/bin/phpunit tests/";"
 	docker run -tid --rm -v ps-volume:/var/www/html --name temp-ps prestashop/prestashop; docker run --rm --volumes-from temp-ps -v $PWD:/web/module -e _PS_ROOT_DIR_=/var/www/html --workdir=/web/module phpstan/phpstan analyse --configuration=/web/module/tests/phpstan/phpstan.neon;
 
 # target: test-front                   	 - Launch the tests front (does not work linter is not configured)
@@ -88,10 +89,3 @@ docker-up:
 dd: docker-down
 docker-down:
 	docker-compose down
-
-build-microcks:
-	git clone https://github.com/microcks/microcks.git
-
-run-microcks:
-	cd microcks/install/docker-compose
-	docker-compose up -d
