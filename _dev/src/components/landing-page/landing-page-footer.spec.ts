@@ -3,9 +3,9 @@
  */
 
 // Import this file first to init mock on window
+import {createWrapper, shallowMount} from '@vue/test-utils';
 import config from '@/../tests/init';
 
-import {createWrapper, shallowMount} from '@vue/test-utils';
 import LandingPageFooter from '@/components/landing-page/landing-page-footer.vue';
 
 describe('landing-page-footer.vue', () => {

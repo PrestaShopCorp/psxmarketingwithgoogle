@@ -192,8 +192,8 @@
 </template>
 
 <script>
-import googleUrl from '@/assets/json/googleUrl.json';
 import {VueShowdown} from 'vue-showdown';
+import googleUrl from '@/assets/json/googleUrl.json';
 import PsSelect from '../commons/ps-select';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';

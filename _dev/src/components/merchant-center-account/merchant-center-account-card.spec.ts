@@ -4,13 +4,13 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import config, {cloneStore} from '@/../tests/init';
-
 import {shallowMount} from '@vue/test-utils';
-import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
-import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
 import {BAlert} from 'bootstrap-vue';
 import fetchMock from 'jest-fetch-mock';
+import config, {cloneStore} from '@/../tests/init';
+
+import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
+import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
 import actionsTypes from '../../store/modules/accounts/actions-types';
 import {WebsiteClaimErrorReason} from '../../store/modules/accounts/state';
 

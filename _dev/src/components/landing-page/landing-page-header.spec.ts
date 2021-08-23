@@ -3,9 +3,9 @@
  */
 
 // Import this file first to init mock on window
+import {createWrapper, shallowMount} from '@vue/test-utils';
 import config from '@/../tests/init';
 
-import {createWrapper, shallowMount} from '@vue/test-utils';
 import LandingPageHeader from '@/components/landing-page/landing-page-header.vue';
 
 describe('landing-page-header.vue', () => {

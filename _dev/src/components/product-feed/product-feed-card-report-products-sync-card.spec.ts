@@ -3,9 +3,9 @@
  */
 
 // Import this file first to init mock on window
+import {shallowMount} from '@vue/test-utils';
 import config from '@/../tests/init';
 
-import {shallowMount} from '@vue/test-utils';
 import ProductFeedCardReportProductsSyncCard from '@/components/product-feed/product-feed-card-report-products-sync-card.vue';
 
 describe('product-feed-card-report-products-sync-card.vue / Product status', () => {

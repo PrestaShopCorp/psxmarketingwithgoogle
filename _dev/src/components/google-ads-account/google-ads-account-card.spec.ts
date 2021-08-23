@@ -4,9 +4,9 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
+import {mount} from '@vue/test-utils';
 import {cloneStore} from '@/../tests/init';
 
-import {mount} from '@vue/test-utils';
 import GoogleAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import {
   Disabled,

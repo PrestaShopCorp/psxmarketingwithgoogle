@@ -76,13 +76,12 @@
 </template>
 
 <script>
-import googleUrl from '@/assets/json/googleUrl.json';
-
 import {
   BIconstack,
   BIconCheck,
   BIconCircleFill,
 } from 'bootstrap-vue';
+import googleUrl from '@/assets/json/googleUrl.json';
 
 export default {
   name: 'ProductFeedCardReportMappedCategoriesCard',

@@ -454,10 +454,10 @@
 </template>
 
 <script>
-import googleUrl from '@/assets/json/googleUrl.json';
 import uniqBy from 'lodash.uniqby';
 import {VueShowdown} from 'vue-showdown';
 import {BAlert} from 'bootstrap-vue';
+import googleUrl from '@/assets/json/googleUrl.json';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';

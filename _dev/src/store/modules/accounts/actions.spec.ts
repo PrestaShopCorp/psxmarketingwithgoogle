@@ -1,8 +1,8 @@
+import fetchMock from 'jest-fetch-mock';
 import actions from '@/store/modules/accounts/actions';
 import ActionsTypes from '@/store/modules/accounts/actions-types';
 import MutationsTypes from '@/store/modules/accounts/mutations-types';
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
-import fetchMock from 'jest-fetch-mock';
 
 import {} from '@/../tests/init';
 

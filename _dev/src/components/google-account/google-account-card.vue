@@ -169,11 +169,11 @@
  * When "Can't connect", CTA should be disabled
  */
 
-import googleUrl from '@/assets/json/googleUrl.json';
-
 import {
   BAlert,
 } from 'bootstrap-vue';
+import googleUrl from '@/assets/json/googleUrl.json';
+
 import MutationsTypes from '../../store/modules/accounts/mutations-types';
 import ActionsTypes from '../../store/modules/accounts/actions-types';
 import Glass from '../commons/glass';

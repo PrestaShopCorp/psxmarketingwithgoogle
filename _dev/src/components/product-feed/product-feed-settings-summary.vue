@@ -167,10 +167,10 @@
 </template>
 
 <script>
-import googleUrl from '@/assets/json/googleUrl.json';
 
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
+import googleUrl from '@/assets/json/googleUrl.json';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
 import ProductFeedCardReportCard from './product-feed-card-report-card';

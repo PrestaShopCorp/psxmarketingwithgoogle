@@ -4,12 +4,12 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import config, {localVue, cloneStore} from '@/../tests/init';
 import {shallowMount, mount} from '@vue/test-utils';
+import BootstrapVue, {BFormRadio} from 'bootstrap-vue';
+import config, {localVue, cloneStore} from '@/../tests/init';
 import ProductFeedSettingsShipping from '@/components/product-feed/product-feed-settings-shipping.vue';
 import Stepper from '@/components/commons/stepper.vue';
 import PsSelect from '@/components/commons/ps-select.vue';
-import BootstrapVue, {BFormRadio} from 'bootstrap-vue';
 import {
   ShippingSettings,
 } from '@/../stories/product-feed-settings.stories';

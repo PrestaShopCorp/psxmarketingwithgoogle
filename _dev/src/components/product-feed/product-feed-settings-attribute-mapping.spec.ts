@@ -4,10 +4,10 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {cloneStore} from '@/../tests/init';
 import {mount} from '@vue/test-utils';
-import ProductFeedSettingsAttributeMapping from '@/components/product-feed/product-feed-settings-attribute-mapping.vue';
 import {BFormCheckbox} from 'bootstrap-vue';
+import {cloneStore} from '@/../tests/init';
+import ProductFeedSettingsAttributeMapping from '@/components/product-feed/product-feed-settings-attribute-mapping.vue';
 
 import {
   AttributeMapping,
