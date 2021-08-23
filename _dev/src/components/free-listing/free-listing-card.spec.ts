@@ -4,9 +4,9 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
+import {mount, shallowMount} from '@vue/test-utils';
 import config, {cloneStore} from '@/../tests/init';
 
-import {mount, shallowMount} from '@vue/test-utils';
 import FreeListingCard from '@/components/free-listing/free-listing-card.vue';
 import {
   Disabled,

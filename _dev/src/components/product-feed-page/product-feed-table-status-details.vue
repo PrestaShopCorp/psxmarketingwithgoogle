@@ -451,7 +451,7 @@ export default {
         result.statuses.forEach((status) => {
           this.items.push({
             id: result.id,
-            issues: result.issues,
+            issues: result.issues || [],
             name: result.name,
             statuses: status,
           });

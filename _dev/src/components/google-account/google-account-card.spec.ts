@@ -3,6 +3,7 @@
  */
 
 // Import this file first to init mock on window
+import {mount} from '@vue/test-utils';
 import config from '@/../tests/init';
 import {
   Disabled,
@@ -13,7 +14,6 @@ import {
   Connected,
 } from '@/../stories/google-account-card.stories';
 
-import {mount} from '@vue/test-utils';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 
 describe('google-account-card.vue', () => {

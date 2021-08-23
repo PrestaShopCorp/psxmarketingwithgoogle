@@ -3,12 +3,12 @@
  */
 
 // Import this file first to init mock on window
-import config, {cloneStore} from '@/../tests/init';
 
 // shallowMount creates the components without its children. Mount creates them all
 
 import {shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
+import config, {cloneStore} from '@/../tests/init';
 import TunnelProductFeed from '@/views/tunnel-product-feed.vue';
 
 describe('tunnel-product-feed.vue', () => {

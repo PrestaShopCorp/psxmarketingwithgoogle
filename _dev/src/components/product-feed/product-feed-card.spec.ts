@@ -4,14 +4,14 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
+import {shallowMount, mount} from '@vue/test-utils';
+import BootstrapVue, {BAlert} from 'bootstrap-vue';
+import VueShowdown from 'vue-showdown';
 import config, {localVue, cloneStore, filters} from '@/../tests/init';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
-import {shallowMount, mount} from '@vue/test-utils';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import Stepper from '@/components/commons/stepper.vue';
-import BootstrapVue, {BAlert} from 'bootstrap-vue';
-import VueShowdown from 'vue-showdown';
 import {
   productFeed,
   productFeedIsReadyForExport,

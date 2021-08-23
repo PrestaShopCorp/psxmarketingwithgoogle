@@ -4,14 +4,14 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
+import {mount, shallowMount} from '@vue/test-utils';
+import {BFormCheckbox, BButton} from 'bootstrap-vue';
 import {cloneStore} from '@/../tests/init';
 
-import {mount, shallowMount} from '@vue/test-utils';
 import GoogleAdsAccountPopinNew from '@/components/google-ads-account/google-ads-account-popin-new.vue';
 import {
   googleAccountConnected,
 } from '@/../.storybook/mock/google-account';
-import {BFormCheckbox, BButton} from 'bootstrap-vue';
 
 const VBTooltip = jest.fn();
 

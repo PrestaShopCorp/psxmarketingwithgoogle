@@ -3,9 +3,9 @@
  */
 
 // Import this file first to init mock on window
+import {mount} from '@vue/test-utils';
 import config from '@/../tests/init';
 
-import {mount} from '@vue/test-utils';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
 import {BadgeList} from '@/../stories/badge-list-requirements.stories';
 

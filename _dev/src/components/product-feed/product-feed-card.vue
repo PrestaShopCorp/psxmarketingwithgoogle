@@ -265,8 +265,8 @@
 </template>
 
 <script>
-import googleUrl from '@/assets/json/googleUrl.json';
 import {VueShowdown} from 'vue-showdown';
+import googleUrl from '@/assets/json/googleUrl.json';
 import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import countriesSelectionOptions from '../../assets/json/countries.json';
