@@ -43,69 +43,69 @@
         </b-thead>
 
         <b-tbody>
-          <template v-for="(product) in items">
-            <template v-for="(statusInfo) in product.statuses">
-              <template v-for="(lang) in statusInfo.countries">
-                <b-tr :key="lang.index">
-                  <b-td class="align-top">
-                    {{ product.id }}
-                  </b-td>
-                  <b-td class="align-top">
+          <template v-for="(product, index) in items">
+            <b-tr :key="index">
+              <b-td class="align-top">
+                {{ product.id }}
+              </b-td>
+              <b-td class="align-top">
+                <a
+                  class="external_link-no_icon"
+                  :href="!isNaN(product.id)
+                    ? getProductBaseUrl.replace('/1?', `/${product.id}?`) : null"
+                  target="_blank"
+                  :title="$t('productFeedPage.approvalTable.editX', [product.name])"
+                >
+                  {{ product.name }}
+                </a>
+              </b-td>
+              <b-td class="align-top">
+                {{ product.attribute > 0 ? product.attribute : '' }}
+              </b-td>
+              <b-td class="align-top">
+                {{ product.statuses.destination }}
+              </b-td>
+              <b-td class="align-top">
+                <b-badge
+                  :variant="badgeColor(product.statuses.status)"
+                  class="ps_gs-fz-12 text-capitalize"
+                >
+                  {{ product.statuses.status }}
+                </b-badge>
+              </b-td>
+              <b-td
+                class="align-top"
+                v-for="(country, indexLang) in product.statuses.countries"
+                :key="indexLang"
+              >
+                <b-badge
+                  variant="primary"
+                  class="ps_gs-fz-12"
+                >
+                  {{ country }}
+                </b-badge>
+              </b-td>
+              <b-td class="align-top">
+                <ul
+                  class="list-unstyled mb-0"
+                  v-if="product.statuses.status === ProductStatues.Disapproved"
+                >
+                  <li
+                    v-for="(issue, indexIssues) in getIssues(product)"
+                    :key="indexIssues"
+                  >
                     <a
-                      class="external_link-no_icon"
-                      :href="!isNaN(product.id)
-                        ? getProductBaseUrl.replace('/1?', `/${product.id}?`) : null"
+                      class="text-decoration-none"
+                      :href="issue.documentation"
+                      :title="issue.detail"
                       target="_blank"
-                      :title="$t('productFeedPage.approvalTable.editX', [product.name])"
                     >
-                      {{ product.name }}
+                      {{ issue.description }}
                     </a>
-                  </b-td>
-                  <b-td class="align-top">
-                    {{ product.attribute > 0 ? product.attribute : '' }}
-                  </b-td>
-                  <b-td class="align-top">
-                    {{ statusInfo.destination }}
-                  </b-td>
-                  <b-td class="align-top">
-                    <b-badge
-                      :variant="badgeColor(statusInfo.status)"
-                      class="ps_gs-fz-12 text-capitalize"
-                    >
-                      {{ statusInfo.status }}
-                    </b-badge>
-                  </b-td>
-                  <b-td class="align-top">
-                    <b-badge
-                      variant="primary"
-                      class="ps_gs-fz-12"
-                    >
-                      {{ lang }}
-                    </b-badge>
-                  </b-td>
-                  <b-td class="align-top">
-                    <ul
-                      class="list-unstyled mb-0"
-                      v-if="statusInfo.status === ProductStatues.Disapproved"
-                    >
-                      <li
-                        v-for="(issue, indexIssues) in getIssues(product)"
-                        :key="indexIssues"
-                      >
-                        <a
-                          class="text-decoration-none"
-                          :href="issue.documentation"
-                          :title="issue.detail"
-                          target="_blank"
-                        >
-                          {{ issue.description }}
-                        </a>
-                      </li>
-                    </ul>
-                  </b-td>
-                </b-tr>
-              </template>
-            </template>
+                  </li>
+                </ul>
+              </b-td>
+            </b-tr>
           </template>
         </b-tbody>
       </b-table-simple>
@@ -353,9 +353,8 @@ export default {
   data() {
     return {
       loading: false,
-      nextToken: '',
-      firstCall: false,
-      items: null,
+      nextToken: null,
+      items: [],
       ProductStatues,
       selectedFilterQuantityToShow: '100',
       fields: [
@@ -381,7 +380,7 @@ export default {
         },
         {
           key: 'lang',
-          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderLanguage'),
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderCountry'),
         },
         {
           key: 'issues',
@@ -396,7 +395,7 @@ export default {
     },
   },
   mounted() {
-    this.getItems();
+    this.getItems(null);
     window.addEventListener('scroll', this.handleScroll);
     // Observer to add class to sticky columns when they are stuck
     document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
@@ -423,9 +422,42 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
-    getItems() {
-      this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES')
-        .then((res) => { this.items = res.results; });
+    getItems(token) {
+      this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', token)
+        .then((res) => {
+          if (!res.nextToken) {
+            // IF api does not send token, it means there are no results anymore.
+            // We remove the scroll event
+            window.removeEventListener('scroll', this.handleScroll);
+          } else {
+            // ELSE API gave us a token which means it still has results
+            // so we can keep scrolling and sending another GET with the token
+            this.nextToken = res.nextToken;
+          }
+          // In any case, we add to our items array the last results the API sent us
+          this.mapResults(res);
+        }).catch((error) => {
+          console.error(error);
+          window.removeEventListener('scroll', this.handleScroll);
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.loading = false;
+          }, 500);
+        });
+    },
+    mapResults(res) {
+      res.results.map((result) => {
+        result.statuses.forEach((status) => {
+          this.items.push({
+            id: result.id,
+            issues: result.issues,
+            name: result.name,
+            statuses: status,
+          });
+        });
+        return this.items;
+      });
     },
     badgeColor(status) {
       if (status === ProductStatues.Approved) {
@@ -454,34 +486,9 @@ export default {
     },
     handleScroll() {
       const de = document.documentElement;
-      if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight) {
+      if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight - 1) {
         this.loading = true;
-        this.$store
-          .dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', this.nextToken)
-          .then((res) => {
-            this.nextToken = res.nextToken;
-            // case for end of product list
-            if (this.nextToken === '' && this.firstCall === false && res.results.length > 0) {
-              window.removeEventListener('scroll', this.handleScroll);
-            }
-            if (res.results.length === 0) {
-              window.removeEventListener('scroll', this.handleScroll);
-            }
-            if (this.nextToken && res.results.length > 0) {
-              this.firstCall = true;
-            }
-            this.items = this.items.concat(res.results);
-            this.firstCall = false;
-          })
-          .catch((error) => {
-            console.error(error);
-            window.removeEventListener('scroll', this.handleScroll);
-          })
-          .then(() => {
-            setTimeout(() => {
-              this.loading = false;
-            }, 500);
-          });
+        this.getItems(this.nextToken);
       }
     },
   },
