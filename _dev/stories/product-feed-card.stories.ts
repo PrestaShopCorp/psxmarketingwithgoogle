@@ -13,6 +13,9 @@ import {initialStateApp} from '../.storybook/mock/state-app';
 export default {
   title: 'Product feed/Card',
   component: ProductFeedCard,
+  parameters: {
+    jest: ['product-feed-card.spec.ts'],
+  },
 };
 
 const Template = (args, { argTypes }) => ({

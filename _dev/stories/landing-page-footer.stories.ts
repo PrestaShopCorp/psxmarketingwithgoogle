@@ -3,6 +3,9 @@ import LandingPageFooter from '../src/components/landing-page/landing-page-foote
 export default {
   title: 'LandingPage/Components/Footer',
   component: LandingPageFooter,
+  parameters: {
+    jest: ['landing-page-footer.spec.ts'],
+  },
 };
 
 const Template = (args, { argTypes }) => ({

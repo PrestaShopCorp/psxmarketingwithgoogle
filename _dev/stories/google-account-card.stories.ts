@@ -13,6 +13,9 @@ export default {
     GoogleAccountCard,
     GoogleAccountPopinDisconnect,
   },
+  parameters: {
+    jest: ['google-account-card.spec.ts'],
+  },
 };
 
 const Template = (args, { argTypes }) => ({

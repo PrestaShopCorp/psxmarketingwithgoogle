@@ -21,3 +21,7 @@ BadgeList.args = {
     'googleAdsAccount',
   ],
 };
+
+BadgeList.parameters = {
+  jest: ['badge-list-requirements.spec.ts'],
+};

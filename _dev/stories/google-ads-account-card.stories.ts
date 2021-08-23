@@ -5,6 +5,9 @@ import {GoogleAdsErrorReason} from '../src/store/modules/google-ads/state'
 export default {
   title: 'Google Ads Account/Card',
   component: GoogleAdsAccountCard,
+  parameters: {
+    jest: ['google-ads-account-card.spec.ts'],
+  },
 };
 
 const Template = (args, { argTypes }) => ({
@@ -37,7 +40,7 @@ const Template = (args, { argTypes }) => ({
       );
     },
   },
- 
+
 });
 
 export const Disabled:any = Template.bind({});
@@ -64,7 +67,7 @@ EnabledSpinner.args = {
     this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
     this.$store.state.googleAds.list = null;
   },
-  
+
 };
 
 export const EnabledButNoAccount:any = Template.bind({});

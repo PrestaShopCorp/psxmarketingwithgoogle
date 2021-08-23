@@ -21,6 +21,9 @@ export default {
       },
     },
   },
+  parameters: {
+    jest: ['merchant-center-account-card.spec.ts'],
+  },
 };
 
 const Template = (args, {argTypes}) => ({

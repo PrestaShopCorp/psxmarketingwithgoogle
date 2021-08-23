@@ -8,6 +8,9 @@ const commonProps = {
 export default {
   title: 'Product Feed Page/Sync Status',
   component: ProductFeedSyncStatusCard,
+  parameters: {
+    jest: ['product-feed-card-report-products-sync-card.spec.ts'],
+  },
 };
 
 const Template = (args, { argTypes }) => ({
