@@ -423,6 +423,7 @@ class PsxMktgWithGoogleTranslations
                     'tableHeaderName' => $this->module->l('Name', 'PsxMktgWithGoogleTranslations'),
                     'tableHeaderGoogleValidation' => $this->module->l('Availablity for Google', 'PsxMktgWithGoogleTranslations'),
                     'tableHeaderLanguage' => $this->module->l('Language', 'PsxMktgWithGoogleTranslations'),
+                    'tableHeaderCountry' => $this->module->l('Country', 'PsxMktgWithGoogleTranslations'),
                     'tableHeaderIssue' => $this->module->l('Reason', 'PsxMktgWithGoogleTranslations'),
                     'xResults' => $this->module->l('{0} results', 'PsxMktgWithGoogleTranslations'),
                     'perPageLabel' => $this->module->l('Show:', 'PsxMktgWithGoogleTranslations'),
