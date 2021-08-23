@@ -419,6 +419,7 @@ class PsxMktgWithGoogleTranslations
                     'filterOnlyNotApproved' => $this->module->l('Not approved', 'PsxMktgWithGoogleTranslations'),
                     'tableHeaderID' => $this->module->l('ID', 'PsxMktgWithGoogleTranslations'),
                     'tableHeaderDestination' => $this->module->l('Destination', 'PsxMktgWithGoogleTranslations'),
+                    'tableHeaderCountry' => $this->module->l('Country', 'PsxMktgWithGoogleTranslations'),
                     'tableHeaderAttributeID' => $this->module->l('Attribute', 'PsxMktgWithGoogleTranslations'),
                     'tableHeaderName' => $this->module->l('Name', 'PsxMktgWithGoogleTranslations'),
                     'tableHeaderGoogleValidation' => $this->module->l('Availablity for Google', 'PsxMktgWithGoogleTranslations'),
