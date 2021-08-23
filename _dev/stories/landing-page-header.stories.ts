@@ -3,6 +3,9 @@ import LandingPageHeader from '../src/components/landing-page/landing-page-heade
 export default {
   title: 'LandingPage/Components/Header',
   component: LandingPageHeader,
+  parameters: {
+    jest: ['landing-page-header.spec.ts'],
+  },
 };
 
 const Template = (args, { argTypes }) => ({

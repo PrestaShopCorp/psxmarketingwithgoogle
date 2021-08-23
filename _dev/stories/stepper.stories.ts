@@ -1,8 +1,11 @@
-import Stepper from '../src/components/commons/stepper.vue'
+  import Stepper from '../src/components/commons/stepper.vue'
 
 export default {
   title: 'Basic Components/Horizontal Stepper',
   component: Stepper,
+  parameters: {
+    jest: ['stepper.spec.ts'],
+  },
 };
 
 const Template = (args, { argTypes }) => ({

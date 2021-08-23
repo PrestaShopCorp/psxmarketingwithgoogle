@@ -6,6 +6,9 @@ import {freeListingEnabled, freeListingDisabled, freeListingErrorAPI} from '../.
 export default {
   title: 'Free listing/Card',
   component: FreeListingCard,
+  parameters: {
+    jest: ['free-listing-card.spec.ts'],
+  },
 };
 
 const Template = (args, { argTypes }) => ({
@@ -63,3 +66,7 @@ AlertCantEnableFreeListing.args = {
     this.$store.state.freeListing = Object.assign({}, freeListingErrorAPI);
   },
 }
+
+// Disabled.parameters = {
+//   jest: ['free-listing-card.spec.ts'],
+// };
