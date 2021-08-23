@@ -31,9 +31,19 @@
     <b-card-body
       body-class="p-3 p-md-4"
     >
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore repellat magni nesciunt non eos laboriosam, temporibus labore corporis eum ea iure vel, voluptas libero perspiciatis saepe dolores laudantium. Laudantium, quaerat!
-      </p>
+      <b-form>
+        <b-form-group
+          id="campaign-name-fieldset"
+          label="Campaign name"
+          label-for="campaign-name-input"
+        >
+          <b-form-input
+            id="campaign-name-input"
+            v-model="campaignName"
+            placeholder="Type campaign name"
+          />
+        </b-form-group>
+      </b-form>
     </b-card-body>
   </b-card>
 </template>
@@ -42,6 +52,11 @@
 
 export default {
   name: 'ProductFeedSettings',
+  data() {
+    return {
+      campaignName: '',
+    }
+  },
   components: {
   },
   computed: {
