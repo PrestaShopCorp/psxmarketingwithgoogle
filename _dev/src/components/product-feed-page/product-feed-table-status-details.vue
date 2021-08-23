@@ -354,7 +354,7 @@ export default {
     return {
       loading: false,
       nextToken: null,
-      items: [],
+      items: this.$store.state.productFeed.productsDatas.items,
       ProductStatues,
       selectedFilterQuantityToShow: '100',
       fields: [
@@ -395,7 +395,9 @@ export default {
     },
   },
   mounted() {
-    this.getItems(null);
+    if (!this.items.length) {
+      this.getItems(null);
+    }
     window.addEventListener('scroll', this.handleScroll);
     // Observer to add class to sticky columns when they are stuck
     document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
@@ -447,17 +449,15 @@ export default {
         });
     },
     mapResults(res) {
-      res.results.map((result) => {
-        result.statuses.forEach((status) => {
-          this.items.push({
-            id: result.id,
-            issues: result.issues || [],
-            name: result.name,
-            statuses: status,
-          });
+      return res.results.map((result) => result.statuses.forEach((status) => {
+        this.$store.commit('productFeed/SAVE_ALL_PRODUCTS', {
+          id: result.id,
+          issues: result.issues || [],
+          attribute: result.attribute,
+          name: result.name,
+          statuses: status,
         });
-        return this.items;
-      });
+      }));
     },
     badgeColor(status) {
       if (status === ProductStatues.Approved) {

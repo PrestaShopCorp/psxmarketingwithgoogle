@@ -25,6 +25,48 @@ export const productFeed = {
     pendingItems: null,
     disapprovedItems: null,
   },
+  productsDatas: {
+    items: [
+      {id: '12',
+        name: 'super produit',
+        attribute: "21",
+        issues : [
+          {
+              code: "hard_goods_missing_2_out_of_3_identifiers",
+              servability: "demoted",
+              resolution: "merchant_action",
+              destination: "Shopping",
+              description: "Limited performance due to missing identifiers [gtin, mpn, brand]",
+              detail: "Provide at least 2 of the missing identifiers",
+              documentation: "https://support.google.com/merchants/answer/6098295",
+              applicableCountries: [
+                  "FR"
+              ]
+          },
+          {
+              code: "policy_enforcement_account_disapproval",
+              servability: "disapproved",
+              resolution: "merchant_action",
+              destination: "Shopping",
+              description: "Suspended account for policy violation",
+              detail: "Remove products that violate our policies, or request a manual review",
+              documentation: "https://support.google.com/merchants/answer/6098295",
+              applicableCountries: [
+                  "FR"
+              ]
+          },
+      ],
+        statuses :
+          {
+              destination: "Shopping",
+              status: "disapproved",
+              countries: [
+                  "FR"
+              ]
+          },
+      }
+    ]
+  }
 };
 
 export const productFeedIsReadyForExport = {

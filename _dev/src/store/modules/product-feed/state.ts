@@ -42,23 +42,34 @@ export interface ProductFeedSettings {
 }
 
 export interface ProductFeedValidationSummary {
-  activeItems: number|null,
-  expiringItems: number|null,
-  pendingItems: number|null,
-  disapprovedItems: number|null,
+  activeItems: number|null;
+  expiringItems: number|null;
+  pendingItems: number|null;
+  disapprovedItems: number|null;
+}
+export interface ProductInfos {
+ id: string;
+ name: string;
+ attribute: string;
+ issues? : Array<object>|undefined;
+ statuses? : Array<object>;
+}
+export interface ProductsDatas {
+  items: Array<ProductInfos>;
 }
 
 export interface State {
-  isSyncSummaryLoadingInProgress: boolean,
-  errorAPI: boolean
-  isConfigured: boolean,
-  isConfiguredOnce: boolean,
-  psxMtgWithGoogleActiveShopCountry: Array<string>,
-  totalProducts: number,
-  stepper: number,
-  status: ProductFeedStatus,
-  settings: ProductFeedSettings,
-  validationSummary : ProductFeedValidationSummary,
+  isSyncSummaryLoadingInProgress: boolean;
+  errorAPI: boolean;
+  isConfigured: boolean;
+  isConfiguredOnce: boolean;
+  psxMtgWithGoogleActiveShopCountry: Array<string>;
+  totalProducts: number;
+  stepper: number;
+  status: ProductFeedStatus;
+  settings: ProductFeedSettings;
+  validationSummary : ProductFeedValidationSummary;
+  productsDatas: ProductsDatas;
 }
 
 export enum ProductStatues {
@@ -93,5 +104,8 @@ export const state: State = {
     expiringItems: null,
     pendingItems: null,
     disapprovedItems: null,
+  },
+  productsDatas: {
+    items: [],
   },
 };
