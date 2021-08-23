@@ -20,6 +20,7 @@
 export interface ProductFeedStatus {
   nextJobAt?: string;
   jobEndedAt?: string|null;
+  lastUpdatedAt?: string|null;
   success: boolean;
   syncSchedule?: string;
 }
@@ -90,6 +91,7 @@ export const state: State = {
     success: false,
     jobEndedAt: '',
     nextJobAt: '',
+    lastUpdatedAt: '',
   },
   settings: {
     shippingSettings: [],
