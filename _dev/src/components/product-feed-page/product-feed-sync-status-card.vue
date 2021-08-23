@@ -154,7 +154,7 @@ export default {
       return this.$options.filters.timeConverterToDate(this.getProductFeedStatus.nextJobAt);
     },
     lastSyncTime() {
-      return this.$options.filters.timeConverterToDate(this.getProductFeedStatus.jobEndedAt);
+      return this.$options.filters.timeConverterToDate(this.getProductFeedStatus.lastUpdatedAt);
     },
 
   },

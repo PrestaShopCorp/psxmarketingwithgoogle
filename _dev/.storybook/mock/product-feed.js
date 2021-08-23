@@ -10,11 +10,12 @@ export const productFeed = {
     success: true,
     jobEndedAt: '',
     nextJobAt: '',
+    lastUpdatedAt: '',
   },
   settings: {
     shippingSettings: [],
     autoImportTaxSettings: false,
-    targetCountries: 'FR',
+    targetCountries: null,
     autoImportShippingSettings: true,
     attributeMapping: {},
     syncSchedule: '1 * * * * *',
@@ -104,8 +105,9 @@ export const productFeedIsReadyForExport = {
   status: {
     ...productFeed.status,
     jobEndedAt: null,
+    lastUpdatedAt: null,
     nextJobAt: new Date('July 22, 2021 03:24:00'),
-    success : true,
+    success : false,
   },
   settings: {
     ...productFeed.settings,
@@ -128,6 +130,7 @@ export const productFeedIsConfigured = {
     ...productFeed.status,
     jobEndedAt: new Date('July 21, 2021 03:24:00'),
     nextJobAt: new Date('July 22, 2021 03:24:00'),
+    lastUpdatedAt: new Date('July 22, 2021 03:24:00'),
     success : true,
   },
   settings: {
@@ -166,6 +169,7 @@ export const productFeedStatusSyncFailed = {
     ...productFeedIsConfigured.status,
     success: false,
     jobEndedAt: "12.05",
+    lastUpdatedAt: "12.05",
     nextJobAt: "12.05",
   }
 }
@@ -186,6 +190,7 @@ export const productFeedStatusSyncScheduled = {
     ...productFeedIsConfigured.status,
     success: false,
     nextJobAt: "12.05",
+    lastUpdatedAt: "12.05",
     jobEndedAt: null,
   },
 }
@@ -196,6 +201,7 @@ export const productFeedStatusSyncSuccess = {
     ...productFeedIsConfigured.status,
     success: true,
     jobEndedAt: "12.05",
+    lastUpdatedAt: "12.05",
     nextJobAt: "12.05",
   },
   validationSummary: {

@@ -455,14 +455,14 @@ export default {
       return this.categoriesMapped > 0;
     },
     alert() {
-      if (this.getProductFeedStatus.success === false && !this.getProductFeedStatus.jobEndedAt) {
+      if (this.getProductFeedStatus.success === false && this.getProductFeedStatus.jobEndedAt) {
         return 'Failed';
       }
       if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {
         return 'ShippingSettingsMissing';
       }
       if (
-        this.getProductFeedStatus.jobEndedAt === null
+        this.getProductFeedStatus.jobEndedAt === null && this.getProductFeedStatus.success === false
       ) {
         return 'FeedSettingSubmissionSuccess';
       }
