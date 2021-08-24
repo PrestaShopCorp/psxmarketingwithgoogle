@@ -156,14 +156,7 @@
         class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
       >
         <div class="d-flex align-items-center">
-          <a
-            :href="'//google.com'"
-            :title="$t('cta.goToYourX', [$t('badge.googleAdsAccount')])"
-            target="_blank"
-            class="external_link-no_icon link-regular"
-          >
-            <strong>{{ accountChosen.id }} - {{ accountChosen.name }}</strong>
-          </a>
+          <strong>{{ accountChosen.id }} - {{ accountChosen.name }}</strong>
           <b-badge
             v-if="gAdsAccountStatusBadge !== null"
             :variant="gAdsAccountStatusBadge.color"
