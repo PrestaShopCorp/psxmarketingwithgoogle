@@ -125,7 +125,7 @@
         <b-button
           variant="invisible"
           class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 ml-auto text-primary"
-          to="product-feed"
+          @click="goToProductFeed()"
         >
           {{ $t("cta.trackProductStatus") }}
         </b-button>
@@ -505,6 +505,11 @@ export default {
     },
     refresh() {
       this.$router.go();
+    },
+    goToProductFeed() {
+      this.$router.push({
+        name: 'product-feed',
+      });
     },
   },
   googleUrl,
