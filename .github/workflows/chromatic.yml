@@ -4,11 +4,21 @@
 name: 'Chromatic'
 
 # Event for the workflow
-on: pull_request
+on:
+  pull_request_review:
+    types: [submitted]
 
 # List of jobs
 jobs:
   chromatic-deployment:
+    with:
+      filters: |
+        src:
+          - '_dev/**'
+    # Conditions
+    if: |
+      steps.chromatic-deployment.outputs.src == 'true'
+      github.event.review.state == 'approved'
     # Operating System
     runs-on: ubuntu-latest
     # Job steps
