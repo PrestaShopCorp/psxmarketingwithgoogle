@@ -51,7 +51,7 @@ export interface ProductInfos {
  id: string;
  name: string;
  attribute: string;
- issues? : Array<object>|undefined;
+ issues? : Array<object>;
  statuses? : Array<object>;
 }
 export interface ProductsDatas {
