@@ -111,7 +111,7 @@
       },
       "accurateContactInformation" : {
         "title" : "Provide accurate contact information",
-        "description" : "Website needs to display sufficient - at least 2 out of 3 required - and accurate contact information (phone number, physical address and/or email)",
+        "description" : "Website needs to display sufficient - at least 1 of 3 required - and accurate contact information (phone number, physical address and/or email)",
         "link" : "Discover how to add contact information"
       },
       "secureCheckoutProcess" : {
