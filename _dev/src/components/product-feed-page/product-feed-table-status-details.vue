@@ -397,28 +397,28 @@ export default {
   mounted() {
     if (!this.items.length) {
       this.getItems(null);
-    }
-    window.addEventListener('scroll', this.handleScroll);
-    // Observer to add class to sticky columns when they are stuck
-    document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
-      if (i) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            observerCallback(entries, observer, i);
-          },
-          {
-            root: document.querySelector('.ps_gs-table-products'),
-            threshold: 1,
-          },
-        );
-        observer.observe(i);
-      }
-    });
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        entry.target.classList.toggle('is-pinned', entry.intersectionRatio < 1);
+      window.addEventListener('scroll', this.handleScroll);
+      // Observer to add class to sticky columns when they are stuck
+      document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
+        if (i) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              observerCallback(entries, observer, i);
+            },
+            {
+              root: document.querySelector('.ps_gs-table-products'),
+              threshold: 1,
+            },
+          );
+          observer.observe(i);
+        }
       });
-    };
+      const observerCallback = (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-pinned', entry.intersectionRatio < 1);
+        });
+      };
+    }
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll);
