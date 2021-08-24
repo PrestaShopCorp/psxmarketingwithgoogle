@@ -397,34 +397,35 @@ export default {
   mounted() {
     if (!this.items.length) {
       this.getItems(null);
-    }
-    window.addEventListener('scroll', this.handleScroll);
-    // Observer to add class to sticky columns when they are stuck
-    document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
-      if (i) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            observerCallback(entries, observer, i);
-          },
-          {
-            root: document.querySelector('.ps_gs-table-products'),
-            threshold: 1,
-          },
-        );
-        observer.observe(i);
-      }
-    });
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        entry.target.classList.toggle('is-pinned', entry.intersectionRatio < 1);
+      window.addEventListener('scroll', this.handleScroll);
+      // Observer to add class to sticky columns when they are stuck
+      document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
+        if (i) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              observerCallback(entries, observer, i);
+            },
+            {
+              root: document.querySelector('.ps_gs-table-products'),
+              threshold: 1,
+            },
+          );
+          observer.observe(i);
+        }
       });
-    };
+      const observerCallback = (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-pinned', entry.intersectionRatio < 1);
+        });
+      };
+    }
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
     getItems(token) {
+      this.loading = true;
       this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', token)
         .then((res) => {
           if (!res.nextToken) {
@@ -487,7 +488,6 @@ export default {
     handleScroll() {
       const de = document.documentElement;
       if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight - 1) {
-        this.loading = true;
         this.getItems(this.nextToken);
       }
     },
