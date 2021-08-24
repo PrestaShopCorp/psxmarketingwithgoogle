@@ -19,6 +19,7 @@
 import MutationsTypes from './mutations-types';
 import {
   State as LocalState,
+  ProductInfos,
   ProductFeedValidationSummary,
 } from './state';
 
@@ -35,6 +36,9 @@ type payloadArrayShipping = [{
 export default {
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
     state.status[payload.name] = payload.data;
+  },
+  [MutationsTypes.SAVE_ALL_PRODUCTS](state: LocalState, payload:ProductInfos) {
+    state.productsDatas.items.push(payload);
   },
   //  Product Feed Card
   [MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS](state: LocalState, payload: payloadObject) {

@@ -39,8 +39,6 @@ export default {
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
-      await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
-      await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
     },
   },
   mounted() {
