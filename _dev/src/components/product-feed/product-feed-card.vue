@@ -385,7 +385,7 @@ export default {
       // TODO BATCH 2 refacto when dynamic fields
       // TODO  BATCH 2 + to push also the long description attribute if needed
       get() {
-        const arr = [];
+        const arr = ['Long description'];
         Object.keys(this.getProductFeedSettings.attributeMapping).forEach((key) => {
           // Because the variables names contain "custom" and "Attribute"
           if (key === 'customColorAttribute') {
@@ -394,6 +394,7 @@ export default {
           if (key === 'customConditionAttribute') {
             arr.push('Condition');
           }
+          // arr.push('Long description');
         });
         return arr;
       },
