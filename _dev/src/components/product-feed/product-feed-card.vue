@@ -385,7 +385,7 @@ export default {
       // TODO BATCH 2 refacto when dynamic fields
       // TODO  BATCH 2 + to push also the long description attribute if needed
       get() {
-        const arr = [];
+        const arr = ['Long description'];
         Object.keys(this.getProductFeedSettings.attributeMapping).forEach((key) => {
           // Because the variables names contain "custom" and "Attribute"
           if (key === 'customColorAttribute') {
@@ -401,10 +401,10 @@ export default {
     lastSync() {
       return {
         day: this.$options.filters.timeConverterToDate(
-          this.getProductFeedStatus?.jobEndedAt,
+          this.getProductFeedStatus?.lastUpdatedAt,
         ),
         time: this.$options.filters.timeConverterToHour(
-          this.getProductFeedStatus?.jobEndedAt,
+          this.getProductFeedStatus?.lastUpdatedAt,
         ),
         totalProducts: this.getProductFeedSettings.totalProducts,
       };
@@ -462,7 +462,7 @@ export default {
         return 'ShippingSettingsMissing';
       }
       if (
-        this.getProductFeedStatus.jobEndedAt === null
+        this.getProductFeedStatus.jobEndedAt === null && this.getProductFeedStatus.success === false
       ) {
         return 'FeedSettingSubmissionSuccess';
       }
