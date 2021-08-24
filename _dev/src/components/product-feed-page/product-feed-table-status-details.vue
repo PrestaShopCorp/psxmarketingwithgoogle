@@ -87,7 +87,7 @@
               </b-td>
               <b-td class="align-top">
                 <ul
-                  class="list-unstyled mb-0"
+                  class="pl-0 mb-0 ml-3"
                   v-if="product.statuses.status === ProductStatues.Disapproved"
                 >
                   <li
