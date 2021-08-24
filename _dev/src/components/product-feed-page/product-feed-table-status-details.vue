@@ -425,6 +425,7 @@ export default {
   },
   methods: {
     getItems(token) {
+      this.loading = true;
       this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', token)
         .then((res) => {
           if (!res.nextToken) {
@@ -487,7 +488,6 @@ export default {
     handleScroll() {
       const de = document.documentElement;
       if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight - 1) {
-        this.loading = true;
         this.getItems(this.nextToken);
       }
     },
