@@ -7,17 +7,14 @@ name: 'Chromatic'
 on:
   pull_request_review:
     types: [submitted]
+    paths:
+      - '_dev/**'
 
 # List of jobs
 jobs:
   chromatic-deployment:
-    with:
-      filters: |
-        src:
-          - '_dev/**'
     # Conditions
     if: |
-      steps.chromatic-deployment.outputs.src == 'true'
       github.event.review.state == 'approved'
     # Operating System
     runs-on: ubuntu-latest
