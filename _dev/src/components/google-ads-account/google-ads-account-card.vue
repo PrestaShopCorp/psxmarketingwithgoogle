@@ -135,17 +135,20 @@
         />
         <div
           class="mt-3"
-          @click="openPopinNewAccount"
         >
-          <a href="#">
+          <b-button
+            variant="invisible"
+            class="p-0 border-0 font-weight-normal mb-0 text-primary"
+            @click="openPopinNewAccount"
+          >
             <i
-              class="left material-icons mr-2"
+              class="left material-icons mr-2 ps_gs-fz-24"
               aria-hidden="true"
             >person_add</i>
             <span class="align-middle">
               {{ $t('cta.createNewGoogleAdsAccount') }}
             </span>
-          </a>
+          </b-button>
         </div>
       </div>
       <div
@@ -153,14 +156,7 @@
         class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
       >
         <div class="d-flex align-items-center">
-          <a
-            :href="'//google.com'"
-            :title="$t('cta.goToYourX', [$t('badge.googleAdsAccount')])"
-            target="_blank"
-            class="external_link-no_icon link-regular"
-          >
-            <strong>{{ accountChosen.id }} - {{ accountChosen.name }}</strong>
-          </a>
+          <strong>{{ accountChosen.id }} - {{ accountChosen.name }}</strong>
           <b-badge
             v-if="gAdsAccountStatusBadge !== null"
             :variant="gAdsAccountStatusBadge.color"
