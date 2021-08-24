@@ -119,44 +119,37 @@
           {{ shopInformations.shop.name }}
         </span>
       </section>
-      <section class="mb-3">
-        <h3 class="h4 mb-0 font-weight-600">
-          {{ $t('mcaRequirements.businessLocation') }}
-        </h3>
-        <span class="d-block">
-          {{ shopInformations.store.country.iso_code }}
-        </span>
-      </section>
-      <b-form-group
-        :label="$t('mcaRequirements.businessAddress')"
-        label-for="inputBusinessAddress"
-        label-class="h4 mb-0 font-weight-600"
-        content-cols="12"
-      >
-        <b-form-input
-          id="inputBusinessAddress"
-          :value="businessAddr"
-          v-model="businessAddr"
-          :readonly="!!shopInformations.store.streetAddress"
-          class="maxw-sm-420"
-        />
-      </b-form-group>
-      <b-form-group
-        :label="$t('mcaRequirements.businessPhone')"
-        label-for="inputBusinessPhoneNumber"
-        label-class="h4 mb-0 font-weight-600"
-        content-cols="12"
-      >
-        <b-form-input
-          id="inputBusinessPhoneNumber"
-          :value="businessPhone"
-          v-model="businessPhone"
-          @change="verifyPhone"
-          :readonly="!!shopInformations.store.phone"
-          :state="phoneFormatError"
-          class="maxw-sm-420"
-        />
-      </b-form-group>
+
+      <dl>
+          <dt>{{ $t('mcaRequirements.businessLocation') }}</dt>
+          <dd>{{ shopInformations.store.country.iso_code }}</dd>
+
+          <dt> {{ $t('mcaRequirements.businessAddress') }} </dt>
+          <dd>{{ shopInformations.store.streetAddress || '--' }}</dd>
+
+          <dt>{{ $t('mcaRequirements.businessPhone') }}</dt>
+          <dd>{{ shopInformations.store.phone || '--' }}</dd>
+
+          <dt>{{ $t('mcaRequirements.businessZipCode') }}</dt>
+          <dd>{{ shopInformations.store.postalCode || '--' }}</dd>
+
+          <dt>{{ $t('mcaRequirements.businessCountry') }}</dt>
+          <dd>{{ shopInformations.store.country.name || '--' }}</dd>
+      </dl>
+      <b-alert
+        v-if="allFieldsAreFilled() === false"
+        variant="warning"
+        show
+        class="mb-0 mt-3"
+        >
+        <p class="mb-0">
+          {{ $t('mcaRequirements.missingFields') }}
+          <a
+            :href="storeInformationsUrl"
+            class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
+          > {{ $t('general.here') }} </a>
+        </p>
+      </b-alert>
       <div class="mb-4 pb-1">
         <div class="d-flex align-items-center">
           <legend
@@ -307,9 +300,6 @@ export default {
           title: this.$i18n.t('mcaRequirements.steps.shopInfo'),
         },
       ],
-      businessPhone: '',
-      businessAddr: '',
-      phoneFormatError: null,
       selectedRequirements: [],
       containsAdultContent: null,
       acceptsGoogleTerms: false,
@@ -329,10 +319,16 @@ export default {
     isStepTwoReadyToValidate() {
       return !(
         this.acceptsGoogleTerms
-        && this.phoneFormatError
         && (this.containsAdultContent != null)
-        && this.businessAddr
-        && this.businessPhone
+        && this.allFieldsAreFilled()
+      );
+    },
+    allFieldsAreFilled() {
+      return !!(
+        this.shopInformations.store.streetAddress
+        && this.shopInformations.store.phone
+        && this.shopInformations.store.postalCode
+        && this.shopInformations.store.country.name
       );
     },
     saveFirstStep() {
@@ -348,16 +344,13 @@ export default {
       this.phoneFormatError = (!!this.businessPhone.match(/^[+0-9. ()/-]*$/));
     },
     ok() {
-      const phoneNumber = this.shopInformations.shop.phone || this.businessPhone;
-      const addr = this.shopInformations.shop.streetAddress || this.businessAddr;
-
       this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', {
         shop_url: this.shopInformations.shop.url,
         shop_name: this.shopInformations.shop.name,
         location: this.shopInformations.store.country.iso_code,
         adult_content: this.containsAdultContent,
-        address: addr,
-        phone: phoneNumber,
+        address: this.shopInformations.shop.streetAddress,
+        phone: this.shopInformations.shop.phone,
         postal_code: this.shopInformations.store.postalCode,
         locality: this.shopInformations.store.locality,
       }).then(() => {
@@ -391,6 +384,9 @@ export default {
     shopInformations() {
       return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
     },
+    storeInformationsUrl() {
+      return this.$store.getters['app/GET_STORE_INFORMATION_URL'];
+    },
   },
   mounted() {
     this.stepActiveData = this.stepActive;
@@ -398,12 +394,7 @@ export default {
       this.$store.dispatch('accounts/REQUEST_WEBSITE_REQUIREMENTS').then(() => {
         this.selectedRequirements = this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'];
       });
-      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS').then(() => {
-        const {phone} = this.shopInformations.store;
-        const {streetAddress} = this.shopInformations.store;
-        this.businessPhone = phone || '';
-        this.businessAddr = streetAddress || '';
-      });
+      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
     }
   },
   googleUrl,
