@@ -54,7 +54,7 @@ describe('google-ads-account.vue / enabled', () => {
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled-grey')).toBe(false);
 
     // Check button to create an account exists
-    expect(wrapper.find('a .material-icons').text()).toBe('person_add');
+    expect(wrapper.find('b-button .material-icons').text()).toBe('person_add');
   });
 
   it('dropdown should be available when card is enabled', () => {
