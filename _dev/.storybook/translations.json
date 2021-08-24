@@ -8,6 +8,7 @@
         "catalog" : "Product catalog",
         "help" : "Help"
       },
+      "here": "here",
       "refreshPage" : "Refresh page"
     },
     "configuration" : {
@@ -141,6 +142,9 @@
       "businessLocation" : "Business location",
       "businessAddress" : "Business address",
       "businessPhone" : "Business phone number",
+      "businessZipCode" : "Business zip code",
+      "businessCountry" : "Business country",
+      "missingFields" : "There are fields not filled, please fill it",
       "siteContainsAdultContent" : "My website contains adult content",
       "seePolicyAdultContent" : "See policy on adult-oriented content",
       "labelReadAndAgree" : "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies]({0})[:target=\"_blank\"], including [Google’s Merchant Center terms of service]({1})[:target=\"_blank\"], [Shopping ads policies]({2})[:target=\"_blank\"], and [Google Ads Terms and Conditions]({3})[:target=\"_blank\"].",
