@@ -394,7 +394,6 @@ export default {
           if (key === 'customConditionAttribute') {
             arr.push('Condition');
           }
-          // arr.push('Long description');
         });
         return arr;
       },
