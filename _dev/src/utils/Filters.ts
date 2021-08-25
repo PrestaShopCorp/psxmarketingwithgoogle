@@ -38,13 +38,11 @@ Vue.filter(
   });
 
 Vue.filter(
-  'changeCountryCodeToName', (country : Array<string>) => {
-    const final : string[] = [];
+  'changeCountryCodeToName', (countries : Array<string>) => countries.map((country) => {
     for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
-      if (country[0] === countriesSelectionOptions[i].code) {
-        final.push(countriesSelectionOptions[i].country);
-        break;
+      if (country === countriesSelectionOptions[i].code) {
+        return countriesSelectionOptions[i].country;
       }
     }
-    return final;
-  });
+    return country;
+  }));
