@@ -230,7 +230,6 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-
       commit(MutationsTypes.SAVE_GMC_LIST, json);
 
       // Now we have the GMC merchant's list, if he already linked one, then must fill it now
