@@ -61,11 +61,10 @@
               <p class="ps_gs-fz-12 text-muted">
                 {{ $t(`mcaRequirements.${requirement}.description`) }}<br>
                 <a
-                v-html="$t(`mcaRequirements.${requirement}.link`)"
+                  v-html="$t(`mcaRequirements.${requirement}.link`)"
                   :href="$options.googleUrl[requirement]"
                   target="_blank"
-                >                
-              </a>
+                />
               </p>
             </div>
           </component>

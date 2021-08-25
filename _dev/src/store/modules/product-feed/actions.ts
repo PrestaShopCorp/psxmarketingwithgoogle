@@ -41,7 +41,6 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      console.log(json);
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'jobEndedAt', data: json.jobEndedAt});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'lastUpdatedAt', data: json.lastUpdatedAt});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextJobAt', data: json.nextJobAt});
@@ -53,7 +52,6 @@ export default {
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
-    console.log('GET PRODUCT FEED SETTINGS');
     const params = {
       lang: window.i18nSettings.languageLocale.split('-')[0],
     };
@@ -71,8 +69,6 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      console.log(json);
-
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportShippingSettings', data: json.autoImportShippingSettings,
       });
@@ -148,7 +144,6 @@ export default {
         || null,
       },
     };
-    console.log('POST SETTINGS', newSettings);
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
         method: 'POST',
@@ -164,7 +159,6 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      console.log(json);
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
     } catch (error) {
