@@ -131,7 +131,7 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
     expect(filters.timeConverterToHour).toHaveBeenCalledTimes(1);
-    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
 
@@ -154,7 +154,7 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.find('b-alert').attributes('variant')).toBe('info');
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(1);
-    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
 
@@ -177,7 +177,7 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).not.toHaveBeenCalled();
     expect(filters.timeConverterToHour).not.toHaveBeenCalled();
-    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('warning');
@@ -223,7 +223,7 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
     expect(filters.timeConverterToHour).toHaveBeenCalledTimes(1);
-    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('warning');

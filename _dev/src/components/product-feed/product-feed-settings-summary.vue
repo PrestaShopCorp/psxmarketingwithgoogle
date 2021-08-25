@@ -171,7 +171,6 @@
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
 import googleUrl from '@/assets/json/googleUrl.json';
-import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
@@ -232,9 +231,8 @@ export default {
     },
     targetCountries() {
       // change country code into name with the json list
-      const datas = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
-      const country = this.$options.countriesSelectionOptions;
-      return this.$options.filters.changeCountryCodeToName(datas, country);
+      const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
+      return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
     },
   },
   methods: {
@@ -260,7 +258,6 @@ export default {
       this.disabledExportButton = false;
     },
   },
-  countriesSelectionOptions,
   googleUrl,
 };
 </script>

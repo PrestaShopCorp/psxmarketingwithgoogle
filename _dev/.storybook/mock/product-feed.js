@@ -3,7 +3,7 @@ export const productFeed = {
   errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
-  psxMtgWithGoogleActiveShopCountry: [],
+  psxMtgWithGoogleActiveShopCountry: ['FR'],
   totalProducts: 0,
   stepper: 1,
   status: {
@@ -15,7 +15,7 @@ export const productFeed = {
   settings: {
     shippingSettings: [],
     autoImportTaxSettings: false,
-    targetCountries: 'FR',
+    targetCountries: ['FR'],
     autoImportShippingSettings: true,
     attributeMapping: {},
     syncSchedule: '1 * * * * *',
@@ -111,7 +111,7 @@ export const productFeedIsReadyForExport = {
   },
   settings: {
     ...productFeed.settings,
-    targetCountries: 'FR',
+    targetCountries: ['FR'],
     attributeMapping: {
       exportProductsWithShortDescription: false,
       customColorAttribute: 'extra:color',
@@ -135,7 +135,7 @@ export const productFeedIsConfigured = {
   },
   settings: {
     ...productFeed.settings,
-    targetCountries: 'FR',
+    targetCountries: ['FR'],
     attributeMapping: {
       exportProductsWithShortDescription: false,
       customColorAttribute: 'extra:color',
@@ -151,7 +151,7 @@ export const productFeedIsConfiguredWithTax = {
   ...productFeedIsConfigured,
   settings: {
     ...productFeedIsConfigured.settings,
-    targetCountries: 'FR',
+    targetCountries: ['FR'],
   }
 }
 

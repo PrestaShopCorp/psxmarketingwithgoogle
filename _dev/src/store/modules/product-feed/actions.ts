@@ -158,7 +158,7 @@ export default {
         commit(MutationsTypes.API_ERROR, true);
         throw new HttpClientError(response.statusText, response.status);
       }
-      response.json();
+      const json = await response.json();
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
     } catch (error) {

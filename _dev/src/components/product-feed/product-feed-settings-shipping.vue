@@ -20,7 +20,6 @@
       <ps-select
         v-model="countries"
         :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
-        :reduce="country => country.code"
         :options="sortCountries"
         :deselect-from-dropdown="true"
         :clearable="false"
@@ -213,10 +212,11 @@ export default {
   computed: {
     countries: {
       get() {
-        return this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
+        const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
+        return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
       },
       set(value) {
-        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: [value]});
+        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: [value.code]});
       },
     },
     sortCountries() {

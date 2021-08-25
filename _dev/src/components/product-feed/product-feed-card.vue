@@ -269,7 +269,6 @@ import {VueShowdown} from 'vue-showdown';
 import googleUrl from '@/assets/json/googleUrl.json';
 import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
-import countriesSelectionOptions from '../../assets/json/countries.json';
 //  eslint-disable-next-line
 // import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
 // import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
@@ -345,9 +344,8 @@ export default {
       return !this.$store.state.productFeed.isConfigured;
     },
     targetCountries() {
-      const datas = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
-      const country = this.$options.countriesSelectionOptions;
-      return this.$options.filters.changeCountryCodeToName(datas, country);
+      const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
+      return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
     },
     shippingSettings() {
       if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {
@@ -455,14 +453,16 @@ export default {
       return this.categoriesMapped > 0;
     },
     alert() {
-      if (this.getProductFeedStatus.success === false && this.getProductFeedStatus.jobEndedAt) {
+      if (this.getProductFeedStatus.success === false && this.getProductFeedStatus.jobEndedAt
+      && this.getProductFeedStatus.lastUpdatedAt) {
         return 'Failed';
       }
       if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {
         return 'ShippingSettingsMissing';
       }
       if (
-        this.getProductFeedStatus.jobEndedAt === null && this.getProductFeedStatus.success === false
+        this.getProductFeedStatus.lastUpdatedAt === null
+      && this.getProductFeedStatus.success === false
       ) {
         return 'FeedSettingSubmissionSuccess';
       }
@@ -513,6 +513,5 @@ export default {
     },
   },
   googleUrl,
-  countriesSelectionOptions,
 };
 </script>

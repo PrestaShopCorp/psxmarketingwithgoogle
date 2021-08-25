@@ -4,7 +4,6 @@
     :title="popinTitle"
     v-bind="$attrs"
     @close="cancel"
-    scrollable
     ref="modal"
   >
     <Stepper
@@ -62,11 +61,10 @@
               <p class="ps_gs-fz-12 text-muted">
                 {{ $t(`mcaRequirements.${requirement}.description`) }}<br>
                 <a
+                  v-html="$t(`mcaRequirements.${requirement}.link`)"
                   :href="$options.googleUrl[requirement]"
                   target="_blank"
-                >
-                  {{ $t(`mcaRequirements.${requirement}.link`) }}
-                </a>
+                />
               </p>
             </div>
           </component>
