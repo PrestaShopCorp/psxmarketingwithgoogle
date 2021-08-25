@@ -216,7 +216,7 @@ export default {
         return this.$options.filters.changeCountryCodeToName(targetCountryIsoCode);
       },
       set(value) {
-        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: value.code});
+        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: [value.code]});
       },
     },
     sortCountries() {

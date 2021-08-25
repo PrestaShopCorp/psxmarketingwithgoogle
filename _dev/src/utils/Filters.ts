@@ -38,7 +38,7 @@ Vue.filter(
   });
 
 Vue.filter(
-  'changeCountryCodeToName', (country : string) => {
+  'changeCountryCodeToName', (country : Array<string>) => {
     const final : string[] = [];
     for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
       if (country[0] === countriesSelectionOptions[i].code) {
