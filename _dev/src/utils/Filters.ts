@@ -3,6 +3,7 @@ import Vue from 'vue';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
 import utc from 'dayjs/plugin/utc';
+import countriesSelectionOptions from '../assets/json/countries.json';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -37,11 +38,11 @@ Vue.filter(
   });
 
 Vue.filter(
-  'changeCountryCodeToName', (country : string, totalCountries : Array<{code: string; country: string}>) => {
+  'changeCountryCodeToName', (country : string) => {
     const final : string[] = [];
-    for (let i = 0; i < totalCountries.length; i += 1) {
-      if (country === totalCountries[i].code) {
-        final.push(totalCountries[i].country);
+    for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
+      if (country[0] === countriesSelectionOptions[i].code) {
+        final.push(countriesSelectionOptions[i].country);
         break;
       }
     }

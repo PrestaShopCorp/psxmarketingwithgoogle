@@ -212,11 +212,11 @@ export default {
   computed: {
     countries: {
       get() {
-        const datas = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
-        const country = this.$options.countriesSelectionOptions;
-        return this.$options.filters.changeCountryCodeToName(datas, country);
+        const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
+        return this.$options.filters.changeCountryCodeToName(targetCountryIsoCode);
       },
       set(value) {
+        console.log(value);
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: value.code});
       },
     },

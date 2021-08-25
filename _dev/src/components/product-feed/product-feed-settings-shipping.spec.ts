@@ -6,7 +6,7 @@ import Vuex from 'vuex';
 // Import this file first to init mock on window
 import {shallowMount, mount} from '@vue/test-utils';
 import BootstrapVue, {BFormRadio} from 'bootstrap-vue';
-import config, {localVue, cloneStore} from '@/../tests/init';
+import config, {localVue, cloneStore, filters} from '@/../tests/init';
 import ProductFeedSettingsShipping from '@/components/product-feed/product-feed-settings-shipping.vue';
 import Stepper from '@/components/commons/stepper.vue';
 import PsSelect from '@/components/commons/ps-select.vue';
@@ -33,10 +33,12 @@ describe('product-feed-settings-shipping.vue', () => {
 
   it('shows button continue and triggers next step on click', async () => {
     const wrapper = shallowMount(ProductFeedSettingsShipping, {
-      store: new Vuex.Store(mockStore),
       propsData: ShippingSettings.args,
       beforeMount: ShippingSettings.args.beforeMount,
+      localVue,
+      store: new Vuex.Store(mockStore),
     });
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
     await expect(wrapper.find('[data-test-id="continueButton"]').trigger('click'));
     expect(wrapper.find('.commit'));
     expect(mockMutation.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledTimes(1);
@@ -46,35 +48,42 @@ describe('product-feed-settings-shipping.vue', () => {
 
   it('shows button cancel and triggers previous step on click', async () => {
     const wrapper = shallowMount(ProductFeedSettingsShipping, {
-      store: new Vuex.Store(cloneStore()),
       propsData: ShippingSettings.args,
       beforeMount: ShippingSettings.args.beforeMount,
+      localVue,
+      store: new Vuex.Store(cloneStore()),
     });
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
     await expect(wrapper.find('b-button').trigger('click'));
     wrapper.vm.$emit('cancelProductFeedSettingsConfiguration');
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('cancelProductFeedSettingsConfiguration')).toBeTruthy();
   });
 
-  it('shows input target countries with prefill', () => {
-    const wrapper = shallowMount(ProductFeedSettingsShipping, {
+  it('shows input target countries', () => {
+    const wrapper = mount(ProductFeedSettingsShipping, {
       store: new Vuex.Store(cloneStore()),
       propsData: ShippingSettings.args,
       beforeMount: ShippingSettings.args.beforeMount,
+      localVue,
+      stubs: {
+        VueShowdown: true,
+      },
     });
-
-    const input = wrapper.findComponent(PsSelect);
+    const input = wrapper.find('input');
     expect(input.exists()).toBeTruthy();
-    expect(input.props('value')).toEqual('FR');
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
   });
 
   it('shows button radio with auto and manually import settings with prefill', () => {
     const wrapper = shallowMount(ProductFeedSettingsShipping, {
-      store: new Vuex.Store(cloneStore()),
       propsData: ShippingSettings.args,
       beforeMount: ShippingSettings.args.beforeMount,
+      localVue,
+      store: new Vuex.Store(cloneStore()),
     });
     const radioButton = wrapper.find('[data-test-id="radioButton"]');
+    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
     expect(radioButton.exists()).toBeTruthy();
   });
 });

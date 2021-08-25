@@ -1,6 +1,6 @@
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue'
 import Stepper from '../src/components/commons/stepper.vue'
-import {productFeed} from '../.storybook/mock/product-feed';
+import {productFeed, productFeedIsReadyForExport} from '../.storybook/mock/product-feed';
 import {initialStateApp} from '../.storybook/mock/state-app';
 
 export default {
@@ -59,7 +59,7 @@ AttributeMapping.args = {
 export const Summary:any = Template.bind({});
 Summary.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeed);
+    this.$store.state.productFeed = Object.assign({}, productFeedIsReadyForExport);
     this.$store.state.productFeed.stepper = 4
   },
 }
