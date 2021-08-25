@@ -165,7 +165,6 @@ export default {
         .then(() => new Promise((resolve) => setTimeout(resolve, 1000)))
         .then(() => {
           this.$store.dispatch('accounts/TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS', correlationId);
-          this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
         })
         .finally(() => {
           this.isMcaLinking = false;

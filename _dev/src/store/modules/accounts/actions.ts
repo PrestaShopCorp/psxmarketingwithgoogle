@@ -132,7 +132,10 @@ export default {
           );
         }
       }
+    } else if (state.googleMerchantAccount.isSuspended.status) {
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
     } else {
+      commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
     }
   },
@@ -268,6 +271,7 @@ export default {
     }
 
     commit(MutationsTypes.REMOVE_GMC);
+    commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, false);
     commit(`productFeed/${MutationsTypesProductFeed.TOGGLE_CONFIGURATION_FINISHED}`, false, {root: true});
 
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
@@ -300,6 +304,7 @@ export default {
       }
     }
     commit(MutationsTypes.REMOVE_GMC);
+    commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, false);
     commit(`productFeed/${MutationsTypesProductFeed.TOGGLE_CONFIGURATION_FINISHED}`, false, {root: true});
     return true;
   },
@@ -324,6 +329,7 @@ export default {
           WebsiteClaimErrorReason.AccountValidationFailed);
       }
     }
+    commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
     return true;
   },
 
