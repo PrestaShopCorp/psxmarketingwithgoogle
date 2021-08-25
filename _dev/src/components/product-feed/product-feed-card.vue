@@ -345,7 +345,7 @@ export default {
     },
     targetCountries() {
       const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
-      return this.$options.filters.changeCountryCodeToName(targetCountryIsoCode);
+      return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
     },
     shippingSettings() {
       if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {

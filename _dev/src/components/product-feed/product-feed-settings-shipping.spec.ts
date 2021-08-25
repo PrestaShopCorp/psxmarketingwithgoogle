@@ -38,7 +38,7 @@ describe('product-feed-settings-shipping.vue', () => {
       localVue,
       store: new Vuex.Store(mockStore),
     });
-    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     await expect(wrapper.find('[data-test-id="continueButton"]').trigger('click'));
     expect(wrapper.find('.commit'));
     expect(mockMutation.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledTimes(1);
@@ -53,7 +53,7 @@ describe('product-feed-settings-shipping.vue', () => {
       localVue,
       store: new Vuex.Store(cloneStore()),
     });
-    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     await expect(wrapper.find('b-button').trigger('click'));
     wrapper.vm.$emit('cancelProductFeedSettingsConfiguration');
     await wrapper.vm.$nextTick();
@@ -72,7 +72,7 @@ describe('product-feed-settings-shipping.vue', () => {
     });
     const input = wrapper.find('input');
     expect(input.exists()).toBeTruthy();
-    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
   });
 
   it('shows button radio with auto and manually import settings with prefill', () => {
@@ -83,7 +83,7 @@ describe('product-feed-settings-shipping.vue', () => {
       store: new Vuex.Store(cloneStore()),
     });
     const radioButton = wrapper.find('[data-test-id="radioButton"]');
-    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(radioButton.exists()).toBeTruthy();
   });
 });

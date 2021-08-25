@@ -213,7 +213,7 @@ export default {
     countries: {
       get() {
         const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
-        return this.$options.filters.changeCountryCodeToName(targetCountryIsoCode);
+        return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
       },
       set(value) {
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: [value.code]});

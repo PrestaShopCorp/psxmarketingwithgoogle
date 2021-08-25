@@ -19,12 +19,12 @@ beforeEach(() => {
   filters = {
     timeConverterToDate: jest.fn(),
     timeConverterToHour: jest.fn(),
-    changeCountryCodeToName: jest.fn().mockImplementation(() => []),
+    changeCountriesCodesToNames: jest.fn().mockImplementation(() => []),
   };
 
   localVue.filter('timeConverterToDate', filters.timeConverterToDate);
   localVue.filter('timeConverterToHour', filters.timeConverterToHour);
-  localVue.filter('changeCountryCodeToName', filters.changeCountryCodeToName);
+  localVue.filter('changeCountriesCodesToNames', filters.changeCountriesCodesToNames);
 });
 
 afterEach(() => {

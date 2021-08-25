@@ -232,7 +232,7 @@ export default {
     targetCountries() {
       // change country code into name with the json list
       const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
-      return this.$options.filters.changeCountryCodeToName(targetCountryIsoCode);
+      return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
     },
   },
   methods: {

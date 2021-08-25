@@ -24,7 +24,7 @@ describe('product-feed-settings-summary.vue', () => {
       store: new Vuex.Store(cloneStore()),
     });
 
-    expect(filters.changeCountryCodeToName).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(ProductFeedCardNextSyncCard).exists()).toBeTruthy();
   });
   it('shows button cancel and triggers previous step on click', async () => {
