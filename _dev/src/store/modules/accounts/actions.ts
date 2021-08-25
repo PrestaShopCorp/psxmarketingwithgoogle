@@ -427,7 +427,6 @@ export default {
     }
     const json = await response.json();
     commit(MutationsTypes.SAVE_WEBSITE_VERIFICATION_AND_CLAIMING_STATUS, json);
-    // commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
     return json;
   },
 
