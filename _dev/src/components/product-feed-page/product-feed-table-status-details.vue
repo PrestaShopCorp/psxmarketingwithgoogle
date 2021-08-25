@@ -28,6 +28,7 @@
       <b-table-simple
         id="table-products"
         class="ps_gs-table-products mb-3"
+        :table-class="{'border-bottom-0': loading}"
         variant="light"
         responsive="md"
       >
@@ -36,6 +37,7 @@
             <b-th
               v-for="(field, index) in fields"
               :key="index"
+              :class="{'b-table-sticky-column': index === 1}"
             >
               {{ field.label }}
             </b-th>
@@ -48,7 +50,7 @@
               <b-td class="align-top">
                 {{ product.id }}
               </b-td>
-              <b-td class="align-top">
+              <b-td class="align-top b-table-sticky-column">
                 <a
                   class="external_link-no_icon"
                   :href="!isNaN(product.id)
@@ -107,14 +109,16 @@
               </b-td>
             </b-tr>
           </template>
+          <b-tr v-if="loading">
+            <b-td
+              colspan="7"
+              class="ps_gs-table-products__loading-slot"
+            >
+              <i class="ps_gs-table-products__spinner">loading</i>
+            </b-td>
+          </b-tr>
         </b-tbody>
       </b-table-simple>
-      <div
-        class="psgoogleshopping-lazy-loading"
-        v-if="loading"
-      >
-        <div id="spinner" />
-      </div>
 
       <!-- OLD TABLE -->
       <!-- TO KEEP IF WE SWITCH BACK TO B-TABLE-LITE -->
@@ -398,27 +402,27 @@ export default {
     if (!this.items.length) {
       this.getItems(null);
       window.addEventListener('scroll', this.handleScroll);
-      // Observer to add class to sticky columns when they are stuck
-      document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
-        if (i) {
-          const observer = new IntersectionObserver(
-            (entries) => {
-              observerCallback(entries, observer, i);
-            },
-            {
-              root: document.querySelector('.ps_gs-table-products'),
-              threshold: 1,
-            },
-          );
-          observer.observe(i);
-        }
-      });
-      const observerCallback = (entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle('is-pinned', entry.intersectionRatio < 1);
-        });
-      };
     }
+    // Observer to add class to sticky columns when they are stuck
+    document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
+      if (i) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            observerCallback(entries, observer, i);
+          },
+          {
+            root: document.querySelector('.ps_gs-table-products'),
+            threshold: 1,
+          },
+        );
+        observer.observe(i);
+      }
+    });
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('is-pinned', entry.intersectionRatio < 1);
+      });
+    };
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll);
@@ -495,29 +499,3 @@ export default {
 
 };
 </script>
-<style lang="scss" scoped>
-.psgoogleshopping-lazy-loading {
-  width: 100%;
-  height: 40px;
-  #spinner {
-    color: #fff;
-    background-color: #fff;
-    width: 2rem !important;
-    height: 2rem !important;
-    border-radius: 2.5rem;
-    border-right-color: #25b9d7;
-    border-bottom-color: #25b9d7;
-    border-width: 0.1875rem;
-    border-style: solid;
-    font-size: 0;
-    outline: none;
-    display: inline-block;
-    border-left-color: #bbcdd2;
-    border-top-color: #bbcdd2;
-    -webkit-animation: rotating 2s linear infinite;
-    animation: rotating 2s linear infinite;
-    position: absolute;
-    left: calc(50% - 0.6rem);
-  }
-}
-</style>

@@ -26,6 +26,30 @@
   tbody tr:first-child td {
     border: none;
   }
+
+  &__loading-slot {
+    height: 40px;
+  }
+
+  &__spinner {
+    display: block;
+    margin: 0 auto;
+    color: $white;
+    background-color: $white;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2.5rem;
+    border-right-color: $blue;
+    border-bottom-color: $blue;
+    border-width: 0.1875rem;
+    border-style: solid;
+    font-size: 0;
+    overflow: hidden;
+    outline: none;
+    border-left-color: $blue_light;
+    border-top-color: $blue_light;
+    animation: rotating 2s linear infinite;
+  }
 }
 
 // ! TO KEEP
@@ -207,6 +231,7 @@
 // .is-pinned is added via a javascript observer
 .b-table-sticky-column {
   left: -1px !important;
+  background-color: #fff;
 }
 
 .b-table-sticky-column.is-pinned {
