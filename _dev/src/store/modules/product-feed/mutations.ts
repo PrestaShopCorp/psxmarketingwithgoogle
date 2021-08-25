@@ -43,7 +43,6 @@ export default {
   //  Product Feed Card
   [MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS](state: LocalState, payload: payloadObject) {
     state.settings[payload.name] = [payload.data];
-    console.log(state.settings[payload.name]);
   },
 
   [MutationsTypes.TOGGLE_CONFIGURATION_FINISHED](state: LocalState, payload: boolean) {
