@@ -47,7 +47,7 @@ export default {
   [GettersTypes.GET_MERCHANT_SELL_REFURBISHED_PRODUCTS](state: LocalState): boolean {
     return !!state.settings.attributeMapping?.customConditionAttribute;
   },
-  [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
+  [GettersTypes.GET_ACTIVE_COUNTRY](state: LocalState) : Array<string> | null {
     if (state.settings.targetCountries !== null) {
       return state.settings.targetCountries;
     }

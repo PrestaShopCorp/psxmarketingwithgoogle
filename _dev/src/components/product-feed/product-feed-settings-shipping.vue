@@ -212,7 +212,7 @@ export default {
   computed: {
     countries: {
       get() {
-        const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
+        const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRY'];
         return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
       },
       set(value) {

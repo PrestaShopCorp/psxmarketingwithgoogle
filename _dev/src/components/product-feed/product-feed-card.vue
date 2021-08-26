@@ -207,7 +207,7 @@
           <product-feed-card-report-card
             :status="targetCountriesStatus"
             :title="$t('productFeedSettings.shipping.targetCountries')"
-            :description="targetCountries.join(', ')"
+            :description="targetCountries.join(' ')"
             :link="$t('cta.editCountries')"
             :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
           />
@@ -338,13 +338,13 @@ export default {
       );
     },
     isUS() {
-      return this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'].includes('US');
+      return this.$store.getters['productFeed/GET_ACTIVE_COUNTRY'].includes('US');
     },
     toConfigure() {
       return !this.$store.state.productFeed.isConfigured;
     },
     targetCountries() {
-      const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
+      const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRY'];
       return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
     },
     shippingSettings() {
