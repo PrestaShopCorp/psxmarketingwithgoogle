@@ -23,6 +23,6 @@ const Template = (args, { argTypes }) => ({
 
 export const TableStatusDetails:any = Template.bind({});
 TableStatusDetails.args = {
-      loading: true,
+      loading: false,
       nextToken: null,     
 }
