@@ -73,7 +73,7 @@ export default {
         name: 'autoImportShippingSettings', data: json.autoImportShippingSettings,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'targetCountries', data: json.targetCountries[0],
+        name: 'targetCountries', data: json.targetCountries,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
@@ -121,7 +121,7 @@ export default {
     state, rootState, getters, commit,
   }) {
     const productFeedSettings = state.settings;
-    const targetCountries = [getters.GET_ACTIVE_COUNTRIES];
+    const targetCountries = getters.GET_ACTIVE_COUNTRIES;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
