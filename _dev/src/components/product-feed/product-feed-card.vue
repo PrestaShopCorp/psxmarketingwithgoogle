@@ -207,7 +207,7 @@
           <product-feed-card-report-card
             :status="targetCountriesStatus"
             :title="$t('productFeedSettings.shipping.targetCountries')"
-            :description="targetCountries.join(' ')"
+            :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
             :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
           />
