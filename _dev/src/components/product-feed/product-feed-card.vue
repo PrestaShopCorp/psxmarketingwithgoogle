@@ -338,13 +338,13 @@ export default {
       );
     },
     isUS() {
-      return this.$store.getters['productFeed/GET_ACTIVE_COUNTRY'].includes('US');
+      return this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'].includes('US');
     },
     toConfigure() {
       return !this.$store.state.productFeed.isConfigured;
     },
     targetCountries() {
-      const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRY'];
+      const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
       return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
     },
     shippingSettings() {

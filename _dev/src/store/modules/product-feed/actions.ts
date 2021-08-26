@@ -121,7 +121,7 @@ export default {
     state, rootState, getters, commit,
   }) {
     const productFeedSettings = state.settings;
-    const targetCountries = getters.GET_ACTIVE_COUNTRY;
+    const targetCountries = getters.GET_ACTIVE_COUNTRIES;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
