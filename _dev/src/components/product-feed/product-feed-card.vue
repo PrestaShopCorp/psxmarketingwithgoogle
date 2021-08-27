@@ -399,10 +399,10 @@ export default {
     lastSync() {
       return {
         day: this.$options.filters.timeConverterToDate(
-          this.getProductFeedStatus?.lastUpdatedAt,
+          this.getProductFeedStatus?.lastUpdatedAt ?? this.getProductFeedStatus?.jobEndedAt,
         ),
         time: this.$options.filters.timeConverterToHour(
-          this.getProductFeedStatus?.lastUpdatedAt,
+          this.getProductFeedStatus?.lastUpdatedAt ?? this.getProductFeedStatus?.jobEndedAt,
         ),
         totalProducts: this.getProductFeedSettings.totalProducts,
       };
