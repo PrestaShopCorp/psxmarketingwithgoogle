@@ -103,4 +103,15 @@ export default {
   ) {
     state.errorAPI = payload;
   },
+  [MutationsTypes.REMOVE_PRODUCT_FEED](state: LocalState,
+  ) {
+    state.settings = {
+      shippingSettings: [],
+      autoImportTaxSettings: false,
+      targetCountries: null,
+      autoImportShippingSettings: true,
+      attributeMapping: {},
+      syncSchedule: '1 * * * * *',
+    };
+  },
 };
