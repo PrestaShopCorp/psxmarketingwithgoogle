@@ -2,8 +2,8 @@ import ProductFeedTableStatusDetails from '../src/components/product-feed-page/p
 import {initialStateApp} from '../.storybook/mock/state-app';
 import {
   productFeed,
-
 } from '../.storybook/mock/product-feed';
+
 export default {
   title: 'Product feed page/Table Status Details',
   component: ProductFeedTableStatusDetails,
@@ -20,19 +20,15 @@ const Template = (args, { argTypes }) => ({
     this.$store.state.productFeed = Object.assign({}, productFeed);
   },
   mounted(this: any) {
-    args.loading === true
-      ? this.$refs.testTable.$data.loading = true
-      : null
+    if (args.loading === true) {
+     this.$refs.testTable.$data.loading = true;
+    }
   }
 });
 
 export const TableStatusDetails:any = Template.bind({});
-TableStatusDetails.args = {
-  nextToken: null,
-}
 
 export const Loading:any = Template.bind({});
 Loading.args = {
-  nextToken: null,
   loading: true,
 }
