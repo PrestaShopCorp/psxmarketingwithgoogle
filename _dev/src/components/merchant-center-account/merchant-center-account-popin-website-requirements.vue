@@ -5,6 +5,7 @@
     v-bind="$attrs"
     @close="cancel"
     ref="modal"
+    footer-class="flex-sm-nowrap"
   >
     <Stepper
       v-if="newMca"
@@ -353,16 +354,16 @@
     >
       <div
         v-if="!allFieldsAreFilled() || !verifyPhone() === false"
-        class="mr-sm-auto"
+        class="mr-sm-auto ps_gs-fz-12 text-danger text-left"
       >
         <p
-          class="ps_gs-fz-12 text-danger"
+          class="mb-0"
           v-if="!allFieldsAreFilled()"
         >
           {{ showFieldsMissing().join(', ') + ' ' + $t('general.mandatory') }}
         </p>
         <p
-          class="ps_gs-fz-12 text-danger"
+          class="mb-0 mt-0"
           v-if="!verifyPhone()"
         >
           {{ $t('mcaRequirements.phoneFormat') }}
@@ -374,7 +375,8 @@
       >
         {{ $t('cta.cancel') }}
       </b-button>
-      <span
+      <div
+        class="flex-shrink-0"
         v-b-tooltip:psxMktgWithGoogleApp
         :title="isStepTwoReadyToValidate() ? $t('tooltip.mustAgreeGoogleTerms') : ''"
       >
@@ -385,7 +387,7 @@
         >
           {{ $t('cta.createAccount') }}
         </b-button>
-      </span>
+      </div>
     </template>
   </ps-modal>
 </template>
