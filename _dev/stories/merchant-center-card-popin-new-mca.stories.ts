@@ -1,5 +1,8 @@
 import MerchantCenterAccountPopinWebsiteRequirements from '../src/components/merchant-center-account/merchant-center-account-popin-website-requirements.vue'
-import {merchantCenterAccountCreation} from '../.storybook/mock/merchant-center-account';
+import {
+  merchantCenterAccountCreation,
+  merchantCenterAccountWithErrors,
+} from '../.storybook/mock/merchant-center-account';
 
 export default {
   title: 'Merchant Center Account/Popins/Website Requirements',
@@ -14,9 +17,7 @@ const Template = (args, { argTypes }) => ({
       <MerchantCenterAccountPopinWebsiteRequirements v-bind="$props" />
     </div>
   `,
-  beforeMount(this: any) {
-    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountCreation);
-  },
+  beforeMount: args.beforeMount,
 });
 
 export const NewMcaStepOne:any = Template.bind({});
@@ -31,6 +32,19 @@ NewMcaStepTwo.args = {
   visible: true,
   stepActive: 2,
   newMca: true,
+  beforeMount(this : any) {
+    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountCreation);
+  }
+};
+
+export const NewMcaStepTwoWithErrors:any = Template.bind({});
+NewMcaStepTwoWithErrors.args = {
+  visible: true,
+  stepActive: 2,
+  newMca: true,
+  beforeMount(this : any) {
+    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountWithErrors);
+  }
 };
 
 export const CheckRequirements:any = Template.bind({});

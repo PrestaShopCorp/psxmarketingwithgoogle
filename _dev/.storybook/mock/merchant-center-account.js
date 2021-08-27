@@ -55,6 +55,27 @@ export const merchantCenterAccountCreation = {
   }
 }
 
+export const merchantCenterAccountWithErrors = {
+  ...merchantCenterAccountNotConnected,
+  shopInfo: {
+    shop: {
+      name: "PrestaShop",
+      url: "http://perdu.com/"
+    },
+    store:{
+      country: {
+        iso_code: "FR",
+        name: "France",
+      },
+      locality: "",
+      phone: "qsdsqd",
+      postalCode: "75015",
+      region: false,
+      streetAddress: "12 rue d'amsterdam",
+    }
+  }
+}
+
 export const merchantCenterNewGmcNotListed = {
   ...merchantCenterAccountConnected,
   id: '246797534',
