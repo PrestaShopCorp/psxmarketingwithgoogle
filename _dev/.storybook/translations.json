@@ -8,7 +8,8 @@
         "catalog" : "Product catalog",
         "help" : "Help"
       },
-      "refreshPage" : "Refresh page"
+      "refreshPage" : "Refresh page",
+      "mandatory" : "are mandatory"
     },
     "configuration" : {
         "introduction" : "Configuration Page !"
