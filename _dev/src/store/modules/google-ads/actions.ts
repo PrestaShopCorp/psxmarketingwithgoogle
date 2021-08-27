@@ -171,23 +171,27 @@ export default {
     return true;
   },
 
-  async [ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT]({commit, rootState, dispatch}, payload :object) {
-    // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/${rootState.id}/link`,
-    //     {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         Accept: 'application/json',
-    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-    //       },
-    //     });
-    //   if (!resp.ok) {
-    //     commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
-    //     throw new HttpClientError(resp.statusText, resp.status);
+  async [ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT]({
+    commit, rootState, dispatch,
+  }, payload) {
+    try {
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/${payload.id}/link`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+        console.log(resp);
+      if (!resp.ok) {
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
+        throw new HttpClientError(resp.statusText, resp.status);
 
-    //   }
-    //   const json = await resp.json();
+      }
+      const json = await resp.json();
+      console.log(json);
     //   commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, {
     //   id: json.id,
     //   name: json.name,
@@ -195,9 +199,9 @@ export default {
     // });
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, payload);
     dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    } catch (error) {
+      console.error(error);
+    }
   },
 
 };
