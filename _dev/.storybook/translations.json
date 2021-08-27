@@ -8,7 +8,6 @@
         "catalog" : "Product catalog",
         "help" : "Help"
       },
-      "here": "here",
       "refreshPage" : "Refresh page"
     },
     "configuration" : {
@@ -142,13 +141,17 @@
       "businessLocation" : "Business location",
       "businessAddress" : "Business address",
       "businessPhone" : "Business phone number",
-      "businessZipCode" : "Business zip code",
-      "businessCountry" : "Business country",
-      "missingFields" : "There are fields not filled, please fill it",
+      "businessZipCode" : "Zipcode",
+      "businessCity" : "City",
+      "changeAddressField" : "You can [change your business address]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
+      "changeZipCodeField" : "You can [change your zipcode]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
+      "changeCityField" : "You can [change your city]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
+      "changePhoneNumberField" : "You can [change your business phone number]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
       "siteContainsAdultContent" : "My website contains adult content",
       "seePolicyAdultContent" : "See policy on adult-oriented content",
       "labelReadAndAgree" : "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies]({0})[:target=\"_blank\"], including [Google’s Merchant Center terms of service]({1})[:target=\"_blank\"], [Shopping ads policies]({2})[:target=\"_blank\"], and [Google Ads Terms and Conditions]({3})[:target=\"_blank\"].",
-      "alert" : "Your store will be reviewed so if one of these requirements is missing, your account will be suspended."
+      "alert" : "Your store will be reviewed so if one of these requirements is missing, your account will be suspended.",
+      "phoneFormat": "Your business phone number isn't a valid format (only accept number) please change it."
     },
     "productFeedCard" : {
       "title" : "Automatically sync your products data with Google",
@@ -556,6 +559,12 @@
         "size" : "Your product's size",
         "ageGroup" : "The demographic for which your product is intended (if product is dedicated to specific age group)",
         "gender" : "The gender for which your product is intended"
+      },
+      "GMCForm" : {
+        "businessAddress" : "The pre-filled address is the one you entered in the back office",
+        "businessZipCode" : "The pre-filled zipcode is the one you entered in the back office",
+        "businessCity" : "The pre-filled city is the one you entered in the back office",
+        "businessPhone" : "The pre-filled phone number is the one you entered in the back office"
       }
     },
     "toast": {

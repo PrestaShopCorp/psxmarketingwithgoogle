@@ -120,36 +120,144 @@
         </span>
       </section>
 
-      <dl>
-        <dt>{{ $t('mcaRequirements.businessLocation') }}</dt>
-        <dd>{{ shopInformations.store.country.iso_code }}</dd>
+      <b-form-group>
+        <div class="d-flex align-items-center mb-1">
+          <label
+            for="inputBusinessAddress"
+            class="h4 mb-0 font-weight-600"
+          >
+            {{ $t('mcaRequirements.businessAddress') }}
+          </label>
+          <b-button
+            v-b-tooltip
+            :title="$t(`tooltip.GMCForm.businessAddress`)"
+            variant="invisible"
+            class="ml-1 p-0 d-flex text-primary"
+          >
+            <span class="material-icons-round mb-0 ps_gs-fz-12">
+              error_outline
+            </span>
+          </b-button>
+        </div>
+        <b-form-input
+          id="inputBusinessAddress"
+          aria-describedby="businessAddressFeedback"
+          :value="shopInformations.store.streetAddress"
+          readonly
+          class="maxw-sm-420"
+        />
 
-        <dt> {{ $t('mcaRequirements.businessAddress') }} </dt>
-        <dd>{{ shopInformations.store.streetAddress || '--' }}</dd>
+        <VueShowdown
+          id="businessAddressFeedback"
+          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
+          :extensions="['target-link']"
+          :markdown="$t('mcaRequirements.changeAddressField', [storeInformationsUrl])"
+        />
+      </b-form-group>
 
-        <dt>{{ $t('mcaRequirements.businessPhone') }}</dt>
-        <dd>{{ shopInformations.store.phone || '--' }}</dd>
+      <b-form-group>
+        <div class="d-flex align-items-center mb-1">
+          <label
+            for="inputBusinessZipCode"
+            class="h4 mb-0 font-weight-600"
+          >
+            {{ $t('mcaRequirements.businessZipCode') }}
+          </label>
+          <b-button
+            v-b-tooltip
+            :title="$t(`tooltip.GMCForm.businessZipCode`)"
+            variant="invisible"
+            class="ml-1 p-0 d-flex text-primary"
+          >
+            <span class="material-icons-round mb-0 ps_gs-fz-12">
+              error_outline
+            </span>
+          </b-button>
+        </div>
+        <b-form-input
+          id="inputBusinessZipCode"
+          aria-describedby="businessZipCodeFeedback"
+          :value="shopInformations.store.postalCode"
+          readonly
+          class="maxw-sm-420"
+        />
 
-        <dt>{{ $t('mcaRequirements.businessZipCode') }}</dt>
-        <dd>{{ shopInformations.store.postalCode || '--' }}</dd>
+        <VueShowdown
+          id="businessZipCodeFeedback"
+          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
+          :extensions="['target-link']"
+          :markdown="$t('mcaRequirements.changeZipCodeField', [storeInformationsUrl])"
+        />
+      </b-form-group>
 
-        <dt>{{ $t('mcaRequirements.businessCountry') }}</dt>
-        <dd>{{ shopInformations.store.country.name || '--' }}</dd>
-      </dl>
-      <b-alert
-        v-if="allFieldsAreFilled() === false"
-        variant="warning"
-        show
-        class="mb-0 mt-3"
-      >
-        <p class="mb-0">
-          {{ $t('mcaRequirements.missingFields') }}
-          <a
-            :href="storeInformationsUrl"
-            class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
-          > {{ $t('general.here') }} </a>
-        </p>
-      </b-alert>
+      <b-form-group>
+        <div class="d-flex align-items-center mb-1">
+          <label
+            for="inputBusinessCity"
+            class="h4 mb-0 font-weight-600"
+          >
+            {{ $t('mcaRequirements.businessCity') }}
+          </label>
+          <b-button
+            v-b-tooltip
+            :title="$t(`tooltip.GMCForm.businessCity`)"
+            variant="invisible"
+            class="ml-1 p-0 d-flex text-primary"
+          >
+            <span class="material-icons-round mb-0 ps_gs-fz-12">
+              error_outline
+            </span>
+          </b-button>
+        </div>
+        <b-form-input
+          id="inputBusinessCity"
+          aria-describedby="businessCityFeedback"
+          :value="shopInformations.store.locality"
+          readonly
+          class="maxw-sm-420"
+        />
+        <VueShowdown
+          id="businessCityFeedback"
+          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
+          :extensions="['target-link']"
+          :markdown="$t('mcaRequirements.changeCityField', [storeInformationsUrl])"
+        />
+      </b-form-group>
+
+      <b-form-group>
+        <div class="d-flex align-items-center mb-1">
+          <label
+            for="inputBusinessPhone"
+            class="h4 mb-0 font-weight-600"
+          >
+            {{ $t('mcaRequirements.businessPhone') }}
+          </label>
+          <b-button
+            v-b-tooltip
+            :title="$t(`tooltip.GMCForm.businessPhone`)"
+            variant="invisible"
+            class="ml-1 p-0 d-flex text-primary"
+          >
+            <span class="material-icons-round mb-0 ps_gs-fz-12">
+              error_outline
+            </span>
+          </b-button>
+        </div>
+        <b-form-input
+          id="inputBusinessPhone"
+          aria-describedby="businessPhoneNumberFeedback"
+          :value="shopInformations.store.phone"
+          readonly
+          class="maxw-sm-420"
+        />
+        <VueShowdown
+          id="businessPhoneNumberFeedback"
+          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
+          :extensions="['target-link']"
+          :markdown="$t('mcaRequirements.changePhoneNumberField', [storeInformationsUrl])"
+        />
+      </b-form-group>
+
       <div class="mb-4 pb-1">
         <div class="d-flex align-items-center">
           <legend
@@ -243,6 +351,23 @@
       slot="modal-footer"
       v-else-if="stepActiveData === 2"
     >
+      <div
+        v-if="!allFieldsAreFilled() || !verifyPhone() === false"
+        class="mr-sm-auto"
+      >
+        <p
+          class="ps_gs-fz-12 text-danger"
+          v-if="!allFieldsAreFilled()"
+        >
+          {{ showFieldsMissing().join(', ') + ' ' + $t('general.mandatory') }}
+        </p>
+        <p
+          class="ps_gs-fz-12 text-danger"
+          v-if="!verifyPhone()"
+        >
+          {{ $t('mcaRequirements.phoneFormat') }}
+        </p>
+      </div>
       <b-button
         variant="outline-secondary"
         @click="cancel()"
@@ -328,7 +453,7 @@ export default {
         this.shopInformations.store.streetAddress
         && this.shopInformations.store.phone
         && this.shopInformations.store.postalCode
-        && this.shopInformations.store.country.name
+        && this.shopInformations.store.locality
       );
     },
     saveFirstStep() {
@@ -341,7 +466,7 @@ export default {
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
     },
     verifyPhone() {
-      this.phoneFormatError = (!!this.businessPhone.match(/^[+0-9. ()/-]*$/));
+      return !!(this.shopInformations.store.phone.match(/^[+0-9. ()/-]*$/));
     },
     ok() {
       this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', {
@@ -349,8 +474,8 @@ export default {
         shop_name: this.shopInformations.shop.name,
         location: this.shopInformations.store.country.iso_code,
         adult_content: this.containsAdultContent,
-        address: this.shopInformations.shop.streetAddress,
-        phone: this.shopInformations.shop.phone,
+        address: this.shopInformations.store.streetAddress,
+        phone: this.shopInformations.store.phone,
         postal_code: this.shopInformations.store.postalCode,
         locality: this.shopInformations.store.locality,
       }).then(() => {
@@ -360,6 +485,24 @@ export default {
     cancel() {
       this.$refs.modal.hide();
       this.stepActiveData = 1;
+    },
+    showFieldsMissing() {
+      const fields = [];
+
+      if (!this.shopInformations.store.phone) {
+        fields.push(this.$t('mcaRequirements.businessPhone'));
+      }
+      if (!this.shopInformations.store.streetAddress) {
+        fields.push(this.$t('mcaRequirements.businessAddress'));
+      }
+      if (!this.shopInformations.store.postalCode) {
+        fields.push(this.$t('mcaRequirements.businessZipCode'));
+      }
+      if (!this.shopInformations.store.locality) {
+        fields.push(this.$t('mcaRequirements.businessCity'));
+      }
+
+      return fields;
     },
     saveChangeExistingGmc() {
       /**

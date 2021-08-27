@@ -9,7 +9,7 @@ import showdown from 'showdown';
  showdown.extension('targetlink', () => [
   {
     type: 'lang',
-    regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\[\:target=((?:&quot;|\\")?["']?)(.*?)\6]/g,
+    regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\[\:target=((?:&quot;|\\")?["']?)(.*?)\6(.*?)]/g,
     replace(wholematch, linkText, url, a, b, title, c, target) {
       let result = `<a href="${url}"`;
 
@@ -32,7 +32,7 @@ import showdown from 'showdown';
 showdown.extension('className', () => [
   {
     type: 'lang',
-    regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\[\:class=((?:&quot;|\\")?["']?)(.*?)\6]/g,
+    regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\[\:class=((?:&quot;|\\")?["']?)(.*?)\6(.*?)]/g,
     replace(wholematch, linkText, url, a, b, title, c, className) {
       let result = `<a href="${url}"`;
 
