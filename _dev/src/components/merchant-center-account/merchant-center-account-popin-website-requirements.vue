@@ -121,27 +121,27 @@
       </section>
 
       <dl>
-          <dt>{{ $t('mcaRequirements.businessLocation') }}</dt>
-          <dd>{{ shopInformations.store.country.iso_code }}</dd>
+        <dt>{{ $t('mcaRequirements.businessLocation') }}</dt>
+        <dd>{{ shopInformations.store.country.iso_code }}</dd>
 
-          <dt> {{ $t('mcaRequirements.businessAddress') }} </dt>
-          <dd>{{ shopInformations.store.streetAddress || '--' }}</dd>
+        <dt> {{ $t('mcaRequirements.businessAddress') }} </dt>
+        <dd>{{ shopInformations.store.streetAddress || '--' }}</dd>
 
-          <dt>{{ $t('mcaRequirements.businessPhone') }}</dt>
-          <dd>{{ shopInformations.store.phone || '--' }}</dd>
+        <dt>{{ $t('mcaRequirements.businessPhone') }}</dt>
+        <dd>{{ shopInformations.store.phone || '--' }}</dd>
 
-          <dt>{{ $t('mcaRequirements.businessZipCode') }}</dt>
-          <dd>{{ shopInformations.store.postalCode || '--' }}</dd>
+        <dt>{{ $t('mcaRequirements.businessZipCode') }}</dt>
+        <dd>{{ shopInformations.store.postalCode || '--' }}</dd>
 
-          <dt>{{ $t('mcaRequirements.businessCountry') }}</dt>
-          <dd>{{ shopInformations.store.country.name || '--' }}</dd>
+        <dt>{{ $t('mcaRequirements.businessCountry') }}</dt>
+        <dd>{{ shopInformations.store.country.name || '--' }}</dd>
       </dl>
       <b-alert
         v-if="allFieldsAreFilled() === false"
         variant="warning"
         show
         class="mb-0 mt-3"
-        >
+      >
         <p class="mb-0">
           {{ $t('mcaRequirements.missingFields') }}
           <a
