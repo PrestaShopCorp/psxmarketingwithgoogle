@@ -360,7 +360,12 @@
           class="mb-0"
           v-if="!allFieldsAreFilled()"
         >
-          {{ showFieldsMissing().join(', ') + ' ' + $t('general.mandatory') }}
+          <template>
+            {{ showFieldsMissing().length === 1
+              ? $t('general.XIsMandatory', [showFieldsMissing()])
+              : $t('general.XAreMandatory', [showFieldsMissing().join(', ')])
+            }}
+          </template>
         </p>
         <p
           class="mb-0 mt-0"

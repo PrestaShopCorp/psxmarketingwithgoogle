@@ -9,7 +9,9 @@
         "help" : "Help"
       },
       "refreshPage" : "Refresh page",
-      "mandatory" : "are mandatory"
+      "mandatory" : "are mandatory",
+      "XIsMandatory" : "{0} is mandatory.",
+      "XAreMandatory" : "{0} are mandatory."
     },
     "configuration" : {
         "introduction" : "Configuration Page !"
