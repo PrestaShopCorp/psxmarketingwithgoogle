@@ -160,7 +160,7 @@
     <VueShowdown
       :markdown="$t('productFeedSettings.export.prohibitedContentNotice',
                     [$options.googleUrl.prohibitedContentGuidelines])"
-      :extensions="['targetlink']"
+      :extensions="['extended-link']"
       class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-n3"
     />
   </div>

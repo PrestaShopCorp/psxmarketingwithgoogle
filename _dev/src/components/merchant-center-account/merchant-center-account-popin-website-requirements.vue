@@ -304,7 +304,7 @@
               this.$options.googleUrl.shoppingAdsPolicies,
               this.$options.googleUrl.googleAdsTermsAndConditions
             ])"
-            :extensions="['targetlink']"
+            :extensions="['extended-link']"
           />
         </b-form-checkbox>
       </div>

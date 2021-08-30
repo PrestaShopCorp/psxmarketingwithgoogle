@@ -22,7 +22,7 @@
       >
         <VueShowdown
           :markdown="contentFooter"
-          :extensions="['targetlink']"
+          :extensions="['extended-link']"
         />
       </div>
     </div>
