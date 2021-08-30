@@ -98,7 +98,14 @@ export const state: State = {
     autoImportTaxSettings: false,
     targetCountries: null,
     autoImportShippingSettings: true,
-    attributeMapping: {},
+    attributeMapping: {
+      exportProductsWithShortDescription: true,
+      customColorAttribute: '',
+      customSizeAttribute: '',
+      customAgeGroupAttribute: '',
+      customGenderGroupAttribute: '',
+      customConditionAttribute: '',
+    },
     syncSchedule: '1 * * * * *',
   },
   validationSummary: {
