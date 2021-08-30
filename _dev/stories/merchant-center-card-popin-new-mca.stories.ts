@@ -3,6 +3,7 @@ import {
   merchantCenterAccountCreation,
   merchantCenterAccountWithErrors,
 } from '../.storybook/mock/merchant-center-account';
+import {initialStateApp} from '../.storybook/mock/state-app';
 
 export default {
   title: 'Merchant Center Account/Popins/Website Requirements',
@@ -17,6 +18,13 @@ const Template = (args, { argTypes }) => ({
       <MerchantCenterAccountPopinWebsiteRequirements v-bind="$props" />
     </div>
   `,
+  beforeCreate(this: any) {
+    this.$store.state.app = Object.assign(
+      this.$store.state.app,
+      initialStateApp,
+      {psxMktgWithGoogleStoreSettingsUrl: 'https://www.perdu.com'}
+    );
+  },
   beforeMount: args.beforeMount,
 });
 
