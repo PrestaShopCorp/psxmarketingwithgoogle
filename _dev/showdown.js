@@ -8,15 +8,16 @@ import showdown from 'showdown';
 showdown.extension('extended-link', () => [
   {
     type: 'lang',
-    regex: /\[(.+?)\]\((.+?)\)\[:(?:(target)=\\?"(.+?)\\?")?\s*(?:(class)=\\?"(.+?)\\?")?\]/g,
-    replace(wholematch, linkText, url, firstAttribute, firstAttributeValue, secondAttribute, secondAttributeValue) {
-      let result = `<a href="${url}"`;
+    regex: /\[(.+?)\]\((.+?)\)\[:(?:(target)=(?:(?:&quot;|\\")?["']?)(.+?)(?:(?:&quot;|\\")?["']?))?\s*(?:(class)=(?:(?:&quot;|\\")?["']?)(.+?)(?:(?:&quot;|\\")?["']?))?\]/g,
+    replace(wholematch, linkText, url, firstAttribute, firstAttributeValue, secondAttribute, secondAttributeValue, ) {
       let title = undefined;
 
-      if (/^ *$/.test(linkText)) {
-        title = linkText.match(/(?<=\s).*/g)[0];
-        linkText = linkText.match(/(.*?)(?=\s)/g)[0];
+      if (url.indexOf(' ') >= 0) {
+        title = url.match(/(?<=\s).*/g)[0];
+        url = url.match(/(.*?)(?=\s)/g)[0];
       }
+
+      let result = `<a href="${url}"`;
 
       if (typeof firstAttribute !== 'undefined' && firstAttribute !== '' && firstAttribute !== null) {
         result += ` ${firstAttribute}="${firstAttributeValue}"`;

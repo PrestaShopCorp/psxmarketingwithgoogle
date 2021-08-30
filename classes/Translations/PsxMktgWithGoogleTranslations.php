@@ -382,7 +382,7 @@ class PsxMktgWithGoogleTranslations
                 ],
                 'terms' => [
                   'title' => $this->module->l('Terms of service for Google Program', 'PsxMktgWithGoogleTranslations'),
-                  'description' => $this->module->l('By purchasing Shopping ads, I agree to comply with [Google Ads terms and conditions]({0})[:target="_blank"]', 'PsxMktgWithGoogleTranslations'),
+                  'description' => $this->module->l('By purchasing Shopping ads, I agree to comply with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]', 'PsxMktgWithGoogleTranslations'),
                   'label' => $this->module->l('I have read and accept these terms', 'PsxMktgWithGoogleTranslations'),
                 ],
             ],

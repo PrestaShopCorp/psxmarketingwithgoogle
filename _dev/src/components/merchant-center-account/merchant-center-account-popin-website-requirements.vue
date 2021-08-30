@@ -151,7 +151,7 @@
         <VueShowdown
           id="businessAddressFeedback"
           class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
-          :extensions="['target-link']"
+          :extensions="['extended-link']"
           :markdown="$t('mcaRequirements.changeAddressField', [storeInformationsUrl])"
         />
       </b-form-group>
@@ -186,7 +186,7 @@
         <VueShowdown
           id="businessZipCodeFeedback"
           class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
-          :extensions="['target-link']"
+          :extensions="['extended-link']"
           :markdown="$t('mcaRequirements.changeZipCodeField', [storeInformationsUrl])"
         />
       </b-form-group>
@@ -220,7 +220,7 @@
         <VueShowdown
           id="businessCityFeedback"
           class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
-          :extensions="['target-link']"
+          :extensions="['extended-link']"
           :markdown="$t('mcaRequirements.changeCityField', [storeInformationsUrl])"
         />
       </b-form-group>
@@ -254,7 +254,7 @@
         <VueShowdown
           id="businessPhoneNumberFeedback"
           class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
-          :extensions="['target-link']"
+          :extensions="['extended-link']"
           :markdown="$t('mcaRequirements.changePhoneNumberField', [storeInformationsUrl])"
         />
       </b-form-group>
