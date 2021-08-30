@@ -304,6 +304,7 @@ export default {
     }
     commit(MutationsTypes.REMOVE_GMC);
     commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, false);
+    commit(`productFeed/${MutationsTypesProductFeed.REMOVE_PRODUCT_FEED}`, null, {root: true});
     commit(`productFeed/${MutationsTypesProductFeed.TOGGLE_CONFIGURATION_FINISHED}`, false, {root: true});
     return true;
   },
@@ -319,6 +320,7 @@ export default {
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
         commit(MutationsTypes.SAVE_WEBSITE_CLAIMING_STATUS, true);
       }, 2000);
+      commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
     } catch (error) {
       if (error instanceof CannotOverwriteError) {
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
@@ -328,7 +330,6 @@ export default {
           WebsiteClaimErrorReason.AccountValidationFailed);
       }
     }
-    commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
     return true;
   },
 
