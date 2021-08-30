@@ -305,6 +305,7 @@ export default {
     commit(MutationsTypes.REMOVE_GMC);
     commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, false);
     commit(`productFeed/${MutationsTypesProductFeed.REMOVE_PRODUCT_FEED}`, null, {root: true});
+    commit(`productFeed/${MutationsTypesProductFeed.SET_ACTIVE_CONFIGURATION_STEP}`, 1, {root: true});
     commit(`productFeed/${MutationsTypesProductFeed.TOGGLE_CONFIGURATION_FINISHED}`, false, {root: true});
     return true;
   },
