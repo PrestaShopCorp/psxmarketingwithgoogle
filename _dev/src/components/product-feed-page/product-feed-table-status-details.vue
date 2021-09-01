@@ -48,7 +48,7 @@
           <template v-for="(product, index) in items">
             <b-tr :key="index">
               <b-td class="align-top">
-                {{ product.id }}&#8209;{{ product.attribute > 0 ? product.attribute : '' }}
+                {{ product.id }}{{ product.attribute > 0 ? '&#8209;' + product.attribute : '' }}
               </b-td>
               <b-td class="align-top b-table-sticky-column">
                 <a
