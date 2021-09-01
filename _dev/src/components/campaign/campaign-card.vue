@@ -2,7 +2,7 @@
   <b-card no-body>
     <div class="ps_gs-landingpage ps_gs-landingpage--small-padding">
       <h3 class="ps_gs-landingpage-content__title mb-3">
-        {{ $t('paidMarketingCard.title') }}
+        {{ $t('campaignCard.title') }}
       </h3>
       <div
         class="ps_gs-landingpage-content d-flex flex-column flex-md-row align-items-center"
@@ -16,7 +16,7 @@
         </figure>
         <div>
           <VueShowdown
-            :markdown="$t('paidMarketingCard.description')"
+            :markdown="$t('campaignCard.description')"
             class="ps_gs-fz-16"
           />
         </div>
@@ -25,7 +25,7 @@
         class="ps_gs-fz-12 text-muted d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
       >
         <p class="mb-0">
-          {{ $t('paidMarketingCard.footer') }}
+          {{ $t('campaignCard.footer') }}
         </p>
         <div class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center">
           <b-button
@@ -44,6 +44,6 @@
 <script>
 
 export default {
-  name: 'PaidMarketingCard',
+  name: 'Campaign',
 };
 </script>

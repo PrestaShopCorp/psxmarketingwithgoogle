@@ -1,16 +1,16 @@
-import PaidMarketingCard from '../src/components/paid-marketing/paid-marketing-card.vue'
+import CampaignCard from '../src/components/campaign/campaign-card.vue'
 
 export default {
-  title: 'Paid Marketing/Card',
-  component: PaidMarketingCard,
+  title: 'Campaign/Card',
+  component: CampaignCard,
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { PaidMarketingCard },
+  components: { CampaignCard },
   template: `
     <div>
-      <PaidMarketingCard v-bind="$props" />
+      <CampaignCard v-bind="$props" />
     </div>
   `,
 });

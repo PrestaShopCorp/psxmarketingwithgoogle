@@ -1,14 +1,14 @@
 <template>
   <div>
-    <paid-marketing-card />
+    <campaign-card />
   </div>
 </template>
 
 <script>
-import paidMarketingCard from '../components/paid-marketing/paid-marketing-card.vue';
+import campaignCard from '../components/campaign/campaign-card.vue';
 
 export default {
-  components: {paidMarketingCard},
+  components: {campaignCard},
   computed: {
     googleAdsIsChosen() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];

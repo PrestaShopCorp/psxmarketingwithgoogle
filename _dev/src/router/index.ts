@@ -4,7 +4,7 @@ import Configuration from '../views/configuration.vue';
 import OnboardingPage from '../views/onboarding-page.vue';
 import TunnelProductFeed from '../views/tunnel-product-feed.vue';
 import ProductFeedPage from '../views/product-feed-page.vue';
-import PaidMarketingPage from '../views/paid-marketing-page.vue';
+import CampaignPage from '../views/campaign-page.vue';
 import Help from '../views/help.vue';
 import Store from '../store';
 
@@ -53,9 +53,9 @@ const routes: Array<RouteConfig> = [
     component: ProductFeedPage,
   },
   {
-    path: '/paid-marketing',
-    name: 'paid-marketing',
-    component: PaidMarketingPage,
+    path: '/campaign',
+    name: 'campaign',
+    component: CampaignPage,
   },
   {
     path: '/',
