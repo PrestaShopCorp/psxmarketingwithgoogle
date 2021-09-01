@@ -161,7 +161,7 @@ class PsxMktgWithGoogleTranslations
                 ],
                 'accurateContactInformation' => [
                   'title' => $this->module->l('Provide accurate contact information', 'PsxMktgWithGoogleTranslations'),
-                  'description' => $this->module->l('Website needs to display sufficient - at least 1 of 3 required - and accurate contact information (phone number, physical address and/or email)', 'PsxMktgWithGoogleTranslations'),
+                  'description' => $this->module->l('Merchants need to have at least one contact method listed on their website, this can be any type of contact method.', 'PsxMktgWithGoogleTranslations'),
                   'link' => $this->module->l('Discover how to add contact information', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'secureCheckoutProcess' => [
