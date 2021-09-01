@@ -20,6 +20,7 @@ const Template = (args, { argTypes }) => ({
   `,
   beforeCreate(this: any) {
     this.$store.state.app = Object.assign(
+      {},
       this.$store.state.app,
       initialStateApp,
       {psxMktgWithGoogleStoreSettingsUrl: 'https://www.perdu.com'}

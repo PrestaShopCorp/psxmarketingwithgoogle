@@ -456,12 +456,7 @@ export default {
       );
     },
     allFieldsAreFilled() {
-      return !!(
-        this.shopInformations.store.streetAddress
-        && this.shopInformations.store.phone
-        && this.shopInformations.store.postalCode
-        && this.shopInformations.store.locality
-      );
+      return !this.showFieldsMissing().length;
     },
     saveFirstStep() {
       this.stepActiveData = 2;
