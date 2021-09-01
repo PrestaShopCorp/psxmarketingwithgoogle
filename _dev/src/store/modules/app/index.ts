@@ -14,6 +14,7 @@ const {
   psxMktgWithGoogleModuleVersion,
   psxMktgWithGoogleMaintenanceSettingsUrl,
   psxMktgWithGoogleProductDetailUrl,
+  psxMktgWithGoogleStoreSettingsUrl,
 }: any = window;
 
 const state = Object.assign(
@@ -28,6 +29,7 @@ const state = Object.assign(
   {psxMktgWithGoogleModuleVersion} || '',
   {psxMktgWithGoogleMaintenanceSettingsUrl} || '',
   {psxMktgWithGoogleProductDetailUrl} || '',
+  {psxMktgWithGoogleStoreSettingsUrl} || '',
 );
 
 /**

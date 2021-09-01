@@ -5,6 +5,7 @@
     v-bind="$attrs"
     @close="cancel"
     ref="modal"
+    footer-class="flex-sm-nowrap"
   >
     <Stepper
       v-if="newMca"
@@ -119,42 +120,145 @@
           {{ shopInformations.shop.name }}
         </span>
       </section>
-      <section class="mb-3">
-        <h3 class="h4 mb-0 font-weight-600">
-          {{ $t('mcaRequirements.businessLocation') }}
-        </h3>
-        <span class="d-block">
-          {{ shopInformations.store.country.iso_code }}
-        </span>
-      </section>
-      <b-form-group
-        :label="$t('mcaRequirements.businessAddress')"
-        label-for="inputBusinessAddress"
-        label-class="h4 mb-0 font-weight-600"
-        content-cols="12"
-      >
+
+      <b-form-group>
+        <div class="d-flex align-items-center mb-1">
+          <label
+            for="inputBusinessAddress"
+            class="h4 mb-0 font-weight-600"
+          >
+            {{ $t('mcaRequirements.businessAddress') }}
+          </label>
+          <b-button
+            v-b-tooltip
+            :title="$t(`tooltip.GMCForm.businessAddress`)"
+            variant="invisible"
+            class="ml-1 p-0 d-flex text-primary"
+          >
+            <span class="material-icons-round mb-0 ps_gs-fz-12">
+              error_outline
+            </span>
+          </b-button>
+        </div>
         <b-form-input
           id="inputBusinessAddress"
-          :value="businessAddr"
-          v-model="businessAddr"
-          :readonly="!!shopInformations.store.streetAddress"
+          aria-describedby="businessAddressFeedback"
+          :value="shopInformations.store.streetAddress"
+          readonly
           class="maxw-sm-420"
         />
+
+        <VueShowdown
+          id="businessAddressFeedback"
+          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
+          :extensions="['extended-link']"
+          :markdown="$t('mcaRequirements.changeAddressField', [storeInformationsUrl])"
+        />
       </b-form-group>
-      <b-form-group
-        :label="$t('mcaRequirements.businessPhone')"
-        label-for="inputBusinessPhoneNumber"
-        label-class="h4 mb-0 font-weight-600"
-        content-cols="12"
-      >
+
+      <b-form-group>
+        <div class="d-flex align-items-center mb-1">
+          <label
+            for="inputBusinessZipCode"
+            class="h4 mb-0 font-weight-600"
+          >
+            {{ $t('mcaRequirements.businessZipCode') }}
+          </label>
+          <b-button
+            v-b-tooltip
+            :title="$t(`tooltip.GMCForm.businessZipCode`)"
+            variant="invisible"
+            class="ml-1 p-0 d-flex text-primary"
+          >
+            <span class="material-icons-round mb-0 ps_gs-fz-12">
+              error_outline
+            </span>
+          </b-button>
+        </div>
         <b-form-input
-          id="inputBusinessPhoneNumber"
-          :value="businessPhone"
-          v-model="businessPhone"
-          :readonly="!!shopInformations.store.phone"
+          id="inputBusinessZipCode"
+          aria-describedby="businessZipCodeFeedback"
+          :value="shopInformations.store.postalCode"
+          readonly
           class="maxw-sm-420"
         />
+
+        <VueShowdown
+          id="businessZipCodeFeedback"
+          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
+          :extensions="['extended-link']"
+          :markdown="$t('mcaRequirements.changeZipCodeField', [storeInformationsUrl])"
+        />
       </b-form-group>
+
+      <b-form-group>
+        <div class="d-flex align-items-center mb-1">
+          <label
+            for="inputBusinessCity"
+            class="h4 mb-0 font-weight-600"
+          >
+            {{ $t('mcaRequirements.businessCity') }}
+          </label>
+          <b-button
+            v-b-tooltip
+            :title="$t(`tooltip.GMCForm.businessCity`)"
+            variant="invisible"
+            class="ml-1 p-0 d-flex text-primary"
+          >
+            <span class="material-icons-round mb-0 ps_gs-fz-12">
+              error_outline
+            </span>
+          </b-button>
+        </div>
+        <b-form-input
+          id="inputBusinessCity"
+          aria-describedby="businessCityFeedback"
+          :value="shopInformations.store.locality"
+          readonly
+          class="maxw-sm-420"
+        />
+        <VueShowdown
+          id="businessCityFeedback"
+          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
+          :extensions="['extended-link']"
+          :markdown="$t('mcaRequirements.changeCityField', [storeInformationsUrl])"
+        />
+      </b-form-group>
+
+      <b-form-group>
+        <div class="d-flex align-items-center mb-1">
+          <label
+            for="inputBusinessPhone"
+            class="h4 mb-0 font-weight-600"
+          >
+            {{ $t('mcaRequirements.businessPhone') }}
+          </label>
+          <b-button
+            v-b-tooltip
+            :title="$t(`tooltip.GMCForm.businessPhone`)"
+            variant="invisible"
+            class="ml-1 p-0 d-flex text-primary"
+          >
+            <span class="material-icons-round mb-0 ps_gs-fz-12">
+              error_outline
+            </span>
+          </b-button>
+        </div>
+        <b-form-input
+          id="inputBusinessPhone"
+          aria-describedby="businessPhoneNumberFeedback"
+          :value="shopInformations.store.phone"
+          readonly
+          class="maxw-sm-420"
+        />
+        <VueShowdown
+          id="businessPhoneNumberFeedback"
+          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
+          :extensions="['extended-link']"
+          :markdown="$t('mcaRequirements.changePhoneNumberField', [storeInformationsUrl])"
+        />
+      </b-form-group>
+
       <div class="mb-4 pb-1">
         <div class="d-flex align-items-center">
           <legend
@@ -200,7 +304,7 @@
               this.$options.googleUrl.shoppingAdsPolicies,
               this.$options.googleUrl.googleAdsTermsAndConditions
             ])"
-            :extensions="['targetlink']"
+            :extensions="['extended-link']"
           />
         </b-form-checkbox>
       </div>
@@ -248,13 +352,36 @@
       slot="modal-footer"
       v-else-if="stepActiveData === 2"
     >
+      <div
+        v-if="!allFieldsAreFilled() || !verifyPhone() === false"
+        class="mr-sm-auto ps_gs-fz-12 text-danger text-left"
+      >
+        <p
+          class="mb-0"
+          v-if="!allFieldsAreFilled()"
+        >
+          <template>
+            {{ showFieldsMissing().length === 1
+              ? $t('general.XIsMandatory', [showFieldsMissing()])
+              : $t('general.XAreMandatory', [showFieldsMissing().join(', ')])
+            }}
+          </template>
+        </p>
+        <p
+          class="mb-0 mt-0"
+          v-if="!verifyPhone()"
+        >
+          {{ $t('mcaRequirements.phoneFormat') }}
+        </p>
+      </div>
       <b-button
         variant="outline-secondary"
         @click="cancel()"
       >
         {{ $t('cta.cancel') }}
       </b-button>
-      <span
+      <div
+        class="flex-shrink-0"
         v-b-tooltip:psxMktgWithGoogleApp
         :title="isStepTwoReadyToValidate() ? $t('tooltip.mustAgreeGoogleTerms') : ''"
       >
@@ -265,7 +392,7 @@
         >
           {{ $t('cta.createAccount') }}
         </b-button>
-      </span>
+      </div>
     </template>
   </ps-modal>
 </template>
@@ -305,8 +432,6 @@ export default {
           title: this.$i18n.t('mcaRequirements.steps.shopInfo'),
         },
       ],
-      businessPhone: '',
-      businessAddr: '',
       selectedRequirements: [],
       containsAdultContent: null,
       acceptsGoogleTerms: false,
@@ -327,9 +452,11 @@ export default {
       return !(
         this.acceptsGoogleTerms
         && (this.containsAdultContent != null)
-        && this.businessAddr
-        && this.businessPhone
+        && this.allFieldsAreFilled()
       );
+    },
+    allFieldsAreFilled() {
+      return !this.showFieldsMissing().length;
     },
     saveFirstStep() {
       this.stepActiveData = 2;
@@ -340,17 +467,17 @@ export default {
     getCurrentCheckbox() {
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
     },
+    verifyPhone() {
+      return !!(this.shopInformations.store.phone.match(/^[+0-9. ()/-]*$/));
+    },
     ok() {
-      const phoneNumber = this.shopInformations.shop.phone || this.businessPhone;
-      const addr = this.shopInformations.shop.streetAddress || this.businessAddr;
-
       this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', {
         shop_url: this.shopInformations.shop.url,
         shop_name: this.shopInformations.shop.name,
         location: this.shopInformations.store.country.iso_code,
         adult_content: this.containsAdultContent,
-        address: addr,
-        phone: phoneNumber,
+        address: this.shopInformations.store.streetAddress,
+        phone: this.shopInformations.store.phone,
         postal_code: this.shopInformations.store.postalCode,
         locality: this.shopInformations.store.locality,
       }).then(() => {
@@ -360,6 +487,24 @@ export default {
     cancel() {
       this.$refs.modal.hide();
       this.stepActiveData = 1;
+    },
+    showFieldsMissing() {
+      const fields = [];
+
+      if (!this.shopInformations.store.phone) {
+        fields.push(this.$t('mcaRequirements.businessPhone'));
+      }
+      if (!this.shopInformations.store.streetAddress) {
+        fields.push(this.$t('mcaRequirements.businessAddress'));
+      }
+      if (!this.shopInformations.store.postalCode) {
+        fields.push(this.$t('mcaRequirements.businessZipCode'));
+      }
+      if (!this.shopInformations.store.locality) {
+        fields.push(this.$t('mcaRequirements.businessCity'));
+      }
+
+      return fields;
     },
     saveChangeExistingGmc() {
       /**
@@ -384,6 +529,9 @@ export default {
     shopInformations() {
       return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
     },
+    storeInformationsUrl() {
+      return this.$store.getters['app/GET_STORE_INFORMATION_URL'];
+    },
   },
   mounted() {
     this.stepActiveData = this.stepActive;
@@ -391,12 +539,7 @@ export default {
       this.$store.dispatch('accounts/REQUEST_WEBSITE_REQUIREMENTS').then(() => {
         this.selectedRequirements = this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'];
       });
-      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS').then(() => {
-        const {phone} = this.shopInformations.store;
-        const {streetAddress} = this.shopInformations.store;
-        this.businessPhone = phone || '';
-        this.businessAddr = streetAddress || '';
-      });
+      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
     }
   },
   googleUrl,

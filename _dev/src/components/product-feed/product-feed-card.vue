@@ -92,7 +92,7 @@
       >
         <VueShowdown
           :markdown="$t(`productFeedCard.alert${alert}`, alertLink)"
-          :extensions="['targetlink']"
+          :extensions="['extended-link']"
         />
         <div
           v-if="alert === 'ProductFeedExists'"
@@ -180,7 +180,7 @@
             tag="strong"
             class="font-weight-600"
             :markdown="$t('productFeedCard.alertShippingSettingsMissing')"
-            :extensions="['targetlink', 'no-p-tag']"
+            :extensions="['extended-link', 'no-p-tag']"
           />
           <br>
           <span class="ps_gs-fz-12">

@@ -57,7 +57,7 @@
       >
         <VueShowdown
           :markdown="$t('productFeedPage.syncStatus.alert')"
-          :extensions="['targetlink']"
+          :extensions="['extended-link']"
         />
       </b-alert>
       <!-- NOT IN BATCH 1 -->

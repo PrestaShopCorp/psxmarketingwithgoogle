@@ -2,45 +2,37 @@
 import showdown from 'showdown';
 
 /**
- * Showdown Extension to allow target attribute on links in MD
- * Extension found on showdown github repository:
- * https://github.com/showdownjs/showdown/issues/222#issuecomment-234141081
+ * Showdown Extension to allow target and class attributes on links in MD
  */
- showdown.extension('targetlink', () => [
+
+showdown.extension('extended-link', () => [
   {
     type: 'lang',
-    regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\[\:target=((?:&quot;|\\")?["']?)(.*?)\6]/g,
-    replace(wholematch, linkText, url, a, b, title, c, target) {
+    regex: /\[(.+?)\]\((.+?)\)\[:(?:(target)=(?:(?:&quot;|\\")?["']?)(.+?)(?:(?:&quot;|\\")?["']?))?\s*(?:(class)=(?:(?:&quot;|\\")?["']?)(.+?)(?:(?:&quot;|\\")?["']?))?\]/g,
+    replace(wholematch, linkText, url, firstAttribute, firstAttributeValue, secondAttribute, secondAttributeValue, ) {
+      let title = undefined;
+
+      if (url.indexOf(' ') >= 0) {
+        title = url.match(/(?<=\s).*/g)[0];
+        url = url.match(/(.*?)(?=\s)/g)[0];
+      }
+
       let result = `<a href="${url}"`;
 
+      if (typeof firstAttribute !== 'undefined' && firstAttribute !== '' && firstAttribute !== null) {
+        result += ` ${firstAttribute}="${firstAttributeValue}"`;
+      }
+
+      if (typeof secondAttribute !== 'undefined' && secondAttribute !== '' && secondAttribute !== null) {
+        result += ` ${secondAttribute}="${secondAttributeValue}"`;
+      }
+
       if (typeof title !== 'undefined' && title !== '' && title !== null) {
-        title = title.replace(/"/g, '&quot;');
-        title = showdown.helper.escapeCharacters(title, '*_', false);
         result += ` title="${title}"`;
       }
 
-      if (typeof target !== 'undefined' && target !== '' && target !== null) {
-        result += ` target="${target}"`;
-      }
-
       result += `>${linkText}</a>`;
-      return result;
-    },
-  },
-]);
 
-showdown.extension('className', () => [
-  {
-    type: 'lang',
-    regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\[\:class=((?:&quot;|\\")?["']?)(.*?)\6]/g,
-    replace(wholematch, linkText, url, a, b, title, c, className) {
-      let result = `<a href="${url}"`;
-
-      if (typeof className !== 'undefined' && className !== '' && className !== null) {
-        result += ` class="${className}"`;
-      }
-
-      result += `>${linkText}</a>`;
       return result;
     },
   },

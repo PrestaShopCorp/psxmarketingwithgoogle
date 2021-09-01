@@ -32,7 +32,7 @@
       class="mb-1"
       tag="p"
       :markdown="message"
-      :extensions="['targetlink', 'no-p-tag']"
+      :extensions="['extended-link', 'no-p-tag']"
       v-if="selectedMcaDetails.id === null"
     />
     <BadgeListRequirements
@@ -199,7 +199,7 @@
             this.$options.googleUrl.comparisonShoppingServices,
             this.$options.googleUrl.findCssPartners
           ])"
-          :extensions="['targetlink']"
+          :extensions="['extended-link']"
         />
       </div>
     </div>
@@ -298,7 +298,7 @@
           merchantCenterWebsitePageUrl.overview,
           $options.googleUrl.requestiongReReview
         ])"
-        :extensions="['targetlink']"
+        :extensions="['extended-link']"
       />
       <span class="text-muted d-block">
         <template
@@ -396,7 +396,7 @@
           :markdown="$t('mcaCard.shopInfoMissingDescription', [
             merchantCenterWebsitePageUrl.businessInfo
           ])"
-          :extensions="['targetlink', 'no-p-tag']"
+          :extensions="['extended-link', 'no-p-tag']"
         />
       </div>
     </b-alert>

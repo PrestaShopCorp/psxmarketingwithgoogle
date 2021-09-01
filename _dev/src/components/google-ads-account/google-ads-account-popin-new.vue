@@ -155,7 +155,7 @@
             $options.googleUrl.googleAdsTermsAndCondition,
           ])
         "
-        :extensions="['targetlink', 'className']"
+        :extensions="['extended-link']"
       />
       <div class="d-flex">
         <b-form-checkbox

@@ -11,7 +11,7 @@
           $options.googleUrl.countrySpecificShoppingPolicies,
           $options.googleUrl.localRegulation
         ])"
-        :extensions="['targetlink']"
+        :extensions="['extended-link']"
       />
     -->
       <label class="mb-2">
@@ -46,7 +46,7 @@
         :markdown="$t('productFeedSettings.shipping.cantFindCountry', [
           $options.googleUrl.supportedCountries
         ])"
-        :extensions="['targetlink']"
+        :extensions="['extended-link']"
       />
       <VueShowdown
         class="text-muted my-1 ps_gs-fz-12"
