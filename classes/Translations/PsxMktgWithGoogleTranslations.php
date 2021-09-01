@@ -77,7 +77,7 @@ class PsxMktgWithGoogleTranslations
                     'content2' => [
                         'title' => $this->module->l('Always show accurate product information', 'PsxMktgWithGoogleTranslations'),
                         'text' => $this->module->l('Once you upload your store and products data to Google directly from PrestaShop these information will be available and automatically synced for free listings, Google Ads, and other Google services.', 'PsxMktgWithGoogleTranslations'),
-                        'footer' => $this->module->l('Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]', 'PsxMktgWithGoogleTranslations'),
+                        'footer' => $this->module->l("Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]", 'PsxMktgWithGoogleTranslations'),
                     ],
                     'content3' => [
                         'title' => $this->module->l('Boost traffic and sales with Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
