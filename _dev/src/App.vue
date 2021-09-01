@@ -10,9 +10,9 @@
           </MenuItem>
           <MenuItem
             v-if="googleAdsChosen"
-            :route="{name: 'paid-marketing'}"
+            :route="{name: 'campaign'}"
           >
-            {{ $t('general.tabs.paidMarketing') }}
+            {{ $t('general.tabs.campaign') }}
           </MenuItem>
         </template>
         <MenuItem

@@ -30,7 +30,7 @@
         class="ps_gs-table-products mb-3"
         :table-class="{'border-bottom-0': loading}"
         variant="light"
-        responsive="md"
+        responsive="xl"
       >
         <b-thead>
           <b-tr>
