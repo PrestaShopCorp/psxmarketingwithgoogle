@@ -48,7 +48,7 @@
           <template v-for="(product, index) in items">
             <b-tr :key="index">
               <b-td class="align-top">
-                {{ product.id }}&#8209;{{ product.attribute > 0 ? product.attribute : '' }}
+                {{ product.id }}
               </b-td>
               <b-td class="align-top b-table-sticky-column">
                 <a
@@ -60,6 +60,9 @@
                 >
                   {{ product.name }}
                 </a>
+              </b-td>
+              <b-td class="align-top">
+                {{ product.attribute > 0 ? product.attribute : '' }}
               </b-td>
               <b-td class="align-top">
                 {{ product.statuses.destination }}
@@ -366,6 +369,10 @@ export default {
         {
           key: 'name',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
+        },
+        {
+          key: 'attribute',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderAttributeID'),
         },
         {
           key: 'destination',
