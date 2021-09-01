@@ -20,6 +20,7 @@
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
+import MutationsTypesGoogleAds from '../google-ads/mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
@@ -202,6 +203,11 @@ export default {
         commit(MutationsTypes.SAVE_GMC, {
           id: json.account_id,
         });
+      }
+      if (json.google_ads_account_id) {
+        commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT_ID}`, json.google_ads_account_id,
+          {root: true},
+        );
       }
       // If GMC is already linked, must start by requesting GMC list, then look after the link GMC.
       // Also needed if we didn't have linked the accounts yet, as the marchant has to pick one.

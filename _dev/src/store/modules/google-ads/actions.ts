@@ -95,23 +95,6 @@ export default {
     //     throw new HttpClientError(resp.statusText, resp.status);
     // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect',
     // );
-    //   }
-    //   const json = await resp.json();
-    commit(MutationsTypes.UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS,
-      {
-        country: {
-          // eslint-disable-next-line camelcase
-          iso_code: 'FR',
-          name: 'France',
-        },
-        currency: 'EUR',
-        timeZone: {
-          text: null,
-          offset: null,
-        },
-      },
-    );
-
     // } catch (error) {
     //   console.error(error);
     // }
@@ -132,8 +115,8 @@ export default {
     //       }),
     //     });
     //   if (!resp.ok) {
-    //     throw new HttpClientError(resp.statusText, resp.status);
     //     // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect')
+    //     throw new HttpClientError(resp.statusText, resp.status);
     //   }
     // const json = await resp.json();
     const newUser = {
@@ -184,21 +167,20 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
-        console.log(resp);
+      console.log(resp);
       if (!resp.ok) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
         throw new HttpClientError(resp.statusText, resp.status);
-
       }
       const json = await resp.json();
       console.log(json);
-    //   commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, {
-    //   id: json.id,
-    //   name: json.name,
-    //   isAdmin: json.isAdmin,
-    // });
-    commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, payload);
-    dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
+      //   commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, {
+      //   id: json.id,
+      //   name: json.name,
+      //   isAdmin: json.isAdmin,
+      // });
+      commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, payload);
+      dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
     } catch (error) {
       console.error(error);
     }

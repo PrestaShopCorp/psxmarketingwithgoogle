@@ -43,9 +43,13 @@ export interface ShopInformations {
 }
 export interface AccountInformations {
     id: string,
-    name: string,
-    isAdmin: boolean,
-    isTestAccount: boolean,
+    name?: string,
+    isAdmin?: boolean,
+    isTestAccount?: boolean,
+    billingSettings?: {
+      isSet: boolean,
+      link?: string,
+    },
 }
 
 export const state: State = {
