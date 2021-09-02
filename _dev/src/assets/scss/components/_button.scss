@@ -19,3 +19,9 @@
     color: $white;
   }
 }
+
+.text-secondary.btn-invisible {
+  &:hover, &:focus {
+    color: $primary !important;
+  }
+}

@@ -167,7 +167,7 @@
           <b-form-radio
             v-model="campaignProductsFilter"
             name="campaign-product-filter-radios"
-            value="true"
+            :value="true"
             class="mb-1"
           >
             Include all synced products
@@ -175,7 +175,7 @@
           <b-form-radio
             v-model="campaignProductsFilter"
             name="campaign-product-filter-radios"
-            value="false"
+            :value="false"
           >
             Select products using product partition filters
           </b-form-radio>
@@ -188,6 +188,28 @@
             />
           </template>
         </b-form-group>
+        <!-- TODO START > Ajout de filtres dynamiques -->
+        <b-form-group
+          v-if="campaignProductsFilter === false"
+          class="maxw-sm-420"
+        >
+          <b-form-row>
+            <b-col>
+              Filter by
+            </b-col>
+            <b-col>
+              Dimension value
+            </b-col>
+          </b-form-row>
+          <b-button
+            variant="invisible"
+            class="text-secondary"
+            @click="addFilter"
+          >
+            + Add filter
+          </b-button>
+        </b-form-group>
+        <!-- TODO END > Ajout de filtres dynamiques -->
         <b-form-group
           id="campaign-daily-budget-fieldset"
           description="You will only pay if someone clicks your ad."
@@ -313,6 +335,9 @@ export default {
       // TODO
     },
     createCampaign() {
+      // TODO
+    },
+    addFilter() {
       // TODO
     },
   },
