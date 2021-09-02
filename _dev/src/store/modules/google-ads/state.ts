@@ -43,7 +43,7 @@ export interface ShopInformations {
 }
 export interface AccountInformations {
     id: string,
-    name?: string,
+    descriptiveName?: string,
     isAdmin?: boolean,
     isTestAccount?: boolean,
     billingSettings?: {

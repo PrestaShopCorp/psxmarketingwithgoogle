@@ -260,7 +260,7 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
     googleAdsAccountIsChosen() {
-      return this.getGoogleAdsAccount && this.getGoogleAdsAccount.name.length > 0;
+      return this.getGoogleAdsAccount && this.getGoogleAdsAccount.id;
     },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];

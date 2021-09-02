@@ -97,7 +97,7 @@
                 link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
               >
                 <span class="mr-2">
-                  {{ option.id }} - {{ option.name }}
+                  {{ option.id }} - {{ option.descriptiveName }}
                 </span>
                 <span
                   v-if="!isAdmin(option)"
@@ -156,7 +156,7 @@
         class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
       >
         <div class="d-flex align-items-center">
-          <strong>{{ accountChosen.id }} - {{ accountChosen.name }}</strong>
+          <strong>{{ accountChosen.id }} - {{ accountChosen.descriptiveName }}</strong>
           <b-badge
             v-if="gAdsAccountStatusBadge !== null"
             :variant="gAdsAccountStatusBadge.color"
@@ -252,7 +252,7 @@ export default {
     googleAdsLabel(index) {
       if (this.googleAdsAccountSelectionOptions && this.googleAdsAccountSelectionOptions[index]) {
         const ga = this.googleAdsAccountSelectionOptions[index];
-        return `${ga.id} - ${ga.name}`;
+        return `${ga.id} - ${ga.descriptiveName}`;
       }
       return null;
     },
@@ -291,7 +291,6 @@ export default {
     error() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_STATUS'];
     },
-
     gAdsAccountStatusBadge() {
       switch (this.error) {
         case GoogleAdsErrorReason.Suspended:
@@ -327,8 +326,8 @@ export default {
     isGoogleAdsAccountFullyFetched() {
       return this.isEnabled
         && !this.listLoading
-        && this.accountChosen.name !== null
-        && this.accountChosen.name !== undefined;
+        && this.accountChosen.id !== null
+        && this.accountChosen.id !== undefined;
     },
   },
 
