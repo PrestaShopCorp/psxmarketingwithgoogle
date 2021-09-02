@@ -45,6 +45,19 @@
         />
         <label
           class="font-weight-600 mb-0"
+          for="name"
+        >
+          {{ $t("googleAdsAccountNew.business.name") }}
+        </label>
+        <b-form-input
+          id="businessName"
+          aria-describedby="businessName"
+          :value="selectedDescriptiveName"
+          v-model="selectedDescriptiveName"
+          class="mb-4"
+        />
+        <label
+          class="font-weight-600 mb-0"
           for="selectBillingCountry"
         >
           {{ $t("googleAdsAccountNew.business.labelCountry") }}
@@ -239,9 +252,20 @@ export default {
     Stepper,
     PsSelect,
   },
-
   data() {
     return {
+      newAccountInfos: {
+        descriptiveName: null,
+        country: {
+          name: null,
+          iso_code: null,
+        },
+        currency: null,
+        timeZone: {
+          text: '',
+          offset: '',
+        },
+      },
       stepActiveData: 1,
       steps: [
         {
@@ -262,10 +286,7 @@ export default {
       this.stepActiveData = value;
     },
     ok() {
-      this.$store.dispatch('googleAds/SAVE_NEW_GOOGLE_ADS_ACCOUNT', {
-        user: this.user,
-        shopInfos: this.shopInformations,
-      })
+      this.$store.dispatch('googleAds/SAVE_NEW_GOOGLE_ADS_ACCOUNT', this.newAccountInfos)
         .then(() => {
           this.$refs.modal.hide();
         });
@@ -294,48 +315,49 @@ export default {
     },
   },
   computed: {
-    shopInformations() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_SHOP_INFORMATIONS'];
+    accountInformations() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
     selectedTimeZone: {
       get() {
-        return this.shopInformations.timeZone.text;
+        return this.newAccountInfos.timeZone.text;
       },
       set(value) {
-        this.$store.commit('googleAds/UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS', {
-          name: 'timeZone',
-          data: {
-            offset: value.offset,
-            text: value.text,
-          },
-        });
+        this.newAccountInfos.timeZone = {
+          offset: value.offset,
+          text: value.text,
+        };
+        return this.newAccountInfos;
       },
     },
     selectedBillingCountry: {
       get() {
-        return this.shopInformations.country
-        && this.shopInformations.country.name !== null
-          ? this.shopInformations.country : null;
+        return this.newAccountInfos.country.name;
       },
       set(value) {
-        this.$store.commit('googleAds/UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS', {
-          name: 'country',
-          data: {
-            name: value.country,
-            iso_code: value.code,
-          },
-        });
+        this.newAccountInfos.country = {
+          name: value.country,
+          iso_code: value.code,
+        };
+        return this.newAccountInfos;
       },
     },
     selectedCurrency: {
       get() {
-        return this.shopInformations.currency;
+        return this.newAccountInfos.currency;
       },
       set(value) {
-        this.$store.commit('googleAds/UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS', {
-          name: 'currency',
-          data: value,
-        });
+        this.newAccountInfos.currency = value;
+        return this.newAccountInfos;
+      },
+    },
+    selectedDescriptiveName: {
+      get() {
+        return this.newAccountInfos.descriptiveName;
+      },
+      set(value) {
+        this.newAccountInfos.descriptiveName = value;
+        return this.newAccountInfos;
       },
     },
     currencies() {

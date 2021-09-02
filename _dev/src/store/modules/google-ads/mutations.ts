@@ -46,10 +46,6 @@ export default {
     }
     state.accountChosen.id = payload;
   },
-  [MutationsTypes.UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS](
-    state: LocalState, payload: payloadObject) {
-    state.shopInfos[payload.name] = payload.data;
-  },
   [MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT](
     state: LocalState, payload: AccountInformations) {
     state.list.push(payload);

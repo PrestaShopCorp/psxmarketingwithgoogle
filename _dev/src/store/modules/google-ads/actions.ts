@@ -1,5 +1,4 @@
-// TODO WHEN API OK :
-// Retrieve when error is Suspended / BillingSettingsMissing /NeedRefreshAfterBilling/ Cancelled
+// TODO ERROR : NeedRefreshAfterBilling / BillingSettingsMissing / Cancelled / Suspended
 
 /**
  * 2007-2021 PrestaShop and Contributors
@@ -22,6 +21,7 @@
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
+import {AccountInformations} from './state';
 
 export default {
   async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit, rootState}) {
@@ -100,7 +100,16 @@ export default {
     // }
   },
 
-  async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT]({commit, rootState, dispatch}, payload: object) {
+  async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT](
+    {commit, rootState}, payload: AccountInformations,
+  ) {
+    const newUser = {
+      id: null,
+      descriptiveName: payload.descriptiveName,
+      country: payload.country,
+      currency: payload.currency,
+      timeZone: payload.timeZone,
+    };
     // try {
     //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts`,
     //     {
@@ -111,23 +120,32 @@ export default {
     //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
     //       },
     //       body: JSON.stringify({
-    //         payload,
+    //         newUser,
     //       }),
     //     });
     //   if (!resp.ok) {
-    //     // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect')
+    //     commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect')
     //     throw new HttpClientError(resp.statusText, resp.status);
     //   }
     // const json = await resp.json();
-    const newUser = {
-      id: '417-056-4875',
-      name: 'TOUTOUTOUTOUTOU',
-      isAdmin: true,
+
+    //  TODO : wait for response : user WITH ID, ADMIN, TEST AND BILLING SETTINGS
+    const newUserBis = {
+      id: 'turlututu',
+      descriptiveName: payload.descriptiveName,
+      isAdmin: false,
       isTestAccount: true,
+      billingSettings: {
+        isSet: false,
+        link: '',
+      },
+      country: payload.country,
+      currency: payload.currency,
+      timeZone: payload.timeZone,
     };
-    commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUser);
-    commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUser);
-    dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
+    commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUserBis);
+    commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUserBis);
+
     // } catch (error) {
     //   console.error(error);
     // }
@@ -180,7 +198,6 @@ export default {
       //   isAdmin: json.isAdmin,
       // });
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, payload);
-      dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
     } catch (error) {
       console.error(error);
     }

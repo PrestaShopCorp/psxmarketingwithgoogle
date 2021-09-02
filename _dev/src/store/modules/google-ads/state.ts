@@ -21,7 +21,6 @@ export interface State {
   status: null|GoogleAdsErrorReason,
   accountChosen: null|AccountInformations,
   list: Array<AccountInformations>,
-  shopInfos: ShopInformations
 }
 
 export enum GoogleAdsErrorReason {
@@ -32,40 +31,26 @@ export enum GoogleAdsErrorReason {
   Suspended = 'Suspended',
 }
 
-export interface ShopInformations {
-  country: {
+export interface AccountInformations {
+  id: string,
+  descriptiveName?: string,
+  isAdmin?: boolean,
+  isTestAccount?: boolean,
+  billingSettings?: {
+    isSet: boolean,
+    link?: string,
+  },
+  country?: {
     // eslint-disable-next-line camelcase
     iso_code: null|string,
     name: null|string
   },
-  currency: null|string,
-  timeZone: null|object
-}
-export interface AccountInformations {
-    id: string,
-    descriptiveName?: string,
-    isAdmin?: boolean,
-    isTestAccount?: boolean,
-    billingSettings?: {
-      isSet: boolean,
-      link?: string,
-    },
+  currency?: null|string,
+  timeZone?: null|object
 }
 
 export const state: State = {
   status: null,
   accountChosen: null,
   list: [],
-  shopInfos: {
-    country: {
-      // eslint-disable-next-line camelcase
-      iso_code: null,
-      name: null,
-    },
-    currency: 'EUR',
-    timeZone: {
-      text: null,
-      offset: null,
-    },
-  },
 };

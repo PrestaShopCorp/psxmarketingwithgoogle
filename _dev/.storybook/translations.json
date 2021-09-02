@@ -328,6 +328,7 @@
         "description" : "This information will be used to create your account.  \nGoogle email address below is the one provided during your Google account connection."
       },
       "business" : {
+        "name" : "Name",
         "title" : "Business information",
         "description" : "Both time zone and currency settings are used to determine how you're billed.  \n**You can never change the currency** you choose for your account, so choose it carefully.",
         "labelCountry" : "Billing country",
