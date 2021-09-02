@@ -88,6 +88,12 @@
                 :min="new Date()"
                 :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
                 reset-button
+                label-reset-button="Reset date"
+                :reset-value="new Date()"
+                reset-button-variant="outline-secondary sm"
+                hide-header="true"
+                label-help="Use cursor keys to navigate calendar dates"
+                required="true"
               />
             </b-col>
             <b-col>
@@ -96,7 +102,13 @@
                 id="campaign-duration-end-date-input"
                 v-model="campaignDurationEndDate"
                 :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
+                :min="new Date()"
                 reset-button
+                label-reset-button="Reset date"
+                reset-button-variant="outline-secondary sm"
+                hide-header="true"
+                label-help="Use cursor keys to navigate calendar dates"
+                required="false"
               />
             </b-col>
           </b-form-row>
@@ -212,10 +224,16 @@
           </b-input-group>
         </b-form-group>
         <span class="font-weight-600">Campaign activation</span>
-        <p class="pb-2">
+        <p>
           Your campaign will run until you pause it. You can pause your campaign at any time.
         </p>
-        <div class="d-md-flex text-center justify-content-end mt-3">
+        <b-alert
+          variant="warning"
+          show
+        >
+          You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.
+        </b-alert>
+        <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
           <b-button
             @click="cancel"
             size="sm"
@@ -262,6 +280,7 @@ export default {
   computed: {
     disableCreateCampaign() {
       // TODO
+      // Condition to allow user to create campaign
       return true;
     },
     campaignNameFeedback() {
