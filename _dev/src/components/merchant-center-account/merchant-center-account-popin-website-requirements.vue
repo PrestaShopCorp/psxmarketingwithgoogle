@@ -578,8 +578,8 @@ export default {
         fields.push(this.$t('mcaRequirements.businessCity'));
       }
 
-      if (!this.shopInformations.store?.region
-      && this.shopInformations.store.region !== undefined) {
+      if (this.shopInformations.store?.region !== undefined
+      && !this.shopInformations.store.region) {
         fields.push(this.$t('mcaRequirements.businessRegion'));
       }
 
