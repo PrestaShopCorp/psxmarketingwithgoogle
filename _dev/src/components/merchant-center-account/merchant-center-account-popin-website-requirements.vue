@@ -247,7 +247,7 @@
         <b-form-input
           id="inputBusinessPhone"
           aria-describedby="businessPhoneNumberFeedback"
-          :value="shopInformations.store.phone ? this.shopInformations.store.phone : ''"
+          :value="shopInformations.store.phone ? shopInformations.store.phone : ''"
           readonly
           class="maxw-sm-420"
         />
