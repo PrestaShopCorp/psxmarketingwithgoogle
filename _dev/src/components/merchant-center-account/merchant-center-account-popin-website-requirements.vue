@@ -247,7 +247,7 @@
         <b-form-input
           id="inputBusinessPhone"
           aria-describedby="businessPhoneNumberFeedback"
-          :value="shopInformations.store.phone"
+          :value="shopInformations.store.phone ? shopInformations.store.phone : ''"
           readonly
           class="maxw-sm-420"
         />
@@ -468,7 +468,7 @@ export default {
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
     },
     verifyPhone() {
-      return !!(this.shopInformations.store.phone.match(/^[+0-9. ()/-]*$/));
+      return !!(this.shopInformations.store.phone && this.shopInformations.store.phone.match(/^[+0-9. ()/-]*$/));
     },
     ok() {
       this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', {
