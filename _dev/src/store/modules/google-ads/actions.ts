@@ -83,7 +83,7 @@ export default {
   }) {
     // const id = rootState.googleAds.accountChosen.id;
     // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/shopInfos/${id}`,
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}`,
     //     {
     //       method: 'GET',
     //       headers: {
