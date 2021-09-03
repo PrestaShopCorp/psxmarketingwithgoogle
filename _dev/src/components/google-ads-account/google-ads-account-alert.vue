@@ -10,7 +10,7 @@
         tag="p"
         :class="!!gAdsAccountAlert.link && 'd-inline'"
         :markdown="gAdsAccountAlert.text"
-        :extensions="['no-p-tag', 'target_link']"
+        :extensions="['no-p-tag', 'extended-link']"
       />
       <a
         v-if="!!gAdsAccountAlert.link"
