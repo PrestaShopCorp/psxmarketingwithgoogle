@@ -281,7 +281,7 @@
         <b-form-input
           id="inputBusinessRegion"
           aria-describedby="businessRegionFeedback"
-          :value="shopInformations.store.region"
+          :value="shopInformations.store.region ? shopInformations.store.region : ''"
           readonly
           class="maxw-sm-420"
         />
@@ -550,7 +550,7 @@ export default {
         locality: this.shopInformations.store.locality,
       };
 
-      if (Object.prototype.hasOwnProperty.call(this.shopInformations.store, 'region')) {
+      if (this.shopInformations.store.region !== undefined) {
         payload.region = this.shopInformations.store.region;
       }
 
@@ -578,8 +578,8 @@ export default {
         fields.push(this.$t('mcaRequirements.businessCity'));
       }
 
-      if (!this.shopInformations.store.region
-      && Object.prototype.hasOwnProperty.call(this.shopInformations.store, 'region')) {
+      if (!this.shopInformations.store?.region
+      && this.shopInformations.store.region !== undefined) {
         fields.push(this.$t('mcaRequirements.businessRegion'));
       }
 
