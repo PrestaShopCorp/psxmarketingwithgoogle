@@ -89,6 +89,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             case 'retrieveFaq':
                 $this->retrieveFaq();
                 break;
+            case 'getInformationsForAdsAccount':
+                $this->getInformationsForAdsAccount();
+                break;
             default:
                 http_response_code(400);
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
@@ -233,6 +236,16 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         );
 
         $this->ajaxDie(json_encode(['success' => true]));
+    }
+
+    public function getInformationsForAdsAccount()
+    {
+        $timezone = date('O') .' '. date_default_timezone_get();
+
+        $this->ajaxDie(json_encode([
+            'timezone' => $timezone,
+            'currency' => $this->currencyRepository->getShopCurrency()
+        ]));
     }
 
     /**
