@@ -26,7 +26,7 @@ import HttpClientError from '../../../utils/HttpClientError';
 export default {
   async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit, rootState}) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/list`,
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/list`,
         {
           method: 'GET',
           headers: {
@@ -49,7 +49,7 @@ export default {
   }) {
     const id = rootState.accounts.googleAccount.account_id;
     // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/${id}`,
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/${id}`,
     //     {
     //       method: 'GET',
     //       headers: {
@@ -83,7 +83,7 @@ export default {
   }) {
     // const id = rootState.googleAds.accountChosen.id;
     // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/shopInfos/${id}`,
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}`,
     //     {
     //       method: 'GET',
     //       headers: {
@@ -119,7 +119,7 @@ export default {
 
   async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT]({commit, rootState, dispatch}, payload: object) {
     // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads`,
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts`,
     //     {
     //       method: 'POST',
     //       headers: {
@@ -153,7 +153,7 @@ export default {
     correlationId: string) {
     // eslint-disable-next-line no-param-reassign
     //     correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
-    //   const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads`, {
+    //   const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts`, {
     //     method: 'DELETE',
     //     headers: {
     //       Accept: 'application/json',
@@ -174,7 +174,7 @@ export default {
   async [ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT]({commit, dispatch}, payload: object) {
     // const id = payload.id
     // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/${id}`,
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/${id}`,
     //     {
     //       method: 'POST',
     //       headers: {
