@@ -33,7 +33,7 @@ export enum GoogleAdsErrorReason {
 
 export interface AccountInformations {
   id: string,
-  descriptiveName?: string,
+  name?: string,
   isAdmin?: boolean,
   isTestAccount?: boolean,
   billingSettings?: {

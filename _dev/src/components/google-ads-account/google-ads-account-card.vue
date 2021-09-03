@@ -97,7 +97,7 @@
                 link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
               >
                 <span class="mr-2">
-                  {{ option.id }} - {{ option.descriptiveName }}
+                  {{ option.id }} - {{ option.name }}
                 </span>
                 <span
                   v-if="!isAdmin(option)"
@@ -156,7 +156,7 @@
         class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
       >
         <div class="d-flex align-items-center">
-          <strong>{{ accountChosen.id }} - {{ accountChosen.descriptiveName }}</strong>
+          <strong>{{ accountChosen.id }} - {{ accountChosen.name }}</strong>
           <b-badge
             v-if="gAdsAccountStatusBadge !== null"
             :variant="gAdsAccountStatusBadge.color"
@@ -252,7 +252,7 @@ export default {
     googleAdsLabel(index) {
       if (this.googleAdsAccountSelectionOptions && this.googleAdsAccountSelectionOptions[index]) {
         const ga = this.googleAdsAccountSelectionOptions[index];
-        return `${ga.id} - ${ga.descriptiveName}`;
+        return `${ga.id} - ${ga.name}`;
       }
       return null;
     },

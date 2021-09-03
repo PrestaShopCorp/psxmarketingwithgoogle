@@ -255,7 +255,7 @@ export default {
   data() {
     return {
       newAccountInfos: {
-        descriptiveName: null,
+        name: null,
         country: {
           name: null,
           iso_code: null,
@@ -353,10 +353,10 @@ export default {
     },
     selectedDescriptiveName: {
       get() {
-        return this.newAccountInfos.descriptiveName;
+        return this.newAccountInfos.name;
       },
       set(value) {
-        this.newAccountInfos.descriptiveName = value;
+        this.newAccountInfos.name = value;
         return this.newAccountInfos;
       },
     },
