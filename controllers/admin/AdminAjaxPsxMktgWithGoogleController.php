@@ -131,7 +131,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 
     private function getShopConfigurationForGMC()
     {
-        $this->ajaxDie(json_encode([
+        $data = [
             'shop' => [
                 'name' => Shop::isFeatureActive()
                     ? $this->context->shop->name
@@ -147,12 +147,17 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                     . ' '
                     . $this->configurationAdapter->get('PS_SHOP_ADDR2')),
                 'locality' => $this->configurationAdapter->get('PS_SHOP_CITY'),
-                'region' => State::getNameById($this->configurationAdapter->get('PS_SHOP_STATE_ID')),
                 'postalCode' => $this->configurationAdapter->get('PS_SHOP_CODE'),
                 'country' => $this->countryRepository->getShopDefaultCountry(),
                 'phone' => $this->configurationAdapter->get('PS_SHOP_PHONE'),
             ],
-        ]));
+        ];
+
+        if ($this->countryRepository->countryNeedState() === true) {
+            $data['store']['region'] = State::getNameById($this->configurationAdapter->get('PS_SHOP_STATE_ID'));
+        }
+
+        $this->ajaxDie(json_encode($data));
     }
 
     /**

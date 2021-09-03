@@ -228,6 +228,74 @@
       <b-form-group>
         <div class="d-flex align-items-center mb-1">
           <label
+            for="inputBusinessCountry"
+            class="h4 mb-0 font-weight-600"
+          >
+            {{ $t('mcaRequirements.businessCountry') }}
+          </label>
+          <b-button
+            v-b-tooltip
+            :title="$t(`tooltip.GMCForm.businessCountry`)"
+            variant="invisible"
+            class="ml-1 p-0 d-flex text-primary"
+          >
+            <span class="material-icons-round mb-0 ps_gs-fz-12">
+              error_outline
+            </span>
+          </b-button>
+        </div>
+        <b-form-input
+          id="inputBusinessCountry"
+          aria-describedby="businessCountryFeedback"
+          :value="shopInformations.store.country.name"
+          readonly
+          class="maxw-sm-420"
+        />
+        <VueShowdown
+          id="businessCountryFeedback"
+          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
+          :extensions="['extended-link']"
+          :markdown="$t('mcaRequirements.changeCountryField', [storeInformationsUrl])"
+        />
+      </b-form-group>
+
+      <b-form-group v-if="Object.prototype.hasOwnProperty.call(shopInformations.store, 'region')">
+        <div class="d-flex align-items-center mb-1">
+          <label
+            for="inputBusinessRegion"
+            class="h4 mb-0 font-weight-600"
+          >
+            {{ $t('mcaRequirements.businessRegion') }}
+          </label>
+          <b-button
+            v-b-tooltip
+            :title="$t(`tooltip.GMCForm.businessRegion`)"
+            variant="invisible"
+            class="ml-1 p-0 d-flex text-primary"
+          >
+            <span class="material-icons-round mb-0 ps_gs-fz-12">
+              error_outline
+            </span>
+          </b-button>
+        </div>
+        <b-form-input
+          id="inputBusinessRegion"
+          aria-describedby="businessRegionFeedback"
+          :value="shopInformations.store.region"
+          readonly
+          class="maxw-sm-420"
+        />
+        <VueShowdown
+          id="businessRegionFeedback"
+          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
+          :extensions="['extended-link']"
+          :markdown="$t('mcaRequirements.changeRegionField', [storeInformationsUrl])"
+        />
+      </b-form-group>
+
+      <b-form-group>
+        <div class="d-flex align-items-center mb-1">
+          <label
             for="inputBusinessPhone"
             class="h4 mb-0 font-weight-600"
           >
@@ -471,7 +539,7 @@ export default {
       return !!(this.shopInformations.store.phone && this.shopInformations.store.phone.match(/^[+0-9. ()/-]*$/));
     },
     ok() {
-      this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', {
+      const payload = {
         shop_url: this.shopInformations.shop.url,
         shop_name: this.shopInformations.shop.name,
         location: this.shopInformations.store.country.iso_code,
@@ -480,7 +548,13 @@ export default {
         phone: this.shopInformations.store.phone,
         postal_code: this.shopInformations.store.postalCode,
         locality: this.shopInformations.store.locality,
-      }).then(() => {
+      };
+
+      if (Object.prototype.hasOwnProperty.call(this.shopInformations.store, 'region')) {
+        payload.region = this.shopInformations.store.region;
+      }
+
+      this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', payload).then(() => {
         this.$refs.modal.hide();
       });
     },
@@ -502,6 +576,11 @@ export default {
       }
       if (!this.shopInformations.store.locality) {
         fields.push(this.$t('mcaRequirements.businessCity'));
+      }
+
+      if (!this.shopInformations.store.region
+      && Object.prototype.hasOwnProperty.call(this.shopInformations.store, 'region')) {
+        fields.push(this.$t('mcaRequirements.businessRegion'));
       }
 
       return fields;

@@ -24,6 +24,7 @@ use Context;
 use Country;
 use Db;
 use DbQuery;
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 
 class CountryRepository
 {
@@ -39,13 +40,19 @@ class CountryRepository
 
     private $countryIsoCodeCache = [];
 
+    /**
+     * @var ConfigurationAdapter
+     */
+    private $configurationAdapter;
+
     private $country;
 
-    public function __construct(Db $db, Context $context, Country $country)
+    public function __construct(Db $db, Context $context, Country $country, ConfigurationAdapter $configAdapter)
     {
         $this->db = $db;
         $this->context = $context;
         $this->country = $country;
+        $this->configurationAdapter = $configAdapter;
     }
 
     private function getBaseQuery(): DbQuery
@@ -100,9 +107,14 @@ class CountryRepository
     public function getShopDefaultCountry(): array
     {
         return [
-            'name' => $this->country->name[$this->context->language->id],
-            'iso_code' => $this->country->iso_code,
+            'name' => Country::getNameById($this->context->language->id, $this->configurationAdapter->get('PS_SHOP_COUNTRY_ID')),
+            'iso_code' => Country::getIsoById($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID')),
         ];
+    }
+
+    public function countryNeedState(): bool
+    {
+        return Country::containsStates($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID'));
     }
 
     /**
