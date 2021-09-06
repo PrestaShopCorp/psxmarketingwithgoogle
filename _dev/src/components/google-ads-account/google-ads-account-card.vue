@@ -291,7 +291,6 @@ export default {
     error() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_STATUS'];
     },
-
     gAdsAccountStatusBadge() {
       switch (this.error) {
         case GoogleAdsErrorReason.Suspended:
@@ -327,8 +326,8 @@ export default {
     isGoogleAdsAccountFullyFetched() {
       return this.isEnabled
         && !this.listLoading
-        && this.accountChosen.name !== null
-        && this.accountChosen.name !== undefined;
+        && this.accountChosen.id !== null
+        && this.accountChosen.id !== undefined;
     },
   },
 

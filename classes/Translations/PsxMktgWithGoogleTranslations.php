@@ -377,6 +377,7 @@ class PsxMktgWithGoogleTranslations
                   'description' => $this->module->l("This information will be used to create your account.  \nGoogle email address below is the one provided during your Google account connection.", 'PsxMktgWithGoogleTranslations'),
                 ],
                 'business' => [
+                  'name' => $this->module->l('Name', 'PsxMktgWithGoogleTranslations'),
                   'title' => $this->module->l('Business information', 'PsxMktgWithGoogleTranslations'),
                   'description' => $this->module->l("Both time zone and currency settings are used to determine how you\'re billed.  \n**You can never change the currency** you choose for your account, so choose it carefully.", 'PsxMktgWithGoogleTranslations'),
                   'labelCountry' => $this->module->l('Billing country', 'PsxMktgWithGoogleTranslations'),

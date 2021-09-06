@@ -37,9 +37,14 @@ export default {
   [MutationsTypes.SET_GOOGLE_ADS_ACCOUNT](state: LocalState, payload: AccountInformations|null) {
     state.accountChosen = payload;
   },
-  [MutationsTypes.UPDATE_GOOGLE_ADS_SHOP_INFORMATIONS](
-    state: LocalState, payload: payloadObject) {
-    state.shopInfos[payload.name] = payload.data;
+  [MutationsTypes.SET_GOOGLE_ADS_ACCOUNT_ID](state: LocalState, payload: string) {
+    if (state.accountChosen === null) {
+      state.accountChosen = {
+        id: payload,
+      };
+      return;
+    }
+    state.accountChosen.id = payload;
   },
   [MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT](
     state: LocalState, payload: AccountInformations) {
