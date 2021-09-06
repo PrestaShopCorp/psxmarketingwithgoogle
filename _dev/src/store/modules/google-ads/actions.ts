@@ -1,4 +1,4 @@
-// TODO ERROR : NeedRefreshAfterBilling / BillingSettingsMissing / Cancelled / Suspended
+// TODO ERROR :  Cancelled / Suspended
 
 /**
  * 2007-2021 PrestaShop and Contributors
@@ -62,31 +62,10 @@ export default {
       }
       const json = await resp.json();
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, json);
-      dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
+      dispatch(ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING);
     } catch (error) {
       console.error(error);
     }
-  },
-  async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS]({
-    commit, rootState, dispatch, state,
-  }) {
-    // const id = rootState.googleAds.accountChosen.id;
-    // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}`,
-    //     {
-    //       method: 'GET',
-    //       headers: {
-    //         Accept: 'application/json',
-    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-    //       },
-    //     });
-    //   if (!resp.ok) {
-    //     throw new HttpClientError(resp.statusText, resp.status);
-    // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect',
-    // );
-    // } catch (error) {
-    //   console.error(error);
-    // }
   },
 
   async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT](
@@ -134,6 +113,9 @@ export default {
     };
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUserBis);
     commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUserBis);
+    if (!newUserBis.billingSettings.isSet) {
+      commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
+    }
 
     // } catch (error) {
     //   console.error(error);
@@ -188,6 +170,27 @@ export default {
     } catch (error) {
       console.error(error);
     }
+  },
+
+  async [ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING]({rootState, state, commit}) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'getShopConfigurationForAds',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
+    // let finalAccount = {
+    //   ...state.accountChosen,
+    //   currency : result.currency,
+    //   timeZone : result.timezone,
+    // }
+    // commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, finalAccount);
+    return result;
   },
 
 };

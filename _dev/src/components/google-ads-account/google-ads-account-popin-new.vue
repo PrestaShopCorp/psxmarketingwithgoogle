@@ -260,11 +260,8 @@ export default {
           name: null,
           iso_code: null,
         },
-        currency: null,
-        timeZone: {
-          text: '',
-          offset: '',
-        },
+        currency: this.accountInformations?.currency || '',
+        timeZone: this.accountInformations?.timeZone || '',
       },
       stepActiveData: 1,
       steps: [

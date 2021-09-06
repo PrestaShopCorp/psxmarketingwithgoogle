@@ -1,18 +1,6 @@
 export const googleAdsNotChosen = {
   status: null,
   accountChosen: null,
-  shopInfos: {
-    country: {
-      // eslint-disable-next-line camelcase
-      iso_code: null,
-      name: null,
-    },
-    currency: 'DIR',
-    timeZone: {
-      text: null,
-      offset: null,
-    },
-  },
   list: [
     {
       id: '415-056-4877',
@@ -42,6 +30,20 @@ export const googleAdsAccountChosenisTestAccount = {
     name: 'Tata Corpette',
     isAdmin: false,
     isTestAccount: true,
+    billingSettings: {
+      isSet: false,
+      link: 'string',
+    },
+    country: {
+      // eslint-disable-next-line camelcase
+      iso_code: '12',
+      name: 'France'
+    },
+    currency: 'EUR',
+    timeZone: {
+      text: 'USA',
+      offset: '+04:00'
+    }
   },
 }
 export const googleAdsAccountChosen = {
@@ -51,6 +53,20 @@ export const googleAdsAccountChosen = {
     name: 'Tata Corpette',
     isAdmin: false,
     isTestAccount: false,
+    billingSettings: {
+      isSet: false,
+      link: 'string',
+    },
+    country: {
+      // eslint-disable-next-line camelcase
+      iso_code: '12',
+      name: 'France'
+    },
+    currency: 'EUR',
+    timeZone: {
+      text: 'USA',
+      offset: '+04:00'
+    }
   },
 }
 
