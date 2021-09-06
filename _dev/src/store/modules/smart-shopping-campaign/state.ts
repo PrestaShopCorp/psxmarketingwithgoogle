@@ -19,13 +19,13 @@
 
 export interface State {
   campaignName: String;
-  campaignDurationDate: CampagnDuration;
+  campaignDurationDate: CampaignDuration;
   targetCountry: String;
   productCampaign: Array<any>;
   campaignBudget: String;
 }
 
-export interface CampagnDuration {
+export interface CampaignDuration {
   startAt: String;
   endedAt: String|null;
 }
