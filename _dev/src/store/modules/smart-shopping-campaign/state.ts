@@ -26,14 +26,14 @@ export interface State {
 }
 
 export interface CampaignDuration {
-  startAt: String;
+  startedAt: String;
   endedAt: String|null;
 }
 
 export const state: State = {
   campaignName: '',
   campaignDurationDate: {
-    startAt: '',
+    startedAt: '',
     endedAt: '',
   },
   targetCountry: '',
