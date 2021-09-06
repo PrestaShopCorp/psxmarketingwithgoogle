@@ -5,7 +5,7 @@ import accounts from './modules/accounts';
 import productFeed from './modules/product-feed';
 import freeListing from './modules/free-listing';
 import googleAds from './modules/google-ads';
-import smartShoppingCampaign from './modules/smart-shopping-campaign';
+import smartShoppingCampaign from './modules/smart-shopping-campaigns';
 
 Vue.use(Vuex);
 
