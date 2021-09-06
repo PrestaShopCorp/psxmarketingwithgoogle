@@ -550,7 +550,7 @@ export default {
         locality: this.shopInformations.store.locality,
       };
 
-      if (!!this.shopInformations.store?.region) {
+      if (this.shopInformations.store?.region) {
         payload.region = this.shopInformations.store.region;
       }
 
