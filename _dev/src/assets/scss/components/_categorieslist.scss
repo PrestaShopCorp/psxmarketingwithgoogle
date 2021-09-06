@@ -1,11 +1,10 @@
 .ps_gs-categories-list {
-  padding-left: rem(18);
   @extend .maxw-sm-500;
   max-height: 254px;
   overflow: auto;
   border-radius: 3px;
   border: 1px solid $gray-450;
-  padding-bottom: rem(18);
+  padding: rem(18) 0 rem(18) rem(18);
   margin-top: rem(10);
 
   &,
@@ -13,10 +12,14 @@
     list-style: none;
   }
 
+  > .ps_gs-categories-list__item {
+    margin-top: 0;
+  }
+
   &__item {
     position: relative;
-    margin-top: rem(18);
-    padding-left: rem(30);
+    margin-top: rem(10);
+    padding-left: rem(24);
 
     &-button {
       position: absolute;
@@ -30,7 +33,7 @@
 
     &-children {
       padding-left: 0;
-      margin-top: rem(18);
+      margin-top: rem(10);
       padding-right: rem(18);
     }
   }

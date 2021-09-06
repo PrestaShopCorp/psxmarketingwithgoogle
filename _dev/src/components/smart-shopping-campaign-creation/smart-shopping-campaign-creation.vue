@@ -206,8 +206,7 @@
         >
           <ul class="ps_gs-categories-list">
             <SmartShoppingCampaignCreationFilterItem
-              class="item"
-              :item="$options.treeBrands"
+              :item="$options.treeFilters"
             />
           </ul>
         </b-form-group>
@@ -351,31 +350,68 @@ export default {
   },
   // TODO filter country to show only available countries
   countriesSelectionOptions,
-  treeBrands: {
-    name: 'Brands',
+
+  // TODO Getting datas
+  // TODO Adding translation
+  treeFilters: {
+    name: 'All filters',
     children: [
       {
-        name: 'Nike',
+        name: 'Bidding category',
       },
       {
-        name: 'Reebok',
-      },
-      {
-        name: 'Jouet Club',
+        name: 'Canonical condition',
         children: [
           {
-            name: 'Hasbro',
+            name: 'NEW',
           },
           {
-            name: 'Mattel',
+            name: 'USED',
           },
           {
-            name: 'Kenner',
+            name: 'REFURBISHED',
           },
           {
-            name: 'Poly pocket',
+            name: 'UNKNOWN',
           },
         ],
+      },
+      {
+        name: 'Brands',
+        children: [
+          {
+            name: 'Nike',
+          },
+          {
+            name: 'Reebok',
+          },
+          {
+            name: 'Jouet Club',
+            children: [
+              {
+                name: 'Hasbro',
+              },
+              {
+                name: 'Mattel',
+              },
+              {
+                name: 'Kenner',
+              },
+              {
+                name: 'Poly pocket',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'Custom attribute',
+      },
+      {
+        name: 'Offer ID',
+      },
+      {
+        name: 'Product type',
       },
     ],
   },

@@ -28,7 +28,6 @@
       class="ps_gs-categories-list__item-children"
     >
       <SmartShoppingCampaignCreationFilterItem
-        class="item"
         v-for="(child, index) in item.children"
         :key="index"
         :item="child"
