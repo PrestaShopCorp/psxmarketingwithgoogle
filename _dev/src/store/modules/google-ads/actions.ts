@@ -47,6 +47,9 @@ export default {
   async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT]({
     commit, rootState, dispatch, state,
   }) {
+    console.log('hey');
+    dispatch(ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING);
+
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/status`,
         {
@@ -62,31 +65,10 @@ export default {
       }
       const json = await resp.json();
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, json);
-      dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
+      dispatch(ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING);
     } catch (error) {
       console.error(error);
     }
-  },
-  async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS]({
-    commit, rootState, dispatch, state,
-  }) {
-    // const id = rootState.googleAds.accountChosen.id;
-    // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}`,
-    //     {
-    //       method: 'GET',
-    //       headers: {
-    //         Accept: 'application/json',
-    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-    //       },
-    //     });
-    //   if (!resp.ok) {
-    //     throw new HttpClientError(resp.statusText, resp.status);
-    // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect',
-    // );
-    // } catch (error) {
-    //   console.error(error);
-    // }
   },
 
   async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT](
@@ -191,6 +173,28 @@ export default {
     } catch (error) {
       console.error(error);
     }
+  },
+
+  async [ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING]({rootState, state,commit}) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'getShopConfigurationForAds',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
+    // commit(MutationsTypes.SAVE_TOTAL_PRODUCTS, Number(result.total));
+    console.log(result);
+    // commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, {
+    //   ...state.accountChosen,
+    //   state.accountChosen.currency = result.currency,
+    //   state.accountChosen.timeZone = result.timeZone,
+    // });
+    return result;
   },
 
 };
