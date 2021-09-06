@@ -20,11 +20,11 @@
               height="40"
               alt=""
             >
-            Paid marketing
+            {{ $t('smartShoppingCampaingCreation.breadcrumb1') }}
           </a>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
-          Create Smart Shopping campaign
+          {{ $t('smartShoppingCampaingCreation.breadcrumb2') }}
         </li>
       </ol>
     </b-card-header>
@@ -34,17 +34,17 @@
       <b-form>
         <b-form-group
           id="campaign-name-fieldset"
-          description="The name must be unique and 125 chars max."
+          :description="$t('smartShoppingCampaingCreation.inputNameHelper')"
           label-for="campaign-name-input"
           label-class="d-flex align-items-center font-weight-600"
         >
           <template #label>
-            Campaign name
+            {{ $t('smartShoppingCampaingCreation.inputNameLabel') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
               v-b-tooltip:psxMktgWithGoogleApp
-              title="Choose a name that clearly describes the theme of the campaign so that you can easily find it in your account. Your campaign name isn't visible to your customers."
+              :title="$t('smartShoppingCampaingCreation.inputNameTooltip')"
             >
               <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
                 error_outline
@@ -54,7 +54,7 @@
           <b-form-input
             id="campaign-name-input"
             v-model="campaignName"
-            placeholder="Type campaign name"
+            :placeholder="$t('smartShoppingCampaingCreation.inputNamePlaceholder')"
             class="maxw-sm-420"
             :state="campaignNameFeedback"
           />
@@ -62,17 +62,16 @@
         <b-form-group
           id="campaign-duration-fieldset"
           class="maxw-sm-420"
-          description="We recommend a minimum duration of 30 days so that
-           Google can optimize your campaign."
+          :description="$t('smartShoppingCampaingCreation.inputDurationHelper')"
           label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
         >
           <template #label>
-            Campaign duration
+            {{ $t('smartShoppingCampaingCreation.inputDurationLabel') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
               v-b-tooltip:psxMktgWithGoogleApp
-              title="Ad campaigns have no end date by default, so that the ads are able to run indefinitely. You can always add an end date to create a shorter campaign."
+              :title="$t('smartShoppingCampaingCreation.inputDurationTooltip')"
             >
               <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
                 error_outline
@@ -85,18 +84,20 @@
               md="6"
               class="mb-3 mb-md-0"
             >
-              <label for="campaign-duration-start-date-input">Start date</label>
+              <label for="campaign-duration-start-date-input">
+                {{ $t('smartShoppingCampaingCreation.inputDurationLabel1') }}
+              </label>
               <b-form-datepicker
                 id="campaign-duration-start-date-input"
                 v-model="campaignDurationStartDate"
                 :min="new Date()"
                 :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
                 reset-button
-                label-reset-button="Reset date"
+                :label-reset-button="$t('cta.resetDate')"
                 :reset-value="new Date()"
                 reset-button-variant="outline-secondary sm"
                 :hide-header="true"
-                label-help="Use cursor keys to navigate calendar dates"
+                :label-help="$t('smartShoppingCampaingCreation.inputDatePickerHelper')"
                 :required="true"
               />
             </b-col>
@@ -104,17 +105,19 @@
               cols="12"
               md="6"
             >
-              <label for="campaign-duration-end-date-input">End date (optional)</label>
+              <label for="campaign-duration-end-date-input">
+                {{ $t('smartShoppingCampaingCreation.inputDurationLabel2') }}
+              </label>
               <b-form-datepicker
                 id="campaign-duration-end-date-input"
                 v-model="campaignDurationEndDate"
                 :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
                 :min="new Date()"
                 reset-button
-                label-reset-button="Reset date"
+                :label-reset-button="$t('cta.resetDate')"
                 reset-button-variant="outline-secondary sm"
                 :hide-header="true"
-                label-help="Use cursor keys to navigate calendar dates"
+                :label-help="$t('smartShoppingCampaingCreation.inputDatePickerHelper')"
                 :required="false"
               />
             </b-col>
@@ -124,15 +127,15 @@
           id="campaign-target-country-fieldset"
           label-class="d-flex align-items-center font-weight-600"
           label-for="campaign-target-country-input"
-          description="To target multiple countries you have to create multiple campaigns."
+          :description="$t('smartShoppingCampaingCreation.inputCountryHelper')"
         >
           <template #label>
-            Target country
+            {{ $t('smartShoppingCampaingCreation.inputCountryLabel') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
               v-b-tooltip:psxMktgWithGoogleApp
-              title="Your campaign’s ads are eligible to show to customers in your targeted geographic locations, or to customers who have selected your targeted language as their browser’s language setting."
+              :title="$t('smartShoppingCampaingCreation.inputCountryTooltip')"
             >
               <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
                 error_outline
@@ -167,7 +170,7 @@
           </ps-select>
         </b-form-group>
         <b-form-group
-          label="Products in campaign"
+          :label="$t('smartShoppingCampaingCreation.inputFiltersLegend')"
           id="campaign-products-filter-fieldset"
           label-class="h4 font-weight-600 border-0 bg-transparent"
         >
@@ -177,24 +180,25 @@
             :value="true"
             class="mb-1"
           >
-            Include all synced products
+            {{ $t('smartShoppingCampaingCreation.inputFiltersAllLabel') }}
           </b-form-radio>
           <b-form-radio
             v-model="campaignProductsFilter"
             name="campaign-product-filter-radios"
             :value="false"
           >
-            Select products using product partition filters
+            {{ $t('smartShoppingCampaingCreation.inputFiltersPartialLabel') }}
           </b-form-radio>
           <template #description>
             <VueShowdown
               tag="p"
               class="mb-0"
-              markdown="Take some time to [read Google Shopping ads policies](//google.com)[:target=&quot;_blank&quot;] some product are prohibited or restricted."
+              :markdown="$t('smartShoppingCampaingCreation.inputFiltersHelper', ['//google.com'])"
               :extensions="['extended-link', 'no-p-tag']"
             />
           </template>
         </b-form-group>
+
         <!-- TODO START > Ajout de filtres dynamiques -->
         <b-form-group
           v-if="campaignProductsFilter === false"
@@ -210,20 +214,20 @@
         <!-- TODO END > Ajout de filtres dynamiques -->
         <b-form-group
           id="campaign-daily-budget-fieldset"
-          description="You will only pay if someone clicks your ad."
+          :description="$t('smartShoppingCampaingCreation.inputBudgetHelper')"
           label-for="campaign-dailyBudget-input"
           label-class="d-flex align-items-center font-weight-600"
           :state="campaignDailyBudgetFeedback"
           aria-describedby="campaign-daily-budget-fieldset__BV_description_ input-live-feedback"
-          invalid-feedback="placholder invalid feedback"
+          :invalid-feedback="$t('smartShoppingCampaingCreation.inputBudgetInvalidFeedback')"
         >
           <template #label>
-            Daily campaign budget
+            {{ $t('smartShoppingCampaingCreation.inputBudgetFeedback') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
               v-b-tooltip:psxMktgWithGoogleApp
-              title="Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time."
+              :title="$t('smartShoppingCampaingCreation.inputBudgetTooltip')"
             >
               <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
                 error_outline
@@ -231,27 +235,29 @@
             </b-button>
           </template>
           <b-input-group
-            prepend="$"
-            append="USD"
+            :prepend="budgetCurrencySymbol"
+            :append="budgetCurrencyAbbreviation"
             class="maxw-sm-420"
           >
             <b-form-input
               id="campaign-dailyBudget-input"
               v-model="campaignDailyBudget"
-              placeholder="Amount"
+              :placeholder="$t('smartShoppingCampaingCreation.inputBudgetPlaceholder')"
               :state="campaignDailyBudgetFeedback"
             />
           </b-input-group>
         </b-form-group>
-        <span class="font-weight-600">Campaign activation</span>
+        <span class="font-weight-600">
+          {{ $t('smartShoppingCampaingCreation.formHelperTitle') }}
+        </span>
         <p>
-          Your campaign will run until you pause it. You can pause your campaign at any time.
+          {{ $t('smartShoppingCampaingCreation.formHelperDescription') }}
         </p>
         <b-alert
           variant="warning"
           show
         >
-          You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.
+          {{ $t('smartShoppingCampaingCreation.errorNoProducts') }}
         </b-alert>
         <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
           <b-button
@@ -270,7 +276,7 @@
             class="mx-1 mt-3 mt-md-0 mr-md-0"
             variant="primary"
           >
-            Create campaign
+            {{ $t('cta.createCampaign') }}
           </b-button>
         </div>
       </b-form>
@@ -295,6 +301,8 @@ export default {
       campaignCountry: null,
       campaignProductsFilter: null,
       campaignDailyBudget: null,
+      budgetCurrencySymbol: '$',
+      budgetCurrencyAbbreviation: 'USD',
     };
   },
   components: {
