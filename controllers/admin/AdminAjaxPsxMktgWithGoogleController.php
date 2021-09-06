@@ -22,6 +22,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository;
 use PrestaShop\ModuleLibFaq\Faq;
 
@@ -41,6 +42,11 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     private $countryRepository;
 
     /**
+     * @var CurrencyRepository
+     */
+    private $currencyRepository;
+
+    /**
      * @var ProductRepository
      */
     protected $productRepository;
@@ -52,6 +58,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
         $this->countryRepository = $this->module->getService(CountryRepository::class);
         $this->productRepository = $this->module->getService(ProductRepository::class);
+        $this->currencyRepository = $this->module->getService(CurrencyRepository::class);
         $this->ajax = true;
     }
 
@@ -89,8 +96,8 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             case 'retrieveFaq':
                 $this->retrieveFaq();
                 break;
-            case 'getInformationsForAdsAccount':
-                $this->getInformationsForAdsAccount();
+            case 'getShopConfigurationForAds':
+                $this->getShopConfigurationForAds();
                 break;
             default:
                 http_response_code(400);
@@ -238,13 +245,18 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $this->ajaxDie(json_encode(['success' => true]));
     }
 
-    public function getInformationsForAdsAccount()
+    public function getShopConfigurationForAds()
     {
-        $timezone = date('O') .' '. date_default_timezone_get();
+        $defaultTimeZone = date_default_timezone_get();
+        $timeZone = new DateTime('now', new DateTimeZone($defaultTimeZone));
+        $textWithTimeZone = "(UTC {$timeZone->format('P')}) {$defaultTimeZone}";
 
         $this->ajaxDie(json_encode([
-            'timezone' => $timezone,
-            'currency' => $this->currencyRepository->getShopCurrency()
+            'timezone' => [
+                'offset' => $timeZone->format('P'),
+                'text' => $textWithTimeZone,
+            ],
+            'currency' => $this->currencyRepository->getShopCurrency()['isoCode'],
         ]));
     }
 
