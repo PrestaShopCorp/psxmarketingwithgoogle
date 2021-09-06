@@ -47,36 +47,25 @@ export default {
   async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT]({
     commit, rootState, dispatch, state,
   }) {
-    const id = rootState.accounts.googleAccount.account_id;
-    // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/${id}`,
-    //     {
-    //       method: 'GET',
-    //       headers: {
-    //         Accept: 'application/json',
-    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-    //       },
-    //     });
-    //   if (!resp.ok) {
-    //     throw new HttpClientError(resp.statusText, resp.status);
-    // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect',
-    // );
-    //   }
-    //   const json = await resp.json();
-    //   commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, json);
-    commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT,
-      {
-        id: '415-056-4875',
-        name: 'Tutu Corpette',
-        isAdmin: true,
-        isTestAccount: true,
-      },
-    );
-    dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
-
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/status`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+      if (!resp.ok) {
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+      const json = await resp.json();
+      commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, json);
+      dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS);
+    } catch (error) {
+      console.error(error);
+    }
   },
   async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT_SHOP_INFORMATIONS]({
     commit, rootState, dispatch, state,
