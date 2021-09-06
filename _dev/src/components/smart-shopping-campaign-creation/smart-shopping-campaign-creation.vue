@@ -202,13 +202,61 @@
         <!-- TODO START > Ajout de filtres dynamiques -->
         <b-form-group
           v-if="campaignProductsFilter === false"
-          class="maxw-sm-420"
         >
-          <ul class="ps_gs-categories-list">
-            <SmartShoppingCampaignCreationFilterItem
-              :item="$options.treeFilters"
-            />
-          </ul>
+          <b-row>
+            <b-col
+              cols="12"
+              md="6"
+              class="mb-3 mb-md-0"
+            >
+              <span>
+                Dimension value
+              </span>
+              <ul class="ps_gs-filters">
+                <SmartShoppingCampaignCreationFilterItem
+                  :item="$options.treeFilters"
+                />
+              </ul>
+            </b-col>
+            <b-col
+              cols="12"
+              md="6"
+              class="mb-3 mb-md-0"
+            >
+              <span>
+                Selected dimension value
+              </span>
+              <div
+                class="ps_gs-filters-selected"
+              >
+
+              </div>
+            </b-col>
+            <b-col
+              cols="12"
+            >
+              <div class="d-flex justify-content-between">
+                <div>
+                  <b-button
+                    variant="invisible"
+                    class="text-decoration-underline p-2 ml-n2"
+                  >
+                    Select all
+                  </b-button>
+                  <b-button
+                    variant="invisible"
+                    class="text-decoration-underline p-2"
+                  >
+                    Deselect all
+                  </b-button>
+                </div>
+                <!-- TODO / need to be dynamic -->
+                <div class="pt-2">
+                  2 dimensions selected - 12 values selected
+                </div>
+              </div>
+            </b-col>
+          </b-row>
         </b-form-group>
         <!-- TODO END > Ajout de filtres dynamiques -->
         <b-form-group

@@ -1,18 +1,19 @@
-.ps_gs-categories-list {
+.ps_gs-filters {
   @extend .maxw-sm-500;
-  max-height: 254px;
+  height: 332px;
   overflow: auto;
   border-radius: 3px;
   border: 1px solid $gray-450;
   padding: rem(18) 0 rem(18) rem(18);
   margin-top: rem(10);
+  margin-bottom: 0;
 
   &,
-  .ps_gs-categories-list__item-children {
+  .ps_gs-filters__item-children {
     list-style: none;
   }
 
-  > .ps_gs-categories-list__item {
+  > .ps_gs-filters__item {
     margin-top: 0;
   }
 
@@ -27,14 +28,21 @@
       left: 0;
     }
 
-    &-checkbox {
-
-    }
-
     &-children {
       padding-left: 0;
       margin-top: rem(10);
       padding-right: rem(18);
     }
   }
+}
+
+.ps_gs-filters-selected {
+  @extend .maxw-sm-500;
+  height: 332px;
+  overflow: auto;
+  border-radius: 3px;
+  border: 1px solid $gray-450;
+  padding: rem(18) 0 rem(18) rem(18);
+  margin-top: rem(10);
+  margin-bottom: 0;
 }

@@ -1,10 +1,10 @@
 <template>
   <li
-    class="ps_gs-categories-list__item"
+    class="ps_gs-filters__item"
   >
     <b-button
       variant="invisible"
-      class="ps_gs-categories-list__item-button"
+      class="ps_gs-filters__item-button"
       v-if="isFolder"
       @click="toggle"
     >
@@ -16,7 +16,7 @@
       </template>
     </b-button>
     <b-form-checkbox
-      class="ps_gs-checkbox ps_gs-categories-list__item-checkbox"
+      class="ps_gs-checkbox ps_gs-filters__item-checkbox"
       :name="`${item.name}Checkbox`"
       inline
     >
@@ -25,7 +25,7 @@
     <ul
       v-show="isOpen"
       v-if="isFolder"
-      class="ps_gs-categories-list__item-children"
+      class="ps_gs-filters__item-children"
     >
       <SmartShoppingCampaignCreationFilterItem
         v-for="(child, index) in item.children"

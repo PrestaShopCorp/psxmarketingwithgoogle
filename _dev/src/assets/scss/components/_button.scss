@@ -20,6 +20,12 @@
   }
 }
 
+.btn-invisible {
+  &:hover, &:focus {
+    color: $primary !important;
+  }
+}
+
 .text-secondary.btn-invisible {
   &:hover, &:focus {
     color: $primary !important;
