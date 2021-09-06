@@ -230,7 +230,72 @@
               <div
                 class="ps_gs-filters-selected"
               >
-
+                <b-badge
+                  variant="muted"
+                  class="d-block mb-3 text-left"
+                >
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <div class="text-dark">
+                      Offer ID : All
+                    </div>
+                    <b-button
+                      variant="invisible"
+                      class="m-0 p-0"
+                    >
+                      <i class="material-icons-round m-0 p-0 ps_gs-fz-12">
+                        close
+                      </i>
+                    </b-button>
+                  </div>
+                </b-badge>
+                <b-badge
+                  variant="muted"
+                  class="d-block mb-3 text-left"
+                >
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <div class="text-dark">
+                      Brand
+                    </div>
+                    <b-button
+                      variant="invisible"
+                      class="m-0 p-0"
+                    >
+                      <i class="material-icons-round m-0 p-0 ps_gs-fz-12">
+                        close
+                      </i>
+                    </b-button>
+                  </div>
+                  <div
+                    class="d-flex flex-wrap ml-n1"
+                  >
+                    <b-badge
+                      variant="primary"
+                      class="m-1"
+                      v-for="i in 10"
+                      :key="i"
+                    >
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <div class="text-dark">
+                          Reebok
+                        </div>
+                        <b-button
+                          variant="invisible"
+                          class="m-0 py-0 pl-2 pr-0"
+                        >
+                          <i class="material-icons-round ps_gs-fz-12 text-dark">
+                            close
+                          </i>
+                        </b-button>
+                      </div>
+                    </b-badge>
+                  </div>
+                </b-badge>
               </div>
             </b-col>
             <b-col
@@ -277,9 +342,9 @@
               v-b-tooltip:psxMktgWithGoogleApp
               :title="$t('smartShoppingCampaingCreation.inputBudgetTooltip')"
             >
-              <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+              <i class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
                 error_outline
-              </span>
+              </i>
             </b-button>
           </template>
           <b-input-group
