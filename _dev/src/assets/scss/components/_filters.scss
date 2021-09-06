@@ -24,8 +24,9 @@
 
     &-button {
       position: absolute;
-      padding: 0;
-      left: 0;
+      padding: rem(2) rem(4);
+      left: rem(-8);
+      top: rem(-4);
     }
 
     &-children {
