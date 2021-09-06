@@ -95,9 +95,9 @@
                 label-reset-button="Reset date"
                 :reset-value="new Date()"
                 reset-button-variant="outline-secondary sm"
-                hide-header="true"
+                :hide-header="true"
                 label-help="Use cursor keys to navigate calendar dates"
-                required="true"
+                :required="true"
               />
             </b-col>
             <b-col
@@ -113,9 +113,9 @@
                 reset-button
                 label-reset-button="Reset date"
                 reset-button-variant="outline-secondary sm"
-                hide-header="true"
+                :hide-header="true"
                 label-help="Use cursor keys to navigate calendar dates"
-                required="false"
+                :required="false"
               />
             </b-col>
           </b-form-row>
@@ -190,7 +190,7 @@
             <VueShowdown
               tag="p"
               class="mb-0"
-              markdown='Take some time to [read Google Shopping ads policies](//google.com)[:target="_blank"] some product are prohibited or restricted.'
+              markdown="Take some time to [read Google Shopping ads policies](//google.com)[:target=&quot;_blank&quot;] some product are prohibited or restricted."
               :extensions="['extended-link', 'no-p-tag']"
             />
           </template>
@@ -200,21 +200,12 @@
           v-if="campaignProductsFilter === false"
           class="maxw-sm-420"
         >
-          <b-form-row>
-            <b-col>
-              Filter by
-            </b-col>
-            <b-col>
-              Dimension value
-            </b-col>
-          </b-form-row>
-          <b-button
-            variant="invisible"
-            class="text-secondary"
-            @click="addFilter"
-          >
-            + Add filter
-          </b-button>
+          <ul class="ps_gs-categories-list">
+            <SmartShoppingCampaignCreationFilterItem
+              class="item"
+              :item="$options.treeBrands"
+            />
+          </ul>
         </b-form-group>
         <!-- TODO END > Ajout de filtres dynamiques -->
         <b-form-group
@@ -291,6 +282,9 @@
 import countriesSelectionOptions from '@/assets/json/countries.json';
 import PsSelect from '../commons/ps-select.vue';
 
+// ! test
+import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
+
 export default {
   name: 'SmartShoppingCampaignCreation',
   data() {
@@ -305,6 +299,7 @@ export default {
   },
   components: {
     PsSelect,
+    SmartShoppingCampaignCreationFilterItem,
   },
   computed: {
     disableCreateCampaign() {
@@ -315,26 +310,24 @@ export default {
     campaignNameFeedback() {
       // TODO
       // Check if length < 125 and if name is unique
-      let isUnique = true;
-      if ((this.campaignName == null) || this.campaignName == '') {
+      const isUnique = true;
+      if ((this.campaignName == null) || this.campaignName === '') {
         return null;
       }
-      else {
-        return (this.campaignName.length <= 125
+
+      return !!((this.campaignName.length <= 125
           && this.campaignName.length > 0
-          && isUnique) ? true : false;
-      }
+          && isUnique));
     },
     campaignDailyBudgetFeedback() {
       // TODO
       // I'm just looking for digit, validation should be way better than that
-      var regex = /^(?:\d)+$/g;
+      const regex = /^(?:\d)+$/g;
       if (this.campaignDailyBudget === null || this.campaignDailyBudget === '') {
         return null;
       }
-      else {
-        return regex.test(this.campaignDailyBudget) ? true : false;
-      };
+
+      return !!regex.test(this.campaignDailyBudget);
     },
   },
   methods: {
@@ -350,5 +343,33 @@ export default {
   },
   // TODO filter country to show only available countries
   countriesSelectionOptions,
+  treeBrands: {
+    name: 'Brands',
+    children: [
+      {
+        name: 'Nike',
+      },
+      {
+        name: 'Reebok',
+      },
+      {
+        name: 'Jouet Club',
+        children: [
+          {
+            name: 'Hasbro',
+          },
+          {
+            name: 'Mattel',
+          },
+          {
+            name: 'Kenner',
+          },
+          {
+            name: 'Poly pocket',
+          },
+        ],
+      },
+    ],
+  },
 };
 </script>

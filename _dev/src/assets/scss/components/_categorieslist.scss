@@ -1,6 +1,12 @@
 .ps_gs-categories-list {
-  padding-left: 0;
+  padding-left: rem(18);
   @extend .maxw-sm-500;
+  max-height: 254px;
+  overflow: auto;
+  border-radius: 3px;
+  border: 1px solid $gray-450;
+  padding-bottom: rem(18);
+  margin-top: rem(10);
 
   &, ul {
     list-style: none;
@@ -10,22 +16,9 @@
     margin-top: rem(18);
   }
 
-  > li {
-    margin-top: 0;
-  }
-
   ul {
+    padding-left: 0;
     margin-top: rem(18);
-    padding-left: rem(18);
     padding-right: rem(18);
-  }
-
-  > li > ul {
-    max-height: 254px;
-    overflow: auto;
-    border-radius: 3px;
-    border: 1px solid $gray-450;
-    padding-bottom: rem(18);
-    margin-top: rem(10);
   }
 }
