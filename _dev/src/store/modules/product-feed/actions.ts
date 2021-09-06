@@ -130,7 +130,7 @@ export default {
       attributeMapping: {
         exportProductsWithShortDescription:
         productFeedSettings?.attributeMapping?.exportProductsWithShortDescription
-        || null,
+        || true,
         customConditionAttribute: productFeedSettings?.attributeMapping?.customConditionAttribute
         || null,
         customColorAttribute: productFeedSettings?.attributeMapping?.customColorAttribute
