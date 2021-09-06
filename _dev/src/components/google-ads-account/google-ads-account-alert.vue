@@ -30,7 +30,8 @@
           variant="outline-secondary"
           :href="gAdsAccountAlert.button.type === 'link' ? gAdsAccountAlert.button.url : null"
           :target="gAdsAccountAlert.button.type === 'link' ? '_blank' : null"
-          @click="gAdsAccountAlert.button.type === 'refresh' ? refresh() : null"
+          @click="gAdsAccountAlert.button.type === 'refresh' ? refresh()
+            : gAdsAccountAlert.button.type === 'link' ? changeError() : null"
         >
           {{ gAdsAccountAlert.button.label }}
         </b-button>
@@ -75,10 +76,14 @@ export default {
     refresh() {
       this.$router.go();
     },
+    changeError() {
+      this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterBilling');
+    },
   },
   computed: {
     getLinkBillingSettings() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.link;
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings
+        ? this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.link : '';
     },
     gAdsAccountAlert() {
       // TODO has to define the right conditions
@@ -99,7 +104,7 @@ export default {
             button: {
               type: 'link',
               label: this.$i18n.t('cta.addBillingSettings'),
-              url: this.getLinkBillingSettings(),
+              url: this.getLinkBillingSettings,
             },
           };
         case GoogleAdsErrorReason.NeedRefreshAfterBilling:

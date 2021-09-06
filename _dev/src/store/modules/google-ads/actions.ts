@@ -1,4 +1,4 @@
-// TODO ERROR : NeedRefreshAfterBilling  / Cancelled / Suspended
+// TODO ERROR :  Cancelled / Suspended
 
 /**
  * 2007-2021 PrestaShop and Contributors
@@ -47,9 +47,6 @@ export default {
   async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT]({
     commit, rootState, dispatch, state,
   }) {
-    console.log('hey');
-    dispatch(ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING);
-
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/status`,
         {
@@ -175,7 +172,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING]({rootState, state,commit}) {
+  async [ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING]({rootState, state, commit}) {
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
@@ -187,13 +184,12 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     const result = await response.json();
-    // commit(MutationsTypes.SAVE_TOTAL_PRODUCTS, Number(result.total));
-    console.log(result);
-    // commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, {
+    // let finalAccount = {
     //   ...state.accountChosen,
-    //   state.accountChosen.currency = result.currency,
-    //   state.accountChosen.timeZone = result.timeZone,
-    // });
+    //   currency : result.currency,
+    //   timeZone : result.timezone,
+    // }
+    // commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, finalAccount);
     return result;
   },
 
