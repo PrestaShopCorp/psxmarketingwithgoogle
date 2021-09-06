@@ -82,8 +82,7 @@ export default {
   },
   computed: {
     getLinkBillingSettings() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings
-        ? this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.link : '';
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.billingSettings?.link || '';
     },
     gAdsAccountAlert() {
       // TODO has to define the right conditions
