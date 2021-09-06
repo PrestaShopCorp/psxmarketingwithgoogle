@@ -40,9 +40,9 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      return json;
+      console.log(json);
     } catch (error) {
       console.error(error);
     }
-  }
+  },
 };
