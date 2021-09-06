@@ -261,7 +261,7 @@ export default {
           iso_code: null,
         },
         currency: this.accountInformations?.currency || '',
-        timeZone: this.accountInformations ? this.accountInformations.timeZone : '',
+        timeZone: this.accountInformations?.timeZone || '',
       },
       stepActiveData: 1,
       steps: [
