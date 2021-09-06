@@ -165,7 +165,7 @@ export default {
     commit, rootState, dispatch,
   }, payload) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads/${payload.id}/link`,
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/${payload.id}/link`,
         {
           method: 'POST',
           headers: {
@@ -174,13 +174,11 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
-      console.log(resp);
       if (!resp.ok) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      console.log(json);
       //   commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, {
       //   id: json.id,
       //   name: json.name,

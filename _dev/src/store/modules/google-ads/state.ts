@@ -45,8 +45,8 @@ export interface AccountInformations {
     iso_code: null|string,
     name: null|string
   },
-  currency?: null|string,
-  timeZone?: null|object
+  currency?: string,
+  timeZone?: object
 }
 
 export const state: State = {
