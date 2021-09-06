@@ -1,4 +1,4 @@
-// TODO ERROR : NeedRefreshAfterBilling / BillingSettingsMissing / Cancelled / Suspended
+// TODO ERROR : NeedRefreshAfterBilling  / Cancelled / Suspended
 
 /**
  * 2007-2021 PrestaShop and Contributors
@@ -134,6 +134,9 @@ export default {
     };
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUserBis);
     commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUserBis);
+    if (!newUserBis.billingSettings.isSet) {
+      commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
+    }
 
     // } catch (error) {
     //   console.error(error);

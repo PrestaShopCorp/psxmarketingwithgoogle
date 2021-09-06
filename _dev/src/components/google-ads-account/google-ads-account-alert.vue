@@ -77,6 +77,9 @@ export default {
     },
   },
   computed: {
+    getLinkBillingSettings() {
+        return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.link;
+    },
     gAdsAccountAlert() {
       // TODO has to define the right conditions
       switch (this.error) {
@@ -96,7 +99,7 @@ export default {
             button: {
               type: 'link',
               label: this.$i18n.t('cta.addBillingSettings'),
-              url: this.$options.googleUrl.googleAdsAccount,
+              url: this.getLinkBillingSettings(),
             },
           };
         case GoogleAdsErrorReason.NeedRefreshAfterBilling:
