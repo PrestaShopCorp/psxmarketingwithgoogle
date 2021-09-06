@@ -80,7 +80,11 @@
             </b-button>
           </template>
           <b-form-row>
-            <b-col>
+            <b-col
+              cols="12"
+              md="6"
+              class="mb-3 mb-md-0"
+            >
               <label for="campaign-duration-start-date-input">Start date</label>
               <b-form-datepicker
                 id="campaign-duration-start-date-input"
@@ -96,7 +100,10 @@
                 required="true"
               />
             </b-col>
-            <b-col>
+            <b-col
+              cols="12"
+              md="6"
+            >
               <label for="campaign-duration-end-date-input">End date (optional)</label>
               <b-form-datepicker
                 id="campaign-duration-end-date-input"
@@ -341,6 +348,7 @@ export default {
       // TODO
     },
   },
+  // TODO filter country to show only available countries
   countriesSelectionOptions,
 };
 </script>
