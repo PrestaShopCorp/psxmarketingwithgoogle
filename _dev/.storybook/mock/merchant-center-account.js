@@ -49,7 +49,6 @@ export const merchantCenterAccountCreation = {
       locality: "Paris",
       phone: "0658585858",
       postalCode: "75015",
-      region: false,
       streetAddress: "12 rue d'amsterdam",
     }
   }
@@ -70,7 +69,6 @@ export const merchantCenterAccountWithErrors = {
       locality: "",
       phone: "qsdsqd",
       postalCode: "75015",
-      region: false,
       streetAddress: "12 rue d'amsterdam",
     }
   }

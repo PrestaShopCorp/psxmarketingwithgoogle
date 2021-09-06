@@ -146,6 +146,10 @@
       "businessPhone" : "Business phone number",
       "businessZipCode" : "Zipcode",
       "businessCity" : "City",
+      "businessRegion" : "Region",
+      "businessCountry" : "Country",
+      "changeCountryField" : "You can [change your country]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
+      "changeRegionField" : "You can [change your region]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
       "changeAddressField" : "You can [change your business address]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
       "changeZipCodeField" : "You can [change your zipcode]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
       "changeCityField" : "You can [change your city]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
@@ -567,7 +571,9 @@
         "businessAddress" : "The pre-filled address is the one you entered in the back office",
         "businessZipCode" : "The pre-filled zipcode is the one you entered in the back office",
         "businessCity" : "The pre-filled city is the one you entered in the back office",
-        "businessPhone" : "The pre-filled phone number is the one you entered in the back office"
+        "businessPhone" : "The pre-filled phone number is the one you entered in the back office",
+        "businessCountry" : "The pre-filled country is the one you entered in the back office",
+        "businessRegion" : "The pre-filled region is the one you entered in the back office"
       }
     },
     "toast": {

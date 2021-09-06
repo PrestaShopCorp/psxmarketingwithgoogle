@@ -15,6 +15,7 @@ services:
       - '@psxmarketingwithgoogle.db'
       - '@psxmarketingwithgoogle.context'
       - '@psxmarketingwithgoogle.country'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository
