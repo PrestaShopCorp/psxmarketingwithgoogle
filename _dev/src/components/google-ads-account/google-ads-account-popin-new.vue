@@ -260,7 +260,7 @@ export default {
           name: null,
           iso_code: null,
         },
-        currency: this.accountInformations ? this.accountInformations.currency : '',
+        currency: this.accountInformations?.currency || '',
         timeZone: this.accountInformations ? this.accountInformations.timeZone : '',
       },
       stepActiveData: 1,
