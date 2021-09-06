@@ -215,6 +215,7 @@
               <ul class="ps_gs-filters">
                 <SmartShoppingCampaignCreationFilterItem
                   :item="$options.treeFilters"
+                  isOpenByDefault="true"
                 />
               </ul>
             </b-col>

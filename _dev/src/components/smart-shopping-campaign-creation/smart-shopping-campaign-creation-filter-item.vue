@@ -42,11 +42,16 @@ export default {
   name: 'SmartShoppingCampaignCreationFilterItem',
   data() {
     return {
-      isOpen: false,
+      isOpen: this.isOpenByDefault || false,
     };
   },
   props: {
     item: Object,
+    isOpenByDefault: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
   },
   computed: {
     isFolder() {
