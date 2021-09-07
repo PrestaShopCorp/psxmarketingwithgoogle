@@ -632,6 +632,8 @@ class PsxMktgWithGoogleTranslations
                 'textOverwriteProductFeed' => $this->module->l('Overwriting your existing product feed will delete it. You will need to configure new product feed.', 'PsxMktgWithGoogleTranslations'),
                 'titleDisconnectionGoogleAds' => $this->module->l('Disconnect Google Ads account?', 'PsxMktgWithGoogleTranslations'),
                 'textDisconnectGoogleAds' => $this->module->l('You are about to disconnect your Google Ads account. You won\'t be able to run Smart Shopping campaigns. Your previous Smart Shopping campaigns are still running. ', 'PsxMktgWithGoogleTranslations'),
+                'titleActivateTrackingSSC' => $this->module->l('Activate remarketing and conversion tracking tags.', 'PsxMktgWithGoogleTranslations'),
+                'textActivateTrackingSSC' => $this->module->l("In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tags]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.", 'PsxMktgWithGoogleTranslations'),
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configuration', 'PsxMktgWithGoogleTranslations'),
