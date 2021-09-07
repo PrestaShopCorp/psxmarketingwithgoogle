@@ -36,7 +36,7 @@ class Config
         'AdminPsgoogleshippingModule',
     ];
 
-    const PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS = 'https://205f0aa236aa46b8883ac8ded58f4839@o471790.ingest.sentry.io/5532403';
+    const PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS = 'https://446479f8bca645fa8838c1a5f99dceba@o298402.ingest.sentry.io/5949536';
     const PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY = 'RqYiLJKyoWv13t9aKxBvza6vsCsRpPpC';
 
     const PSX_MKTG_WITH_GOOGLE_ACCOUNT_IS_LINKED = 'PSX_MKTG_WITH_GOOGLE_ACCOUNT_IS_LINKED';
