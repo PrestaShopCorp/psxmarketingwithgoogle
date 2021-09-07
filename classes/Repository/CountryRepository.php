@@ -108,7 +108,7 @@ class CountryRepository
     {
         $data = [];
 
-        if ($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID') === false) {
+        if (empty($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID'))) {
             $data['name'] = $this->country->name[$this->context->language->id];
             $data['iso_code'] = $this->country->iso_code;
         } else {
