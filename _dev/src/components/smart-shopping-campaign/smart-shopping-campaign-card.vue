@@ -19,12 +19,6 @@
         >
         <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
           {{ $t('smartShoppingCampaignCard.title') }}
-          <b-badge
-            class="ml-3"
-            variant="muted"
-          >
-            {{ $t('badge.paid') }}
-          </b-badge>
         </b-card-text>
       </div>
     </div>
