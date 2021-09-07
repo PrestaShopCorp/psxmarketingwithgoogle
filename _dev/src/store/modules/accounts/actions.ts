@@ -214,9 +214,9 @@ export default {
       dispatch(ActionsTypes.REQUEST_GMC_LIST);
       return json;
     } catch (error) {
+      dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
         // This is likely caused by a missing Google account, so let's retrieve the URL
-        dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
         return null;
       }
       console.error(`Could not request google account details: ${(<any>error)?.message}`);
