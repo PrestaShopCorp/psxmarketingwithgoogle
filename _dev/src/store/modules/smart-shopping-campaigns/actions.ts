@@ -40,9 +40,31 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      console.log(json);
     } catch (error) {
       console.error(error);
     }
+  },
+  async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAGS](
+    {commit, rootState}, payload: boolean,
+  ) {
+    // try {
+    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/`,
+    //     {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         Accept: 'application/json',
+    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+    //       },
+    //       body: JSON.stringify(payload),
+    //     });
+    //   if (!resp.ok) {
+    //     throw new HttpClientError(resp.statusText, resp.status);
+    //   }
+    //   const json = await resp.json();
+    commit(MutationsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAGS, payload);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   },
 };

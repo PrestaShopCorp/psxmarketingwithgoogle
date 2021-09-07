@@ -23,6 +23,7 @@ export interface State {
   targetCountry: String;
   productCampaign: Array<any>;
   campaignBudget: String;
+  tracking: boolean;
 }
 
 export interface CampaignDuration {
@@ -39,4 +40,5 @@ export const state: State = {
   targetCountry: '',
   productCampaign: [],
   campaignBudget: '',
+  tracking: false,
 };

@@ -1,14 +1,18 @@
 <template>
   <div>
-    <campaign-card />
+    <CampaignCard @openPopin="onOpenPopinActivateTracking" />
+    <SSCPopinActivateTracking
+      ref="SSCPopinActivateTracking"
+    />
   </div>
 </template>
 
 <script>
-import campaignCard from '../components/campaign/campaign-card.vue';
+import CampaignCard from '../components/smart-shopping-campaigns/campaign-card.vue';
+import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
 
 export default {
-  components: {campaignCard},
+  components: {CampaignCard, SSCPopinActivateTracking},
   computed: {
     googleAdsIsChosen() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
@@ -20,6 +24,11 @@ export default {
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
+    },
+    onOpenPopinActivateTracking() {
+      this.$bvModal.show(
+        this.$refs.SSCPopinActivateTracking.$refs.modal.id,
+      );
     },
   },
   mounted() {

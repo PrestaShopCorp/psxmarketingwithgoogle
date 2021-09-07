@@ -18,7 +18,7 @@
  */
 
 enum MutationsTypes {
-
+    SAVE_STATUS_REMARKETING_TRACKING_TAGS = 'SAVE_STATUS_REMARKETING_TRACKING_TAGS',
 }
 
 export {MutationsTypes as default};
