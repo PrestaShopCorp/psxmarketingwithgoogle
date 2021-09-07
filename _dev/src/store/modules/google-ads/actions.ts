@@ -57,13 +57,17 @@ export default {
           },
         });
       if (!resp.ok) {
-        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, json);
       dispatch(ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING);
     } catch (error) {
+      if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
+        // This is likely caused by a missing Google Ads account
+        return;
+      }
+      commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
       console.error(error);
     }
   },
