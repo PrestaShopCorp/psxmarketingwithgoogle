@@ -15,7 +15,7 @@
           >
             <img
               class="ps_gs-breadcrumb__icon"
-              src="@/assets/images/product-feed-icon.svg"
+              src="@/assets/images/product-feed-icon.png"
               width="40"
               height="40"
               alt=""

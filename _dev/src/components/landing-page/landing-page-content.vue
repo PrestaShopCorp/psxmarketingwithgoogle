@@ -7,6 +7,8 @@
         :src="require(`@/assets/images/${contentImage}`)"
         class="img-fluid d-block mx-auto"
         alt=""
+        width="250"
+        height="175"
       >
     </figure>
     <div>
