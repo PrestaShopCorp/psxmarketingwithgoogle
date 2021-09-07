@@ -1,6 +1,8 @@
 <template>
   <header class="ps_gs-landingpage-header d-flex flex-column flex-md-row">
-    <figure class="ps_gs-landingpage-header__figure order-md-2 d-none d-md-block flex-shrink-0 ml-md-3">
+    <figure
+      class="ps_gs-landingpage-header__figure order-md-2 d-none d-md-block flex-shrink-0 ml-md-3"
+    >
       <img
         src="@/assets/images/prestashop-google-img.png"
         width="276"
