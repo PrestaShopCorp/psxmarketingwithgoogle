@@ -10,8 +10,8 @@
           class="mr-3"
           :src="
             isEnabled
-              ? require('@/assets/images/product-feed-icon.svg')
-              : require('@/assets/images/product-feed-icon-grey.svg')
+              ? require('@/assets/images/product-feed-icon.png')
+              : require('@/assets/images/product-feed-icon-grey.png')
           "
           width="40"
           height="40"

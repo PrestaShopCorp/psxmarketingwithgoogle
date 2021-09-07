@@ -30,7 +30,7 @@
       />
       <VueShowdown
         :markdown="$t('landingPage.content.notice')"
-        class="text-muted ps_gs-fz-12 mt-4 pb-1"
+        class="text-muted ps_gs-fz-12 mt-2 mt-md-4 pb-1"
       />
       <hr class="my-4">
       <LandingPageFooter />
