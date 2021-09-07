@@ -17,40 +17,11 @@
       <label class="mb-2">
         {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
-      <ps-select
-        v-model="countries"
-        :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
-        :options="sortCountries"
-        :deselect-from-dropdown="true"
-        :clearable="false"
-        class="ps_gs-v-select maxw-sm-500"
-        :selectable="country => country.disabled"
-        label="country"
-      >
-        <template #option="{ country }">
-          <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
-            <span class="mr-2">
-              {{ country }}
-            </span>
-            <span
-              v-if="!isCompatibleWithCurrency(country)"
-              class="ps_gs-fz-12 ml-auto"
-            >
-              {{ $t('productFeedSettings.steps.shippingSettingsErrors') }}
-            </span>
-          </div>
-        </template>
-      </ps-select>
-      <VueShowdown
-        class="text-muted my-1 ps_gs-fz-12"
-        :markdown="$t('productFeedSettings.shipping.cantFindCountry', [
-          $options.googleUrl.supportedCountries
-        ])"
-        :extensions="['extended-link']"
-      />
-      <VueShowdown
-        class="text-muted my-1 ps_gs-fz-12"
-        :markdown="$t('productFeedSettings.shipping.cantSelectCountryWithDifferentCurrency')"
+
+      <SelectCountry
+        :currency="currency"
+        @countrySelected="saveCountrySelected"
+        :default-country="countries"
       />
     </b-form-group>
     <b-form-group
@@ -192,17 +163,15 @@
 
 <script>
 import {VueShowdown} from 'vue-showdown';
-import googleUrl from '@/assets/json/googleUrl.json';
-import PsSelect from '../commons/ps-select';
-import countriesSelectionOptions from '../../assets/json/countries.json';
 import ProductFeedSettingsFooter from './product-feed-settings-footer';
+import SelectCountry from '../commons/select-country.vue';
 
 export default {
   name: 'ProductFeedSettingsShipping',
   components: {
-    PsSelect,
     ProductFeedSettingsFooter,
     VueShowdown,
+    SelectCountry,
   },
   data() {
     return {
@@ -215,15 +184,6 @@ export default {
         const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
         return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
       },
-      set(value) {
-        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: [value.code]});
-      },
-    },
-    sortCountries() {
-      countriesSelectionOptions.forEach((el) => {
-        el.disabled = !!(el.currency === this.currency);
-      });
-      return countriesSelectionOptions;
     },
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
@@ -264,13 +224,9 @@ export default {
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
-    isCompatibleWithCurrency(country) {
-      const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
-
-      return currentCountry.currency === this.currency;
+    saveCountrySelected(value) {
+      this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: [value.code]});
     },
   },
-  countriesSelectionOptions,
-  googleUrl,
 };
 </script>
