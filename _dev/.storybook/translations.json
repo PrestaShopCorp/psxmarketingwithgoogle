@@ -195,7 +195,8 @@
         "attributeMapping" : "Product attributes",
         "categoryMapping" : "Category mapping",
         "summary" : "Summary",
-        "exportFeed" : "Export feed!"
+        "exportFeed" : "Export feed!",
+        "shippingSettingsErrors": "This country is not compatible with your currency"
       },
       "noticeDataStored" : "Settings are saved at each step, will be submitted only at the final step.",
       "shipping" : {

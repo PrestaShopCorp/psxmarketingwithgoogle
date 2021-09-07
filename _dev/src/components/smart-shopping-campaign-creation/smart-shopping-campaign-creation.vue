@@ -146,8 +146,9 @@
             v-model="campaignCountry"
             :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
             :reduce="country => country.code"
-            :options="$options.countriesSelectionOptions"
+            :options="sortCountries"
             :deselect-from-dropdown="true"
+            :selectable="country => country.disabled"
             :clearable="false"
             class="ps_gs-v-select maxw-sm-420"
             label="country"
@@ -164,6 +165,12 @@
               <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
                 <span class="mr-2">
                   {{ country }}
+                </span>
+                <span
+                  v-if="!isCompatibleWithCurrency(country)"
+                  class="ps_gs-fz-12 ml-auto"
+                >
+                  {{ $t('productFeedSettings.steps.shippingSettingsErrors') }}
                 </span>
               </div>
             </template>
@@ -436,6 +443,10 @@ export default {
         return null;
       }
 
+      if (this.campaignName.indexOf('\n') || this.campaignName.indexOf('\r')) {
+        return null;
+      }
+
       return !!((this.campaignName.length <= 125
           && this.campaignName.length > 0
           && isUnique));
@@ -443,12 +454,21 @@ export default {
     campaignDailyBudgetFeedback() {
       // TODO
       // I'm just looking for digit, validation should be way better than that
-      const regex = /^(?:\d)+$/g;
+      const regex = /^([0-9]*)(:?[\.|\,][0-9]{0,2})?$/g;
       if (this.campaignDailyBudget === null || this.campaignDailyBudget === '') {
         return null;
       }
 
       return !!regex.test(this.campaignDailyBudget);
+    },
+    sortCountries() {
+      countriesSelectionOptions.forEach((el) => {
+        el.disabled = !!(el.currency === this.currency);
+      });
+      return countriesSelectionOptions;
+    },
+    currency() {
+      return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
   },
   methods: {
@@ -460,6 +480,11 @@ export default {
     },
     addFilter() {
       // TODO
+    },
+    isCompatibleWithCurrency(country) {
+      const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
+
+      return currentCountry.currency === this.currency;
     },
   },
   // TODO filter country to show only available countries
