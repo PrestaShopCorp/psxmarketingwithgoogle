@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CampaignCard @openPopin="onOpenPopinActivateTracking" />
+    <campaign-card @openPopin="onOpenPopinActivateTracking" v-if="$route.path === '/campaign'" />
     <SSCPopinActivateTracking
       ref="SSCPopinActivateTracking"
     />
