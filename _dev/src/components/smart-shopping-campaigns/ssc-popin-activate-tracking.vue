@@ -68,7 +68,6 @@ export default {
         return this.$store.state.smartShoppingCampaigns.tracking;
       },
       set(value) {
-        console.log(value);
         this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value);
       },
     },
