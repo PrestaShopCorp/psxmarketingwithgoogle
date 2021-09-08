@@ -44,27 +44,22 @@ export default {
       console.error(error);
     }
   },
+
   async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAG](
     {commit, rootState}, payload: boolean,
   ) {
-    // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/`,
-    //     {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         Accept: 'application/json',
-    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-    //       },
-    //       body: JSON.stringify(payload),
-    //     });
-    //   if (!resp.ok) {
-    //     throw new HttpClientError(resp.statusText, resp.status);
-    //   }
-    //   const json = await resp.json();
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'toggleRemarketingTags',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, payload);
-    // } catch (error) {
-    //   console.error(error);
-    // }
   },
+
 };
