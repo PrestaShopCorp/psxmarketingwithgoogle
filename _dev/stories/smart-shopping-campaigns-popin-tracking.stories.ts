@@ -1,6 +1,6 @@
 import SSCPopinActivateTracking from '../src/components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue'
 import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
-import {sscDefault, sscTrackingIsFalse, sscTagAlreadyExists} from '../.storybook/mock/smart-shopping-campaigns';
+import {sscTrackingIsTrue, sscTrackingIsFalse, sscTagAlreadyExists} from '../.storybook/mock/smart-shopping-campaigns';
 export default {
   title: 'Smart Shopping Campaign/Popins',
     component: SSCPopinActivateTracking,
@@ -21,11 +21,11 @@ const Template = (args, { argTypes }) => ({
 });
 
 
-export const Activate:any = Template.bind({});
-Activate.args = {
+export const TrackingTrue:any = Template.bind({});
+TrackingTrue.args = {
   visible: true,
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns = Object.assign({}, sscDefault);
+    this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsTrue);
   },
 };
 

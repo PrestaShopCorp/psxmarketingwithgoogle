@@ -12,6 +12,12 @@ export const sscDefault = {
   };
   
 
+  export const sscTrackingIsTrue = {
+      ...sscDefault,
+    tracking: true,
+  };
+  
+
   export const sscTrackingIsFalse = {
       ...sscDefault,
     tracking: false,
