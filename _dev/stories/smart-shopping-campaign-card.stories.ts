@@ -1,4 +1,4 @@
-import SmartShoppingCampaign from '../src/components/smart-shopping-campaign/smart-shopping-campaign-card.vue'
+import SmartShoppingCampaign from '../src/components/smart-shopping-campaigns/smart-shopping-campaign-card.vue'
 
 export default {
   title: 'Smart Shopping Campaign/Card',

@@ -18,7 +18,7 @@
  */
 
 enum MutationsTypes {
-
+    TOGGLE_STATUS_REMARKETING_TRACKING_TAG = 'TOGGLE_STATUS_REMARKETING_TRACKING_TAG',
 }
 
 export {MutationsTypes as default};

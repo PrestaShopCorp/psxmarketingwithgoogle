@@ -40,9 +40,26 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      console.log(json);
     } catch (error) {
       console.error(error);
     }
   },
+
+  async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAG](
+    {commit, rootState}, payload: boolean,
+  ) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'toggleRemarketingTags',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
+    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, payload);
+  },
+
 };

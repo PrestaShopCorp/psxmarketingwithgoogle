@@ -19,6 +19,7 @@
 
 enum ActionsTypes {
   SAVE_NEW_SSC = 'SAVE_NEW_SSC',
+  SAVE_STATUS_REMARKETING_TRACKING_TAG = 'SAVE_STATUS_REMARKETING_TRACKING_TAG',
 }
 
 export {ActionsTypes as default};

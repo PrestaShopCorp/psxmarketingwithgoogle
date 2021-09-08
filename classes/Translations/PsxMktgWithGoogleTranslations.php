@@ -430,6 +430,12 @@ class PsxMktgWithGoogleTranslations
                 'recapFiltersLabel' => $this->module->l('Products in Campaign', 'PsxMktgWithGoogleTranslations'),
                 'recapNoFiltersDescription' => $this->module->l('All synced products approved by Google', 'PsxMktgWithGoogleTranslations'),
                 'recapFooter' => $this->module->l('Check the information of your campaign before validating it. You can always modify some parameters while the campaign is in progress.', 'PsxMktgWithGoogleTranslations'),
+                'toggleCreationRemarketingTag' => $this->module->l('Create a new remarketing and conversion tracking tag to add to your shop', 'PsxMktgWithGoogleTranslations'),
+                'toggleCreationNewRemarketingTag' => $this->module->l('Create a remarketing and conversion tracking tag to add to your shop', 'PsxMktgWithGoogleTranslations'),
+                'alert' => [
+                    'noTag' => $this->module->l('By not adding the tag automatically Google will not be able to send campaigns results', 'PsxMktgWithGoogleTranslations'),
+                    'duplicatedTag' => $this->module->l('Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.', 'PsxMktgWithGoogleTranslations'),
+                  ],
             ],
             'productFeedPage' => [
                 'breadcrumb' => $this->module->l('Product status details', 'PsxMktgWithGoogleTranslations'),
@@ -489,7 +495,7 @@ class PsxMktgWithGoogleTranslations
             'campaignCard' => [
                 'title' => $this->module->l('Create your Smart Shopping campaign in a few clicks', 'PsxMktgWithGoogleTranslations'),
                 'description' => $this->module->l("Google AI will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it's that easy!", 'PsxMktgWithGoogleTranslations'),
-                'footer' => $this->module->l('We\'ll need to activate remarketing and conversion tracking tags for you to run Smart Shopping campaigns', 'PsxMktgWithGoogleTranslations'),
+                'footer' => $this->module->l('We\'ll need to activate remarketing and conversion tracking tag for you to run Smart Shopping campaigns', 'PsxMktgWithGoogleTranslations'),
             ],
             'help' => [
                 'title' => $this->module->l('Help for PrestaShop Google', 'PsxMktgWithGoogleTranslations'),
@@ -632,6 +638,8 @@ class PsxMktgWithGoogleTranslations
                 'textOverwriteProductFeed' => $this->module->l('Overwriting your existing product feed will delete it. You will need to configure new product feed.', 'PsxMktgWithGoogleTranslations'),
                 'titleDisconnectionGoogleAds' => $this->module->l('Disconnect Google Ads account?', 'PsxMktgWithGoogleTranslations'),
                 'textDisconnectGoogleAds' => $this->module->l('You are about to disconnect your Google Ads account. You won\'t be able to run Smart Shopping campaigns. Your previous Smart Shopping campaigns are still running. ', 'PsxMktgWithGoogleTranslations'),
+                'titleActivateTrackingSSC' => $this->module->l('Activate remarketing and conversion tracking tag.', 'PsxMktgWithGoogleTranslations'),
+                'textActivateTrackingSSC' => $this->module->l("In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.", 'PsxMktgWithGoogleTranslations'),
             ],
             'tooltip' => [
                 'googleAccountRequired' => $this->module->l('Requires Google account configuration', 'PsxMktgWithGoogleTranslations'),

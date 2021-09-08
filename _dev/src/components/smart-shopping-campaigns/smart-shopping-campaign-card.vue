@@ -35,6 +35,7 @@
         class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center align-self-end"
       >
         <b-button
+          @click="openPopinActivateTracking"
           size="sm"
           variant="primary"
           class="mx-1 mt-3 mt-md-0 mr-md-0 ml-md-3"
@@ -71,6 +72,9 @@ export default {
     },
   },
   methods: {
+    openPopinActivateTracking() {
+      this.$emit('openPopin');
+    },
   },
 };
 </script>

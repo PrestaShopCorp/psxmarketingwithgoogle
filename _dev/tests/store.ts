@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import app from '@/store/modules/app';
 import accounts from '@/store/modules/accounts';
 import productFeed from '@/store/modules/product-feed';
+import smartShoppingCampaigns from '@/store/modules/smart-shopping-campaigns';
 import freeListing from '@/store/modules/free-listing';
 import googleAds from '@/store/modules/google-ads';
 
@@ -17,6 +18,7 @@ export const cloneStore = () => {
       productFeed: cloneDeep(productFeed),
       googleAds: cloneDeep(googleAds),
       freeListing: cloneDeep(freeListing),
+      smartShoppingCampaigns: cloneDeep(smartShoppingCampaigns),
     },
   };
   return store;

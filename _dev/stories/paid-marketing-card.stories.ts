@@ -1,4 +1,4 @@
-import CampaignCard from '../src/components/campaign/campaign-card.vue'
+import CampaignCard from '../src/components/smart-shopping-campaigns/campaign-card.vue'
 
 export default {
   title: 'Campaign/Card',

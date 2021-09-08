@@ -23,4 +23,7 @@ import {
 } from './state';
 
 export default {
+  [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](state: LocalState, payload: boolean) {
+    state.tracking = payload;
+  },
 };

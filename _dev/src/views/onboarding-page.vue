@@ -72,6 +72,7 @@
       />
       <SmartShoppingCampaignCard
         :is-enabled="!shopInConflictPsAccount && stepsAreCompleted.step3"
+        @openPopin="onOpenPopinActivateTracking"
       />
     </template>
     <!-- Modals -->
@@ -95,6 +96,9 @@
       ref="GoogleAdsAccountPopinNew"
       :user="getGoogleAccount"
       @cancelGoogleAdsCreationNewAccount="onGoogleAdsAccountTogglePopin"
+    />
+    <SSCPopinActivateTracking
+      ref="SSCPopinActivateTracking"
     />
     <!-- Toasts -->
     <PsToast
@@ -129,7 +133,8 @@ import GoogleAccountPopinDisconnect from '../components/google-account/google-ac
 import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/google-ads-account-popin-disconnect.vue';
 import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
-import SmartShoppingCampaignCard from '../components/smart-shopping-campaign/smart-shopping-campaign-card.vue';
+import SmartShoppingCampaignCard from '../components/smart-shopping-campaigns/smart-shopping-campaign-card.vue';
+import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
 import PsToast from '../components/commons/ps-toast';
 
 export default {
@@ -150,6 +155,7 @@ export default {
     GoogleAdsPopinNew,
     PsToast,
     FreeListingPopinDisable,
+    SSCPopinActivateTracking,
   },
   data() {
     return {
@@ -196,6 +202,11 @@ export default {
     onGoogleAdsAccountTogglePopin() {
       this.$bvModal.show(
         this.$refs.GoogleAdsAccountPopinNew.$refs.modal.id,
+      );
+    },
+    onOpenPopinActivateTracking() {
+      this.$bvModal.show(
+        this.$refs.SSCPopinActivateTracking.$refs.modal.id,
       );
     },
     // onCancelGoogleAdsCreationNewAccount() {

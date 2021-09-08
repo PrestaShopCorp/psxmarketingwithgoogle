@@ -58,6 +58,11 @@ const routes: Array<RouteConfig> = [
     component: CampaignPage,
   },
   {
+    path: '/campaign/creation',
+    name: 'campaign-creation',
+    component: CampaignPage,
+  },
+  {
     path: '/',
     name: 'root',
     beforeEnter: initialPath,
