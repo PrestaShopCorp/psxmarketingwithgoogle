@@ -23,7 +23,6 @@ const Template = (args, { argTypes }) => ({
   template: `
     <div>
     <OnboardingPage />
-
       <GoogleAdsAccountPopinNew
         ref="googleAdsAccountPopin"
         v-bind="$props"

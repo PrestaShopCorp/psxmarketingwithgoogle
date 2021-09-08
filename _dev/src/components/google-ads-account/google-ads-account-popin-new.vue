@@ -98,7 +98,7 @@
           variant=" "
           class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
           :toggle-class="{
-            'ps-dropdown__placeholder': selectedTimeZone === null,
+            'ps-dropdown__placeholder': !selectedTimeZone,
           }"
           menu-class="ps-dropdown"
           no-flip
@@ -133,7 +133,7 @@
           variant=" "
           class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
           :toggle-class="{
-            'ps-dropdown__placeholder': selectedCurrency === null,
+            'ps-dropdown__placeholder': !selectedCurrency,
           }"
           menu-class="ps-dropdown"
           no-flip

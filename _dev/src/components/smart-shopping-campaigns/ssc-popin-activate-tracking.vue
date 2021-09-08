@@ -33,6 +33,11 @@ export default {
   components: {
     PsModal,
   },
+  computed: {
+    trackingStatus() {
+      return this.$store.state.smartShoppingCampaigns.tracking;
+    },
+  },
   methods: {
     changeTrackingStatus(status) {
       this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAGS', status);

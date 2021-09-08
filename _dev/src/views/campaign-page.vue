@@ -2,10 +2,10 @@
   <div>
     <campaign-card
       @openPopin="onOpenPopinActivateTracking"
-      v-if="$route.path === '/campaign'"
+      v-if="$route.name === 'campaign'"
     />
     <smart-shopping-campaign-creation
-      v-if="$route.path === '/creation'"
+      v-if="$route.name === 'campaign-creation'"
     />
     <SSCPopinActivateTracking
       ref="SSCPopinActivateTracking"
