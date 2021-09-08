@@ -195,7 +195,8 @@
         "attributeMapping" : "Product attributes",
         "categoryMapping" : "Category mapping",
         "summary" : "Summary",
-        "exportFeed" : "Export feed!"
+        "exportFeed" : "Export feed!",
+        "shippingSettingsErrors": "This country is not compatible with your currency"
       },
       "noticeDataStored" : "Settings are saved at each step, will be submitted only at the final step.",
       "shipping" : {
@@ -347,6 +348,35 @@
     "smartShoppingCampaignCard" : {
       "title" : "Boost your sales with Smart Shopping Campaigns",
       "intro" : "Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time."
+    },
+    "smartShoppingCampaingCreation" : {
+      "breadcrumb1" : "Paid marketing",
+      "breadcrumb2" : "Create Smart Shopping campaign",
+      "inputNameHelper" : "The name must be unique and 125 chars max.",
+      "inputNameLabel" : "Campaign name",
+      "inputNameTooltip" : "Choose a name that clearly describes the theme of the campaign so that you can easily find it in your account. Your campaign name isn't visible to your customers.",
+      "inputNamePlaceholder" : "Type campaign name",
+      "inputDurationHelper" : "We recommend a minimum duration of 30 days so that Google can optimize your campaign.",
+      "inputDurationLabel" : "Campaign duration",
+      "inputDurationTooltip" : "Ad campaigns have no end date by default, so that the ads are able to run indefinitely. You can always add an end date to create a shorter campaign.",
+      "inputDurationLabel1" : "Start date",
+      "inputDurationLabel2" : "End date (optional)",
+      "inputDatePickerHelper" : "Use cursor keys to navigate calendar dates",
+      "inputCountryHelper" : "To target multiple countries you have to create multiple campaigns.",
+      "inputCountryLabel" : "Target country",
+      "inputCountryTooltip" : "Your campaign’s ads are eligible to show to customers in your targeted geographic locations, or to customers who have selected your targeted language as their browser’s language setting.",
+      "inputFiltersLegend" : "Products in campaign",
+      "inputFiltersAllLabel" : "Include all synced products",
+      "inputFiltersPartialLabel" : "Select products using product partition filters",
+      "inputFiltersHelper" : "Take some time to [read Google Shopping ads policies]({0})[:target=\"_blank\"] some product are prohibited or restricted.",
+      "inputBudgetHelper" : "You will only pay if someone clicks your ad.",
+      "inputBudgetInvalidFeedback" : "placholder invalid feedback",
+      "inputBudgetFeedback" : "Daily campaign budget",
+      "inputBudgetTooltip" : "Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time.",
+      "inputBudgetPlaceholder" : "Amount",
+      "formHelperTitle" : "Campaign activation",
+      "formHelperDescription" : "Your campaign will run until you pause it. You can pause your campaign at any time.",
+      "errorNoProducts" : "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google."
     },
     "productFeedPage" : {
       "breadcrumb" : "Product status details",
@@ -501,7 +531,8 @@
       "createSmartShoppingCampaign" : "Create Smart Shopping campaign",
       "addBillingSettings" : "Add billing settings",
       "learnAboutTimeZoneAndCurrency" : "Learn more about currency and time zone settings",
-      "createCampaign" : "Create campaign"
+      "createCampaign" : "Create campaign",
+      "resetDate" : "Reset date"
     },
     "badge" : {
       "free" : "Free",
