@@ -1,28 +1,30 @@
 <template>
   <ps-modal
     id="SmartShoppingCampaignCreationPopinRecap"
-    :title="'Summary of the campaign'"
+    :title="$t('smartShoppingCampaignCreation.recapTitle')"
     v-bind="$attrs"
     @close="cancel"
     ref="SmartShoppingCampaignCreationPopinRecap"
   >
-    <dl>
-      <dt>
-        {{ $t('smartShoppingCampaingCreation.inputNameLabel') }}
+    <dl class="w-100 d-inline-block">
+      <dt class="font-weight-600">
+        {{ $t('smartShoppingCampaignCreation.inputNameLabel') }}
       </dt>
-      <dd class="text-secondary">
+      <dd class="text-secondary mb-3">
         {{ campaignDetails.name }}
       </dd>
-      <dt>{{ $t('smartShoppingCampaingCreation.inputDurationLabel') }}</dt>
-      <dd>
+      <dt class="font-weight-600">
+        {{ $t('smartShoppingCampaignCreation.inputDurationLabel') }}
+      </dt>
+      <dd class="mb-3">
         <b-form-row>
           <b-col
             cols="12"
             md="4"
-            class="mb-3 mb-md-0"
+            class="mb-2 mb-md-0"
           >
             <span>
-              {{ $t('smartShoppingCampaingCreation.inputDurationLabel1') }}
+              {{ $t('smartShoppingCampaignCreation.inputDurationLabel1') }}
             </span><br>
             <span class="text-secondary">
               {{ campaignDetails.duration.startDate }}
@@ -33,7 +35,7 @@
             md="4"
           >
             <span>
-              {{ $t('smartShoppingCampaingCreation.inputDurationLabel2') }}
+              {{ $t('smartShoppingCampaignCreation.inputDurationLabel2') }}
             </span><br>
             <span class="text-secondary">
               {{ campaignDetails.duration.endDate }}
@@ -41,30 +43,30 @@
           </b-col>
         </b-form-row>
       </dd>
-      <dt>
-        {{ $t('smartShoppingCampaingCreation.inputCountryLabel') }}
+      <dt class="font-weight-600">
+        {{ $t('smartShoppingCampaignCreation.inputCountryLabel') }}
       </dt>
-      <dd class="text-secondary">
+      <dd class="text-secondary mb-3">
         {{ campaignDetails.targetCountry }}
       </dd>
-      <dt>
-        Products in Campaign
+      <dt class="font-weight-600">
+        {{ $t('smartShoppingCampaignCreation.recapFiltersLabel') }}
       </dt>
-      <dd class="text-secondary">
+      <dd class="text-secondary mb-3">
         <template v-if="campaignDetails.filters.length === 0">
-          All synced products approved by Google
+          {{ $t('smartShoppingCampaignCreation.recapNoFiltersDescription') }}
         </template>
         <!-- TODO v-else -->
       </dd>
-      <dt>
-        {{ $t('smartShoppingCampaingCreation.inputBudgetFeedback') }}
+      <dt class="font-weight-600">
+        {{ $t('smartShoppingCampaignCreation.inputBudgetFeedback') }}
       </dt>
-      <dd class="text-secondary">
+      <dd class="text-secondary mb-2">
         {{ campaignBudgetString }}
       </dd>
     </dl>
     <p>
-      Check the information of your campaign before validating it. You can always modify some parameters while the campaign is in progress.
+      {{ $t('smartShoppingCampaignCreation.recapFooter') }}
     </p>
     <template
       slot="modal-footer"
@@ -96,7 +98,7 @@ export default {
   },
   computed: {
     campaignDetails() {
-      let campaignDetails = {
+      const campaignDetails = {
         // TODO: get details from store
         name: 'foo bar',
         duration: {
@@ -132,5 +134,5 @@ export default {
 
     },
   },
-}
+};
 </script>
