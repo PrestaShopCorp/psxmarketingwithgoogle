@@ -1,7 +1,7 @@
 <template>
   <ps-modal
     id="GoogleAdsAccountPopinNew"
-    :title="'Create new Google Ads account'"
+    :title="$t('googleAdsAccountNew.title')"
     v-bind="$attrs"
     @close="cancel"
     ref="modal"
