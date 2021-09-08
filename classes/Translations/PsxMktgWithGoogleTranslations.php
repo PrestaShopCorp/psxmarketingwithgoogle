@@ -581,6 +581,7 @@ class PsxMktgWithGoogleTranslations
                 'learnAboutTimeZoneAndCurrency' => $this->module->l('Learn more about currency and time zone settings', 'PsxMktgWithGoogleTranslations'),
                 'createCampaign' => $this->module->l('Create campaign', 'PsxMktgWithGoogleTranslations'),
                 'resetDate' => $this->module->l('Reset date', 'PsxMktgWithGoogleTranslations'),
+                'validate' => $this->module->l('Validate', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),

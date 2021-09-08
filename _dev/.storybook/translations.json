@@ -532,7 +532,8 @@
       "addBillingSettings" : "Add billing settings",
       "learnAboutTimeZoneAndCurrency" : "Learn more about currency and time zone settings",
       "createCampaign" : "Create campaign",
-      "resetDate" : "Reset date"
+      "resetDate" : "Reset date",
+      "validate" : "Validate"
     },
     "badge" : {
       "free" : "Free",
