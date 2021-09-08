@@ -367,6 +367,7 @@ class PsxMktgWithGoogleTranslations
                 'learnAboutAccountCancellation' => $this->module->l('Learn about account cancellation', 'PsxMktgWithGoogleTranslations'),
             ],
             'googleAdsAccountNew' => [
+                'title' => $this->module->l('Create new Google Ads account', 'PsxMktgWithGoogleTranslations'),
                 'steps' => [
                   'email' => $this->module->l('Email', 'PsxMktgWithGoogleTranslations'),
                   'businessInfo' => $this->module->l('Business info', 'PsxMktgWithGoogleTranslations'),

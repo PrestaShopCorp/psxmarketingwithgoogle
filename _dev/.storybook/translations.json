@@ -319,6 +319,7 @@
       "learnAboutAccountCancellation": "Learn about account cancellation"
     },
     "googleAdsAccountNew" : {
+      "title" : "Create new Google Ads account",
       "steps" : {
         "email" : "Email",
         "businessInfo" : "Business info",
