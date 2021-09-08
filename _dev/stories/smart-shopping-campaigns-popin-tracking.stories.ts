@@ -2,7 +2,7 @@ import SSCPopinActivateTracking from '../src/components/smart-shopping-campaigns
 import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 
 export default {
-  title: 'Smart Shopping Campaign/Popin',
+  title: 'Smart Shopping Campaign/Popins',
     component: SSCPopinActivateTracking,
 };
 

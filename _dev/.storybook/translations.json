@@ -381,7 +381,13 @@
       "recapTitle" : "Summary of the campaign",
       "recapFiltersLabel" : "Products in Campaign",
       "recapNoFiltersDescription" : "All synced products approved by Google",
-      "recapFooter" : "Check the information of your campaign before validating it. You can always modify some parameters while the campaign is in progress."
+      "recapFooter" : "Check the information of your campaign before validating it. You can always modify some parameters while the campaign is in progress.",
+      "toggleCreationRemarketingTag": "Create a remarketing and conversion tracking tags to add to your shop",
+      "toggleCreationNewRemarketingTag": "Create a new remarketing and conversion tracking tag to your shop",
+      "alerts": {
+        "noTag": "By not adding the tag automatically Google will not be able to send campaigns results",
+        "duplicatedTag" : "Looks like you already have a tag linked to you google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you."
+      }
     },
     "productFeedPage" : {
       "breadcrumb" : "Product status details",

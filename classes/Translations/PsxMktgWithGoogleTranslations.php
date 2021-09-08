@@ -430,6 +430,12 @@ class PsxMktgWithGoogleTranslations
                 'recapFiltersLabel' => $this->module->l('Products in Campaign', 'PsxMktgWithGoogleTranslations'),
                 'recapNoFiltersDescription' => $this->module->l('All synced products approved by Google', 'PsxMktgWithGoogleTranslations'),
                 'recapFooter' => $this->module->l('Check the information of your campaign before validating it. You can always modify some parameters while the campaign is in progress.', 'PsxMktgWithGoogleTranslations'),
+                'toggleCreationRemarketingTag' => $this->module->l('Create a new remarketing and conversion tracking tags to add to your shop', 'PsxMktgWithGoogleTranslations'),
+                'toggleCreationNewRemarketingTag' => $this->module->l('Create a remarketing and conversion tracking tags to add to your shop', 'PsxMktgWithGoogleTranslations'),
+                'alert' => [
+                    'noTag' => $this->module->l("By not adding the tag automatically Google will not be able to send campaigns results", 'PsxMktgWithGoogleTranslations'),
+                    'duplicatedTag' => $this->module->l('Looks like you already have a tag linked to you google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.', 'PsxMktgWithGoogleTranslations'),
+                  ],
             ],
             'productFeedPage' => [
                 'breadcrumb' => $this->module->l('Product status details', 'PsxMktgWithGoogleTranslations'),

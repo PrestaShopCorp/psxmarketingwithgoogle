@@ -12,6 +12,34 @@
       :extensions="['extended-link']"
       :markdown="$t('modal.textActivateTrackingSSC', ['http://google.fr', 'http://google.fr'])"
     />
+    <span
+      class="ps-switch ps-switch-sm"
+    >
+      <input
+        @change="toggle"
+        type="radio"
+        name="switchEnable"
+        :value="false"
+        :checked="false"
+        id="switch_off_freelisting"
+      >
+      <label for="switch_off_freelisting">
+        {{ $t('smartShoppingCampaignCreation.toggleCreationRemarketingTag') }}
+      </label>
+      <input
+        @change="toggle"
+        type="radio"
+        name="switchEnable"
+        :value="true"
+        :checked="true"
+        id="switch_on_freelisting"
+      >
+      <label for="switch_on_freelisting">
+        {{ $t('smartShoppingCampaignCreation.toggleCreationRemarketingTag') }}
+      </label>
+      <span class="slide-button" />
+
+    </span>
     <template
       slot="modal-cancel"
     >
