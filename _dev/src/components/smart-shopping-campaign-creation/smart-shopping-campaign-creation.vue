@@ -20,11 +20,11 @@
               height="40"
               alt=""
             >
-            {{ $t('smartShoppingCampaingCreation.breadcrumb1') }}
+            {{ $t('smartShoppingCampaignCreation.breadcrumb1') }}
           </a>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
-          {{ $t('smartShoppingCampaingCreation.breadcrumb2') }}
+          {{ $t('smartShoppingCampaignCreation.breadcrumb2') }}
         </li>
       </ol>
     </b-card-header>
@@ -34,17 +34,17 @@
       <b-form>
         <b-form-group
           id="campaign-name-fieldset"
-          :description="$t('smartShoppingCampaingCreation.inputNameHelper')"
+          :description="$t('smartShoppingCampaignCreation.inputNameHelper')"
           label-for="campaign-name-input"
           label-class="d-flex align-items-center font-weight-600"
         >
           <template #label>
-            {{ $t('smartShoppingCampaingCreation.inputNameLabel') }}
+            {{ $t('smartShoppingCampaignCreation.inputNameLabel') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
               v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('smartShoppingCampaingCreation.inputNameTooltip')"
+              :title="$t('smartShoppingCampaignCreation.inputNameTooltip')"
             >
               <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
                 error_outline
@@ -54,7 +54,7 @@
           <b-form-input
             id="campaign-name-input"
             v-model="campaignName"
-            :placeholder="$t('smartShoppingCampaingCreation.inputNamePlaceholder')"
+            :placeholder="$t('smartShoppingCampaignCreation.inputNamePlaceholder')"
             class="maxw-sm-420"
             :state="campaignNameFeedback"
           />
@@ -62,16 +62,16 @@
         <b-form-group
           id="campaign-duration-fieldset"
           class="maxw-sm-420"
-          :description="$t('smartShoppingCampaingCreation.inputDurationHelper')"
+          :description="$t('smartShoppingCampaignCreation.inputDurationHelper')"
           label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
         >
           <template #label>
-            {{ $t('smartShoppingCampaingCreation.inputDurationLabel') }}
+            {{ $t('smartShoppingCampaignCreation.inputDurationLabel') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
               v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('smartShoppingCampaingCreation.inputDurationTooltip')"
+              :title="$t('smartShoppingCampaignCreation.inputDurationTooltip')"
             >
               <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
                 error_outline
@@ -85,7 +85,7 @@
               class="mb-3 mb-md-0"
             >
               <label for="campaign-duration-start-date-input">
-                {{ $t('smartShoppingCampaingCreation.inputDurationLabel1') }}
+                {{ $t('smartShoppingCampaignCreation.inputDurationLabel1') }}
               </label>
               <b-form-datepicker
                 id="campaign-duration-start-date-input"
@@ -97,7 +97,7 @@
                 :reset-value="new Date()"
                 reset-button-variant="outline-secondary sm"
                 :hide-header="true"
-                :label-help="$t('smartShoppingCampaingCreation.inputDatePickerHelper')"
+                :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
                 :required="true"
               />
             </b-col>
@@ -106,7 +106,7 @@
               md="6"
             >
               <label for="campaign-duration-end-date-input">
-                {{ $t('smartShoppingCampaingCreation.inputDurationLabel2') }}
+                {{ $t('smartShoppingCampaignCreation.inputDurationLabel2') }}
               </label>
               <b-form-datepicker
                 id="campaign-duration-end-date-input"
@@ -117,7 +117,7 @@
                 :label-reset-button="$t('cta.resetDate')"
                 reset-button-variant="outline-secondary sm"
                 :hide-header="true"
-                :label-help="$t('smartShoppingCampaingCreation.inputDatePickerHelper')"
+                :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
                 :required="false"
               />
             </b-col>
@@ -127,15 +127,15 @@
           id="campaign-target-country-fieldset"
           label-class="d-flex align-items-center font-weight-600"
           label-for="campaign-target-country-input"
-          :description="$t('smartShoppingCampaingCreation.inputCountryHelper')"
+          :description="$t('smartShoppingCampaignCreation.inputCountryHelper')"
         >
           <template #label>
-            {{ $t('smartShoppingCampaingCreation.inputCountryLabel') }}
+            {{ $t('smartShoppingCampaignCreation.inputCountryLabel') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
               v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('smartShoppingCampaingCreation.inputCountryTooltip')"
+              :title="$t('smartShoppingCampaignCreation.inputCountryTooltip')"
             >
               <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
                 error_outline
@@ -177,7 +177,7 @@
           </ps-select>
         </b-form-group>
         <b-form-group
-          :label="$t('smartShoppingCampaingCreation.inputFiltersLegend')"
+          :label="$t('smartShoppingCampaignCreation.inputFiltersLegend')"
           id="campaign-products-filter-fieldset"
           label-class="h4 font-weight-600 border-0 bg-transparent"
         >
@@ -187,20 +187,20 @@
             :value="true"
             class="mb-1"
           >
-            {{ $t('smartShoppingCampaingCreation.inputFiltersAllLabel') }}
+            {{ $t('smartShoppingCampaignCreation.inputFiltersAllLabel') }}
           </b-form-radio>
           <b-form-radio
             v-model="campaignProductsFilter"
             name="campaign-product-filter-radios"
             :value="false"
           >
-            {{ $t('smartShoppingCampaingCreation.inputFiltersPartialLabel') }}
+            {{ $t('smartShoppingCampaignCreation.inputFiltersPartialLabel') }}
           </b-form-radio>
           <template #description>
             <VueShowdown
               tag="p"
               class="mb-0"
-              :markdown="$t('smartShoppingCampaingCreation.inputFiltersHelper', ['//google.com'])"
+              :markdown="$t('smartShoppingCampaignCreation.inputFiltersHelper', ['//google.com'])"
               :extensions="['extended-link', 'no-p-tag']"
             />
           </template>
@@ -334,20 +334,20 @@
         <!-- TODO END > Ajout de filtres dynamiques -->
         <b-form-group
           id="campaign-daily-budget-fieldset"
-          :description="$t('smartShoppingCampaingCreation.inputBudgetHelper')"
+          :description="$t('smartShoppingCampaignCreation.inputBudgetHelper')"
           label-for="campaign-dailyBudget-input"
           label-class="d-flex align-items-center font-weight-600"
           :state="campaignDailyBudgetFeedback"
           aria-describedby="campaign-daily-budget-fieldset__BV_description_ input-live-feedback"
-          :invalid-feedback="$t('smartShoppingCampaingCreation.inputBudgetInvalidFeedback')"
+          :invalid-feedback="$t('smartShoppingCampaignCreation.inputBudgetInvalidFeedback')"
         >
           <template #label>
-            {{ $t('smartShoppingCampaingCreation.inputBudgetFeedback') }}
+            {{ $t('smartShoppingCampaignCreation.inputBudgetFeedback') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
               v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('smartShoppingCampaingCreation.inputBudgetTooltip')"
+              :title="$t('smartShoppingCampaignCreation.inputBudgetTooltip')"
             >
               <i class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
                 error_outline
@@ -362,22 +362,22 @@
             <b-form-input
               id="campaign-dailyBudget-input"
               v-model="campaignDailyBudget"
-              :placeholder="$t('smartShoppingCampaingCreation.inputBudgetPlaceholder')"
+              :placeholder="$t('smartShoppingCampaignCreation.inputBudgetPlaceholder')"
               :state="campaignDailyBudgetFeedback"
             />
           </b-input-group>
         </b-form-group>
         <span class="font-weight-600">
-          {{ $t('smartShoppingCampaingCreation.formHelperTitle') }}
+          {{ $t('smartShoppingCampaignCreation.formHelperTitle') }}
         </span>
         <p>
-          {{ $t('smartShoppingCampaingCreation.formHelperDescription') }}
+          {{ $t('smartShoppingCampaignCreation.formHelperDescription') }}
         </p>
         <b-alert
           variant="warning"
           show
         >
-          {{ $t('smartShoppingCampaingCreation.errorNoProducts') }}
+          {{ $t('smartShoppingCampaignCreation.errorNoProducts') }}
         </b-alert>
         <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
           <b-button
