@@ -23,7 +23,7 @@ import {
 } from './state';
 
 export default {
-  [MutationsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAGS](state: LocalState, payload: boolean) {
+  [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAGS](state: LocalState, payload: boolean) {
     state.tracking = payload;
   },
 };

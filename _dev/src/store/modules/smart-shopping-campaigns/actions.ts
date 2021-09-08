@@ -62,7 +62,7 @@ export default {
     //     throw new HttpClientError(resp.statusText, resp.status);
     //   }
     //   const json = await resp.json();
-    commit(MutationsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAGS, payload);
+    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAGS, payload);
     // } catch (error) {
     //   console.error(error);
     // }
