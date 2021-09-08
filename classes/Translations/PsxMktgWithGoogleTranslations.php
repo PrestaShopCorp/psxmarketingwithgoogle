@@ -398,7 +398,7 @@ class PsxMktgWithGoogleTranslations
                 'title' => $this->module->l('Boost your sales with Smart Shopping Campaigns', 'PsxMktgWithGoogleTranslations'),
                 'intro' => $this->module->l("Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time.", 'PsxMktgWithGoogleTranslations'),
             ],
-            'smartShoppingCampaingCreation' => [
+            'smartShoppingCampaignCreation' => [
                 'breadcrumb1' => $this->module->l('Paid marketing', 'PsxMktgWithGoogleTranslations'),
                 'breadcrumb2' => $this->module->l('Create Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
                 'inputNameHelper' => $this->module->l('The name must be unique and 125 chars max.', 'PsxMktgWithGoogleTranslations'),
@@ -426,6 +426,10 @@ class PsxMktgWithGoogleTranslations
                 'formHelperTitle' => $this->module->l('Campaign activation', 'PsxMktgWithGoogleTranslations'),
                 'formHelperDescription' => $this->module->l('Your campaign will run until you pause it. You can pause your campaign at any time.', 'PsxMktgWithGoogleTranslations'),
                 'errorNoProducts' => $this->module->l('You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.', 'PsxMktgWithGoogleTranslations'),
+                'recapTitle' => $this->module->l('Summary of the campaign', 'PsxMktgWithGoogleTranslations'),
+                'recapFiltersLabel' => $this->module->l('Products in Campaign', 'PsxMktgWithGoogleTranslations'),
+                'recapNoFiltersDescription' => $this->module->l('All synced products approved by Google', 'PsxMktgWithGoogleTranslations'),
+                'recapFooter' => $this->module->l('Check the information of your campaign before validating it. You can always modify some parameters while the campaign is in progress.', 'PsxMktgWithGoogleTranslations'),
             ],
             'productFeedPage' => [
                 'breadcrumb' => $this->module->l('Product status details', 'PsxMktgWithGoogleTranslations'),
@@ -582,6 +586,7 @@ class PsxMktgWithGoogleTranslations
                 'learnAboutTimeZoneAndCurrency' => $this->module->l('Learn more about currency and time zone settings', 'PsxMktgWithGoogleTranslations'),
                 'createCampaign' => $this->module->l('Create campaign', 'PsxMktgWithGoogleTranslations'),
                 'resetDate' => $this->module->l('Reset date', 'PsxMktgWithGoogleTranslations'),
+                'validate' => $this->module->l('Validate', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),
