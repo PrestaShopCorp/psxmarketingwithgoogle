@@ -36,7 +36,6 @@ export interface ProductFeedSettingsAttributeMapping {
 export interface ProductFeedSettings {
   shippingSettings: Array<object>;
   autoImportTaxSettings: boolean;
-  targetCountries: Array<string> | null;
   autoImportShippingSettings: boolean;
   attributeMapping: ProductFeedSettingsAttributeMapping;
   syncSchedule?: string;
@@ -64,7 +63,6 @@ export interface State {
   errorAPI: boolean;
   isConfigured: boolean;
   isConfiguredOnce: boolean;
-  psxMtgWithGoogleDefaultShopCountry: string | null;
   totalProducts: number;
   stepper: number;
   status: ProductFeedStatus;
@@ -84,7 +82,6 @@ export const state: State = {
   errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
-  psxMtgWithGoogleDefaultShopCountry: null,
   totalProducts: 0,
   stepper: 1,
   status: {
@@ -96,7 +93,6 @@ export const state: State = {
   settings: {
     shippingSettings: [],
     autoImportTaxSettings: false,
-    targetCountries: null,
     autoImportShippingSettings: true,
     attributeMapping: {
       exportProductsWithShortDescription: true,

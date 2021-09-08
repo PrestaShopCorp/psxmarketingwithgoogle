@@ -38,4 +38,13 @@ export default {
   [GettersTypes.GET_STORE_INFORMATION_URL](state: LocalState): string {
     return state.psxMktgWithGoogleStoreSettingsUrl;
   },
+  [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
+    if (state.targetCountries !== null) {
+      return state.targetCountries;
+    }
+    if (state.psxMtgWithGoogleDefaultShopCountry !== null) {
+      return [state.psxMtgWithGoogleDefaultShopCountry];
+    }
+    return null;
+  },
 };

@@ -19,6 +19,7 @@
 
 enum MutationsTypes {
   SAVE_DOC_AND_FAQ = 'SAVE_DOC_AND_FAQ',
+  SET_SELECTED_TARGET_COUNTRY = 'SET_SELECTED_TARGET_COUNTRY',
 }
 
 export {MutationsTypes as default};

@@ -181,7 +181,7 @@ export default {
   computed: {
     countries: {
       get() {
-        const targetCountryIsoCode = this.$store.getters['productFeed/GET_ACTIVE_COUNTRIES'];
+        const targetCountryIsoCode = this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
         return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
       },
     },
@@ -225,7 +225,7 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     saveCountrySelected(value) {
-      this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {name: 'targetCountries', data: [value.code]});
+      this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', value);
     },
   },
 };

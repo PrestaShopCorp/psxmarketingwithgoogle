@@ -27,4 +27,7 @@ export default {
   [MutationsTypes.SAVE_DOC_AND_FAQ](state: LocalState, response: HelpInformations) {
     state.psxMktgWithGoogleDocumentAndFaq = response;
   },
+  [MutationsTypes.SET_SELECTED_TARGET_COUNTRY](state: LocalState, payload: Array<string>) {
+    state.targetCountries = payload;
+  },
 };

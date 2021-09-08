@@ -108,7 +108,6 @@ export default {
     state.settings = {
       shippingSettings: [],
       autoImportTaxSettings: false,
-      targetCountries: null,
       autoImportShippingSettings: true,
       attributeMapping: {},
       syncSchedule: '1 * * * * *',

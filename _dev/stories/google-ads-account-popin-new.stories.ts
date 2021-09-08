@@ -2,6 +2,9 @@ import GoogleAdsAccountPopinNew from '../src/components/google-ads-account/googl
 import {
   googleAccountConnected,
 } from "../.storybook/mock/google-account";
+import {
+  initialStateApp,
+} from "../.storybook/mock/state-app";
 import OnboardingPage from '../src/views/onboarding-page.vue'
 
 import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
@@ -30,6 +33,7 @@ const Template = (args, { argTypes }) => ({
     </div>
   `,
   beforeCreate(this: any) {
+    this.$store.state.app = Object.assign({}, initialStateApp);
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);

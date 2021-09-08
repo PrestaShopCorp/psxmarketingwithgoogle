@@ -47,15 +47,6 @@ export default {
   [GettersTypes.GET_MERCHANT_SELL_REFURBISHED_PRODUCTS](state: LocalState): boolean {
     return !!state.settings.attributeMapping?.customConditionAttribute;
   },
-  [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
-    if (state.settings.targetCountries !== null) {
-      return state.settings.targetCountries;
-    }
-    if (state.psxMtgWithGoogleDefaultShopCountry !== null) {
-      return [state.psxMtgWithGoogleDefaultShopCountry];
-    }
-    return null;
-  },
   [GettersTypes.GET_TOTAL_PRODUCTS](state: LocalState) :number {
     return state.totalProducts;
   },

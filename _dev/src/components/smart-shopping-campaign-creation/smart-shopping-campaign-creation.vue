@@ -142,39 +142,11 @@
               </span>
             </b-button>
           </template>
-          <ps-select
-            v-model="campaignCountry"
-            :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
-            :reduce="country => country.code"
-            :options="sortCountries"
-            :deselect-from-dropdown="true"
-            :selectable="country => country.disabled"
-            :clearable="false"
-            class="ps_gs-v-select maxw-sm-420"
-            label="country"
-          >
-            <template #search="{ attributes, events }">
-              <input
-                class="vs__search"
-                v-bind="attributes"
-                v-on="events"
-                id="campaign-target-country-input"
-              >
-            </template>
-            <template #option="{ country }">
-              <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
-                <span class="mr-2">
-                  {{ country }}
-                </span>
-                <span
-                  v-if="!isCompatibleWithCurrency(country)"
-                  class="ps_gs-fz-12 ml-auto"
-                >
-                  {{ $t('productFeedSettings.steps.shippingSettingsErrors') }}
-                </span>
-              </div>
-            </template>
-          </ps-select>
+          <SelectCountry
+            :currency="currency"
+            @countrySelected="saveCountrySelected"
+            :default-country="countries"
+          />
         </b-form-group>
         <b-form-group
           :label="$t('smartShoppingCampaignCreation.inputFiltersLegend')"
@@ -406,10 +378,10 @@
 
 <script>
 import countriesSelectionOptions from '@/assets/json/countries.json';
-import PsSelect from '../commons/ps-select.vue';
 
 // ! test
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
+import SelectCountry from '../commons/select-country.vue';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -426,7 +398,7 @@ export default {
     };
   },
   components: {
-    PsSelect,
+    SelectCountry,
     SmartShoppingCampaignCreationFilterItem,
   },
   computed: {
@@ -470,6 +442,12 @@ export default {
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
+    countries: {
+      get() {
+        const targetCountryIsoCode = this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
+        return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
+      },
+    },
   },
   methods: {
     cancel() {
@@ -485,6 +463,9 @@ export default {
       const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
 
       return currentCountry.currency === this.currency;
+    },
+    saveCountrySelected(value) {
+      this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', value);
     },
   },
   // TODO filter country to show only available countries
