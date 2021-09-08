@@ -44,7 +44,7 @@ export default {
       console.error(error);
     }
   },
-  async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAGS](
+  async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAG](
     {commit, rootState}, payload: boolean,
   ) {
     // try {
@@ -62,7 +62,7 @@ export default {
     //     throw new HttpClientError(resp.statusText, resp.status);
     //   }
     //   const json = await resp.json();
-    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAGS, payload);
+    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, payload);
     // } catch (error) {
     //   console.error(error);
     // }

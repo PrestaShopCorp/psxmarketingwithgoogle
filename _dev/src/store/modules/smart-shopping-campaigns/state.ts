@@ -24,6 +24,7 @@ export interface State {
   productCampaign: Array<any>;
   campaignBudget: String;
   tracking: null|boolean;
+  tagAlreadyExists: boolean;
 }
 
 export interface CampaignDuration {
@@ -41,4 +42,5 @@ export const state: State = {
   productCampaign: [],
   campaignBudget: '',
   tracking: null,
+  tagAlreadyExists: false,
 };

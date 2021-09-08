@@ -4,7 +4,7 @@
     ref="modal"
     :title="$t('modal.titleActivateTrackingSSC')"
     v-bind="$attrs"
-    @ok="changeTrackingStatus(true)"
+    @ok="changeTrackingStatus"
   >
     <!-- TODO  : missing links -->
     <VueShowdown
@@ -12,34 +12,33 @@
       :extensions="['extended-link']"
       :markdown="$t('modal.textActivateTrackingSSC', ['http://google.fr', 'http://google.fr'])"
     />
-    <span
-      class="ps-switch ps-switch-sm"
+    <b-form-checkbox
+      switch
+      size="lg"
+      class="mt-3 ps_gs-switch"
+      v-model="trackingStatus"
+      data-test-id="checkbox-sellRefurbished"
     >
-      <input
-        @change="toggle"
-        type="radio"
-        name="switchEnable"
-        :value="false"
-        :checked="false"
-        id="switch_off_freelisting"
-      >
-      <label for="switch_off_freelisting">
+      <span class="ps_gs-fz-14">
         {{ $t('smartShoppingCampaignCreation.toggleCreationRemarketingTag') }}
-      </label>
-      <input
-        @change="toggle"
-        type="radio"
-        name="switchEnable"
-        :value="true"
-        :checked="true"
-        id="switch_on_freelisting"
-      >
-      <label for="switch_on_freelisting">
-        {{ $t('smartShoppingCampaignCreation.toggleCreationRemarketingTag') }}
-      </label>
-      <span class="slide-button" />
+      </span>
+    </b-form-checkbox>
 
-    </span>
+    <b-alert
+      v-if="alertTag !== null"
+      variant="warning"
+      show
+      class="mb-0 mt-3"
+    >
+      <div>
+        <VueShowdown
+          tag="p"
+          class="d-inline"
+          :markdown="alertTag.text"
+          :extensions="['no-p-tag', 'extended-link']"
+        />
+      </div>
+    </b-alert>
     <template
       slot="modal-cancel"
     >
@@ -55,19 +54,40 @@
 import PsModal from '../commons/ps-modal';
 
 export default {
-
   name: 'SSCPopinActivateTracking',
   components: {
     PsModal,
   },
+
   computed: {
-    trackingStatus() {
-      return this.$store.state.smartShoppingCampaigns.tracking;
+    tagAlreadyExists() {
+      return this.$store.state.smartShoppingCampaigns.tagAlreadyExists;
+    },
+    trackingStatus: {
+      get() {
+        return this.$store.state.smartShoppingCampaigns.tracking;
+      },
+      set(value) {
+        console.log(value);
+        this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value);
+      },
+    },
+    alertTag() {
+      if (this.trackingStatus === false) {
+        return {
+          text: this.$i18n.t('smartShoppingCampaignCreation.alerts.noTag'),
+        };
+      }
+      if (this.trackingStatus === true && this.tagAlreadyExists) {
+        return {
+          text: this.$i18n.t('smartShoppingCampaignCreation.alerts.duplicatedTag'),
+        };
+      }
+      return null;
     },
   },
   methods: {
-    changeTrackingStatus(status) {
-      this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAGS', status);
+    changeTrackingStatus() {
       this.$router.push({
         name: 'campaign-creation',
       });
