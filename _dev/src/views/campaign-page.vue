@@ -1,6 +1,12 @@
 <template>
   <div>
-    <campaign-card @openPopin="onOpenPopinActivateTracking" v-if="$route.path === '/campaign'" />
+    <campaign-card
+      @openPopin="onOpenPopinActivateTracking"
+      v-if="$route.path === '/campaign'"
+    />
+    <smart-shopping-campaign-creation
+      v-if="$route.path === '/creation'"
+    />
     <SSCPopinActivateTracking
       ref="SSCPopinActivateTracking"
     />
@@ -10,9 +16,14 @@
 <script>
 import CampaignCard from '../components/smart-shopping-campaigns/campaign-card.vue';
 import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
+import SmartShoppingCampaignCreation from '../components/smart-shopping-campaign-creation/smart-shopping-campaign-creation.vue';
 
 export default {
-  components: {CampaignCard, SSCPopinActivateTracking},
+  components: {
+    CampaignCard,
+    SmartShoppingCampaignCreation,
+    SSCPopinActivateTracking,
+  },
   computed: {
     googleAdsIsChosen() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];

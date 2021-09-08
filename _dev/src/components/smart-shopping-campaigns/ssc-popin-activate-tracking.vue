@@ -36,7 +36,9 @@ export default {
   methods: {
     changeTrackingStatus(status) {
       this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAGS', status);
-      // TODO GO TO NEW "CREATE CAMPAIGN" PAGE
+      this.$router.push({
+        name: 'campaign-creation',
+      });
     },
   },
 };
