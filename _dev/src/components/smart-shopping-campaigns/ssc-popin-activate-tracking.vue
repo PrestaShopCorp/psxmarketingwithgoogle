@@ -14,7 +14,6 @@
     />
     <template
       slot="modal-cancel"
-      @click="changeTrackingStatus(false)"
     >
       {{ $t("cta.cancel") }}
     </template>
