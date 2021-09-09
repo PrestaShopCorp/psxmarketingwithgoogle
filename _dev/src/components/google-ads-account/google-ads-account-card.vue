@@ -252,7 +252,7 @@ export default {
     googleAdsLabel(index) {
       if (this.googleAdsAccountSelectionOptions && this.googleAdsAccountSelectionOptions[index]) {
         const ga = this.googleAdsAccountSelectionOptions[index];
-        const name = ga.descriptiveName || '';
+        const name = ga.name || '';
         return name ? `${ga.id} - ${name}` : ga.id;
       }
       return null;
@@ -275,8 +275,8 @@ export default {
       this.$emit('creationGoogleAdsAccount');
     },
     displayIdName(option) {
-      return option.descriptiveName
-        ? `${option.id} - ${option.descriptiveName}` : option.id;
+      return option.name
+        ? `${option.id} - ${option.name}` : option.id;
     },
 
   },

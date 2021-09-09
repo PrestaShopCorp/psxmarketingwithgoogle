@@ -241,7 +241,7 @@ export default {
   data() {
     return {
       newAccountInfos: {
-        descriptiveName: '',
+        name: '',
         country: this.$store.getters['app/GET_ACTIVE_COUNTRIES'] || '',
         currency: this.$store.getters['app/GET_CURRENT_CURRENCY'] || '',
         timeZone: this.accountInformations?.timeZone || '',
@@ -323,10 +323,10 @@ export default {
     },
     selectedDescriptiveName: {
       get() {
-        return this.newAccountInfos.descriptiveName;
+        return this.newAccountInfos.name;
       },
       set(value) {
-        this.newAccountInfos.descriptiveName = value;
+        this.newAccountInfos.name = value;
       },
     },
     countries: {
