@@ -62,26 +62,11 @@
         >
           {{ $t("googleAdsAccountNew.business.labelCountry") }}
         </label>
-        <ps-select
-          v-model="selectedBillingCountry"
-          :placeholder="$t('googleAdsAccountNew.business.placeholderCountry')"
-          :options="this.$options.countriesSelectionOptions"
-          :deselect-from-dropdown="true"
-          :clearable="false"
-          class="ps_gs-v-select"
-          label="name"
-          id="selectBillingCountry"
-        >
-          <template #option="{ country }">
-            <div
-              class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3"
-            >
-              <span class="mr-2">
-                {{ country }}
-              </span>
-            </div>
-          </template>
-        </ps-select>
+        <SelectCountry
+          :currency="currency"
+          @countrySelected="saveCountrySelected"
+          :default-country="countries"
+        />
         <label
           class="font-weight-600 mb-0 mt-3 pt-2"
           for="selectTimezone"
@@ -242,7 +227,8 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import PsModal from '../commons/ps-modal';
 import Stepper from '../commons/stepper';
-import PsSelect from '../commons/ps-select.vue';
+import SelectCountry from '../commons/select-country.vue';
+
 import {GoogleAccountContext} from '../../store/modules/accounts/state';
 
 export default {
@@ -250,17 +236,14 @@ export default {
   components: {
     PsModal,
     Stepper,
-    PsSelect,
+    SelectCountry,
   },
   data() {
     return {
       newAccountInfos: {
-        name: null,
-        country: {
-          name: null,
-          iso_code: null,
-        },
-        currency: this.accountInformations?.currency || '',
+        name: '',
+        country: this.$store.getters['app/GET_ACTIVE_COUNTRIES'] || '',
+        currency: this.$store.getters['app/GET_CURRENT_CURRENCY'] || '',
         timeZone: this.accountInformations?.timeZone || '',
       },
       stepActiveData: 1,
@@ -295,14 +278,18 @@ export default {
       return !this.acceptsGoogleTerms;
     },
     fieldsEmpty() {
-      if (
-        this.selectedTimeZone === null
-        || this.selectedCurrency === null
-        || this.selectedBillingCountry === null
+      if (this.selectedDescriptiveName
+       && this.selectedTimeZone
+        && this.selectedCurrency
+        && this.newAccountInfos.country.length
       ) {
-        return true;
+        return false;
       }
-      return false;
+      return true;
+    },
+    saveCountrySelected(value) {
+      this.newAccountInfos.country = value;
+      this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', value);
     },
   },
   props: {
@@ -324,19 +311,6 @@ export default {
           offset: value.offset,
           text: value.text,
         };
-        return this.newAccountInfos;
-      },
-    },
-    selectedBillingCountry: {
-      get() {
-        return this.newAccountInfos.country.name;
-      },
-      set(value) {
-        this.newAccountInfos.country = {
-          name: value.country,
-          iso_code: value.code,
-        };
-        return this.newAccountInfos;
       },
     },
     selectedCurrency: {
@@ -345,7 +319,6 @@ export default {
       },
       set(value) {
         this.newAccountInfos.currency = value;
-        return this.newAccountInfos;
       },
     },
     selectedDescriptiveName: {
@@ -354,8 +327,17 @@ export default {
       },
       set(value) {
         this.newAccountInfos.name = value;
-        return this.newAccountInfos;
       },
+    },
+    countries: {
+      get() {
+        return this.$options.filters.changeCountriesCodesToNames(
+          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+        );
+      },
+    },
+    currency() {
+      return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
     currencies() {
       return this.$options.countriesSelectionOptions

@@ -118,10 +118,10 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, rootState, getters, commit,
+    state, rootState, rootGetters, commit,
   }) {
     const productFeedSettings = state.settings;
-    const targetCountries = getters.GET_ACTIVE_COUNTRIES;
+    const targetCountries = rootGetters['app/GET_ACTIVE_COUNTRIES'];
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,

@@ -6,9 +6,8 @@
       :options="sortCountries"
       :deselect-from-dropdown="true"
       :clearable="false"
-      class="ps_gs-v-select maxw-sm-500"
+      class="ps_gs-v-select"
       label="country"
-      :selected="getCountry"
     >
       <template #option="{ country }">
         <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
@@ -50,7 +49,7 @@ export default {
   },
   data() {
     return {
-      country: this.defaultCountry,
+      countryChosen: null,
     };
   },
   props: {
@@ -67,13 +66,19 @@ export default {
       const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
       return currentCountry.currency === this.currency;
     },
-    getCountry() {
-      this.$emit('countrySelected', this.country);
-    },
   },
   countriesSelectionOptions,
   googleUrl,
   computed: {
+    country: {
+      get() {
+        return this.countryChosen || this.defaultCountry;
+      },
+      set(value) {
+        this.countryChosen = value.country;
+        this.$emit('countrySelected', [this.countryChosen]);
+      },
+    },
     sortCountries() {
       return countriesSelectionOptions.filter((el) => el.currency === this.currency);
     },

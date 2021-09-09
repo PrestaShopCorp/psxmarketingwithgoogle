@@ -23,6 +23,7 @@ export interface State {
   psxMktgWithGoogleAdminAjaxUrl: string;
   psxMktgWithGoogleShopUrl: string;
   psxMktgWithGoogleShopCurrency: ShopCurrency;
+  psxMtgWithGoogleDefaultShopCountry: string | null;
   psxMktgWithGoogleDocumentAndFaq: HelpInformations;
   psVersion: string;
   psxMktgWithGoogleModuleVersion: string;
@@ -30,6 +31,8 @@ export interface State {
   psxMktgWithGoogleMaintenanceSettingsUrl: string;
   psxMktgWithGoogleProductDetailUrl: string;
   psxMktgWithGoogleStoreSettingsUrl: string;
+  targetCountries: Array<string> | null;
+
 }
 
 export interface ShopCurrency {
@@ -48,6 +51,8 @@ export const state: State = {
   psxMktgWithGoogleAdminAjaxUrl: '',
   psxMktgWithGoogleShopUrl: '',
   isCountryMemberOfEuropeanUnion: false,
+  psxMtgWithGoogleDefaultShopCountry: null,
+  targetCountries: null,
   psxMktgWithGoogleShopCurrency: {
     isoCode: '',
   },
