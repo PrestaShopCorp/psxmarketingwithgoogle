@@ -29,9 +29,18 @@ const wrapperOptions = {
   directives: {
     'b-tooltip': VBTooltip,
   },
+
 };
 
 describe('google-ads-account.vue / step 1', () => {
+  let store;
+  beforeEach(() => {
+    store = cloneStore();
+    store.modules.app.state = {
+      ...store.modules.app.state,
+      psxMktgWithGoogleShopCurrency: 'FR',
+    };
+  });
   it('step 1 is active in the stepper', async () => {
     const wrapper = mount(GoogleAdsAccountPopinNew, {
       ...wrapperOptions,
@@ -49,7 +58,6 @@ describe('google-ads-account.vue / step 2', () => {
       ...wrapperOptions,
     });
     await wrapper.setData({stepActiveData: 2});
-
     expect(wrapper.findAll('.ps_gs-stepper-step').at(1).attributes('aria-current')).toEqual('step');
     expect(wrapper.findAll('.ps_gs-stepper-step').at(0).attributes('aria-current')).toBeUndefined();
   });
@@ -67,6 +75,7 @@ describe('google-ads-account.vue / step 2', () => {
         selectedCurrency() {
           return 'DIR';
         },
+
       },
     });
     await wrapper.setData({stepActiveData: 2});

@@ -241,7 +241,7 @@ export default {
   data() {
     return {
       newAccountInfos: {
-        descriptiveName: this.accountInformations?.descriptiveName || '',
+        descriptiveName: '',
         country: this.$store.getters['app/GET_ACTIVE_COUNTRIES'] || '',
         currency: this.$store.getters['app/GET_CURRENT_CURRENCY'] || '',
         timeZone: this.accountInformations?.timeZone || '',
@@ -278,7 +278,6 @@ export default {
       return !this.acceptsGoogleTerms;
     },
     fieldsEmpty() {
-      console.log(this.newAccountInfos);
       if (this.newAccountInfos.descriptiveName
        && this.selectedTimeZone
         && this.selectedCurrency
