@@ -50,7 +50,8 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
     googleAdsChosen() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
+      && this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.isSet;
     },
   },
   created() {
