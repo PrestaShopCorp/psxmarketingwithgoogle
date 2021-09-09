@@ -278,7 +278,7 @@ export default {
       return !this.acceptsGoogleTerms;
     },
     fieldsEmpty() {
-      if (this.newAccountInfos.descriptiveName
+      if (this.selectedDescriptiveName
        && this.selectedTimeZone
         && this.selectedCurrency
         && this.newAccountInfos.country.length
