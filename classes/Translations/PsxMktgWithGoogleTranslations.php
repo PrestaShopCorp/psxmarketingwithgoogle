@@ -213,7 +213,7 @@ class PsxMktgWithGoogleTranslations
             'productFeedCard' => [
                 'title' => $this->module->l('Automatically sync your products data with Google', 'PsxMktgWithGoogleTranslations'),
                 'intro' => $this->module->l('Submit your product data directly to your Merchant Center and keep them always up to date for free listings and ads.', 'PsxMktgWithGoogleTranslations'),
-                'introToConfigure' => $this->module->l('It\'s important to submit them in the correct format, as Google uses this data to make sure your products match the right queries.'),
+                'introToConfigure' => $this->module->l('It\'s important to submit your product feed in the correct format, as Google uses this to make sure your products match the right queries.', 'PsxMktgWithGoogleTranslations'),
                 'nextSync' => $this->module->l('Next synchronization: {0}', 'PsxMktgWithGoogleTranslations'),
                 'syncFailedAt' => $this->module->l('Synchronization failed {0} at {1}', 'PsxMktgWithGoogleTranslations'),
                 'syncSuccess' => $this->module->l('{0} products synced {1} at {2}', 'PsxMktgWithGoogleTranslations'),
