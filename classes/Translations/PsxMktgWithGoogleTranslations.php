@@ -593,6 +593,7 @@ class PsxMktgWithGoogleTranslations
                 'createCampaign' => $this->module->l('Create campaign', 'PsxMktgWithGoogleTranslations'),
                 'resetDate' => $this->module->l('Reset date', 'PsxMktgWithGoogleTranslations'),
                 'validate' => $this->module->l('Validate', 'PsxMktgWithGoogleTranslations'),
+                'moreInfosAboutX' => $this->module->l('More infos about {0}', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),

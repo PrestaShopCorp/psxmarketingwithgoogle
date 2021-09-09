@@ -449,6 +449,30 @@
       "description" : "Google AI will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it's that easy!",
       "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Smart Shopping campaigns"
     },
+    "keymetrics" : {
+      "title" : "Key metrics",
+      "accountTitle" : "Account performance",
+      "accountSubtitle" : "Check out these amazing numbers",
+      "dailyResultTitle" : "Daily results",
+      "periods": {
+        "yesterday" : "Yesterday",
+        "last7Days" : "Last 7 days",
+        "last30Days" : "Last 30 days",
+        "3Months" : "3 months"
+      },
+      "impressions" : "Impressions",
+      "impressionsTooltip" : "How often your ad is shown. An impression is counted each time your ad is shown on a search result page or other site on the Google Network.",
+      "clicks" : "Clicks",
+      "clicksTooltip" : "When someone clicks your ad, like on the blue headline or phone number of a text ad, Google Ads counts that as a click.",
+      "conversion" : "Conversion",
+      "conversionTooltip" : "An action that's counted when someone interacts with your ad or free product listing (for example, clicks a text ad or views a video ad) and then takes an action that you’ve defined as valuable to your business, such as an online purchase or a call to your business from a mobile phone.",
+      "costPerClick" : "Avg cost / click",
+      "costPerClickTooltip" : "The average amount that you've been charged for a click on your ad. Average cost-per-click (avg. CPC) is calculated by dividing the total cost of your clicks by the total number of clicks.",
+      "costs" : "Costs",
+      "costsTooltip" : "The total cost of the campaign  during the selected period",
+      "sales" : "Sales",
+      "salesTooltip" : "Number of sales made during the selected period"
+    },
     "help" : {
       "title" : "Help for PrestaShop Google",
       "allowsYouTo" : {
@@ -544,7 +568,8 @@
       "learnAboutTimeZoneAndCurrency" : "Learn more about currency and time zone settings",
       "createCampaign" : "Create campaign",
       "resetDate" : "Reset date",
-      "validate" : "Validate"
+      "validate" : "Validate",
+      "moreInfosAboutX" : "More infos about {0}"
     },
     "badge" : {
       "free" : "Free",
