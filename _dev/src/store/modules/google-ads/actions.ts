@@ -60,7 +60,7 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, json);
+      commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, json.customer);
       dispatch(ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING);
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {

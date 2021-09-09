@@ -29,7 +29,7 @@
         class="d-flex align-items-center"
       >
         <img
-          class="mr-3 rounded-circle"
+          class="mr-3"
           src="@/assets/images/Google-Commercial-icon.svg"
           width="40"
           height="40"
