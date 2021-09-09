@@ -79,7 +79,7 @@ export default {
   methods: {
     openPopinActivateTracking() {
       // Prevent popin for opening if tracking is already activated
-      if (this.trackingStatus !== false) {
+      if (this.trackingStatus !== true) {
         this.$emit('openPopin');
       } else {
         this.$router.push({
