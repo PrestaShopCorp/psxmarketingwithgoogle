@@ -6,6 +6,7 @@
     @close="cancel"
     ref="modal"
     footer-class="flex-sm-nowrap"
+    size="xl"
   >
     <Stepper
       v-if="newMca"
@@ -156,75 +157,92 @@
         />
       </b-form-group>
 
-      <b-form-group>
-        <div class="d-flex align-items-center mb-1">
-          <label
-            for="inputBusinessZipCode"
-            class="h4 mb-0 font-weight-600"
+      <b-form-group class="maxw-sm-420">
+        <b-form-row>
+          <b-col
+            cols="12"
+            sm="4"
+            class="mb-3 mb-sm-0"
           >
-            {{ $t('mcaRequirements.businessZipCode') }}
-          </label>
-          <b-button
-            v-b-tooltip
-            :title="$t(`tooltip.GMCForm.businessZipCode`)"
-            variant="invisible"
-            class="ml-1 p-0 d-flex text-primary"
+            <div class="d-flex align-items-center mb-1">
+              <label
+                for="inputBusinessZipCode"
+                class="h4 mb-0 font-weight-600"
+              >
+                {{ $t('mcaRequirements.businessZipCode') }}
+              </label>
+              <b-button
+                v-b-tooltip
+                :title="$t(`tooltip.GMCForm.businessZipCode`)"
+                variant="invisible"
+                class="ml-1 p-0 d-flex text-primary"
+              >
+                <span class="material-icons-round mb-0 ps_gs-fz-12">
+                  error_outline
+                </span>
+              </b-button>
+            </div>
+            <b-form-input
+              id="inputBusinessZipCode"
+              aria-describedby="businessZipCodeFeedback"
+              :value="shopInformations.store.postalCode"
+              readonly
+              class="maxw-sm-420"
+            />
+            <VueShowdown
+              class="font-weight-normal ps_gs-fz-12 text-muted mb-0 d-sm-none"
+              :extensions="['extended-link']"
+              :markdown="$t('mcaRequirements.changeZipCodeField', [storeInformationsUrl])"
+            />
+          </b-col>
+          <b-col
+            cols="12"
+            sm="8"
           >
-            <span class="material-icons-round mb-0 ps_gs-fz-12">
-              error_outline
-            </span>
-          </b-button>
-        </div>
-        <b-form-input
-          id="inputBusinessZipCode"
-          aria-describedby="businessZipCodeFeedback"
-          :value="shopInformations.store.postalCode"
-          readonly
-          class="maxw-sm-420"
-        />
-
-        <VueShowdown
-          id="businessZipCodeFeedback"
-          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
-          :extensions="['extended-link']"
-          :markdown="$t('mcaRequirements.changeZipCodeField', [storeInformationsUrl])"
-        />
+            <b-form-group>
+              <div class="d-flex align-items-center mb-1">
+                <label
+                  for="inputBusinessCity"
+                  class="h4 mb-0 font-weight-600"
+                >
+                  {{ $t('mcaRequirements.businessCity') }}
+                </label>
+                <b-button
+                  v-b-tooltip
+                  :title="$t(`tooltip.GMCForm.businessCity`)"
+                  variant="invisible"
+                  class="ml-1 p-0 d-flex text-primary"
+                >
+                  <span class="material-icons-round mb-0 ps_gs-fz-12">
+                    error_outline
+                  </span>
+                </b-button>
+              </div>
+              <b-form-input
+                id="inputBusinessCity"
+                aria-describedby="businessCityFeedback"
+                :value="shopInformations.store.locality"
+                readonly
+                class="maxw-sm-420"
+              />
+            </b-form-group>
+          </b-col>
+          <div class="pl-1 mt-n2">
+            <VueShowdown
+              id="businessZipCodeFeedback"
+              class="font-weight-normal ps_gs-fz-12 text-muted mb-0 d-none d-sm-block"
+              :extensions="['extended-link']"
+              :markdown="$t('mcaRequirements.changeZipCodeField', [storeInformationsUrl])"
+            />
+            <VueShowdown
+              id="businessCityFeedback"
+              class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
+              :extensions="['extended-link']"
+              :markdown="$t('mcaRequirements.changeCityField', [storeInformationsUrl])"
+            />
+          </div>
+        </b-form-row>
       </b-form-group>
-
-      <b-form-group>
-        <div class="d-flex align-items-center mb-1">
-          <label
-            for="inputBusinessCity"
-            class="h4 mb-0 font-weight-600"
-          >
-            {{ $t('mcaRequirements.businessCity') }}
-          </label>
-          <b-button
-            v-b-tooltip
-            :title="$t(`tooltip.GMCForm.businessCity`)"
-            variant="invisible"
-            class="ml-1 p-0 d-flex text-primary"
-          >
-            <span class="material-icons-round mb-0 ps_gs-fz-12">
-              error_outline
-            </span>
-          </b-button>
-        </div>
-        <b-form-input
-          id="inputBusinessCity"
-          aria-describedby="businessCityFeedback"
-          :value="shopInformations.store.locality"
-          readonly
-          class="maxw-sm-420"
-        />
-        <VueShowdown
-          id="businessCityFeedback"
-          class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
-          :extensions="['extended-link']"
-          :markdown="$t('mcaRequirements.changeCityField', [storeInformationsUrl])"
-        />
-      </b-form-group>
-
       <b-form-group>
         <div class="d-flex align-items-center mb-1">
           <label
@@ -328,7 +346,7 @@
       </b-form-group>
 
       <div class="mb-4 pb-1">
-        <div class="d-flex align-items-center">
+        <div class="d-sm-flex align-items-center">
           <legend
             class="d-block w-auto h4 mb-0 mr-2 font-weight-600 col-form-label
               bg-transparent border-0"
@@ -338,7 +356,7 @@
           <a
             :href="$options.googleUrl.policyAdultContent"
             target="_blank"
-            class="text-muted ps_gs-fz-12"
+            class="d-inline-block text-muted ps_gs-fz-12 mb-2 mb-sm-0"
           >
             {{ $t('mcaRequirements.seePolicyAdultContent') }}
           </a>
