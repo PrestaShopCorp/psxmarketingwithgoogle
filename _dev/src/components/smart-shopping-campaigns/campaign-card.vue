@@ -46,9 +46,20 @@
 
 export default {
   name: 'Campaign',
+  computed: {
+    trackingStatus() {
+      return this.$store.state.smartShoppingCampaigns.tracking;
+    },
+  },
   methods: {
     openPopinActivateTracking() {
-      this.$emit('openPopin');
+      if (this.trackingStatus !== true) {
+        this.$emit('openPopin');
+      } else {
+        this.$router.push({
+          name: 'campaign-creation',
+        });
+      }
     },
   },
 };
