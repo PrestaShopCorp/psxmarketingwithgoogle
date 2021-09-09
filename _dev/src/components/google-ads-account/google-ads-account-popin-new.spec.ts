@@ -11,7 +11,6 @@ import GoogleAdsAccountPopinNew from '@/components/google-ads-account/google-ads
 import {
   googleAccountConnected,
 } from '@/../.storybook/mock/google-account';
-import {ConfiguredNoTax} from 'stories/product-feed-card.stories';
 import {
   initialStateApp,
 } from '../../../.storybook/mock/state-app';

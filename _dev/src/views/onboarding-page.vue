@@ -62,7 +62,7 @@
       <SmartShoppingCampaignCard
         :is-enabled="stepsAreCompleted.step3"
         @openPopin="onOpenPopinActivateTracking"
-||||||| merged common ancestors
+      >
     </template>
     <!-- Modals -->
     <GoogleAccountPopinDisconnect
