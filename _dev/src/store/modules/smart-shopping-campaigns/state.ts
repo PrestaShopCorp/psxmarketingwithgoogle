@@ -41,6 +41,6 @@ export const state: State = {
   targetCountry: '',
   productCampaign: [],
   campaignBudget: '',
-  tracking: false,
+  tracking: null,
   tagAlreadyExists: false,
 };
