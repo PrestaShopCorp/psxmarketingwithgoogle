@@ -13,7 +13,17 @@
           :key="index"
           :class="{'b-table-sticky-column': index === 0}"
         >
+        <div class="flex align-items-center">
           {{ field.label }}
+          <b-button
+            v-if="field.tooltip"
+            variant="invisible py-0 pr-0 pl-1 m-0 mt-n1 border-0"
+            v-b-tooltip:psxMktgWithGoogleApp
+            :title="field.tooltip"
+          >
+            <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
+          </b-button>
+        </div>
         </b-th>
       </b-tr>
     </b-thead>
@@ -32,34 +42,36 @@
         } in campaigns"
         :key="name"
       >
-        <b-td>
+        <b-td
+          class="ps_gs-fs-12 text-primary"
+        >
           <a
-            href=""
+            href="//google.com/placeholder"
             target="_blank"
-            class=""
+            class="external_link-no_icon"
           >
             {{ name }}
           </a>
         </b-td>
-        <b-td>
+        <b-td class="ps_gs-fs-12">
           {{ budget }}
         </b-td>
-        <b-td>
+        <b-td class="ps_gs-fs-12">
           {{ status }}
         </b-td>
-        <b-td>
+        <b-td class="ps_gs-fs-12">
           {{ impression }}
         </b-td>
-        <b-td>
+        <b-td class="ps_gs-fs-12">
           {{ clicks }}
         </b-td>
-        <b-td>
+        <b-td class="ps_gs-fs-12">
           {{ adSpent }}
         </b-td>
-        <b-td>
+        <b-td class="ps_gs-fs-12">
           {{ conversion }}
         </b-td>
-        <b-td>
+        <b-td class="ps_gs-fs-12">
           {{ sales }}
         </b-td>
       </b-tr>
