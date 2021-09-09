@@ -181,8 +181,9 @@ export default {
   computed: {
     countries: {
       get() {
-        const targetCountryIsoCode = this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
-        return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
+        return this.$options.filters.changeCountriesCodesToNames(
+          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+        );
       },
     },
     currency() {

@@ -54,12 +54,12 @@ describe('google-ads-account.vue / step 2', () => {
     expect(wrapper.findAll('.ps_gs-stepper-step').at(0).attributes('aria-current')).toBeUndefined();
   });
 
-  it('continue button is disabled when selectedTimeZone is null', async () => {
+  it('continue button is disabled when selectedTimeZone is undefined', async () => {
     const wrapper = mount(GoogleAdsAccountPopinNew, {
       ...wrapperOptions,
       computed: {
         selectedTimeZone() {
-          return null;
+          return '';
         },
         selectedBillingCountry() {
           return {name: 'Australia', iso_code: 'AU'};

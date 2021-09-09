@@ -77,7 +77,7 @@ export default {
   ) {
     const newUser = {
       id: null,
-      name: payload.name,
+      descriptiveName: payload.descriptiveName,
       country: payload.country,
       currency: payload.currency,
       timeZone: payload.timeZone,
@@ -104,7 +104,7 @@ export default {
     //  TODO : wait for response : user WITH ID, ADMIN, TEST AND BILLING SETTINGS
     const newUserBis = {
       id: 'turlututu',
-      name: payload.name,
+      descriptiveName: payload.descriptiveName,
       isAdmin: false,
       isTestAccount: true,
       billingSettings: {

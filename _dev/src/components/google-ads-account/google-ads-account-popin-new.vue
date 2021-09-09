@@ -241,9 +241,9 @@ export default {
   data() {
     return {
       newAccountInfos: {
-        name: null,
-        country: this.accountInformations?.country || '',
-        currency: this.accountInformations?.currency || '',
+        descriptiveName: this.accountInformations?.descriptiveName || '',
+        country: this.$store.getters['app/GET_ACTIVE_COUNTRIES'] || '',
+        currency: this.$store.getters['app/GET_CURRENT_CURRENCY'] || '',
         timeZone: this.accountInformations?.timeZone || '',
       },
       stepActiveData: 1,
@@ -278,14 +278,15 @@ export default {
       return !this.acceptsGoogleTerms;
     },
     fieldsEmpty() {
-      if (
-        this.selectedTimeZone === null
-        || this.selectedCurrency === null
-        || this.selectedBillingCountry === null
+      console.log(this.newAccountInfos);
+      if (this.newAccountInfos.descriptiveName
+       && this.selectedTimeZone
+        && this.selectedCurrency
+        && this.newAccountInfos.country.length
       ) {
-        return true;
+        return false;
       }
-      return false;
+      return true;
     },
     saveCountrySelected(value) {
       this.newAccountInfos.country = value;
@@ -311,19 +312,6 @@ export default {
           offset: value.offset,
           text: value.text,
         };
-        return this.newAccountInfos;
-      },
-    },
-    selectedBillingCountry: {
-      get() {
-        return this.newAccountInfos.country.name;
-      },
-      set(value) {
-        this.newAccountInfos.country = {
-          name: value.country,
-          iso_code: value.code,
-        };
-        return this.newAccountInfos;
       },
     },
     selectedCurrency: {
@@ -332,22 +320,21 @@ export default {
       },
       set(value) {
         this.newAccountInfos.currency = value;
-        return this.newAccountInfos;
       },
     },
     selectedDescriptiveName: {
       get() {
-        return this.newAccountInfos.name;
+        return this.newAccountInfos.descriptiveName;
       },
       set(value) {
-        this.newAccountInfos.name = value;
-        return this.newAccountInfos;
+        this.newAccountInfos.descriptiveName = value;
       },
     },
     countries: {
       get() {
-        const targetCountryIsoCode = this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
-        return this.$options.filters.changeCountriesCodesToNames(targetCountryIsoCode);
+        return this.$options.filters.changeCountriesCodesToNames(
+          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+        );
       },
     },
     currency() {

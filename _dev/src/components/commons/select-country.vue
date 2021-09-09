@@ -72,12 +72,11 @@ export default {
   computed: {
     country: {
       get() {
-        return this.countryChosen ? this.countryChosen : this.defaultCountry;
+        return this.countryChosen || this.defaultCountry;
       },
       set(value) {
         this.countryChosen = value.country;
         this.$emit('countrySelected', [this.countryChosen]);
-        return this.countryChosen;
       },
     },
     sortCountries() {
