@@ -473,6 +473,26 @@
       "sales" : "Sales",
       "salesTooltip" : "Number of sales made during the selected period"
     },
+    "campaigns" : {
+      "status" : {
+        "eligible" : "Eligible",
+        "eligibleLimited" : "Eligible (limited)",
+        "ended" : "Ended",
+        "paused" : "Paused",
+        "notEligible" : "Not Eligible",
+        "draft" : "Draft",
+        "pending" : "Pending"
+      },
+      "fromXToX" : "From {startDate} to {endDate}"
+    },
+    "campaignsPerformanceTable" : {
+      "title" : "Campaign performance",
+      "subTitle" : "Check out how well your campaigns performs"
+    },
+    "productsPerformanceTable" : {
+      "title" : "Product performance for active campaigns",
+      "subTitle" : "Check out which product perform the best"
+    },
     "help" : {
       "title" : "Help for PrestaShop Google",
       "allowsYouTo" : {
