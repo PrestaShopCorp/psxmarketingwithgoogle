@@ -19,7 +19,7 @@
             v-for="(field, index) in fields"
             :key="index"
             class="font-weight-600"
-            :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
+            :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 1}"
           >
           <div class="flex align-items-center text-nowrap">
             <span>{{ field.label }}</span>
@@ -39,47 +39,50 @@
       <b-tbody class="bg-white">
         <b-tr
           v-for="{
-            name,
-            budget,
-            status,
-            impression,
-            clicks,
-            adSpent,
-            conversion,
-            sales,
+            id,
+            attribute,
+            product,
+            click,
+            costs,
+            averageCpc,
+            conversions,
+            conversionsRate,
+            sales
           } in campaigns"
-          :key="name"
+          :key="id + attribute"
         >
+          <b-td
+            class="ps_gs-fz-12"
+          >
+            {{ id }}{{ attribute > 0 ? '&#8209;' + attribute : '' }}
+          </b-td>
           <b-td
             class="b-table-sticky-column text-primary"
           >
-            <b-button
-              variant="link"
-              class="font-weight-normal ps_gs-fz-12 p-0 m-0"
+            <a
+              href=""
+              target="_blank"
+              class="external_link-no_icon"
             >
-              {{ name }}
-            </b-button>
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ budget }}
+              {{ product }}
+            </a>
           </b-td>
           <b-td
-            class="ps_gs-fz-12 ps_gs-cell-status"
-            :class="`ps_gs-cell-status--${status}`"
+            class="ps_gs-fz-12"
           >
-            {{ $t(`campaigns.status.${status}`) }}
+            {{ click }}
           </b-td>
           <b-td class="ps_gs-fz-12">
-            {{ impression }}
+            {{ costs }}
           </b-td>
           <b-td class="ps_gs-fz-12">
-            {{ clicks }}
+            {{ averageCpc }}
           </b-td>
           <b-td class="ps_gs-fz-12">
-            {{ adSpent }}
+            {{ conversions }}
           </b-td>
           <b-td class="ps_gs-fz-12">
-            {{ conversion }}
+            {{ conversionsRate }}
           </b-td>
           <b-td class="ps_gs-fz-12">
             {{ sales }}
@@ -111,26 +114,25 @@ export default {
       loading: false,
       fields: [
         {
-          label: 'Campaign',
+          label: 'ID',
         },
         {
-          label: 'Budget',
+          label: 'Product',
         },
         {
-          label: 'Status',
-          tooltip: 'lorem ipsum placeholder'
+          label: 'Click',
         },
         {
-          label: 'Impression',
+          label: 'Costs',
         },
         {
-          label: 'Clicks',
+          label: 'Average CPC',
         },
         {
-          label: 'Ad spend',
+          label: 'Conversions',
         },
         {
-          label: 'Conversion',
+          label: 'Conversions rate',
         },
         {
           label: 'Sales',
@@ -140,74 +142,15 @@ export default {
       // Adds real datas
       campaigns: [
         {
-          name: 'Promotion 1',
-          budget: '$125',
-          status: 'eligible',
-          impression: '25',
-          clicks: '0',
-          adSpent: '$0',
-          conversion: '0',
-          sales: '$0',
-        },
-        {
-          name: 'Promotion 2',
-          budget: '$10',
-          status: 'eligibleLimited',
-          impression: '198',
-          clicks: '1788',
-          adSpent: '$35',
-          conversion: '8',
-          sales: '$2700',
-        },
-        {
-          name: 'Promotion 3',
-          budget: '$125',
-          status: 'ended',
-          impression: '178998',
-          clicks: '178998',
-          adSpent: '$125',
-          conversion: '178',
-          sales: '$178000',
-        },
-        {
-          name: 'Promotion 4',
-          budget: '$2000',
-          status: 'paused',
-          impression: '17899800',
-          clicks: '17',
-          adSpent: '$12500',
-          conversion: '150000',
-          sales: '$27815580',
-        },
-                {
-          name: 'Promotion 5',
-          budget: '$2',
-          status: 'notEligible',
-          impression: '5',
-          clicks: '0',
-          adSpent: '$0',
-          conversion: '0',
-          sales: '$0',
-        },
-                {
-          name: 'Promotion 6',
-          budget: '$125',
-          status: 'draft',
-          impression: '-',
-          clicks: '-',
-          adSpent: '-',
-          conversion: '-',
-          sales: '-',
-        },
-                {
-          name: 'Promotion 7',
-          budget: '$125',
-          status: 'pending',
-          impression: '178998',
-          clicks: '178998',
-          adSpent: '$125',
-          conversion: '178',
-          sales: '$178000',
+          id : '05',
+          attribute: '01',
+          product : 'T-shirt summer',
+          click : '3678',
+          costs : '$125',
+          averageCpc : '$2',
+          conversions : '5584',
+          conversionsRate : '2%',
+          sales : '$3182',
         },
       ],
     };
