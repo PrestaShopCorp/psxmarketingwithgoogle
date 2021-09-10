@@ -92,8 +92,8 @@
           <b-dropdown-item
             v-for="(option, index) in $options.timezones"
             :key="index"
-            :value="option"
-            @click="selectedTimeZone = option"
+            :value="option.text"
+            @click="selectedTimeZone = option.text"
             variant="dark"
             link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
           >
