@@ -119,6 +119,9 @@ export default {
   [MutationsTypes.SAVE_MCA_CONNECTED_ONCE](state: LocalState, status: boolean) {
     state.googleMerchantAccount.connectedOnce = status;
   },
+  [MutationsTypes.SAVE_MCA_CONNECTED_AUTOMATICALLY](state: LocalState, status: boolean) {
+    state.googleMerchantAccount.connectedAutomatically = status;
+  },
   [MutationsTypes.SAVE_WEBSITE_REQUIREMENTS](state: LocalState, requirementsList) {
     state.googleMerchantAccount.websiteRequirements = requirementsList.requirements;
   },

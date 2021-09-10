@@ -98,6 +98,7 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   websiteRequirements: Array<String>,
   // Display toast component once
   connectedOnce: boolean,
+  connectedAutomatically: boolean,
   shopInfo: ShopInformations,
   aggregatorId? : string,
 };
@@ -151,6 +152,7 @@ export const state: State = {
     gmcStatus: null,
     users: [],
     connectedOnce: false,
+    connectedAutomatically: true,
     websiteRequirements: [],
     shopInfo: {
       shop: {

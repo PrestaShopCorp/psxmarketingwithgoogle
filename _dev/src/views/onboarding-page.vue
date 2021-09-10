@@ -259,7 +259,8 @@ export default {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
     merchantCenterAccountConnectedOnce() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_CONNECTED_ONCE'];
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_CONNECTED_ONCE']
+      && !this.$store.state.accounts.googleMerchantAccount.connectedAutomatically;
     },
     productFeedIsConfiguredOnce() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED_ONCE'];
