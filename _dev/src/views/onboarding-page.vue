@@ -322,6 +322,7 @@ export default {
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
         this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
         this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
+        this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS');
       }
     },
     productFeedIsConfigured(newVal, oldVal) {

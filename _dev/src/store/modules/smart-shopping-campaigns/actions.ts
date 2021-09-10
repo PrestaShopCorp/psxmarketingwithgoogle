@@ -48,18 +48,36 @@ export default {
   async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAG](
     {commit, rootState}, payload: boolean,
   ) {
+    // const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+    //   method: 'POST',
+    //   headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+    //   body: JSON.stringify({
+    //     action: 'toggleRemarketingTags',
+    //   }),
+    // });
+    // if (!response.ok) {
+    //   throw new HttpClientError(response.statusText, response.status);
+    // }
+    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, payload);
+    // const result = await response.json();
+  },
+
+  async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS](
+    {commit, rootState}, payload: boolean,
+  ) {
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
-        action: 'toggleRemarketingTags',
+        action: 'getRemarketingTagsStatus',
       }),
     });
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
     const result = await response.json();
-    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, payload);
+    console.log(result);
+    // commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result);
   },
 
 };

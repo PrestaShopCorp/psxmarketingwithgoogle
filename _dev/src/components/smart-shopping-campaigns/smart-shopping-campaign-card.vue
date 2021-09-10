@@ -45,6 +45,34 @@
         </b-button>
       </div>
     </div>
+    <template v-if="trackingStatus !== null">
+      <hr>
+      <b-form-checkbox
+        switch
+        size="lg"
+        class="ps_gs-switch"
+        v-model="trackingStatus"
+      >
+        <span class="ps_gs-fz-14">
+          {{ toggleTag }}
+        </span>
+      </b-form-checkbox>
+      <b-alert
+        v-if="alertTag !== null"
+        variant="warning"
+        show
+        class="mb-0 mt-3"
+      >
+        <div>
+          <VueShowdown
+            tag="p"
+            class="d-inline"
+            :markdown="alertTag.text"
+            :extensions="['no-p-tag']"
+          />
+        </div>
+      </b-alert>
+    </template>
     <BadgeListRequirements
       v-if="!isEnabled"
       :badges="['productFeed', 'googleAdsAccount']"
@@ -72,8 +100,27 @@ export default {
     },
   },
   computed: {
-    trackingStatus() {
-      return this.$store.state.smartShoppingCampaigns.tracking;
+    trackingStatus: {
+      get() {
+        return this.$store.state.smartShoppingCampaigns.tracking;
+      },
+      set(value) {
+        return this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value);
+      },
+    },
+    alertTag() {
+      if (this.trackingStatus === false) {
+        return {
+          text: this.$i18n.t('smartShoppingCampaignCreation.alerts.noTag'),
+        };
+      }
+      return null;
+    },
+    toggleTag() {
+      if (this.trackingStatus === false) {
+        return this.$i18n.t('smartShoppingCampaignCreation.toggleCreationRemarketingTag');
+      }
+      return this.$i18n.t('smartShoppingCampaignCreation.enableCreationRemarketingTag');
     },
   },
   methods: {

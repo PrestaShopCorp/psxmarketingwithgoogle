@@ -17,7 +17,6 @@
       size="lg"
       class="mt-3 ps_gs-switch"
       v-model="trackingStatus"
-      data-test-id="checkbox-sellRefurbished"
     >
       <span class="ps_gs-fz-14">
         {{ $t('smartShoppingCampaignCreation.toggleCreationRemarketingTag') }}
@@ -34,8 +33,8 @@
         <VueShowdown
           tag="p"
           class="d-inline"
-          :markdown="alertTag.text"
-          :extensions="['no-p-tag', 'extended-link']"
+          :markdown="alertTag"
+          :extensions="['no-p-tag']"
         />
       </div>
     </b-alert>
@@ -68,25 +67,24 @@ export default {
         return this.$store.state.smartShoppingCampaigns.tracking;
       },
       set(value) {
-        this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value);
+        return this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value);
       },
     },
     alertTag() {
-      if (this.trackingStatus === false) {
-        return {
-          text: this.$i18n.t('smartShoppingCampaignCreation.alerts.noTag'),
-        };
+      if (this.trackingStatus === false && this.tagAlreadyExists === false) {
+        return this.$i18n.t('smartShoppingCampaignCreation.alerts.noTag');
       }
-      if (this.trackingStatus === true && this.tagAlreadyExists) {
-        return {
-          text: this.$i18n.t('smartShoppingCampaignCreation.alerts.duplicatedTag'),
-        };
+      if (this.trackingStatus === false && this.tagAlreadyExists === true) {
+        return this.$i18n.t('smartShoppingCampaignCreation.alerts.duplicatedTag');
       }
       return null;
     },
   },
   methods: {
     changeTrackingStatus() {
+      if (this.trackingStatus === null) {
+        this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', false);
+      }
       this.$router.push({
         name: 'campaign-creation',
       });
