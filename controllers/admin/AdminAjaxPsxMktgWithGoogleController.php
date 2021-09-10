@@ -99,6 +99,15 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             case 'getShopConfigurationForAds':
                 $this->getShopConfigurationForAds();
                 break;
+            case 'getRemarketingTagsStatus':
+                $this->getRemarketingTagsStatus();
+                break;
+            case 'toggleRemarketingTags':
+                $this->toggleRemarketingTags($inputs);
+                break;
+            case 'checkRemarketingTagExists':
+                $this->checkRemarketingTagExists($inputs);
+                break;
             default:
                 http_response_code(400);
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
@@ -263,6 +272,50 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             ],
             'currency' => $this->currencyRepository->getShopCurrency()['isoCode'],
         ]));
+    }
+
+    private function getRemarketingTagsStatus()
+    {
+        $this->ajaxDie(json_encode([
+            'remarketingTagsStatus' => $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS),
+        ]));
+    }
+
+    private function toggleRemarketingTags(array $inputs)
+    {
+        if (!isset($inputs['isRemarketingEnabled']) || !isset($inputs['tagSnippet'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing isRemarketingEnabled or tagSnippet key',
+            ]));
+        }
+
+        if ((bool) $inputs['isRemarketingEnabled']) {
+            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS, true);
+            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG, base64_encode($inputs['tagSnippet']));
+        } else {
+            $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS);
+            $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG);
+        }
+        $this->ajaxDie(json_encode(['success' => true]));
+    }
+
+    private function checkRemarketingTagExists(array $inputs)
+    {
+        if (!isset($inputs['tag'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing tag key',
+            ]));
+        }
+        // CHECKME: When we run the check, our own remarketing tag is not configured yet, so the chance to find it from our module is very low.
+        // But it could be interesting to avoid false positive results by checking we're not enabled.
+
+        // TODO: Run checks
+
+        $this->ajaxDie(json_encode(['tagAlreadyExists' => true]));
     }
 
     /**
