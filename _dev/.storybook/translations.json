@@ -491,7 +491,15 @@
     },
     "productsPerformanceTable" : {
       "title" : "Product performance for active campaigns",
-      "subTitle" : "Check out which product perform the best"
+      "subTitle" : "Check out which product perform the best",
+      "labelID" : "ID",
+      "labelProduct" : "Product",
+      "labelClick" : "Click",
+      "labelCosts" : "Costs",
+      "labelAverageCPC" : "Average CPC",
+      "labelConversions" : "Conversions",
+      "labelConversionsRate" : "Conversions rate",
+      "labelSales" : "Sales"
     },
     "help" : {
       "title" : "Help for PrestaShop Google",

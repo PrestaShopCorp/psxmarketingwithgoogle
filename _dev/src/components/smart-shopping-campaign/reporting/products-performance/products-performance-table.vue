@@ -16,15 +16,15 @@
       <b-thead>
         <b-tr>
           <b-th
-            v-for="(field, index) in fields"
-            :key="index"
+            v-for="({label, tooltip}, index) in fields"
+            :key="label"
             class="font-weight-600"
             :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 1}"
           >
           <div class="flex align-items-center text-nowrap">
-            <span>{{ field.label }}</span>
+            <span>{{ $t(`productsPerformanceTable.label${label}`) }}</span>
             <b-button
-              v-if="field.tooltip"
+              v-if="tooltip"
               variant="invisible"
               v-b-tooltip:psxMktgWithGoogleApp
               :title="field.tooltip"
@@ -126,13 +126,13 @@ export default {
           label: 'Costs',
         },
         {
-          label: 'Average CPC',
+          label: 'AverageCPC',
         },
         {
           label: 'Conversions',
         },
         {
-          label: 'Conversions rate',
+          label: 'ConversionsRate',
         },
         {
           label: 'Sales',
