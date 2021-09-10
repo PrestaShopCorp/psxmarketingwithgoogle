@@ -51,6 +51,22 @@ export interface AccountInformations {
 
 export const state: State = {
   status: null,
-  accountChosen: null,
+  accountChosen: {
+    id: 'string',
+    name: 'string',
+    isAdmin: true,
+    isTestAccount: true,
+    billingSettings: {
+      isSet: true,
+      link: 'string',
+    },
+    country: {
+    // eslint-disable-next-line camelcase
+      iso_code: 'FR',
+      name: 'FRANCE',
+    },
+    currency: 'EUR',
+    timeZone: 'string',
+  },
   list: [],
 };
