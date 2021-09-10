@@ -274,6 +274,9 @@ export default {
     googleAdsAccountIsChosen() {
       return this.getGoogleAdsAccount && this.getGoogleAdsAccount.id.length > 0;
     },
+    billingSettingsCompleted() {
+      return this.googleAdsAccountIsChosen.billingSettings.isSet;
+    },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
     },
@@ -287,7 +290,8 @@ export default {
           && this.merchantCenterAccountIsChosen
           && this.productFeedIsConfigured,
         step3: this.productFeedIsConfigured
-        && this.googleAdsAccountIsChosen,
+        && this.googleAdsAccountIsChosen
+        && this.billingSettingsCompleted,
       };
     },
     insideToast() {
