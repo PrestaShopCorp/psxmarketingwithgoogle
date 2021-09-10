@@ -232,6 +232,10 @@
 .b-table-sticky-column {
   left: -1px !important;
   background-color: #fff;
+
+  &--invisible {
+    background-color: $background-color;
+  }
 }
 
 .b-table-sticky-column.is-pinned {
@@ -261,4 +265,33 @@ th.b-table-sticky-column.is-pinned:before {
   background-position: 100% 150%;
   background-size: 200% 50%;
   background-repeat: no-repeat;
+}
+
+$statusColors: (
+  'eligible': '70B580',
+  'eligibleLimited': '70B580',
+  'ended': '442CC7',
+  'paused': '25B9D7',
+  'notEligible': 'F44336',
+  'draft': '363A41',
+  'pending': 'FAB000',
+);
+
+.ps_gs-cell-status {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50'/%3E%3C/svg%3E");
+  background-size: rem(12);
+  background-position: left rem(6.4) center;
+  background-repeat: no-repeat;
+  padding-left: rem(26) !important;
+}
+
+@each $status, $color in $statusColors{
+  .ps_gs-cell-status--#{$status} {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' fill='%23#{$color}' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50'/%3E%3C/svg%3E");
+  }
+}
+
+.ps_gs-table-reporting-header {
+  background-color: $white;
+  border-bottom: 1px solid #dde4e6;
 }

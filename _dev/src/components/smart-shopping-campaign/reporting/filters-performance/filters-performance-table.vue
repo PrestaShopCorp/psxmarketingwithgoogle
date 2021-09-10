@@ -1,0 +1,176 @@
+<template>
+  <div>
+    <ReportingTableHeader
+      :title="$t('campaigns.filtersPerformanceTable.title')"
+      :subtitle="$t('campaigns.filtersPerformanceTable.subTitle')"
+      start-date="04/06/2021"
+      end-date="04/07/2021"
+    />
+    <b-table-simple
+      id="table-filters-performance"
+      class="ps_gs-table-products mb-3"
+      :table-class="{'border-bottom-0': loading}"
+      variant="light"
+      responsive="xl"
+    >
+      <b-thead>
+        <b-tr>
+          <b-th
+            v-for="({type, tooltip}, index) in fields"
+            :key="type"
+            class="font-weight-600"
+            :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
+          >
+            <div class="flex align-items-center text-nowrap">
+              <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
+              <b-button
+                v-if="tooltip"
+                variant="invisible"
+                v-b-tooltip:psxMktgWithGoogleApp
+                :title="$t(`campaigns.tooltipCol.${type}`)"
+                class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
+              >
+                <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
+              </b-button>
+            </div>
+          </b-th>
+        </b-tr>
+      </b-thead>
+      <b-tbody class="bg-white">
+        <b-tr
+          v-for="{
+            name,
+            productFilter,
+            clicks,
+            costs,
+            averageCPC,
+            conversions,
+            conversionsRate,
+            sales
+          } in campaigns"
+          :key="name"
+        >
+          <b-td
+            class="b-table-sticky-column text-primary"
+          >
+            <b-button
+              variant="link"
+              class="font-weight-normal ps_gs-fz-12 p-0 m-0"
+            >
+              {{ name }}
+            </b-button>
+          </b-td>
+          <b-td class="ps_gs-fz-12">
+            {{ productFilter }}
+          </b-td>
+          <b-td class="ps_gs-fz-12">
+            {{ clicks }}
+          </b-td>
+          <b-td class="ps_gs-fz-12">
+            {{ costs }}
+          </b-td>
+          <b-td class="ps_gs-fz-12">
+            {{ averageCPC }}
+          </b-td>
+          <b-td class="ps_gs-fz-12">
+            {{ conversions }}
+          </b-td>
+          <b-td class="ps_gs-fz-12">
+            {{ conversionsRate }}
+          </b-td>
+          <b-td class="ps_gs-fz-12">
+            {{ sales }}
+          </b-td>
+        </b-tr>
+        <b-tr v-if="loading">
+          <b-td
+            colspan="7"
+            class="ps_gs-table-products__loading-slot"
+          >
+            <i class="ps_gs-table-products__spinner">loading</i>
+          </b-td>
+        </b-tr>
+      </b-tbody>
+    </b-table-simple>
+  </div>
+</template>
+
+<script>
+import ReportingTableHeader from '../commons/reporting-table-header.vue';
+
+export default {
+  name: 'FiltersPerformanceTable',
+  components: {
+    ReportingTableHeader,
+  },
+  data() {
+    return {
+      loading: false,
+      fields: [
+        {
+          type: 'campaign',
+        },
+        {
+          type: 'productFilter',
+        },
+        {
+          type: 'clicks',
+        },
+        {
+          type: 'costs',
+        },
+        {
+          type: 'averageCPC',
+        },
+        {
+          type: 'conversions',
+        },
+        {
+          type: 'conversionsRate',
+        },
+        {
+          type: 'sales',
+        },
+      ],
+      // TODO
+      // Adds real datas
+      campaigns: [
+        {
+          name: 'Promotion 1',
+          productFilter: 'Brand',
+          clicks: '0',
+          costs: '$125',
+          averageCPC: '$5',
+          conversions: '127',
+          conversionsRate: '127',
+          sales: '$150',
+        },
+      ],
+    };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      // Observer to add class to sticky columns when they are stuck
+      document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
+        if (i) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              observerCallback(entries, observer, i);
+            },
+            {
+              root: document.querySelector('.ps_gs-table-products'),
+              threshold: 1,
+            },
+          );
+          observer.observe(i);
+        }
+      });
+      const observerCallback = (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-pinned', entry.intersectionRatio < 1);
+        });
+      };
+    });
+  },
+};
+</script>
