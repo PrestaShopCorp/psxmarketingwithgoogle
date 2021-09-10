@@ -1,13 +1,13 @@
 <template>
   <div>
     <ReportingTableHeader
-      :title="$t('performanceTable.title')"
-      :subtitle="$t('performanceTable.subTitle')"
+      :title="$t('productsPerformanceTable.title')"
+      :subtitle="$t('productsPerformanceTable.subTitle')"
       startDate="04/06/2021"
       endDate="04/07/2021"
     />
     <b-table-simple
-      id="table-campaign-performance"
+      id="table-products-performance"
       class="ps_gs-table-products mb-3"
       :table-class="{'border-bottom-0': loading}"
       variant="light"
@@ -102,7 +102,7 @@
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
 
 export default {
-  name: 'CampaignPerformanceTable',
+  name: 'CampaignsPerformanceTable',
   components: {
     ReportingTableHeader,
   },
