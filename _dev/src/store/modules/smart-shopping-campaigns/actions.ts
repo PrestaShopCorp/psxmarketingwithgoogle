@@ -48,22 +48,25 @@ export default {
   async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAG](
     {commit, rootState}, payload: boolean,
   ) {
-    // const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-    //   method: 'POST',
-    //   headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-    //   body: JSON.stringify({
-    //     action: 'toggleRemarketingTags',
-    //   }),
-    // });
-    // if (!response.ok) {
-    //   throw new HttpClientError(response.statusText, response.status);
-    // }
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'toggleRemarketingTags',
+        isRemarketingEnabled: payload,
+        tagSnippet: "<!-- Global site tag (gtag.js) - Google Ads: 310795728 -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=AW-310795728\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'AW-310795728');\n</script>\n",
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
+    console.log(result);
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, payload);
-    // const result = await response.json();
   },
 
-  async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS](
-    {commit, rootState}, payload: boolean,
+  async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_MODULE](
+    {commit, dispatch, rootState}, payload: boolean,
   ) {
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
@@ -76,8 +79,27 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     const result = await response.json();
+    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.remarketingTagsStatus);
+    dispatch(ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS);
+  },
+
+  async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
+    {commit, rootState}, payload: boolean,
+  ) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'checkRemarketingTagExists',
+        tag: "<!-- Global site tag (gtag.js) - Google Ads: 310795728 -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=AW-310795728\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'AW-310795728');\n</script>\n",
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
     console.log(result);
-    // commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result);
+    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.remarketingTagsStatus);
   },
 
 };
