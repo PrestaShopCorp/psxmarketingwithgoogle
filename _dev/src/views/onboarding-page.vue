@@ -275,7 +275,7 @@ export default {
       return this.getGoogleAdsAccount && this.getGoogleAdsAccount.id.length > 0;
     },
     billingSettingsCompleted() {
-      return this.googleAdsAccountIsChosen.billingSettings.isSet;
+      return this.getGoogleAdsAccount.billingSettings.isSet;
     },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
