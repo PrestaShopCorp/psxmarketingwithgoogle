@@ -101,10 +101,12 @@ export default {
     //   }
     // const json = await resp.json();
 
-    //  TODO : wait for response : user WITH ID, AND BILLING SETTINGS
+    //  TODO : wait for response : user WITH ID, ADMIN, TEST AND BILLING SETTINGS
     const newUserBis = {
       id: 'turlututu',
       name: payload.name,
+      isAdmin: false,
+      isTestAccount: true,
       billingSettings: {
         isSet: false,
         link: '',
