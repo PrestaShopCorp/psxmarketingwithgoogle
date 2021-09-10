@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     onMerchantCenterAccountDissociationConfirmation(bvModalEvt) {
+      this.$store.commit('accounts/SAVE_MCA_CONNECTED_AUTOMATICALLY', true);
       this.processing = true;
       bvModalEvt.preventDefault();
       this.$store.dispatch('accounts/DISSOCIATE_GMC').finally(

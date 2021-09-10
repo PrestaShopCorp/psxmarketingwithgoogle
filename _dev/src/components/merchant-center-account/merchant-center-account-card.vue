@@ -632,6 +632,7 @@ export default {
   methods: {
     selectMerchantCenterAccount() {
       this.$emit('selectMerchantCenterAccount', this.mcaSelectionOptions[this.selectedMcaIndex]);
+      this.$store.commit('accounts/SAVE_MCA_CONNECTED_AUTOMATICALLY', false);
     },
     dissociateMerchantCenterAccount() {
       this.$emit('dissociateMerchantCenterAccount');
