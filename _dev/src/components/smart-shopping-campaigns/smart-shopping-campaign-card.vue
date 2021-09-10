@@ -45,13 +45,14 @@
         </b-button>
       </div>
     </div>
-    <template v-if="trackingStatus !== null">
+    <template v-if="statusTrackingTag !== null">
       <hr>
       <b-form-checkbox
         switch
         size="lg"
         class="ps_gs-switch"
-        v-model="trackingStatus"
+        v-model="statusTrackingTag"
+        @change="changeStatus"
       >
         <span class="ps_gs-fz-14">
           {{ toggleTag }}
@@ -91,6 +92,7 @@ export default {
   data() {
     return {
       selected: null,
+      statusTrackingTag: this.$store.state.smartShoppingCampaigns.tracking,
     };
   },
   props: {
@@ -100,16 +102,8 @@ export default {
     },
   },
   computed: {
-    trackingStatus: {
-      get() {
-        return this.$store.state.smartShoppingCampaigns.tracking;
-      },
-      set(value) {
-        this.$emit('toggleStatusRemarketingTag', value);
-      },
-    },
     alertTag() {
-      if (this.trackingStatus === false) {
+      if (this.statusTrackingTag === false) {
         return {
           text: this.$i18n.t('smartShoppingCampaignCreation.alerts.noTag'),
         };
@@ -117,7 +111,7 @@ export default {
       return null;
     },
     toggleTag() {
-      if (this.trackingStatus === false) {
+      if (this.statusTrackingTag === false) {
         return this.$i18n.t('smartShoppingCampaignCreation.toggleCreationRemarketingTag');
       }
       return this.$i18n.t('smartShoppingCampaignCreation.enableCreationRemarketingTag');
@@ -126,13 +120,18 @@ export default {
   methods: {
     openPopinActivateTracking() {
       // Prevent popin for opening if tracking is already activated
-      if (this.trackingStatus !== true) {
+      if (this.statusTrackingTag !== true) {
         this.$emit('openPopin');
       } else {
         this.$router.push({
           name: 'campaign-creation',
         });
       }
+    },
+    changeStatus() {
+      this.$store.dispatch(
+        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', this.statusTrackingTag,
+      );
     },
   },
 };

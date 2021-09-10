@@ -4,19 +4,20 @@
     ref="modal"
     :title="$t('modal.titleActivateTrackingSSC')"
     v-bind="$attrs"
-    @ok="changeTrackingStatus"
+    @ok="updateTrackingStatus"
   >
     <!-- TODO  : missing links -->
     <VueShowdown
       class="my-1"
       :extensions="['extended-link']"
       :markdown="$t('modal.textActivateTrackingSSC', ['http://google.fr', 'http://google.fr'])"
-    />
+    />{{ statusTrackingTag }}
     <b-form-checkbox
       switch
       size="lg"
       class="mt-3 ps_gs-switch"
       v-model="statusTrackingTag"
+      @change="changeStatus"
     >
       <span class="ps_gs-fz-14">
         {{ $t('smartShoppingCampaignCreation.toggleCreationRemarketingTag') }}
@@ -67,26 +68,19 @@ export default {
     tagAlreadyExists() {
       return this.$store.state.smartShoppingCampaigns.tagAlreadyExists;
     },
-    // trackingStatus: {
-    //   get() {
-    //     return this.statusTrackingTag
-    //   },
-    //   set(value) {
-    //   },
-    // },
     alertTag() {
-      if (this.trackingStatus === false && this.tagAlreadyExists === false) {
+      if (this.statusTrackingTag === false && this.tagAlreadyExists === false) {
         return this.$i18n.t('smartShoppingCampaignCreation.alerts.noTag');
       }
-      if (this.trackingStatus === false && this.tagAlreadyExists === true) {
+      if (this.statusTrackingTag === false && this.tagAlreadyExists === true) {
         return this.$i18n.t('smartShoppingCampaignCreation.alerts.duplicatedTag');
       }
       return null;
     },
   },
   methods: {
-    changeTrackingStatus() {
-      if (this.trackingStatus === null) {
+    updateTrackingStatus() {
+      if (this.statusTrackingTag === null) {
         this.$store.commit('smartShoppingCampaigns/TOGGLE_STATUS_REMARKETING_TRACKING_TAG', false);
       }
       this.$router.push({
@@ -94,9 +88,8 @@ export default {
       });
     },
     changeStatus() {
-      console.log(this.trackingStatus);
       this.$store.dispatch(
-        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', this.trackingStatus,
+        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', this.statusTrackingTag,
       );
     },
   },
