@@ -304,13 +304,10 @@ export default {
     },
     selectedTimeZone: {
       get() {
-        return this.newAccountInfos.timeZone.text;
+        return this.newAccountInfos.timeZone;
       },
       set(value) {
-        this.newAccountInfos.timeZone = {
-          offset: value.offset,
-          text: value.text,
-        };
+        this.newAccountInfos.timeZone = value;
       },
     },
     selectedCurrency: {

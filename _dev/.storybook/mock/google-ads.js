@@ -40,10 +40,7 @@ export const googleAdsAccountChosenisTestAccount = {
       name: 'France'
     },
     currency: 'EUR',
-    timeZone: {
-      text: 'USA',
-      offset: '+04:00'
-    }
+    timeZone:  'USA',
   },
 }
 export const googleAdsAccountChosen = {
@@ -63,10 +60,7 @@ export const googleAdsAccountChosen = {
       name: 'France'
     },
     currency: 'EUR',
-    timeZone: {
-      text: 'USA',
-      offset: '+04:00'
-    }
+    timeZone:  'USA',
   },
 }
 
