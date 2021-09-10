@@ -16,7 +16,7 @@
       switch
       size="lg"
       class="mt-3 ps_gs-switch"
-      v-model="trackingStatus"
+      v-model="statusTrackingTag"
     >
       <span class="ps_gs-fz-14">
         {{ $t('smartShoppingCampaignCreation.toggleCreationRemarketingTag') }}
@@ -57,19 +57,23 @@ export default {
   components: {
     PsModal,
   },
+  data() {
+    return {
+      statusTrackingTag: this.$store.state.smartShoppingCampaigns.tracking,
+    };
+  },
 
   computed: {
     tagAlreadyExists() {
       return this.$store.state.smartShoppingCampaigns.tagAlreadyExists;
     },
-    trackingStatus: {
-      get() {
-        return this.$store.state.smartShoppingCampaigns.tracking;
-      },
-      set(value) {
-        return this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value);
-      },
-    },
+    // trackingStatus: {
+    //   get() {
+    //     return this.statusTrackingTag
+    //   },
+    //   set(value) {
+    //   },
+    // },
     alertTag() {
       if (this.trackingStatus === false && this.tagAlreadyExists === false) {
         return this.$i18n.t('smartShoppingCampaignCreation.alerts.noTag');
@@ -83,11 +87,17 @@ export default {
   methods: {
     changeTrackingStatus() {
       if (this.trackingStatus === null) {
-        this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', false);
+        this.$store.commit('smartShoppingCampaigns/TOGGLE_STATUS_REMARKETING_TRACKING_TAG', false);
       }
       this.$router.push({
         name: 'campaign-creation',
       });
+    },
+    changeStatus() {
+      console.log(this.trackingStatus);
+      this.$store.dispatch(
+        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', this.trackingStatus,
+      );
     },
   },
 };

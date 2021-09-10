@@ -61,7 +61,6 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     const result = await response.json();
-    console.log(result);
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, payload);
   },
 
@@ -98,8 +97,7 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     const result = await response.json();
-    console.log(result);
-    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.remarketingTagsStatus);
+    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.tagAlreadyExists);
   },
 
 };

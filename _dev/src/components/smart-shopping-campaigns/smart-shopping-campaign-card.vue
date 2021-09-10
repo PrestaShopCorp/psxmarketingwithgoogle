@@ -105,7 +105,7 @@ export default {
         return this.$store.state.smartShoppingCampaigns.tracking;
       },
       set(value) {
-        return this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value);
+        this.$emit('toggleStatusRemarketingTag', value);
       },
     },
     alertTag() {

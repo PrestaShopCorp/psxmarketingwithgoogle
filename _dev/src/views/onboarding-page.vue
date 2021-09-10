@@ -209,6 +209,7 @@ export default {
         this.$refs.SSCPopinActivateTracking.$refs.modal.id,
       );
     },
+
     // onCancelGoogleAdsCreationNewAccount() {
     //   this.$bvModal.show(
     //     this.$refs.GoogleAdsAccountPopinNew.$refs.modal.id,
