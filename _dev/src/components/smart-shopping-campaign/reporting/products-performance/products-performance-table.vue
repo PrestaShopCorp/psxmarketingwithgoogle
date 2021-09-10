@@ -1,8 +1,8 @@
 <template>
   <div>
     <ReportingTableHeader
-      :title="$t('productsPerformanceTable.title')"
-      :subtitle="$t('productsPerformanceTable.subTitle')"
+      :title="$t('campaigns.productsPerformanceTable.title')"
+      :subtitle="$t('campaigns.productsPerformanceTable.subTitle')"
       start-date="04/06/2021"
       end-date="04/07/2021"
     />
@@ -22,12 +22,12 @@
             :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 1}"
           >
             <div class="flex align-items-center text-nowrap">
-              <span>{{ $t(`productsPerformanceTable.label${type}`) }}</span>
+              <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
               <b-button
                 v-if="tooltip"
                 variant="invisible"
                 v-b-tooltip:psxMktgWithGoogleApp
-                :title="$t(`productsPerformanceTable.tooltip${type}`)"
+                :title="$t(`campaigns.tooltipCol.${type}`)"
                 class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
               >
                 <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
@@ -117,25 +117,25 @@ export default {
           type: 'ID',
         },
         {
-          type: 'Product',
+          type: 'product',
         },
         {
-          type: 'Click',
+          type: 'click',
         },
         {
-          type: 'Costs',
+          type: 'costs',
         },
         {
-          type: 'AverageCPC',
+          type: 'averageCPC',
         },
         {
-          type: 'Conversions',
+          type: 'conversions',
         },
         {
-          type: 'ConversionsRate',
+          type: 'conversionsRate',
         },
         {
-          type: 'Sales',
+          type: 'sales',
         },
       ],
       // TODO

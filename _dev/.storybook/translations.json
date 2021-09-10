@@ -483,32 +483,40 @@
         "draft" : "Draft",
         "pending" : "Pending"
       },
-      "fromXToX" : "From {startDate} to {endDate}"
-    },
-    "campaignsPerformanceTable" : {
-      "title" : "Campaign performance",
-      "subTitle" : "Check out how well your campaigns performs",
-      "labelCampaign" : "Campaign",
-      "labelBudget" : "Budget",
-      "labelStatus" : "Status",
-      "labelImpression" : "Impression",
-      "labelClicks" : "Clicks",
-      "labelAdSpend" : "Ad spend",
-      "labelConversion" : "Conversion",
-      "labelSales" : "Sales",
-      "tooltipStatus" : "Placeholder tooltip status"
-    },
-    "productsPerformanceTable" : {
-      "title" : "Product performance for active campaigns",
-      "subTitle" : "Check out which product perform the best",
-      "labelID" : "ID",
-      "labelProduct" : "Product",
-      "labelClick" : "Click",
-      "labelCosts" : "Costs",
-      "labelAverageCPC" : "Average CPC",
-      "labelConversions" : "Conversions",
-      "labelConversionsRate" : "Conversions rate",
-      "labelSales" : "Sales"
+      "fromXToX" : "From {startDate} to {endDate}",
+      "labelCol" : {
+        "campaign" : "Campaign",
+        "budget" : "Budget",
+        "status" : "Status",
+        "impression" : "Impression",
+        "clicks" : "Clicks",
+        "adSpend" : "Ad spend",
+        "conversion" : "Conversion",
+        "sales" : "Sales",
+        "ID" : "ID",
+        "product" : "Product",
+        "click" : "Click",
+        "costs" : "Costs",
+        "averageCPC" : "Average CPC",
+        "conversions" : "Conversions",
+        "conversionsRate" : "Conversions rate",
+        "productFilter" : "Product filter"
+      },
+      "tooltipCol" : {
+        "status" : "Placeholder tooltip status"
+      },
+      "campaignsPerformanceTable" : {
+        "title" : "Campaign performance",
+        "subTitle" : "Check out how well your campaigns performs"
+      },
+      "productsPerformanceTable" : {
+        "title" : "Product performance for active campaigns",
+        "subTitle" : "Check out which product perform the best"
+      },
+      "filtersPerformanceTable" : {
+        "title" : "Overall filter performance (top 10)",
+        "subTitle" : "Check out which dimension perform the best"
+      }
     },
     "help" : {
       "title" : "Help for PrestaShop Google",

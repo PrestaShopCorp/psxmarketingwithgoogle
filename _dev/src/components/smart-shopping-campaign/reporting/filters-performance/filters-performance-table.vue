@@ -1,13 +1,13 @@
 <template>
   <div>
     <ReportingTableHeader
-      :title="$t('campaigns.campaignsPerformanceTable.title')"
-      :subtitle="$t('campaigns.campaignsPerformanceTable.subTitle')"
+      :title="$t('campaigns.filtersPerformanceTable.title')"
+      :subtitle="$t('campaigns.filtersPerformanceTable.subTitle')"
       start-date="04/06/2021"
       end-date="04/07/2021"
     />
     <b-table-simple
-      id="table-campaigns-performance"
+      id="table-filters-performance"
       class="ps_gs-table-products mb-3"
       :table-class="{'border-bottom-0': loading}"
       variant="light"
@@ -40,13 +40,13 @@
         <b-tr
           v-for="{
             name,
-            budget,
-            status,
-            impression,
+            productFilter,
             clicks,
-            adSpent,
+            costs,
+            averageCPC,
             conversions,
-            sales,
+            conversionsRate,
+            sales
           } in campaigns"
           :key="name"
         >
@@ -61,25 +61,22 @@
             </b-button>
           </b-td>
           <b-td class="ps_gs-fz-12">
-            {{ budget }}
-          </b-td>
-          <b-td
-            class="ps_gs-fz-12 ps_gs-cell-status"
-            :class="`ps_gs-cell-status--${status}`"
-          >
-            {{ $t(`campaigns.status.${status}`) }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ impression }}
+            {{ productFilter }}
           </b-td>
           <b-td class="ps_gs-fz-12">
             {{ clicks }}
           </b-td>
           <b-td class="ps_gs-fz-12">
-            {{ adSpent }}
+            {{ costs }}
+          </b-td>
+          <b-td class="ps_gs-fz-12">
+            {{ averageCPC }}
           </b-td>
           <b-td class="ps_gs-fz-12">
             {{ conversions }}
+          </b-td>
+          <b-td class="ps_gs-fz-12">
+            {{ conversionsRate }}
           </b-td>
           <b-td class="ps_gs-fz-12">
             {{ sales }}
@@ -102,7 +99,7 @@
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
 
 export default {
-  name: 'CampaignsPerformanceTable',
+  name: 'FiltersPerformanceTable',
   components: {
     ReportingTableHeader,
   },
@@ -114,23 +111,22 @@ export default {
           type: 'campaign',
         },
         {
-          type: 'budget',
-        },
-        {
-          type: 'status',
-          tooltip: true,
-        },
-        {
-          type: 'impression',
+          type: 'productFilter',
         },
         {
           type: 'clicks',
         },
         {
-          type: 'adSpend',
+          type: 'costs',
+        },
+        {
+          type: 'averageCPC',
         },
         {
           type: 'conversions',
+        },
+        {
+          type: 'conversionsRate',
         },
         {
           type: 'sales',
@@ -141,73 +137,13 @@ export default {
       campaigns: [
         {
           name: 'Promotion 1',
-          budget: '$125',
-          status: 'eligible',
-          impression: '25',
+          productFilter: 'Brand',
           clicks: '0',
-          adSpent: '$0',
-          conversions: '0',
-          sales: '$0',
-        },
-        {
-          name: 'Promotion 2',
-          budget: '$10',
-          status: 'eligibleLimited',
-          impression: '198',
-          clicks: '1788',
-          adSpent: '$35',
-          conversions: '8',
-          sales: '$2700',
-        },
-        {
-          name: 'Promotion 3',
-          budget: '$125',
-          status: 'ended',
-          impression: '178998',
-          clicks: '178998',
-          adSpent: '$125',
-          conversions: '178',
-          sales: '$178000',
-        },
-        {
-          name: 'Promotion 4',
-          budget: '$2000',
-          status: 'paused',
-          impression: '17899800',
-          clicks: '17',
-          adSpent: '$12500',
-          conversions: '150000',
-          sales: '$27815580',
-        },
-        {
-          name: 'Promotion 5',
-          budget: '$2',
-          status: 'notEligible',
-          impression: '5',
-          clicks: '0',
-          adSpent: '$0',
-          conversions: '0',
-          sales: '$0',
-        },
-        {
-          name: 'Promotion 6',
-          budget: '$125',
-          status: 'draft',
-          impression: '-',
-          clicks: '-',
-          adSpent: '-',
-          conversions: '-',
-          sales: '-',
-        },
-        {
-          name: 'Promotion 7',
-          budget: '$125',
-          status: 'pending',
-          impression: '178998',
-          clicks: '178998',
-          adSpent: '$125',
-          conversions: '178',
-          sales: '$178000',
+          costs: '$125',
+          averageCPC: '$5',
+          conversions: '127',
+          conversionsRate: '127',
+          sales: '$150',
         },
       ],
     };
