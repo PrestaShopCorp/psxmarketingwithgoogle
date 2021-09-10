@@ -16,11 +16,11 @@
       class="ps_gs-fz-10 mb-0 text-sm-right"
     >
       {{ $t('campaigns.fromXToX',
-        {
-          startDate,
-          endDate
-        }
-      )}}
+            {
+              startDate,
+              endDate
+            }
+      ) }}
     </p>
   </div>
 </template>

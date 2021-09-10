@@ -3,8 +3,8 @@
     <ReportingTableHeader
       :title="$t('productsPerformanceTable.title')"
       :subtitle="$t('productsPerformanceTable.subTitle')"
-      startDate="04/06/2021"
-      endDate="04/07/2021"
+      start-date="04/06/2021"
+      end-date="04/07/2021"
     />
     <b-table-simple
       id="table-products-performance"
@@ -16,23 +16,23 @@
       <b-thead>
         <b-tr>
           <b-th
-            v-for="({label, tooltip}, index) in fields"
-            :key="label"
+            v-for="({type, tooltip}, index) in fields"
+            :key="type"
             class="font-weight-600"
             :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 1}"
           >
-          <div class="flex align-items-center text-nowrap">
-            <span>{{ $t(`productsPerformanceTable.label${label}`) }}</span>
-            <b-button
-              v-if="tooltip"
-              variant="invisible"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="field.tooltip"
-              class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
-            >
-              <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
-            </b-button>
-          </div>
+            <div class="flex align-items-center text-nowrap">
+              <span>{{ $t(`productsPerformanceTable.label${type}`) }}</span>
+              <b-button
+                v-if="tooltip"
+                variant="invisible"
+                v-b-tooltip:psxMktgWithGoogleApp
+                :title="$t(`productsPerformanceTable.tooltip${type}`)"
+                class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
+              >
+                <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
+              </b-button>
+            </div>
           </b-th>
         </b-tr>
       </b-thead>
@@ -114,43 +114,43 @@ export default {
       loading: false,
       fields: [
         {
-          label: 'ID',
+          type: 'ID',
         },
         {
-          label: 'Product',
+          type: 'Product',
         },
         {
-          label: 'Click',
+          type: 'Click',
         },
         {
-          label: 'Costs',
+          type: 'Costs',
         },
         {
-          label: 'AverageCPC',
+          type: 'AverageCPC',
         },
         {
-          label: 'Conversions',
+          type: 'Conversions',
         },
         {
-          label: 'ConversionsRate',
+          type: 'ConversionsRate',
         },
         {
-          label: 'Sales',
+          type: 'Sales',
         },
       ],
       // TODO
       // Adds real datas
       campaigns: [
         {
-          id : '05',
+          id: '05',
           attribute: '01',
-          product : 'T-shirt summer',
-          click : '3678',
-          costs : '$125',
-          averageCpc : '$2',
-          conversions : '5584',
-          conversionsRate : '2%',
-          sales : '$3182',
+          product: 'T-shirt summer',
+          click: '3678',
+          costs: '$125',
+          averageCpc: '$2',
+          conversions: '5584',
+          conversionsRate: '2%',
+          sales: '$3182',
         },
       ],
     };
@@ -179,5 +179,5 @@ export default {
       };
     });
   },
-}
+};
 </script>

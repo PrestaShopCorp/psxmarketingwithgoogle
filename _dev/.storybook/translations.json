@@ -487,7 +487,16 @@
     },
     "campaignsPerformanceTable" : {
       "title" : "Campaign performance",
-      "subTitle" : "Check out how well your campaigns performs"
+      "subTitle" : "Check out how well your campaigns performs",
+      "labelCampaign" : "Campaign",
+      "labelBudget" : "Budget",
+      "labelStatus" : "Status",
+      "labelImpression" : "Impression",
+      "labelClicks" : "Clicks",
+      "labelAdSpend" : "Ad spend",
+      "labelConversion" : "Conversion",
+      "labelSales" : "Sales",
+      "tooltipStatus" : "Placeholder tooltip status"
     },
     "productsPerformanceTable" : {
       "title" : "Product performance for active campaigns",

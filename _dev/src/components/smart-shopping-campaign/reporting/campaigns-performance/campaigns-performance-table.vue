@@ -3,8 +3,8 @@
     <ReportingTableHeader
       :title="$t('campaignsPerformanceTable.title')"
       :subtitle="$t('campaignsPerformanceTable.subTitle')"
-      startDate="04/06/2021"
-      endDate="04/07/2021"
+      start-date="04/06/2021"
+      end-date="04/07/2021"
     />
     <b-table-simple
       id="table-campaigns-performance"
@@ -16,23 +16,23 @@
       <b-thead>
         <b-tr>
           <b-th
-            v-for="(field, index) in fields"
-            :key="index"
+            v-for="({type, tooltip}, index) in fields"
+            :key="type"
             class="font-weight-600"
             :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
           >
-          <div class="flex align-items-center text-nowrap">
-            <span>{{ field.label }}</span>
-            <b-button
-              v-if="field.tooltip"
-              variant="invisible"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="field.tooltip"
-              class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
-            >
-              <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
-            </b-button>
-          </div>
+            <div class="flex align-items-center text-nowrap">
+              <span>{{ $t(`campaignsPerformanceTable.label${type}`) }}</span>
+              <b-button
+                v-if="tooltip"
+                variant="invisible"
+                v-b-tooltip:psxMktgWithGoogleApp
+                :title="$t(`campaignsPerformanceTable.tooltip${type}`)"
+                class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
+              >
+                <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
+              </b-button>
+            </div>
           </b-th>
         </b-tr>
       </b-thead>
@@ -111,29 +111,29 @@ export default {
       loading: false,
       fields: [
         {
-          label: 'Campaign',
+          type: 'Campaign',
         },
         {
-          label: 'Budget',
+          type: 'Budget',
         },
         {
-          label: 'Status',
-          tooltip: 'lorem ipsum placeholder'
+          type: 'Status',
+          tooltip: true,
         },
         {
-          label: 'Impression',
+          type: 'Impression',
         },
         {
-          label: 'Clicks',
+          type: 'Clicks',
         },
         {
-          label: 'Ad spend',
+          type: 'AdSpend',
         },
         {
-          label: 'Conversion',
+          type: 'Conversion',
         },
         {
-          label: 'Sales',
+          type: 'Sales',
         },
       ],
       // TODO
@@ -179,7 +179,7 @@ export default {
           conversion: '150000',
           sales: '$27815580',
         },
-                {
+        {
           name: 'Promotion 5',
           budget: '$2',
           status: 'notEligible',
@@ -189,7 +189,7 @@ export default {
           conversion: '0',
           sales: '$0',
         },
-                {
+        {
           name: 'Promotion 6',
           budget: '$125',
           status: 'draft',
@@ -199,7 +199,7 @@ export default {
           conversion: '-',
           sales: '-',
         },
-                {
+        {
           name: 'Promotion 7',
           budget: '$125',
           status: 'pending',
@@ -236,5 +236,5 @@ export default {
       };
     });
   },
-}
+};
 </script>

@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       selectedDailyResultKpi: 'impressions',
-    }
+    };
   },
   props: {
     kpis: {
@@ -44,5 +44,5 @@ export default {
       required: true,
     },
   },
-}
+};
 </script>
