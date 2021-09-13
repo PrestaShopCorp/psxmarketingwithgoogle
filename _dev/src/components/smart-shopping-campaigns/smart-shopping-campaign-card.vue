@@ -45,6 +45,35 @@
         </b-button>
       </div>
     </div>
+    <template v-if="statusTrackingTag !== null">
+      <hr>
+      <b-form-checkbox
+        switch
+        size="lg"
+        class="ps_gs-switch"
+        v-model="statusTrackingTag"
+        @change="changeStatus"
+      >
+        <span class="ps_gs-fz-14">
+          {{ toggleTag }}
+        </span>
+      </b-form-checkbox>
+      <b-alert
+        v-if="alertTag !== null"
+        variant="warning"
+        show
+        class="mb-0 mt-3"
+      >
+        <div>
+          <VueShowdown
+            tag="p"
+            class="d-inline"
+            :markdown="alertTag.text"
+            :extensions="['no-p-tag']"
+          />
+        </div>
+      </b-alert>
+    </template>
     <BadgeListRequirements
       v-if="!isEnabled"
       :badges="['productFeed', 'googleAdsAccount']"
@@ -63,6 +92,7 @@ export default {
   data() {
     return {
       selected: null,
+      statusTrackingTag: this.$store.state.smartShoppingCampaigns.tracking,
     };
   },
   props: {
@@ -72,20 +102,36 @@ export default {
     },
   },
   computed: {
-    trackingStatus() {
-      return this.$store.state.smartShoppingCampaigns.tracking;
+    alertTag() {
+      if (this.statusTrackingTag === false) {
+        return {
+          text: this.$i18n.t('smartShoppingCampaignCreation.alerts.noTag'),
+        };
+      }
+      return null;
+    },
+    toggleTag() {
+      if (this.statusTrackingTag === false) {
+        return this.$i18n.t('smartShoppingCampaignCreation.toggleCreationRemarketingTag');
+      }
+      return this.$i18n.t('smartShoppingCampaignCreation.enableCreationRemarketingTag');
     },
   },
   methods: {
     openPopinActivateTracking() {
       // Prevent popin for opening if tracking is already activated
-      if (this.trackingStatus !== true) {
+      if (this.statusTrackingTag !== true) {
         this.$emit('openPopin');
       } else {
         this.$router.push({
           name: 'campaign-creation',
         });
       }
+    },
+    changeStatus() {
+      this.$store.dispatch(
+        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', this.statusTrackingTag,
+      );
     },
   },
 };

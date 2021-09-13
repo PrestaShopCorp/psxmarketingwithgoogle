@@ -48,11 +48,15 @@ export default {
   async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAG](
     {commit, rootState}, payload: boolean,
   ) {
+    const {remarketingSnippet} = rootState.googleAds;
+
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
         action: 'toggleRemarketingTags',
+        isRemarketingEnabled: payload,
+        tagSnippet: remarketingSnippet,
       }),
     });
     if (!response.ok) {
@@ -60,6 +64,49 @@ export default {
     }
     const result = await response.json();
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, payload);
+  },
+
+  async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_MODULE](
+    {commit, dispatch, rootState}, payload: boolean,
+  ) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'getRemarketingTagsStatus',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
+    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.remarketingTagsStatus);
+    dispatch(ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS);
+  },
+
+  async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
+    {commit, rootState}, payload: boolean,
+  ) {
+    const regex = new RegExp('AW-[0-9]+');
+    const {remarketingSnippet} = rootState.googleAds;
+    const idTag = regex.exec(remarketingSnippet);
+    if (!idTag || !idTag.length) {
+      console.error('Remarketing snippet missing');
+      return;
+    }
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'checkRemarketingTagExists',
+        tag: idTag[0],
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
+    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.tagAlreadyExists);
   },
 
 };

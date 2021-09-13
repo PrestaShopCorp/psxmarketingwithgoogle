@@ -4,20 +4,20 @@
     ref="modal"
     :title="$t('modal.titleActivateTrackingSSC')"
     v-bind="$attrs"
-    @ok="changeTrackingStatus"
+    @ok="updateTrackingStatus"
   >
     <!-- TODO  : missing links -->
     <VueShowdown
       class="my-1"
       :extensions="['extended-link']"
       :markdown="$t('modal.textActivateTrackingSSC', ['http://google.fr', 'http://google.fr'])"
-    />
+    />{{ statusTrackingTag }}
     <b-form-checkbox
       switch
       size="lg"
       class="mt-3 ps_gs-switch"
-      v-model="trackingStatus"
-      data-test-id="checkbox-sellRefurbished"
+      v-model="statusTrackingTag"
+      @change="changeStatus"
     >
       <span class="ps_gs-fz-14">
         {{ $t('smartShoppingCampaignCreation.toggleCreationRemarketingTag') }}
@@ -34,8 +34,8 @@
         <VueShowdown
           tag="p"
           class="d-inline"
-          :markdown="alertTag.text"
-          :extensions="['no-p-tag', 'extended-link']"
+          :markdown="alertTag"
+          :extensions="['no-p-tag']"
         />
       </div>
     </b-alert>
@@ -58,38 +58,39 @@ export default {
   components: {
     PsModal,
   },
+  data() {
+    return {
+      statusTrackingTag: this.$store.state.smartShoppingCampaigns.tracking,
+    };
+  },
 
   computed: {
     tagAlreadyExists() {
       return this.$store.state.smartShoppingCampaigns.tagAlreadyExists;
     },
-    trackingStatus: {
-      get() {
-        return this.$store.state.smartShoppingCampaigns.tracking;
-      },
-      set(value) {
-        this.$store.dispatch('smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value);
-      },
-    },
     alertTag() {
-      if (this.trackingStatus === false) {
-        return {
-          text: this.$i18n.t('smartShoppingCampaignCreation.alerts.noTag'),
-        };
+      if (this.statusTrackingTag === false && this.tagAlreadyExists === false) {
+        return this.$i18n.t('smartShoppingCampaignCreation.alerts.noTag');
       }
-      if (this.trackingStatus === true && this.tagAlreadyExists) {
-        return {
-          text: this.$i18n.t('smartShoppingCampaignCreation.alerts.duplicatedTag'),
-        };
+      if (this.statusTrackingTag === false && this.tagAlreadyExists === true) {
+        return this.$i18n.t('smartShoppingCampaignCreation.alerts.duplicatedTag');
       }
       return null;
     },
   },
   methods: {
-    changeTrackingStatus() {
+    updateTrackingStatus() {
+      if (this.statusTrackingTag === null) {
+        this.$store.commit('smartShoppingCampaigns/TOGGLE_STATUS_REMARKETING_TRACKING_TAG', false);
+      }
       this.$router.push({
         name: 'campaign-creation',
       });
+    },
+    changeStatus() {
+      this.$store.dispatch(
+        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', this.statusTrackingTag,
+      );
     },
   },
 };

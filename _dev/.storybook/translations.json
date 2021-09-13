@@ -384,6 +384,7 @@
       "recapFooter" : "Check the information of your campaign before validating it. You can always modify some parameters while the campaign is in progress.",
       "toggleCreationRemarketingTag": "Create a remarketing and conversion tracking tag to add to your shop",
       "toggleCreationNewRemarketingTag": "Create a new remarketing and conversion tracking tag to your shop",
+      "enableCreationRemarketingTag": "Enable remarketing and conversion tracking tag",
       "alerts": {
         "noTag": "By not adding the tag automatically Google will not be able to send campaigns results",
         "duplicatedTag" : "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you."
