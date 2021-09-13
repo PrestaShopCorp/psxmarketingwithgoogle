@@ -90,7 +90,8 @@ export default {
     const regex = new RegExp('AW-[0-9]+');
     const {remarketingSnippet} = rootState.googleAds;
     const idTag = regex.exec(remarketingSnippet);
-    if (!idTag) {
+    if (!idTag || !idTag.length) {
+      console.error('Remarketing snippet missing')
       return;
     }
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
