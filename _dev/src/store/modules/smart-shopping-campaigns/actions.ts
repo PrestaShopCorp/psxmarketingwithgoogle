@@ -91,7 +91,7 @@ export default {
     const {remarketingSnippet} = rootState.googleAds;
     const idTag = regex.exec(remarketingSnippet);
     if (!idTag || !idTag.length) {
-      console.error('Remarketing snippet missing')
+      console.error('Remarketing snippet missing');
       return;
     }
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
