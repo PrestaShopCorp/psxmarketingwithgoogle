@@ -102,9 +102,11 @@
 </template>
 
 <script>
+import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
 
 export default {
+  mixins: [StickyColumnsObserver],
   name: 'CampaignsPerformanceTable',
   components: {
     ReportingTableHeader,
@@ -154,30 +156,6 @@ export default {
         },
       ],
     };
-  },
-  mounted() {
-    this.$nextTick(() => {
-      // Observer to add class to sticky columns when they are stuck
-      document.querySelectorAll('.b-table-sticky-column').forEach((i) => {
-        if (i) {
-          const observer = new IntersectionObserver(
-            (entries) => {
-              observerCallback(entries, observer, i);
-            },
-            {
-              root: document.querySelector('.ps_gs-table-products'),
-              threshold: 1,
-            },
-          );
-          observer.observe(i);
-        }
-      });
-      const observerCallback = (entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle('is-pinned', entry.intersectionRatio < 1);
-        });
-      };
-    });
   },
 };
 </script>
