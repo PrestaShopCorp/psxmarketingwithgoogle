@@ -48,13 +48,15 @@ export default {
   async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAG](
     {commit, rootState}, payload: boolean,
   ) {
+    const {remarketingSnippet} = rootState.googleAds;
+
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
         action: 'toggleRemarketingTags',
         isRemarketingEnabled: payload,
-        tagSnippet: "<!-- Global site tag (gtag.js) - Google Ads: 310795728 -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=AW-310795728\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'AW-310795728');\n</script>\n",
+        tagSnippet: remarketingSnippet,
       }),
     });
     if (!response.ok) {
@@ -85,12 +87,18 @@ export default {
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
     {commit, rootState}, payload: boolean,
   ) {
+    const regex = new RegExp('AW-[0-9]+');
+    const {remarketingSnippet} = rootState.googleAds;
+    const idTag = regex.exec(remarketingSnippet);
+    if (!idTag) {
+      return;
+    }
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
       body: JSON.stringify({
         action: 'checkRemarketingTagExists',
-        tag: "<!-- Global site tag (gtag.js) - Google Ads: 310795728 -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=AW-310795728\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'AW-310795728');\n</script>\n",
+        tag: idTag[0],
       }),
     });
     if (!response.ok) {
