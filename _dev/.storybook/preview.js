@@ -189,6 +189,8 @@ export const parameters = {
         'Google Ads Account',
         'Smart Shopping Campaign',
         'Product Feed Page',
+        'Reporting',
+        ['Key Metrics'],
         'Basic Components',
       ],
     },
