@@ -15,29 +15,17 @@
     >
       <b-thead>
         <b-tr>
-          <b-th
+          <CampaignsPerformanceTableHeading
             v-for="({type, tooltip}, index) in fields"
+            :type="type"
+            :tooltip="tooltip"
+            :index="index"
             :key="type"
-            class="font-weight-600"
-            :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
-          >
-            <div class="flex align-items-center text-nowrap">
-              <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
-              <b-button
-                v-if="tooltip"
-                variant="invisible"
-                v-b-tooltip:psxMktgWithGoogleApp
-                :title="$t(`campaigns.tooltipCol.${type}`)"
-                class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
-              >
-                <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
-              </b-button>
-            </div>
-          </b-th>
+          />
         </b-tr>
       </b-thead>
       <b-tbody class="bg-white">
-        <b-tr
+        <CampaignsPerformanceTableRow
           v-for="{
             name,
             budget,
@@ -48,43 +36,16 @@
             conversions,
             sales,
           } in campaigns"
+          :name="name"
+          :budget="budget"
+          :status="status"
+          :impression="impression"
+          :clicks="clicks"
+          :ad-spent="adSpent"
+          :conversions="conversions"
+          :sales="sales"
           :key="name"
-        >
-          <b-td
-            class="b-table-sticky-column text-primary"
-          >
-            <b-button
-              variant="link"
-              class="font-weight-normal ps_gs-fz-12 p-0 m-0"
-            >
-              {{ name }}
-            </b-button>
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ budget }}
-          </b-td>
-          <b-td
-            class="ps_gs-fz-12 ps_gs-cell-status"
-            :class="`ps_gs-cell-status--${status}`"
-          >
-            {{ $t(`campaigns.status.${status}`) }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ impression }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ clicks }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ adSpent }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ conversions }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ sales }}
-          </b-td>
-        </b-tr>
+        />
         <b-tr v-if="loading">
           <b-td
             colspan="7"
@@ -101,12 +62,16 @@
 <script>
 import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
+import CampaignsPerformanceTableHeading from './campaigns-performance-table-heading.vue';
+import CampaignsPerformanceTableRow from './campaigns-performance-table-row.vue';
 
 export default {
   mixins: [StickyColumnsObserver],
   name: 'CampaignsPerformanceTable',
   components: {
     ReportingTableHeader,
+    CampaignsPerformanceTableHeading,
+    CampaignsPerformanceTableRow,
   },
   data() {
     return {
