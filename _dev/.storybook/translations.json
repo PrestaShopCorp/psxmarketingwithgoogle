@@ -50,8 +50,15 @@
         "freeListing" : "Get your products on Google with free listings",
         "smartShoppingCampaign" : "Reach more people with paid Smart Shopping campaign"
       },
-      "productFeedNotice" : "Help customers to find your products more easily on Google and list them for free with free listings. Free listings help reach more customers and get them to visit your site.",
-      "warningMultistore":  "You can associate only one store to a PrestaShop account.   \n If you need to associate another store you will have to unlink the associated store."
+      "productFeedNotice" : "Help customers to find your products more easily on Google and list them for free with free listings. Free listings help reach more customers and get them to visit your site."
+    },
+    "multiShopSelector": {
+      "title": "Multi-store mode activated",
+      "subtitle": "You must configure your stores one by one for this service but you will be able to use the same account.",
+      "selectStore": "Please select the first store to configure from the list below",
+      "tips": "After you are done with the first shop, you can configure the others by selecting them one by one in the shop selector, in the horizontal menu",
+      "configure": "Configure",
+      "group": "Shop group"
     },
     "psAccountCard" : {
       "disonboardedText" : "Authorize your account to manage your shop’s services",

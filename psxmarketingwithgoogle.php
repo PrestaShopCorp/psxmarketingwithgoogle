@@ -124,13 +124,6 @@ class PsxMarketingWithGoogle extends Module
         // does not have the _PS_ADMIN_DIR_ in this environment.
         // prestashop/module-lib-service-container:1.3.1 is known as incompatible
         // $installer = $this->getService(Installer::class);
-
-        if (!(new PrestaShop\PsAccountsInstaller\Installer\Installer('4'))->install()) {
-            $this->_errors[] = $this->l('Unable to install ps accounts');
-
-            return false;
-        }
-
         $installer = new Installer(
             $this,
             $this->getService(Segment::class),

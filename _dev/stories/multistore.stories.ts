@@ -27,7 +27,6 @@ ShopHasChanged.args = {
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsNotConnected);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountNotConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountNotConnected);
-    this.$store.state.accounts.psAccountShopInConflict = true;
   },
 };
 

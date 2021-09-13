@@ -4,7 +4,6 @@ imports:
   - { resource: common/context.yml }
   - { resource: common/factory.yml }
   - { resource: common/handler.yml }
-  - { resource: common/provider.yml }
   - { resource: common/repository.yml }
   - { resource: common/segment.yml }
 

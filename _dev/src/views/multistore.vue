@@ -1,14 +1,6 @@
 <template>
   <div class="pt-2">
     <template v-if="!psAccountsContext.isShopContext && shops.length">
-      <b-alert
-        v-if="!psAccountsContext.isShopContext && shops.length"
-        show
-        variant="warning"
-        class="mb-0 mt-3 mb-3"
-      >
-        {{ $t('onboarding.warningMultistore') }}
-      </b-alert>
       <MultiStoreSelector
         v-if="!psAccountsContext.isShopContext && shops.length"
         :shops="shops"
@@ -20,7 +12,7 @@
 </template>
 
 <script>
-import {MultiStoreSelector} from 'prestashop_accounts_vue_components';
+import MultiStoreSelector from '@/components/multistore/multi-store-selector.vue';
 import LandingPage from './landing-page.vue';
 
 export default {
