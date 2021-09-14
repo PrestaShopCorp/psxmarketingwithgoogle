@@ -1,0 +1,3 @@
+services:
+  PrestaShop\Module\PsxMarketingWithGoogle\Buffer\TemplateBuffer:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Buffer\TemplateBuffer
