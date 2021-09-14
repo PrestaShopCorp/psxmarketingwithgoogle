@@ -94,13 +94,15 @@
       v-if="googleAccountConnectedOnce
         || merchantCenterAccountConnectedOnce
         || productFeedIsConfiguredOnce
-        || freeListingIsActivatedOnce"
+        || freeListingIsActivatedOnce
+        || googleAdsAccountConnectedOnce"
       variant="success"
       @hidden="toastIsClosed"
       :visible="googleAccountConnectedOnce
         || merchantCenterAccountConnectedOnce
         || productFeedIsConfiguredOnce
-        || freeListingIsActivatedOnce"
+        || freeListingIsActivatedOnce
+        || googleAdsAccountConnectedOnce"
       toaster="b-toaster-top-right"
     >
       <p>{{ insideToast }}</p>
@@ -165,8 +167,8 @@ export default {
           this.isMcaLinking = false;
         });
     },
-    onGoogleAdsAccountSelected(event) {
-      this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', event);
+    onGoogleAdsAccountSelected() {
+      this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', true);
     },
     onGoogleAccountConnection() {
       this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
@@ -184,6 +186,7 @@ export default {
       );
     },
     onGoogleAdsAccountDisconnectionRequest() {
+      this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
       this.$bvModal.show(
         this.$refs.GoogleAdsAccountPopinDisconnect.$refs.modal.id,
       );
@@ -255,6 +258,9 @@ export default {
     freeListingIsActivatedOnce() {
       return this.$store.getters['freeListing/GET_FREE_LISTING_IS_ACTIVATED_ONCE'];
     },
+    googleAdsAccountConnectedOnce() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE'];
+    },
     getGoogleAdsAccount() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
@@ -290,6 +296,8 @@ export default {
         return this.$t('toast.productFeedConfiguredOnceSuccess');
       } if (this.freeListingIsActivatedOnce) {
         return this.$t('toast.alertActivationSuccess');
+      } if (this.googleAdsAccountConnectedOnce) {
+        return this.$t('toast.alertGoogleAdsAccountSuccess');
       }
       return '';
     },

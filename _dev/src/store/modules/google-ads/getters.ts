@@ -38,4 +38,7 @@ export default {
   [GettersTypes.GET_GOOGLE_ADS_ACCOUNT_CHOSEN](state: LocalState): AccountInformations|null {
     return state.accountChosen;
   },
+  [GettersTypes.GET_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE](state: LocalState) {
+    return state.connectedOnce;
+  },
 };

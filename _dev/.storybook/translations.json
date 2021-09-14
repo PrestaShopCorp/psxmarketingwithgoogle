@@ -710,6 +710,7 @@
     },
     "toast": {
       "alertActivationSuccess" : "You have successfully activated the free listings of your products in Shopping tab.",
+      "alertGoogleAdsAccountSuccess" : "You have successfully configured your Google Ads account!",
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
       "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!",
       "productFeedConfiguredOnceSuccess" : "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",

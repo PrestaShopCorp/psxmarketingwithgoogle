@@ -50,4 +50,8 @@ export default {
     state: LocalState, payload: AccountInformations) {
     state.list.push(payload);
   },
+  [MutationsTypes.SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE](
+    state: LocalState, payload: boolean) {
+    state.connectedOnce = payload;
+  },
 };

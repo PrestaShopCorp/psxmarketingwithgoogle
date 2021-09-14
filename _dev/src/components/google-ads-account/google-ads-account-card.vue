@@ -121,7 +121,13 @@
               class="mt-3 mt-md-0 ml-md-3"
               @click="selectGoogleAdsAccount"
             >
-              {{ $t('cta.connect') }}
+              <template v-if="!isConnecting">
+                {{ $t('cta.connectAccount') }}
+              </template>
+              <template v-else>
+                {{ $t('cta.connecting') }}
+                <span class="ml-1 icon-busy" />
+              </template>
             </b-button>
           </div>
           <VueShowdown
@@ -176,7 +182,7 @@
           v-if="!googleAdsAccountConfigured"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
-          <b-button
+          <!-- <b-button
             size="sm"
             variant="primary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
@@ -189,7 +195,7 @@
               {{ $t('cta.connecting') }}
               <span class="ml-1 icon-busy" />
             </template>
-          </b-button>
+          </b-button> -->
         </div>
         <div
           v-else
@@ -237,6 +243,7 @@ export default {
     return {
       selectedIndex: null,
       GoogleAdsErrorReason,
+      isConnecting: false,
     };
   },
   props: {
@@ -245,9 +252,21 @@ export default {
       default: false,
     },
   },
+
   methods: {
-    selectGoogleAdsAccount() {
-      this.$emit('selectGoogleAdsAccount', this.googleAdsAccountSelectionOptions[this.selectedIndex]);
+    async selectGoogleAdsAccount() {
+      this.isConnecting = true;
+      try {
+        await this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.googleAdsAccountSelectionOptions[this.selectedIndex]);
+        await new Promise((resolve) => setTimeout(resolve, 4000));
+        await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
+        this.$emit('selectGoogleAdsAccount');
+      } catch (err) {
+        // TODO: display error message
+        console.error(err);
+      } finally {
+        this.isConnecting = false;
+      }
     },
     googleAdsLabel(index) {
       if (this.googleAdsAccountSelectionOptions && this.googleAdsAccountSelectionOptions[index]) {
@@ -269,6 +288,7 @@ export default {
       this.$router.go();
     },
     disconnectGoogleAdsAccount() {
+      this.isConnecting = false;
       this.$emit('disconnectionGoogleAdsAccount');
     },
     openPopinNewAccount() {
