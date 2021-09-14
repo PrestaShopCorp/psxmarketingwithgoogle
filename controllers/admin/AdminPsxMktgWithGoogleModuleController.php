@@ -143,7 +143,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'psxMktgWithGoogleActiveCountries' => $this->countryRepository->getActiveCountries(),
             'psxMtgWithGoogleDefaultShopCountry' => $this->countryRepository->getShopDefaultCountry()['iso_code'],
             'psxMktgWithGoogleShopCurrency' => $this->currencyRepository->getShopCurrency(),
-            'psxMktgWithGoogleRemarketingTagsStatus' => $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS),
+            'psxMktgWithGoogleRemarketingTagsStatus' => (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS),
         ]);
 
         $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');
