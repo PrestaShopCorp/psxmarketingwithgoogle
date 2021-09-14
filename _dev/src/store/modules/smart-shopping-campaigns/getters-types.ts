@@ -18,7 +18,7 @@
  */
 
 enum GettersTypes {
-
+  GET_REMARKETING_TRACKING_TAG_IS_SETTED = 'GET_REMARKETING_TRACKING_TAG_IS_SETTED'
 }
 
 export {GettersTypes as default};

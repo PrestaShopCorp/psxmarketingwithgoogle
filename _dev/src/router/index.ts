@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import VueRouter, {RouteConfig} from 'vue-router';
-import Configuration from '../views/configuration.vue';
-import OnboardingPage from '../views/onboarding-page.vue';
-import TunnelProductFeed from '../views/tunnel-product-feed.vue';
-import ProductFeedPage from '../views/product-feed-page.vue';
-import CampaignPage from '../views/campaign-page.vue';
-import Help from '../views/help.vue';
 import Store from '../store';
+import CampaignPage from '../views/campaign-page.vue';
+import Configuration from '../views/configuration.vue';
+import Help from '../views/help.vue';
+import OnboardingPage from '../views/onboarding-page.vue';
+import ProductFeedPage from '../views/product-feed-page.vue';
+import ReportingPage from '../views/reporting-page.vue';
+import TunnelProductFeed from '../views/tunnel-product-feed.vue';
 
 Vue.use(VueRouter);
 
@@ -61,6 +62,11 @@ const routes: Array<RouteConfig> = [
     path: '/campaign/creation',
     name: 'campaign-creation',
     component: CampaignPage,
+  },
+  {
+    path: '/reporting',
+    name: 'reporting',
+    component: ReportingPage,
   },
   {
     path: '/',

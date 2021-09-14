@@ -52,6 +52,7 @@ class PsxMktgWithGoogleTranslations
             'general' => [
                 'tabs' => [
                     'productFeed' => $this->module->l('Product Feed', 'PsxMktgWithGoogleTranslations'),
+                    'reporting' => $this->module->l('Reporting', 'PsxMktgWithGoogleTranslations'),
                     'campaign' => $this->module->l('Campaign', 'PsxMktgWithGoogleTranslations'),
                     'configuration' => $this->module->l('Configure', 'PsxMktgWithGoogleTranslations'),
                     'catalog' => $this->module->l('Product catalog', 'PsxMktgWithGoogleTranslations'),

@@ -4,6 +4,7 @@
       "tabs" : {
         "productFeed": "Product Feed",
         "campaign": "Campaign",
+        "reporting": "Reporting",
         "configuration" : "Configure",
         "catalog" : "Product catalog",
         "help" : "Help"

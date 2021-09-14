@@ -2,6 +2,11 @@
   <div id="psxMktgWithGoogleApp">
     <div class="ps_gs-sticky-head">
       <Menu>
+        <MenuItem
+          :route="{name: 'reporting'}"
+        >
+          {{ $t('general.tabs.reporting') }}
+        </MenuItem>
         <template v-if="productFeedIsConfigured">
           <MenuItem
             :route="{name: 'product-feed'}"
