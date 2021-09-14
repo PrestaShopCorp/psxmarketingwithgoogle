@@ -164,7 +164,11 @@ export default {
   methods: {
     // TODO: Handle sort function
     sort() {
-      this.sortDirection === 'asc' ? this.sortDirection = 'desc' : this.sortDirection = 'asc';
+      if (this.sortDirection === 'asc') {
+        this.sortDirection = 'desc';
+      } else {
+        this.sortDirection = 'asc';
+      }
     },
   },
 };
