@@ -13,8 +13,7 @@ export default {
   },
   computed: {
     remarketingTagIsSetted() {
-      // temporary disabled
-      return !this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SETTED'];
+      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SETTED'];
     },
   },
   methods: {
