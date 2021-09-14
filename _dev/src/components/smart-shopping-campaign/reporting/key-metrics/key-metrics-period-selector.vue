@@ -1,18 +1,16 @@
 <template>
   <div>
-    <b-button-group
-      size="sm"
-      class="d-none d-sm-inline-flex"
+    <b-form-group
+      class="d-none d-sm-block"
     >
-      <b-button
-        v-for="period in periods"
-        variant="default"
-        class="rounded-0"
-        :key="period"
-      >
-        {{ $t(`keymetrics.periods.${period}`) }}
-      </b-button>
-    </b-button-group>
+      <b-form-radio-group
+        buttons
+        button-variant="default rounded-0"
+        size="sm"
+        v-model="selectedPeriod"
+        :options="periods"
+      />
+    </b-form-group>
     <b-dropdown
       id="periodSelectorMobile"
       :text="$t(`keymetrics.periods.${selectedPeriod}`)"
@@ -23,12 +21,12 @@
       no-flip
     >
       <b-dropdown-item
-        v-for="period in periods"
-        :key="period"
+        v-for="{value, text} in periods"
+        :key="value"
         link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
         @click="selectedPeriod = period"
       >
-        {{ $t(`keymetrics.periods.${period}`) }}
+        {{ text }}
       </b-dropdown-item>
     </b-dropdown>
   </div>
@@ -41,10 +39,22 @@ export default {
     return {
       selectedPeriod: 'yesterday',
       periods: [
-        'yesterday',
-        'last7Days',
-        'last30Days',
-        '3Months',
+        {
+          value: 'yesterday',
+          text: this.$i18n.t('keymetrics.periods.yesterday'),
+        },
+        {
+          value: 'last7Days',
+          text: this.$i18n.t('keymetrics.periods.last7Days'),
+        },
+        {
+          value: 'last30Days',
+          text: this.$i18n.t('keymetrics.periods.last30Days'),
+        },
+        {
+          value: '3Months',
+          text: this.$i18n.t('keymetrics.periods.3Months'),
+        },
       ],
     };
   },
