@@ -498,7 +498,7 @@ class PsxMktgWithGoogleTranslations
                     'product' => $this->module->l('Product', 'PsxMktgWithGoogleTranslations'),
                     'click' => $this->module->l('Click', 'PsxMktgWithGoogleTranslations'),
                     'costs' => $this->module->l('Costs', 'PsxMktgWithGoogleTranslations'),
-                    'averageCPC' => $this->module->l('Average CPC', 'PsxMktgWithGoogleTranslations'),
+                    'averageCpc' => $this->module->l('Average CPC', 'PsxMktgWithGoogleTranslations'),
                     'conversions' => $this->module->l('Conversions', 'PsxMktgWithGoogleTranslations'),
                     'conversionsRate' => $this->module->l('Conversions rate', 'PsxMktgWithGoogleTranslations'),
                     'productFilter' => $this->module->l('Product filter', 'PsxMktgWithGoogleTranslations'),

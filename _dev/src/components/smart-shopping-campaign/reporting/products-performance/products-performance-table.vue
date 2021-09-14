@@ -102,7 +102,7 @@ export default {
           type: 'costs',
         },
         {
-          type: 'averageCPC',
+          type: 'averageCpc',
         },
         {
           type: 'conversions',

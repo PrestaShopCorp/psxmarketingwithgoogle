@@ -43,7 +43,7 @@
             productFilter,
             clicks,
             costs,
-            averageCPC,
+            averageCpc,
             conversions,
             conversionsRate,
             sales
@@ -52,7 +52,7 @@
           :product-filter="productFilter"
           :clicks="clicks"
           :costs="costs"
-          :average-c-p-c="averageCPC"
+          :average-cpc="averageCpc"
           :conversions="conversions"
           :conversions-rate="conversionsRate"
           :sales="sales"
@@ -100,7 +100,7 @@ export default {
           type: 'costs',
         },
         {
-          type: 'averageCPC',
+          type: 'averageCpc',
         },
         {
           type: 'conversions',
@@ -120,7 +120,7 @@ export default {
           productFilter: 'Brand',
           clicks: '0',
           costs: '$125',
-          averageCPC: '$5',
+          averageCpc: '$5',
           conversions: '127',
           conversionsRate: '127',
           sales: '$150',
