@@ -11,8 +11,7 @@
       },
       "refreshPage" : "Refresh page",
       "mandatory" : "are mandatory",
-      "XIsMandatory" : "{0} is mandatory.",
-      "XAreMandatory" : "{0} are mandatory."
+      "XIsMandatory" : "is mandatory."
     },
     "configuration" : {
         "introduction" : "Configuration Page !"
