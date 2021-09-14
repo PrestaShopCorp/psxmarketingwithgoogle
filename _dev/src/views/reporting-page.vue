@@ -9,7 +9,7 @@ import KeyMetricsBlock from '../components/smart-shopping-campaign/reporting/key
 
 export default {
   components: {
-    KeyMetricsBlock
+    KeyMetricsBlock,
   },
   computed: {
     remarketingTagIsSetted() {
