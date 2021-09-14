@@ -756,6 +756,7 @@ class PsxMktgWithGoogleTranslations
             'toast' => [
                 'alertActivationSuccess' => $this->module->l('You have successfully activated the free listings of your products in Shopping tab.', 'PsxMktgWithGoogleTranslations'),
                 'googleAccountConnectedOnceSuccess' => $this->module->l('You have connected your Google account!', 'PsxMktgWithGoogleTranslations'),
+                'alertGoogleAdsAccountSuccess' => $this->module->l('You have successfully configured your Google Ads account!', 'PsxMktgWithGoogleTranslations'),
                 'MCAConnectedOnceSuccess' => $this->module->l('You have connected your Merchant Center account!', 'PsxMktgWithGoogleTranslations'),
                 'productFeedConfiguredOnceSuccess' => $this->module->l('You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.', 'PsxMktgWithGoogleTranslations'),
                 'attributesMapppingSuccess' => $this->module->l('Your product attributes have been successfully saved. Review summary then click "Export" to submit them to Google', 'PsxMktgWithGoogleTranslations'),
