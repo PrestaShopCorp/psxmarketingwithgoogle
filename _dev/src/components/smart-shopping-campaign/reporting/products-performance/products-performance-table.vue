@@ -16,13 +16,31 @@
       <b-thead>
         <b-tr>
           <b-th
-            v-for="({type, tooltip}, index) in fields"
+            v-for="({type, tooltip, sorting}, index) in fields"
             class="font-weight-600"
             :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 1}"
             :key="type"
           >
             <div class="flex align-items-center text-nowrap">
-              <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
+              <b-button
+                v-if="sorting"
+                @click="sort()"
+                variant="invisible"
+                class="p-0 border-0"
+              >
+                <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
+                <template v-if="sortDirection === 'asc'">
+                  <i class="material-icons ps_gs-fz-14">expand_more</i>
+                  <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
+                </template>
+                <template v-else>
+                  <i class="material-icons ps_gs-fz-14">expand_less</i>
+                  <span class="sr-only">{{ $t('cta.clickToSortDesc') }}</span>
+                </template>
+              </b-button>
+              <span v-else>
+                {{ $t(`campaigns.labelCol.${type}`) }}
+              </span>
               <b-button
                 v-if="tooltip"
                 variant="invisible"
@@ -87,6 +105,7 @@ export default {
   },
   data() {
     return {
+      sortDirection: 'asc',
       loading: false,
       fields: [
         {
@@ -97,6 +116,7 @@ export default {
         },
         {
           type: 'click',
+          sorting: true,
         },
         {
           type: 'costs',
@@ -140,6 +160,16 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    // TODO: Handle sort function
+    sort() {
+      if (this.sortDirection === 'asc') {
+        this.sortDirection = 'desc';
+      } else {
+        this.sortDirection = 'asc';
+      }
+    },
   },
 };
 </script>

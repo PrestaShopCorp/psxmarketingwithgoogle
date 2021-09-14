@@ -671,6 +671,8 @@ class PsxMktgWithGoogleTranslations
                 'validate' => $this->module->l('Validate', 'PsxMktgWithGoogleTranslations'),
                 'moreInfosAboutX' => $this->module->l('More infos about {0}', 'PsxMktgWithGoogleTranslations'),
                 'seeOnGoogleAds' => $this->module->l('See on Google Ads', 'PsxMktgWithGoogleTranslations'),
+                'clickToSortDesc' => $this->module->l('(Click to sort descending)', 'PsxMktgWithGoogleTranslations'),
+                'clickToSortAsc' => $this->module->l('(Click to sort ascending)', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),
