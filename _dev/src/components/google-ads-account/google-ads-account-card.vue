@@ -182,7 +182,7 @@
           v-if="!googleAdsAccountConfigured"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
-          <!-- <b-button
+          <b-button
             size="sm"
             variant="primary"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
@@ -195,7 +195,7 @@
               {{ $t('cta.connecting') }}
               <span class="ml-1 icon-busy" />
             </template>
-          </b-button> -->
+          </b-button>
         </div>
         <div
           v-else

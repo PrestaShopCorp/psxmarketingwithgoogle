@@ -135,6 +135,7 @@ export default {
   },
   async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState, state},
     correlationId: string) {
+    commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
     // eslint-disable-next-line no-param-reassign
     correlationId = `${rootState.accounts.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts`, {
@@ -147,7 +148,6 @@ export default {
     });
     if (!response.ok) {
       console.log('dissociate failed');
-      commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
       throw new HttpClientError(response.statusText, response.status);
     }
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);

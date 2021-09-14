@@ -27,6 +27,8 @@
           :src="user.details.picture"
           :alt="user.details.email"
           class="mr-3 rounded-circle"
+          width="38"
+          height="38"
         >
         <strong class="text-break">{{ user.details.email }}</strong>
       </div>
@@ -55,6 +57,7 @@
           :value="selectedDescriptiveName"
           v-model="selectedDescriptiveName"
           class="mb-4"
+          size="sm"
         />
         <label
           class="font-weight-600 mb-0"
