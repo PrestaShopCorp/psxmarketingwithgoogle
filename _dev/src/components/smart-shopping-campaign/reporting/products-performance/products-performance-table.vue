@@ -17,9 +17,9 @@
         <b-tr>
           <b-th
             v-for="({type, tooltip}, index) in fields"
-            :key="type"
             class="font-weight-600"
             :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 1}"
+            :key="type"
           >
             <div class="flex align-items-center text-nowrap">
               <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
@@ -37,7 +37,7 @@
         </b-tr>
       </b-thead>
       <b-tbody class="bg-white">
-        <b-tr
+        <ProductsPerformanceTableRow
           v-for="{
             id,
             attribute,
@@ -49,45 +49,17 @@
             conversionsRate,
             sales
           } in campaigns"
+          :id="id"
+          :attribute="attribute"
+          :product="product"
+          :click="click"
+          :costs="costs"
+          :average-cpc="averageCpc"
+          :conversions="conversions"
+          :conversions-rate="conversionsRate"
+          :sales="sales"
           :key="id + attribute"
-        >
-          <b-td
-            class="ps_gs-fz-12"
-          >
-            {{ id }}{{ attribute > 0 ? '&#8209;' + attribute : '' }}
-          </b-td>
-          <b-td
-            class="b-table-sticky-column text-primary"
-          >
-            <a
-              href=""
-              target="_blank"
-              class="external_link-no_icon"
-            >
-              {{ product }}
-            </a>
-          </b-td>
-          <b-td
-            class="ps_gs-fz-12"
-          >
-            {{ click }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ costs }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ averageCpc }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ conversions }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ conversionsRate }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ sales }}
-          </b-td>
-        </b-tr>
+        />
         <b-tr v-if="loading">
           <b-td
             colspan="7"
@@ -104,12 +76,14 @@
 <script>
 import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
+import ProductsPerformanceTableRow from './products-performance-table-row.vue';
 
 export default {
   mixins: [StickyColumnsObserver],
-  name: 'CampaignsPerformanceTable',
+  name: 'ProductsPerformanceTable',
   components: {
     ReportingTableHeader,
+    ProductsPerformanceTableRow,
   },
   data() {
     return {
@@ -153,6 +127,16 @@ export default {
           conversions: '5584',
           conversionsRate: '2%',
           sales: '$3182',
+        },
+        {
+          id: '25',
+          product: 'Super summer mug',
+          click: '38',
+          costs: '$125',
+          averageCpc: '$5',
+          conversions: '1874',
+          conversionsRate: '5%',
+          sales: '$1687',
         },
       ],
     };

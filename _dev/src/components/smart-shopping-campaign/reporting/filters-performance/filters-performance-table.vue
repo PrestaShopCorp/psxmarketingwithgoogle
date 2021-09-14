@@ -37,7 +37,7 @@
         </b-tr>
       </b-thead>
       <b-tbody class="bg-white">
-        <b-tr
+        <FiltersPerformanceTableRow
           v-for="{
             name,
             productFilter,
@@ -48,40 +48,16 @@
             conversionsRate,
             sales
           } in campaigns"
+          :name="name"
+          :product-filter="productFilter"
+          :clicks="clicks"
+          :costs="costs"
+          :average-c-p-c="averageCPC"
+          :conversions="conversions"
+          :conversions-rate="conversionsRate"
+          :sales="sales"
           :key="name"
-        >
-          <b-td
-            class="b-table-sticky-column text-primary"
-          >
-            <b-button
-              variant="link"
-              class="font-weight-normal ps_gs-fz-12 p-0 m-0"
-            >
-              {{ name }}
-            </b-button>
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ productFilter }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ clicks }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ costs }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ averageCPC }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ conversions }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ conversionsRate }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ sales }}
-          </b-td>
-        </b-tr>
+        />
         <b-tr v-if="loading">
           <b-td
             colspan="7"
@@ -98,12 +74,14 @@
 <script>
 import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
+import FiltersPerformanceTableRow from './filters-performance-table-row.vue';
 
 export default {
   mixins: [StickyColumnsObserver],
   name: 'FiltersPerformanceTable',
   components: {
     ReportingTableHeader,
+    FiltersPerformanceTableRow,
   },
   data() {
     return {
