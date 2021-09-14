@@ -44,7 +44,7 @@ class GoogleTagCrawler
      */
     public function isGoogleTagAlreadyExist(string $googleTag): bool
     {
-        if (false === $this->contents || empty($this->contents)) {
+        if (empty($this->contents)) {
             return false;
         }
 
@@ -58,7 +58,7 @@ class GoogleTagCrawler
      */
     public function findAllGoogleTag(): array
     {
-        if (false === $this->contents || empty($this->contents)) {
+        if (empty($this->contents)) {
             return [];
         }
 
