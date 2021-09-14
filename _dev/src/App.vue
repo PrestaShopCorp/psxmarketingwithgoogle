@@ -2,11 +2,13 @@
   <div id="psxMktgWithGoogleApp">
     <div class="ps_gs-sticky-head">
       <Menu>
-        <MenuItem v-if="remarketingTagIsSetted"
-          :route="{name: 'reporting'}"
-        >
-          {{ $t('general.tabs.reporting') }}
-        </MenuItem>
+        <template v-if="productFeedIsConfigured">
+          <MenuItem
+            :route="{name: 'reporting'}"
+          >
+            {{ $t('general.tabs.reporting') }}
+          </MenuItem>
+        </template>
         <template v-if="productFeedIsConfigured">
           <MenuItem
             :route="{name: 'product-feed'}"
