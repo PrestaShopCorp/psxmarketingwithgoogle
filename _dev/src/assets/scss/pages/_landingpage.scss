@@ -9,6 +9,10 @@
 
   @include media-breakpoint-up(md) {
     padding: rem(32);
+
+    .ps_gs-landingpage-content__figure {
+      max-width: 40%;
+    }
   }
 
   &-content + hr {
