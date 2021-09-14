@@ -2,6 +2,13 @@
   <div id="psxMktgWithGoogleApp">
     <div class="ps_gs-sticky-head">
       <Menu>
+        <template v-if="remarketingTagIsSetted">
+          <MenuItem
+            :route="{name: 'reporting'}"
+          >
+            {{ $t('general.tabs.reporting') }}
+          </MenuItem>
+        </template>
         <template v-if="productFeedIsConfigured">
           <MenuItem
             :route="{name: 'product-feed'}"
@@ -52,6 +59,9 @@ export default {
     googleAdsChosen() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
       && this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.isSet;
+    },
+    remarketingTagIsSetted() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SETTED'];
     },
   },
   created() {

@@ -23,7 +23,6 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use Module;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PsxMarketingWithGoogle;
-use Raven_Client;
 
 /**
  * Handle Error.
@@ -31,7 +30,7 @@ use Raven_Client;
 class ErrorHandler
 {
     /**
-     * @var Raven_Client
+     * @var ModuleFilteredRavenClient
      */
     protected $client;
 

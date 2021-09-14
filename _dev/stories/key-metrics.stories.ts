@@ -1,16 +1,16 @@
-import KeyMetricsCard from '../src/components/smart-shopping-campaign/reporting/key-metrics/key-metrics-card.vue'
+import KeyMetricsBlock from '../src/components/smart-shopping-campaign/reporting/key-metrics/key-metrics-block.vue'
 
 export default {
   title: 'Reporting/Key Metrics',
-  component: KeyMetricsCard,
+  component: KeyMetricsBlock,
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { KeyMetricsCard },
+  components: { KeyMetricsBlock },
   template: `
     <div>
-      <KeyMetricsCard v-bind="$props"/>
+      <KeyMetricsBlock v-bind="$props"/>
     </div>
   `,
 });
