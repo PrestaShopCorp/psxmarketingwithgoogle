@@ -39,6 +39,7 @@ class GoogleTagCrawler
      * Check if the given tag already exist on the shop
      *
      * @param string $googleTag eg: AW-253749562
+     *
      * @return bool
      */
     public function isGoogleTagAlreadyExist(string $googleTag): bool
@@ -62,7 +63,7 @@ class GoogleTagCrawler
         }
 
         preg_match_all(
-            '/AW-\d{9}/mg',
+            '/AW-\d{9}/m',
             $this->contents,
             $matches
         );
