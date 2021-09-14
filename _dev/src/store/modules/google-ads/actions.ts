@@ -135,21 +135,21 @@ export default {
   async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState, state},
     correlationId: string) {
     // eslint-disable-next-line no-param-reassign
-    correlationId = `${rootState.accounts.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts`, {
-      method: 'DELETE',
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${state.tokenPsAccounts}`,
-        'x-correlation-id': correlationId,
-      },
-    });
-    if (!response.ok) {
-      console.log('dissociate failed');
-      commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    console.log('coucou ça a fonctionné');
+    //     correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    //   const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts`, {
+    //     method: 'DELETE',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       Authorization: `Bearer ${state.tokenPsAccounts}`,
+    //       'x-correlation-id': correlationId,
+    //     },
+    //   });
+    //   if (!response.ok) {
+    //     console.log('dissociate failed');
+    // commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '',
+
+    //     throw new HttpClientError(response.statusText, response.status);
+    // }
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);
     return true;
   },
@@ -172,6 +172,7 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
+      console.log('json', json);
       //   commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, {
       //   id: json.id,
       //   name: json.name,
