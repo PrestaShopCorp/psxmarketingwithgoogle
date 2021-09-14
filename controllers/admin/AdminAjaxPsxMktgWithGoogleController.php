@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -20,6 +21,7 @@
 
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Crawler\GoogleTagCrawler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
@@ -316,9 +318,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         // CHECKME: When we run the check, our own remarketing tag is not configured yet, so the chance to find it from our module is very low.
         // But it could be interesting to avoid false positive results by checking we're not enabled.
 
-        // TODO: Run checks
+        $crawler = new GoogleTagCrawler($this->context->shop->id);
 
-        $this->ajaxDie(json_encode(['tagAlreadyExists' => true]));
+        $this->ajaxDie(json_encode(['tagAlreadyExists' => $crawler->isGoogleTagAlreadyExist($inputs['tag'])]));
     }
 
     /**
