@@ -15,13 +15,25 @@
     >
       <b-thead>
         <b-tr>
-          <CampaignsPerformanceTableHeading
+          <b-th
             v-for="({type, tooltip}, index) in fields"
-            :type="type"
-            :tooltip="tooltip"
-            :index="index"
             :key="type"
-          />
+            class="font-weight-600"
+            :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
+          >
+            <div class="flex align-items-center text-nowrap">
+              <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
+              <b-button
+                v-if="tooltip"
+                variant="invisible"
+                v-b-tooltip:psxMktgWithGoogleApp
+                :title="$t(`campaigns.tooltipCol.${type}`)"
+                class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
+              >
+                <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
+              </b-button>
+            </div>
+          </b-th>
         </b-tr>
       </b-thead>
       <b-tbody class="bg-white">
@@ -62,7 +74,6 @@
 <script>
 import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
-import CampaignsPerformanceTableHeading from './campaigns-performance-table-heading.vue';
 import CampaignsPerformanceTableRow from './campaigns-performance-table-row.vue';
 
 export default {
@@ -70,7 +81,6 @@ export default {
   name: 'CampaignsPerformanceTable',
   components: {
     ReportingTableHeader,
-    CampaignsPerformanceTableHeading,
     CampaignsPerformanceTableRow,
   },
   data() {
