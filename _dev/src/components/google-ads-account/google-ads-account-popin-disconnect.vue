@@ -13,45 +13,45 @@
       :markdown="$t('modal.textDisconnectGoogleAds')"
     />
     <template v-if="SSCExist">
-    <span
-      class="mt-2 d-flex align-items-center font-weight-bold"
-    >
-      {{ $t('modal.questionDisconnectGoogleAds') }}
-    </span>
-
-    <b-form-checkbox
-      v-model="pauseCampaigns"
-      switch
-      size="lg"
-      class="mt-2 ps_gs-switch"
-      @change="changeStatusPause"
-    >
-      <span class="ps_gs-fz-14">
-        {{ $t('modal.pauseCampaigns') }}
-      </span>
-      <p
-        class="text-muted mb-0 ps_gs-fz-12"
+      <span
+        class="mt-2 d-flex align-items-center font-weight-bold"
       >
-        {{ $t('modal.pauseCampaignsExplainations') }}
-      </p>
-    </b-form-checkbox>
-
-    <b-form-checkbox
-      v-model="removeTag"
-      switch
-      size="lg"
-      class="mt-2 ps_gs-switch"
-      @change="changeStatusTag"
-    >
-      <span class="ps_gs-fz-14">
-        {{ $t('modal.removeTag') }}
+        {{ $t('modal.questionDisconnectGoogleAds') }}
       </span>
-      <p
-        class="text-muted mb-0 ps_gs-fz-12"
+
+      <b-form-checkbox
+        v-model="pauseCampaigns"
+        switch
+        size="lg"
+        class="mt-2 ps_gs-switch"
+        @change="changeStatusPause"
       >
-        {{ $t('modal.removeTagExplainations') }}
-      </p>
-    </b-form-checkbox>
+        <span class="ps_gs-fz-14">
+          {{ $t('modal.pauseCampaigns') }}
+        </span>
+        <p
+          class="text-muted mb-0 ps_gs-fz-12"
+        >
+          {{ $t('modal.pauseCampaignsExplainations') }}
+        </p>
+      </b-form-checkbox>
+
+      <b-form-checkbox
+        v-model="removeTag"
+        switch
+        size="lg"
+        class="mt-2 ps_gs-switch"
+        @change="changeStatusTag"
+      >
+        <span class="ps_gs-fz-14">
+          {{ $t('modal.removeTag') }}
+        </span>
+        <p
+          class="text-muted mb-0 ps_gs-fz-12"
+        >
+          {{ $t('modal.removeTagExplainations') }}
+        </p>
+      </b-form-checkbox>
     </template>
     <template slot="modal-cancel">
       {{ $t('cta.cancel') }}
@@ -90,7 +90,6 @@ export default {
     },
     changeStatusPause() {
       console.log(this.pauseCampaigns);
-   
     },
     changeStatusTag() {
       this.$store.dispatch(
@@ -103,8 +102,8 @@ export default {
   computed: {
     SSCExist() {
       //  TODO return if a SSC already exists to display toggle tag and toggle pause
-      return true
-    }
-  }
+      return true;
+    },
+  },
 };
 </script>
