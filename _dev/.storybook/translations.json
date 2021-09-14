@@ -505,7 +505,7 @@
         "product" : "Product",
         "click" : "Click",
         "costs" : "Costs",
-        "averageCPC" : "Average CPC",
+        "averageCpc" : "Average CPC",
         "conversions" : "Conversions",
         "conversionsRate" : "Conversions rate",
         "productFilter" : "Product filter"

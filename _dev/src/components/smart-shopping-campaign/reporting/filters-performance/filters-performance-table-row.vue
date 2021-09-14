@@ -20,7 +20,7 @@
       {{ costs }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ averageCPC }}
+      {{ averageCpc }}
     </b-td>
     <b-td class="ps_gs-fz-12">
       {{ conversions }}
@@ -57,7 +57,7 @@ export default {
       type: String,
       required: true,
     },
-    averageCPC: {
+    averageCpc: {
       type: String,
       required: true,
     },
