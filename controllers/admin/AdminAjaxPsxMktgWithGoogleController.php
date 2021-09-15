@@ -322,10 +322,15 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             ]));
         }
 
+        $googleRemarketingStatus = $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS);
+        if ($googleRemarketingStatus) {
+            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS, false);
+        }
+
         $googleTag = $this->googleTagProvider->checkGoogleTagAlreadyExists($inputs['tag'], $this->context->shop->id);
 
-        if ($googleTag) {
-            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS, false);
+        if (false === $googleTag && $googleRemarketingStatus) {
+            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS, true);
         }
 
         $this->ajaxDie(json_encode(['tagAlreadyExists' => $googleTag]));
