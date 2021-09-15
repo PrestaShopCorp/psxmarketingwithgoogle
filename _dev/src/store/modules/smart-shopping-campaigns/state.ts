@@ -70,6 +70,11 @@ export interface Orderings {
     order: OrderByType;
   }
 }
+
+export interface OrderByType {
+  clicks: QueryOrderDirection,
+}
+
 export interface Kpis {
   impressions: number;
   clicks: number;
@@ -133,10 +138,6 @@ export interface ProductPartitionPerformances {
   conversions: number,
   conversionsRate: number,
   sales: number
-}
-
-export interface OrderByType {
-  clicks: QueryOrderDirection,
 }
 
 export const state: State = {
