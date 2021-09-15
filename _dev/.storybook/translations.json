@@ -395,7 +395,13 @@
       "alerts": {
         "noTag": "By not adding the tag automatically Google will not be able to send campaigns results",
         "duplicatedTag" : "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you."
-      }
+      },
+      "labelSelectedDimension" : "Selected dimension value",
+      "labelDimensionValue" : "Dimension value",
+      "nbDimensionSelected" : "No dimension selected | {0} dimension selected | {0} dimensions selected",
+      "nbValuesSelected" : "No value selected | {0} value selected | {0} values selected",
+      "selectProductsTitle" : "Select products",
+      "selectProductsSubtitle" : "Select the filters you want to add in your Google Ads campaign"
     },
     "productFeedPage" : {
       "breadcrumb" : "Product status details",
@@ -627,7 +633,9 @@
       "clickToSortDesc" : "(Click to sort descending)",
       "clickToSortAsc" : "(Click to sort ascending)",
       "selectFilters" : "Select filters",
-      "removeFilter" : "Remove filter | Remove filters"
+      "removeFilter" : "Remove filter | Remove filters",
+      "selectAll" : "Select all",
+      "deselectAll" : "Deselect all"
     },
     "badge" : {
       "free" : "Free",
