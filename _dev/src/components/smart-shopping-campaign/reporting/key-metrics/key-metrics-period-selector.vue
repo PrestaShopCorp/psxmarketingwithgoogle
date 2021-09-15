@@ -21,12 +21,12 @@
       no-flip
     >
       <b-dropdown-item
-        v-for="{periodValue, periodTranslation} in periods"
-        :key="periodValue"
+        v-for="{value, text} in periods"
+        :key="value"
         link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
-        @click="selectedPeriod = periodValue"
+        @click="reportingPeriod = value"
       >
-        {{ periodTranslation }}
+        {{ text }}
       </b-dropdown-item>
     </b-dropdown>
   </div>
