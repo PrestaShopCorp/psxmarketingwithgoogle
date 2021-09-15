@@ -44,7 +44,7 @@
       >
         <i class="material-icons">close</i>
         <span class="sr-only">
-          Remove filter(s)
+          {{ $tc('cta.removeFilter', !!item.children ? item.children.length : 1) }}
         </span>
       </b-button>
     </template>

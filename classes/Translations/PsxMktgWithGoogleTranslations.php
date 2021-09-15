@@ -674,6 +674,7 @@ class PsxMktgWithGoogleTranslations
                 'clickToSortDesc' => $this->module->l('(Click to sort descending)', 'PsxMktgWithGoogleTranslations'),
                 'clickToSortAsc' => $this->module->l('(Click to sort ascending)', 'PsxMktgWithGoogleTranslations'),
                 'selectFilters' => $this->module->l('Select filters', 'PsxMktgWithGoogleTranslations'),
+                'removeFilter' => $this->module->l('Remove filter | Remove filters', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),
