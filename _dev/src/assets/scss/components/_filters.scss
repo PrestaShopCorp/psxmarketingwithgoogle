@@ -24,9 +24,16 @@
 
     &-button {
       position: absolute;
-      padding: rem(2) rem(4);
+      padding: rem(2) rem(4) !important;
       left: rem(-8);
       top: rem(-4);
+    }
+    &-button--with-label {
+      i {
+        position: absolute;
+        padding: rem(2) rem(4) !important;
+        left: rem(-8);
+      }
     }
 
     &-children {
@@ -35,15 +42,4 @@
       padding-right: rem(18);
     }
   }
-}
-
-.ps_gs-filters-selected {
-  @extend .maxw-sm-500;
-  height: 332px;
-  overflow: auto;
-  border-radius: 3px;
-  border: 1px solid $gray-450;
-  padding: rem(18);
-  margin-top: rem(10);
-  margin-bottom: 0;
 }

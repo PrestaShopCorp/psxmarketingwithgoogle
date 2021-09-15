@@ -2,26 +2,54 @@
   <li
     class="ps_gs-filters__item"
   >
-    <b-button
-      variant="invisible"
-      class="ps_gs-filters__item-button"
+    <template
       v-if="isFolder"
-      @click="toggle"
     >
-      <template v-if="isOpen">
-        <i class="material-icons">keyboard_arrow_down</i>
-      </template>
-      <template v-else>
-        <i class="material-icons">navigate_next</i>
-      </template>
-    </b-button>
+      <b-button
+        variant="invisible"
+        class="px-0 py-0 border-0"
+        :class="[!selectedFilters
+          ? 'ps_gs-filters__item-button'
+          : 'ps_gs-filters__item-button--with-label']"
+        @click="toggle"
+      >
+        <template v-if="isOpen">
+          <i class="material-icons">keyboard_arrow_down</i>
+        </template>
+        <template v-else>
+          <i class="material-icons">navigate_next</i>
+        </template>
+        <span
+          v-if="selectedFilters"
+          class="font-weight-normal"
+        >
+          {{ item.name }} ({{ countChildren(item) }})
+        </span>
+      </b-button>
+    </template>
     <b-form-checkbox
+      v-if="!selectedFilters"
       class="ps_gs-checkbox ps_gs-filters__item-checkbox"
       :name="`${item.name}Checkbox`"
       inline
     >
       {{ item.name }}
     </b-form-checkbox>
+    <template v-else>
+      <template v-if="!isFolder">
+        {{ item.name }}
+      </template>
+      <b-button
+        variant="invisible"
+        class="px-1 py-0 border-0 ps_gs-fz-10"
+        @click="deselectFilter(item)"
+      >
+        <i class="material-icons">close</i>
+        <span class="sr-only">
+          {{ $tc('cta.removeFilter', !!item.children ? item.children.length : 1) }}
+        </span>
+      </b-button>
+    </template>
     <ul
       v-show="isOpen"
       v-if="isFolder"
@@ -31,6 +59,7 @@
         v-for="(child, index) in item.children"
         :key="index"
         :item="child"
+        :selected-filters="selectedFilters"
       />
     </ul>
   </li>
@@ -52,6 +81,11 @@ export default {
       default: false,
       required: false,
     },
+    selectedFilters: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
   },
   computed: {
     isFolder() {
@@ -63,6 +97,29 @@ export default {
       if (this.isFolder) {
         this.isOpen = !this.isOpen;
       }
+    },
+    // TODO: handle checkboxes
+    // ! Checkboxes are not handled at all
+    deselectFilter(item) {
+      // TODO: fn to deselect an item
+      console.log(item);
+    },
+    countChildren(item) {
+      // TODO: check if function is OK to count items
+      const tableOfCHildren = [];
+
+      // eslint-disable-next-line
+      function fillTableOfChildren(elem) {
+        if (!elem.children) {
+          tableOfCHildren.push(elem.name);
+          return elem.name;
+        }
+
+        elem.children.forEach((child) => fillTableOfChildren(child));
+      }
+
+      fillTableOfChildren(item);
+      return tableOfCHildren.length;
     },
   },
 };

@@ -128,6 +128,7 @@
           label-class="d-flex align-items-center font-weight-600"
           label-for="campaign-target-country-input"
           :description="$t('smartShoppingCampaignCreation.inputCountryHelper')"
+          class="maxw-sm-420"
         >
           <template #label>
             {{ $t('smartShoppingCampaignCreation.inputCountryLabel') }}
@@ -176,134 +177,16 @@
               :extensions="['extended-link', 'no-p-tag']"
             />
           </template>
+          <b-button
+            v-if="campaignProductsFilter === false"
+            variant="primary"
+            size="sm"
+            class="my-3"
+            @click="openFilterPopin"
+          >
+            {{ $t('cta.selectFilters') }}
+          </b-button>
         </b-form-group>
-
-        <!-- TODO START > Ajout de filtres dynamiques -->
-        <b-form-group
-          v-if="campaignProductsFilter === false"
-        >
-          <b-row>
-            <b-col
-              cols="12"
-              md="6"
-              class="mb-3 mb-md-0"
-            >
-              <span>
-                Dimension value
-              </span>
-              <ul class="ps_gs-filters">
-                <SmartShoppingCampaignCreationFilterItem
-                  :item="$options.treeFilters"
-                  is-open-by-default="true"
-                />
-              </ul>
-            </b-col>
-            <b-col
-              cols="12"
-              md="6"
-              class="mb-3 mb-md-0"
-            >
-              <span>
-                Selected dimension value
-              </span>
-              <div
-                class="ps_gs-filters-selected"
-              >
-                <b-badge
-                  variant="muted"
-                  class="d-block mb-3 text-left"
-                >
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="text-dark">
-                      Offer ID : All
-                    </div>
-                    <b-button
-                      variant="invisible"
-                      class="m-0 p-0"
-                    >
-                      <i class="material-icons-round m-0 p-0 ps_gs-fz-12">
-                        close
-                      </i>
-                    </b-button>
-                  </div>
-                </b-badge>
-                <b-badge
-                  variant="muted"
-                  class="d-block mb-3 text-left"
-                >
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <div class="text-dark">
-                      Brand
-                    </div>
-                    <b-button
-                      variant="invisible"
-                      class="m-0 p-0"
-                    >
-                      <i class="material-icons-round m-0 p-0 ps_gs-fz-12">
-                        close
-                      </i>
-                    </b-button>
-                  </div>
-                  <div
-                    class="d-flex flex-wrap ml-n1"
-                  >
-                    <b-badge
-                      variant="primary"
-                      class="m-1"
-                      v-for="i in 10"
-                      :key="i"
-                    >
-                      <div
-                        class="d-flex align-items-center justify-content-between"
-                      >
-                        <div class="text-dark">
-                          Reebok
-                        </div>
-                        <b-button
-                          variant="invisible"
-                          class="m-0 py-0 pl-2 pr-0"
-                        >
-                          <i class="material-icons-round ps_gs-fz-12 text-dark">
-                            close
-                          </i>
-                        </b-button>
-                      </div>
-                    </b-badge>
-                  </div>
-                </b-badge>
-              </div>
-            </b-col>
-            <b-col
-              cols="12"
-            >
-              <div class="d-flex justify-content-between">
-                <div>
-                  <b-button
-                    variant="invisible"
-                    class="text-decoration-underline p-2 ml-n2"
-                  >
-                    Select all
-                  </b-button>
-                  <b-button
-                    variant="invisible"
-                    class="text-decoration-underline p-2"
-                  >
-                    Deselect all
-                  </b-button>
-                </div>
-                <!-- TODO / need to be dynamic -->
-                <div class="pt-2">
-                  2 dimensions selected - 12 values selected
-                </div>
-              </div>
-            </b-col>
-          </b-row>
-        </b-form-group>
-        <!-- TODO END > Ajout de filtres dynamiques -->
         <b-form-group
           id="campaign-daily-budget-fieldset"
           :description="$t('smartShoppingCampaignCreation.inputBudgetHelper')"
@@ -373,14 +256,13 @@
         </div>
       </b-form>
     </b-card-body>
+    <SmartShoppingCampaignCreationFilterPopin ref="SmartShoppingCampaignCreationFilterPopin" />
   </b-card>
 </template>
 
 <script>
 import countriesSelectionOptions from '@/assets/json/countries.json';
-
-// ! test
-import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
+import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-creation-filter-popin.vue';
 import SelectCountry from '../commons/select-country.vue';
 
 export default {
@@ -398,8 +280,8 @@ export default {
     };
   },
   components: {
+    SmartShoppingCampaignCreationFilterPopin,
     SelectCountry,
-    SmartShoppingCampaignCreationFilterItem,
   },
   computed: {
     disableCreateCampaign() {
@@ -457,9 +339,6 @@ export default {
     createCampaign() {
       // TODO
     },
-    addFilter() {
-      // TODO
-    },
     isCompatibleWithCurrency(country) {
       const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
 
@@ -468,73 +347,13 @@ export default {
     saveCountrySelected(value) {
       this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', value);
     },
+    openFilterPopin() {
+      this.$bvModal.show(
+        this.$refs.SmartShoppingCampaignCreationFilterPopin.$refs.modal.id,
+      );
+    },
   },
   // TODO filter country to show only available countries
   countriesSelectionOptions,
-
-  // TODO Getting datas
-  // TODO Adding translation
-  treeFilters: {
-    name: 'All filters',
-    children: [
-      {
-        name: 'Bidding category',
-      },
-      {
-        name: 'Canonical condition',
-        children: [
-          {
-            name: 'NEW',
-          },
-          {
-            name: 'USED',
-          },
-          {
-            name: 'REFURBISHED',
-          },
-          {
-            name: 'UNKNOWN',
-          },
-        ],
-      },
-      {
-        name: 'Brands',
-        children: [
-          {
-            name: 'Nike',
-          },
-          {
-            name: 'Reebok',
-          },
-          {
-            name: 'Jouet Club',
-            children: [
-              {
-                name: 'Hasbro',
-              },
-              {
-                name: 'Mattel',
-              },
-              {
-                name: 'Kenner',
-              },
-              {
-                name: 'Poly pocket',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: 'Custom attribute',
-      },
-      {
-        name: 'Offer ID',
-      },
-      {
-        name: 'Product type',
-      },
-    ],
-  },
 };
 </script>

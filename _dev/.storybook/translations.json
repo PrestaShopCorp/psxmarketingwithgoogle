@@ -395,7 +395,13 @@
       "alerts": {
         "noTag": "By not adding the tag automatically Google will not be able to send campaigns results",
         "duplicatedTag" : "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you."
-      }
+      },
+      "labelSelectedDimension" : "Selected dimension value",
+      "labelDimensionValue" : "Dimension value",
+      "nbDimensionSelected" : "No dimension selected | {0} dimension selected | {0} dimensions selected",
+      "nbValuesSelected" : "No value selected | {0} value selected | {0} values selected",
+      "selectProductsTitle" : "Select products",
+      "selectProductsSubtitle" : "Select the filters you want to add in your Google Ads campaign"
     },
     "productFeedPage" : {
       "breadcrumb" : "Product status details",
@@ -625,7 +631,11 @@
       "moreInfosAboutX" : "More infos about {0}",
       "seeOnGoogleAds" : "See on Google Ads",
       "clickToSortDesc" : "(Click to sort descending)",
-      "clickToSortAsc" : "(Click to sort ascending)"
+      "clickToSortAsc" : "(Click to sort ascending)",
+      "selectFilters" : "Select filters",
+      "removeFilter" : "Remove filter | Remove filters",
+      "selectAll" : "Select all",
+      "deselectAll" : "Deselect all"
     },
     "badge" : {
       "free" : "Free",
@@ -663,7 +673,7 @@
       "textoverwrite" : "Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  \nIf you are running a different Shopping campaign, we recommend pausing it.",
       "titleDisableFreeListing" : "Disable free listings?",
       "textDisableFreeListing" : "By disabling free listings your products will no longer be available for organic listing on Shopping tab.  \n However your product feed will stay available.",
-     "titleEnableFreeListing" : "Enable free listings?",
+      "titleEnableFreeListing" : "Enable free listings?",
       "textEnableFreeListing" : "This action will also cause the reactivation of the product feed.",
       "titleCancelWithoutSaving" : "Cancel without saving?",
       "textCancelProductFeed" : "You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps.",

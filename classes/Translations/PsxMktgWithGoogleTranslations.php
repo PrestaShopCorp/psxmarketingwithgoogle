@@ -442,7 +442,13 @@ class PsxMktgWithGoogleTranslations
                 'alerts' => [
                     'noTag' => $this->module->l('By not adding the tag automatically Google will not be able to send campaigns results', 'PsxMktgWithGoogleTranslations'),
                     'duplicatedTag' => $this->module->l('Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.', 'PsxMktgWithGoogleTranslations'),
-                  ],
+                ],
+                'labelSelectedDimension' => $this->module->l('Selected dimension value', 'PsxMktgWithGoogleTranslations'),
+                'labelDimensionValue' => $this->module->l('Dimension value', 'PsxMktgWithGoogleTranslations'),
+                'nbDimensionSelected' => $this->module->l('No dimension selected | {0} dimension selected | {0} dimensions selected', 'PsxMktgWithGoogleTranslations'),
+                'nbValuesSelected' => $this->module->l('No value selected | {0} value selected | {0} values selected', 'PsxMktgWithGoogleTranslations'),
+                'selectProductsTitle' => $this->module->l('Select products', 'PsxMktgWithGoogleTranslations'),
+                'selectProductsSubtitle' => $this->module->l('Select the filters you want to add in your Google Ads campaign', 'PsxMktgWithGoogleTranslations'),
             ],
             'campaignCard' => [
                 'title' => $this->module->l('Create your Smart Shopping campaign in a few clicks', 'PsxMktgWithGoogleTranslations'),
@@ -673,6 +679,10 @@ class PsxMktgWithGoogleTranslations
                 'seeOnGoogleAds' => $this->module->l('See on Google Ads', 'PsxMktgWithGoogleTranslations'),
                 'clickToSortDesc' => $this->module->l('(Click to sort descending)', 'PsxMktgWithGoogleTranslations'),
                 'clickToSortAsc' => $this->module->l('(Click to sort ascending)', 'PsxMktgWithGoogleTranslations'),
+                'selectFilters' => $this->module->l('Select filters', 'PsxMktgWithGoogleTranslations'),
+                'removeFilter' => $this->module->l('Remove filter | Remove filters', 'PsxMktgWithGoogleTranslations'),
+                'selectAll' => $this->module->l('Select all', 'PsxMktgWithGoogleTranslations'),
+                'deselectAll' => $this->module->l('Deselect all', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),
