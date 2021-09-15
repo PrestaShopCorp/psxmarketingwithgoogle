@@ -60,7 +60,7 @@
         @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
       />
       <SmartShoppingCampaignCard
-        v-if="stepsAreCompleted.step3"
+        v-if="stepsAreCompleted.step2"
         :is-enabled="stepsAreCompleted.step3"
         @openPopin="onOpenPopinActivateTracking"
       />

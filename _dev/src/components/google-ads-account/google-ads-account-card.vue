@@ -260,7 +260,9 @@ export default {
         await this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.googleAdsAccountSelectionOptions[this.selectedIndex]);
         await new Promise((resolve) => setTimeout(resolve, 4000));
         await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
-        this.$emit('selectGoogleAdsAccount');
+        if (this.$store.state.googleAds.accountChosen) {
+          this.$emit('selectGoogleAdsAccount');
+        }
       } catch (err) {
         // TODO: display error message
         console.error(err);
