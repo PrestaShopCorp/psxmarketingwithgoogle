@@ -45,7 +45,7 @@
         </b-button>
       </div>
     </div>
-    <template v-if="statusTrackingTag !== null">
+    <template v-if="isEnabled && statusTrackingTag !== null">
       <hr>
       <b-form-checkbox
         switch
