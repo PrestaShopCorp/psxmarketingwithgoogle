@@ -32,27 +32,27 @@ export default {
     state.tracking = payload;
   },
   [MutationsTypes.SET_REPORTING_METRICS_KPIS](state: LocalState, payload: Kpis) {
-    state.reporting.kpis = payload;
+    state.reporting.results.kpis = payload;
   },
   [MutationsTypes.SET_REPORTING_DAILY_RESULTS](state: LocalState, payload: DailyresultChart) {
-    state.reporting.dailyResultChart = payload;
+    state.reporting.results.dailyResultChart = payload;
   },
   [MutationsTypes.SET_REPORTING_METRICS_CAMPAIGNS_PERFORMANCES](
     state: LocalState,
     payload: CampaignsPerformancesSection,
   ) {
-    state.reporting.campaignsPerformancesSection = payload;
+    state.reporting.results.campaignsPerformancesSection = payload;
   },
   [MutationsTypes.SET_REPORTING_METRICS_PRODUCTS_PERFORMANCES](
     state: LocalState,
     payload: ProductsPerformancesSection,
   ) {
-    state.reporting.productsPerformancesSection = payload;
+    state.reporting.results.productsPerformancesSection = payload;
   },
   [MutationsTypes.SET_REPORTING_METRICS_PRODUCTS_PARTITIONS_PERFORMANCES](
     state: LocalState,
     payload: ProductsPartitionsPerformancesSection,
   ) {
-    state.reporting.productsPartitionsPerformancesSection = payload;
+    state.reporting.results.productsPartitionsPerformancesSection = payload;
   },
 };

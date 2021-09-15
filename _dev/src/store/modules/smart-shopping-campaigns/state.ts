@@ -38,19 +38,38 @@ export interface CampaignDuration {
 }
 
 export interface Reporting {
+  request: RequestParams;
+  results: ResultsRequest;
+}
+
+export interface RequestParams {
   dateRange: DateRange;
+  ordering: Orderings;
+}
+
+export interface ResultsRequest {
   kpis: Kpis;
   dailyResultChart: DailyresultChart;
   campaignsPerformancesSection: CampaignsPerformancesSection;
   productsPerformancesSection: ProductsPerformancesSection;
   productsPartitionsPerformancesSection: ProductsPartitionsPerformancesSection;
 }
-
 export interface DateRange {
   startDate: string;
   endDate: string;
 }
 
+export interface Orderings {
+  campaignsPerformances: {
+    order: OrderByType;
+  },
+  productsPerformances: {
+    order: OrderByType;
+  },
+  productsDimensionsPerformances: {
+    order: OrderByType;
+  }
+}
 export interface Kpis {
   impressions: number;
   clicks: number;
@@ -61,7 +80,6 @@ export interface Kpis {
 }
 
 export interface DailyresultChart {
-  type: DailyResultType;
   dailyResultList: Array<DailyResult>;
 }
 
@@ -71,7 +89,7 @@ export interface CampaignsPerformancesSection {
 }
 
 export interface ProductsPerformancesSection {
-  productsPerformanceList: Array<ProductPerformances>
+  productsPerformanceList: Array<ProductPerformances>,
 }
 
 export interface ProductsPartitionsPerformancesSection {
@@ -117,6 +135,10 @@ export interface ProductPartitionPerformances {
   sales: number
 }
 
+export interface OrderByType {
+  clicks: QueryOrderDirection,
+}
+
 export const state: State = {
   campaignName: '',
   campaignDurationDate: {
@@ -129,31 +151,51 @@ export const state: State = {
   tracking: null,
   tagAlreadyExists: false,
   reporting: {
-    dateRange: {
-      startDate: dayjs().subtract(7, 'day').format('YYYY-MM-DD'),
-      endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
+    request: {
+      dateRange: {
+        startDate: dayjs().subtract(7, 'day').format('YYYY-MM-DD'),
+        endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
+      },
+      ordering: {
+        campaignsPerformances: {
+          order: {
+            clicks: QueryOrderDirection.ASCENDING,
+          },
+        },
+        productsPerformances: {
+          order: {
+            clicks: QueryOrderDirection.ASCENDING,
+          },
+        },
+        productsDimensionsPerformances: {
+          order: {
+            clicks: QueryOrderDirection.ASCENDING,
+          },
+        },
+      },
     },
-    kpis: {
-      impressions: 0,
-      clicks: 0,
-      conversions: 0,
-      averageCostPerClick: 0,
-      costs: 0,
-      sales: 0,
-    },
-    dailyResultChart: {
-      type: DailyResultType.IMPRESSIONS,
-      dailyResultList: [],
-    },
-    campaignsPerformancesSection: {
-      campaignsPerformanceList: [],
-      nextPageToken: '',
-    },
-    productsPerformancesSection: {
-      productsPerformanceList: [],
-    },
-    productsPartitionsPerformancesSection: {
-      productsPartitionsPerformanceList: [],
+    results: {
+      kpis: {
+        impressions: 0,
+        clicks: 0,
+        conversions: 0,
+        averageCostPerClick: 0,
+        costs: 0,
+        sales: 0,
+      },
+      dailyResultChart: {
+        dailyResultList: [],
+      },
+      campaignsPerformancesSection: {
+        campaignsPerformanceList: [],
+        nextPageToken: '',
+      },
+      productsPerformancesSection: {
+        productsPerformanceList: [],
+      },
+      productsPartitionsPerformancesSection: {
+        productsPartitionsPerformanceList: [],
+      },
     },
   },
 };
