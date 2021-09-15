@@ -134,6 +134,19 @@
           {{ $t('googleAccountCard.footerDissociating') }}
         </p>
       </div>
+      <b-alert
+        v-if="!error && !accessToken"
+        show
+        variant="info"
+        class="mb-0 mt-3"
+      >
+        <VueShowdown
+          tag="p"
+          :extensions="['no-p-tag']"
+          class="mb-0"
+          :markdown="$t('googleAccountCard.alertInfo')"
+        />
+      </b-alert>
     </template>
     <b-alert
       v-if="error"

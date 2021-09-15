@@ -120,6 +120,7 @@ class PsxMktgWithGoogleTranslations
                 'alertCantConnect' => $this->module->l('You can\'t connect to your Google account right now. Try again later.', 'PsxMktgWithGoogleTranslations'),
                 'alertTokenMissing' => $this->module->l('We weren\'t able to authenticate your account. Try again or switch to another account.', 'PsxMktgWithGoogleTranslations'),
                 'stepIsMandatory' => $this->module->l('*This step is mandatory', 'PsxMktgWithGoogleTranslations'),
+                'alertInfo' => $this->module->l("Make sure to allow all requested permissions when authenticating your Google account.  \nThis action is mandatory for this service to work properly.", 'PsxMktgWithGoogleTranslations'),
             ],
             'mcaCard' => [
                 'title' => $this->module->l('Merchant Center account', 'PsxMktgWithGoogleTranslations'),
