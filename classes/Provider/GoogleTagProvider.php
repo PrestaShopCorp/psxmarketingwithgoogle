@@ -19,9 +19,9 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PsxMarketingWithGoogle\Crawler;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
-class GoogleTagCrawler
+class GoogleTagProvider
 {
     /**
      * html contents (front office)
@@ -30,11 +30,6 @@ class GoogleTagCrawler
      */
     private $contents;
 
-    public function __construct(int $shopId)
-    {
-        $this->crawlFront($shopId);
-    }
-
     /**
      * Check if the given tag already exist on the shop
      *
@@ -42,8 +37,10 @@ class GoogleTagCrawler
      *
      * @return bool
      */
-    public function isGoogleTagAlreadyExist(string $googleTag): bool
+    public function checkGoogleTagAlreadyExists(string $googleTag, int $shopId): bool
     {
+        $this->crawlFront($shopId);
+
         if (empty($this->contents)) {
             return false;
         }
@@ -56,8 +53,10 @@ class GoogleTagCrawler
      *
      * @return array all google tags present in the front
      */
-    public function findAllGoogleTag(): array
+    public function findAllGoogleTag(int $shopId): array
     {
+        $this->crawlFront($shopId);
+
         if (empty($this->contents)) {
             return [];
         }
