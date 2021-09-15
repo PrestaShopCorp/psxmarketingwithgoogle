@@ -1,12 +1,11 @@
 import GoogleAdsAccountPopinNew from '../src/components/google-ads-account/google-ads-account-popin-new.vue'
+import OnboardingPage from '../src/views/onboarding-page.vue'
 import {
   googleAccountConnected,
 } from "../.storybook/mock/google-account";
 import {
   initialStateApp,
 } from "../.storybook/mock/state-app";
-import OnboardingPage from '../src/views/onboarding-page.vue'
-
 import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
@@ -14,7 +13,7 @@ import {productFeedIsConfigured} from '../.storybook/mock/product-feed';
 
 export default {
   title: 'Google Ads Account/Popins',
-  component: GoogleAdsAccountPopinNew,
+  component: GoogleAdsAccountPopinNew,OnboardingPage,
   parameters: {
     jest: ['google-ads-account-popin-new.spec.ts'],
   },
@@ -25,7 +24,7 @@ const Template = (args, { argTypes }) => ({
   components: { GoogleAdsAccountPopinNew,OnboardingPage },
   template: `
     <div>
-    <OnboardingPage />
+      <OnboardingPage />
       <GoogleAdsAccountPopinNew
         ref="googleAdsAccountPopin"
         v-bind="$props"
