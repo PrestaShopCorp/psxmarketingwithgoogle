@@ -6,10 +6,10 @@
       :is-enabled="true"
       :is-done="stepsAreCompleted.step1"
     />
-    <ps-accounts
+    <!-- <ps-accounts
       class="ps_gs-ps-account-card"
       :context="psAccountsContext"
-    />
+    /> -->
     <template v-if="psAccountsContext.isShopContext">
       <section-title
         :step-number="2"
@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import {PsAccounts} from 'prestashop_accounts_vue_components';
+// import {PsAccounts} from 'prestashop_accounts_vue_components';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
@@ -129,7 +129,7 @@ import PsToast from '../components/commons/ps-toast';
 export default {
   name: 'OnboardingPage',
   components: {
-    PsAccounts,
+    // PsAccounts,
     SectionTitle,
     GoogleAccountCard,
     GoogleAdsAccountCard,

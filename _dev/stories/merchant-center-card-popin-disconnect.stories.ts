@@ -6,7 +6,7 @@ import {merchantCenterAccountConnected} from "../.storybook/mock/merchant-center
 
 export default {
   title: 'Merchant Center Account/Popins/Disconnect',
-  component: MerchantCenterAccountPopinDisconnect, OnboardingPage,
+  component: MerchantCenterAccountPopinDisconnect, OnboardingPage
 };
 
 const Template = (args, { argTypes }) => ({

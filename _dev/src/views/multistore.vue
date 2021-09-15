@@ -16,7 +16,7 @@ import MultiStoreSelector from '@/components/multistore/multi-store-selector.vue
 import LandingPage from './landing-page.vue';
 
 export default {
-  name: 'OnboardingPage',
+  name: 'MultiStoreSelector',
   components: {
     MultiStoreSelector,
     LandingPage,

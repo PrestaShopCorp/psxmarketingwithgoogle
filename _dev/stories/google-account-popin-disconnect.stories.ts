@@ -5,7 +5,7 @@ import {googleAccountConnected} from "../.storybook/mock/google-account";
 
 export default {
   title: 'Google Account/Popins/Disconnect',
-  component: GoogleAccountPopinDisconnect, OnboardingPage,
+  component: GoogleAccountPopinDisconnect, OnboardingPage
 };
 
 const Template = (args, { argTypes }) => ({
