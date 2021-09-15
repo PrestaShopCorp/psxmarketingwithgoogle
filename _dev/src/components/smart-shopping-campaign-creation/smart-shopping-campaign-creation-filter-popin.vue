@@ -7,10 +7,10 @@
   >
     <b-form>
       <h5 class="ps_gs-fz-16 font-weight-600 mb-1">
-        {{ $t('smartShoppingCampaignCreation.selectProductsTitle') }}
+        {{ $t('smartShoppingCampaignCreation.selectProductsTitle') }}
       </h5>
       <p class="ps_gs-fz-16 mb-4">
-        {{ $t('smartShoppingCampaignCreation.selectProductsSubtitle') }}
+        {{ $t('smartShoppingCampaignCreation.selectProductsSubtitle') }}
       </p>
       <b-form-group>
         <b-row>
@@ -102,7 +102,7 @@ export default {
       // TODO see if this is the correct way to store selected filters
       dimensionsSelected: [
         'biddingCategory',
-        'brands,'
+        'brands,',
       ],
       valuesSelected: [
         'Adidas',
@@ -114,15 +114,13 @@ export default {
   },
   computed: {
     textFiltersSelected() {
-      let textDimensionsSelected =
-        this.$i18n.tc('smartShoppingCampaignCreation.nbDimensionSelected',
+      const textDimensionsSelected = this.$i18n.tc('smartShoppingCampaignCreation.nbDimensionSelected',
         this.dimensionsSelected.length,
-        [this.dimensionsSelected.length])
-      let textValuesSelected =
-        this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
+        [this.dimensionsSelected.length]);
+      const textValuesSelected = this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
         this.valuesSelected.length,
-        [this.valuesSelected.length])
-      return `${textDimensionsSelected} - ${textValuesSelected}`
+        [this.valuesSelected.length]);
+      return `${textDimensionsSelected} - ${textValuesSelected}`;
     },
     // TODO Getting datas
     // TODO Adding translation

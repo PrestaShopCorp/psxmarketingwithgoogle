@@ -256,7 +256,7 @@
         </div>
       </b-form>
     </b-card-body>
-    <SmartShoppingCampaignCreationFilterPopin ref="SmartShoppingCampaignCreationFilterPopin"/>
+    <SmartShoppingCampaignCreationFilterPopin ref="SmartShoppingCampaignCreationFilterPopin" />
   </b-card>
 </template>
 

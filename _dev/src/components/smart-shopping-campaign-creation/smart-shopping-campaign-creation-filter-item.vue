@@ -8,7 +8,9 @@
       <b-button
         variant="invisible"
         class="px-0 py-0 border-0"
-        :class="[!selectedFilters ? 'ps_gs-filters__item-button' : 'ps_gs-filters__item-button--with-label']"
+        :class="[!selectedFilters
+          ? 'ps_gs-filters__item-button'
+          : 'ps_gs-filters__item-button--with-label']"
         @click="toggle"
       >
         <template v-if="isOpen">
@@ -94,25 +96,27 @@ export default {
     toggle() {
       if (this.isFolder) {
         this.isOpen = !this.isOpen;
-      };
+      }
     },
     // TODO: handle checkboxes
     // ! Checkboxes are not handled at all
     deselectFilter(item) {
       // TODO: fn to deselect an item
+      console.log(item);
     },
     countChildren(item) {
       // TODO: check if function is OK to count items
-      let tableOfCHildren = []
+      const tableOfCHildren = [];
 
-      function fillTableOfChildren(item) {
-        if (!item.children) {
-          tableOfCHildren.push(item.name);
-          return item.name
-        };
+      // eslint-disable-next-line
+      function fillTableOfChildren(elem) {
+        if (!elem.children) {
+          tableOfCHildren.push(elem.name);
+          return elem.name;
+        }
 
-        item.children.forEach(child => fillTableOfChildren(child));
-      };
+        elem.children.forEach((child) => fillTableOfChildren(child));
+      }
 
       fillTableOfChildren(item);
       return tableOfCHildren.length;
