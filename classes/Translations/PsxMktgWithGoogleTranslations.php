@@ -60,8 +60,7 @@ class PsxMktgWithGoogleTranslations
                 ],
                 'refreshPage' => $this->module->l('Refresh page', 'PsxMktgWithGoogleTranslations'),
                 'mandatory' => $this->module->l('are mandatory', 'PsxMktgWithGoogleTranslations'),
-                'XIsMandatory' => $this->module->l('{0} is mandatory.', 'PsxMktgWithGoogleTranslations'),
-                'XAreMandatory' => $this->module->l('{0} are mandatory.', 'PsxMktgWithGoogleTranslations'),
+                'XIsMandatory' => $this->module->l('is mandatory.', 'PsxMktgWithGoogleTranslations'),
             ],
             'configuration' => [
                 'introduction' => $this->module->l('Configuration Page !', 'PsxMktgWithGoogleTranslations'),
@@ -498,7 +497,7 @@ class PsxMktgWithGoogleTranslations
                     'product' => $this->module->l('Product', 'PsxMktgWithGoogleTranslations'),
                     'click' => $this->module->l('Click', 'PsxMktgWithGoogleTranslations'),
                     'costs' => $this->module->l('Costs', 'PsxMktgWithGoogleTranslations'),
-                    'averageCPC' => $this->module->l('Average CPC', 'PsxMktgWithGoogleTranslations'),
+                    'averageCpc' => $this->module->l('Average CPC', 'PsxMktgWithGoogleTranslations'),
                     'conversions' => $this->module->l('Conversions', 'PsxMktgWithGoogleTranslations'),
                     'conversionsRate' => $this->module->l('Conversions rate', 'PsxMktgWithGoogleTranslations'),
                     'productFilter' => $this->module->l('Product filter', 'PsxMktgWithGoogleTranslations'),
@@ -672,6 +671,8 @@ class PsxMktgWithGoogleTranslations
                 'validate' => $this->module->l('Validate', 'PsxMktgWithGoogleTranslations'),
                 'moreInfosAboutX' => $this->module->l('More infos about {0}', 'PsxMktgWithGoogleTranslations'),
                 'seeOnGoogleAds' => $this->module->l('See on Google Ads', 'PsxMktgWithGoogleTranslations'),
+                'clickToSortDesc' => $this->module->l('(Click to sort descending)', 'PsxMktgWithGoogleTranslations'),
+                'clickToSortAsc' => $this->module->l('(Click to sort ascending)', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),

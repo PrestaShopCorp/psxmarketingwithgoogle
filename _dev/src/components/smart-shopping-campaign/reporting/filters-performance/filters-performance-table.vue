@@ -16,13 +16,31 @@
       <b-thead>
         <b-tr>
           <b-th
-            v-for="({type, tooltip}, index) in fields"
+            v-for="({type, tooltip, sorting}, index) in fields"
             :key="type"
             class="font-weight-600"
             :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
           >
             <div class="flex align-items-center text-nowrap">
-              <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
+              <b-button
+                v-if="sorting"
+                @click="sort()"
+                variant="invisible"
+                class="p-0 border-0"
+              >
+                <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
+                <template v-if="sortDirection === 'asc'">
+                  <i class="material-icons ps_gs-fz-14">expand_more</i>
+                  <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
+                </template>
+                <template v-else>
+                  <i class="material-icons ps_gs-fz-14">expand_less</i>
+                  <span class="sr-only">{{ $t('cta.clickToSortDesc') }}</span>
+                </template>
+              </b-button>
+              <span v-else>
+                {{ $t(`campaigns.labelCol.${type}`) }}
+              </span>
               <b-button
                 v-if="tooltip"
                 variant="invisible"
@@ -37,51 +55,27 @@
         </b-tr>
       </b-thead>
       <b-tbody class="bg-white">
-        <b-tr
+        <FiltersPerformanceTableRow
           v-for="{
             name,
             productFilter,
             clicks,
             costs,
-            averageCPC,
+            averageCpc,
             conversions,
             conversionsRate,
             sales
           } in campaigns"
+          :name="name"
+          :product-filter="productFilter"
+          :clicks="clicks"
+          :costs="costs"
+          :average-cpc="averageCpc"
+          :conversions="conversions"
+          :conversions-rate="conversionsRate"
+          :sales="sales"
           :key="name"
-        >
-          <b-td
-            class="b-table-sticky-column text-primary"
-          >
-            <b-button
-              variant="link"
-              class="font-weight-normal ps_gs-fz-12 p-0 m-0"
-            >
-              {{ name }}
-            </b-button>
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ productFilter }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ clicks }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ costs }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ averageCPC }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ conversions }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ conversionsRate }}
-          </b-td>
-          <b-td class="ps_gs-fz-12">
-            {{ sales }}
-          </b-td>
-        </b-tr>
+        />
         <b-tr v-if="loading">
           <b-td
             colspan="7"
@@ -98,15 +92,18 @@
 <script>
 import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
+import FiltersPerformanceTableRow from './filters-performance-table-row.vue';
 
 export default {
   mixins: [StickyColumnsObserver],
   name: 'FiltersPerformanceTable',
   components: {
     ReportingTableHeader,
+    FiltersPerformanceTableRow,
   },
   data() {
     return {
+      sortDirection: 'asc',
       loading: false,
       fields: [
         {
@@ -117,12 +114,13 @@ export default {
         },
         {
           type: 'clicks',
+          sorting: true,
         },
         {
           type: 'costs',
         },
         {
-          type: 'averageCPC',
+          type: 'averageCpc',
         },
         {
           type: 'conversions',
@@ -142,13 +140,23 @@ export default {
           productFilter: 'Brand',
           clicks: '0',
           costs: '$125',
-          averageCPC: '$5',
+          averageCpc: '$5',
           conversions: '127',
           conversionsRate: '127',
           sales: '$150',
         },
       ],
     };
+  },
+  methods: {
+    // TODO: Handle sort function
+    sort() {
+      if (this.sortDirection === 'asc') {
+        this.sortDirection = 'desc';
+      } else {
+        this.sortDirection = 'asc';
+      }
+    },
   },
 };
 </script>
