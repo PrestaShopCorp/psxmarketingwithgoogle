@@ -673,6 +673,7 @@ class PsxMktgWithGoogleTranslations
                 'seeOnGoogleAds' => $this->module->l('See on Google Ads', 'PsxMktgWithGoogleTranslations'),
                 'clickToSortDesc' => $this->module->l('(Click to sort descending)', 'PsxMktgWithGoogleTranslations'),
                 'clickToSortAsc' => $this->module->l('(Click to sort ascending)', 'PsxMktgWithGoogleTranslations'),
+                'selectFilters' => $this->module->l('Select filters', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),

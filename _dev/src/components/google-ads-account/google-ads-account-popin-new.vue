@@ -55,6 +55,7 @@
           :value="selectedDescriptiveName"
           v-model="selectedDescriptiveName"
           class="mb-4"
+          size="sm"
         />
         <label
           class="font-weight-600 mb-0"
@@ -121,7 +122,6 @@
             'ps-dropdown__placeholder': !selectedCurrency,
           }"
           menu-class="ps-dropdown"
-          no-flip
           size="sm"
         >
           <b-dropdown-item

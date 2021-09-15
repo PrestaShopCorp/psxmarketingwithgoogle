@@ -625,7 +625,8 @@
       "moreInfosAboutX" : "More infos about {0}",
       "seeOnGoogleAds" : "See on Google Ads",
       "clickToSortDesc" : "(Click to sort descending)",
-      "clickToSortAsc" : "(Click to sort ascending)"
+      "clickToSortAsc" : "(Click to sort ascending)",
+      "selectFilters" : "Select filters"
     },
     "badge" : {
       "free" : "Free",
