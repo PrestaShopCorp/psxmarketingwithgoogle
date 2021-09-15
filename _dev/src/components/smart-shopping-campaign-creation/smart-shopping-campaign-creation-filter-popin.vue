@@ -52,14 +52,14 @@
               <div>
                 <b-button
                   variant="invisible"
-                  class="text-decoration-underline py-2 px-1 ml-n1"
+                  class="text-decoration-underline font-weight-normal py-2 px-1 ml-n1"
                   @click="selectAll"
                 >
                   {{ $t('cta.selectAll') }}
                 </b-button>
                 <b-button
                   variant="invisible"
-                  class="text-decoration-underline py-2 px-1"
+                  class="text-decoration-underline font-weight-normal py-2 px-1"
                   @click="deselectAll"
                 >
                   {{ $t('cta.deselectAll') }}
