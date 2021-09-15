@@ -20,9 +20,13 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Handler;
 
+use Context;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Buffer\TemplateBuffer;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider;
+use PsxMarketingWithGoogle;
 
 class RemarketingHookHandler
 {
@@ -37,14 +41,26 @@ class RemarketingHookHandler
     protected $templateBuffer;
 
     /**
+     * @var Context
+     */
+    protected $context;
+
+    /**
+     * @var PsxMarketingWithGoogle
+     */
+    protected $module;
+
+    /**
      * @var bool
      */
     protected $active;
 
-    public function __construct(ConfigurationAdapter $configurationAdapter, TemplateBuffer $templateBuffer)
+    public function __construct(ConfigurationAdapter $configurationAdapter, TemplateBuffer $templateBuffer, Context $context, $module)
     {
         $this->configurationAdapter = $configurationAdapter;
         $this->templateBuffer = $templateBuffer;
+        $this->context = $context;
+        $this->module = $module;
 
         $this->active = (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS)
             && (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG);
@@ -61,8 +77,14 @@ class RemarketingHookHandler
                 $this->templateBuffer->add(base64_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG)));
                 break;
 
-            case 'HookDisplayOrderConfirmation':
-                $this->templateBuffer->add('gtag(\'event\', \'purchase\', ' . json_encode([]) . ')');
+            case 'hookDisplayOrderConfirmation':
+                $this->context->smarty->assign([
+                    'eventName' => 'purchase',
+                    'eventData' => $this->module->getService(PurchaseEventDataProvider::class)->getEventData($data['order']),
+                ]);
+                $this->templateBuffer->add(
+                    $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
+                );
                 break;
         }
 

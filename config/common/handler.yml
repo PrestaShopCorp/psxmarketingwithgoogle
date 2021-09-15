@@ -7,3 +7,5 @@ services:
       arguments:
         - '@PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter'
         - '@PrestaShop\Module\PsxMarketingWithGoogle\Buffer\TemplateBuffer'
+        - '@psxmarketingwithgoogle.context'
+        - '@psxmarketingwithgoogle'

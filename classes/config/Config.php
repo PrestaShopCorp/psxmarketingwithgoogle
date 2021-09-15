@@ -27,6 +27,9 @@ class Config
     const HOOK_LIST = [
         'displayBackOfficeHeader',
         'displayHeader',
+        'displayOrderConfirmation',
+        'actionObjectProductInCartDeleteBefore',
+        'actionCartUpdateQuantityBefore',
     ];
 
     const CONFIGURATION_LIST = [];
