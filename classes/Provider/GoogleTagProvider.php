@@ -49,28 +49,6 @@ class GoogleTagProvider
     }
 
     /**
-     * Find all google tag installed on the shop
-     *
-     * @return array all google tags present in the front
-     */
-    public function findAllGoogleTag(int $shopId): array
-    {
-        $this->crawlFront($shopId);
-
-        if (empty($this->contents)) {
-            return [];
-        }
-
-        preg_match_all(
-            '/AW-\d{9}/m',
-            $this->contents,
-            $matches
-        );
-
-        return $matches[0];
-    }
-
-    /**
      * Crawl front office
      *
      * @param int $shopId
