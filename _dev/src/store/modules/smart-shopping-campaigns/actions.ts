@@ -48,8 +48,7 @@ export default {
   async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAG](
     {commit, rootState}, payload: boolean,
   ) {
-    const remarketingSnippet = rootState.googleAds.accountChosen
-      ? rootState.googleAds.accountChosen.remarketingSnippet : null;
+    const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
@@ -88,8 +87,7 @@ export default {
     {commit, rootState}, payload: boolean,
   ) {
     const regex = new RegExp('AW-[0-9]+');
-    const remarketingSnippet = rootState.googleAds.accountChosen
-      ? rootState.googleAds.accountChosen.remarketingSnippet : null;
+    const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
     const idTag = regex.exec(remarketingSnippet);
     if (!idTag || !idTag.length) {
       console.error('Remarketing snippet missing');

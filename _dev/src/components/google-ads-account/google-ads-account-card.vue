@@ -288,7 +288,6 @@ export default {
       this.$router.go();
     },
     disconnectGoogleAdsAccount() {
-      this.isConnecting = false;
       this.$emit('disconnectionGoogleAdsAccount');
     },
     openPopinNewAccount() {

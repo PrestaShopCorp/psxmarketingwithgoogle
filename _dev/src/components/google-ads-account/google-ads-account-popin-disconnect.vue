@@ -89,12 +89,12 @@ export default {
       );
     },
     changeStatusPause() {
-      console.log(this.pauseCampaigns);
+      //  TODO change all campaigns status to pause
     },
     changeStatusTag() {
       this.$store.dispatch(
         // Here the toggle is true when we want to delete the remarketing tag
-        // Which is why we have to send the contrary to the method 'save remarketing tracking tag'
+        // Which is why we have to send the contrary to 'save status remarketing tracking tag'
         'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', !this.removeTag,
       );
     },
