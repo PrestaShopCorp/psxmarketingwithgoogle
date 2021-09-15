@@ -11,7 +11,7 @@
       class="my-1"
       :extensions="['extended-link']"
       :markdown="$t('modal.textActivateTrackingSSC', ['http://google.fr', 'http://google.fr'])"
-    />{{ statusTrackingTag }}
+    />
     <b-form-checkbox
       switch
       size="lg"

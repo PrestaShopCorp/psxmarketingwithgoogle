@@ -27,6 +27,8 @@
           :src="user.details.picture"
           :alt="user.details.email"
           class="mr-3 rounded-circle"
+          width="38"
+          height="38"
         >
         <strong class="text-break">{{ user.details.email }}</strong>
       </div>

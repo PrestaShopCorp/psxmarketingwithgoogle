@@ -681,7 +681,12 @@
       "titleOverwriteProductFeed" : "Overwrite existing product feed?",
       "textOverwriteProductFeed" : "Overwriting your existing product feed will delete it. You will need to configure new product feed.",
       "titleDisconnectionGoogleAds" : "Disconnect Google Ads account?",
-      "textDisconnectGoogleAds" : "You are about to disconnect your Google Ads account. You won't be able to run Smart Shopping campaigns. Your previous Smart Shopping campaigns are still running.",
+      "textDisconnectGoogleAds" : "Disconnecting from your Google Ads account will remove the ability to run Smart Shopping campaigns from the module.",
+      "questionDisconnectGoogleAds" : "What do you want to do with your current campaigns?",
+      "pauseCampaigns" : "Pause all of my campaigns",
+      "pauseCampaignsExplainations" : "By pausing all your campaigns, the billing will stop. You can restart your campaigns at any time in your Google ads account.",
+      "removeTag" : "Remove “Remarketing and conversion” tag from my shop",
+      "removeTagExplainations" : "Removing the tag means that Google will no longer be able to track your campaigns. We recommend that you only remove the tag if you plan to completely remove the module or change your account. You can always add it yourself in the code of your site.",
       "titleActivateTrackingSSC" : "Activate remarketing and conversion tracking tag.",
       "textActivateTrackingSSC" : "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop."
     },
@@ -715,6 +720,7 @@
     },
     "toast": {
       "alertActivationSuccess" : "You have successfully activated the free listings of your products in Shopping tab.",
+      "alertGoogleAdsAccountSuccess" : "You have successfully configured your Google Ads account!",
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
       "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!",
       "productFeedConfiguredOnceSuccess" : "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
