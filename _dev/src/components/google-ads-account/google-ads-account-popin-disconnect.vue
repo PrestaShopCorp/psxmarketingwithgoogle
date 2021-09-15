@@ -19,7 +19,7 @@
         {{ $t('modal.questionDisconnectGoogleAds') }}
       </span>
 
-      <b-form-checkbox
+      <!-- <b-form-checkbox
         v-model="pauseCampaigns"
         switch
         size="lg"
@@ -34,7 +34,7 @@
         >
           {{ $t('modal.pauseCampaignsExplainations') }}
         </p>
-      </b-form-checkbox>
+      </b-form-checkbox> -->
 
       <b-form-checkbox
         v-model="removeTag"
@@ -88,9 +88,9 @@ export default {
         },
       );
     },
-    changeStatusPause() {
-      //  TODO change all campaigns status to pause
-    },
+    // changeStatusPause() {
+    //   //  TODO change all campaigns status to pause
+    // },
     changeStatusTag() {
       this.$store.dispatch(
         // Here the toggle is true when we want to delete the remarketing tag
