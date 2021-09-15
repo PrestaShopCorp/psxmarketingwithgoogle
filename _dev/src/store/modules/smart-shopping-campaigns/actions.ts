@@ -110,6 +110,17 @@ export default {
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.tagAlreadyExists);
   },
 
+  async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
+    {dispatch, getters},
+  ) {
+    dispatch('GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
+    dispatch('GET_REPORTING_METRICS_KPIS');
+    dispatch('GET_REPORTING_METRICS_DAILY_RESULTS', getters.GET_DAILY_RESULT_TYPE);
+    dispatch('GET_REPORTING_METRICS_CAMPAIGNS_PERFORMANCES', getters.GET_REPORTING_METRICS_CAMPAIGNS_PERFORMANCES_ORDERING);
+    dispatch('GET_REPORTING_METRICS_PRODUCTS_PERFORMANCES', getters.GET_REPORTING_METRICS_PRODUCTS_PERFORMANCES_ORDERING);
+    dispatch('GET_REPORTING_METRICS_PRODUCTS_PARTITIONS_PERFORMANCES', getters.GET_REPORTING_METRICS_PRODUCTS_PARTITIONS_PERFORMANCES_ORDERING);
+  },
+
   async [ActionsTypes.GET_REPORTING_METRICS_KPIS](
     {commit, rootState, state},
   ) {
@@ -169,7 +180,6 @@ export default {
     // temp mocked
     // const result = await response.json();
     const result = {
-      type: DailyResultType.IMPRESSIONS,
       dailyResultList: [
         {
           value: 0,

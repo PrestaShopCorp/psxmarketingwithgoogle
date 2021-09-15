@@ -17,6 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import ReportingPeriod from '@/enums/ReportingPeriod';
 import MutationsTypes from './mutations-types';
 import {
   CampaignsPerformancesSection,
@@ -30,6 +31,9 @@ import {
 export default {
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](state: LocalState, payload: boolean) {
     state.tracking = payload;
+  },
+  [MutationsTypes.SET_REPORTING_PERIOD_SELECTED](state: LocalState, payload: ReportingPeriod) {
+    state.reporting.request.dateRange.periodSelected = payload;
   },
   [MutationsTypes.SET_REPORTING_METRICS_KPIS](state: LocalState, payload: Kpis) {
     state.reporting.results.kpis = payload;

@@ -18,12 +18,42 @@
  */
 
 import {
+  OrderByType,
   State as LocalState,
 } from './state';
 import GettersTypes from './getters-types';
+import ReportingPeriod from '@/enums/ReportingPeriod';
+import DailyResultType from '@/enums/DailyResultType';
 
 export default {
-  [GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET](state: LocalState): boolean {
+  [GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET](
+    state: LocalState,
+  ): boolean {
     return state.tracking !== null && state.tracking;
+  },
+  [GettersTypes.GET_REPORTING_PERIOD_SELECTED](
+    state: LocalState,
+  ): ReportingPeriod {
+    return state.reporting.request.dateRange.periodSelected;
+  },
+  [GettersTypes.GET_DAILY_RESULT_TYPE](
+    state: LocalState,
+  ): DailyResultType {
+    return state.reporting.request.dailyResultType;
+  },
+  [GettersTypes.GET_REPORTING_METRICS_CAMPAIGNS_PERFORMANCES_ORDERING](
+    state: LocalState,
+  ): OrderByType {
+    return state.reporting.request.ordering.campaignsPerformances.order;
+  },
+  [GettersTypes.GET_REPORTING_METRICS_PRODUCTS_PERFORMANCES_ORDERING](
+    state: LocalState,
+  ): OrderByType {
+    return state.reporting.request.ordering.productsPerformances.order;
+  },
+  [GettersTypes.GET_REPORTING_METRICS_PRODUCTS_PARTITIONS_PERFORMANCES_ORDERING](
+    state: LocalState,
+  ): OrderByType {
+    return state.reporting.request.ordering.productsDimensionsPerformances.order;
   },
 };
