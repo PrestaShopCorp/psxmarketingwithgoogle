@@ -6,15 +6,9 @@ export const initialStateApp = {
     shopIdPsAccounts: '',
     tokenPsAccounts: '',
     psxMtgWithGoogleDefaultShopCountry: null,
-    isCountryMemberOfEuropeanUnion: false,
     targetCountries: ['FR'],
     psxMktgWithGoogleShopCurrency: {
       isoCode: 'EUR',
-    },
-    psxMktgWithGoogleDocumentAndFaq: {
-      faq: {},
-      doc: '',
-      contactUs: '',
     },
     psVersion: '',
     psxMktgWithGoogleModuleVersion: '',
