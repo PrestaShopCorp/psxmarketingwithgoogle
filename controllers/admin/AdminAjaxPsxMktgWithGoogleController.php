@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -22,6 +23,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository;
@@ -48,6 +50,11 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     private $currencyRepository;
 
     /**
+     * @var GoogleTagProvider
+     */
+    private $googleTagProvider;
+
+    /**
      * @var ProductRepository
      */
     protected $productRepository;
@@ -61,6 +68,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
         $this->countryRepository = $this->module->getService(CountryRepository::class);
         $this->productRepository = $this->module->getService(ProductRepository::class);
+        $this->googleTagProvider = $this->module->getService(GoogleTagProvider::class);
         $this->currencyRepository = $this->module->getService(CurrencyRepository::class);
         $this->ajax = true;
     }
@@ -313,12 +321,19 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 'message' => 'Missing tag key',
             ]));
         }
-        // CHECKME: When we run the check, our own remarketing tag is not configured yet, so the chance to find it from our module is very low.
-        // But it could be interesting to avoid false positive results by checking we're not enabled.
 
-        // TODO: Run checks
+        $googleRemarketingStatus = $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS);
+        if ($googleRemarketingStatus) {
+            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS, false);
+        }
 
-        $this->ajaxDie(json_encode(['tagAlreadyExists' => true]));
+        $googleTag = $this->googleTagProvider->checkGoogleTagAlreadyExists($inputs['tag'], $this->context->shop->id);
+
+        if (false === $googleTag && $googleRemarketingStatus) {
+            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS, true);
+        }
+
+        $this->ajaxDie(json_encode(['tagAlreadyExists' => $googleTag]));
     }
 
     /**
