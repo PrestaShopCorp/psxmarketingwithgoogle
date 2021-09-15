@@ -105,7 +105,12 @@ export interface ProductsPartitionsPerformancesSection {
 }
 
 export interface DailyResult {
-  value: number;
+  impressions: number,
+  clicks: number,
+  conversions: number,
+  averageCostPerClick: number,
+  costs: number,
+  sales: number,
   date: string;
 }
 
