@@ -213,7 +213,7 @@
           </template>
           <b-input-group
             :prepend="budgetCurrencySymbol"
-            :append="budgetCurrencyAbbreviation"
+            :append="currency"
             class="maxw-sm-420"
           >
             <b-form-input
@@ -274,11 +274,21 @@ export default {
       campaignName: null,
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
-      campaignCountry: null,
       campaignProductsFilter: null,
+      filtersChosen: [{
+        dimension: null,
+        values: [],
+      },
+      {
+        dimension: null,
+        values: [],
+      },
+      {
+        dimension: null,
+        values: [],
+      }],
       campaignDailyBudget: null,
       budgetCurrencySymbol: '$',
-      budgetCurrencyAbbreviation: 'USD',
     };
   },
   components: {
@@ -287,8 +297,13 @@ export default {
   },
   computed: {
     disableCreateCampaign() {
-      // TODO
-      // Condition to allow user to create campaign
+      if (this.campaignName
+      && this.campaignDurationStartDate
+      && this.countries
+      && (this.campaignProductsFilter || this.filtersChosen.length)
+      && this.campaignDailyBudget) {
+        return false;
+      }
       return true;
     },
     campaignNameFeedback() {
@@ -346,11 +361,21 @@ export default {
       // TODO
     },
     createCampaign() {
-      // TODO
+      const campaign = {
+        campaignName: this.campaignName,
+        dailyBudget: this.campaignDailyBudget,
+        currencyCode: this.currency,
+        startDate: this.campaignDurationStartDate,
+        endDate: this.campaignDurationEndDate,
+        // Countries is still an array because refacto later for multiple countries
+        targetCountry: this.countries[0],
+        productFilters: this.filtersChosen,
+
+      };
+      this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', campaign);
     },
     isCompatibleWithCurrency(country) {
       const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
-
       return currentCountry.currency === this.currency;
     },
     saveCountrySelected(value) {
@@ -362,7 +387,6 @@ export default {
       );
     },
   },
-  // TODO filter country to show only available countries
   countriesSelectionOptions,
 };
 </script>

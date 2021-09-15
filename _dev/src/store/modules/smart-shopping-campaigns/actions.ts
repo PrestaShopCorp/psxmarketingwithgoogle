@@ -24,11 +24,13 @@ import HttpClientError from '@/utils/HttpClientError';
 import KpiType from '@/enums/reporting/KpiType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
+import DailyResultType from '../../../enums/DailyResultType';
+import {CampaignObject} from './state';
 
 export default {
-  async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload) {
+  async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload : CampaignObject) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/`,
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/create`,
         {
           method: 'POST',
           headers: {
@@ -44,6 +46,8 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
+      console.log(json);
+      commit(MutationsTypes.SAVE_NEW_SSC, payload);
     } catch (error) {
       console.error(error);
     }

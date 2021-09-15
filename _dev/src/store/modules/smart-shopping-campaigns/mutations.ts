@@ -28,6 +28,7 @@ import {
   ProductsPartitionsPerformancesSection,
   ProductsPerformancesSection,
   State as LocalState,
+  CampaignObject,
 } from './state';
 
 export default {
@@ -76,5 +77,7 @@ export default {
     payload: ProductsPartitionsPerformancesSection,
   ) {
     state.reporting.results.productsPartitionsPerformancesSection = payload;
+  [MutationsTypes.SAVE_NEW_SSC](state: LocalState, payload: CampaignObject) {
+    state.campaigns.push(payload);
   },
 };

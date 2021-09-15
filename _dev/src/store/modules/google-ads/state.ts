@@ -52,7 +52,23 @@ export interface AccountInformations {
 
 export const state: State = {
   status: null,
-  accountChosen: null,
+  accountChosen: {
+    id: '12345',
+    name: 'coucou',
+    isAdmin: true,
+    isTestAccount: true,
+    billingSettings: {
+      isSet: true,
+      link: 'blabla',
+    },
+    country: {
+      // eslint-disable-next-line camelcase
+      iso_code: 'FR',
+      name: 'France',
+    },
+    currency: 'EUR',
+    timeZone: '(UTC+01:00) Normal time in Central Europe (Paris)',
+  },
   list: [],
   connectedOnce: false,
 };
