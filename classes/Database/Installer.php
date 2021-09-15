@@ -24,7 +24,7 @@ use Exception;
 use Language;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Exception\MktgWithGoogleInstallerException;
-use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler\ErrorHandler;
+use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment;
 use PsxMarketingWithGoogle;
 use Tab;

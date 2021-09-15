@@ -1,3 +1,9 @@
 services:
-  PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler\ErrorHandler:
-    class: PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler\ErrorHandler
+  PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler
+
+  PrestaShop\Module\PsxMarketingWithGoogle\Handler\RemarketingHookHandler:
+      class: PrestaShop\Module\PsxMarketingWithGoogle\Handler\RemarketingHookHandler
+      arguments:
+        - '@PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter'
+        - '@PrestaShop\Module\PsxMarketingWithGoogle\Buffer\TemplateBuffer'

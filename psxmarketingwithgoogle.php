@@ -23,7 +23,8 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Database\Installer;
 use PrestaShop\Module\PsxMarketingWithGoogle\Database\Uninstaller;
-use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler\ErrorHandler;
+use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
+use PrestaShop\Module\PsxMarketingWithGoogle\Handler\RemarketingHookHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\TabRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment;
 use PrestaShop\ModuleLibServiceContainer\DependencyInjection\ServiceContainer;
@@ -185,7 +186,8 @@ class PsxMarketingWithGoogle extends Module
     {
         $configuration = $this->getService(ConfigurationAdapter::class);
 
-        return base64_decode($configuration->get(Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META));
+        return base64_decode($configuration->get(Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META))
+            . $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__);
     }
 
     private function loadEnv()
