@@ -19,11 +19,40 @@
 
 import MutationsTypes from './mutations-types';
 import {
+  CampaignsPerformancesSection,
+  DailyresultChart,
+  Kpis,
+  ProductsPartitionsPerformancesSection,
+  ProductsPerformancesSection,
   State as LocalState,
 } from './state';
 
 export default {
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](state: LocalState, payload: boolean) {
     state.tracking = payload;
+  },
+  [MutationsTypes.SET_REPORTING_METRICS_KPIS](state: LocalState, payload: Kpis) {
+    state.reporting.kpis = payload;
+  },
+  [MutationsTypes.SET_REPORTING_DAILY_RESULTS](state: LocalState, payload: DailyresultChart) {
+    state.reporting.dailyResultChart = payload;
+  },
+  [MutationsTypes.SET_REPORTING_METRICS_CAMPAIGNS_PERFORMANCES](
+    state: LocalState,
+    payload: CampaignsPerformancesSection,
+  ) {
+    state.reporting.campaignsPerformancesSection = payload;
+  },
+  [MutationsTypes.SET_REPORTING_METRICS_PRODUCTS_PERFORMANCES](
+    state: LocalState,
+    payload: ProductsPerformancesSection,
+  ) {
+    state.reporting.productsPerformancesSection = payload;
+  },
+  [MutationsTypes.SET_REPORTING_METRICS_PRODUCTS_PARTITIONS_PERFORMANCES](
+    state: LocalState,
+    payload: ProductsPartitionsPerformancesSection,
+  ) {
+    state.reporting.productsPartitionsPerformancesSection = payload;
   },
 };

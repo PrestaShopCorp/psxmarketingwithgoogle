@@ -17,6 +17,10 @@
  * International Registered Trademark & Property of PrestaShop SA
 */
 
+import dayjs from 'dayjs';
+import DailyResultType from '@/enums/DailyResultType';
+import QueryOrderDirection from '@/enums/QueryOrderDirection';
+
 export interface State {
   campaignName: String;
   campaignDurationDate: CampaignDuration;
@@ -25,11 +29,92 @@ export interface State {
   campaignBudget: String;
   tracking: null|boolean;
   tagAlreadyExists: boolean;
+  reporting: Reporting;
 }
 
 export interface CampaignDuration {
   startedAt: String;
   endedAt: String|null;
+}
+
+export interface Reporting {
+  dateRange: DateRange;
+  kpis: Kpis;
+  dailyResultChart: DailyresultChart;
+  campaignsPerformancesSection: CampaignsPerformancesSection;
+  productsPerformancesSection: ProductsPerformancesSection;
+  productsPartitionsPerformancesSection: ProductsPartitionsPerformancesSection;
+}
+
+export interface DateRange {
+  startDate: string;
+  endDate: string;
+}
+
+export interface Kpis {
+  impressions: number;
+  clicks: number;
+  conversions: number;
+  averageCostPerClick: number;
+  costs: number;
+  sales: number;
+}
+
+export interface DailyresultChart {
+  type: DailyResultType;
+  dailyResultList: Array<DailyResult>;
+}
+
+export interface CampaignsPerformancesSection {
+  campaignsPerformanceList: Array<CampaignPerformances>;
+  nextPageToken: string;
+}
+
+export interface ProductsPerformancesSection {
+  productsPerformanceList: Array<ProductPerformances>
+}
+
+export interface ProductsPartitionsPerformancesSection {
+  productsPartitionsPerformanceList: Array<ProductPartitionPerformances>;
+}
+
+export interface DailyResult {
+  value: number;
+  date: string;
+}
+
+export interface CampaignPerformances {
+  name: string;
+  budget: number;
+  status: string;
+  impressions: number;
+  clicks: number;
+  adSpend: number;
+  conversions: number;
+  sales: number;
+}
+
+export interface ProductPerformances {
+  id: string,
+  name: string,
+  clicks: number,
+  costs: number,
+  averageCostPerClick: number,
+  conversions: number,
+  conversionsRate: number,
+  sales: number
+}
+
+export interface ProductPartitionPerformances {
+  campaignName: string,
+  dimension: string,
+  dimensionValue: string,
+  clicks: number,
+  costs: number,
+  averageCostPerClick: number,
+  conversions: number,
+  conversionsRate: number,
+  sales: number
 }
 
 export const state: State = {
@@ -43,4 +128,32 @@ export const state: State = {
   campaignBudget: '',
   tracking: null,
   tagAlreadyExists: false,
+  reporting: {
+    dateRange: {
+      startDate: dayjs().subtract(7, 'day').format('YYYY-MM-DD'),
+      endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
+    },
+    kpis: {
+      impressions: 0,
+      clicks: 0,
+      conversions: 0,
+      averageCostPerClick: 0,
+      costs: 0,
+      sales: 0,
+    },
+    dailyResultChart: {
+      type: DailyResultType.IMPRESSIONS,
+      dailyResultList: [],
+    },
+    campaignsPerformancesSection: {
+      campaignsPerformanceList: [],
+      nextPageToken: '',
+    },
+    productsPerformancesSection: {
+      productsPerformanceList: [],
+    },
+    productsPartitionsPerformancesSection: {
+      productsPartitionsPerformanceList: [],
+    },
+  },
 };

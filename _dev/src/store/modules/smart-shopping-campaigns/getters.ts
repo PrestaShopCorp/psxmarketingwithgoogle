@@ -24,6 +24,6 @@ import GettersTypes from './getters-types';
 
 export default {
   [GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SETTED](state: LocalState): boolean {
-    return state.tracking !== null && state.tracking;
+    return true; // state.tracking !== null && state.tracking;
   },
 };
