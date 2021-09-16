@@ -67,87 +67,11 @@ shops: [
         moduleName: "ps_accounts",
         psVersion: "1.7.6.7"
       },
-      {
-        id: "2",
-        name: "Shop2",
-        domain: "shop17.ps.localhost",
-        domainSsl: "shop17.ps.localhost",
-        physicalUri: "/",
-        uuid: null,
-        publicKey: null,
-        employeeId: null,
-        user: {
-          email: null,
-          uuid: null
-        },
-        url: "http://shop17.ps.localhost/administration/index.php?controller=AdminModules&configure=ps_accounts&setShopContext=s-2&token=de88195bd4ed4683f1e88ae83066cfbc",
-        isLinkedV4: false,
-        multishop: true,
-        moduleName: "ps_accounts",
-        psVersion: "1.7.6.7"
-      }
     ],
     multishop: true,
     moduleName: "ps_accounts",
     psVersion: "1.7.6.7"
   },
-  {
-    id: "2",
-    name: "SecondGroup",
-    shops: [
-      {
-        id: "3",
-        name: "Shop3",
-        domain: "shop17.ps.localhost",
-        domainSsl: "shop17.ps.localhost",
-        physicalUri: "/",
-        uuid: "776faf42-fb37-4647-b6a9-51319212da29",
-        publicKey: "-----BEGIN RSA PUBLIC KEY-----\r\nMIGJAoGBAOfW2px9PdRh7X5lqvFP2WERG2TLBUQZxDiIfabDTCTZCz9/cjdRS1y+\r\nBfNqlTaLweQ9swZZ6a94wyeMBSAHkiaUUfpycSrY75mVJNbhABMI1J1KAk7pW\r\ng2VhyU9fUbSvKRdB/uXBvEWHM9x9fdr203kdxnGBVU38HBhgqC6tAgMBAAE=\r\n-----END RSA PUBLIC KEY-----",
-        employeeId: 2,
-        user: {
-          email: "antoine.metifeu+test11@prestashop.com",
-          uuid: "kzMLs56govH7uxm7DOVj1"
-        },
-        url: "http://shop17.ps.localhost/administration/index.php?controller=AdminModules&configure=ps_accounts&setShopContext=s-3&token=de88195bd4ed48ae83066cfbc",
-        isLinkedV4: false,
-        multishop: true,
-        moduleName: "ps_accounts",
-        psVersion: "1.7.6.7"
-      },
-      
-    ],
-    multishop: true,
-    moduleName: "ps_accounts",
-    psVersion: "1.7.6.7"
-  },
-  {
-    id: "3",
-    name: "ThirdGroup",
-    shops: [
-      {
-        id: "5",
-        name: "Shop5",
-        domain: "shop17.ps.localhost",
-        domainSsl: "shop17.ps.localhost",
-        physicalUri: "/",
-        uuid: null,
-        publicKey: null,
-        employeeId: null,
-        user: {
-          email: null,
-          uuid: null
-        },
-        url: "http://shop17.ps.localhost/administration/index.php?controller=AdminModules&configure=ps_accounts&setShopContext=s-5&token=de88195bd4ed4683f1e88ae83066cfbc",
-        isLinkedV4: false,
-        multishop: true,
-        moduleName: "ps_accounts",
-        psVersion: "1.7.6.7"
-      },
-    ],
-    multishop: true,
-    moduleName: "ps_accounts",
-    psVersion: "1.7.6.7"
-  }
 ],
 adminAjaxLink: "http://shop17.ps.localhost/administration/index.php?controller=AdminAjaxPsAccounts&ajax=1&token=cdf160b067c4ab55d11608dede8f0e4d",
 accountsUiUrl: "https://accounts.prestashop.localhost",

@@ -52,7 +52,6 @@ StepTwo.args = {
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
     this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
-
   }
 };
 

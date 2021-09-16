@@ -10,6 +10,7 @@
       class="ps_gs-ps-account-card"
       :context="psAccountsContext"
     />
+
     <template v-if="psAccountsContext.isShopContext">
       <section-title
         :step-number="2"
@@ -127,7 +128,7 @@ import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc
 import PsToast from '../components/commons/ps-toast';
 
 export default {
-  name: 'OnboardingPage',
+  name: 'OnboardingPageView',
   components: {
     PsAccounts,
     SectionTitle,
@@ -198,12 +199,6 @@ export default {
         this.$refs.SSCPopinActivateTracking.$refs.modal.id,
       );
     },
-
-    // onCancelGoogleAdsCreationNewAccount() {
-    //   this.$bvModal.show(
-    //     this.$refs.GoogleAdsAccountPopinNew.$refs.modal.id,
-    //   );
-    // },
     toastIsClosed() {
       if (this.googleAccountConnectedOnce) {
         this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
