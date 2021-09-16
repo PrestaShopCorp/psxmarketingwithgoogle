@@ -368,7 +368,8 @@ export default {
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
         // Countries is still an array because refacto later for multiple countries
-        targetCountry: this.countries[0],
+        // API wants country code not name so we have to filter it
+        targetCountry: this.$options.filters.changeCountriesNamesToCodes(this.countries)[0],
         productFilters: this.filtersChosen,
 
       };

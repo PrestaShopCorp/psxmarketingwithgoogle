@@ -29,6 +29,7 @@ import {CampaignObject} from './state';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload : CampaignObject) {
+    console.log(payload);
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/create`,
         {
