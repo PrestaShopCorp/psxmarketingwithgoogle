@@ -20,8 +20,8 @@
 <script>
     gtag(
         'event',
-        'purchase',
-        '{/literal}{$eventData|@json_encode nofilter}{literal}'
+        '{/literal}{$eventName}{literal}',
+        {/literal}{$eventData|@json_encode nofilter}{literal}
     );
 </script>
 {/literal}
