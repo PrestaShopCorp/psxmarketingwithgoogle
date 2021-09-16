@@ -228,7 +228,7 @@ class PsxMktgWithGoogleTranslations
                 'syncCantPerform' => $this->module->l('Synchronization can\'t perform', 'PsxMktgWithGoogleTranslations'),
                 'mappedCategories' => $this->module->l('{0}/{1} mapped categories', 'PsxMktgWithGoogleTranslations'),
                 'alertFeedSettingSubmissionSuccess' => $this->module->l("You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.", 'PsxMktgWithGoogleTranslations'),
-                'alertFailed' => $this->module->l('Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target="_blank"] or contact customer support.', 'PsxMktgWithGoogleTranslations'),
+                'alertFailed' => $this->module->l('Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target="_blank"] or contact [customer support](mailto:support-google@prestashop.com).', 'PsxMktgWithGoogleTranslations'),
                 'alertShippingSettingsMissing' => $this->module->l('Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. [Add shipping settings]({0})[:target=\"_blank\"]', 'PsxMktgWithGoogleTranslations'),
                 'alertShippingSettingsMissingDescription' => $this->module->l('To successfully sync your product data, add shipping info.', 'PsxMktgWithGoogleTranslations'),
                 'alertProductFeedDeactivated' => $this->module->l('If the product sync is deactivated, there will be no new products pushed into the GMC. The account itself will continue to exist and the products will expire after 30 days. This stops the catalog items to show on both Free Listings and the ad campaigns.', 'PsxMktgWithGoogleTranslations'),
@@ -540,7 +540,7 @@ class PsxMktgWithGoogleTranslations
                   'nextSync' => $this->module->l('Next sync: {0}', 'PsxMktgWithGoogleTranslations'),
                   'prescanTitle' => $this->module->l('Coming up next synchronization', 'PsxMktgWithGoogleTranslations'),
                   'scheduleOn' => $this->module->l('Synchronization scheduled on {0}', 'PsxMktgWithGoogleTranslations'),
-                  'alert' => $this->module->l('Product sync was not successful. Check possible reasons in Merchant Center or contact customer support.', 'PsxMktgWithGoogleTranslations'),
+                  'alert' => $this->module->l('Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target="_blank"] or contact [customer support](mailto:support-google@prestashop.com).', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'productStatus' => [
                     'title' => $this->module->l('Product status', 'PsxMktgWithGoogleTranslations'),
