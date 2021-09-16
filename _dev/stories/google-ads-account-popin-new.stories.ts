@@ -9,7 +9,10 @@ import {productFeedIsConfigured} from '../.storybook/mock/product-feed';
 
 export default {
   title: 'Google Ads Account/Popins/New',
-  component: GoogleAdsAccountPopinNew, OnboardingPage
+  component: GoogleAdsAccountPopinNew, OnboardingPage,
+  parameters: {
+    jest: ['google-ads-account-popin-new.spec.ts'],
+  },
 };
 
 const Template = (args, { argTypes }) => ({
