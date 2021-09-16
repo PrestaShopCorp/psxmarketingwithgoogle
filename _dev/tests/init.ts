@@ -15,6 +15,7 @@ beforeEach(() => {
   }));
   localVue = createLocalVue();
   localVue.use(Vuex);
+
   filters = {
     timeConverterToDate: jest.fn(),
     timeConverterToHour: jest.fn(),

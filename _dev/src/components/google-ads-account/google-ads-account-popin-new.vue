@@ -317,8 +317,7 @@ export default {
     },
     selectedCurrency: {
       get() {
-        return this.newAccountInfos.currency 
-        ? this.newAccountInfos.currency : this.$store.getters['app/GET_CURRENT_CURRENCY'];
+        return this.newAccountInfos.currency ? this.newAccountInfos.currency : this.$store.getters['app/GET_CURRENT_CURRENCY'];
       },
       set(value) {
         this.newAccountInfos.currency = value;

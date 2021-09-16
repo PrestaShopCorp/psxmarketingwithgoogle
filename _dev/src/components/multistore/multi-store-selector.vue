@@ -42,7 +42,7 @@ import {BAlert, BListGroup, BListGroupItem} from 'bootstrap-vue';
  * user account).
  */
 export default {
-  name: 'MultiStore',
+  name: 'MultiStoreSelector',
   components: {
     BAlert,
     BListGroup,

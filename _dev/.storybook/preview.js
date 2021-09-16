@@ -59,7 +59,6 @@ const locales = Object.keys(messages);
 Vue.use(VueI18n);
 Vue.use(Vuex);
 
-
 addDecorator((story, context) => ({
   template: context.parameters.component === "OnboardingPage" ?
   `
