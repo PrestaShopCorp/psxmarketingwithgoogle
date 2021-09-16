@@ -68,7 +68,10 @@ export default {
       }
 
       if (this.isPriceType()) {
-        return Intl.NumberFormat(window.i18nSettings.languageCode, {style: 'currency', currency: googleAdsAccount.currency}).format(this.kpiValue);
+        return Intl.NumberFormat(window.i18nSettings.languageCode, {
+          style: 'currency',
+          currency: googleAdsAccount.currency,
+        }).format(this.kpiValue);
       }
 
       return this.kpiValue;
