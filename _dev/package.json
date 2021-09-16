@@ -27,7 +27,7 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.uniqby": "^4.7.0",
     "prestakit": "^1.2.2",
-    "prestashop_accounts_vue_components": "^2.0.0",
+    "prestashop_accounts_vue_components": "^2.0.2",
     "showdown": "^1.9.1",
     "timezones.json": "^1.5.3",
     "vue": "^2.6.14",

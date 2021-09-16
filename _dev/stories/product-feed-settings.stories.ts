@@ -33,8 +33,8 @@ const Template = (args, { argTypes }) => ({
 export const ShippingSettings:any = Template.bind({});
 ShippingSettings.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeed);
     this.$store.state.app = Object.assign({}, initialStateApp);
+    this.$store.state.productFeed = Object.assign({}, productFeed);
     this.$store.state.productFeed.stepper = 1
   },
 }

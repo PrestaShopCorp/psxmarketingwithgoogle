@@ -19,21 +19,18 @@ const TemplatePsAccount = (args, { argTypes }) => ({
 });
 
 
-// export const PsAccount:any = TemplatePsAccount.bind({});
-// PsAccount.args = {
-//   beforeMount: function(this: any) {
-//     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsNotConnected);
-//   }
-// };
+export const PsAccount:any = TemplatePsAccount.bind({});
+PsAccount.args = {
+  beforeMount: function(this: any) {
+    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsNotConnected);
+  }
+};
 
 export const GoogleAccount:any = TemplatePsAccount.bind({});
 GoogleAccount.args = {
   beforeMount(this: any) {
-    this.$store.state.app = Object.assign(
-      {},
-      this.$store.state.app,
-      initialStateApp
-    );
+      this.$store.state.app = Object.assign({}, initialStateApp);
+
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountNotConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountNotConnected);
@@ -43,11 +40,8 @@ GoogleAccount.args = {
 export const MerchantCenterAccount:any = TemplatePsAccount.bind({});
 MerchantCenterAccount.args = {
   beforeMount(this: any) {
-    this.$store.state.app = Object.assign(
-      {},
-      this.$store.state.app,
-      initialStateApp
-    );
+      this.$store.state.app = Object.assign({}, initialStateApp);
+
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnectedOnce);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountNotConnected);
@@ -57,11 +51,8 @@ MerchantCenterAccount.args = {
 export const ProductFeed:any = TemplatePsAccount.bind({});
 ProductFeed.args = {
   beforeMount(this: any) {
-    this.$store.state.app = Object.assign(
-      {},
-      this.$store.state.app,
-      initialStateApp
-    );
+      this.$store.state.app = Object.assign({}, initialStateApp);
+
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnectedOnce);
@@ -73,11 +64,8 @@ ProductFeed.args = {
 export const FreeListing:any = TemplatePsAccount.bind({});
 FreeListing.args = {
   beforeMount(this: any) {
-    this.$store.state.app = Object.assign(
-      {},
-      this.$store.state.app,
-      initialStateApp
-    );
+      this.$store.state.app = Object.assign({}, initialStateApp);
+
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
@@ -88,11 +76,8 @@ FreeListing.args = {
 export const GoogleAds:any = TemplatePsAccount.bind({});
 GoogleAds.args = {
   beforeMount(this: any) {
-    this.$store.state.app = Object.assign(
-      {},
-      this.$store.state.app,
-      initialStateApp
-    );
+      this.$store.state.app = Object.assign({}, initialStateApp);
+
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
@@ -104,11 +89,8 @@ GoogleAds.args = {
 export const SmartShoppingCampaigns:any = TemplatePsAccount.bind({});
 SmartShoppingCampaigns.args = {
   beforeMount(this: any) {
-    this.$store.state.app = Object.assign(
-      {},
-      this.$store.state.app,
-      initialStateApp
-    );
+      this.$store.state.app = Object.assign({}, initialStateApp);
+
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
