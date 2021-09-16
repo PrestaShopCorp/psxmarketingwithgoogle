@@ -89,7 +89,6 @@
             'ps-dropdown__placeholder': !selectedTimeZone,
           }"
           menu-class="ps-dropdown"
-          no-flip
           size="sm"
         >
           <b-dropdown-item

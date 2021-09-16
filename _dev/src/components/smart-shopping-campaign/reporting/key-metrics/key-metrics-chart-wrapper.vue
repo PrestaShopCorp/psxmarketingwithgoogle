@@ -12,7 +12,6 @@
         class="ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250 mb-2"
         size="sm"
         menu-class="ps-dropdown"
-        no-flip
       >
         <b-dropdown-item
           v-for="kpi in kpis"
