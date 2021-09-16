@@ -7,15 +7,15 @@
         buttons
         button-variant="default rounded-0"
         size="sm"
-        v-model="selectedPeriod"
+        v-model="reportingPeriod"
         :options="periods"
       />
     </b-form-group>
     <b-dropdown
       id="periodSelectorMobile"
-      :text="$t(`keymetrics.periods.${selectedPeriod}`)"
+      :text="$t(`keymetrics.periods.${reportingPeriod}`)"
       variant=" "
-      class="ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250 mb-2 d-sm-none"
+      class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250 d-sm-none"
       size="sm"
       menu-class="ps-dropdown"
       no-flip
@@ -23,8 +23,8 @@
       <b-dropdown-item
         v-for="{value, text} in periods"
         :key="value"
-        link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
-        @click="selectedPeriod = period"
+        link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
+        @click="reportingPeriod = value"
       >
         {{ text }}
       </b-dropdown-item>
@@ -33,30 +33,41 @@
 </template>
 
 <script>
+import ReportingPeriod from '../../../../enums/ReportingPeriod';
+
 export default {
   name: 'KeyMetricsPeriodSelector',
   data() {
     return {
-      selectedPeriod: 'yesterday',
       periods: [
         {
-          value: 'yesterday',
+          value: ReportingPeriod.YESTERDAY,
           text: this.$i18n.t('keymetrics.periods.yesterday'),
         },
         {
-          value: 'last7Days',
+          value: ReportingPeriod.LAST_SEVEN_DAYS,
           text: this.$i18n.t('keymetrics.periods.last7Days'),
         },
         {
-          value: 'last30Days',
+          value: ReportingPeriod.LAST_THIRTY_DAY,
           text: this.$i18n.t('keymetrics.periods.last30Days'),
         },
         {
-          value: '3Months',
+          value: ReportingPeriod.THREE_MONTH,
           text: this.$i18n.t('keymetrics.periods.3Months'),
         },
       ],
     };
+  },
+  computed: {
+    reportingPeriod: {
+      get() {
+        return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PERIOD_SELECTED'];
+      },
+      set(period) {
+        this.$store.commit('smartShoppingCampaigns/SET_REPORTING_PERIOD_SELECTED', period);
+      },
+    },
   },
 };
 </script>

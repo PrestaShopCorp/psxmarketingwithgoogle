@@ -20,6 +20,7 @@
 import dayjs from 'dayjs';
 import DailyResultType from '@/enums/DailyResultType';
 import QueryOrderDirection from '@/enums/QueryOrderDirection';
+import ReportingPeriod from '@/enums/ReportingPeriod';
 
 export interface State {
   campaignName: String;
@@ -44,6 +45,7 @@ export interface Reporting {
 
 export interface RequestParams {
   dateRange: DateRange;
+  dailyResultType: DailyResultType;
   ordering: Orderings;
 }
 
@@ -55,6 +57,7 @@ export interface ResultsRequest {
   productsPartitionsPerformancesSection: ProductsPartitionsPerformancesSection;
 }
 export interface DateRange {
+  periodSelected: ReportingPeriod;
   startDate: string;
   endDate: string;
 }
@@ -102,7 +105,12 @@ export interface ProductsPartitionsPerformancesSection {
 }
 
 export interface DailyResult {
-  value: number;
+  impressions: number,
+  clicks: number,
+  conversions: number,
+  averageCostPerClick: number,
+  costs: number,
+  sales: number,
   date: string;
 }
 
@@ -154,9 +162,11 @@ export const state: State = {
   reporting: {
     request: {
       dateRange: {
+        periodSelected: ReportingPeriod.YESTERDAY,
         startDate: dayjs().subtract(7, 'day').format('YYYY-MM-DD'),
         endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
       },
+      dailyResultType: DailyResultType.IMPRESSIONS,
       ordering: {
         campaignsPerformances: {
           order: {
