@@ -45,7 +45,7 @@
         </b-button>
       </div>
     </div>
-    <template v-if="isEnabled && statusTrackingTag !== null">
+    <template v-if="isEnabled && statusTrackingTag !== null && sscExist">
       <hr>
       <b-form-checkbox
         switch
@@ -92,7 +92,7 @@ export default {
   data() {
     return {
       selected: null,
-      statusTrackingTag: this.$store.state.smartShoppingCampaigns.tracking,
+
     };
   },
   props: {
@@ -110,11 +110,18 @@ export default {
       }
       return null;
     },
+    statusTrackingTag() {
+      return this.$store.state.smartShoppingCampaigns.tracking;
+    },
     toggleTag() {
       if (this.statusTrackingTag === false) {
         return this.$i18n.t('smartShoppingCampaignCreation.toggleCreationRemarketingTag');
       }
       return this.$i18n.t('smartShoppingCampaignCreation.enableCreationRemarketingTag');
+    },
+    SSCExist() {
+      //  TODO return if a SSC already exists to display toggle tag
+      return false;
     },
   },
   methods: {
