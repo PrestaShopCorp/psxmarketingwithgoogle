@@ -210,3 +210,17 @@
     border-color: $gray-450;
   }
 }
+
+.ps_gs-datepicker {
+  .b-calendar-grid-body {
+    [aria-disabled="true"] {
+     background: $grey_extralight !important;
+    }
+  }
+
+  .btn-outline-light:hover,
+  .btn-light {
+    background-color: $blue_light;
+    color: inherit;
+  }
+}

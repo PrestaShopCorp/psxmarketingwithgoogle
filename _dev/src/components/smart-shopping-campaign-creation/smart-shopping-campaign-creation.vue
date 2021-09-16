@@ -99,6 +99,7 @@
                 :hide-header="true"
                 :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
                 :required="true"
+                class="ps_gs-datepicker"
               />
             </b-col>
             <b-col
@@ -119,6 +120,7 @@
                 :hide-header="true"
                 :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
                 :required="false"
+                class="ps_gs-datepicker"
               />
             </b-col>
           </b-form-row>

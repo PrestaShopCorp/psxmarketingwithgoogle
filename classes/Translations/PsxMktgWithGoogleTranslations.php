@@ -453,7 +453,7 @@ class PsxMktgWithGoogleTranslations
             ],
             'campaignCard' => [
                 'title' => $this->module->l('Create your Smart Shopping campaign in a few clicks', 'PsxMktgWithGoogleTranslations'),
-                'description' => $this->module->l('Google AI will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it\'s that easy!', 'PsxMktgWithGoogleTranslations'),
+                'description' => $this->module->l("Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it\'s that easy!", 'PsxMktgWithGoogleTranslations'),
                 'footer' => $this->module->l('We\'ll need to activate remarketing and conversion tracking tags for you to run Smart Shopping campaigns', 'PsxMktgWithGoogleTranslations'),
             ],
             'keymetrics' => [
