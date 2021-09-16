@@ -28,6 +28,7 @@ class Config
         'displayBackOfficeHeader',
         'displayHeader',
         'displayOrderConfirmation',
+        'displayTop',
         'actionObjectProductInCartDeleteBefore',
         'actionCartUpdateQuantityBefore',
     ];

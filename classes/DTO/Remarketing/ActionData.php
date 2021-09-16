@@ -75,9 +75,20 @@ class ActionData implements JsonSerializable
      */
     protected $checkout_option;
 
+    /**
+     * @var string|null
+     */
+    protected $currency;
+
+    /**
+     * @var string|null
+     */
+    protected $sendTo;
+
     public function jsonSerialize(): array
     {
         return [
+            'send_to' => $this->sendTo,
             'id' => $this->id,
             'affiliation' => $this->affiliation,
             'value' => $this->value,
@@ -86,6 +97,7 @@ class ActionData implements JsonSerializable
             'items' => $this->items,
             'checkout_step' => $this->checkout_step,
             'checkout_option' => $this->checkout_option,
+            'currency' => $this->currency,
         ];
     }
 
@@ -197,6 +209,30 @@ class ActionData implements JsonSerializable
     public function setCheckoutOption($checkout_option)
     {
         $this->checkout_option = $checkout_option;
+
+        return $this;
+    }
+
+    /**
+     * @param  string|null  $currency 
+     *
+     * @return  self
+     */ 
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * @param  string|null  $sendTo 
+     *
+     * @return  self
+     */ 
+    public function setSendTo($sendTo)
+    {
+        $this->sendTo = $sendTo;
 
         return $this;
     }

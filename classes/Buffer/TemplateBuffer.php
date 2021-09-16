@@ -20,12 +20,21 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Buffer;
 
+use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 class TemplateBuffer
 {
     /**
-     * @var string
+     * @var Session
      */
-    private $data;
+    private $session;
+
+    public function __construct()
+    {
+        $this->session = new Session();
+        $this->session->start();
+    }
 
     /**
      * add data to the buffer
@@ -36,7 +45,7 @@ class TemplateBuffer
      */
     public function add($data)
     {
-        $this->data .= $data;
+        $this->session->getFlashBag()->add('gtag_events', $data);
     }
 
     /**
@@ -46,7 +55,7 @@ class TemplateBuffer
      */
     public function clean()
     {
-        $this->data = '';
+        //$this->session->getFlashBag()->clear('gtag_events');
     }
 
     /**
@@ -54,11 +63,12 @@ class TemplateBuffer
      *
      * @return string
      */
-    public function flush()
+    public function flush(): string
     {
-        $returnedData = $this->data;
-        $this->clean();
-
-        return !empty($returnedData) ? $returnedData : '';
+        $data = '';
+        foreach ($this->session->getFlashBag()->get('gtag_events', []) as $message) {
+            $data .= $message;
+        }
+        return $data;
     }
 }

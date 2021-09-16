@@ -190,12 +190,17 @@ class PsxMarketingWithGoogle extends Module
             . $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__);
     }
 
+    public function hookDisplayTop()
+    {
+        return $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__);
+    }
+
     public function hookDisplayOrderConfirmation($params)
     {
         return $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__, $params);
     }
 
-    public function hookActionObjectProductInCartDeleteBefore($params)
+    public function hookActionCartUpdateQuantityBefore($params)
     {
         return $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__, $params);
     }

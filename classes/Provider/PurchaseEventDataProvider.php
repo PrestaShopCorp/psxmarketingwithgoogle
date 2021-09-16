@@ -21,6 +21,7 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
 use Order;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\Remarketing\ActionData;
 
 class PurchaseEventDataProvider
 {
@@ -29,17 +30,24 @@ class PurchaseEventDataProvider
      */
     protected $productDataProvider;
 
-    public function __construct(ProductDataProvider $productDataProvider)
+    /**
+     * @var ActionDataProvider
+     */
+    protected $actionDataProvider;
+
+    public function __construct(ProductDataProvider $productDataProvider, ActionDataProvider $actionDataProvider)
     {
         $this->productDataProvider = $productDataProvider;
+        $this->actionDataProvider = $actionDataProvider;
     }
 
     /**
      * Return the items concerned by the transaction
      */
-    public function getEventData(Order $order): array
+    public function getEventData(Order $order): ActionData
     {
         // https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce#action-data
+        $actionData = $this->actionDataProvider->getActionDataByOrderObject($order);
         /*
             {
                 "transaction_id": "24.031608523954162",
@@ -74,13 +82,12 @@ class PurchaseEventDataProvider
                 ]
             }
         */
+
         $items = [];
         foreach ($order->getCartProducts() as $product) {
             $items[] = $this->productDataProvider->getProductDataByProductArray($product);
         }
 
-        return [
-            'items' => $items,
-        ];
+        return $actionData->setItems($items);
     }
 }

@@ -98,7 +98,12 @@ class ProductDataProvider
         $productData->setPrice($product->price);
         $productData->setQuantity($params['quantity']);
 
-        // TODO: Handle Variant
+        $productData->setVariant(
+            $this->getCustomAttributeData(
+                (int) $product->id,
+                (int) $params['id_product_attribute']
+            )
+        );
 
         return $productData;
     }

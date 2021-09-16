@@ -74,10 +74,6 @@ class RemarketingHookHandler
         }
 
         switch ($hookName) {
-            case 'hookDisplayHeader':
-                $this->templateBuffer->add(base64_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG)));
-                break;
-
             case 'hookDisplayOrderConfirmation':
                 $this->context->smarty->assign([
                     'eventName' => 'purchase',
@@ -107,6 +103,11 @@ class RemarketingHookHandler
                     $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
                 );
                 break;
+        }
+
+
+        if ($hookName === 'hookDisplayHeader') {
+            return base64_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG));
         }
 
         // Return the existing content in case we have a display hook
