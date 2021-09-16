@@ -62,39 +62,39 @@ Vue.use(Vuex);
 addDecorator((story, context) => ({
   template: context.parameters.component === "OnboardingPage" ?
   `
-   <div
-     class='nobootstrap'
-     style='
-       background: none;
-       padding: 0;
-       min-width: 0;
-   '>
-     <div id='psxMktgWithGoogleApp'>
-       <story />
-     </div>
-   </div>
-   `
-   :
-   `
-   <div
-     class='nobootstrap'
-     style='
-       background: none;
-       padding: 0;
-       min-width: 0;
-   '>
-     <div id='psxMktgWithGoogleApp'>
-       <div class='ps_gs-sticky-head'>
-         <b-toaster
-           name='b-toaster-top-right'
-           class='ps_gs-toaster-top-right'
-         />
-       </div>
-       <story />
-     </div>
-   </div>
-   `
-   ,
+    <div
+      class='nobootstrap'
+      style='
+        background: none;
+        padding: 0;
+        min-width: 0;
+    '>
+      <div id='psxMktgWithGoogleApp'>
+        <story />
+      </div>
+    </div>
+    `
+    :
+    `
+    <div
+      class='nobootstrap'
+      style='
+        background: none;
+        padding: 0;
+        min-width: 0;
+    '>
+      <div id='psxMktgWithGoogleApp'>
+        <div class='ps_gs-sticky-head'>
+          <b-toaster
+            name='b-toaster-top-right'
+            class='ps_gs-toaster-top-right'
+          />
+        </div>
+        <story />
+      </div>
+    </div>
+    `
+    ,
   i18n: new VueI18n({
     defaultLocale: 'en',
     locale: 'en',

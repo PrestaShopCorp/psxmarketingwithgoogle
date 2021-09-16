@@ -18,7 +18,7 @@
 */
 
 import dayjs from 'dayjs';
-import DailyResultType from '@/enums/reporting/DailyResultType';
+import KpiType from '@/enums/reporting/KpiType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 
@@ -45,7 +45,7 @@ export interface Reporting {
 
 export interface RequestParams {
   dateRange: DateRange;
-  dailyResultType: DailyResultType;
+  dailyResultType: KpiType;
   ordering: Orderings;
 }
 
@@ -166,7 +166,7 @@ export const state: State = {
         startDate: dayjs().subtract(7, 'day').format('YYYY-MM-DD'),
         endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
       },
-      dailyResultType: DailyResultType.IMPRESSIONS,
+      dailyResultType: KpiType.IMPRESSIONS,
       ordering: {
         campaignsPerformances: {
           order: {

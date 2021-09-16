@@ -31,8 +31,9 @@
       <KeyMetricsKpiCard
         v-for="(kpiValue, kpiType) in reportingKpis"
         :key="kpiType"
-        :kpi="$t(`keymetrics.${kpiType}`)"
-        :value="kpiValue.toString()"
+        :kpi-type="kpiType"
+        :kpi-name="$t(`keymetrics.${kpiType}`)"
+        :kpi-value="kpiValue.toString()"
         :tooltip="$t(`keymetrics.${kpiType}Tooltip`)"
       />
     </KeyMetricsKpiCardGroup>

@@ -31,13 +31,13 @@
 </template>
 
 <script>
-import DailyResultType from '@/enums/reporting/DailyResultType';
+import KpiType from '@/enums/reporting/KpiType';
 
 export default {
   name: 'KeyMetricsChartWrapper',
   computed: {
     dailyResultTypeList() {
-      return Object.values(DailyResultType);
+      return Object.values(KpiType);
     },
     dailyResultTypeSelected: {
       get() {

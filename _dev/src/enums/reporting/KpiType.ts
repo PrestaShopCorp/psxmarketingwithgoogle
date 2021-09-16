@@ -1,10 +1,10 @@
-enum DailyResultType {
+enum KpiType {
   IMPRESSIONS = 'impressions',
   CLICKS = 'clicks',
   CONVERSIONS = 'conversions',
-  AVERAGE_COST_CLICK = 'averageCostPerClick',
+  AVERAGE_COST_PER_CLICK = 'averageCostPerClick',
   COSTS = 'costs',
   SALES = 'sales',
 }
 
-export default DailyResultType;
+export default KpiType;

@@ -17,7 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import DailyResultType from '@/enums/reporting/DailyResultType';
+import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import MutationsTypes from './mutations-types';
 import {
@@ -36,7 +36,7 @@ export default {
   [MutationsTypes.SET_REPORTING_PERIOD_SELECTED](state: LocalState, payload: ReportingPeriod) {
     state.reporting.request.dateRange.periodSelected = payload;
   },
-  [MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPE](state: LocalState, payload: DailyResultType) {
+  [MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPE](state: LocalState, payload: KpiType) {
     state.reporting.request.dailyResultType = payload;
   },
   [MutationsTypes.SET_REPORTING_KPIS](state: LocalState, payload: Kpis) {

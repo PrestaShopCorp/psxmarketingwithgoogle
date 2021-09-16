@@ -24,7 +24,7 @@ import {
 } from './state';
 import GettersTypes from './getters-types';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import DailyResultType from '@/enums/reporting/DailyResultType';
+import KpiType from '@/enums/reporting/KpiType';
 
 export default {
   [GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET](
@@ -41,7 +41,7 @@ export default {
   },
   [GettersTypes.GET_REPORTING_DAILY_RESULT_TYPE](
     state: LocalState,
-  ): DailyResultType {
+  ): KpiType {
     return state.reporting.request.dailyResultType;
   },
   [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING](

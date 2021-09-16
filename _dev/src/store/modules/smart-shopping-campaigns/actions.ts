@@ -20,7 +20,7 @@
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
-import DailyResultType from '@/enums/reporting/DailyResultType';
+import KpiType from '@/enums/reporting/KpiType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 
 export default {
@@ -155,7 +155,7 @@ export default {
   },
 
   async [ActionsTypes.GET_REPORTING_DAILY_RESULTS](
-    {commit, rootState, state}, payload: DailyResultType,
+    {commit, rootState, state}, payload: KpiType,
   ) {
     /*
     const query = new URLSearchParams({
