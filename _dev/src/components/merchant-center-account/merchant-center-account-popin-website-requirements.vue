@@ -140,14 +140,14 @@
         </div>
         <span class="d-block">
           {{ shopInformations.store.streetAddress
-          ? shopInformations.store.streetAddress : '--' }}
+            ? shopInformations.store.streetAddress : '--' }}
         </span>
 
         <p
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.streetAddress"
         >
-          {{  $t('mcaRequirements.businessAddress') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('mcaRequirements.businessAddress') + ' ' + $t('general.XIsMandatory') }}
         </p>
 
         <VueShowdown
@@ -176,14 +176,14 @@
         </div>
         <span class="d-block">
           {{ shopInformations.store.postalCode
-          ? shopInformations.store.postalCode : '--' }}
+            ? shopInformations.store.postalCode : '--' }}
         </span>
 
         <p
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.postalCode"
         >
-          {{  $t('mcaRequirements.businessZipCode') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('mcaRequirements.businessZipCode') + ' ' + $t('general.XIsMandatory') }}
         </p>
 
         <VueShowdown
@@ -212,14 +212,14 @@
         </div>
         <span class="d-block">
           {{ shopInformations.store.locality
-          ? shopInformations.store.locality : '--' }}
+            ? shopInformations.store.locality : '--' }}
         </span>
 
         <p
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.locality"
         >
-          {{  $t('mcaRequirements.businessCity') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('mcaRequirements.businessCity') + ' ' + $t('general.XIsMandatory') }}
         </p>
 
         <VueShowdown
@@ -248,14 +248,14 @@
         </div>
         <span class="d-block">
           {{ shopInformations.store.country.name
-          ? shopInformations.store.country.name : '--' }}
+            ? shopInformations.store.country.name : '--' }}
         </span>
 
         <p
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.country.name"
         >
-          {{  $t('mcaRequirements.businessCountry') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('mcaRequirements.businessCountry') + ' ' + $t('general.XIsMandatory') }}
         </p>
 
         <VueShowdown
@@ -266,7 +266,8 @@
         />
       </section>
 
-      <section class="mb-3"
+      <section
+        class="mb-3"
         v-if="Object.prototype.hasOwnProperty.call(shopInformations.store, 'region')"
       >
         <div class="d-flex align-items-center">
@@ -286,14 +287,14 @@
         </div>
         <span class="d-block">
           {{ shopInformations.store.region
-          ? shopInformations.store.region : '--' }}
+            ? shopInformations.store.region : '--' }}
         </span>
 
         <p
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.region"
         >
-          {{  $t('mcaRequirements.businessRegion') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('mcaRequirements.businessRegion') + ' ' + $t('general.XIsMandatory') }}
         </p>
 
         <VueShowdown
@@ -322,14 +323,14 @@
         </div>
         <span class="d-block">
           {{ shopInformations.store.phone
-          ? shopInformations.store.phone : '--' }}
+            ? shopInformations.store.phone : '--' }}
         </span>
 
         <p
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.phone"
         >
-          {{  $t('mcaRequirements.businessPhone') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('mcaRequirements.businessPhone') + ' ' + $t('general.XIsMandatory') }}
         </p>
         <p
           class="mb-0 text-danger text-left ps_gs-fz-12"
