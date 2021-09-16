@@ -29,6 +29,7 @@ const Template = (args, { argTypes }) => ({
       </p>
       <GoogleAccountCard
         v-bind="$props"
+        ref="googleAccountCard"
         @dissociateGoogleAccount="onGoogleAccountDissociationRequest"
       />
       <GoogleAccountPopinDisconnect
@@ -44,6 +45,7 @@ const Template = (args, { argTypes }) => ({
       );
     },
   },
+  mounted: args.mounted,
 });
 
 export const Disabled:any = Template.bind({});
@@ -66,6 +68,15 @@ export const NotConnected:any = Template.bind({});
 NotConnected.args = {
   isEnabled: true,
   user: Object.assign({}, googleAccountNotConnectedButAuthenticationUrlOK),
+};
+
+export const Connecting:any = Template.bind({});
+Connecting.args = {
+  isEnabled: true,
+  user: Object.assign({}, googleAccountNotConnectedButAuthenticationUrlOK),
+  mounted() {
+    this.$refs.googleAccountCard.$data.isConnecting = true;
+  },
 };
 
 export const CouldNotConnect:any = Template.bind({});

@@ -76,6 +76,7 @@
           v-if="!accessToken"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
+          <!--
           <b-button
             size="sm"
             variant="primary"
@@ -92,7 +93,24 @@
               <span class="ml-1 icon-busy" />
             </template>
           </b-button>
-
+          -->
+          <b-button
+            size="sm"
+            variant="invisible"
+            class="btn-google mx-1 mt-3 mt-md-0 mr-md-0 ml-md-3"
+            :class="{'is-busy' : isConnecting}"
+            :disabled="isConnecting || error === 'CantConnect'"
+            @click="openPopup"
+            data-test-id="btn-connect"
+          >
+            <template v-if="!isConnecting">
+              {{ $t('cta.connectAccount') }}
+            </template>
+            <template v-else>
+              {{ $t('cta.connectingAccount') }}
+              <span class="ml-1 icon-busy" />
+            </template>
+          </b-button>
           <glass
             v-if="popupClosingLooper"
             @close="closePopup"
