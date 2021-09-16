@@ -57,7 +57,7 @@
       >
         <VueShowdown
           :markdown="$t('productFeedPage.syncStatus.alert',
-            [$options.googleUrl.syncFailed])"
+                        [$options.googleUrl.syncFailed])"
           :extensions="['extended-link']"
         />
       </b-alert>

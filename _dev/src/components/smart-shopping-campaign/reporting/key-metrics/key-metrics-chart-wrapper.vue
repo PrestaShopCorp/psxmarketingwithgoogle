@@ -12,7 +12,6 @@
         class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
         size="sm"
         menu-class="ps-dropdown"
-        no-flip
       >
         <b-dropdown-item
           v-for="dailyresultType in dailyResultTypeList"

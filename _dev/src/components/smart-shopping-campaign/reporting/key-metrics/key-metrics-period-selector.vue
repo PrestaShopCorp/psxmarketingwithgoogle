@@ -18,7 +18,6 @@
       class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250 d-sm-none"
       size="sm"
       menu-class="ps-dropdown"
-      no-flip
     >
       <b-dropdown-item
         v-for="{value, text} in periods"

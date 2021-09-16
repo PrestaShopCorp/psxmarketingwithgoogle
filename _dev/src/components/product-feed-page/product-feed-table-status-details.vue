@@ -244,7 +244,7 @@
             variant=" "
             class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered w-auto ml-2"
             menu-class="ps-dropdown"
-            no-flip
+
             size="sm"
           >
             <b-dropdown-item
