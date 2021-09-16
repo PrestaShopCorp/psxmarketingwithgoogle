@@ -120,7 +120,7 @@ export default {
       return this.$i18n.t('smartShoppingCampaignCreation.enableCreationRemarketingTag');
     },
     SSCExist() {
-      //  TODO return if a SSC already exists to display toggle tag and toggle pause
+      //  TODO return if a SSC already exists to display toggle tag
       return false;
     },
   },
