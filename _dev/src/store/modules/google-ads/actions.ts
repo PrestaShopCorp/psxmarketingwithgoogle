@@ -24,7 +24,7 @@ import HttpClientError from '../../../utils/HttpClientError';
 import {AccountInformations} from './state';
 
 export default {
-  async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit, rootState, dispatch}) {
+  async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit, rootState}) {
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/list`,
         {
