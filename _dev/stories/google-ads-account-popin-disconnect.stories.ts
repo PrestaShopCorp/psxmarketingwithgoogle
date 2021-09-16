@@ -8,7 +8,7 @@ import {productFeedIsConfigured} from '../.storybook/mock/product-feed';
 
 export default {
   title: 'Google Ads Account/Popins/Disconnect',
-  component: GoogleAdsAccountPopinDisconnect, OnboardingPage
+  component: GoogleAdsAccountPopinDisconnect, OnboardingPage,
 };
 
 const Template = (args, { argTypes }) => ({

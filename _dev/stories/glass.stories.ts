@@ -16,14 +16,10 @@ const Template = (args, { argTypes }) => ({
       <GlassScreen />
     </div>
   `,
-  beforeMount: args.beforeMount,
-
-
+  beforeCreate(this: any) {
+    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
+  },
 });
 
 export const Glass:any = Template.bind({});
-Glass.args = {
-  beforeMount(this: any) {
-    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
-  },
-}
+Glass.args = {}

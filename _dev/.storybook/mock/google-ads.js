@@ -51,7 +51,7 @@ export const googleAdsAccountChosen = {
     isAdmin: false,
     isTestAccount: false,
     billingSettings: {
-      isSet: true,
+      isSet: false,
       link: 'string',
     },
     country: {
@@ -63,12 +63,6 @@ export const googleAdsAccountChosen = {
     timeZone:  'USA',
   },
 }
-
-export const googleAdsAccountConnectedOnce = {
-  ...googleAdsAccountChosen,
-  connectedOnce: true,
-};
-
 
 
 export default googleAdsNotChosen;
