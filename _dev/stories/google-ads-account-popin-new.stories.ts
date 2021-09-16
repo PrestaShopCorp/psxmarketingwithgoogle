@@ -24,52 +24,40 @@ const Template = (args, { argTypes }) => ({
     </div>
   `,
   beforeMount: args.beforeMount,
+  beforeCreate(this: any) {
+      this.$store.state.app = Object.assign({}, initialStateApp);
+    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
+    this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
+    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+  },
+
 });
 export const StepOne:any = Template.bind({});
 StepOne.args = {
   visible: true,
-  stepActive: 1,
+  stepActiveData: 1,
+
   user: Object.assign({}, googleAccountConnected),
   beforeMount(this:any){
-    this.$store.state.app = Object.assign({}, initialStateApp);
-    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
-    this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
-    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
-    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
 
   }
 };
-console.log('defzf', StepOne);
 
 export const StepTwo:any = Template.bind({});
 StepTwo.args = {
   visible: true,
-  stepActive: 2,
+  stepActiveData: 2,
   user: Object.assign({}, googleAccountConnected),
-  beforeMount(this:any){
-    this.$store.state.app = Object.assign({}, initialStateApp);
-    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
-    this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
-    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
-    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
-    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
 
-  }
 };
 
 export const StepThree:any = Template.bind({});
 StepThree.args = {
   visible: true,
-  stepActive: 3,
+  stepActiveData: 3,
   user: Object.assign({}, googleAccountConnected),
-  beforeMount(this:any){
-    this.$store.state.app = Object.assign({}, initialStateApp);
-    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
-    this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
-    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
-    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
-    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
 
-  }
 };
