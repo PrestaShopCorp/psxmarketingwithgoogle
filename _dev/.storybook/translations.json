@@ -636,7 +636,8 @@
       "selectFilters" : "Select filters",
       "removeFilter" : "Remove filter | Remove filters",
       "selectAll" : "Select all",
-      "deselectAll" : "Deselect all"
+      "deselectAll" : "Deselect all",
+      "signInWithGoogle" : "Sign in with Google"
     },
     "badge" : {
       "free" : "Free",

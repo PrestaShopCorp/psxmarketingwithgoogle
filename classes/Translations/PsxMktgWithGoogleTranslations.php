@@ -684,6 +684,7 @@ class PsxMktgWithGoogleTranslations
                 'removeFilter' => $this->module->l('Remove filter | Remove filters', 'PsxMktgWithGoogleTranslations'),
                 'selectAll' => $this->module->l('Select all', 'PsxMktgWithGoogleTranslations'),
                 'deselectAll' => $this->module->l('Deselect all', 'PsxMktgWithGoogleTranslations'),
+                'signInWithGoogle' => $this->module->l('Sign in with Google', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),
