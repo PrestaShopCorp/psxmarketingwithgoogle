@@ -9,6 +9,11 @@ services:
     arguments:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider'
 
+  PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider'
+
   PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider:
     class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider'
     arguments:

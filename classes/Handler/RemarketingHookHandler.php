@@ -26,6 +26,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Buffer\TemplateBuffer;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider;
 use PsxMarketingWithGoogle;
 
 class RemarketingHookHandler
@@ -81,6 +82,26 @@ class RemarketingHookHandler
                 $this->context->smarty->assign([
                     'eventName' => 'purchase',
                     'eventData' => $this->module->getService(PurchaseEventDataProvider::class)->getEventData($data['order']),
+                ]);
+                $this->templateBuffer->add(
+                    $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
+                );
+                break;
+            
+            case 'hookActionCartUpdateQuantityBefore':
+                $this->context->smarty->assign([
+                    'eventName' => $data['operator'] === 'up' ? 'add_to_cart' : 'remove_from_cart',
+                    'eventData' => $this->module->getService(CartEventDataProvider::class)->getEventData($data),
+                ]);
+                $this->templateBuffer->add(
+                    $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
+                );
+                break;
+
+            case 'hookActionObjectProductInCartDeleteBefore':
+                $this->context->smarty->assign([
+                    'eventName' => 'remove_from_cart',
+                    'eventData' => $this->module->getService(CartEventDataProvider::class)->getEventData($data),
                 ]);
                 $this->templateBuffer->add(
                     $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')

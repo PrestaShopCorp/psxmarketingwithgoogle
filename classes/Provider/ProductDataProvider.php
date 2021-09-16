@@ -75,6 +75,33 @@ class ProductDataProvider
         return $productData;
     }
 
+    public function getProductDataByProductObject(array $params): ProductData
+    {
+        $product = $params['product'];
+        $productData = new ProductData();
+
+        $productData->setId(implode(
+            '-',
+            [
+                (int) $product->id,
+                (int) $params['id_product_attribute']
+            ]
+        ));
+
+        $productData->setName(\Tools::replaceAccentedChars($product->name));
+        $productData->setBrand((new \Manufacturer($product->id_manufacturer))->name);
+        $productData->setCategory($this->categoryProvider->getCategoryPaths(
+            $product->id_category_default,
+            $this->context->language->id,
+            $this->context->shop->id
+        )['category_path']);
+        $productData->setPrice($product->price);
+        $productData->setQuantity($params['quantity']);
+
+        // TODO: Handle Variant
+
+        return $productData;
+    }
 
     private function getCustomAttributeData($productId, $attributeIds)
     {
