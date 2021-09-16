@@ -127,7 +127,7 @@ import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc
 import PsToast from '../components/commons/ps-toast';
 
 export default {
-  name: 'OnboardingPage',
+  // name: 'OnboardingPage',
   components: {
     PsAccounts,
     SectionTitle,

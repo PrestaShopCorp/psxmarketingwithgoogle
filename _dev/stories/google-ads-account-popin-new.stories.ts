@@ -40,6 +40,8 @@ StepOne.args = {
 
   }
 };
+console.log('defzf', StepOne);
+
 export const StepTwo:any = Template.bind({});
 StepTwo.args = {
   visible: true,
