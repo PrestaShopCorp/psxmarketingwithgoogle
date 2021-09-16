@@ -179,7 +179,7 @@
       "syncCantPerform" : "Synchronization can't perform",
       "mappedCategories" : "{0}/{1} mapped categories",
       "alertFeedSettingSubmissionSuccess" : "You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.",
-      "alertFailed" : "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact customer support.",
+      "alertFailed" : "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact [customer support](mailto:support-google@prestashop.com).",
       "alertShippingSettingsMissing" : "Your shipping information is missing.",
       "alertShippingSettingsMissingDescription" : "To successfully sync your product data, add shipping info.",
       "alertProductFeedDeactivated" : "If the product sync is deactivated, there will be no new products pushed into the GMC. The account itself will continue to exist and the products will expire after 30 days. This stops the catalog items to show on both Free Listings and the ad campaigns.",
@@ -419,7 +419,7 @@
         "lastSync" : "Last sync: {0}",
         "prescanTitle" : "Coming up next synchronization",
         "scheduleOn" : "Synchronization scheduled on {0}",
-        "alert" : "Product sync was not successful. Check possible reasons in Merchant Center or contact customer support."
+        "alert" : "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact [customer support](mailto:support-google@prestashop.com)."
       },
       "productStatus" : {
         "title" : "Products status",

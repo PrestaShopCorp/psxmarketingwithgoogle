@@ -56,7 +56,8 @@
         :show="syncStatus === 'failed'"
       >
         <VueShowdown
-          :markdown="$t('productFeedPage.syncStatus.alert')"
+          :markdown="$t('productFeedPage.syncStatus.alert',
+            [$options.googleUrl.syncFailed])"
           :extensions="['extended-link']"
         />
       </b-alert>
