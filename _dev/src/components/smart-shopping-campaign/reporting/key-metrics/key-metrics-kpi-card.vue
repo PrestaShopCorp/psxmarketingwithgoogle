@@ -19,17 +19,17 @@
       >
         <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
         <span class="sr-only">
-          {{ $t('cta.moreInfosAboutX', [kpi]) }}
+          {{ $t('cta.moreInfosAboutX', [kpiName]) }}
         </span>
       </b-button>
       <dl class="mb-0">
         <dt
           class="ps_gs-fz-18 font-weight-bold"
         >
-          {{ value }}
+          {{ formattedValue }}
         </dt>
         <dd class="mb-0">
-          {{ kpi }}
+          {{ kpiName }}
         </dd>
       </dl>
     </b-card>
@@ -37,20 +37,51 @@
 </template>
 
 <script>
+import KpiType from '@/enums/reporting/KpiType';
+
 export default {
   name: 'KeyMetricsKpiCard',
   props: {
-    value: {
+    kpiValue: {
       type: String,
       required: true,
     },
-    kpi: {
+    kpiName: {
       type: String,
       required: true,
     },
     tooltip: {
       type: String,
       required: false,
+    },
+    kpiType: {
+      type: String,
+      required: true,
+    },
+  },
+  computed: {
+    formattedValue() {
+      const googleAdsAccount = this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+
+      if (!googleAdsAccount) {
+        return '--';
+      }
+
+      if (this.isPriceType()) {
+        return Intl.NumberFormat(window.i18nSettings.languageCode, {
+          style: 'currency',
+          currency: googleAdsAccount.currency,
+        }).format(this.kpiValue);
+      }
+
+      return this.kpiValue;
+    },
+  },
+  methods: {
+    isPriceType() {
+      return this.kpiType === KpiType.AVERAGE_COST_PER_CLICK
+        || this.kpiType === KpiType.COSTS
+        || this.kpiType === KpiType.SALES;
     },
   },
 };

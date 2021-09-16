@@ -3,7 +3,7 @@
     v-if="gAdsAccountAlert !== null"
     :variant="gAdsAccountAlert.color"
     show
-    class="mb-0 mt-3"
+    class="mt-3 mb-0"
   >
     <div>
       <VueShowdown
@@ -22,7 +22,7 @@
       </a>
       <div
         v-if="gAdsAccountAlert.button"
-        class="d-md-flex text-center align-items-center mt-2"
+        class="mt-2 text-center d-md-flex align-items-center"
       >
         <b-button
           size="sm"

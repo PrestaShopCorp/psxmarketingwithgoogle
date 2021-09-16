@@ -29,18 +29,18 @@
     </div>
     <KeyMetricsKpiCardGroup>
       <KeyMetricsKpiCard
-        v-for="kpi in kpis"
-        :key="kpi.type"
-        :kpi="$t(`keymetrics.${kpi.type}`)"
-        :value="kpi.value"
-        :tooltip="$t(`keymetrics.${kpi.type}Tooltip`)"
+        v-for="(kpiValue, kpiType) in reportingKpis"
+        :key="kpiType"
+        :kpi-type="kpiType"
+        :kpi-name="$t(`keymetrics.${kpiType}`)"
+        :kpi-value="kpiValue.toString()"
+        :tooltip="$t(`keymetrics.${kpiType}Tooltip`)"
       />
     </KeyMetricsKpiCardGroup>
-    <KeyMetricsChartWrapper :kpis="kpis" />
+    <KeyMetricsChartWrapper />
     <div class="mt-3 text-right text-primary">
-      <!-- TODO / adds link -->
       <a
-        href="//google.com"
+        :href="googleAdsAccountUrl"
         target="_blank"
         class="d-inline-block"
       >
@@ -55,6 +55,7 @@ import KeyMetricsPeriodSelector from './key-metrics-period-selector.vue';
 import KeyMetricsKpiCardGroup from './key-metrics-kpi-card-group.vue';
 import KeyMetricsKpiCard from './key-metrics-kpi-card.vue';
 import KeyMetricsChartWrapper from './key-metrics-chart-wrapper.vue';
+import googleUrl from '@/assets/json/googleUrl.json';
 
 export default {
   name: 'KeyMetricsBlock',
@@ -64,38 +65,13 @@ export default {
     KeyMetricsKpiCard,
     KeyMetricsChartWrapper,
   },
-  data() {
-    return {
-      selectedDailyResultKpi: 'impressions',
-      // TODO
-      // Get real datas
-      kpis: [
-        {
-          type: 'impressions',
-          value: '122,789',
-        },
-        {
-          type: 'clicks',
-          value: '50,208',
-        },
-        {
-          type: 'conversion',
-          value: '73723',
-        },
-        {
-          type: 'costPerClick',
-          value: '$0.5',
-        },
-        {
-          type: 'costs',
-          value: '$25,104',
-        },
-        {
-          type: 'sales',
-          value: '$125 650',
-        },
-      ],
-    };
+  computed: {
+    reportingKpis() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_KPIS'];
+    },
+    googleAdsAccountUrl() {
+      return googleUrl.googleAdsAccount;
+    },
   },
 };
 </script>
