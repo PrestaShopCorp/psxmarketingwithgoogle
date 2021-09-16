@@ -18,9 +18,9 @@
 */
 
 import dayjs from 'dayjs';
-import DailyResultType from '@/enums/DailyResultType';
-import QueryOrderDirection from '@/enums/QueryOrderDirection';
-import ReportingPeriod from '@/enums/ReportingPeriod';
+import DailyResultType from '@/enums/reporting/DailyResultType';
+import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
+import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 
 export interface State {
   campaignName: String;

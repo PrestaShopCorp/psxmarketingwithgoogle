@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import ReportingPeriod from '../../../../enums/ReportingPeriod';
+import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 
 export default {
   name: 'KeyMetricsPeriodSelector',

@@ -19,9 +19,9 @@
 
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '../../../utils/HttpClientError';
-import DailyResultType from '../../../enums/DailyResultType';
-import QueryOrderDirection from '../../../enums/QueryOrderDirection';
+import HttpClientError from '@/utils/HttpClientError';
+import DailyResultType from '@/enums/reporting/DailyResultType';
+import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload) {
@@ -114,14 +114,14 @@ export default {
     {dispatch, getters},
   ) {
     dispatch('GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
-    dispatch('GET_REPORTING_METRICS_KPIS');
-    dispatch('GET_REPORTING_METRICS_DAILY_RESULTS', getters.GET_DAILY_RESULT_TYPE);
-    dispatch('GET_REPORTING_METRICS_CAMPAIGNS_PERFORMANCES', getters.GET_REPORTING_METRICS_CAMPAIGNS_PERFORMANCES_ORDERING);
-    dispatch('GET_REPORTING_METRICS_PRODUCTS_PERFORMANCES', getters.GET_REPORTING_METRICS_PRODUCTS_PERFORMANCES_ORDERING);
-    dispatch('GET_REPORTING_METRICS_PRODUCTS_PARTITIONS_PERFORMANCES', getters.GET_REPORTING_METRICS_PRODUCTS_PARTITIONS_PERFORMANCES_ORDERING);
+    dispatch('GET_REPORTING_KPIS');
+    dispatch('GET_REPORTING_DAILY_RESULTS', getters.GET_REPORTING_DAILY_RESULT_TYPE);
+    dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES', getters.GET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING);
+    dispatch('GET_REPORTING_PRODUCTS_PERFORMANCES', getters.GET_REPORTING_PRODUCTS_PERFORMANCES_ORDERING);
+    dispatch('GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES', getters.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_ORDERING);
   },
 
-  async [ActionsTypes.GET_REPORTING_METRICS_KPIS](
+  async [ActionsTypes.GET_REPORTING_KPIS](
     {commit, rootState, state},
   ) {
     /*
@@ -151,10 +151,10 @@ export default {
       sales: 18,
     };
 
-    commit(MutationsTypes.SET_REPORTING_METRICS_KPIS, result);
+    commit(MutationsTypes.SET_REPORTING_KPIS, result);
   },
 
-  async [ActionsTypes.GET_REPORTING_METRICS_DAILY_RESULTS](
+  async [ActionsTypes.GET_REPORTING_DAILY_RESULTS](
     {commit, rootState, state}, payload: DailyResultType,
   ) {
     /*
@@ -241,7 +241,7 @@ export default {
     commit(MutationsTypes.SET_REPORTING_DAILY_RESULTS, result);
   },
 
-  async [ActionsTypes.GET_REPORTING_METRICS_CAMPAIGNS_PERFORMANCES](
+  async [ActionsTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
     {commit, rootState, state}, payload: QueryOrderDirection,
   ) {
     /*
@@ -287,10 +287,10 @@ export default {
       nextPageToken: 'test-de-token',
     };
 
-    commit(MutationsTypes.SET_REPORTING_METRICS_CAMPAIGNS_PERFORMANCES, result);
+    commit(MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES, result);
   },
 
-  async [ActionsTypes.GET_REPORTING_METRICS_PRODUCTS_PERFORMANCES](
+  async [ActionsTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](
     {commit, rootState, state}, payload: QueryOrderDirection,
   ) {
     /*
@@ -334,10 +334,10 @@ export default {
       ],
     };
 
-    commit(MutationsTypes.SET_REPORTING_METRICS_PRODUCTS_PERFORMANCES, result);
+    commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES, result);
   },
 
-  async [ActionsTypes.GET_REPORTING_METRICS_PRODUCTS_PARTITIONS_PERFORMANCES](
+  async [ActionsTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES](
     {commit, rootState, state}, payload: QueryOrderDirection,
   ) {
     /*
@@ -383,6 +383,6 @@ export default {
       ],
     };
 
-    commit(MutationsTypes.SET_REPORTING_METRICS_PRODUCTS_PARTITIONS_PERFORMANCES, result);
+    commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES, result);
   },
 };

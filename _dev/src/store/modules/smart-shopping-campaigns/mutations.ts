@@ -17,7 +17,8 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import ReportingPeriod from '@/enums/ReportingPeriod';
+import DailyResultType from '@/enums/reporting/DailyResultType';
+import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import MutationsTypes from './mutations-types';
 import {
   CampaignsPerformancesSection,
@@ -35,25 +36,28 @@ export default {
   [MutationsTypes.SET_REPORTING_PERIOD_SELECTED](state: LocalState, payload: ReportingPeriod) {
     state.reporting.request.dateRange.periodSelected = payload;
   },
-  [MutationsTypes.SET_REPORTING_METRICS_KPIS](state: LocalState, payload: Kpis) {
+  [MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPE](state: LocalState, payload: DailyResultType) {
+    state.reporting.request.dailyResultType = payload;
+  },
+  [MutationsTypes.SET_REPORTING_KPIS](state: LocalState, payload: Kpis) {
     state.reporting.results.kpis = payload;
   },
   [MutationsTypes.SET_REPORTING_DAILY_RESULTS](state: LocalState, payload: DailyresultChart) {
     state.reporting.results.dailyResultChart = payload;
   },
-  [MutationsTypes.SET_REPORTING_METRICS_CAMPAIGNS_PERFORMANCES](
+  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES](
     state: LocalState,
     payload: CampaignsPerformancesSection,
   ) {
     state.reporting.results.campaignsPerformancesSection = payload;
   },
-  [MutationsTypes.SET_REPORTING_METRICS_PRODUCTS_PERFORMANCES](
+  [MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES](
     state: LocalState,
     payload: ProductsPerformancesSection,
   ) {
     state.reporting.results.productsPerformancesSection = payload;
   },
-  [MutationsTypes.SET_REPORTING_METRICS_PRODUCTS_PARTITIONS_PERFORMANCES](
+  [MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES](
     state: LocalState,
     payload: ProductsPartitionsPerformancesSection,
   ) {
