@@ -87,7 +87,7 @@ class ProductData implements JsonSerializable
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'list_name' => $this->list_,
+            'list_name' => $this->list_position,
             'brand' => $this->brand,
             'category' => $this->category,
             'variant' => $this->variant,

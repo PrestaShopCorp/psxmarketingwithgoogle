@@ -203,10 +203,15 @@ class PsxMarketingWithGoogle extends Module
 
     public function hookActionCartUpdateQuantityBefore($param)
     {
-        // check operator in order to know if it is a add or remove
-        // operator can be "up" || ...
-        dump($param['product']);
-        die('actionCartUpdateQuantityBefore');
+
+    /**
+     * return __FILE__
+     *
+     * @return string
+     */
+    public function getFilePath()
+    {
+        return __FILE__;
     }
 
     private function loadEnv()

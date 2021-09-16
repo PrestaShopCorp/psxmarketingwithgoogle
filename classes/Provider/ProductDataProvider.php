@@ -21,6 +21,7 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
 use Context;
+use Product;
 use PrestaShop\Module\PsxMarketingWithGoogle\DTO\Remarketing\ProductData;
 
 class ProductDataProvider
@@ -60,13 +61,28 @@ class ProductDataProvider
             $this->context->language->id,
             $this->context->shop->id
         )['category_path']);
-        $productData->setPrice($product['product_price']);
+        $productData->setPrice((string) $product['product_price']);
         $productData->setQuantity($product['product_quantity']);
+
+        $productData->setVariant(
+            $this->getCustomAttributeData(
+                $product['id_product'],
+                $product['product_attribute_id']
+            )
+        );
         
 
         return $productData;
     }
 
-    public function getProductDataByProductObject(\Product $product): ProductData
-    {}
+
+    private function getCustomAttributeData($productId, $attributeIds)
+    {
+        $attributes = [];
+        foreach(Product::getAttributesParams($productId, $attributeIds) as $attribute) {
+            $attributes[] = $attribute['group'] . ': ' . $attribute['name'];
+        }
+
+        return implode(' - ', $attributes);
+    }
 }
