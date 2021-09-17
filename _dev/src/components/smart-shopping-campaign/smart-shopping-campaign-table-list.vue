@@ -1,23 +1,26 @@
 <template>
   <div>
-    <div class="d-flex justify-content-between mb-3">
-      <h3>Campaign performance</h3>
+    <div class="d-flex justify-content-between mb-3 rounded-top">
+      <h3 class="ps_gs-fz-20 font-weight-600">Campaign performance</h3>
       <div
         class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
       >
         <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0"
           variant="outline-primary"
         >
           View reporting
         </b-button>
         <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 mr-md-0"
           variant="primary"
         >
           Create new campaign
         </b-button>
       </div>
     </div>
-
     <ReportingTableHeader
       :title="'12 campaigns'"
     />
@@ -31,20 +34,20 @@
       <b-thead>
         <b-tr>
           <b-th
-            v-for="({type, tooltip, sorting}, index) in fields"
+            v-for="(type, index) in campaignHeaderList"
             :key="type"
             class="font-weight-600"
-            :class="{'b-table-sticky-column b-table-sticky-column--invisible pl-2': index === 0}"
+            :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
           >
             <div class="flex align-items-center text-nowrap">
               <b-button
-                v-if="sorting"
-                @click="sort()"
+                v-if="hasSorting(type)"
+                @click="sortByType(type)"
                 variant="invisible"
                 class="p-0 border-0"
               >
                 <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
-                <template v-if="sortDirection === 'asc'">
+                <template v-if="queryOrderDirection[type] === 'ASC'">
                   <i class="material-icons ps_gs-fz-14">expand_more</i>
                   <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
                 </template>
@@ -57,7 +60,7 @@
                 {{ $t(`campaigns.labelCol.${type}`) }}
               </span>
               <b-button
-                v-if="tooltip"
+                v-if="hasToolTip(type)"
                 variant="invisible"
                 v-b-tooltip:psxMktgWithGoogleApp
                 :title="$t(`campaigns.tooltipCol.${type}`)"
@@ -71,7 +74,7 @@
       </b-thead>
       <b-tbody class="bg-white">
         <SmartShoppingCampaignTableListRow
-          v-for="campaign in campaigns"
+          v-for="campaign in campaignList"
           :key="campaign.name"
           :campaign="campaign"
         />
@@ -91,6 +94,8 @@
 <script>
 import SmartShoppingCampaignTableListRow from './smart-shopping-campaign-table-list-row.vue'
 import ReportingTableHeader from './reporting/commons/reporting-table-header.vue'
+import CampaignListHeaderType from '@/enums/campaigns-summary/CampaignListHeaderType';
+import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
@@ -101,34 +106,15 @@ export default {
   data() {
     return {
       loading: false,
-      sortDirection: 'asc',
-      items: [],
-      fields: [
-        {
-          type: 'campaign',
-          sorting: true,
-        },
-        {
-          type: 'duration',
-        },
-        {
-          type: 'status',
-          tooltip: true,
-        },
-        {
-          type: 'target',
-        },
-        {
-          type: 'product',
-        },
-        {
-          type: 'dailyBudget',
-        },
-        {
-          type: 'actions',
-        },
-      ],
-      campaigns: [
+    };
+  },
+  computed: {
+    campaignHeaderList() {
+      return Object.values(CampaignListHeaderType);
+    },
+    campaignList() {
+      // TODO Get real list of campaigns
+      return [
         {
           name: 'Promotion 1',
           duration : '2021/03/01 - 2021/05/31',
@@ -161,12 +147,37 @@ export default {
           product : 'All synced products',
           dailyBudget : '$25',
         },
-      ],
-    }
+      ];
+    },
+    queryOrderDirection: {
+      get() {
+        // TODO
+        //* Inspired by _dev/src/components/smart-shopping-campaign/reporting/campaigns-performance/campaigns-performance-table.vue
+        return {
+          campaign: QueryOrderDirection.ASCENDING,
+        }
+      },
+      set(orderDirection) {
+        // TODO
+      },
+    },
   },
   methods: {
-    sort() {
-
+    hasToolTip(headerType) {
+      return headerType === CampaignListHeaderType.STATUS;
+    },
+    hasSorting(headerType) {
+      return headerType === CampaignListHeaderType.CAMPAIGN;
+    },
+    sortByType(headerType) {
+      // create new object for satisfy deep getter of vueJS
+      const newOrderDirection = {...this.queryOrderDirection};
+      if (this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING) {
+        newOrderDirection[headerType] = QueryOrderDirection.DESCENDING;
+      } else {
+        newOrderDirection[headerType] = QueryOrderDirection.ASCENDING;
+      }
+      this.queryOrderDirection = newOrderDirection;
     },
   },
 };
