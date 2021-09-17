@@ -18,6 +18,7 @@
  */
 
 import {
+  CampaignPerformances,
   Kpis,
   OrderByType,
   State as LocalState,
@@ -46,18 +47,18 @@ export default {
   },
   [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING](
     state: LocalState,
-  ): OrderByType {
-    return state.reporting.request.ordering.campaignsPerformances.order;
+  ): Object {
+    return state.reporting.request.ordering.campaignsPerformances;
   },
   [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES_ORDERING](
     state: LocalState,
-  ): OrderByType {
-    return state.reporting.request.ordering.productsPerformances.order;
+  ): Object {
+    return state.reporting.request.ordering.productsPerformances;
   },
   [GettersTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_ORDERING](
     state: LocalState,
-  ): OrderByType {
-    return state.reporting.request.ordering.productsDimensionsPerformances.order;
+  ): Object {
+    return state.reporting.request.ordering.productsDimensionsPerformances;
   },
 
   // result getters
@@ -65,5 +66,15 @@ export default {
     state: LocalState,
   ): Kpis {
     return state.reporting.results.kpis;
+  },
+  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
+    state: LocalState,
+  ): Array<CampaignPerformances> {
+    return state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList;
+  },
+  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN](
+    state: LocalState,
+  ): string {
+    return state.reporting.results.campaignsPerformancesSection.nextPageToken;
   },
 };

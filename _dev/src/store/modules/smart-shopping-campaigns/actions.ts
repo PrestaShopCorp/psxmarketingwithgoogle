@@ -17,11 +17,13 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import dayjs from 'dayjs';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
 import KpiType from '@/enums/reporting/KpiType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
+import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload) {
@@ -111,14 +113,50 @@ export default {
   },
 
   async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
-    {dispatch, getters},
+    {dispatch},
   ) {
     dispatch('GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
     dispatch('GET_REPORTING_KPIS');
-    dispatch('GET_REPORTING_DAILY_RESULTS', getters.GET_REPORTING_DAILY_RESULT_TYPE);
-    dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES', getters.GET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING);
-    dispatch('GET_REPORTING_PRODUCTS_PERFORMANCES', getters.GET_REPORTING_PRODUCTS_PERFORMANCES_ORDERING);
-    dispatch('GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES', getters.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_ORDERING);
+    dispatch('GET_REPORTING_DAILY_RESULTS');
+    dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES');
+    dispatch('GET_REPORTING_PRODUCTS_PERFORMANCES');
+    dispatch('GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES');
+  },
+
+  [ActionsTypes.CHANGE_REPORTING_DATES](
+    {commit, dispatch}, payload: ReportingPeriod,
+  ) {
+    commit(MutationsTypes.SET_REPORTING_PERIOD_SELECTED, payload);
+
+    const substractType = {type: 'day', value: 0};
+
+    switch (payload) {
+      case ReportingPeriod.YESTERDAY:
+        substractType.type = 'day';
+        substractType.value = 1;
+        break;
+      case ReportingPeriod.LAST_SEVEN_DAYS:
+        substractType.type = 'day';
+        substractType.value = 7;
+        break;
+      case ReportingPeriod.LAST_THIRTY_DAY:
+        substractType.type = 'day';
+        substractType.value = 30;
+        break;
+      case ReportingPeriod.THREE_MONTH:
+        substractType.type = 'month';
+        substractType.value = 3;
+        break;
+      default:
+        break;
+    }
+
+    commit(MutationsTypes.SET_REPORTING_DATES, {
+      startDate: dayjs().subtract(substractType.value, substractType.type).format('YYYY-MM-DD'),
+      endDate: dayjs().format('YYYY-MM-DD'),
+    });
+
+    dispatch('UPDATE_ALL_REPORTING_DATA');
   },
 
   async [ActionsTypes.GET_REPORTING_KPIS](
@@ -155,13 +193,13 @@ export default {
   },
 
   async [ActionsTypes.GET_REPORTING_DAILY_RESULTS](
-    {commit, rootState, state}, payload: KpiType,
+    {commit, rootState, state},
   ) {
     /*
     const query = new URLSearchParams({
       startDate: state.reporting.dateRange.startDate,
       endDate: state.reporting.dateRange.endDate,
-      type: payload,
+      type: state.reporting.request.dailyResultType,
     });
     const response =
       await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/daily-results?${query}`, {
@@ -242,13 +280,14 @@ export default {
   },
 
   async [ActionsTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
-    {commit, rootState, state}, payload: QueryOrderDirection,
+    {commit, rootState, state},
   ) {
     /*
     const query = new URLSearchParams({
       startDate: state.reporting.dateRange.startDate,
       endDate: state.reporting.dateRange.endDate,
       nextPageToken: state.reporting.campaignsPerformancesSection.nextPageToken,
+      order: state.reporting.request.ordering.campaignsPerformances,
     });
     // add order in array format
     query.append('order["click"]', payload);
@@ -274,29 +313,127 @@ export default {
     const result = {
       campaignsPerformanceList: [
         {
-          name: 'test',
-          budget: 50,
-          status: 'test',
-          impressions: 320,
-          clicks: 120,
-          adSpend: 156,
-          conversions: 3612,
-          sales: 259,
+          name: 'Promotion 1',
+          budget: '$125',
+          status: 'eligible',
+          impressions: '25',
+          clicks: '1',
+          adSpend: '$0',
+          conversions: '0',
+          sales: '$0',
+        },
+        {
+          name: 'Promotion 2',
+          budget: '$10',
+          status: 'eligibleLimited',
+          impressions: '198',
+          clicks: '2',
+          adSpend: '$35',
+          conversions: '8',
+          sales: '$2700',
+        },
+        {
+          name: 'Promotion 3',
+          budget: '$125',
+          status: 'ended',
+          impressions: '178998',
+          clicks: '3',
+          adSpend: '$125',
+          conversions: '178',
+          sales: '$178000',
+        },
+        {
+          name: 'Promotion 4',
+          budget: '$2000',
+          status: 'paused',
+          impressions: '17899800',
+          clicks: '4',
+          adSpend: '$12500',
+          conversions: '150000',
+          sales: '$27815580',
+        },
+        {
+          name: 'Promotion 5',
+          budget: '$2',
+          status: 'notEligible',
+          impressions: '5',
+          clicks: '5',
+          adSpend: '$0',
+          conversions: '0',
+          sales: '$0',
+        },
+        {
+          name: 'Promotion 6',
+          budget: '$125',
+          status: 'pending',
+          impressions: '178998',
+          clicks: '6',
+          adSpend: '$125',
+          conversions: '178',
+          sales: '$178000',
+        },
+        {
+          name: 'Promotion 7',
+          budget: '$125',
+          status: 'draft',
+          impressions: '-',
+          clicks: '-',
+          adSpend: '-',
+          conversions: '-',
+          sales: '-',
+        },
+        {
+          name: 'Promotion 8',
+          budget: '$125',
+          status: 'draft',
+          impressions: '-',
+          clicks: '8',
+          adSpend: '-',
+          conversions: '-',
+          sales: '-',
+        },
+        {
+          name: 'Promotion 9',
+          budget: '$125',
+          status: 'draft',
+          impressions: '-',
+          clicks: '9',
+          adSpend: '-',
+          conversions: '-',
+          sales: '-',
+        },
+        {
+          name: 'Promotion 10',
+          budget: '$125',
+          status: 'draft',
+          impressions: '-',
+          clicks: '10',
+          adSpend: '-',
+          conversions: '-',
+          sales: '-',
         },
       ],
       nextPageToken: 'test-de-token',
     };
 
+    if (
+      state.reporting.request.ordering.campaignsPerformances.clicks
+      === QueryOrderDirection.ASCENDING
+    ) {
+      result.campaignsPerformanceList = [...result.campaignsPerformanceList].reverse();
+    }
+
     commit(MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES, result);
   },
 
   async [ActionsTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](
-    {commit, rootState, state}, payload: QueryOrderDirection,
+    {commit, rootState, state},
   ) {
     /*
     const query = new URLSearchParams({
       startDate: state.reporting.dateRange.startDate,
       endDate: state.reporting.dateRange.endDate,
+      order: state.reporting.request.ordering.productsPerformances,
     });
     // add order in array format
     query.append('order["click"]', payload);
@@ -344,6 +481,7 @@ export default {
     const query = new URLSearchParams({
       startDate: state.reporting.dateRange.startDate,
       endDate: state.reporting.dateRange.endDate,
+      order: state.reporting.request.ordering.productsDimensionsPerformances,
     });
     // add order in array format
     query.append('order["click"]', payload);

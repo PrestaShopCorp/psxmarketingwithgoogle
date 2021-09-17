@@ -5,34 +5,34 @@
     >
       <b-button
         variant="link"
-        class="font-weight-normal ps_gs-fz-12 p-0 m-0"
+        class="p-0 m-0 font-weight-normal ps_gs-fz-12"
       >
-        {{ name }}
+        {{ campaign.name }}
       </b-button>
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ budget }}
+      {{ campaign.budget }}
     </b-td>
     <b-td
       class="ps_gs-fz-12 ps_gs-cell-status"
-      :class="`ps_gs-cell-status--${status}`"
+      :class="`ps_gs-cell-status--${campaign.status}`"
     >
-      {{ $t(`campaigns.status.${status}`) }}
+      {{ $t(`campaigns.status.${campaign.status}`) }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ impression }}
+      {{ campaign.impressions }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ clicks }}
+      {{ campaign.clicks }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ adSpent }}
+      {{ campaign.adSpend }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ conversions }}
+      {{ campaign.conversions }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ sales }}
+      {{ campaign.sales }}
     </b-td>
   </b-tr>
 </template>
@@ -44,36 +44,8 @@ export default {
   mixins: [StickyColumnsObserver],
   name: 'CampaignsPerformanceTableRow',
   props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    budget: {
-      type: String,
-      required: true,
-    },
-    status: {
-      type: String,
-      required: true,
-    },
-    impression: {
-      type: String,
-      required: true,
-    },
-    clicks: {
-      type: String,
-      required: true,
-    },
-    adSpent: {
-      type: String,
-      required: true,
-    },
-    conversions: {
-      type: String,
-      required: true,
-    },
-    sales: {
-      type: String,
+    campaign: {
+      type: Object,
       required: true,
     },
   },

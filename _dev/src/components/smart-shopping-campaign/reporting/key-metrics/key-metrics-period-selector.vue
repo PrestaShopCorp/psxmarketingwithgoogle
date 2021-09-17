@@ -64,7 +64,7 @@ export default {
         return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PERIOD_SELECTED'];
       },
       set(period) {
-        this.$store.commit('smartShoppingCampaigns/SET_REPORTING_PERIOD_SELECTED', period);
+        this.$store.dispatch('smartShoppingCampaigns/CHANGE_REPORTING_DATES', period);
       },
     },
   },

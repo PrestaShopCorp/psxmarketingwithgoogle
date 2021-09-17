@@ -1,15 +1,18 @@
 <template>
   <div id="reporting-page">
     <KeyMetricsBlock />
+    <CampaignsPerformanceTable />
   </div>
 </template>
 
 <script>
+import CampaignsPerformanceTable from '../components/smart-shopping-campaign/reporting/campaigns-performance/campaigns-performance-table.vue';
 import KeyMetricsBlock from '../components/smart-shopping-campaign/reporting/key-metrics/key-metrics-block.vue';
 
 export default {
   components: {
     KeyMetricsBlock,
+    CampaignsPerformanceTable,
   },
   computed: {
     remarketingTagIsSetted() {
@@ -29,7 +32,7 @@ export default {
   mounted() {
     this.getDatas()
       .then(() => {
-        if (!this.googleAdsChosen || !this.remarketingTagIsSetted) {
+        if (!this.googleAdsChosen || this.remarketingTagIsSetted) {
           this.$router.push({
             name: 'onboarding',
           });
