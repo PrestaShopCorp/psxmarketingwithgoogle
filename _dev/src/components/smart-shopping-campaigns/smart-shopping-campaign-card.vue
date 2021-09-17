@@ -120,7 +120,10 @@ export default {
       return this.$i18n.t('smartShoppingCampaignCreation.enableCreationRemarketingTag');
     },
     SSCExist() {
-      //  TODO return if a SSC already exists to display toggle tag
+      const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      if (campaigns.length) {
+        return true;
+      }
       return false;
     },
   },

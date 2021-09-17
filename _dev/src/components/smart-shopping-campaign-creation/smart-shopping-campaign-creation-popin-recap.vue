@@ -1,17 +1,17 @@
 <template>
   <ps-modal
-    id="SmartShoppingCampaignCreationPopinRecap"
+    id="SSCCreationPopinRecap"
+    ref="modal"
     :title="$t('smartShoppingCampaignCreation.recapTitle')"
     v-bind="$attrs"
     @close="cancel"
-    ref="SmartShoppingCampaignCreationPopinRecap"
   >
     <dl class="w-100 d-inline-block">
       <dt class="font-weight-600">
         {{ $t('smartShoppingCampaignCreation.inputNameLabel') }}
       </dt>
       <dd class="text-secondary mb-3">
-        {{ campaignDetails.name }}
+        {{ newCampaign.campaignName }}
       </dd>
       <dt class="font-weight-600">
         {{ $t('smartShoppingCampaignCreation.inputDurationLabel') }}
@@ -27,7 +27,7 @@
               {{ $t('smartShoppingCampaignCreation.inputDurationLabel1') }}
             </span><br>
             <span class="text-secondary">
-              {{ campaignDetails.duration.startDate }}
+              {{ newCampaign.startDate }}
             </span>
           </b-col>
           <b-col
@@ -38,7 +38,7 @@
               {{ $t('smartShoppingCampaignCreation.inputDurationLabel2') }}
             </span><br>
             <span class="text-secondary">
-              {{ campaignDetails.duration.endDate }}
+              {{ newCampaign.endDate }}
             </span>
           </b-col>
         </b-form-row>
@@ -47,22 +47,37 @@
         {{ $t('smartShoppingCampaignCreation.inputCountryLabel') }}
       </dt>
       <dd class="text-secondary mb-3">
-        {{ campaignDetails.targetCountry }}
+        {{ newCampaign.targetCountry }}
       </dd>
       <dt class="font-weight-600">
         {{ $t('smartShoppingCampaignCreation.recapFiltersLabel') }}
       </dt>
       <dd class="text-secondary mb-3">
-        <template v-if="campaignDetails.filters.length === 0">
+        <template v-if="newCampaign.productFilters.length === 0">
           {{ $t('smartShoppingCampaignCreation.recapNoFiltersDescription') }}
         </template>
-        <!-- TODO v-else -->
+        <template v-else>
+          <div
+            v-for="(filter, index) in newCampaign.productFilters"
+            :key="index"
+          >
+            <template>
+              titre : {{ filter.dimension }}
+              <div
+                v-for="(oneValue, indexValue) in filter.values"
+                :key="indexValue"
+              >
+                value : {{ oneValue }}
+              </div>
+            </template>
+          </div>
+        </template>
       </dd>
       <dt class="font-weight-600">
         {{ $t('smartShoppingCampaignCreation.inputBudgetFeedback') }}
       </dt>
       <dd class="text-secondary mb-2">
-        {{ campaignBudgetString }}
+        {{ newCampaign.dailyBudget }} {{ newCampaign.currencyCode }}
       </dd>
     </dl>
     <p>
@@ -72,7 +87,7 @@
       slot="modal-footer"
     >
       <b-button
-        variant="invisible"
+        variant="outline-secondary"
         class="text-secondary"
         @click="cancel"
       >
@@ -92,46 +107,30 @@
 import PsModal from '../commons/ps-modal';
 
 export default {
-  name: 'SmartShoppingCampaignCreationPopinRecap',
+  name: 'SSCCreationPopinRecap',
   components: {
     PsModal,
   },
-  computed: {
-    campaignDetails() {
-      const campaignDetails = {
-        // TODO: get details from store
-        name: 'foo bar',
-        duration: {
-          startDate: '08/30/2021',
-          endDate: '11/30/2021',
-        },
-        targetCountry: 'France',
-        filters: [],
-        dailyBudget: 125,
-        currency: {
-          symbol: '$',
-          abbreviation: 'USD',
-        },
-      };
-      return campaignDetails;
-    },
-    campaignBudgetString() {
-      const {
-        dailyBudget,
-        currency: {
-          symbol,
-          abbreviation,
-        },
-      } = this.campaignDetails;
-      return `${dailyBudget}${symbol} ${abbreviation}`;
+  props: {
+    newCampaign: {
+      require: true,
+      type: Object,
     },
   },
+
   methods: {
     cancel() {
-
+      this.$refs.modal.hide();
     },
     ok() {
-
+      const finalCampaign = {
+        ...this.newCampaign,
+        // API wants country code not name so we have to filter it
+        targetCountry: this.$options.filters.changeCountriesNamesToCodes(
+          [this.newCampaign.targetCountry],
+        )[0],
+      };
+      this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign);
     },
   },
 };

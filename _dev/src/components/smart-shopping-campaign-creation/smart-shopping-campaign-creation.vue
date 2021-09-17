@@ -58,6 +58,7 @@
             :placeholder="$t('smartShoppingCampaignCreation.inputNamePlaceholder')"
             class="maxw-sm-420"
             :state="campaignNameFeedback"
+            :invalid-feedback="$t('smartShoppingCampaignCreation.inputCampaignNameInvalidFeedback')"
           />
         </b-form-group>
         <b-form-group
@@ -248,7 +249,7 @@
           </b-button>
           <b-button
             data-test-id="createCampaignButton"
-            @click="createCampaign"
+            @click="openPopinRecap"
             size="sm"
             :disabled="disableCreateCampaign"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
@@ -260,12 +261,17 @@
       </b-form>
     </b-card-body>
     <SmartShoppingCampaignCreationFilterPopin ref="SmartShoppingCampaignCreationFilterPopin" />
+    <SmartShoppingCampaignCreationPopinRecap
+      ref="SmartShoppingCampaignCreationPopinRecap"
+      :new-campaign="finalCampaign"
+    />
   </b-card>
 </template>
 
 <script>
 import countriesSelectionOptions from '@/assets/json/countries.json';
 import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-creation-filter-popin.vue';
+import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 
 export default {
@@ -287,6 +293,7 @@ export default {
   },
   components: {
     SmartShoppingCampaignCreationFilterPopin,
+    SmartShoppingCampaignCreationPopinRecap,
     SelectCountry,
   },
   computed: {
@@ -359,6 +366,18 @@ export default {
         );
       },
     },
+    finalCampaign() {
+      return {
+        campaignName: this.campaignName,
+        dailyBudget: this.campaignDailyBudget,
+        currencyCode: this.currency,
+        startDate: this.campaignDurationStartDate,
+        endDate: this.campaignDurationEndDate,
+        // Countries is still an array because refacto later for multiple countries
+        targetCountry: this.countries[0],
+        productFilters: this.filtersChosen,
+      };
+    },
   },
   methods: {
     debounceName() {
@@ -370,20 +389,10 @@ export default {
     cancel() {
       // TODO
     },
-    createCampaign() {
-      const campaign = {
-        campaignName: this.campaignName,
-        dailyBudget: this.campaignDailyBudget,
-        currencyCode: this.currency,
-        startDate: this.campaignDurationStartDate,
-        endDate: this.campaignDurationEndDate,
-        // Countries is still an array because refacto later for multiple countries
-        // API wants country code not name so we have to filter it
-        targetCountry: this.$options.filters.changeCountriesNamesToCodes(this.countries)[0],
-        productFilters: this.filtersChosen,
-
-      };
-      this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', campaign);
+    openPopinRecap() {
+      this.$bvModal.show(
+        this.$refs.SmartShoppingCampaignCreationPopinRecap.$refs.modal.id,
+      );
     },
     isCompatibleWithCurrency(country) {
       const currentCountry = countriesSelectionOptions.find((el) => el.country === country);

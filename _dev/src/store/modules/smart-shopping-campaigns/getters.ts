@@ -20,7 +20,11 @@
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {
+<<<<<<< HEAD
   CampaignPerformances,
+=======
+  CampaignObject,
+>>>>>>> 2f7b3f73 (change of route + base 64)
   Kpis,
   State as LocalState,
 } from './state';
@@ -46,6 +50,12 @@ export default {
     state: LocalState,
   ): boolean {
     return state.tracking !== null && state.tracking;
+  },
+  [GettersTypes.GET_ERROR_CAMPAIGN_NAME](state: LocalState): boolean|null {
+    return state.errorCampaignNameExists;
+  },
+  [GettersTypes.GET_ALL_SSC](state: LocalState): Array<CampaignObject> {
+    return state.campaigns;
   },
 
   // request getters
@@ -116,4 +126,5 @@ export default {
   ): boolean|null {
     return state.errorCampaignNameExists;
   },
+
 };

@@ -44,6 +44,7 @@ export default {
           }),
         });
       if (!resp.ok) {
+        commit(MutationsTypes.SAVE_NEW_SSC, payload);
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
@@ -57,7 +58,8 @@ export default {
   async [ActionsTypes.CHECK_CAMPAIGN_NAME_ALREADY_EXISTS]({rootState, commit}, payload : string) {
     try {
       commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, false);
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/${payload}`,
+      const campaignFinalName = btoa(payload);
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns?campaign_name=${campaignFinalName}`,
         {
           method: 'GET',
           headers: {
@@ -67,6 +69,7 @@ export default {
           },
         });
       if (!resp.ok) {
+        commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
@@ -74,6 +77,7 @@ export default {
         commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       }
     } catch (error) {
+      commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       console.error(error);
     }
   },

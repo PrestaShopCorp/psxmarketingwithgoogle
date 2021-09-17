@@ -95,8 +95,11 @@ export default {
   },
   computed: {
     SSCExist() {
-      //  TODO return if a SSC already exists to display toggle tag and toggle pause
-      return true;
+      const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      if (campaigns.length) {
+        return true;
+      }
+      return false;
     },
   },
 };
