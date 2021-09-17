@@ -292,9 +292,11 @@ export default {
   computed: {
     disableCreateCampaign() {
       if (this.campaignName
+      && this.errorCampaignNameExistsAlready === false
       && this.campaignDurationStartDate
       && this.countries
-      && (this.campaignProductsFilter || this.filtersChosen.length)
+      && (this.campaignProductsFilter === true
+      || (this.campaignProductsFilter === false && this.filtersChosen.length))
       && this.campaignDailyBudget) {
         return false;
       }
