@@ -38,8 +38,10 @@ class PageViewEventDataProvider
     /**
      * Return the items concerned by the transaction
      * https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce#action-data
+     *
+     * @return ConversionEventData|null
      */
-    public function getEventData($sendTo): ConversionEventData
+    public function getEventData($sendTo)
     {
         if ($this->context->controller instanceof \ProductControllerCore) {
             /** @var \ProductControllerCore $controller */
@@ -51,5 +53,7 @@ class PageViewEventDataProvider
                 ->setCurrency($this->context->currency->iso_code)
                 ->setValue((string) $product['price_amount']);
         }
+
+        return null;
     }
 }

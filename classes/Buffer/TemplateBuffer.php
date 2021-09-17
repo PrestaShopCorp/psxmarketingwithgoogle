@@ -20,7 +20,6 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Buffer;
 
-use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class TemplateBuffer
@@ -69,6 +68,7 @@ class TemplateBuffer
         foreach ($this->session->getFlashBag()->get('gtag_events', []) as $message) {
             $data .= $message;
         }
+
         return $data;
     }
 }

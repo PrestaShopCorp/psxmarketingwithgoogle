@@ -40,7 +40,7 @@ class ConversionEventDataProvider
     public function getActionDataByOrderObject(Order $order): ConversionEventData
     {
         return (new ConversionEventData())
-            ->setTransactionId($order->id)
+            ->setTransactionId((string) $order->id)
             ->setValue((string) $order->total_paid_tax_incl)
             ->setCurrency((new Currency($order->id_currency))->iso_code);
     }

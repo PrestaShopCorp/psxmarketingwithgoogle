@@ -29,15 +29,16 @@ class ConversionEventData implements JsonSerializable
 {
     /**
      * Value (i.e. revenue) associated with the event.
+     *
      * @var string
      */
     protected $value;
-    
+
     /**
      * @var string
      */
     protected $currency;
-    
+
     /**
      * @var string
      */
@@ -45,6 +46,7 @@ class ConversionEventData implements JsonSerializable
 
     /**
      * The transaction ID (e.g. T1234).
+     *
      * @var string|null
      */
     protected $transactionId;
@@ -59,6 +61,7 @@ class ConversionEventData implements JsonSerializable
         if ($this->transactionId) {
             $eventData['transaction_id'] = $this->transactionId;
         }
+
         return $eventData;
     }
 
@@ -72,10 +75,10 @@ class ConversionEventData implements JsonSerializable
     /**
      * Set value (i.e. revenue) associated with the event.
      *
-     * @param  string|null  $value  Value (i.e. revenue) associated with the event.
+     * @param string|null $value Value (i.e. revenue) associated with the event.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setValue($value)
     {
         $this->value = $value;
@@ -84,10 +87,10 @@ class ConversionEventData implements JsonSerializable
     }
 
     /**
-     * @param  string|null  $currency 
+     * @param string|null $currency
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setCurrency($currency)
     {
         $this->currency = $currency;
@@ -96,10 +99,10 @@ class ConversionEventData implements JsonSerializable
     }
 
     /**
-     * @param  string|null  $sendTo 
+     * @param string|null $sendTo
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setSendTo($sendTo)
     {
         $this->sendTo = $sendTo;
