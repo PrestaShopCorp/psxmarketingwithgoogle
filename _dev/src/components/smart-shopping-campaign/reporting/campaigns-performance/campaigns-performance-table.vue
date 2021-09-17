@@ -3,8 +3,8 @@
     <ReportingTableHeader
       :title="$t('campaigns.campaignsPerformanceTable.title')"
       :subtitle="$t('campaigns.campaignsPerformanceTable.subTitle')"
-      start-date="04/06/2021"
-      end-date="04/07/2021"
+      :start-date="reportingStartDate"
+      :end-date="reportingEndDate"
     />
     <b-table-simple
       id="table-campaigns-performance"
@@ -112,6 +112,12 @@ export default {
     },
   },
   computed: {
+    reportingStartDate() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FORMATTED_START_DATES'];
+    },
+    reportingEndDate() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FORMATTED_END_DATES'];
+    },
     campaignHeaderList() {
       return Object.values(CampaignPerformanceHeaderType);
     },

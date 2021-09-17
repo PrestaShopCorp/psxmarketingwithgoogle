@@ -17,15 +17,28 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {
   CampaignPerformances,
   Kpis,
-  OrderByType,
   State as LocalState,
 } from './state';
 import GettersTypes from './getters-types';
-import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import KpiType from '@/enums/reporting/KpiType';
+import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
+
+import 'dayjs/locale/de';
+import 'dayjs/locale/en';
+import 'dayjs/locale/es';
+import 'dayjs/locale/fr';
+import 'dayjs/locale/it';
+import 'dayjs/locale/nl';
+import 'dayjs/locale/pt';
+import 'dayjs/locale/pl';
+import 'dayjs/locale/ru';
+
+dayjs.extend(localizedFormat);
 
 export default {
   [GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET](
@@ -39,6 +52,26 @@ export default {
     state: LocalState,
   ): ReportingPeriod {
     return state.reporting.request.dateRange.periodSelected;
+  },
+  [GettersTypes.GET_REPORTING_START_DATES](
+    state: LocalState,
+  ): string {
+    return state.reporting.request.dateRange.startDate;
+  },
+  [GettersTypes.GET_REPORTING_END_DATES](
+    state: LocalState,
+  ): string {
+    return state.reporting.request.dateRange.endDate;
+  },
+  [GettersTypes.GET_REPORTING_FORMATTED_START_DATES](
+    state: LocalState,
+  ): string {
+    return dayjs(state.reporting.request.dateRange.startDate).locale(window.i18nSettings.isoCode).format('L');
+  },
+  [GettersTypes.GET_REPORTING_FORMATTED_END_DATES](
+    state: LocalState,
+  ): string {
+    return dayjs(state.reporting.request.dateRange.endDate).locale(window.i18nSettings.isoCode).format('L');
   },
   [GettersTypes.GET_REPORTING_DAILY_RESULT_TYPE](
     state: LocalState,
