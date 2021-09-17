@@ -113,7 +113,7 @@ export default {
   },
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](
     state: LocalState,
-  ): boolean {
+  ): boolean|null {
     return state.errorCampaignNameExists;
   },
 };
