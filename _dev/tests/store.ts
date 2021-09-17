@@ -16,8 +16,8 @@ export const cloneStore = () => {
       app: cloneDeep(app),
       accounts: cloneDeep(accounts),
       productFeed: cloneDeep(productFeed),
-      googleAds: cloneDeep(googleAds),
       freeListing: cloneDeep(freeListing),
+      googleAds: cloneDeep(googleAds),
       smartShoppingCampaigns: cloneDeep(smartShoppingCampaigns),
     },
   };

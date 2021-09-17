@@ -239,12 +239,13 @@ export default {
     Stepper,
     SelectCountry,
   },
+
   data() {
     return {
       newAccountInfos: {
         name: '',
-        country: this.$store.getters['app/GET_ACTIVE_COUNTRIES'] || '',
-        currency: this.$store.getters['app/GET_CURRENT_CURRENCY'] || '',
+        country: '',
+        currency: '',
         timeZone: this.accountInformations?.timeZone || '',
       },
       stepActiveData: 1,
@@ -298,6 +299,10 @@ export default {
       type: GoogleAccountContext,
       default: null,
     },
+    stepActive: {
+      type: Number,
+      default: 1,
+    },
   },
   computed: {
     accountInformations() {
@@ -313,7 +318,8 @@ export default {
     },
     selectedCurrency: {
       get() {
-        return this.newAccountInfos.currency;
+        return this.newAccountInfos.currency
+          ? this.newAccountInfos.currency : this.$store.getters['app/GET_CURRENT_CURRENCY'];
       },
       set(value) {
         this.newAccountInfos.currency = value;
@@ -344,6 +350,9 @@ export default {
         )
         .sort();
     },
+  },
+  mounted() {
+    this.stepActiveData = this.stepActive;
   },
   googleUrl,
   countriesSelectionOptions,
