@@ -516,7 +516,11 @@
         "averageCpc" : "Average CPC",
         "conversions" : "Conversions",
         "conversionsRate" : "Conversions rate",
-        "productFilter" : "Product filter"
+        "productFilter" : "Product filter",
+        "duration" : "Duration date",
+        "target" : "Target",
+        "actions" : "Actions",
+        "dailyBudget" : "Daily budget"
       },
       "tooltipCol" : {
         "status" : "Placeholder tooltip status"

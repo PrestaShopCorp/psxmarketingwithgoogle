@@ -85,3 +85,11 @@
     font-size: inherit;
   }
 }
+
+
+.btn-max-width {
+  max-width: 30ch;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}

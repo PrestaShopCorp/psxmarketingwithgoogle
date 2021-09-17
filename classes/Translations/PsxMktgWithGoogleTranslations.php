@@ -508,6 +508,10 @@ class PsxMktgWithGoogleTranslations
                     'conversions' => $this->module->l('Conversions', 'PsxMktgWithGoogleTranslations'),
                     'conversionsRate' => $this->module->l('Conversions rate', 'PsxMktgWithGoogleTranslations'),
                     'productFilter' => $this->module->l('Product filter', 'PsxMktgWithGoogleTranslations'),
+                    'duration' => $this->module->l('Duration date', 'PsxMktgWithGoogleTranslations'),
+                    'target' => $this->module->l('Target', 'PsxMktgWithGoogleTranslations'),
+                    'actions' => $this->module->l('Actions', 'PsxMktgWithGoogleTranslations'),
+                    'dailyBudget' => $this->module->l('Daily budget', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'tooltipCol' => [
                     'status' => $this->module->l('Placeholder tooltip status', 'PsxMktgWithGoogleTranslations'),
