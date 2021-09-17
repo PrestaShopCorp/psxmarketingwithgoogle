@@ -53,6 +53,7 @@
           </template>
           <b-form-input
             id="campaign-name-input"
+            @keyup="debounceName()"
             v-model="campaignName"
             :placeholder="$t('smartShoppingCampaignCreation.inputNamePlaceholder')"
             class="maxw-sm-420"
@@ -278,17 +279,10 @@ export default {
       filtersChosen: [{
         dimension: null,
         values: [],
-      },
-      {
-        dimension: null,
-        values: [],
-      },
-      {
-        dimension: null,
-        values: [],
       }],
       campaignDailyBudget: null,
       budgetCurrencySymbol: '$',
+      timer: null,
     };
   },
   components: {
@@ -307,20 +301,25 @@ export default {
       return true;
     },
     campaignNameFeedback() {
-      // TODO
-      // Check if length < 125 and if name is unique
-      const isUnique = true;
-      if ((this.campaignName == null) || this.campaignName === '') {
+      if (!this.campaignName === null || this.errorCampaignNameExistsAlready === null) {
         return null;
       }
 
-      if (this.campaignName.indexOf('\n') || this.campaignName.indexOf('\r')) {
-        return null;
+      if (this.campaignName
+        && this.campaignName.length <= 125
+       && this.campaignName.length > 0
+        && this.errorCampaignNameExistsAlready === false
+      ) {
+        return true;
       }
-
-      return !!((this.campaignName.length <= 125
-          && this.campaignName.length > 0
-          && isUnique));
+      if (this.campaignName
+        || this.campaignName.length <= 125
+        || this.campaignName.length > 0
+        || this.errorCampaignNameExistsAlready === true
+      ) {
+        return false;
+      }
+      return null;
     },
     campaignDailyBudgetFeedback() {
       // TODO
@@ -348,6 +347,9 @@ export default {
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
+    errorCampaignNameExistsAlready() {
+      return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
+    },
     countries: {
       get() {
         return this.$options.filters.changeCountriesCodesToNames(
@@ -357,6 +359,12 @@ export default {
     },
   },
   methods: {
+    debounceName() {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.$store.dispatch('smartShoppingCampaigns/CHECK_CAMPAIGN_NAME_ALREADY_EXISTS', this.campaignName);
+      }, 3000);
+    },
     cancel() {
       // TODO
     },
@@ -386,6 +394,13 @@ export default {
       this.$bvModal.show(
         this.$refs.SmartShoppingCampaignCreationFilterPopin.$refs.modal.id,
       );
+    },
+  },
+  watch: {
+    campaignName(oldVal, newVal) {
+      if ((newVal !== oldVal) && this.errorCampaignNameExistsAlready !== null) {
+        this.$store.commit('smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS', false);
+      }
     },
   },
   countriesSelectionOptions,

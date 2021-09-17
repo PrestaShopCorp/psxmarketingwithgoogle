@@ -111,4 +111,9 @@ export default {
   ): string {
     return state.reporting.results.campaignsPerformancesSection.nextPageToken;
   },
+  [GettersTypes.GET_ERROR_CAMPAIGN_NAME](
+    state: LocalState,
+  ): boolean {
+    return state.errorCampaignNameExists;
+  },
 };

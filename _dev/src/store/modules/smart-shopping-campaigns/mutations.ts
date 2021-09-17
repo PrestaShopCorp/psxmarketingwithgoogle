@@ -81,4 +81,7 @@ export default {
   [MutationsTypes.SAVE_NEW_SSC](state: LocalState, payload: CampaignObject) {
     state.campaigns.push(payload);
   },
+  [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](state: LocalState, payload: boolean) {
+    state.errorCampaignNameExists = payload;
+  },
 };

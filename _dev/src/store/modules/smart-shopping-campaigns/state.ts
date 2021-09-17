@@ -23,7 +23,8 @@ import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 
 export interface State {
-  campaigns: Array<CampaignObject>,
+  campaigns: Array<CampaignObject>;
+  errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
   tagAlreadyExists: boolean;
   reporting: Reporting;
@@ -149,6 +150,7 @@ export interface ProductPartitionPerformances {
 
 export const state: State = {
   campaigns: [],
+  errorCampaignNameExists: null,
   tracking: false,
   tagAlreadyExists: false,
   reporting: {

@@ -54,6 +54,31 @@ export default {
     }
   },
 
+  async [ActionsTypes.CHECK_CAMPAIGN_NAME_ALREADY_EXISTS]({rootState, commit}, payload : string) {
+    try {
+      commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, false);
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/${payload}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+      if (!resp.ok) {
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+      const json = await resp.json();
+      console.log('json', json);
+      if (json.campaignName) {
+        commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
   async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAG](
     {commit, rootState}, payload: boolean,
   ) {
