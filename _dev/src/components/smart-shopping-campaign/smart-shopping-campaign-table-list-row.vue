@@ -34,21 +34,35 @@
         variant="invisible"
         no-caret
         :id="`actions-menu-campaign-${campaign.name}`"
-        class="ps-dropdown psxmarketingwithgoogle-dropdown py-0 pr-0"
+        class="ps-dropdown psxmarketingwithgoogle-dropdown w-auto py-0 pr-0"
         menu-class="ps-dropdown__menu-small rounded"
+        toggle-class="px-1"
         boundary="window"
       >
         <template #button-content>
-          <i class="material-icons ps_gs-fz-20">more_vert</i>
+          <i class="material-icons ps_gs-fz-20 mx-auto">more_vert</i>
           <span class="sr-only">Open actions menu for campaign {{campaign.name}}</span>
         </template>
-        <b-dropdown-item>
+        <b-dropdown-item-button
+          @click="goToCampaignPage(campaign.name)"
+        >
           Modify the campaign
-        </b-dropdown-item>
-        <b-dropdown-item>
-          Pause the campaign
-        </b-dropdown-item>
-        <b-dropdown-item>
+        </b-dropdown-item-button>
+        <b-dropdown-item-button
+          @click="isPaused()
+            ? resumeCampaign()
+            : pauseCampaign()"
+        >
+          {{ isPaused()
+            ? 'Resume campaign'
+            : 'Pause campaign'
+          }}
+        </b-dropdown-item-button>
+        <b-dropdown-item
+          href="//google.com"
+          target="_blank"
+          link-class="external_link-no_icon"
+        >
           View in GMC
         </b-dropdown-item>
       </b-dropdown>
@@ -66,6 +80,22 @@ export default {
     campaign: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    goToCampaignPage() {
+      // TODO Go to campaign page to edit it
+      console.log('goToCampaignPage', this.campaign.name);
+    },
+    isPaused() {
+      // TODO handle if paused or not
+      return this.campaign.status === 'paused';
+    },
+    pauseCampaign() {
+      console.log('pauseCampaign', this.campaign.name);
+    },
+    resumeCampaign() {
+      console.log('resumeCampaign', this.campaign.name);
     },
   },
 };

@@ -101,6 +101,7 @@ export default {
   data() {
     return {
       loading: false,
+      sortDirection: 'asc',
       items: [],
       fields: [
         {
@@ -145,9 +146,17 @@ export default {
           dailyBudget : '$25',
         },
         {
-          name: 'Smart shopping campaign avec un nom vraiemnt long, car la limite de caractères est de 125 pour une smart shopping campaign...',
+          name: 'Smart shopping campaign avec un nom vraiment long, car la limite de caractères est de 125 pour une smart shopping campaign...',
           duration : '2021/03/01 - 2021/12/31',
           status : 'eligible',
+          target : 'France',
+          product : 'All synced products',
+          dailyBudget : '$25',
+        },
+        {
+          name: 'Smart shopping campaign',
+          duration : '2021/03/01 - 2021/12/31',
+          status : 'paused',
           target : 'France',
           product : 'All synced products',
           dailyBudget : '$25',
