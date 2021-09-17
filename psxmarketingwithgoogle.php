@@ -205,11 +205,6 @@ class PsxMarketingWithGoogle extends Module
         return $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__, $params);
     }
 
-    public function hookActionCartUpdateQuantityBefore($params)
-    {
-        return $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__, $params);
-    }
-
     /**
      * return __FILE__
      *

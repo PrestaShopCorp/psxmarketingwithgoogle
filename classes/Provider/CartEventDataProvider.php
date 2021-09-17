@@ -20,28 +20,32 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
-use PrestaShop\Module\PsxMarketingWithGoogle\DTO\Remarketing\ActionData;
+use Context;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\ConversionEventData;
 
 class CartEventDataProvider
 {
     /**
-     * @var ProductDataProvider
+     * @var Context
      */
-    protected $productDataProvider;
+    protected $context;
 
-    public function __construct(ProductDataProvider $productDataProvider)
+    public function __construct(Context $context)
     {
-        $this->productDataProvider = $productDataProvider;
+        $this->context = $context;
     }
 
     /**
      * Return the items concerned by the transaction
      * https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce#action-data
      */
-    public function getEventData($data): ActionData
+    public function getEventData($sendTo, $data): ConversionEventData
     {
-        return (new ActionData())
-            ->setSendTo('AW-302424131/dzZyCJDx3fQCEMPAmpAB')
-            ->setItems([$this->productDataProvider->getProductDataByProductObject($data)]);
+        $product = $data['product'];
+
+        return (new ConversionEventData())
+            ->setSendTo($sendTo)
+            ->setCurrency($this->context->currency->iso_code)
+            ->setValue($product->price);
     }
 }

@@ -1,27 +1,16 @@
 services:
-  PrestaShop\Module\PsxMarketingWithGoogle\Provider\CategoryProvider:
-    class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\CategoryProvider
-    arguments:
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\CategoryRepository'
-
   PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider
     arguments:
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider'
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Provider\ActionDataProvider'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Provider\ConversionEventDataProvider'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider
     arguments:
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider'
+      - '@psxmarketingwithgoogle.context'
 
-  PrestaShop\Module\PsxMarketingWithGoogle\Provider\ActionDataProvider:
-    class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\ActionDataProvider'
+  PrestaShop\Module\PsxMarketingWithGoogle\Provider\ConversionEventDataProvider:
+    class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\ConversionEventDataProvider'
     arguments:
       - '@psxmarketingwithgoogle.context'
 
-  PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider:
-    class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider'
-    arguments:
-      - '@psxmarketingwithgoogle.context'
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Provider\CategoryProvider'

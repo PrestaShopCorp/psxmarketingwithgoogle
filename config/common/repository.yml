@@ -8,11 +8,6 @@ services:
     arguments:
       - '@psxmarketingwithgoogle.db'
       - '@psxmarketingwithgoogle.context'
-  
-  PrestaShop\Module\PsxMarketingWithGoogle\Repository\CategoryRepository:
-    class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\CategoryRepository
-    arguments:
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository

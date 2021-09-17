@@ -24,7 +24,6 @@ use Context;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Buffer\TemplateBuffer;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
-use PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider;
 use PsxMarketingWithGoogle;
@@ -56,6 +55,11 @@ class RemarketingHookHandler
      */
     protected $active;
 
+    /**
+     * @var array
+     */
+    protected $conversionLabels;
+
     public function __construct(ConfigurationAdapter $configurationAdapter, TemplateBuffer $templateBuffer, Context $context, $module)
     {
         $this->configurationAdapter = $configurationAdapter;
@@ -65,6 +69,9 @@ class RemarketingHookHandler
 
         $this->active = (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS)
             && (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG);
+
+        $this->conversionLabels = json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS), true)
+            ?: [];
     }
 
     public function handleHook(string $hookName, array $data = []): string
@@ -75,9 +82,12 @@ class RemarketingHookHandler
 
         switch ($hookName) {
             case 'hookDisplayOrderConfirmation':
+                if (($sendTo = $this->getSendTo(Config::REMARKETING_CONVERSION_LABEL_PURCHASE)) === null) {
+                    break;
+                }
+
                 $this->context->smarty->assign([
-                    'eventName' => 'purchase',
-                    'eventData' => $this->module->getService(PurchaseEventDataProvider::class)->getEventData($data['order']),
+                    'eventData' => $this->module->getService(PurchaseEventDataProvider::class)->getEventData($sendTo, $data['order']),
                 ]);
                 $this->templateBuffer->add(
                     $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
@@ -85,19 +95,14 @@ class RemarketingHookHandler
                 break;
             
             case 'hookActionCartUpdateQuantityBefore':
+                if ($data['operator'] !== 'up') {
+                    break;
+                }
+                if (($sendTo = $this->getSendTo(Config::REMARKETING_CONVERSION_LABEL_ADD_TO_CART)) === null) {
+                    break;
+                }
                 $this->context->smarty->assign([
-                    'eventName' => $data['operator'] === 'up' ? 'add_to_cart' : 'remove_from_cart',
-                    'eventData' => $this->module->getService(CartEventDataProvider::class)->getEventData($data),
-                ]);
-                $this->templateBuffer->add(
-                    $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
-                );
-                break;
-
-            case 'hookActionObjectProductInCartDeleteBefore':
-                $this->context->smarty->assign([
-                    'eventName' => 'remove_from_cart',
-                    'eventData' => $this->module->getService(CartEventDataProvider::class)->getEventData($data),
+                    'eventData' => $this->module->getService(CartEventDataProvider::class)->getEventData($sendTo, $data),
                 ]);
                 $this->templateBuffer->add(
                     $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
@@ -116,5 +121,14 @@ class RemarketingHookHandler
         }
 
         return '';
+    }
+
+    private function getSendTo($eventName)
+    {
+        if (!empty($this->conversionLabels[$eventName])) {
+            return $this->conversionLabels[$eventName];
+        }
+
+        return null;
     }
 }

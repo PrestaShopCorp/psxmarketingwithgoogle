@@ -23,9 +23,9 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 use Context;
 use Currency;
 use Order;
-use PrestaShop\Module\PsxMarketingWithGoogle\DTO\Remarketing\ActionData;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\ConversionEventData;
 
-class ActionDataProvider
+class ConversionEventDataProvider
 {
     /**
      * @var Context
@@ -37,17 +37,14 @@ class ActionDataProvider
         $this->context = $context;
     }
 
-    public function getActionDataByOrderObject(Order $order): ActionData
+    public function getActionDataByOrderObject(Order $order): ConversionEventData
     {
-        $actionData = new ActionData();
+        $conversionEventData = new ConversionEventData();
 
-        $actionData->setId($order->id);
-        $actionData->setAffiliation($this->context->shop->name);
-        $actionData->setValue((string) $order->total_paid_tax_incl);
-        $actionData->setTax((string) ($order->total_paid_tax_incl - $order->total_paid_tax_excl));
-        $actionData->setShipping((string) $order->total_shipping);
-        $actionData->setCurrency((new Currency($order->id_currency))->iso_code);
+        $conversionEventData->setTransactionId($order->id);
+        $conversionEventData->setValue((string) $order->total_paid_tax_incl);
+        $conversionEventData->setCurrency((new Currency($order->id_currency))->iso_code);
 
-        return $actionData;
+        return $conversionEventData;
     }
 }

@@ -20,7 +20,7 @@
 <script>
     gtag(
         'event',
-        '{/literal}{$eventName}{literal}',
+        'conversion',
         {/literal}{$eventData|@json_encode nofilter}{literal}
     );
 </script>

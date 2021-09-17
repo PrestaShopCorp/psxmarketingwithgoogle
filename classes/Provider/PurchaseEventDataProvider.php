@@ -21,73 +21,30 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
 use Order;
-use PrestaShop\Module\PsxMarketingWithGoogle\DTO\Remarketing\ActionData;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\ConversionEventData;
 
 class PurchaseEventDataProvider
 {
     /**
-     * @var ProductDataProvider
+     * @var ConversionEventDataProvider
      */
-    protected $productDataProvider;
+    protected $conversionEventDataProvider;
 
-    /**
-     * @var ActionDataProvider
-     */
-    protected $actionDataProvider;
-
-    public function __construct(ProductDataProvider $productDataProvider, ActionDataProvider $actionDataProvider)
+    public function __construct(ConversionEventDataProvider $conversionEventDataProvider)
     {
-        $this->productDataProvider = $productDataProvider;
-        $this->actionDataProvider = $actionDataProvider;
+        $this->conversionEventDataProvider = $conversionEventDataProvider;
     }
 
     /**
      * Return the items concerned by the transaction
      */
-    public function getEventData(Order $order): ActionData
+    public function getEventData($sendTo, Order $order): ConversionEventData
     {
         // https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce#action-data
-        $actionData = $this->actionDataProvider->getActionDataByOrderObject($order);
-        /*
-            {
-                "transaction_id": "24.031608523954162",
-                "affiliation": "Google online store",
-                "value": 23.07,
-                "currency": "USD",
-                "tax": 1.24,
-                "shipping": 0,
-                "items": [
-                    {
-                        "id": "P12345",
-                        "name": "Android Warhol T-Shirt",
-                        "list_name": "Search Results",
-                        "brand": "Google",
-                        "category": "Apparel/T-Shirts",
-                        "variant": "Black",
-                        "list_position": 1,
-                        "quantity": 2,
-                        "price": "2.0"
-                    },
-                    {
-                        "id": "P67890",
-                        "name": "Flame challenge TShirt",
-                        "list_name": "Search Results",
-                        "brand": "MyBrand",
-                        "category": "Apparel/T-Shirts",
-                        "variant": "Red",
-                        "list_position": 2,
-                        "quantity": 1,
-                        "price": "3.0"
-                    }
-                ]
-            }
-        */
+        $conversionEventData = $this->conversionEventDataProvider->getActionDataByOrderObject($order);
+        $conversionEventData->setSendTo($sendTo);
+        //$conversionEventData->setSendTo('AW-302424131/QaNmCObn3fQCEMPAmpAB');
 
-        $items = [];
-        foreach ($order->getCartProducts() as $product) {
-            $items[] = $this->productDataProvider->getProductDataByProductArray($product);
-        }
-
-        return $actionData->setItems($items);
+        return $conversionEventData;
     }
 }
