@@ -21,11 +21,9 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
 use Context;
-use Currency;
-use Order;
 use PrestaShop\Module\PsxMarketingWithGoogle\DTO\ConversionEventData;
 
-class ConversionEventDataProvider
+class PageViewEventDataProvider
 {
     /**
      * @var Context
@@ -37,11 +35,21 @@ class ConversionEventDataProvider
         $this->context = $context;
     }
 
-    public function getActionDataByOrderObject(Order $order): ConversionEventData
+    /**
+     * Return the items concerned by the transaction
+     * https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce#action-data
+     */
+    public function getEventData($sendTo): ConversionEventData
     {
-        return (new ConversionEventData())
-            ->setTransactionId($order->id)
-            ->setValue((string) $order->total_paid_tax_incl)
-            ->setCurrency((new Currency($order->id_currency))->iso_code);
+        if ($this->context->controller instanceof \ProductControllerCore) {
+            /** @var \ProductControllerCore $controller */
+            $controller = $this->context->controller;
+            $product = $controller->getTemplateVarProduct();
+
+            return (new ConversionEventData())
+                ->setSendTo($sendTo)
+                ->setCurrency($this->context->currency->iso_code)
+                ->setValue((string) $product['price_amount']);
+        }
     }
 }

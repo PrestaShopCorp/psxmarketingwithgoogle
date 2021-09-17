@@ -43,7 +43,6 @@ class PurchaseEventDataProvider
         // https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce#action-data
         $conversionEventData = $this->conversionEventDataProvider->getActionDataByOrderObject($order);
         $conversionEventData->setSendTo($sendTo);
-        //$conversionEventData->setSendTo('AW-302424131/QaNmCObn3fQCEMPAmpAB');
 
         return $conversionEventData;
     }

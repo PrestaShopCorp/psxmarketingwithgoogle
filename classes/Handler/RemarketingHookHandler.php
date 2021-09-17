@@ -26,6 +26,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Buffer\TemplateBuffer;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\PageViewEventDataProvider;
 use PsxMarketingWithGoogle;
 
 class RemarketingHookHandler
@@ -81,6 +82,18 @@ class RemarketingHookHandler
         }
 
         switch ($hookName) {
+            case 'hookDisplayTop':
+                if (($sendTo = $this->getSendTo(Config::REMARKETING_CONVERSION_LABEL_PAGE_VIEW)) === null) {
+                    break;
+                }
+                
+                $this->context->smarty->assign([
+                    'eventData' => $this->module->getService(PageViewEventDataProvider::class)->getEventData($sendTo),
+                ]);
+                $this->templateBuffer->add(
+                    $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
+                );
+                break;
             case 'hookDisplayOrderConfirmation':
                 if (($sendTo = $this->getSendTo(Config::REMARKETING_CONVERSION_LABEL_PURCHASE)) === null) {
                     break;
@@ -101,6 +114,7 @@ class RemarketingHookHandler
                 if (($sendTo = $this->getSendTo(Config::REMARKETING_CONVERSION_LABEL_ADD_TO_CART)) === null) {
                     break;
                 }
+
                 $this->context->smarty->assign([
                     'eventData' => $this->module->getService(CartEventDataProvider::class)->getEventData($sendTo, $data),
                 ]);

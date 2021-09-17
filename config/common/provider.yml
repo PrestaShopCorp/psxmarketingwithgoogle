@@ -14,3 +14,7 @@ services:
     arguments:
       - '@psxmarketingwithgoogle.context'
 
+  PrestaShop\Module\PsxMarketingWithGoogle\Provider\PageViewEventDataProvider:
+    class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\PageViewEventDataProvider'
+    arguments:
+      - '@psxmarketingwithgoogle.context'
