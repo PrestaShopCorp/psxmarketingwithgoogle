@@ -730,7 +730,6 @@ class PsxMktgWithGoogleTranslations
                 'textOverwriteProductFeed' => $this->module->l('Overwriting your existing product feed will delete it. You will need to configure new product feed.', 'PsxMktgWithGoogleTranslations'),
                 'titleDisconnectionGoogleAds' => $this->module->l('Disconnect Google Ads account?', 'PsxMktgWithGoogleTranslations'),
                 'textDisconnectGoogleAds' => $this->module->l('Disconnecting from your Google Ads account will remove the ability to run Smart Shopping campaigns from the module.', 'PsxMktgWithGoogleTranslations'),
-                'questionDisconnectGoogleAds' => $this->module->l('What do you want to do with your current campaigns?', 'PsxMktgWithGoogleTranslations'),
                 'pauseCampaigns' => $this->module->l('Pause all of my campaigns', 'PsxMktgWithGoogleTranslations'),
                 'pauseCampaignsExplainations' => $this->module->l('By pausing all your campaigns, the billing will stop. You can restart your campaigns at any time in your Google ads account.', 'PsxMktgWithGoogleTranslations'),
                 'removeTag' => $this->module->l('Remove “Remarketing and conversion” tag from my shop', 'PsxMktgWithGoogleTranslations'),

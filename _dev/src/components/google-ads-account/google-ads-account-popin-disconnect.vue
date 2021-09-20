@@ -13,12 +13,6 @@
       :markdown="$t('modal.textDisconnectGoogleAds')"
     />
     <template v-if="SSCExist">
-      <span
-        class="mt-2 d-flex align-items-center font-weight-bold"
-      >
-        {{ $t('modal.questionDisconnectGoogleAds') }}
-      </span>
-
       <!-- <b-form-checkbox
         v-model="pauseCampaigns"
         switch
