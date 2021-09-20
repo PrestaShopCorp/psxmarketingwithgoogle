@@ -311,11 +311,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         if ((bool) $inputs['isRemarketingEnabled']) {
             $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS, true);
             $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG, base64_encode($inputs['tagSnippet']));
-            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS, json_encode([
-                Config::REMARKETING_CONVERSION_LABEL_PURCHASE => 'AW-302424131/QaNmCObn3fQCEMPAmpAB',
-                Config::REMARKETING_CONVERSION_LABEL_ADD_TO_CART => 'AW-302424131/dzZyCJDx3fQCEMPAmpAB',
-                Config::REMARKETING_CONVERSION_LABEL_PAGE_VIEW => 'AW-302424131/h7ryCOeh6vQCEMPAmpAB',
-            ]));
         } else {
             $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS);
             $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG);
