@@ -75,6 +75,39 @@
               </div>
             </b-th>
           </b-tr>
+          <b-tr>
+            <b-th class="font-weight-normal">
+              <ps-select
+                v-model="filterCampaignName"
+                :placeholder="'Campaign'"
+                :options="campaignList"
+                :deselect-from-dropdown="true"
+                :clearable="true"
+                class="ps_gs-v-select"
+                label="name"
+                size="sm"
+                multiple
+              >
+                <template #option="{ name }">
+                  <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
+                    <span class="mr-2">
+                      {{ name }}
+                    </span>
+                  </div>
+                </template>
+              </ps-select>
+            </b-th>
+            <b-th></b-th>
+            <b-th>
+              <b-form-select
+                name=""
+                id=""
+                multiple
+                :options="['Pending', 'Ended', 'Paused']"
+              >
+              </b-form-select>
+            </b-th>
+          </b-tr>
         </b-thead>
         <b-tbody class="bg-white">
           <SmartShoppingCampaignTableListRow
@@ -92,7 +125,7 @@
           </b-tr>
         </b-tbody>
       </b-table-simple>
-      <TableControls />
+      <TablePageControls />
     </div>
   </div>
 </template>
@@ -102,18 +135,21 @@ import SmartShoppingCampaignTableListRow from './smart-shopping-campaign-table-l
 import ReportingTableHeader from './reporting/commons/reporting-table-header.vue';
 import CampaignListHeaderType from '@/enums/campaigns-summary/CampaignListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
-import TableControls from '../commons/table-controls.vue';
+import TablePageControls from '../commons/table-page-controls.vue';
+import PsSelect from '../commons/ps-select.vue';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
   components: {
     SmartShoppingCampaignTableListRow,
     ReportingTableHeader,
-    TableControls,
+    TablePageControls,
+    PsSelect,
   },
   data() {
     return {
       loading: false,
+      filterCampaignName: null,
     };
   },
   computed: {
