@@ -75,39 +75,6 @@
               </div>
             </b-th>
           </b-tr>
-          <b-tr>
-            <b-th class="font-weight-normal">
-              <ps-select
-                v-model="filterCampaignName"
-                :placeholder="'Campaign'"
-                :options="campaignList"
-                :deselect-from-dropdown="true"
-                :clearable="true"
-                class="ps_gs-v-select"
-                label="name"
-                size="sm"
-                multiple
-              >
-                <template #option="{ name }">
-                  <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
-                    <span class="mr-2">
-                      {{ name }}
-                    </span>
-                  </div>
-                </template>
-              </ps-select>
-            </b-th>
-            <b-th></b-th>
-            <b-th>
-              <b-form-select
-                name=""
-                id=""
-                multiple
-                :options="['Pending', 'Ended', 'Paused']"
-              >
-              </b-form-select>
-            </b-th>
-          </b-tr>
         </b-thead>
         <b-tbody class="bg-white">
           <SmartShoppingCampaignTableListRow
@@ -150,6 +117,7 @@ export default {
     return {
       loading: false,
       filterCampaignName: null,
+      filterCampaignStatus: null,
     };
   },
   computed: {
