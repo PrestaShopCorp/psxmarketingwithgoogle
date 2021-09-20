@@ -22,7 +22,8 @@
         </div>
       </div>
       <div
-        class="ps_gs-fz-12 text-muted d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
+        class="ps_gs-fz-12 text-muted d-flex flex-wrap align-items-center
+          flex-md-nowrap justify-content-between mt-3"
       >
         <p class="mb-0">
           {{ $t('campaignCard.footer') }}
