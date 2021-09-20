@@ -346,8 +346,7 @@ export default {
     currencies() {
       return this.$options.countriesSelectionOptions
         .map((e) => e.currency)
-        .reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]),
-        )
+        .reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]), [])
         .sort();
     },
   },
