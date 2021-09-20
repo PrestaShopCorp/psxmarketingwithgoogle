@@ -10,11 +10,19 @@ const Template = (args, { argTypes }) => ({
   components: { SmartShoppingCampaignTableList },
   template: `
     <div>
-      <SmartShoppingCampaignTableList />
+      <SmartShoppingCampaignTableList ref="SmartShoppingCampaignTableList" />
     </div>
   `,
+  mounted: args.mounted,
 });
 
 export const Table:any = Template.bind({});
 Table.args = {
+}
+
+export const Loading:any = Template.bind({});
+Loading.args = {
+  mounted() {
+    this.$refs.SmartShoppingCampaignTableList.$data.loading = true;
+  },
 }
