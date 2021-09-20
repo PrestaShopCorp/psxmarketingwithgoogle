@@ -76,6 +76,7 @@ export default {
         commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       }
     } catch (error) {
+      commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       console.error(error);
     }
   },

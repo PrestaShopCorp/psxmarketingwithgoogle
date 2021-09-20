@@ -151,7 +151,7 @@ export interface ProductPartitionPerformances {
 export const state: State = {
   campaigns: [],
   errorCampaignNameExists: null,
-  tracking: false,
+  tracking: true,
   tagAlreadyExists: false,
   reporting: {
     request: {

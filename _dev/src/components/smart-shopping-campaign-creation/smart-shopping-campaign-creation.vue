@@ -287,7 +287,6 @@ export default {
         values: [],
       }],
       campaignDailyBudget: null,
-      budgetCurrencySymbol: '$',
       timer: null,
     };
   },
@@ -377,6 +376,13 @@ export default {
         targetCountry: this.countries[0],
         productFilters: this.filtersChosen,
       };
+    },
+    budgetCurrencySymbol() {
+      const displayAmount = 0;
+      const currencyFormatted = displayAmount.toLocaleString(this.countries[0], {
+        style: 'currency', currency: this.currency,
+      });
+      return currencyFormatted[5];
     },
   },
   methods: {

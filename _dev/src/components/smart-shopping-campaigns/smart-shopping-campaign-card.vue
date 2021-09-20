@@ -130,12 +130,12 @@ export default {
   methods: {
     openPopinActivateTracking() {
       // Prevent popin for opening if tracking is already activated
-      if (this.statusTrackingTag !== true) {
-        this.$emit('openPopin');
-      } else {
+      if (this.SSCExist) {
         this.$router.push({
           name: 'campaign-creation',
         });
+      } else {
+        this.$emit('openPopin');
       }
     },
     changeStatus() {
