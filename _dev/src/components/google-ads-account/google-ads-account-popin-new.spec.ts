@@ -33,7 +33,7 @@ const wrapperOptions = {
   ...config,
 };
 
-describe('google-ads-account.vue / step 1', () => {
+describe('google-ads-account-popin-new.vue / step 1', () => {
   let storeInitApp;
   beforeEach(() => {
     storeInitApp = cloneStore();
@@ -55,7 +55,7 @@ describe('google-ads-account.vue / step 1', () => {
   });
 });
 
-describe('google-ads-account.vue / step 2', () => {
+describe('google-ads-account-popin-new.vue / step 2', () => {
   let storeInitApp;
   beforeEach(() => {
     storeInitApp = cloneStore();
@@ -95,7 +95,7 @@ describe('google-ads-account.vue / step 2', () => {
     });
     await wrapper.setData({stepActiveData: 2});
     await wrapper.setData({newAccountInfos: {country: ['AU']}});
-    expect(wrapper.find('button.btn-primary').attributes('disabled')).toBe('disabled');
+    expect(wrapper.find('[data-test-id="buttonContinue"]').attributes('disabled')).toBeTruthy();
   });
 
   it('continue button is disabled when selectedBillingCountry is null', async () => {
@@ -103,6 +103,9 @@ describe('google-ads-account.vue / step 2', () => {
       ...wrapperOptions,
       store: new Vuex.Store(storeInitApp),
       localVue,
+      stubs: {
+        VueShowdown: true,
+      },
 
       computed: {
         selectedTimeZone() {
@@ -117,8 +120,8 @@ describe('google-ads-account.vue / step 2', () => {
       },
     });
     await wrapper.setData({stepActiveData: 2});
-    await wrapper.setData({newAccountInfos: {country: []}});
-    expect(wrapper.find('button.btn-primary').attributes('disabled')).toBe('disabled');
+    await wrapper.setData({newAccountInfos: {country: null}});
+    expect(wrapper.find('[data-test-id="buttonContinue"]').attributes('disabled')).toBeTruthy();
   });
 
   it('continue button is disabled when selectedCurrency is null', async () => {
@@ -126,7 +129,9 @@ describe('google-ads-account.vue / step 2', () => {
       ...wrapperOptions,
       store: new Vuex.Store(storeInitApp),
       localVue,
-
+      stubs: {
+        VueShowdown: true,
+      },
       computed: {
         selectedTimeZone() {
           return '(UTC-10:00) Hawaii';
@@ -141,7 +146,7 @@ describe('google-ads-account.vue / step 2', () => {
     });
     await wrapper.setData({stepActiveData: 2});
     await wrapper.setData({newAccountInfos: {country: ['AU']}});
-    expect(wrapper.find('button.btn-primary').attributes('disabled')).toBe('disabled');
+    expect(wrapper.find('[data-test-id="buttonContinue"]').attributes('disabled')).toBeTruthy();
   });
 
   it('continue button is enabled when selectedTimeZone, selectedBillingCountry, selectedCurrency are not null', async () => {
@@ -149,6 +154,9 @@ describe('google-ads-account.vue / step 2', () => {
       ...wrapperOptions,
       store: new Vuex.Store(storeInitApp),
       localVue,
+      stubs: {
+        VueShowdown: true,
+      },
       computed: {
         selectedTimeZone() {
           return '(UTC-10:00) Hawaii';
@@ -163,12 +171,11 @@ describe('google-ads-account.vue / step 2', () => {
     });
     await wrapper.setData({stepActiveData: 2});
     await wrapper.setData({newAccountInfos: {country: ['AU']}});
-
-    expect(wrapper.find('button.btn-primary').attributes('disabled')).toBeUndefined();
+    expect(wrapper.find('[data-test-id="buttonContinue"]').attributes('disabled')).toBeUndefined();
   });
 });
 
-describe('google-ads-account.vue / step 3', () => {
+describe('google-ads-account-popin-new.vue / step 3', () => {
   let storeInitApp;
   beforeEach(() => {
     storeInitApp = cloneStore();
@@ -182,10 +189,11 @@ describe('google-ads-account.vue / step 3', () => {
       ...wrapperOptions,
       store: new Vuex.Store(storeInitApp),
       localVue,
-
+      stubs: {
+        VueShowdown: true,
+      },
     });
     await wrapper.setData({stepActiveData: 3});
-
     expect(wrapper.findAll('.ps_gs-stepper-step').at(2).attributes('aria-current')).toEqual('step');
     expect(wrapper.findAll('.ps_gs-stepper-step').at(0).attributes('aria-current')).toBeUndefined();
   });
@@ -195,15 +203,17 @@ describe('google-ads-account.vue / step 3', () => {
       ...wrapperOptions,
       store: new Vuex.Store(storeInitApp),
       localVue,
-
+      stubs: {
+        VueShowdown: true,
+      },
     });
     await wrapper.setData({stepActiveData: 3});
-    const checkboxWrapper = wrapper.find('[type=checkbox]');
+    const checkboxWrapper = wrapper.find('[data-test-id="buttonCheckbox"]');
 
     // Check if the checkbox is lacking the attribute checked
     expect(checkboxWrapper.attributes('checked')).toBeUndefined();
     // Check if the button is disabled
-    expect(wrapper.find('button.btn-primary').attributes('disabled')).toBe('disabled');
+    expect(wrapper.find('[data-test-id="buttonContinueStep2"]').attributes('disabled')).toBeTruthy();
   });
 
   it('create account button is enabled when checkbox is checked', async () => {
@@ -211,14 +221,17 @@ describe('google-ads-account.vue / step 3', () => {
       ...wrapperOptions,
       store: new Vuex.Store(storeInitApp),
       localVue,
-
+      stubs: {
+        VueShowdown: true,
+      },
     });
     await wrapper.setData({stepActiveData: 3});
-    const checkboxWrapper = wrapper.find('[type=checkbox]');
     // Set the checkbox to checked
-    await checkboxWrapper.setChecked();
-
+    await wrapper.setData({acceptsGoogleTerms: true});
+    let checkboxWrapper = wrapper.find('[data-test-id="buttonCheckbox"]');
+    expect(checkboxWrapper.attributes('disabled')).toBeUndefined();
     // Check if the button is not disabled
-    expect(wrapper.find('button.btn-primary').attributes('disabled')).toBeUndefined();
+    expect(wrapper.find('[data-test-id="buttonContinueStep2"]').attributes('disabled')).toBeUndefined();
+
   });
 });

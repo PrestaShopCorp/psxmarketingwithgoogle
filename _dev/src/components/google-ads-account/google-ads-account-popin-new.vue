@@ -158,6 +158,7 @@
       />
       <div class="d-flex">
         <b-form-checkbox
+         data-test-id="buttonCheckbox"
           class="ps_gs-checkbox"
           v-model="acceptsGoogleTerms"
         >
@@ -187,6 +188,7 @@
         variant="primary"
         @click="stepToChange(stepActiveData + 1)"
         class="mr-md-0"
+        data-test-id="buttonContinue"
         :disabled="stepActiveData === 2 && fieldsEmpty()"
       >
         {{ $t("cta.continue") }}
@@ -213,6 +215,7 @@
         <b-button
           variant="primary"
           @click="ok()"
+           data-test-id="buttonContinueStep2"
           :disabled="isStepThreeReadyToValidate()"
         >
           {{ $t("cta.createAccount") }}
@@ -268,7 +271,6 @@ export default {
       this.stepActiveData = value;
     },
     ok() {
-      console.log('finalObject', this.newAccountInfos);
       this.$store.dispatch('googleAds/SAVE_NEW_GOOGLE_ADS_ACCOUNT', this.newAccountInfos)
         .then(() => {
           this.$refs.modal.hide();
@@ -291,7 +293,6 @@ export default {
       return true;
     },
     saveCountrySelected(value) {
-      console.log(value);
       this.newAccountInfos.country = value;
       this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', value);
     },
