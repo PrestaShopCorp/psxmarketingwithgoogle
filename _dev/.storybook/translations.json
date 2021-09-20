@@ -684,7 +684,6 @@
       "textOverwriteProductFeed" : "Overwriting your existing product feed will delete it. You will need to configure new product feed.",
       "titleDisconnectionGoogleAds" : "Disconnect Google Ads account?",
       "textDisconnectGoogleAds" : "Disconnecting from your Google Ads account will remove the ability to run Smart Shopping campaigns from the module.",
-      "questionDisconnectGoogleAds" : "What do you want to do with your current campaigns?",
       "pauseCampaigns" : "Pause all of my campaigns",
       "pauseCampaignsExplainations" : "By pausing all your campaigns, the billing will stop. You can restart your campaigns at any time in your Google ads account.",
       "removeTag" : "Remove “Remarketing and conversion” tag from my shop",
