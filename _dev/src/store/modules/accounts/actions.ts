@@ -194,6 +194,14 @@ export default {
         },
       });
       if (!response.ok) {
+        if (response.status === 401) {
+          const json = await response.json();
+          if (json.reason === 'requires new authentication') {
+            // Error case if token was wrong
+            dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
+            return json;
+          }
+        }
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
@@ -215,6 +223,7 @@ export default {
       return json;
     } catch (error) {
       dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
+      // TODO refacto : It seems like we never go into these lines anymore
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
         // This is likely caused by a missing Google account, so let's retrieve the URL
         return null;
