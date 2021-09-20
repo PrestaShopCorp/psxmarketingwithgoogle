@@ -650,7 +650,10 @@
       "resumeCampaign" : "Resume campaign",
       "modifyTheCampaign" : "Modify the campaign",
       "openActionsMenu" : "Open actions menu for campaign {0}",
-      "viewInGoogleAds" : "View in your Google Ads account"
+      "viewInGoogleAds" : "View in your Google Ads account",
+      "previous" : "Previous",
+      "next" : "Next",
+      "goToPage" : "Go to first page | Go to page: {0} | Go to last page"
     },
     "badge" : {
       "free" : "Free",

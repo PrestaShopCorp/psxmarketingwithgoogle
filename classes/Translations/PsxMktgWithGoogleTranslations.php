@@ -698,6 +698,8 @@ class PsxMktgWithGoogleTranslations
                 'modifyCampaign' => $this->module->l('Modify the campaign', 'PsxMktgWithGoogleTranslations'),
                 'openActionsMenu' => $this->module->l('Open actions menu for campaign {0}', 'PsxMktgWithGoogleTranslations'),
                 'viewInGoogleAds' => $this->module->l('View in your Google Ads account', 'PsxMktgWithGoogleTranslations'),
+                'previous' => $this->module->l('Previous', 'PsxMktgWithGoogleTranslations'),
+                'next' => $this->module->l('Next', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),
