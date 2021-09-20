@@ -41,12 +41,14 @@
       >
         <template #button-content>
           <i class="material-icons ps_gs-fz-20 mx-auto">more_vert</i>
-          <span class="sr-only">Open actions menu for campaign {{campaign.name}}</span>
+          <span class="sr-only">
+            {{ $t('cta.openActionsMenu', [campaign.name]) }}
+          </span>
         </template>
         <b-dropdown-item-button
           @click="goToCampaignPage(campaign.name)"
         >
-          Modify the campaign
+          {{ $t('cta.modifyTheCampaign') }}
         </b-dropdown-item-button>
         <b-dropdown-item-button
           @click="isPaused()
@@ -54,16 +56,16 @@
             : pauseCampaign()"
         >
           {{ isPaused()
-            ? 'Resume campaign'
-            : 'Pause campaign'
+            ? $t('cta.resumeCampaign')
+            : $t('cta.pauseCampaign')
           }}
         </b-dropdown-item-button>
         <b-dropdown-item
-          href="//google.com"
+          :href="$options.googleUrl.googleAdsAccount"
           target="_blank"
           link-class="external_link-no_icon"
         >
-          View in GMC
+          {{ $t('cta.viewInGoogleAds') }}
         </b-dropdown-item>
       </b-dropdown>
     </td>
@@ -72,6 +74,7 @@
 
 <script>
 import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
+import googleUrl from '@/assets/json/googleUrl.json';
 
 export default {
   mixins: [StickyColumnsObserver],
@@ -98,5 +101,6 @@ export default {
       console.log('resumeCampaign', this.campaign.name);
     },
   },
+  googleUrl,
 };
 </script>

@@ -529,6 +529,9 @@ class PsxMktgWithGoogleTranslations
                     'subTitle' => $this->module->l('Check out which dimension perform the best', 'PsxMktgWithGoogleTranslations'),
                 ],
             ],
+            'smartShoppingCampaignList' => [
+                'tableTitle' => $this->module->l('Campaign performance', 'PsxMktgWithGoogleTranslations'),
+            ],
             'productFeedPage' => [
                 'breadcrumb' => $this->module->l('Product status details', 'PsxMktgWithGoogleTranslations'),
                 'alert' => [
@@ -689,6 +692,12 @@ class PsxMktgWithGoogleTranslations
                 'selectAll' => $this->module->l('Select all', 'PsxMktgWithGoogleTranslations'),
                 'deselectAll' => $this->module->l('Deselect all', 'PsxMktgWithGoogleTranslations'),
                 'signInWithGoogle' => $this->module->l('Sign in with Google', 'PsxMktgWithGoogleTranslations'),
+                'viewReporting' => $this->module->l('View reporting', 'PsxMktgWithGoogleTranslations'),
+                'pauseCampaign' => $this->module->l('Pause campaign', 'PsxMktgWithGoogleTranslations'),
+                'resumeCampaign' => $this->module->l('Resume campaign', 'PsxMktgWithGoogleTranslations'),
+                'modifyCampaign' => $this->module->l('Modify the campaign', 'PsxMktgWithGoogleTranslations'),
+                'openActionsMenu' => $this->module->l('Open actions menu for campaign {0}', 'PsxMktgWithGoogleTranslations'),
+                'viewInGoogleAds' => $this->module->l('View in your Google Ads account', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),

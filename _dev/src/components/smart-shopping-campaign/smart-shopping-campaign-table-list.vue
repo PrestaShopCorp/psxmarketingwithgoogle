@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex justify-content-between mb-3 rounded-top">
-      <h3 class="ps_gs-fz-20 font-weight-600">Campaign performance</h3>
+      <h3 class="ps_gs-fz-20 font-weight-600">{{ $t('smartShoppingCampaignList.tableTitle') }}</h3>
       <div
         class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
       >
@@ -10,14 +10,14 @@
           class="mx-1 mt-3 mt-md-0"
           variant="outline-primary"
         >
-          View reporting
+          {{ $t('cta.viewReporting') }}
         </b-button>
         <b-button
           size="sm"
           class="mx-1 mt-3 mt-md-0 mr-md-0"
           variant="primary"
         >
-          Create new campaign
+          {{ $t('cta.createCampaign') }}
         </b-button>
       </div>
     </div>
