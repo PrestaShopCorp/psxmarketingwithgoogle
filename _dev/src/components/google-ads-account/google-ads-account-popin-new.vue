@@ -244,9 +244,9 @@ export default {
     return {
       newAccountInfos: {
         name: '',
-        country: '',
         currency: '',
         timeZone: this.accountInformations?.timeZone || '',
+        country: '',
       },
       stepActiveData: 1,
       steps: [
@@ -268,6 +268,7 @@ export default {
       this.stepActiveData = value;
     },
     ok() {
+      console.log('finalObject', this.newAccountInfos);
       this.$store.dispatch('googleAds/SAVE_NEW_GOOGLE_ADS_ACCOUNT', this.newAccountInfos)
         .then(() => {
           this.$refs.modal.hide();
@@ -283,13 +284,14 @@ export default {
       if (this.selectedDescriptiveName
        && this.selectedTimeZone
         && this.selectedCurrency
-        && this.newAccountInfos.country.length
+        && this.newAccountInfos.country
       ) {
         return false;
       }
       return true;
     },
     saveCountrySelected(value) {
+      console.log(value);
       this.newAccountInfos.country = value;
       this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', value);
     },
@@ -335,9 +337,7 @@ export default {
     },
     countries: {
       get() {
-        return this.$options.filters.changeCountriesCodesToNames(
-          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
-        );
+        return this.newAccountInfos.country;
       },
     },
     currency() {
@@ -353,6 +353,8 @@ export default {
   },
   mounted() {
     this.stepActiveData = this.stepActive;
+    this.newAccountInfos.country = this.$store.getters['app/GET_ACTIVE_COUNTRIES']
+      ? this.$options.filters.changeCountriesCodesToNames(this.$store.getters['app/GET_ACTIVE_COUNTRIES']) : '';
   },
   googleUrl,
   countriesSelectionOptions,
