@@ -48,16 +48,6 @@ class TemplateBuffer
     }
 
     /**
-     * reset buffer content
-     *
-     * @return void
-     */
-    public function clean()
-    {
-        //$this->session->getFlashBag()->clear('gtag_events');
-    }
-
-    /**
      * return buffer content and reset it
      *
      * @return string
