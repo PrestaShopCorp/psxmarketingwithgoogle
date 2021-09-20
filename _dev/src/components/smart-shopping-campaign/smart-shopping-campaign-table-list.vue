@@ -1,9 +1,12 @@
 <template>
   <div>
     <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mb-md-3 rounded-top">
-      <h3 class="order-2 order-md-1 ps_gs-fz-20 font-weight-600">{{ $t('smartShoppingCampaignList.tableTitle') }}</h3>
+      <h3 class="order-2 order-md-1 ps_gs-fz-20 font-weight-600">
+        {{ $t('smartShoppingCampaignList.tableTitle') }}
+      </h3>
       <div
-        class="order-1 order-md-2 ml-auto d-flex-md mr-md-0 mb-2 mt-n3 mt-md-0 flex-md-shrink-0 text-center"
+        class="order-1 order-md-2 ml-auto d-flex-md mr-md-0 mb-2 mt-n3 mt-md-0
+        flex-md-shrink-0 text-center"
       >
         <b-button
           size="sm"
@@ -122,48 +125,49 @@ export default {
       return [
         {
           name: 'Promotion 1',
-          duration : '2021/03/01 - 2021/05/31',
-          status : 'ended',
-          target : 'France',
-          product : 'Selected product (12)',
-          dailyBudget : '$125',
+          duration: '2021/03/01 - 2021/05/31',
+          status: 'ended',
+          target: 'France',
+          product: 'Selected product (12)',
+          dailyBudget: '$125',
         },
         {
           name: 'Promotion 2',
-          duration : 'From 2021/03/01',
-          status : 'pending',
-          target : 'France',
-          product : 'Selected product (108551)',
-          dailyBudget : '$25',
+          duration: 'From 2021/03/01',
+          status: 'pending',
+          target: 'France',
+          product: 'Selected product (108551)',
+          dailyBudget: '$25',
         },
         {
           name: 'Smart shopping campaign avec un nom vraiment long, car la limite de caractères est de 125 pour une smart shopping campaign...',
-          duration : '2021/03/01 - 2021/12/31',
-          status : 'eligible',
-          target : 'France',
-          product : 'All synced products',
-          dailyBudget : '$25',
+          duration: '2021/03/01 - 2021/12/31',
+          status: 'eligible',
+          target: 'France',
+          product: 'All synced products',
+          dailyBudget: '$25',
         },
         {
           name: 'Smart shopping campaign',
-          duration : '2021/03/01 - 2021/12/31',
-          status : 'paused',
-          target : 'France',
-          product : 'All synced products',
-          dailyBudget : '$25',
+          duration: '2021/03/01 - 2021/12/31',
+          status: 'paused',
+          target: 'France',
+          product: 'All synced products',
+          dailyBudget: '$25',
         },
       ];
     },
     queryOrderDirection: {
       get() {
         // TODO
-        //* Inspired by _dev/src/components/smart-shopping-campaign/reporting/campaigns-performance/campaigns-performance-table.vue
+        /** Inspired by campaigns-performance-table.vue */
         return {
           campaign: QueryOrderDirection.ASCENDING,
-        }
+        };
       },
       set(orderDirection) {
         // TODO
+        console.log(orderDirection);
       },
     },
   },

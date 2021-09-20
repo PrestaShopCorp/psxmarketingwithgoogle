@@ -112,5 +112,5 @@
 export default {
   name: 'Pagination',
   // TODO Dev the pagination 🤷
-}
+};
 </script>
