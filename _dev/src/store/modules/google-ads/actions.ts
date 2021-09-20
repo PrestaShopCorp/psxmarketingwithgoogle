@@ -179,7 +179,6 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, payload);
     } catch (error) {
       console.error(error);
     }
