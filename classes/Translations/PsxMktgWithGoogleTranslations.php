@@ -484,11 +484,11 @@ class PsxMktgWithGoogleTranslations
                 'status' => [
                     'eligible' => $this->module->l('Eligible', 'PsxMktgWithGoogleTranslations'),
                     'eligibleLimited' => $this->module->l('Eligible (limited)', 'PsxMktgWithGoogleTranslations'),
-                    'ended' => $this->module->l('Ended', 'PsxMktgWithGoogleTranslations'),
-                    'paused' => $this->module->l('Paused', 'PsxMktgWithGoogleTranslations'),
                     'notEligible' => $this->module->l('Not Eligible', 'PsxMktgWithGoogleTranslations'),
-                    'draft' => $this->module->l('Draft', 'PsxMktgWithGoogleTranslations'),
+                    'paused' => $this->module->l('Paused', 'PsxMktgWithGoogleTranslations'),
+                    'removed' => $this->module->l('Removed', 'PsxMktgWithGoogleTranslations'),
                     'pending' => $this->module->l('Pending', 'PsxMktgWithGoogleTranslations'),
+                    'ended' => $this->module->l('Ended', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'fromXToX' => $this->module->l('From {startDate} to {endDate}', 'PsxMktgWithGoogleTranslations'),
                 'labelCol' => [

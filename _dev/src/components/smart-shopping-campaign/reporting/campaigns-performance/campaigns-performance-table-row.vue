@@ -11,13 +11,13 @@
       </b-button>
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.budget }}
+      {{ getFormattedValue(campaign.budget) }}
     </b-td>
     <b-td
       class="ps_gs-fz-12 ps_gs-cell-status"
-      :class="`ps_gs-cell-status--${campaign.status}`"
+      :class="`ps_gs-cell-status--${campaign.status.toLowerCase()}`"
     >
-      {{ $t(`campaigns.status.${campaign.status}`) }}
+      {{ $t(`campaigns.status.${campaign.status.toLowerCase()}`) }}
     </b-td>
     <b-td class="ps_gs-fz-12">
       {{ campaign.impressions }}
@@ -26,13 +26,13 @@
       {{ campaign.clicks }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.adSpend }}
+      {{ getFormattedValue(campaign.adSpend) }}
     </b-td>
     <b-td class="ps_gs-fz-12">
       {{ campaign.conversions }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.sales }}
+      {{ getFormattedValue(campaign.sales) }}
     </b-td>
   </b-tr>
 </template>
@@ -47,6 +47,16 @@ export default {
     campaign: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    getFormattedValue(value) {
+      const googleAdsAccount = this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+
+      return Intl.NumberFormat(window.i18nSettings.languageCode, {
+        style: 'currency',
+        currency: googleAdsAccount.currency,
+      }).format(value);
     },
   },
 };
