@@ -66,6 +66,14 @@ export default {
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
       dispatch(ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING);
+
+      if (customer.isAccountCancelled === true) {
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Cancelled');
+      }
+      if (customer.isAccountSuspended === true) {
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Suspended');
+      }
+
       if (!customer.billingSettings.isSet) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
       }
