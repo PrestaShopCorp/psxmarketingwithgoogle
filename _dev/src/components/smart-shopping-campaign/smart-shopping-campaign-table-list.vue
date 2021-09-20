@@ -89,45 +89,7 @@
           </b-tr>
         </b-tbody>
       </b-table-simple>
-      <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap
-        align-items-center bg-white pt-2 px-3 pb-3 pt-md-3">
-        <div class="ps_gs-table-controls__products-shown d-md-flex align-items-center d-none">
-          <span>{{ $t('productFeedPage.approvalTable.perPageLabel') }}</span>
-          <b-dropdown
-            id="filterQuantityToShow"
-            ref="filterQuantityToShow"
-            :text="selectedFilterQuantityToShow"
-            variant=" "
-            class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered w-auto ml-2"
-            menu-class="ps-dropdown"
-            size="sm"
-          >
-            <b-dropdown-item
-              v-for="(option, index) in ['10', '20', '50']"
-              :key="index"
-              @click="selectedFilterQuantityToShow = option"
-            >
-              {{ option }}
-            </b-dropdown-item>
-          </b-dropdown>
-        </div>
-        <Pagination />
-        <div class="ps_gs-table-controls__go-to d-flex align-items-center">
-          <span class="flex-shrink-0">{{ $t('productFeedPage.approvalTable.goToLabel') }}</span>
-          <b-form-input
-            class="ml-2 maxw-sm-72 flex-grow-0"
-            type="text"
-            size="sm"
-          />
-          <b-button
-            variant="primary"
-            class="ml-2"
-            size="sm"
-          >
-            {{ $t('cta.go') }}
-          </b-button>
-        </div>
-      </div>
+      <TableControls />
     </div>
   </div>
 </template>
@@ -135,21 +97,20 @@
 <script>
 import SmartShoppingCampaignTableListRow from './smart-shopping-campaign-table-list-row.vue';
 import ReportingTableHeader from './reporting/commons/reporting-table-header.vue';
-import Pagination from '../commons/pagination.vue';
 import CampaignListHeaderType from '@/enums/campaigns-summary/CampaignListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
+import TableControls from '../commons/table-controls.vue';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
   components: {
     SmartShoppingCampaignTableListRow,
     ReportingTableHeader,
-    Pagination,
+    TableControls,
   },
   data() {
     return {
       loading: false,
-      selectedFilterQuantityToShow: '10',
     };
   },
   computed: {
