@@ -15,7 +15,7 @@ export default {
     CampaignsPerformanceTable,
   },
   computed: {
-    remarketingTagIsSetted() {
+    remarketingTagIsSet() {
       return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
     googleAdsChosen() {
@@ -32,7 +32,7 @@ export default {
   mounted() {
     this.getDatas()
       .then(() => {
-        if (!this.googleAdsChosen || this.remarketingTagIsSetted) {
+        if (!this.googleAdsChosen || this.remarketingTagIsSet) {
           this.$router.push({
             name: 'onboarding',
           });
