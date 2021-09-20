@@ -129,7 +129,7 @@ export default {
   },
   methods: {
     openPopinActivateTracking() {
-      // Prevent popin for opening if tracking is already activated
+      // Prevent popin for opening if tracking is a campaign exists
       if (this.SSCExist) {
         this.$router.push({
           name: 'campaign-creation',
