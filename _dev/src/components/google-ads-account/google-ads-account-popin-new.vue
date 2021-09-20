@@ -158,7 +158,7 @@
       />
       <div class="d-flex">
         <b-form-checkbox
-         data-test-id="buttonCheckbox"
+          data-test-id="buttonCheckbox"
           class="ps_gs-checkbox"
           v-model="acceptsGoogleTerms"
         >
@@ -215,7 +215,7 @@
         <b-button
           variant="primary"
           @click="ok()"
-           data-test-id="buttonContinueStep2"
+          data-test-id="buttonContinueStep2"
           :disabled="isStepThreeReadyToValidate()"
         >
           {{ $t("cta.createAccount") }}

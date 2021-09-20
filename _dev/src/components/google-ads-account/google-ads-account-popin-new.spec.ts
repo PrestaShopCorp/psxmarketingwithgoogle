@@ -228,10 +228,9 @@ describe('google-ads-account-popin-new.vue / step 3', () => {
     await wrapper.setData({stepActiveData: 3});
     // Set the checkbox to checked
     await wrapper.setData({acceptsGoogleTerms: true});
-    let checkboxWrapper = wrapper.find('[data-test-id="buttonCheckbox"]');
+    const checkboxWrapper = wrapper.find('[data-test-id="buttonCheckbox"]');
     expect(checkboxWrapper.attributes('disabled')).toBeUndefined();
     // Check if the button is not disabled
     expect(wrapper.find('[data-test-id="buttonContinueStep2"]').attributes('disabled')).toBeUndefined();
-
   });
 });

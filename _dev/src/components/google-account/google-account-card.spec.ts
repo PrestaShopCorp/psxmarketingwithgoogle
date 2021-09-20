@@ -29,7 +29,7 @@ describe('google-account-card.vue', () => {
       propsData: Disabled.args,
       stubs: {
         VueShowdown: true,
-        },
+      },
     });
 
     expect(wrapper.find('.ps_gs-onboardingcard--disabled-grey').exists()).toBeTruthy();
@@ -41,7 +41,7 @@ describe('google-account-card.vue', () => {
       propsData: NotConnected.args,
       stubs: {
         VueShowdown: true,
-        },
+      },
     });
 
     expect(wrapper.find('.ps_gs-onboardingcard--disabled-grey').exists()).toBeFalsy();
@@ -55,7 +55,7 @@ describe('google-account-card.vue', () => {
       ...config,
       stubs: {
         VueShowdown: true,
-        },
+      },
       propsData: NotConnectedAndCanNotGetAuthenticationUrl.args,
     });
 
@@ -73,7 +73,7 @@ describe('google-account-card.vue', () => {
       propsData: CouldNotConnect.args,
       stubs: {
         VueShowdown: true,
-        },
+      },
     });
     // Check if alert is visible
     expect(wrapper.find('.alert').exists()).toBeTruthy();
@@ -88,7 +88,7 @@ describe('google-account-card.vue', () => {
       ...config,
       propsData: Connected.args,
       stubs: {
-      VueShowdown: true,
+        VueShowdown: true,
       },
     });
     // Check if account email is visible, the email is defined in the mock
