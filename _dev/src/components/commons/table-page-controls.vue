@@ -5,25 +5,21 @@
   >
     <ResultNumberSelector />
     <Pagination />
-    <PageNbSelector />
+    <PageNumberSelector />
   </div>
 </template>
 
 <script>
 import Pagination from './pagination.vue';
-import PageNbSelector from './page-number-selector.vue';
+import PageNumberSelector from './page-number-selector.vue';
 import ResultNumberSelector from './result-number-selector.vue';
 
 export default {
   name: 'TableControls',
   components: {
     Pagination,
-    PageNbSelector,
+    PageNumberSelector,
     ResultNumberSelector,
-  },
-  data() {
-    return {
-    };
   },
 };
 </script>

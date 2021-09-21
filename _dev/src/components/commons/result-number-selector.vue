@@ -2,8 +2,8 @@
   <div class="ps_gs-table-controls__products-shown d-md-flex align-items-center d-none">
     <span>{{ $t('productFeedPage.approvalTable.perPageLabel') }}</span>
     <b-dropdown
-      id="filterQuantityToShow"
-      ref="filterQuantityToShow"
+      id="filter-quantity-to-show"
+      ref="filter-quantity-to-show"
       :text="selectedFilterQuantityToShow"
       variant=" "
       class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered w-auto ml-2"
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'ResultNbSelector',
+  name: 'ResultNumberSelector',
   // TODO: handle selector
   data() {
     return {

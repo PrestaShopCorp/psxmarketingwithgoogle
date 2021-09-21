@@ -100,7 +100,7 @@
 <script>
 import SmartShoppingCampaignTableListRow from './smart-shopping-campaign-table-list-row.vue';
 import ReportingTableHeader from './reporting/commons/reporting-table-header.vue';
-import CampaignListHeaderType from '@/enums/campaigns-summary/CampaignListHeaderType';
+import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import TablePageControls from '../commons/table-page-controls.vue';
 
@@ -120,7 +120,7 @@ export default {
   },
   computed: {
     campaignHeaderList() {
-      return Object.values(CampaignListHeaderType);
+      return Object.values(CampaignSummaryListHeaderType);
     },
     campaignList() {
       // TODO Get real list of campaigns
@@ -175,10 +175,10 @@ export default {
   },
   methods: {
     hasToolTip(headerType) {
-      return headerType === CampaignListHeaderType.STATUS;
+      return headerType === CampaignSummaryListHeaderType.STATUS;
     },
     hasSorting(headerType) {
-      return headerType === CampaignListHeaderType.CAMPAIGN;
+      return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
     },
     sortByType(headerType) {
       // create new object for satisfy deep getter of vueJS

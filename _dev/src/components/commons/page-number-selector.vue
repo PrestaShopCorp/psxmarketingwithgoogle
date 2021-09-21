@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'PageNbSelector',
+  name: 'PageNumberSelector',
   data() {
     return {
       nbPageToGo: null,

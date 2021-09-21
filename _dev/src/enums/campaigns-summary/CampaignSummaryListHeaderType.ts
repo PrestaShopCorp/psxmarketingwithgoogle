@@ -1,4 +1,4 @@
-enum CampaignListHeaderType {
+enum CampaignSummaryListHeaderType {
   CAMPAIGN = 'campaign',
   DURATION = 'duration',
   STATUS = 'status',
@@ -8,4 +8,4 @@ enum CampaignListHeaderType {
   ACTIONS = 'actions',
 }
 
-export default CampaignListHeaderType;
+export default CampaignSummaryListHeaderType;
