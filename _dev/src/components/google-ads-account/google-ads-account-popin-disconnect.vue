@@ -95,11 +95,7 @@ export default {
   },
   computed: {
     SSCExist() {
-      const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
-      if (campaigns.length) {
-        return true;
-      }
-      return false;
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
     },
   },
 };
