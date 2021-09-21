@@ -352,6 +352,9 @@ export default {
     },
   },
   mounted() {
+    this.$store.dispatch('googleAds/GET_TIMEZONE_FROM_SHOP').then((res) => {
+      this.newAccountInfos.timeZone = res.timezone.text;
+    });
     this.stepActiveData = this.stepActive;
     this.newAccountInfos.country = this.$store.getters['app/GET_ACTIVE_COUNTRIES']
       ? this.$options.filters.changeCountriesCodesToNames(this.$store.getters['app/GET_ACTIVE_COUNTRIES']) : '';

@@ -201,4 +201,19 @@ export default {
     return result;
   },
 
+  async [ActionsTypes.GET_TIMEZONE_FROM_SHOP]({rootState, state, commit}) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'getShopConfigurationForAds',
+      }),
+    });
+    const json = await response.json();
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    return json;
+  },
+
 };
