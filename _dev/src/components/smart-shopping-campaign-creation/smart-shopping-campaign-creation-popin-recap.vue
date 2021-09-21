@@ -130,7 +130,13 @@ export default {
           [this.newCampaign.targetCountry],
         )[0],
       };
-      this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign);
+      this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign).then(() => {
+        this.$refs.modal.hide();
+        this.$router.push({
+          name: 'campaign',
+        });
+        this.$emit('openPopinSSCCreated');
+      });
     },
   },
 };

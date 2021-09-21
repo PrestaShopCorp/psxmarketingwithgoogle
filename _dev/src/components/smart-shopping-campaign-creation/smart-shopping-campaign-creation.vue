@@ -264,6 +264,7 @@
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
+      @openPopinSSCCreated="onCampaignCreated"
     />
   </b-card>
 </template>
@@ -278,7 +279,7 @@ export default {
   name: 'SmartShoppingCampaignCreation',
   data() {
     return {
-      campaignName: null,
+      campaignName: 'null',
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
       campaignProductsFilter: null,
@@ -356,7 +357,8 @@ export default {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
     errorCampaignNameExistsAlready() {
-      return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
+      return false;
+      // return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
     },
     countries: {
       get() {
@@ -393,7 +395,9 @@ export default {
       }, 3000);
     },
     cancel() {
-      // TODO
+      this.$router.push({
+        name: 'campaign',
+      });
     },
     openPopinRecap() {
       this.$bvModal.show(
@@ -411,6 +415,9 @@ export default {
       this.$bvModal.show(
         this.$refs.SmartShoppingCampaignCreationFilterPopin.$refs.modal.id,
       );
+    },
+    onCampaignCreated() {
+      this.$emit('campaignCreated');
     },
   },
   watch: {

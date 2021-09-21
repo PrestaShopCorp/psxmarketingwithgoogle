@@ -2,8 +2,9 @@
   <div>
     <campaign-card
       @openPopin="onOpenPopinActivateTracking"
-      v-if="$route.name === 'campaign'"
+      v-if="$route.name === 'campaign' && !SSCExist"
     />
+    <!-- here component v-if="$route.name === 'campaign' && SSCExist"  -->
     <smart-shopping-campaign-creation
       v-if="$route.name === 'campaign-creation'"
       @campaignCreated="onCampaignHasBeenCreated"
@@ -45,6 +46,9 @@ export default {
   computed: {
     googleAdsIsChosen() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+    },
+    SSCExist() {
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
     },
 
     insideToast() {
