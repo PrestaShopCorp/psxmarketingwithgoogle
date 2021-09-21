@@ -2,7 +2,7 @@
   <div id="psxMktgWithGoogleApp">
     <div class="ps_gs-sticky-head">
       <Menu>
-        <template v-if="!remarketingTagIsSet && googleAdsChosen">
+        <template v-if="remarketingTagIsSet && googleAdsChosen">
           <MenuItem
             :route="{name: 'reporting'}"
           >

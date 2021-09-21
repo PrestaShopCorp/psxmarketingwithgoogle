@@ -32,7 +32,7 @@ export default {
   mounted() {
     this.getDatas()
       .then(() => {
-        if (!this.googleAdsChosen || this.remarketingTagIsSet) {
+        if (!this.googleAdsChosen || !this.remarketingTagIsSet) {
           this.$router.push({
             name: 'onboarding',
           });
