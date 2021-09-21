@@ -63,15 +63,9 @@ export interface DateRange {
 }
 
 export interface Orderings {
-  campaignsPerformances: {
-    order: OrderByType;
-  },
-  productsPerformances: {
-    order: OrderByType;
-  },
-  productsDimensionsPerformances: {
-    order: OrderByType;
-  }
+  campaignsPerformances: OrderByType;
+  productsPerformances: OrderByType;
+  productsDimensionsPerformances: OrderByType;
 }
 
 export interface OrderByType {
@@ -163,25 +157,19 @@ export const state: State = {
     request: {
       dateRange: {
         periodSelected: ReportingPeriod.YESTERDAY,
-        startDate: dayjs().subtract(7, 'day').format('YYYY-MM-DD'),
-        endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
+        startDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
+        endDate: dayjs().format('YYYY-MM-DD'),
       },
       dailyResultType: KpiType.IMPRESSIONS,
       ordering: {
         campaignsPerformances: {
-          order: {
-            clicks: QueryOrderDirection.ASCENDING,
-          },
+          clicks: QueryOrderDirection.ASCENDING,
         },
         productsPerformances: {
-          order: {
-            clicks: QueryOrderDirection.ASCENDING,
-          },
+          clicks: QueryOrderDirection.ASCENDING,
         },
         productsDimensionsPerformances: {
-          order: {
-            clicks: QueryOrderDirection.ASCENDING,
-          },
+          clicks: QueryOrderDirection.ASCENDING,
         },
       },
     },

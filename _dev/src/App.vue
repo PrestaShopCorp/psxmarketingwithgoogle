@@ -2,7 +2,7 @@
   <div id="psxMktgWithGoogleApp">
     <div class="ps_gs-sticky-head">
       <Menu>
-        <template v-if="remarketingTagIsSetted && googleAdsChosen">
+        <template v-if="!remarketingTagIsSet && googleAdsChosen">
           <MenuItem
             :route="{name: 'reporting'}"
           >
@@ -60,7 +60,7 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
         && this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.isSet;
     },
-    remarketingTagIsSetted() {
+    remarketingTagIsSet() {
       return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
   },

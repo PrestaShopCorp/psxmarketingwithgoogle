@@ -24,6 +24,7 @@ import {
   CampaignsPerformancesSection,
   DailyresultChart,
   Kpis,
+  OrderByType,
   ProductsPartitionsPerformancesSection,
   ProductsPerformancesSection,
   State as LocalState,
@@ -33,12 +34,25 @@ export default {
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](state: LocalState, payload: boolean) {
     state.tracking = payload;
   },
+
+  // request mutations
   [MutationsTypes.SET_REPORTING_PERIOD_SELECTED](state: LocalState, payload: ReportingPeriod) {
     state.reporting.request.dateRange.periodSelected = payload;
   },
+  [MutationsTypes.SET_REPORTING_DATES](state: LocalState, payload: Record<string, string>) {
+    state.reporting.request.dateRange = {...state.reporting.request.dateRange, ...payload};
+  },
+
   [MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPE](state: LocalState, payload: KpiType) {
     state.reporting.request.dailyResultType = payload;
   },
+  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING](
+    state: LocalState, payload: OrderByType,
+  ) {
+    state.reporting.request.ordering.campaignsPerformances = payload;
+  },
+
+  // result mutations
   [MutationsTypes.SET_REPORTING_KPIS](state: LocalState, payload: Kpis) {
     state.reporting.results.kpis = payload;
   },

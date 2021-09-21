@@ -21,7 +21,7 @@ export interface State {
   status: null|GoogleAdsErrorReason,
   accountChosen: null|AccountInformations,
   list: Array<AccountInformations>,
-  connectedOnce: boolean
+  connectedOnce: boolean,
 }
 
 export enum GoogleAdsErrorReason {

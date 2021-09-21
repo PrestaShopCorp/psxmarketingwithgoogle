@@ -3,12 +3,12 @@
     <ReportingTableHeader
       :title="$t('campaigns.campaignsPerformanceTable.title')"
       :subtitle="$t('campaigns.campaignsPerformanceTable.subTitle')"
-      start-date="04/06/2021"
-      end-date="04/07/2021"
+      :start-date="reportingStartDate"
+      :end-date="reportingEndDate"
     />
     <b-table-simple
       id="table-campaigns-performance"
-      class="ps_gs-table-products mb-3"
+      class="mb-3 ps_gs-table-products"
       :table-class="{'border-bottom-0': loading}"
       variant="light"
       responsive="xl"
@@ -16,20 +16,20 @@
       <b-thead>
         <b-tr>
           <b-th
-            v-for="({type, tooltip, sorting}, index) in fields"
+            v-for="(type, index) in campaignHeaderList"
             :key="type"
             class="font-weight-600"
             :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
           >
             <div class="flex align-items-center text-nowrap">
               <b-button
-                v-if="sorting"
-                @click="sort()"
+                v-if="hasSorting(type)"
+                @click="sortByType(type)"
                 variant="invisible"
                 class="p-0 border-0"
               >
                 <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
-                <template v-if="sortDirection === 'asc'">
+                <template v-if="queryOrderDirection[type] === 'ASC'">
                   <i class="material-icons ps_gs-fz-14">expand_more</i>
                   <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
                 </template>
@@ -42,7 +42,7 @@
                 {{ $t(`campaigns.labelCol.${type}`) }}
               </span>
               <b-button
-                v-if="tooltip"
+                v-if="hasToolTip(type)"
                 variant="invisible"
                 v-b-tooltip:psxMktgWithGoogleApp
                 :title="$t(`campaigns.tooltipCol.${type}`)"
@@ -56,25 +56,9 @@
       </b-thead>
       <b-tbody class="bg-white">
         <CampaignsPerformanceTableRow
-          v-for="{
-            name,
-            budget,
-            status,
-            impression,
-            clicks,
-            adSpent,
-            conversions,
-            sales,
-          } in campaigns"
-          :name="name"
-          :budget="budget"
-          :status="status"
-          :impression="impression"
-          :clicks="clicks"
-          :ad-spent="adSpent"
-          :conversions="conversions"
-          :sales="sales"
-          :key="name"
+          v-for="campaign in campaignList"
+          :campaign="campaign"
+          :key="campaign.name"
         />
         <b-tr v-if="loading">
           <b-td
@@ -93,6 +77,8 @@
 import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
 import CampaignsPerformanceTableRow from './campaigns-performance-table-row.vue';
+import CampaignPerformanceHeaderType from '@/enums/reporting/CampaignPerformanceHeaderType';
+import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 
 export default {
   mixins: [StickyColumnsObserver],
@@ -103,120 +89,49 @@ export default {
   },
   data() {
     return {
-      sortDirection: 'asc',
       loading: false,
-      fields: [
-        {
-          type: 'campaign',
-        },
-        {
-          type: 'budget',
-        },
-        {
-          type: 'status',
-          tooltip: true,
-        },
-        {
-          type: 'impression',
-        },
-        {
-          type: 'clicks',
-          sorting: true,
-        },
-        {
-          type: 'adSpend',
-        },
-        {
-          type: 'conversions',
-        },
-        {
-          type: 'sales',
-        },
-      ],
-      // TODO
-      // Adds real datas
-      campaigns: [
-        {
-          name: 'Promotion 1',
-          budget: '$125',
-          status: 'eligible',
-          impression: '25',
-          clicks: '0',
-          adSpent: '$0',
-          conversions: '0',
-          sales: '$0',
-        },
-        {
-          name: 'Promotion 2',
-          budget: '$10',
-          status: 'eligibleLimited',
-          impression: '198',
-          clicks: '1788',
-          adSpent: '$35',
-          conversions: '8',
-          sales: '$2700',
-        },
-        {
-          name: 'Promotion 3',
-          budget: '$125',
-          status: 'ended',
-          impression: '178998',
-          clicks: '178998',
-          adSpent: '$125',
-          conversions: '178',
-          sales: '$178000',
-        },
-        {
-          name: 'Promotion 4',
-          budget: '$2000',
-          status: 'paused',
-          impression: '17899800',
-          clicks: '17',
-          adSpent: '$12500',
-          conversions: '150000',
-          sales: '$27815580',
-        },
-        {
-          name: 'Promotion 5',
-          budget: '$2',
-          status: 'notEligible',
-          impression: '5',
-          clicks: '0',
-          adSpent: '$0',
-          conversions: '0',
-          sales: '$0',
-        },
-        {
-          name: 'Promotion 6',
-          budget: '$125',
-          status: 'draft',
-          impression: '-',
-          clicks: '-',
-          adSpent: '-',
-          conversions: '-',
-          sales: '-',
-        },
-        {
-          name: 'Promotion 7',
-          budget: '$125',
-          status: 'pending',
-          impression: '178998',
-          clicks: '178998',
-          adSpent: '$125',
-          conversions: '178',
-          sales: '$178000',
-        },
-      ],
     };
   },
   methods: {
-    // TODO: Handle sort function
-    sort() {
-      if (this.sortDirection === 'asc') {
-        this.sortDirection = 'desc';
+    hasToolTip(headerType) {
+      return headerType === CampaignPerformanceHeaderType.STATUS;
+    },
+    hasSorting(headerType) {
+      return headerType === CampaignPerformanceHeaderType.CLICKS;
+    },
+    sortByType(headerType) {
+      // create new object for satisfy deep getter of vueJS
+      const newOrderDirection = {...this.queryOrderDirection};
+
+      if (this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING) {
+        newOrderDirection[headerType] = QueryOrderDirection.DESCENDING;
       } else {
-        this.sortDirection = 'asc';
+        newOrderDirection[headerType] = QueryOrderDirection.ASCENDING;
       }
+      this.queryOrderDirection = newOrderDirection;
+    },
+  },
+  computed: {
+    reportingStartDate() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FORMATTED_START_DATES'];
+    },
+    reportingEndDate() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FORMATTED_END_DATES'];
+    },
+    campaignHeaderList() {
+      return Object.values(CampaignPerformanceHeaderType);
+    },
+    campaignList() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES'];
+    },
+    queryOrderDirection: {
+      get() {
+        return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING'];
+      },
+      set(orderDirection) {
+        this.$store.commit('smartShoppingCampaigns/SET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING', orderDirection);
+        this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES');
+      },
     },
   },
 };
