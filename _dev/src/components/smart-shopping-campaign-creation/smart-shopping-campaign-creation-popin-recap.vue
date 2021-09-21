@@ -113,7 +113,7 @@ export default {
   },
   props: {
     newCampaign: {
-      require: true,
+      required: true,
       type: Object,
     },
   },
