@@ -1,9 +1,12 @@
 import Vue from 'vue';
 
+import i18n from "@/lib/i18n";
+import store from "@/store";
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
 import utc from 'dayjs/plugin/utc';
 import countriesSelectionOptions from '../assets/json/countries.json';
+import KpiType from '@/enums/reporting/KpiType';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -46,3 +49,21 @@ Vue.filter(
     }
     return country;
   }));
+
+Vue.filter(
+  'formatKpi', (value: number) => {
+    const selectedKpi = store.getters['smartShoppingCampaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
+
+    if (selectedKpi === KpiType.CLICKS
+      || selectedKpi === KpiType.CONVERSIONS
+      || selectedKpi === KpiType.IMPRESSIONS) {
+      return value;
+    }
+    
+    console.log(store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currency);
+    
+    return Intl.NumberFormat(i18n.locale, {
+      style: 'currency',
+      currency: store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currency,
+    }).format(value);
+  });

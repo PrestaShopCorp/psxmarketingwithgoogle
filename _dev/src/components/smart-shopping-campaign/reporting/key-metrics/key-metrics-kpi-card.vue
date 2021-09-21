@@ -74,14 +74,7 @@ export default {
         }).format(this.kpiValue);
       }
 
-      return this.kpiValue;
-    },
-  },
-  methods: {
-    isPriceType() {
-      return this.kpiType === KpiType.AVERAGE_COST_PER_CLICK
-        || this.kpiType === KpiType.COSTS
-        || this.kpiType === KpiType.SALES;
+      return this.$options.filters.formatKpi(this.kpiValue)
     },
   },
 };

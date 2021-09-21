@@ -85,6 +85,7 @@ export interface Kpis {
   averageCostPerClick: number;
   costs: number;
   sales: number;
+  date?: string;
 }
 
 export interface DailyresultChart {

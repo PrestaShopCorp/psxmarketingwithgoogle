@@ -24,16 +24,50 @@
       </b-dropdown>
     </div>
     <div>
-      placeholder chart
+      <b-card body-class="p-4">
+        <Chart type="bar" :data="getDataSetsByMetric" :options="options" />
+      </b-card>
     </div>
   </section>
 </template>
 
 <script>
 import KpiType from '@/enums/reporting/KpiType';
+import Chart from '@/components/chart/chart.vue';
 
 export default {
   name: 'KeyMetricsChartWrapper',
+  components: {
+    Chart,
+  },
+  data() {
+    return {
+      options: {
+        scales: {
+          yAxes: {
+            ticks: {
+              callback: (value) => {
+                return this.$options.filters.formatKpi(value);
+              }
+            },
+          },
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: (context) => {
+                console.log(context);
+                return this.$options.filters.formatKpi(context.dataset.data[context.dataIndex]);
+              },
+            },
+          },
+          legend: {
+            display: false,
+          },
+        },
+      },
+    };
+  },
   computed: {
     dailyResultTypeList() {
       return Object.values(KpiType);
@@ -43,8 +77,32 @@ export default {
         return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
       },
       set(dailyResultType) {
-        this.$store.commit('smartShoppingCampaigns/SET_REPORTING_DAILY_RESULTS_TYPE', dailyResultType);
+        this.$store.commit(
+          'smartShoppingCampaigns/SET_REPORTING_DAILY_RESULTS_TYPE',
+          dailyResultType,
+        );
       },
+    },
+    getDataSetsByMetric() {
+      // https://www.chartjs.org/docs/latest/general/data-structures.html
+      return {
+        labels: this.getLabels,
+        datasets: [
+          {
+            label: this.$t(`keymetrics.${this.dailyResultTypeSelected}`),
+            data: this.getMetrics.map((a) => a[this.dailyResultTypeSelected]),
+            backgroundColor: '#442CC7',
+            borderColor: '#442CC7',
+            borderWidth: 1,
+          },
+        ],
+      };
+    },
+    getMetrics() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_DAILY_RESULT'];
+    },
+    getLabels() {
+      return this.getMetrics.map((a) => a.date);
     },
   },
 };
