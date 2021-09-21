@@ -91,54 +91,50 @@ export default {
     {commit, rootState}, payload: AccountInformations,
   ) {
     const newUser = {
-      id: null,
       name: payload.name,
       country: payload.country,
       currency: payload.currency,
       timeZone: payload.timeZone,
     };
-    // try {
-    //   const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts`,
-    //     {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         Accept: 'application/json',
-    //         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-    //       },
-    //       body: JSON.stringify({
-    //         newUser,
-    //       }),
-    //     });
-    //   if (!resp.ok) {
-    //     commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect')
-    //     throw new HttpClientError(resp.statusText, resp.status);
-    //   }
-    // const json = await resp.json();
-
-    //  TODO : wait for response : user WITH ID, ADMIN, TEST AND BILLING SETTINGS
-    const newUserBis = {
-      id: 'turlututu',
-      name: payload.name,
-      isAdmin: false,
-      isTestAccount: true,
-      billingSettings: {
-        isSet: false,
-        link: '',
-      },
-      country: payload.country,
-      currency: payload.currency,
-      timeZone: payload.timeZone,
-    };
-    commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUserBis);
-    commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUserBis);
-    if (!newUserBis.billingSettings.isSet) {
-      commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
+    try {
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/create`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+          body: JSON.stringify({
+            newUser,
+          }),
+        });
+      if (!resp.ok) {
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+      const json = await resp.json();
+      console.log(json);
+      //  TODO : wait for response : user WITH ID AND BILLING SETTINGS
+      const newUserBis = {
+        id: 'turlututu',
+        name: payload.name,
+        billingSettings: {
+          isSet: false,
+          link: 'http://coucou',
+        },
+        country: payload.country,
+        currency: payload.currency,
+        timeZone: payload.timeZone,
+      };
+      commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUserBis);
+      commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUserBis);
+      if (!newUserBis.billingSettings.isSet) {
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
+      }
+    } catch (error) {
+      console.error(error);
     }
-
-    // } catch (error) {
-    //   console.error(error);
-    // }
   },
   async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState, state},
     correlationId: string) {
