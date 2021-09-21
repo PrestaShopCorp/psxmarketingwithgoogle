@@ -20,11 +20,8 @@
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {
-<<<<<<< HEAD
   CampaignPerformances,
-=======
   CampaignObject,
->>>>>>> 2f7b3f73 (change of route + base 64)
   Kpis,
   State as LocalState,
 } from './state';
