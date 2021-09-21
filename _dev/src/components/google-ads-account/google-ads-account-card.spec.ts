@@ -26,6 +26,9 @@ describe('google-ads-account.vue / disabled', () => {
       store: new Vuex.Store(cloneStore()),
       propsData: Disabled.args,
       beforeMount: Disabled.args.beforeMount,
+      stubs: {
+        VueShowdown: true,
+      },
     });
 
     // Check if the card is greyed out

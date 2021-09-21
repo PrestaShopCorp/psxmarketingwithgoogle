@@ -24,11 +24,12 @@ import HttpClientError from '@/utils/HttpClientError';
 import KpiType from '@/enums/reporting/KpiType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
+import {CampaignObject} from './state';
 
 export default {
-  async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload) {
+  async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload : CampaignObject) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/`,
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/create`,
         {
           method: 'POST',
           headers: {
@@ -44,7 +45,34 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
+      commit(MutationsTypes.SAVE_NEW_SSC, payload);
     } catch (error) {
+      console.error(error);
+    }
+  },
+
+  async [ActionsTypes.CHECK_CAMPAIGN_NAME_ALREADY_EXISTS]({rootState, commit}, payload : string) {
+    try {
+      commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, false);
+      const campaignFinalName = btoa(payload);
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns?campaign_name=${campaignFinalName}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+      if (!resp.ok) {
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+      const json = await resp.json();
+      if (json && json.campaignName) {
+        commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
+      }
+    } catch (error) {
+      commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       console.error(error);
     }
   },
@@ -94,7 +122,6 @@ export default {
     const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
     const idTag = regex.exec(remarketingSnippet);
     if (!idTag || !idTag.length) {
-      console.error('Remarketing snippet missing');
       return;
     }
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {

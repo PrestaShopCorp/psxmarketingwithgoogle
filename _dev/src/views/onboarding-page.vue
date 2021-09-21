@@ -202,12 +202,6 @@ export default {
         this.$refs.SSCPopinActivateTracking.$refs.modal.id,
       );
     },
-
-    // onCancelGoogleAdsCreationNewAccount() {
-    //   this.$bvModal.show(
-    //     this.$refs.GoogleAdsAccountPopinNew.$refs.modal.id,
-    //   );
-    // },
     toastIsClosed() {
       if (this.googleAccountConnectedOnce) {
         this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);

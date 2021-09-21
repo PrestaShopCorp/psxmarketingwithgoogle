@@ -409,6 +409,7 @@ class PsxMktgWithGoogleTranslations
                 'breadcrumb1' => $this->module->l('Paid marketing', 'PsxMktgWithGoogleTranslations'),
                 'breadcrumb2' => $this->module->l('Create Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
                 'inputNameHelper' => $this->module->l('The name must be unique and 125 chars max.', 'PsxMktgWithGoogleTranslations'),
+                'inputCampaignNameInvalidFeedback' => $this->module->l('The name must be unique', 'PsxMktgWithGoogleTranslations'),
                 'inputNameLabel' => $this->module->l('Campaign name', 'PsxMktgWithGoogleTranslations'),
                 'inputNameTooltip' => $this->module->l('Choose a name that clearly describes the theme of the campaign so that you can easily find it in your account. Your campaign name isn\'t visible to your customers.', 'PsxMktgWithGoogleTranslations'),
                 'inputNamePlaceholder' => $this->module->l('Type campaign name', 'PsxMktgWithGoogleTranslations'),

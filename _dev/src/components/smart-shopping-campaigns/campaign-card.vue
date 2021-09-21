@@ -51,15 +51,18 @@ export default {
     trackingStatus() {
       return this.$store.state.smartShoppingCampaigns.tracking;
     },
+    SSCExist() {
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+    },
   },
   methods: {
     openPopinActivateTracking() {
-      if (this.trackingStatus !== true) {
-        this.$emit('openPopin');
-      } else {
+      if (this.SSCExist) {
         this.$router.push({
           name: 'campaign-creation',
         });
+      } else {
+        this.$emit('openPopin');
       }
     },
   },

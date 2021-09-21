@@ -23,19 +23,25 @@ import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 
 export interface State {
-  campaignName: String;
-  campaignDurationDate: CampaignDuration;
-  targetCountry: String;
-  productCampaign: Array<any>;
-  campaignBudget: String;
+  campaigns: Array<CampaignObject>;
+  errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
   tagAlreadyExists: boolean;
   reporting: Reporting;
 }
 
-export interface CampaignDuration {
-  startedAt: String;
-  endedAt: String|null;
+export interface ProductsFilteredObject {
+ dimension: string,
+ values: Array<string>
+}
+export interface CampaignObject {
+  campaignName: string;
+  startDate: string,
+  endDate?: string,
+  targetCountry: string;
+  dailyBudget : number,
+  currencyCode: string,
+  productFilters?: ProductsFilteredObject,
 }
 
 export interface Reporting {
@@ -143,15 +149,9 @@ export interface ProductPartitionPerformances {
 }
 
 export const state: State = {
-  campaignName: '',
-  campaignDurationDate: {
-    startedAt: '',
-    endedAt: '',
-  },
-  targetCountry: '',
-  productCampaign: [],
-  campaignBudget: '',
-  tracking: null,
+  campaigns: [],
+  errorCampaignNameExists: null,
+  tracking: true,
   tagAlreadyExists: false,
   reporting: {
     request: {

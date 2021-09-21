@@ -45,7 +45,7 @@
         </b-button>
       </div>
     </div>
-    <template v-if="isEnabled && statusTrackingTag !== null && sscExist">
+    <template v-if="isEnabled && statusTrackingTag !== null && SSCExist">
       <hr>
       <b-form-checkbox
         switch
@@ -120,19 +120,18 @@ export default {
       return this.$i18n.t('smartShoppingCampaignCreation.enableCreationRemarketingTag');
     },
     SSCExist() {
-      //  TODO return if a SSC already exists to display toggle tag
-      return false;
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
     },
   },
   methods: {
     openPopinActivateTracking() {
-      // Prevent popin for opening if tracking is already activated
-      if (this.statusTrackingTag !== true) {
-        this.$emit('openPopin');
-      } else {
+      // Prevent popin for opening if tracking is a campaign exists
+      if (this.SSCExist) {
         this.$router.push({
           name: 'campaign-creation',
         });
+      } else {
+        this.$emit('openPopin');
       }
     },
     changeStatus() {
