@@ -99,6 +99,7 @@
         <VueShowdown
           class="font-weight-normal ps_gs-fz-12 text-muted mb-3 pb-2"
           :markdown="$t('mcaRequirements.legend2')"
+          :extensions="['extended-link']"
         />
       </section>
       <section class="mb-3">

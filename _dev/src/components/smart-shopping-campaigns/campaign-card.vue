@@ -22,7 +22,8 @@
         </div>
       </div>
       <div
-        class="ps_gs-fz-12 text-muted d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
+        class="ps_gs-fz-12 text-muted d-flex flex-wrap align-items-center
+          flex-md-nowrap justify-content-between mt-3"
       >
         <p class="mb-0">
           {{ $t('campaignCard.footer') }}
@@ -50,15 +51,18 @@ export default {
     trackingStatus() {
       return this.$store.state.smartShoppingCampaigns.tracking;
     },
+    SSCExist() {
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+    },
   },
   methods: {
     openPopinActivateTracking() {
-      if (this.trackingStatus !== true) {
-        this.$emit('openPopin');
-      } else {
+      if (this.SSCExist) {
         this.$router.push({
           name: 'campaign-creation',
         });
+      } else {
+        this.$emit('openPopin');
       }
     },
   },

@@ -53,10 +53,12 @@
           </template>
           <b-form-input
             id="campaign-name-input"
+            @keyup="debounceName()"
             v-model="campaignName"
             :placeholder="$t('smartShoppingCampaignCreation.inputNamePlaceholder')"
             class="maxw-sm-420"
             :state="campaignNameFeedback"
+            :invalid-feedback="$t('smartShoppingCampaignCreation.inputCampaignNameInvalidFeedback')"
           />
         </b-form-group>
         <b-form-group
@@ -213,7 +215,7 @@
           </template>
           <b-input-group
             :prepend="budgetCurrencySymbol"
-            :append="budgetCurrencyAbbreviation"
+            :append="currency"
             class="maxw-sm-420"
           >
             <b-form-input
@@ -247,7 +249,7 @@
           </b-button>
           <b-button
             data-test-id="createCampaignButton"
-            @click="createCampaign"
+            @click="openPopinRecap"
             size="sm"
             :disabled="disableCreateCampaign"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
@@ -259,12 +261,18 @@
       </b-form>
     </b-card-body>
     <SmartShoppingCampaignCreationFilterPopin ref="SmartShoppingCampaignCreationFilterPopin" />
+    <SmartShoppingCampaignCreationPopinRecap
+      ref="SmartShoppingCampaignCreationPopinRecap"
+      :new-campaign="finalCampaign"
+      @openPopinSSCCreated="onCampaignCreated"
+    />
   </b-card>
 </template>
 
 <script>
 import countriesSelectionOptions from '@/assets/json/countries.json';
 import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-creation-filter-popin.vue';
+import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 
 export default {
@@ -274,47 +282,63 @@ export default {
       campaignName: null,
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
-      campaignCountry: null,
       campaignProductsFilter: null,
+      filtersChosen: [],
       campaignDailyBudget: null,
-      budgetCurrencySymbol: '$',
-      budgetCurrencyAbbreviation: 'USD',
+      timer: null,
     };
   },
   components: {
     SmartShoppingCampaignCreationFilterPopin,
+    SmartShoppingCampaignCreationPopinRecap,
     SelectCountry,
   },
   computed: {
     disableCreateCampaign() {
-      // TODO
-      // Condition to allow user to create campaign
+      if (this.campaignName
+      && this.errorCampaignNameExistsAlready === false
+      && this.campaignDurationStartDate
+      && this.countries
+      && (this.campaignProductsFilter === true
+      || (this.campaignProductsFilter === false && this.filtersChosen.length))
+      && this.campaignDailyBudget) {
+        return false;
+      }
       return true;
     },
     campaignNameFeedback() {
-      // TODO
-      // Check if length < 125 and if name is unique
-      const isUnique = true;
-      if ((this.campaignName == null) || this.campaignName === '') {
+      if (!this.campaignName === null || this.errorCampaignNameExistsAlready === null) {
         return null;
       }
 
-      if (this.campaignName.indexOf('\n') || this.campaignName.indexOf('\r')) {
-        return null;
+      if (this.campaignName
+        && this.campaignName.length <= 125
+       && this.campaignName.length > 0
+        && this.errorCampaignNameExistsAlready === false
+      ) {
+        return true;
       }
-
-      return !!((this.campaignName.length <= 125
-          && this.campaignName.length > 0
-          && isUnique));
+      if (this.campaignName
+        || this.campaignName.length <= 125
+        || this.campaignName.length > 0
+        || this.errorCampaignNameExistsAlready === true
+      ) {
+        return false;
+      }
+      return null;
     },
     campaignDailyBudgetFeedback() {
       // TODO
       // I'm just looking for digit, validation should be way better than that
-      const regex = /^([0-9]*)(:?[.|,][0-9]{0,2})?$/g;
-      if (this.campaignDailyBudget === null || this.campaignDailyBudget === '') {
+      const regex = /^[0-9]+([.|,][0-9]{0,2})?$/g;
+      if (this.campaignDailyBudget === null
+        || this.campaignDailyBudget === ''
+      ) {
         return null;
       }
-
+      if (this.campaignDailyBudget < 1) {
+        return false;
+      }
       return !!regex.test(this.campaignDailyBudget);
     },
     sortCountries() {
@@ -326,6 +350,9 @@ export default {
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
+    errorCampaignNameExistsAlready() {
+      return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
+    },
     countries: {
       get() {
         return this.$options.filters.changeCountriesCodesToNames(
@@ -333,17 +360,45 @@ export default {
         );
       },
     },
+    finalCampaign() {
+      return {
+        campaignName: this.campaignName,
+        dailyBudget: this.campaignDailyBudget,
+        currencyCode: this.currency,
+        startDate: this.$options.filters.timeConverterToDate(this.campaignDurationStartDate),
+        endDate: this.$options.filters.timeConverterToDate(this.campaignDurationEndDate),
+        // Countries is still an array because refacto later for multiple countries
+        targetCountry: this.countries[0],
+        productFilters: this.campaignProductsFilter ? [] : this.filtersChosen,
+      };
+    },
+    budgetCurrencySymbol() {
+      const displayAmount = 0;
+      const currencyFormatted = displayAmount.toLocaleString(this.countries[0], {
+        style: 'currency', currency: this.currency,
+      });
+      return currencyFormatted[5];
+    },
   },
   methods: {
-    cancel() {
-      // TODO
+    debounceName() {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.$store.dispatch('smartShoppingCampaigns/CHECK_CAMPAIGN_NAME_ALREADY_EXISTS', this.campaignName);
+      }, 3000);
     },
-    createCampaign() {
-      // TODO
+    cancel() {
+      this.$router.push({
+        name: 'campaign',
+      });
+    },
+    openPopinRecap() {
+      this.$bvModal.show(
+        this.$refs.SmartShoppingCampaignCreationPopinRecap.$refs.modal.id,
+      );
     },
     isCompatibleWithCurrency(country) {
       const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
-
       return currentCountry.currency === this.currency;
     },
     saveCountrySelected(value) {
@@ -354,8 +409,20 @@ export default {
         this.$refs.SmartShoppingCampaignCreationFilterPopin.$refs.modal.id,
       );
     },
+    onCampaignCreated() {
+      this.$emit('campaignCreated');
+    },
   },
-  // TODO filter country to show only available countries
+  watch: {
+    campaignName(oldVal, newVal) {
+      if ((newVal !== oldVal) && this.errorCampaignNameExistsAlready !== null) {
+        this.$store.commit('smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS', false);
+      }
+    },
+  },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
   countriesSelectionOptions,
 };
 </script>

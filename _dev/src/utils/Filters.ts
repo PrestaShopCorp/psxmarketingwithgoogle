@@ -60,10 +60,18 @@ Vue.filter(
       return value;
     }
     
-    console.log(store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currency);
-    
     return Intl.NumberFormat(i18n.locale, {
       style: 'currency',
       currency: store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currency,
     }).format(value);
   });
+
+Vue.filter(
+  'changeCountriesNamesToCodes', (countries : Array<string>) => countries.map((country) => {
+    for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
+      if (country === countriesSelectionOptions[i].country) {
+        return countriesSelectionOptions[i].code;
+      }
+    }
+    return country;
+  }));

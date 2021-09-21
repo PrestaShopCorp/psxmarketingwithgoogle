@@ -21,23 +21,30 @@ import dayjs from 'dayjs';
 import KpiType from '@/enums/reporting/KpiType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
+import CampaignStatus from '@/enums/reporting/CampaignStatus';
 
 export interface State {
-  campaignName: String;
-  campaignDurationDate: CampaignDuration;
-  targetCountry: String;
-  productCampaign: Array<any>;
-  campaignBudget: String;
+  campaigns: Array<CampaignObject>;
+  errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
   tagAlreadyExists: boolean;
   reporting: Reporting;
 }
 
-export interface CampaignDuration {
-  startedAt: String;
-  endedAt: String|null;
+export interface ProductsFilteredObject {
+ dimension: string,
+ values: Array<string>
 }
-
+export interface CampaignObject {
+  campaignName: string;
+  startDate: string,
+  endDate?: string,
+  targetCountry: string;
+  dailyBudget : number,
+  currencyCode: string,
+  productFilters?: ProductsFilteredObject,
+  status?: CampaignStatus
+}
 export interface Reporting {
   request: RequestParams;
   results: ResultsRequest;
@@ -63,15 +70,9 @@ export interface DateRange {
 }
 
 export interface Orderings {
-  campaignsPerformances: {
-    order: OrderByType;
-  },
-  productsPerformances: {
-    order: OrderByType;
-  },
-  productsDimensionsPerformances: {
-    order: OrderByType;
-  }
+  campaignsPerformances: OrderByType;
+  productsPerformances: OrderByType;
+  productsDimensionsPerformances: OrderByType;
 }
 
 export interface OrderByType {
@@ -94,7 +95,7 @@ export interface DailyresultChart {
 
 export interface CampaignsPerformancesSection {
   campaignsPerformanceList: Array<CampaignPerformances>;
-  nextPageToken: string;
+  nextPageToken: string|null;
 }
 
 export interface ProductsPerformancesSection {
@@ -150,39 +151,27 @@ export interface ProductPartitionPerformances {
 }
 
 export const state: State = {
-  campaignName: '',
-  campaignDurationDate: {
-    startedAt: '',
-    endedAt: '',
-  },
-  targetCountry: '',
-  productCampaign: [],
-  campaignBudget: '',
-  tracking: null,
+  campaigns: [],
+  errorCampaignNameExists: null,
+  tracking: true,
   tagAlreadyExists: false,
   reporting: {
     request: {
       dateRange: {
         periodSelected: ReportingPeriod.YESTERDAY,
-        startDate: dayjs().subtract(7, 'day').format('YYYY-MM-DD'),
-        endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
+        startDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
+        endDate: dayjs().format('YYYY-MM-DD'),
       },
       dailyResultType: KpiType.IMPRESSIONS,
       ordering: {
         campaignsPerformances: {
-          order: {
-            clicks: QueryOrderDirection.ASCENDING,
-          },
+          clicks: QueryOrderDirection.ASCENDING,
         },
         productsPerformances: {
-          order: {
-            clicks: QueryOrderDirection.ASCENDING,
-          },
+          clicks: QueryOrderDirection.ASCENDING,
         },
         productsDimensionsPerformances: {
-          order: {
-            clicks: QueryOrderDirection.ASCENDING,
-          },
+          clicks: QueryOrderDirection.ASCENDING,
         },
       },
     },

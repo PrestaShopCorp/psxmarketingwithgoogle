@@ -17,20 +17,42 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {
+  CampaignPerformances,
+  CampaignObject,
   Kpis,
-  OrderByType,
   State as LocalState,
 } from './state';
 import GettersTypes from './getters-types';
-import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import KpiType from '@/enums/reporting/KpiType';
+import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
+
+// locales for dates
+import 'dayjs/locale/de';
+import 'dayjs/locale/en';
+import 'dayjs/locale/es';
+import 'dayjs/locale/fr';
+import 'dayjs/locale/it';
+import 'dayjs/locale/nl';
+import 'dayjs/locale/pt';
+import 'dayjs/locale/pl';
+import 'dayjs/locale/ru';
+
+dayjs.extend(localizedFormat);
 
 export default {
   [GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET](
     state: LocalState,
   ): boolean {
     return state.tracking !== null && state.tracking;
+  },
+  [GettersTypes.GET_ERROR_CAMPAIGN_NAME](state: LocalState): boolean|null {
+    return state.errorCampaignNameExists;
+  },
+  [GettersTypes.GET_ALL_SSC](state: LocalState): Array<CampaignObject> {
+    return state.campaigns;
   },
 
   // request getters
@@ -39,6 +61,30 @@ export default {
   ): ReportingPeriod {
     return state.reporting.request.dateRange.periodSelected;
   },
+  [GettersTypes.GET_REPORTING_START_DATES](
+    state: LocalState,
+  ): string {
+    return state.reporting.request.dateRange.startDate;
+  },
+  [GettersTypes.GET_REPORTING_END_DATES](
+    state: LocalState,
+  ): string {
+    return state.reporting.request.dateRange.endDate;
+  },
+  [GettersTypes.GET_REPORTING_FORMATTED_START_DATES](
+    state: LocalState,
+  ): string {
+    return dayjs(state.reporting.request.dateRange.startDate)
+      .locale(window.i18nSettings.isoCode)
+      .format('L');
+  },
+  [GettersTypes.GET_REPORTING_FORMATTED_END_DATES](
+    state: LocalState,
+  ): string {
+    return dayjs(state.reporting.request.dateRange.endDate)
+      .locale(window.i18nSettings.isoCode)
+      .format('L');
+  },
   [GettersTypes.GET_REPORTING_DAILY_RESULT_TYPE](
     state: LocalState,
   ): KpiType {
@@ -46,18 +92,18 @@ export default {
   },
   [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING](
     state: LocalState,
-  ): OrderByType {
-    return state.reporting.request.ordering.campaignsPerformances.order;
+  ): Object {
+    return state.reporting.request.ordering.campaignsPerformances;
   },
   [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES_ORDERING](
     state: LocalState,
-  ): OrderByType {
-    return state.reporting.request.ordering.productsPerformances.order;
+  ): Object {
+    return state.reporting.request.ordering.productsPerformances;
   },
   [GettersTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_ORDERING](
     state: LocalState,
-  ): OrderByType {
-    return state.reporting.request.ordering.productsDimensionsPerformances.order;
+  ): Object {
+    return state.reporting.request.ordering.productsDimensionsPerformances;
   },
 
   // result getters
@@ -71,4 +117,20 @@ export default {
   ): Kpis[] {
     return state.reporting.results.dailyResultChart.dailyResultList;
   },
+  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
+    state: LocalState,
+  ): Array<CampaignPerformances> {
+    return state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList;
+  },
+  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN](
+    state: LocalState,
+  ): string|null {
+    return state.reporting.results.campaignsPerformancesSection.nextPageToken;
+  },
+  [GettersTypes.GET_ERROR_CAMPAIGN_NAME](
+    state: LocalState,
+  ): boolean|null {
+    return state.errorCampaignNameExists;
+  },
+
 };

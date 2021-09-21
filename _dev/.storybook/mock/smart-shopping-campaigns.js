@@ -1,12 +1,5 @@
 export const sscDefault = {
-  campaignName: '',
-  campaignDurationDate: {
-    startedAt: '',
-    endedAt: '',
-  },
-  targetCountry: '',
-  productCampaign: [],
-  campaignBudget: '',
+campaigns: [],
   tracking: null,
   tagAlreadyExists: false
   };

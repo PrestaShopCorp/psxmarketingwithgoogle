@@ -16,6 +16,10 @@
 
 .ps-dropdown {
   transition: 0s transform;
+
+  &__menu-small {
+    width: auto !important;
+  }
 }
 
 .psxmarketingwithgoogle-dropdown {
@@ -224,7 +228,7 @@
 
   .btn-outline-light:hover,
   .btn-light {
-    background-color: $blue_light;
+    background-color: $grey_extralight;
     color: inherit;
   }
 }

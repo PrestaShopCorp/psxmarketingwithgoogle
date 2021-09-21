@@ -4,6 +4,7 @@ upload/*
 dist/
 composer.phar
 config.yml
+config.xml
 
 # Ignore VueJS compiled files
 views/css/app.css
@@ -31,3 +32,4 @@ microcks/
 # Generated jest test result
 _dev/.jest-test-results.json
 _dev/storybook-static
+.vscode/launch.json

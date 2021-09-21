@@ -113,7 +113,7 @@
       },
       "title" : "Create new Merchant Center account",
       "legend" : "To participate in free listings and advertise on Google you must acknowledge and comply with below requirements:",
-      "legend2" : "Store's website URL needs to be verified and claimed before you can upload products data.  \nLearn how to verify and claim your website.",
+      "legend2" : "Store's website URL needs to be verified and claimed before you can upload products data.  \n[Learn how to verify and claim your website](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
       "footer" : "Read full version of Google store requirements",
       "shoppingAdsPolicies" : {
         "title" : "Comply with Shopping ads policies",
@@ -228,7 +228,6 @@
         "appliedOnlyForUsa" : "(applied only for the USA)",
         "alertTaxes" : "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.",
         "cantSelectCountryWithDifferentCurrency" : "You can't select country with currency that differs from your main shop."
-
       },
       "export" : {
         "synchronizationSchedule" : "Export synchronization schedule",
@@ -365,6 +364,7 @@
       "inputNameLabel" : "Campaign name",
       "inputNameTooltip" : "Choose a name that clearly describes the theme of the campaign so that you can easily find it in your account. Your campaign name isn't visible to your customers.",
       "inputNamePlaceholder" : "Type campaign name",
+      "inputCampaignNameInvalidFeedback" : "The name must be unique",
       "inputDurationHelper" : "We recommend a minimum duration of 30 days so that Google can optimize your campaign.",
       "inputDurationLabel" : "Campaign duration",
       "inputDurationTooltip" : "Ad campaigns have no end date by default, so that the ads are able to run indefinitely. You can always add an end date to create a shorter campaign.",
@@ -403,6 +403,9 @@
       "nbValuesSelected" : "No value selected | {0} value selected | {0} values selected",
       "selectProductsTitle" : "Select products",
       "selectProductsSubtitle" : "Select the filters you want to add in your Google Ads campaign"
+    },
+    "smartShoppingCampaignList" : {
+      "tableTitle" : "Campaign performance"
     },
     "productFeedPage" : {
       "breadcrumb" : "Product status details",
@@ -515,7 +518,11 @@
         "averageCpc" : "Average CPC",
         "conversions" : "Conversions",
         "conversionsRate" : "Conversions rate",
-        "productFilter" : "Product filter"
+        "productFilter" : "Product filter",
+        "duration" : "Duration date",
+        "target" : "Target",
+        "actions" : "Actions",
+        "dailyBudget" : "Daily budget"
       },
       "tooltipCol" : {
         "status" : "Placeholder tooltip status"
@@ -637,7 +644,16 @@
       "removeFilter" : "Remove filter | Remove filters",
       "selectAll" : "Select all",
       "deselectAll" : "Deselect all",
-      "signInWithGoogle" : "Sign in with Google"
+      "signInWithGoogle" : "Sign in with Google",
+      "viewReporting" : "View reporting",
+      "pauseCampaign" : "Pause campaign",
+      "resumeCampaign" : "Resume campaign",
+      "modifyTheCampaign" : "Modify the campaign",
+      "openActionsMenu" : "Open actions menu for campaign {0}",
+      "viewInGoogleAds" : "View in your Google Ads account",
+      "previous" : "Previous",
+      "next" : "Next",
+      "goToPage" : "Go to first page | Go to page: {0} | Go to last page"
     },
     "badge" : {
       "free" : "Free",
@@ -684,7 +700,6 @@
       "textOverwriteProductFeed" : "Overwriting your existing product feed will delete it. You will need to configure new product feed.",
       "titleDisconnectionGoogleAds" : "Disconnect Google Ads account?",
       "textDisconnectGoogleAds" : "Disconnecting from your Google Ads account will remove the ability to run Smart Shopping campaigns from the module.",
-      "questionDisconnectGoogleAds" : "What do you want to do with your current campaigns?",
       "pauseCampaigns" : "Pause all of my campaigns",
       "pauseCampaignsExplainations" : "By pausing all your campaigns, the billing will stop. You can restart your campaigns at any time in your Google ads account.",
       "removeTag" : "Remove “Remarketing and conversion” tag from my shop",
@@ -726,7 +741,8 @@
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
       "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!",
       "productFeedConfiguredOnceSuccess" : "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
-      "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google"
+      "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google",
+      "campaignCreatedSuccess": "You have created your Smart Shopping campaign successfully!"
     },
     "stepper": {
       "nextStep" : "Next: {0}",

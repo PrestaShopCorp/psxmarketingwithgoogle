@@ -18,47 +18,30 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PsxMarketingWithGoogle\Buffer;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
-use Symfony\Component\HttpFoundation\Session\Session;
+use Context;
+use Currency;
+use Order;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\ConversionEventData;
 
-class TemplateBuffer
+class ConversionEventDataProvider
 {
     /**
-     * @var Session
+     * @var Context
      */
-    private $session;
+    protected $context;
 
-    public function __construct()
+    public function __construct(Context $context)
     {
-        $this->session = new Session();
-        $this->session->start();
+        $this->context = $context;
     }
 
-    /**
-     * add data to the buffer
-     *
-     * @param string $data
-     *
-     * @return void
-     */
-    public function add($data)
+    public function getActionDataByOrderObject(Order $order): ConversionEventData
     {
-        $this->session->getFlashBag()->add('gtag_events', $data);
-    }
-
-    /**
-     * return buffer content and reset it
-     *
-     * @return string
-     */
-    public function flush(): string
-    {
-        $data = '';
-        foreach ($this->session->getFlashBag()->get('gtag_events', []) as $message) {
-            $data .= $message;
-        }
-
-        return $data;
+        return (new ConversionEventData())
+            ->setTransactionId((string) $order->id)
+            ->setValue((string) $order->total_paid_tax_incl)
+            ->setCurrency((new Currency($order->id_currency))->iso_code);
     }
 }

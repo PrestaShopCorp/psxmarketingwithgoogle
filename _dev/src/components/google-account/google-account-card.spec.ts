@@ -27,6 +27,9 @@ describe('google-account-card.vue', () => {
     const wrapper = mount(GoogleAccountCard, {
       ...config,
       propsData: Disabled.args,
+      stubs: {
+        VueShowdown: true,
+      },
     });
 
     expect(wrapper.find('.ps_gs-onboardingcard--disabled-grey').exists()).toBeTruthy();
@@ -36,6 +39,9 @@ describe('google-account-card.vue', () => {
     const wrapper = mount(GoogleAccountCard, {
       ...config,
       propsData: NotConnected.args,
+      stubs: {
+        VueShowdown: true,
+      },
     });
 
     expect(wrapper.find('.ps_gs-onboardingcard--disabled-grey').exists()).toBeFalsy();
@@ -47,6 +53,9 @@ describe('google-account-card.vue', () => {
         $router: mockRouter,
       },
       ...config,
+      stubs: {
+        VueShowdown: true,
+      },
       propsData: NotConnectedAndCanNotGetAuthenticationUrl.args,
     });
 
@@ -62,6 +71,9 @@ describe('google-account-card.vue', () => {
     const wrapper = mount(GoogleAccountCard, {
       ...config,
       propsData: CouldNotConnect.args,
+      stubs: {
+        VueShowdown: true,
+      },
     });
     // Check if alert is visible
     expect(wrapper.find('.alert').exists()).toBeTruthy();
@@ -75,6 +87,9 @@ describe('google-account-card.vue', () => {
     const wrapper = mount(GoogleAccountCard, {
       ...config,
       propsData: Connected.args,
+      stubs: {
+        VueShowdown: true,
+      },
     });
     // Check if account email is visible, the email is defined in the mock
     expect(wrapper.find('a > strong').text()).toBe('v.godard@maisonroyer.com');

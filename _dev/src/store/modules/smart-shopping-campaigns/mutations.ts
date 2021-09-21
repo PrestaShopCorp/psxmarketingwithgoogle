@@ -21,35 +21,68 @@ import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import MutationsTypes from './mutations-types';
 import {
+  CampaignPerformances,
   CampaignsPerformancesSection,
   DailyresultChart,
   Kpis,
+  OrderByType,
   ProductsPartitionsPerformancesSection,
   ProductsPerformancesSection,
   State as LocalState,
+  CampaignObject,
 } from './state';
 
 export default {
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](state: LocalState, payload: boolean) {
     state.tracking = payload;
   },
+
+  // request mutations
   [MutationsTypes.SET_REPORTING_PERIOD_SELECTED](state: LocalState, payload: ReportingPeriod) {
     state.reporting.request.dateRange.periodSelected = payload;
   },
+  [MutationsTypes.SET_REPORTING_DATES](state: LocalState, payload: Record<string, string>) {
+    state.reporting.request.dateRange = {...state.reporting.request.dateRange, ...payload};
+  },
+
   [MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPE](state: LocalState, payload: KpiType) {
     state.reporting.request.dailyResultType = payload;
   },
+  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING](
+    state: LocalState, payload: OrderByType,
+  ) {
+    state.reporting.request.ordering.campaignsPerformances = payload;
+  },
+
+  // result mutations
   [MutationsTypes.SET_REPORTING_KPIS](state: LocalState, payload: Kpis) {
     state.reporting.results.kpis = payload;
   },
   [MutationsTypes.SET_REPORTING_DAILY_RESULTS](state: LocalState, payload: DailyresultChart) {
     state.reporting.results.dailyResultChart = payload;
   },
-  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES](
+  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS](
     state: LocalState,
-    payload: CampaignsPerformancesSection,
+    payload: Array<CampaignPerformances>,
   ) {
-    state.reporting.results.campaignsPerformancesSection = payload;
+    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(...payload);
+  },
+  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS](
+    state: LocalState,
+    payload: Array<CampaignPerformances>,
+  ) {
+    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(...payload);
+  },
+  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN](
+    state: LocalState,
+    payload: string|null,
+  ) {
+    state.reporting.results.campaignsPerformancesSection.nextPageToken = payload;
+  },
+  [MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES](
+    state: LocalState,
+  ) {
+    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
   [MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES](
     state: LocalState,
@@ -62,5 +95,11 @@ export default {
     payload: ProductsPartitionsPerformancesSection,
   ) {
     state.reporting.results.productsPartitionsPerformancesSection = payload;
+  },
+  [MutationsTypes.SAVE_NEW_SSC](state: LocalState, payload: CampaignObject) {
+    state.campaigns.push(payload);
+  },
+  [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](state: LocalState, payload: boolean) {
+    state.errorCampaignNameExists = payload;
   },
 };

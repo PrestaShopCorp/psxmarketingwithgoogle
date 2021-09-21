@@ -84,7 +84,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         try {
             $psAccountsService = $this->module->getService(PsAccounts::class)->getPsAccountsService();
             $shopIdPsAccounts = $psAccountsService->getShopUuidV4();
-            $tokenPsAccounts = (string) $psAccountsService->getOrRefreshToken();
+            $tokenPsAccounts = $psAccountsService->getOrRefreshToken();
         } catch (Exception $e) {
             $shopIdPsAccounts = null;
             $tokenPsAccounts = null;

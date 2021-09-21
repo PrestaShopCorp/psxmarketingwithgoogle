@@ -13,12 +13,6 @@
       :markdown="$t('modal.textDisconnectGoogleAds')"
     />
     <template v-if="SSCExist">
-      <span
-        class="mt-2 d-flex align-items-center font-weight-bold"
-      >
-        {{ $t('modal.questionDisconnectGoogleAds') }}
-      </span>
-
       <!-- <b-form-checkbox
         v-model="pauseCampaigns"
         switch
@@ -101,8 +95,7 @@ export default {
   },
   computed: {
     SSCExist() {
-      //  TODO return if a SSC already exists to display toggle tag and toggle pause
-      return true;
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
     },
   },
 };

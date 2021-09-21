@@ -158,6 +158,7 @@
       />
       <div class="d-flex">
         <b-form-checkbox
+          data-test-id="buttonCheckbox"
           class="ps_gs-checkbox"
           v-model="acceptsGoogleTerms"
         >
@@ -187,6 +188,7 @@
         variant="primary"
         @click="stepToChange(stepActiveData + 1)"
         class="mr-md-0"
+        data-test-id="buttonContinue"
         :disabled="stepActiveData === 2 && fieldsEmpty()"
       >
         {{ $t("cta.continue") }}
@@ -213,6 +215,7 @@
         <b-button
           variant="primary"
           @click="ok()"
+          data-test-id="buttonContinueStep2"
           :disabled="isStepThreeReadyToValidate()"
         >
           {{ $t("cta.createAccount") }}
@@ -244,9 +247,9 @@ export default {
     return {
       newAccountInfos: {
         name: '',
-        country: '',
         currency: '',
         timeZone: this.accountInformations?.timeZone || '',
+        country: '',
       },
       stepActiveData: 1,
       steps: [
@@ -283,7 +286,7 @@ export default {
       if (this.selectedDescriptiveName
        && this.selectedTimeZone
         && this.selectedCurrency
-        && this.newAccountInfos.country.length
+        && this.newAccountInfos.country
       ) {
         return false;
       }
@@ -335,9 +338,7 @@ export default {
     },
     countries: {
       get() {
-        return this.$options.filters.changeCountriesCodesToNames(
-          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
-        );
+        return this.newAccountInfos.country;
       },
     },
     currency() {
@@ -346,13 +347,14 @@ export default {
     currencies() {
       return this.$options.countriesSelectionOptions
         .map((e) => e.currency)
-        .reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]),
-        )
+        .reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]), [])
         .sort();
     },
   },
   mounted() {
     this.stepActiveData = this.stepActive;
+    this.newAccountInfos.country = this.$store.getters['app/GET_ACTIVE_COUNTRIES']
+      ? this.$options.filters.changeCountriesCodesToNames(this.$store.getters['app/GET_ACTIVE_COUNTRIES']) : '';
   },
   googleUrl,
   countriesSelectionOptions,
