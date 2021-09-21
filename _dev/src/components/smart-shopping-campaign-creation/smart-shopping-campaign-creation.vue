@@ -123,7 +123,7 @@
                 :label-reset-button="$t('cta.resetDate')"
                 reset-button-variant="outline-secondary sm"
                 close-button
-                :label-close-button="'no end date'"
+                :label-close-button="$t('cta.noEndDate')"
                 close-button-variant="outline-secondary sm"
                 :hide-header="true"
                 :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
