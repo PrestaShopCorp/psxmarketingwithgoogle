@@ -8,7 +8,7 @@
     />
     <b-table-simple
       id="table-campaigns-performance"
-      class="mb-3 ps_gs-table-products"
+      class="mb-3 ps_gs-table-products table-overflow-selector"
       :table-class="{'border-bottom-0': loading}"
       variant="light"
       responsive="xl"
@@ -54,11 +54,15 @@
           </b-th>
         </b-tr>
       </b-thead>
-      <b-tbody class="bg-white">
+      <b-tbody
+        class="bg-white"
+        id="campaigns-table-body"
+        ref="campaigns-table-body"
+      >
         <CampaignsPerformanceTableRow
-          v-for="campaign in campaignList"
+          v-for="(campaign, key, index) in campaignList"
           :campaign="campaign"
-          :key="campaign.name"
+          :key="index"
         />
         <b-tr v-if="loading">
           <b-td
@@ -92,6 +96,14 @@ export default {
       loading: false,
     };
   },
+  mounted() {
+    const tableBody = document.getElementsByClassName('table-overflow-selector')[0];
+    tableBody.addEventListener('scroll', this.handleScroll);
+  },
+  beforeDestroy() {
+    const tableBody = document.getElementsByClassName('table-overflow-selector')[0];
+    tableBody.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
     hasToolTip(headerType) {
       return headerType === CampaignPerformanceHeaderType.STATUS;
@@ -109,6 +121,17 @@ export default {
         newOrderDirection[headerType] = QueryOrderDirection.ASCENDING;
       }
       this.queryOrderDirection = newOrderDirection;
+    },
+    async handleScroll() {
+      const tableBody = document.getElementsByClassName('table-overflow-selector')[0];
+      const token = await this.$store.getters['smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN'];
+
+      if (
+        tableBody.scrollTop >= tableBody.scrollHeight - tableBody.clientHeight
+        && token !== null
+      ) {
+        this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES');
+      }
     },
   },
   computed: {
@@ -129,6 +152,7 @@ export default {
         return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING'];
       },
       set(orderDirection) {
+        this.$store.commit('smartShoppingCampaigns/RESET_REPORTING_CAMPAIGNS_PERFORMANCES');
         this.$store.commit('smartShoppingCampaigns/SET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING', orderDirection);
         this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES');
       },
@@ -136,3 +160,10 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+.table-overflow-selector {
+  height: 350px;
+  overflow: hidden scroll;
+}
+</style>

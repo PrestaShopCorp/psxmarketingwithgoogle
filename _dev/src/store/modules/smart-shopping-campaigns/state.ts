@@ -93,7 +93,7 @@ export interface DailyresultChart {
 
 export interface CampaignsPerformancesSection {
   campaignsPerformanceList: Array<CampaignPerformances>;
-  nextPageToken: string;
+  nextPageToken: string|null;
 }
 
 export interface ProductsPerformancesSection {

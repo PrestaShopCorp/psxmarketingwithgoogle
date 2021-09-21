@@ -74,12 +74,16 @@ export default {
   [GettersTypes.GET_REPORTING_FORMATTED_START_DATES](
     state: LocalState,
   ): string {
-    return dayjs(state.reporting.request.dateRange.startDate).locale(window.i18nSettings.isoCode).format('L');
+    return dayjs(state.reporting.request.dateRange.startDate)
+      .locale(window.i18nSettings.isoCode)
+      .format('L');
   },
   [GettersTypes.GET_REPORTING_FORMATTED_END_DATES](
     state: LocalState,
   ): string {
-    return dayjs(state.reporting.request.dateRange.endDate).locale(window.i18nSettings.isoCode).format('L');
+    return dayjs(state.reporting.request.dateRange.endDate)
+      .locale(window.i18nSettings.isoCode)
+      .format('L');
   },
   [GettersTypes.GET_REPORTING_DAILY_RESULT_TYPE](
     state: LocalState,
@@ -115,7 +119,7 @@ export default {
   },
   [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN](
     state: LocalState,
-  ): string {
+  ): string|null {
     return state.reporting.results.campaignsPerformancesSection.nextPageToken;
   },
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](

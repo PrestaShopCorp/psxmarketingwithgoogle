@@ -140,8 +140,10 @@ export default {
   },
 
   async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
-    {dispatch},
+    {dispatch, commit},
   ) {
+    commit('RESET_REPORTING_CAMPAIGNS_PERFORMANCES');
+
     dispatch('GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
     dispatch('GET_REPORTING_KPIS');
     dispatch('GET_REPORTING_DAILY_RESULTS');
@@ -443,6 +445,7 @@ export default {
       nextPageToken: 'test-de-token',
     };
 
+    // for testing only
     if (
       state.reporting.request.ordering.campaignsPerformances.clicks
       === QueryOrderDirection.ASCENDING
@@ -450,7 +453,22 @@ export default {
       result.campaignsPerformanceList = [...result.campaignsPerformanceList].reverse();
     }
 
-    commit(MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES, result);
+    commit(
+      MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS,
+      result.campaignsPerformanceList,
+    );
+    commit(
+      MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN,
+      result.nextPageToken,
+    );
+
+    // for testing only
+    if (state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.length > 10) {
+      commit(
+        MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN,
+        null,
+      );
+    }
   },
 
   async [ActionsTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](

@@ -21,6 +21,7 @@ import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import MutationsTypes from './mutations-types';
 import {
+  CampaignPerformances,
   CampaignsPerformancesSection,
   DailyresultChart,
   Kpis,
@@ -60,11 +61,28 @@ export default {
   [MutationsTypes.SET_REPORTING_DAILY_RESULTS](state: LocalState, payload: DailyresultChart) {
     state.reporting.results.dailyResultChart = payload;
   },
-  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES](
+  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS](
     state: LocalState,
-    payload: CampaignsPerformancesSection,
+    payload: Array<CampaignPerformances>,
   ) {
-    state.reporting.results.campaignsPerformancesSection = payload;
+    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(...payload);
+  },
+  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS](
+    state: LocalState,
+    payload: Array<CampaignPerformances>,
+  ) {
+    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(...payload);
+  },
+  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN](
+    state: LocalState,
+    payload: string|null,
+  ) {
+    state.reporting.results.campaignsPerformancesSection.nextPageToken = payload;
+  },
+  [MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES](
+    state: LocalState,
+  ) {
+    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
   [MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES](
     state: LocalState,
