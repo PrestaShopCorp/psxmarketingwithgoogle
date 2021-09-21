@@ -43,7 +43,6 @@ export default {
           }),
         });
       if (!resp.ok) {
-        commit(MutationsTypes.SAVE_NEW_SSC, payload);
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
