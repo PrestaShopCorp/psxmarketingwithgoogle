@@ -701,6 +701,7 @@ class PsxMktgWithGoogleTranslations
                 'previous' => $this->module->l('Previous', 'PsxMktgWithGoogleTranslations'),
                 'next' => $this->module->l('Next', 'PsxMktgWithGoogleTranslations'),
                 'goToPage' => $this->module->l('Go to first page | Go to page: {0} | Go to last page', 'PsxMktgWithGoogleTranslations'),
+                'noEndDate' => $this->module->l('No end date', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),
