@@ -450,7 +450,9 @@ export default {
       state.reporting.request.ordering.campaignsPerformances.clicks
       === QueryOrderDirection.ASCENDING
     ) {
-      result.campaignsPerformanceList = [...result.campaignsPerformanceList].reverse();
+      result.campaignsPerformanceList = [
+        ...result.campaignsPerformanceList,
+      ].reverse();
     }
 
     commit(
@@ -502,19 +504,119 @@ export default {
     // temp mocked
     // const result = await response.json();
     const result = {
-      productsPartitionsPerformanceList: [
+      productsPerformanceList: [
         {
-          id: 'test',
-          name: 'test',
-          clicks: 45,
+          id: 'test 1',
+          name: 'test 1',
+          clicks: 1,
           costs: 65874,
           averageCostPerClick: 1487,
           conversions: 174478,
           conversionsRate: 45,
           sales: 155,
         },
+        {
+          id: 'test 2',
+          name: 'test 2',
+          clicks: 2,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 3',
+          name: 'test 3',
+          clicks: 3,
+          costs: 65874,
+          averageCostPerClick: 1487,
+          conversions: 174478,
+          conversionsRate: 45,
+          sales: 155,
+        },
+        {
+          id: 'test 4',
+          name: 'test 4',
+          clicks: 4,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 5',
+          name: 'test 5',
+          clicks: 5,
+          costs: 65874,
+          averageCostPerClick: 1487,
+          conversions: 174478,
+          conversionsRate: 45,
+          sales: 155,
+        },
+        {
+          id: 'test 6',
+          name: 'test 6',
+          clicks: 6,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 7',
+          name: 'test 7',
+          clicks: 7,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 8',
+          name: 'test 8',
+          clicks: 8,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 9',
+          name: 'test 9',
+          clicks: 9,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 10',
+          name: 'test 10',
+          clicks: 10,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
       ],
     };
+
+    // for testing only
+    if (
+      state.reporting.request.ordering.productsPerformances.clicks
+      === QueryOrderDirection.ASCENDING
+    ) {
+      result.productsPerformanceList = [
+        ...result.productsPerformanceList,
+      ].reverse();
+    }
 
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES, result);
   },

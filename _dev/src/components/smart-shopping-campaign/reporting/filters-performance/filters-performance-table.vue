@@ -3,12 +3,11 @@
     <ReportingTableHeader
       :title="$t('campaigns.filtersPerformanceTable.title')"
       :subtitle="$t('campaigns.filtersPerformanceTable.subTitle')"
-      start-date="04/06/2021"
-      end-date="04/07/2021"
+      :use-date="true"
     />
     <b-table-simple
       id="table-filters-performance"
-      class="ps_gs-table-products mb-3"
+      class="mb-3 ps_gs-table-products"
       :table-class="{'border-bottom-0': loading}"
       variant="light"
       responsive="xl"

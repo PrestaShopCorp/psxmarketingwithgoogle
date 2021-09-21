@@ -22,14 +22,14 @@ import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import MutationsTypes from './mutations-types';
 import {
   CampaignPerformances,
-  CampaignsPerformancesSection,
   DailyresultChart,
   Kpis,
   OrderByType,
   ProductsPartitionsPerformancesSection,
-  ProductsPerformancesSection,
   State as LocalState,
   CampaignObject,
+  ProductPerformances,
+  ProductsPerformancesSection,
 } from './state';
 
 export default {
@@ -52,6 +52,11 @@ export default {
     state: LocalState, payload: OrderByType,
   ) {
     state.reporting.request.ordering.campaignsPerformances = payload;
+  },
+  [MutationsTypes.SET_REPORTING_PRODUCT_PERFORMANCES_ORDERING](
+    state: LocalState, payload: OrderByType,
+  ) {
+    state.reporting.request.ordering.productsPerformances = payload;
   },
 
   // result mutations

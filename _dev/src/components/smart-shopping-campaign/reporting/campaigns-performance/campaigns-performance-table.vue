@@ -3,8 +3,7 @@
     <ReportingTableHeader
       :title="$t('campaigns.campaignsPerformanceTable.title')"
       :subtitle="$t('campaigns.campaignsPerformanceTable.subTitle')"
-      :start-date="reportingStartDate"
-      :end-date="reportingEndDate"
+      :use-date="true"
     />
     <b-table-simple
       id="table-campaigns-performance"
@@ -98,11 +97,15 @@ export default {
   },
   mounted() {
     const tableBody = document.getElementsByClassName('table-overflow-selector')[0];
+
     tableBody.addEventListener('scroll', this.handleScroll);
   },
   beforeDestroy() {
     const tableBody = document.getElementsByClassName('table-overflow-selector')[0];
-    tableBody.removeEventListener('scroll', this.handleScroll);
+
+    if (tableBody) {
+      tableBody.removeEventListener('scroll', this.handleScroll);
+    }
   },
   methods: {
     hasToolTip(headerType) {
@@ -135,12 +138,6 @@ export default {
     },
   },
   computed: {
-    reportingStartDate() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FORMATTED_START_DATES'];
-    },
-    reportingEndDate() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FORMATTED_END_DATES'];
-    },
     campaignHeaderList() {
       return Object.values(CampaignPerformanceHeaderType);
     },

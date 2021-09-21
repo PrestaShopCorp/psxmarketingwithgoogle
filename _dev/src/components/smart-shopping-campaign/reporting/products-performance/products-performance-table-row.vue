@@ -3,7 +3,7 @@
     <b-td
       class="ps_gs-fz-12"
     >
-      {{ id }}{{ attribute > 0 ? '&#8209;' + attribute : '' }}
+      {{ campaign.id }}{{ campaign.attribute > 0 ? '&#8209;' + campaign.attribute : '' }}
     </b-td>
     <b-td
       class="b-table-sticky-column text-primary"
@@ -13,28 +13,28 @@
         target="_blank"
         class="external_link-no_icon"
       >
-        {{ product }}
+        {{ campaign.name }}
       </a>
     </b-td>
     <b-td
       class="ps_gs-fz-12"
     >
-      {{ click }}
+      {{ campaign.clicks }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ costs }}
+      {{ campaign.costs }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ averageCpc }}
+      {{ campaign.averageCostPerClick }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ conversions }}
+      {{ campaign.conversions }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ conversionsRate }}
+      {{ campaign.conversionsRate }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ sales }}
+      {{ campaign.sales }}
     </b-td>
   </b-tr>
 </template>
@@ -46,41 +46,8 @@ export default {
   mixins: [StickyColumnsObserver],
   name: 'ProductsPerformanceTableRow',
   props: {
-    id: {
-      type: String,
-      required: true,
-    },
-    attribute: {
-      type: String,
-      required: false,
-      default: null,
-    },
-    product: {
-      type: String,
-      required: true,
-    },
-    click: {
-      type: String,
-      required: true,
-    },
-    costs: {
-      type: String,
-      required: true,
-    },
-    averageCpc: {
-      type: String,
-      required: true,
-    },
-    conversions: {
-      type: String,
-      required: true,
-    },
-    conversionsRate: {
-      type: String,
-      required: true,
-    },
-    sales: {
-      type: String,
+    campaign: {
+      type: Object,
       required: true,
     },
   },
