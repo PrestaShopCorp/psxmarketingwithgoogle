@@ -316,8 +316,7 @@ export default {
     },
     selectedTimeZone: {
       get() {
-        return this.newAccountInfos.timeZone
-          ? this.newAccountInfos.timeZone : this.getBillingInformations.timeZone;
+        return this.newAccountInfos.timeZone || this.getBillingInformations.timeZone;
       },
       set(value) {
         this.newAccountInfos.timeZone = value;
