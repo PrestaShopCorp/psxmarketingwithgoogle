@@ -190,6 +190,31 @@ class PsxMarketingWithGoogle extends Module
             . $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__);
     }
 
+    public function hookDisplayTop()
+    {
+        return $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__);
+    }
+
+    public function hookDisplayOrderConfirmation($params)
+    {
+        return $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__, $params);
+    }
+
+    public function hookActionCartUpdateQuantityBefore($params)
+    {
+        return $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__, $params);
+    }
+
+    /**
+     * return __FILE__
+     *
+     * @return string
+     */
+    public function getFilePath()
+    {
+        return __FILE__;
+    }
+
     private function loadEnv()
     {
         if (file_exists(__DIR__ . '/.env')) {

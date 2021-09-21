@@ -1,7 +1,20 @@
 services:
-  PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler:
-    class: PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler
+  PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider
     arguments:
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter'
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Builder\CarrierBuilder'
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\CarrierRepository'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Provider\ConversionEventDataProvider'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider
+    arguments:
+      - '@psxmarketingwithgoogle.context'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\Provider\ConversionEventDataProvider:
+    class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\ConversionEventDataProvider'
+    arguments:
+      - '@psxmarketingwithgoogle.context'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\Provider\PageViewEventDataProvider:
+    class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\PageViewEventDataProvider'
+    arguments:
+      - '@psxmarketingwithgoogle.context'

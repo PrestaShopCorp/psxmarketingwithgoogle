@@ -18,47 +18,32 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PsxMarketingWithGoogle\Buffer;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
-use Symfony\Component\HttpFoundation\Session\Session;
+use Order;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\ConversionEventData;
 
-class TemplateBuffer
+class PurchaseEventDataProvider
 {
     /**
-     * @var Session
+     * @var ConversionEventDataProvider
      */
-    private $session;
+    protected $conversionEventDataProvider;
 
-    public function __construct()
+    public function __construct(ConversionEventDataProvider $conversionEventDataProvider)
     {
-        $this->session = new Session();
-        $this->session->start();
+        $this->conversionEventDataProvider = $conversionEventDataProvider;
     }
 
     /**
-     * add data to the buffer
-     *
-     * @param string $data
-     *
-     * @return void
+     * Return the items concerned by the transaction
      */
-    public function add($data)
+    public function getEventData($sendTo, Order $order): ConversionEventData
     {
-        $this->session->getFlashBag()->add('gtag_events', $data);
-    }
+        // https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce#action-data
+        $conversionEventData = $this->conversionEventDataProvider->getActionDataByOrderObject($order);
+        $conversionEventData->setSendTo($sendTo);
 
-    /**
-     * return buffer content and reset it
-     *
-     * @return string
-     */
-    public function flush(): string
-    {
-        $data = '';
-        foreach ($this->session->getFlashBag()->get('gtag_events', []) as $message) {
-            $data .= $message;
-        }
-
-        return $data;
+        return $conversionEventData;
     }
 }

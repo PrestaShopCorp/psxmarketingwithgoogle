@@ -20,9 +20,14 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Handler;
 
+use Context;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Buffer\TemplateBuffer;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\PageViewEventDataProvider;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider;
+use PsxMarketingWithGoogle;
 
 class RemarketingHookHandler
 {
@@ -37,17 +42,37 @@ class RemarketingHookHandler
     protected $templateBuffer;
 
     /**
+     * @var Context
+     */
+    protected $context;
+
+    /**
+     * @var PsxMarketingWithGoogle
+     */
+    protected $module;
+
+    /**
      * @var bool
      */
     protected $active;
 
-    public function __construct(ConfigurationAdapter $configurationAdapter, TemplateBuffer $templateBuffer)
+    /**
+     * @var array
+     */
+    protected $conversionLabels;
+
+    public function __construct(ConfigurationAdapter $configurationAdapter, TemplateBuffer $templateBuffer, Context $context, $module)
     {
         $this->configurationAdapter = $configurationAdapter;
         $this->templateBuffer = $templateBuffer;
+        $this->context = $context;
+        $this->module = $module;
 
         $this->active = (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS)
             && (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG);
+
+        $this->conversionLabels = json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS), true)
+            ?: [];
     }
 
     public function handleHook(string $hookName, array $data = []): string
@@ -57,13 +82,50 @@ class RemarketingHookHandler
         }
 
         switch ($hookName) {
-            case 'hookDisplayHeader':
-                $this->templateBuffer->add(base64_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG)));
+            case 'hookDisplayTop':
+                if (($sendTo = $this->getSendTo(Config::REMARKETING_CONVERSION_LABEL_PAGE_VIEW)) === null) {
+                    break;
+                }
+
+                $this->context->smarty->assign([
+                    'eventData' => $this->module->getService(PageViewEventDataProvider::class)->getEventData($sendTo),
+                ]);
+                $this->templateBuffer->add(
+                    $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
+                );
+                break;
+            case 'hookDisplayOrderConfirmation':
+                if (($sendTo = $this->getSendTo(Config::REMARKETING_CONVERSION_LABEL_PURCHASE)) === null) {
+                    break;
+                }
+
+                $this->context->smarty->assign([
+                    'eventData' => $this->module->getService(PurchaseEventDataProvider::class)->getEventData($sendTo, $data['order']),
+                ]);
+                $this->templateBuffer->add(
+                    $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
+                );
                 break;
 
-            case 'HookDisplayOrderConfirmation':
-                $this->templateBuffer->add('gtag(\'event\', \'purchase\', ' . json_encode([]) . ')');
+            case 'hookActionCartUpdateQuantityBefore':
+                if ($data['operator'] !== 'up') {
+                    break;
+                }
+                if (($sendTo = $this->getSendTo(Config::REMARKETING_CONVERSION_LABEL_ADD_TO_CART)) === null) {
+                    break;
+                }
+
+                $this->context->smarty->assign([
+                    'eventData' => $this->module->getService(CartEventDataProvider::class)->getEventData($sendTo, $data),
+                ]);
+                $this->templateBuffer->add(
+                    $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
+                );
                 break;
+        }
+
+        if ($hookName === 'hookDisplayHeader') {
+            return base64_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG));
         }
 
         // Return the existing content in case we have a display hook
@@ -72,5 +134,14 @@ class RemarketingHookHandler
         }
 
         return '';
+    }
+
+    private function getSendTo($eventName)
+    {
+        if (!empty($this->conversionLabels[$eventName])) {
+            return $this->conversionLabels[$eventName];
+        }
+
+        return null;
     }
 }

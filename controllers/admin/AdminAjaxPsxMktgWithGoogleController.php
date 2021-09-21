@@ -119,6 +119,12 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             case 'checkRemarketingTagExists':
                 $this->checkRemarketingTagExists($inputs);
                 break;
+            case 'setConversionActionLabel':
+                $this->setConversionActionLabel($inputs);
+                break;
+            case 'getConversionActionLabels':
+                $this->getConversionActionLabels();
+                break;
             default:
                 http_response_code(400);
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
@@ -334,6 +340,63 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         }
 
         $this->ajaxDie(json_encode(['tagAlreadyExists' => $googleTag]));
+    }
+
+    private function setConversionActionLabel(array $inputs)
+    {
+        if (!isset($inputs['conversion_category']) || !isset($inputs['label'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing conversion_category or label key',
+            ]));
+        }
+
+        if (!in_array($inputs['conversion_category'], Config::REMARKETING_CONVERSION_LABELS)) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Unhandled conversion category',
+            ]));
+        }
+
+        $tag = base64_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG));
+        if (empty($tag)) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Need to enable the remarketing tag first',
+            ]));
+        }
+
+        preg_match('/(?P<account>AW-[0-9]+)/', $tag, $matches);
+
+        if (!empty($matches['account'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Remarketing tag is incorrect. No Adwords ID found.',
+            ]));
+        }
+
+        $this->configurationAdapter->updateValue(
+            Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS,
+            json_encode(
+                array_merge(
+                    json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS), true) ?: [],
+                    [
+                        $inputs['conversion_category'] => $matches['account'] . '/' . $inputs['label'],
+                    ]
+                )
+            )
+        );
+    }
+
+    private function getConversionActionLabels()
+    {
+        $this->ajaxDie(json_encode([
+            'conversionActionLabels' => json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS), true) ?: [],
+        ]));
     }
 
     /**
