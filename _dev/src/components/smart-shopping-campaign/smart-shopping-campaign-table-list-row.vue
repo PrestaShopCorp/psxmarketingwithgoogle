@@ -6,13 +6,13 @@
       <b-button
         variant="link"
         class="font-weight-normal ps_gs-fz-12 p-0 m-0 btn-max-width"
-        :title="campaign.name"
+        :title="campaign.campaignName"
       >
-        {{ campaign.name }}
+        {{ campaign.campaignName }}
       </b-button>
     </b-td>
     <b-td class="ps_gs-fz-12 text-nowrap">
-      {{ campaign.duration }}
+      {{ campaignDuration }}
     </b-td>
     <b-td
       class="ps_gs-fz-12 ps_gs-cell-status"
@@ -21,19 +21,19 @@
       {{ $t(`campaigns.status.${campaign.status}`) }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.target }}
+      {{ campaignCountryName }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.product }}
+      {{ campaignProducts }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.dailyBudget }}
+      {{ campaign.dailyBudget }} {{ campaign.currencyCode }}
     </b-td>
     <td class="ps_gs-fz-12 text-right">
       <b-dropdown
         variant="invisible"
         no-caret
-        :id="`actions-menu-campaign-${campaign.name}`"
+        :id="`actions-menu-campaign-${campaign.campaignName}`"
         class="ps-dropdown psxmarketingwithgoogle-dropdown w-auto py-0 pr-0"
         menu-class="ps-dropdown__menu-small rounded"
         toggle-class="px-1"
@@ -42,11 +42,11 @@
         <template #button-content>
           <i class="material-icons ps_gs-fz-20 mx-auto">more_vert</i>
           <span class="sr-only">
-            {{ $t('cta.openActionsMenu', [campaign.name]) }}
+            {{ $t('cta.openActionsMenu', [campaign.campaignName]) }}
           </span>
         </template>
         <b-dropdown-item-button
-          @click="goToCampaignPage(campaign.name)"
+          @click="goToCampaignPage(campaign.campaignName)"
         >
           {{ $t('cta.modifyTheCampaign') }}
         </b-dropdown-item-button>
@@ -85,20 +85,34 @@ export default {
       required: true,
     },
   },
+  computed: {
+    campaignDuration() {
+      return this.campaign.endDate.length > 1 ? this.campaign.startDate + this.campaign.endDate
+        : `From ${this.campaign.startDate}`;
+    },
+    campaignCountryName() {
+      return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];
+    },
+    campaignProducts() {
+      return this.campaign.productFilters?.length
+        ? `Selected products(${this.campaign.productFilters.reduce((out, inp) => out + inp.values.length, 0)})`
+        : 'All synced products';
+    },
+  },
   methods: {
     goToCampaignPage() {
       // TODO Go to campaign page to edit it
-      console.log('goToCampaignPage', this.campaign.name);
+      console.log('goToCampaignPage', this.campaign.campaignName);
     },
     isPaused() {
       // TODO handle if paused or not
       return this.campaign.status === 'paused';
     },
     pauseCampaign() {
-      console.log('pauseCampaign', this.campaign.name);
+      console.log('pauseCampaign', this.campaign.campaignName);
     },
     resumeCampaign() {
-      console.log('resumeCampaign', this.campaign.name);
+      console.log('resumeCampaign', this.campaign.campaignName);
     },
   },
   googleUrl,

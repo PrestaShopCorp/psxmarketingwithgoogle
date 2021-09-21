@@ -129,6 +129,8 @@ export default {
         targetCountry: this.$options.filters.changeCountriesNamesToCodes(
           [this.newCampaign.targetCountry],
         )[0],
+        // Send default status
+        status: 'eligible',
       };
       this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign).then(() => {
         this.$refs.modal.hide();

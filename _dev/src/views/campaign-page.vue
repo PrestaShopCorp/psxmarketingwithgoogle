@@ -4,7 +4,7 @@
       @openPopin="onOpenPopinActivateTracking"
       v-if="$route.name === 'campaign' && !SSCExist"
     />
-    <v-if="$route.name === 'campaign' && SSCExist"/>
+    <smart-shopping-campaign-table-list v-if="$route.name === 'campaign' && SSCExist" />
     <smart-shopping-campaign-creation
       v-if="$route.name === 'campaign-creation'"
       @campaignCreated="onCampaignHasBeenCreated"
@@ -29,12 +29,15 @@ import CampaignCard from '../components/smart-shopping-campaigns/campaign-card.v
 import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
 import SmartShoppingCampaignCreation from '../components/smart-shopping-campaign-creation/smart-shopping-campaign-creation.vue';
 import PsToast from '../components/commons/ps-toast';
+import SmartShoppingCampaignTableList from '../components/smart-shopping-campaign/smart-shopping-campaign-table-list.vue';
+
 export default {
   components: {
     CampaignCard,
     SmartShoppingCampaignCreation,
     SSCPopinActivateTracking,
     PsToast,
+    SmartShoppingCampaignTableList,
   },
 
   data() {

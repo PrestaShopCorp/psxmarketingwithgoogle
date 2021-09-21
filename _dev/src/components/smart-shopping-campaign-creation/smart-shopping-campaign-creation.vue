@@ -283,10 +283,7 @@ export default {
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
       campaignProductsFilter: null,
-      filtersChosen: [{
-        dimension: null,
-        values: [],
-      }],
+      filtersChosen: [],
       campaignDailyBudget: null,
       timer: null,
     };
@@ -368,11 +365,11 @@ export default {
         campaignName: this.campaignName,
         dailyBudget: this.campaignDailyBudget,
         currencyCode: this.currency,
-        startDate: this.campaignDurationStartDate,
-        endDate: this.campaignDurationEndDate,
+        startDate: this.$options.filters.timeConverterToDate(this.campaignDurationStartDate),
+        endDate: this.$options.filters.timeConverterToDate(this.campaignDurationEndDate),
         // Countries is still an array because refacto later for multiple countries
         targetCountry: this.countries[0],
-        productFilters: this.filtersChosen,
+        productFilters: this.campaignProductsFilter ? [] : this.filtersChosen,
       };
     },
     budgetCurrencySymbol() {
@@ -422,6 +419,9 @@ export default {
         this.$store.commit('smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS', false);
       }
     },
+  },
+  mounted() {
+    window.scrollTo(0, 0);
   },
   countriesSelectionOptions,
 };

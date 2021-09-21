@@ -21,7 +21,6 @@ import dayjs from 'dayjs';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
-import KpiType from '@/enums/reporting/KpiType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import {CampaignObject} from './state';
