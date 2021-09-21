@@ -1,22 +1,20 @@
 <template>
-  <canvas ref="chartRef"></canvas>
+  <canvas ref="chartRef" />
 </template>
 
 <script>
-import { Chart, registerables } from "chart.js";
+import {Chart, registerables} from 'chart.js';
 
 Chart.register(...registerables);
 
 export default {
-  name: "Chart",
+  name: 'Chart',
   props: {
     type: {
       type: String,
       required: false,
-      default: "line",
-      validator: (value) => {
-        return ["line", "bar", "radar", "doughnut", "pie"].indexOf(value) !== -1;
-      },
+      default: 'line',
+      validator: (value) => ['line', 'bar', 'radar', 'doughnut', 'pie'].indexOf(value) !== -1,
     },
     data: {
       type: Object,
@@ -42,7 +40,7 @@ export default {
     createChart() {
       const canvas = this.$refs.chartRef.getContext('2d');
 
-      new Chart(canvas, {
+      return new Chart(canvas, {
         type: this.type,
         data: this.data,
         options: this.options,

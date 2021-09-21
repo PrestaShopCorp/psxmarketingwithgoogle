@@ -67,13 +67,6 @@ export default {
         return '--';
       }
 
-      if (this.isPriceType()) {
-        return Intl.NumberFormat(window.i18nSettings.languageCode, {
-          style: 'currency',
-          currency: googleAdsAccount.currency,
-        }).format(this.kpiValue);
-      }
-
       return this.$options.filters.formatKpi(this.kpiValue)
     },
   },

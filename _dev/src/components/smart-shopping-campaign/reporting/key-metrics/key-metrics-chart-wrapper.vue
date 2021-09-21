@@ -48,7 +48,7 @@ export default {
             ticks: {
               callback: (value) => {
                 return this.$options.filters.formatKpi(value);
-              }
+              },
             },
           },
         },
@@ -56,7 +56,6 @@ export default {
           tooltip: {
             callbacks: {
               label: (context) => {
-                console.log(context);
                 return this.$options.filters.formatKpi(context.dataset.data[context.dataIndex]);
               },
             },
