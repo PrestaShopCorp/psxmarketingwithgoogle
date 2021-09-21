@@ -741,7 +741,8 @@
       "googleAccountConnectedOnceSuccess" : "You have connected your Google account!",
       "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!",
       "productFeedConfiguredOnceSuccess" : "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
-      "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google"
+      "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google",
+      "campaignCreatedSuccess": "You have created your Smart Shopping campaign successfully!"
     },
     "stepper": {
       "nextStep" : "Next: {0}",

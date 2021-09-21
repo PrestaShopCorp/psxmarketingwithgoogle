@@ -25,7 +25,7 @@
       </div>
     </div>
     <ReportingTableHeader
-      :title="'12 campaigns'"
+      :title="campaignList.length + ' campaign(s)'"
     />
     <div>
       <b-table-simple
@@ -79,7 +79,7 @@
         <b-tbody class="bg-white">
           <SmartShoppingCampaignTableListRow
             v-for="campaign in campaignList"
-            :key="campaign.name"
+            :key="campaign.campaignName"
             :campaign="campaign"
           />
           <b-tr v-if="loading">
@@ -123,41 +123,7 @@ export default {
       return Object.values(CampaignSummaryListHeaderType);
     },
     campaignList() {
-      // TODO Get real list of campaigns
-      return [
-        {
-          name: 'Promotion 1',
-          duration: '2021/03/01 - 2021/05/31',
-          status: 'ended',
-          target: 'France',
-          product: 'Selected product (12)',
-          dailyBudget: '$125',
-        },
-        {
-          name: 'Promotion 2',
-          duration: 'From 2021/03/01',
-          status: 'pending',
-          target: 'France',
-          product: 'Selected product (108551)',
-          dailyBudget: '$25',
-        },
-        {
-          name: 'Smart shopping campaign avec un nom vraiment long, car la limite de caractères est de 125 pour une smart shopping campaign...',
-          duration: '2021/03/01 - 2021/12/31',
-          status: 'eligible',
-          target: 'France',
-          product: 'All synced products',
-          dailyBudget: '$25',
-        },
-        {
-          name: 'Smart shopping campaign',
-          duration: '2021/03/01 - 2021/12/31',
-          status: 'paused',
-          target: 'France',
-          product: 'All synced products',
-          dailyBudget: '$25',
-        },
-      ];
+      return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
     },
     queryOrderDirection: {
       get() {

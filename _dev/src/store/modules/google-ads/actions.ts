@@ -114,7 +114,6 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      console.log(json);
       //  TODO : wait for response : user WITH ID AND BILLING SETTINGS
       const newUserBis = {
         id: 'turlututu',
