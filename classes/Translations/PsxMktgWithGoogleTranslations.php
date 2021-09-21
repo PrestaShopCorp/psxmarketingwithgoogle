@@ -787,6 +787,7 @@ class PsxMktgWithGoogleTranslations
                 'MCAConnectedOnceSuccess' => $this->module->l('You have connected your Merchant Center account!', 'PsxMktgWithGoogleTranslations'),
                 'productFeedConfiguredOnceSuccess' => $this->module->l('You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.', 'PsxMktgWithGoogleTranslations'),
                 'attributesMapppingSuccess' => $this->module->l('Your product attributes have been successfully saved. Review summary then click "Export" to submit them to Google', 'PsxMktgWithGoogleTranslations'),
+                'campaignCreatedSuccess' => $this->module->l('You have created your Smart Shopping campaign successfully!', 'PsxMktgWithGoogleTranslations'),
             ],
             'stepper' => [
                 'nextStep' => $this->module->l('Next: {0}', 'PsxMktgWithGoogleTranslations'),
