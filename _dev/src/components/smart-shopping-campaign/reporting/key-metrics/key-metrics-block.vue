@@ -1,5 +1,6 @@
 <template>
   <b-card
+    class="mb-3"
     header-class="px-3 d-sm-flex justify-content-between align-items-center"
     body-class="p-3"
   >
