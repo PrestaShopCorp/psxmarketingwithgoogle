@@ -37,6 +37,10 @@ export default {
   [MutationsTypes.SET_GOOGLE_ADS_ACCOUNT](state: LocalState, payload: AccountInformations|null) {
     state.accountChosen = payload;
   },
+  [MutationsTypes.SET_BILLING_SHOP_INFORMATIONS](state:LocalState, payload) {
+    state.currency = payload.currency;
+    state.timeZone = payload.timeZone;
+  },
   [MutationsTypes.SET_GOOGLE_ADS_ACCOUNT_ID](state: LocalState, payload: string) {
     if (state.accountChosen === null) {
       state.accountChosen = {

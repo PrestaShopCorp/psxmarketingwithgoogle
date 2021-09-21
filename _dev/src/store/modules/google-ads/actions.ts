@@ -65,7 +65,6 @@ export default {
         billingSettings: json.billingSettings,
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
-      dispatch(ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING);
 
       if (customer.isAccountCancelled === true) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Cancelled');
@@ -88,7 +87,7 @@ export default {
   },
 
   async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT](
-    {commit, rootState}, payload: AccountInformations,
+    {commit, rootState}, payload,
   ) {
     const newUser = {
       name: payload.name,
@@ -124,8 +123,6 @@ export default {
           link: 'http://coucou',
         },
         country: payload.country,
-        currency: payload.currency,
-        timeZone: payload.timeZone,
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUserBis);
       commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUserBis);
@@ -192,28 +189,13 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     const result = await response.json();
-    const finalAccount = {
-      ...state.accountChosen,
-      currency: result.currency,
-      timeZone: result.timezone,
-    };
-    commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, finalAccount);
-    return result;
-  },
 
-  async [ActionsTypes.GET_TIMEZONE_FROM_SHOP]({rootState, state, commit}) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'getShopConfigurationForAds',
-      }),
-    });
-    const json = await response.json();
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    return json;
+    const shopInfo = {
+      currency: result.currency,
+      timeZone: result.timezone.text,
+    };
+    commit(MutationsTypes.SET_BILLING_SHOP_INFORMATIONS, shopInfo);
+    return result;
   },
 
 };
