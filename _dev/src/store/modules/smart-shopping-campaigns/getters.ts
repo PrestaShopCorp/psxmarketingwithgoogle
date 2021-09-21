@@ -24,6 +24,7 @@ import {
   CampaignObject,
   Kpis,
   State as LocalState,
+  ProductPerformances,
 } from './state';
 import GettersTypes from './getters-types';
 import KpiType from '@/enums/reporting/KpiType';
@@ -121,6 +122,11 @@ export default {
     state: LocalState,
   ): string|null {
     return state.reporting.results.campaignsPerformancesSection.nextPageToken;
+  },
+  [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](
+    state: LocalState,
+  ): Array<ProductPerformances> {
+    return state.reporting.results.productsPerformancesSection.productsPerformanceList;
   },
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](
     state: LocalState,

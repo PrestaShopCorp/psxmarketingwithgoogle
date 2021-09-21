@@ -1,19 +1,19 @@
 <template>
   <div
-    class="ps_gs-table-reporting-header px-3 py-2 d-md-flex align-items-end"
+    class="px-3 py-2 ps_gs-table-reporting-header d-md-flex align-items-end"
   >
-    <h3 class="ps_gs-fz-16 mb-0 mr-2 font-weight-600">
+    <h3 class="mb-0 mr-2 ps_gs-fz-16 font-weight-600">
       {{ title }}
     </h3>
     <p
       v-if="subtitle"
-      class="ps_gs-fz-10 mb-0 mr-auto"
+      class="mb-0 mr-auto ps_gs-fz-10"
     >
       {{ subtitle }}
     </p>
     <p
-      v-if="startDate !== null & endDate !== null"
-      class="ps_gs-fz-10 mb-0 text-sm-right"
+      v-if="useDate"
+      class="mb-0 ps_gs-fz-10 text-sm-right"
     >
       {{ $t('campaigns.fromXToX',
             {
@@ -38,15 +38,18 @@ export default {
       required: false,
       default: '',
     },
-    startDate: {
-      type: String,
-      required: false,
-      default: null,
+    useDate: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
-    endDate: {
-      type: String,
-      required: false,
-      default: null,
+  },
+  computed: {
+    startDate() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FORMATTED_START_DATES'];
+    },
+    endDate() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FORMATTED_END_DATES'];
     },
   },
 };
