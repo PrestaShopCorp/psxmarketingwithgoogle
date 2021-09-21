@@ -95,14 +95,12 @@
 </template>
 
 <script>
-import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
 import CampaignsPerformanceTableRow from './campaigns-performance-table-row.vue';
 import CampaignPerformanceHeaderType from '@/enums/reporting/CampaignPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 
 export default {
-  mixins: [StickyColumnsObserver],
   name: 'CampaignsPerformanceTable',
   components: {
     ReportingTableHeader,

@@ -40,10 +40,7 @@
 </template>
 
 <script>
-import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
-
 export default {
-  mixins: [StickyColumnsObserver],
   name: 'ProductsPerformanceTableRow',
   props: {
     campaign: {
