@@ -239,6 +239,7 @@
 }
 
 .b-table-sticky-column.is-pinned {
+  left: 0px;
   padding-left: .4em !important;
 }
 
@@ -294,4 +295,13 @@ $statusColors: (
 .ps_gs-table-reporting-header {
   background-color: $white;
   border-bottom: 1px solid #dde4e6;
+}
+
+.table-with-maxheight {
+  max-height: max(rem(200), rem(300));
+  overflow-y: auto;
+}
+
+.b-table-sticky-header > .table.b-table > thead > tr > th {
+  z-index: 3;
 }

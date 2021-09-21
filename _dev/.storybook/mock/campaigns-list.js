@@ -1,3 +1,5 @@
+export const campaignsPerformanceListEmpty = []
+
 export const campaignsPerformanceList = [
   {
     name: 'Promotion 1',
