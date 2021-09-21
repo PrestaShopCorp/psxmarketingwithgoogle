@@ -16,6 +16,10 @@
 
 .ps-dropdown {
   transition: 0s transform;
+
+  &__menu-small {
+    width: auto !important;
+  }
 }
 
 .psxmarketingwithgoogle-dropdown {

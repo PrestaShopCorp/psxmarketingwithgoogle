@@ -16,5 +16,14 @@ const Template = (args, { argTypes }) => ({
 export const Recap:any = Template.bind({});
 Recap.args = {
   visible: true,
+  newCampaign: {
+    campaignName: 'Tartiflette',
+    startDate: '29/06/2021',
+    endDate: null,
+    targetCountry: 'France',
+    dailyBudget : 25,
+    currencyCode: 'EUR',
+    productFilters: [],
+  }
 };
 

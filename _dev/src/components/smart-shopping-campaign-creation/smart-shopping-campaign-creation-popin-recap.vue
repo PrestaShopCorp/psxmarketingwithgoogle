@@ -113,7 +113,7 @@ export default {
   },
   props: {
     newCampaign: {
-      require: true,
+      required: true,
       type: Object,
     },
   },
@@ -129,8 +129,16 @@ export default {
         targetCountry: this.$options.filters.changeCountriesNamesToCodes(
           [this.newCampaign.targetCountry],
         )[0],
+        // Send default status
+        status: 'eligible',
       };
-      this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign);
+      this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign).then(() => {
+        this.$refs.modal.hide();
+        this.$router.push({
+          name: 'campaign',
+        });
+        this.$emit('openPopinSSCCreated');
+      });
     },
   },
 };

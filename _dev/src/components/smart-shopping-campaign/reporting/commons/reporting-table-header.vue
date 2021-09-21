@@ -1,6 +1,6 @@
 <template>
   <div
-    class="px-3 py-2 ps_gs-table-reporting-header d-md-flex align-items-end"
+    class="ps_gs-table-reporting-header px-3 py-2 d-md-flex align-items-end bg-light"
   >
     <h3 class="mb-0 mr-2 ps_gs-fz-16 font-weight-600">
       {{ title }}

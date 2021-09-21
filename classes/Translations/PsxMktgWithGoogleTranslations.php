@@ -162,7 +162,7 @@ class PsxMktgWithGoogleTranslations
                 ],
                 'title' => $this->module->l('Create new Merchant Center account', 'PsxMktgWithGoogleTranslations'),
                 'legend' => $this->module->l('To participate in free listings and advertise on Google you must acknowledge and comply with below requirements:', 'PsxMktgWithGoogleTranslations'),
-                'legend2' => $this->module->l("Store's website URL needs to be verified and claimed before you can upload products data.  \nLearn how to verify and claim your website.", 'PsxMktgWithGoogleTranslations'),
+                'legend2' => $this->module->l("Store's website URL needs to be verified and claimed before you can upload products data.  \[nLearn how to verify and claim your website](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].", 'PsxMktgWithGoogleTranslations'),
                 'footer' => $this->module->l('Read full version of Google store requirements', 'PsxMktgWithGoogleTranslations'),
                 'shoppingAdsPolicies' => [
                   'title' => $this->module->l('Comply with Shopping ads policies', 'PsxMktgWithGoogleTranslations'),
@@ -508,6 +508,10 @@ class PsxMktgWithGoogleTranslations
                     'conversions' => $this->module->l('Conversions', 'PsxMktgWithGoogleTranslations'),
                     'conversionsRate' => $this->module->l('Conversions rate', 'PsxMktgWithGoogleTranslations'),
                     'productFilter' => $this->module->l('Product filter', 'PsxMktgWithGoogleTranslations'),
+                    'duration' => $this->module->l('Duration date', 'PsxMktgWithGoogleTranslations'),
+                    'target' => $this->module->l('Target', 'PsxMktgWithGoogleTranslations'),
+                    'actions' => $this->module->l('Actions', 'PsxMktgWithGoogleTranslations'),
+                    'dailyBudget' => $this->module->l('Daily budget', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'tooltipCol' => [
                     'status' => $this->module->l('Placeholder tooltip status', 'PsxMktgWithGoogleTranslations'),
@@ -524,6 +528,9 @@ class PsxMktgWithGoogleTranslations
                     'title' => $this->module->l('Overall filter performance (top 10)', 'PsxMktgWithGoogleTranslations'),
                     'subTitle' => $this->module->l('Check out which dimension perform the best', 'PsxMktgWithGoogleTranslations'),
                 ],
+            ],
+            'smartShoppingCampaignList' => [
+                'tableTitle' => $this->module->l('Campaign performance', 'PsxMktgWithGoogleTranslations'),
             ],
             'productFeedPage' => [
                 'breadcrumb' => $this->module->l('Product status details', 'PsxMktgWithGoogleTranslations'),
@@ -685,6 +692,15 @@ class PsxMktgWithGoogleTranslations
                 'selectAll' => $this->module->l('Select all', 'PsxMktgWithGoogleTranslations'),
                 'deselectAll' => $this->module->l('Deselect all', 'PsxMktgWithGoogleTranslations'),
                 'signInWithGoogle' => $this->module->l('Sign in with Google', 'PsxMktgWithGoogleTranslations'),
+                'viewReporting' => $this->module->l('View reporting', 'PsxMktgWithGoogleTranslations'),
+                'pauseCampaign' => $this->module->l('Pause campaign', 'PsxMktgWithGoogleTranslations'),
+                'resumeCampaign' => $this->module->l('Resume campaign', 'PsxMktgWithGoogleTranslations'),
+                'modifyCampaign' => $this->module->l('Modify the campaign', 'PsxMktgWithGoogleTranslations'),
+                'openActionsMenu' => $this->module->l('Open actions menu for campaign {0}', 'PsxMktgWithGoogleTranslations'),
+                'viewInGoogleAds' => $this->module->l('View in your Google Ads account', 'PsxMktgWithGoogleTranslations'),
+                'previous' => $this->module->l('Previous', 'PsxMktgWithGoogleTranslations'),
+                'next' => $this->module->l('Next', 'PsxMktgWithGoogleTranslations'),
+                'goToPage' => $this->module->l('Go to first page | Go to page: {0} | Go to last page', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),
@@ -771,6 +787,7 @@ class PsxMktgWithGoogleTranslations
                 'MCAConnectedOnceSuccess' => $this->module->l('You have connected your Merchant Center account!', 'PsxMktgWithGoogleTranslations'),
                 'productFeedConfiguredOnceSuccess' => $this->module->l('You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.', 'PsxMktgWithGoogleTranslations'),
                 'attributesMapppingSuccess' => $this->module->l('Your product attributes have been successfully saved. Review summary then click "Export" to submit them to Google', 'PsxMktgWithGoogleTranslations'),
+                'campaignCreatedSuccess' => $this->module->l('You have created your Smart Shopping campaign successfully!', 'PsxMktgWithGoogleTranslations'),
             ],
             'stepper' => [
                 'nextStep' => $this->module->l('Next: {0}', 'PsxMktgWithGoogleTranslations'),

@@ -1,4 +1,5 @@
 enum CampaignStatus {
+  NOTELIGIBLE = 'NOT ELIGIBLE',
   ELIGIBLE = 'ELIGIBLE',
   PAUSED = 'PAUSED',
   REMOVED = 'REMOVED',
