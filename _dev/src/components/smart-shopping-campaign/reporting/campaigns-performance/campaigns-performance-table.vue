@@ -100,6 +100,10 @@ export default {
     const tableBody = document.getElementsByClassName('table-overflow-selector')[0];
     tableBody.addEventListener('scroll', this.handleScroll);
   },
+  beforeDestroy() {
+    const tableBody = document.getElementsByClassName('table-overflow-selector')[0];
+    tableBody.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
     hasToolTip(headerType) {
       return headerType === CampaignPerformanceHeaderType.STATUS;
