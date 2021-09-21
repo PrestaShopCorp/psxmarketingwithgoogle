@@ -85,3 +85,15 @@
     font-size: inherit;
   }
 }
+
+
+.btn-max-width {
+  max-width: 12ch;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+
+  @include media-breakpoint-up(sm) {
+    max-width: 30ch;
+  }
+}
