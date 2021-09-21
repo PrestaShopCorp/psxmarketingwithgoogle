@@ -103,7 +103,6 @@ import ReportingTableHeader from './reporting/commons/reporting-table-header.vue
 import CampaignListHeaderType from '@/enums/campaigns-summary/CampaignListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import TablePageControls from '../commons/table-page-controls.vue';
-import PsSelect from '../commons/ps-select.vue';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
@@ -111,7 +110,6 @@ export default {
     SmartShoppingCampaignTableListRow,
     ReportingTableHeader,
     TablePageControls,
-    PsSelect,
   },
   data() {
     return {
