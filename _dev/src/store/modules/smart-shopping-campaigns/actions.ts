@@ -29,7 +29,6 @@ import {CampaignObject} from './state';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload : CampaignObject) {
-    console.log(payload);
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/create`,
         {
@@ -48,7 +47,6 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      console.log(json);
       commit(MutationsTypes.SAVE_NEW_SSC, payload);
     } catch (error) {
       console.error(error);
