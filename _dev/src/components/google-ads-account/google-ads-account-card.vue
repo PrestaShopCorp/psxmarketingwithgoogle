@@ -92,7 +92,7 @@
                 v-for="(option, index) in googleAdsAccountSelectionOptions"
                 :key="option.id"
                 @click="selectedIndex = index"
-                :disabled="!isAdmin(option)"
+                :disabled="isShownAsDisabled(option)"
                 variant="dark"
                 link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
               >
@@ -100,7 +100,13 @@
                   {{ displayIdName(option) }}
                 </span>
                 <span
-                  v-if="!isAdmin(option)"
+                  v-if="isAccountCancelled(option) || isAccountSuspended(option)"
+                  class="ps_gs-fz-12 ml-auto"
+                >
+                  {{ $t('mcaCard.alertSuspended') }}
+                </span>
+                <span
+                  v-else-if="!isAdmin(option)"
                   class="ps_gs-fz-12 ml-auto"
                 >
                   {{ $t('mcaCard.userIsNotAdmin') }}
@@ -278,10 +284,21 @@ export default {
       }
       return null;
     },
+    isShownAsDisabled(account) {
+      return !this.isAdmin(account)
+        || this.isAccountCancelled(account)
+        || this.isAccountSuspended(account);
+    },
     isAdmin(account) {
       // !! MIGHT NEED REFACTO if no isAdmin is sent by the API
       // !! CF merchand center account card isGmcUserAdmin
       return account.isAdmin === true;
+    },
+    isAccountCancelled(account) {
+      return account.isAccountCancelled === true;
+    },
+    isAccountSuspended(account) {
+      return account.isAccountSuspended === true;
     },
     isTestAccount(account) {
       return account.isTestAccount === true;
