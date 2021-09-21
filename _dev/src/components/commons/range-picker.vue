@@ -2,7 +2,9 @@
   <b-button
     id="datepicker"
   >
-    tutu
+    {{
+      startDate === null ? 'Select a date' : startDate + ' ' + endDate
+    }}
   </b-button>
 </template>
 
@@ -16,7 +18,8 @@ export default {
   data() {
     return {
       minDate: null,
-      maxDate: null,
+      startDate: null,
+      endDate: null,
     }
   },
   mounted() {
@@ -31,7 +34,7 @@ export default {
         return totalDays - 1;
       },
       plugins: ['keyboardnav', 'mobilefriendly'],
-      // autoApply: true,
+      autoApply: true,
       singleMode: false,
       numberOfColumns: 2,
       numberOfMonths: 2,
@@ -41,6 +44,18 @@ export default {
       dropdowns: { months: true, years: true },
       lang: window.i18nSettings.languageLocale.split('-')[0],
       resetButton: true,
+      setup: (picker) => {
+        picker.on("selected", (date1, date2) => {
+          const startDate = dayjs(date1.dateInstance)
+            .locale(store.state.main.isoCode)
+            .format("YYYY-MM-DD");
+          const endDate = dayjs(date2.dateInstance)
+            .locale(store.state.main.isoCode)
+            .format("YYYY-MM-DD");
+          this.startDate = startDate;
+          this.endDate = endDate;
+        });
+      },
     });
   },
 };
