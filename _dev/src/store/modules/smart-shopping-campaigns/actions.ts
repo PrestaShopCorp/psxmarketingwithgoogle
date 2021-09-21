@@ -24,7 +24,6 @@ import HttpClientError from '@/utils/HttpClientError';
 import KpiType from '@/enums/reporting/KpiType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import DailyResultType from '../../../enums/DailyResultType';
 import {CampaignObject} from './state';
 
 export default {
