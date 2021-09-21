@@ -73,11 +73,9 @@
 </template>
 
 <script>
-import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import googleUrl from '@/assets/json/googleUrl.json';
 
 export default {
-  mixins: [StickyColumnsObserver],
   name: 'SmartShoppingCampaignTableListRow',
   props: {
     campaign: {

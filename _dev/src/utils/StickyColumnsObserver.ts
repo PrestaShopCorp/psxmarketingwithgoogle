@@ -18,6 +18,7 @@ const stickyColumnObserver = () => {
         {
           root: document.querySelector('.ps_gs-table-products'),
           threshold: 1,
+          rootMargin: '100% 0px 100% 0px',
         },
       );
       observer.observe(i);

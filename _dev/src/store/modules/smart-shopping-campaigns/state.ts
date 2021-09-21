@@ -188,7 +188,7 @@ export const state: State = {
       },
       campaignsPerformancesSection: {
         campaignsPerformanceList: [],
-        nextPageToken: '',
+        nextPageToken: null,
       },
       productsPerformancesSection: {
         productsPerformanceList: [],

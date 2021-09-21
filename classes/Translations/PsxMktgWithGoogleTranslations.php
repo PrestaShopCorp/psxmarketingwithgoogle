@@ -528,6 +528,7 @@ class PsxMktgWithGoogleTranslations
                     'title' => $this->module->l('Overall filter performance (top 10)', 'PsxMktgWithGoogleTranslations'),
                     'subTitle' => $this->module->l('Check out which dimension perform the best', 'PsxMktgWithGoogleTranslations'),
                 ],
+                'emptyListText' => $this->module->l('You don\'t have any enabled campaigns', 'PsxMktgWithGoogleTranslations'),
             ],
             'smartShoppingCampaignList' => [
                 'tableTitle' => $this->module->l('Campaign performance', 'PsxMktgWithGoogleTranslations'),

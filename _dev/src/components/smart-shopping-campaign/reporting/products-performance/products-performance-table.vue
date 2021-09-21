@@ -73,14 +73,12 @@
 </template>
 
 <script>
-import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
 import ProductsPerformanceTableRow from './products-performance-table-row.vue';
 import ProductPerformanceHeaderType from '@/enums/reporting/ProductPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 
 export default {
-  mixins: [StickyColumnsObserver],
   name: 'ProductsPerformanceTable',
   components: {
     ReportingTableHeader,

@@ -224,13 +224,7 @@
   }
 }
 
-
-
-// Sticky column
-// Adds fake drop-shadow through ::before element
-// .is-pinned is added via a javascript observer
 .b-table-sticky-column {
-  left: -1px !important;
   background-color: #fff;
 
   &--invisible {
@@ -238,33 +232,8 @@
   }
 }
 
-.b-table-sticky-column.is-pinned {
-  padding-left: .4em !important;
-}
-
-.b-table-sticky-column:before {
-  opacity: 0;
-  transition: opacity .3s ease-in;
-}
-
-.b-table-sticky-column.is-pinned:before {
-  content: '';
-  opacity: 1;
-  display: block;
-  position: absolute;
-  right: -20px;
-  width: 20px;
-  background-image: linear-gradient(to right, rgba(0,0,0,.1), transparent);
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-}
-
-th.b-table-sticky-column.is-pinned:before {
-  background-image: radial-gradient(closest-side, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
-  background-position: 100% 150%;
-  background-size: 200% 50%;
-  background-repeat: no-repeat;
+.table-with-maxheight .b-table-sticky-column {
+  border-right: solid rem(2) $primary !important;
 }
 
 $statusColors: (
@@ -294,4 +263,13 @@ $statusColors: (
 .ps_gs-table-reporting-header {
   background-color: $white;
   border-bottom: 1px solid #dde4e6;
+}
+
+.table-with-maxheight {
+  max-height: max(rem(200), rem(300));
+  overflow-y: auto;
+}
+
+.b-table-sticky-header > .table.b-table > thead > tr > th {
+  z-index: 3;
 }

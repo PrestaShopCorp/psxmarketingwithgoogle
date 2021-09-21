@@ -538,7 +538,8 @@
       "filtersPerformanceTable" : {
         "title" : "Overall filter performance (top 10)",
         "subTitle" : "Check out which dimension perform the best"
-      }
+      },
+      "emptyListText" : "You don't have any enabled campaigns"
     },
     "help" : {
       "title" : "Help for PrestaShop Google",

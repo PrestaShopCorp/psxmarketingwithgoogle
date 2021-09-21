@@ -89,12 +89,10 @@
 </template>
 
 <script>
-import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
 import FiltersPerformanceTableRow from './filters-performance-table-row.vue';
 
 export default {
-  mixins: [StickyColumnsObserver],
   name: 'FiltersPerformanceTable',
   components: {
     ReportingTableHeader,
