@@ -31,7 +31,6 @@
     <b-card-body
       body-class="p-3 p-md-4"
     >
-      <RangePicker />
       <b-form>
         <b-form-group
           id="campaign-name-fieldset"
@@ -92,6 +91,7 @@
               </label>
               <b-form-datepicker
                 id="campaign-duration-start-date-input"
+                ref="campaign-duration-start-date-input"
                 v-model="campaignDurationStartDate"
                 :min="new Date()"
                 :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
@@ -103,6 +103,7 @@
                 :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
                 :required="true"
                 class="ps_gs-datepicker"
+                @input="openEndDatepicker"
               />
             </b-col>
             <b-col
@@ -114,12 +115,16 @@
               </label>
               <b-form-datepicker
                 id="campaign-duration-end-date-input"
+                ref="campaignDurationEndDateInput"
                 v-model="campaignDurationEndDate"
                 :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
-                :min="new Date()"
+                :min="campaignDurationStartDate"
                 reset-button
                 :label-reset-button="$t('cta.resetDate')"
                 reset-button-variant="outline-secondary sm"
+                close-button
+                :label-close-button="'no end date'"
+                close-button-variant="outline-secondary sm"
                 :hide-header="true"
                 :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
                 :required="false"
@@ -414,6 +419,10 @@ export default {
     },
     onCampaignCreated() {
       this.$emit('campaignCreated');
+    },
+    openEndDatepicker() {
+      this.$refs.campaignDurationEndDateInput.$children[0].show()
+      console.log(this.$refs.campaignDurationEndDateInput)
     },
   },
   watch: {
