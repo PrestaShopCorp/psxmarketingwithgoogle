@@ -66,13 +66,13 @@
             class="text-center py-3 ps_gs-fz-12"
           >
             <p class="mb-0 text-muted">
-              You don't have any enabled campaigns
+              {{ $t('campaigns.emptyListText') }}
             </p>
             <b-button
               variant="link"
               class="py-0 font-weight-normal"
             >
-              Create new campaign
+              {{ $t('cta.createCampaign') }}
             </b-button>
           </td>
         </tr>
