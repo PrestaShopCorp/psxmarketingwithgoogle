@@ -66,6 +66,7 @@ export default {
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
+      await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(

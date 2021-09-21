@@ -711,4 +711,23 @@ export default {
 
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES, result);
   },
+  async [ActionsTypes.GET_SSC_LIST]({commit, rootState}) {
+    try {
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+      if (!resp.ok) {
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+      const json = await resp.json();
+      console.log('json', json);
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };
