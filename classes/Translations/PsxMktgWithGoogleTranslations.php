@@ -502,7 +502,7 @@ class PsxMktgWithGoogleTranslations
                     'sales' => $this->module->l('Sales', 'PsxMktgWithGoogleTranslations'),
                     'id' => $this->module->l('ID', 'PsxMktgWithGoogleTranslations'),
                     'products' => $this->module->l('Product', 'PsxMktgWithGoogleTranslations'),
-                    'clicks' => $this->module->l('Click', 'PsxMktgWithGoogleTranslations'),
+                    'click' => $this->module->l('Click', 'PsxMktgWithGoogleTranslations'),
                     'costs' => $this->module->l('Costs', 'PsxMktgWithGoogleTranslations'),
                     'averageCostPerClick' => $this->module->l('Average CPC', 'PsxMktgWithGoogleTranslations'),
                     'conversions' => $this->module->l('Conversions', 'PsxMktgWithGoogleTranslations'),
