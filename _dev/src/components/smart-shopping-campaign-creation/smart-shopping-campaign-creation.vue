@@ -129,6 +129,7 @@
                 :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
                 :required="false"
                 class="ps_gs-datepicker"
+                menu-class="ps_gs-datepicker-end"
               />
             </b-col>
           </b-form-row>
@@ -280,7 +281,6 @@ import countriesSelectionOptions from '@/assets/json/countries.json';
 import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-creation-filter-popin.vue';
 import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
-import RangePicker from '../commons/range-picker.vue';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -299,7 +299,6 @@ export default {
     SmartShoppingCampaignCreationFilterPopin,
     SmartShoppingCampaignCreationPopinRecap,
     SelectCountry,
-    RangePicker,
   },
   computed: {
     disableCreateCampaign() {
@@ -421,8 +420,14 @@ export default {
       this.$emit('campaignCreated');
     },
     openEndDatepicker() {
-      this.$refs.campaignDurationEndDateInput.$children[0].show()
-      console.log(this.$refs.campaignDurationEndDateInput)
+      console.log(this.campaignDurationEndDate, this.campaignDurationStartDate);
+      if (
+        this.campaignDurationEndDate
+          && this.campaignDurationEndDate < this.campaignDurationStartDate
+      ) {
+        this.campaignDurationEndDate = null;
+      }
+      this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
   },
   watch: {
