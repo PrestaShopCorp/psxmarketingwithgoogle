@@ -228,7 +228,6 @@
         "appliedOnlyForUsa" : "(applied only for the USA)",
         "alertTaxes" : "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.",
         "cantSelectCountryWithDifferentCurrency" : "You can't select country with currency that differs from your main shop."
-
       },
       "export" : {
         "synchronizationSchedule" : "Export synchronization schedule",
@@ -405,6 +404,9 @@
       "selectProductsTitle" : "Select products",
       "selectProductsSubtitle" : "Select the filters you want to add in your Google Ads campaign"
     },
+    "smartShoppingCampaignList" : {
+      "tableTitle" : "Campaign performance"
+    },
     "productFeedPage" : {
       "breadcrumb" : "Product status details",
       "alert" :{
@@ -516,7 +518,11 @@
         "averageCpc" : "Average CPC",
         "conversions" : "Conversions",
         "conversionsRate" : "Conversions rate",
-        "productFilter" : "Product filter"
+        "productFilter" : "Product filter",
+        "duration" : "Duration date",
+        "target" : "Target",
+        "actions" : "Actions",
+        "dailyBudget" : "Daily budget"
       },
       "tooltipCol" : {
         "status" : "Placeholder tooltip status"
@@ -638,7 +644,16 @@
       "removeFilter" : "Remove filter | Remove filters",
       "selectAll" : "Select all",
       "deselectAll" : "Deselect all",
-      "signInWithGoogle" : "Sign in with Google"
+      "signInWithGoogle" : "Sign in with Google",
+      "viewReporting" : "View reporting",
+      "pauseCampaign" : "Pause campaign",
+      "resumeCampaign" : "Resume campaign",
+      "modifyTheCampaign" : "Modify the campaign",
+      "openActionsMenu" : "Open actions menu for campaign {0}",
+      "viewInGoogleAds" : "View in your Google Ads account",
+      "previous" : "Previous",
+      "next" : "Next",
+      "goToPage" : "Go to first page | Go to page: {0} | Go to last page"
     },
     "badge" : {
       "free" : "Free",
