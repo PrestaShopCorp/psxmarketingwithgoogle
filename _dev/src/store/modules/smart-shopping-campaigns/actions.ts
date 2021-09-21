@@ -41,6 +41,8 @@ export default {
             payload,
           }),
         });
+        // TO REMOVE WHEN API WORKS
+      commit(MutationsTypes.SAVE_NEW_SSC, payload);
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
@@ -72,7 +74,6 @@ export default {
         commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       }
     } catch (error) {
-      commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       console.error(error);
     }
   },

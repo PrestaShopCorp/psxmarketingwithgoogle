@@ -279,7 +279,7 @@ export default {
   name: 'SmartShoppingCampaignCreation',
   data() {
     return {
-      campaignName: 'null',
+      campaignName: null,
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
       campaignProductsFilter: null,
@@ -334,17 +334,14 @@ export default {
       // TODO
       // I'm just looking for digit, validation should be way better than that
       const regex = /^[0-9]+([.|,][0-9]{0,2})?$/g;
-
       if (this.campaignDailyBudget === null
         || this.campaignDailyBudget === ''
       ) {
         return null;
       }
-
       if (this.campaignDailyBudget < 1) {
         return false;
       }
-
       return !!regex.test(this.campaignDailyBudget);
     },
     sortCountries() {
@@ -357,8 +354,7 @@ export default {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
     errorCampaignNameExistsAlready() {
-      return false;
-      // return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
+      return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
     },
     countries: {
       get() {
