@@ -2,7 +2,7 @@ services:
   PrestaShop\PsAccountsInstaller\Installer\Installer:
     class: 'PrestaShop\PsAccountsInstaller\Installer\Installer'
     arguments:
-      - '5.0.0'
+      - '5.0.2'
 
   PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts:
     class: 'PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts'
