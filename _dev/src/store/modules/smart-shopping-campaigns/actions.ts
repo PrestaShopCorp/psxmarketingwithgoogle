@@ -300,7 +300,7 @@ export default {
           averageCostPerClick: 76,
           costs: 289,
           sales: 1077,
-          date: '2020-10-27',
+          date: '2020-10-28',
         },
       ],
     };

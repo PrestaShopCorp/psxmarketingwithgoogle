@@ -62,6 +62,12 @@ export default {
               callback: (value) => this.$options.filters.formatKpi(value),
             },
           },
+          xAxes: {
+            type: 'time',
+            time: {
+              unit: 'day'
+            }
+          },
         },
         plugins: {
           tooltip: {
