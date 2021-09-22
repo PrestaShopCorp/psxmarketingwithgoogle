@@ -74,6 +74,7 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
+import CampaignStatus from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'SmartShoppingCampaignTableListRow',
@@ -106,7 +107,7 @@ export default {
     },
     isPaused() {
       // TODO handle if paused or not
-      return this.campaign.status === 'PAUSED';
+      return this.campaign.status === CampaignStatus.PAUSED;
     },
     pauseCampaign() {
       console.log('pauseCampaign', this.campaign.campaignName);
