@@ -105,9 +105,7 @@ export default {
             Accept: 'application/json',
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
-          body: JSON.stringify({
-            newUser,
-          }),
+          body: JSON.stringify(newUser),
         });
       if (!resp.ok) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
