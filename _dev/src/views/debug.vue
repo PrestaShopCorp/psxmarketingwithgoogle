@@ -17,41 +17,69 @@
  * International Registered Trademark & Property of PrestaShop SA
  *-->
 <template>
-  <b-card
-    no-body
-    class="ps_gs-onboardingcard px-0"
-  >
-    <b-card-header
-      header-tag="h3"
-      header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
+  <div>
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard px-0"
     >
-      Remarketing
-    </b-card-header>
-    <b-card-body
-      body-class="p-3"
+      <b-card-header
+        header-tag="h3"
+        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
+      >
+        Shop info
+      </b-card-header>
+      <b-card-body
+        body-class="p-3"
+      >
+        <ul class="mb-0">
+          <li>
+            <strong>Shop url:</strong> {{ this.$store.state.app.psxMktgWithGoogleShopUrl }}
+          </li>
+          <li>
+            <strong>Prestashop version</strong>: {{ this.$store.state.app.psVersion }}
+          </li>
+          <li>
+            <strong>Shop ID</strong>: {{ shopId }}
+          </li>
+        </ul>
+      </b-card-body>
+    </b-card>
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard px-0"
     >
-      <ul>
-        <li>Remarketing tag is implemented by a third party module: ???</li>
-        <li>
-          Remarketing tag is implemented and enabled by "PrestaShop Marketing With Google":
-          {{ GET_REMARKETING_TRACKING_TAG_IS_SET }}
-        </li>
-        <li>
-          List of conversion actions set on front-office
-          ({{ GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED.length }}):
-          <ul>
-            <li
-              v-for="action in GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED"
-              :key="action.category"
-            >
-              {{ action.category }}:
-              <code>{{ action.tag }}</code>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </b-card-body>
-  </b-card>
+      <b-card-header
+        header-tag="h3"
+        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
+      >
+        Remarketing
+      </b-card-header>
+      <b-card-body
+        body-class="p-3"
+      >
+        <ul class="mb-0">
+          <li>Remarketing tag is implemented by a third party module: ???</li>
+          <li>
+            Remarketing tag is implemented and enabled by "PrestaShop Marketing With Google":
+            {{ GET_REMARKETING_TRACKING_TAG_IS_SET }}
+          </li>
+          <li>
+            List of conversion actions set on front-office
+            ({{ GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED.length }}):
+            <ul>
+              <li
+                v-for="action in GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED"
+                :key="action.category"
+              >
+                {{ action.category }}:
+                <code>{{ action.tag }}</code>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </b-card-body>
+    </b-card>
+  </div>
 </template>
 
 <script>
@@ -70,6 +98,9 @@ export default {
       GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
       // Todo: Add getter for state.tagAlreadyExists
     ]),
+    shopId() {
+      return window.shopIdPsAccounts || 'none yet';
+    },
   },
   mounted() {
     this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
