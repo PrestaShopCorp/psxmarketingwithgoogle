@@ -90,7 +90,6 @@ export default {
   async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT](
     {commit, rootState}, payload: AccountInformations,
   ) {
-    console.log('payload', payload);
     const newUser = {
       name: payload.name,
       country: payload.country,
