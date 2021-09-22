@@ -148,7 +148,7 @@
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.streetAddress"
         >
-          {{ $t('mcaRequirements.businessAddress') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('general.XIsMandatory', [$t('mcaRequirements.businessAddress')]) }}
         </p>
 
         <VueShowdown
@@ -184,7 +184,7 @@
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.postalCode"
         >
-          {{ $t('mcaRequirements.businessZipCode') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('general.XIsMandatory', [$t('mcaRequirements.businessZipCode')]) }}
         </p>
 
         <VueShowdown
@@ -220,7 +220,7 @@
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.locality"
         >
-          {{ $t('mcaRequirements.businessCity') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('general.XIsMandatory', [$t('mcaRequirements.businessCity')]) }}
         </p>
 
         <VueShowdown
@@ -256,7 +256,7 @@
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.country.name"
         >
-          {{ $t('mcaRequirements.businessCountry') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('general.XIsMandatory', [$t('mcaRequirements.businessCountry')]) }}
         </p>
 
         <VueShowdown
@@ -295,7 +295,7 @@
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.region"
         >
-          {{ $t('mcaRequirements.businessRegion') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('general.XIsMandatory', [$t('mcaRequirements.businessRegion')]) }}
         </p>
 
         <VueShowdown
@@ -331,7 +331,7 @@
           class="mb-0 text-danger text-left ps_gs-fz-12"
           v-if="!shopInformations.store.phone"
         >
-          {{ $t('mcaRequirements.businessPhone') + ' ' + $t('general.XIsMandatory') }}
+          {{ $t('general.XIsMandatory', [$t('mcaRequirements.businessPhone')]) }}
         </p>
         <p
           class="mb-0 text-danger text-left ps_gs-fz-12"
