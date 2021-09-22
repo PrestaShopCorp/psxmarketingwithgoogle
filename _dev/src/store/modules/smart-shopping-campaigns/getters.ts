@@ -51,6 +51,11 @@ export default {
   ): boolean {
     return state.tracking !== null && state.tracking;
   },
+  [GettersTypes.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST](
+    state: LocalState,
+  ): boolean {
+    return state.tagAlreadyExists;
+  },
   [GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
     state: LocalState,
   ): ConversionAction[] {
@@ -112,6 +117,28 @@ export default {
     state: LocalState,
   ): Object {
     return state.reporting.request.ordering.productsPartitionsPerformances;
+  },
+
+  // errors getters
+  [GettersTypes.GET_REPORTING_KPIS_ERROR](
+    state: LocalState,
+  ): Boolean {
+    return state.reporting.errorsList.kpis;
+  },
+  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR](
+    state: LocalState,
+  ): Boolean {
+    return state.reporting.errorsList.campaignsPerformancesSection;
+  },
+  [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR](
+    state: LocalState,
+  ): Boolean {
+    return state.reporting.errorsList.productsPerformancesSection;
+  },
+  [GettersTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR](
+    state: LocalState,
+  ): Boolean {
+    return state.reporting.errorsList.productsPartitionsPerformancesSection;
   },
 
   // result getters

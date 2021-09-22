@@ -9,10 +9,8 @@
       </p>
       <KeyMetricsPeriodSelector />
     </template>
-    <KeyMetricsErrorMessage v-if="errorApi" />
-    <div
-      v-if="!errorApi"
-    >
+    <KeyMetricsErrorMessage v-if="errorWithApi" />
+    <div v-else>
       <div class="mt-2 d-flex justify-content-between flex-column flex-sm-row">
         <div class="order-1 mb-2 order-sm-0">
           <h3 class="mb-1 ps_gs-fz-20 font-weight-600">
@@ -72,17 +70,15 @@ export default {
     KeyMetricsKpiCard,
     KeyMetricsChartWrapper,
   },
-  data() {
-    return {
-      errorApi: false,
-    };
-  },
   computed: {
     reportingKpis() {
       return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_KPIS'];
     },
     googleAdsAccountUrl() {
       return googleUrl.googleAdsAccount;
+    },
+    errorWithApi() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_KPIS_ERROR'];
     },
   },
 };
