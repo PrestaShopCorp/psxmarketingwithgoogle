@@ -344,39 +344,33 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 
     private function setConversionActionLabel(array $inputs)
     {
-        if (!isset($inputs['conversion_category']) || !isset($inputs['label'])) {
+        if (!isset($inputs['conversionActions'])) {
             http_response_code(400);
             $this->ajaxDie(json_encode([
                 'success' => false,
-                'message' => 'Missing conversion_category or label key',
+                'message' => 'Missing conversionActions key',
             ]));
         }
 
-        if (!in_array($inputs['conversion_category'], Config::REMARKETING_CONVERSION_LABELS)) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
-                'success' => false,
-                'message' => 'Unhandled conversion category',
-            ]));
-        }
+        $newTags = [];
 
-        $tag = base64_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG));
-        if (empty($tag)) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
-                'success' => false,
-                'message' => 'Need to enable the remarketing tag first',
-            ]));
-        }
+        foreach ($inputs['conversionActions'] as $index => $conversionAction) {
+            if (!isset($conversionAction['category']) || !isset($conversionAction['tag'])) {
+                http_response_code(400);
+                $this->ajaxDie(json_encode([
+                    'success' => false,
+                    'message' => 'Missing category or tag key at index ' . $index,
+                ]));
+            }
 
-        preg_match('/(?P<account>AW-[0-9]+)/', $tag, $matches);
-
-        if (!empty($matches['account'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
-                'success' => false,
-                'message' => 'Remarketing tag is incorrect. No Adwords ID found.',
-            ]));
+            if (!in_array($conversionAction['category'], Config::REMARKETING_CONVERSION_LABELS)) {
+                http_response_code(400);
+                $this->ajaxDie(json_encode([
+                    'success' => false,
+                    'message' => 'Unhandled conversion category at index ' . $index,
+                ]));
+            }
+            $newTags[$conversionAction['category']] = $conversionAction['tag'];
         }
 
         $this->configurationAdapter->updateValue(
@@ -384,12 +378,11 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             json_encode(
                 array_merge(
                     json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS), true) ?: [],
-                    [
-                        $inputs['conversion_category'] => $matches['account'] . '/' . $inputs['label'],
-                    ]
+                    $newTags,
                 )
             )
         );
+        $this->ajaxDie(json_encode(['success' => true]));
     }
 
     private function getConversionActionLabels()
