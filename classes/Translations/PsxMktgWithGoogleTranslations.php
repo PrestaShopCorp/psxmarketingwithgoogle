@@ -480,6 +480,7 @@ class PsxMktgWithGoogleTranslations
                 'costsTooltip' => $this->module->l('The total cost of the campaign  during the selected period', 'PsxMktgWithGoogleTranslations'),
                 'sales' => $this->module->l('Sales', 'PsxMktgWithGoogleTranslations'),
                 'salesTooltip' => $this->module->l('Number of sales made during the selected period', 'PsxMktgWithGoogleTranslations'),
+                'noData' => $this->module->l('No data yet', 'PsxMktgWithGoogleTranslations'),
             ],
             'campaigns' => [
                 'status' => [

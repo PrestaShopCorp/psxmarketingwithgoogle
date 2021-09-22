@@ -25,14 +25,11 @@
       </b-dropdown>
     </div>
     <div>
-      <b-alert
-        v-if="metricsIsEmpty"
-        show
-        variant="info"
-        class="mb-0 mt-3"
+      <div v-if="metricsIsEmpty"
+        class="text-center py-3"
       >
-        No data yet
-      </b-alert>
+        <span>{{ $t('keymetrics.noData') }}</span>
+      </div>
       <b-card
         v-else
         body-class="p-4"

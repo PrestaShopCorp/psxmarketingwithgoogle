@@ -489,7 +489,8 @@
       "costs" : "Costs",
       "costsTooltip" : "The total cost of the campaign  during the selected period",
       "sales" : "Sales",
-      "salesTooltip" : "Number of sales made during the selected period"
+      "salesTooltip" : "Number of sales made during the selected period",
+      "noData" : "No data yet"
     },
     "campaigns" : {
       "status" : {
