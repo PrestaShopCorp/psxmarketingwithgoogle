@@ -26,6 +26,7 @@
     </div>
     <ReportingTableHeader
       :title="campaignList.length + ' campaign(s)'"
+      :use-date="false"
     />
     <div>
       <b-table-simple
@@ -92,7 +93,6 @@
           </b-tr>
         </b-tbody>
       </b-table-simple>
-      <TablePageControls />
     </div>
   </div>
 </template>
@@ -102,21 +102,24 @@ import SmartShoppingCampaignTableListRow from './smart-shopping-campaign-table-l
 import ReportingTableHeader from './reporting/commons/reporting-table-header.vue';
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
-import TablePageControls from '../commons/table-page-controls.vue';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
   components: {
     SmartShoppingCampaignTableListRow,
     ReportingTableHeader,
-    TablePageControls,
   },
   data() {
     return {
-      loading: false,
       filterCampaignName: null,
       filterCampaignStatus: null,
     };
+  },
+  props: {
+    loading: {
+      default: true,
+      type: Boolean,
+    },
   },
   computed: {
     campaignHeaderList() {

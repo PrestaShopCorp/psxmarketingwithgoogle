@@ -36,19 +36,22 @@ export default {
             Accept: 'application/json',
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
-          body: JSON.stringify({
-            payload,
-          }),
+          body: JSON.stringify(payload),
         });
-        // TO REMOVE WHEN API WORKS
-      commit(MutationsTypes.SAVE_NEW_SSC, payload);
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
       commit(MutationsTypes.SAVE_NEW_SSC, payload);
+      return {
+        error: false,
+        json,
+      };
     } catch (error) {
       console.error(error);
+      return {
+        error: true,
+      };
     }
   },
 
@@ -113,6 +116,26 @@ export default {
     const result = await response.json();
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.remarketingTagsStatus);
     dispatch(ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS);
+  },
+
+  async [ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
+    {commit, dispatch, rootState}, payload: boolean,
+  ) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'getConversionActionLabels',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
+    commit(
+      MutationsTypes.SET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
+      result.conversionActionLabels,
+    );
   },
 
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
@@ -384,7 +407,7 @@ export default {
         {
           name: 'Promotion 5',
           budget: 2,
-          status: 'REMOVED',
+          status: 'PENDING',
           impressions: 5,
           clicks: 5,
           adSpend: 0,
@@ -450,7 +473,9 @@ export default {
       state.reporting.request.ordering.campaignsPerformances.clicks
       === QueryOrderDirection.ASCENDING
     ) {
-      result.campaignsPerformanceList = [...result.campaignsPerformanceList].reverse();
+      result.campaignsPerformanceList = [
+        ...result.campaignsPerformanceList,
+      ].reverse();
     }
 
     commit(
@@ -502,19 +527,119 @@ export default {
     // temp mocked
     // const result = await response.json();
     const result = {
-      productsPartitionsPerformanceList: [
+      productsPerformanceList: [
         {
-          id: 'test',
-          name: 'test',
-          clicks: 45,
+          id: 'test 1',
+          name: 'test 1',
+          clicks: 1,
           costs: 65874,
           averageCostPerClick: 1487,
           conversions: 174478,
           conversionsRate: 45,
           sales: 155,
         },
+        {
+          id: 'test 2',
+          name: 'test 2',
+          clicks: 2,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 3',
+          name: 'test 3',
+          clicks: 3,
+          costs: 65874,
+          averageCostPerClick: 1487,
+          conversions: 174478,
+          conversionsRate: 45,
+          sales: 155,
+        },
+        {
+          id: 'test 4',
+          name: 'test 4',
+          clicks: 4,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 5',
+          name: 'test 5',
+          clicks: 5,
+          costs: 65874,
+          averageCostPerClick: 1487,
+          conversions: 174478,
+          conversionsRate: 45,
+          sales: 155,
+        },
+        {
+          id: 'test 6',
+          name: 'test 6',
+          clicks: 6,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 7',
+          name: 'test 7',
+          clicks: 7,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 8',
+          name: 'test 8',
+          clicks: 8,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 9',
+          name: 'test 9',
+          clicks: 9,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
+        {
+          id: 'test 10',
+          name: 'test 10',
+          clicks: 10,
+          costs: 658484,
+          averageCostPerClick: 87,
+          conversions: 178,
+          conversionsRate: 4,
+          sales: 15,
+        },
       ],
     };
+
+    // for testing only
+    if (
+      state.reporting.request.ordering.productsPerformances.clicks
+      === QueryOrderDirection.ASCENDING
+    ) {
+      result.productsPerformanceList = [
+        ...result.productsPerformanceList,
+      ].reverse();
+    }
 
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES, result);
   },
@@ -526,7 +651,7 @@ export default {
     const query = new URLSearchParams({
       startDate: state.reporting.dateRange.startDate,
       endDate: state.reporting.dateRange.endDate,
-      order: state.reporting.request.ordering.productsDimensionsPerformances,
+      order: state.reporting.request.ordering.productsPartitionsPerformances,
     });
     // add order in array format
     query.append('order["click"]', payload);
@@ -563,9 +688,49 @@ export default {
           conversionsRate: 25,
           sales: 324,
         },
+        {
+          campaignName: 'test 2',
+          dimension: 'test 2',
+          dimensionValue: 'test 2',
+          clicks: 872,
+          costs: 16,
+          averageCostPerClick: 78,
+          conversions: 6978,
+          conversionsRate: 256,
+          sales: 4,
+        },
       ],
     };
 
+    // for testing only
+    if (
+      state.reporting.request.ordering.productsPartitionsPerformances.clicks
+      === QueryOrderDirection.ASCENDING
+    ) {
+      result.productsPartitionsPerformanceList = [
+        ...result.productsPartitionsPerformanceList,
+      ].reverse();
+    }
+
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES, result);
+  },
+  async [ActionsTypes.GET_SSC_LIST]({commit, rootState}) {
+    try {
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+      if (!resp.ok) {
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+      const json = await resp.json();
+      commit(MutationsTypes.SAVE_SSC_LIST, json);
+    } catch (error) {
+      console.error(error);
+    }
   },
 };

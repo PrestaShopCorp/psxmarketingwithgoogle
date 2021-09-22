@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form-group
-      class="d-none d-sm-block"
+      class="d-none d-sm-block mb-0"
     >
       <b-form-radio-group
         buttons

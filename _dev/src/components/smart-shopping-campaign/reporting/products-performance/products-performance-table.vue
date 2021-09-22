@@ -3,12 +3,11 @@
     <ReportingTableHeader
       :title="$t('campaigns.productsPerformanceTable.title')"
       :subtitle="$t('campaigns.productsPerformanceTable.subTitle')"
-      start-date="04/06/2021"
-      end-date="04/07/2021"
+      :use-date="true"
     />
     <b-table-simple
       id="table-products-performance"
-      class="ps_gs-table-products mb-3"
+      class="mb-3 ps_gs-table-products"
       :table-class="{'border-bottom-0': loading}"
       variant="light"
       responsive="xl"
@@ -16,20 +15,20 @@
       <b-thead>
         <b-tr>
           <b-th
-            v-for="({type, tooltip, sorting}, index) in fields"
+            v-for="(type, index) in campaignHeaderList"
             class="font-weight-600"
             :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 1}"
             :key="type"
           >
             <div class="flex align-items-center text-nowrap">
               <b-button
-                v-if="sorting"
-                @click="sort()"
+                v-if="hasSorting(type)"
+                @click="sortByType(type)"
                 variant="invisible"
                 class="p-0 border-0"
               >
                 <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
-                <template v-if="sortDirection === 'asc'">
+                <template v-if="queryOrderDirection[type] === 'ASC'">
                   <i class="material-icons ps_gs-fz-14">expand_more</i>
                   <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
                 </template>
@@ -42,7 +41,7 @@
                 {{ $t(`campaigns.labelCol.${type}`) }}
               </span>
               <b-button
-                v-if="tooltip"
+                v-if="hasToolTip(type)"
                 variant="invisible"
                 v-b-tooltip:psxMktgWithGoogleApp
                 :title="$t(`campaigns.tooltipCol.${type}`)"
@@ -56,27 +55,9 @@
       </b-thead>
       <b-tbody class="bg-white">
         <ProductsPerformanceTableRow
-          v-for="{
-            id,
-            attribute,
-            product,
-            click,
-            costs,
-            averageCpc,
-            conversions,
-            conversionsRate,
-            sales
-          } in campaigns"
-          :id="id"
-          :attribute="attribute"
-          :product="product"
-          :click="click"
-          :costs="costs"
-          :average-cpc="averageCpc"
-          :conversions="conversions"
-          :conversions-rate="conversionsRate"
-          :sales="sales"
-          :key="id + attribute"
+          v-for="(campaign, key, index) in campaignList"
+          :campaign="campaign"
+          :key="index"
         />
         <b-tr v-if="loading">
           <b-td
@@ -92,12 +73,12 @@
 </template>
 
 <script>
-import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
 import ProductsPerformanceTableRow from './products-performance-table-row.vue';
+import ProductPerformanceHeaderType from '@/enums/reporting/ProductPerformanceHeaderType';
+import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 
 export default {
-  mixins: [StickyColumnsObserver],
   name: 'ProductsPerformanceTable',
   components: {
     ReportingTableHeader,
@@ -105,70 +86,43 @@ export default {
   },
   data() {
     return {
-      sortDirection: 'asc',
       loading: false,
-      fields: [
-        {
-          type: 'ID',
-        },
-        {
-          type: 'product',
-        },
-        {
-          type: 'click',
-          sorting: true,
-        },
-        {
-          type: 'costs',
-        },
-        {
-          type: 'averageCpc',
-        },
-        {
-          type: 'conversions',
-        },
-        {
-          type: 'conversionsRate',
-        },
-        {
-          type: 'sales',
-        },
-      ],
-      // TODO
-      // Adds real datas
-      campaigns: [
-        {
-          id: '05',
-          attribute: '01',
-          product: 'T-shirt summer',
-          click: '3678',
-          costs: '$125',
-          averageCpc: '$2',
-          conversions: '5584',
-          conversionsRate: '2%',
-          sales: '$3182',
-        },
-        {
-          id: '25',
-          product: 'Super summer mug',
-          click: '38',
-          costs: '$125',
-          averageCpc: '$5',
-          conversions: '1874',
-          conversionsRate: '5%',
-          sales: '$1687',
-        },
-      ],
     };
   },
   methods: {
-    // TODO: Handle sort function
-    sort() {
-      if (this.sortDirection === 'asc') {
-        this.sortDirection = 'desc';
+    hasToolTip() {
+      return false;
+    },
+    hasSorting(headerType) {
+      return headerType === ProductPerformanceHeaderType.CLICKS;
+    },
+    sortByType(headerType) {
+      // create new object for satisfy deep getter of vueJS
+      const newOrderDirection = {...this.queryOrderDirection};
+
+      if (this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING) {
+        newOrderDirection[headerType] = QueryOrderDirection.DESCENDING;
       } else {
-        this.sortDirection = 'asc';
+        newOrderDirection[headerType] = QueryOrderDirection.ASCENDING;
       }
+      this.queryOrderDirection = newOrderDirection;
+    },
+  },
+  computed: {
+    campaignHeaderList() {
+      return Object.values(ProductPerformanceHeaderType);
+    },
+    campaignList() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PERFORMANCES'];
+    },
+    queryOrderDirection: {
+      get() {
+        return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PERFORMANCES_ORDERING'];
+      },
+      set(orderDirection) {
+        this.$store.commit('smartShoppingCampaigns/SET_REPORTING_PRODUCT_PERFORMANCES_ORDERING', orderDirection);
+        this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PERFORMANCES');
+      },
     },
   },
 };

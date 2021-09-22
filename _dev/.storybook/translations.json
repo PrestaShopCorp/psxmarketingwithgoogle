@@ -11,7 +11,8 @@
       },
       "refreshPage" : "Refresh page",
       "mandatory" : "are mandatory",
-      "XIsMandatory" : "is mandatory."
+      "XIsMandatory" : "{0} is mandatory.",
+      "unableToFetchData" : "We were unable to fetch datas, please try again later"
     },
     "configuration" : {
         "introduction" : "Configuration Page !"
@@ -358,7 +359,7 @@
       "intro" : "Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time."
     },
     "smartShoppingCampaignCreation" : {
-      "breadcrumb1" : "Paid marketing",
+      "breadcrumb1" : "Campaign",
       "breadcrumb2" : "Create Smart Shopping campaign",
       "inputNameHelper" : "The name must be unique and 125 chars max.",
       "inputNameLabel" : "Campaign name",
@@ -386,6 +387,7 @@
       "formHelperTitle" : "Campaign activation",
       "formHelperDescription" : "Your campaign will run until you pause it. You can pause your campaign at any time.",
       "errorNoProducts" : "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.",
+      "errorApi" : "We were not able to publish your campaign, please try again",
       "recapTitle" : "Summary of the campaign",
       "recapFiltersLabel" : "Products in Campaign",
       "recapNoFiltersDescription" : "All synced products approved by Google",
@@ -479,18 +481,18 @@
         "3Months" : "3 months"
       },
       "impressions" : "Impressions",
-      "impressionsTooltip" : "How often your ad is shown. An impression is counted each time your ad is shown on a search result page or other site on the Google Network.",
+      "impressionsTooltip" : "Count of how often your ad has appeared on a search results page or website on the Google Network.",
       "clicks" : "Clicks",
       "clicksTooltip" : "When someone clicks your ad, like on the blue headline or phone number of a text ad, Google Ads counts that as a click.",
       "conversions" : "Conversion",
-      "conversionTooltip" : "An action that's counted when someone interacts with your ad or free product listing (for example, clicks a text ad or views a video ad) and then takes an action that you’ve defined as valuable to your business, such as an online purchase or a call to your business from a mobile phone.",
+      "conversionTooltip" : "The number of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
       "averageCostPerClick" : "Avg cost / click",
-      "averageCostPerClickTooltip" : "The average amount that you've been charged for a click on your ad. Average cost-per-click (avg. CPC) is calculated by dividing the total cost of your clicks by the total number of clicks.",
+      "averageCostPerClickTooltip" : "The total cost of all clicks divided by the total number of clicks received.",
       "costs" : "Costs",
-      "costsTooltip" : "The total cost of the campaign  during the selected period",
+      "costsTooltip" : "The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period.",
       "sales" : "Sales",
-      "salesTooltip" : "Number of sales made during the selected period",
-      "noData" : "No data yet"
+      "noData" : "No data yet",
+      "salesTooltip" : "The value of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions."
     },
     "campaigns" : {
       "status" : {
@@ -507,16 +509,16 @@
         "campaign" : "Campaign",
         "budget" : "Budget",
         "status" : "Status",
-        "impression" : "Impression",
+        "impressions" : "Impressions",
         "clicks" : "Clicks",
         "adSpend" : "Ad spend",
         "conversion" : "Conversion",
         "sales" : "Sales",
-        "ID" : "ID",
-        "product" : "Product",
+        "id" : "ID",
+        "products" : "Products",
         "click" : "Click",
         "costs" : "Costs",
-        "averageCpc" : "Average CPC",
+        "averageCostPerClick" : "Average CPC",
         "conversions" : "Conversions",
         "conversionsRate" : "Conversions rate",
         "productFilter" : "Product filter",
@@ -539,7 +541,8 @@
       "filtersPerformanceTable" : {
         "title" : "Overall filter performance (top 10)",
         "subTitle" : "Check out which dimension perform the best"
-      }
+      },
+      "emptyListText" : "You don't have any enabled campaigns"
     },
     "help" : {
       "title" : "Help for PrestaShop Google",
@@ -569,6 +572,7 @@
       "startConfiguring" : "Start configuring",
       "connect" : "Connect",
       "connecting" : "Connecting...",
+      "validating" : "Validating...",
       "dissociate" : "Dissociate",
       "manageAccount" : "Manage account",
       "overwrite" : "Overwrite",
@@ -654,7 +658,8 @@
       "viewInGoogleAds" : "View in your Google Ads account",
       "previous" : "Previous",
       "next" : "Next",
-      "goToPage" : "Go to first page | Go to page: {0} | Go to last page"
+      "goToPage" : "Go to first page | Go to page: {0} | Go to last page",
+      "noEndDate" : "No end date"
     },
     "badge" : {
       "free" : "Free",

@@ -12,14 +12,26 @@ const Template = (args, { argTypes }) => ({
   components: { KeyMetricsBlock },
   template: `
     <div>
-      <KeyMetricsBlock v-bind="$props"/>
+      <KeyMetricsBlock v-bind="$props" ref="KeyMetricsBlock"/>
     </div>
   `,
-  beforeMount: args.beforeMount
+  beforeMount: args.beforeMount,
+  mounted: args.mounted,
 });
+
+export const ApiError:any = Template.bind({});
+ApiError.args = {
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+  },
+  mounted(this: any) {
+    this.$refs.KeyMetricsBlock.$data.errorApi = true
+  },
+}
 
 export const KeyMetrics:any = Template.bind({});
 KeyMetrics.args = {
+  errorApi: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     this.$store.state.smartShoppingCampaigns.reporting.results.dailyResultChart.dailyResultList = reportingDailyResults;

@@ -27,7 +27,7 @@
               {{ $t('smartShoppingCampaignCreation.inputDurationLabel1') }}
             </span><br>
             <span class="text-secondary">
-              {{ newCampaign.startDate }}
+              {{ newCampaign.startDate | timeConverterToDate }}
             </span>
           </b-col>
           <b-col
@@ -38,7 +38,7 @@
               {{ $t('smartShoppingCampaignCreation.inputDurationLabel2') }}
             </span><br>
             <span class="text-secondary">
-              {{ newCampaign.endDate }}
+              {{ newCampaign.endDate | timeConverterToDate }}
             </span>
           </b-col>
         </b-form-row>
@@ -97,13 +97,20 @@
         variant="primary"
         @click="ok()"
       >
-        {{ $t("cta.validate") }}
+        <template v-if="!isValidating">
+          {{ $t('cta.validate') }}
+        </template>
+        <template v-else>
+          {{ $t('cta.validating') }}
+          <span class="ml-1 icon-busy" />
+        </template>
       </b-button>
     </template>
   </ps-modal>
 </template>
 
 <script>
+import CampaignStatus from '@/enums/reporting/CampaignStatus';
 import PsModal from '../commons/ps-modal';
 
 export default {
@@ -118,11 +125,19 @@ export default {
     },
   },
 
+  data() {
+    return {
+      isValidating: false,
+
+    };
+  },
+
   methods: {
     cancel() {
       this.$refs.modal.hide();
     },
     ok() {
+      this.isValidating = true;
       const finalCampaign = {
         ...this.newCampaign,
         // API wants country code not name so we have to filter it
@@ -130,14 +145,20 @@ export default {
           [this.newCampaign.targetCountry],
         )[0],
         // Send default status
-        status: 'eligible',
+        status: CampaignStatus.ELIGIBLE,
       };
-      this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign).then(() => {
+      this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign).then((resp) => {
         this.$refs.modal.hide();
-        this.$router.push({
-          name: 'campaign',
-        });
-        this.$emit('openPopinSSCCreated');
+        if (resp && resp.error) {
+          this.isValidating = false;
+          this.$emit('displayErrorApiWhenSavingSSC');
+        } else {
+          this.$router.push({
+            name: 'campaign',
+          });
+          this.$emit('openPopinSSCCreated');
+          this.isValidating = false;
+        }
       });
     },
   },

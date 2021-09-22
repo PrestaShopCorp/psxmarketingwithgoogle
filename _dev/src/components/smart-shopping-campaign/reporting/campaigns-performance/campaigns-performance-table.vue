@@ -3,12 +3,11 @@
     <ReportingTableHeader
       :title="$t('campaigns.campaignsPerformanceTable.title')"
       :subtitle="$t('campaigns.campaignsPerformanceTable.subTitle')"
-      :start-date="reportingStartDate"
-      :end-date="reportingEndDate"
+      :use-date="true"
     />
     <b-table-simple
       id="table-campaigns-performance"
-      class="mb-3 ps_gs-table-products table-overflow-selector"
+      class="mb-3 ps_gs-table-products table-with-maxheight b-table-sticky-header"
       :table-class="{'border-bottom-0': loading}"
       variant="light"
       responsive="xl"
@@ -18,7 +17,7 @@
           <b-th
             v-for="(type, index) in campaignHeaderList"
             :key="type"
-            class="font-weight-600"
+            class="font-weight-600 bg-prestashop-bg"
             :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
           >
             <div class="flex align-items-center text-nowrap">
@@ -59,6 +58,24 @@
         id="campaigns-table-body"
         ref="campaigns-table-body"
       >
+        <tr
+          v-if="campaignList.length === 0"
+        >
+          <td
+            :colspan="campaignHeaderList.length"
+            class="py-3 text-center ps_gs-fz-12"
+          >
+            <p class="mb-0 text-muted">
+              {{ $t('campaigns.emptyListText') }}
+            </p>
+            <b-button
+              variant="link"
+              class="py-0 font-weight-normal"
+            >
+              {{ $t('cta.createCampaign') }}
+            </b-button>
+          </td>
+        </tr>
         <CampaignsPerformanceTableRow
           v-for="(campaign, key, index) in campaignList"
           :campaign="campaign"
@@ -78,14 +95,12 @@
 </template>
 
 <script>
-import StickyColumnsObserver from '@/utils/StickyColumnsObserver.ts';
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
 import CampaignsPerformanceTableRow from './campaigns-performance-table-row.vue';
 import CampaignPerformanceHeaderType from '@/enums/reporting/CampaignPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 
 export default {
-  mixins: [StickyColumnsObserver],
   name: 'CampaignsPerformanceTable',
   components: {
     ReportingTableHeader,
@@ -97,12 +112,18 @@ export default {
     };
   },
   mounted() {
-    const tableBody = document.getElementsByClassName('table-overflow-selector')[0];
-    tableBody.addEventListener('scroll', this.handleScroll);
+    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
+
+    if (tableBody) {
+      tableBody.addEventListener('scroll', this.handleScroll);
+    }
   },
   beforeDestroy() {
-    const tableBody = document.getElementsByClassName('table-overflow-selector')[0];
-    tableBody.removeEventListener('scroll', this.handleScroll);
+    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
+
+    if (tableBody) {
+      tableBody.removeEventListener('scroll', this.handleScroll);
+    }
   },
   methods: {
     hasToolTip(headerType) {
@@ -123,7 +144,7 @@ export default {
       this.queryOrderDirection = newOrderDirection;
     },
     async handleScroll() {
-      const tableBody = document.getElementsByClassName('table-overflow-selector')[0];
+      const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
       const token = await this.$store.getters['smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN'];
 
       if (
@@ -135,12 +156,6 @@ export default {
     },
   },
   computed: {
-    reportingStartDate() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FORMATTED_START_DATES'];
-    },
-    reportingEndDate() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FORMATTED_END_DATES'];
-    },
     campaignHeaderList() {
       return Object.values(CampaignPerformanceHeaderType);
     },
@@ -160,10 +175,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.table-overflow-selector {
-  height: 350px;
-  overflow: hidden scroll;
-}
-</style>

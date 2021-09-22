@@ -280,7 +280,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     {
         $defaultTimeZone = date_default_timezone_get();
         $timeZone = new DateTime('now', new DateTimeZone($defaultTimeZone));
-        $textWithTimeZone = "(UTC {$timeZone->format('P')}) {$defaultTimeZone}";
+        $textWithTimeZone = "(UTC{$timeZone->format('P')}) {$defaultTimeZone}";
 
         $this->ajaxDie(json_encode([
             'timezone' => [
@@ -394,8 +394,16 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 
     private function getConversionActionLabels()
     {
+        $labels = [];
+        $labelsFromConfig = json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS), true) ?: [];
+        foreach ($labelsFromConfig as $conversionCategory => $tag) {
+            $labels[] = [
+                'category' => $conversionCategory,
+                'tag' => $tag,
+            ];
+        }
         $this->ajaxDie(json_encode([
-            'conversionActionLabels' => json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS), true) ?: [],
+            'conversionActionLabels' => $labels,
         ]));
     }
 

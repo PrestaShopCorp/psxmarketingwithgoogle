@@ -3,7 +3,7 @@ enum CampaignSummaryListHeaderType {
   DURATION = 'duration',
   STATUS = 'status',
   TARGET = 'target',
-  PRODUCT = 'product',
+  PRODUCTS = 'products',
   DAILY_BUDGET = 'dailyBudget',
   ACTIONS = 'actions',
 }

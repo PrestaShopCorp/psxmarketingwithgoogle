@@ -22,6 +22,8 @@ export interface State {
   accountChosen: null|AccountInformations,
   list: Array<AccountInformations>,
   connectedOnce: boolean,
+  currency: string,
+  timeZone: string,
 }
 
 export enum GoogleAdsErrorReason {
@@ -46,8 +48,6 @@ export interface AccountInformations {
     iso_code: null|string,
     name: null|string
   },
-  currency?: string,
-  timeZone?: string
 }
 
 export const state: State = {
@@ -55,4 +55,6 @@ export const state: State = {
   accountChosen: null,
   list: [],
   connectedOnce: false,
+  currency: '',
+  timeZone: '',
 };

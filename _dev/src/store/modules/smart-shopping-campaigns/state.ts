@@ -28,8 +28,14 @@ export interface State {
   errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
   tagAlreadyExists: boolean;
+  conversionActions: ConversionAction[];
   reporting: Reporting;
 }
+
+export interface ConversionAction {
+  category: string,
+  tag: string,
+ }
 
 export interface ProductsFilteredObject {
  dimension: string,
@@ -72,7 +78,7 @@ export interface DateRange {
 export interface Orderings {
   campaignsPerformances: OrderByType;
   productsPerformances: OrderByType;
-  productsDimensionsPerformances: OrderByType;
+  productsPartitionsPerformances: OrderByType;
 }
 
 export interface OrderByType {
@@ -155,6 +161,7 @@ export const state: State = {
   errorCampaignNameExists: null,
   tracking: true,
   tagAlreadyExists: false,
+  conversionActions: [],
   reporting: {
     request: {
       dateRange: {
@@ -170,7 +177,7 @@ export const state: State = {
         productsPerformances: {
           clicks: QueryOrderDirection.ASCENDING,
         },
-        productsDimensionsPerformances: {
+        productsPartitionsPerformances: {
           clicks: QueryOrderDirection.ASCENDING,
         },
       },
@@ -189,7 +196,7 @@ export const state: State = {
       },
       campaignsPerformancesSection: {
         campaignsPerformanceList: [],
-        nextPageToken: '',
+        nextPageToken: null,
       },
       productsPerformancesSection: {
         productsPerformanceList: [],

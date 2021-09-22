@@ -22,19 +22,25 @@ import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import MutationsTypes from './mutations-types';
 import {
   CampaignPerformances,
-  CampaignsPerformancesSection,
   DailyresultChart,
   Kpis,
   OrderByType,
   ProductsPartitionsPerformancesSection,
-  ProductsPerformancesSection,
   State as LocalState,
   CampaignObject,
+  ProductPerformances,
+  ProductsPerformancesSection,
+  ConversionAction,
 } from './state';
 
 export default {
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](state: LocalState, payload: boolean) {
     state.tracking = payload;
+  },
+  [MutationsTypes.SET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
+    state: LocalState, payload: ConversionAction[],
+  ) {
+    state.conversionActions = payload;
   },
 
   // request mutations
@@ -52,6 +58,16 @@ export default {
     state: LocalState, payload: OrderByType,
   ) {
     state.reporting.request.ordering.campaignsPerformances = payload;
+  },
+  [MutationsTypes.SET_REPORTING_PRODUCT_PERFORMANCES_ORDERING](
+    state: LocalState, payload: OrderByType,
+  ) {
+    state.reporting.request.ordering.productsPerformances = payload;
+  },
+  [MutationsTypes.SET_REPORTING_PRODUCT_PARTITIONS_PERFORMANCES_ORDERING](
+    state: LocalState, payload: OrderByType,
+  ) {
+    state.reporting.request.ordering.productsPartitionsPerformances = payload;
   },
 
   // result mutations
@@ -101,5 +117,8 @@ export default {
   },
   [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](state: LocalState, payload: boolean) {
     state.errorCampaignNameExists = payload;
+  },
+  [MutationsTypes.SAVE_SSC_LIST](state: LocalState, payload: Array<CampaignObject>) {
+    state.campaigns = payload;
   },
 };

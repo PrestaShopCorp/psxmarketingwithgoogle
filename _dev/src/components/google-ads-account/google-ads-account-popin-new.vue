@@ -247,7 +247,7 @@ export default {
     return {
       newAccountInfos: {
         name: '',
-        currency: '',
+        currency: this.$store.getters['app/GET_CURRENT_CURRENCY'],
         timeZone: this.accountInformations?.timeZone || '',
         country: '',
       },
@@ -311,9 +311,12 @@ export default {
     accountInformations() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
+    getBillingInformations() {
+      return this.$store.getters['googleAds/GET_BILLING_SHOP_INFORMATIONS'];
+    },
     selectedTimeZone: {
       get() {
-        return this.newAccountInfos.timeZone;
+        return this.newAccountInfos.timeZone || this.getBillingInformations.timeZone;
       },
       set(value) {
         this.newAccountInfos.timeZone = value;
@@ -321,8 +324,7 @@ export default {
     },
     selectedCurrency: {
       get() {
-        return this.newAccountInfos.currency
-          ? this.newAccountInfos.currency : this.$store.getters['app/GET_CURRENT_CURRENCY'];
+        return this.newAccountInfos.currency;
       },
       set(value) {
         this.newAccountInfos.currency = value;
@@ -352,6 +354,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.dispatch('googleAds/GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING');
     this.stepActiveData = this.stepActive;
     this.newAccountInfos.country = this.$store.getters['app/GET_ACTIVE_COUNTRIES']
       ? this.$options.filters.changeCountriesCodesToNames(this.$store.getters['app/GET_ACTIVE_COUNTRIES']) : '';

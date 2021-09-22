@@ -9,9 +9,9 @@
     >
       <ol class="list-inline mb-0 d-sm-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
-          <a
-            href=""
+          <router-link
             class="d-flex align-items-center ps_gs-breadcrumb__link"
+            :to="{name: 'campaign'}"
           >
             <img
               class="ps_gs-breadcrumb__icon"
@@ -20,8 +20,8 @@
               height="40"
               alt=""
             >
-            {{ $t('smartShoppingCampaignCreation.breadcrumb1') }}
-          </a>
+            {{ $t('productFeedSettings.breadcrumb1') }}
+          </router-link>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
           {{ $t('smartShoppingCampaignCreation.breadcrumb2') }}
@@ -91,6 +91,7 @@
               </label>
               <b-form-datepicker
                 id="campaign-duration-start-date-input"
+                ref="campaign-duration-start-date-input"
                 v-model="campaignDurationStartDate"
                 :min="new Date()"
                 :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
@@ -102,6 +103,7 @@
                 :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
                 :required="true"
                 class="ps_gs-datepicker"
+                @input="openEndDatepicker"
               />
             </b-col>
             <b-col
@@ -113,16 +115,21 @@
               </label>
               <b-form-datepicker
                 id="campaign-duration-end-date-input"
+                ref="campaignDurationEndDateInput"
                 v-model="campaignDurationEndDate"
                 :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
-                :min="new Date()"
+                :min="campaignDurationStartDate"
                 reset-button
                 :label-reset-button="$t('cta.resetDate')"
                 reset-button-variant="outline-secondary sm"
+                close-button
+                :label-close-button="$t('cta.noEndDate')"
+                close-button-variant="outline-secondary sm"
                 :hide-header="true"
                 :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
                 :required="false"
                 class="ps_gs-datepicker"
+                menu-class="ps_gs-datepicker-end"
               />
             </b-col>
           </b-form-row>
@@ -233,10 +240,18 @@
           {{ $t('smartShoppingCampaignCreation.formHelperDescription') }}
         </p>
         <b-alert
+          v-if="!productsExist"
           variant="warning"
           show
         >
           {{ $t('smartShoppingCampaignCreation.errorNoProducts') }}
+        </b-alert>
+        <b-alert
+          v-if="displayError"
+          variant="danger"
+          show
+        >
+          {{ $t('smartShoppingCampaignCreation.errorApi') }}
         </b-alert>
         <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
           <b-button
@@ -265,6 +280,7 @@
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
       @openPopinSSCCreated="onCampaignCreated"
+      @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
     />
   </b-card>
 </template>
@@ -274,6 +290,7 @@ import countriesSelectionOptions from '@/assets/json/countries.json';
 import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-creation-filter-popin.vue';
 import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
+import symbols from '../../assets/json/symbols.json';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -286,6 +303,7 @@ export default {
       filtersChosen: [],
       campaignDailyBudget: null,
       timer: null,
+      displayError: false,
     };
   },
   components: {
@@ -310,7 +328,6 @@ export default {
       if (!this.campaignName === null || this.errorCampaignNameExistsAlready === null) {
         return null;
       }
-
       if (this.campaignName
         && this.campaignName.length <= 125
        && this.campaignName.length > 0
@@ -318,14 +335,7 @@ export default {
       ) {
         return true;
       }
-      if (this.campaignName
-        || this.campaignName.length <= 125
-        || this.campaignName.length > 0
-        || this.errorCampaignNameExistsAlready === true
-      ) {
-        return false;
-      }
-      return null;
+      return false;
     },
     campaignDailyBudgetFeedback() {
       // TODO
@@ -355,29 +365,43 @@ export default {
     },
     countries: {
       get() {
-        return this.$options.filters.changeCountriesCodesToNames(
-          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+        let countries = this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
+        const allowedCountries = countriesSelectionOptions.filter(
+          (el) => el.currency === this.currency,
         );
+        countries = countries.filter(
+          (c) => allowedCountries.find((ac) => ac.code === c),
+        );
+        return this.$options.filters.changeCountriesCodesToNames(countries);
       },
     },
     finalCampaign() {
       return {
         campaignName: this.campaignName,
-        dailyBudget: this.campaignDailyBudget,
+        dailyBudget: Number(this.campaignDailyBudget),
         currencyCode: this.currency,
-        startDate: this.$options.filters.timeConverterToDate(this.campaignDurationStartDate),
-        endDate: this.$options.filters.timeConverterToDate(this.campaignDurationEndDate),
+        startDate: this.campaignDurationStartDate,
+        endDate: this.campaignDurationEndDate,
         // Countries is still an array because refacto later for multiple countries
-        targetCountry: this.countries[0],
+        targetCountry: this.$store.getters['app/GET_ACTIVE_COUNTRIES'][0],
         productFilters: this.campaignProductsFilter ? [] : this.filtersChosen,
       };
     },
     budgetCurrencySymbol() {
-      const displayAmount = 0;
-      const currencyFormatted = displayAmount.toLocaleString(this.countries[0], {
-        style: 'currency', currency: this.currency,
-      });
-      return currencyFormatted[5];
+      try {
+        const displayAmount = 0;
+        const country = this.countries && this.countries[0];
+        const currencyFormatted = displayAmount.toLocaleString(country, {
+          style: 'currency', currency: this.currency,
+        });
+        return currencyFormatted.replace(/[ .,0]*/, '');
+      } catch (error) {
+        const currency = symbols.find((c) => c.currency === this.currency);
+        return currency ? currency.symbol : '';
+      }
+    },
+    productsExist() {
+      return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS']?.items > 1;
     },
   },
   methods: {
@@ -396,6 +420,7 @@ export default {
       this.$bvModal.show(
         this.$refs.SmartShoppingCampaignCreationPopinRecap.$refs.modal.id,
       );
+      this.$store.commit('smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS', null);
     },
     isCompatibleWithCurrency(country) {
       const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
@@ -411,6 +436,18 @@ export default {
     },
     onCampaignCreated() {
       this.$emit('campaignCreated');
+    },
+    onDisplayErrorApi() {
+      this.displayError = true;
+    },
+    openEndDatepicker() {
+      if (
+        this.campaignDurationEndDate
+          && this.campaignDurationEndDate < this.campaignDurationStartDate
+      ) {
+        this.campaignDurationEndDate = null;
+      }
+      this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
   },
   watch: {
