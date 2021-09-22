@@ -26,6 +26,7 @@
     </div>
     <ReportingTableHeader
       :title="campaignList.length + ' campaign(s)'"
+      :use-date="false"
     />
     <div>
       <b-table-simple
@@ -113,10 +114,15 @@ export default {
   },
   data() {
     return {
-      loading: false,
       filterCampaignName: null,
       filterCampaignStatus: null,
     };
+  },
+  props: {
+    loading: {
+      default: true,
+      type: Boolean,
+    },
   },
   computed: {
     campaignHeaderList() {

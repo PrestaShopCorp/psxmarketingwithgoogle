@@ -16,9 +16,9 @@
     </b-td>
     <b-td
       class="ps_gs-fz-12 ps_gs-cell-status"
-      :class="`ps_gs-cell-status--${campaign.status}`"
+      :class="`ps_gs-cell-status--${campaign.status.toLowerCase()}`"
     >
-      {{ $t(`campaigns.status.${campaign.status}`) }}
+      {{ $t(`campaigns.status.${campaign.status.toLowerCase()}`) }}
     </b-td>
     <b-td class="ps_gs-fz-12">
       {{ campaignCountryName }}
@@ -85,7 +85,7 @@ export default {
   },
   computed: {
     campaignDuration() {
-      return this.campaign.endDate.length > 1
+      return this.campaign.endDate?.length > 1
         ? `${this.$options.filters.timeConverterToDate(this.campaign.startDate)
         }-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}`
         : `From ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
@@ -106,7 +106,7 @@ export default {
     },
     isPaused() {
       // TODO handle if paused or not
-      return this.campaign.status === 'paused';
+      return this.campaign.status === 'PAUSED';
     },
     pauseCampaign() {
       console.log('pauseCampaign', this.campaign.campaignName);

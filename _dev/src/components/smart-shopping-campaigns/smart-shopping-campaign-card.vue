@@ -111,7 +111,7 @@ export default {
       return null;
     },
     statusTrackingTag() {
-      return this.$store.state.smartShoppingCampaigns.tracking;
+      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
     toggleTag() {
       if (this.statusTrackingTag === false) {

@@ -240,10 +240,18 @@
           {{ $t('smartShoppingCampaignCreation.formHelperDescription') }}
         </p>
         <b-alert
+          v-if="!productsExist"
           variant="warning"
           show
         >
           {{ $t('smartShoppingCampaignCreation.errorNoProducts') }}
+        </b-alert>
+        <b-alert
+          v-if="displayError"
+          variant="danger"
+          show
+        >
+          {{ $t('smartShoppingCampaignCreation.errorApi') }}
         </b-alert>
         <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
           <b-button
@@ -272,6 +280,7 @@
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
       @openPopinSSCCreated="onCampaignCreated"
+      @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
     />
   </b-card>
 </template>
@@ -294,6 +303,7 @@ export default {
       filtersChosen: [],
       campaignDailyBudget: null,
       timer: null,
+      displayError: false,
     };
   },
   components: {
@@ -390,6 +400,9 @@ export default {
         return currency ? currency.symbol : '';
       }
     },
+    productsExist() {
+      return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS']?.items > 1;
+    },
   },
   methods: {
     debounceName() {
@@ -423,6 +436,9 @@ export default {
     },
     onCampaignCreated() {
       this.$emit('campaignCreated');
+    },
+    onDisplayErrorApi() {
+      this.displayError = true;
     },
     openEndDatepicker() {
       console.log(this.campaignDurationEndDate, this.campaignDurationStartDate);

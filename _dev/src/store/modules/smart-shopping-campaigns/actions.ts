@@ -43,8 +43,15 @@ export default {
       }
       const json = await resp.json();
       commit(MutationsTypes.SAVE_NEW_SSC, payload);
+      return {
+        error: false,
+        json,
+      };
     } catch (error) {
       console.error(error);
+      return {
+        error: true,
+      };
     }
   },
 
@@ -721,7 +728,7 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      console.log('json', json);
+      commit(MutationsTypes.SAVE_SSC_LIST, json);
     } catch (error) {
       console.error(error);
     }

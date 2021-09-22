@@ -97,7 +97,13 @@
         variant="primary"
         @click="ok()"
       >
-        {{ $t("cta.validate") }}
+        <template v-if="!isValidating">
+          {{ $t('cta.validate') }}
+        </template>
+        <template v-else>
+          {{ $t('cta.validating') }}
+          <span class="ml-1 icon-busy" />
+        </template>
       </b-button>
     </template>
   </ps-modal>
@@ -118,11 +124,19 @@ export default {
     },
   },
 
+  data() {
+    return {
+      isValidating: false,
+
+    };
+  },
+
   methods: {
     cancel() {
       this.$refs.modal.hide();
     },
     ok() {
+      this.isValidating = true;
       const finalCampaign = {
         ...this.newCampaign,
         // API wants country code not name so we have to filter it
@@ -132,12 +146,18 @@ export default {
         // Send default status
         status: 'eligible',
       };
-      this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign).then(() => {
+      this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign).then((resp) => {
         this.$refs.modal.hide();
-        this.$router.push({
-          name: 'campaign',
-        });
-        this.$emit('openPopinSSCCreated');
+        if (resp && resp.error) {
+          this.isValidating = false;
+          this.$emit('displayErrorApiWhenSavingSSC');
+        } else {
+          this.$router.push({
+            name: 'campaign',
+          });
+          this.$emit('openPopinSSCCreated');
+          this.isValidating = false;
+        }
       });
     },
   },
