@@ -111,22 +111,22 @@ export default {
   // errors getters
   [GettersTypes.GET_REPORTING_KPIS_ERROR](
     state: LocalState,
-  ): Object {
+  ): Boolean {
     return state.reporting.errorsList.kpis;
   },
   [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR](
     state: LocalState,
-  ): Object {
+  ): Boolean {
     return state.reporting.errorsList.campaignsPerformancesSection;
   },
   [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR](
     state: LocalState,
-  ): Object {
+  ): Boolean {
     return state.reporting.errorsList.productsPerformancesSection;
   },
   [GettersTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR](
     state: LocalState,
-  ): Object {
+  ): Boolean {
     return state.reporting.errorsList.productsPartitionsPerformancesSection;
   },
 
