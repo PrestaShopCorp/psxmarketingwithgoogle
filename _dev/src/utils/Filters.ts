@@ -1,6 +1,5 @@
 import Vue from 'vue';
 
-import i18n from "@/lib/i18n";
 import store from "@/store";
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
@@ -60,7 +59,7 @@ Vue.filter(
       return value;
     }
     
-    return Intl.NumberFormat(i18n.locale, {
+    return Intl.NumberFormat(window.i18nSettings.isoCode, {
       style: 'currency',
       currency: store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currency,
     }).format(value);

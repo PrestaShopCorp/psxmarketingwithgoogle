@@ -12,6 +12,7 @@
         class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
         size="sm"
         menu-class="ps-dropdown"
+        :disabled="metricsIsEmpty"
       >
         <b-dropdown-item
           v-for="dailyresultType in dailyResultTypeList"
@@ -24,7 +25,15 @@
       </b-dropdown>
     </div>
     <div>
-      <b-card body-class="p-4">
+      <b-alert
+        v-if="metricsIsEmpty"
+        show
+        variant="info"
+        class="mb-0 mt-3"
+      >
+        No data yet
+      </b-alert>
+      <b-card v-else body-class="p-4">
         <Chart type="bar" :data="getDataSetsByMetric" :options="options" />
       </b-card>
     </div>
@@ -103,6 +112,9 @@ export default {
     getLabels() {
       return this.getMetrics.map((a) => a.date);
     },
+    metricsIsEmpty() {
+      return this.getMetrics.length === 0;
+    }
   },
 };
 </script>
