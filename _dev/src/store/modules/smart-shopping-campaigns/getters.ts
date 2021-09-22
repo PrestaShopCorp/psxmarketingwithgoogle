@@ -26,6 +26,7 @@ import {
   State as LocalState,
   ProductPerformances,
   ProductPartitionPerformances,
+  ConversionAction,
 } from './state';
 import GettersTypes from './getters-types';
 import KpiType from '@/enums/reporting/KpiType';
@@ -49,6 +50,11 @@ export default {
     state: LocalState,
   ): boolean {
     return state.tracking !== null && state.tracking;
+  },
+  [GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
+    state: LocalState,
+  ): ConversionAction[] {
+    return state.conversionActions;
   },
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](state: LocalState): boolean|null {
     return state.errorCampaignNameExists;

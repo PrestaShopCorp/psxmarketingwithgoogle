@@ -3,6 +3,7 @@ import VueRouter, {RouteConfig} from 'vue-router';
 import Store from '../store';
 import CampaignPage from '../views/campaign-page.vue';
 import Configuration from '../views/configuration.vue';
+import Debug from '../views/debug.vue';
 import Help from '../views/help.vue';
 import OnboardingPage from '../views/onboarding-page.vue';
 import ProductFeedPage from '../views/product-feed-page.vue';
@@ -67,6 +68,11 @@ const routes: Array<RouteConfig> = [
     path: '/reporting',
     name: 'reporting',
     component: ReportingPage,
+  },
+  {
+    path: '/debug',
+    name: 'Debug',
+    component: Debug,
   },
   {
     path: '/',

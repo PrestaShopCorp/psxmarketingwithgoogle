@@ -30,11 +30,17 @@ import {
   CampaignObject,
   ProductPerformances,
   ProductsPerformancesSection,
+  ConversionAction,
 } from './state';
 
 export default {
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](state: LocalState, payload: boolean) {
     state.tracking = payload;
+  },
+  [MutationsTypes.SET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
+    state: LocalState, payload: ConversionAction[],
+  ) {
+    state.conversionActions = payload;
   },
 
   // request mutations

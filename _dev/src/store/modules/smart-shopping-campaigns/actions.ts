@@ -115,6 +115,26 @@ export default {
     dispatch(ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS);
   },
 
+  async [ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
+    {commit, dispatch, rootState}, payload: boolean,
+  ) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'getConversionActionLabels',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const result = await response.json();
+    commit(
+      MutationsTypes.SET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
+      result.conversionActionLabels,
+    );
+  },
+
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
     {commit, rootState}, payload: boolean,
   ) {
