@@ -67,7 +67,7 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      if (json && json.campaignName) {
+      if (json && json.name) {
         commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       }
     } catch (error) {
