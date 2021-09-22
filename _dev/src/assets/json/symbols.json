@@ -1,0 +1,370 @@
+[
+  {
+    "currency": "DZD",
+    "symbol": "د.ج.‏"
+  },
+  {
+    "currency": "ARS",
+    "symbol": "$"
+  },
+  {
+    "currency": "AUD",
+    "symbol": "$"
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "BHD",
+    "symbol": "د.ب.‏"
+  },
+  {
+    "currency": "BDT",
+    "symbol": "৳"
+  },
+  {
+    "currency": "BYN",
+    "symbol": "руб."
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "BRL",
+    "symbol": "R$"
+  },
+  {
+    "currency": "KHR",
+    "symbol": "៛"
+  },
+  {
+    "currency": "XAF",
+    "symbol": "FCFA"
+  },
+  {
+    "currency": "CAD",
+    "symbol": "$"
+  },
+  {
+    "currency": "CLP",
+    "symbol": "$"
+  },
+  {
+    "currency": "COP",
+    "symbol": "$"
+  },
+  {
+    "currency": "CRC",
+    "symbol": "₡"
+  },
+  {
+    "currency": "XOF",
+    "symbol": "CFA"
+  },
+  {
+    "currency": "CZK",
+    "symbol": "Kč"
+  },
+  {
+    "currency": "DKK",
+    "symbol": "kr"
+  },
+  {
+    "currency": "DOP",
+    "symbol": "RD$"
+  },
+  {
+    "currency": "USD",
+    "symbol": "$"
+  },
+  {
+    "currency": "EGP",
+    "symbol": "ج.م.‏"
+  },
+  {
+    "currency": "USD",
+    "symbol": "$"
+  },
+  {
+    "currency": "ETB",
+    "symbol": "Br"
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "GEL",
+    "symbol": "GEL"
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "GHS",
+    "symbol": "GH₵"
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "GTQ",
+    "symbol": "Q"
+  },
+  {
+    "currency": "HKD",
+    "symbol": "$"
+  },
+  {
+    "currency": "HUF",
+    "symbol": "Ft"
+  },
+  {
+    "currency": "INR",
+    "symbol": "টকা"
+  },
+  {
+    "currency": "IDR",
+    "symbol": "Rp"
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "ILS",
+    "symbol": "₪"
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "JPY",
+    "symbol": "￥"
+  },
+  {
+    "currency": "JOD",
+    "symbol": "د.أ.‏"
+  },
+  {
+    "currency": "KZT",
+    "symbol": "тңг."
+  },
+  {
+    "currency": "KES",
+    "symbol": "Ksh"
+  },
+  {
+    "currency": "KWD",
+    "symbol": "د.ك.‏"
+  },
+  {
+    "currency": "LBP",
+    "symbol": "ل.ل.‏"
+  },
+  {
+    "currency": "MGA",
+    "symbol": "MGA"
+  },
+  {
+    "currency": "MYR",
+    "symbol": "RM"
+  },
+  {
+    "currency": "MUR",
+    "symbol": "MURs"
+  },
+  {
+    "currency": "MXN",
+    "symbol": "$"
+  },
+  {
+    "currency": "MAD",
+    "symbol": "د.م.‏"
+  },
+  {
+    "currency": "MZN",
+    "symbol": "MTn"
+  },
+  {
+    "currency": "MMK",
+    "symbol": "K"
+  },
+  {
+    "currency": "NPR",
+    "symbol": "नेरू"
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "NZD",
+    "symbol": "$"
+  },
+  {
+    "currency": "NIO",
+    "symbol": "C$"
+  },
+  {
+    "currency": "NGN",
+    "symbol": "₦"
+  },
+  {
+    "currency": "NOK",
+    "symbol": "kr"
+  },
+  {
+    "currency": "OMR",
+    "symbol": "ر.ع.‏"
+  },
+  {
+    "currency": "PKR",
+    "symbol": "₨"
+  },
+  {
+    "currency": "PAB",
+    "symbol": "B/."
+  },
+  {
+    "currency": "PYG",
+    "symbol": "₲"
+  },
+  {
+    "currency": "PEN",
+    "symbol": "S/."
+  },
+  {
+    "currency": "PHP",
+    "symbol": "₱"
+  },
+  {
+    "currency": "PLN",
+    "symbol": "zł"
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "USD",
+    "symbol": "$"
+  },
+  {
+    "currency": "RON",
+    "symbol": "RON"
+  },
+  {
+    "currency": "RUB",
+    "symbol": "₽."
+  },
+  {
+    "currency": "SAR",
+    "symbol": "ر.س.‏"
+  },
+  {
+    "currency": "XOF",
+    "symbol": "CFA"
+  },
+  {
+    "currency": "SGD",
+    "symbol": "$"
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "ZAR",
+    "symbol": "R"
+  },
+  {
+    "currency": "KRW",
+    "symbol": "₩"
+  },
+  {
+    "currency": "EUR",
+    "symbol": "€"
+  },
+  {
+    "currency": "LKR",
+    "symbol": "SL Re"
+  },
+  {
+    "currency": "SEK",
+    "symbol": "kr"
+  },
+  {
+    "currency": "CHF",
+    "symbol": "CHF"
+  },
+  {
+    "currency": "TWD",
+    "symbol": "NT$"
+  },
+  {
+    "currency": "TZS",
+    "symbol": "TSh"
+  },
+  {
+    "currency": "THB",
+    "symbol": "฿"
+  },
+  {
+    "currency": "TND",
+    "symbol": "د.ت.‏"
+  },
+  {
+    "currency": "TRY",
+    "symbol": "TL"
+  },
+  {
+    "currency": "UGX",
+    "symbol": "USh"
+  },
+  {
+    "currency": "UAH",
+    "symbol": "₴"
+  },
+  {
+    "currency": "AED",
+    "symbol": "د.إ.‏"
+  },
+  {
+    "currency": "GBP",
+    "symbol": "£"
+  },
+  {
+    "currency": "USD",
+    "symbol": "$"
+  },
+  {
+    "currency": "UYU",
+    "symbol": "$"
+  },
+  {
+    "currency": "UZS",
+    "symbol": "UZS"
+  },
+  {
+    "currency": "VEF",
+    "symbol": "Bs.F."
+  },
+  {
+    "currency": "VND",
+    "symbol": "₫"
+  },
+  {
+    "currency": "USD",
+    "symbol": "$"
+  }
+]

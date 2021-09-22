@@ -281,6 +281,7 @@ import countriesSelectionOptions from '@/assets/json/countries.json';
 import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-creation-filter-popin.vue';
 import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
+import symbols from '../../assets/json/symbols.json';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -380,11 +381,17 @@ export default {
       };
     },
     budgetCurrencySymbol() {
-      const displayAmount = 0;
-      const currencyFormatted = displayAmount.toLocaleString(this.countries[0], {
-        style: 'currency', currency: this.currency,
-      });
-      return currencyFormatted[5];
+      try {
+        const displayAmount = 0;
+        const country = this.countries && this.countries[0];
+        const currencyFormatted = displayAmount.toLocaleString(country, {
+          style: 'currency', currency: this.currency,
+        });
+        return currencyFormatted.replace(/[ .,0]*/, '');
+      } catch (error) {
+        const currency = symbols.find((c) => c.currency === this.currency);
+        return currency ? currency.symbol : '';
+      }
     },
   },
   methods: {
