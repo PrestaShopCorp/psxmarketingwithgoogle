@@ -28,8 +28,14 @@ export interface State {
   errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
   tagAlreadyExists: boolean;
+  conversionActions: ConversionAction[];
   reporting: Reporting;
 }
+
+export interface ConversionAction {
+  category: string,
+  tag: string,
+ }
 
 export interface ProductsFilteredObject {
  dimension: string,
@@ -154,6 +160,7 @@ export const state: State = {
   errorCampaignNameExists: null,
   tracking: true,
   tagAlreadyExists: false,
+  conversionActions: [],
   reporting: {
     request: {
       dateRange: {
