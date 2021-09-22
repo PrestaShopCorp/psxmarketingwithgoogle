@@ -63,7 +63,7 @@
         >
           <td
             :colspan="campaignHeaderList.length"
-            class="text-center py-3 ps_gs-fz-12"
+            class="py-3 text-center ps_gs-fz-12"
           >
             <p class="mb-0 text-muted">
               {{ $t('campaigns.emptyListText') }}
@@ -113,11 +113,17 @@ export default {
   },
   mounted() {
     const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
-    tableBody.addEventListener('scroll', this.handleScroll);
+
+    if (tableBody) {
+      tableBody.addEventListener('scroll', this.handleScroll);
+    }
   },
   beforeDestroy() {
     const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
-    tableBody.removeEventListener('scroll', this.handleScroll);
+
+    if (tableBody) {
+      tableBody.removeEventListener('scroll', this.handleScroll);
+    }
   },
   methods: {
     hasToolTip(headerType) {

@@ -384,7 +384,7 @@ export default {
         {
           name: 'Promotion 5',
           budget: 2,
-          status: 'REMOVED',
+          status: 'PENDING',
           impressions: 5,
           clicks: 5,
           adSpend: 0,
