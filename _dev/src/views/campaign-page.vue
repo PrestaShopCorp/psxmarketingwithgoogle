@@ -4,7 +4,11 @@
       @openPopin="onOpenPopinActivateTracking"
       v-if="$route.name === 'campaign' && !SSCExist"
     />
-    <smart-shopping-campaign-table-list v-if="$route.name === 'campaign' && SSCExist" />
+    <smart-shopping-campaign-table-list
+      :loading="loading"
+      v-if="$route.name === 'campaign'"
+    />
+
     <smart-shopping-campaign-creation
       v-if="$route.name === 'campaign-creation'"
       @campaignCreated="onCampaignHasBeenCreated"
@@ -43,6 +47,7 @@ export default {
   data() {
     return {
       campaignCreated: false,
+      loading: true,
     };
   },
   computed: {
@@ -66,6 +71,9 @@ export default {
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
+      await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST').then(() => {
+        this.loading = false;
+      });
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(

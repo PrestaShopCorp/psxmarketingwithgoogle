@@ -36,19 +36,22 @@ export default {
             Accept: 'application/json',
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
-          body: JSON.stringify({
-            payload,
-          }),
+          body: JSON.stringify(payload),
         });
-        // TO REMOVE WHEN API WORKS
-      commit(MutationsTypes.SAVE_NEW_SSC, payload);
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
       commit(MutationsTypes.SAVE_NEW_SSC, payload);
+      return {
+        error: false,
+        json,
+      };
     } catch (error) {
       console.error(error);
+      return {
+        error: true,
+      };
     }
   },
 
@@ -710,5 +713,24 @@ export default {
     }
 
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES, result);
+  },
+  async [ActionsTypes.GET_SSC_LIST]({commit, rootState}) {
+    try {
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+      if (!resp.ok) {
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+      const json = await resp.json();
+      commit(MutationsTypes.SAVE_SSC_LIST, json);
+    } catch (error) {
+      console.error(error);
+    }
   },
 };

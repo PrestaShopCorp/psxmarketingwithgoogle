@@ -240,10 +240,18 @@
           {{ $t('smartShoppingCampaignCreation.formHelperDescription') }}
         </p>
         <b-alert
+          v-if="!productsExist"
           variant="warning"
           show
         >
           {{ $t('smartShoppingCampaignCreation.errorNoProducts') }}
+        </b-alert>
+        <b-alert
+          v-if="displayError"
+          variant="danger"
+          show
+        >
+          {{ $t('smartShoppingCampaignCreation.errorApi') }}
         </b-alert>
         <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
           <b-button
@@ -272,6 +280,7 @@
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
       @openPopinSSCCreated="onCampaignCreated"
+      @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
     />
   </b-card>
 </template>
@@ -294,6 +303,7 @@ export default {
       filtersChosen: [],
       campaignDailyBudget: null,
       timer: null,
+      displayError: false,
     };
   },
   components: {
@@ -318,7 +328,6 @@ export default {
       if (!this.campaignName === null || this.errorCampaignNameExistsAlready === null) {
         return null;
       }
-
       if (this.campaignName
         && this.campaignName.length <= 125
        && this.campaignName.length > 0
@@ -326,14 +335,7 @@ export default {
       ) {
         return true;
       }
-      if (this.campaignName
-        || this.campaignName.length <= 125
-        || this.campaignName.length > 0
-        || this.errorCampaignNameExistsAlready === true
-      ) {
-        return false;
-      }
-      return null;
+      return false;
     },
     campaignDailyBudgetFeedback() {
       // TODO
@@ -376,10 +378,10 @@ export default {
     finalCampaign() {
       return {
         campaignName: this.campaignName,
-        dailyBudget: this.campaignDailyBudget,
+        dailyBudget: Number(this.campaignDailyBudget),
         currencyCode: this.currency,
-        startDate: this.$options.filters.timeConverterToDate(this.campaignDurationStartDate),
-        endDate: this.$options.filters.timeConverterToDate(this.campaignDurationEndDate),
+        startDate: this.campaignDurationStartDate,
+        endDate: this.campaignDurationEndDate,
         // Countries is still an array because refacto later for multiple countries
         targetCountry: this.countries[0],
         productFilters: this.campaignProductsFilter ? [] : this.filtersChosen,
@@ -398,6 +400,9 @@ export default {
         return currency ? currency.symbol : '';
       }
     },
+    productsExist() {
+      return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS']?.items > 1;
+    },
   },
   methods: {
     debounceName() {
@@ -415,6 +420,7 @@ export default {
       this.$bvModal.show(
         this.$refs.SmartShoppingCampaignCreationPopinRecap.$refs.modal.id,
       );
+      this.$store.commit('smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS', null);
     },
     isCompatibleWithCurrency(country) {
       const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
@@ -431,8 +437,10 @@ export default {
     onCampaignCreated() {
       this.$emit('campaignCreated');
     },
+    onDisplayErrorApi() {
+      this.displayError = true;
+    },
     openEndDatepicker() {
-      console.log(this.campaignDurationEndDate, this.campaignDurationStartDate);
       if (
         this.campaignDurationEndDate
           && this.campaignDurationEndDate < this.campaignDurationStartDate
