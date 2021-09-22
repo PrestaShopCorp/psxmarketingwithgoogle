@@ -54,7 +54,13 @@
         </b-tr>
       </b-thead>
       <b-tbody class="bg-white">
+        <tr v-if="errorWithApi">
+          <td :colspan="campaignHeaderList.length">
+            <KeyMetricsErrorMessage />
+          </td>
+        </tr>
         <ProductsPerformanceTableRow
+          v-else
           v-for="(campaign, key, index) in campaignList"
           :campaign="campaign"
           :key="index"
@@ -77,12 +83,14 @@ import ReportingTableHeader from '../commons/reporting-table-header.vue';
 import ProductsPerformanceTableRow from './products-performance-table-row.vue';
 import ProductPerformanceHeaderType from '@/enums/reporting/ProductPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
+import KeyMetricsErrorMessage from '../key-metrics/key-metrics-error-message.vue';
 
 export default {
   name: 'ProductsPerformanceTable',
   components: {
     ReportingTableHeader,
     ProductsPerformanceTableRow,
+    KeyMetricsErrorMessage,
   },
   data() {
     return {
@@ -114,6 +122,9 @@ export default {
     },
     campaignList() {
       return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PERFORMANCES'];
+    },
+    errorWithApi() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR'];
     },
     queryOrderDirection: {
       get() {

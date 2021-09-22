@@ -191,34 +191,25 @@ export default {
   async [ActionsTypes.GET_REPORTING_KPIS](
     {commit, rootState, state},
   ) {
-    /*
-    const query = new URLSearchParams(state.reporting.dateRange);
-    const response =
-      await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/kpis?${query}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-      });
+    const query = new URLSearchParams({
+      startDate: state.reporting.request.dateRange.startDate,
+      endDate: state.reporting.request.dateRange.endDate,
+    });
+
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/kpis?${query}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+      },
+    });
 
     if (!response.ok) {
+      commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
       throw new HttpClientError(response.statusText, response.status);
     }
-    */
 
-    // temp mocked
-    // const result = await response.json();
-    const result = {
-      impressions: 32,
-      clicks: 750,
-      conversions: 658,
-      averageCostPerClick: 0.2,
-      costs: 321,
-      sales: 18,
-    };
-
-    commit(MutationsTypes.SET_REPORTING_KPIS, result);
+    commit(MutationsTypes.SET_REPORTING_KPIS, await response.json());
   },
 
   async [ActionsTypes.GET_REPORTING_DAILY_RESULTS](
@@ -226,9 +217,9 @@ export default {
   ) {
     /*
     const query = new URLSearchParams({
-      startDate: state.reporting.dateRange.startDate,
-      endDate: state.reporting.dateRange.endDate,
-      type: state.reporting.request.dailyResultType,
+      startDate: state.reporting.request.dateRange.startDate,
+      endDate: state.reporting.request.dateRange.endDate,
+      type: state.reporting.request.request.dailyResultType,
     });
     const response =
       await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/daily-results?${query}`, {
@@ -240,6 +231,7 @@ export default {
       });
 
     if (!response.ok) {
+      commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
       throw new HttpClientError(response.statusText, response.status);
     }
     */
@@ -311,149 +303,30 @@ export default {
   async [ActionsTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
     {commit, rootState, state},
   ) {
-    /*
     const query = new URLSearchParams({
-      startDate: state.reporting.dateRange.startDate,
-      endDate: state.reporting.dateRange.endDate,
-      nextPageToken: state.reporting.campaignsPerformancesSection.nextPageToken,
-      order: state.reporting.request.ordering.campaignsPerformances,
+      startDate: state.reporting.request.dateRange.startDate,
+      endDate: state.reporting.request.dateRange.endDate,
     });
-    // add order in array format
-    query.append('order["click"]', payload);
 
-    const response =
-      await fetch(
-        `${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/campaigns-performances?${query}`, {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        }
-      );
+    // add order in array format
+    query.append('order[clicks]', state.reporting.request.ordering.campaignsPerformances.clicks);
+
+    const response = await fetch(
+      `${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/campaigns-performances?${query}`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+      },
+    );
 
     if (!response.ok) {
+      commit(MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR, true);
       throw new HttpClientError(response.statusText, response.status);
     }
-    */
 
-    // temp mocked
-    // const result = await response.json();
-    const result = {
-      campaignsPerformanceList: [
-        {
-          name: 'Promotion 1',
-          budget: 125,
-          status: 'ELIGIBLE',
-          impressions: 25,
-          clicks: 1,
-          adSpend: 0,
-          conversions: 0,
-          sales: 0,
-        },
-        {
-          name: 'Promotion 2',
-          budget: 10,
-          status: 'ELIGIBLE',
-          impressions: 198,
-          clicks: 2,
-          adSpend: 35,
-          conversions: 8,
-          sales: 2700,
-        },
-        {
-          name: 'Promotion 3',
-          budget: 125,
-          status: 'ENDED',
-          impressions: 178998,
-          clicks: 3,
-          adSpend: 125,
-          conversions: 178,
-          sales: 178000,
-        },
-        {
-          name: 'Promotion 4',
-          budget: 2000,
-          status: 'PAUSED',
-          impressions: 17899800,
-          clicks: 4,
-          adSpend: 12500,
-          conversions: 150000,
-          sales: 27815580,
-        },
-        {
-          name: 'Promotion 5',
-          budget: 2,
-          status: 'PENDING',
-          impressions: 5,
-          clicks: 5,
-          adSpend: 0,
-          conversions: 0,
-          sales: 0,
-        },
-        {
-          name: 'Promotion 6',
-          budget: 125,
-          status: 'PENDING',
-          impressions: 178998,
-          clicks: 6,
-          adSpend: 125,
-          conversions: 178,
-          sales: 178000,
-        },
-        {
-          name: 'Promotion 7',
-          budget: 125,
-          status: 'ELIGIBLE',
-          impressions: 0,
-          clicks: 0,
-          adSpend: 0,
-          conversions: 0,
-          sales: 0,
-        },
-        {
-          name: 'Promotion 8',
-          budget: 125,
-          status: 'ELIGIBLE',
-          impressions: 0,
-          clicks: 8,
-          adSpend: 0,
-          conversions: 0,
-          sales: 0,
-        },
-        {
-          name: 'Promotion 9',
-          budget: 125,
-          status: 'PENDING',
-          impressions: 0,
-          clicks: 9,
-          adSpend: 0,
-          conversions: 0,
-          sales: 0,
-        },
-        {
-          name: 'Promotion 10',
-          budget: 125,
-          status: 'ELIGIBLE',
-          impressions: 0,
-          clicks: 10,
-          adSpend: 0,
-          conversions: 0,
-          sales: 0,
-        },
-      ],
-      nextPageToken: 'test-de-token',
-    };
-
-    // for testing only
-    if (
-      state.reporting.request.ordering.campaignsPerformances.clicks
-      === QueryOrderDirection.ASCENDING
-    ) {
-      result.campaignsPerformanceList = [
-        ...result.campaignsPerformanceList,
-      ].reverse();
-    }
+    const result = await response.json();
 
     commit(
       MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS,
@@ -478,8 +351,8 @@ export default {
   ) {
     /*
     const query = new URLSearchParams({
-      startDate: state.reporting.dateRange.startDate,
-      endDate: state.reporting.dateRange.endDate,
+      startDate: state.reporting.request.dateRange.startDate,
+      endDate: state.reporting.request.dateRange.endDate,
       order: state.reporting.request.ordering.productsPerformances,
     });
     // add order in array format
@@ -497,6 +370,7 @@ export default {
       );
 
     if (!response.ok) {
+      commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, true);
       throw new HttpClientError(response.statusText, response.status);
     }
     */
@@ -626,8 +500,8 @@ export default {
   ) {
     /*
     const query = new URLSearchParams({
-      startDate: state.reporting.dateRange.startDate,
-      endDate: state.reporting.dateRange.endDate,
+      startDate: state.reporting.request.dateRange.startDate,
+      endDate: state.reporting.request.dateRange.endDate,
       order: state.reporting.request.ordering.productsPartitionsPerformances,
     });
     // add order in array format
@@ -646,6 +520,7 @@ export default {
       );
 
     if (!response.ok) {
+      commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR, true);
       throw new HttpClientError(response.statusText, response.status);
     }
     */

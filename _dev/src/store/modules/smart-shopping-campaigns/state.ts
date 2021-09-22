@@ -32,8 +32,8 @@ export interface State {
 }
 
 export interface ProductsFilteredObject {
- dimension: string,
- values: Array<string>
+  dimension: string,
+  values: Array<string>
 }
 export interface CampaignObject {
   campaignName: string;
@@ -48,6 +48,14 @@ export interface CampaignObject {
 export interface Reporting {
   request: RequestParams;
   results: ResultsRequest;
+  errorsList: ReportingErrorList;
+}
+
+export interface ReportingErrorList {
+  kpis: boolean;
+  campaignsPerformancesSection: boolean;
+  productsPerformancesSection: boolean;
+  productsPartitionsPerformancesSection: boolean;
 }
 
 export interface RequestParams {
@@ -196,6 +204,12 @@ export const state: State = {
       productsPartitionsPerformancesSection: {
         productsPartitionsPerformanceList: [],
       },
+    },
+    errorsList: {
+      kpis: false,
+      campaignsPerformancesSection: false,
+      productsPerformancesSection: false,
+      productsPartitionsPerformancesSection: false,
     },
   },
 };

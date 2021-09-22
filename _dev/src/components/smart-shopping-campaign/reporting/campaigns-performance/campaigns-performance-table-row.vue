@@ -48,11 +48,15 @@ export default {
   },
   methods: {
     getFormattedValue(value) {
-      const googleAdsAccountCurrency = this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currency;
+      const googleAdsAccount = this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+
+      if (!googleAdsAccount) {
+        return '--';
+      }
 
       return Intl.NumberFormat(window.i18nSettings.languageCode, {
         style: 'currency',
-        currency: googleAdsAccountCurrency,
+        currency: googleAdsAccount.currencyCode,
       }).format(value);
     },
   },
