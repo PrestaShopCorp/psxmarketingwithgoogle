@@ -110,6 +110,7 @@
 </template>
 
 <script>
+import CampaignStatus from '@/enums/reporting/CampaignStatus';
 import PsModal from '../commons/ps-modal';
 
 export default {
@@ -144,7 +145,7 @@ export default {
           [this.newCampaign.targetCountry],
         )[0],
         // Send default status
-        status: 'eligible',
+        status: CampaignStatus.ELIGIBLE,
       };
       this.$store.dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign).then((resp) => {
         this.$refs.modal.hide();
