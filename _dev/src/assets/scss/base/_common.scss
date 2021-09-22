@@ -60,6 +60,12 @@ a[target="_blank"].text-muted:not(.external_link-no_icon) {
     border-bottom-color: $blue_light;
     border-left-color: $blue;
   }
+
+  &--big {
+    width: rem(20);
+    height: rem(20);
+    border-width: 0.3rem;
+  }
 }
 
 .link-regular {
