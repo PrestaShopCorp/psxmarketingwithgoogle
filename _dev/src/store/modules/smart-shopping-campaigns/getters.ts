@@ -51,6 +51,11 @@ export default {
   ): boolean {
     return state.tracking !== null && state.tracking;
   },
+  [GettersTypes.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST](
+    state: LocalState,
+  ): boolean {
+    return state.tagAlreadyExists;
+  },
   [GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
     state: LocalState,
   ): ConversionAction[] {
