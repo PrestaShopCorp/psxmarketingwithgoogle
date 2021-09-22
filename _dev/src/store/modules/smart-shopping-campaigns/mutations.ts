@@ -28,7 +28,6 @@ import {
   ProductsPartitionsPerformancesSection,
   State as LocalState,
   CampaignObject,
-  ProductPerformances,
   ProductsPerformancesSection,
   ConversionAction,
 } from './state';
@@ -68,6 +67,28 @@ export default {
     state: LocalState, payload: OrderByType,
   ) {
     state.reporting.request.ordering.productsPartitionsPerformances = payload;
+  },
+
+  // errors mutations
+  [MutationsTypes.SET_REPORTING_KPIS_ERROR](
+    state: LocalState, payload: boolean,
+  ) {
+    state.reporting.errorsList.kpis = payload;
+  },
+  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR](
+    state: LocalState, payload: boolean,
+  ) {
+    state.reporting.errorsList.campaignsPerformancesSection = payload;
+  },
+  [MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR](
+    state: LocalState, payload: boolean,
+  ) {
+    state.reporting.errorsList.productsPerformancesSection = payload;
+  },
+  [MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR](
+    state: LocalState, payload: boolean,
+  ) {
+    state.reporting.errorsList.productsPartitionsPerformancesSection = payload;
   },
 
   // result mutations

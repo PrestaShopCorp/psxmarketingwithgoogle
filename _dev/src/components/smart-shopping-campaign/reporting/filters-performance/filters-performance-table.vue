@@ -54,7 +54,13 @@
         </b-tr>
       </b-thead>
       <b-tbody class="bg-white">
+        <tr v-if="errorWithApi">
+          <td :colspan="partitionHeaderList.length">
+            <KeyMetricsErrorMessage />
+          </td>
+        </tr>
         <FiltersPerformanceTableRow
+          v-else
           v-for="(partition, key, index) in partitionList"
           :partition="partition"
           :key="index"
@@ -77,12 +83,14 @@ import ReportingTableHeader from '../commons/reporting-table-header.vue';
 import FiltersPerformanceTableRow from './filters-performance-table-row.vue';
 import ProductPartitionPerformanceHeaderType from '@/enums/reporting/ProductPartitionPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
+import KeyMetricsErrorMessage from '../key-metrics/key-metrics-error-message.vue';
 
 export default {
   name: 'FiltersPerformanceTable',
   components: {
     ReportingTableHeader,
     FiltersPerformanceTableRow,
+    KeyMetricsErrorMessage,
   },
   data() {
     return {
@@ -114,6 +122,9 @@ export default {
     },
     partitionList() {
       return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES'];
+    },
+    errorWithApi() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR'];
     },
     queryOrderDirection: {
       get() {

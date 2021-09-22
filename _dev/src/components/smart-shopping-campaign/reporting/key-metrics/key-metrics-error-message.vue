@@ -1,8 +1,8 @@
 <template>
   <div
-    class="text-center py-3 ps_gs-fz-12"
+    class="py-3 text-center ps_gs-fz-12"
   >
-    <p class="mb-0 pt-2 text-muted">
+    <p class="pt-2 mb-0 text-muted">
       {{ $t('general.unableToFetchData') }}
     </p>
     <b-button

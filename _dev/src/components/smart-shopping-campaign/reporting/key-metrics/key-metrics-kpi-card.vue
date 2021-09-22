@@ -70,7 +70,7 @@ export default {
       if (this.isPriceType()) {
         return Intl.NumberFormat(window.i18nSettings.languageCode, {
           style: 'currency',
-          currency: googleAdsAccount.currency,
+          currency: googleAdsAccount.currencyCode,
         }).format(this.kpiValue);
       }
 
