@@ -163,7 +163,7 @@ class PsxMktgWithGoogleTranslations
                 ],
                 'title' => $this->module->l('Create new Merchant Center account', 'PsxMktgWithGoogleTranslations'),
                 'legend' => $this->module->l('To participate in free listings and advertise on Google you must acknowledge and comply with below requirements:', 'PsxMktgWithGoogleTranslations'),
-                'legend2' => $this->module->l("Store's website URL needs to be verified and claimed before you can upload products data.  \[nLearn how to verify and claim your website](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].", 'PsxMktgWithGoogleTranslations'),
+                'legend2' => $this->module->l("Store's website URL needs to be verified and claimed before you can upload products data.  \n[Learn how to verify and claim your website](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].", 'PsxMktgWithGoogleTranslations'),
                 'footer' => $this->module->l('Read full version of Google store requirements', 'PsxMktgWithGoogleTranslations'),
                 'shoppingAdsPolicies' => [
                   'title' => $this->module->l('Comply with Shopping ads policies', 'PsxMktgWithGoogleTranslations'),
