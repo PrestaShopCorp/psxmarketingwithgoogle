@@ -34,18 +34,18 @@
         <li>Remarketing tag is implemented by a third party module: ???</li>
         <li>
           Remarketing tag is implemented and enabled by "PrestaShop Marketing With Google":
-          {{GET_REMARKETING_TRACKING_TAG_IS_SET}}
+          {{ GET_REMARKETING_TRACKING_TAG_IS_SET }}
         </li>
         <li>
           List of conversion actions set on front-office
-          ({{GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED.length}}):
+          ({{ GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED.length }}):
           <ul>
             <li
               v-for="action in GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED"
               :key="action.category"
             >
-              {{action.category}}:
-              <code>{{action.tag}}</code>
+              {{ action.category }}:
+              <code>{{ action.tag }}</code>
             </li>
           </ul>
         </li>

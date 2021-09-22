@@ -9,9 +9,9 @@
     >
       <ol class="list-inline mb-0 d-sm-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
-          <a
-            href=""
+          <router-link
             class="d-flex align-items-center ps_gs-breadcrumb__link"
+            :to="{name: 'configuration'}"
           >
             <img
               class="ps_gs-breadcrumb__icon"
@@ -21,7 +21,7 @@
               alt=""
             >
             {{ $t('productFeedSettings.breadcrumb1') }}
-          </a>
+          </router-link>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
           {{ $t('productFeedSettings.breadcrumb2') }}
