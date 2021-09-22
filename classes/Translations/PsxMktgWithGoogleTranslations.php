@@ -61,6 +61,7 @@ class PsxMktgWithGoogleTranslations
                 'refreshPage' => $this->module->l('Refresh page', 'PsxMktgWithGoogleTranslations'),
                 'mandatory' => $this->module->l('are mandatory', 'PsxMktgWithGoogleTranslations'),
                 'XIsMandatory' => $this->module->l('{0} is mandatory.', 'PsxMktgWithGoogleTranslations'),
+                'unableToFetchData' => $this->module->l('We were unable to fetch datas, please try again later.', 'PsxMktgWithGoogleTranslations'),
             ],
             'configuration' => [
                 'introduction' => $this->module->l('Configuration Page !', 'PsxMktgWithGoogleTranslations'),
