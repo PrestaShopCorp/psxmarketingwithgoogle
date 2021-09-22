@@ -9,48 +9,54 @@
       </p>
       <KeyMetricsPeriodSelector />
     </template>
-    <div class="mt-2 d-flex justify-content-between flex-column flex-sm-row">
-      <div class="order-1 mb-2 order-sm-0">
-        <h3 class="mb-1 ps_gs-fz-20 font-weight-600">
-          {{ $t('keymetrics.accountTitle') }}
-        </h3>
-        <p>
-          {{ $t('keymetrics.accountSubtitle') }}
-        </p>
+    <KeyMetricsErrorMessage v-if="errorApi" />
+    <div
+      v-if="!errorApi"
+    >
+      <div class="mt-2 d-flex justify-content-between flex-column flex-sm-row">
+        <div class="order-1 mb-2 order-sm-0">
+          <h3 class="mb-1 ps_gs-fz-20 font-weight-600">
+            {{ $t('keymetrics.accountTitle') }}
+          </h3>
+          <p>
+            {{ $t('keymetrics.accountSubtitle') }}
+          </p>
+        </div>
+        <div class="mb-2 ml-auto order-0 order-sm-1">
+          <b-button
+            size="sm"
+            variant="primary"
+          >
+            {{ $t('cta.createCampaign') }}
+          </b-button>
+        </div>
       </div>
-      <div class="mb-2 ml-auto order-0 order-sm-1">
-        <b-button
-          size="sm"
-          variant="primary"
+      <KeyMetricsKpiCardGroup>
+        <KeyMetricsKpiCard
+          v-for="(kpiValue, kpiType) in reportingKpis"
+          :key="kpiType"
+          :kpi-type="kpiType"
+          :kpi-name="$t(`keymetrics.${kpiType}`)"
+          :kpi-value="kpiValue.toString()"
+          :tooltip="$t(`keymetrics.${kpiType}Tooltip`)"
+        />
+      </KeyMetricsKpiCardGroup>
+      <KeyMetricsChartWrapper />
+      <div class="mt-3 text-right text-primary">
+        <a
+          :href="googleAdsAccountUrl"
+          target="_blank"
+          class="d-inline-block"
         >
-          {{ $t('cta.createCampaign') }}
-        </b-button>
+          {{ $t('cta.seeOnGoogleAds') }}
+        </a>
       </div>
-    </div>
-    <KeyMetricsKpiCardGroup>
-      <KeyMetricsKpiCard
-        v-for="(kpiValue, kpiType) in reportingKpis"
-        :key="kpiType"
-        :kpi-type="kpiType"
-        :kpi-name="$t(`keymetrics.${kpiType}`)"
-        :kpi-value="kpiValue.toString()"
-        :tooltip="$t(`keymetrics.${kpiType}Tooltip`)"
-      />
-    </KeyMetricsKpiCardGroup>
-    <KeyMetricsChartWrapper />
-    <div class="mt-3 text-right text-primary">
-      <a
-        :href="googleAdsAccountUrl"
-        target="_blank"
-        class="d-inline-block"
-      >
-        {{ $t('cta.seeOnGoogleAds') }}
-      </a>
     </div>
   </b-card>
 </template>
 
 <script>
+import KeyMetricsErrorMessage from './key-metrics-error-message.vue';
 import KeyMetricsPeriodSelector from './key-metrics-period-selector.vue';
 import KeyMetricsKpiCardGroup from './key-metrics-kpi-card-group.vue';
 import KeyMetricsKpiCard from './key-metrics-kpi-card.vue';
@@ -60,10 +66,16 @@ import googleUrl from '@/assets/json/googleUrl.json';
 export default {
   name: 'KeyMetricsBlock',
   components: {
+    KeyMetricsErrorMessage,
     KeyMetricsPeriodSelector,
     KeyMetricsKpiCardGroup,
     KeyMetricsKpiCard,
     KeyMetricsChartWrapper,
+  },
+  data() {
+    return {
+      errorApi: false,
+    };
   },
   computed: {
     reportingKpis() {

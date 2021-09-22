@@ -11,7 +11,8 @@
       },
       "refreshPage" : "Refresh page",
       "mandatory" : "are mandatory",
-      "XIsMandatory" : "{0} is mandatory."
+      "XIsMandatory" : "{0} is mandatory.",
+      "unableToFetchData" : "We were unable to fetch datas, please try again later"
     },
     "configuration" : {
         "introduction" : "Configuration Page !"
