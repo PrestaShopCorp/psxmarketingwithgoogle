@@ -392,7 +392,7 @@
       "recapFiltersLabel" : "Products in Campaign",
       "recapNoFiltersDescription" : "All synced products approved by Google",
       "recapFooter" : "Check the information of your campaign before validating it. You can always modify some parameters while the campaign is in progress.",
-      "toggleCreationRemarketingTag": "Create a remarketing and conversion tracking tag to add to your shop",
+      "toggleCreationRemarketingTag": "Enable remarketing  tags on my site",
       "toggleCreationNewRemarketingTag": "Create a new remarketing and conversion tracking tag to your shop",
       "enableCreationRemarketingTag": "Enable remarketing and conversion tracking tag",
       "alerts": {
@@ -404,7 +404,11 @@
       "nbDimensionSelected" : "No dimension selected | {0} dimension selected | {0} dimensions selected",
       "nbValuesSelected" : "No value selected | {0} value selected | {0} values selected",
       "selectProductsTitle" : "Select products",
-      "selectProductsSubtitle" : "Select the filters you want to add in your Google Ads campaign"
+      "selectProductsSubtitle" : "Select the filters you want to add in your Google Ads campaign",
+      "remarketingNote" : "**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.",
+      "toggleNewConversionTag" : "Set new conversion tracking tags on my site",
+      "toggleNewConversionTag2" : "We will create the following conversion tags : Page view, Purchase, Add to basket",
+      "remarketingTagLoading" : "Checking if you have a remarketing and conversion tracking tags to add to your shop"
     },
     "smartShoppingCampaignList" : {
       "tableTitle" : "Campaign performance"

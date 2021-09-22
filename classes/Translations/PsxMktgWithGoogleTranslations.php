@@ -440,7 +440,7 @@ class PsxMktgWithGoogleTranslations
                 'recapFiltersLabel' => $this->module->l('Products in Campaign', 'PsxMktgWithGoogleTranslations'),
                 'recapNoFiltersDescription' => $this->module->l('All synced products approved by Google', 'PsxMktgWithGoogleTranslations'),
                 'recapFooter' => $this->module->l('Check the information of your campaign before validating it. You can always modify some parameters while the campaign is in progress.', 'PsxMktgWithGoogleTranslations'),
-                'toggleCreationRemarketingTag' => $this->module->l('Create a remarketing and conversion tracking tag to add to your shop', 'PsxMktgWithGoogleTranslations'),
+                'toggleCreationRemarketingTag' => $this->module->l('Enable remarketing  tags on my site', 'PsxMktgWithGoogleTranslations'),
                 'toggleCreationNewRemarketingTag' => $this->module->l('Create a new remarketing and conversion tracking tag to add to your shop', 'PsxMktgWithGoogleTranslations'),
                 'enableCreationRemarketingTag' => $this->module->l('Enable remarketing and conversion tracking tag', 'PsxMktgWithGoogleTranslations'),
                 'alerts' => [
@@ -453,6 +453,10 @@ class PsxMktgWithGoogleTranslations
                 'nbValuesSelected' => $this->module->l('No value selected | {0} value selected | {0} values selected', 'PsxMktgWithGoogleTranslations'),
                 'selectProductsTitle' => $this->module->l('Select products', 'PsxMktgWithGoogleTranslations'),
                 'selectProductsSubtitle' => $this->module->l('Select the filters you want to add in your Google Ads campaign', 'PsxMktgWithGoogleTranslations'),
+                'remarketingNote' => $this->module->l('**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.', 'PsxMktgWithGoogleTranslations'),
+                'toggleNewConversionTag' => $this->module->l('Set new conversion tracking tags on my site', 'PsxMktgWithGoogleTranslations'),
+                'toggleNewConversionTag2' => $this->module->l('We will create the following conversion tags : Page view, Purchase, Add to basket', 'PsxMktgWithGoogleTranslations'),
+                'remarketingTagLoading' => $this->module->l('Checking if you have a remarketing and conversion tracking tags to add to your shop', 'PsxMktgWithGoogleTranslations'),
             ],
             'campaignCard' => [
                 'title' => $this->module->l('Create your Smart Shopping campaign in a few clicks', 'PsxMktgWithGoogleTranslations'),
@@ -766,6 +770,7 @@ class PsxMktgWithGoogleTranslations
                 'googleAdsAccountRequired' => $this->module->l('Requires Google Ads account configured', 'PsxMktgWithGoogleTranslations'),
                 'mustCheckAllRequirements' => $this->module->l('You must check all requirements.', 'PsxMktgWithGoogleTranslations'),
                 'mustAgreeGoogleTerms' => $this->module->l('You must agree to the Google terms and conditions', 'PsxMktgWithGoogleTranslations'),
+                'mustAgreeGoogleAdsTerms' => $this->module->l('You must accept the terms and conditions', 'PsxMktgWithGoogleTranslations'),
                 'approvalStatusStatus' => $this->module->l('Availability of your products for free listings and ads', 'PsxMktgWithGoogleTranslations'),
                 'approvalStatusLang' => $this->module->l('placeholder', 'PsxMktgWithGoogleTranslations'),
                 'approvalStatusIssues' => $this->module->l('Reason why your product is not approved for Google', 'PsxMktgWithGoogleTranslations'),

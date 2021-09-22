@@ -2,7 +2,7 @@ import SSCPopinActivateTracking from '../src/components/smart-shopping-campaigns
 import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {sscTrackingIsTrue, sscTrackingIsFalse, sscTagAlreadyExists} from '../.storybook/mock/smart-shopping-campaigns';
 export default {
-  title: 'Smart Shopping Campaign/Popins',
+  title: 'Smart Shopping Campaign/Popins/Tracking',
     component: SSCPopinActivateTracking,
 };
 
@@ -10,9 +10,10 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { SSCPopinActivateTracking },
   beforeMount: args.beforeMount,
+  mounted: args.mounted,
   template: `
     <div>
-      <SSCPopinActivateTracking v-bind="$props" />
+      <SSCPopinActivateTracking v-bind="$props" ref="SSCPopinActivateTracking" />
     </div>
   `,
   beforeCreate(this: any) {
@@ -20,10 +21,23 @@ const Template = (args, { argTypes }) => ({
   },
 });
 
+export const Loading:any = Template.bind({});
+Loading.args = {
+  visible: true,
+  mounted(this: any) {
+    this.$refs.SSCPopinActivateTracking.$data.isLoading = true;
+  },
+  beforeMount(this: any) {
+    this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsTrue);
+  },
+};
 
 export const TrackingTrue:any = Template.bind({});
 TrackingTrue.args = {
   visible: true,
+  mounted(this: any) {
+    this.$refs.SSCPopinActivateTracking.$data.isLoading = false;
+  },
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsTrue);
   },
@@ -32,6 +46,9 @@ TrackingTrue.args = {
 export const TrackingFalse:any = Template.bind({});
 TrackingFalse.args = {
   visible: true,
+  mounted(this: any) {
+    this.$refs.SSCPopinActivateTracking.$data.isLoading = false;
+  },
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsFalse);
   },
@@ -40,6 +57,9 @@ TrackingFalse.args = {
 export const TrackingAlreadyExists:any = Template.bind({});
 TrackingAlreadyExists.args = {
   visible: true,
+  mounted(this: any) {
+    this.$refs.SSCPopinActivateTracking.$data.isLoading = false;
+  },
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTagAlreadyExists);
   },

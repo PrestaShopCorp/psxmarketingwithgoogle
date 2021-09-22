@@ -6,39 +6,68 @@
     v-bind="$attrs"
     @ok="updateTrackingStatus"
   >
-    <!-- TODO  : missing links -->
     <VueShowdown
-      class="my-1"
+      class="mt-1 mb-4"
       :extensions="['extended-link']"
-      :markdown="$t('modal.textActivateTrackingSSC', ['http://google.fr', 'http://google.fr'])"
+      :markdown="$t('modal.textActivateTrackingSSC',
+                    [$options.googleUrl.remarketingList,
+                     $options.googleUrl.conversionTrackingTags])"
     />
-    <b-form-checkbox
-      switch
-      size="lg"
-      class="mt-3 ps_gs-switch"
-      v-model="statusTrackingTag"
-      @change="changeStatus"
+    <p
+      v-if="isLoading"
+      class="text-center pt-2 mb-2"
     >
-      <span class="ps_gs-fz-14">
-        {{ $t('smartShoppingCampaignCreation.toggleCreationRemarketingTag') }}
-      </span>
-    </b-form-checkbox>
-
-    <b-alert
-      v-if="alertTag !== null"
-      variant="warning"
-      show
-      class="mb-0 mt-3"
-    >
-      <div>
-        <VueShowdown
-          tag="p"
-          class="d-inline"
-          :markdown="alertTag"
-          :extensions="['no-p-tag']"
-        />
-      </div>
-    </b-alert>
+      <span class="mr-1 icon-busy icon-busy--dark icon-busy--big ps_gs-fz-20" />
+      {{ $t('smartShoppingCampaignCreation.remarketingTagLoading') }}
+    </p>
+    <template v-else>
+      <b-form-checkbox
+        switch
+        size="lg"
+        class="mt-3 ps_gs-switch"
+        v-model="statusTrackingTag"
+        @change="changeStatus"
+      >
+        <span class="ps_gs-fz-14">
+          {{ $t('smartShoppingCampaignCreation.toggleCreationRemarketingTag') }}
+        </span>
+      </b-form-checkbox>
+      <b-alert
+        v-if="alertTag !== null"
+        variant="warning"
+        show
+        class="mb-0 mt-3"
+      >
+        <div>
+          <VueShowdown
+            tag="p"
+            class="d-inline"
+            :markdown="alertTag"
+            :extensions="['no-p-tag']"
+          />
+        </div>
+      </b-alert>
+      <b-form-checkbox
+        switch
+        size="lg"
+        class="mt-3 ps_gs-switch"
+        disabled
+        :checked="true"
+      >
+        <span class="ps_gs-fz-14 text-dark d-block">
+          {{ $t('smartShoppingCampaignCreation.toggleNewConversionTag') }}
+        </span>
+        <span class="ps_gs-fz-12 text-muted d-block">
+          {{ $t('smartShoppingCampaignCreation.toggleNewConversionTag2') }}
+        </span>
+      </b-form-checkbox>
+      <VueShowdown
+        tag="p"
+        class="mt-3 mb-4 ps_gs-fz-12 text-muted"
+        :markdown="$t('smartShoppingCampaignCreation.remarketingNote')"
+        :extensions="['no-p-tag']"
+      />
+    </template>
     <template
       slot="modal-cancel"
     >
@@ -52,6 +81,7 @@
 
 <script>
 import PsModal from '../commons/ps-modal';
+import googleUrl from '@/assets/json/googleUrl.json';
 
 export default {
   name: 'SSCPopinActivateTracking',
@@ -61,9 +91,9 @@ export default {
   data() {
     return {
       statusTrackingTag: this.$store.state.smartShoppingCampaigns.tracking,
+      isLoading: false,
     };
   },
-
   computed: {
     tagAlreadyExists() {
       return this.$store.state.smartShoppingCampaigns.tagAlreadyExists;
@@ -93,5 +123,6 @@ export default {
       );
     },
   },
+  googleUrl,
 };
 </script>
