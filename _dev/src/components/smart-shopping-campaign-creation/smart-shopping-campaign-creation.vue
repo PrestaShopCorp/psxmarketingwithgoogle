@@ -368,10 +368,10 @@ export default {
     finalCampaign() {
       return {
         campaignName: this.campaignName,
-        dailyBudget: this.campaignDailyBudget,
+        dailyBudget: Number(this.campaignDailyBudget),
         currencyCode: this.currency,
-        startDate: this.$options.filters.timeConverterToDate(this.campaignDurationStartDate),
-        endDate: this.$options.filters.timeConverterToDate(this.campaignDurationEndDate),
+        startDate: this.campaignDurationStartDate,
+        endDate: this.campaignDurationEndDate,
         // Countries is still an array because refacto later for multiple countries
         targetCountry: this.countries[0],
         productFilters: this.campaignProductsFilter ? [] : this.filtersChosen,

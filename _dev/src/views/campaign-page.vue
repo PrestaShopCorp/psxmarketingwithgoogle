@@ -4,7 +4,9 @@
       @openPopin="onOpenPopinActivateTracking"
       v-if="$route.name === 'campaign' && !SSCExist"
     />
-    <smart-shopping-campaign-table-list v-if="$route.name === 'campaign' && SSCExist" />
+    <smart-shopping-campaign-table-list
+      v-if="$route.name === 'campaign' && SSCExist"
+    />
     <smart-shopping-campaign-creation
       v-if="$route.name === 'campaign-creation'"
       @campaignCreated="onCampaignHasBeenCreated"

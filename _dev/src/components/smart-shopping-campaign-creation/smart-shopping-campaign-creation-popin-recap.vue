@@ -27,7 +27,7 @@
               {{ $t('smartShoppingCampaignCreation.inputDurationLabel1') }}
             </span><br>
             <span class="text-secondary">
-              {{ newCampaign.startDate }}
+              {{ newCampaign.startDate | timeConverterToDate }}
             </span>
           </b-col>
           <b-col
@@ -38,7 +38,7 @@
               {{ $t('smartShoppingCampaignCreation.inputDurationLabel2') }}
             </span><br>
             <span class="text-secondary">
-              {{ newCampaign.endDate }}
+              {{ newCampaign.endDate | timeConverterToDate }}
             </span>
           </b-col>
         </b-form-row>

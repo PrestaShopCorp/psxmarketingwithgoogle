@@ -36,9 +36,7 @@ export default {
             Accept: 'application/json',
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
-          body: JSON.stringify({
-            payload,
-          }),
+          body: JSON.stringify(payload),
         });
         // TO REMOVE WHEN API WORKS
       commit(MutationsTypes.SAVE_NEW_SSC, payload);
