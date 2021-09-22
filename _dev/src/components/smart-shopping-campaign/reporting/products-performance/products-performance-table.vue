@@ -59,6 +59,10 @@
             <KeyMetricsErrorMessage />
           </td>
         </tr>
+        <ReportingTableEmptyMessage
+          v-if="!errorWithApi && campaignList.length === 0"
+          :colspan="campaignHeaderList.length"
+        />
         <ProductsPerformanceTableRow
           v-else
           v-for="(campaign, key, index) in campaignList"
@@ -80,6 +84,7 @@
 
 <script>
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
+import ReportingTableEmptyMessage from '../commons/reporting-table-empty-message.vue';
 import ProductsPerformanceTableRow from './products-performance-table-row.vue';
 import ProductPerformanceHeaderType from '@/enums/reporting/ProductPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
@@ -89,6 +94,7 @@ export default {
   name: 'ProductsPerformanceTable',
   components: {
     ReportingTableHeader,
+    ReportingTableEmptyMessage,
     ProductsPerformanceTableRow,
     KeyMetricsErrorMessage,
   },

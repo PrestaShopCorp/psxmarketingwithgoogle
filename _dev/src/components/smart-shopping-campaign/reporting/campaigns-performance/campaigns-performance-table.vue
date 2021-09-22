@@ -58,36 +58,22 @@
         id="campaigns-table-body"
         ref="campaigns-table-body"
       >
-        <tr
-          v-if="campaignList.length === 0"
-        >
-          <td
-            :colspan="campaignHeaderList.length"
-            class="py-3 text-center ps_gs-fz-12"
-          >
-            <p class="mb-0 text-muted">
-              {{ $t('campaigns.emptyListText') }}
-            </p>
-            <b-button
-              variant="link"
-              class="py-0 font-weight-normal"
-            >
-              {{ $t('cta.createCampaign') }}
-            </b-button>
-          </td>
-        </tr>
         <tr v-if="errorWithApi">
           <td :colspan="campaignHeaderList.length">
             <KeyMetricsErrorMessage />
           </td>
         </tr>
+        <ReportingTableEmptyMessage
+          v-if="!errorWithApi && campaignList.length === 0"
+          :colspan="campaignHeaderList.length"
+        />
         <CampaignsPerformanceTableRow
           v-else
           v-for="(campaign, key, index) in campaignList"
           :campaign="campaign"
           :key="index"
         />
-        <b-tr v-if="loading">
+        <b-tr v-if="!errorWithApi && loading">
           <b-td
             colspan="7"
             class="ps_gs-table-products__loading-slot"
@@ -102,6 +88,7 @@
 
 <script>
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
+import ReportingTableEmptyMessage from '../commons/reporting-table-empty-message.vue';
 import CampaignsPerformanceTableRow from './campaigns-performance-table-row.vue';
 import CampaignPerformanceHeaderType from '@/enums/reporting/CampaignPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
@@ -111,6 +98,7 @@ export default {
   name: 'CampaignsPerformanceTable',
   components: {
     ReportingTableHeader,
+    ReportingTableEmptyMessage,
     CampaignsPerformanceTableRow,
     KeyMetricsErrorMessage,
   },
