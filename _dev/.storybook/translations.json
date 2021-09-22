@@ -491,6 +491,7 @@
       "costs" : "Costs",
       "costsTooltip" : "The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period.",
       "sales" : "Sales",
+      "noData" : "No data yet",
       "salesTooltip" : "The value of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions."
     },
     "campaigns" : {

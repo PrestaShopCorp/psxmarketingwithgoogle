@@ -481,6 +481,7 @@ class PsxMktgWithGoogleTranslations
                 'costs' => $this->module->l('Costs', 'PsxMktgWithGoogleTranslations'),
                 'costsTooltip' => $this->module->l('The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period.', 'PsxMktgWithGoogleTranslations'),
                 'sales' => $this->module->l('Sales', 'PsxMktgWithGoogleTranslations'),
+                'noData' => $this->module->l('No data yet', 'PsxMktgWithGoogleTranslations'),
                 'salesTooltip' => $this->module->l('The value of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.', 'PsxMktgWithGoogleTranslations'),
             ],
             'campaigns' => [

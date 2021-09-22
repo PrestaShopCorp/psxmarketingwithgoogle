@@ -37,8 +37,6 @@
 </template>
 
 <script>
-import KpiType from '@/enums/reporting/KpiType';
-
 export default {
   name: 'KeyMetricsKpiCard',
   props: {
@@ -52,6 +50,7 @@ export default {
     },
     tooltip: {
       type: String,
+      default: '',
       required: false,
     },
     kpiType: {
@@ -67,21 +66,7 @@ export default {
         return '--';
       }
 
-      if (this.isPriceType()) {
-        return Intl.NumberFormat(window.i18nSettings.languageCode, {
-          style: 'currency',
-          currency: googleAdsAccount.currencyCode,
-        }).format(this.kpiValue);
-      }
-
-      return this.kpiValue;
-    },
-  },
-  methods: {
-    isPriceType() {
-      return this.kpiType === KpiType.AVERAGE_COST_PER_CLICK
-        || this.kpiType === KpiType.COSTS
-        || this.kpiType === KpiType.SALES;
+      return this.$options.filters.formatKpi(this.kpiValue);
     },
   },
 };
