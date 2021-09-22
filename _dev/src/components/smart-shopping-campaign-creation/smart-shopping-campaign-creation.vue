@@ -263,6 +263,17 @@
             {{ $t('cta.cancel') }}
           </b-button>
           <b-button
+            v-if="editMode"
+            @click="editCampaign"
+            size="sm"
+            :disabled="disableCreateCampaign"
+            class="mx-1 mt-3 mt-md-0 mr-md-0"
+            variant="primary"
+          >
+            {{ $t('cta.editCampaign') }}
+          </b-button>
+          <b-button
+            v-else
             data-test-id="createCampaignButton"
             @click="openPopinRecap"
             size="sm"
@@ -296,6 +307,7 @@ export default {
   name: 'SmartShoppingCampaignCreation',
   data() {
     return {
+      campaignId: 0,
       campaignName: null,
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
@@ -304,12 +316,19 @@ export default {
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
+      campaignIsActive: true,
     };
   },
   components: {
     SmartShoppingCampaignCreationFilterPopin,
     SmartShoppingCampaignCreationPopinRecap,
     SelectCountry,
+  },
+  props: {
+    editMode: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     disableCreateCampaign() {
@@ -335,7 +354,8 @@ export default {
       ) {
         return true;
       }
-      return false;
+
+      return null;
     },
     campaignDailyBudgetFeedback() {
       // TODO
@@ -377,6 +397,7 @@ export default {
     },
     finalCampaign() {
       return {
+        id: this.campaignId,
         campaignName: this.campaignName,
         dailyBudget: Number(this.campaignDailyBudget),
         currencyCode: this.currency,
@@ -449,6 +470,14 @@ export default {
       }
       this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
+    editCampaign() {
+      const payload = this.finalCampaign;
+      payload.status = this.campaignIsActive ? 'eligible' : 'paused';
+      this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
+      this.$router.push({
+        name: 'campaign',
+      });
+    },
   },
   watch: {
     campaignName(oldVal, newVal) {
@@ -459,6 +488,18 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0);
+    if (this.editMode === true) {
+      const sscList = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      const foundSsc = sscList.find((el) => el.campaignName === this.$route.params.name);
+      this.campaignName = foundSsc.campaignName;
+      this.campaignDurationStartDate = foundSsc.startDate.split('/').reverse().join('-');
+      this.campaignDurationEndDate = foundSsc.endDate
+        ? foundSsc.endDate.split('/').reverse().join('-') : null;
+      this.campaignProductsFilter = !(foundSsc.productFilters.length > 0);
+      this.campaignDailyBudget = foundSsc.dailyBudget;
+      this.campaignIsActive = foundSsc.status === 'eligible';
+      this.campaignId = foundSsc.id;
+    }
   },
   countriesSelectionOptions,
 };

@@ -398,6 +398,7 @@
       "toggleCreationRemarketingTag": "Enable remarketing  tags on my site",
       "toggleCreationNewRemarketingTag": "Create a new remarketing and conversion tracking tag to your shop",
       "enableCreationRemarketingTag": "Enable remarketing and conversion tracking tag",
+      "pauseCampaign" : "Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.",
       "alerts": {
         "noTag": "By not adding the tag automatically Google will not be able to send campaigns results",
         "duplicatedTag" : "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.",
@@ -649,6 +650,7 @@
       "addBillingSettings" : "Add billing settings",
       "learnAboutTimeZoneAndCurrency" : "Learn more about currency and time zone settings",
       "createCampaign" : "Create campaign",
+      "editCampaign" : "Update campaign",
       "resetDate" : "Reset date",
       "validate" : "Validate",
       "moreInfosAboutX" : "More infos about {0}",

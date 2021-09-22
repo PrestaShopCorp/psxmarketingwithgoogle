@@ -7,6 +7,7 @@
         variant="link"
         class="font-weight-normal ps_gs-fz-12 p-0 m-0 btn-max-width"
         :title="campaign.campaignName"
+        @click="goToCampaignPage(campaign.campaignName)"
       >
         {{ campaign.campaignName }}
       </b-button>
@@ -108,6 +109,7 @@ export default {
   methods: {
     goToCampaignPage() {
       // TODO Go to campaign page to edit it
+      this.$router.push(`/campaign/edit/${this.campaign.campaignName}`);
       console.log('goToCampaignPage', this.campaign.campaignName);
     },
     isPaused() {

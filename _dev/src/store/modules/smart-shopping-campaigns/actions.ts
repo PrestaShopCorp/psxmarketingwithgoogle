@@ -42,6 +42,7 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
+      payload.id += 1;
       commit(MutationsTypes.SAVE_NEW_SSC, payload);
       return {
         error: false,
@@ -445,6 +446,30 @@ export default {
     // }
     // const json = await resp.json();
       commit(MutationsTypes.UPDATE_SSC_STATUS, payload);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async [ActionsTypes.UPDATE_SSC]({commit, rootState, state}, payload) {
+    try {
+      // TODO: Change route for updating SSC
+      /* const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+          body: JSON.stringify({
+            payload,
+          }),
+        });
+      if (!resp.ok) {
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+      const json = await resp.json(); */
+      commit(MutationsTypes.UPDATE_SSC, payload);
     } catch (error) {
       console.error(error);
     }
