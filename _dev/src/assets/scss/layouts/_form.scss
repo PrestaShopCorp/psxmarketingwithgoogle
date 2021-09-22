@@ -209,6 +209,11 @@
     background-color: $green;
   }
 
+  .custom-control-input:checked[disabled="disabled"] ~ .custom-control-label::before {
+    border-color: rgba($green, 0.6);
+    background-color: rgba($green, 0.6);
+  }
+
   .custom-control-label::after {
     background-color: #fff;
   }
