@@ -311,9 +311,12 @@ export default {
     accountInformations() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
+    getBillingInformations() {
+      return this.$store.getters['googleAds/GET_BILLING_SHOP_INFORMATIONS'];
+    },
     selectedTimeZone: {
       get() {
-        return this.newAccountInfos.timeZone;
+        return this.newAccountInfos.timeZone || this.getBillingInformations.timeZone;
       },
       set(value) {
         this.newAccountInfos.timeZone = value;
@@ -352,6 +355,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.dispatch('googleAds/GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING');
     this.stepActiveData = this.stepActive;
     this.newAccountInfos.country = this.$store.getters['app/GET_ACTIVE_COUNTRIES']
       ? this.$options.filters.changeCountriesCodesToNames(this.$store.getters['app/GET_ACTIVE_COUNTRIES']) : '';
