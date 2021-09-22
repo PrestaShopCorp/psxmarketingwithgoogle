@@ -456,6 +456,7 @@ class PsxMktgWithGoogleTranslations
                 'remarketingNote' => $this->module->l('**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.', 'PsxMktgWithGoogleTranslations'),
                 'toggleNewConversionTag' => $this->module->l('Set new conversion tracking tags on my site', 'PsxMktgWithGoogleTranslations'),
                 'toggleNewConversionTag2' => $this->module->l('We will create the following conversion tags : Page view, Purchase, Add to basket', 'PsxMktgWithGoogleTranslations'),
+                'remarketingTagLoading' => $this->module->l('Checking if you have a remarketing and conversion tracking tags to add to your shop', 'PsxMktgWithGoogleTranslations'),
             ],
             'campaignCard' => [
                 'title' => $this->module->l('Create your Smart Shopping campaign in a few clicks', 'PsxMktgWithGoogleTranslations'),

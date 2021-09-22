@@ -18,7 +18,7 @@
       class="text-center pt-2 mb-2"
     >
       <span class="mr-1 icon-busy icon-busy--dark icon-busy--big ps_gs-fz-20" />
-      Checking if you have a remarketing and conversion tracking tags to add to your shop
+      {{ $t('smartShoppingCampaignCreation.remarketingTagLoading') }}
     </p>
     <template v-else>
       <b-form-checkbox

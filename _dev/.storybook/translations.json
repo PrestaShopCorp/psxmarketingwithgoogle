@@ -407,7 +407,8 @@
       "selectProductsSubtitle" : "Select the filters you want to add in your Google Ads campaign",
       "remarketingNote" : "**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.",
       "toggleNewConversionTag" : "Set new conversion tracking tags on my site",
-      "toggleNewConversionTag2" : "We will create the following conversion tags : Page view, Purchase, Add to basket"
+      "toggleNewConversionTag2" : "We will create the following conversion tags : Page view, Purchase, Add to basket",
+      "remarketingTagLoading" : "Checking if you have a remarketing and conversion tracking tags to add to your shop"
     },
     "smartShoppingCampaignList" : {
       "tableTitle" : "Campaign performance"
