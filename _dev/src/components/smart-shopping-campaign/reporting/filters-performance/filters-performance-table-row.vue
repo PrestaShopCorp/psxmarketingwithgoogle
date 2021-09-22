@@ -5,31 +5,31 @@
     >
       <b-button
         variant="link"
-        class="font-weight-normal ps_gs-fz-12 p-0 m-0"
+        class="p-0 m-0 font-weight-normal ps_gs-fz-12"
       >
-        {{ name }}
+        {{ partition.campaignName }}
       </b-button>
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ productFilter }}
+      {{ partition.productFilter }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ clicks }}
+      {{ partition.clicks }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ costs }}
+      {{ partition.costs }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ averageCpc }}
+      {{ partition.averageCostPerClick }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ conversions }}
+      {{ partition.conversions }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ conversionsRate }}
+      {{ partition.conversionsRate }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ sales }}
+      {{ partition.sales }}
     </b-td>
   </b-tr>
 </template>
@@ -38,36 +38,8 @@
 export default {
   name: 'FiltersPerformanceTableRow',
   props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    productFilter: {
-      type: String,
-      required: true,
-    },
-    clicks: {
-      type: String,
-      required: true,
-    },
-    costs: {
-      type: String,
-      required: true,
-    },
-    averageCpc: {
-      type: String,
-      required: true,
-    },
-    conversions: {
-      type: String,
-      required: true,
-    },
-    conversionsRate: {
-      type: String,
-      required: true,
-    },
-    sales: {
-      type: String,
+    partition: {
+      type: Object,
       required: true,
     },
   },

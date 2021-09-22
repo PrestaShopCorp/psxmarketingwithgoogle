@@ -58,6 +58,11 @@ export default {
   ) {
     state.reporting.request.ordering.productsPerformances = payload;
   },
+  [MutationsTypes.SET_REPORTING_PRODUCT_PARTITIONS_PERFORMANCES_ORDERING](
+    state: LocalState, payload: OrderByType,
+  ) {
+    state.reporting.request.ordering.productsPartitionsPerformances = payload;
+  },
 
   // result mutations
   [MutationsTypes.SET_REPORTING_KPIS](state: LocalState, payload: Kpis) {

@@ -72,7 +72,7 @@ export interface DateRange {
 export interface Orderings {
   campaignsPerformances: OrderByType;
   productsPerformances: OrderByType;
-  productsDimensionsPerformances: OrderByType;
+  productsPartitionsPerformances: OrderByType;
 }
 
 export interface OrderByType {
@@ -169,7 +169,7 @@ export const state: State = {
         productsPerformances: {
           clicks: QueryOrderDirection.ASCENDING,
         },
-        productsDimensionsPerformances: {
+        productsPartitionsPerformances: {
           clicks: QueryOrderDirection.ASCENDING,
         },
       },

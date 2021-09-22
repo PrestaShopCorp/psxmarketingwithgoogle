@@ -628,7 +628,7 @@ export default {
     const query = new URLSearchParams({
       startDate: state.reporting.dateRange.startDate,
       endDate: state.reporting.dateRange.endDate,
-      order: state.reporting.request.ordering.productsDimensionsPerformances,
+      order: state.reporting.request.ordering.productsPartitionsPerformances,
     });
     // add order in array format
     query.append('order["click"]', payload);
@@ -665,8 +665,29 @@ export default {
           conversionsRate: 25,
           sales: 324,
         },
+        {
+          campaignName: 'test 2',
+          dimension: 'test 2',
+          dimensionValue: 'test 2',
+          clicks: 872,
+          costs: 16,
+          averageCostPerClick: 78,
+          conversions: 6978,
+          conversionsRate: 256,
+          sales: 4,
+        },
       ],
     };
+
+    // for testing only
+    if (
+      state.reporting.request.ordering.productsPartitionsPerformances.clicks
+      === QueryOrderDirection.ASCENDING
+    ) {
+      result.productsPartitionsPerformanceList = [
+        ...result.productsPartitionsPerformanceList,
+      ].reverse();
+    }
 
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES, result);
   },

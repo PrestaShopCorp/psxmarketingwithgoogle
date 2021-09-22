@@ -3,6 +3,7 @@
     <KeyMetricsBlock />
     <CampaignsPerformanceTable />
     <ProductsPerformanceTable />
+    <FiltersPerformanceTable />
   </div>
 </template>
 
@@ -10,12 +11,14 @@
 import CampaignsPerformanceTable from '../components/smart-shopping-campaign/reporting/campaigns-performance/campaigns-performance-table.vue';
 import KeyMetricsBlock from '../components/smart-shopping-campaign/reporting/key-metrics/key-metrics-block.vue';
 import ProductsPerformanceTable from '../components/smart-shopping-campaign/reporting/products-performance/products-performance-table.vue';
+import FiltersPerformanceTable from '../components/smart-shopping-campaign/reporting/filters-performance/filters-performance-table.vue';
 
 export default {
   components: {
     KeyMetricsBlock,
     CampaignsPerformanceTable,
     ProductsPerformanceTable,
+    FiltersPerformanceTable,
   },
   computed: {
     remarketingTagIsSet() {

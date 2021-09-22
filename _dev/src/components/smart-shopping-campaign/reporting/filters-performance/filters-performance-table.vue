@@ -15,20 +15,20 @@
       <b-thead>
         <b-tr>
           <b-th
-            v-for="({type, tooltip, sorting}, index) in fields"
+            v-for="(type, index) in partitionHeaderList"
             :key="type"
             class="font-weight-600"
             :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
           >
             <div class="flex align-items-center text-nowrap">
               <b-button
-                v-if="sorting"
-                @click="sort()"
+                v-if="hasSorting(type)"
+                @click="sortByType(type)"
                 variant="invisible"
                 class="p-0 border-0"
               >
                 <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
-                <template v-if="sortDirection === 'asc'">
+                <template v-if="queryOrderDirection[type] === 'ASC'">
                   <i class="material-icons ps_gs-fz-14">expand_more</i>
                   <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
                 </template>
@@ -41,7 +41,7 @@
                 {{ $t(`campaigns.labelCol.${type}`) }}
               </span>
               <b-button
-                v-if="tooltip"
+                v-if="hasToolTip(type)"
                 variant="invisible"
                 v-b-tooltip:psxMktgWithGoogleApp
                 :title="$t(`campaigns.tooltipCol.${type}`)"
@@ -55,25 +55,9 @@
       </b-thead>
       <b-tbody class="bg-white">
         <FiltersPerformanceTableRow
-          v-for="{
-            name,
-            productFilter,
-            clicks,
-            costs,
-            averageCpc,
-            conversions,
-            conversionsRate,
-            sales
-          } in campaigns"
-          :name="name"
-          :product-filter="productFilter"
-          :clicks="clicks"
-          :costs="costs"
-          :average-cpc="averageCpc"
-          :conversions="conversions"
-          :conversions-rate="conversionsRate"
-          :sales="sales"
-          :key="name"
+          v-for="(partition, key, index) in partitionList"
+          :partition="partition"
+          :key="index"
         />
         <b-tr v-if="loading">
           <b-td
@@ -91,6 +75,8 @@
 <script>
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
 import FiltersPerformanceTableRow from './filters-performance-table-row.vue';
+import ProductPartitionPerformanceHeaderType from '@/enums/reporting/ProductPartitionPerformanceHeaderType';
+import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 
 export default {
   name: 'FiltersPerformanceTable',
@@ -100,59 +86,43 @@ export default {
   },
   data() {
     return {
-      sortDirection: 'asc',
       loading: false,
-      fields: [
-        {
-          type: 'campaign',
-        },
-        {
-          type: 'productFilter',
-        },
-        {
-          type: 'clicks',
-          sorting: true,
-        },
-        {
-          type: 'costs',
-        },
-        {
-          type: 'averageCpc',
-        },
-        {
-          type: 'conversions',
-        },
-        {
-          type: 'conversionsRate',
-        },
-        {
-          type: 'sales',
-        },
-      ],
-      // TODO
-      // Adds real datas
-      campaigns: [
-        {
-          name: 'Promotion 1',
-          productFilter: 'Brand',
-          clicks: '0',
-          costs: '$125',
-          averageCpc: '$5',
-          conversions: '127',
-          conversionsRate: '127',
-          sales: '$150',
-        },
-      ],
     };
   },
   methods: {
-    // TODO: Handle sort function
-    sort() {
-      if (this.sortDirection === 'asc') {
-        this.sortDirection = 'desc';
+    hasToolTip() {
+      return false;
+    },
+    hasSorting(headerType) {
+      return headerType === ProductPartitionPerformanceHeaderType.CLICKS;
+    },
+    sortByType(headerType) {
+      // create new object for satisfy deep getter of vueJS
+      const newOrderDirection = {...this.queryOrderDirection};
+
+      if (this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING) {
+        newOrderDirection[headerType] = QueryOrderDirection.DESCENDING;
       } else {
-        this.sortDirection = 'asc';
+        newOrderDirection[headerType] = QueryOrderDirection.ASCENDING;
       }
+      this.queryOrderDirection = newOrderDirection;
+    },
+  },
+  computed: {
+    partitionHeaderList() {
+      return Object.values(ProductPartitionPerformanceHeaderType);
+    },
+    partitionList() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES'];
+    },
+    queryOrderDirection: {
+      get() {
+        return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_ORDERING'];
+      },
+      set(orderDirection) {
+        this.$store.commit('smartShoppingCampaigns/SET_REPORTING_PRODUCT_PARTITIONS_PERFORMANCES_ORDERING', orderDirection);
+        this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES');
+      },
     },
   },
 };
