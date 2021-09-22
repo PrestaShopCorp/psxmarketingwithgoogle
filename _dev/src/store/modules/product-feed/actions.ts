@@ -19,6 +19,16 @@
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
+import countriesSelectionOptions from '../../../assets/json/countries.json';
+
+const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
+  for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
+    if (country === countriesSelectionOptions[i].country) {
+      return countriesSelectionOptions[i].code;
+    }
+  }
+  return country;
+});
 
 export default {
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootState}) {
@@ -121,7 +131,7 @@ export default {
     state, rootState, rootGetters, commit,
   }) {
     const productFeedSettings = state.settings;
-    const targetCountries = rootGetters['app/GET_ACTIVE_COUNTRIES'];
+    const targetCountries = changeCountriesNamesToCodes(rootGetters['app/GET_ACTIVE_COUNTRIES']);
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
