@@ -8,9 +8,15 @@
   >
     <!-- TODO  : missing links -->
     <VueShowdown
-      class="my-1"
+      class="mt-1 mb-3"
       :extensions="['extended-link']"
       :markdown="$t('modal.textActivateTrackingSSC', ['http://google.fr', 'http://google.fr'])"
+    />
+    <VueShowdown
+      tag="p"
+      class="mb-3 ps_gs-fz-12 text-muted"
+      :markdown="$t('smartShoppingCampaignCreation.remarketingNote')"
+      :extensions="['no-p-tag']"
     />
     <b-form-checkbox
       switch

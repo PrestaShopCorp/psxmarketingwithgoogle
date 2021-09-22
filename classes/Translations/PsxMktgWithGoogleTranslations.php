@@ -453,6 +453,7 @@ class PsxMktgWithGoogleTranslations
                 'nbValuesSelected' => $this->module->l('No value selected | {0} value selected | {0} values selected', 'PsxMktgWithGoogleTranslations'),
                 'selectProductsTitle' => $this->module->l('Select products', 'PsxMktgWithGoogleTranslations'),
                 'selectProductsSubtitle' => $this->module->l('Select the filters you want to add in your Google Ads campaign', 'PsxMktgWithGoogleTranslations'),
+                'remarketingNote' => $this->module->l('**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.', 'PsxMktgWithGoogleTranslations'),
             ],
             'campaignCard' => [
                 'title' => $this->module->l('Create your Smart Shopping campaign in a few clicks', 'PsxMktgWithGoogleTranslations'),

@@ -404,7 +404,8 @@
       "nbDimensionSelected" : "No dimension selected | {0} dimension selected | {0} dimensions selected",
       "nbValuesSelected" : "No value selected | {0} value selected | {0} values selected",
       "selectProductsTitle" : "Select products",
-      "selectProductsSubtitle" : "Select the filters you want to add in your Google Ads campaign"
+      "selectProductsSubtitle" : "Select the filters you want to add in your Google Ads campaign",
+      "remarketingNote" : "**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site."
     },
     "smartShoppingCampaignList" : {
       "tableTitle" : "Campaign performance"
