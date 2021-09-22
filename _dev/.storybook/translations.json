@@ -480,17 +480,17 @@
         "3Months" : "3 months"
       },
       "impressions" : "Impressions",
-      "impressionsTooltip" : "How often your ad is shown. An impression is counted each time your ad is shown on a search result page or other site on the Google Network.",
+      "impressionsTooltip" : "Count of how often your ad has appeared on a search results page or website on the Google Network.",
       "clicks" : "Clicks",
       "clicksTooltip" : "When someone clicks your ad, like on the blue headline or phone number of a text ad, Google Ads counts that as a click.",
       "conversions" : "Conversion",
-      "conversionTooltip" : "An action that's counted when someone interacts with your ad or free product listing (for example, clicks a text ad or views a video ad) and then takes an action that you’ve defined as valuable to your business, such as an online purchase or a call to your business from a mobile phone.",
+      "conversionTooltip" : "The number of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
       "averageCostPerClick" : "Avg cost / click",
-      "averageCostPerClickTooltip" : "The average amount that you've been charged for a click on your ad. Average cost-per-click (avg. CPC) is calculated by dividing the total cost of your clicks by the total number of clicks.",
+      "averageCostPerClickTooltip" : "The total cost of all clicks divided by the total number of clicks received.",
       "costs" : "Costs",
-      "costsTooltip" : "The total cost of the campaign  during the selected period",
+      "costsTooltip" : "The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period.",
       "sales" : "Sales",
-      "salesTooltip" : "Number of sales made during the selected period"
+      "salesTooltip" : "The value of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions."
     },
     "campaigns" : {
       "status" : {
