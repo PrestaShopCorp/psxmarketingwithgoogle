@@ -239,6 +239,16 @@
         <p>
           {{ $t('smartShoppingCampaignCreation.formHelperDescription') }}
         </p>
+        <b-form-checkbox
+          switch
+          size="lg"
+          class="ps_gs-switch"
+          v-model="campaignIsActive"
+        >
+          <span class="ps_gs-fz-14">
+            {{ $t('cta.enabled') }}
+          </span>
+        </b-form-checkbox>
         <b-alert
           v-if="!productsExist"
           variant="warning"
@@ -302,6 +312,7 @@ import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-
 import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
+import CampaignStatus from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -472,7 +483,7 @@ export default {
     },
     editCampaign() {
       const payload = this.finalCampaign;
-      payload.status = this.campaignIsActive ? 'eligible' : 'paused';
+      payload.status = this.campaignIsActive ? CampaignStatus.ELIGIBLE : CampaignStatus.PAUSED;
       this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
       this.$router.push({
         name: 'campaign',
@@ -491,14 +502,18 @@ export default {
     if (this.editMode === true) {
       const sscList = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
       const foundSsc = sscList.find((el) => el.campaignName === this.$route.params.name);
-      this.campaignName = foundSsc.campaignName;
-      this.campaignDurationStartDate = foundSsc.startDate.split('/').reverse().join('-');
-      this.campaignDurationEndDate = foundSsc.endDate
-        ? foundSsc.endDate.split('/').reverse().join('-') : null;
-      this.campaignProductsFilter = !(foundSsc.productFilters.length > 0);
-      this.campaignDailyBudget = foundSsc.dailyBudget;
-      this.campaignIsActive = foundSsc.status === 'eligible';
-      this.campaignId = foundSsc.id;
+      if (foundSsc !== undefined) {
+        this.campaignName = foundSsc.campaignName;
+        this.campaignDurationStartDate = foundSsc.startDate;
+        this.campaignDurationEndDate = foundSsc.endDate
+          ? foundSsc.endDate : null;
+        this.campaignProductsFilter = !(foundSsc.productFilters.length > 0);
+        this.campaignDailyBudget = foundSsc.dailyBudget;
+        this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
+        this.campaignId = foundSsc.id;
+      } else {
+        this.$router.push({name: 'campaign'});
+      }
     }
   },
   countriesSelectionOptions,
