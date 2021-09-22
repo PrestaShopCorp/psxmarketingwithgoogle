@@ -33,8 +33,15 @@
       >
         No data yet
       </b-alert>
-      <b-card v-else body-class="p-4">
-        <Chart type="bar" :data="getDataSetsByMetric" :options="options" />
+      <b-card
+        v-else
+        body-class="p-4"
+      >
+        <Chart
+          type="bar"
+          :data="getDataSetsByMetric"
+          :options="options"
+        />
       </b-card>
     </div>
   </section>
@@ -55,18 +62,15 @@ export default {
         scales: {
           yAxes: {
             ticks: {
-              callback: (value) => {
-                return this.$options.filters.formatKpi(value);
-              },
+              callback: (value) => this.$options.filters.formatKpi(value),
             },
           },
         },
         plugins: {
           tooltip: {
             callbacks: {
-              label: (context) => {
-                return this.$options.filters.formatKpi(context.dataset.data[context.dataIndex]);
-              },
+              label: (context) => this.$options.filters.formatKpi(
+                context.dataset.data[context.dataIndex]),
             },
           },
           legend: {
@@ -114,7 +118,7 @@ export default {
     },
     metricsIsEmpty() {
       return this.getMetrics.length === 0;
-    }
+    },
   },
 };
 </script>

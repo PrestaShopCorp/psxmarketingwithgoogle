@@ -1,9 +1,9 @@
 import Vue from 'vue';
 
-import store from "@/store";
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
 import utc from 'dayjs/plugin/utc';
+import store from '@/store';
 import countriesSelectionOptions from '../assets/json/countries.json';
 import KpiType from '@/enums/reporting/KpiType';
 
@@ -58,7 +58,7 @@ Vue.filter(
       || selectedKpi === KpiType.IMPRESSIONS) {
       return value;
     }
-    
+
     return Intl.NumberFormat(window.i18nSettings.isoCode, {
       style: 'currency',
       currency: store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currency,

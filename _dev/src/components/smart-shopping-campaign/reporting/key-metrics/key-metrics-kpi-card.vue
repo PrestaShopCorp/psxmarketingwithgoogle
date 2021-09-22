@@ -37,8 +37,6 @@
 </template>
 
 <script>
-import KpiType from '@/enums/reporting/KpiType';
-
 export default {
   name: 'KeyMetricsKpiCard',
   props: {
@@ -52,6 +50,7 @@ export default {
     },
     tooltip: {
       type: String,
+      default: '',
       required: false,
     },
     kpiType: {
@@ -67,7 +66,7 @@ export default {
         return '--';
       }
 
-      return this.$options.filters.formatKpi(this.kpiValue)
+      return this.$options.filters.formatKpi(this.kpiValue);
     },
   },
 };
