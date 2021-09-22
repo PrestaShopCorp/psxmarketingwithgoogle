@@ -25,7 +25,8 @@
       </b-dropdown>
     </div>
     <div>
-      <div v-if="metricsIsEmpty"
+      <div
+        v-if="metricsIsEmpty"
         class="text-center py-3"
       >
         <span>{{ $t('keymetrics.noData') }}</span>
@@ -65,8 +66,8 @@ export default {
           xAxes: {
             type: 'time',
             time: {
-              unit: 'day'
-            }
+              unit: 'day',
+            },
           },
         },
         plugins: {
