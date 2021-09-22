@@ -58,7 +58,10 @@
         body-class="p-3"
       >
         <ul class="mb-0">
-          <li>Remarketing tag is implemented by a third party module: ???</li>
+          <li>
+            Remarketing tag is implemented by a third party module:
+            {{ GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST }}
+          </li>
           <li>
             Remarketing tag is implemented and enabled by "PrestaShop Marketing With Google":
             {{ GET_REMARKETING_TRACKING_TAG_IS_SET }}
@@ -96,7 +99,7 @@ export default {
     ...mapGetters('smartShoppingCampaigns', [
       GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET,
       GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
-      // Todo: Add getter for state.tagAlreadyExists
+      GettersTypes.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST,
     ]),
     shopId() {
       return window.shopIdPsAccounts || 'none yet';

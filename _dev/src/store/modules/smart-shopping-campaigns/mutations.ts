@@ -36,6 +36,11 @@ export default {
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](state: LocalState, payload: boolean) {
     state.tracking = payload;
   },
+  [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG_ALREADY_EXIST](
+    state: LocalState, payload: boolean,
+  ) {
+    state.tagAlreadyExists = payload;
+  },
   [MutationsTypes.SET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
     state: LocalState, payload: ConversionAction[],
   ) {
