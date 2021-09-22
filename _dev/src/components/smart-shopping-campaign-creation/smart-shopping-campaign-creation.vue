@@ -383,7 +383,7 @@ export default {
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
         // Countries is still an array because refacto later for multiple countries
-        targetCountry: this.countries[0],
+        targetCountry: this.$store.getters['app/GET_ACTIVE_COUNTRIES'][0],
         productFilters: this.campaignProductsFilter ? [] : this.filtersChosen,
       };
     },
