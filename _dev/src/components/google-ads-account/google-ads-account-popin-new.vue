@@ -316,6 +316,7 @@ export default {
         return this.newAccountInfos.timeZone;
       },
       set(value) {
+        console.log(value);
         this.newAccountInfos.timeZone = value;
       },
     },
