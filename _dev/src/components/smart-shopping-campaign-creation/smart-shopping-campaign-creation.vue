@@ -441,7 +441,6 @@ export default {
       this.displayError = true;
     },
     openEndDatepicker() {
-      console.log(this.campaignDurationEndDate, this.campaignDurationStartDate);
       if (
         this.campaignDurationEndDate
           && this.campaignDurationEndDate < this.campaignDurationStartDate
