@@ -359,7 +359,7 @@
       "intro" : "Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time."
     },
     "smartShoppingCampaignCreation" : {
-      "breadcrumb1" : "Paid marketing",
+      "breadcrumb1" : "Campaign",
       "breadcrumb2" : "Create Smart Shopping campaign",
       "inputNameHelper" : "The name must be unique and 125 chars max.",
       "inputNameLabel" : "Campaign name",
