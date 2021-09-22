@@ -38,8 +38,6 @@ export default {
           },
           body: JSON.stringify(payload),
         });
-        // TO REMOVE WHEN API WORKS
-      commit(MutationsTypes.SAVE_NEW_SSC, payload);
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
@@ -67,7 +65,7 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      if (json && json.name) {
+      if (json && json.campaignName) {
         commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       }
     } catch (error) {

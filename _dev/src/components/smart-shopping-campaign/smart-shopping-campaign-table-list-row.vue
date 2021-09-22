@@ -86,8 +86,8 @@ export default {
   computed: {
     campaignDuration() {
       return this.campaign.endDate.length > 1
-        ? this.$options.filters.timeConverterToDate(this.campaign.startDate)
-        + this.$options.filters.timeConverterToDate(this.campaign.endDate)
+        ? `${this.$options.filters.timeConverterToDate(this.campaign.startDate)
+        }-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}`
         : `From ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
     },
     campaignCountryName() {
