@@ -182,7 +182,7 @@ export default {
 
     commit(MutationsTypes.SET_REPORTING_DATES, {
       startDate: dayjs().subtract(substractType.value, substractType.type).format('YYYY-MM-DD'),
-      endDate: dayjs().format('YYYY-MM-DD'),
+      endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
     });
 
     dispatch('UPDATE_ALL_REPORTING_DATA');
