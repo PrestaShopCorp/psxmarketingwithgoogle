@@ -11,7 +11,7 @@
         <li class="list-inline-item ps_gs-breadcrumb__item">
           <router-link
             class="d-flex align-items-center ps_gs-breadcrumb__link"
-            :route="{name: 'campaign'}"
+            :to="{name: 'campaign'}"
           >
             <img
               class="ps_gs-breadcrumb__icon"

@@ -47,9 +47,11 @@ import {cloneStore} from '@/../tests/store';
 
 // jest results file
 import results from '../.jest-test-results.json';
+import VueRouter from 'vue-router';
 
 Vue.use(BootstrapVue, BootstrapVueIcons);
 Vue.use(VueShowdown);
+Vue.use(VueRouter);
 
 // import language file
 const messages = require('./translations.json');
@@ -130,6 +132,7 @@ addDecorator((story, context) => ({
     }
   },
   store: new Vuex.Store(cloneStore()),
+  router: new VueRouter(),
 }));
 
 addDecorator(
