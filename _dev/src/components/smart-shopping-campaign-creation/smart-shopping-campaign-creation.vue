@@ -240,6 +240,7 @@
           {{ $t('smartShoppingCampaignCreation.formHelperDescription') }}
         </p>
         <b-form-checkbox
+          v-if="editMode === true"
           switch
           size="lg"
           class="ps_gs-switch"
