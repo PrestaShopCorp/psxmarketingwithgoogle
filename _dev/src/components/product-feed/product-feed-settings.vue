@@ -64,7 +64,6 @@ import ProductFeedSettingsExport from './product-feed-settings-export';
 import ProductFeedSettingsAttributeMapping from './product-feed-settings-attribute-mapping';
 import ProductFeedSettingsSummary from './product-feed-settings-summary';
 
-
 export default {
   name: 'ProductFeedSettings',
   components: {
