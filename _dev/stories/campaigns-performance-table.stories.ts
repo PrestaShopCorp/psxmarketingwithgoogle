@@ -1,5 +1,5 @@
 import CampaignsPerformanceTable from '../src/components/smart-shopping-campaign/reporting/campaigns-performance/campaigns-performance-table.vue';
-import {campaignsPerformanceList, campaignsPerformanceListEmpty} from '../.storybook/mock/campaigns-list.js';
+import {campaignsPerformanceSection, campaignsPerformanceSectionEmpty} from '../.storybook/mock/campaigns-list.js';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
 
 export default {
@@ -22,15 +22,13 @@ export const List:any = Template.bind({});
 List.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
-    this.$store.state.smartShoppingCampaigns.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = Object.assign({}, campaignsPerformanceList);
-    this.$store.state.smartShoppingCampaigns.reporting.results.campaignsPerformancesSection.nextPageToken = Object.assign({}, 'fooBar');
+    this.$store.state.smartShoppingCampaigns.reporting.results.campaignsPerformancesSection = Object.assign({}, campaignsPerformanceSection);
   },
 }
 export const EmptyList:any = Template.bind({});
 EmptyList.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
-    this.$store.state.smartShoppingCampaigns.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = Object.assign([], campaignsPerformanceListEmpty);
-    this.$store.state.smartShoppingCampaigns.reporting.results.campaignsPerformancesSection.nextPageToken = null;
+    this.$store.state.smartShoppingCampaigns.reporting.results.campaignsPerformancesSection = Object.assign([], campaignsPerformanceSectionEmpty);
   },
 }

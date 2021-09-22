@@ -25,6 +25,7 @@ import {
   Kpis,
   State as LocalState,
   ProductPerformances,
+  ProductPartitionPerformances,
 } from './state';
 import GettersTypes from './getters-types';
 import KpiType from '@/enums/reporting/KpiType';
@@ -104,7 +105,7 @@ export default {
   [GettersTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_ORDERING](
     state: LocalState,
   ): Object {
-    return state.reporting.request.ordering.productsDimensionsPerformances;
+    return state.reporting.request.ordering.productsPartitionsPerformances;
   },
 
   // result getters
@@ -127,6 +128,12 @@ export default {
     state: LocalState,
   ): Array<ProductPerformances> {
     return state.reporting.results.productsPerformancesSection.productsPerformanceList;
+  },
+  [GettersTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES](
+    state: LocalState,
+  ): Array<ProductPartitionPerformances> {
+    return state.reporting.results.productsPartitionsPerformancesSection
+      .productsPartitionsPerformanceList;
   },
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](
     state: LocalState,
