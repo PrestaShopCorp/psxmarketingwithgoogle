@@ -29,6 +29,7 @@ export default {
   methods: {
     async getDatas() {
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
+      await this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
       await this.$store.dispatch('smartShoppingCampaigns/UPDATE_ALL_REPORTING_DATA');
     },
   },

@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form-group
-      class="d-none d-sm-block mb-0"
+      class="mb-0 d-none d-sm-block"
     >
       <b-form-radio-group
         buttons
@@ -41,19 +41,19 @@ export default {
       periods: [
         {
           value: ReportingPeriod.YESTERDAY,
-          text: this.$i18n.t('keymetrics.periods.yesterday'),
+          text: this.$i18n.t(`keymetrics.periods.${ReportingPeriod.YESTERDAY}`),
         },
         {
           value: ReportingPeriod.LAST_SEVEN_DAYS,
-          text: this.$i18n.t('keymetrics.periods.last7Days'),
+          text: this.$i18n.t(`keymetrics.periods.${ReportingPeriod.LAST_SEVEN_DAYS}`),
         },
         {
           value: ReportingPeriod.LAST_THIRTY_DAY,
-          text: this.$i18n.t('keymetrics.periods.last30Days'),
+          text: this.$i18n.t(`keymetrics.periods.${ReportingPeriod.LAST_THIRTY_DAY}`),
         },
         {
           value: ReportingPeriod.THREE_MONTH,
-          text: this.$i18n.t('keymetrics.periods.3Months'),
+          text: this.$i18n.t(`keymetrics.periods.${ReportingPeriod.THREE_MONTH}`),
         },
       ],
     };
