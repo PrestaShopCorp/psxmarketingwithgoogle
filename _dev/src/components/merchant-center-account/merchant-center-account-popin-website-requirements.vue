@@ -89,7 +89,7 @@
             :title="$t('mcaRequirements.websiteURLDescription')"
           >
             <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
-              error_outline
+              info_outlined
             </span>
           </b-button>
         </div>
@@ -114,7 +114,7 @@
             :title="$t('mcaRequirements.storeNameDescription')"
           >
             <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
-              error_outline
+              info_outlined
             </span>
           </b-button>
         </div>
@@ -135,7 +135,7 @@
             :title="$t('tooltip.GMCForm.businessAddress')"
           >
             <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
-              error_outline
+              info_outlined
             </span>
           </b-button>
         </div>
@@ -171,7 +171,7 @@
             :title="$t('tooltip.GMCForm.businessZipCode')"
           >
             <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
-              error_outline
+              info_outlined
             </span>
           </b-button>
         </div>
@@ -207,7 +207,7 @@
             :title="$t('tooltip.GMCForm.businessCity')"
           >
             <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
-              error_outline
+              info_outlined
             </span>
           </b-button>
         </div>
@@ -243,7 +243,7 @@
             :title="$t('tooltip.GMCForm.businessCountry')"
           >
             <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
-              error_outline
+              info_outlined
             </span>
           </b-button>
         </div>
@@ -282,7 +282,7 @@
             :title="$t('tooltip.GMCForm.businessRegion')"
           >
             <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
-              error_outline
+              info_outlined
             </span>
           </b-button>
         </div>
@@ -318,7 +318,7 @@
             :title="$t('tooltip.GMCForm.businessPhone')"
           >
             <span class="material-icons-round mb-0 ps_gs-fz-12 text-primary">
-              error_outline
+              info_outlined
             </span>
           </b-button>
         </div>

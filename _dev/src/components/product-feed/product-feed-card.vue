@@ -418,7 +418,7 @@ export default {
       }
       if (this.syncStatus === 'failed') {
         return {
-          icon: 'error_outline',
+          icon: 'info_outlined',
           color: 'danger',
           message: this.$i18n.t('productFeedCard.syncFailedAt', [
             this.lastSync.day,

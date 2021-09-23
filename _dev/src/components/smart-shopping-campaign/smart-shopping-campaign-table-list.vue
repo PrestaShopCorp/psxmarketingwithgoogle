@@ -73,7 +73,7 @@
                   :title="$t(`campaigns.tooltipCol.${type}`)"
                   class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
                 >
-                  <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
+                  <i class="material-icons ps_gs-fz-14 text-secondary">info_outlined</i>
                 </b-button>
               </div>
             </b-th>

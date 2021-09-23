@@ -17,7 +17,7 @@
         v-b-tooltip:psxMktgWithGoogleApp
         :title="tooltip"
       >
-        <i class="material-icons ps_gs-fz-14 text-secondary">error_outline</i>
+        <i class="material-icons ps_gs-fz-14 text-secondary">info_outlined</i>
         <span class="sr-only">
           {{ $t('cta.moreInfosAboutX', [kpiName]) }}
         </span>

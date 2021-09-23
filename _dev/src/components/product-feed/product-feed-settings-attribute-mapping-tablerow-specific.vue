@@ -22,7 +22,7 @@
           class="ml-1 p-0 border-0 ps_gs-fz-16 mb-0 text-grey_darklight"
         >
           <span class="material-icons-round mb-0 ps_gs-fz-16 align-middle">
-            error_outline
+            info_outlined
           </span>
         </b-button>
         <span
