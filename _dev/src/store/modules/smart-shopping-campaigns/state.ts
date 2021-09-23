@@ -44,7 +44,7 @@ export interface ProductsFilteredObject {
 
 export interface CampaignStatusPayload {
   campaignName: string,
-  status: boolean
+  status: CampaignStatus
 }
 export interface CampaignObject {
   campaignName: string;
