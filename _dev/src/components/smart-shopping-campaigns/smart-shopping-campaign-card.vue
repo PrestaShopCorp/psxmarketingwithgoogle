@@ -92,7 +92,7 @@ export default {
   data() {
     return {
       selected: null,
-
+      statusTrackingTag: this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS'],
     };
   },
   props: {
@@ -110,9 +110,7 @@ export default {
       }
       return null;
     },
-    statusTrackingTag() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
-    },
+
     toggleTag() {
       if (this.statusTrackingTag === false) {
         return this.$i18n.t('smartShoppingCampaignCreation.toggleCreationRemarketingTag');

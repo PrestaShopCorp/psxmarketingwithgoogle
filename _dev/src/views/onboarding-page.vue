@@ -315,6 +315,7 @@ export default {
         this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
         this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
+        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
       }
     },
     productFeedIsConfigured(newVal, oldVal) {

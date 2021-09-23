@@ -20,6 +20,7 @@
  */
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
+import SSCActionsTypes from '../smart-shopping-campaigns/actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import {AccountInformations} from './state';
 
@@ -65,7 +66,6 @@ export default {
         billingSettings: json.billingSettings,
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
-
       if (customer.isAccountCancelled === true) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Cancelled');
       }

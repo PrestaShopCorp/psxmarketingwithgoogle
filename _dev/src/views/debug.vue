@@ -60,7 +60,7 @@
         <ul class="mb-0">
           <li>
             Remarketing tag is implemented by a third party module:
-            {{ GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST }}
+            {{ GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS }}
           </li>
           <li>
             Remarketing tag is implemented and enabled by "PrestaShop Marketing With Google":
@@ -99,7 +99,7 @@ export default {
     ...mapGetters('smartShoppingCampaigns', [
       GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET,
       GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
-      GettersTypes.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST,
+      GettersTypes.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS,
     ]),
     shopId() {
       return window.shopIdPsAccounts || 'none yet';
