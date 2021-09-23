@@ -397,7 +397,8 @@
       "enableCreationRemarketingTag": "Enable remarketing and conversion tracking tag",
       "alerts": {
         "noTag": "By not adding the tag automatically Google will not be able to send campaigns results",
-        "duplicatedTag" : "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you."
+        "duplicatedTag" : "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.",
+        "noConversionActions": "The tracking tag has been enabled, but there is no conversion action set on the shop. This can be fixed by creating new ones."
       },
       "labelSelectedDimension" : "Selected dimension value",
       "labelDimensionValue" : "Dimension value",
