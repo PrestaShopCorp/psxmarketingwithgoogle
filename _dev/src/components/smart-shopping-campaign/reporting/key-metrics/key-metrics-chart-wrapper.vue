@@ -33,7 +33,7 @@
       </div>
       <b-card
         v-else
-        body-class="p-4"
+        body-class="p-md-4"
       >
         <Chart
           type="bar"
