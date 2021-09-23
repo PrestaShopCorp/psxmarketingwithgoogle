@@ -147,7 +147,7 @@ export default {
         tableBody.scrollTop >= tableBody.scrollHeight - tableBody.clientHeight
         && token !== null
       ) {
-        this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES');
+        this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES', false);
       }
     },
   },
@@ -166,7 +166,6 @@ export default {
         return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING'];
       },
       set(orderDirection) {
-        this.$store.commit('smartShoppingCampaigns/RESET_REPORTING_CAMPAIGNS_PERFORMANCES');
         this.$store.commit('smartShoppingCampaigns/SET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING', orderDirection);
         this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES');
       },

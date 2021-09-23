@@ -165,12 +165,9 @@ export default {
   async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
     {dispatch, commit},
   ) {
-    commit('RESET_REPORTING_CAMPAIGNS_PERFORMANCES');
-
-    dispatch('GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
+    dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES');
     dispatch('GET_REPORTING_KPIS');
     dispatch('GET_REPORTING_DAILY_RESULTS');
-    dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES');
     dispatch('GET_REPORTING_PRODUCTS_PERFORMANCES');
     // temporary disable, waiting final table design
     // dispatch('GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES');
@@ -326,7 +323,7 @@ export default {
   },
 
   async [ActionsTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
-    {commit, rootState, state},
+    {commit, rootState, state}, isNewRequest = true,
   ) {
     const query = new URLSearchParams({
       startDate: state.reporting.request.dateRange.startDate,
@@ -352,6 +349,10 @@ export default {
     }
 
     const result = await response.json();
+
+    if (isNewRequest) {
+      commit('RESET_REPORTING_CAMPAIGNS_PERFORMANCES');
+    }
 
     commit(
       MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS,
