@@ -90,7 +90,7 @@ export default {
   },
   data() {
     return {
-      statusTrackingTag: this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS'],
+      statusTrackingTag: this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'],
       isLoading: false,
     };
   },

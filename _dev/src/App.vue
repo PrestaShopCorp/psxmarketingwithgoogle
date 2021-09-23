@@ -66,7 +66,7 @@ export default {
         && this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.isSet;
     },
     remarketingTagStatus() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS'];
+      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
     remarketingTagAlreadyExistsStatus() {
       return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS'];
