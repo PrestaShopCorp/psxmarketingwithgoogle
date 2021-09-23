@@ -59,7 +59,7 @@ Vue.filter(
       || selectedKpi === KpiType.IMPRESSIONS) {
       return value;
     }
-    console.log(selectedKpi);
+
     return Intl.NumberFormat(window.i18nSettings.isoCode, {
       style: 'currency',
       currency: googleAdsAccount.currencyCode,
