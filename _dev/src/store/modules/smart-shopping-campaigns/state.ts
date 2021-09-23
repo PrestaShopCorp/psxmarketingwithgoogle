@@ -41,6 +41,11 @@ export interface ProductsFilteredObject {
   dimension: string,
   values: Array<string>
 }
+
+export interface CampaignStatusPayload {
+  campaignName: string,
+  status: CampaignStatus
+}
 export interface CampaignObject {
   campaignName: string;
   startDate: string,

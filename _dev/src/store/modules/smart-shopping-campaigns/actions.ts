@@ -23,7 +23,7 @@ import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import {CampaignObject} from './state';
+import {CampaignObject, CampaignStatusPayload} from './state';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload : CampaignObject) {
@@ -447,6 +447,26 @@ export default {
       }
       const json = await resp.json();
       commit(MutationsTypes.SAVE_SSC_LIST, json);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async [ActionsTypes.CHANGE_STATUS_OF_SSC]({commit, rootState}, payload: CampaignStatusPayload) {
+    try {
+    // const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/:ID`,
+    //   {
+    //     method: 'POST',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+    //     },
+    //     body: JSON.stringify({payload}),
+    //   });
+    // if (!resp.ok) {
+    //   throw new HttpClientError(resp.statusText, resp.status);
+    // }
+    // const json = await resp.json();
+      commit(MutationsTypes.UPDATE_SSC_STATUS, payload);
     } catch (error) {
       console.error(error);
     }

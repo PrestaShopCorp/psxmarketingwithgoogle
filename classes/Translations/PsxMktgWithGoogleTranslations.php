@@ -703,6 +703,7 @@ class PsxMktgWithGoogleTranslations
                 'signInWithGoogle' => $this->module->l('Sign in with Google', 'PsxMktgWithGoogleTranslations'),
                 'viewReporting' => $this->module->l('View reporting', 'PsxMktgWithGoogleTranslations'),
                 'pauseCampaign' => $this->module->l('Pause campaign', 'PsxMktgWithGoogleTranslations'),
+                'modifyTheCampaign' => $this->module->l('Modify the campaign', 'PsxMktgWithGoogleTranslations'),
                 'resumeCampaign' => $this->module->l('Resume campaign', 'PsxMktgWithGoogleTranslations'),
                 'modifyCampaign' => $this->module->l('Modify the campaign', 'PsxMktgWithGoogleTranslations'),
                 'openActionsMenu' => $this->module->l('Open actions menu for campaign {0}', 'PsxMktgWithGoogleTranslations'),
