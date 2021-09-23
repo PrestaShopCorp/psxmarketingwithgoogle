@@ -10,7 +10,7 @@
     />
 
     <smart-shopping-campaign-creation
-      v-if="$route.name === 'campaign-creation'"
+      v-if="$route.name === 'campaign-creation' && !loading"
       @campaignCreated="onCampaignHasBeenCreated"
     />
     <SSCPopinActivateTracking

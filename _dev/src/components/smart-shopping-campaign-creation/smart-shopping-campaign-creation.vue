@@ -357,11 +357,11 @@ export default {
       });
       return countriesSelectionOptions;
     },
-    currency() {
-      return this.$store.getters['app/GET_CURRENT_CURRENCY'];
-    },
     errorCampaignNameExistsAlready() {
       return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
+    },
+    currency() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currencyCode;
     },
     countries: {
       get() {
