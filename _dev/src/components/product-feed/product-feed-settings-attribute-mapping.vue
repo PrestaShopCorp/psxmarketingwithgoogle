@@ -39,19 +39,22 @@
         <b-tbody>
           <b-tr>
             <b-td class="align-top">
-              <span class="font-weight-bold d-flex align-items-center">
-                {{ $t('productFeedSettings.attributeMapping.description') }}
+              <div class="font-weight-bold d-flex align-items-center">
+                <span>{{ $t('productFeedSettings.attributeMapping.description') }}</span>
                 <b-button
                   v-b-tooltip
                   :title="$t('tooltip.attributeMapping.description')"
                   variant="invisible"
                   class="ml-1 p-0 border-0 ps_gs-fz-16 mb-0 text-grey_darklight"
                 >
-                  <span class="material-icons-round mb-0 ps_gs-fz-16 align-middle">
-                    error_outline
+                  <span
+                    class="material-icons-round mb-0
+                  ps_gs-fz-16 d-flex align-items-center py-1"
+                  >
+                    info_outlined
                   </span>
                 </b-button>
-              </span>
+              </div>
             </b-td>
             <b-td class="align-top">
               {{ $t('productFeedSettings.attributeMapping.longDescription') }}

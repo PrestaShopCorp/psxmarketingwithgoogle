@@ -4,7 +4,7 @@
     text-right"
   >
     <span class="material-icons-round d-inline-block align-middle mr-1 ps_gs-fz-14">
-      error_outline
+      info_outlined
     </span>
     <p class="d-inline-block align-middle ">
       {{ $t(message) }}

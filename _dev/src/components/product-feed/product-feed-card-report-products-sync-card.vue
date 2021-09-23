@@ -71,7 +71,7 @@ export default {
     cardTitle() {
       if (this.variant === 'danger') {
         return {
-          icon: 'error_outline',
+          icon: 'info_outlined',
           text: this.$i18n.t('productFeedPage.productStatus.disapprovedProducts'),
         };
       } if (this.variant === 'primary' && !this.isExpired) {
