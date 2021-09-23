@@ -1,4 +1,15 @@
-const reportingDailyResults = [
+export const kpisResults = {
+  impressions: 122,
+  clicks: 65,
+  conversions: 12,
+  averageCostPerClick: 1,
+  costs: 65,
+  sales: 247,
+}
+
+export const reportingDailyResultsEmpty = [];
+
+export const reportingDailyResults = [
   {
     impressions: 56,
     clicks: 37,

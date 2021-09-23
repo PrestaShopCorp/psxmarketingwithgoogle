@@ -479,7 +479,7 @@ class PsxMktgWithGoogleTranslations
                 'clicks' => $this->module->l('Clicks', 'PsxMktgWithGoogleTranslations'),
                 'clicksTooltip' => $this->module->l('When someone clicks your ad, like on the blue headline or phone number of a text ad, Google Ads counts that as a click.', 'PsxMktgWithGoogleTranslations'),
                 'conversions' => $this->module->l('Conversion', 'PsxMktgWithGoogleTranslations'),
-                'conversionTooltip' => $this->module->l('The number of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.', 'PsxMktgWithGoogleTranslations'),
+                'conversionsTooltip' => $this->module->l('The number of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.', 'PsxMktgWithGoogleTranslations'),
                 'averageCostPerClick' => $this->module->l('Avg cost / click', 'PsxMktgWithGoogleTranslations'),
                 'averageCostPerClickTooltip' => $this->module->l('The total cost of all clicks divided by the total number of clicks received.', 'PsxMktgWithGoogleTranslations'),
                 'costs' => $this->module->l('Costs', 'PsxMktgWithGoogleTranslations'),
