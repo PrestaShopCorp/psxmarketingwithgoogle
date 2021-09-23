@@ -2,7 +2,12 @@
   <div id="psxMktgWithGoogleApp">
     <div class="ps_gs-sticky-head">
       <Menu>
-        <template v-if="remarketingTagIsSet && googleAdsChosen">
+        <!-- eslint-disable-next-line -->
+        <!-- We display the tab if user has remarketing tag in the module OR already set elsewhere -->
+        <template
+          v-if="googleAdsChosen
+            && (remarketingTagStatus || remarketingTagAlreadyExistsStatus)"
+        >
           <MenuItem
             :route="{name: 'reporting'}"
           >
@@ -60,8 +65,11 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
         && this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.isSet;
     },
-    remarketingTagIsSet() {
+    remarketingTagStatus() {
       return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
+    },
+    remarketingTagAlreadyExistsStatus() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS'];
     },
   },
   created() {

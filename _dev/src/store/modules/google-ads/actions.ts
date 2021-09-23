@@ -21,7 +21,6 @@
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
-import {AccountInformations} from './state';
 
 export default {
   async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit, rootState}) {
@@ -65,7 +64,6 @@ export default {
         billingSettings: json.billingSettings,
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
-
       if (customer.isAccountCancelled === true) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Cancelled');
       }
