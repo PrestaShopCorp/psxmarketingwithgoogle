@@ -375,6 +375,7 @@
       "inputDurationLabel2" : "End date (optional)",
       "inputDatePickerHelper" : "Use cursor keys to navigate calendar dates",
       "inputCountryHelper" : "To target multiple countries you have to create multiple campaigns.",
+      "inputCountryImutable": "Country can't be changed after creation, if you want to target a different country, you'll need to create a new campaign",
       "inputCountryLabel" : "Target country",
       "inputCountryTooltip" : "Your campaign’s ads are eligible to show to customers in your targeted geographic locations, or to customers who have selected your targeted language as their browser’s language setting.",
       "inputFiltersLegend" : "Products in campaign",

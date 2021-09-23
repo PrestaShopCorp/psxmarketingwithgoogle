@@ -423,6 +423,7 @@ class PsxMktgWithGoogleTranslations
                 'inputDurationLabel2' => $this->module->l('End date (optional)', 'PsxMktgWithGoogleTranslations'),
                 'inputDatePickerHelper' => $this->module->l('Use cursor keys to navigate calendar dates', 'PsxMktgWithGoogleTranslations'),
                 'inputCountryHelper' => $this->module->l('To target multiple countries you have to create multiple campaigns.', 'PsxMktgWithGoogleTranslations'),
+                'inputCountryImutable' => $this->module->l('Country can\'t be changed after creation, if you want to target a different country, you\'ll need to create a new campaign', 'PsxMktgWithGoogleTranslations'),
                 'inputCountryLabel' => $this->module->l('Target country', 'PsxMktgWithGoogleTranslations'),
                 'inputCountryTooltip' => $this->module->l('Your campaign’s ads are eligible to show to customers in your targeted geographic locations, or to customers who have selected your targeted language as their browser’s language setting.', 'PsxMktgWithGoogleTranslations'),
                 'inputFiltersLegend' => $this->module->l('Products in campaign', 'PsxMktgWithGoogleTranslations'),

@@ -138,7 +138,9 @@
           id="campaign-target-country-fieldset"
           label-class="d-flex align-items-center font-weight-600"
           label-for="campaign-target-country-input"
-          :description="$t('smartShoppingCampaignCreation.inputCountryHelper')"
+          :description="!editMode ?
+            $t('smartShoppingCampaignCreation.inputCountryHelper')
+            : $t('smartShoppingCampaignCreation.inputCountryImutable')"
           class="maxw-sm-420"
         >
           <template #label>
@@ -155,10 +157,16 @@
             </b-button>
           </template>
           <SelectCountry
+            v-if="!editMode"
             :currency="currency"
             @countrySelected="saveCountrySelected"
             :default-country="countries"
           />
+          <span
+            v-else
+          >
+            {{ countries[0] }}
+          </span>
         </b-form-group>
         <b-form-group
           :label="$t('smartShoppingCampaignCreation.inputFiltersLegend')"
@@ -484,7 +492,7 @@ export default {
     },
     editCampaign() {
       const payload = this.finalCampaign;
-      payload.status = this.campaignIsActive ? CampaignStatus.ELIGIBLE : CampaignStatus.PAUSED;
+      payload.status = this.campaignIsActive ? 'ENABLED' : CampaignStatus.PAUSED;
       this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
       this.$router.push({
         name: 'campaign',
