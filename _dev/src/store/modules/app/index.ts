@@ -16,6 +16,7 @@ const {
   psxMktgWithGoogleProductDetailUrl,
   psxMktgWithGoogleStoreSettingsUrl,
   psxMtgWithGoogleDefaultShopCountry,
+  psxMktgWithGoogleOnProductionEnvironment,
 }: any = window;
 
 const state = Object.assign(
@@ -32,6 +33,7 @@ const state = Object.assign(
   {psxMktgWithGoogleProductDetailUrl} || '',
   {psxMktgWithGoogleStoreSettingsUrl} || '',
   {psxMtgWithGoogleDefaultShopCountry} || {},
+  {psxMktgWithGoogleOnProductionEnvironment} || false,
 );
 
 /**
