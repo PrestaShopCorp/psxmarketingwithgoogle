@@ -107,17 +107,21 @@ class CountryRepository
     public function getShopDefaultCountry(): array
     {
         return [
-            'name' => $this->configurationAdapter->get('PS_COUNTRY_DEFAULT'),
+            'name' =>  Country::getNameById($this->configurationAdapter->get('PS_COUNTRY_DEFAULT')),
             'iso_code' => Country::getIsoById($this->configurationAdapter->get('PS_COUNTRY_DEFAULT')),
         ];
     }
 
     public function getShopContactCountry(): array
     {
+        if (empty($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID'))) {
+            return [];
+        }
+
         return [
-            'name' => $this->configurationAdapter->get('PS_SHOP_COUNTRY_ID'),
+            'name' =>  Country::getNameById($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID')),
             'iso_code' => Country::getIsoById($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID')),
-        ]
+        ];
     }
 
     public function countryNeedState(int $countryId): bool
