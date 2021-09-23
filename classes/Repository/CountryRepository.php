@@ -107,7 +107,7 @@ class CountryRepository
     public function getShopDefaultCountry(): array
     {
         return [
-            'name' =>  Country::getNameById($this->configurationAdapter->get('PS_COUNTRY_DEFAULT')),
+            'name' =>  Country::getNameById($this->context->language->id, $this->configurationAdapter->get('PS_COUNTRY_DEFAULT')),
             'iso_code' => Country::getIsoById($this->configurationAdapter->get('PS_COUNTRY_DEFAULT')),
         ];
     }
@@ -119,7 +119,7 @@ class CountryRepository
         }
 
         return [
-            'name' =>  Country::getNameById($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID')),
+            'name' =>  Country::getNameById($this->context->language->id, $this->configurationAdapter->get('PS_SHOP_COUNTRY_ID')),
             'iso_code' => Country::getIsoById($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID')),
         ];
     }
