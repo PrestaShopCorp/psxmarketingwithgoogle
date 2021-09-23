@@ -23,17 +23,17 @@ export const ApiError:any = Template.bind({});
 ApiError.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.smartShoppingCampaigns.reporting.errorsList.kpis = Object.assign([], true);
+    this.$store.state.smartShoppingCampaigns.reporting.errorsList.campaignsPerformancesSection = Object.assign([], true);
+    this.$store.state.smartShoppingCampaigns.reporting.errorsList.productsPerformancesSection = Object.assign([], true);
+    this.$store.state.smartShoppingCampaigns.reporting.errorsList.productsPartitionsPerformancesSection = Object.assign([], true);
   },
-  mounted(this: any) {
-    this.$refs.KeyMetricsBlock.$data.errorApi = true
-  },
-}
+};
 
 export const KeyMetrics:any = Template.bind({});
 KeyMetrics.args = {
-  errorApi: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     this.$store.state.smartShoppingCampaigns.reporting.results.dailyResultChart.dailyResultList = reportingDailyResults;
-  }
-}
+  },
+};
