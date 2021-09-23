@@ -1,5 +1,5 @@
 import ProductsPerformanceTable from '../src/components/smart-shopping-campaign/reporting/products-performance/products-performance-table.vue'
-import {productsPerformancesSection} from '../.storybook/mock/campaigns-list.js';
+import {productsPerformancesSection, productsPerformancesSectionEmpty} from '../.storybook/mock/campaigns-list.js';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
 
 export default {
@@ -18,10 +18,26 @@ const Template = (args, { argTypes }) => ({
   beforeMount : args.beforeMount,
 });
 
-export const ProductsPerformance:any = Template.bind({});
-ProductsPerformance.args = {
+export const Table:any = Template.bind({});
+Table.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     this.$store.state.smartShoppingCampaigns.reporting.results.productsPerformancesSection = Object.assign({}, productsPerformancesSection);
+  },
+}
+
+export const Empty:any = Template.bind({});
+Empty.args = {
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.smartShoppingCampaigns.reporting.results.productsPerformancesSection = Object.assign([], productsPerformancesSectionEmpty);
+  },
+}
+
+export const ErrorApi:any = Template.bind({});
+ErrorApi.args = {
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.smartShoppingCampaigns.reporting.errorsList.productsPerformancesSection = Object.assign([], true);
   },
 }
