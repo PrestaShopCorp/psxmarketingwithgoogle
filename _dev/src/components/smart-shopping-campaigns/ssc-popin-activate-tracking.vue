@@ -52,6 +52,7 @@
         size="lg"
         class="mt-3 ps_gs-switch"
         disabled
+        v-model="requestNewConversionTrackingTags"
         :checked="true"
       >
         <span class="ps_gs-fz-14 text-dark d-block">
@@ -92,6 +93,7 @@ export default {
     return {
       statusTrackingTag: this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'],
       isLoading: false,
+      requestNewConversionTrackingTags: true,
     };
   },
   computed: {
@@ -112,6 +114,9 @@ export default {
     updateTrackingStatus() {
       if (this.statusTrackingTag === null) {
         this.$store.commit('smartShoppingCampaigns/TOGGLE_STATUS_REMARKETING_TRACKING_TAG', false);
+      }
+      if (this.requestNewConversionTrackingTags) {
+        this.$store.dispatch('smartShoppingCampaigns/CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS');
       }
       this.$router.push({
         name: 'campaign-creation',

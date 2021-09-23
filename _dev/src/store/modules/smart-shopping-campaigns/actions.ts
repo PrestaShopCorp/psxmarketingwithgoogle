@@ -23,7 +23,7 @@ import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import {CampaignObject, CampaignStatusPayload} from './state';
+import {CampaignObject, CampaignStatusPayload, ConversionAction} from './state';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload : CampaignObject) {
@@ -160,6 +160,45 @@ export default {
       MutationsTypes.SET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
       result.conversionActionLabels,
     );
+  },
+
+  async [ActionsTypes.CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS](
+    {dispatch, rootState},
+  ) {
+    try {
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/conversion-actions`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+      if (!resp.ok) {
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+      dispatch(ActionsTypes.SAVE_REMARKETING_CONVERSION_ACTION_ON_SHOP, await resp.json());
+    } catch (error) {
+      // commit(...);
+      console.error(error);
+    }
+  },
+
+  async [ActionsTypes.SAVE_REMARKETING_CONVERSION_ACTION_ON_SHOP](
+    {rootState}, conversionActions: ConversionAction[],
+  ) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'setConversionActionLabel',
+        conversionActions,
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    await response.json();
   },
 
   async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
