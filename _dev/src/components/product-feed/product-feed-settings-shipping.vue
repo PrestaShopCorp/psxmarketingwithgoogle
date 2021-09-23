@@ -190,7 +190,8 @@ export default {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
     isUS() {
-      return this.countries.includes('US');
+      const countriesToCheck = Array.isArray(this.countries) ? this.countries : [this.countries];
+      return countriesToCheck.includes('US');
     },
     taxSettingsWithMerchantId() {
       return `https://merchants.google.com/mc/tax/settings?a=${this.$store.state.accounts.googleMerchantAccount.id}`;
