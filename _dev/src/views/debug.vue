@@ -41,9 +41,60 @@
           <li>
             <strong>Shop ID</strong>: {{ shopId }}
           </li>
+          <li>
+            <strong>Using the production API:</strong>
+            {{ psxMktgWithGoogleOnProductionEnvironment?'✅':'❌' }}
+            ({{ psxMktgWithGoogleApiUrl }})
+          </li>
         </ul>
       </b-card-body>
     </b-card>
+
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard px-0"
+    >
+      <b-card-header
+        header-tag="h3"
+        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
+      >
+        Synchronisation
+      </b-card-header>
+      <b-card-body
+        body-class="p-3"
+      >
+        <ul class="mb-0">
+          <li>
+            <strong>Items to synchronise:</strong> ???
+          </li>
+          <li>
+            <strong>Manual sync:</strong>
+            <ul>
+              <li>
+                <strong>Status:</strong> {{ syncTriggerStatus }}
+              </li>
+            </ul>
+            <b-button
+              class="mt-3 mr-3"
+              variant="primary"
+              @click="triggerSync(false)"
+              :disabled="triggerOfSyncForbidden"
+            >
+              Trigger synchronisation
+            </b-button>
+            <b-button
+              class="mt-3 mr-3"
+              variant="primary"
+              @click="triggerSync(true)"
+              :disabled="triggerOfSyncForbidden"
+            >
+              Trigger full synchronisation
+            </b-button>
+          </li>
+        </ul>
+      </b-card-body>
+    </b-card>
+
     <b-card
       no-body
       class="ps_gs-onboardingcard px-0"
@@ -59,15 +110,17 @@
       >
         <ul class="mb-0">
           <li>
-            Remarketing tag is implemented by a third party module:
-            {{ GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS }}
+            <strong>Remarketing tag is implemented by a third party module:</strong>
+            {{ GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS?'✅':'❌' }}
           </li>
           <li>
-            Remarketing tag is implemented and enabled by "PrestaShop Marketing With Google":
-            {{ GET_REMARKETING_TRACKING_TAG_IS_SET }}
+            <strong>
+              Remarketing tag is implemented and enabled by "PrestaShop Marketing With Google":
+            </strong>
+            {{ GET_REMARKETING_TRACKING_TAG_IS_SET?'✅':'❌' }}
           </li>
           <li>
-            List of conversion actions set on front-office
+            <strong>List of conversion actions set on front-office</strong>
             ({{ GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED.length }}):
             <ul>
               <li
@@ -86,11 +139,20 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters, mapState} from 'vuex';
 import GettersTypes from '@/store/modules/smart-shopping-campaigns/getters-types.ts';
 
 export default {
   name: 'Debug',
+  data() {
+    return {
+      sync: {
+        requested: false,
+        loading: false,
+        error: false,
+      },
+    };
+  },
   components: {
   },
   props: {
@@ -101,8 +163,47 @@ export default {
       GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
       GettersTypes.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS,
     ]),
+    ...mapState({
+      psxMktgWithGoogleApiUrl: (state) => state.app.psxMktgWithGoogleApiUrl,
+      psxMktgWithGoogleOnProductionEnvironment:
+        (state) => state.app.psxMktgWithGoogleOnProductionEnvironment,
+    }),
     shopId() {
       return window.shopIdPsAccounts || 'none yet';
+    },
+    triggerOfSyncForbidden() {
+      return this.sync.requested
+        || this.sync.loading
+        || !this.psxMktgWithGoogleOnProductionEnvironment;
+    },
+    syncTriggerStatus() {
+      if (this.sync.loading) {
+        return 'Waiting for an answer from Event Bus...';
+      }
+      if (this.sync.requested) {
+        return 'Synchronisation succesfully requested';
+      }
+      if (this.sync.error) {
+        return 'Synchronisation request failed';
+      }
+      if (!this.psxMktgWithGoogleOnProductionEnvironment) {
+        return 'Synchronisation is only possible on production';
+      }
+      return '/';
+    },
+  },
+  methods: {
+    async triggerSync(full = false) {
+      this.sync.loading = true;
+      this.sync.error = false;
+      try {
+        await this.$store.dispatch('productFeed/REQUEST_SYNCHRONISATION', full);
+        this.sync.requested = true;
+      } catch {
+        this.sync.error = true;
+      } finally {
+        this.sync.loading = false;
+      }
     },
   },
   mounted() {

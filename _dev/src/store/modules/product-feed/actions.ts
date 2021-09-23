@@ -246,4 +246,21 @@ export default {
     const result = await response.json();
     return result;
   },
+  async [ActionsTypes.REQUEST_SYNCHRONISATION]({rootState}, full = false) {
+    const response = await fetch(`https://eventbus-sync.psessentials.net/sync/trigger${full ? '-full' : ''}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+      },
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+  },
+
+  async [ActionsTypes.REQUEST_FULL_SYNCHRONISATION]({dispatch}) {
+    dispatch(ActionsTypes.REQUEST_SYNCHRONISATION, true);
+  },
 };

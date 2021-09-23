@@ -32,7 +32,7 @@ export interface State {
   psxMktgWithGoogleProductDetailUrl: string;
   psxMktgWithGoogleStoreSettingsUrl: string;
   targetCountries: Array<string> | null;
-
+  psxMktgWithGoogleOnProductionEnvironment: boolean;
 }
 
 export interface ShopCurrency {
@@ -67,4 +67,5 @@ export const state: State = {
   shopIsOnMaintenanceMode: document.getElementById('maintenance-mode') !== null,
   psxMktgWithGoogleProductDetailUrl: '',
   psxMktgWithGoogleStoreSettingsUrl: '',
+  psxMktgWithGoogleOnProductionEnvironment: false,
 };
