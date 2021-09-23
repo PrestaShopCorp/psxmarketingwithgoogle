@@ -23,7 +23,7 @@ import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import {CampaignObject} from './state';
+import {CampaignObject, CampaignStatusPayload} from './state';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload : CampaignObject) {
@@ -451,7 +451,7 @@ export default {
       console.error(error);
     }
   },
-  async [ActionsTypes.CHANGE_STATUS_OF_SSC]({commit, rootState}, payload) {
+  async [ActionsTypes.CHANGE_STATUS_OF_SSC]({commit, rootState}, payload: CampaignStatusPayload) {
     try {
     // const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/:ID`,
     //   {

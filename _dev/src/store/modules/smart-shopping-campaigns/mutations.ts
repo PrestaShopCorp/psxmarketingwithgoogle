@@ -31,6 +31,7 @@ import {
   CampaignObject,
   ProductsPerformancesSection,
   ConversionAction,
+  CampaignStatusPayload,
 } from './state';
 
 export default {
@@ -148,7 +149,7 @@ export default {
   [MutationsTypes.SAVE_SSC_LIST](state: LocalState, payload: Array<CampaignObject>) {
     state.campaigns = payload;
   },
-  [MutationsTypes.UPDATE_SSC_STATUS](state: LocalState, payload) {
+  [MutationsTypes.UPDATE_SSC_STATUS](state: LocalState, payload: CampaignStatusPayload) {
     const getScc = state.campaigns.find((el) => el.campaignName === payload.campaignName);
     if (getScc !== undefined) {
       getScc.status = payload.status;
