@@ -110,10 +110,18 @@ export default {
       return this.campaign.status === CampaignStatus.PAUSED;
     },
     pauseCampaign() {
-      console.log('pauseCampaign', this.campaign.campaignName);
+      const payload = {
+        campaignName: this.campaign.campaignName,
+        status: CampaignStatus.PAUSED,
+      };
+      this.$store.dispatch('smartShoppingCampaigns/CHANGE_STATUS_OF_SSC', payload);
     },
     resumeCampaign() {
-      console.log('resumeCampaign', this.campaign.campaignName);
+      const payload = {
+        campaignName: this.campaign.campaignName,
+        status: CampaignStatus.ELIGIBLE,
+      };
+      this.$store.dispatch('smartShoppingCampaigns/CHANGE_STATUS_OF_SSC', payload);
     },
   },
   googleUrl,

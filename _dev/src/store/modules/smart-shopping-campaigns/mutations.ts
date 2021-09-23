@@ -19,6 +19,7 @@
 
 import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
+import CampaignStatus from '@/enums/reporting/CampaignStatus';
 import MutationsTypes from './mutations-types';
 import {
   CampaignPerformances,
@@ -146,5 +147,11 @@ export default {
   },
   [MutationsTypes.SAVE_SSC_LIST](state: LocalState, payload: Array<CampaignObject>) {
     state.campaigns = payload;
+  },
+  [MutationsTypes.UPDATE_SSC_STATUS](state: LocalState, payload) {
+    const getScc = state.campaigns.find((el) => el.campaignName === payload.campaignName);
+    if (getScc !== undefined) {
+      getScc.status = payload.status;
+    }
   },
 };

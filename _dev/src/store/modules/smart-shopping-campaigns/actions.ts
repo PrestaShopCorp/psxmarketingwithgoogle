@@ -451,4 +451,24 @@ export default {
       console.error(error);
     }
   },
+  async [ActionsTypes.CHANGE_STATUS_OF_SSC]({commit, rootState}, payload) {
+    try {
+    // const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/:ID`,
+    //   {
+    //     method: 'POST',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+    //     },
+    //     body: JSON.stringify({payload}),
+    //   });
+    // if (!resp.ok) {
+    //   throw new HttpClientError(resp.statusText, resp.status);
+    // }
+    // const json = await resp.json();
+      commit(MutationsTypes.UPDATE_SSC_STATUS, payload);
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };

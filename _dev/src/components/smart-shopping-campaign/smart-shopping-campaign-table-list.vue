@@ -12,6 +12,7 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0"
           variant="outline-primary"
+          @click="redirectToReporting"
         >
           {{ $t('cta.viewReporting') }}
         </b-button>
@@ -19,6 +20,7 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 mr-md-0"
           variant="primary"
+          @click="redirectToCreateCampaign"
         >
           {{ $t('cta.createCampaign') }}
         </b-button>
@@ -148,6 +150,16 @@ export default {
     },
     hasSorting(headerType) {
       return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
+    },
+    redirectToCreateCampaign() {
+      this.$router.push({
+        name: 'campaign-creation',
+      });
+    },
+    redirectToReporting() {
+      this.$router.push({
+        name: 'reporting',
+      });
     },
     sortByType(headerType) {
       // create new object for satisfy deep getter of vueJS
