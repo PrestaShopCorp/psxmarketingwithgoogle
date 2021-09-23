@@ -450,8 +450,9 @@ export default {
       console.error(error);
     }
   },
-  async [ActionsTypes.UPDATE_SSC]({commit, rootState, state}, payload) {
+  async [ActionsTypes.UPDATE_SSC]({commit, rootState, state}, payload: CampaignObject) {
     try {
+      payload.id += 1;
       // TODO: Change route for updating SSC
       /* const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/`,
         {

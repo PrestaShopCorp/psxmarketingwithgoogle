@@ -156,8 +156,8 @@ export default {
     }
   },
   [MutationsTypes.UPDATE_SSC](state: LocalState, payload: CampaignObject) {
-    const findCampaign = state.campaigns.findIndex((el) => el.id === payload.id,
-    );
+    // it's works but there are no id now in SSC object
+    const findCampaign = state.campaigns.findIndex((el) => el.id === payload.id);
     state.campaigns.splice(findCampaign, 1, payload);
   },
 };
