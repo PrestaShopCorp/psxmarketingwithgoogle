@@ -13,7 +13,7 @@ showdown.extension('extended-link', () => [
       let title = undefined;
 
       if (url.indexOf(' ') >= 0) {
-        title = url.match(/(?<=\s).*/g)[0];
+        title = url.slice(url.indexOf(' ') + 1).replace(/"/g, '');
         url = url.match(/(.*?)(?=\s)/g)[0];
       }
 
