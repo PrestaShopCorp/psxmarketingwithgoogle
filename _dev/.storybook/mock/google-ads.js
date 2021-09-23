@@ -78,5 +78,4 @@ export const googleAdsAccountChosen = {
   },
 }
 
-
 export default googleAdsNotChosen;

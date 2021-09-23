@@ -8,6 +8,11 @@ export const productsPerformancesSectionEmpty = {
   nextPageToken: null,
 }
 
+export const productsPartitionsPerformancesSectionEmpty = {
+  productsPartitionsPerformanceList: [],
+  nextPageToken: null,
+}
+
 export const campaignsPerformanceSection = {
   campaignsPerformanceList: [
     {

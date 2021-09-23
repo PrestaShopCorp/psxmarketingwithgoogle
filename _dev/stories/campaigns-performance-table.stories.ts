@@ -38,7 +38,6 @@ export const ErrorApi:any = Template.bind({});
 ErrorApi.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
-    this.$store.state.smartShoppingCampaigns.reporting.results.campaignsPerformancesSection = Object.assign([], campaignsPerformanceSectionEmpty);
     this.$store.state.smartShoppingCampaigns.reporting.errorsList.campaignsPerformancesSection = Object.assign([], true);
   },
 }

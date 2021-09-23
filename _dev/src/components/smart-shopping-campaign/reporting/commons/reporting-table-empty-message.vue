@@ -2,18 +2,22 @@
   <tr>
     <td
       :colspan="colspan"
-      class="text-center py-3 ps_gs-fz-12"
+      class="text-center"
     >
-      <p class="mb-0 text-muted">
-        {{ $t(text) }}
-      </p>
-      <b-button
-        variant="link"
-        class="py-0 font-weight-normal ps_gs-fz-12"
-        @click="createCampaign"
+      <div
+        class="py-3 text-center ps_gs-fz-12"
       >
-        {{ $t('cta.createCampaign') }}
-      </b-button>
+        <p class="pt-2 mb-0 text-muted">
+          {{ $t(text) }}
+        </p>
+        <b-button
+          variant="link"
+          class="py-2 font-weight-normal ps_gs-fz-12 text-decoration-underline"
+          @click="createCampaign"
+        >
+          {{ $t('cta.createCampaign') }}
+        </b-button>
+      </div>
     </td>
   </tr>
 </template>
