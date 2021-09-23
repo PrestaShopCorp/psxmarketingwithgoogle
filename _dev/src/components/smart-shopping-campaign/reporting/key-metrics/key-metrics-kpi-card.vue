@@ -66,7 +66,7 @@ export default {
         return '--';
       }
 
-      return this.$options.filters.formatKpi(this.kpiValue);
+      return this.$options.filters.formatKpi(this.kpiValue, this.kpiType);
     },
   },
 };
