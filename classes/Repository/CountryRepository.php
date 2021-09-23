@@ -106,22 +106,23 @@ class CountryRepository
 
     public function getShopDefaultCountry(): array
     {
-        $data = [];
-
-        if (empty($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID'))) {
-            $data['name'] = $this->country->name[$this->context->language->id];
-            $data['iso_code'] = $this->country->iso_code;
-        } else {
-            $data['name'] = Country::getNameById($this->context->language->id, $this->configurationAdapter->get('PS_SHOP_COUNTRY_ID'));
-            $data['iso_code'] = Country::getIsoById($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID'));
-        }
-
-        return $data;
+        return [
+            'name' => $this->configurationAdapter->get('PS_COUNTRY_DEFAULT'),
+            'iso_code' => Country::getIsoById($this->configurationAdapter->get('PS_COUNTRY_DEFAULT')),
+        ];
     }
 
-    public function countryNeedState(): bool
+    public function getShopContactCountry(): array
     {
-        return Country::containsStates($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID'));
+        return [
+            'name' => $this->configurationAdapter->get('PS_SHOP_COUNTRY_ID'),
+            'iso_code' => Country::getIsoById($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID')),
+        ]
+    }
+
+    public function countryNeedState(int $countryId): bool
+    {
+        return Country::containsStates($this->configurationAdapter->get($countryId));
     }
 
     /**

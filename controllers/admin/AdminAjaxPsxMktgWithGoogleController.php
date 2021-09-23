@@ -184,12 +184,12 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                     . $this->configurationAdapter->get('PS_SHOP_ADDR2')),
                 'locality' => $this->configurationAdapter->get('PS_SHOP_CITY'),
                 'postalCode' => $this->configurationAdapter->get('PS_SHOP_CODE'),
-                'country' => $this->countryRepository->getShopDefaultCountry(),
+                'country' => $this->countryRepository->getShopContactCountry(),
                 'phone' => $this->configurationAdapter->get('PS_SHOP_PHONE'),
             ],
         ];
 
-        if ($this->countryRepository->countryNeedState() === true) {
+        if ($this->countryRepository->countryNeedState($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID')) === true) {
             $data['store']['region'] = State::getNameById($this->configurationAdapter->get('PS_SHOP_STATE_ID'));
         }
 
