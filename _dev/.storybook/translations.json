@@ -231,6 +231,8 @@
         "cantSelectCountryWithDifferentCurrency" : "You can't select country with currency that differs from your main shop."
       },
       "export" : {
+        "summarySyncDailyAt" : "Sync daily at 1:00 AM",
+        "summaryTimeZone" : "(UTC+01:00) Normal time in Central Europe (Paris)",
         "synchronizationSchedule" : "Export synchronization schedule",
         "synchronizationTime" : "Sync time",
         "timeZone" : "Time zone",
@@ -384,6 +386,7 @@
       "inputBudgetFeedback" : "Daily campaign budget",
       "inputBudgetTooltip" : "Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time.",
       "inputBudgetPlaceholder" : "Amount",
+      "inputAllSyncedProducts" : "All synced products",
       "formHelperTitle" : "Campaign activation",
       "formHelperDescription" : "Your campaign will run until you pause it. You can pause your campaign at any time.",
       "errorNoProducts" : "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.",

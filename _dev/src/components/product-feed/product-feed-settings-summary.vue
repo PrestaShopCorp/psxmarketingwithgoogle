@@ -59,8 +59,8 @@
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.summary.dataSyncSetUp')"
-            :description="'Sync daily at 2:00 AM'"
-            :details="'(UTC+01:00) Normal time in Central Europe (Paris)'"
+            :description="descriptionTime"
+            :details="descriptionTimeZone"
             size="full"
           />
           <product-feed-card-report-card
@@ -185,7 +185,6 @@ export default {
     ProductFeedCardNextSyncCard,
     BTableSimple,
     VueShowdown,
-
   },
   data() {
     return {
@@ -218,6 +217,12 @@ export default {
       get() {
         return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS'];
       },
+    },
+    descriptionTime() {
+      return this.$t('productFeedSettings.export.summarySyncDailyAt');
+    },
+    descriptionTimeZone() {
+      return this.$t('productFeedSettings.export.summaryTimeZone');
     },
     specificProducts() {
       const tableOfSpecifics = [];
