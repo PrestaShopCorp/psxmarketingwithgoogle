@@ -3,6 +3,16 @@ export const campaignsPerformanceSectionEmpty = {
   nextPageToken: null,
 }
 
+export const productsPerformancesSectionEmpty = {
+  productsPerformanceList: [],
+  nextPageToken: null,
+}
+
+export const productsPartitionsPerformancesSectionEmpty = {
+  productsPartitionsPerformanceList: [],
+  nextPageToken: null,
+}
+
 export const campaignsPerformanceSection = {
   campaignsPerformanceList: [
     {

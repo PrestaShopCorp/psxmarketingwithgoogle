@@ -59,6 +59,10 @@
             <KeyMetricsErrorMessage />
           </td>
         </tr>
+        <ReportingTableEmptyMessage
+          v-if="!errorWithApi && partitionList.length === 0"
+          :colspan="partitionHeaderList.length"
+        />
         <FiltersPerformanceTableRow
           v-else
           v-for="(partition, key, index) in partitionList"
@@ -80,6 +84,7 @@
 
 <script>
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
+import ReportingTableEmptyMessage from '../commons/reporting-table-empty-message.vue';
 import FiltersPerformanceTableRow from './filters-performance-table-row.vue';
 import ProductPartitionPerformanceHeaderType from '@/enums/reporting/ProductPartitionPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
@@ -91,6 +96,7 @@ export default {
     ReportingTableHeader,
     FiltersPerformanceTableRow,
     KeyMetricsErrorMessage,
+    ReportingTableEmptyMessage,
   },
   data() {
     return {

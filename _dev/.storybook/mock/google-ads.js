@@ -53,7 +53,7 @@ export const googleAdsAccountChosenisTestAccount = {
       iso_code: '12',
       name: 'France'
     },
-    currency: 'EUR',
+    currencyCode: 'EUR',
     timeZone:  'USA',
   },
 }
@@ -73,10 +73,9 @@ export const googleAdsAccountChosen = {
       iso_code: '12',
       name: 'France'
     },
-    currency: 'EUR',
+    currencyCode: 'EUR',
     timeZone:  'USA',
   },
 }
-
 
 export default googleAdsNotChosen;
