@@ -176,7 +176,7 @@
           <b-form-radio
             v-model="campaignProductsFilter"
             name="campaign-product-filter-radios"
-            :value="false"
+            disabled
           >
             {{ $t('smartShoppingCampaignCreation.inputFiltersPartialLabel') }}
           </b-form-radio>
@@ -299,7 +299,7 @@ export default {
       campaignName: null,
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
-      campaignProductsFilter: null,
+      campaignProductsFilter: true,
       filtersChosen: [],
       campaignDailyBudget: null,
       timer: null,
@@ -384,7 +384,7 @@ export default {
         endDate: this.campaignDurationEndDate,
         // Countries is still an array because refacto later for multiple countries
         targetCountry: this.$store.getters['app/GET_ACTIVE_COUNTRIES'][0],
-        productFilters: this.campaignProductsFilter ? [] : this.filtersChosen,
+        productFilters: [],
       };
     },
     budgetCurrencySymbol() {
