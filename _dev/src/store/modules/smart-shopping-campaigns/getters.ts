@@ -178,5 +178,4 @@ export default {
   ): boolean|null {
     return state.errorCampaignNameExists;
   },
-
 };

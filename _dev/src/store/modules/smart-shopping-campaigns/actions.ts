@@ -172,7 +172,8 @@ export default {
     dispatch('GET_REPORTING_DAILY_RESULTS');
     dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES');
     dispatch('GET_REPORTING_PRODUCTS_PERFORMANCES');
-    dispatch('GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES');
+    // temporary disable, waiting final table design
+    // dispatch('GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES');
   },
 
   [ActionsTypes.CHANGE_REPORTING_DATES](
@@ -232,7 +233,8 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
 
-    commit(MutationsTypes.SET_REPORTING_KPIS, await response.json());
+    const result = await response.json();
+    commit(MutationsTypes.SET_REPORTING_KPIS, result);
   },
 
   async [ActionsTypes.GET_REPORTING_DAILY_RESULTS](
@@ -372,220 +374,60 @@ export default {
   async [ActionsTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](
     {commit, rootState, state},
   ) {
-    /*
     const query = new URLSearchParams({
       startDate: state.reporting.request.dateRange.startDate,
       endDate: state.reporting.request.dateRange.endDate,
-      order: state.reporting.request.ordering.productsPerformances,
     });
-    // add order in array format
-    query.append('order["click"]', payload);
 
-    const response =
-      await fetch(
-        `${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/products-performances?${query}`, {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        }
-      );
+    // add order in array format
+    query.append('order[clicks]', state.reporting.request.ordering.productsPerformances.clicks);
+
+    const response = await fetch(
+      `${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/products-performances?${query}`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+      },
+    );
 
     if (!response.ok) {
       commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, true);
       throw new HttpClientError(response.statusText, response.status);
     }
-    */
 
-    // temp mocked
-    // const result = await response.json();
-    const result = {
-      productsPerformanceList: [
-        {
-          id: 'test 1',
-          name: 'test 1',
-          clicks: 1,
-          costs: 65874,
-          averageCostPerClick: 1487,
-          conversions: 174478,
-          conversionsRate: 45,
-          sales: 155,
-        },
-        {
-          id: 'test 2',
-          name: 'test 2',
-          clicks: 2,
-          costs: 658484,
-          averageCostPerClick: 87,
-          conversions: 178,
-          conversionsRate: 4,
-          sales: 15,
-        },
-        {
-          id: 'test 3',
-          name: 'test 3',
-          clicks: 3,
-          costs: 65874,
-          averageCostPerClick: 1487,
-          conversions: 174478,
-          conversionsRate: 45,
-          sales: 155,
-        },
-        {
-          id: 'test 4',
-          name: 'test 4',
-          clicks: 4,
-          costs: 658484,
-          averageCostPerClick: 87,
-          conversions: 178,
-          conversionsRate: 4,
-          sales: 15,
-        },
-        {
-          id: 'test 5',
-          name: 'test 5',
-          clicks: 5,
-          costs: 65874,
-          averageCostPerClick: 1487,
-          conversions: 174478,
-          conversionsRate: 45,
-          sales: 155,
-        },
-        {
-          id: 'test 6',
-          name: 'test 6',
-          clicks: 6,
-          costs: 658484,
-          averageCostPerClick: 87,
-          conversions: 178,
-          conversionsRate: 4,
-          sales: 15,
-        },
-        {
-          id: 'test 7',
-          name: 'test 7',
-          clicks: 7,
-          costs: 658484,
-          averageCostPerClick: 87,
-          conversions: 178,
-          conversionsRate: 4,
-          sales: 15,
-        },
-        {
-          id: 'test 8',
-          name: 'test 8',
-          clicks: 8,
-          costs: 658484,
-          averageCostPerClick: 87,
-          conversions: 178,
-          conversionsRate: 4,
-          sales: 15,
-        },
-        {
-          id: 'test 9',
-          name: 'test 9',
-          clicks: 9,
-          costs: 658484,
-          averageCostPerClick: 87,
-          conversions: 178,
-          conversionsRate: 4,
-          sales: 15,
-        },
-        {
-          id: 'test 10',
-          name: 'test 10',
-          clicks: 10,
-          costs: 658484,
-          averageCostPerClick: 87,
-          conversions: 178,
-          conversionsRate: 4,
-          sales: 15,
-        },
-      ],
-    };
-
-    // for testing only
-    if (
-      state.reporting.request.ordering.productsPerformances.clicks
-      === QueryOrderDirection.ASCENDING
-    ) {
-      result.productsPerformanceList = [
-        ...result.productsPerformanceList,
-      ].reverse();
-    }
-
+    const result = await response.json();
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES, result);
   },
 
   async [ActionsTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES](
-    {commit, rootState, state}, payload: QueryOrderDirection,
+    {commit, rootState, state},
   ) {
-    /*
     const query = new URLSearchParams({
       startDate: state.reporting.request.dateRange.startDate,
       endDate: state.reporting.request.dateRange.endDate,
-      order: state.reporting.request.ordering.productsPartitionsPerformances,
     });
-    // add order in array format
-    query.append('order["click"]', payload);
 
-    const response =
-      await fetch(
-        `${rootState.app.psxMktgWithGoogleApiUrl}
-        /ads-reporting/products-partitions-performances?${query}`, {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        }
-      );
+    // add order in array format
+    query.append('order[clicks]', state.reporting.request.ordering.productsPartitionsPerformances.clicks);
+
+    const response = await fetch(
+      `${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/products-partitions-performances?${query}`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+      },
+    );
 
     if (!response.ok) {
       commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR, true);
       throw new HttpClientError(response.statusText, response.status);
     }
-    */
 
-    // temp mocked
-    // const result = await response.json();
-    const result = {
-      productsPartitionsPerformanceList: [
-        {
-          campaignName: 'test',
-          dimension: 'test',
-          dimensionValue: 'test',
-          clicks: 458,
-          costs: 78,
-          averageCostPerClick: 12,
-          conversions: 18874,
-          conversionsRate: 25,
-          sales: 324,
-        },
-        {
-          campaignName: 'test 2',
-          dimension: 'test 2',
-          dimensionValue: 'test 2',
-          clicks: 872,
-          costs: 16,
-          averageCostPerClick: 78,
-          conversions: 6978,
-          conversionsRate: 256,
-          sales: 4,
-        },
-      ],
-    };
-
-    // for testing only
-    if (
-      state.reporting.request.ordering.productsPartitionsPerformances.clicks
-      === QueryOrderDirection.ASCENDING
-    ) {
-      result.productsPartitionsPerformanceList = [
-        ...result.productsPartitionsPerformanceList,
-      ].reverse();
-    }
+    const result = await response.json();
 
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES, result);
   },

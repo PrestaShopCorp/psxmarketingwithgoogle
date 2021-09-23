@@ -50,8 +50,9 @@ Vue.filter(
   }));
 
 Vue.filter(
-  'formatKpi', (value: number) => {
-    const selectedKpi = store.getters['smartShoppingCampaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
+  'formatKpi', (value: number, kpi: KpiType) => {
+    const selectedKpi = kpi ?? store.getters['smartShoppingCampaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
+    const googleAdsAccount = store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
 
     if (selectedKpi === KpiType.CLICKS
       || selectedKpi === KpiType.CONVERSIONS
@@ -61,7 +62,7 @@ Vue.filter(
 
     return Intl.NumberFormat(window.i18nSettings.isoCode, {
       style: 'currency',
-      currency: store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currency,
+      currency: googleAdsAccount.currencyCode,
     }).format(value);
   });
 
