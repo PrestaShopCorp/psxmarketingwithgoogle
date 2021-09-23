@@ -489,7 +489,7 @@
       "clicks" : "Clicks",
       "clicksTooltip" : "When someone clicks your ad, like on the blue headline or phone number of a text ad, Google Ads counts that as a click.",
       "conversions" : "Conversion",
-      "conversionTooltip" : "The number of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
+      "conversionsTooltip" : "The number of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
       "averageCostPerClick" : "Avg cost / click",
       "averageCostPerClickTooltip" : "The total cost of all clicks divided by the total number of clicks received.",
       "costs" : "Costs",
