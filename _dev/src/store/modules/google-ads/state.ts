@@ -46,8 +46,9 @@ export interface AccountInformations {
   country?: {
     // eslint-disable-next-line camelcase
     iso_code: null|string,
-    name: null|string
+    name: null|string,
   },
+  currencyCode?: string,
 }
 
 export const state: State = {
