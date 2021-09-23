@@ -20,9 +20,7 @@
  */
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import SSCActionsTypes from '../smart-shopping-campaigns/actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
-import {AccountInformations} from './state';
 
 export default {
   async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit, rootState}) {
