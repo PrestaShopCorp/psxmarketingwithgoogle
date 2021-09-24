@@ -90,6 +90,8 @@ import FiltersPerformanceTableRow from './filters-performance-table-row.vue';
 import ProductPartitionPerformanceHeaderType from '@/enums/reporting/ProductPartitionPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import KeyMetricsErrorMessage from '../key-metrics/key-metrics-error-message.vue';
+import ActionsTypes from '@/store/modules/accounts/actions-types';
+import MutationsTypes from '@/store/modules/accounts/mutations-types';
 
 export default {
   name: 'FiltersPerformanceTable',
