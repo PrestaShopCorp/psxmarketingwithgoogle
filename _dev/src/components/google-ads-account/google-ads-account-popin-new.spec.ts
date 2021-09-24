@@ -8,6 +8,7 @@ import {mount, shallowMount} from '@vue/test-utils';
 import {BFormCheckbox, BButton} from 'bootstrap-vue';
 import config, {cloneStore, filters, localVue} from '@/../tests/init';
 import GoogleAdsAccountPopinNew from '@/components/google-ads-account/google-ads-account-popin-new.vue';
+
 import {
   googleAccountConnected,
 } from '@/../.storybook/mock/google-account';

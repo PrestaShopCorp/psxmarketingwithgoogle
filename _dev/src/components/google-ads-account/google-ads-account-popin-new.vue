@@ -233,6 +233,8 @@ import PsModal from '../commons/ps-modal';
 import Stepper from '../commons/stepper';
 import SelectCountry from '../commons/select-country.vue';
 
+import GoogleAccountContext from '../../store/modules/accounts/state';
+
 export default {
   name: 'GoogleAdsAccountPopinNew',
   components: {
