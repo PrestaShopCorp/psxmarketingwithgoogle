@@ -60,8 +60,9 @@
           </td>
         </tr>
         <ReportingTableEmptyMessage
-          v-if="!errorWithApi && partitionList.length === 0"
+          v-if="!errorWithApi && !loading && partitionList.length === 0"
           :colspan="partitionHeaderList.length"
+          :text="$t('campaigns.filtersPerformanceTable.emptyListText')"
         />
         <FiltersPerformanceTableRow
           v-else
@@ -89,6 +90,8 @@ import FiltersPerformanceTableRow from './filters-performance-table-row.vue';
 import ProductPartitionPerformanceHeaderType from '@/enums/reporting/ProductPartitionPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import KeyMetricsErrorMessage from '../key-metrics/key-metrics-error-message.vue';
+import ActionsTypes from '@/store/modules/accounts/actions-types';
+import MutationsTypes from '@/store/modules/accounts/mutations-types';
 
 export default {
   name: 'FiltersPerformanceTable',
@@ -100,7 +103,7 @@ export default {
   },
   data() {
     return {
-      loading: false,
+      loading: true,
     };
   },
   methods: {
@@ -121,6 +124,19 @@ export default {
       }
       this.queryOrderDirection = newOrderDirection;
     },
+  },
+  created() {
+    this.$store.subscribeAction((action) => {
+      if (action.type.split('/').pop() === ActionsTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES) {
+        this.loading = true;
+      }
+    });
+
+    this.$store.subscribe((mutation) => {
+      if (mutation.type.split('/').pop() === MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES) {
+        this.loading = false;
+      }
+    });
   },
   computed: {
     partitionHeaderList() {

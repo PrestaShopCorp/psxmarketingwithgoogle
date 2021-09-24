@@ -64,8 +64,10 @@
           </td>
         </tr>
         <ReportingTableEmptyMessage
-          v-if="!errorWithApi && campaignList.length === 0"
+          v-if="!errorWithApi && !loading && campaignList.length === 0"
           :colspan="campaignHeaderList.length"
+          :text="$t('campaigns.campaignsPerformanceTable.emptyListText')"
+          :cta="createCampaign"
         />
         <CampaignsPerformanceTableRow
           v-else
@@ -75,7 +77,7 @@
         />
         <b-tr v-if="!errorWithApi && loading">
           <b-td
-            colspan="7"
+            :colspan="campaignHeaderList.length"
             class="ps_gs-table-products__loading-slot"
           >
             <i class="ps_gs-table-products__spinner">loading</i>
@@ -104,7 +106,7 @@ export default {
   },
   data() {
     return {
-      loading: false,
+      loading: true,
     };
   },
   mounted() {
@@ -122,6 +124,11 @@ export default {
     }
   },
   methods: {
+    createCampaign() {
+      this.$router.push({
+        name: 'campaign-creation',
+      });
+    },
     hasToolTip(headerType) {
       return headerType === CampaignPerformanceHeaderType.STATUS;
     },
@@ -147,7 +154,11 @@ export default {
         tableBody.scrollTop >= tableBody.scrollHeight - tableBody.clientHeight
         && token !== null
       ) {
-        this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES', false);
+        this.loading = true;
+
+        await this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES', false);
+
+        this.loading = false;
       }
     },
   },

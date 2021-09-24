@@ -11,9 +11,10 @@
           {{ $t(text) }}
         </p>
         <b-button
+          v-if="cta"
           variant="link"
           class="py-2 font-weight-normal ps_gs-fz-12 text-decoration-underline"
-          @click="createCampaign"
+          @click="cta"
         >
           {{ $t('cta.createCampaign') }}
         </b-button>
@@ -32,15 +33,12 @@ export default {
     },
     text: {
       type: String,
-      required: false,
-      default: 'campaigns.emptyListText',
+      required: true,
     },
-  },
-  methods: {
-    createCampaign() {
-      this.$router.push({
-        name: 'campaign-creation',
-      });
+    cta: {
+      type: Function,
+      required: false,
+      default: null,
     },
   },
 };
