@@ -59,7 +59,7 @@
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.summary.dataSyncSetUp')"
-            :description="descriptionTime"
+            :description="$t('productFeedSettings.export.summarySyncDailyAt')"
             :details="descriptionTimeZone"
             size="full"
           />
