@@ -109,8 +109,12 @@ export default {
   methods: {
     goToCampaignPage() {
       // TODO Go to campaign page to edit it
-      this.$router.push(`/campaign/edit/${this.campaign.campaignName}`);
-      console.log('goToCampaignPage', this.campaign.campaignName);
+      this.$router.push({
+        name: 'campaign-edition',
+        params: {
+          name: this.campaign.campaignName,
+        },
+      });
     },
     isPaused() {
       // TODO handle if paused or not

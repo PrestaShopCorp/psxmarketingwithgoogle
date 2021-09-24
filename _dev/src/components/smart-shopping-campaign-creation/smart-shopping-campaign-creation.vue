@@ -492,7 +492,7 @@ export default {
     },
     editCampaign() {
       const payload = this.finalCampaign;
-      payload.status = this.campaignIsActive ? 'ENABLED' : CampaignStatus.PAUSED;
+      payload.status = this.campaignIsActive ? CampaignStatus.ENABLED : CampaignStatus.PAUSED;
       this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
       this.$router.push({
         name: 'campaign',
@@ -514,8 +514,7 @@ export default {
       if (foundSsc !== undefined) {
         this.campaignName = foundSsc.campaignName;
         this.campaignDurationStartDate = foundSsc.startDate;
-        this.campaignDurationEndDate = foundSsc.endDate
-          ? foundSsc.endDate : null;
+        this.campaignDurationEndDate = foundSsc.endDate || null;
         this.campaignProductsFilter = !(foundSsc.productFilters.length > 0);
         this.campaignDailyBudget = foundSsc.dailyBudget;
         this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
