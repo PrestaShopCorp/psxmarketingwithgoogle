@@ -154,7 +154,7 @@ export default {
           this.$emit('displayErrorApiWhenSavingSSC');
         } else {
           this.$router.push({
-            name: 'campaign',
+            name: 'campaign-list',
           });
           this.$emit('openPopinSSCCreated');
           this.isValidating = false;

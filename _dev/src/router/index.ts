@@ -65,6 +65,11 @@ const routes: Array<RouteConfig> = [
     component: CampaignPage,
   },
   {
+    path: '/campaign/list',
+    name: 'campaign-list',
+    component: CampaignPage,
+  },
+  {
     path: '/reporting',
     name: 'reporting',
     component: ReportingPage,
