@@ -60,7 +60,7 @@
             status="success"
             :title="$t('productFeedSettings.summary.dataSyncSetUp')"
             :description="$t('productFeedSettings.export.summarySyncDailyAt')"
-            :details="descriptionTimeZone"
+            :details="$t('productFeedSettings.export.summaryTimeZone')"
             size="full"
           />
           <product-feed-card-report-card
