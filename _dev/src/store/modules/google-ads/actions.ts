@@ -89,7 +89,6 @@ export default {
   ) {
     const newUser = {
       name: payload.name,
-      country: payload.country,
       currencyCode: payload.currency,
       timeZone: payload.timeZone.split(') ').pop(),
     };
@@ -109,15 +108,16 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      //  TODO : wait for response : user WITH ID AND BILLING SETTINGS
       const newUserBis = {
-        id: 'turlututu',
+        id: json.adsAccountId,
         name: payload.name,
         billingSettings: {
           isSet: false,
-          link: 'http://coucou',
+          link: json.invitationLink,
         },
         country: payload.country,
+        currencyCode: payload.currency,
+        timeZone: payload.timeZone,
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUserBis);
       commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUserBis);
