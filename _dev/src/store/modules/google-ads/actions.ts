@@ -85,7 +85,7 @@ export default {
   },
 
   async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT](
-    {commit, rootState}, payload,
+    {commit, rootState, dispatch}, payload,
   ) {
     const newUser = {
       name: payload.name,
@@ -121,6 +121,7 @@ export default {
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUserBis);
       commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUserBis);
+      dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', newUserBis);
       if (!newUserBis.billingSettings.isSet) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
       }
