@@ -185,7 +185,7 @@ export default {
   },
 
   async [ActionsTypes.SAVE_REMARKETING_CONVERSION_ACTION_ON_SHOP](
-    {rootState}, conversionActions: ConversionAction[],
+    {dispatch, rootState}, conversionActions: ConversionAction[],
   ) {
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
@@ -199,6 +199,7 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     await response.json();
+    dispatch(ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED);
   },
 
   async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
