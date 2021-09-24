@@ -17,7 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import GettersTypes from './getters-types';
-import {State as LocalState, HelpInformations} from './state';
+import {State as LocalState, HelpInformations, DebugData} from './state';
 
 export default {
   [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
@@ -28,6 +28,9 @@ export default {
   },
   [GettersTypes.GET_DOC_AND_FAQ](state: LocalState): HelpInformations {
     return state.psxMktgWithGoogleDocumentAndFaq;
+  },
+  [GettersTypes.GET_DEBUG_DATA](state: LocalState): DebugData {
+    return state.debugData;
   },
   [GettersTypes.GET_STATUS_SHOP_MAINTENANCE](state: LocalState): boolean {
     return state.shopIsOnMaintenanceMode;

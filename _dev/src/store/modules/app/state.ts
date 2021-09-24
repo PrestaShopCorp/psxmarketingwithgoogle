@@ -33,6 +33,7 @@ export interface State {
   psxMktgWithGoogleStoreSettingsUrl: string;
   targetCountries: Array<string> | null;
   psxMktgWithGoogleOnProductionEnvironment: boolean;
+  debugData: DebugData;
 }
 
 export interface ShopCurrency {
@@ -43,6 +44,12 @@ export interface HelpInformations {
   faq: object;
   doc: string;
   contactUs: string;
+}
+
+export interface DebugData {
+  urlEventBusHealthCheck?: string;
+  urlAccountsHealthCheck?: string;
+  typesOfSync: string[];
 }
 
 export const state: State = {
@@ -68,4 +75,7 @@ export const state: State = {
   psxMktgWithGoogleProductDetailUrl: '',
   psxMktgWithGoogleStoreSettingsUrl: '',
   psxMktgWithGoogleOnProductionEnvironment: false,
+  debugData: {
+    typesOfSync: [],
+  },
 };

@@ -36,11 +36,33 @@ export default {
           action: 'retrieveFaq',
         }),
       });
-      const json = await response.json();
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
-      commit(MutationsTypes.SAVE_DOC_AND_FAQ, json);
+      commit(MutationsTypes.SAVE_DOC_AND_FAQ, await response.json());
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  async [ActionsTypes.REQUEST_DEBUG_DATA](
+    {
+      commit,
+      rootState,
+    },
+  ) {
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        body: JSON.stringify({
+          action: 'getDebugData',
+        }),
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      commit(MutationsTypes.SAVE_DEBUG_DATA, await response.json());
     } catch (error) {
       console.error(error);
     }

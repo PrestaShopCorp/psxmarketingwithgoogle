@@ -19,6 +19,7 @@
 
 enum ActionsTypes {
   REQUEST_DOC_AND_FAQ = 'REQUEST_DOC_AND_FAQ',
+  REQUEST_DEBUG_DATA = 'REQUEST_DEBUG_DATA',
 }
 
 export {ActionsTypes as default};
