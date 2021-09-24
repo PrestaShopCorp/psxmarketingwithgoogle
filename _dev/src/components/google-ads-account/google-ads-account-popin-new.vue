@@ -94,13 +94,13 @@
           <b-dropdown-item
             v-for="(option, index) in $options.timezones"
             :key="index"
-            :value="option.text"
-            @click="selectedTimeZone = option.text"
+            :value="option"
+            @click="selectedTimeZone = index"
             variant="dark"
             link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
           >
             <span class="mr-2">
-              {{ option.text }}
+              {{ option + ' - ' + index }}
             </span>
           </b-dropdown-item>
         </b-dropdown>
@@ -226,7 +226,7 @@
 </template>
 
 <script>
-import timezones from 'timezones.json';
+import timezones from 'google-timezones-json';
 import googleUrl from '@/assets/json/googleUrl.json';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import PsModal from '../commons/ps-modal';

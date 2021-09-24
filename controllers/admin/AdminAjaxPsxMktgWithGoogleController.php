@@ -287,12 +287,11 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     {
         $defaultTimeZone = date_default_timezone_get();
         $timeZone = new DateTime('now', new DateTimeZone($defaultTimeZone));
-        $textWithTimeZone = "(UTC{$timeZone->format('P')}) {$defaultTimeZone}";
 
         $this->ajaxDie(json_encode([
             'timezone' => [
                 'offset' => $timeZone->format('P'),
-                'text' => $textWithTimeZone,
+                'text' => $defaultTimeZone,
             ],
             'currency' => $this->currencyRepository->getShopCurrency()['isoCode'],
         ]));

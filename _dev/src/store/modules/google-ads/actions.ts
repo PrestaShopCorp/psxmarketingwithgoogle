@@ -90,7 +90,7 @@ export default {
     const newUser = {
       name: payload.name,
       currencyCode: payload.currency,
-      timeZone: payload.timeZone.split(') ').pop(),
+      timeZone: payload.timeZone,
     };
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/create`,
