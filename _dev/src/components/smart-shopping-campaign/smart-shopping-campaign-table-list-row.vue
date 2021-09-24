@@ -108,7 +108,6 @@ export default {
   },
   methods: {
     goToCampaignPage() {
-      // TODO Go to campaign page to edit it
       this.$router.push({
         name: 'campaign-edition',
         params: {
@@ -117,7 +116,6 @@ export default {
       });
     },
     isPaused() {
-      // TODO handle if paused or not
       return this.campaign.status === CampaignStatus.PAUSED;
     },
     pauseCampaign() {
