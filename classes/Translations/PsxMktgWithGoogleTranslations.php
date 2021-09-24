@@ -449,6 +449,7 @@ class PsxMktgWithGoogleTranslations
                 'alerts' => [
                     'noTag' => $this->module->l('By not adding the tag automatically Google will not be able to send campaigns results', 'PsxMktgWithGoogleTranslations'),
                     'duplicatedTag' => $this->module->l('Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.', 'PsxMktgWithGoogleTranslations'),
+                    'noConversionActions' => $this->module->l('The tracking tag has been enabled, but there is no conversion action set on the shop. This can be fixed by creating new ones.', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'labelSelectedDimension' => $this->module->l('Selected dimension value', 'PsxMktgWithGoogleTranslations'),
                 'labelDimensionValue' => $this->module->l('Dimension value', 'PsxMktgWithGoogleTranslations'),

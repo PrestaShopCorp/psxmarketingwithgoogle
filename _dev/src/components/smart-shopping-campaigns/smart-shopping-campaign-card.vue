@@ -71,6 +71,20 @@
             :markdown="alertTag.text"
             :extensions="['no-p-tag']"
           />
+          <div
+            v-if="alertTag.button"
+            class="mt-2 text-center d-md-flex align-items-center"
+          >
+            <b-button
+              @click="alertTag.button.onclick"
+              size="sm"
+              variant="primary"
+              class="text-wrap btn mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
+              data-test-id="btn-create-campaign"
+            >
+              {{ alertTag.button.cta }}
+            </b-button>
+          </div>
         </div>
       </b-alert>
     </template>
@@ -108,6 +122,17 @@ export default {
           text: this.$i18n.t('smartShoppingCampaignCreation.alerts.noTag'),
         };
       }
+      if (!this.conversionActions.length) {
+        return {
+          text: this.$i18n.t('smartShoppingCampaignCreation.alerts.noConversionActions'),
+          button: {
+            cta: this.$i18n.t('smartShoppingCampaignCreation.toggleNewConversionTag'),
+            onclick: () => this.$store.dispatch(
+              'smartShoppingCampaigns/CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS',
+            ),
+          },
+        };
+      }
       return null;
     },
 
@@ -119,6 +144,9 @@ export default {
     },
     SSCExist() {
       return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+    },
+    conversionActions() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'];
     },
   },
   methods: {
