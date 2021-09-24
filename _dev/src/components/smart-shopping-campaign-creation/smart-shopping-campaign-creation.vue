@@ -495,7 +495,7 @@ export default {
       payload.status = this.campaignIsActive ? CampaignStatus.ENABLED : CampaignStatus.PAUSED;
       this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
       this.$router.push({
-        name: 'campaign',
+        name: 'campaign-list',
       });
     },
   },
@@ -520,7 +520,7 @@ export default {
         this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = foundSsc.id;
       } else {
-        this.$router.push({name: 'campaign'});
+        this.$router.push({name: 'campaign-list'});
       }
     }
   },
