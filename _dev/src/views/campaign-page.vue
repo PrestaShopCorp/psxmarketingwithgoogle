@@ -2,15 +2,14 @@
   <div>
     <campaign-card
       @openPopin="onOpenPopinActivateTracking"
-      v-if="$route.name === 'campaign' && !SSCExist"
+      v-if="$route.name === 'campaign'"
     />
     <smart-shopping-campaign-table-list
       :loading="loading"
-      v-if="$route.name === 'campaign'"
+      v-else-if="$route.name === 'campaign-list'"
     />
-
     <smart-shopping-campaign-creation
-      v-if="$route.name === 'campaign-creation' && !loading"
+      v-else-if="$route.name === 'campaign-creation'"
       @campaignCreated="onCampaignHasBeenCreated"
     />
     <SSCPopinActivateTracking
@@ -67,13 +66,13 @@ export default {
   },
   methods: {
     async getDatas() {
+      await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST').then(() => {
+        this.loading = false;
+      });
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
-      await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST').then(() => {
-        this.loading = false;
-      });
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
@@ -96,6 +95,24 @@ export default {
           });
         }
       });
+  },
+  watch: {
+    $route: {
+      handler(route) {
+        if (route.name === 'campaign' && this.SSCExist) {
+          this.$router.push({
+            name: 'campaign-list',
+          });
+        }
+        this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
+        this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
+        this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
+        this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', false);
+        this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
+      },
+      deep: true,
+      immediate: true,
+    },
   },
 };
 </script>

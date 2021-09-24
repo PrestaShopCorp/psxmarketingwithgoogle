@@ -54,6 +54,20 @@ export default {
       });
   },
 
+  watch: {
+    $route: {
+      handler() {
+        this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
+        this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
+        this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
+        this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', false);
+        this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
+
 };
 </script>
 

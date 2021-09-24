@@ -211,7 +211,7 @@ export default {
         this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
       } else if (this.freeListingIsActivatedOnce) {
         this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', false);
-      } else if (this.freeListingIsActivatedOnce) {
+      } else if (this.googleAdsAccountConnectedOnce) {
         this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
       }
     },
