@@ -218,12 +218,6 @@ export default {
         return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS'];
       },
     },
-    descriptionTime() {
-      return this.$t('productFeedSettings.export.summarySyncDailyAt');
-    },
-    descriptionTimeZone() {
-      return this.$t('productFeedSettings.export.summaryTimeZone');
-    },
     specificProducts() {
       const tableOfSpecifics = [];
       if (this.sellRefurbished) {
