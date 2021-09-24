@@ -280,14 +280,13 @@ export default {
       startDate: state.reporting.request.dateRange.startDate,
       endDate: state.reporting.request.dateRange.endDate,
     });
-    const response =
-      await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/daily-results?${query}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-      });
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/daily-results?${query}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+      },
+    });
 
     if (!response.ok) {
       commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
