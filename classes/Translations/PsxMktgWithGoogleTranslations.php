@@ -279,6 +279,8 @@ class PsxMktgWithGoogleTranslations
                     'cantSelectCountryWithDifferentCurrency' => $this->module->l("You can't select country with currency that differs from your main shop.", 'PsxMktgWithGoogleTranslations'),
                 ],
                 'export' => [
+                    'summarySyncDailyAt' => $this->module->l('Sync daily at 1:00 AM', 'PsxMktgWithGoogleTranslations'),
+                    'summaryTimeZone' => $this->module->l('(UTC+01:00) Normal time in Central Europe (Paris)', 'PsxMktgWithGoogleTranslations'),
                     'synchronizationSchedule' => $this->module->l('Export synchronization schedule', 'PsxMktgWithGoogleTranslations'),
                     'synchronizationTime' => $this->module->l('Sync time', 'PsxMktgWithGoogleTranslations'),
                     'timeZone' => $this->module->l('Time zone', 'PsxMktgWithGoogleTranslations'),
@@ -432,6 +434,7 @@ class PsxMktgWithGoogleTranslations
                 'inputBudgetFeedback' => $this->module->l('Daily campaign budget', 'PsxMktgWithGoogleTranslations'),
                 'inputBudgetTooltip' => $this->module->l('Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time.', 'PsxMktgWithGoogleTranslations'),
                 'inputBudgetPlaceholder' => $this->module->l('Amount', 'PsxMktgWithGoogleTranslations'),
+                'inputAllSyncedProducts' => $this->module->l('All synced products', 'PsxMktgWithGoogleTranslations'),
                 'formHelperTitle' => $this->module->l('Campaign activation', 'PsxMktgWithGoogleTranslations'),
                 'formHelperDescription' => $this->module->l('Your campaign will run until you pause it. You can pause your campaign at any time.', 'PsxMktgWithGoogleTranslations'),
                 'errorNoProducts' => $this->module->l('You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.', 'PsxMktgWithGoogleTranslations'),
