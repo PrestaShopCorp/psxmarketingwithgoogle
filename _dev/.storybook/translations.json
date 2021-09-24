@@ -536,17 +536,19 @@
       },
       "campaignsPerformanceTable" : {
         "title" : "Campaign performance",
-        "subTitle" : "Check out how well your campaigns performs"
+        "subTitle" : "Check out how well your campaigns performs",
+        "emptyListText" : "You don't have any enabled campaigns"
       },
       "productsPerformanceTable" : {
         "title" : "Product performance for active campaigns",
-        "subTitle" : "Check out which product perform the best"
+        "subTitle" : "Check out which product perform the best",
+        "emptyListText" : "You don't have any products in active campaigns"
       },
       "filtersPerformanceTable" : {
         "title" : "Overall filter performance (top 10)",
-        "subTitle" : "Check out which dimension perform the best"
-      },
-      "emptyListText" : "You don't have any enabled campaigns"
+        "subTitle" : "Check out which dimension perform the best",
+        "emptyListText" : "You don't have any products in this campaigns"
+      }
     },
     "help" : {
       "title" : "Help for PrestaShop Google",

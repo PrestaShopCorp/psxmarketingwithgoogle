@@ -526,16 +526,18 @@ class PsxMktgWithGoogleTranslations
                 'campaignsPerformanceTable' => [
                     'title' => $this->module->l('Campaign performance', 'PsxMktgWithGoogleTranslations'),
                     'subTitle' => $this->module->l('Check out how well your campaigns performs', 'PsxMktgWithGoogleTranslations'),
+                    'emptyListText' => $this->module->l('You don\'t have any enabled campaigns', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'productsPerformanceTable' => [
                     'title' => $this->module->l('Product performance for active campaigns', 'PsxMktgWithGoogleTranslations'),
                     'subTitle' => $this->module->l('Check out which product perform the best', 'PsxMktgWithGoogleTranslations'),
+                    'emptyListText' => $this->module->l('You don\'t have any products in active campaigns', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'filtersPerformanceTable' => [
                     'title' => $this->module->l('Overall filter performance (top 10)', 'PsxMktgWithGoogleTranslations'),
                     'subTitle' => $this->module->l('Check out which dimension perform the best', 'PsxMktgWithGoogleTranslations'),
+                    'emptyListText' => $this->module->l('You don\'t have any products in this campaigns', 'PsxMktgWithGoogleTranslations'),
                 ],
-                'emptyListText' => $this->module->l('You don\'t have any enabled campaigns', 'PsxMktgWithGoogleTranslations'),
             ],
             'smartShoppingCampaignList' => [
                 'tableTitle' => $this->module->l('Campaign performance', 'PsxMktgWithGoogleTranslations'),
@@ -543,19 +545,19 @@ class PsxMktgWithGoogleTranslations
             'productFeedPage' => [
                 'breadcrumb' => $this->module->l('Product status details', 'PsxMktgWithGoogleTranslations'),
                 'alert' => [
-                  'googleIsReviewing' => $this->module->l("Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.", 'PsxMktgWithGoogleTranslations'),
-                  'alertSuccess' => $this->module->l('You are successfully opted in. Once your products are approved, they can appear in Google Shopping tab search results.', 'PsxMktgWithGoogleTranslations'),
+                    'googleIsReviewing' => $this->module->l("Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.", 'PsxMktgWithGoogleTranslations'),
+                    'alertSuccess' => $this->module->l('You are successfully opted in. Once your products are approved, they can appear in Google Shopping tab search results.', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'syncStatus' => [
-                  'title' => $this->module->l('Synchronization status', 'PsxMktgWithGoogleTranslations'),
-                  'readyForExport' => $this->module->l('Product feed is ready for export', 'PsxMktgWithGoogleTranslations'),
-                  'syncProcessed' => $this->module->l('Sync in progress / completed', 'PsxMktgWithGoogleTranslations'),
-                  'syncFailed' => $this->module->l('Sync not successful', 'PsxMktgWithGoogleTranslations'),
-                  'lastSync' => $this->module->l('Last sync: {0}', 'PsxMktgWithGoogleTranslations'),
-                  'nextSync' => $this->module->l('Next sync: {0}', 'PsxMktgWithGoogleTranslations'),
-                  'prescanTitle' => $this->module->l('Coming up next synchronization', 'PsxMktgWithGoogleTranslations'),
-                  'scheduleOn' => $this->module->l('Synchronization scheduled on {0}', 'PsxMktgWithGoogleTranslations'),
-                  'alert' => $this->module->l('Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target="_blank"] or contact [customer support](mailto:support-google@prestashop.com).', 'PsxMktgWithGoogleTranslations'),
+                    'title' => $this->module->l('Synchronization status', 'PsxMktgWithGoogleTranslations'),
+                    'readyForExport' => $this->module->l('Product feed is ready for export', 'PsxMktgWithGoogleTranslations'),
+                    'syncProcessed' => $this->module->l('Sync in progress / completed', 'PsxMktgWithGoogleTranslations'),
+                    'syncFailed' => $this->module->l('Sync not successful', 'PsxMktgWithGoogleTranslations'),
+                    'lastSync' => $this->module->l('Last sync: {0}', 'PsxMktgWithGoogleTranslations'),
+                    'nextSync' => $this->module->l('Next sync: {0}', 'PsxMktgWithGoogleTranslations'),
+                    'prescanTitle' => $this->module->l('Coming up next synchronization', 'PsxMktgWithGoogleTranslations'),
+                    'scheduleOn' => $this->module->l('Synchronization scheduled on {0}', 'PsxMktgWithGoogleTranslations'),
+                    'alert' => $this->module->l('Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target="_blank"] or contact [customer support](mailto:support-google@prestashop.com).', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'productStatus' => [
                     'title' => $this->module->l('Product status', 'PsxMktgWithGoogleTranslations'),
