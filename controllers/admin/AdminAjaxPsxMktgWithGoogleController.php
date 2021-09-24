@@ -35,6 +35,10 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     public $module;
 
     /**
+     * @var ErrorHandler
+     */
+    private $errorHandler;
+    /**
      * @var ConfigurationAdapter
      */
     private $configurationAdapter;
@@ -64,7 +68,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         parent::__construct();
         $this->bootstrap = false;
 
-        $this->module->getService(ErrorHandler::class);
+        $this->errorHandler = $this->module->getService(ErrorHandler::class);
         $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
         $this->countryRepository = $this->module->getService(CountryRepository::class);
         $this->productRepository = $this->module->getService(ProductRepository::class);
@@ -124,6 +128,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 break;
             case 'getConversionActionLabels':
                 $this->getConversionActionLabels();
+                break;
+            case 'getDebugData':
+                $this->getDebugData();
                 break;
             default:
                 http_response_code(400);
@@ -397,6 +404,35 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         }
         $this->ajaxDie(json_encode([
             'conversionActionLabels' => $labels,
+        ]));
+    }
+
+    private function getDebugData()
+    {
+        $typesOfSync = [];
+        try {
+            $sql = new DbQuery();
+            $sql->select('ets.type, ets.full_sync_finished, ets.last_sync_date');
+            $sql->from('eventbus_type_sync', 'ets');
+            $typesOfSync = \Db::getInstance()->executeS($sql);
+        } catch (Exception $e) {
+            $this->errorHandler->handle(
+                $e,
+                $e->getCode(),
+                false
+            );
+        }
+
+        $this->ajaxDie(json_encode([
+            'urlEventBusHealthCheck' => $this->context->link->getModuleLink(
+                'ps_eventbus',
+                'apiHealthCheck',
+            ),
+            'urlAccountsHealthCheck' => $this->context->link->getModuleLink(
+                'ps_accounts',
+                'apiHealthCheck',
+            ),
+            'typesOfSync' => $typesOfSync,
         ]));
     }
 

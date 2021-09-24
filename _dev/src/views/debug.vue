@@ -64,8 +64,33 @@
         body-class="p-3"
       >
         <ul class="mb-0">
+          <li><strong>Link to PS Event Bus Health Check:</strong>
+            <a
+              :href="GET_DEBUG_DATA.urlEventBusHealthCheck"
+              target="_blank"
+            >
+              {{ GET_DEBUG_DATA.urlEventBusHealthCheck }}
+            </a>
+          </li>
+          <li><strong>Link to PS Accounts Health Check:</strong>
+            <a
+              :href="GET_DEBUG_DATA.urlAccountsHealthCheck"
+              target="_blank"
+            >
+              {{ GET_DEBUG_DATA.urlAccountsHealthCheck }}
+            </a>
+          </li>
           <li>
-            <strong>Items to synchronise:</strong> ???
+            <strong>Types of data synchronized by Event Bus</strong>
+            ({{ GET_DEBUG_DATA.typesOfSync.length }}):
+            <ul>
+              <li
+                v-for="type in GET_DEBUG_DATA.typesOfSync"
+                :key="type"
+              >
+                {{ type }}
+              </li>
+            </ul>
           </li>
           <li>
             <strong>Manual sync:</strong>
@@ -141,6 +166,7 @@
 <script>
 import {mapGetters, mapState} from 'vuex';
 import GettersTypes from '@/store/modules/smart-shopping-campaigns/getters-types.ts';
+import GettersTypesApp from '@/store/modules/app/getters-types.ts';
 
 export default {
   name: 'Debug',
@@ -162,6 +188,9 @@ export default {
       GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET,
       GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
       GettersTypes.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS,
+    ]),
+    ...mapGetters('app', [
+      GettersTypesApp.GET_DEBUG_DATA,
     ]),
     ...mapState({
       psxMktgWithGoogleApiUrl: (state) => state.app.psxMktgWithGoogleApiUrl,
@@ -209,6 +238,7 @@ export default {
   mounted() {
     this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
     this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
+    this.$store.dispatch('app/REQUEST_DEBUG_DATA');
   },
 };
 </script>
