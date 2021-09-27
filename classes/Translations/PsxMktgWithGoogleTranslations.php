@@ -372,7 +372,7 @@ class PsxMktgWithGoogleTranslations
                 'alertBillingSettingsMissing' => $this->module->l('To launch Smart Shopping campaigns, you need to add your billing settings in your Google Ads account.', 'PsxMktgWithGoogleTranslations'),
                 'alertNeedRefreshAfterBilling' => $this->module->l('Once filled in your billing info in your Google Ads account, refresh the page to view updates.', 'PsxMktgWithGoogleTranslations'),
                 'alertNeedRefreshAfterInvitationLink' => $this->module->l('Once the invitation is accepted in your Google Ads account, refresh the page to view updates.', 'PsxMktgWithGoogleTranslations'),
-                'alertNeedValidationFromEmail' => $this->module->l('Please click here or check your emails and follow the link to validate your account.', 'PsxMktgWithGoogleTranslations'),
+                'alertNeedValidationFromEmail' => $this->module->l('Please click here or check your emails to validate your account.', 'PsxMktgWithGoogleTranslations'),
                 'alertSuspended' => $this->module->l('You need to resolve issues in your Google Ads account.', 'PsxMktgWithGoogleTranslations'),
                 'alertCancelled' => $this->module->l('You need to reactivate your account in your Google Ads account.', 'PsxMktgWithGoogleTranslations'),
                 'learnAboutAccountSuspension' => $this->module->l('Learn about account suspension', 'PsxMktgWithGoogleTranslations'),

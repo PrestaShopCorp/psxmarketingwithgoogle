@@ -324,7 +324,7 @@
       "alertBillingSettingsMissing" : "To launch Smart Shopping campaigns, you need to add your billing settings in your Google Ads account.",
       "alertNeedRefreshAfterBilling" : "Once filled in your billing info in your Google Ads account, refresh the page to view updates.",
       "alertNeedRefreshAfterInvitationLink" : "Once the invitation is accepted in your Google Ads account, refresh the page to view updates.",
-      "alertNeedValidationFromEmail" : "Please click here or check your emails and follow the link to validate your account.",
+      "alertNeedValidationFromEmail" : "Please click here or check your emails to validate your account.",
       "alertSuspended" : "You need to resolve issues in your Google Ads account.",
       "alertCancelled" : "You need to reactivate your account in your Google Ads account.",
       "learnAboutAccountSuspension": "Learn about account suspension",
