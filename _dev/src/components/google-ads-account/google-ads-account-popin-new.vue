@@ -218,7 +218,14 @@
           data-test-id="buttonContinueStep2"
           :disabled="isStepThreeReadyToValidate()"
         >
-          {{ $t("cta.createAccount") }}
+
+          <template v-if="!isCreating">
+            {{ $t("cta.createAccount") }}
+          </template>
+          <template v-else>
+            {{ $t('cta.creating') }}
+            <span class="ml-1 icon-busy" />
+          </template>
         </b-button>
       </span>
     </template>
@@ -245,6 +252,7 @@ export default {
 
   data() {
     return {
+      isCreating: false,
       newAccountInfos: {
         name: '',
         currency: this.$store.getters['app/GET_CURRENT_CURRENCY'],
@@ -271,8 +279,12 @@ export default {
       this.stepActiveData = value;
     },
     ok() {
+      this.isCreating = true;
       this.$store.dispatch('googleAds/SAVE_NEW_GOOGLE_ADS_ACCOUNT', this.newAccountInfos)
         .then(() => {
+          console.log(this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']);
+          this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']);
+          this.isCreating = false;
           this.$refs.modal.hide();
         });
     },

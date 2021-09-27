@@ -585,6 +585,7 @@
       "connect" : "Connect",
       "connecting" : "Connecting...",
       "validating" : "Validating...",
+      "creating": "Creating...",
       "dissociate" : "Dissociate",
       "manageAccount" : "Manage account",
       "overwrite" : "Overwrite",
