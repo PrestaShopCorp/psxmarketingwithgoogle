@@ -64,7 +64,8 @@
         body-class="p-3"
       >
         <ul class="mb-0">
-          <li><strong>Link to PS Event Bus Health Check:</strong>
+          <li>
+            <strong>Link to PS Event Bus Health Check:</strong>
             <a
               :href="GET_DEBUG_DATA.urlEventBusHealthCheck"
               target="_blank"
@@ -72,7 +73,8 @@
               {{ GET_DEBUG_DATA.urlEventBusHealthCheck }}
             </a>
           </li>
-          <li><strong>Link to PS Accounts Health Check:</strong>
+          <li>
+            <strong>Link to PS Accounts Health Check:</strong>
             <a
               :href="GET_DEBUG_DATA.urlAccountsHealthCheck"
               target="_blank"
@@ -105,7 +107,8 @@
               @click="triggerSync(false)"
               :disabled="triggerOfSyncForbidden"
             >
-              Trigger synchronisation
+              Trigger synchronisation<br>
+              (Shop → Event Bus → Google)
             </b-button>
             <b-button
               class="mt-3 mr-3"
@@ -113,7 +116,17 @@
               @click="triggerSync(true)"
               :disabled="triggerOfSyncForbidden"
             >
-              Trigger full synchronisation
+              Trigger full synchronisation<br>
+              (Shop → Event Bus → Google)
+            </b-button>
+            <b-button
+              class="mt-3 mr-3"
+              variant="primary"
+              @click="triggerGoogleSync()"
+              :disabled="triggerOfSyncForbidden"
+            >
+              Trigger synchronisation<br>
+              (Event Bus → Google only)
             </b-button>
           </li>
         </ul>
@@ -227,6 +240,18 @@ export default {
       this.sync.error = false;
       try {
         await this.$store.dispatch('productFeed/REQUEST_SYNCHRONISATION', full);
+        this.sync.requested = true;
+      } catch {
+        this.sync.error = true;
+      } finally {
+        this.sync.loading = false;
+      }
+    },
+    async triggerGoogleSync() {
+      this.sync.loading = true;
+      this.sync.error = false;
+      try {
+        await this.$store.dispatch('productFeed/REQUEST_GOOGLE_SYNCHRONISATION');
         this.sync.requested = true;
       } catch {
         this.sync.error = true;
