@@ -213,7 +213,7 @@
             class="mt-3 mt-md-0"
             target="_blank"
             data-test-id="btn-disconnect"
-            :disabled="isAccountLinked()"
+            :disabled="accountAwaitsValidation()"
             @click="disconnectGoogleAdsAccount()"
           >
             {{ $t('cta.disconnect') }}
@@ -317,7 +317,7 @@ export default {
       return option.name
         ? `${option.id} - ${option.name}` : option.id;
     },
-    isAccountLinked() {
+    accountAwaitsValidation() {
       return this.error === GoogleAdsErrorReason.NeedValidationFromEmail;
     },
 

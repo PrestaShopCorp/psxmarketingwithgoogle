@@ -28,14 +28,9 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
           variant="outline-secondary"
-          :href="gAdsAccountAlert.button.type === 'link' ? gAdsAccountAlert.button.url
-            : gAdsAccountAlert.button.type === 'invitationLink' ?
-              gAdsAccountAlert.button.url : null"
-          :target="gAdsAccountAlert.button.type === 'link' ? '_blank'
-            : gAdsAccountAlert.button.type === 'invitationLink' ? '_blank' : null"
-          @click="gAdsAccountAlert.button.type === 'refresh' ? refresh()
-            : gAdsAccountAlert.button.type === 'link' ? changeError('billing')
-              : gAdsAccountAlert.button.type === 'invitationLink'? changeError('link') : null"
+          :href="hrefAlert"
+          :target="targetAlert"
+          @click="clickAlert"
         >
           {{ gAdsAccountAlert.button.label }}
         </b-button>
@@ -169,7 +164,31 @@ export default {
           return null;
       }
     },
+    hrefAlert() {
+      if (this.gAdsAccountAlert.button.type === 'link' || this.gAdsAccountAlert.button.type === 'invitationLink') {
+        return this.gAdsAccountAlert.button.url;
+      }
+      return null;
+    },
+    targetAlert() {
+      if (this.gAdsAccountAlert.button.type === 'link' || this.gAdsAccountAlert.button.type === 'invitationLink') {
+        return '_blank';
+      }
+      return null;
+    },
+    clickAlert() {
+      if (this.gAdsAccountAlert.button.type === 'refresh') {
+        return this.refresh();
+      } if (this.gAdsAccountAlert.button.type === 'link') {
+        return this.changeError('billing');
+      } if (this.gAdsAccountAlert.button.type === 'invitationLink') {
+        return this.changeError('link');
+      }
+      return null;
+    },
+
   },
+
   googleUrl,
 };
 </script>

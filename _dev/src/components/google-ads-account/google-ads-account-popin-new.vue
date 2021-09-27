@@ -281,7 +281,7 @@ export default {
     ok() {
       this.isCreating = true;
       this.$store.dispatch('googleAds/SAVE_NEW_GOOGLE_ADS_ACCOUNT', this.newAccountInfos)
-        .then(() => {
+        .finally(() => {
           this.isCreating = false;
           this.$refs.modal.hide();
         });
