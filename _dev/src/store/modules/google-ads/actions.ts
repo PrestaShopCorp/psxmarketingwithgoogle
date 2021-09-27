@@ -70,7 +70,6 @@ export default {
       if (customer.isAccountSuspended === true) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Suspended');
       }
-
       if (!customer.billingSettings.isSet) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
       }
@@ -113,17 +112,15 @@ export default {
         name: payload.name,
         billingSettings: {
           isSet: false,
-          link: json.invitationLink,
         },
+        invitationLink: json.invitationLink,
         country: payload.country,
         currencyCode: payload.currency,
         timeZone: payload.timeZone,
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUserBis);
       commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUserBis);
-      if (!newUserBis.billingSettings.isSet) {
-        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
-      }
+      commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'NeedValidationFromEmail');
     } catch (error) {
       console.error(error);
     }

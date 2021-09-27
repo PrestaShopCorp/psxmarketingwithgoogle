@@ -213,6 +213,7 @@
             class="mt-3 mt-md-0"
             target="_blank"
             data-test-id="btn-disconnect"
+            :disabled="isAccountLinked()"
             @click="disconnectGoogleAdsAccount()"
           >
             {{ $t('cta.disconnect') }}
@@ -316,6 +317,9 @@ export default {
       return option.name
         ? `${option.id} - ${option.name}` : option.id;
     },
+    isAccountLinked() {
+      return this.error === GoogleAdsErrorReason.NeedValidationFromEmail;
+    },
 
   },
   computed: {
@@ -347,9 +351,11 @@ export default {
             text: 'canceled',
           };
         case GoogleAdsErrorReason.CantConnect:
+        case GoogleAdsErrorReason.NeedValidationFromEmail:
           return null;
         case GoogleAdsErrorReason.BillingSettingsMissing:
         case GoogleAdsErrorReason.NeedRefreshAfterBilling:
+        case GoogleAdsErrorReason.NeedRefreshAfterInvitationLink:
         default:
           return {
             color: 'success',
@@ -372,6 +378,7 @@ export default {
         && this.accountChosen.id !== null
         && this.accountChosen.id !== undefined;
     },
+
   },
 
   googleUrl,

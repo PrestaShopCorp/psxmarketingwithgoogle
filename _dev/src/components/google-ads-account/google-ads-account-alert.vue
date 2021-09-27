@@ -28,10 +28,14 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
           variant="outline-secondary"
-          :href="gAdsAccountAlert.button.type === 'link' ? gAdsAccountAlert.button.url : null"
-          :target="gAdsAccountAlert.button.type === 'link' ? '_blank' : null"
+          :href="gAdsAccountAlert.button.type === 'link' ? gAdsAccountAlert.button.url
+            : gAdsAccountAlert.button.type === 'invitationLink' ?
+              gAdsAccountAlert.button.url : null"
+          :target="gAdsAccountAlert.button.type === 'link' ? '_blank'
+            : gAdsAccountAlert.button.type === 'invitationLink' ? '_blank' : null"
           @click="gAdsAccountAlert.button.type === 'refresh' ? refresh()
-            : gAdsAccountAlert.button.type === 'link' ? changeError() : null"
+            : gAdsAccountAlert.button.type === 'link' ? changeError('billing')
+              : gAdsAccountAlert.button.type === 'invitationLink'? changeError('link') : null"
         >
           {{ gAdsAccountAlert.button.label }}
         </b-button>
@@ -60,6 +64,8 @@ export default {
           'CantConnect',
           'BillingSettingsMissing',
           'NeedRefreshAfterBilling',
+          'NeedRefreshAfterInvitationLink',
+          'NeedValidationFromEmail',
           'Suspended',
           'Cancelled',
         ].indexOf(value) !== -1;
@@ -76,13 +82,17 @@ export default {
     refresh() {
       this.$router.go();
     },
-    changeError() {
-      this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterBilling');
+    changeError(error) {
+      if (error === 'billing') {
+        this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterBilling');
+      } else if (error === 'link') {
+        this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterInvitationLink');
+      }
     },
   },
   computed: {
-    getLinkBillingSettings() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.billingSettings?.link
+    getLinkInvitationLink() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.invitationLink
       || this.$options.googleUrl.googleAdsAccount;
     },
     gAdsAccountAlert() {
@@ -104,7 +114,26 @@ export default {
             button: {
               type: 'link',
               label: this.$i18n.t('cta.addBillingSettings'),
-              url: this.getLinkBillingSettings,
+              url: this.$options.googleUrl.googleAdsAccountBillingSettings,
+            },
+          };
+        case GoogleAdsErrorReason.NeedValidationFromEmail:
+          return {
+            color: 'warning',
+            text: this.$i18n.t('googleAdsAccountCard.alertNeedValidationFromEmail'),
+            button: {
+              type: 'invitationLink',
+              label: this.$i18n.t('cta.acceptInvitation'),
+              url: this.getLinkInvitationLink,
+            },
+          };
+        case GoogleAdsErrorReason.NeedRefreshAfterInvitationLink:
+          return {
+            color: 'warning',
+            text: this.$i18n.t('googleAdsAccountCard.alertNeedRefreshAfterInvitationLink'),
+            button: {
+              type: 'refresh',
+              label: this.$i18n.t('general.refreshPage'),
             },
           };
         case GoogleAdsErrorReason.NeedRefreshAfterBilling:
