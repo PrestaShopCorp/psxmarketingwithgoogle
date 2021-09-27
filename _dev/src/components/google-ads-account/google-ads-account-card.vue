@@ -230,6 +230,7 @@
     <GoogleAdsAccountAlert
       v-if="error !== 'CantConnect'"
       :error="error"
+      :google-ads="accountChosen"
     />
   </b-card>
 </template>

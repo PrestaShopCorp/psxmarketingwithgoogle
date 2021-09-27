@@ -30,7 +30,10 @@
           variant="outline-secondary"
           :href="hrefAlert"
           :target="targetAlert"
-          @click="clickAlert"
+          @click="gAdsAccountAlert.button.type === 'refresh' ? refresh()
+            : gAdsAccountAlert.button.type === 'link' ? changeError('billing')
+              : gAdsAccountAlert.button.type === 'invitationLink' ? changeError('link')
+                : null"
         >
           {{ gAdsAccountAlert.button.label }}
         </b-button>
@@ -66,6 +69,10 @@ export default {
         ].indexOf(value) !== -1;
       },
     },
+    googleAds: {
+      type: Object,
+      default: null,
+    },
   },
   data() {
     return {
@@ -81,6 +88,7 @@ export default {
       if (error === 'billing') {
         this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterBilling');
       } else if (error === 'link') {
+        this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.googleAds);
         this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterInvitationLink');
       }
     },
@@ -90,8 +98,10 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.invitationLink
       || this.$options.googleUrl.googleAdsAccount;
     },
+    googleAdsChosen() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+    },
     gAdsAccountAlert() {
-      // TODO has to define the right conditions
       switch (this.error) {
         case GoogleAdsErrorReason.CantConnect:
           return {
@@ -176,17 +186,6 @@ export default {
       }
       return null;
     },
-    clickAlert() {
-      if (this.gAdsAccountAlert.button.type === 'refresh') {
-        return this.refresh();
-      } if (this.gAdsAccountAlert.button.type === 'link') {
-        return this.changeError('billing');
-      } if (this.gAdsAccountAlert.button.type === 'invitationLink') {
-        return this.changeError('link');
-      }
-      return null;
-    },
-
   },
 
   googleUrl,
