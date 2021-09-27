@@ -119,7 +119,17 @@ export default {
       }
     });
   },
+  mounted() {
+    this.fetchProductsPerformances();
+  },
   methods: {
+    fetchProductsPerformances() {
+      this.loading = true;
+      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PERFORMANCES')
+        .finally(() => {
+          this.loading = false;
+        });
+    },
     hasToolTip() {
       return false;
     },

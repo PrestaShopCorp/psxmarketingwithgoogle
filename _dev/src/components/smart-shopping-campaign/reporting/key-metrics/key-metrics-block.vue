@@ -81,5 +81,14 @@ export default {
       return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_KPIS_ERROR'];
     },
   },
+  mounted() {
+    this.fetchKpisAndGraph();
+  },
+  methods: {
+    fetchKpisAndGraph() {
+      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_KPIS');
+      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_DAILY_RESULTS');
+    },
+  },
 };
 </script>

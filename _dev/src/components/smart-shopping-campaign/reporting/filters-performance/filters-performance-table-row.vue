@@ -17,10 +17,10 @@
       {{ partition.clicks }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ partition.costs }}
+      {{ partition.costs|formatPrice }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ partition.averageCostPerClick }}
+      {{ partition.averageCostPerClick|formatPrice }}
     </b-td>
     <b-td class="ps_gs-fz-12">
       {{ partition.conversions }}
@@ -29,7 +29,7 @@
       {{ partition.conversionsRate }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ partition.sales }}
+      {{ partition.sales|formatPrice }}
     </b-td>
   </b-tr>
 </template>

@@ -67,6 +67,20 @@ Vue.filter(
   });
 
 Vue.filter(
+  'formatPrice', (value: number) => {
+    const googleAdsAccount = store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+
+    if (!googleAdsAccount) {
+      return '--';
+    }
+
+    return Intl.NumberFormat(window.i18nSettings.languageCode, {
+      style: 'currency',
+      currency: googleAdsAccount.currencyCode,
+    }).format(value);
+  });
+
+Vue.filter(
   'changeCountriesNamesToCodes', (countries : Array<string>) => countries.map((country) => {
     for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
       if (country === countriesSelectionOptions[i].country) {
