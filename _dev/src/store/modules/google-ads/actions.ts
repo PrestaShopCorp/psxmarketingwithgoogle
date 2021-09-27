@@ -119,7 +119,6 @@ export default {
         currencyCode: payload.currency,
         timeZone: payload.timeZone,
       };
-      console.log('API :', json);
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUserBis);
       commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUserBis);
       dispatch(ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT, newUserBis);
