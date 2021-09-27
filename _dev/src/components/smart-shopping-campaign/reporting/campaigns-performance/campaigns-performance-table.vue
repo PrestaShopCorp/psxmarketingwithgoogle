@@ -115,6 +115,8 @@ export default {
     if (tableBody) {
       tableBody.addEventListener('scroll', this.handleScroll);
     }
+
+    this.fetchCampaigns();
   },
   beforeDestroy() {
     const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
@@ -124,6 +126,13 @@ export default {
     }
   },
   methods: {
+    fetchCampaigns(isNewRequest = true) {
+      this.loading = true;
+      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES', isNewRequest)
+        .finally(() => {
+          this.loading = false;
+        });
+    },
     createCampaign() {
       this.$router.push({
         name: 'campaign-creation',
@@ -147,18 +156,11 @@ export default {
       this.queryOrderDirection = newOrderDirection;
     },
     async handleScroll() {
-      const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
+      const body = document.getElementsByClassName('table-with-maxheight')[0];
       const token = await this.$store.getters['smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN'];
 
-      if (
-        tableBody.scrollTop >= tableBody.scrollHeight - tableBody.clientHeight
-        && token !== null
-      ) {
-        this.loading = true;
-
-        await this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES', false);
-
-        this.loading = false;
+      if (body.scrollTop >= body.scrollHeight - body.clientHeight && token !== null) {
+        await this.fetchCampaigns(false);
       }
     },
   },

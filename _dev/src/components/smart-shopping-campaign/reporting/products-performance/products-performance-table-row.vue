@@ -8,13 +8,12 @@
     <b-td
       class="b-table-sticky-column text-primary"
     >
-      <a
-        href=""
-        target="_blank"
-        class="external_link-no_icon"
+      <b-button
+        variant="link"
+        class="p-0 m-0 font-weight-normal ps_gs-fz-12"
       >
         {{ campaign.name }}
-      </a>
+      </b-button>
     </b-td>
     <b-td
       class="ps_gs-fz-12"
@@ -22,10 +21,10 @@
       {{ campaign.clicks }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.costs }}
+      {{ campaign.costs|formatPrice }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.averageCostPerClick }}
+      {{ campaign.averageCostPerClick|formatPrice }}
     </b-td>
     <b-td class="ps_gs-fz-12">
       {{ campaign.conversions }}
@@ -34,7 +33,7 @@
       {{ campaign.conversionsRate }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.sales }}
+      {{ campaign.sales|formatPrice }}
     </b-td>
   </b-tr>
 </template>

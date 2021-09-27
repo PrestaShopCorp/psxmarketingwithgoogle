@@ -376,6 +376,7 @@ export default {
     }
 
     const result = await response.json();
+
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES, result);
   },
 
