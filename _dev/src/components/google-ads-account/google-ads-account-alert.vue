@@ -30,10 +30,7 @@
           variant="outline-secondary"
           :href="hrefAlert"
           :target="targetAlert"
-          @click="gAdsAccountAlert.button.type === 'refresh' ? refresh()
-            : gAdsAccountAlert.button.type === 'link' ? changeError('billing')
-              : gAdsAccountAlert.button.type === 'invitationLink' ? changeError('link')
-                : null"
+          @click="onClickAlert"
         >
           {{ gAdsAccountAlert.button.label }}
         </b-button>
@@ -84,6 +81,15 @@ export default {
         this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterBilling');
       } else if (error === 'link') {
         this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterInvitationLink');
+      }
+    },
+    onClickAlert() {
+      if (this.gAdsAccountAlert.button.type === 'refresh') {
+        this.refresh();
+      } else if (this.gAdsAccountAlert.button.type === 'link') {
+        this.changeError('billing');
+      } else if (this.gAdsAccountAlert.button.type === 'invitationLink') {
+        this.changeError('link');
       }
     },
   },
