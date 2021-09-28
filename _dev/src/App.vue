@@ -44,6 +44,12 @@
       />
     </div>
     <router-view />
+    <div
+      v-if="shopId"
+      id="helper-shopid"
+    >
+      {{ shopId }}
+    </div>
   </div>
 </template>
 
@@ -71,6 +77,9 @@ export default {
     remarketingTagAlreadyExistsStatus() {
       return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS'];
     },
+    shopId() {
+      return window.shopIdPsAccounts;
+    },
   },
   created() {
     this.$root.identifySegment();
@@ -82,3 +91,19 @@ export default {
   },
 };
 </script>
+
+<style>
+  #helper-shopid {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 10000;
+    color: white;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    transition: all .3s;
+  }
+
+  #helper-shopid:hover {
+    text-shadow: 0 0 8px rgba(0, 0, 0, 1);
+  }
+</style>
