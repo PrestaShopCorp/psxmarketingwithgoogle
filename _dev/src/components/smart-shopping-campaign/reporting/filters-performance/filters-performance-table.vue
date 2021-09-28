@@ -99,8 +99,6 @@ import FiltersPerformanceTableRow from './filters-performance-table-row.vue';
 import ProductPartitionPerformanceHeaderType from '@/enums/reporting/ProductPartitionPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import KeyMetricsErrorMessage from '../key-metrics/key-metrics-error-message.vue';
-import ActionsTypes from '@/store/modules/accounts/actions-types';
-import MutationsTypes from '@/store/modules/accounts/mutations-types';
 
 export default {
   name: 'FiltersPerformanceTable',
@@ -143,17 +141,7 @@ export default {
     },
   },
   created() {
-    this.$store.subscribeAction((action) => {
-      if (action.type.split('/').pop() === ActionsTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES) {
-        this.loading = true;
-      }
-    });
-
-    this.$store.subscribe((mutation) => {
-      if (mutation.type.split('/').pop() === MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES) {
-        this.loading = false;
-      }
-    });
+    this.fetchProductsPartitionsPerformances();
   },
   computed: {
     partitionHeaderList() {
@@ -171,9 +159,18 @@ export default {
       },
       set(orderDirection) {
         this.$store.commit('smartShoppingCampaigns/SET_REPORTING_PRODUCT_PARTITIONS_PERFORMANCES_ORDERING', orderDirection);
-        this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES');
+        this.fetchProductsPartitionsPerformances();
       },
     },
   },
+  methods: {
+    fetchProductsPartitionsPerformances() {
+      this.loading = true;
+      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES')
+        .finally(() => {
+          this.loading = false;
+        });
+    }
+  }
 };
 </script>

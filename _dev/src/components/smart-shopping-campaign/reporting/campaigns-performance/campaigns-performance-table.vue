@@ -70,7 +70,7 @@
         </template>
         <template v-else>
           <ReportingTableEmptyMessage
-            v-if="!loading && campaignList.length === 0"
+            v-if="campaignList.length === 0"
             :colspan="campaignHeaderList.length"
             :text="$t('campaigns.campaignsPerformanceTable.emptyListText')"
             :cta="createCampaign"
@@ -104,6 +104,7 @@ import CampaignsPerformanceTableRow from './campaigns-performance-table-row.vue'
 import CampaignPerformanceHeaderType from '@/enums/reporting/CampaignPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import KeyMetricsErrorMessage from '../key-metrics/key-metrics-error-message.vue';
+import TablePageControls from '../../../commons/table-page-controls.vue';
 
 export default {
   name: 'CampaignsPerformanceTable',
@@ -112,6 +113,7 @@ export default {
     ReportingTableEmptyMessage,
     CampaignsPerformanceTableRow,
     KeyMetricsErrorMessage,
+    TablePageControls,
   },
   data() {
     return {
@@ -197,7 +199,7 @@ export default {
       },
       set(orderDirection) {
         this.$store.commit('smartShoppingCampaigns/SET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING', orderDirection);
-        this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES');
+        this.fetchCampaigns();
       },
     },
   },
