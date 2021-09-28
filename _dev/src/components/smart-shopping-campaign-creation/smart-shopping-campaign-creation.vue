@@ -401,7 +401,7 @@ export default {
       return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
     },
     currency() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currencyCode;
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
     },
     countries: {
       get() {
