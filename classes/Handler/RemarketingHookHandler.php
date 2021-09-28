@@ -69,10 +69,15 @@ class RemarketingHookHandler
         $this->module = $module;
 
         $this->active = (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS)
-            && (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG);
+            && (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG)
+            && in_array($this->context->controller->controller_type, ['front', 'modulefront']);
 
         $this->conversionLabels = json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS), true)
             ?: [];
+
+        if ($this->active) {
+            $this->templateBuffer->init();
+        }
     }
 
     public function handleHook(string $hookName, array $data = []): string
