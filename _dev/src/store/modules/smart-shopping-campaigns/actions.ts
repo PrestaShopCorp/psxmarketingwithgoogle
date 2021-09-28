@@ -273,6 +273,8 @@ export default {
     }
 
     const result = await response.json();
+
+    commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_KPIS, result);
   },
 
@@ -298,6 +300,7 @@ export default {
 
     const result = await response.json();
 
+    commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_DAILY_RESULTS, result);
   },
 
@@ -333,6 +336,10 @@ export default {
       commit('RESET_REPORTING_CAMPAIGNS_PERFORMANCES');
     }
 
+    commit(
+      MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR,
+      false,
+    );
     commit(
       MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS,
       result.campaignsPerformanceList,
@@ -379,6 +386,7 @@ export default {
 
     const result = await response.json();
 
+    commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES, result);
   },
 
@@ -410,6 +418,7 @@ export default {
 
     const result = await response.json();
 
+    commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES, result);
   },
   async [ActionsTypes.GET_SSC_LIST]({commit, rootState}) {
