@@ -230,7 +230,6 @@
     <GoogleAdsAccountAlert
       v-if="error !== 'CantConnect'"
       :error="error"
-      :google-ads="accountChosen"
     />
   </b-card>
 </template>
@@ -354,10 +353,10 @@ export default {
           };
         case GoogleAdsErrorReason.CantConnect:
         case GoogleAdsErrorReason.NeedValidationFromEmail:
-          return null;
         case GoogleAdsErrorReason.BillingSettingsMissing:
         case GoogleAdsErrorReason.NeedRefreshAfterBilling:
         case GoogleAdsErrorReason.NeedRefreshAfterInvitationLink:
+          return null;
         default:
           return {
             color: 'success',

@@ -69,10 +69,6 @@ export default {
         ].indexOf(value) !== -1;
       },
     },
-    googleAds: {
-      type: Object,
-      default: null,
-    },
   },
   data() {
     return {
@@ -190,7 +186,7 @@ export default {
       handler() {
         // To link gAds after first creation
         if (this.googleAdsChosen?.isAdmin) {
-          this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.googleAds);
+          this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.googleAdsChosen);
         }
       },
       deep: true,
