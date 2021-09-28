@@ -47,6 +47,7 @@ export interface CampaignStatusPayload {
   status: CampaignStatus
 }
 export interface CampaignObject {
+  id: number,
   campaignName: string;
   startDate: string,
   endDate?: string,

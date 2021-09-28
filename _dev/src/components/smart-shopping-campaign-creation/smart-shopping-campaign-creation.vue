@@ -138,7 +138,9 @@
           id="campaign-target-country-fieldset"
           label-class="d-flex align-items-center font-weight-600"
           label-for="campaign-target-country-input"
-          :description="$t('smartShoppingCampaignCreation.inputCountryHelper')"
+          :description="!editMode ?
+            $t('smartShoppingCampaignCreation.inputCountryHelper')
+            : $t('smartShoppingCampaignCreation.inputCountryImutable')"
           class="maxw-sm-420"
         >
           <template #label>
@@ -155,10 +157,16 @@
             </b-button>
           </template>
           <SelectCountry
+            v-if="!editMode"
             :currency="currency"
             @countrySelected="saveCountrySelected"
             :default-country="countries"
           />
+          <span
+            v-else
+          >
+            {{ countries[0] }}
+          </span>
         </b-form-group>
         <b-form-group
           :label="$t('smartShoppingCampaignCreation.inputFiltersLegend')"
@@ -239,6 +247,17 @@
         <p>
           {{ $t('smartShoppingCampaignCreation.formHelperDescription') }}
         </p>
+        <b-form-checkbox
+          v-if="editMode === true"
+          switch
+          size="lg"
+          class="ps_gs-switch"
+          v-model="campaignIsActive"
+        >
+          <span class="ps_gs-fz-14">
+            {{ $t('cta.enabled') }}
+          </span>
+        </b-form-checkbox>
         <b-alert
           v-if="!productsExist"
           variant="warning"
@@ -263,6 +282,17 @@
             {{ $t('cta.cancel') }}
           </b-button>
           <b-button
+            v-if="editMode"
+            @click="editCampaign"
+            size="sm"
+            :disabled="disableCreateCampaign"
+            class="mx-1 mt-3 mt-md-0 mr-md-0"
+            variant="primary"
+          >
+            {{ $t('cta.editCampaign') }}
+          </b-button>
+          <b-button
+            v-else
             data-test-id="createCampaignButton"
             @click="openPopinRecap"
             size="sm"
@@ -291,11 +321,13 @@ import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-
 import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
+import CampaignStatus from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
   data() {
     return {
+      campaignId: 0,
       campaignName: null,
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
@@ -304,12 +336,19 @@ export default {
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
+      campaignIsActive: true,
     };
   },
   components: {
     SmartShoppingCampaignCreationFilterPopin,
     SmartShoppingCampaignCreationPopinRecap,
     SelectCountry,
+  },
+  props: {
+    editMode: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     disableCreateCampaign() {
@@ -335,7 +374,8 @@ export default {
       ) {
         return true;
       }
-      return false;
+
+      return null;
     },
     campaignDailyBudgetFeedback() {
       // TODO
@@ -377,6 +417,7 @@ export default {
     },
     finalCampaign() {
       return {
+        id: this.campaignId,
         campaignName: this.campaignName,
         dailyBudget: Number(this.campaignDailyBudget),
         currencyCode: this.currency,
@@ -449,6 +490,14 @@ export default {
       }
       this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
+    editCampaign() {
+      const payload = this.finalCampaign;
+      payload.status = this.campaignIsActive ? CampaignStatus.ENABLED : CampaignStatus.PAUSED;
+      this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
+      this.$router.push({
+        name: 'campaign-list',
+      });
+    },
   },
   watch: {
     campaignName(oldVal, newVal) {
@@ -459,6 +508,21 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0);
+    if (this.editMode === true) {
+      const sscList = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      const foundSsc = sscList.find((el) => el.campaignName === this.$route.params.name);
+      if (foundSsc !== undefined) {
+        this.campaignName = foundSsc.campaignName;
+        this.campaignDurationStartDate = foundSsc.startDate;
+        this.campaignDurationEndDate = foundSsc.endDate || null;
+        this.campaignProductsFilter = !(foundSsc.productFilters.length > 0);
+        this.campaignDailyBudget = foundSsc.dailyBudget;
+        this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
+        this.campaignId = foundSsc.id;
+      } else {
+        this.$router.push({name: 'campaign-list'});
+      }
+    }
   },
   countriesSelectionOptions,
 };
