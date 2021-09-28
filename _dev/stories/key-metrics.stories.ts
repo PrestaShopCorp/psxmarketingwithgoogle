@@ -15,9 +15,7 @@ const Template = (args, { argTypes }) => ({
       <KeyMetricsBlock v-bind="$props" ref="KeyMetricsBlock"/>
     </div>
   `,
-  beforeMount(this: any) {
-    args.beforeMount;
-  },
+  beforeMount: args.beforeMount,
   mounted: args.mounted,
 });
 

@@ -14,10 +14,7 @@ const Template = (args, {argTypes}) => ({
       <KeyMetricsChartWrapper v-bind="$props"/>
     </div>
   `,
-  beforeMount(this: any) {
-    this.$store.dispatch = () => { return Promise.resolve('coucou') };
-    args.beforeMount;
-  }
+  beforeMount: args.beforeMount,
 });
 
 export const WithResults: any = Template.bind({});
