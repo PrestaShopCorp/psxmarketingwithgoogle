@@ -16,7 +16,6 @@ const Template = (args, { argTypes }) => ({
     </div>
   `,
   beforeMount(this: any) {
-    this.$store.dispatch = () => { return Promise.resolve('coucou') };
     args.beforeMount;
   },
   mounted: args.mounted,
@@ -38,7 +37,6 @@ WithResults.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     this.$store.state.smartShoppingCampaigns.reporting.results.dailyResultChart.dailyResultList = reportingDailyResults;
-    this.$store.state.smartShoppingCampaigns.reporting.results.kpis = Object.assign({}, kpisResults);
   },
 };
 
