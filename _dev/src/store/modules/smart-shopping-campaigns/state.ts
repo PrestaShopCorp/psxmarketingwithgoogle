@@ -181,7 +181,7 @@ export const state: State = {
       dateRange: {
         periodSelected: ReportingPeriod.YESTERDAY,
         startDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
-        endDate: dayjs().format('YYYY-MM-DD'),
+        endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
       },
       dailyResultType: KpiType.IMPRESSIONS,
       ordering: {

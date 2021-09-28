@@ -18,7 +18,10 @@
             v-for="(type, index) in campaignHeaderList"
             :key="type"
             class="font-weight-600 bg-prestashop-bg"
-            :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
+            :class="{
+              'b-table-sticky-column b-table-sticky-column--invisible': index === 0,
+              'text-right': headerIsNumberType(type)
+            }"
           >
             <div class="flex align-items-center text-nowrap">
               <b-button
@@ -126,6 +129,14 @@ export default {
     }
   },
   methods: {
+    headerIsNumberType(type) {
+      return type === CampaignPerformanceHeaderType.BUDGET
+        || type === CampaignPerformanceHeaderType.IMPRESSIONS
+        || type === CampaignPerformanceHeaderType.CLICKS
+        || type === CampaignPerformanceHeaderType.AD_SPEND
+        || type === CampaignPerformanceHeaderType.CONVERSIONS
+        || type === CampaignPerformanceHeaderType.SALES;
+    },
     fetchCampaigns(isNewRequest = true) {
       this.loading = true;
       this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES', isNewRequest)

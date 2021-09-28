@@ -28,10 +28,11 @@ export default {
   },
   methods: {
     async getDatas() {
-      await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
-      await this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
-      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-      await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+      this.$store.dispatch('smartShoppingCampaigns/SET_REPORTING_DATES_RANGE');
+      this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
+      this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
+      this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
+      this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
     },
   },
   mounted() {

@@ -13,22 +13,22 @@
     <b-td class="ps_gs-fz-12">
       {{ partition.productFilter }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
       {{ partition.clicks }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
       {{ partition.costs|formatPrice }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
       {{ partition.averageCostPerClick|formatPrice }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
       {{ partition.conversions }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
       {{ partition.conversionsRate }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
       {{ partition.sales|formatPrice }}
     </b-td>
   </b-tr>

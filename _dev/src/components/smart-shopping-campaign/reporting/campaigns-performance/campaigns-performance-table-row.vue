@@ -10,28 +10,28 @@
         {{ campaign.name }}
       </b-button>
     </b-td>
-    <b-td class="ps_gs-fz-12">
-      {{ campaign.budget|formatPrice }}
-    </b-td>
     <b-td
       class="ps_gs-fz-12 ps_gs-cell-status"
       :class="`ps_gs-cell-status--${campaign.status.toLowerCase()}`"
     >
       {{ $t(`campaigns.status.${campaign.status.toLowerCase()}`) }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
+      {{ campaign.budget|formatPrice }}
+    </b-td>
+    <b-td class="text-right ps_gs-fz-12">
       {{ campaign.impressions }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
       {{ campaign.clicks }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
       {{ campaign.adSpend|formatPrice }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
       {{ campaign.conversions }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
       {{ campaign.sales|formatPrice }}
     </b-td>
   </b-tr>

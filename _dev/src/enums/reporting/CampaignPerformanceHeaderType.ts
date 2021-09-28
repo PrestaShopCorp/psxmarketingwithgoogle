@@ -1,7 +1,7 @@
 enum CampaignPerformanceHeaderType {
   CAMPAIGN = 'campaign',
-  BUDGET = 'budget',
   STATUS = 'status',
+  BUDGET = 'budget',
   IMPRESSIONS = 'impressions',
   CLICKS = 'clicks',
   AD_SPEND = 'adSpend',
