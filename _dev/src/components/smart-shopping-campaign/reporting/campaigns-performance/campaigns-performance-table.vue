@@ -70,7 +70,7 @@
         </template>
         <template v-else>
           <ReportingTableEmptyMessage
-            v-if="campaignList.length === 0"
+            v-if="!loading && campaignList.length === 0"
             :colspan="campaignHeaderList.length"
             :text="$t('campaigns.campaignsPerformanceTable.emptyListText')"
             :cta="createCampaign"

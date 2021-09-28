@@ -83,12 +83,11 @@ export default {
     },
   },
   mounted() {
-    this.fetchKpisAndGraph();
+    this.fetchKpis();
   },
   methods: {
-    fetchKpisAndGraph() {
+    fetchKpis() {
       this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_KPIS');
-      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_DAILY_RESULTS');
     },
     redirectToCreateCampaign() {
       this.$router.push({

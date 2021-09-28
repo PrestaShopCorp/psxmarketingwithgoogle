@@ -96,7 +96,7 @@ module.exports = function (router) {
           sales: 851.5
         }
       ],
-      "nextPageToken": null
+      "nextPageToken": 'amaury'
     });
     res.end();
   });

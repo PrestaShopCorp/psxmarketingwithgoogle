@@ -83,8 +83,13 @@ export default {
             display: false,
           },
         },
-      };
-    },
+      },
+    };
+  },
+  created() {
+    this.fetchGraph()
+  },
+  computed: {
     dailyResultTypeList() {
       return Object.values(KpiType);
     },
@@ -137,6 +142,9 @@ export default {
     },
   },
   methods: {
+    fetchGraph() {
+      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_DAILY_RESULTS');
+    },
     getFormattedValue(value) {
       const selectedKpi = this.$store.getters['smartShoppingCampaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
 
