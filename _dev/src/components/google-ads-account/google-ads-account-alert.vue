@@ -28,10 +28,9 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
           variant="outline-secondary"
-          :href="gAdsAccountAlert.button.type === 'link' ? gAdsAccountAlert.button.url : null"
-          :target="gAdsAccountAlert.button.type === 'link' ? '_blank' : null"
-          @click="gAdsAccountAlert.button.type === 'refresh' ? refresh()
-            : gAdsAccountAlert.button.type === 'link' ? changeError() : null"
+          :href="hrefAlert"
+          :target="targetAlert"
+          @click="onClickAlert"
         >
           {{ gAdsAccountAlert.button.label }}
         </b-button>
@@ -60,6 +59,8 @@ export default {
           'CantConnect',
           'BillingSettingsMissing',
           'NeedRefreshAfterBilling',
+          'NeedRefreshAfterInvitationLink',
+          'NeedValidationFromEmail',
           'Suspended',
           'Cancelled',
         ].indexOf(value) !== -1;
@@ -69,24 +70,38 @@ export default {
   data() {
     return {
       GoogleAdsErrorReason,
-
     };
   },
   methods: {
     refresh() {
       this.$router.go();
     },
-    changeError() {
-      this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterBilling');
+    changeError(error) {
+      if (error === 'billing') {
+        this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterBilling');
+      } else if (error === 'link') {
+        this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterInvitationLink');
+      }
+    },
+    onClickAlert() {
+      if (this.gAdsAccountAlert.button.type === 'refresh') {
+        this.refresh();
+      } else if (this.gAdsAccountAlert.button.type === 'link') {
+        this.changeError('billing');
+      } else if (this.gAdsAccountAlert.button.type === 'invitationLink') {
+        this.changeError('link');
+      }
     },
   },
   computed: {
-    getLinkBillingSettings() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.billingSettings?.link
+    getInvitationLink() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.invitationLink
       || this.$options.googleUrl.googleAdsAccount;
     },
+    googleAdsChosen() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+    },
     gAdsAccountAlert() {
-      // TODO has to define the right conditions
       switch (this.error) {
         case GoogleAdsErrorReason.CantConnect:
           return {
@@ -104,7 +119,26 @@ export default {
             button: {
               type: 'link',
               label: this.$i18n.t('cta.addBillingSettings'),
-              url: this.getLinkBillingSettings,
+              url: this.$options.googleUrl.googleAdsAccountBillingSettings,
+            },
+          };
+        case GoogleAdsErrorReason.NeedValidationFromEmail:
+          return {
+            color: 'warning',
+            text: this.$i18n.t('googleAdsAccountCard.alertNeedValidationFromEmail'),
+            button: {
+              type: 'invitationLink',
+              label: this.$i18n.t('cta.acceptInvitation'),
+              url: this.getInvitationLink,
+            },
+          };
+        case GoogleAdsErrorReason.NeedRefreshAfterInvitationLink:
+          return {
+            color: 'warning',
+            text: this.$i18n.t('googleAdsAccountCard.alertNeedRefreshAfterInvitationLink'),
+            button: {
+              type: 'refresh',
+              label: this.$i18n.t('general.refreshPage'),
             },
           };
         case GoogleAdsErrorReason.NeedRefreshAfterBilling:
@@ -139,6 +173,30 @@ export default {
         default:
           return null;
       }
+    },
+    hrefAlert() {
+      if (this.gAdsAccountAlert.button.type === 'link' || this.gAdsAccountAlert.button.type === 'invitationLink') {
+        return this.gAdsAccountAlert.button.url;
+      }
+      return null;
+    },
+    targetAlert() {
+      if (this.gAdsAccountAlert.button.type === 'link' || this.gAdsAccountAlert.button.type === 'invitationLink') {
+        return '_blank';
+      }
+      return null;
+    },
+  },
+  watch: {
+    googleAdsChosen: {
+      handler() {
+        // To link gAds after first creation
+        if (this.googleAdsChosen?.isAdmin && this.googleAdsChosen?.invitationLink) {
+          this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.googleAdsChosen);
+        }
+      },
+      deep: true,
+      immediate: true,
     },
   },
   googleUrl,

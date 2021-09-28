@@ -61,6 +61,7 @@ export default {
       const json = await resp.json();
       const customer = {
         ...json.customer,
+        invitationLink: json.customer.invitationLink,
         billingSettings: json.billingSettings,
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
@@ -70,9 +71,11 @@ export default {
       if (customer.isAccountSuspended === true) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Suspended');
       }
-
       if (!customer.billingSettings.isSet) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
+      }
+      if (customer.invitationLink && !customer.isAdmin) {
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'NeedValidationFromEmail');
       }
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
@@ -113,18 +116,15 @@ export default {
         name: payload.name,
         billingSettings: {
           isSet: false,
-          link: json.invitationLink,
         },
+        invitationLink: json.invitationLink,
         country: payload.country,
         currencyCode: payload.currency,
         timeZone: payload.timeZone,
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, newUserBis);
       commit(MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT, newUserBis);
-      dispatch(ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT, newUserBis);
-      if (!newUserBis.billingSettings.isSet) {
-        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
-      }
+      commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'NeedValidationFromEmail');
     } catch (error) {
       console.error(error);
     }

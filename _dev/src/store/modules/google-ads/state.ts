@@ -28,10 +28,12 @@ export interface State {
 
 export enum GoogleAdsErrorReason {
   NeedRefreshAfterBilling = 'NeedRefreshAfterBilling',
+  NeedRefreshAfterInvitationLink = 'NeedRefreshAfterInvitationLink',
   CantConnect = 'CantConnect',
   BillingSettingsMissing = 'BillingSettingsMissing',
   Cancelled = 'Cancelled',
   Suspended = 'Suspended',
+  NeedValidationFromEmail = 'NeedValidationFromEmail',
 }
 
 export interface AccountInformations {
@@ -43,6 +45,7 @@ export interface AccountInformations {
     isSet: boolean,
     link?: string,
   },
+  invitationLink?: string,
   country?: {
     // eslint-disable-next-line camelcase
     iso_code: null|string,
