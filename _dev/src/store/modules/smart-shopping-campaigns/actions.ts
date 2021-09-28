@@ -486,4 +486,19 @@ export default {
       console.error(error);
     }
   },
+  async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState}) {
+    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/dimensions/filters?language_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}&country_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+      });
+    if (!resp.ok) {
+      throw new HttpClientError(resp.statusText, resp.status);
+    }
+    const json = await resp.json();
+    return json;
+  },
 };

@@ -39,6 +39,7 @@
             </h6>
             <ul class="ps_gs-filters">
               <SmartShoppingCampaignCreationFilterItem
+                @removeDimension="deleteItem"
                 :item="selectedFilters"
                 :is-open-by-default="true"
                 :selected-filters="true"
@@ -99,17 +100,28 @@ export default {
   },
   data() {
     return {
-      // TODO see if this is the correct way to store selected filters
+      availableFilters: {
+        name: 'All filters',
+        children: [
+          {
+            name: 'Bidding category',
+            children: [],
+          },
+        ],
+      },
       dimensionsSelected: [
-        'biddingCategory',
-        'brands,',
       ],
       valuesSelected: [
-        'Adidas',
-        'Reebok',
-        'Tutu',
-        'Tartiflette',
       ],
+      selectedFilters: {
+        name: 'All filters',
+        children: [
+          {
+            name: 'Bidding category',
+            children: [],
+          },
+        ],
+      },
     };
   },
   computed: {
@@ -124,122 +136,48 @@ export default {
     },
     // TODO Getting datas
     // TODO Adding translation
-    availableFilters() {
-      return {
-        name: 'All filters',
-        children: [
-          {
-            name: 'Bidding category',
-          },
-          {
-            name: 'Canonical condition',
-            children: [
-              {
-                name: 'NEW',
-              },
-              {
-                name: 'USED',
-              },
-              {
-                name: 'REFURBISHED',
-              },
-              {
-                name: 'UNKNOWN',
-              },
-            ],
-          },
-          {
-            name: 'Brands',
-            children: [
-              {
-                name: 'Nike',
-                children: [
-                  {
-                    name: 'tutu',
-                  },
-                  {
-                    name: 'tata',
-                  },
-                ],
-              },
-              {
-                name: 'Reebok',
-              },
-              {
-                name: 'Jouet Club',
-                children: [
-                  {
-                    name: 'Hasbro',
-                  },
-                  {
-                    name: 'Mattel',
-                  },
-                  {
-                    name: 'Kenner',
-                  },
-                  {
-                    name: 'Poly pocket',
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            name: 'Custom attribute',
-          },
-          {
-            name: 'Offer ID',
-          },
-          {
-            name: 'Product type',
-          },
-        ],
-      };
-    },
-    // TODO Getting datas
-    // TODO Adding translation
-    selectedFilters() {
-      return {
-        name: 'All filters',
-        children: [
-          {
-            name: 'Canonical condition',
-            children: [
-              {
-                name: 'NEW',
-              },
-            ],
-          },
-          {
-            name: 'Brands',
-            children: [
-              {
-                name: 'Nike',
-                children: [
-                  {
-                    name: 'tutu',
-                  },
-                  {
-                    name: 'tata',
-                  },
-                ],
-              },
-              {
-                name: 'Reebok',
-              },
-            ],
-          },
-        ],
-      };
-    },
   },
   methods: {
     selectAll() {
       // TODO: handle select all
     },
+    deleteItem(item) {
+      // find index and remove element in children array
+      const filter = this.selectedFilters.children.find((el) => el.name === 'Bidding category');
+      const findIndex = filter.children.findIndex((el) => el.localizedName === item.localizedName);
+      filter.children.splice(findIndex, 1);
+    },
+    getDimensionsChoosen(payload) {
+      // find the main category
+      const filter = this.selectedFilters.children.find((el) => el.name === 'Bidding category');
+      // check if checkbox is checked
+      if (payload.state === false) {
+        this.deleteItem(payload.value);
+      } else {
+        filter.children.push({
+          name: payload.value.localizedName,
+          ...payload.value,
+        });
+      }
+    },
     deselectAll() {
       // TODO: handle deselect all
     },
+  },
+  mounted() {
+    this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
+      res.categories.forEach((element) => {
+        if (element.resourceName.search('BinddingCategory')) {
+          const dimensions = this.availableFilters.children.find((el) => el.name === 'Bidding category');
+          dimensions.children.push({
+            name: element.localizedName,
+            ...element,
+          });
+        }
+      });
+    });
+    this.$root.$on('removeDimension', ((el) => this.deleteItem(el)));
+    this.$root.$on('dimensionClicked', ((el) => this.getDimensionsChoosen(el)));
   },
 };
 </script>

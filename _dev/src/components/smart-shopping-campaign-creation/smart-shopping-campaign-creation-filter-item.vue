@@ -27,10 +27,12 @@
         </span>
       </b-button>
     </template>
+
     <b-form-checkbox
       v-if="!selectedFilters"
       class="ps_gs-checkbox ps_gs-filters__item-checkbox"
       :name="`${item.name}Checkbox`"
+      @change="checkboxClicked($event, item)"
       inline
     >
       {{ item.name }}
@@ -98,11 +100,14 @@ export default {
         this.isOpen = !this.isOpen;
       }
     },
+    checkboxClicked(state, value) {
+      const payload = {value, state};
+      this.$root.$emit('dimensionClicked', payload);
+    },
     // TODO: handle checkboxes
     // ! Checkboxes are not handled at all
     deselectFilter(item) {
-      // TODO: fn to deselect an item
-      console.log(item);
+      this.$root.$emit('removeDimension', item);
     },
     countChildren(item) {
       // TODO: check if function is OK to count items

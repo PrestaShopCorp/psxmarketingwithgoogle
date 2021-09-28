@@ -184,7 +184,7 @@
           <b-form-radio
             v-model="campaignProductsFilter"
             name="campaign-product-filter-radios"
-            disabled
+            :value="false"
           >
             {{ $t('smartShoppingCampaignCreation.inputFiltersPartialLabel') }}
           </b-form-radio>
@@ -331,7 +331,7 @@ export default {
       campaignName: null,
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
-      campaignProductsFilter: true,
+      campaignProductsFilter: null,
       filtersChosen: [],
       campaignDailyBudget: null,
       timer: null,
