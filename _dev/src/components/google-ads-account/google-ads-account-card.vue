@@ -319,7 +319,8 @@ export default {
         ? `${option.id} - ${option.name}` : option.id;
     },
     accountAwaitsValidation() {
-      return this.error === GoogleAdsErrorReason.NeedValidationFromEmail;
+      return this.error === GoogleAdsErrorReason.NeedValidationFromEmail
+      || this.error === GoogleAdsErrorReason.NeedRefreshAfterInvitationLink;
     },
 
   },

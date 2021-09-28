@@ -77,7 +77,6 @@ export default {
   data() {
     return {
       GoogleAdsErrorReason,
-
     };
   },
   methods: {
@@ -88,7 +87,6 @@ export default {
       if (error === 'billing') {
         this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterBilling');
       } else if (error === 'link') {
-        this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.googleAds);
         this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'NeedRefreshAfterInvitationLink');
       }
     },
@@ -187,7 +185,18 @@ export default {
       return null;
     },
   },
-
+  watch: {
+    googleAdsChosen: {
+      handler() {
+        // To link gAds after first creation
+        if (this.googleAdsChosen?.isAdmin) {
+          this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.googleAds);
+        }
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
   googleUrl,
 };
 </script>

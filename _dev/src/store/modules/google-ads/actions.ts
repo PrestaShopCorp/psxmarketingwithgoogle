@@ -61,6 +61,7 @@ export default {
       const json = await resp.json();
       const customer = {
         ...json.customer,
+        invitationLink: json.customer.invitationLink,
         billingSettings: json.billingSettings,
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
@@ -72,6 +73,9 @@ export default {
       }
       if (!customer.billingSettings.isSet) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
+      }
+      if (!customer.isAdmin) {
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'NeedValidationFromEmail');
       }
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
