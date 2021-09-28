@@ -74,7 +74,7 @@ export default {
       if (!customer.billingSettings.isSet) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
       }
-      if (!customer.isAdmin) {
+      if (customer.invitationLink && !customer.isAdmin) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'NeedValidationFromEmail');
       }
     } catch (error) {

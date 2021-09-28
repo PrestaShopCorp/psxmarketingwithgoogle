@@ -191,7 +191,7 @@ export default {
     googleAdsChosen: {
       handler() {
         // To link gAds after first creation
-        if (this.googleAdsChosen?.isAdmin) {
+        if (this.googleAdsChosen?.isAdmin && this.googleAdsChosen?.invitationLink) {
           this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.googleAdsChosen);
         }
       },
