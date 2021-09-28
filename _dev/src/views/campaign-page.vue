@@ -12,6 +12,11 @@
       v-else-if="$route.name === 'campaign-creation'"
       @campaignCreated="onCampaignHasBeenCreated"
     />
+    <smart-shopping-campaign-creation
+      v-if="$route.name === 'campaign-edition'"
+      :edit-mode="true"
+      @campaignCreated="onCampaignHasBeenCreated"
+    />
     <SSCPopinActivateTracking
       ref="SSCPopinActivateTracking"
     />

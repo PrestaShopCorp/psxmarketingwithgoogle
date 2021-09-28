@@ -263,4 +263,18 @@ export default {
   async [ActionsTypes.REQUEST_FULL_SYNCHRONISATION]({dispatch}) {
     dispatch(ActionsTypes.REQUEST_SYNCHRONISATION, true);
   },
+
+  async [ActionsTypes.REQUEST_GOOGLE_SYNCHRONISATION](rootState) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/force-now`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+      },
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+  },
 };

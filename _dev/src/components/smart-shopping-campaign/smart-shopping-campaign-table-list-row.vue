@@ -7,6 +7,7 @@
         variant="link"
         class="font-weight-normal ps_gs-fz-12 p-0 m-0 btn-max-width"
         :title="campaign.campaignName"
+        @click="goToCampaignPage(campaign.campaignName)"
       >
         {{ campaign.campaignName }}
       </b-button>
@@ -29,7 +30,7 @@
     <b-td class="ps_gs-fz-12">
       {{ campaign.dailyBudget }} {{ campaign.currencyCode }}
     </b-td>
-    <td class="ps_gs-fz-12 text-right">
+    <td class="ps_gs-fz-12 text-center">
       <b-dropdown
         variant="invisible"
         no-caret
@@ -107,11 +108,14 @@ export default {
   },
   methods: {
     goToCampaignPage() {
-      // TODO Go to campaign page to edit it
-      console.log('goToCampaignPage', this.campaign.campaignName);
+      this.$router.push({
+        name: 'campaign-edition',
+        params: {
+          name: this.campaign.campaignName,
+        },
+      });
     },
     isPaused() {
-      // TODO handle if paused or not
       return this.campaign.status === CampaignStatus.PAUSED;
     },
     pauseCampaign() {

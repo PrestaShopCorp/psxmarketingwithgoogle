@@ -176,9 +176,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     {
         $data = [
             'shop' => [
-                'name' => Shop::isFeatureActive()
-                    ? $this->context->shop->name
-                    : $this->configurationAdapter->get('PS_SHOP_NAME'),
+                'name' => $this->configurationAdapter->get('PS_SHOP_NAME'),
                 'url' => $this->context->link->getBaseLink($this->context->shop->id),
             ],
             'store' => [

@@ -423,6 +423,7 @@ class PsxMktgWithGoogleTranslations
                 'inputDurationLabel2' => $this->module->l('End date (optional)', 'PsxMktgWithGoogleTranslations'),
                 'inputDatePickerHelper' => $this->module->l('Use cursor keys to navigate calendar dates', 'PsxMktgWithGoogleTranslations'),
                 'inputCountryHelper' => $this->module->l('To target multiple countries you have to create multiple campaigns.', 'PsxMktgWithGoogleTranslations'),
+                'inputCountryImutable' => $this->module->l('Country can\'t be changed after creation, if you want to target a different country, you\'ll need to create a new campaign', 'PsxMktgWithGoogleTranslations'),
                 'inputCountryLabel' => $this->module->l('Target country', 'PsxMktgWithGoogleTranslations'),
                 'inputCountryTooltip' => $this->module->l('Your campaign’s ads are eligible to show to customers in your targeted geographic locations, or to customers who have selected your targeted language as their browser’s language setting.', 'PsxMktgWithGoogleTranslations'),
                 'inputFiltersLegend' => $this->module->l('Products in campaign', 'PsxMktgWithGoogleTranslations'),
@@ -446,6 +447,7 @@ class PsxMktgWithGoogleTranslations
                 'toggleCreationRemarketingTag' => $this->module->l('Enable remarketing  tags on my site', 'PsxMktgWithGoogleTranslations'),
                 'toggleCreationNewRemarketingTag' => $this->module->l('Create a new remarketing and conversion tracking tag to add to your shop', 'PsxMktgWithGoogleTranslations'),
                 'enableCreationRemarketingTag' => $this->module->l('Enable remarketing and conversion tracking tag', 'PsxMktgWithGoogleTranslations'),
+                'pauseCampaign' => $this->module->l('Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.', 'PsxMktgWithGoogleTranslations'),
                 'alerts' => [
                     'noTag' => $this->module->l('By not adding the tag automatically Google will not be able to send campaigns results', 'PsxMktgWithGoogleTranslations'),
                     'duplicatedTag' => $this->module->l('Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.', 'PsxMktgWithGoogleTranslations'),
@@ -696,6 +698,7 @@ class PsxMktgWithGoogleTranslations
                 'addBillingSettings' => $this->module->l('Add billing settings', 'PsxMktgWithGoogleTranslations'),
                 'learnAboutTimeZoneAndCurrency' => $this->module->l('Learn more about currency and time zone settings', 'PsxMktgWithGoogleTranslations'),
                 'createCampaign' => $this->module->l('Create campaign', 'PsxMktgWithGoogleTranslations'),
+                'editCampaign' => $this->module->l('Update campaign', 'PsxMktgWithGoogleTranslations'),
                 'resetDate' => $this->module->l('Reset date', 'PsxMktgWithGoogleTranslations'),
                 'validate' => $this->module->l('Validate', 'PsxMktgWithGoogleTranslations'),
                 'moreInfosAboutX' => $this->module->l('More infos about {0}', 'PsxMktgWithGoogleTranslations'),

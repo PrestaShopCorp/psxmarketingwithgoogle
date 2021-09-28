@@ -4,5 +4,10 @@
     top: 0;
     right: 0;
     padding: rem(2) rem(6);
+
+    &-icon {
+      font-size: rem(14) !important;
+      width: rem(14);
+    }
   }
 }

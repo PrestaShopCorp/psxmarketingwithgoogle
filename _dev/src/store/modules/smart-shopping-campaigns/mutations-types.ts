@@ -48,6 +48,7 @@ enum MutationsTypes {
     SAVE_NEW_SSC = 'SAVE_NEW_SSC',
     SAVE_SSC_LIST = 'SAVE_SSC_LIST',
     UPDATE_SSC_STATUS = 'UPDATE_SSC_STATUS',
+    UPDATE_SSC = 'UPDATE_SSC',
 }
 
 export {MutationsTypes as default};

@@ -70,6 +70,11 @@ const routes: Array<RouteConfig> = [
     component: CampaignPage,
   },
   {
+    path: '/campaign/edit/:name',
+    name: 'campaign-edition',
+    component: CampaignPage,
+  },
+  {
     path: '/reporting',
     name: 'reporting',
     component: ReportingPage,
@@ -93,6 +98,9 @@ const routes: Array<RouteConfig> = [
 
 const router = new VueRouter({
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    return {x: 0, y: 0};
+  },
 });
 
 export default router;

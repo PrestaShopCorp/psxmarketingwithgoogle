@@ -4,7 +4,8 @@ enum CampaignStatus {
   PAUSED = 'PAUSED',
   REMOVED = 'REMOVED',
   PENDING = 'PENDING',
-  ENDED = 'ENDED'
+  ENDED = 'ENDED',
+  ENABLED = 'ENABLED',
 }
 
 export default CampaignStatus;
