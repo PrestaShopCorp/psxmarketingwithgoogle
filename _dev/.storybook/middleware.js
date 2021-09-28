@@ -1,18 +1,40 @@
 module.exports = function (router) {
   router.get('/ads-reporting/kpis/', (req, res) => {
-    res.send({
-      impressions: 32,
-      clicks: 750,
-      conversions: 658,
-      averageCostPerClick: 0.2,
-      costs: 321,
-      sales: 18,
-    });
+    req.query.startDate == '00/00/0000' ?
+      res.send({
+        impressions: 0,
+        clicks: 0,
+        conversions: 0,
+        averageCostPerClick: 0,
+        costs: 0,
+        sales: 0,
+      })
+    : res.send({
+        impressions: 32,
+        clicks: 750,
+        conversions: 658,
+        averageCostPerClick: 0.2,
+        costs: 321,
+        sales: 18,
+      });
     res.end();
   });
 
   router.get('/ads-reporting/daily-results/', (req, res) => {
-    res.send({
+    req.query.startDate == '00/00/0000' ?
+      res.send({
+        dailyResultList: [
+          {
+            "impressions": 0,
+            "clicks": 0,
+            "conversions": 0,
+            "averageCostPerClick": 0,
+            "costs": 0,
+            "sales": 0,
+            "date": "string"
+          }
+      ]})
+    : res.send({
       dailyResultList: [
         {
           impressions: 12,

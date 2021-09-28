@@ -37,5 +37,8 @@ export const NoResults:any = Template.bind({});
 NoResults.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+
+    // fake date that will be intercepted by the storybook middleware to return no results
+    this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = '00/00/0000';
   },
 };
