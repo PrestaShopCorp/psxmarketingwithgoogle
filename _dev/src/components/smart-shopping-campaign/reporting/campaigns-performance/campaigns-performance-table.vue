@@ -139,7 +139,7 @@ export default {
       });
     },
     hasToolTip(headerType) {
-      return headerType === CampaignPerformanceHeaderType.STATUS;
+      return headerType === false;
     },
     hasSorting(headerType) {
       return headerType === CampaignPerformanceHeaderType.CLICKS;

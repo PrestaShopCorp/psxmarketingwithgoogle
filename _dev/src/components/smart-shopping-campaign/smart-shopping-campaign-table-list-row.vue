@@ -30,7 +30,7 @@
     <b-td class="ps_gs-fz-12">
       {{ campaign.dailyBudget }} {{ campaign.currencyCode }}
     </b-td>
-    <td class="ps_gs-fz-12 text-right">
+    <td class="ps_gs-fz-12 text-center">
       <b-dropdown
         variant="invisible"
         no-caret
