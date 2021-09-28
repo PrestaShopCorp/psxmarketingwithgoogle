@@ -13,7 +13,10 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Reporting },
   template: '<Reporting />',
-  beforeMount : args.beforeMount,
+  beforeMount(this: any) {
+    this.$store.dispatch = () => { return Promise.resolve('coucou') };
+    args.beforeMount;
+  }
 });
 
 export const ReportingView:any = Template.bind({});

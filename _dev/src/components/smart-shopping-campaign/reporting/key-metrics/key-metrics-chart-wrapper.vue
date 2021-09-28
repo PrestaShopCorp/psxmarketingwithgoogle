@@ -27,7 +27,7 @@
     <div>
       <div
         v-if="metricsIsEmpty"
-        class="text-center py-3"
+        class="py-3 text-center"
       >
         <span>{{ $t('keymetrics.noData') }}</span>
       </div>
@@ -60,7 +60,7 @@ export default {
         scales: {
           yAxes: {
             ticks: {
-              callback: (value) => this.$options.filters.formatKpi(value),
+              callback: (value) => this.getFormattedValue(value),
             },
           },
           xAxes: {
@@ -73,7 +73,7 @@ export default {
         plugins: {
           tooltip: {
             callbacks: {
-              label: (context) => this.$options.filters.formatKpi(
+              label: (context) => this.getFormattedValue(
                 context.dataset.data[context.dataIndex]),
             },
           },
@@ -122,6 +122,19 @@ export default {
     },
     metricsIsEmpty() {
       return this.getMetrics.length === 0;
+    },
+  },
+  methods: {
+    getFormattedValue(value) {
+      const selectedKpi = this.$store.getters['smartShoppingCampaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
+
+      if (selectedKpi === KpiType.CLICKS
+        || selectedKpi === KpiType.CONVERSIONS
+        || selectedKpi === KpiType.IMPRESSIONS) {
+        return value;
+      }
+
+      return this.$options.filters.formatPrice(value);
     },
   },
 };

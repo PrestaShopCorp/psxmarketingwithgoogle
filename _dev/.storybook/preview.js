@@ -44,6 +44,7 @@ import '!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss';
 
 // Test utils
 import {cloneStore} from '@/../tests/store';
+import {initialStateApp} from "../.storybook/mock/state-app";
 
 // jest results file
 import results from '../.jest-test-results.json';
@@ -124,12 +125,14 @@ addDecorator((story, context) => ({
       immediate: true,
     },
   },
-  beforeCreate: () => {
+  beforeCreate() {
     window.i18nSettings = {
       languageLocale: 'en', // needed in _dev/src/store/modules/product-feed/actions.ts
       languageCode: 'en-US', // needed in _dev/src/store/modules/product-feed/actions.ts
       isoCode: 'en',
     }
+
+    this.$store.state.app = Object.assign({}, initialStateApp);
   },
   store: new Vuex.Store(cloneStore()),
   router: new VueRouter(),

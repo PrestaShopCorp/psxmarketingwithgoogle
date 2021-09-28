@@ -15,7 +15,10 @@ const Template = (args, { argTypes }) => ({
       <KeyMetricsBlock v-bind="$props" ref="KeyMetricsBlock"/>
     </div>
   `,
-  beforeMount: args.beforeMount,
+  beforeMount(this: any) {
+    this.$store.dispatch = () => { return Promise.resolve('coucou') };
+    args.beforeMount;
+  },
   mounted: args.mounted,
 });
 
