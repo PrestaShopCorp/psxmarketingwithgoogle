@@ -92,7 +92,7 @@ export default {
     },
   },
   computed: {
-    getLinkInvitationLink() {
+    getInvitationLink() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.invitationLink
       || this.$options.googleUrl.googleAdsAccount;
     },
@@ -127,7 +127,7 @@ export default {
             button: {
               type: 'invitationLink',
               label: this.$i18n.t('cta.acceptInvitation'),
-              url: this.getLinkInvitationLink,
+              url: this.getInvitationLink,
             },
           };
         case GoogleAdsErrorReason.NeedRefreshAfterInvitationLink:
