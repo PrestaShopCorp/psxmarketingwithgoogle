@@ -17,7 +17,10 @@
           <b-th
             v-for="(type, index) in campaignHeaderList"
             class="font-weight-600"
-            :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 1}"
+            :class="{
+              'b-table-sticky-column b-table-sticky-column--invisible': index === 1,
+              'text-right': headerIsNumberType(type)
+            }"
             :key="type"
           >
             <div class="flex align-items-center text-nowrap">
@@ -123,6 +126,14 @@ export default {
     this.fetchProductsPerformances();
   },
   methods: {
+    headerIsNumberType(type) {
+      return type === ProductPerformanceHeaderType.CLICKS
+        || type === ProductPerformanceHeaderType.COSTS
+        || type === ProductPerformanceHeaderType.AVERAGE_COST_PER_CLICK
+        || type === ProductPerformanceHeaderType.CONVERSIONS
+        || type === ProductPerformanceHeaderType.CONVERSIONS_RATE
+        || type === ProductPerformanceHeaderType.SALES;
+    },
     fetchProductsPerformances() {
       this.loading = true;
       this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PERFORMANCES')

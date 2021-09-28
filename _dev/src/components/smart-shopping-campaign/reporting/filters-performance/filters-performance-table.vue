@@ -18,7 +18,10 @@
             v-for="(type, index) in partitionHeaderList"
             :key="type"
             class="font-weight-600"
-            :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
+            :class="{
+              'b-table-sticky-column b-table-sticky-column--invisible': index === 0,
+              'text-right': headerIsNumberType(type)
+            }"
           >
             <div class="flex align-items-center text-nowrap">
               <b-button
@@ -107,6 +110,14 @@ export default {
     };
   },
   methods: {
+    headerIsNumberType(type) {
+      return type === ProductPartitionPerformanceHeaderType.CLICKS
+        || type === ProductPartitionPerformanceHeaderType.COSTS
+        || type === ProductPartitionPerformanceHeaderType.AVERAGE_COST_PER_CLICK
+        || type === ProductPartitionPerformanceHeaderType.CONVERSIONS
+        || type === ProductPartitionPerformanceHeaderType.CONVERSIONS_RATE
+        || type === ProductPartitionPerformanceHeaderType.SALES;
+    },
     hasToolTip() {
       return false;
     },
