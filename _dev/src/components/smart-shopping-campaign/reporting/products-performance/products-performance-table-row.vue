@@ -30,7 +30,7 @@
       {{ campaign.conversions }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.conversionsRate }}
+      {{ campaign.conversionsRate }} %
     </b-td>
     <b-td class="ps_gs-fz-12">
       {{ campaign.sales|formatPrice }}

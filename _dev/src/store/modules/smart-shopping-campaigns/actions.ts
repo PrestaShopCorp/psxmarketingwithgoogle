@@ -21,12 +21,11 @@ import dayjs from 'dayjs';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
-import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import {CampaignObject, CampaignStatusPayload, ConversionAction} from './state';
 
 export default {
-  async [ActionsTypes.SAVE_NEW_SSC]({commit, state, rootState}, payload : CampaignObject) {
+  async [ActionsTypes.SAVE_NEW_SSC]({commit, rootState}, payload : CampaignObject) {
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/create`,
         {
@@ -212,15 +211,13 @@ export default {
     // temporary disable, waiting final table design
     // dispatch('GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES');
   },
-
-  [ActionsTypes.CHANGE_REPORTING_DATES](
-    {commit, dispatch}, payload: ReportingPeriod,
+  [ActionsTypes.SET_REPORTING_DATES_RANGE](
+    {commit, state},
   ) {
-    commit(MutationsTypes.SET_REPORTING_PERIOD_SELECTED, payload);
-
+    const {periodSelected} = state.reporting.request.dateRange;
     const substractType = {type: 'day', value: 0};
 
-    switch (payload) {
+    switch (periodSelected) {
       case ReportingPeriod.YESTERDAY:
         substractType.type = 'day';
         substractType.value = 1;
@@ -245,7 +242,12 @@ export default {
       startDate: dayjs().subtract(substractType.value, substractType.type).format('YYYY-MM-DD'),
       endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
     });
-
+  },
+  [ActionsTypes.CHANGE_REPORTING_DATES](
+    {commit, dispatch}, payload: ReportingPeriod,
+  ) {
+    commit(MutationsTypes.SET_REPORTING_PERIOD_SELECTED, payload);
+    dispatch('SET_REPORTING_DATES_RANGE');
     dispatch('UPDATE_ALL_REPORTING_DATA');
   },
 
