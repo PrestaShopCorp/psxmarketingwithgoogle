@@ -15,6 +15,7 @@ const ls = new SecureLS({encodingType: 'aes'});
 
 const plugins = [
   createPersistedState({
+    key: 'psxmarketingwithgoogle-vuex',
     storage: {
       getItem: (key:string) => ls.get(key),
       setItem: (key:string, value:any) => ls.set(key, value),

@@ -72,7 +72,7 @@
         />
         <b-tr v-if="loading">
           <b-td
-            colspan="7"
+            :colspan="partitionHeaderList.length"
             class="ps_gs-table-products__loading-slot"
           >
             <i class="ps_gs-table-products__spinner">loading</i>

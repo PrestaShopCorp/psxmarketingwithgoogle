@@ -5,7 +5,6 @@ import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
 import utc from 'dayjs/plugin/utc';
 import store from '@/store';
 import countriesSelectionOptions from '../assets/json/countries.json';
-import KpiType from '@/enums/reporting/KpiType';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -48,23 +47,6 @@ Vue.filter(
     }
     return country;
   }));
-
-Vue.filter(
-  'formatKpi', (value: number, kpi: KpiType) => {
-    const selectedKpi = kpi ?? store.getters['smartShoppingCampaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
-    const googleAdsAccount = store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
-
-    if (selectedKpi === KpiType.CLICKS
-      || selectedKpi === KpiType.CONVERSIONS
-      || selectedKpi === KpiType.IMPRESSIONS) {
-      return value;
-    }
-
-    return Intl.NumberFormat(window.i18nSettings.isoCode, {
-      style: 'currency',
-      currency: googleAdsAccount.currencyCode,
-    }).format(value);
-  });
 
 Vue.filter(
   'formatPrice', (value: number) => {

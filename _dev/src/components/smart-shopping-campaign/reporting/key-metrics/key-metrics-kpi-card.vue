@@ -26,7 +26,7 @@
         <dt
           class="ps_gs-fz-18 font-weight-bold"
         >
-          {{ formattedValue }}
+          {{ getFormattedValue(kpiValue) }}
         </dt>
         <dd class="mb-0">
           {{ kpiName }}
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import KpiType from '@/enums/reporting/KpiType';
+
 export default {
   name: 'KeyMetricsKpiCard',
   props: {
@@ -58,15 +60,21 @@ export default {
       required: true,
     },
   },
-  computed: {
-    formattedValue() {
+  methods: {
+    getFormattedValue() {
       const googleAdsAccount = this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
 
       if (!googleAdsAccount) {
         return '--';
       }
 
-      return this.$options.filters.formatKpi(this.kpiValue, this.kpiType);
+      if (this.kpiType === KpiType.CLICKS
+        || this.kpiType === KpiType.CONVERSIONS
+        || this.kpiType === KpiType.IMPRESSIONS) {
+        return this.kpiValue;
+      }
+
+      return this.$options.filters.formatPrice(this.kpiValue);
     },
   },
 };

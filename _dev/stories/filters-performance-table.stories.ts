@@ -15,7 +15,10 @@ const Template = (args, { argTypes }) => ({
       <FiltersPerformanceTable v-bind="$props"/>
     </div>
   `,
-  beforeMount : args.beforeMount,
+  beforeMount(this: any) {
+    this.$store.dispatch = () => { return Promise.resolve('coucou') };
+    args.beforeMount;
+  }
 });
 
 export const Table:any = Template.bind({});
