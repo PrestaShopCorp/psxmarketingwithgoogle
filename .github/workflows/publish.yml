@@ -17,7 +17,7 @@ jobs:
           node-version: '14'
           cache: npm
           cache-dependency-path: '_dev/package-lock.json'
-      
+
       - name: Install & build
         working-directory: _dev
         run: |
@@ -126,12 +126,12 @@ jobs:
         env:
           MARKETPLACE_API_KEY: ${{ secrets.MARKETPLACE_API_KEY }}
 
-  publish_to_sentry:
+  publish_to_sentry_php:
     runs-on: ubuntu-latest
     if: github.event.release.prerelease == false
     steps:
     - uses: actions/checkout@v2
-    - name: Sentry Release
+    - name: Sentry Release PHP
       uses: getsentry/action-release@v1
       env:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
@@ -140,3 +140,31 @@ jobs:
       with:
         environment: production
         version: ${{ github.ref }}
+
+  publish_to_sentry_js:
+    runs-on: ubuntu-latest
+    if: github.event.release.prerelease == false
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        cache: npm
+        cache-dependency-path: '_dev/package-lock.json'
+
+    - name: Install & build
+      working-directory: _dev
+      run: |
+        npm install
+        npm run build
+
+    - name: Sentry Release JS
+      uses: getsentry/action-release@v1
+      env:
+        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+        SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+        SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+      with:
+        environment: production
+        version: ${{ github.ref }}
+        sourcemaps: _dev/sourcemaps views/js
