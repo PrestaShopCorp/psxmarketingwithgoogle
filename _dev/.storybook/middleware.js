@@ -1,4 +1,5 @@
 const {kpisEmpty, kpiDatas} = require('./mock/kpi.js');
+const {dailyResultsEmpty, dailyResultsDatas, dailyResultsBigDatas} = require('./mock/daily-results.js');
 
 module.exports = function (router) {
   router.get('/ads-reporting/kpis/', (req, res) => {
@@ -13,78 +14,16 @@ module.exports = function (router) {
   });
 
   router.get('/ads-reporting/daily-results/', (req, res) => {
-    req.query.startDate == '00/00/0000' ?
-      res.send({
-        dailyResultList: [
-          {
-            "impressions": 0,
-            "clicks": 0,
-            "conversions": 0,
-            "averageCostPerClick": 0,
-            "costs": 0,
-            "sales": 0,
-            "date": "string"
-          }
-      ]})
-    : res.send({
-      dailyResultList: [
-        {
-          impressions: 12,
-          clicks: 1256,
-          conversions: 1504,
-          averageCostPerClick: 75,
-          costs: 8778,
-          sales: 548,
-          date: '2020-10-22',
-        },
-        {
-          impressions: 76,
-          clicks: 12,
-          conversions: 12,
-          averageCostPerClick: 10,
-          costs: 120,
-          sales: 24000,
-          date: '2020-10-23',
-        },
-        {
-          impressions: 66,
-          clicks: 250,
-          conversions: 104,
-          averageCostPerClick: 175,
-          costs: 107,
-          sales: 568,
-          date: '2020-10-24',
-        },
-        {
-          impressions: 112,
-          clicks: 17,
-          conversions: 11,
-          averageCostPerClick: 445,
-          costs: 1897,
-          sales: 668,
-          date: '2020-10-25',
-        },
-        {
-          impressions: 56,
-          clicks: 256,
-          conversions: 154,
-          averageCostPerClick: 145,
-          costs: 897,
-          sales: 5668,
-          date: '2020-10-26',
-        },
-        {
-          impressions: 120,
-          clicks: 80,
-          conversions: 0,
-          averageCostPerClick: 101,
-          costs: 180,
-          sales: 4450,
-          date: '2020-10-27',
-        },
-      ],
-    });
-    res.end();
+    let results = dailyResultsEmpty;
+
+    if (req.query.startDate === '00/00/0000') {
+      results = dailyResultsDatas
+    } else if (req.query.startDate === '22/22/2222') {
+      results = dailyResultsBigDatas
+    } else if (req.query.startDate === '11/11/1111') {
+      res.status(500)
+    }
+    res.send(results)
   });
 
   router.get('/ads-reporting/campaigns-performances', (req, res) => {

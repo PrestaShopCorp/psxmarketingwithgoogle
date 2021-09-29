@@ -21,7 +21,8 @@ export const ApiError:any = Template.bind({});
 ApiError.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
-    console.log('plop', this.$store.state.googleAds);
+    // fake date that will be intercepted by the storybook middleware to return results
+    this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = '11/11/1111';
   },
 };
 
