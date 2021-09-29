@@ -32,6 +32,7 @@
       v-if="!selectedFilters"
       class="ps_gs-checkbox ps_gs-filters__item-checkbox"
       :name="`${item.name}Checkbox`"
+      v-model="item.checked"
       @change="checkboxClicked($event, item)"
       inline
     >
@@ -101,18 +102,13 @@ export default {
       }
     },
     checkboxClicked(state, value) {
-      console.log('value', value);
-      console.log('state', state);
       const payload = {value, state};
       this.$root.$emit('dimensionClicked', payload);
     },
-    // TODO: handle checkboxes
-    // ! Checkboxes are not handled at all
     deselectFilter(item) {
       this.$root.$emit('removeDimension', item);
     },
     countChildren(item) {
-      // TODO: check if function is OK to count items
       const tableOfCHildren = [];
 
       // eslint-disable-next-line

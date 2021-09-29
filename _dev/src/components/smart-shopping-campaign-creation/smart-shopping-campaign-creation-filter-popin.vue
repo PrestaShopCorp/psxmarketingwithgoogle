@@ -102,24 +102,15 @@ export default {
     return {
       availableFilters: {
         name: 'All filters',
+        checked: false,
         children: [
-          {
-            name: 'Bidding category',
-            children: [],
-          },
         ],
       },
       dimensionsSelected: [
       ],
-      valuesSelected: [
-      ],
       selectedFilters: {
         name: 'All filters',
         children: [
-          {
-            name: 'Bidding category',
-            children: [],
-          },
         ],
       },
     };
@@ -130,8 +121,8 @@ export default {
         this.dimensionsSelected.length,
         [this.dimensionsSelected.length]);
       const textValuesSelected = this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
-        this.valuesSelected.length,
-        [this.valuesSelected.length]);
+        this.selectedFilters.children.length,
+        [this.selectedFilters.children.length]);
       return `${textDimensionsSelected} - ${textValuesSelected}`;
     },
     // TODO Getting datas
@@ -139,42 +130,75 @@ export default {
   },
   methods: {
     selectAll() {
-      // TODO: handle select all
+      this.availableFilters.checked = true;
+      this.availableFilters.children.forEach((el) => {
+        el.checked = true;
+      });
+      this.selectedFilters.children = [...this.availableFilters.children];
     },
     deleteItem(item) {
-      // find index and remove element in children array
-      const filter = this.selectedFilters.children.find((el) => el.name === 'Bidding category');
-      const findIndex = filter.children.findIndex((el) => el.localizedName === item.localizedName);
-      filter.children.splice(findIndex, 1);
+      if (item.children) {
+        this.deselectAll();
+      } else {
+        const filters = this.selectedFilters.children;
+        const searchCtg = filters.findIndex((el) => el.localizedName === item.localizedName);
+        if (searchCtg !== -1) {
+          this.uncheckCategory(item);
+          filters.splice(searchCtg, 1);
+        }
+      }
     },
     getDimensionsChoosen(payload) {
-      // find the main category
-      const filter = this.selectedFilters.children.find((el) => el.name === 'Bidding category');
-      // check if checkbox is checked
-      if (payload.state === false) {
-        this.deleteItem(payload.value);
+      if (payload.value.children) {
+        if (payload.state === false) {
+          this.deselectAll();
+        } else {
+          this.selectAll();
+        }
       } else {
-        filter.children.push({
-          name: payload.value.localizedName,
-          ...payload.value,
-        });
+        if (payload.state === false) {
+          this.deleteItem(payload.value);
+        } else {
+          this.selectOne(payload.value);
+        }
+
       }
     },
     deselectAll() {
-      // TODO: handle deselect all
+      this.availableFilters.checked = false;
+      this.availableFilters.children.forEach((item) => {
+        item.checked = false;
+      });
+      this.selectedFilters.children = [];
+    },
+    uncheckCategory(ctg) {
+      this.availableFilters.children.find((el) => {
+        if (ctg.localizedName === el.localizedName) {
+          el.checked = false;
+        }
+      });
+    },
+    selectOne(ctg) {
+      const findCtg = this.selectedFilters.children.find((el) => el.localizedName === ctg.localizedName);
+      if (!findCtg) {
+        this.selectedFilters.children.push({
+          name: ctg.localizedName,
+          ...ctg,
+        });
+        this.selectedFilters.children.sort((a, b) => a.localizedName > b.localizedName && 1 || -1);
+      }
     },
   },
   mounted() {
     this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
       res.categories.forEach((element) => {
-        if (element.resourceName.search('BinddingCategory')) {
-          const dimensions = this.availableFilters.children.find((el) => el.name === 'Bidding category');
-          dimensions.children.push({
-            name: element.localizedName,
-            ...element,
-          });
-        }
+        this.availableFilters.children.push({
+          name: element.localizedName,
+          ...element,
+          checked: false,
+        });
       });
+      this.availableFilters.children.sort((a, b) => a.localizedName > b.localizedName && 1 || -1);
     });
     this.$root.$on('removeDimension', ((el) => this.deleteItem(el)));
     this.$root.$on('dimensionClicked', ((el) => this.getDimensionsChoosen(el)));
