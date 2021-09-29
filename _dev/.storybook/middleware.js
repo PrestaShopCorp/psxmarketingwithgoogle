@@ -1,23 +1,15 @@
+const {kpisEmpty, kpiDatas} = require('./mock/kpi.js');
+
 module.exports = function (router) {
   router.get('/ads-reporting/kpis/', (req, res) => {
-    req.query.startDate == '00/00/0000' ?
-      res.send({
-        impressions: 0,
-        clicks: 0,
-        conversions: 0,
-        averageCostPerClick: 0,
-        costs: 0,
-        sales: 0,
-      })
-    : res.send({
-        impressions: 32,
-        clicks: 750,
-        conversions: 658,
-        averageCostPerClick: 0.2,
-        costs: 321,
-        sales: 18,
-      });
-    res.end();
+    let results = kpisEmpty;
+
+    if (req.query.startDate === '00/00/0000') {
+      results = kpiDatas
+    } else if (req.query.startDate === '11/11/1111') {
+      res.status(500)
+    }
+    res.send(results)
   });
 
   router.get('/ads-reporting/daily-results/', (req, res) => {
