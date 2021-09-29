@@ -57,30 +57,35 @@
         </b-tr>
       </b-thead>
       <b-tbody class="bg-white">
-        <tr v-if="errorWithApi">
-          <td :colspan="campaignHeaderList.length">
-            <KeyMetricsErrorMessage />
-          </td>
-        </tr>
-        <ReportingTableEmptyMessage
-          v-if="!errorWithApi && !loading && campaignList.length === 0"
-          :colspan="campaignHeaderList.length"
-          :text="$t('campaigns.productsPerformanceTable.emptyListText')"
-        />
-        <ProductsPerformanceTableRow
-          v-else
-          v-for="(campaign, key, index) in campaignList"
-          :campaign="campaign"
-          :key="index"
-        />
-        <b-tr v-if="loading">
-          <b-td
+        <template v-if="errorWithApi">
+          <tr>
+            <td :colspan="campaignHeaderList.length">
+              <KeyMetricsErrorMessage />
+            </td>
+          </tr>
+        </template>
+        <template v-else>
+          <ReportingTableEmptyMessage
+            v-if="campaignList.length === 0"
             :colspan="campaignHeaderList.length"
-            class="ps_gs-table-products__loading-slot"
-          >
-            <i class="ps_gs-table-products__spinner">loading</i>
-          </b-td>
-        </b-tr>
+            :text="$t('campaigns.productsPerformanceTable.emptyListText')"
+          />
+          <ProductsPerformanceTableRow
+            v-else
+            v-for="(campaign, key, index) in campaignList"
+            :campaign="campaign"
+            :key="index"
+          />
+
+          <b-tr v-if="loading">
+            <b-td
+              :colspan="campaignHeaderList.length"
+              class="ps_gs-table-products__loading-slot"
+            >
+              <i class="ps_gs-table-products__spinner">loading</i>
+            </b-td>
+          </b-tr>
+        </template>
       </b-tbody>
     </b-table-simple>
   </div>

@@ -294,7 +294,7 @@ export default {
     },
     fieldsEmpty() {
       if (this.selectedDescriptiveName
-       && this.selectedTimeZone
+        && this.selectedTimeZone
         && this.selectedCurrency
         && this.newAccountInfos.country
       ) {
