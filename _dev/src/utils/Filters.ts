@@ -53,7 +53,6 @@ Vue.filter(
     if (!currencyCode) {
       return '--';
     }
-    console.log(currencyCode);
     return Intl.NumberFormat(window.i18nSettings.languageCode, {
       style: 'currency',
       currency: currencyCode,
