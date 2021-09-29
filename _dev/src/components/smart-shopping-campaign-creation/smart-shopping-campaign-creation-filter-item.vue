@@ -101,6 +101,8 @@ export default {
       }
     },
     checkboxClicked(state, value) {
+      console.log('value', value);
+      console.log('state', state);
       const payload = {value, state};
       this.$root.$emit('dimensionClicked', payload);
     },
