@@ -94,7 +94,7 @@ export default {
   mounted() {
     this.getDatas()
       .then(() => {
-        if (!this.googleAdsIsChosen) {
+        if (!this.googleAdsIsChosen?.billingSettings?.isSet) {
           this.$router.push({
             name: 'onboarding',
           });

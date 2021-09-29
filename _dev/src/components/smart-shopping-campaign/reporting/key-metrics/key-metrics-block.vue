@@ -24,6 +24,7 @@
           <b-button
             size="sm"
             variant="primary"
+            @click="redirectToCreateCampaign"
           >
             {{ $t('cta.createCampaign') }}
           </b-button>
@@ -88,6 +89,11 @@ export default {
     fetchKpisAndGraph() {
       this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_KPIS');
       this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_DAILY_RESULTS');
+    },
+    redirectToCreateCampaign() {
+      this.$router.push({
+        name: 'campaign-creation',
+      });
     },
   },
 };
