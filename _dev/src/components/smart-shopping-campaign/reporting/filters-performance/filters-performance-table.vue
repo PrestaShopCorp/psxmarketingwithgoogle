@@ -139,6 +139,13 @@ export default {
       }
       this.queryOrderDirection = newOrderDirection;
     },
+    fetchProductsPartitionsPerformances() {
+      this.loading = true;
+      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES')
+        .finally(() => {
+          this.loading = false;
+        });
+    },
   },
   created() {
     this.fetchProductsPartitionsPerformances();
@@ -163,14 +170,5 @@ export default {
       },
     },
   },
-  methods: {
-    fetchProductsPartitionsPerformances() {
-      this.loading = true;
-      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES')
-        .finally(() => {
-          this.loading = false;
-        });
-    }
-  }
 };
 </script>

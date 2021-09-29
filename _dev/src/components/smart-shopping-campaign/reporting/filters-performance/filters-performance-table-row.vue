@@ -46,7 +46,7 @@ export default {
   computed: {
     currency() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
-    }
-  }
+    },
+  },
 };
 </script>
