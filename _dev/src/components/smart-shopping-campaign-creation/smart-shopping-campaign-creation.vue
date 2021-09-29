@@ -305,7 +305,10 @@
         </div>
       </b-form>
     </b-card-body>
-    <SmartShoppingCampaignCreationFilterPopin ref="SmartShoppingCampaignCreationFilterPopin" />
+    <SmartShoppingCampaignCreationFilterPopin
+      @selectFilters="getDimensionsFiltered"
+      ref="SmartShoppingCampaignCreationFilterPopin"
+    />
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
@@ -332,7 +335,14 @@ export default {
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
       campaignProductsFilter: null,
-      filtersChosen: [],
+      filtersChosen: [{
+        dimension: 'category',
+        values: [],
+      }],
+      filtersChosenSummary: [{
+        dimension: 'category',
+        values: [],
+      }],
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
@@ -357,7 +367,7 @@ export default {
       && this.campaignDurationStartDate
       && this.countries
       && (this.campaignProductsFilter === true
-      || (this.campaignProductsFilter === false && this.filtersChosen.length))
+      || (this.campaignProductsFilter === false && this.filtersChosen[0].values.length))
       && this.campaignDailyBudget) {
         return false;
       }
@@ -425,7 +435,7 @@ export default {
         endDate: this.campaignDurationEndDate,
         // Countries is still an array because refacto later for multiple countries
         targetCountry: this.$store.getters['app/GET_ACTIVE_COUNTRIES'][0],
-        productFilters: [],
+        productFilters: this.filtersChosen,
       };
     },
     budgetCurrencySymbol() {
@@ -455,6 +465,14 @@ export default {
     cancel() {
       this.$router.push({
         name: 'campaign',
+      });
+    },
+    getDimensionsFiltered(dimensions) {
+      this.filtersChosen[0].values = [];
+      this.filtersChosenSummary[0].values = [];
+      dimensions.forEach((el) => {
+        this.filtersChosen[0].values.push(Number(el.id));
+        this.filtersChosenSummary[0].values.push(el.name);
       });
     },
     openPopinRecap() {

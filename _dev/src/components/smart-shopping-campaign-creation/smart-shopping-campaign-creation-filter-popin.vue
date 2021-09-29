@@ -2,6 +2,7 @@
   <ps-modal
     id="SmartShoppingCampaignCreationFilterPopin"
     ref="modal"
+    @ok="sendDimensionsSelected"
     v-bind="$attrs"
     cancel-variant="invisible font-weight-normal"
   >
@@ -77,7 +78,9 @@
     <template slot="modal-cancel">
       {{ $t("cta.cancel") }}
     </template>
-    <template slot="modal-ok">
+    <template
+      slot="modal-ok"
+    >
       {{ $t("cta.validate") }}
     </template>
   </ps-modal>
@@ -135,6 +138,9 @@ export default {
         el.checked = true;
       });
       this.selectedFilters.children = [...this.availableFilters.children];
+    },
+    sendDimensionsSelected() {
+      this.$emit('selectFilters', this.selectedFilters.children);
     },
     deleteItem(item) {
       if (item.children) {
