@@ -57,30 +57,36 @@
         </b-tr>
       </b-thead>
       <b-tbody class="bg-white">
-        <tr v-if="errorWithApi">
-          <td :colspan="partitionHeaderList.length">
-            <KeyMetricsErrorMessage />
-          </td>
-        </tr>
-        <ReportingTableEmptyMessage
-          v-if="!errorWithApi && !loading && partitionList.length === 0"
-          :colspan="partitionHeaderList.length"
-          :text="$t('campaigns.filtersPerformanceTable.emptyListText')"
-        />
-        <FiltersPerformanceTableRow
-          v-else
-          v-for="(partition, key, index) in partitionList"
-          :partition="partition"
-          :key="index"
-        />
-        <b-tr v-if="loading">
-          <b-td
+        <template v-if="errorWithApi">
+          <tr>
+            <td :colspan="partitionHeaderList.length">
+              <KeyMetricsErrorMessage />
+            </td>
+          </tr>
+        </template>
+
+        <template v-else>
+          <ReportingTableEmptyMessage
+            v-if="partitionList.length === 0"
             :colspan="partitionHeaderList.length"
-            class="ps_gs-table-products__loading-slot"
-          >
-            <i class="ps_gs-table-products__spinner">loading</i>
-          </b-td>
-        </b-tr>
+            :text="$t('campaigns.filtersPerformanceTable.emptyListText')"
+          />
+          <FiltersPerformanceTableRow
+            v-else
+            v-for="(partition, key, index) in partitionList"
+            :partition="partition"
+            :key="index"
+          />
+
+          <b-tr v-if="loading">
+            <b-td
+              :colspan="partitionHeaderList.length"
+              class="ps_gs-table-products__loading-slot"
+            >
+              <i class="ps_gs-table-products__spinner">loading</i>
+            </b-td>
+          </b-tr>
+        </template>
       </b-tbody>
     </b-table-simple>
   </div>
