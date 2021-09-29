@@ -87,7 +87,7 @@ export default {
     };
   },
   created() {
-    this.fetchGraph()
+    this.fetchGraph();
   },
   computed: {
     dailyResultTypeList() {
@@ -140,6 +140,9 @@ export default {
     metricsIsEmpty() {
       return this.getMetrics.length === 0;
     },
+    currencyCode() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currencyCode;
+    }
   },
   methods: {
     fetchGraph() {
@@ -154,7 +157,7 @@ export default {
         return value;
       }
 
-      return this.$options.filters.formatPrice(value);
+      return this.$options.filters.formatPrice(value, this.currencyCode);
     },
   },
 };

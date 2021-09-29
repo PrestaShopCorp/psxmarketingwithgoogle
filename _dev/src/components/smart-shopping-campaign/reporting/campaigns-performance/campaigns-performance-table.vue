@@ -104,7 +104,6 @@ import CampaignsPerformanceTableRow from './campaigns-performance-table-row.vue'
 import CampaignPerformanceHeaderType from '@/enums/reporting/CampaignPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import KeyMetricsErrorMessage from '../key-metrics/key-metrics-error-message.vue';
-import TablePageControls from '../../../commons/table-page-controls.vue';
 
 export default {
   name: 'CampaignsPerformanceTable',
@@ -113,7 +112,6 @@ export default {
     ReportingTableEmptyMessage,
     CampaignsPerformanceTableRow,
     KeyMetricsErrorMessage,
-    TablePageControls,
   },
   data() {
     return {

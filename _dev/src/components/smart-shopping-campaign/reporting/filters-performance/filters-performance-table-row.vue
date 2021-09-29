@@ -16,11 +16,11 @@
     <b-td class="text-right ps_gs-fz-12">
       {{ partition.clicks }}
     </b-td>
-    <b-td class="text-right ps_gs-fz-12">
-      {{ partition.costs|formatPrice }}
+    <b-td class="ps_gs-fz-12">
+      {{ partition.costs|formatPrice(currency) }}
     </b-td>
-    <b-td class="text-right ps_gs-fz-12">
-      {{ partition.averageCostPerClick|formatPrice }}
+    <b-td class="ps_gs-fz-12">
+      {{ partition.averageCostPerClick|formatPrice(currency) }}
     </b-td>
     <b-td class="text-right ps_gs-fz-12">
       {{ partition.conversions }}
@@ -28,8 +28,8 @@
     <b-td class="text-right ps_gs-fz-12">
       {{ partition.conversionsRate }}
     </b-td>
-    <b-td class="text-right ps_gs-fz-12">
-      {{ partition.sales|formatPrice }}
+    <b-td class="ps_gs-fz-12">
+      {{ partition.sales|formatPrice(currency) }}
     </b-td>
   </b-tr>
 </template>
@@ -43,5 +43,10 @@ export default {
       required: true,
     },
   },
+  computed: {
+    currency() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+    }
+  }
 };
 </script>

@@ -22,6 +22,7 @@ export const ApiError:any = Template.bind({});
 ApiError.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    console.log('plop', this.$store.state.googleAds);
   },
 };
 

@@ -10,6 +10,9 @@
         {{ campaign.name }}
       </b-button>
     </b-td>
+    <b-td class="ps_gs-fz-12">
+      {{ campaign.budget|formatPrice(currencyCode) }}
+    </b-td>
     <b-td
       class="ps_gs-fz-12 ps_gs-cell-status"
       :class="`ps_gs-cell-status--${campaign.status.toLowerCase()}`"
@@ -25,14 +28,14 @@
     <b-td class="text-right ps_gs-fz-12">
       {{ campaign.clicks }}
     </b-td>
-    <b-td class="text-right ps_gs-fz-12">
-      {{ campaign.adSpend|formatPrice }}
+    <b-td class="ps_gs-fz-12">
+      {{ campaign.adSpend|formatPrice(currencyCode) }}
     </b-td>
     <b-td class="text-right ps_gs-fz-12">
       {{ campaign.conversions }}
     </b-td>
-    <b-td class="text-right ps_gs-fz-12">
-      {{ campaign.sales|formatPrice }}
+    <b-td class="ps_gs-fz-12">
+      {{ campaign.sales|formatPrice(currencyCode) }}
     </b-td>
   </b-tr>
 </template>
@@ -46,5 +49,10 @@ export default {
       required: true,
     },
   },
+  computed: {
+    currencyCode() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currencyCode;
+    }
+  }
 };
 </script>

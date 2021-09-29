@@ -49,16 +49,14 @@ Vue.filter(
   }));
 
 Vue.filter(
-  'formatPrice', (value: number) => {
-    const googleAdsAccount = store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
-
-    if (!googleAdsAccount) {
+  'formatPrice', (value: number, currencyCode) => {
+    if (!currencyCode) {
       return '--';
     }
-
+    console.log(currencyCode);
     return Intl.NumberFormat(window.i18nSettings.languageCode, {
       style: 'currency',
-      currency: googleAdsAccount.currencyCode,
+      currency: currencyCode,
     }).format(value);
   });
 

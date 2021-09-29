@@ -10,6 +10,7 @@ module.exports = function (router) {
     });
     res.end();
   });
+
   router.get('/ads-reporting/daily-results/', (req, res) => {
     res.send({
       dailyResultList: [
@@ -216,3 +217,4 @@ module.exports = function (router) {
     res.end();
   });
 }
+

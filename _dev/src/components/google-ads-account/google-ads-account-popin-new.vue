@@ -15,14 +15,14 @@
       class="my-1"
       v-if="stepActiveData === 1"
     >
-      <h6 class="ps_gs-fz-16 font-weight-600 mb-1">
+      <h6 class="mb-1 ps_gs-fz-16 font-weight-600">
         {{ $t("googleAdsAccountNew.email.title") }}
       </h6>
       <VueShowdown
-        class="mb-3 pb-2"
+        class="pb-2 mb-3"
         :markdown="$t('googleAdsAccountNew.email.description')"
       />
-      <div class="d-flex align-items-center p-3 border rounded">
+      <div class="p-3 border rounded d-flex align-items-center">
         <img
           :src="user.details.picture"
           :alt="user.details.email"
@@ -38,15 +38,15 @@
       v-else-if="stepActiveData === 2"
     >
       <section class="mb-3">
-        <h6 class="ps_gs-fz-16 mb-0 font-weight-600">
+        <h6 class="mb-0 ps_gs-fz-16 font-weight-600">
           {{ $t("googleAdsAccountNew.business.title") }}
         </h6>
         <VueShowdown
-          class="mb-3 pb-2"
+          class="pb-2 mb-3"
           :markdown="$t('googleAdsAccountNew.business.description')"
         />
         <label
-          class="font-weight-600 mb-0"
+          class="mb-0 font-weight-600"
           for="name"
         >
           {{ $t("googleAdsAccountNew.business.name") }}
@@ -60,7 +60,7 @@
           size="sm"
         />
         <label
-          class="font-weight-600 mb-0"
+          class="mb-0 font-weight-600"
           for="selectBillingCountry"
         >
           {{ $t("googleAdsAccountNew.business.labelCountry") }}
@@ -71,7 +71,7 @@
           :default-country="countries"
         />
         <label
-          class="font-weight-600 mb-0 mt-3 pt-2"
+          class="pt-2 mt-3 mb-0 font-weight-600"
           for="selectTimezone"
         >
           {{ $t('googleAdsAccountNew.business.labelTimeZone') }}
@@ -97,7 +97,7 @@
             :value="option"
             @click="selectedTimeZone = index"
             variant="dark"
-            link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+            link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
           >
             <span class="mr-2">
               {{ option + ' - ' + index }}
@@ -105,7 +105,7 @@
           </b-dropdown-item>
         </b-dropdown>
         <label
-          class="font-weight-600 mb-0 mt-3 pt-2"
+          class="pt-2 mt-3 mb-0 font-weight-600"
           for="selectCurrency"
         >
           {{ $t("googleAdsAccountNew.business.labelCurrency") }}
@@ -131,7 +131,7 @@
             :value="option"
             @click="selectedCurrency = option"
             variant="dark"
-            link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+            link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
           >
             <span class="mr-2">
               {{ option }}
@@ -144,11 +144,11 @@
       class="my-1"
       v-if="stepActiveData === 3"
     >
-      <h6 class="ps_gs-fz-16 font-weight-600 mb-1">
+      <h6 class="mb-1 ps_gs-fz-16 font-weight-600">
         {{ $t("googleAdsAccountNew.terms.title") }}
       </h6>
       <VueShowdown
-        class="mb-3 pb-2"
+        class="pb-2 mb-3"
         :markdown="
           $t('googleAdsAccountNew.terms.description', [
             $options.googleUrl.googleAdsTermsAndCondition,
