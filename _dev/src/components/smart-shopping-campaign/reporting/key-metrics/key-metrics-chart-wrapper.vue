@@ -26,8 +26,8 @@
     </div>
     <div>
       <div
-        v-if="metricsIsEmpty"
-        class="py-3 text-center"
+        v-if="metricsIsEmpty || !checkDataInDateRange"
+        class="text-center py-3"
       >
         <span>{{ $t('keymetrics.noData') }}</span>
       </div>
@@ -38,7 +38,7 @@
         <Chart
           type="bar"
           :data="getDataSetsByMetric"
-          :options="options"
+          :options="chartOptions"
         />
       </b-card>
     </div>
@@ -54,20 +54,22 @@ export default {
   components: {
     Chart,
   },
-  data() {
-    return {
-      options: {
+  computed: {
+    chartOptions() {
+      return {
         scales: {
-          yAxes: {
+          y: {
             ticks: {
               callback: (value) => this.getFormattedValue(value),
             },
           },
-          xAxes: {
+          x: {
             type: 'time',
             time: {
               unit: 'day',
             },
+            min: this.$store.getters['smartShoppingCampaigns/GET_REPORTING_START_DATES'],
+            max: this.$store.getters['smartShoppingCampaigns/GET_REPORTING_END_DATES'],
           },
         },
         plugins: {
@@ -81,10 +83,8 @@ export default {
             display: false,
           },
         },
-      },
-    };
-  },
-  computed: {
+      };
+    },
     dailyResultTypeList() {
       return Object.values(KpiType);
     },
@@ -110,9 +110,21 @@ export default {
             backgroundColor: '#442CC7',
             borderColor: '#442CC7',
             borderWidth: 1,
+            maxBarThickness: 100,
           },
         ],
       };
+    },
+    checkDataInDateRange() {
+      const startDate = new Date(this.$store.getters['smartShoppingCampaigns/GET_REPORTING_START_DATES']);
+      const endDate = new Date(this.$store.getters['smartShoppingCampaigns/GET_REPORTING_END_DATES']);
+
+      const dateMatchExists = this.getLabels.some((date) => {
+        const dateFormat = new Date(date);
+        return dateFormat >= startDate && dateFormat <= endDate;
+      });
+
+      return dateMatchExists;
     },
     getMetrics() {
       return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_DAILY_RESULT'];
