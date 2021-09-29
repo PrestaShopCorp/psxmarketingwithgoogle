@@ -29,7 +29,7 @@ class TemplateBuffer
      */
     private $session;
 
-    public function __construct()
+    public function init()
     {
         $this->session = new Session();
         $this->session->start();
