@@ -56,6 +56,7 @@
 <script>
 import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
+import VueAdBlockDetect from 'vue-adblock-detect';
 
 export default {
   name: 'Home',
@@ -89,6 +90,17 @@ export default {
       this.$root.identifySegment();
     },
   },
+  mixins: [VueAdBlockDetect],
+  beforeMount(){
+    this.detectAdBlock().then((response)=>{
+        if(response){
+          //ad blocker detected
+          console.log('ad bloker detected', response)
+        }else{
+          console.log('NO ad bloker detected', response)
+        }
+      })
+  }
 };
 </script>
 
