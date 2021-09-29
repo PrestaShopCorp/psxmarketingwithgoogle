@@ -22,7 +22,8 @@
             <h6 class="ps_gs-fz-16 font-weight-normal">
               {{ $t('smartShoppingCampaignCreation.labelDimensionValue') }}
             </h6>
-            <ul class="ps_gs-filters">
+            <ul class="ps_gs-filters"
+            >
               <SmartShoppingCampaignCreationFilterItem
                 :item="availableFilters"
                 :is-open-by-default="true"
@@ -39,7 +40,7 @@
             </h6>
             <ul class="ps_gs-filters">
               <SmartShoppingCampaignCreationFilterItem
-                :item="selectedFilters"
+                :item="filteredFilters"
                 :is-open-by-default="true"
                 :selected-filters="true"
               />
@@ -110,6 +111,7 @@ export default {
         'Tutu',
         'Tartiflette',
       ],
+      selectedFilters: {},
     };
   },
   computed: {
@@ -127,119 +129,151 @@ export default {
     availableFilters() {
       return {
         name: 'All filters',
+        checked: null,
+        indeterminate: false,
         children: [
-          {
-            name: 'Bidding category',
-          },
-          {
-            name: 'Canonical condition',
-            children: [
-              {
-                name: 'NEW',
-              },
-              {
-                name: 'USED',
-              },
-              {
-                name: 'REFURBISHED',
-              },
-              {
-                name: 'UNKNOWN',
-              },
-            ],
-          },
-          {
-            name: 'Brands',
-            children: [
-              {
-                name: 'Nike',
-                children: [
-                  {
-                    name: 'tutu',
-                  },
-                  {
-                    name: 'tata',
-                  },
-                ],
-              },
-              {
-                name: 'Reebok',
-              },
-              {
-                name: 'Jouet Club',
-                children: [
-                  {
-                    name: 'Hasbro',
-                  },
-                  {
-                    name: 'Mattel',
-                  },
-                  {
-                    name: 'Kenner',
-                  },
-                  {
-                    name: 'Poly pocket',
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            name: 'Custom attribute',
-          },
-          {
-            name: 'Offer ID',
-          },
-          {
-            name: 'Product type',
-          },
-        ],
+      {
+        checked: false,
+        name: "Animaux et articles pour animaux de compagnie"
+      },
+      {
+        checked: false,
+        name: "Arts et loisirs"
+      },
+      {
+        checked: false,
+        name: "Entreprise et industrie"
+      },
+      {
+        checked: false,
+        name: "Appareils photo, caméras et instruments d'optique"
+      },
+      {
+        checked: false,
+        name: "Vêtements et accessoires"
+      },
+      {
+        checked: false,
+        name: "Appareils électroniques"
+      },
+      {
+        checked: false,
+        name: "Alimentation, boissons et tabac"
+      },
+      {
+        checked: false,
+        name: "Meubles"
+      },
+      {
+        checked: false,
+        name: "Santé et beauté"
+      },
+      {
+        checked: false,
+        name: "Maison et jardin"
+      },
+      {
+        checked: false,
+        name: "Bébés et tout-petits"
+      },
+      {
+        checked: false,
+        name: "Quincaillerie"
+      },
+      {
+        checked: false,
+        name: "Adulte"
+      },
+      {
+        checked: false,
+        name: "Médias"
+      },
+      {
+        checked: false,
+        name: "Véhicules et accessoires"
+      },
+      {
+        checked: false,
+        name: "Fournitures de bureau"
+      },
+      {
+        checked: false,
+        name: "Équipements sportifs"
+      },
+      {
+        checked: false,
+        name: "Jeux et jouets"
+      },
+      {
+        checked: false,
+        name: "Logiciels"
+      },
+      {
+        checked: false,
+        name: "Bagages et maroquinerie"
+      },
+      {
+        checked: false,
+        name: "Offices religieux et cérémonies"
+      }
+        ]
       };
     },
     // TODO Getting datas
     // TODO Adding translation
-    selectedFilters() {
+    filteredFilters() {
       return {
         name: 'All filters',
-        children: [
-          {
-            name: 'Canonical condition',
-            children: [
-              {
-                name: 'NEW',
-              },
-            ],
-          },
-          {
-            name: 'Brands',
-            children: [
-              {
-                name: 'Nike',
-                children: [
-                  {
-                    name: 'tutu',
-                  },
-                  {
-                    name: 'tata',
-                  },
-                ],
-              },
-              {
-                name: 'Reebok',
-              },
-            ],
-          },
-        ],
+        checked: false,
+        children: this.selectedFilters.children.filter(item => item.checked === true || item.checked === null)
       };
     },
   },
   methods: {
     selectAll() {
       // TODO: handle select all
+      this.selectedFilters.checked = true;
+      this.selectedFilters.children.forEach(element => {
+          element.checked = true;
+      });
+      this.selectedFilters.indeterminate = false;
     },
     deselectAll() {
       // TODO: handle deselect all
+      this.selectedFilters.checked = false;
+      this.selectedFilters.children.forEach(element => {
+          element.checked = false;
+      });
+      this.selectedFilters.indeterminate = false;
     },
+    selectCheckbox: function(event) {
+      if (event.name === 'All filters') {
+        this.checked = event.checked;
+        this.selectedFilters.children.forEach(element => {
+          element.checked = event.checked
+        });
+      };
+      this.selectedFilters.children.forEach(element => {
+        if (element.name === event.name) {
+          element.checked = event.checked
+        }
+      });
+      let isIndeterminate = [];
+      this.selectedFilters.children.forEach(element => {
+        isIndeterminate.push(element.checked)
+      });
+      let newarr = isIndeterminate.filter((x, y) => isIndeterminate.indexOf(x) == y);
+      if(newarr.length === 2) this.selectedFilters.indeterminate = true;
+      else {
+        this.selectedFilters.indeterminate = false
+      }
+    }
+  },
+  beforeMount() {
+    this.selectedFilters = this.availableFilters
+  },
+  mounted() {
+    this.$root.$on('tutu', this.selectCheckbox)
   },
 };
 </script>

@@ -32,6 +32,9 @@
       class="ps_gs-checkbox ps_gs-filters__item-checkbox"
       :name="`${item.name}Checkbox`"
       inline
+      :checked="item.checked"
+      @input="selectCheckbox"
+      :indeterminate="item.indeterminate"
     >
       {{ item.name }}
     </b-form-checkbox>
@@ -42,7 +45,7 @@
       <b-button
         variant="invisible"
         class="px-1 py-0 border-0 ps_gs-fz-10"
-        @click="deselectFilter(item)"
+        @click="deselectFilter()"
       >
         <i class="material-icons">close</i>
         <span class="sr-only">
@@ -66,7 +69,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'SmartShoppingCampaignCreationFilterItem',
   data() {
@@ -86,6 +88,10 @@ export default {
       default: false,
       required: false,
     },
+    checked: {
+      type: Boolean,
+      required: false,
+    },
   },
   computed: {
     isFolder() {
@@ -100,9 +106,12 @@ export default {
     },
     // TODO: handle checkboxes
     // ! Checkboxes are not handled at all
-    deselectFilter(item) {
+    deselectFilter(event) {
       // TODO: fn to deselect an item
-      console.log(item);
+      this.$root.$emit('tutu', {
+        name: this.item.name,
+        checked: false
+      })
     },
     countChildren(item) {
       // TODO: check if function is OK to count items
@@ -120,6 +129,12 @@ export default {
 
       fillTableOfChildren(item);
       return tableOfCHildren.length;
+    },
+    selectCheckbox(event) {
+      this.$root.$emit('tutu', {
+        name: this.item.name,
+        checked: event
+      })
     },
   },
 };
