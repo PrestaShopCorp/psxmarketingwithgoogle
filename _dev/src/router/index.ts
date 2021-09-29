@@ -4,7 +4,6 @@ import Store from '../store';
 import CampaignPage from '../views/campaign-page.vue';
 import Configuration from '../views/configuration.vue';
 import Debug from '../views/debug.vue';
-import AdBlocker from '../views/blocker-page.vue';
 import Help from '../views/help.vue';
 import OnboardingPage from '../views/onboarding-page.vue';
 import ProductFeedPage from '../views/product-feed-page.vue';
@@ -12,8 +11,6 @@ import ReportingPage from '../views/reporting-page.vue';
 import TunnelProductFeed from '../views/tunnel-product-feed.vue';
 
 Vue.use(VueRouter);
-
-
 
 const initialPath = (to, from, next) => {
   if (from.path === '/'
@@ -35,7 +32,8 @@ const routes: Array<RouteConfig> = [
   {
     path: '/configuration/onboarding',
     name: 'onboarding',
-    component: OnboardingPage,  },
+    component: OnboardingPage,
+  },
   {
     path: '/configuration/product-feed-settings',
     name: 'product-feed-settings',
@@ -85,11 +83,6 @@ const routes: Array<RouteConfig> = [
     path: '/debug',
     name: 'Debug',
     component: Debug,
-  },
-  {
-    path: '/blocker',
-    name: 'ad-blocker',
-    component: AdBlocker,
   },
   {
     path: '/',

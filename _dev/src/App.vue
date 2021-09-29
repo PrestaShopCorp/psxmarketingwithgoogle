@@ -89,7 +89,6 @@ export default {
       this.$root.identifySegment();
     },
   },
- 
 };
 </script>
 
