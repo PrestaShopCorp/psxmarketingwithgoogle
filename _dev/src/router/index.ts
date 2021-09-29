@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter, {RouteConfig} from 'vue-router';
-import VueAdBlockDetect from 'vue-adblock-detect';
 import Store from '../store';
 import CampaignPage from '../views/campaign-page.vue';
 import Configuration from '../views/configuration.vue';
@@ -14,22 +13,7 @@ import TunnelProductFeed from '../views/tunnel-product-feed.vue';
 
 Vue.use(VueRouter);
 
-const verifyAdBlocker = (to, from, next) => {
-  console.log('hey');
-  next();
-//   setTimeout(function() {
-//   VueAdBlockDetect.methods.detectAdBlock().then((response) => {
-//     if (response) {
-//       // ad blocker detected
-//       console.log('ad bloker detected', response);
-//       next({name: 'ad-blocker'});
-//     } else {
-//       console.log('NO ad bloker detected');
-//       next();
-//     }
-//   });
-// }, 10000);  
-};
+
 
 const initialPath = (to, from, next) => {
   if (from.path === '/'
@@ -47,21 +31,15 @@ const routes: Array<RouteConfig> = [
     path: '/configuration',
     name: 'configuration',
     component: Configuration,
-    beforeEnter: verifyAdBlocker,
-
   },
   {
     path: '/configuration/onboarding',
     name: 'onboarding',
-    component: OnboardingPage,
-    beforeEnter: verifyAdBlocker,
-  },
+    component: OnboardingPage,  },
   {
     path: '/configuration/product-feed-settings',
     name: 'product-feed-settings',
     component: TunnelProductFeed,
-    beforeEnter: verifyAdBlocker,
-
   },
   {
     path: '/help',
@@ -72,50 +50,36 @@ const routes: Array<RouteConfig> = [
     path: '/product-feed',
     name: 'product-feed',
     component: ProductFeedPage,
-    beforeEnter: verifyAdBlocker,
-
   },
   {
     path: '/product-feed/status',
     name: 'product-feed-status',
     component: ProductFeedPage,
-    beforeEnter: verifyAdBlocker,
-
   },
   {
     path: '/campaign',
     name: 'campaign',
     component: CampaignPage,
-    beforeEnter: verifyAdBlocker,
-
   },
   {
     path: '/campaign/creation',
     name: 'campaign-creation',
     component: CampaignPage,
-    beforeEnter: verifyAdBlocker,
-
   },
   {
     path: '/campaign/list',
     name: 'campaign-list',
     component: CampaignPage,
-    beforeEnter: verifyAdBlocker,
-
   },
   {
     path: '/campaign/edit/:name',
     name: 'campaign-edition',
     component: CampaignPage,
-    beforeEnter: verifyAdBlocker,
-
   },
   {
     path: '/reporting',
     name: 'reporting',
     component: ReportingPage,
-    beforeEnter: verifyAdBlocker,
-
   },
   {
     path: '/debug',
