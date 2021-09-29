@@ -155,13 +155,10 @@ export default {
         } else {
           this.selectAll();
         }
+      } else if (payload.state === false) {
+        this.deleteItem(payload.value);
       } else {
-        if (payload.state === false) {
-          this.deleteItem(payload.value);
-        } else {
-          this.selectOne(payload.value);
-        }
-
+        this.selectOne(payload.value);
       }
     },
     deselectAll() {
@@ -172,20 +169,24 @@ export default {
       this.selectedFilters.children = [];
     },
     uncheckCategory(ctg) {
-      this.availableFilters.children.find((el) => {
+      this.availableFilters.children.forEach((el) => {
         if (ctg.localizedName === el.localizedName) {
           el.checked = false;
         }
       });
     },
     selectOne(ctg) {
-      const findCtg = this.selectedFilters.children.find((el) => el.localizedName === ctg.localizedName);
+      const findCtg = this.selectedFilters.children.find(
+        (el) => el.localizedName === ctg.localizedName,
+      );
       if (!findCtg) {
         this.selectedFilters.children.push({
           name: ctg.localizedName,
           ...ctg,
         });
-        this.selectedFilters.children.sort((a, b) => a.localizedName > b.localizedName && 1 || -1);
+        this.selectedFilters.children.sort(
+          (a, b) => (a.localizedName > b.localizedName ? 1 : -1),
+        );
       }
     },
   },
@@ -198,7 +199,9 @@ export default {
           checked: false,
         });
       });
-      this.availableFilters.children.sort((a, b) => a.localizedName > b.localizedName && 1 || -1);
+      this.availableFilters.children.sort(
+        (a, b) => (a.localizedName > b.localizedName ? 1 : -1),
+      );
     });
     this.$root.$on('removeDimension', ((el) => this.deleteItem(el)));
     this.$root.$on('dimensionClicked', ((el) => this.getDimensionsChoosen(el)));
