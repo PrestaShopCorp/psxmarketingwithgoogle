@@ -62,7 +62,7 @@
           }}
         </b-dropdown-item-button>
         <b-dropdown-item
-          :href="$options.googleUrl.googleAdsAccount"
+          :href="linkToCampaignOverview"
           target="_blank"
           link-class="external_link-no_icon"
         >
@@ -97,6 +97,9 @@ export default {
     },
     campaignProducts() {
       return this.$t('smartShoppingCampaignCreation.inputAllSyncedProducts');
+    },
+    linkToCampaignOverview() {
+      return `${this.$options.googleUrl.googleAdsCampaignOverview}${this.campaign.id}`;
     },
     // No need for this since we can't filter yet
     // campaignProducts() {
