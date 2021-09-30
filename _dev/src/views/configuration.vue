@@ -21,18 +21,12 @@ export default defineComponent({
   },
   props: {
   },
-  data() {
-    return {
-    };
-  },
   created() {
     this.$root.$on('onHideLanding', () => {
       this.$router.push({
         name: 'onboarding',
       });
     });
-  },
-  methods: {
   },
   computed: {
     psAccountsIsOnboarded() {

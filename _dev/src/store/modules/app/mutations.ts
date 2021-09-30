@@ -34,4 +34,8 @@ export default {
   [MutationsTypes.SET_SELECTED_TARGET_COUNTRY](state: LocalState, payload: Array<string>) {
     state.targetCountries = payload;
   },
+  [MutationsTypes.AD_BLOCKER_EXISTS](state: LocalState, payload) {
+    console.log('pay', typeof(payload), payload.TypeError);
+    state.adBlockerExists = !state.adBlockerExists;
+  },
 };

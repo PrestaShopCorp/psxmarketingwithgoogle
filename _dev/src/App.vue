@@ -1,5 +1,19 @@
 <template>
   <div id="psxMktgWithGoogleApp">
+      <template v-if="adBlockerExist">
+         <b-card
+      no-body
+      class="ps_gs-onboardingcard px-0"
+    >
+      <b-card-header
+        header-tag="h3"
+        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
+      >
+      Veuillez désactiver votre adblocker svp pour faire fonctionner le module correctement
+      </b-card-header>
+         </b-card>
+    </template>
+      <template v-else>
     <div class="ps_gs-sticky-head">
       <Menu>
         <!-- eslint-disable-next-line -->
@@ -50,6 +64,7 @@
     >
       {{ shopId }}
     </div>
+    </template>
   </div>
 </template>
 
@@ -80,9 +95,13 @@ export default {
     shopId() {
       return window.shopIdPsAccounts;
     },
+      adBlockerExist() {
+      return this.$store.getters['app/GET_ADD_BLOCKER_STATUS']
+    }
   },
   created() {
     this.$root.identifySegment();
+    this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
   },
   watch: {
     $route() {

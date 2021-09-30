@@ -20,6 +20,7 @@
 enum ActionsTypes {
   REQUEST_DOC_AND_FAQ = 'REQUEST_DOC_AND_FAQ',
   REQUEST_DEBUG_DATA = 'REQUEST_DEBUG_DATA',
+  CHECK_FOR_AD_BLOCKER = 'CHECK_FOR_AD_BLOCKER'
 }
 
 export {ActionsTypes as default};

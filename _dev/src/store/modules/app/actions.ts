@@ -67,4 +67,29 @@ export default {
       console.error(error);
     }
   },
+  async [ActionsTypes.CHECK_FOR_AD_BLOCKER](
+    {
+      commit,
+      rootState,
+    },
+  ) {
+    try {
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+      
+      if (!resp.ok) {
+        throw new HttpClientError(resp.statusText, resp.status);
+      }
+    } catch (error) {
+        commit(MutationsTypes.AD_BLOCKER_EXISTS, error)
+      console.error(error);
+    }
+  },
 };
