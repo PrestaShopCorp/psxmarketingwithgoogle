@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter, {RouteConfig} from 'vue-router';
+import * as Sentry from '@sentry/vue';
 import Store from '../store';
 import CampaignPage from '../views/campaign-page.vue';
 import Configuration from '../views/configuration.vue';
@@ -101,6 +102,14 @@ const router = new VueRouter({
   scrollBehavior(to, from, savedPosition) {
     return {x: 0, y: 0};
   },
+});
+
+Sentry.init({
+  Vue,
+  // @ts-ignore
+  dsn: global.psxMktgWithGoogleDsnSentry,
+  tracesSampleRate: 1.0,
+  logErrors: true,
 });
 
 export default router;

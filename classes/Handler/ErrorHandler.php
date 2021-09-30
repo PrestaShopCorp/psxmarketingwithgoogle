@@ -45,7 +45,7 @@ class ErrorHandler
         $module = Module::getInstanceByName('psxmarketingwithgoogle');
 
         $this->client = new ModuleFilteredRavenClient(
-            Config::PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS,
+            Config::PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_PHP,
             [
                 'level' => 'warning',
                 'tags' => [
