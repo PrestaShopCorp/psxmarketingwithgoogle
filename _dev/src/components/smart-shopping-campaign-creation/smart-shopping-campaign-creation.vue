@@ -177,6 +177,22 @@
           id="campaign-products-filter-fieldset"
           label-class="h4 font-weight-600 border-0 bg-transparent"
         >
+          <template v-if="filtersChosen.length">
+            <div
+              v-for="(filter, index) in filtersChosenSummary"
+              :key="index"
+            >
+              <template>
+                titre : {{ filter.dimension }}
+                <div
+                  v-for="(oneValue, indexValue) in filter.values"
+                  :key="indexValue"
+                >
+                  value : {{ oneValue }}
+                </div>
+              </template>
+            </div>
+          </template>
           <b-form-radio
             v-model="campaignProductsFilter"
             name="campaign-product-filter-radios"
@@ -316,6 +332,7 @@
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
+      :filters-chosen-summary="filtersChosenSummary"
       @openPopinSSCCreated="onCampaignCreated"
       @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
     />
@@ -341,6 +358,7 @@ export default {
       campaignDurationEndDate: null,
       campaignProductsFilter: true,
       filtersChosen: [],
+      filtersChosenSummary: [],
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
@@ -508,7 +526,14 @@ export default {
       });
     },
     getDimensionsFiltered(dimensions) {
-      console.log('dimensions', dimensions);
+      this.filtersChosen = Array.from([{
+        dimension: 'category',
+        values: [],
+      }]);
+      this.filtersChosenSummary = Array.from([{
+        dimension: 'category',
+        values: [],
+      }]);
       this.filtersChosen[0].values = [];
       this.filtersChosenSummary[0].values = [];
       dimensions.forEach((el) => {

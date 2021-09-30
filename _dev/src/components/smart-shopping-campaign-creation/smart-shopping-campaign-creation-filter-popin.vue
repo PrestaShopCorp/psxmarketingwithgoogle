@@ -90,11 +90,6 @@ import PsModal from '../commons/ps-modal';
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
 
 export default {
-  /**
-   * TODO:
-   * Handle all events:  close, click on cancel, click on ok, etc...
-   */
-
   name: 'SmartShoppingCampaignCreationFilterPopin',
   components: {
     PsModal,
@@ -102,29 +97,16 @@ export default {
   },
   data() {
     return {
-      // TODO see if this is the correct way to store selected filters
-      dimensionsSelected: [
-        'biddingCategory',
-        'brands,',
-      ],
-      valuesSelected: [
-        'Adidas',
-        'Reebok',
-        'Tutu',
-        'Tartiflette',
-      ],
       selectedFilters: {},
     };
   },
   computed: {
     textFiltersSelected() {
-      const textDimensionsSelected = this.$i18n.tc('smartShoppingCampaignCreation.nbDimensionSelected',
-        this.dimensionsSelected.length,
-        [this.dimensionsSelected.length]);
+      // TODO We only have 1 dimension for now but need refacto for the text when more
       const textValuesSelected = this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
-        this.valuesSelected.length,
-        [this.valuesSelected.length]);
-      return `${textDimensionsSelected} - ${textValuesSelected}`;
+        this.filteredFilters.children.length,
+        [this.filteredFilters.children.length]);
+      return `${textValuesSelected}`;
     },
     availableFilters() {
       return {
@@ -170,16 +152,13 @@ export default {
         });
       };
       if (event.id === 'allFilters') {
-        console.log('event', event);
         this.checked = event.checked;
         checkChildren(this.selectedFilters.children);
       }
       this.selectedFilters.children.forEach((element) => {
         if (element.id === event.id) {
           element.checked = event.checked;
-          if (!element.children) {
-            console.log('hey');
-          } else {
+          if (element.children) {
             checkChildren(element.children);
           }
         }
@@ -200,14 +179,13 @@ export default {
       }
     },
     sendDimensionsSelected() {
-      this.$emit('selectFilters', this.selectedFilters.children);
+      this.$emit('selectFilters', this.filteredFilters.children);
     },
   },
   beforeMount() {
     this.selectedFilters = this.availableFilters;
   },
   mounted() {
-    console.log('hhhhh');
     this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
       res.categories.forEach((element) => {
         this.availableFilters.children.push({

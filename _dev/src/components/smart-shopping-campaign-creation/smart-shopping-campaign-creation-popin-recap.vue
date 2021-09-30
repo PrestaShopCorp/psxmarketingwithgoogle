@@ -53,12 +53,12 @@
         {{ $t('smartShoppingCampaignCreation.recapFiltersLabel') }}
       </dt>
       <dd class="text-secondary mb-3">
-        <template v-if="newCampaign.productFilters.length === 0">
+        <template v-if="newCampaign.productFilters[0].values.length === 0">
           {{ $t('smartShoppingCampaignCreation.recapNoFiltersDescription') }}
         </template>
         <template v-else>
           <div
-            v-for="(filter, index) in newCampaign.productFilters"
+            v-for="(filter, index) in filtersChosenSummary"
             :key="index"
           >
             <template>
@@ -123,6 +123,10 @@ export default {
     newCampaign: {
       required: true,
       type: Object,
+    },
+    filtersChosenSummary: {
+      required: false,
+      type: Array,
     },
   },
 
