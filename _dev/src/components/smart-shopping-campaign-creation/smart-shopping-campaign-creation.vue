@@ -365,7 +365,11 @@ export default {
       return true;
     },
     campaignNameFeedback() {
+<<<<<<< HEAD
       if (!this.campaignName?.length || this.errorCampaignNameExistsAlready === null) {
+=======
+      if (this.stillTyping || !this.campaignName) {
+>>>>>>> 691d53d3 (Fix : ssc creation)
         return null;
       }
       if (this.campaignName
@@ -375,13 +379,24 @@ export default {
       ) {
         return true;
       }
+<<<<<<< HEAD
 
       return false;
+=======
+      if (this.campaignName
+        && this.campaignName.length <= 125
+       && this.campaignName.length > 0
+        && this.errorCampaignNameExistsAlready === true
+      ) {
+        return false;
+      }
+      return undefined;
+>>>>>>> 691d53d3 (Fix : ssc creation)
     },
     campaignDailyBudgetFeedback() {
       // TODO
       // I'm just looking for digit, validation should be way better than that
-      const regex = /^[0-9]+([.|,][0-9]{0,2})?$/g;
+      const regex = /^[0-9]+([.][0-9]{0,2})?$/g;
       if (this.campaignDailyBudget === null
         || this.campaignDailyBudget === ''
       ) {
