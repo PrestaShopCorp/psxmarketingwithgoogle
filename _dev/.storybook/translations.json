@@ -9,6 +9,7 @@
         "catalog" : "Product catalog",
         "help" : "Help"
       },
+      "adblockerActivated" : "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",
       "refreshPage" : "Refresh page",
       "mandatory" : "are mandatory",
       "XIsMandatory" : "{0} is mandatory.",

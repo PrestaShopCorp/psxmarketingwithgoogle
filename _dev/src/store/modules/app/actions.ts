@@ -74,7 +74,7 @@ export default {
     },
   ) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts`,
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/check-adblocker`,
         {
           method: 'GET',
           headers: {
@@ -83,13 +83,10 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
-      
-      if (!resp.ok) {
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
     } catch (error) {
-        commit(MutationsTypes.AD_BLOCKER_EXISTS, error)
-      console.error(error);
+      if (error instanceof TypeError && error.message === 'Failed to fetch') {
+        commit(MutationsTypes.AD_BLOCKER_EXISTS);
+      }
     }
   },
 };

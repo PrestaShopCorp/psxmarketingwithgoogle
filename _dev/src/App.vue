@@ -1,69 +1,69 @@
 <template>
   <div id="psxMktgWithGoogleApp">
-      <template v-if="adBlockerExist">
-         <b-card
-      no-body
-      class="ps_gs-onboardingcard px-0"
-    >
-      <b-card-header
-        header-tag="h3"
-        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
+    <template v-if="adBlockerExist">
+      <b-card
+        no-body
+        class="ps_gs-onboardingcard px-0"
       >
-      Veuillez désactiver votre adblocker svp pour faire fonctionner le module correctement
-      </b-card-header>
-         </b-card>
+        <b-card-header
+          header-tag="h3"
+          header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
+        >
+          {{ $t('general.adblockerActivated') }}
+        </b-card-header>
+      </b-card>
     </template>
-      <template v-else>
-    <div class="ps_gs-sticky-head">
-      <Menu>
-        <!-- eslint-disable-next-line -->
+    <template v-else>
+      <div class="ps_gs-sticky-head">
+        <Menu>
+          <!-- eslint-disable-next-line -->
         <!-- We display the tab if user has remarketing tag in the module OR already set elsewhere -->
-        <template
-          v-if="googleAdsChosen
-            && (remarketingTagStatus || remarketingTagAlreadyExistsStatus)"
-        >
-          <MenuItem
-            :route="{name: 'reporting'}"
+          <template
+            v-if="googleAdsChosen
+              && (remarketingTagStatus || remarketingTagAlreadyExistsStatus)"
           >
-            {{ $t('general.tabs.reporting') }}
-          </MenuItem>
-        </template>
-        <template v-if="productFeedIsConfigured">
+            <MenuItem
+              :route="{name: 'reporting'}"
+            >
+              {{ $t('general.tabs.reporting') }}
+            </MenuItem>
+          </template>
+          <template v-if="productFeedIsConfigured">
+            <MenuItem
+              :route="{name: 'product-feed'}"
+            >
+              {{ $t('general.tabs.productFeed') }}
+            </MenuItem>
+            <MenuItem
+              v-if="googleAdsChosen"
+              :route="{name: 'campaign'}"
+            >
+              {{ $t('general.tabs.campaign') }}
+            </MenuItem>
+          </template>
           <MenuItem
-            :route="{name: 'product-feed'}"
+            :route="{name: 'configuration'}"
           >
-            {{ $t('general.tabs.productFeed') }}
+            {{ $t('general.tabs.configuration') }}
           </MenuItem>
           <MenuItem
-            v-if="googleAdsChosen"
-            :route="{name: 'campaign'}"
+            :route="{name: 'help'}"
           >
-            {{ $t('general.tabs.campaign') }}
+            {{ $t('general.tabs.help') }}
           </MenuItem>
-        </template>
-        <MenuItem
-          :route="{name: 'configuration'}"
-        >
-          {{ $t('general.tabs.configuration') }}
-        </MenuItem>
-        <MenuItem
-          :route="{name: 'help'}"
-        >
-          {{ $t('general.tabs.help') }}
-        </MenuItem>
-      </Menu>
-      <b-toaster
-        name="b-toaster-top-right"
-        class="ps_gs-toaster-top-right"
-      />
-    </div>
-    <router-view />
-    <div
-      v-if="shopId"
-      id="helper-shopid"
-    >
-      {{ shopId }}
-    </div>
+        </Menu>
+        <b-toaster
+          name="b-toaster-top-right"
+          class="ps_gs-toaster-top-right"
+        />
+      </div>
+      <router-view />
+      <div
+        v-if="shopId"
+        id="helper-shopid"
+      >
+        {{ shopId }}
+      </div>
     </template>
   </div>
 </template>
@@ -95,9 +95,9 @@ export default {
     shopId() {
       return window.shopIdPsAccounts;
     },
-      adBlockerExist() {
-      return this.$store.getters['app/GET_ADD_BLOCKER_STATUS']
-    }
+    adBlockerExist() {
+      return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
+    },
   },
   created() {
     this.$root.identifySegment();
