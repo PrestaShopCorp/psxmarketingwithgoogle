@@ -264,7 +264,7 @@ export default {
     dispatch(ActionsTypes.REQUEST_SYNCHRONISATION, true);
   },
 
-  async [ActionsTypes.REQUEST_GOOGLE_SYNCHRONISATION](rootState) {
+  async [ActionsTypes.REQUEST_GOOGLE_SYNCHRONISATION]({rootState}) {
     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/force-now`, {
       method: 'POST',
       headers: {

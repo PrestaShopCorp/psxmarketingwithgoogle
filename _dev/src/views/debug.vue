@@ -122,7 +122,7 @@
             <b-button
               class="mt-3 mr-3"
               variant="primary"
-              @click="triggerGoogleSync()"
+              @click="triggerGoogleSync"
               :disabled="triggerOfSyncForbidden"
             >
               Trigger synchronisation<br>
@@ -241,7 +241,8 @@ export default {
       try {
         await this.$store.dispatch('productFeed/REQUEST_SYNCHRONISATION', full);
         this.sync.requested = true;
-      } catch {
+      } catch (err) {
+        console.error(err);
         this.sync.error = true;
       } finally {
         this.sync.loading = false;
@@ -253,7 +254,8 @@ export default {
       try {
         await this.$store.dispatch('productFeed/REQUEST_GOOGLE_SYNCHRONISATION');
         this.sync.requested = true;
-      } catch {
+      } catch (err) {
+        console.error(err);
         this.sync.error = true;
       } finally {
         this.sync.loading = false;
