@@ -37,7 +37,9 @@
           :description="$t('smartShoppingCampaignCreation.inputNameHelper')"
           label-for="campaign-name-input"
           label-class="d-flex align-items-center font-weight-600"
-        >
+          :state="campaignNameFeedback"
+          :invalid-feedback="$t('smartShoppingCampaignCreation.inputCampaignNameInvalidFeedback')"
+      >
           <template #label>
             {{ $t('smartShoppingCampaignCreation.inputNameLabel') }}
             <b-button
@@ -55,10 +57,9 @@
             id="campaign-name-input"
             @keyup="debounceName()"
             v-model="campaignName"
+            :state="campaignNameFeedback"
             :placeholder="$t('smartShoppingCampaignCreation.inputNamePlaceholder')"
             class="maxw-sm-420"
-            :state="campaignNameFeedback"
-            :invalid-feedback="$t('smartShoppingCampaignCreation.inputCampaignNameInvalidFeedback')"
           />
         </b-form-group>
         <b-form-group
@@ -364,18 +365,19 @@ export default {
       return true;
     },
     campaignNameFeedback() {
-      if (!this.campaignName === null || this.errorCampaignNameExistsAlready === null) {
+
+      if (!this.campaignName?.length  || this.errorCampaignNameExistsAlready === null) {
         return null;
       }
       if (this.campaignName
         && this.campaignName.length <= 125
-       && this.campaignName.length > 0
+        && this.campaignName.length > 0
         && this.errorCampaignNameExistsAlready === false
       ) {
         return true;
       }
 
-      return null;
+      return false;
     },
     campaignDailyBudgetFeedback() {
       // TODO
@@ -501,7 +503,7 @@ export default {
   },
   watch: {
     campaignName(oldVal, newVal) {
-      if ((newVal !== oldVal) && this.errorCampaignNameExistsAlready !== null) {
+      if ((newVal !== oldVal) && this.errorCampaignNameExistsAlready === true) {
         this.$store.commit('smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS', false);
       }
     },
