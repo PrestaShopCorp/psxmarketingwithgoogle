@@ -21,7 +21,7 @@ import dayjs from 'dayjs';
 import KpiType from '@/enums/reporting/KpiType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 
 export interface State {
   campaigns: Array<CampaignObject>;
@@ -43,8 +43,8 @@ export interface ProductsFilteredObject {
 }
 
 export interface CampaignStatusPayload {
-  campaignName: string,
-  status: CampaignStatus
+  id: number,
+  status: CampaignStatusToggle,
 }
 export interface CampaignObject {
   id: number,
@@ -55,8 +55,9 @@ export interface CampaignObject {
   dailyBudget : number,
   currencyCode: string,
   productFilters?: ProductsFilteredObject,
-  status?: CampaignStatus
+  status?: CampaignStatus|CampaignStatusToggle
 }
+
 export interface Reporting {
   request: RequestParams;
   results: ResultsRequest;
