@@ -60,21 +60,20 @@ export default {
       required: true,
     },
   },
+  computed: {
+    currencyCode() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currencyCode;
+    },
+  },
   methods: {
     getFormattedValue() {
-      const googleAdsAccount = this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
-
-      if (!googleAdsAccount) {
-        return '--';
-      }
-
       if (this.kpiType === KpiType.CLICKS
         || this.kpiType === KpiType.CONVERSIONS
         || this.kpiType === KpiType.IMPRESSIONS) {
         return this.kpiValue;
       }
 
-      return this.$options.filters.formatPrice(this.kpiValue);
+      return this.$options.filters.formatPrice(this.kpiValue, this.currencyCode);
     },
   },
 };

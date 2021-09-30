@@ -54,37 +54,10 @@ export default {
   components: {
     Chart,
   },
+  created() {
+    this.fetchGraph();
+  },
   computed: {
-    chartOptions() {
-      return {
-        scales: {
-          y: {
-            ticks: {
-              callback: (value) => this.getFormattedValue(value),
-            },
-          },
-          x: {
-            type: 'time',
-            time: {
-              unit: 'day',
-            },
-            min: this.$store.getters['smartShoppingCampaigns/GET_REPORTING_START_DATES'],
-            max: this.$store.getters['smartShoppingCampaigns/GET_REPORTING_END_DATES'],
-          },
-        },
-        plugins: {
-          tooltip: {
-            callbacks: {
-              label: (context) => this.getFormattedValue(
-                context.dataset.data[context.dataIndex]),
-            },
-          },
-          legend: {
-            display: false,
-          },
-        },
-      };
-    },
     dailyResultTypeList() {
       return Object.values(KpiType);
     },
@@ -135,8 +108,44 @@ export default {
     metricsIsEmpty() {
       return this.getMetrics.length === 0;
     },
+    currencyCode() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currencyCode;
+    },
+    chartOptions() {
+      return {
+        scales: {
+          y: {
+            ticks: {
+              callback: (value) => this.getFormattedValue(value),
+            },
+          },
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day',
+            },
+            min: this.$store.getters['smartShoppingCampaigns/GET_REPORTING_START_DATES'],
+            max: this.$store.getters['smartShoppingCampaigns/GET_REPORTING_END_DATES'],
+          },
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: (context) => this.getFormattedValue(
+                context.dataset.data[context.dataIndex]),
+            },
+          },
+          legend: {
+            display: false,
+          },
+        },
+      };
+    },
   },
   methods: {
+    fetchGraph() {
+      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_DAILY_RESULTS');
+    },
     getFormattedValue(value) {
       const selectedKpi = this.$store.getters['smartShoppingCampaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
 
@@ -146,7 +155,7 @@ export default {
         return value;
       }
 
-      return this.$options.filters.formatPrice(value);
+      return this.$options.filters.formatPrice(value, this.currencyCode);
     },
   },
 };

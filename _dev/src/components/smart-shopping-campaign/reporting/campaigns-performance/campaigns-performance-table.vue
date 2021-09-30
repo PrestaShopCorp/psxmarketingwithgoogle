@@ -197,7 +197,7 @@ export default {
       },
       set(orderDirection) {
         this.$store.commit('smartShoppingCampaigns/SET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING', orderDirection);
-        this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES');
+        this.fetchCampaigns();
       },
     },
   },

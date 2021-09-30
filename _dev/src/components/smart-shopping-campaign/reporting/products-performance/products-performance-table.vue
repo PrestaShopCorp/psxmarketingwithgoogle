@@ -98,8 +98,6 @@ import ProductsPerformanceTableRow from './products-performance-table-row.vue';
 import ProductPerformanceHeaderType from '@/enums/reporting/ProductPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import KeyMetricsErrorMessage from '../key-metrics/key-metrics-error-message.vue';
-import ActionsTypes from '@/store/modules/smart-shopping-campaigns/actions-types';
-import MutationsTypes from '@/store/modules/smart-shopping-campaigns/mutations-types';
 
 export default {
   name: 'ProductsPerformanceTable',
@@ -115,19 +113,6 @@ export default {
     };
   },
   created() {
-    this.$store.subscribeAction((action) => {
-      if (action.type.split('/').pop() === ActionsTypes.GET_REPORTING_PRODUCTS_PERFORMANCES) {
-        this.loading = true;
-      }
-    });
-
-    this.$store.subscribe((mutation) => {
-      if (mutation.type.split('/').pop() === MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES) {
-        this.loading = false;
-      }
-    });
-  },
-  mounted() {
     this.fetchProductsPerformances();
   },
   methods: {
@@ -180,7 +165,7 @@ export default {
       },
       set(orderDirection) {
         this.$store.commit('smartShoppingCampaigns/SET_REPORTING_PRODUCT_PERFORMANCES_ORDERING', orderDirection);
-        this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PERFORMANCES');
+        this.fetchProductsPerformances();
       },
     },
   },
