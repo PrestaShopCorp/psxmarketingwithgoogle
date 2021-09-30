@@ -39,7 +39,7 @@
           label-class="d-flex align-items-center font-weight-600"
           :state="campaignNameFeedback"
           :invalid-feedback="$t('smartShoppingCampaignCreation.inputCampaignNameInvalidFeedback')"
-      >
+        >
           <template #label>
             {{ $t('smartShoppingCampaignCreation.inputNameLabel') }}
             <b-button
@@ -365,8 +365,7 @@ export default {
       return true;
     },
     campaignNameFeedback() {
-
-      if (!this.campaignName?.length  || this.errorCampaignNameExistsAlready === null) {
+      if (!this.campaignName?.length || this.errorCampaignNameExistsAlready === null) {
         return null;
       }
       if (this.campaignName
