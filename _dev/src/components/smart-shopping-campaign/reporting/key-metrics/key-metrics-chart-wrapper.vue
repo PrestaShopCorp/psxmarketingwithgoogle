@@ -83,8 +83,8 @@ export default {
             display: false,
           },
         },
-      },
-    };
+      };
+    },
   },
   created() {
     this.fetchGraph();

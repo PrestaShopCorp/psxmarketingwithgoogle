@@ -1,5 +1,5 @@
-const {kpisEmpty, kpiDatas} = require('./mock/kpi.js');
-const {dailyResultsEmpty, dailyResultsDatas, dailyResultsBigDatas} = require('./mock/daily-results.js');
+const {kpisEmpty, kpiDatas} = require('./mock/reporting/kpi.js');
+const {dailyResultsEmpty, dailyResultsDatas, dailyResultsBigDatas} = require('./mock/reporting/daily-results.js');
 
 module.exports = function (router) {
   router.get('/ads-reporting/kpis/', (req, res) => {
