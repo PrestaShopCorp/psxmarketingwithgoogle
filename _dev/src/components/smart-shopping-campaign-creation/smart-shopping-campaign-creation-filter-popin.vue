@@ -268,11 +268,21 @@ export default {
     // TODO Getting datas
     // TODO Adding translation
     filteredFilters() {
+
+      let filter = function(array, fn) {
+        return array.reduce((r, o) => {
+          var children = filter(o.children || [], fn);
+          if (fn(o) || children.length) r.push(Object.assign({}, o, children.length && { children }));
+          return r;
+        }, []);
+      }
+
       return {
         name: 'All filters',
         id: 'allFilters',
         checked: false,
-        children: this.selectedFilters.children.filter(item => item.checked === true || item.checked === null)
+        children: filter(this.selectedFilters.children, ({ checked }) => checked === true)
+        // children: this.selectedFilters.children.filter(item => item.checked === true || item.checked === null)
       };
     },
   },
@@ -309,6 +319,29 @@ export default {
         this.checked = event.checked;
         checkChildren(this.selectedFilters.children)
       };
+
+      const checkChildren2 = function(arr) {
+        arr.forEach(element => {
+          if (element.id === event.id) {
+            element.checked = event.checked
+            if (!element.children) {
+              return
+            }
+            else {
+              checkChildren(element.children)
+            }
+          }
+          else {
+            if (!element.children) {
+              return
+            }
+            else {
+              checkChildren2(element.children)
+            }
+          }
+        });
+
+      }
       this.selectedFilters.children.forEach(element => {
         if (element.id === event.id) {
           element.checked = event.checked
@@ -318,6 +351,13 @@ export default {
           else {
             checkChildren(element.children)
           }
+        } else {
+          if (!element.children) {
+            return
+          }
+          else {
+            checkChildren2(element.children)
+          }
         }
       });
 
@@ -326,6 +366,7 @@ export default {
           element.checked = event.checked
         }
       });
+
       let isIndeterminate = [];
       this.selectedFilters.children.forEach(element => {
         isIndeterminate.push(element.checked)
