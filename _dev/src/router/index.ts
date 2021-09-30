@@ -111,8 +111,8 @@ Sentry.init({
   tracesSampleRate: 1.0,
   logErrors: true,
   initialScope: {
-    user: { id: window.shopIdPsAccounts ? window.shopIdPsAccounts.toString() : 'unknown' },
-  }
+    user: {id: window.shopIdPsAccounts ? window.shopIdPsAccounts.toString() : 'unknown'},
+  },
 });
 
 export default router;
