@@ -136,7 +136,7 @@ jobs:
       env:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-        SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT_PHP }}
       with:
         environment: production
         version: ${{ github.ref }}
@@ -163,7 +163,7 @@ jobs:
       env:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-        SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT_JS }}
       with:
         environment: production
         version: ${{ github.ref }}
