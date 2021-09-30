@@ -433,7 +433,7 @@ class PsxMktgWithGoogleTranslations
                 'inputFiltersPartialLabel' => $this->module->l('Select products using product partition filters', 'PsxMktgWithGoogleTranslations'),
                 'inputFiltersHelper' => $this->module->l('Take some time to [read Google Shopping ads policies]({0})[:target=\"_blank\"] some product are prohibited or restricted.', 'PsxMktgWithGoogleTranslations'),
                 'inputBudgetHelper' => $this->module->l('You will only pay if someone clicks your ad.', 'PsxMktgWithGoogleTranslations'),
-                'inputBudgetInvalidFeedback' => $this->module->l('Your daily budget must be a valid number greater than 1.', 'PsxMktgWithGoogleTranslations'),
+                'inputBudgetInvalidFeedback' => $this->module->l('Your daily budget must be a valid number greater than 1. For any decimal number, please use a dot as separator.', 'PsxMktgWithGoogleTranslations'),
                 'inputBudgetFeedback' => $this->module->l('Daily campaign budget', 'PsxMktgWithGoogleTranslations'),
                 'inputBudgetTooltip' => $this->module->l('Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time.', 'PsxMktgWithGoogleTranslations'),
                 'inputBudgetPlaceholder' => $this->module->l('Amount', 'PsxMktgWithGoogleTranslations'),
