@@ -436,7 +436,7 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      commit(MutationsTypes.SAVE_SSC_LIST, json);
+      commit(MutationsTypes.SAVE_SSC_LIST, json.campaigns);
     } catch (error) {
       console.error(error);
     }
