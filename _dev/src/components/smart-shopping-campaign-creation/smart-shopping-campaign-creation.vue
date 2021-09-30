@@ -188,7 +188,7 @@
           <b-form-radio
             v-model="campaignProductsFilter"
             name="campaign-product-filter-radios"
-            disabled
+            :value="false"
           >
             {{ $t('smartShoppingCampaignCreation.inputFiltersPartialLabel') }}
           </b-form-radio>
@@ -309,7 +309,10 @@
         </div>
       </b-form>
     </b-card-body>
-    <SmartShoppingCampaignCreationFilterPopin ref="SmartShoppingCampaignCreationFilterPopin" />
+    <SmartShoppingCampaignCreationFilterPopin
+      ref="SmartShoppingCampaignCreationFilterPopin"
+      @selectFilters="getDimensionsFiltered"
+    />
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
@@ -363,7 +366,7 @@ export default {
       && this.campaignDurationStartDate
       && this.targetCountry
       && (this.campaignProductsFilter === true
-      || (this.campaignProductsFilter === false && this.filtersChosen.length))
+      || (this.campaignProductsFilter === false && this.filtersChosen[0].values.length))
       && this.campaignDailyBudget) {
         return false;
       }
@@ -502,6 +505,15 @@ export default {
       await this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
       this.$router.push({
         name: 'campaign-list',
+      });
+    },
+    getDimensionsFiltered(dimensions) {
+      console.log('dimensions', dimensions);
+      this.filtersChosen[0].values = [];
+      this.filtersChosenSummary[0].values = [];
+      dimensions.forEach((el) => {
+        this.filtersChosen[0].values.push(Number(el.id));
+        this.filtersChosenSummary[0].values.push(el.name);
       });
     },
   },

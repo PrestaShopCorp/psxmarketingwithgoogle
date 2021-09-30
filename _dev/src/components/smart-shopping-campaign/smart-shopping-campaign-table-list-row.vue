@@ -88,16 +88,19 @@ export default {
     campaignCountryName() {
       return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];
     },
-    campaignProducts() {
-      return this.$t('smartShoppingCampaignCreation.inputAllSyncedProducts');
-    },
-    // No need for this since we can't filter yet
+    // No need for this since we have only one dimension for now
     // campaignProducts() {
     //   return this.campaign.productFilters?.length
     // eslint-disable-next-line
     //     ? `Selected products(${this.campaign.productFilters.reduce((out, inp) => out + inp.values.length, 0)})`
     //     : this.$t('smartShoppingCampaignCreation.inputAllSyncedProducts');
     // },
+    campaignProducts() {
+      return this.campaign.productFilters?.length
+        // eslint-disable-next-line
+        ? `Selected products (${this.campaign.productFilters.length})`
+        : this.$t('smartShoppingCampaignCreation.inputAllSyncedProducts');
+    },
   },
   methods: {
     goToCampaignPage() {
@@ -125,6 +128,7 @@ export default {
       };
       this.$store.dispatch('smartShoppingCampaigns/CHANGE_STATUS_OF_SSC', payload);
     },
+
   },
   googleUrl,
 };

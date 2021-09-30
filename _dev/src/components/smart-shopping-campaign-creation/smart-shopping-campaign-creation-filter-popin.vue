@@ -3,6 +3,7 @@
     id="SmartShoppingCampaignCreationFilterPopin"
     ref="modal"
     v-bind="$attrs"
+    @ok="sendDimensionsSelected"
     cancel-variant="invisible font-weight-normal"
   >
     <b-form>
@@ -22,7 +23,9 @@
             <h6 class="ps_gs-fz-16 font-weight-normal">
               {{ $t('smartShoppingCampaignCreation.labelDimensionValue') }}
             </h6>
-            <ul class="ps_gs-filters">
+            <ul
+              class="ps_gs-filters"
+            >
               <SmartShoppingCampaignCreationFilterItem
                 :item="availableFilters"
                 :is-open-by-default="true"
@@ -39,7 +42,7 @@
             </h6>
             <ul class="ps_gs-filters">
               <SmartShoppingCampaignCreationFilterItem
-                :item="selectedFilters"
+                :item="filteredFilters"
                 :is-open-by-default="true"
                 :selected-filters="true"
               />
@@ -110,6 +113,7 @@ export default {
         'Tutu',
         'Tartiflette',
       ],
+      selectedFilters: {},
     };
   },
   computed: {
@@ -122,124 +126,101 @@ export default {
         [this.valuesSelected.length]);
       return `${textDimensionsSelected} - ${textValuesSelected}`;
     },
-    // TODO Getting datas
-    // TODO Adding translation
     availableFilters() {
       return {
         name: 'All filters',
-        children: [
-          {
-            name: 'Bidding category',
-          },
-          {
-            name: 'Canonical condition',
-            children: [
-              {
-                name: 'NEW',
-              },
-              {
-                name: 'USED',
-              },
-              {
-                name: 'REFURBISHED',
-              },
-              {
-                name: 'UNKNOWN',
-              },
-            ],
-          },
-          {
-            name: 'Brands',
-            children: [
-              {
-                name: 'Nike',
-                children: [
-                  {
-                    name: 'tutu',
-                  },
-                  {
-                    name: 'tata',
-                  },
-                ],
-              },
-              {
-                name: 'Reebok',
-              },
-              {
-                name: 'Jouet Club',
-                children: [
-                  {
-                    name: 'Hasbro',
-                  },
-                  {
-                    name: 'Mattel',
-                  },
-                  {
-                    name: 'Kenner',
-                  },
-                  {
-                    name: 'Poly pocket',
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            name: 'Custom attribute',
-          },
-          {
-            name: 'Offer ID',
-          },
-          {
-            name: 'Product type',
-          },
-        ],
+        checked: null,
+        indeterminate: false,
+        id: 'allFilters',
+        children: [],
       };
     },
-    // TODO Getting datas
-    // TODO Adding translation
-    selectedFilters() {
+    filteredFilters() {
       return {
         name: 'All filters',
-        children: [
-          {
-            name: 'Canonical condition',
-            children: [
-              {
-                name: 'NEW',
-              },
-            ],
-          },
-          {
-            name: 'Brands',
-            children: [
-              {
-                name: 'Nike',
-                children: [
-                  {
-                    name: 'tutu',
-                  },
-                  {
-                    name: 'tata',
-                  },
-                ],
-              },
-              {
-                name: 'Reebok',
-              },
-            ],
-          },
-        ],
+        id: 'allFilters',
+        checked: false,
+        children: this.selectedFilters.children.filter(
+          (item) => item.checked === true || item.checked === null),
       };
     },
   },
   methods: {
     selectAll() {
-      // TODO: handle select all
+      this.selectedFilters.checked = true;
+      this.selectedFilters.children.forEach((element) => {
+        element.checked = true;
+      });
+      this.selectedFilters.indeterminate = false;
     },
     deselectAll() {
-      // TODO: handle deselect all
+      this.selectedFilters.checked = false;
+      this.selectedFilters.children.forEach((element) => {
+        element.checked = false;
+      });
+      this.selectedFilters.indeterminate = false;
     },
+    selectCheckbox(event) {
+      const checkChildren = function (arr) {
+        arr.forEach((child) => {
+          child.checked = event.checked;
+          if (child.children) {
+            checkChildren(child.children);
+          }
+        });
+      };
+      if (event.id === 'allFilters') {
+        console.log('event', event);
+        this.checked = event.checked;
+        checkChildren(this.selectedFilters.children);
+      }
+      this.selectedFilters.children.forEach((element) => {
+        if (element.id === event.id) {
+          element.checked = event.checked;
+          if (!element.children) {
+            console.log('hey');
+          } else {
+            checkChildren(element.children);
+          }
+        }
+      });
+      this.selectedFilters.children.forEach((element) => {
+        if (element.id === event.id) {
+          element.checked = event.checked;
+        }
+      });
+      const isIndeterminate = [];
+      this.selectedFilters.children.forEach((element) => {
+        isIndeterminate.push(element.checked);
+      });
+      const newarr = isIndeterminate.filter((x, y) => isIndeterminate.indexOf(x) === y);
+      if (newarr.length === 2) this.selectedFilters.indeterminate = true;
+      else {
+        this.selectedFilters.indeterminate = false;
+      }
+    },
+    sendDimensionsSelected() {
+      this.$emit('selectFilters', this.selectedFilters.children);
+    },
+  },
+  beforeMount() {
+    this.selectedFilters = this.availableFilters;
+  },
+  mounted() {
+    console.log('hhhhh');
+    this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
+      res.categories.forEach((element) => {
+        this.availableFilters.children.push({
+          name: element.localizedName,
+          ...element,
+          checked: false,
+        });
+      });
+      this.availableFilters.children.sort(
+        (a, b) => (a.localizedName > b.localizedName ? 1 : -1),
+      );
+    });
+    this.$root.$on('tutu', this.selectCheckbox);
   },
 };
 </script>
