@@ -20,10 +20,16 @@
     >
       {{ campaign.clicks }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
       {{ campaign.costs|formatPrice(currencyCode) }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td class="text-right ps_gs-fz-12">
+      {{ campaign.averageCostPerClick|formatPrice(currencyCode) }}
+    </b-td>
+    <b-td class="text-right ps_gs-fz-12">
+      {{ campaign.conversions }}
+    </b-td>
+    <b-td class="text-right ps_gs-fz-12">
       {{ campaign.conversionsRate }} %
     </b-td>
     <b-td class="text-right ps_gs-fz-12">
@@ -43,7 +49,7 @@ export default {
   },
   computed: {
     currencyCode() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currencyCode;
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
     },
   },
 };

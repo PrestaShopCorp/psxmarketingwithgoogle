@@ -322,7 +322,7 @@ import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-
 import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
-import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -448,10 +448,16 @@ export default {
   },
   methods: {
     debounceName() {
+      if (!this.campaignName.length) {
+        return;
+      }
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        this.$store.dispatch('smartShoppingCampaigns/CHECK_CAMPAIGN_NAME_ALREADY_EXISTS', this.campaignName);
-      }, 3000);
+        this.$store.dispatch('smartShoppingCampaigns/CHECK_CAMPAIGN_NAME_ALREADY_EXISTS', {
+          name: this.campaignName,
+          id: this.campaignId,
+        });
+      }, 1000);
     },
     cancel() {
       this.$router.push({
@@ -462,7 +468,6 @@ export default {
       this.$bvModal.show(
         this.$refs.SmartShoppingCampaignCreationPopinRecap.$refs.modal.id,
       );
-      this.$store.commit('smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS', null);
     },
     isCompatibleWithCurrency(country) {
       const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
@@ -493,7 +498,9 @@ export default {
     },
     editCampaign() {
       const payload = this.finalCampaign;
-      payload.status = this.campaignIsActive ? CampaignStatus.ENABLED : CampaignStatus.PAUSED;
+      payload.status = this.campaignIsActive
+        ? CampaignStatusToggle.ENABLED
+        : CampaignStatusToggle.PAUSED;
       this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
       this.$router.push({
         name: 'campaign-list',
@@ -502,8 +509,8 @@ export default {
   },
   watch: {
     campaignName(oldVal, newVal) {
-      if ((newVal !== oldVal) && this.errorCampaignNameExistsAlready === true) {
-        this.$store.commit('smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS', false);
+      if ((newVal !== oldVal) && this.errorCampaignNameExistsAlready !== null) {
+        this.$store.commit('smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS', null);
       }
     },
   },
@@ -520,6 +527,7 @@ export default {
         this.campaignDailyBudget = foundSsc.dailyBudget;
         this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = foundSsc.id;
+        this.debounceName();
       } else {
         this.$router.push({name: 'campaign-list'});
       }

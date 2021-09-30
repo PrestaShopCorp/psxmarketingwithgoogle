@@ -75,7 +75,7 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
-import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'SmartShoppingCampaignTableListRow',
@@ -120,15 +120,15 @@ export default {
     },
     pauseCampaign() {
       const payload = {
-        campaignName: this.campaign.campaignName,
-        status: CampaignStatus.PAUSED,
+        id: this.campaign.id,
+        status: CampaignStatusToggle.PAUSED,
       };
       this.$store.dispatch('smartShoppingCampaigns/CHANGE_STATUS_OF_SSC', payload);
     },
     resumeCampaign() {
       const payload = {
-        campaignName: this.campaign.campaignName,
-        status: CampaignStatus.ELIGIBLE,
+        id: this.campaign.id,
+        status: CampaignStatusToggle.ENABLED,
       };
       this.$store.dispatch('smartShoppingCampaigns/CHANGE_STATUS_OF_SSC', payload);
     },

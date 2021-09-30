@@ -109,7 +109,7 @@ export default {
       return this.getMetrics.length === 0;
     },
     currencyCode() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currencyCode;
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
     },
     chartOptions() {
       return {

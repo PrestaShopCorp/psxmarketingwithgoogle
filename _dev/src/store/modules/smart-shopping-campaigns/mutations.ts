@@ -19,7 +19,7 @@
 
 import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import MutationsTypes from './mutations-types';
 import {
   CampaignPerformances,
@@ -150,12 +150,18 @@ export default {
     state.campaigns = payload;
   },
   [MutationsTypes.UPDATE_SSC_STATUS](state: LocalState, payload: CampaignStatusPayload) {
-    const getScc = state.campaigns.find((el) => el.campaignName === payload.campaignName);
+    const getScc = state.campaigns.find((el) => el.id === payload.id);
     if (getScc !== undefined) {
-      getScc.status = payload.status;
+      getScc.status = payload.status === CampaignStatusToggle.ENABLED
+        ? CampaignStatus.ELIGIBLE
+        : CampaignStatus.PAUSED;
     }
   },
   [MutationsTypes.UPDATE_SSC](state: LocalState, payload: CampaignObject) {
+    const requestedStatus = payload.status;
+    payload.status = requestedStatus === CampaignStatusToggle.ENABLED
+      ? CampaignStatus.ELIGIBLE
+      : CampaignStatus.PAUSED;
     // it's works but there are no id now in SSC object
     const findCampaign = state.campaigns.findIndex((el) => el.id === payload.id);
     state.campaigns.splice(findCampaign, 1, payload);

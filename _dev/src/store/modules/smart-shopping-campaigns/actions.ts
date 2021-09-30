@@ -55,10 +55,12 @@ export default {
     }
   },
 
-  async [ActionsTypes.CHECK_CAMPAIGN_NAME_ALREADY_EXISTS]({rootState, commit}, payload : string) {
+  async [ActionsTypes.CHECK_CAMPAIGN_NAME_ALREADY_EXISTS]({rootState, commit},
+    payload : {name: string, id: string},
+  ) {
     try {
       commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, false);
-      const campaignFinalName = btoa(payload);
+      const campaignFinalName = btoa(payload.name);
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns?campaign_name=${campaignFinalName}`,
         {
           method: 'GET',
@@ -72,7 +74,7 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      if (json && json.campaignName) {
+      if (json && json.campaignName && payload.id !== json.id) {
         commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       }
     } catch (error) {
@@ -442,48 +444,41 @@ export default {
     }
   },
   async [ActionsTypes.CHANGE_STATUS_OF_SSC]({commit, rootState}, payload: CampaignStatusPayload) {
-    try {
-    // const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/:ID`,
-    //   {
-    //     method: 'POST',
-    //     headers: {
-    //       Accept: 'application/json',
-    //       Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-    //     },
-    //     body: JSON.stringify({payload}),
-    //   });
-    // if (!resp.ok) {
-    //   throw new HttpClientError(resp.statusText, resp.status);
-    // }
-    // const json = await resp.json();
-      commit(MutationsTypes.UPDATE_SSC_STATUS, payload);
-    } catch (error) {
-      console.error(error);
+    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/${payload.id}/status`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+        body: JSON.stringify({
+          status: payload.status,
+        }),
+      });
+    if (!resp.ok) {
+      throw new HttpClientError(resp.statusText, resp.status);
     }
+    const json = await resp.json();
+    commit(MutationsTypes.UPDATE_SSC_STATUS, payload);
+    return json;
   },
   async [ActionsTypes.UPDATE_SSC]({commit, rootState, state}, payload: CampaignObject) {
-    try {
-      payload.id += 1;
-      // TODO: Change route for updating SSC
-      /* const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-          body: JSON.stringify({
-            payload,
-          }),
-        });
-      if (!resp.ok) {
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
-      const json = await resp.json(); */
-      commit(MutationsTypes.UPDATE_SSC, payload);
-    } catch (error) {
-      console.error(error);
+    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/${payload.id}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+        body: JSON.stringify(payload),
+      });
+    if (!resp.ok) {
+      throw new HttpClientError(resp.statusText, resp.status);
     }
+    const json = await resp.json();
+    commit(MutationsTypes.UPDATE_SSC, payload);
+    return json;
   },
 };
