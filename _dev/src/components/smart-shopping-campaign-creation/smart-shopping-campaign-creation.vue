@@ -365,11 +365,7 @@ export default {
       return true;
     },
     campaignNameFeedback() {
-<<<<<<< HEAD
-      if (!this.campaignName?.length || this.errorCampaignNameExistsAlready === null) {
-=======
-      if (this.stillTyping || !this.campaignName) {
->>>>>>> 691d53d3 (Fix : ssc creation)
+  if (!this.campaignName?.length || this.errorCampaignNameExistsAlready === null) {
         return null;
       }
       if (this.campaignName
@@ -379,19 +375,7 @@ export default {
       ) {
         return true;
       }
-<<<<<<< HEAD
-
       return false;
-=======
-      if (this.campaignName
-        && this.campaignName.length <= 125
-       && this.campaignName.length > 0
-        && this.errorCampaignNameExistsAlready === true
-      ) {
-        return false;
-      }
-      return undefined;
->>>>>>> 691d53d3 (Fix : ssc creation)
     },
     campaignDailyBudgetFeedback() {
       // TODO
