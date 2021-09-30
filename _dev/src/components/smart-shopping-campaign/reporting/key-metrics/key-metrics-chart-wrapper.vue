@@ -54,38 +54,6 @@ export default {
   components: {
     Chart,
   },
-  computed: {
-    chartOptions() {
-      return {
-        scales: {
-          y: {
-            ticks: {
-              callback: (value) => this.getFormattedValue(value),
-            },
-          },
-          x: {
-            type: 'time',
-            time: {
-              unit: 'day',
-            },
-            min: this.$store.getters['smartShoppingCampaigns/GET_REPORTING_START_DATES'],
-            max: this.$store.getters['smartShoppingCampaigns/GET_REPORTING_END_DATES'],
-          },
-        },
-        plugins: {
-          tooltip: {
-            callbacks: {
-              label: (context) => this.getFormattedValue(
-                context.dataset.data[context.dataIndex]),
-            },
-          },
-          legend: {
-            display: false,
-          },
-        },
-      };
-    },
-  },
   created() {
     this.fetchGraph();
   },
@@ -142,6 +110,36 @@ export default {
     },
     currencyCode() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].currencyCode;
+    },
+    chartOptions() {
+      return {
+        scales: {
+          y: {
+            ticks: {
+              callback: (value) => this.getFormattedValue(value),
+            },
+          },
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day',
+            },
+            min: this.$store.getters['smartShoppingCampaigns/GET_REPORTING_START_DATES'],
+            max: this.$store.getters['smartShoppingCampaigns/GET_REPORTING_END_DATES'],
+          },
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: (context) => this.getFormattedValue(
+                context.dataset.data[context.dataIndex]),
+            },
+          },
+          legend: {
+            display: false,
+          },
+        },
+      };
     },
   },
   methods: {
