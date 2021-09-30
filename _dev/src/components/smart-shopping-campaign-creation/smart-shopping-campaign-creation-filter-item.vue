@@ -63,6 +63,7 @@
         :key="index"
         :item="child"
         :selected-filters="selectedFilters"
+        :depth="depth + 1"
       />
     </ul>
   </li>
@@ -92,6 +93,10 @@ export default {
       type: Boolean,
       required: false,
     },
+    depth: {
+      type: Number,
+      default: 0,
+    }
   },
   computed: {
     isFolder() {
@@ -109,7 +114,7 @@ export default {
     deselectFilter(event) {
       // TODO: fn to deselect an item
       this.$root.$emit('tutu', {
-        name: this.item.name,
+        id: this.item.id,
         checked: false
       })
     },
@@ -132,7 +137,7 @@ export default {
     },
     selectCheckbox(event) {
       this.$root.$emit('tutu', {
-        name: this.item.name,
+        id: this.item.id,
         checked: event
       })
     },

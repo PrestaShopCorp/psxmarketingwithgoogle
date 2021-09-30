@@ -131,91 +131,137 @@ export default {
         name: 'All filters',
         checked: null,
         indeterminate: false,
+        id: "allFilters",
         children: [
-      {
-        checked: false,
-        name: "Animaux et articles pour animaux de compagnie"
-      },
-      {
-        checked: false,
-        name: "Arts et loisirs"
-      },
-      {
-        checked: false,
-        name: "Entreprise et industrie"
-      },
-      {
-        checked: false,
-        name: "Appareils photo, caméras et instruments d'optique"
-      },
-      {
-        checked: false,
-        name: "Vêtements et accessoires"
-      },
-      {
-        checked: false,
-        name: "Appareils électroniques"
-      },
-      {
-        checked: false,
-        name: "Alimentation, boissons et tabac"
-      },
-      {
-        checked: false,
-        name: "Meubles"
-      },
-      {
-        checked: false,
-        name: "Santé et beauté"
-      },
-      {
-        checked: false,
-        name: "Maison et jardin"
-      },
-      {
-        checked: false,
-        name: "Bébés et tout-petits"
-      },
-      {
-        checked: false,
-        name: "Quincaillerie"
-      },
-      {
-        checked: false,
-        name: "Adulte"
-      },
-      {
-        checked: false,
-        name: "Médias"
-      },
-      {
-        checked: false,
-        name: "Véhicules et accessoires"
-      },
-      {
-        checked: false,
-        name: "Fournitures de bureau"
-      },
-      {
-        checked: false,
-        name: "Équipements sportifs"
-      },
-      {
-        checked: false,
-        name: "Jeux et jouets"
-      },
-      {
-        checked: false,
-        name: "Logiciels"
-      },
-      {
-        checked: false,
-        name: "Bagages et maroquinerie"
-      },
-      {
-        checked: false,
-        name: "Offices religieux et cérémonies"
-      }
+          {
+            checked: false,
+            id: "1",
+            name: "Animaux et articles pour animaux de compagnie",
+            children: [
+              {
+                checked: false,
+                id: "100156408",
+                name: "Croquettes pour chats",
+                children: [
+                  {
+                    checked: false,
+                    id: "1001568",
+                    name: "Chiot"
+                  },
+                  {
+                    checked: false,
+                    id: "454065126579",
+                    name: "Diabétique"
+                  },
+                ]
+              },
+              {
+                checked: false,
+                id: "126579",
+                name: "Croquettes pour rongeurs et lapins"
+              },
+            ]
+          },
+          {
+            checked: false,
+            id: "8",
+            name: "Arts et loisirs"
+          },
+          {
+            checked: false,
+            id: "111",
+            name: "Entreprise et industrie"
+          },
+          {
+            checked: false,
+            id: "141",
+            name: "Appareils photo, caméras et instruments d'optique"
+          },
+          {
+            checked: false,
+            id: "166",
+            name: "Vêtements et accessoires"
+          },
+          {
+            checked: false,
+            id: "222",
+            name: "Appareils électroniques"
+          },
+          {
+            checked: false,
+            id: "412",
+            name: "Alimentation, boissons et tabac"
+          },
+          {
+            checked: false,
+            id: "436",
+            name: "Meubles"
+          },
+          {
+            checked: false,
+            id: "469",
+            name: "Santé et beauté"
+          },
+          {
+            checked: false,
+            id: "536",
+            name: "Maison et jardin"
+          },
+          {
+            checked: false,
+            id: "537",
+            name: "Bébés et tout-petits"
+          },
+          {
+            checked: false,
+            id: "632",
+            name: "Quincaillerie"
+          },
+          {
+            checked: false,
+            id: "772",
+            name: "Adulte"
+          },
+          {
+            checked: false,
+            id: "783",
+            name: "Médias"
+          },
+          {
+            checked: false,
+            id: "888",
+            name: "Véhicules et accessoires"
+          },
+          {
+            checked: false,
+            id: "922",
+            name: "Fournitures de bureau"
+          },
+          {
+            checked: false,
+            id: "988",
+            name: "Équipements sportifs"
+          },
+          {
+            checked: false,
+            id: "1239",
+            name: "Jeux et jouets"
+          },
+          {
+            checked: false,
+            id: "2092",
+            name: "Logiciels"
+          },
+          {
+            checked: false,
+            id: "5181",
+            name: "Bagages et maroquinerie"
+          },
+          {
+            checked: false,
+            id: "5605",
+            name: "Offices religieux et cérémonies"
+          }
         ]
       };
     },
@@ -224,6 +270,7 @@ export default {
     filteredFilters() {
       return {
         name: 'All filters',
+        id: 'allFilters',
         checked: false,
         children: this.selectedFilters.children.filter(item => item.checked === true || item.checked === null)
       };
@@ -247,14 +294,35 @@ export default {
       this.selectedFilters.indeterminate = false;
     },
     selectCheckbox: function(event) {
-      if (event.name === 'All filters') {
+      const checkChildren = function(arr) {
+        arr.forEach(child => {
+          child.checked = event.checked;
+
+          if (child.children) {
+            checkChildren(child.children)
+          }
+          else return
+        })
+      }
+
+      if (event.id === 'allFilters') {
         this.checked = event.checked;
-        this.selectedFilters.children.forEach(element => {
-          element.checked = event.checked
-        });
+        checkChildren(this.selectedFilters.children)
       };
       this.selectedFilters.children.forEach(element => {
-        if (element.name === event.name) {
+        if (element.id === event.id) {
+          element.checked = event.checked
+          if (!element.children) {
+            return
+          }
+          else {
+            checkChildren(element.children)
+          }
+        }
+      });
+
+      this.selectedFilters.children.forEach(element => {
+        if (element.id === event.id) {
           element.checked = event.checked
         }
       });
