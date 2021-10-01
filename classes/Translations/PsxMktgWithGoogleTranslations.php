@@ -58,6 +58,7 @@ class PsxMktgWithGoogleTranslations
                     'catalog' => $this->module->l('Product catalog', 'PsxMktgWithGoogleTranslations'),
                     'help' => $this->module->l('Help', 'PsxMktgWithGoogleTranslations'),
                 ],
+                'adblockerActivated' => $this->module->l('Please deactivate your ad-blocker for the module to work properly and refresh your navigator.', 'PsxMktgWithGoogleTranslations'),
                 'refreshPage' => $this->module->l('Refresh page', 'PsxMktgWithGoogleTranslations'),
                 'mandatory' => $this->module->l('are mandatory', 'PsxMktgWithGoogleTranslations'),
                 'XIsMandatory' => $this->module->l('{0} is mandatory.', 'PsxMktgWithGoogleTranslations'),

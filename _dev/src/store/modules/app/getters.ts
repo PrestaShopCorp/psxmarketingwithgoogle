@@ -41,6 +41,9 @@ export default {
   [GettersTypes.GET_STORE_INFORMATION_URL](state: LocalState): string {
     return state.psxMktgWithGoogleStoreSettingsUrl;
   },
+  [GettersTypes.GET_ADD_BLOCKER_STATUS](state: LocalState): boolean {
+    return state.adBlockerExists;
+  },
   [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
     if (state.targetCountries !== null) {
       return state.targetCountries;

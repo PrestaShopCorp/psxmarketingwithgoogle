@@ -34,6 +34,7 @@ export interface State {
   targetCountries: Array<string> | null;
   psxMktgWithGoogleOnProductionEnvironment: boolean;
   debugData: DebugData;
+  adBlockerExists: boolean;
 }
 
 export interface ShopCurrency {
@@ -78,4 +79,5 @@ export const state: State = {
   debugData: {
     typesOfSync: [],
   },
+  adBlockerExists: false,
 };

@@ -67,4 +67,26 @@ export default {
       console.error(error);
     }
   },
+  async [ActionsTypes.CHECK_FOR_AD_BLOCKER](
+    {
+      commit,
+      rootState,
+    },
+  ) {
+    try {
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/check-adblocker`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+    } catch (error) {
+      if (error instanceof TypeError && error.message === 'Failed to fetch') {
+        commit(MutationsTypes.AD_BLOCKER_EXISTS);
+      }
+    }
+  },
 };
