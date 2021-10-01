@@ -173,6 +173,29 @@
         </ul>
       </b-card-body>
     </b-card>
+
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard px-0"
+    >
+      <b-card-header
+        header-tag="h3"
+        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
+      >
+        Error reporting
+      </b-card-header>
+      <b-card-body
+        body-class="p-3"
+      >
+        <b-button
+          class="mt-3 mr-3"
+          variant="danger"
+          @click="throwErrorForSentry"
+        >
+          Throw Error test for Sentry
+        </b-button>
+      </b-card-body>
+    </b-card>
   </div>
 </template>
 
@@ -260,6 +283,9 @@ export default {
       } finally {
         this.sync.loading = false;
       }
+    },
+    throwErrorForSentry() {
+      throw new Error('Test error for sentry');
     },
   },
   mounted() {
