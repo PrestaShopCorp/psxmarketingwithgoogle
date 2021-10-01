@@ -18,9 +18,11 @@ jobs:
           node-version: '14'
           cache: npm
           cache-dependency-path: '_dev/package-lock.json'
-      
+
       - name: Install & build
         working-directory: _dev
+        env:
+          GENERATE_SOURCEMAPS: false
         run: |
           npm install
           npm run build

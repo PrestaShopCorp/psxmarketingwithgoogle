@@ -2,8 +2,6 @@ import Vue from 'vue';
 import * as Sentry from '@sentry/vue';
 import store from '@/store';
 
-console.log(process.env);
-
 Sentry.init({
   Vue,
   // @ts-ignore
