@@ -50,7 +50,7 @@ module.exports = {
     extract: false,
   },
   runtimeCompiler: true,
-  productionSourceMap: process.env.GENERATE_SOURCEMAPS === 'true',
+  productionSourceMap: !!process.env.GENERATE_SOURCEMAPS,
   filenameHashing: false,
   outputDir: '../views/',
   assetsDir: '',
