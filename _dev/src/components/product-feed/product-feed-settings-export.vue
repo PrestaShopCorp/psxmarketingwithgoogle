@@ -314,8 +314,9 @@ export default {
       return false;
     },
     syncTime() {
-      const syncDate = this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt;
-      return `${this.$options.filters.timeConverterToHour(syncDate)} AM`;
+      return this.$options.filters.timeConverterToHour(
+        this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt,
+      );
     },
   },
 
