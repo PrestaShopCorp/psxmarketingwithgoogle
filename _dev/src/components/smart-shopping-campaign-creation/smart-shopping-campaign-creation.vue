@@ -365,7 +365,7 @@ export default {
       return true;
     },
     campaignNameFeedback() {
-  if (!this.campaignName?.length || this.errorCampaignNameExistsAlready === null) {
+      if (!this.campaignName?.length || this.errorCampaignNameExistsAlready === null) {
         return null;
       }
       if (this.campaignName
