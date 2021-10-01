@@ -21,8 +21,6 @@ jobs:
 
       - name: Install & build
         working-directory: _dev
-        env:
-          GENERATE_SOURCEMAPS: false
         run: |
           npm install
           npm run build
