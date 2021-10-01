@@ -17,15 +17,17 @@
           <span class="sr-only">{{ $t('cta.previous') }}</span>
         </b-button>
       </li>
+      <!-- <div v-for="(onePage, index) in pagesComputed" :key="index">
       <li class="page-item">
         <b-button
           variant="invisible"
           class="page-link"
           :aria-label="$tc('cta.goToPage', 0)"
         >
-          1
+         {{onePage.page}}
         </b-button>
       </li>
+      </div>
       <li class="page-item disabled">
         <b-button
           disabled
@@ -34,73 +36,16 @@
         >
           ...
         </b-button>
-      </li>
-      <li class="page-item">
-        <b-button
-          variant="invisible"
-          class="page-link"
-        >
-          5
-        </b-button>
-      </li>
-      <li class="page-item">
-        <b-button
-          variant="invisible"
-          class="page-link"
-        >
-          6
-        </b-button>
-      </li>
+      </li>-->
       <li
-        class="page-item active"
-        aria-current="page"
+        class="page-item next"
+        v-if="nextPage"
       >
         <b-button
           variant="invisible"
           class="page-link"
-        >
-          7
-        </b-button>
-      </li>
-      <li class="page-item">
-        <b-button
-          variant="invisible"
-          class="page-link"
-        >
-          8
-        </b-button>
-      </li>
-      <li class="page-item">
-        <b-button
-          variant="invisible"
-          class="page-link"
-        >
-          9
-        </b-button>
-      </li>
-      <li class="page-item disabled">
-        <b-button
-          disabled
-          variant="invisible"
-          class="page-link"
-        >
-          ...
-        </b-button>
-      </li>
-      <li class="page-item">
-        <b-button
-          variant="invisible"
-          class="page-link"
-          :aria-label="$tc('cta.goToPage', 2)"
-        >
-          16
-        </b-button>
-      </li>
-      <li class="page-item next">
-        <b-button
-          variant="invisible"
-          class="page-link"
           :aria-label="$t('cta.next')"
+          @click="fetchNewCampaigns"
         >
           <span class="sr-only">{{ $t('cta.next') }}</span>
         </b-button>
@@ -111,6 +56,34 @@
 <script>
 export default {
   name: 'Pagination',
-  // TODO Dev the pagination 🤷
+  props: {
+    nextPage: {
+      type: String,
+      required: true,
+      default: null,
+    },
+  },
+  // data() {
+  //   return {
+  //     pages: 1
+  //   }
+  // },
+  methods: {
+    fetchNewCampaigns() {
+      this.$emit('fetchNewCampaigns');
+      // this.pages +=1
+    },
+  },
+  // computed: {
+  //   pagesComputed() {
+  //     let finish = []
+  //     for (let i=1; i<=this.pages; i++){
+  //        finish.push({
+  //         page: i
+  //       })
+  //     }
+  //     return finish
+  //   }
+  // }
 };
 </script>

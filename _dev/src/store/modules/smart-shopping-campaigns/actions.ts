@@ -424,9 +424,21 @@ export default {
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES, result);
   },
-  async [ActionsTypes.GET_SSC_LIST]({commit, rootState}) {
+  async [ActionsTypes.GET_SSC_LIST]({commit, rootState}, payload) {
+    console.log('PAYLOAD', payload);
+    const query = new URLSearchParams({});
+    if (payload && payload.name) {
+      query.append('filter[campaignName]', payload.name);
+    }
+    if (payload && payload.order?.duration) {
+      query.append('order[startDate]', payload.order.duration);
+    }
+    if (payload && payload.nextPageToken) {
+      query.append('nextPageToken', payload.nextPageToken);
+    }
+
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list`,
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list?${query}`,
         {
           method: 'GET',
           headers: {
@@ -439,6 +451,12 @@ export default {
       }
       const json = await resp.json();
       commit(MutationsTypes.SAVE_SSC_LIST, json.campaigns);
+      if (json.nextPageToken) {
+        commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, json.nextPageToken);
+      } else {
+        commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, null);
+      }
+      console.log(json);
     } catch (error) {
       console.error(error);
     }

@@ -30,6 +30,13 @@
       :title="campaignList.length + ' campaign(s)'"
       :use-date="false"
     />
+    <b-form-input
+      id="campaign-name-input-filter"
+      v-model="campaignName"
+      :placeholder="$t('smartShoppingCampaignCreation.inputNamePlaceholder')"
+      class="mt-2"
+      @keyup="debounceName()"
+    />
     <div>
       <b-table-simple
         id="table-filters-performance"
@@ -97,11 +104,13 @@
           </b-tr>
         </b-thead>
         <b-tbody class="bg-white">
-          <SmartShoppingCampaignTableListRow
-            v-for="campaign in campaignList"
-            :key="campaign.campaignName"
-            :campaign="campaign"
-          />
+          <template v-if="!loading">
+            <SmartShoppingCampaignTableListRow
+              v-for="campaign in campaignList"
+              :key="campaign.campaignName"
+              :campaign="campaign"
+            />
+          </template>
           <b-tr v-if="loading">
             <b-td
               colspan="7"
@@ -113,6 +122,10 @@
         </b-tbody>
       </b-table-simple>
     </div>
+    <TablePageControls
+      :next-page="tokenNextPage"
+      @fetchNewCampaigns="fetchCampaigns({'nextPageToken': tokenNextPage})"
+    />
   </div>
 </template>
 
@@ -121,24 +134,32 @@ import SmartShoppingCampaignTableListRow from './smart-shopping-campaign-table-l
 import ReportingTableHeader from './reporting/commons/reporting-table-header.vue';
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
+import TablePageControls from '../commons/table-page-controls.vue';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
   components: {
     SmartShoppingCampaignTableListRow,
     ReportingTableHeader,
+    TablePageControls,
   },
   data() {
     return {
-      filterCampaignName: null,
-      filterCampaignStatus: null,
-      searchQuery: {},
+      campaignName: null,
+      filters: {
+        campaign: null,
+        duration: 'ASC',
+        status: null,
+        target: null,
+        product: null,
+        budget: null,
+      },
     };
   },
   props: {
     loading: {
-      default: true,
       type: Boolean,
+      required: true,
     },
   },
   computed: {
@@ -157,18 +178,8 @@ export default {
 
       return campaigns;
     },
-    queryOrderDirection: {
-      get() {
-        // TODO
-        /** Inspired by campaigns-performance-table.vue */
-        return {
-          campaign: QueryOrderDirection.ASCENDING,
-        };
-      },
-      set(orderDirection) {
-        // TODO
-        console.log(orderDirection);
-      },
+    tokenNextPage() {
+      return this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
     },
   },
   methods: {
@@ -179,7 +190,7 @@ export default {
       return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
     },
     hasSorting(headerType) {
-      return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
+      return headerType === CampaignSummaryListHeaderType.DURATION;
     },
     redirectToCreateCampaign() {
       this.$router.push({
@@ -193,13 +204,34 @@ export default {
     },
     sortByType(headerType) {
       // create new object for satisfy deep getter of vueJS
-      const newOrderDirection = {...this.queryOrderDirection};
-      if (this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING) {
+      const newOrderDirection = {...this.filters};
+      if (this.filters[headerType] === QueryOrderDirection.ASCENDING) {
         newOrderDirection[headerType] = QueryOrderDirection.DESCENDING;
       } else {
         newOrderDirection[headerType] = QueryOrderDirection.ASCENDING;
       }
-      this.queryOrderDirection = newOrderDirection;
+      this.filters = newOrderDirection;
+      this.fetchCampaigns({
+        name: this.campaignName,
+        order: this.filters,
+      });
+    },
+    debounceName() {
+      this.$emit('loader', true);
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.fetchCampaigns({
+          name: this.campaignName,
+          order: this.filters,
+        });
+      }, 1000);
+    },
+    fetchCampaigns(args) {
+      this.$emit('loader', true);
+      this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST', args)
+        .finally(() => {
+          this.$emit('loader', false);
+        });
     },
   },
 };

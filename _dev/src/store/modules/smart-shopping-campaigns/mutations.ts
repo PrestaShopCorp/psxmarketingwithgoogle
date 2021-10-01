@@ -149,6 +149,9 @@ export default {
   [MutationsTypes.SAVE_SSC_LIST](state: LocalState, payload: Array<CampaignObject>) {
     state.campaigns = payload;
   },
+  [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](state: LocalState, payload: string) {
+    state.tokenNextPageCampaignList = payload;
+  },
   [MutationsTypes.UPDATE_SSC_STATUS](state: LocalState, payload: CampaignStatusPayload) {
     const getScc = state.campaigns.find((el) => el.id === payload.id);
     if (getScc !== undefined) {

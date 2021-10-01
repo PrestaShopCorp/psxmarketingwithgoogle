@@ -6,6 +6,7 @@
     />
     <smart-shopping-campaign-table-list
       :loading="loading"
+      @loader="changeLoadingState($event)"
       v-else-if="$route.name === 'campaign-list'"
     />
     <smart-shopping-campaign-creation
@@ -89,6 +90,9 @@ export default {
     },
     toastIsClosed() {
       this.campaignCreated = false;
+    },
+    changeLoadingState(event) {
+      this.loading = event;
     },
   },
   mounted() {

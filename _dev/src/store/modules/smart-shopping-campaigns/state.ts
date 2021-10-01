@@ -25,6 +25,7 @@ import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignSt
 
 export interface State {
   campaigns: Array<CampaignObject>;
+  tokenNextPageCampaignList: null|string,
   errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
   tagAlreadyExists: boolean;
@@ -173,6 +174,7 @@ export interface ProductPartitionPerformances {
 
 export const state: State = {
   campaigns: [],
+  tokenNextPageCampaignList: null,
   errorCampaignNameExists: null,
   tracking: true,
   tagAlreadyExists: false,

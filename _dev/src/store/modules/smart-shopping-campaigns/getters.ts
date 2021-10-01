@@ -67,6 +67,9 @@ export default {
   [GettersTypes.GET_ALL_SSC](state: LocalState): Array<CampaignObject> {
     return state.campaigns;
   },
+  [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): null|string {
+    return state.tokenNextPageCampaignList;
+  },
 
   // request getters
   [GettersTypes.GET_REPORTING_PERIOD_SELECTED](
