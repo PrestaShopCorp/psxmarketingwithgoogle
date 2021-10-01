@@ -92,9 +92,16 @@ class RemarketingHookHandler
                     break;
                 }
 
+                $eventData = $this->module->getService(PageViewEventDataProvider::class)->getEventData($sendTo);
+
+                if ($eventData === null) {
+                    break;
+                }
+
                 $this->context->smarty->assign([
-                    'eventData' => $this->module->getService(PageViewEventDataProvider::class)->getEventData($sendTo),
+                    'eventData' => $eventData,
                 ]);
+
                 $this->templateBuffer->add(
                     $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
                 );
