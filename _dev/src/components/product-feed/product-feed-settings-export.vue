@@ -300,7 +300,6 @@ export default {
   data() {
     return {
       syncFrequency: this.$i18n.t('productFeedSettings.export.frequency.daily'),
-      syncTime: '2:00 AM',
       syncTimeZone: '(UTC+01:00) Normal time in Central Europe (Paris)',
     };
   },
@@ -313,6 +312,11 @@ export default {
        * ! Some validation will be necessary in batch 2
        */
       return false;
+    },
+    syncTime() {
+      return this.$options.filters.timeConverterToHour(
+        this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt,
+      );
     },
   },
 
