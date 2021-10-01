@@ -61,13 +61,6 @@
             : $t('cta.pauseCampaign')
           }}
         </b-dropdown-item-button>
-        <b-dropdown-item
-          :href="$options.googleUrl.googleAdsAccount"
-          target="_blank"
-          link-class="external_link-no_icon"
-        >
-          {{ $t('cta.viewInGoogleAds') }}
-        </b-dropdown-item>
       </b-dropdown>
     </td>
   </b-tr>
