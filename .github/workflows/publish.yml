@@ -154,6 +154,8 @@ jobs:
 
     - name: Install & build
       working-directory: _dev
+      env:
+        GENERATE_SOURCEMAPS: true
       run: |
         npm install
         npm run build
@@ -164,6 +166,7 @@ jobs:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
         SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT_JS }}
+
       with:
         environment: production
         version: ${{ github.ref }}

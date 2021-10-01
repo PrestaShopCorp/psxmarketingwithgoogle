@@ -41,7 +41,7 @@ class ConversionEventDataProvider
     {
         return (new ConversionEventData())
             ->setTransactionId((string) $order->id)
-            ->setValue((string) $order->total_paid_tax_incl)
+            ->setValue((string) $order->total_products_wt)
             ->setCurrency((new Currency($order->id_currency))->iso_code);
     }
 }

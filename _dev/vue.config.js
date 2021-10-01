@@ -45,14 +45,12 @@ module.exports = {
         ];
         return options;
       });
-    config.devtool('source-map');
-    config.output.sourceMapFilename('../_dev/sourcemaps/[name].js.map');
   },
   css: {
     extract: false,
   },
   runtimeCompiler: true,
-  productionSourceMap: true,
+  productionSourceMap: !!process.env.GENERATE_SOURCEMAPS,
   filenameHashing: false,
   outputDir: '../views/',
   assetsDir: '',
