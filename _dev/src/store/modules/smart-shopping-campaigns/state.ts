@@ -35,7 +35,7 @@ export interface State {
 export interface ConversionAction {
   category: string,
   tag: string,
- }
+}
 
 export interface ProductsFilteredObject {
   dimension: string,
@@ -187,13 +187,13 @@ export const state: State = {
       dailyResultType: KpiType.IMPRESSIONS,
       ordering: {
         campaignsPerformances: {
-          clicks: QueryOrderDirection.ASCENDING,
+          clicks: QueryOrderDirection.DESCENDING,
         },
         productsPerformances: {
-          clicks: QueryOrderDirection.ASCENDING,
+          clicks: QueryOrderDirection.DESCENDING,
         },
         productsPartitionsPerformances: {
-          clicks: QueryOrderDirection.ASCENDING,
+          clicks: QueryOrderDirection.DESCENDING,
         },
       },
     },
