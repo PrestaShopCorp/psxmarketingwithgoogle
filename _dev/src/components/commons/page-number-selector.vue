@@ -27,7 +27,6 @@ export default {
       nbPageToGo: null,
     };
   },
-
   methods: {
     goToPage() {
       // TODO: handle go to page
