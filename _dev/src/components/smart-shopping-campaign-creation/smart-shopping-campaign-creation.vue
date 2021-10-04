@@ -517,7 +517,7 @@ export default {
     window.scrollTo(0, 0);
     if (this.editMode === true) {
       const sscList = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
-      const foundSsc = sscList.find((el) => el.campaignName === this.$route.params.name);
+      const foundSsc = sscList.find((el) => el.id === this.$route.params.id);
       if (foundSsc !== undefined) {
         this.campaignName = foundSsc.campaignName;
         this.campaignDurationStartDate = foundSsc.startDate;
