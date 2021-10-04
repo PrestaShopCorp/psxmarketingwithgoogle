@@ -148,18 +148,14 @@ export default {
     campaignList() {
       const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
       const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
-      if (
-        searchQuery !== null
-        && searchQuery !== ''
-        && searchQuery !== undefined
-      ) {
+      if (searchQuery) {
         return campaigns.filter((campaign) => {
           const nameMatch = campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase());
           return nameMatch;
         });
       }
 
-      return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      return campaigns;
     },
     queryOrderDirection: {
       get() {
