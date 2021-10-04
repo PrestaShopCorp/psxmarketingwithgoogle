@@ -87,7 +87,7 @@
             >
               <b-form-input
                 type="text"
-                :placeholder="`Search by ${type}`"
+                :placeholder="$t('general.searchByX', [type])"
                 size="sm"
                 class="border-0"
                 v-if="hasInput(type)"

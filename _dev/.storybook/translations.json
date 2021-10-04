@@ -12,7 +12,8 @@
       "refreshPage" : "Refresh page",
       "mandatory" : "are mandatory",
       "XIsMandatory" : "{0} is mandatory.",
-      "unableToFetchData" : "We were unable to fetch datas, please try again later"
+      "unableToFetchData" : "We were unable to fetch datas, please try again later",
+      "searchByX" : "Search by {0}"
     },
     "configuration" : {
         "introduction" : "Configuration Page !"
