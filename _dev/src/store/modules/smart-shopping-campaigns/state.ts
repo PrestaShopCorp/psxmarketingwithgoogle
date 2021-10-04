@@ -25,6 +25,7 @@ import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignSt
 
 export interface State {
   campaigns: Array<CampaignObject>;
+  campaignsOrdering: CampaignsOrdering,
   tokenNextPageCampaignList: null|string,
   errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
@@ -37,6 +38,11 @@ export interface ConversionAction {
   category: string,
   tag: string,
 }
+
+export interface CampaignsOrdering {
+  name?: string,
+  duration?: QueryOrderDirection,
+ }
 
 export interface ProductsFilteredObject {
   dimension: string,
@@ -98,7 +104,9 @@ export interface Orderings {
 }
 
 export interface OrderByType {
-  clicks: QueryOrderDirection,
+  clicks?: QueryOrderDirection,
+  name?: string,
+  startDate?: QueryOrderDirection,
 }
 
 export interface Kpis {
@@ -174,6 +182,7 @@ export interface ProductPartitionPerformances {
 
 export const state: State = {
   campaigns: [],
+  campaignsOrdering: {},
   tokenNextPageCampaignList: null,
   errorCampaignNameExists: null,
   tracking: true,

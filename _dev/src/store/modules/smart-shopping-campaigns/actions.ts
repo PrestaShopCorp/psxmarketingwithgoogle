@@ -424,19 +424,18 @@ export default {
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES, result);
   },
-  async [ActionsTypes.GET_SSC_LIST]({commit, rootState}, payload) {
-    console.log('PAYLOAD', payload);
-    const query = new URLSearchParams({});
-    if (payload && payload.name) {
-      query.append('filter[campaignName]', payload.name);
+  async [ActionsTypes.GET_SSC_LIST]({commit, state, rootState}, isNewRequest = true) {
+    const query = new URLSearchParams();
+    // add order in array format
+    if (state.campaignsOrdering && state.campaignsOrdering.duration) {
+      query.append('order[startDate]', state.campaignsOrdering.duration);
     }
-    if (payload && payload.order?.duration) {
-      query.append('order[startDate]', payload.order.duration);
+    if (state.campaignsOrdering && state.campaignsOrdering.name) {
+      query.append('filter[campaignName]', state.campaignsOrdering.name);
     }
-    if (payload && payload.nextPageToken) {
-      query.append('nextPageToken', payload.nextPageToken);
+    if (!isNewRequest && state.tokenNextPageCampaignList) {
+      query.append('nextPageToken', state.tokenNextPageCampaignList);
     }
-
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list?${query}`,
         {
@@ -450,13 +449,11 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      commit(MutationsTypes.SAVE_SSC_LIST, json.campaigns);
-      if (json.nextPageToken) {
-        commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, json.nextPageToken);
-      } else {
-        commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, null);
+      if (isNewRequest) {
+        commit('RESET_SSC_LIST');
       }
-      console.log(json);
+      commit(MutationsTypes.SAVE_SSC_LIST, json.campaigns);
+      commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, json.nextPageToken);
     } catch (error) {
       console.error(error);
     }

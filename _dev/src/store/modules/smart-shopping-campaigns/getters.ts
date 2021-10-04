@@ -111,6 +111,11 @@ export default {
   ): Object {
     return state.reporting.request.ordering.campaignsPerformances;
   },
+  [GettersTypes.GET_SSC_LIST_ORDERING](
+    state: LocalState,
+  ): Object {
+    return state.campaignsOrdering;
+  },
   [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES_ORDERING](
     state: LocalState,
   ): Object {

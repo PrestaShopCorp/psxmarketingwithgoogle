@@ -17,6 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {lastDayOfQuarter} from 'date-fns';
 import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
@@ -128,6 +129,17 @@ export default {
   ) {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
+  [MutationsTypes.RESET_SSC_LIST](
+    state: LocalState,
+  ) {
+    state.campaigns = [];
+  },
+  [MutationsTypes.SET_SSC_LIST_ORDERING](
+    state: LocalState,
+    payload : OrderByType,
+  ) {
+    state.campaignsOrdering = payload;
+  },
   [MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES](
     state: LocalState,
     payload: ProductsPerformancesSection,
@@ -141,13 +153,15 @@ export default {
     state.reporting.results.productsPartitionsPerformancesSection = payload;
   },
   [MutationsTypes.SAVE_NEW_SSC](state: LocalState, payload: CampaignObject) {
-    state.campaigns.push(payload);
+    if (payload) {
+      state.campaigns.push(payload);
+    } else state.campaigns = [];
   },
   [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](state: LocalState, payload: boolean) {
     state.errorCampaignNameExists = payload;
   },
   [MutationsTypes.SAVE_SSC_LIST](state: LocalState, payload: Array<CampaignObject>) {
-    state.campaigns = payload;
+    state.campaigns.push(...payload);
   },
   [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](state: LocalState, payload: string) {
     state.tokenNextPageCampaignList = payload;

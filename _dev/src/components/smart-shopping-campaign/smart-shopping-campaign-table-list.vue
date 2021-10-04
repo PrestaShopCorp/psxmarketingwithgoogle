@@ -40,7 +40,7 @@
     <div>
       <b-table-simple
         id="table-filters-performance"
-        class="ps_gs-table-products mb-0"
+        class="ps_gs-table-products mb-0 table-ssc-list"
         :table-class="{'border-bottom-0': loading}"
         variant="light"
         responsive="xl"
@@ -61,7 +61,7 @@
                   class="p-0 border-0"
                 >
                   <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
-                  <template v-if="queryOrderDirection[type] === 'DESC'">
+                  <template v-if="queryOrderDirection[type] === 'ASC'">
                     <i class="material-icons ps_gs-fz-14">expand_more</i>
                     <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
                   </template>
@@ -122,10 +122,6 @@
         </b-tbody>
       </b-table-simple>
     </div>
-    <TablePageControls
-      :next-page="tokenNextPage"
-      @fetchNewCampaigns="fetchCampaigns({'nextPageToken': tokenNextPage})"
-    />
   </div>
 </template>
 
@@ -134,26 +130,16 @@ import SmartShoppingCampaignTableListRow from './smart-shopping-campaign-table-l
 import ReportingTableHeader from './reporting/commons/reporting-table-header.vue';
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
-import TablePageControls from '../commons/table-page-controls.vue';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
   components: {
     SmartShoppingCampaignTableListRow,
     ReportingTableHeader,
-    TablePageControls,
   },
   data() {
     return {
       campaignName: null,
-      filters: {
-        campaign: null,
-        duration: 'ASC',
-        status: null,
-        target: null,
-        product: null,
-        budget: null,
-      },
     };
   },
   props: {
@@ -181,6 +167,15 @@ export default {
     tokenNextPage() {
       return this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
     },
+    queryOrderDirection: {
+      get() {
+        return this.$store.getters['smartShoppingCampaigns/GET_SSC_LIST_ORDERING'];
+      },
+      set(orderDirection) {
+        this.$store.commit('smartShoppingCampaigns/SET_SSC_LIST_ORDERING', orderDirection);
+        this.fetchCampaigns();
+      },
+    },
   },
   methods: {
     hasToolTip(headerType) {
@@ -204,35 +199,56 @@ export default {
     },
     sortByType(headerType) {
       // create new object for satisfy deep getter of vueJS
-      const newOrderDirection = {...this.filters};
-      if (this.filters[headerType] === QueryOrderDirection.ASCENDING) {
+      const newOrderDirection = {...this.queryOrderDirection};
+      if (this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING) {
         newOrderDirection[headerType] = QueryOrderDirection.DESCENDING;
       } else {
         newOrderDirection[headerType] = QueryOrderDirection.ASCENDING;
       }
-      this.filters = newOrderDirection;
-      this.fetchCampaigns({
-        name: this.campaignName,
-        order: this.filters,
-      });
+      this.queryOrderDirection = newOrderDirection;
     },
+
     debounceName() {
       this.$emit('loader', true);
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        this.fetchCampaigns({
-          name: this.campaignName,
-          order: this.filters,
-        });
+        this.$store.commit('smartShoppingCampaigns/SET_SSC_LIST_ORDERING', {name: this.campaignName});
+        this.fetchCampaigns();
       }, 1000);
     },
-    fetchCampaigns(args) {
+
+    fetchCampaigns(isNewRequest = true) {
       this.$emit('loader', true);
-      this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST', args)
+      this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST', isNewRequest)
         .finally(() => {
           this.$emit('loader', false);
         });
     },
+    handleScroll() {
+      const body = document.getElementsByClassName('table-ssc-list')[0];
+      const token = this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
+      if (body.scrollTop >= body.scrollHeight - body.clientHeight
+      && body.scrollTop > 0
+      && token !== null) {
+        this.fetchCampaigns(false);
+      }
+    },
+  },
+  mounted() {
+    const tableBody = document.getElementsByClassName('table-ssc-list')[0];
+
+    if (tableBody) {
+      tableBody.addEventListener('scroll', this.handleScroll);
+    }
+
+    this.fetchCampaigns();
+  },
+  beforeDestroy() {
+    const tableBody = document.getElementsByClassName('table-ssc-list')[0];
+
+    if (tableBody) {
+      tableBody.removeEventListener('scroll', this.handleScroll);
+    }
   },
 };
 </script>
