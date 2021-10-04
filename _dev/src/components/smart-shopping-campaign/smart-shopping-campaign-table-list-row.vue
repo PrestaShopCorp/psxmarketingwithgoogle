@@ -104,7 +104,7 @@ export default {
       this.$router.push({
         name: 'campaign-edition',
         params: {
-          name: this.campaign.campaignName,
+          id: this.campaign.id,
         },
       });
     },
