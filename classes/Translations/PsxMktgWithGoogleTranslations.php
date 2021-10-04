@@ -63,6 +63,7 @@ class PsxMktgWithGoogleTranslations
                 'mandatory' => $this->module->l('are mandatory', 'PsxMktgWithGoogleTranslations'),
                 'XIsMandatory' => $this->module->l('{0} is mandatory.', 'PsxMktgWithGoogleTranslations'),
                 'unableToFetchData' => $this->module->l('We were unable to fetch datas, please try again later.', 'PsxMktgWithGoogleTranslations'),
+                'searchByX' => $this->module->l('Search by {0}', 'PsxMktgWithGoogleTranslations'),
             ],
             'configuration' => [
                 'introduction' => $this->module->l('Configuration Page !', 'PsxMktgWithGoogleTranslations'),

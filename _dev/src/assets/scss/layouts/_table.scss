@@ -273,3 +273,7 @@ $statusColors: (
 .b-table-sticky-header > .table.b-table > thead > tr > th {
   z-index: 3;
 }
+
+table thead tr + tr th {
+  border-bottom: none;
+}

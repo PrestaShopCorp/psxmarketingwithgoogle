@@ -78,6 +78,23 @@
               </div>
             </b-th>
           </b-tr>
+          <b-tr>
+            <b-th
+              v-for="(type, index) in campaignHeaderList"
+              :key="type"
+              class="font-weight-600"
+              :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
+            >
+              <b-form-input
+                type="text"
+                :placeholder="$t('general.searchByX', [type])"
+                size="sm"
+                class="border-0"
+                v-if="hasInput(type)"
+                v-model="searchQuery[type]"
+              />
+            </b-th>
+          </b-tr>
         </b-thead>
         <b-tbody class="bg-white">
           <SmartShoppingCampaignTableListRow
@@ -115,6 +132,7 @@ export default {
     return {
       filterCampaignName: null,
       filterCampaignStatus: null,
+      searchQuery: {},
     };
   },
   props: {
@@ -128,7 +146,16 @@ export default {
       return Object.values(CampaignSummaryListHeaderType);
     },
     campaignList() {
-      return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
+      if (searchQuery) {
+        return campaigns.filter((campaign) => {
+          const nameMatch = campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase());
+          return nameMatch;
+        });
+      }
+
+      return campaigns;
     },
     queryOrderDirection: {
       get() {
@@ -147,6 +174,9 @@ export default {
   methods: {
     hasToolTip(headerType) {
       return headerType === CampaignSummaryListHeaderType.STATUS;
+    },
+    hasInput(headerType) {
+      return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
     },
     hasSorting(headerType) {
       return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
