@@ -146,7 +146,7 @@ export default {
       return Object.values(CampaignSummaryListHeaderType);
     },
     campaignList() {
-      let campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
       const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
       if (
         searchQuery !== null
@@ -156,11 +156,10 @@ export default {
         return campaigns.filter((campaign) => {
           const nameMatch = campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase());
           return nameMatch;
-        })
+        });
       }
-      else {
-        return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
-      }
+
+      return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
     },
     queryOrderDirection: {
       get() {
@@ -181,7 +180,7 @@ export default {
       return headerType === CampaignSummaryListHeaderType.STATUS;
     },
     hasInput(headerType) {
-      return headerType === CampaignSummaryListHeaderType.CAMPAIGN
+      return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
     },
     hasSorting(headerType) {
       return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
