@@ -70,7 +70,7 @@ const routes: Array<RouteConfig> = [
     component: CampaignPage,
   },
   {
-    path: '/campaign/edit/:name',
+    path: '/campaign/edit/:id',
     name: 'campaign-edition',
     component: CampaignPage,
   },
