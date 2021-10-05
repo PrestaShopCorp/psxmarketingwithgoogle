@@ -185,7 +185,7 @@
           </b-badge>
         </div>
         <div
-          v-if="!googleAdsAccountConfigured "
+          v-if="!googleAdsAccountConfigured"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
           <b-button
@@ -221,7 +221,7 @@
         </div>
       </div>
       <p
-        v-if="!googleAdsAccountConfigured "
+        v-if="!googleAdsAccountConfigured"
         class="mt-3 mb-0 ps_gs-fz-12 text-muted"
       >
         {{ $t('googleAdsAccountCard.text') }}
