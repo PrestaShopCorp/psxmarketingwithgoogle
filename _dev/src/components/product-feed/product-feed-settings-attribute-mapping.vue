@@ -86,46 +86,47 @@
     <section class="mt-4">
       <h2>2. {{ $t('productFeedSettings.attributeMapping.specificTitle') }}</h2>
       <div class="ps_gs-attribute-mapping-questions">
-        <div
-          class="font-weight-600 font-italic"
-        >
+        <div class="font-weight-600 font-italic">
           {{ $t('productFeedSettings.attributeMapping.sellRefurbished') }}
         </div>
-        <b-form-checkbox
-          switch
-          size="lg"
-          class="ml-sm-4 ps_gs-switch"
-          v-model="sellRefurbished"
-          data-test-id="checkbox-sellRefurbished"
-        >
-          <span class="ps_gs-fz-14">
-            {{
-              sellRefurbished
-                ? $t('cta.yes')
-                : $t('cta.no')
-            }}
+        <div class="ps_gs-attribute-mapping-questions">
+          <span class="ml-2">
+            {{ $t('cta.no') }}
           </span>
-        </b-form-checkbox>
-        <div
-          class="font-weight-600 font-italic"
-        >
+          <b-form-checkbox
+            switch
+            size="lg"
+            class="ml-2 sm-4 ps_gs-switch"
+            v-model="sellRefurbished"
+            data-test-id="checkbox-sellRefurbished"
+          >
+            <span class="ps_gs-fz-14">
+              {{ $t('cta.yes') }}
+            </span>
+          </b-form-checkbox>
+        </div>
+      </div>
+      <div class="ps_gs-attribute-mapping-questions">
+        <div class="font-weight-600 font-italic">
           {{ $t('productFeedSettings.attributeMapping.sellApparel') }}
         </div>
-        <b-form-checkbox
-          v-model="sellApparel"
-          switch
-          size="lg"
-          class="ml-sm-4 ps_gs-switch"
-        >
-          <span class="ps_gs-fz-14">
-            {{
-              sellApparel
-                ? $t('cta.yes')
-                : $t('cta.no')
-            }}
+        <div class="ps_gs-attribute-mapping-questions ">
+          <span class="ml-2">
+            {{ $t('cta.no') }}
           </span>
-        </b-form-checkbox>
+          <b-form-checkbox
+            v-model="sellApparel"
+            switch
+            size="lg"
+            class="ml-2 sm-4 ps_gs-switch"
+          >
+            <span class="ps_gs-fz-14">
+              {{ $t('cta.yes') }}
+            </span>
+          </b-form-checkbox>
+        </div>
       </div>
+
       <template
         v-if="sellRefurbished || sellApparel"
       >
