@@ -518,8 +518,8 @@ export default {
         this.campaignDailyBudget = foundSsc.dailyBudget;
         this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = foundSsc.id;
-        this.targetCountry.push(
-          this.$options.filters.changeCountriesCodesToNames([foundSsc.targetCountry])[0],
+        this.targetCountry = this.$options.filters.changeCountriesCodesToNames(
+          [foundSsc.targetCountry],
         );
         this.debounceName();
       } else {
