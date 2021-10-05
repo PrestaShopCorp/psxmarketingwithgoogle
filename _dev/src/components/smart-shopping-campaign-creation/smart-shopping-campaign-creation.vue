@@ -442,7 +442,7 @@ export default {
       }
     },
     productsExist() {
-      return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS']?.items > 1;
+      return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS'] >= 1;
     },
   },
   methods: {
