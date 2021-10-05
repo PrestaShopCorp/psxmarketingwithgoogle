@@ -14,12 +14,6 @@
           <span class="mr-2">
             {{ country }}
           </span>
-          <span
-            v-if="!isCompatibleWithCurrency(country)"
-            class="ps_gs-fz-12 ml-auto"
-          >
-            {{ $t('productFeedSettings.steps.shippingSettingsErrors') }}
-          </span>
         </div>
       </template>
     </ps-select>
@@ -31,6 +25,7 @@
       :extensions="['extended-link']"
     />
     <VueShowdown
+      v-if="needFilter"
       class="text-muted my-1 ps_gs-fz-12"
       :markdown="$t('productFeedSettings.shipping.cantSelectCountryWithDifferentCurrency')"
     />
@@ -60,12 +55,13 @@ export default {
     defaultCountry: {
       required: true,
     },
+    needFilter: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
   },
   methods: {
-    isCompatibleWithCurrency(country) {
-      const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
-      return currentCountry.currency === this.currency;
-    },
   },
   countriesSelectionOptions,
   googleUrl,
@@ -80,7 +76,9 @@ export default {
       },
     },
     sortCountries() {
-      return countriesSelectionOptions.filter((el) => el.currency === this.currency);
+      return this.needFilter
+        ? countriesSelectionOptions.filter((el) => el.currency === this.currency)
+        : countriesSelectionOptions;
     },
   },
 };
