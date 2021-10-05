@@ -333,8 +333,11 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
     nextSyncTime() {
-      return this.$options.filters.timeConverterToDate(
-        this.getProductFeedStatus.nextJobAt,
+      const syncDate = new Date(this.getProductFeedStatus.nextJobAt);
+      return syncDate.toLocaleTimeString(this.$store.getters['app/GET_SHOP_COUNTRY'],
+        {
+          timeStyle: 'short',
+        },
       );
     },
     isUS() {

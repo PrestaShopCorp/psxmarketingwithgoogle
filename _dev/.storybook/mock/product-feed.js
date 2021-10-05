@@ -9,7 +9,7 @@ export const productFeed = {
   status: {
     success: true,
     jobEndedAt: '',
-    nextJobAt: '',
+    nextJobAt: '2021-10-06T01:00:00.000Z',
     lastUpdatedAt: '',
   },
   settings: {
@@ -104,7 +104,7 @@ export const productFeedIsReadyForExport = {
   isConfigured: true,
   status: {
     ...productFeed.status,
-    jobEndedAt: null,
+    jobEndedAt: '2021-10-06T01:00:00.000Z',
     lastUpdatedAt: null,
     nextJobAt: new Date('July 22, 2021 03:24:00'),
     success : false,
@@ -128,7 +128,7 @@ export const productFeedIsConfigured = {
   isConfigured: true,
   status: {
     ...productFeed.status,
-    jobEndedAt: new Date('July 21, 2021 03:24:00'),
+    jobEndedAt: '2021-10-06T01:00:00.000Z',
     nextJobAt: new Date('July 22, 2021 03:24:00'),
     lastUpdatedAt: new Date('July 22, 2021 03:24:00'),
     success : true,

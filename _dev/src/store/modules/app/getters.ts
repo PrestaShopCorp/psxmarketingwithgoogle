@@ -44,6 +44,9 @@ export default {
   [GettersTypes.GET_ADD_BLOCKER_STATUS](state: LocalState): boolean {
     return state.adBlockerExists;
   },
+  [GettersTypes.GET_SHOP_COUNTRY](state: LocalState): string | null {
+    return state.psxMtgWithGoogleDefaultShopCountry;
+  },
   [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
     if (state.targetCountries !== null) {
       return state.targetCountries;

@@ -6,7 +6,7 @@ export const initialStateApp = {
     psxMktgWithGoogleAdminAjaxUrl: 'https://mock-googleshopping-api.psessentials-integration.net/rest/Ajax+requests+to+shop+specification/1.0.0/',
     shopIdPsAccounts: '',
     tokenPsAccounts: '',
-    psxMtgWithGoogleDefaultShopCountry: null,
+    psxMtgWithGoogleDefaultShopCountry: 'US',
     isCountryMemberOfEuropeanUnion: false,
     targetCountries: ['FR'],
     psxMktgWithGoogleShopCurrency: {
