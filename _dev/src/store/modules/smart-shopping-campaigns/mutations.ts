@@ -152,9 +152,7 @@ export default {
     state.reporting.results.productsPartitionsPerformancesSection = payload;
   },
   [MutationsTypes.SAVE_NEW_SSC](state: LocalState, payload: CampaignObject) {
-    if (payload) {
-      state.campaigns.push(payload);
-    } else state.campaigns = [];
+    state.campaigns.push(payload);
   },
   [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](state: LocalState, payload: boolean) {
     state.errorCampaignNameExists = payload;

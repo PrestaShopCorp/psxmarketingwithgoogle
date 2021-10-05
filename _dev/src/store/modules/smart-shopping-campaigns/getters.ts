@@ -23,6 +23,7 @@ import {
   CampaignPerformances,
   CampaignObject,
   Kpis,
+  OrderByType,
   State as LocalState,
   ProductPerformances,
   ProductPartitionPerformances,
