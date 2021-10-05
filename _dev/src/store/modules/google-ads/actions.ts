@@ -18,6 +18,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import {LogarithmicScale} from 'chart.js';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
@@ -64,12 +65,14 @@ export default {
         invitationLink: json.customer.invitationLink,
         billingSettings: json.billingSettings,
       };
-      commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
-      if (customer.isAccountSuspended === true) {
-        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Suspended');
-      } else if (customer.isAccountCancelled === true) {
+      const accountIsActivated = state.list.filter((camp) => camp.id === json.customer.id);
+      if (!accountIsActivated.length || json.customer.isAccountCancelled) {
+        dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT);
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Cancelled');
-      } else if (customer.invitationLink && !customer.isAdmin) {
+        return;
+      }
+      commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
+      if (customer.invitationLink && !customer.isAdmin) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'NeedValidationFromEmail');
       } else if (!customer.billingSettings.isSet) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
