@@ -73,6 +73,7 @@ export default {
   methods: {
     async getDatas() {
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
+      await this.$store.dispatch('productFeed/GET_TOTAL_PRODUCTS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
