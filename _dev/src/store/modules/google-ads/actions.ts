@@ -65,17 +65,14 @@ export default {
         billingSettings: json.billingSettings,
       };
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
-      if (customer.isAccountCancelled === true) {
-        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Cancelled');
-      }
       if (customer.isAccountSuspended === true) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Suspended');
-      }
-      if (!customer.billingSettings.isSet) {
-        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
-      }
-      if (customer.invitationLink && !customer.isAdmin) {
+      } else if (customer.isAccountCancelled === true) {
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Cancelled');
+      } else if (customer.invitationLink && !customer.isAdmin) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'NeedValidationFromEmail');
+      } else if (!customer.billingSettings.isSet) {
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'BillingSettingsMissing');
       }
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
@@ -129,7 +126,7 @@ export default {
       console.error(error);
     }
   },
-  async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState, state},
+  async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState, dispatch},
     correlationId: string) {
     commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
     // eslint-disable-next-line no-param-reassign

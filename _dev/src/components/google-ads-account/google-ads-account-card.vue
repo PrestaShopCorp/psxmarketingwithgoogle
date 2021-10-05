@@ -185,7 +185,7 @@
           </b-badge>
         </div>
         <div
-          v-if="!googleAdsAccountConfigured"
+          v-if="!googleAdsAccountConfigured && error !== GoogleAdsErrorReason.Suspended"
           class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
         >
           <b-button
