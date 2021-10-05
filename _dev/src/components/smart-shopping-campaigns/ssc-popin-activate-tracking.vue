@@ -91,12 +91,14 @@ export default {
   },
   data() {
     return {
-      statusTrackingTag: this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'],
       isLoading: false,
       requestNewConversionTrackingTags: true,
     };
   },
   computed: {
+    statusTrackingTag() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
+    },
     tagAlreadyExists() {
       return this.$store.state.smartShoppingCampaigns.tagAlreadyExists;
     },
