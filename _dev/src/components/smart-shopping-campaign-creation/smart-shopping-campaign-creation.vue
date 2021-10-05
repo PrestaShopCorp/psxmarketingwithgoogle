@@ -162,11 +162,12 @@
             :currency="currency"
             @countrySelected="saveCountrySelected"
             :default-country="countries"
+            :need-filter="false"
           />
           <span
             v-else
           >
-            {{ countries[0] }}
+            {{ targetCountry[0] }}
           </span>
         </b-form-group>
         <b-form-group
@@ -338,6 +339,7 @@ export default {
       timer: null,
       displayError: false,
       campaignIsActive: true,
+      targetCountry: [],
     };
   },
   components: {
@@ -356,7 +358,7 @@ export default {
       if (this.campaignName
       && this.errorCampaignNameExistsAlready === false
       && this.campaignDurationStartDate
-      && this.countries
+      && this.targetCountry
       && (this.campaignProductsFilter === true
       || (this.campaignProductsFilter === false && this.filtersChosen.length))
       && this.campaignDailyBudget) {
@@ -391,12 +393,6 @@ export default {
       }
       return !!regex.test(this.campaignDailyBudget);
     },
-    sortCountries() {
-      countriesSelectionOptions.forEach((el) => {
-        el.disabled = !!(el.currency === this.currency);
-      });
-      return countriesSelectionOptions;
-    },
     errorCampaignNameExistsAlready() {
       return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
     },
@@ -424,7 +420,7 @@ export default {
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
         // Countries is still an array because refacto later for multiple countries
-        targetCountry: this.$store.getters['app/GET_ACTIVE_COUNTRIES'][0],
+        targetCountry: this.targetCountry[0],
         productFilters: [],
       };
     },
@@ -468,12 +464,8 @@ export default {
         this.$refs.SmartShoppingCampaignCreationPopinRecap.$refs.modal.id,
       );
     },
-    isCompatibleWithCurrency(country) {
-      const currentCountry = countriesSelectionOptions.find((el) => el.country === country);
-      return currentCountry.currency === this.currency;
-    },
     saveCountrySelected(value) {
-      this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', value);
+      this.targetCountry = value;
     },
     openFilterPopin() {
       this.$bvModal.show(
@@ -526,6 +518,9 @@ export default {
         this.campaignDailyBudget = foundSsc.dailyBudget;
         this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = foundSsc.id;
+        this.targetCountry.push(
+          this.$options.filters.changeCountriesCodesToNames([foundSsc.targetCountry])[0],
+        );
         this.debounceName();
       } else {
         this.$router.push({name: 'campaign-list'});
