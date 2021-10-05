@@ -3,7 +3,7 @@
     <ps-select
       v-model="country"
       :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
-      :options="needFilter ? sortCountries : getCountriesWithoutFilter"
+      :options="sortCountries"
       :deselect-from-dropdown="true"
       :clearable="false"
       class="ps_gs-v-select"
@@ -76,10 +76,9 @@ export default {
       },
     },
     sortCountries() {
-      return countriesSelectionOptions.filter((el) => el.currency === this.currency);
-    },
-    getCountriesWithoutFilter() {
-      return countriesSelectionOptions;
+      return this.needFilter
+        ? countriesSelectionOptions.filter((el) => el.currency === this.currency)
+        : countriesSelectionOptions;
     },
   },
 };
