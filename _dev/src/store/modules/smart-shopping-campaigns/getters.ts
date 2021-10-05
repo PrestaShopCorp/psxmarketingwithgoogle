@@ -23,6 +23,7 @@ import {
   CampaignPerformances,
   CampaignObject,
   Kpis,
+  OrderByType,
   State as LocalState,
   ProductPerformances,
   ProductPartitionPerformances,
@@ -67,6 +68,9 @@ export default {
   [GettersTypes.GET_ALL_SSC](state: LocalState): Array<CampaignObject> {
     return state.campaigns;
   },
+  [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): null|string {
+    return state.tokenNextPageCampaignList;
+  },
 
   // request getters
   [GettersTypes.GET_REPORTING_PERIOD_SELECTED](
@@ -107,6 +111,11 @@ export default {
     state: LocalState,
   ): Object {
     return state.reporting.request.ordering.campaignsPerformances;
+  },
+  [GettersTypes.GET_SSC_LIST_ORDERING](
+    state: LocalState,
+  ): OrderByType {
+    return state.campaignsOrdering;
   },
   [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES_ORDERING](
     state: LocalState,

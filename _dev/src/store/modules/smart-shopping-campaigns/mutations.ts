@@ -128,6 +128,17 @@ export default {
   ) {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
+  [MutationsTypes.RESET_SSC_LIST](
+    state: LocalState,
+  ) {
+    state.campaigns = [];
+  },
+  [MutationsTypes.SET_SSC_LIST_ORDERING](
+    state: LocalState,
+    payload : OrderByType,
+  ) {
+    state.campaignsOrdering = payload;
+  },
   [MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES](
     state: LocalState,
     payload: ProductsPerformancesSection,
@@ -147,7 +158,10 @@ export default {
     state.errorCampaignNameExists = payload;
   },
   [MutationsTypes.SAVE_SSC_LIST](state: LocalState, payload: Array<CampaignObject>) {
-    state.campaigns = payload;
+    state.campaigns.push(...payload);
+  },
+  [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](state: LocalState, payload: string) {
+    state.tokenNextPageCampaignList = payload;
   },
   [MutationsTypes.UPDATE_SSC_STATUS](state: LocalState, payload: CampaignStatusPayload) {
     const getScc = state.campaigns.find((el) => el.id === payload.id);

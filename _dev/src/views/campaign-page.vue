@@ -6,6 +6,7 @@
     />
     <smart-shopping-campaign-table-list
       :loading="loading"
+      @loader="changeLoadingState($event)"
       v-else-if="$route.name === 'campaign-list'"
     />
     <smart-shopping-campaign-creation
@@ -71,9 +72,6 @@ export default {
   },
   methods: {
     async getDatas() {
-      await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST').then(() => {
-        this.loading = false;
-      });
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
@@ -89,6 +87,9 @@ export default {
     },
     toastIsClosed() {
       this.campaignCreated = false;
+    },
+    changeLoadingState(event) {
+      this.loading = event;
     },
   },
   mounted() {

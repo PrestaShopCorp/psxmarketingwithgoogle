@@ -269,6 +269,10 @@ $statusColors: (
   max-height: max(rem(200), rem(300));
   overflow-y: auto;
 }
+.table-ssc-list{
+  max-height: max(rem(300), rem(400));
+  overflow-y: auto;
+}
 
 .b-table-sticky-header > .table.b-table > thead > tr > th {
   z-index: 3;

@@ -30,10 +30,17 @@
       :title="campaignList.length + ' campaign(s)'"
       :use-date="false"
     />
+    <b-form-input
+      id="campaign-name-input-filter"
+      v-model="campaignName"
+      :placeholder="$t('smartShoppingCampaignCreation.inputNamePlaceholder')"
+      class="mt-2"
+      @keyup="debounceName()"
+    />
     <div>
       <b-table-simple
         id="table-filters-performance"
-        class="ps_gs-table-products mb-0"
+        class="ps_gs-table-products mb-0 table-ssc-list"
         :table-class="{'border-bottom-0': loading}"
         variant="light"
         responsive="xl"
@@ -54,7 +61,7 @@
                   class="p-0 border-0"
                 >
                   <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
-                  <template v-if="queryOrderDirection[type] === 'DESC'">
+                  <template v-if="queryOrderDirection[type] === 'ASC'">
                     <i class="material-icons ps_gs-fz-14">expand_more</i>
                     <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
                   </template>
@@ -97,11 +104,13 @@
           </b-tr>
         </b-thead>
         <b-tbody class="bg-white">
-          <SmartShoppingCampaignTableListRow
-            v-for="campaign in campaignList"
-            :key="campaign.campaignName"
-            :campaign="campaign"
-          />
+          <template v-if="!loading">
+            <SmartShoppingCampaignTableListRow
+              v-for="campaign in campaignList"
+              :key="campaign.campaignName"
+              :campaign="campaign"
+            />
+          </template>
           <b-tr v-if="loading">
             <b-td
               colspan="7"
@@ -130,15 +139,14 @@ export default {
   },
   data() {
     return {
-      filterCampaignName: null,
-      filterCampaignStatus: null,
+      campaignName: null,
       searchQuery: {},
     };
   },
   props: {
     loading: {
-      default: true,
       type: Boolean,
+      required: true,
     },
   },
   computed: {
@@ -154,20 +162,18 @@ export default {
           return nameMatch;
         });
       }
-
       return campaigns;
+    },
+    tokenNextPage() {
+      return this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
     },
     queryOrderDirection: {
       get() {
-        // TODO
-        /** Inspired by campaigns-performance-table.vue */
-        return {
-          campaign: QueryOrderDirection.ASCENDING,
-        };
+        return this.$store.getters['smartShoppingCampaigns/GET_SSC_LIST_ORDERING'];
       },
       set(orderDirection) {
-        // TODO
-        console.log(orderDirection);
+        this.$store.commit('smartShoppingCampaigns/SET_SSC_LIST_ORDERING', orderDirection);
+        this.fetchCampaigns();
       },
     },
   },
@@ -175,11 +181,11 @@ export default {
     hasToolTip(headerType) {
       return headerType === CampaignSummaryListHeaderType.STATUS;
     },
-    hasInput(headerType) {
-      return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
+    hasInput() {
+      return false;
     },
     hasSorting(headerType) {
-      return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
+      return headerType === CampaignSummaryListHeaderType.DURATION;
     },
     redirectToCreateCampaign() {
       this.$router.push({
@@ -201,6 +207,48 @@ export default {
       }
       this.queryOrderDirection = newOrderDirection;
     },
+
+    debounceName() {
+      this.$emit('loader', true);
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.$store.commit('smartShoppingCampaigns/SET_SSC_LIST_ORDERING', {name: this.campaignName});
+        this.fetchCampaigns();
+      }, 1000);
+    },
+
+    fetchCampaigns(isNewRequest = true) {
+      this.$emit('loader', true);
+      this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST', isNewRequest)
+        .finally(() => {
+          this.$emit('loader', false);
+        });
+    },
+    handleScroll() {
+      const body = document.getElementsByClassName('table-ssc-list')[0];
+      const token = this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
+      if (body.scrollTop >= body.scrollHeight - body.clientHeight
+      && body.scrollTop > 0
+      && token !== null) {
+        this.fetchCampaigns(false);
+      }
+    },
+  },
+  mounted() {
+    const tableBody = document.getElementsByClassName('table-ssc-list')[0];
+
+    if (tableBody) {
+      tableBody.addEventListener('scroll', this.handleScroll);
+    }
+
+    this.fetchCampaigns();
+  },
+  beforeDestroy() {
+    const tableBody = document.getElementsByClassName('table-ssc-list')[0];
+
+    if (tableBody) {
+      tableBody.removeEventListener('scroll', this.handleScroll);
+    }
   },
 };
 </script>
