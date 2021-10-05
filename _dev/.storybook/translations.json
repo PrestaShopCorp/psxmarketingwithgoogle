@@ -233,7 +233,7 @@
         "cantSelectCountryWithDifferentCurrency" : "You can't select country with currency that differs from your main shop."
       },
       "export" : {
-        "summarySyncDailyAt" : "Sync daily at ",
+        "summarySyncDailyAt" : "Sync daily at {0}",
         "synchronizationSchedule" : "Export synchronization schedule",
         "synchronizationTime" : "Sync time",
         "timeZone" : "Time zone",

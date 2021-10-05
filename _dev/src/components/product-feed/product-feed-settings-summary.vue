@@ -59,7 +59,7 @@
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.summary.dataSyncSetUp')"
-            :description="$t('productFeedSettings.export.summarySyncDailyAt') + formatNextSync"
+            :description="$t('productFeedSettings.export.summarySyncDailyAt', [formatNextSync])"
             size="full"
           />
           <product-feed-card-report-card
