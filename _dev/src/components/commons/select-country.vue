@@ -3,7 +3,7 @@
     <ps-select
       v-model="country"
       :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
-      :options="!needFilter ? getCountriesWithoutFilter : sortCountries"
+      :options="needFilter ? sortCountries : getCountriesWithoutFilter"
       :deselect-from-dropdown="true"
       :clearable="false"
       class="ps_gs-v-select"
