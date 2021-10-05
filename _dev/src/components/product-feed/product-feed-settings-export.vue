@@ -310,12 +310,7 @@ export default {
       return false;
     },
     syncTime() {
-      const syncDate = new Date(this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt);
-      return syncDate.toLocaleTimeString(this.$store.getters['app/GET_SHOP_COUNTRY'],
-        {
-          timeStyle: 'short',
-        },
-      );
+      return this.$options.filters.timeConverterToHour(this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt);
     },
   },
 
