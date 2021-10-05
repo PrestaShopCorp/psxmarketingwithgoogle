@@ -140,6 +140,7 @@ export default {
   data() {
     return {
       campaignName: null,
+      searchQuery: {},
     };
   },
   props: {
@@ -161,7 +162,6 @@ export default {
           return nameMatch;
         });
       }
-
       return campaigns;
     },
     tokenNextPage() {
@@ -181,8 +181,8 @@ export default {
     hasToolTip(headerType) {
       return headerType === CampaignSummaryListHeaderType.STATUS;
     },
-    hasInput(headerType) {
-      return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
+    hasInput() {
+      return false;
     },
     hasSorting(headerType) {
       return headerType === CampaignSummaryListHeaderType.DURATION;

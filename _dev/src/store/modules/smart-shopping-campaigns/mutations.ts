@@ -128,11 +128,6 @@ export default {
   ) {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
-  [MutationsTypes.RESET_SSC_LIST](
-    state: LocalState,
-  ) {
-    state.campaigns = [];
-  },
   [MutationsTypes.SET_SSC_LIST_ORDERING](
     state: LocalState,
     payload : OrderByType,

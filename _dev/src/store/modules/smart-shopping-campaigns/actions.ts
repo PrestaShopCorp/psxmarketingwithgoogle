@@ -426,7 +426,6 @@ export default {
   },
   async [ActionsTypes.GET_SSC_LIST]({commit, state, rootState}, isNewRequest = true) {
     const query = new URLSearchParams();
-    // add order in array format
     if (state.campaignsOrdering && state.campaignsOrdering.duration) {
       query.append('order[startDate]', state.campaignsOrdering.duration);
     }
@@ -449,9 +448,6 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      if (isNewRequest) {
-        commit('RESET_SSC_LIST');
-      }
       commit(MutationsTypes.SAVE_SSC_LIST, json.campaigns);
       commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, json.nextPageToken);
     } catch (error) {
