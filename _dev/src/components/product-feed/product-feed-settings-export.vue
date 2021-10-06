@@ -317,6 +317,7 @@ export default {
   methods: {
     nextStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+      window.scrollTo(0, 0);
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
