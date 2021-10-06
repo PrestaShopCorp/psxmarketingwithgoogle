@@ -6,6 +6,7 @@
     @close="cancel"
     ref="modal"
     footer-class="flex-sm-nowrap"
+    footer-border-variant="0"
     size="xl"
   >
     <Stepper
@@ -39,6 +40,7 @@
         {{ $t('mcaRequirements.footer') }}
       </a>
       <b-button
+        size="sm"
         v-if="newMca"
         variant="outline-secondary"
         @click="cancel()"
@@ -51,6 +53,7 @@
         :title="isBtnStepRequirementsDisabled ? $t('tooltip.mustCheckAllRequirements') : ''"
       >
         <b-button
+          size="sm"
           variant="primary"
           @click="saveFirstStep()"
           :disabled="isBtnStepRequirementsDisabled"
@@ -63,31 +66,24 @@
       slot="modal-footer"
       v-else-if="stepActiveData === 2"
     >
-      <a
-        class="ps_gs-fz-12 text-muted mr-sm-auto"
-        :href="$options.googleUrl.googleWebsiteRequirements"
-        target="_blank"
-      >
-        {{ $t('mcaRequirements.footer') }}
-      </a>
       <b-button
-        v-if="newMca"
+        size="sm"
         variant="outline-secondary"
         @click="cancel()"
       >
         {{ $t('cta.cancel') }}
       </b-button>
       <span
-        v-if="newMca"
         v-b-tooltip:psxMktgWithGoogleApp
-        :title="isBtnStepRequirementsDisabled ? $t('tooltip.mustCheckAllRequirements') : ''"
+        :title="isBtnStepPhoneValidationDisabled ? 'Please, validate your phone number first' : ''"
       >
         <b-button
+          size="sm"
           variant="primary"
-          @click="saveFirstStep()"
-          :disabled="isBtnStepRequirementsDisabled"
+          @click="saveSecondStep()"
+          :disabled="isBtnStepPhoneValidationDisabled"
         >
-          {{ $t('cta.storeMeetsRequirements') }}
+          {{ $t('cta.createAccount') }}
         </b-button>
       </span>
     </template>
@@ -96,6 +92,7 @@
       v-else-if="stepActiveData === 3"
     >
       <b-button
+        size="sm"
         variant="outline-secondary"
         @click="cancel()"
       >
@@ -107,6 +104,7 @@
         :title="isBtnStepstoreInfoDisabled ? $t('tooltip.mustAgreeGoogleTerms') : ''"
       >
         <b-button
+          size="sm"
           variant="primary"
           @click="ok()"
           :disabled="isBtnStepstoreInfoDisabled"
@@ -140,6 +138,7 @@ export default {
     return {
       stepActiveData: 1,
       isBtnStepRequirementsDisabled: true,
+      isBtnStepPhoneValidationDisabled: false,
       isBtnStepstoreInfoDisabled: true,
     };
   },
@@ -172,6 +171,9 @@ export default {
     },
     saveFirstStep() {
       this.stepActiveData = 2;
+    },
+    saveSecondStep() {
+      this.stepActiveData = 3;
     },
     stepToChange(value) {
       this.stepActiveData = value;
