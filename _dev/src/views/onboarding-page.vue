@@ -312,20 +312,19 @@ export default {
       if (oldVal === false && newVal === true) {
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
-        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
       }
     },
     productFeedIsConfigured(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
         this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS');
-        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
+        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST').then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT'));
       }
     },
     googleAdsAccountIsChosen(newVal, oldVal) {
       if (oldVal === null && newVal === true) {
+        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
-        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
       }
     },
 
