@@ -90,7 +90,7 @@ export default {
     },
     getCurrentCheckbox() {
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
-      this.$emit('stepOneValidation', !(this.selectedRequirements.length === this.requirements.length));
+      this.$emit('stepRequirementsValidation', !(this.selectedRequirements.length === this.requirements.length));
     },
   },
   mounted() {
