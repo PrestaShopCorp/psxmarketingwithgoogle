@@ -182,12 +182,6 @@ export default {
   },
   mounted() {
     this.stepActiveData = this.stepActive;
-    if (this.newMca === true) {
-      this.$store.dispatch('accounts/REQUEST_WEBSITE_REQUIREMENTS').then(() => {
-        this.selectedRequirements = this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'];
-      });
-      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
-    }
   },
   googleUrl,
 };
