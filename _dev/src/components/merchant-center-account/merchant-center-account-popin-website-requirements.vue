@@ -11,68 +11,16 @@
     <Stepper
       v-if="newMca"
       :active-step="stepActiveData"
-      :steps="steps"
+      :steps="steps()"
       @changeStep="stepToChange($event)"
     />
-    <form
-      class="my-1"
+
+    <Step1
       v-if="stepActiveData === 1"
-    >
-      <VueShowdown
-        tag="legend"
-        class="font-weight-normal ps_gs-fz-14 mb-2 bg-transparent border-0"
-        :markdown="$t('mcaRequirements.legend')"
-        :extensions="['no-p-tag']"
-      />
-      <b-alert
-        v-if="!newMca"
-        variant="info"
-        show
-        class="mt-3 mb-2"
-      >
-        <p class="mb-0">
-          {{ $t('mcaRequirements.alert') }}
-        </p>
-      </b-alert>
-      <ul class="list-unstyled">
-        <li
-          v-for="requirement in requirements"
-          :key="$t(`mcaRequirements.${requirement}.title`)"
-          class="d-flex border-bottom py-3 pl-2 ml-1"
-        >
-          <component
-            :is="newMca ? 'b-form-checkbox' : 'div'"
-            class="ps_gs-checkbox"
-            :class="{'d-flex': !newMca}"
-            :id="safeString($t(`mcaRequirements.${requirement}.title`))"
-            v-model="selectedRequirements"
-            :value="newMca ? requirement : null"
-            @change="getCurrentCheckbox"
-          >
-            <i
-              v-if="!newMca"
-              class="material-icons text-success mr-2 ps_gs-fz-18"
-            >
-              check
-            </i>
-            <div>
-              <span
-                class="ps_gs-fz-14 font-weight-normal mb-1"
-                v-html="$t(`mcaRequirements.${requirement}.title`)"
-              />
-              <p class="ps_gs-fz-12 text-muted">
-                {{ $t(`mcaRequirements.${requirement}.description`) }}<br>
-                <a
-                  v-html="$t(`mcaRequirements.${requirement}.link`)"
-                  :href="$options.googleUrl[requirement]"
-                  target="_blank"
-                />
-              </p>
-            </div>
-          </component>
-        </li>
-      </ul>
-    </form>
+      :new-mca="newMca"
+      @stepOneValidation="stepOneValidation"
+    />
+
     <form
       class="my-1"
       v-else-if="stepActiveData === 2"
@@ -419,23 +367,16 @@
       <span
         v-if="newMca"
         v-b-tooltip:psxMktgWithGoogleApp
-        :title="isStepOneReadyToValidate() ? $t('tooltip.mustCheckAllRequirements') : ''"
+        :title="isBtnStepOneDisabled ? $t('tooltip.mustCheckAllRequirements') : ''"
       >
         <b-button
           variant="primary"
           @click="saveFirstStep()"
-          :disabled="isStepOneReadyToValidate()"
+          :disabled="isBtnStepOneDisabled"
         >
           {{ $t('cta.storeMeetsRequirements') }}
         </b-button>
       </span>
-      <!-- <b-button
-        v-else
-        variant="primary"
-        @click="saveChangeExistingGmc()"
-      >
-        {{ $t('cta.save') }}
-      </b-button> -->
     </template>
     <template
       slot="modal-footer"
@@ -465,55 +406,50 @@
 </template>
 
 <script>
-/**
- * TODO: Handle events (close, continue, etc...)
- * Handle Existing GMC, check requirements that are already checked
- * by filling the data.selectedRequirements[]
- */
 import googleUrl from '@/assets/json/googleUrl.json';
 import PsModal from '../commons/ps-modal';
 import Stepper from '../commons/stepper';
+import Step1 from './website-requirements/step-requirements';
+import WebsiteRequirementsSteps from '@/enums/stepper/website-requirements-steps';
 
 export default {
   name: 'MerchantCenterAccountPopinWebsiteRequirements',
   components: {
     PsModal,
     Stepper,
+    Step1,
   },
   data() {
     return {
       stepActiveData: 1,
-      requirements: [
-        'shoppingAdsPolicies',
-        'accurateContactInformation',
-        'secureCheckoutProcess',
-        'returnPolicy',
-        'billingTerms',
-        'completeCheckoutProcess',
-      ],
-      steps: [
-        {
-          title: this.$i18n.t('mcaRequirements.steps.websiteRequirements'),
-        },
-        {
-          title: this.$i18n.t('mcaRequirements.steps.shopInfo'),
-        },
-      ],
-      selectedRequirements: [],
       containsAdultContent: null,
       acceptsGoogleTerms: false,
+      isBtnStepOneDisabled: true,
     };
   },
-  methods: {
-    safeString(str) {
-      let newStr = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-      newStr = newStr
-        .replace(/-/g, ' ') // convert all hyphens to spaces
-        .replace(/\s+/g, ''); // remove spaces
-      return newStr;
+  props: {
+    stepActive: {
+      type: Number,
+      default: 1,
     },
-    isStepOneReadyToValidate() {
-      return !(this.selectedRequirements.length === this.requirements.length);
+    newMca: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  methods: {
+    steps() {
+      const steps = [];
+      Object.keys(WebsiteRequirementsSteps).forEach((key) => {
+        steps.push({
+          title: this.$i18n.t(`mcaRequirements.steps.${WebsiteRequirementsSteps[key]}`),
+        });
+      });
+
+      return steps;
+    },
+    stepOneValidation(payload) {
+      this.isBtnStepOneDisabled = payload;
     },
     isStepTwoReadyToValidate() {
       return !(
@@ -541,9 +477,6 @@ export default {
     },
     stepToChange(value) {
       this.stepActiveData = value;
-    },
-    getCurrentCheckbox() {
-      this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
     },
     verifyPhone() {
       return !!(this.shopInformations.store.phone && this.shopInformations.store.phone.match(/^[+0-9. ()/-]*$/));
@@ -576,16 +509,6 @@ export default {
       /**
        * TODO: Save change when existing GMC
        */
-    },
-  },
-  props: {
-    stepActive: {
-      type: Number,
-      default: 1,
-    },
-    newMca: {
-      type: Boolean,
-      required: true,
     },
   },
   computed: {
