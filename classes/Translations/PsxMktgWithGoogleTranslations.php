@@ -494,7 +494,9 @@ class PsxMktgWithGoogleTranslations
                 'toggleNewConversionTag2' => $this->module->l('We will create the following conversion tags : Page view, Purchase, Add to basket', 'PsxMktgWithGoogleTranslations'),
                 'remarketingTagLoading' => $this->module->l('Checking if you have a remarketing and conversion tracking tags to add to your shop', 'PsxMktgWithGoogleTranslations'),
                 'descriptiveMessage' => $this->module->l("Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].", 'PsxMktgWithGoogleTranslations'),
-            ],
+                'productsFiltersSelected' => $this->module->l('Products filters selected', 'PsxMktgWithGoogleTranslations'),
+                'productsSelected' => $this->module->l('Products selected', 'PsxMktgWithGoogleTranslations'),
+                ],
             'campaignCard' => [
                 'title' => $this->module->l('Create your Smart Shopping campaign in a few clicks', 'PsxMktgWithGoogleTranslations'),
                 'description' => $this->module->l("Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it\'s that easy!", 'PsxMktgWithGoogleTranslations'),
