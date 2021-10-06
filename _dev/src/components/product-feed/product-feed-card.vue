@@ -333,7 +333,9 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
     nextSyncTime() {
-      return this.$options.filters.timeConverterToHour(this.getProductFeedStatus.nextJobAt);
+      return this.$options.filters.timeConverterToDate(
+        this.getProductFeedStatus.nextJobAt,
+      );
     },
     isUS() {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES'].includes('US');
