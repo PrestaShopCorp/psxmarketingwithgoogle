@@ -86,45 +86,27 @@
     <section class="mt-4">
       <h2>2. {{ $t('productFeedSettings.attributeMapping.specificTitle') }}</h2>
       <div class="ps_gs-attribute-mapping-questions">
-        <div class="font-weight-600 font-italic">
-          {{ $t('productFeedSettings.attributeMapping.sellRefurbished') }}
-        </div>
-        <div class="ps_gs-attribute-mapping-questions">
-          <span class="ml-2">
-            {{ $t('cta.no') }}
-          </span>
-          <b-form-checkbox
-            switch
-            size="lg"
-            class="ml-2 sm-4 ps_gs-switch"
-            v-model="sellRefurbished"
-            data-test-id="checkbox-sellRefurbished"
-          >
-            <span class="ps_gs-fz-14">
-              {{ $t('cta.yes') }}
-            </span>
-          </b-form-checkbox>
-        </div>
+        <b-form-checkbox
+          class="ps_gs-checkbox"
+          v-model="sellRefurbished"
+          data-test-id="checkbox-sellRefurbished"
+        >
+          <VueShowdown
+            class="font-weight-600 font-italic"
+            :markdown="$t('productFeedSettings.attributeMapping.sellRefurbished')"
+          />
+        </b-form-checkbox>
       </div>
       <div class="ps_gs-attribute-mapping-questions">
-        <div class="font-weight-600 font-italic">
-          {{ $t('productFeedSettings.attributeMapping.sellApparel') }}
-        </div>
-        <div class="ps_gs-attribute-mapping-questions ">
-          <span class="ml-2">
-            {{ $t('cta.no') }}
-          </span>
-          <b-form-checkbox
-            v-model="sellApparel"
-            switch
-            size="lg"
-            class="ml-2 sm-4 ps_gs-switch"
-          >
-            <span class="ps_gs-fz-14">
-              {{ $t('cta.yes') }}
-            </span>
-          </b-form-checkbox>
-        </div>
+        <b-form-checkbox
+          v-model="sellApparel"
+          class="ps_gs-checkbox"
+        >
+          <VueShowdown
+            class="font-weight-600 font-italic"
+            :markdown="$t('productFeedSettings.attributeMapping.sellApparel') "
+          />
+        </b-form-checkbox>
       </div>
 
       <template
