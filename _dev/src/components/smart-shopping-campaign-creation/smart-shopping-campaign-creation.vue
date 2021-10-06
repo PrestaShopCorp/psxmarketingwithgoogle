@@ -445,7 +445,7 @@ export default {
         endDate: this.campaignDurationEndDate,
         // Countries is still an array because refacto later for multiple countries
         targetCountry: this.targetCountry[0] || this.countries[0],
-        productFilters: [],
+        productFilters: this.filtersChosen,
       };
     },
     budgetCurrencySymbol() {
