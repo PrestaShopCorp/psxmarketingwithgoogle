@@ -27,7 +27,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'ReportingTableHeader',
   props: {
@@ -53,7 +52,6 @@ export default {
     endDate() {
       return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FORMATTED_END_DATES'];
     },
-
   },
 };
 </script>

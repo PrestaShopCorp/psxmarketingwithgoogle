@@ -455,7 +455,6 @@ export default {
     });
     if (!response.ok) {
       const error = await response.json();
-      console.log(error);
       if (error.fromGoogle?.needOverwrite) {
         throw new NeedOverwriteError(error, error.fromGoogle.error.code);
       }
