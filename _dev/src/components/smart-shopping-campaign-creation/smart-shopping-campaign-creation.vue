@@ -93,6 +93,7 @@
               <b-form-datepicker
                 id="campaign-duration-start-date-input"
                 ref="campaign-duration-start-date-input"
+                :start-weekday="1"
                 v-model="campaignDurationStartDate"
                 :min="new Date()"
                 :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
@@ -117,6 +118,7 @@
               <b-form-datepicker
                 id="campaign-duration-end-date-input"
                 ref="campaignDurationEndDateInput"
+                :start-weekday="1"
                 v-model="campaignDurationEndDate"
                 :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
                 :min="campaignDurationStartDate"
