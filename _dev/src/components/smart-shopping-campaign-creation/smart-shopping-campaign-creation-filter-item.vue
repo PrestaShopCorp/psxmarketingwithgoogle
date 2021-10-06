@@ -110,13 +110,13 @@ export default {
       }
     },
     deselectFilter() {
-      this.$root.$emit('tutu', {
+      this.$root.$emit('filterSelected', {
         id: this.item.id,
         checked: false,
       });
     },
     selectCheckbox(event) {
-      this.$root.$emit('tutu', {
+      this.$root.$emit('filterSelected', {
         id: this.item.id,
         checked: event,
       });

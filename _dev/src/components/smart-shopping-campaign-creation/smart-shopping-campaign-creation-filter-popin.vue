@@ -42,7 +42,7 @@
             </h6>
             <ul class="ps_gs-filters">
               <SmartShoppingCampaignCreationFilterItem
-                :item="filteredFilters"
+                :item="filteredDimensions"
                 :is-open-by-default="true"
                 :selected-filters="true"
               />
@@ -104,8 +104,8 @@ export default {
     textFiltersSelected() {
       // TODO We only have 1 dimension for now but need refacto for the text when more
       const textValuesSelected = this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
-        this.filteredFilters.children.length,
-        [this.filteredFilters.children.length]);
+        this.filteredDimensions.children.length,
+        [this.filteredDimensions.children.length]);
       return `${textValuesSelected}`;
     },
     availableFilters() {
@@ -117,13 +117,12 @@ export default {
         children: [],
       };
     },
-    filteredFilters() {
+    filteredDimensions() {
       return {
         name: 'All filters',
         id: 'allFilters',
         checked: false,
-        children: this.selectedFilters.children.filter(
-          (item) => item.checked === true || item.checked === null),
+        children: this.selectedFilters.children.filter((item) => item.checked === true),
       };
     },
   },
@@ -142,44 +141,30 @@ export default {
       });
       this.selectedFilters.indeterminate = false;
     },
+    checkChildren(arr, checkboxClicked) {
+      arr.forEach((child) => {
+        child.checked = checkboxClicked.checked;
+      });
+    },
     selectCheckbox(event) {
-      const checkChildren = function (arr) {
-        arr.forEach((child) => {
-          child.checked = event.checked;
-          if (child.children) {
-            checkChildren(child.children);
-          }
-        });
-      };
       if (event.id === 'allFilters') {
         this.checked = event.checked;
-        checkChildren(this.selectedFilters.children);
+        this.checkChildren(this.selectedFilters.children, event);
       }
       this.selectedFilters.children.forEach((element) => {
         if (element.id === event.id) {
           element.checked = event.checked;
-          if (element.children) {
-            checkChildren(element.children);
-          }
         }
       });
-      this.selectedFilters.children.forEach((element) => {
-        if (element.id === event.id) {
-          element.checked = event.checked;
-        }
-      });
-      const isIndeterminate = [];
-      this.selectedFilters.children.forEach((element) => {
-        isIndeterminate.push(element.checked);
-      });
-      const newarr = isIndeterminate.filter((x, y) => isIndeterminate.indexOf(x) === y);
-      if (newarr.length === 2) this.selectedFilters.indeterminate = true;
-      else {
+      const isIndeterminate = this.selectedFilters.children.map((element) => element.checked);
+      if (isIndeterminate.includes(true) && isIndeterminate.includes(false)) {
+        this.selectedFilters.indeterminate = true;
+      } else {
         this.selectedFilters.indeterminate = false;
       }
     },
     sendDimensionsSelected() {
-      this.$emit('selectFilters', this.filteredFilters.children);
+      this.$emit('selectFilters', this.filteredDimensions.children);
     },
   },
   beforeMount() {
@@ -198,7 +183,7 @@ export default {
         (a, b) => (a.localizedName > b.localizedName ? 1 : -1),
       );
     });
-    this.$root.$on('tutu', this.selectCheckbox);
+    this.$root.$on('filterSelected', this.selectCheckbox);
   },
 };
 </script>

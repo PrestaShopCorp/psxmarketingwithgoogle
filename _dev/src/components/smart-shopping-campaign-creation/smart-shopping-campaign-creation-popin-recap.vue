@@ -62,13 +62,11 @@
             :key="index"
           >
             <template>
-              titre : {{ filter.dimension }}
-              <div
-                v-for="(oneValue, indexValue) in filter.values"
-                :key="indexValue"
-              >
-                value : {{ oneValue }}
-              </div>
+              {{ filtersChosenSummary.length }}
+              {{ $t('smartShoppingCampaignCreation.productsFiltersSelected') }}
+              -
+              {{ filter.values.length }}
+              {{ $t('smartShoppingCampaignCreation.productsSelected') }}
             </template>
           </div>
         </template>
