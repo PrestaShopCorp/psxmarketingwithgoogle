@@ -86,46 +86,23 @@
     <section class="mt-4">
       <h2>2. {{ $t('productFeedSettings.attributeMapping.specificTitle') }}</h2>
       <div class="ps_gs-attribute-mapping-questions">
-        <div
-          class="font-weight-600 font-italic"
-        >
-          {{ $t('productFeedSettings.attributeMapping.sellRefurbished') }}
-        </div>
         <b-form-checkbox
-          switch
-          size="lg"
-          class="ml-sm-4 ps_gs-switch"
+          class="ps_gs-checkbox"
           v-model="sellRefurbished"
           data-test-id="checkbox-sellRefurbished"
         >
-          <span class="ps_gs-fz-14">
-            {{
-              sellRefurbished
-                ? $t('cta.yes')
-                : $t('cta.no')
-            }}
-          </span>
-        </b-form-checkbox>
-        <div
-          class="font-weight-600 font-italic"
-        >
-          {{ $t('productFeedSettings.attributeMapping.sellApparel') }}
-        </div>
-        <b-form-checkbox
-          v-model="sellApparel"
-          switch
-          size="lg"
-          class="ml-sm-4 ps_gs-switch"
-        >
-          <span class="ps_gs-fz-14">
-            {{
-              sellApparel
-                ? $t('cta.yes')
-                : $t('cta.no')
-            }}
-          </span>
+          {{ $t('productFeedSettings.attributeMapping.sellRefurbished') }}
         </b-form-checkbox>
       </div>
+      <div class="ps_gs-attribute-mapping-questions">
+        <b-form-checkbox
+          v-model="sellApparel"
+          class="ps_gs-checkbox"
+        >
+          {{ $t('productFeedSettings.attributeMapping.sellApparel') }}
+        </b-form-checkbox>
+      </div>
+
       <template
         v-if="sellRefurbished || sellApparel"
       >
