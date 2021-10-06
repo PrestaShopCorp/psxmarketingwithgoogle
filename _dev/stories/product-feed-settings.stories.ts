@@ -44,7 +44,7 @@ export const ExportSettings:any = Template.bind({});
 ExportSettings.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed =  Object.assign({}, productFeed);
-    this.$store.state.productFeed.stepper = 2
+    this.$store.state.productFeed.stepper = 2;
   },
 }
 

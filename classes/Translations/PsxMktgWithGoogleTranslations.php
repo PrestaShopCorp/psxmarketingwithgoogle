@@ -281,8 +281,7 @@ class PsxMktgWithGoogleTranslations
                     'cantSelectCountryWithDifferentCurrency' => $this->module->l("You can't select country with currency that differs from your main shop.", 'PsxMktgWithGoogleTranslations'),
                 ],
                 'export' => [
-                    'summarySyncDailyAt' => $this->module->l('Sync daily at 1:00 AM', 'PsxMktgWithGoogleTranslations'),
-                    'summaryTimeZone' => $this->module->l('(UTC+01:00) Normal time in Central Europe (Paris)', 'PsxMktgWithGoogleTranslations'),
+                    'summarySyncDailyAt' => $this->module->l('Sync daily at {0}', 'PsxMktgWithGoogleTranslations'),
                     'synchronizationSchedule' => $this->module->l('Export synchronization schedule', 'PsxMktgWithGoogleTranslations'),
                     'synchronizationTime' => $this->module->l('Sync time', 'PsxMktgWithGoogleTranslations'),
                     'timeZone' => $this->module->l('Time zone', 'PsxMktgWithGoogleTranslations'),

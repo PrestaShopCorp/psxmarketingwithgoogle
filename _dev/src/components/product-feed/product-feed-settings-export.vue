@@ -10,9 +10,6 @@
       <span class="mr-3">
         {{ syncTime }}
       </span>
-      <span>
-        {{ syncTimeZone }}
-      </span>
     </p>
     <div class="d-flex flex-column align-items-center p-3 border mt-4">
       <div class="d-flex flex-wrap flex-sm-nowrap align-items-center mb-3">
@@ -300,7 +297,6 @@ export default {
   data() {
     return {
       syncFrequency: this.$i18n.t('productFeedSettings.export.frequency.daily'),
-      syncTimeZone: '(UTC+01:00) Normal time in Central Europe (Paris)',
     };
   },
   components: {
@@ -314,9 +310,7 @@ export default {
       return false;
     },
     syncTime() {
-      return this.$options.filters.timeConverterToHour(
-        this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt,
-      );
+      return this.$options.filters.timeConverterToHour(this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt);
     },
   },
 

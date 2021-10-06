@@ -28,12 +28,13 @@ Vue.filter(
 Vue.filter(
   'timeConverterToHour', (timestamp : string) => {
     if (timestamp) {
-      const a = dayjs.tz(timestamp);
-      const hour = a.hour();
-      const min = a.minute();
-      const finalMin = min < 10 ? `0${min}` : min;
-      const time = `${hour}:${finalMin}`;
-      return time;
+      return new Date(timestamp).toLocaleTimeString(
+        window.i18nSettings.languageLocale,
+        {
+          hour: '2-digit',
+          minute: '2-digit',
+        },
+      );
     }
     return '-';
   });

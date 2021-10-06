@@ -233,8 +233,7 @@
         "cantSelectCountryWithDifferentCurrency" : "You can't select country with currency that differs from your main shop."
       },
       "export" : {
-        "summarySyncDailyAt" : "Sync daily at 1:00 AM",
-        "summaryTimeZone" : "(UTC+01:00) Normal time in Central Europe (Paris)",
+        "summarySyncDailyAt" : "Sync daily at {0}",
         "synchronizationSchedule" : "Export synchronization schedule",
         "synchronizationTime" : "Sync time",
         "timeZone" : "Time zone",

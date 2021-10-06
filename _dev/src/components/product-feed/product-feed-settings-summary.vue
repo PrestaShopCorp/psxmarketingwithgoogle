@@ -25,7 +25,7 @@
           <product-feed-card-next-sync-card
             icon="schedule"
             :title="$t('productFeedSettings.summary.time')"
-            :description="nextSyncDate | timeConverterToHour"
+            :description="formatNextSync"
           />
         </b-row>
       </b-container>
@@ -59,8 +59,7 @@
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.summary.dataSyncSetUp')"
-            :description="$t('productFeedSettings.export.summarySyncDailyAt')"
-            :details="$t('productFeedSettings.export.summaryTimeZone')"
+            :description="$t('productFeedSettings.export.summarySyncDailyAt', [formatNextSync])"
             size="full"
           />
           <product-feed-card-report-card
@@ -208,10 +207,11 @@ export default {
         return this.$store.getters['productFeed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
       },
     },
-    nextSyncDate: {
-      get() {
-        return this.$store.state.productFeed.status.nextJobAt;
-      },
+    nextSyncDate() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt;
+    },
+    formatNextSync() {
+      return this.$options.filters.timeConverterToHour(this.nextSyncDate);
     },
     nextSyncTotalProducts: {
       get() {
