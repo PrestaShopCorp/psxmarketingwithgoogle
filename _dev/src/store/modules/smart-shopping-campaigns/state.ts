@@ -61,7 +61,7 @@ export interface CampaignObject {
   targetCountry: string;
   dailyBudget : number,
   currencyCode: string,
-  productFilters?: ProductsFilteredObject,
+  productFilters?: ProductsFilteredObject[],
   status?: CampaignStatus|CampaignStatusToggle
 }
 
