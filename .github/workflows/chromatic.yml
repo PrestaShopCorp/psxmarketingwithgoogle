@@ -2,20 +2,15 @@
 
 # Workflow name
 name: 'Chromatic'
-
 # Event for the workflow
 on:
-  pull_request_review:
-    types: [submitted]
-    paths:
-      - '_dev/**'
+  push:
+    branches:
+      - master
 
 # List of jobs
 jobs:
   chromatic-deployment:
-    # Conditions
-    if: |
-      github.event.review.state == 'approved'
     # Operating System
     runs-on: ubuntu-latest
     # Job steps
@@ -26,14 +21,12 @@ jobs:
         with:
           fetch-depth: 0 # 👈 Required to retrieve git history
       - name: Install dependencies
-        run: |
-          cd _dev
-          npm install
+        working-directory: ./_dev
+        run: npm install
         # Tests are mandatory to build storybook
       - name: Run tests
-        run: |
-          cd _dev
-          npm run test:generate-output
+        working-directory: ./_dev
+        run: npm run test:generate-output
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v1
