@@ -91,10 +91,7 @@
           v-model="sellRefurbished"
           data-test-id="checkbox-sellRefurbished"
         >
-          <VueShowdown
-            class="font-weight-600 font-italic"
-            :markdown="$t('productFeedSettings.attributeMapping.sellRefurbished')"
-          />
+          {{ $t('productFeedSettings.attributeMapping.sellRefurbished') }}
         </b-form-checkbox>
       </div>
       <div class="ps_gs-attribute-mapping-questions">
@@ -102,10 +99,7 @@
           v-model="sellApparel"
           class="ps_gs-checkbox"
         >
-          <VueShowdown
-            class="font-weight-600 font-italic"
-            :markdown="$t('productFeedSettings.attributeMapping.sellApparel') "
-          />
+          {{ $t('productFeedSettings.attributeMapping.sellApparel') }}
         </b-form-checkbox>
       </div>
 
