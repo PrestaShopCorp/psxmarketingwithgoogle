@@ -335,10 +335,10 @@ export default {
     };
   },
   watch: {
-    containsAdultContent() {
+    containsAdultContent: function () {
       this.stepStoreInfoValidation();
     },
-    acceptsGoogleTerms() {
+    acceptsGoogleTerms: function () {
       this.stepStoreInfoValidation();
     },
   },
@@ -366,7 +366,7 @@ export default {
       this.$emit('stepStoreInfoValidation',
         !(this.acceptsGoogleTerms
         && (this.containsAdultContent != null)
-        && this.allFieldsAreFilled()),
+        && this.allFieldsAreFilled())
       );
     },
   },
@@ -379,5 +379,5 @@ export default {
     },
   },
   googleUrl,
-};
+}
 </script>

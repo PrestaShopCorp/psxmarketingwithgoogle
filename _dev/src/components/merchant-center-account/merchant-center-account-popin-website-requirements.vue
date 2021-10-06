@@ -20,8 +20,11 @@
       :new-mca="newMca"
       @stepRequirementsValidation="stepRequirementsValidation"
     />
-    <StepStoreInfo
+    <StepPhoneValidation
       v-else-if="stepActiveData === 2"
+    />
+    <StepStoreInfo
+      v-else-if="stepActiveData === 3"
       @stepStoreInfoValidation="stepStoreInfoValidation"
     />
     <template
@@ -60,6 +63,38 @@
       slot="modal-footer"
       v-else-if="stepActiveData === 2"
     >
+      <a
+        class="ps_gs-fz-12 text-muted mr-sm-auto"
+        :href="$options.googleUrl.googleWebsiteRequirements"
+        target="_blank"
+      >
+        {{ $t('mcaRequirements.footer') }}
+      </a>
+      <b-button
+        v-if="newMca"
+        variant="outline-secondary"
+        @click="cancel()"
+      >
+        {{ $t('cta.cancel') }}
+      </b-button>
+      <span
+        v-if="newMca"
+        v-b-tooltip:psxMktgWithGoogleApp
+        :title="isBtnStepRequirementsDisabled ? $t('tooltip.mustCheckAllRequirements') : ''"
+      >
+        <b-button
+          variant="primary"
+          @click="saveFirstStep()"
+          :disabled="isBtnStepRequirementsDisabled"
+        >
+          {{ $t('cta.storeMeetsRequirements') }}
+        </b-button>
+      </span>
+    </template>
+    <template
+      slot="modal-footer"
+      v-else-if="stepActiveData === 3"
+    >
       <b-button
         variant="outline-secondary"
         @click="cancel()"
@@ -90,6 +125,7 @@ import Stepper from '../commons/stepper';
 import StepRequirements from './website-requirements/step-requirements';
 import StepStoreInfo from './website-requirements/step-store-info';
 import WebsiteRequirementsSteps from '@/enums/stepper/website-requirements-steps';
+import StepPhoneValidation from './website-requirements/step-phone-validation.vue';
 
 export default {
   name: 'MerchantCenterAccountPopinWebsiteRequirements',
@@ -98,6 +134,7 @@ export default {
     Stepper,
     StepRequirements,
     StepStoreInfo,
+    StepPhoneValidation,
   },
   data() {
     return {
@@ -173,12 +210,12 @@ export default {
     popinTitle() {
       return this.newMca ? this.$i18n.t('mcaRequirements.title') : this.$i18n.t('mcaRequirements.steps.websiteRequirements');
     },
-    shopInformations() {
-      return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
-    },
-    storeInformationsUrl() {
-      return this.$store.getters['app/GET_STORE_INFORMATION_URL'];
-    },
+    // shopInformations() {
+    //   return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
+    // },
+    // storeInformationsUrl() {
+    //   return this.$store.getters['app/GET_STORE_INFORMATION_URL'];
+    // },
   },
   mounted() {
     this.stepActiveData = this.stepActive;
