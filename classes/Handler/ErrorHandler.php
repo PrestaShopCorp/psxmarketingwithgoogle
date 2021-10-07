@@ -20,8 +20,10 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Handler;
 
+use Exception;
 use Module;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 use PsxMarketingWithGoogle;
 
 /**
@@ -55,8 +57,18 @@ class ErrorHandler
                     'psxmarketingwithgoogle_is_enabled' => \Module::isEnabled('psxmarketingwithgoogle'),
                     'psxmarketingwithgoogle_is_installed' => \Module::isInstalled('psxmarketingwithgoogle'),
                 ],
+                'release' => "v{$module->version}",
             ]
         );
+
+        try {
+            $psAccountsService = $module->getService(PsAccounts::class)->getPsAccountsService();
+            $this->client->user_context([
+                'id' => $psAccountsService->getShopUuidV4(),
+            ]);
+        } catch (Exception $e) {
+            // Do nothing
+        }
 
         // We use realpath to get errors even if module is behind a symbolic link
         $this->client->setAppPath(realpath(_PS_MODULE_DIR_ . $module->name . '/'));
