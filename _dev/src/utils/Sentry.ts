@@ -19,4 +19,6 @@ Sentry.init({
       id: window.shopIdPsAccounts ? window.shopIdPsAccounts.toString() : 'unknown',
     },
   },
+  // @ts-ignore
+  release: `v${store.state.app.psxMktgWithGoogleModuleVersion}`,
 });
