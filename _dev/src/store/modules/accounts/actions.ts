@@ -361,7 +361,7 @@ export default {
       return {isVerified, isClaimed};
     } catch (error) {
       console.error(`Could not trigger website verification process: ${(<any>error)?.message}`);
-      return {isVerified: false, isClaimed: false};
+      throw error;
     } finally {
       // Remove token anyway
       await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
