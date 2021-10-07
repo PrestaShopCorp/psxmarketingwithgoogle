@@ -115,7 +115,7 @@ class CarrierBuilder
             ->setIdReference((int) $carrier->id_reference)
             ->setName($carrier->name)
             ->setTaxesRatesGroupId((int) $carrier->getIdTaxRulesGroup())
-            ->setUrl($carrier->url)
+            ->setUrl((string) $carrier->url)
             ->setActive($carrier->active)
             ->setDeleted($carrier->deleted)
             ->setDisableCarrierWhenOutOfRange((bool) $carrier->range_behavior)
