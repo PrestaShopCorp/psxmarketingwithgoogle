@@ -1,6 +1,6 @@
 enum WebsiteRequirementsSteps {
   WEBSITEREQUIREMENTS = 'websiteRequirements',
-  // PHONEVALIDATION = 'phoneValidation',
+  PHONEVALIDATION = 'phoneValidation',
   SHOPINFO = 'shopInfo',
 }
 
