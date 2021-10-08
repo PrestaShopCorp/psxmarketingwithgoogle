@@ -30,13 +30,15 @@
       :title="campaignList.length + ' campaign(s)'"
       :use-date="false"
     />
-    <b-form-input
-      id="campaign-name-input-filter"
-      v-model="campaignName"
-      :placeholder="$t('smartShoppingCampaignCreation.inputNamePlaceholder')"
-      class="mt-2"
-      @keyup="debounceName()"
-    />
+    <!-- TODO : use this header when API returs only GMC linked campaigns -->
+    <!-- <ReportingTableHeader
+      :subtitle="$t('smartShoppingCampaignCreation.descriptiveMessage',[
+        $options.googleUrl.googleAdsAccount
+      ])"
+      :title="campaignList.length + ' campaign(s)'"
+      :use-date="false"
+    /> -->
+
     <div>
       <b-table-simple
         id="table-filters-performance"
@@ -93,12 +95,14 @@
               :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
             >
               <b-form-input
-                type="text"
+                v-if="hasInput(type)"
+                id="campaign-name-input-filter"
+                v-model="campaignName"
                 :placeholder="$t('general.searchByX', [type])"
                 size="sm"
                 class="border-0"
-                v-if="hasInput(type)"
-                v-model="searchQuery[type]"
+                type="text"
+                @keyup="debounceName()"
               />
             </b-th>
           </b-tr>
@@ -130,6 +134,7 @@ import SmartShoppingCampaignTableListRow from './smart-shopping-campaign-table-l
 import ReportingTableHeader from './reporting/commons/reporting-table-header.vue';
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
+import googleUrl from '../../assets/json/googleUrl.json';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
@@ -181,8 +186,8 @@ export default {
     hasToolTip(headerType) {
       return headerType === CampaignSummaryListHeaderType.STATUS;
     },
-    hasInput() {
-      return false;
+    hasInput(headerType) {
+      return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
     },
     hasSorting(headerType) {
       return headerType === CampaignSummaryListHeaderType.DURATION;
@@ -250,5 +255,7 @@ export default {
       tableBody.removeEventListener('scroll', this.handleScroll);
     }
   },
+  googleUrl,
+
 };
 </script>

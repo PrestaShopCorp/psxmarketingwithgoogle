@@ -3,15 +3,15 @@
     class="ps_gs-table-reporting-header rounded-top px-3 py-2
       d-md-flex align-items-end bg-light mt-4"
   >
-    <h3 class="mb-0 mr-2 ps_gs-fz-16 font-weight-600">
+    <h3 class="mb-0 mr-2 ps_gs-fz-16 font-weight-600 flex-shrink-0 align-self-start">
       {{ title }}
     </h3>
-    <p
+    <VueShowdown
       v-if="subtitle"
       class="mb-0 mr-auto ps_gs-fz-10"
-    >
-      {{ subtitle }}
-    </p>
+      :markdown="subtitle"
+      :extensions="['extended-link']"
+    />
     <p
       v-if="useDate"
       class="mb-0 ps_gs-fz-10 text-sm-right"

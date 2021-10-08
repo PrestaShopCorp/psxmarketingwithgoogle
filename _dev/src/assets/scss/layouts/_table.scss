@@ -263,6 +263,11 @@ $statusColors: (
 .ps_gs-table-reporting-header {
   background-color: $white;
   border-bottom: 1px solid #dde4e6;
+  
+  p {
+    margin-bottom: 0;
+    line-height: 1.2em;
+  }
 }
 
 .table-with-maxheight {
