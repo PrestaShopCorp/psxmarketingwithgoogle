@@ -15,7 +15,7 @@
     "check-for-jest-test-output": "node checkForJestTestOutput.js"
   },
   "dependencies": {
-    "@googleapis/content": "^1.2.0",
+    "@googleapis/content": "^4.1.0",
     "@googleapis/oauth2": "^0.2.0",
     "@prestashopcorp/segment-vue": "^1.2.9",
     "@sentry/tracing": "^6.13.2",
