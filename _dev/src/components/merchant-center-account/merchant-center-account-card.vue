@@ -151,8 +151,9 @@
       </b-form>
       <div class="mt-3">
         <b-button
-          variant="invisible"
-          class="p-0 border-0 font-weight-normal mb-0 text-primary"
+          variant="primary"
+          class="mb-0"
+          size="sm"
           :class="shopIsOnMaintenanceMode ? 'bg-transparent text-secondary' : ''"
           @click="checkWebsiteRequirements"
           :disabled="shopIsOnMaintenanceMode"
