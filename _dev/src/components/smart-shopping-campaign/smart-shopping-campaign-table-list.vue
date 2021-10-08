@@ -27,12 +27,17 @@
       </div>
     </div>
     <ReportingTableHeader
+      :title="campaignList.length + ' campaign(s)'"
+      :use-date="false"
+    />
+    <!-- TODO : use this header when API returs only GMC linked campaigns -->
+    <!-- <ReportingTableHeader
       :subtitle="$t('smartShoppingCampaignCreation.descriptiveMessage',[
         $options.googleUrl.googleAdsAccount
       ])"
       :title="campaignList.length + ' campaign(s)'"
       :use-date="false"
-    />
+    /> -->
 
     <div>
       <b-table-simple
