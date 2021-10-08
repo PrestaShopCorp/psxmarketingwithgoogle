@@ -1,6 +1,5 @@
 <template>
-  <b-form
-  >
+  <b-form>
     <p class="ps_gs-fz-14">
       We need to verify your phone number to make sure that it is really you
     </p>
@@ -156,21 +155,20 @@ export default {
   computed: {
     obfuscatedPhoneNumber() {
       return this.phoneNumber.length > 2
-      ? `${'•'.repeat(this.phoneNumber.length - 2)}${this.phoneNumber.slice(-2)}`
-      : `${this.phoneNumber}`
+        ? `${'•'.repeat(this.phoneNumber.length - 2)}${this.phoneNumber.slice(-2)}`
+        : `${this.phoneNumber}`;
     },
     btnText() {
       if (this.phoneVerificationMethod === 'SMS') {
-        return this.areBtnDisabled ? 'Code sent' : 'Send code'
-      } else {
-        return 'Receive call'
-      };
+        return this.areBtnDisabled ? 'Code sent' : 'Send code';
+      }
+      return 'Receive call';
     },
     isCodeValid() {
       // ! Just for test, need real condition
-      return this.invitationId?.length > 3 ? false : null
+      return this.invitationId?.length > 3 ? false : null;
     },
   },
   phonesPrefixSelectionOptions,
-}
+};
 </script>
