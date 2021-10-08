@@ -130,8 +130,6 @@ BillingSettingsMissing.args = {
   }
 };
 
-
-
 export const NeedRefreshAfterBilling:any = Template.bind({});
 NeedRefreshAfterBilling.args = {
   isEnabled: true,
