@@ -104,7 +104,23 @@ Suspended.args = {
     this.$store.state.googleAds.status = GoogleAdsErrorReason.Suspended;
   }
 };
+export const NeedToAcceptInvitation:any = Template.bind({});
+NeedToAcceptInvitation.args = {
+  isEnabled: true,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.googleAds.status = GoogleAdsErrorReason.NeedValidationFromEmail;
+  }
+};
 
+export const NeedRefreshAfterInvitation:any = Template.bind({});
+NeedRefreshAfterInvitation.args = {
+  isEnabled: true,
+  beforeMount(this: any) {
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.googleAds.status = GoogleAdsErrorReason.NeedRefreshAfterInvitationLink;
+  }
+};
 export const BillingSettingsMissing:any = Template.bind({});
 BillingSettingsMissing.args = {
   isEnabled: true,
@@ -113,6 +129,8 @@ BillingSettingsMissing.args = {
     this.$store.state.googleAds.status = GoogleAdsErrorReason.BillingSettingsMissing;
   }
 };
+
+
 
 export const NeedRefreshAfterBilling:any = Template.bind({});
 NeedRefreshAfterBilling.args = {
