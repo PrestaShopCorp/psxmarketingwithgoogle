@@ -162,6 +162,7 @@ class PsxMktgWithGoogleTranslations
                 'steps' => [
                     'websiteRequirements' => $this->module->l('Online store requirements', 'PsxMktgWithGoogleTranslations'),
                     'shopInfo' => $this->module->l('Store information', 'PsxMktgWithGoogleTranslations'),
+                    'phoneValidation' => $this->module->l('Phone validation', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'title' => $this->module->l('Create new Merchant Center account', 'PsxMktgWithGoogleTranslations'),
                 'legend' => $this->module->l('To participate in free listings and advertise on Google you must acknowledge and comply with below requirements:', 'PsxMktgWithGoogleTranslations'),

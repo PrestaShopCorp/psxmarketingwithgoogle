@@ -21,7 +21,7 @@ const Template = (args, { argTypes }) => ({
   beforeCreate(this: any) {
     this.$store.state.app = Object.assign(
       {},
-      this.$store.state.app,
+      // this.$store.state.app,
       initialStateApp,
       {psxMktgWithGoogleStoreSettingsUrl: 'https://www.perdu.com'}
     );
@@ -29,27 +29,34 @@ const Template = (args, { argTypes }) => ({
   beforeMount: args.beforeMount,
 });
 
-export const NewMcaStepOne:any = Template.bind({});
-NewMcaStepOne.args = {
+export const NewMcaStepRequirements:any = Template.bind({});
+NewMcaStepRequirements.args = {
   visible: true,
   stepActive: 1,
   newMca: true,
 };
 
-export const NewMcaStepTwo:any = Template.bind({});
-NewMcaStepTwo.args = {
+export const NewMcaStepPhoneValidation:any = Template.bind({});
+NewMcaStepPhoneValidation.args = {
   visible: true,
   stepActive: 2,
+  newMca: true,
+};
+
+export const NewMcaStepStoreInfo:any = Template.bind({});
+NewMcaStepStoreInfo.args = {
+  visible: true,
+  stepActive: 3,
   newMca: true,
   beforeMount(this : any) {
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountCreation);
   }
 };
 
-export const NewMcaStepTwoWithErrors:any = Template.bind({});
-NewMcaStepTwoWithErrors.args = {
+export const NewMcaStepStoreInfoWithErrors:any = Template.bind({});
+NewMcaStepStoreInfoWithErrors.args = {
   visible: true,
-  stepActive: 2,
+  stepActive: 3,
   newMca: true,
   beforeMount(this : any) {
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountWithErrors);

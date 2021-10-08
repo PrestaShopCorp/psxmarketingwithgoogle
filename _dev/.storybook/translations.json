@@ -112,7 +112,8 @@
     "mcaRequirements" : {
       "steps": {
         "websiteRequirements" : "Online store requirements",
-        "shopInfo" : "Store information"
+        "shopInfo" : "Store information",
+        "phoneValidation" : "Phone validation"
       },
       "title" : "Create new Merchant Center account",
       "legend" : "To participate in free listings and advertise on Google you must acknowledge and comply with below requirements:",
