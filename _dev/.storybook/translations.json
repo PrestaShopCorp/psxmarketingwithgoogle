@@ -14,7 +14,8 @@
       "mandatory" : "are mandatory",
       "XIsMandatory" : "{0} is mandatory.",
       "unableToFetchData" : "We were unable to fetch datas, please try again later",
-      "searchByX" : "Search by {0}"
+      "searchByX" : "Search by {0}",
+      "legendCreateNewAccount" : "You also have the possibility to create a new account within few steps:"
     },
     "configuration" : {
         "introduction" : "Configuration Page !"

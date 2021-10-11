@@ -148,9 +148,13 @@
         <div
           class="mt-3"
         >
+          <p class="mb-1">
+            {{ $t('general.legendCreateNewAccount') }}
+          </p>
           <b-button
-            variant="invisible"
-            class="p-0 border-0 font-weight-normal mb-0 text-primary"
+            variant="outline-primary"
+            class="mb-0"
+            size="sm"
             @click="openPopinNewAccount"
           >
             <i
