@@ -2,11 +2,14 @@ name: PHP tests
 on: [push, pull_request]
 jobs:
   php-linter:
-    name: PHP Syntax check 7.3|7.4
+    name: PHP Syntax check 7.1|7.3|7.4
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: PHP syntax checker 7.1
+        uses: prestashop/github-action-php-lint/7.1@master
 
       - name: PHP syntax checker 7.3
         uses: prestashop/github-action-php-lint/7.3@master
@@ -29,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        presta-versions: ['1.7.7.0', 'latest']
+        presta-versions: ['1.7.4.0', '1.7.7.0', 'latest']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
