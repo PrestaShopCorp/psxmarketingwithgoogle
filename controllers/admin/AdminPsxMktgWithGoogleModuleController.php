@@ -130,8 +130,8 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
                 true,
                 [],
                 [
-                    'ajax' => 1
-                ],
+                    'ajax' => 1,
+                ]
             ),
             'psxMktgWithGoogleMaintenanceSettingsUrl' => Tools::getShopDomainSsl(true) . $this->context->link->getAdminLink(
                 'AdminMaintenance'

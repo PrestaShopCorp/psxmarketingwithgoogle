@@ -156,7 +156,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             // base64 encoded to avoid prestashop sanitization
             $this->configurationAdapter->updateValue(
                 Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META,
-                base64_encode($websiteVerificationMeta),
+                base64_encode($websiteVerificationMeta)
             );
             $this->ajaxDie(json_encode(['success' => true, 'method' => 'insert']));
         }
@@ -382,7 +382,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             json_encode(
                 array_merge(
                     json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS), true) ?: [],
-                    $newTags,
+                    $newTags
                 )
             )
         );
@@ -423,11 +423,11 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $this->ajaxDie(json_encode([
             'urlEventBusHealthCheck' => $this->context->link->getModuleLink(
                 'ps_eventbus',
-                'apiHealthCheck',
+                'apiHealthCheck'
             ),
             'urlAccountsHealthCheck' => $this->context->link->getModuleLink(
                 'ps_accounts',
-                'apiHealthCheck',
+                'apiHealthCheck'
             ),
             'typesOfSync' => $typesOfSync,
         ]));
