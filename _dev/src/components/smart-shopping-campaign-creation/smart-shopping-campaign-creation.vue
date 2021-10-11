@@ -263,7 +263,7 @@
           </span>
         </b-form-checkbox>
         <b-alert
-          v-if="!productsExist"
+          v-if="!productsHaveBeenApprovedByGoogle"
           variant="warning"
           show
         >
@@ -439,8 +439,8 @@ export default {
         return currency ? currency.symbol : '';
       }
     },
-    productsExist() {
-      return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS'] >= 1;
+    productsHaveBeenApprovedByGoogle() {
+      return this.$store.state.productFeed.validationSummary.activeItems > 0;
     },
   },
   methods: {
