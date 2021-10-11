@@ -447,12 +447,38 @@
         </b-button>
       </div>
     </b-alert>
+    <b-alert
+      v-if="error === WebsiteClaimErrorReason.PhoneVerificationNeeded"
+      show
+      variant="warning"
+      class="mb-0 mt-2"
+    >
+      <p class="mb-0">
+        <strong>{{ $t('mcaCard.phoneVerificationNeeded') }}</strong><br>
+        <span class="ps_gs-fz-12">
+          {{ $t('mcaCard.phoneVerificationNeededDescription') }}
+        </span>
+      </p>
+      <div class="d-md-flex text-center align-items-center mt-2">
+        <b-button
+          class="btn mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
+          size="sm"
+          variant="outline-secondary"
+          @click="verifyPhoneNumber"
+        >
+          {{ $t('cta.verifyPhoneNumber') }}
+        </b-button>
+      </div>
+    </b-alert>
     <MerchantCenterAccountPopinOverwriteClaim
       ref="mcaPopinOverrideClaim"
     />
     <MerchantCenterAccountPopinWebsiteRequirements
       :new-mca="mcaIsNotConnected"
       ref="MerchantCenterAccountPopinNewMca"
+    />
+    <PhoneVerificationPopin
+      ref="phoneVerificationPopin"
     />
   </b-card>
 </template>
@@ -468,6 +494,7 @@ import {
 import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
+import PhoneVerificationPopin from './phone-verification/phone-verification-popin.vue';
 
 export default {
   name: 'MerchantCenterAccountCard',
@@ -476,6 +503,7 @@ export default {
     BadgeListRequirements,
     MerchantCenterAccountPopinWebsiteRequirements,
     VueShowdown,
+    PhoneVerificationPopin,
     BAlert,
   },
   data() {
@@ -588,6 +616,11 @@ export default {
             color: 'warning',
             text: 'pendingCreation',
           };
+        case WebsiteClaimErrorReason.PhoneVerificationNeeded:
+          return {
+            color: 'warning',
+            text: 'pending',
+          };
         default:
           return {
             color: 'success',
@@ -686,6 +719,13 @@ export default {
     },
     refresh() {
       this.$router.go();
+    },
+    verifyPhoneNumber() {
+      if (this.$refs.phoneVerificationPopin) {
+        this.$bvModal.show(
+          this.$refs.phoneVerificationPopin.$refs.modal.id,
+        );
+      }
     },
   },
   updated() {

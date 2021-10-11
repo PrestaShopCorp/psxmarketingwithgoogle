@@ -21,11 +21,9 @@
       :new-mca="newMca"
       @stepRequirementsValidation="stepRequirementsValidation"
     />
-    <StepPhoneValidation
-      v-else-if="stepActiveData === 2"
-    />
+
     <StepStoreInfo
-      v-else-if="stepActiveData === 3"
+      v-else-if="stepActiveData === 2"
       @stepStoreInfoValidation="stepStoreInfoValidation"
     />
     <template
@@ -73,31 +71,6 @@
       >
         {{ $t('cta.cancel') }}
       </b-button>
-      <span
-        v-b-tooltip:psxMktgWithGoogleApp
-        :title="isBtnStepPhoneValidationDisabled ? 'Please, validate your phone number first' : ''"
-      >
-        <b-button
-          size="sm"
-          variant="primary"
-          @click="saveSecondStep()"
-          :disabled="isBtnStepPhoneValidationDisabled"
-        >
-          {{ $t('cta.createAccount') }}
-        </b-button>
-      </span>
-    </template>
-    <template
-      slot="modal-footer"
-      v-else-if="stepActiveData === 3"
-    >
-      <b-button
-        size="sm"
-        variant="outline-secondary"
-        @click="cancel()"
-      >
-        {{ $t('cta.cancel') }}
-      </b-button>
       <div
         class="flex-shrink-0"
         v-b-tooltip:psxMktgWithGoogleApp
@@ -123,7 +96,6 @@ import Stepper from '../commons/stepper';
 import StepRequirements from './website-requirements/step-requirements';
 import StepStoreInfo from './website-requirements/step-store-info';
 import WebsiteRequirementsSteps from '@/enums/stepper/website-requirements-steps';
-import StepPhoneValidation from './website-requirements/step-phone-validation.vue';
 
 export default {
   name: 'MerchantCenterAccountPopinWebsiteRequirements',
@@ -132,13 +104,11 @@ export default {
     Stepper,
     StepRequirements,
     StepStoreInfo,
-    StepPhoneValidation,
   },
   data() {
     return {
       stepActiveData: 1,
       isBtnStepRequirementsDisabled: true,
-      isBtnStepPhoneValidationDisabled: false,
       isBtnStepstoreInfoDisabled: true,
     };
   },
@@ -171,9 +141,6 @@ export default {
     },
     saveFirstStep() {
       this.stepActiveData = 2;
-    },
-    saveSecondStep() {
-      this.stepActiveData = 3;
     },
     stepToChange(value) {
       this.stepActiveData = value;
@@ -212,12 +179,6 @@ export default {
     popinTitle() {
       return this.newMca ? this.$i18n.t('mcaRequirements.title') : this.$i18n.t('mcaRequirements.steps.websiteRequirements');
     },
-    // shopInformations() {
-    //   return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
-    // },
-    // storeInformationsUrl() {
-    //   return this.$store.getters['app/GET_STORE_INFORMATION_URL'];
-    // },
   },
   mounted() {
     this.stepActiveData = this.stepActive;

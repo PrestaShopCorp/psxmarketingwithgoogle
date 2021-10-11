@@ -240,3 +240,14 @@ MaintenanceModeDetected.args = {
     );
   },
 };
+
+export const phoneVerificationNeeded:any = Template.bind({});
+phoneVerificationNeeded.args = {
+  isEnabled: true,
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.PhoneVerificationNeeded,
+    },
+  ),
+};

@@ -36,17 +36,10 @@ NewMcaStepRequirements.args = {
   newMca: true,
 };
 
-export const NewMcaStepPhoneValidation:any = Template.bind({});
-NewMcaStepPhoneValidation.args = {
-  visible: true,
-  stepActive: 2,
-  newMca: true,
-};
-
 export const NewMcaStepStoreInfo:any = Template.bind({});
 NewMcaStepStoreInfo.args = {
   visible: true,
-  stepActive: 3,
+  stepActive: 2,
   newMca: true,
   beforeMount(this : any) {
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountCreation);
@@ -56,7 +49,7 @@ NewMcaStepStoreInfo.args = {
 export const NewMcaStepStoreInfoWithErrors:any = Template.bind({});
 NewMcaStepStoreInfoWithErrors.args = {
   visible: true,
-  stepActive: 3,
+  stepActive: 2,
   newMca: true,
   beforeMount(this : any) {
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountWithErrors);
