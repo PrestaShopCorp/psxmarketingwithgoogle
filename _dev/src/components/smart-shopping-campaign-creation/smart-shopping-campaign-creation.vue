@@ -440,7 +440,6 @@ export default {
       }
     },
     productsExist() {
-      console.log(this.$store.getters['productFeed/GET_TOTAL_PRODUCTS']);
       return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS'] >= 1;
     },
   },
