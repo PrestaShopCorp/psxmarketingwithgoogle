@@ -96,6 +96,7 @@ import Stepper from '../commons/stepper';
 import StepRequirements from './website-requirements/step-requirements';
 import StepStoreInfo from './website-requirements/step-store-info';
 import WebsiteRequirementsSteps from '@/enums/stepper/website-requirements-steps';
+import WebsiteRequirements from '@/enums/merchant-center-account/website-requirements';
 
 export default {
   name: 'MerchantCenterAccountPopinWebsiteRequirements',
@@ -110,6 +111,7 @@ export default {
       stepActiveData: 1,
       isBtnStepRequirementsDisabled: true,
       isBtnStepstoreInfoDisabled: true,
+      containsAdultContent: false,
     };
   },
   props: {
@@ -136,8 +138,9 @@ export default {
     stepRequirementsValidation(payload) {
       this.isBtnStepRequirementsDisabled = payload;
     },
-    stepStoreInfoValidation(payload) {
+    stepStoreInfoValidation(payload, containsAdultContent) {
       this.isBtnStepstoreInfoDisabled = payload;
+      this.containsAdultContent = containsAdultContent;
     },
     saveFirstStep() {
       this.stepActiveData = 2;
@@ -179,9 +182,20 @@ export default {
     popinTitle() {
       return this.newMca ? this.$i18n.t('mcaRequirements.title') : this.$i18n.t('mcaRequirements.steps.websiteRequirements');
     },
+    shopInformations() {
+      return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
+    },
+    requirements() {
+      return Object.values(WebsiteRequirements);
+    },
   },
   mounted() {
     this.stepActiveData = this.stepActive;
+    if (this.newMca === true) {
+      this.$store.dispatch('accounts/REQUEST_WEBSITE_REQUIREMENTS').then(() => {
+        this.isBtnStepRequirementsDisabled = !(this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'].length === this.requirements.length);
+      });
+    }
   },
   googleUrl,
 };
