@@ -158,6 +158,8 @@ class PsxMktgWithGoogleTranslations
                 'linkLearnMoreAbout' => $this->module->l('Learn more about "{0}"', 'PsxMktgWithGoogleTranslations'),
                 'newGmcNotListed' => $this->module->l('Waiting for your account to be published', 'PsxMktgWithGoogleTranslations'),
                 'newGmcNotListedDescription' => $this->module->l('If you just created a new account, it means Google is still building it. You have to wait or come back later. This operation can take up to 5 minutes on Google side. In other cases, check that your GMC is still existing, and that you still have rights on it.', 'PsxMktgWithGoogleTranslations'),
+                'phoneVerificationNeeded' => $this->module->l('Phone number verification', 'PsxMktgWithGoogleTranslations'),
+                'phoneVerificationNeededDescription' => $this->module->l('To be able to use your Merchant Center account you have to verify your phone number', 'PsxMktgWithGoogleTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
@@ -729,6 +731,7 @@ class PsxMktgWithGoogleTranslations
                 'next' => $this->module->l('Next', 'PsxMktgWithGoogleTranslations'),
                 'goToPage' => $this->module->l('Go to first page | Go to page: {0} | Go to last page', 'PsxMktgWithGoogleTranslations'),
                 'noEndDate' => $this->module->l('No end date', 'PsxMktgWithGoogleTranslations'),
+                'verifyPhoneNumber' => $this->module->l('Verify phone number', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),

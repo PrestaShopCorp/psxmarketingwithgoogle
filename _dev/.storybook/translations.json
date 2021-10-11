@@ -108,7 +108,9 @@
       "noExistingAccount": "No existing account",
       "linkLearnMoreAbout": "Learn more about \"{0}\"",
       "newGmcNotListed": "Waiting for your account to be published",
-      "newGmcNotListedDescription": "If you just created a new account, it means Google is still building it. You have to wait or come back later. This operation can take up to 5 minutes on Google side. In other cases, check that your GMC is still existing, and that you still have rights on it."
+      "newGmcNotListedDescription": "If you just created a new account, it means Google is still building it. You have to wait or come back later. This operation can take up to 5 minutes on Google side. In other cases, check that your GMC is still existing, and that you still have rights on it.",
+      "phoneVerificationNeeded" :  "Phone number verification",
+      "phoneVerificationNeededDescription" :  "To be able to use your Merchant Center account you have to verify your phone number"
     },
     "mcaRequirements" : {
       "steps": {
@@ -680,7 +682,8 @@
       "previous" : "Previous",
       "next" : "Next",
       "goToPage" : "Go to first page | Go to page: {0} | Go to last page",
-      "noEndDate" : "No end date"
+      "noEndDate" : "No end date",
+      "verifyPhoneNumber" : "Verify phone number"
     },
     "badge" : {
       "free" : "Free",

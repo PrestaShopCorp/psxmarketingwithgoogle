@@ -80,4 +80,18 @@ export const merchantCenterNewGmcNotListed = {
   name: null,
 }
 
+export const merchantCenterPhoneVerificationNeeded = {
+  ...merchantCenterAccountConnected,
+  isClaimed: true,
+  isVerified: true,
+  id: '246797534',
+  name: 'Maison Royer',
+  websiteUrl: "http://perdu.com",
+  adultContent: false,
+  claimError: '',
+  users: [
+      // ToDo: Fill it with mocked data
+  ],
+}
+
 export default merchantCenterAccountConnected;
