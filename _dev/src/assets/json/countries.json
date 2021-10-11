@@ -144,12 +144,13 @@
     "code": "CR"
   },
   {
-    "country": "Cote d'Ivoire",
+    "country": "Ivory Coast",
     "currency": "XOF",
     "shoppingOngletAvailable": true,
     "onBeta": false,
     "enterpriseNumberNeeded": false,
-    "shoppingFrAvailable": false
+    "shoppingFrAvailable": false,
+    "code" : "CI"
   },
   {
     "country": "Czechia",
@@ -157,7 +158,8 @@
     "shoppingOngletAvailable": false,
     "onBeta": true,
     "enterpriseNumberNeeded": false,
-    "shoppingFrAvailable": false
+    "shoppingFrAvailable": false,
+    "code" : "CZ"
   },
   {
     "country": "Denmark",
