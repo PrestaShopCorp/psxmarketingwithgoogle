@@ -36,10 +36,11 @@
             </template>
           </ps-select>
           <b-form-input
-            v-model="phoneNumber"
+            v-model="finalPhoneNumber"
             size="sm"
             type="text"
             class="ps_gs-phone-input w-100"
+            @input="clearPotentialErrors"
           />
         </div>
       </b-form-group>
@@ -121,21 +122,22 @@
         class="d-flex  align-items-center"
       >
         <span> {{ $t('mcaCard.phoneVerifiedContinue') }}</span>
+
         <i
           class="material-icons ps_gs-fz-16 ml-1 mb-0 text-success align-center"
         >
           check_circle
         </i>
       </p>
-      <p
+
+      <b-alert
         v-if="error"
-        class="d-flex  align-items-center"
+        show
+        variant="warning"
+        class="mb-0 mt-2"
       >
         <span> {{ error }}</span>
-        <i class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
-          info_outlined
-        </i>
-      </p>
+      </b-alert>
     </b-form>
   </ps-modal>
 </template>
@@ -170,7 +172,7 @@ export default {
       invitationId: null,
       isValidationInProgress: false,
       isPhoneValidated: false,
-      phoneNumber: this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone,
+      phoneNumber: null,
       dialCode: this.$store.getters['app/GET_ACTIVE_COUNTRIES'][0],
       askAgainIn60Sec: false,
     };
@@ -195,7 +197,7 @@ export default {
             this.invitationId = null;
           }, 60000);
         } else {
-          this.error = 'Something happened';
+          this.error = this.$i18n.t('mcaCard.alertTooManyRequests');
         }
       });
     },
@@ -208,10 +210,15 @@ export default {
           this.isPhoneValidated = true;
         } else {
           this.isCodeValid = false;
-          this.error = 'Too many requests';
+          this.error = this.$i18n.t('mcaCard.alertSomethingHappened');
         }
         this.isValidationInProgress = false;
       });
+    },
+
+    clearPotentialErrors() {
+      this.error = null;
+      this.askAgainIn60Sec = false;
     },
 
     ok() {
@@ -247,6 +254,14 @@ export default {
         this.dialCode = value.dial_code;
       },
     },
+    finalPhoneNumber: {
+      get() {
+        return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
+      },
+      set(value) {
+        this.phoneNumber = value;
+      },
+    },
 
     btnText() {
       if (this.phoneVerificationMethod === 'SMS') {
@@ -254,6 +269,9 @@ export default {
       }
       return this.$i18n.t('mcaCard.receiveCall');
     },
+  },
+  mounted() {
+    this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
   },
 
   phonesPrefixSelectionOptions,

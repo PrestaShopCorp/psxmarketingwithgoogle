@@ -92,6 +92,7 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   // Allow the spinner to be displayed while claiming is done
   isVerified: boolean,
   isClaimed: boolean,
+  isPhoneVerified: ShoppingWebsiteStatusFlag,
   isSuspended: ShoppingWebsiteStatusFlag,
   isEnhancedFreeListingCompliant: ShoppingWebsiteStatusFlag,
   gmcStatus: WebsiteClaimErrorReason|null,
@@ -142,6 +143,9 @@ export const state: State = {
     id: null,
     isVerified: false,
     isClaimed: false,
+    isPhoneVerified: {
+      status: true,
+    },
     isSuspended: {
       status: false,
     },

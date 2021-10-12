@@ -128,7 +128,9 @@
       "phoneNumber" : "Phone number",
       "textMethod" : "Text message",
       "callMethod" : "Phone call",
-      "selectMethod": "Please select the desired method of contact to verify your identity"
+      "selectMethod": "Please select the desired method of contact to verify your identity",
+      "alertTooManyRequests" : "You have requested this service too many times with this phone number. You need to wait 24 hours to try again or change your phone number.",
+      "alertSomethingHappened" : "Something happened. It's on our side please try again."
     },
     "mcaRequirements" : {
       "steps": {

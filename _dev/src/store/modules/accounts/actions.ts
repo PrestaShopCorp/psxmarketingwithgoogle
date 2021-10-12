@@ -97,7 +97,6 @@ export default {
     correlationId: string,
   ) {
     commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCheck);
-
     let {isVerified, isClaimed} = await dispatch(
       ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
       correlationId,
@@ -135,6 +134,9 @@ export default {
       }
     } else if (state.googleMerchantAccount.isSuspended.status) {
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+    } else if (state.googleMerchantAccount.isPhoneVerified.status === false) {
+      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+        WebsiteClaimErrorReason.PhoneVerificationNeeded);
     } else {
       commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
