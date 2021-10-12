@@ -5,16 +5,16 @@
     :title="$t('mcaCard.phoneVerificationNeeded')"
     v-bind="$attrs"
     @ok="ok"
-    :ok-disabled="btnContinueDisabled"
+    :ok-disabled="!isPhoneValidated"
   >
     <b-form>
       <p class="ps_gs-fz-14">
-        We need to verify your phone number to make sure that it is really you
+        {{ $t('mcaCard.needPhoneVerification') }}
       </p>
       <b-form-group
-        label="Phone number"
+        :label="$t('mcaCard.phoneNumber')"
         label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
-        description="Please fill in your phone number and select your international prefix"
+        :description="$t('mcaCard.fillInputs')"
       >
         <div
           class="d-flex maxw-sm-320"
@@ -25,8 +25,7 @@
             :deselect-from-dropdown="true"
             :clearable="false"
             class="ps_gs-v-select ps_gs-v-select--phone-prefix"
-            label="dial_code"
-            :reduce="country => country.code"
+            :label="$t('mcaCard.dialCode')"
             v-model="phoneRegionCode"
           >
             <template #option="{ dial_code, name }">
@@ -45,12 +44,12 @@
         </div>
       </b-form-group>
       <b-form-group
-        label="Contact method"
+        :label="$t('mcaCard.contactMethod')"
         label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
-        description="Please select the desired method of contact to verify your identity"
+        :description="$t('mcaCard.selectMethod')"
       >
         <b-form-radio-group
-          :disabled="areBtnDisabled"
+          :disabled="showAll"
           v-model="phoneVerificationMethod"
           :options="contactOptions"
           name="phoneVerificationMethod"
@@ -58,30 +57,33 @@
       </b-form-group>
       <div class="d-flex align-items-center mt-4 mb-3">
         <b-button
+          @click="requestCodeorCall"
           variant="primary"
           size="sm"
           class="mr-3"
-          :disabled="areBtnDisabled"
+          :disabled="askAgainIn60Sec"
         >
           {{ btnText }}
         </b-button>
         <span
-          v-if="areBtnDisabled"
+          v-if="showAll"
           class="ps_gs-fz-12 text-muted"
         >
-          You will be able to ask for a new code in 60 seconds
+
+          {{ $t('mcaCard.askAgain60sec') }}
         </span>
       </div>
-      <p>
-        A text message containing an X-digit code has just been sent to {{ obfuscatedPhoneNumber }}
-      </p>
       <b-form-group
+        v-if="showAll"
         :disabled="isPhoneValidated"
-        label="Code"
+        :label="$t('mcaCard.code')"
         label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
         :state="isCodeValid"
-        :invalid-feedback="'Your code is invalid, please check your code or ask for a new one.'"
+        :invalid-feedback="$t('mcaCard.invalidCode')"
       >
+        <p>
+          {{ $t('mcaCard.textMessageHasBeenSent') }} {{ obfuscatedPhoneNumber }}
+        </p>
         <div
           class="d-flex align-items-stretch"
         >
@@ -99,29 +101,39 @@
             variant="primary"
             size="sm"
             class="ml-3"
+            @click="sendCode"
           >
             <template v-if="!isValidationInProgress">
-              Validate
+              {{ $t('cta.validate') }}
             </template>
             <template v-else>
-              Validating your code
+              {{ $t('mcaCard.validatingCode') }}
               <span class="ml-1 icon-busy" />
             </template>
           </b-button>
         </div>
         <template #description>
-          Enter your six digits code
+          {{ $t('mcaCard.enterCode') }}
         </template>
       </b-form-group>
       <p
         v-if="isPhoneValidated"
         class="d-flex  align-items-center"
       >
-        <span>Your phone number has been verified, you can continune your account creation.</span>
+        <span> {{ $t('mcaCard.phoneVerifiedContinue') }}</span>
         <i
           class="material-icons ps_gs-fz-16 ml-1 mb-0 text-success align-center"
         >
           check_circle
+        </i>
+      </p>
+      <p
+        v-if="error"
+        class="d-flex  align-items-center"
+      >
+        <span> {{ error }}</span>
+        <i class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+          info_outlined
         </i>
       </p>
     </b-form>
@@ -132,11 +144,8 @@
 import PsModal from '@/components/commons/ps-modal';
 import PsSelect from '@/components/commons/ps-select';
 import phonesPrefixSelectionOptions from '@/assets/json/phonesPrefix.json';
+import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 
-/*
-  TODO:
-  - Handle phone verification (only number and so on)
-*/
 export default {
   components: {
     PsModal,
@@ -146,22 +155,74 @@ export default {
     return {
       contactOptions: [
         {
-          text: 'Text messages',
+          text: this.$i18n.t('mcaCard.textMethod'),
           value: 'SMS',
         },
         {
-          text: 'Phone call',
+          text: this.$i18n.t('mcaCard.callMethod'),
           value: 'PHONE_CALL',
         },
       ],
+      error: null,
+      isCodeValid: null,
       phoneVerificationMethod: 'SMS',
-      phoneNumber: '0618786609',
-      phoneRegionCode: this.$store.getters['app/GET_ACTIVE_COUNTRIES'][0],
-      areBtnDisabled: true,
+      showAll: false,
       invitationId: null,
       isValidationInProgress: false,
       isPhoneValidated: false,
+      phoneNumber: this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone,
+      dialCode: this.$store.getters['app/GET_ACTIVE_COUNTRIES'][0],
+      askAgainIn60Sec: false,
     };
+  },
+  methods: {
+    requestCodeorCall() {
+      this.askAgainIn60Sec = true;
+      this.isCodeValid = null;
+      const payload = {
+        phoneRegionCode: this.dialCode,
+        phoneNumber: this.phoneNumber,
+        phoneVerificationMethod: this.phoneVerificationMethod,
+        languageCode: window.i18nSettings.languageLocale,
+      };
+      this.$store.dispatch('accounts/REQUEST_VERIFICATION_CODE', payload).then((resp) => {
+        if (resp) {
+          this.showAll = true;
+          clearTimeout(this.timer);
+          this.timer = setTimeout(() => {
+            this.askAgainIn60Sec = false;
+            this.showAll = false;
+            this.invitationId = null;
+          }, 60000);
+        } else {
+          this.error = 'Something happened';
+        }
+      });
+    },
+    sendCode() {
+      this.isCodeValid = null;
+      this.isValidationInProgress = true;
+      this.$store.dispatch('accounts/SEND_VERIFICATION_CODE', {verificationCode: this.invitationId}).then((resp) => {
+        if (resp) {
+          this.isCodeValid = true;
+          this.isPhoneValidated = true;
+        } else {
+          this.isCodeValid = false;
+          this.error = 'Too many requests';
+        }
+        this.isValidationInProgress = false;
+      });
+    },
+
+    ok() {
+      this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', []).then(() => {
+        this.$store.commit('accounts/SAVE_STATUS_OVERRIDE_CLAIMING',
+          WebsiteClaimErrorReason.PendingCreation);
+        setTimeout(async () => {
+          await this.$store.dispatch('accounts/REQUEST_GMC_LIST');
+        }, 20000);
+      });
+    },
   },
   computed: {
     obfuscatedPhoneNumber() {
@@ -169,25 +230,32 @@ export default {
         ? `${'•'.repeat(this.phoneNumber.length - 2)}${this.phoneNumber.slice(-2)}`
         : `${this.phoneNumber}`;
     },
+    phoneRegionCode: {
+      get() {
+        if (this.dialCode.includes('+')) {
+          return this.dialCode;
+        }
+        const finish = this.$options.phonesPrefixSelectionOptions.find((o) => {
+          if (o.code === this.dialCode || o.dial_code === this.dialCode) {
+            return o;
+          }
+          return finish;
+        });
+        return finish.dial_code;
+      },
+      set(value) {
+        this.dialCode = value.dial_code;
+      },
+    },
+
     btnText() {
       if (this.phoneVerificationMethod === 'SMS') {
-        return this.areBtnDisabled ? 'Code sent' : 'Send code';
+        return this.askAgainIn60Sec ? this.$i18n.t('mcaCard.codeSent') : this.$i18n.t('mcaCard.sendCode');
       }
-      return 'Receive call';
-    },
-    isCodeValid() {
-      // ! Just for test, need real condition
-      return this.invitationId?.length > 3 ? false : null;
-    },
-    btnContinueDisabled() {
-      return true;
+      return this.$i18n.t('mcaCard.receiveCall');
     },
   },
-  methods: {
-    ok() {
 
-    },
-  },
   phonesPrefixSelectionOptions,
 };
 </script>

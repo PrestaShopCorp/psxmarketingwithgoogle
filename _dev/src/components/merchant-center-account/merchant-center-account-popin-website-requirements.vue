@@ -82,7 +82,13 @@
           @click="ok()"
           :disabled="isBtnStepstoreInfoDisabled"
         >
-          {{ $t('cta.createAccount') }}
+          <template v-if="!isCreating">
+            {{ $t('cta.createAccount') }}
+          </template>
+          <template v-else>
+            {{ $t('cta.creating') }}
+            <span class="ml-1 icon-busy" />
+          </template>
         </b-button>
       </div>
     </template>
@@ -108,6 +114,7 @@ export default {
   },
   data() {
     return {
+      isCreating: false,
       stepActiveData: 1,
       isBtnStepRequirementsDisabled: true,
       isBtnStepstoreInfoDisabled: true,
@@ -149,6 +156,7 @@ export default {
       this.stepActiveData = value;
     },
     ok() {
+      this.isCreating = true;
       const payload = {
         shop_url: this.shopInformations.shop.url,
         shop_name: this.shopInformations.shop.name,
@@ -165,6 +173,7 @@ export default {
       }
 
       this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', payload).then(() => {
+        this.isCreating = false;
         this.$refs.modal.hide();
       });
     },

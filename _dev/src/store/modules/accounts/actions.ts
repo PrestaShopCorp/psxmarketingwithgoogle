@@ -569,14 +569,13 @@ export default {
 
       commit(MutationsTypes.ADD_NEW_GMC, newGmc);
       commit(MutationsTypes.SAVE_GMC, newGmc);
-      await dispatch(ActionsTypes.SEND_WEBSITE_REQUIREMENTS, []);
 
-      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCreation);
-      setTimeout(async () => {
-        await dispatch(ActionsTypes.REQUEST_GMC_LIST);
-      }, 20000);
+      commit(
+        MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+        WebsiteClaimErrorReason.PhoneVerificationNeeded,
+      );
     } catch (error) {
-      console.error(`Could not save new GMC: ${(<any>error)?.message}`);
+      console.error(error);
     }
   },
 
@@ -607,4 +606,61 @@ export default {
     }
     return null;
   },
+
+  async [ActionsTypes.REQUEST_VERIFICATION_CODE](
+    {commit, rootState, state}, payload) {
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/merchant-accounts/phone-verification/request-code`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+
+      const json = await response.json();
+      if (json) {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Too many requests');
+      return false;
+    }
+  },
+
+  async [ActionsTypes.SEND_VERIFICATION_CODE](
+    {
+      commit, rootState, dispatch, state,
+    }, payload) {
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/merchant-accounts/phone-verification/verify`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${state.tokenPsAccounts}`,
+        },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+
+      const json = await response.json();
+      if (json.result === 'code verified') {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  },
+
 };

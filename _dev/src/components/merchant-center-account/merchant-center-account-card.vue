@@ -478,7 +478,7 @@
       ref="MerchantCenterAccountPopinNewMca"
     />
     <PhoneVerificationPopin
-      ref="phoneVerificationPopin"
+      ref="PhoneVerificationPopin"
     />
   </b-card>
 </template>
@@ -722,9 +722,9 @@ export default {
       this.$router.go();
     },
     verifyPhoneNumber() {
-      if (this.$refs.phoneVerificationPopin) {
+      if (this.$refs.PhoneVerificationPopin) {
         this.$bvModal.show(
-          this.$refs.phoneVerificationPopin.$refs.modal.id,
+          this.$refs.PhoneVerificationPopin.$refs.modal.id,
         );
       }
     },
