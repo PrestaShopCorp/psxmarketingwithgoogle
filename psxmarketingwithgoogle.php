@@ -116,7 +116,7 @@ class PsxMarketingWithGoogle extends Module
     public function install()
     {
         if (!$this->isPhpVersionCompliant()) {
-            $this->_errors[] = $this->l('This requires PHP 7.3 to work properly. Please upgrade your server configuration.');
+            $this->_errors[] = $this->l('This requires PHP 7.2 to work properly. Please upgrade your server configuration.');
 
             return false;
         }
@@ -225,6 +225,6 @@ class PsxMarketingWithGoogle extends Module
 
     private function isPhpVersionCompliant()
     {
-        return 70300 <= PHP_VERSION_ID;
+        return 70200 <= PHP_VERSION_ID;
     }
 }
