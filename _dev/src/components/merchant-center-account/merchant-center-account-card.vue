@@ -696,7 +696,7 @@ export default {
       this.mcaSelectionOptions[index].users.forEach((user) => {
         // Only continue if the user email matches the onboarded Google Account one
         if (this.$store.state.accounts.googleAccount.details.email
-        && user.emailAddress.toUpperCase()
+        && user.emailAddress
         && this.$store.state.accounts.googleAccount.details.email.toUpperCase()
         !== user.emailAddress.toUpperCase()) {
           return;
