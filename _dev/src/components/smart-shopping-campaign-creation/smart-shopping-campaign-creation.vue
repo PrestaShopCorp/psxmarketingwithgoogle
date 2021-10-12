@@ -489,12 +489,12 @@ export default {
       }
       this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
-    editCampaign() {
+    async editCampaign() {
       const payload = this.finalCampaign;
       payload.status = this.campaignIsActive
         ? CampaignStatusToggle.ENABLED
         : CampaignStatusToggle.PAUSED;
-      this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
+      await this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
       this.$router.push({
         name: 'campaign-list',
       });
