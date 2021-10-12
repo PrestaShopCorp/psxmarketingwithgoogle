@@ -242,6 +242,7 @@ export default {
         if (this.dialCode.includes('+')) {
           return this.dialCode;
         }
+        // In case we receive country code from shop
         const finish = this.$options.phonesPrefixSelectionOptions.find((o) => {
           if (o.code === this.dialCode || o.dial_code === this.dialCode) {
             return o;
