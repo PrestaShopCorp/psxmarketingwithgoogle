@@ -212,9 +212,9 @@ export default {
         this.isCodeValid = true;
         this.isPhoneValidated = true;
       } catch (error) {
-        if (error.code === 500) {
+        if (error.code === 400) {
           this.isCodeValid = false;
-        } else if (error.code === 400) {
+        } else if (error.code === 500) {
           this.error = this.$i18n.t('mcaCard.alertSomethingHappened');
         }
       }
