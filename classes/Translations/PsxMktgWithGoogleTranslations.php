@@ -732,6 +732,7 @@ class PsxMktgWithGoogleTranslations
                 'goToPage' => $this->module->l('Go to first page | Go to page: {0} | Go to last page', 'PsxMktgWithGoogleTranslations'),
                 'noEndDate' => $this->module->l('No end date', 'PsxMktgWithGoogleTranslations'),
                 'verifyPhoneNumber' => $this->module->l('Verify phone number', 'PsxMktgWithGoogleTranslations'),
+                'refreshInformations' => $this->module->l('Refresh informations', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),

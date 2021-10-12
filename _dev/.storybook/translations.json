@@ -683,7 +683,8 @@
       "next" : "Next",
       "goToPage" : "Go to first page | Go to page: {0} | Go to last page",
       "noEndDate" : "No end date",
-      "verifyPhoneNumber" : "Verify phone number"
+      "verifyPhoneNumber" : "Verify phone number",
+      "refreshInformations" : "Refresh informations"
     },
     "badge" : {
       "free" : "Free",

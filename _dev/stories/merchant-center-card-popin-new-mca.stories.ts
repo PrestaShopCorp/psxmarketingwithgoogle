@@ -27,6 +27,7 @@ const Template = (args, { argTypes }) => ({
     );
   },
   beforeMount: args.beforeMount,
+  mounted: args.mounted,
 });
 
 export const NewMcaStepRequirements:any = Template.bind({});
@@ -51,8 +52,10 @@ NewMcaStepStoreInfoWithErrors.args = {
   visible: true,
   stepActive: 2,
   newMca: true,
-  beforeMount(this : any) {
-    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountWithErrors);
+  mounted(this : any) {
+    setTimeout(() => {
+      this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountWithErrors);
+    }, 2000);
   }
 };
 

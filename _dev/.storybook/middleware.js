@@ -1,7 +1,37 @@
 const {kpisEmpty, kpiDatas} = require('./mock/reporting/kpi.js');
 const {dailyResultsEmpty, dailyResultsDatas, dailyResultsBigDatas} = require('./mock/reporting/daily-results.js');
+const express = require('express');
 
 module.exports = function (router) {
+  router.use(express.urlencoded({ extended: false }));
+  router.use(express.json());
+
+  router.post('/', (req, res) => {
+    if (req.body.action === 'getShopConfigurationForGMC') {
+      const items = ['Birmingham', 'Toulouse', 'Marseille', 'Strasbourg', 'Londres']
+      const item = items[Math.floor(Math.random()*items.length)];
+      res.send({
+        "shop": {
+          "name": "PrestaDoge",
+          "url": "http://perdu.com/"
+        },
+        "store": {
+          "streetAddress": "111 Richard Arrington Jr Blvd S",
+          "locality": item,
+          "region": "Alabama",
+          "postalCode": "35233",
+          "country": {
+            "name": "United States",
+            "iso_code": "US"
+          },
+          "phone": "0654879832"
+        }
+      })
+    }
+
+    else res.send({})
+  });
+
   router.get('/ads-reporting/kpis/', (req, res) => {
     let results = kpisEmpty;
 
@@ -170,4 +200,3 @@ module.exports = function (router) {
     res.end();
   });
 }
-
