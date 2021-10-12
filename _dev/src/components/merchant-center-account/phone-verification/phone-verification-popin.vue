@@ -50,7 +50,7 @@
         :description="$t('mcaCard.selectMethod')"
       >
         <b-form-radio-group
-          :disabled="showAll"
+          :disabled="showVerificationForm"
           v-model="phoneVerificationMethod"
           :options="contactOptions"
           name="phoneVerificationMethod"
@@ -67,7 +67,7 @@
           {{ btnText }}
         </b-button>
         <span
-          v-if="showAll"
+          v-if="askAgainIn60Sec"
           class="ps_gs-fz-12 text-muted"
         >
 
@@ -75,7 +75,7 @@
         </span>
       </div>
       <b-form-group
-        v-if="showAll"
+        v-if="showVerificationForm"
         :disabled="isPhoneValidated"
         :label="$t('mcaCard.code')"
         label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
@@ -104,12 +104,12 @@
             class="ml-3"
             @click="sendCode"
           >
-            <template v-if="!isValidationInProgress">
-              {{ $t('cta.validate') }}
-            </template>
-            <template v-else>
+            <template v-if="isValidationInProgress">
               {{ $t('mcaCard.validatingCode') }}
               <span class="ml-1 icon-busy" />
+            </template>
+            <template v-else>
+              {{ $t('cta.validate') }}
             </template>
           </b-button>
         </div>
@@ -168,7 +168,7 @@ export default {
       error: null,
       isCodeValid: null,
       phoneVerificationMethod: 'SMS',
-      showAll: false,
+      showVerificationForm: false,
       invitationId: null,
       isValidationInProgress: false,
       isPhoneValidated: false,
@@ -178,7 +178,7 @@ export default {
     };
   },
   methods: {
-    requestCodeorCall() {
+    async requestCodeorCall() {
       this.askAgainIn60Sec = true;
       this.isCodeValid = null;
       const payload = {
@@ -187,33 +187,38 @@ export default {
         phoneVerificationMethod: this.phoneVerificationMethod,
         languageCode: window.i18nSettings.languageLocale,
       };
-      this.$store.dispatch('accounts/REQUEST_VERIFICATION_CODE', payload).then((resp) => {
-        if (resp) {
-          this.showAll = true;
-          clearTimeout(this.timer);
-          this.timer = setTimeout(() => {
-            this.askAgainIn60Sec = false;
-            this.showAll = false;
-            this.invitationId = null;
-          }, 60000);
-        } else {
+      try {
+        await this.$store.dispatch('accounts/REQUEST_VERIFICATION_CODE', payload);
+        this.showVerificationForm = true;
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+          this.showVerificationForm = false;
+          this.invitationId = null;
+          this.clearPotentialErrors();
+        }, 60000);
+      } catch (error) {
+        if (error.code === 429) {
           this.error = this.$i18n.t('mcaCard.alertTooManyRequests');
+          return;
         }
-      });
+        this.error = this.$i18n.t('mcaCard.alertSomethingHappened');
+      }
     },
-    sendCode() {
+    async sendCode() {
       this.isCodeValid = null;
       this.isValidationInProgress = true;
-      this.$store.dispatch('accounts/SEND_VERIFICATION_CODE', {verificationCode: this.invitationId}).then((resp) => {
-        if (resp) {
-          this.isCodeValid = true;
-          this.isPhoneValidated = true;
-        } else {
+      try {
+        this.$store.dispatch('accounts/SEND_VERIFICATION_CODE', {verificationCode: this.invitationId});
+        this.isCodeValid = true;
+        this.isPhoneValidated = true;
+      } catch (error) {
+        if (error.code === 500) {
           this.isCodeValid = false;
+        } else if (error.code === 400) {
           this.error = this.$i18n.t('mcaCard.alertSomethingHappened');
         }
-        this.isValidationInProgress = false;
-      });
+      }
+      this.isValidationInProgress = false;
     },
 
     clearPotentialErrors() {
@@ -222,6 +227,7 @@ export default {
     },
 
     ok() {
+      this.resetFields();
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', []).then(() => {
         this.$store.commit('accounts/SAVE_STATUS_OVERRIDE_CLAIMING',
           WebsiteClaimErrorReason.PendingCreation);
@@ -229,6 +235,15 @@ export default {
           await this.$store.dispatch('accounts/REQUEST_GMC_LIST');
         }, 20000);
       });
+    },
+    resetFields() {
+      this.error = null;
+      this.isCodeValid = null;
+      this.showVerificationForm = false;
+      this.invitationId = null;
+      this.isValidationInProgress = false;
+      this.isPhoneValidated = false;
+      this.askAgainIn60Sec = false;
     },
   },
   computed: {
@@ -243,7 +258,8 @@ export default {
           return this.dialCode;
         }
         // In case we receive country code from shop
-        const finish = this.$options.phonesPrefixSelectionOptions.find((o) => {
+        let finish = null;
+        finish = this.$options.phonesPrefixSelectionOptions.find((o) => {
           if (o.code === this.dialCode || o.dial_code === this.dialCode) {
             return o;
           }

@@ -610,59 +610,36 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_VERIFICATION_CODE](
-    {commit, rootState, state}, payload) {
-    try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/merchant-accounts/phone-verification/request-code`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Bearer ${state.tokenPsAccounts}`,
-        },
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-
-      const json = await response.json();
-      if (json) {
-        return true;
-      }
-      return false;
-    } catch (error) {
-      console.error('Too many requests');
-      return false;
+    {rootState, state}, payload) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/merchant-accounts/phone-verification/request-code`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
     }
+    return response.json();
   },
 
   async [ActionsTypes.SEND_VERIFICATION_CODE](
-    {
-      commit, rootState, dispatch, state,
-    }, payload) {
-    try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/merchant-accounts/phone-verification/verify`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Bearer ${state.tokenPsAccounts}`,
-        },
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-
-      const json = await response.json();
-      if (json.result === 'code verified') {
-        return true;
-      }
-      return false;
-    } catch (error) {
-      console.log(error);
-      return false;
+    {rootState, state}, payload) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/merchant-accounts/phone-verification/verify`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${state.tokenPsAccounts}`,
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
     }
+    return response.json();
   },
-
 };

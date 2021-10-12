@@ -82,12 +82,12 @@
           @click="ok()"
           :disabled="isBtnStepstoreInfoDisabled"
         >
-          <template v-if="!isCreating">
-            {{ $t('cta.createAccount') }}
-          </template>
-          <template v-else>
+          <template v-if="isCreating">
             {{ $t('cta.creating') }}
             <span class="ml-1 icon-busy" />
+          </template>
+          <template v-else>
+            {{ $t('cta.createAccount') }}
           </template>
         </b-button>
       </div>
@@ -142,11 +142,11 @@ export default {
 
       return steps;
     },
-    stepRequirementsValidation(payload) {
-      this.isBtnStepRequirementsDisabled = payload;
+    stepRequirementsValidation(allRequirementsNotChecked) {
+      this.isBtnStepRequirementsDisabled = allRequirementsNotChecked;
     },
-    stepStoreInfoValidation(payload, containsAdultContent) {
-      this.isBtnStepstoreInfoDisabled = payload;
+    stepStoreInfoValidation(allFieldsNotFilled, containsAdultContent) {
+      this.isBtnStepstoreInfoDisabled = allFieldsNotFilled;
       this.containsAdultContent = containsAdultContent;
     },
     saveFirstStep() {
