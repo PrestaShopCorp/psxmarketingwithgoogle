@@ -180,6 +180,7 @@ class PsxMktgWithGoogleTranslations
                 'selectMethod' => $this->module->l('Please select the desired method of contact to verify your identity', 'PsxMktgWithGoogleTranslations'),
                 'alertTooManyRequests' => $this->module->l('You have requested this service too many times with this phone number. You need to wait 24 hours to try again or change your phone number.', 'PsxMktgWithGoogleTranslations'),
                 'alertSomethingHappened' => $this->module->l('Something happened. It\'s on our side, please try again.', 'PsxMktgWithGoogleTranslations'),
+                'alertCodeExpired' => $this->module->l('The code has expired. Please ask for another one', 'PsxMktgWithGoogleTranslations'),
             ],
             'mcaRequirements' => [
                 'steps' => [
