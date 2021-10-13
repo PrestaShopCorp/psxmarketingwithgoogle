@@ -316,7 +316,7 @@
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
-      :filters-chosen-summary="filtersChosenSummary"
+      :filters-chosen-summary="filtersChosen"
       @openPopinSSCCreated="onCampaignCreated"
       @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
     />
@@ -342,7 +342,6 @@ export default {
       campaignDurationEndDate: null,
       campaignProductsFilter: true,
       filtersChosen: [],
-      filtersChosenSummary: [],
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
@@ -368,7 +367,7 @@ export default {
       && this.campaignDurationStartDate
       && this.targetCountry
       && (this.campaignProductsFilter === true
-      || (this.campaignProductsFilter === false && this.filtersChosen[0].values.length))
+      || (this.campaignProductsFilter === false && !!this.filtersChosen[0].values.length))
       && this.campaignDailyBudget) {
         return false;
       }
@@ -510,20 +509,16 @@ export default {
       });
     },
     getDimensionsFiltered(dimensions) {
-      this.filtersChosen = Array.from([{
-        dimension: 'category',
-        values: [],
-      }]);
-      this.filtersChosenSummary = Array.from([{
-        dimension: 'category',
-        values: [],
-      }]);
-      this.filtersChosen[0].values = [];
-      this.filtersChosenSummary[0].values = [];
-      dimensions.forEach((el) => {
-        this.filtersChosen[0].values.push(Number(el.id));
-        this.filtersChosenSummary[0].values.push(el.name);
-      });
+      if (this.filtersChosen) {
+        this.filtersChosen = Array.from([{
+          dimension: 'category',
+          values: [],
+        }]);
+        this.filtersChosen[0].values = [];
+        dimensions.forEach((el) => {
+          this.filtersChosen[0].values.push(Number(el.id));
+        });
+      }
     },
   },
   watch: {

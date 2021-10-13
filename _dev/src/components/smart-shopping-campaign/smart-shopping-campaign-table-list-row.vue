@@ -98,7 +98,9 @@ export default {
     campaignProducts() {
       return this.campaign.productFilters?.length
         // eslint-disable-next-line
-        ?  this.campaign.productFilters.length + ' ' + this.$t('smartShoppingCampaignCreation.productsSelected')
+        ? this.$i18n.tc('smartShoppingCampaignCreation.nbProductsSelected',
+          this.campaign.productFilters.length,
+          [this.campaign.productFilters.length])
         : this.$t('smartShoppingCampaignCreation.inputAllSyncedProducts');
     },
   },

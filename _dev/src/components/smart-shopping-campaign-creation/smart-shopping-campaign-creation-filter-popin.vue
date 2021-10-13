@@ -103,10 +103,9 @@ export default {
   computed: {
     textFiltersSelected() {
       // TODO We only have 1 dimension for now but need refacto for the text when more
-      const textValuesSelected = this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
+      return this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
         this.filteredDimensions.children.length,
         [this.filteredDimensions.children.length]);
-      return `${textValuesSelected}`;
     },
     availableFilters() {
       return {

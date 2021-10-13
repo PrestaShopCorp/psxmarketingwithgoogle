@@ -53,22 +53,29 @@
         {{ $t('smartShoppingCampaignCreation.recapFiltersLabel') }}
       </dt>
       <dd class="text-secondary mb-3">
-        <template v-if="newCampaign.productFilters[0].values.length === 0">
-          {{ $t('smartShoppingCampaignCreation.recapNoFiltersDescription') }}
-        </template>
-        <template v-else>
+        <template
+          v-if="newCampaign.productFilters.length
+            && newCampaign.productFilters[0].values.length"
+        >
           <div
             v-for="(filter, index) in filtersChosenSummary"
             :key="index"
           >
             <template>
-              {{ filtersChosenSummary.length }}
-              {{ $t('smartShoppingCampaignCreation.productsFiltersSelected') }}
+              {{ $tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
+                     filtersChosenSummary.length , [filtersChosenSummary.length]) }}
               -
-              {{ filter.values.length }}
-              {{ $t('smartShoppingCampaignCreation.productsSelected') }}
+              {{ $tc('smartShoppingCampaignCreation.nbValuesSelected',
+                     filter.values.length,
+                     [filter.values.length]) }}
             </template>
           </div>
+        </template>
+        <template
+          v-if="newCampaign.productFilters.length
+            && newCampaign.productFilters[0].values.length === 0"
+        >
+          {{ $t('smartShoppingCampaignCreation.recapNoFiltersDescription') }}
         </template>
       </dd>
       <dt class="font-weight-600">
