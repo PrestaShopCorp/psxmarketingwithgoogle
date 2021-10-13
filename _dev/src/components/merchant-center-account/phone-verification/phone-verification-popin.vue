@@ -40,7 +40,7 @@
             size="sm"
             type="text"
             class="ps_gs-phone-input w-100"
-            @input="clearPotentialErrors"
+            @input="clearPotentialErrorsOrMessages"
           />
         </div>
       </b-form-group>
@@ -80,7 +80,7 @@
         :label="$t('mcaCard.code')"
         label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
         :state="isCodeValid"
-        :invalid-feedback="$t('mcaCard.invalidCode')"
+        :invalid-feedback="invalidInputFeedback"
       >
         <p>
           {{ $t('mcaCard.textMessageHasBeenSent') }} {{ obfuscatedPhoneNumber }}
@@ -175,6 +175,7 @@ export default {
       phoneNumber: null,
       dialCode: this.$store.getters['app/GET_ACTIVE_COUNTRIES'][0],
       askAgainIn60Sec: false,
+      invalidInputFeedback: this.$i18n.t('mcaCard.invalidCode'),
     };
   },
   methods: {
@@ -190,11 +191,10 @@ export default {
       try {
         await this.$store.dispatch('accounts/REQUEST_VERIFICATION_CODE', payload);
         this.showVerificationForm = true;
-        clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
+        setTimeout(() => {
           this.showVerificationForm = false;
           this.invitationId = null;
-          this.clearPotentialErrors();
+          this.clearPotentialErrorsOrMessages();
         }, 60000);
       } catch (error) {
         if (error.code === 429) {
@@ -208,22 +208,25 @@ export default {
       this.isCodeValid = null;
       this.isValidationInProgress = true;
       try {
-        this.$store.dispatch('accounts/SEND_VERIFICATION_CODE', {verificationCode: this.invitationId});
+        await this.$store.dispatch('accounts/SEND_VERIFICATION_CODE',
+          {verificationCode: this.invitationId});
         this.isCodeValid = true;
         this.isPhoneValidated = true;
       } catch (error) {
-        if (error.code === 400) {
+        if (error.status === 400) {
           this.isCodeValid = false;
-        } else if (error.code === 500) {
-          this.error = this.$i18n.t('mcaCard.alertSomethingHappened');
+          return;
         }
+        this.error = this.$i18n.t('mcaCard.alertSomethingHappened');
       }
       this.isValidationInProgress = false;
     },
 
-    clearPotentialErrors() {
+    clearPotentialErrorsOrMessages() {
       this.error = null;
       this.askAgainIn60Sec = false;
+      this.isCodeValid = false;
+      this.isPhoneValidated = false;
     },
 
     ok() {
