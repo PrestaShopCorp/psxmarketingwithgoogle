@@ -212,14 +212,16 @@ export default {
           {verificationCode: this.invitationId});
         this.isCodeValid = true;
         this.isPhoneValidated = true;
+        this.isValidationInProgress = false;
       } catch (error) {
-        if (error.status === 400) {
+        if (error.code === 400 && error.message.includes('Wrong code')) {
           this.isCodeValid = false;
+          this.isValidationInProgress = false;
           return;
         }
         this.error = this.$i18n.t('mcaCard.alertSomethingHappened');
+        this.isValidationInProgress = false;
       }
-      this.isValidationInProgress = false;
     },
 
     clearPotentialErrorsOrMessages() {

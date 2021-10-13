@@ -638,7 +638,8 @@ export default {
       body: JSON.stringify(payload),
     });
     if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
+      const json = await response.json();
+      throw new HttpClientError(json, response.status);
     }
     return response.json();
   },
