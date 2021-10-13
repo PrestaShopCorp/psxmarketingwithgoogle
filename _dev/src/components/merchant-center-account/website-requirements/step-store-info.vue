@@ -281,6 +281,25 @@
         :markdown="$t('mcaRequirements.changePhoneNumberField', [storeInformationsUrl])"
       />
     </section>
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <p class="maxw-sm-500 mb-0">
+        If you have made any modification in your backoffice, please refresh your information to see the changes reflected here.
+      </p>
+      <b-button
+        size="sm"
+        @click="refreshDatas"
+        class="d-inline-flex align-items-center mx-auto ml-sm-3 mr-sm-0"
+        variant="outline-secondary"
+      >
+        <span>
+          {{$t('cta.refreshInformations')}}
+        </span>
+        <span
+          v-if="loading"
+          class="ml-1 icon-busy icon-busy--dark"
+        />
+      </b-button>
+    </div>
     <div class="mb-4 pb-1">
       <div class="d-sm-flex align-items-center">
         <legend
@@ -340,14 +359,8 @@ export default {
     return {
       containsAdultContent: null,
       acceptsGoogleTerms: false,
+      loading: false,
     };
-  },
-  props: {
-    loading: {
-      type: Boolean,
-      default: false,
-      required: false,
-    },
   },
   watch: {
     containsAdultContent() {
@@ -383,6 +396,13 @@ export default {
         && (this.containsAdultContent != null)
         && this.allFieldsAreFilled()),
       );
+    },
+    refreshDatas() {
+      this.loading = true;
+      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS')
+        .finally(() => {
+          this.loading = false;
+        });
     },
   },
   computed: {

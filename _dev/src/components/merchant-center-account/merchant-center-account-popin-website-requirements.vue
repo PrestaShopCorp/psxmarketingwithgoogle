@@ -25,7 +25,6 @@
     <StepStoreInfo
       v-else-if="stepActiveData === 2"
       @stepStoreInfoValidation="stepStoreInfoValidation"
-      :loading="loadingWhileRefresh"
     />
     <template
       slot="modal-footer"
@@ -65,20 +64,6 @@
       slot="modal-footer"
       v-else-if="stepActiveData === 2"
     >
-    <b-button
-      size="sm"
-      @click="refreshDatas"
-      class="d-inline-flex align-items-center mx-auto ml-sm-0 mb-2 mb-sm-0"
-      variant="outline-secondary"
-    >
-      <span>
-        {{$t('cta.refreshInformations')}}
-      </span>
-      <span
-        v-if="loadingWhileRefresh"
-        class="ml-1 icon-busy icon-busy--dark"
-      />
-    </b-button>
       <b-button
         size="sm"
         variant="outline-secondary"
@@ -125,7 +110,6 @@ export default {
       stepActiveData: 1,
       isBtnStepRequirementsDisabled: true,
       isBtnStepstoreInfoDisabled: true,
-      loadingWhileRefresh: false,
     };
   },
   props: {
@@ -184,15 +168,6 @@ export default {
     cancel() {
       this.$refs.modal.hide();
       this.stepActiveData = 1;
-    },
-    refreshDatas() {
-      this.loadingWhileRefresh = true;
-      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS')
-        .finally(() => {
-          setTimeout(() => {
-            this.loadingWhileRefresh = false;
-          }, 2000);
-        });
     },
     saveChangeExistingGmc() {
       /**
