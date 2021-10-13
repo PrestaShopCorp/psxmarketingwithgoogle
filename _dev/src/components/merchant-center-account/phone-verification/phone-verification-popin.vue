@@ -218,7 +218,7 @@ export default {
           this.isCodeValid = false;
           this.isValidationInProgress = false;
           return;
-        }  
+        }
         if (error.code === 400 && error.message.includes('expired')) {
           this.error = this.$i18n.t('mcaCard.alertCodeExpired');
           this.isValidationInProgress = false;
