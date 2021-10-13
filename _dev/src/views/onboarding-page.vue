@@ -38,7 +38,8 @@
       />
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
-        :is-enabled="merchantCenterAccountIsChosen"
+        :is-enabled="merchantCenterAccountIsChosen
+          || merchantCenterAccountSuspendedButProductFeedExist"
       />
 
       <FreeListingCard
@@ -251,6 +252,10 @@ export default {
     },
     productFeedIsConfiguredOnce() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED_ONCE'];
+    },
+    merchantCenterAccountSuspendedButProductFeedExist() {
+      return this.$store.state.googleMerchantAccount?.isSuspended.status
+      && this.productFeedIsConfiguredOnce;
     },
     freeListingIsActivatedOnce() {
       return this.$store.getters['freeListing/GET_FREE_LISTING_IS_ACTIVATED_ONCE'];
