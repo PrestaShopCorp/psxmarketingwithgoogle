@@ -82,7 +82,13 @@
           @click="ok()"
           :disabled="isBtnStepstoreInfoDisabled"
         >
-          {{ $t('cta.createAccount') }}
+          <template v-if="isCreating">
+            {{ $t('cta.creating') }}
+            <span class="ml-1 icon-busy" />
+          </template>
+          <template v-else>
+            {{ $t('cta.createAccount') }}
+          </template>
         </b-button>
       </div>
     </template>
@@ -96,6 +102,7 @@ import Stepper from '../commons/stepper';
 import StepRequirements from './website-requirements/step-requirements';
 import StepStoreInfo from './website-requirements/step-store-info';
 import WebsiteRequirementsSteps from '@/enums/stepper/website-requirements-steps';
+import WebsiteRequirements from '@/enums/merchant-center-account/website-requirements';
 
 export default {
   name: 'MerchantCenterAccountPopinWebsiteRequirements',
@@ -107,9 +114,11 @@ export default {
   },
   data() {
     return {
+      isCreating: false,
       stepActiveData: 1,
       isBtnStepRequirementsDisabled: true,
       isBtnStepstoreInfoDisabled: true,
+      containsAdultContent: false,
     };
   },
   props: {
@@ -133,11 +142,12 @@ export default {
 
       return steps;
     },
-    stepRequirementsValidation(payload) {
-      this.isBtnStepRequirementsDisabled = payload;
+    stepRequirementsValidation(allRequirementsNotChecked) {
+      this.isBtnStepRequirementsDisabled = allRequirementsNotChecked;
     },
-    stepStoreInfoValidation(payload) {
-      this.isBtnStepstoreInfoDisabled = payload;
+    stepStoreInfoValidation(allFieldsNotFilled, containsAdultContent) {
+      this.isBtnStepstoreInfoDisabled = allFieldsNotFilled;
+      this.containsAdultContent = containsAdultContent;
     },
     saveFirstStep() {
       this.stepActiveData = 2;
@@ -146,6 +156,7 @@ export default {
       this.stepActiveData = value;
     },
     ok() {
+      this.isCreating = true;
       const payload = {
         shop_url: this.shopInformations.shop.url,
         shop_name: this.shopInformations.shop.name,
@@ -162,6 +173,7 @@ export default {
       }
 
       this.$store.dispatch('accounts/REQUEST_TO_SAVE_NEW_GMC', payload).then(() => {
+        this.isCreating = false;
         this.$refs.modal.hide();
       });
     },
@@ -179,9 +191,20 @@ export default {
     popinTitle() {
       return this.newMca ? this.$i18n.t('mcaRequirements.title') : this.$i18n.t('mcaRequirements.steps.websiteRequirements');
     },
+    shopInformations() {
+      return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
+    },
+    requirements() {
+      return Object.values(WebsiteRequirements);
+    },
   },
   mounted() {
     this.stepActiveData = this.stepActive;
+    if (this.newMca === true) {
+      this.$store.dispatch('accounts/REQUEST_WEBSITE_REQUIREMENTS').then(() => {
+        this.isBtnStepRequirementsDisabled = !(this.$store.getters['accounts/GET_WEBSITE_REQUIREMENTS'].length === this.requirements.length);
+      });
+    }
   },
   googleUrl,
 };

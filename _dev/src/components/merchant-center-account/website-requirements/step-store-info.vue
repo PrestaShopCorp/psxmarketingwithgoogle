@@ -366,7 +366,7 @@ export default {
       this.$emit('stepStoreInfoValidation',
         !(this.acceptsGoogleTerms
         && (this.containsAdultContent != null)
-        && this.allFieldsAreFilled()),
+        && this.allFieldsAreFilled()), this.containsAdultContent,
       );
     },
   },
