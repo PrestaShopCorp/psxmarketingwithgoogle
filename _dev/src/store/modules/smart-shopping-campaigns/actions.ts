@@ -41,7 +41,6 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      payload.id += 1;
       commit(MutationsTypes.SAVE_NEW_SSC, payload);
       return {
         error: false,
