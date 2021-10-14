@@ -38,18 +38,18 @@ export const merchantCenterAccountCreation = {
   ...merchantCenterAccountNotConnected,
   shopInfo: {
     shop: {
-      name: "PrestaShop",
-      url: "http://perdu.com/"
+      name: "",
+      url: ""
     },
     store:{
       country: {
-        iso_code: "FR",
-        name: "France",
+        iso_code: "",
+        name: "",
       },
-      locality: "Paris",
-      phone: "0658585858",
-      postalCode: "75015",
-      streetAddress: "12 rue d'amsterdam",
+      locality: "",
+      phone: "",
+      postalCode: "",
+      streetAddress: "",
     }
   }
 }

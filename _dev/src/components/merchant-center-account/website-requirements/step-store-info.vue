@@ -43,11 +43,13 @@
           </span>
         </b-button>
       </div>
-      <span class="d-block">
+      <span
+        class="d-block"
+        :class="loadingClass"
+      >
         {{ shopInformations.shop.name }}
       </span>
     </section>
-
     <section class="mb-3">
       <div class="d-flex align-items-center">
         <h3 class="h4 mb-0 font-weight-600">
@@ -64,18 +66,19 @@
           </span>
         </b-button>
       </div>
-      <span class="d-block">
+      <span
+        class="d-block"
+        :class="loadingClass"
+      >
         {{ shopInformations.store.streetAddress
           ? shopInformations.store.streetAddress : '--' }}
       </span>
-
       <p
         class="mb-0 text-danger text-left ps_gs-fz-12"
         v-if="!shopInformations.store.streetAddress"
       >
         {{ $t('general.XIsMandatory', [$t('mcaRequirements.businessAddress')]) }}
       </p>
-
       <VueShowdown
         id="businessAddressFeedback"
         class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
@@ -83,7 +86,6 @@
         :markdown="$t('mcaRequirements.changeAddressField', [storeInformationsUrl])"
       />
     </section>
-
     <section class="mb-3">
       <div class="d-flex align-items-center">
         <h3 class="h4 mb-0 font-weight-600">
@@ -100,18 +102,19 @@
           </span>
         </b-button>
       </div>
-      <span class="d-block">
+      <span
+        class="d-block"
+        :class="loadingClass"
+      >
         {{ shopInformations.store.postalCode
           ? shopInformations.store.postalCode : '--' }}
       </span>
-
       <p
         class="mb-0 text-danger text-left ps_gs-fz-12"
         v-if="!shopInformations.store.postalCode"
       >
         {{ $t('general.XIsMandatory', [$t('mcaRequirements.businessZipCode')]) }}
       </p>
-
       <VueShowdown
         id="businessZipCodeFeedback"
         class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
@@ -136,11 +139,13 @@
           </span>
         </b-button>
       </div>
-      <span class="d-block">
+      <span
+        class="d-block"
+        :class="loadingClass"
+      >
         {{ shopInformations.store.locality
           ? shopInformations.store.locality : '--' }}
       </span>
-
       <p
         class="mb-0 text-danger text-left ps_gs-fz-12"
         v-if="!shopInformations.store.locality"
@@ -172,7 +177,10 @@
           </span>
         </b-button>
       </div>
-      <span class="d-block">
+      <span
+        class="d-block"
+        :class="loadingClass"
+      >
         {{ shopInformations.store.country.name
           ? shopInformations.store.country.name : '--' }}
       </span>
@@ -211,18 +219,19 @@
           </span>
         </b-button>
       </div>
-      <span class="d-block">
+      <span
+        class="d-block"
+        :class="loadingClass"
+      >
         {{ shopInformations.store.region
           ? shopInformations.store.region : '--' }}
       </span>
-
       <p
         class="mb-0 text-danger text-left ps_gs-fz-12"
         v-if="!shopInformations.store.region"
       >
         {{ $t('general.XIsMandatory', [$t('mcaRequirements.businessRegion')]) }}
       </p>
-
       <VueShowdown
         id="businessRegionFeedback"
         class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
@@ -230,7 +239,6 @@
         :markdown="$t('mcaRequirements.changeRegionField', [storeInformationsUrl])"
       />
     </section>
-
     <section class="mb-3">
       <div class="d-flex align-items-center">
         <h3 class="h4 mb-0 font-weight-600">
@@ -247,11 +255,13 @@
           </span>
         </b-button>
       </div>
-      <span class="d-block">
+      <span
+        class="d-block"
+        :class="loadingClass"
+      >
         {{ shopInformations.store.phone
           ? shopInformations.store.phone : '--' }}
       </span>
-
       <p
         class="mb-0 text-danger text-left ps_gs-fz-12"
         v-if="!shopInformations.store.phone"
@@ -264,7 +274,6 @@
       >
         {{ $t('mcaRequirements.phoneFormat') }}
       </p>
-
       <VueShowdown
         id="businessPhoneNumberFeedback"
         class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
@@ -272,7 +281,25 @@
         :markdown="$t('mcaRequirements.changePhoneNumberField', [storeInformationsUrl])"
       />
     </section>
-
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <p class="maxw-sm-500 mb-0">
+        {{$t('mcaRequirements.updateData')}}
+      </p>
+      <b-button
+        size="sm"
+        @click="refreshDatas"
+        class="d-inline-flex align-items-center mx-auto ml-sm-3 mr-sm-0"
+        variant="outline-secondary"
+      >
+        <span>
+          {{ $t('cta.refreshInformations') }}
+        </span>
+        <span
+          v-if="loading"
+          class="ml-1 icon-busy icon-busy--dark"
+        />
+      </b-button>
+    </div>
     <div class="mb-4 pb-1">
       <div class="d-sm-flex align-items-center">
         <legend
@@ -332,6 +359,7 @@ export default {
     return {
       containsAdultContent: null,
       acceptsGoogleTerms: false,
+      loading: false,
     };
   },
   watch: {
@@ -369,13 +397,23 @@ export default {
         && this.allFieldsAreFilled()), this.containsAdultContent,
       );
     },
+    refreshDatas() {
+      this.loading = true;
+      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS')
+        .finally(() => {
+          this.loading = false;
+        });
+    },
   },
   computed: {
     shopInformations() {
       return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
     },
     storeInformationsUrl() {
-      return this.$store.getters['app/GET_STORE_INFORMATION_URL'];
+      return `${this.$store.getters['app/GET_STORE_INFORMATION_URL']}#store_fieldset_contact`;
+    },
+    loadingClass() {
+      return {'text-muted': this.loading};
     },
   },
   googleUrl,

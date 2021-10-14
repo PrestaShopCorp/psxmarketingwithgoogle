@@ -244,6 +244,7 @@ class PsxMktgWithGoogleTranslations
                 'labelReadAndAgree' => $this->module->l('By purchasing Shopping ads, I have read and agree to comply with [Google\'s terms and policies]({0})[:target=\"_blank\"], including [Google’s Merchant Center terms of service]({1})[:target=\"_blank\"], [Shopping ads policies]({2})[:target=\"_blank\"], and [Google Ads Terms and Conditions]({3})[:target=\"_blank\"].', 'PsxMktgWithGoogleTranslations'),
                 'alert' => $this->module->l('Your store will be reviewed so if one of these requirements is missing, your account will be suspended.', 'PsxMktgWithGoogleTranslations'),
                 'phoneFormat' => $this->module->l('Your business phone number isn\'t a valid format (only accept number) please change it.', 'PsxMktgWithGoogleTranslations'),
+                'updateData' => $this->module->l('If you have made any modification in your backoffice, please refresh your information to see the changes reflected here.', 'PsxMktgWithGoogleTranslations'),
             ],
             'productFeedCard' => [
                 'title' => $this->module->l('Automatically sync your products data with Google', 'PsxMktgWithGoogleTranslations'),
@@ -753,6 +754,7 @@ class PsxMktgWithGoogleTranslations
                 'goToPage' => $this->module->l('Go to first page | Go to page: {0} | Go to last page', 'PsxMktgWithGoogleTranslations'),
                 'noEndDate' => $this->module->l('No end date', 'PsxMktgWithGoogleTranslations'),
                 'verifyPhoneNumber' => $this->module->l('Verify phone number', 'PsxMktgWithGoogleTranslations'),
+                'refreshInformations' => $this->module->l('Refresh informations', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),
