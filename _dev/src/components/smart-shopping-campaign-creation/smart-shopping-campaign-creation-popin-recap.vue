@@ -72,10 +72,7 @@
             </template>
           </div>
         </template>
-        <template
-          v-if="newCampaign.productFilters.length
-            && newCampaign.productFilters[0].values.length === 0"
-        >
+        <template v-else>
           {{ $t('smartShoppingCampaignCreation.recapNoFiltersDescription') }}
         </template>
       </dd>

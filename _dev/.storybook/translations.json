@@ -960,7 +960,7 @@
       "toggleNewConversionTag2" : "We will create the following conversion tags : Page view, Purchase, Add to basket",
       "remarketingTagLoading" : "Checking if you have a remarketing and conversion tracking tags to add to your shop",
       "descriptiveMessage" : "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
-      "nbProductsFiltersSelected" : "No product filters selected | {0} product filters selected | {0} products filters selected",
+      "nbProductsFiltersSelected" : "No product filter selected | {0} product filter selected | {0} products filters selected",
       "nbProductsSelected" : "No product selected | {0} product selected | {0} products selected"
     },
     "smartShoppingCampaignList" : {
