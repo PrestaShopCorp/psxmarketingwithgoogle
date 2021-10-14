@@ -254,6 +254,7 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED_ONCE'];
     },
     merchantCenterAccountSuspendedButProductFeedExist() {
+      // If GMC has been suspended after product feed configuration
       return this.$store.state.googleMerchantAccount?.isSuspended.status
       && this.productFeedIsConfiguredOnce;
     },
