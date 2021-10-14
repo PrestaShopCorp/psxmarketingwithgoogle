@@ -21,29 +21,41 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
 use Order;
-use PrestaShop\Module\PsxMarketingWithGoogle\DTO\ConversionEventData;
 
 class PurchaseEventDataProvider
 {
     /**
-     * @var ConversionEventDataProvider
+     * @var ProductDataProvider
      */
-    protected $conversionEventDataProvider;
+    protected $productDataProvider;
 
-    public function __construct(ConversionEventDataProvider $conversionEventDataProvider)
+    /**
+     * @var ActionDataProvider
+     */
+    protected $actionDataProvider;
+
+    public function __construct(ActionDataProvider $actionDataProvider, ProductDataProvider $productDataProvider)
     {
-        $this->conversionEventDataProvider = $conversionEventDataProvider;
+        $this->actionDataProvider = $actionDataProvider;
+        $this->productDataProvider = $productDataProvider;
     }
 
     /**
      * Return the items concerned by the transaction
      */
-    public function getEventData($sendTo, Order $order): ConversionEventData
+    public function getEventData($sendTo, Order $order)
     {
         // https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce#action-data
-        $conversionEventData = $this->conversionEventDataProvider->getActionDataByOrderObject($order);
-        $conversionEventData->setSendTo($sendTo);
+        $actionData = $this->actionDataProvider->getActionDataByOrderObject($order);
+        $actionData->setSendTo($sendTo);
 
-        return $conversionEventData;
+        $items = [];
+        foreach ($order->getCartProducts() as $product) {
+            $items[] = $this->productDataProvider->getProductDataByProductArray($product);
+        }
+
+        $actionData->setItems($items);
+
+        return $actionData;
     }
 }

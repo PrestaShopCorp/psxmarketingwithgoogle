@@ -132,6 +132,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             case 'getDebugData':
                 $this->getDebugData();
                 break;
+            case 'setGMCInformations':
+                $this->setGMCInformations($inputs);
+                break;
             default:
                 http_response_code(400);
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
@@ -160,6 +163,26 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             );
             $this->ajaxDie(json_encode(['success' => true, 'method' => 'insert']));
         }
+    }
+
+    private function setGMCInformations(array $inputs)
+    {
+        $informations = $inputs['gmcInformations'];
+
+        $this->configurationAdapter->updateValue(
+            Config::MERCHANT_GMC_ID,
+            $informations['id'],
+        );
+        $this->configurationAdapter->updateValue(
+            Config::MERCHANT_GMC_FEED_COUNTRY,
+            $informations['feedCountry']
+        );
+        $this->configurationAdapter->updateValue(
+            Config::MERCHANT_GMC_FEED_LANGUAGE,
+            $informations['feedLanguage']
+        );
+
+        $this->ajaxDie(json_encode(['success' => true]));
     }
 
     private function getProductsReadyToSync(array $inputs)

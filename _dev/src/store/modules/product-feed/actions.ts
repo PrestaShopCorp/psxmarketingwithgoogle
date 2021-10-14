@@ -128,7 +128,7 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, rootState, rootGetters, commit,
+    state, rootState, rootGetters, commit, dispatch,
   }) {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(rootGetters['app/GET_ACTIVE_COUNTRIES']);
@@ -171,6 +171,11 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
+      dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
+        id: rootState.accounts.googleMerchantAccount.id,
+        feedCountry: state.settings.targetCountries[0],
+        feedLanguage: rootState.accounts.googleMerchantAccount.businessInformation.address.country,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -275,6 +280,28 @@ export default {
     });
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
+    }
+  },
+
+  async [ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP]({
+    rootState,
+  }, gmcInfo) {
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          action: 'setGMCInformations',
+          gmcInformations: gmcInfo,
+        }),
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+    } catch (error) {
+      console.error(error);
     }
   },
 };
