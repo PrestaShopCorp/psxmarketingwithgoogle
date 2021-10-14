@@ -28,6 +28,9 @@ module.exports = function (router) {
         }
       })
     }
+    if (req.body.action === 'getShopConfigurationForAds') {
+      res.send({"timezone":{"offset":"+02:00","text":"Europe\/Paris"},"currency":"EUR"})
+    }
 
     else res.send({})
   });
