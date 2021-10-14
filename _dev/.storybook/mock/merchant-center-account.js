@@ -1,18 +1,34 @@
 export const merchantCenterAccountNotConnected = {
-    websiteVerificationStatus: null,
-    isClaimed: false,
-    isVerified: false,
-    isSuspended: {
-        status: false,
+  websiteVerificationStatus: null,
+  isClaimed: false,
+  isVerified: false,
+  isSuspended: {
+      status: false,
+  },
+  isEnhancedFreeListingCompliant: {
+      status: true,
+  },
+  connectedOnce: false,
+  id: null,
+  claimError: null,
+  users: [],
+  websiteRequirements: [],
+  shopInfo: {
+    shop: {
+      name: "",
+      url: ""
     },
-    isEnhancedFreeListingCompliant: {
-        status: true,
-    },
-    connectedOnce: false,
-    id: null,
-    claimError: null,
-    users: [],
-    websiteRequirements: [],
+    store:{
+      country: {
+        iso_code: "",
+        name: "",
+      },
+      locality: "",
+      phone: "",
+      postalCode: "",
+      streetAddress: "",
+    }
+  }
 };
 
 export const merchantCenterAccountConnected = {
@@ -36,22 +52,6 @@ export const merchantCenterAccountConnectedOnce = {
 
 export const merchantCenterAccountCreation = {
   ...merchantCenterAccountNotConnected,
-  shopInfo: {
-    shop: {
-      name: "",
-      url: ""
-    },
-    store:{
-      country: {
-        iso_code: "",
-        name: "",
-      },
-      locality: "",
-      phone: "",
-      postalCode: "",
-      streetAddress: "",
-    }
-  }
 }
 
 export const merchantCenterAccountWithErrors = {

@@ -29,11 +29,62 @@ module.exports = function (router) {
       })
     }
     if (req.body.action === 'getShopConfigurationForAds') {
-      res.send({"timezone":{"offset":"+02:00","text":"Europe\/Paris"},"currency":"EUR"})
+      res.send({
+        "timezone": {
+          "offset":"+02:00",
+          "text":"Europe\/Paris"
+        },
+        "currency":"EUR"
+      })
     }
-
-    else res.send({})
+    if (req.body.action === 'getWebsiteRequirementStatus') {
+      res.send({
+        "requirements": {
+          "shoppingAdsPolicies": true,
+          "accurateContactInformation": true,
+          "secureCheckoutProcessAndCollectionOfPersonalData": true,
+          "billingTermsAndCollections": true,
+          "completeCheckoutProcess": true
+        }
+      })
+    }
+    if (req.body.action === 'removeVerificationMeta') {
+      res.send({
+        "success": true,
+        "method": "delete"
+      })
+    }
+    if (req.body.action === 'setVerificationMeta') {
+      res.send({
+        "success": true,
+        "method": "insert"
+      })
+    }
+    if (req.body.action === 'toggleGoogleAccountIsRegistered') {
+      res.send({
+        "success": true
+      })
+    }
+    if (req.body.action === 'setWebsiteRequirementStatus') {
+      res.send({
+        "success": true
+      })
+    }
   });
+
+  router.get('/oauth', (req, res) => {
+    res.send({
+      "access_token":"ya29.a0ARrdaM95rih2Ilmenbh3yK_7uh8l76Ql75SQWabk0ubmhDnaymbdINsW-R1hF6rzKylaT_KwQeV-0cGAJLSVzOYqK9gvgS7vb8VIu9jjrINOt1rpgTPqAoJYxYp7cRhMbXA0WNtUw5AvcPEu6jt4naH-KC5A","updated_at":"2021-10-14T14:34:17.592Z","shop_id":"5bcaeff2-ddb9-4288-a4ab-991cfc6a4ea4",
+      "expiry_date":"2021-10-14T14:39:31.265Z",
+      "created_at":"2021-10-14T13:39:32.329Z",
+      "details":{"email":"amaury.hanser@gmail.com",
+      "picture":"https://lh3.googleusercontent.com/a-/AOh14Gi6BmIvlFfpfYmJy9g1OpH_nu13m1e5nWAf0Qjv_g=s96-c",
+      "verified_email":true},
+      "prestashop_id":"381504106",
+      "account_id":"506483997"
+    })
+  });
+
 
   router.get('/ads-reporting/kpis/', (req, res) => {
     let results = kpisEmpty;
