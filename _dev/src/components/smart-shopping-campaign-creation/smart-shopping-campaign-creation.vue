@@ -200,6 +200,7 @@
               :extensions="['extended-link', 'no-p-tag']"
             />
           </template>
+          {{campaignProductsFilter}}
           <b-button
             v-if="campaignProductsFilter === false"
             variant="primary"
