@@ -63,7 +63,8 @@
           >
             <template>
               {{ $tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
-                     filtersChosenSummary.length , [filtersChosenSummary.length]) }}
+                     filtersChosenSummary.length, 
+                     [filtersChosenSummary.length]) }}
               -
               {{ $tc('smartShoppingCampaignCreation.nbValuesSelected',
                      filter.values.length,
