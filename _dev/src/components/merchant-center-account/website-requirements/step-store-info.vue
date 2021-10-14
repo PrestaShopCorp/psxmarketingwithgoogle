@@ -283,7 +283,7 @@
     </section>
     <div class="d-flex align-items-center justify-content-between mb-4">
       <p class="maxw-sm-500 mb-0">
-        If you have made any modification in your backoffice, please refresh your information to see the changes reflected here.
+        {{$t('mcaRequirements.updateData')}}
       </p>
       <b-button
         size="sm"
@@ -292,7 +292,7 @@
         variant="outline-secondary"
       >
         <span>
-          {{$t('cta.refreshInformations')}}
+          {{ $t('cta.refreshInformations') }}
         </span>
         <span
           v-if="loading"
@@ -410,7 +410,7 @@ export default {
       return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'];
     },
     storeInformationsUrl() {
-      return this.$store.getters['app/GET_STORE_INFORMATION_URL'] + '#store_fieldset_contact';
+      return `${this.$store.getters['app/GET_STORE_INFORMATION_URL']}#store_fieldset_contact`;
     },
     loadingClass() {
       return {'text-muted': this.loading};
