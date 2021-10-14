@@ -87,8 +87,8 @@
             ({{ GET_DEBUG_DATA.typesOfSync.length }}):
             <ul>
               <li
-                v-for="type in GET_DEBUG_DATA.typesOfSync"
-                :key="type"
+                v-for="(type, index) in GET_DEBUG_DATA.typesOfSync"
+                :key="index"
               >
                 {{ type }}
               </li>

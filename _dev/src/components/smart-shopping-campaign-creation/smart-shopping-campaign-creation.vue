@@ -200,7 +200,6 @@
               :extensions="['extended-link', 'no-p-tag']"
             />
           </template>
-          {{campaignProductsFilter}}
           <b-button
             v-if="campaignProductsFilter === false"
             variant="primary"
@@ -367,8 +366,6 @@ export default {
       && this.errorCampaignNameExistsAlready === false
       && this.campaignDurationStartDate
       && this.targetCountry
-      && (this.campaignProductsFilter === true
-      || (this.campaignProductsFilter === false && !!this.filtersChosen[0].values.length))
       && this.campaignDailyBudget) {
         return false;
       }
