@@ -178,7 +178,7 @@
           label-class="h4 font-weight-600 border-0 bg-transparent"
         >
           <b-form-radio
-            v-model="campaignProductsFilter"
+            v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
             :value="true"
             class="mb-1"
@@ -186,7 +186,7 @@
             {{ $t('smartShoppingCampaignCreation.inputFiltersAllLabel') }}
           </b-form-radio>
           <b-form-radio
-            v-model="campaignProductsFilter"
+            v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
             :value="false"
           >
@@ -201,7 +201,7 @@
             />
           </template>
           <b-button
-            v-if="campaignProductsFilter === false"
+            v-if="campaignHasNoProductsFilter === false"
             variant="primary"
             size="sm"
             class="my-3"
@@ -316,7 +316,7 @@
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
-      :filters-chosen-summary="filtersChosen"
+      :filters-exist="!campaignHasNoProductsFilter"
       @openPopinSSCCreated="onCampaignCreated"
       @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
     />
@@ -340,7 +340,7 @@ export default {
       campaignName: null,
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
-      campaignProductsFilter: true,
+      campaignHasNoProductsFilter: true,
       filtersChosen: [],
       campaignDailyBudget: null,
       timer: null,
@@ -426,7 +426,7 @@ export default {
         endDate: this.campaignDurationEndDate,
         // Countries is still an array because refacto later for multiple countries
         targetCountry: this.targetCountry[0] || this.countries[0],
-        productFilters: this.filtersChosen,
+        productFilters: !this.campaignHasNoProductsFilter ? this.filtersChosen : [],
       };
     },
     budgetCurrencySymbol() {
@@ -507,16 +507,14 @@ export default {
       });
     },
     getDimensionsFiltered(dimensions) {
-      if (this.filtersChosen) {
-        this.filtersChosen = Array.from([{
-          dimension: 'category',
-          values: [],
-        }]);
-        this.filtersChosen[0].values = [];
-        dimensions.forEach((el) => {
-          this.filtersChosen[0].values.push(Number(el.id));
+      this.filtersChosen.map((filter, index) => {
+        dimensions.children.forEach((el) => {
+          if (filter.dimension.toUpperCase() === dimensions.name.toUpperCase()) {
+            this.filtersChosen[index].values.push(Number(el.id));
+          }
         });
-      }
+        return this.filtersChosen;
+      });
     },
   },
   watch: {
@@ -535,7 +533,7 @@ export default {
         this.campaignName = foundSsc.campaignName;
         this.campaignDurationStartDate = foundSsc.startDate;
         this.campaignDurationEndDate = foundSsc.endDate || null;
-        this.campaignProductsFilter = !(foundSsc.productFilters.length > 0);
+        this.campaignHasNoProductsFilter = !(foundSsc.productFilters.length > 0);
         this.campaignDailyBudget = foundSsc.dailyBudget;
         this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = foundSsc.id;

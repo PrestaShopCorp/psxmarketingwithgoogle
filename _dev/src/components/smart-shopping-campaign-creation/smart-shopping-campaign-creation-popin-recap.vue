@@ -54,17 +54,16 @@
       </dt>
       <dd class="text-secondary mb-3">
         <template
-          v-if="newCampaign.productFilters.length
-            && newCampaign.productFilters[0].values.length"
+          v-if="filtersExist"
         >
           <div
-            v-for="(filter, index) in filtersChosenSummary"
+            v-for="(filter, index) in newCampaign.productFilters"
             :key="index"
           >
             <template>
               {{ $tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
-                     filtersChosenSummary.length,
-                     [filtersChosenSummary.length]) }}
+                     newCampaign.productFilters.length,
+                     [newCampaign.productFilters.length]) }}
               -
               {{ $tc('smartShoppingCampaignCreation.nbValuesSelected',
                      filter.values.length,
@@ -127,9 +126,9 @@ export default {
       required: true,
       type: Object,
     },
-    filtersChosenSummary: {
+    filtersExist: {
       required: false,
-      type: Array,
+      type: Boolean,
     },
   },
 

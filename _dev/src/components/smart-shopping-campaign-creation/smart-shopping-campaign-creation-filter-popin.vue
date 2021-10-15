@@ -25,7 +25,7 @@
             </h6>
             <ul
               class="ps_gs-filters"
-            >
+            >{{filteredDimensions}}
               <SmartShoppingCampaignCreationFilterItem
                 :item="availableFilters"
                 :is-open-by-default="true"
@@ -101,19 +101,32 @@ export default {
     };
   },
   computed: {
+    totalNumberOfProducts() {
+      const final = [];
+      this.filteredDimensions.children.forEach((dim) => {
+        dim.children.forEach((value) => {
+          final.push(value);
+        });
+      });
+      return final.length;
+    },
     textFiltersSelected() {
-      // TODO We only have 1 dimension for now but need refacto for the text when more
       return this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
-        this.filteredDimensions.children.length,
-        [this.filteredDimensions.children.length]);
+        this.totalNumberOfProducts,
+        [this.totalNumberOfProducts]);
     },
     availableFilters() {
       return {
         name: 'All filters',
+        id: 'allFilters',
         checked: null,
         indeterminate: false,
-        id: 'allFilters',
-        children: [],
+        children: [
+          {
+            name: 'category',
+            children: [],
+          },
+        ],
       };
     },
     filteredDimensions() {
@@ -121,49 +134,62 @@ export default {
         name: 'All filters',
         id: 'allFilters',
         checked: false,
-        children: this.selectedFilters.children.filter((item) => item.checked === true),
+        children: [
+          {
+            children: this.selectedFilters.children.filter((item) => item.checked === true),
+            name: 'category',
+            id: 'category'
+          },
+        ],
       };
     },
   },
   methods: {
     selectAll() {
       this.selectedFilters.checked = true;
+      this.selectedFilters.indeterminate = false;
       this.selectedFilters.children.forEach((element) => {
         element.checked = true;
       });
-      this.selectedFilters.indeterminate = false;
     },
     deselectAll() {
       this.selectedFilters.checked = false;
+      this.selectedFilters.indeterminate = false;
       this.selectedFilters.children.forEach((element) => {
         element.checked = false;
       });
-      this.selectedFilters.indeterminate = false;
     },
     checkChildren(arr, checkboxClicked) {
       arr.forEach((child) => {
+     
         child.checked = checkboxClicked.checked;
       });
     },
     selectCheckbox(event) {
-      if (event.id === 'allFilters') {
-        this.checked = event.checked;
-        this.checkChildren(this.selectedFilters.children, event);
-      }
-      this.selectedFilters.children.forEach((element) => {
-        if (element.id === event.id) {
-          element.checked = event.checked;
-        }
-      });
-      const isIndeterminate = this.selectedFilters.children.map((element) => element.checked);
-      if (isIndeterminate.includes(true) && isIndeterminate.includes(false)) {
-        this.selectedFilters.indeterminate = true;
-      } else {
-        this.selectedFilters.indeterminate = false;
-      }
+      console.log('event', event);
+      const result = this.selectedFilters.children.filter((e) => {
+      e.name === event.item.name
+      })
+      result.children = event.item.children
+
+    //  if (event.id === 'allFilters') {
+    //     this.checked = event.checked;
+    //     this.checkChildren(this.selectedFilters.children, event);
+    //   }
+    //   this.selectedFilters.children.forEach((element) => {
+    //     if (element.id === event.id) {
+    //       element.checked = event.checked;
+    //     }
+    //   });
+    //   const isIndeterminate = this.selectedFilters.children.map((element) => element.checked);
+    //   if (isIndeterminate.includes(true) && isIndeterminate.includes(false)) {
+    //     this.selectedFilters.indeterminate = true;
+    //   } else {
+    //     this.selectedFilters.indeterminate = false;
+    //   }
     },
     sendDimensionsSelected() {
-      this.$emit('selectFilters', this.filteredDimensions.children);
+      this.$emit('selectFilters', this.filteredDimensions.children[0]);
     },
   },
   beforeMount() {
@@ -172,7 +198,8 @@ export default {
   mounted() {
     this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
       res.categories.forEach((element) => {
-        this.availableFilters.children.push({
+        // TODO : when API send all dimensions, get rid of the [0]
+        this.availableFilters.children[0].children.push({
           name: element.localizedName,
           ...element,
           checked: false,

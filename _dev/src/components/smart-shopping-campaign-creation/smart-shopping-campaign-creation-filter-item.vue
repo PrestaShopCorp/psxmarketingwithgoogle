@@ -117,7 +117,7 @@ export default {
     },
     selectCheckbox(event) {
       this.$root.$emit('filterSelected', {
-        id: this.item.id,
+        item: this.item,
         checked: event,
       });
     },
