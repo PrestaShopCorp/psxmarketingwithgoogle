@@ -167,10 +167,13 @@ export default {
     },
     selectCheckbox(event) {
       console.log('event', event);
-      const result = this.selectedFilters.children.filter((e) => {
-      e.name === event.item.name
-      })
-      result.children = event.item.children
+      if (event.item.children) {
+        const result = this.selectedFilters.children.filter((e) => {
+        e.name === event.item.name
+        })
+        console.log(result);
+        this.checkChildren(result.children, event.checked)
+      }
 
     //  if (event.id === 'allFilters') {
     //     this.checked = event.checked;
