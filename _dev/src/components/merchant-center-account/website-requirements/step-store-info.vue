@@ -283,7 +283,7 @@
     </section>
     <div class="d-flex align-items-center justify-content-between mb-4">
       <p class="maxw-sm-500 mb-0">
-        {{$t('mcaRequirements.updateData')}}
+        {{ $t('mcaRequirements.updateData') }}
       </p>
       <b-button
         size="sm"

@@ -285,7 +285,7 @@ export default {
     },
     finalPhoneNumber: {
       get() {
-        return this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
+        return this.phoneNumber;
       },
       set(value) {
         this.phoneNumber = value;
@@ -300,7 +300,9 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
+    this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS').then(() => {
+      this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
+    });
   },
 
   phonesPrefixSelectionOptions,
