@@ -21,7 +21,7 @@ const Template = (args, { argTypes }) => ({
   },
 });
 
-export const overwrite:any = Template.bind({});
-overwrite.args = {
+export const OverwriteClaim:any = Template.bind({});
+OverwriteClaim.args = {
   visible: true,
 };
