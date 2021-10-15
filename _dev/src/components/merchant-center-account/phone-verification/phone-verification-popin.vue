@@ -25,7 +25,7 @@
             :deselect-from-dropdown="true"
             :clearable="false"
             class="ps_gs-v-select ps_gs-v-select--phone-prefix"
-            :label="$t('mcaCard.dialCode')"
+            label="name"
             v-model="phoneRegionCode"
           >
             <template #option="{ dial_code, name }">
