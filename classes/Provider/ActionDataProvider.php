@@ -21,7 +21,6 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
 use Context;
-use Currency;
 use Order;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
