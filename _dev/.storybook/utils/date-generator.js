@@ -15,3 +15,8 @@ exports.dateGenerator = function(offset){
   var date = new Date();
   return formatDate(new Date(date.setDate(date.getDate() - offset)));
 }
+
+exports.dateTokenGenerator = function(offset){
+  var date = new Date()
+  return new Date(date.setDate(date.getDate() - offset)).toISOString();
+}

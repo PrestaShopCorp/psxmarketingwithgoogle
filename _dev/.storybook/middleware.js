@@ -1,4 +1,4 @@
-const {dateGenerator} = require('./utils/date-generator');
+const {dateGenerator, dateTokenGenerator} = require('./utils/date-generator');
 const {kpisEmpty, kpiDatas} = require('./mock/reporting/kpi.js');
 const {campaignsPerformanceListEmpty, campaignsPerformanceList} = require('./mock/reporting/campaigns-performance.js');
 const {productsPerformanceListEmpty, productsPerformanceList} = require('./mock/reporting/products-performance.js');
@@ -79,14 +79,16 @@ module.exports = function (router) {
 
   router.get('/oauth', (req, res) => {
     res.send({
-      "access_token":"ya29.a0ARrdaM95rih2Ilmenbh3yK_7uh8l76Ql75SQWabk0ubmhDnaymbdINsW-R1hF6rzKylaT_KwQeV-0cGAJLSVzOYqK9gvgS7vb8VIu9jjrINOt1rpgTPqAoJYxYp7cRhMbXA0WNtUw5AvcPEu6jt4naH-KC5A","updated_at":"2021-10-14T14:34:17.592Z","shop_id":"5bcaeff2-ddb9-4288-a4ab-991cfc6a4ea4",
-      "expiry_date":"2021-10-14T14:39:31.265Z",
-      "created_at":"2021-10-14T13:39:32.329Z",
-      "details":{"email":"amaury.hanser@gmail.com",
-      "picture":"https://lh3.googleusercontent.com/a-/AOh14Gi6BmIvlFfpfYmJy9g1OpH_nu13m1e5nWAf0Qjv_g=s96-c",
-      "verified_email":true},
-      "prestashop_id":"381504106",
-      "account_id":"506483997"
+      "access_token":"foobar",
+      "expiry_date": dateTokenGenerator(-1),
+      "created_at": dateTokenGenerator(0),
+      "details":{
+        "email":"jpp@gmail.com",
+        "picture":"",
+        "verified_email":true
+      },
+      "prestashop_id":"65498",
+      "account_id":"21465748"
     })
   });
 
