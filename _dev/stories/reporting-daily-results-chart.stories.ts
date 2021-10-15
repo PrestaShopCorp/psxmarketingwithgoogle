@@ -1,3 +1,4 @@
+const {dateGenerator} = require('../.storybook/utils/date-generator');
 import KeyMetricsChartWrapper from '@/components/smart-shopping-campaign/reporting/key-metrics/key-metrics-chart-wrapper.vue';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads.js';
 
@@ -22,7 +23,8 @@ ApiError.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     // fake date that will be intercepted by the storybook middleware to return results
-    this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = '11/11/1111';
+    this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = dateGenerator(1);
+    this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.endDate = dateGenerator(0);
   },
 };
 
@@ -31,7 +33,8 @@ WithResults.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     // fake date that will be intercepted by the storybook middleware to return results
-    this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = '00/00/0000';
+    this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = dateGenerator(6);
+    this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.endDate = dateGenerator(0);
   },
 };
 
@@ -47,6 +50,7 @@ LotOfResults.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     // fake date that will be intercepted by the storybook middleware to return results
-    this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = '22/22/2222';
+    this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = dateGenerator(59);
+    this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.endDate = dateGenerator(0);
   },
 };

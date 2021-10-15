@@ -2,12 +2,12 @@ exports.campaignsPerformanceListEmpty = {
   campaignsPerformanceList: []
 };
 
-
 exports.campaignsPerformanceList = {
   campaignsPerformanceList: [
     {
       "name": "Zboo Qualitern",
       "budget": 52,
+      "status": "PENDING",
       "impressions": 2373,
       "clicks": 596,
       "conversions": 22,
@@ -27,6 +27,7 @@ exports.campaignsPerformanceList = {
     {
       "name": "Oatfarm Ovation",
       "budget": 60,
+      "status": "PENDING",
       "impressions": 3115,
       "clicks": 2868,
       "conversions": 34,
@@ -106,6 +107,7 @@ exports.campaignsPerformanceList = {
     {
       "name": "Skyplex Blurrybus",
       "budget": 79,
+      "status": "PENDING",
       "impressions": 218,
       "clicks": 2887,
       "conversions": 20,
@@ -155,6 +157,7 @@ exports.campaignsPerformanceList = {
     {
       "name": "Tersanki Renovize",
       "budget": 37,
+      "status": "PENDING",
       "impressions": 2804,
       "clicks": 1804,
       "conversions": 30,
@@ -164,6 +167,7 @@ exports.campaignsPerformanceList = {
     {
       "name": "Uniworld Jamnation",
       "budget": 23,
+      "status": "PENDING",
       "impressions": 3950,
       "clicks": 1592,
       "conversions": 31,
@@ -273,6 +277,7 @@ exports.campaignsPerformanceList = {
     {
       "name": "Comtours Rodemco",
       "budget": 39,
+      "status": "PENDING",
       "impressions": 1269,
       "clicks": 2790,
       "conversions": 39,
@@ -282,6 +287,7 @@ exports.campaignsPerformanceList = {
     {
       "name": "Cinaster Makingway",
       "budget": 39,
+      "status": "PENDING",
       "impressions": 778,
       "clicks": 1538,
       "conversions": 35,
@@ -311,6 +317,7 @@ exports.campaignsPerformanceList = {
     {
       "name": "Chillium Oceanica",
       "budget": 34,
+      "status": "PENDING",
       "impressions": 3767,
       "clicks": 379,
       "conversions": 36,
@@ -330,6 +337,7 @@ exports.campaignsPerformanceList = {
     {
       "name": "Geekola Vidto",
       "budget": 47,
+      "status": "PENDING",
       "impressions": 1550,
       "clicks": 2199,
       "conversions": 34,
@@ -396,5 +404,5 @@ exports.campaignsPerformanceList = {
       "adSpend": 339,
       "sales": 22903
     }
-  ]
+  ],
 };

@@ -1,3 +1,4 @@
+/*
 import FiltersPerformanceTable from '../src/components/smart-shopping-campaign/reporting/filters-performance/filters-performance-table.vue'
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
 
@@ -37,3 +38,4 @@ ErrorApi.args = {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
   },
 }
+*/

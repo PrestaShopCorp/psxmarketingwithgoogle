@@ -1,3 +1,5 @@
+const {dateGenerator} = require('../../utils/date-generator');
+
 exports.dailyResultsEmpty = {
   dailyResultList: [
     {
@@ -21,7 +23,7 @@ exports.dailyResultsDatas = {
       averageCostPerClick: 75,
       costs: 8778,
       sales: 548,
-      date: '2020-10-22',
+      date: dateGenerator(0),
     },
     {
       impressions: 76,
@@ -30,7 +32,7 @@ exports.dailyResultsDatas = {
       averageCostPerClick: 10,
       costs: 120,
       sales: 24000,
-      date: '2020-10-23',
+      date: dateGenerator(1),
     },
     {
       impressions: 66,
@@ -39,7 +41,7 @@ exports.dailyResultsDatas = {
       averageCostPerClick: 175,
       costs: 107,
       sales: 568,
-      date: '2020-10-24',
+      date: dateGenerator(2),
     },
     {
       impressions: 112,
@@ -48,7 +50,7 @@ exports.dailyResultsDatas = {
       averageCostPerClick: 445,
       costs: 1897,
       sales: 668,
-      date: '2020-10-25',
+      date: dateGenerator(3),
     },
     {
       impressions: 56,
@@ -57,7 +59,7 @@ exports.dailyResultsDatas = {
       averageCostPerClick: 145,
       costs: 897,
       sales: 5668,
-      date: '2020-10-26',
+      date: dateGenerator(4),
     },
     {
       impressions: 120,
@@ -66,7 +68,7 @@ exports.dailyResultsDatas = {
       averageCostPerClick: 101,
       costs: 180,
       sales: 4450,
-      date: '2020-10-27',
+      date: dateGenerator(5),
     },
   ],
 }
@@ -80,7 +82,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.64,
       costs: 4315,
       sales: 36772,
-      date: '2021-09-29'
+      date: dateGenerator(0)
     },
     {
       impressions: 137,
@@ -89,7 +91,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.28,
       costs: 4045,
       sales: 15280,
-      date: '2021-09-28'
+      date: dateGenerator(1)
     },
     {
       impressions: 2378,
@@ -98,7 +100,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.94,
       costs: 2026,
       sales: 25172,
-      date: '2021-09-27'
+      date: dateGenerator(2)
     },
     {
       impressions: 1659,
@@ -107,7 +109,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 2.47,
       costs: 3803,
       sales: 23973,
-      date: '2021-09-26'
+      date: dateGenerator(3)
     },
     {
       impressions: 1687,
@@ -116,7 +118,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.82,
       costs: 4234,
       sales: 23270,
-      date: '2021-09-25'
+      date: dateGenerator(4)
     },
     {
       impressions: 3508,
@@ -125,7 +127,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 0.08,
       costs: 2033,
       sales: 9791,
-      date: '2021-09-24'
+      date: dateGenerator(5)
     },
     {
       impressions: 1187,
@@ -134,7 +136,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 2.13,
       costs: 3459,
       sales: 16945,
-      date: '2021-09-23'
+      date: dateGenerator(6)
     },
     {
       impressions: 2365,
@@ -143,7 +145,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.53,
       costs: 1756,
       sales: 37475,
-      date: '2021-09-22'
+      date: dateGenerator(7)
     },
     {
       impressions: 1525,
@@ -152,7 +154,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.31,
       costs: 4922,
       sales: 35833,
-      date: '2021-09-21'
+      date: dateGenerator(8)
     },
     {
       impressions: 2132,
@@ -161,7 +163,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.52,
       costs: 4975,
       sales: 6625,
-      date: '2021-09-20'
+      date: dateGenerator(9)
     },
     {
       impressions: 1906,
@@ -170,7 +172,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 0.24,
       costs: 4828,
       sales: 14074,
-      date: '2021-09-19'
+      date: dateGenerator(10)
     },
     {
       impressions: 1973,
@@ -179,7 +181,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 2.98,
       costs: 4708,
       sales: 2071,
-      date: '2021-09-18'
+      date: dateGenerator(11)
     },
     {
       impressions: 754,
@@ -188,7 +190,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.49,
       costs: 4196,
       sales: 1238,
-      date: '2021-09-17'
+      date: dateGenerator(12)
     },
     {
       impressions: 142,
@@ -197,7 +199,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.85,
       costs: 2843,
       sales: 2644,
-      date: '2021-09-16'
+      date: dateGenerator(13)
     },
     {
       impressions: 2080,
@@ -206,7 +208,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 2.24,
       costs: 2564,
       sales: 6586,
-      date: '2021-09-15'
+      date: dateGenerator(14)
     },
     {
       impressions: 3002,
@@ -215,7 +217,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 2.31,
       costs: 722,
       sales: 13392,
-      date: '2021-09-14'
+      date: dateGenerator(15)
     },
     {
       impressions: 250,
@@ -224,7 +226,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 0.93,
       costs: 1155,
       sales: 33245,
-      date: '2021-09-13'
+      date: dateGenerator(16)
     },
     {
       impressions: 3282,
@@ -233,7 +235,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.3,
       costs: 1070,
       sales: 22787,
-      date: '2021-09-12'
+      date: dateGenerator(17)
     },
     {
       impressions: 2025,
@@ -242,7 +244,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.92,
       costs: 2838,
       sales: 31690,
-      date: '2021-09-11'
+      date: dateGenerator(18)
     },
     {
       impressions: 3086,
@@ -251,7 +253,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.75,
       costs: 2178,
       sales: 35320,
-      date: '2021-09-10'
+      date: dateGenerator(19)
     },
     {
       impressions: 1090,
@@ -260,7 +262,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 2.34,
       costs: 556,
       sales: 29750,
-      date: '2021-09-09'
+      date: dateGenerator(20)
     },
     {
       impressions: 3983,
@@ -269,7 +271,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.06,
       costs: 2170,
       sales: 19438,
-      date: '2021-09-08'
+      date: dateGenerator(21)
     },
     {
       impressions: 422,
@@ -278,7 +280,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.19,
       costs: 1134,
       sales: 24140,
-      date: '2021-09-07'
+      date: dateGenerator(22)
     },
     {
       impressions: 2579,
@@ -287,7 +289,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.13,
       costs: 3658,
       sales: 3746,
-      date: '2021-09-06'
+      date: dateGenerator(23)
     },
     {
       impressions: 1339,
@@ -296,7 +298,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.09,
       costs: 1217,
       sales: 36066,
-      date: '2021-09-05'
+      date: dateGenerator(24)
     },
     {
       impressions: 1025,
@@ -305,7 +307,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 2.45,
       costs: 1853,
       sales: 19052,
-      date: '2021-09-04'
+      date: dateGenerator(25)
     },
     {
       impressions: 816,
@@ -314,7 +316,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.82,
       costs: 2752,
       sales: 9859,
-      date: '2021-09-03'
+      date: dateGenerator(26)
     },
     {
       impressions: 1873,
@@ -323,7 +325,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.74,
       costs: 4469,
       sales: 35708,
-      date: '2021-09-02'
+      date: dateGenerator(27)
     },
     {
       impressions: 1443,
@@ -332,7 +334,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.63,
       costs: 3063,
       sales: 32777,
-      date: '2021-09-01'
+      date: dateGenerator(28)
     },
     {
       impressions: 1742,
@@ -341,7 +343,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.63,
       costs: 449,
       sales: 1849,
-      date: '2021-08-31'
+      date: dateGenerator(29)
     },
     {
       impressions: 26,
@@ -350,7 +352,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.22,
       costs: 741,
       sales: 28340,
-      date: '2021-08-30'
+      date: dateGenerator(30)
     },
     {
       impressions: 1479,
@@ -359,7 +361,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.27,
       costs: 2900,
       sales: 8175,
-      date: '2021-08-29'
+      date: dateGenerator(31)
     },
     {
       impressions: 981,
@@ -368,7 +370,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 0.8,
       costs: 3965,
       sales: 16139,
-      date: '2021-08-28'
+      date: dateGenerator(32)
     },
     {
       impressions: 2544,
@@ -377,7 +379,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.56,
       costs: 3343,
       sales: 12939,
-      date: '2021-08-27'
+      date: dateGenerator(33)
     },
     {
       impressions: 1041,
@@ -386,7 +388,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.85,
       costs: 4969,
       sales: 21219,
-      date: '2021-08-26'
+      date: dateGenerator(34)
     },
     {
       impressions: 2672,
@@ -395,7 +397,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.74,
       costs: 2789,
       sales: 34793,
-      date: '2021-08-25'
+      date: dateGenerator(35)
     },
     {
       impressions: 3654,
@@ -404,7 +406,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.18,
       costs: 4523,
       sales: 30872,
-      date: '2021-08-24'
+      date: dateGenerator(36)
     },
     {
       impressions: 3842,
@@ -413,7 +415,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.04,
       costs: 303,
       sales: 14793,
-      date: '2021-08-23'
+      date: dateGenerator(37)
     },
     {
       impressions: 3835,
@@ -422,7 +424,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 0.57,
       costs: 4352,
       sales: 69,
-      date: '2021-08-22'
+      date: dateGenerator(38)
     },
     {
       impressions: 3593,
@@ -431,7 +433,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 2.82,
       costs: 2911,
       sales: 18026,
-      date: '2021-08-21'
+      date: dateGenerator(39)
     },
     {
       impressions: 3438,
@@ -440,7 +442,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 0.38,
       costs: 3651,
       sales: 38237,
-      date: '2021-08-20'
+      date: dateGenerator(40)
     },
     {
       impressions: 1907,
@@ -449,7 +451,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3,
       costs: 3287,
       sales: 28340,
-      date: '2021-08-19'
+      date: dateGenerator(41)
     },
     {
       impressions: 236,
@@ -458,7 +460,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.36,
       costs: 4435,
       sales: 37796,
-      date: '2021-08-18'
+      date: dateGenerator(42)
     },
     {
       impressions: 2225,
@@ -467,7 +469,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.54,
       costs: 1628,
       sales: 34816,
-      date: '2021-08-17'
+      date: dateGenerator(43)
     },
     {
       impressions: 904,
@@ -476,7 +478,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.85,
       costs: 539,
       sales: 39178,
-      date: '2021-08-16'
+      date: dateGenerator(44)
     },
     {
       impressions: 3185,
@@ -485,7 +487,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 2.79,
       costs: 986,
       sales: 22895,
-      date: '2021-08-15'
+      date: dateGenerator(45)
     },
     {
       impressions: 365,
@@ -494,7 +496,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.47,
       costs: 4328,
       sales: 1434,
-      date: '2021-08-14'
+      date: dateGenerator(46)
     },
     {
       impressions: 988,
@@ -503,7 +505,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.53,
       costs: 2715,
       sales: 22697,
-      date: '2021-08-13'
+      date: dateGenerator(47)
     },
     {
       impressions: 2530,
@@ -512,7 +514,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.78,
       costs: 4272,
       sales: 35990,
-      date: '2021-08-12'
+      date: dateGenerator(48)
     },
     {
       impressions: 2432,
@@ -521,7 +523,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.19,
       costs: 3135,
       sales: 37416,
-      date: '2021-08-11'
+      date: dateGenerator(49)
     },
     {
       impressions: 2683,
@@ -530,7 +532,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.38,
       costs: 4815,
       sales: 21516,
-      date: '2021-08-10'
+      date: dateGenerator(50)
     },
     {
       impressions: 2193,
@@ -539,7 +541,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.21,
       costs: 3388,
       sales: 37069,
-      date: '2021-08-09'
+      date: dateGenerator(51)
     },
     {
       impressions: 320,
@@ -548,7 +550,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.25,
       costs: 4267,
       sales: 26071,
-      date: '2021-08-08'
+      date: dateGenerator(52)
     },
     {
       impressions: 3459,
@@ -557,7 +559,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.67,
       costs: 3298,
       sales: 30698,
-      date: '2021-08-07'
+      date: dateGenerator(53)
     },
     {
       impressions: 2636,
@@ -566,7 +568,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.56,
       costs: 3120,
       sales: 25535,
-      date: '2021-08-06'
+      date: dateGenerator(54)
     },
     {
       impressions: 3414,
@@ -575,7 +577,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 4.01,
       costs: 1072,
       sales: 5780,
-      date: '2021-08-05'
+      date: dateGenerator(55)
     },
     {
       impressions: 64,
@@ -584,7 +586,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 1.53,
       costs: 1217,
       sales: 36174,
-      date: '2021-08-04'
+      date: dateGenerator(56)
     },
     {
       impressions: 926,
@@ -593,7 +595,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 0.59,
       costs: 4931,
       sales: 12779,
-      date: '2021-08-03'
+      date: dateGenerator(57)
     },
     {
       impressions: 65,
@@ -602,7 +604,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 3.39,
       costs: 4931,
       sales: 7469,
-      date: '2021-08-02'
+      date: dateGenerator(58)
     },
     {
       impressions: 1285,
@@ -611,7 +613,7 @@ exports.dailyResultsBigDatas = {
       averageCostPerClick: 0.68,
       costs: 3996,
       sales: 37523,
-      date: '2021-08-01'
+      date: dateGenerator(59)
     }
   ],
 }
