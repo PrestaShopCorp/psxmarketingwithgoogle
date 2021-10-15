@@ -141,7 +141,7 @@ class RemarketingHookHandler
         }
 
         // Return the existing content in case we have a display hook
-        if (strpos($hookName, 'Display') === 4) {
+        if (strpos($hookName, 'Display') === 4 && !$this->context->controller->ajax) {
             return $this->templateBuffer->flush();
         }
 
