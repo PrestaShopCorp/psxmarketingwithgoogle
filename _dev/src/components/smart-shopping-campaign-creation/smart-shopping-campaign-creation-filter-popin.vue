@@ -25,7 +25,7 @@
             </h6>
             <ul
               class="ps_gs-filters"
-            >{{filteredDimensions}}
+            >
               <SmartShoppingCampaignCreationFilterItem
                 :item="availableFilters"
                 :is-open-by-default="true"
@@ -69,13 +69,13 @@
                 </b-button>
               </div>
               <div class="pt-2">
-                {{ textFiltersSelected }}
+                <!-- {{ textFiltersSelected }} -->
               </div>
             </div>
           </b-col>
         </b-row>
       </b-form-group>
-    </b-form>
+    </b-form>{{ filteredDimensions }}
     <template slot="modal-cancel">
       {{ $t("cta.cancel") }}
     </template>
@@ -98,106 +98,124 @@ export default {
   data() {
     return {
       selectedFilters: {},
-    };
-  },
-  computed: {
-    totalNumberOfProducts() {
-      const final = [];
-      this.filteredDimensions.children.forEach((dim) => {
-        dim.children.forEach((value) => {
-          final.push(value);
-        });
-      });
-      return final.length;
-    },
-    textFiltersSelected() {
-      return this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
-        this.totalNumberOfProducts,
-        [this.totalNumberOfProducts]);
-    },
-    availableFilters() {
-      return {
+      availableFilters: {
         name: 'All filters',
         id: 'allFilters',
-        checked: null,
+        checked: false,
         indeterminate: false,
         children: [
           {
-            name: 'category',
+            name: 'category1',
+            id: 'category1',
             children: [],
+            checked: false,
+            indeterminate: false,
           },
         ],
-      };
-    },
+      },
+
+    };
+  },
+  computed: {
+    // totalNumberOfProducts() {
+    //   const final = [];
+    //   this.filteredDimensions.children.forEach((dim) => {
+    //     dim.children.forEach((value) => {
+    //       final.push(value);
+    //     });
+    //   });
+    //   return final.length;
+    // },
+    // textFiltersSelected() {
+    //   return this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
+    //     this.totalNumberOfProducts,
+    //     [this.totalNumberOfProducts]);
+    // },
+
     filteredDimensions() {
       return {
         name: 'All filters',
         id: 'allFilters',
         checked: false,
+        indeterminate: false,
         children: [
           {
-            children: this.selectedFilters.children.filter((item) => item.checked === true),
-            name: 'category',
-            id: 'category'
+            name: 'category1',
+            id: 'category1',
+            children: this.availableFilters.children[0]
+              .children.filter((item) => item.checked === true),
+            checked: false,
+            indeterminate: false,
           },
         ],
       };
     },
   },
+  watch: {
+    availableFilters(newFilters, oldFilters) {
+      console.log('tas bougé', newFilters, oldFilters);
+    },
+  },
   methods: {
     selectAll() {
-      this.selectedFilters.checked = true;
-      this.selectedFilters.indeterminate = false;
-      this.selectedFilters.children.forEach((element) => {
-        element.checked = true;
-      });
+      // this.selectedFilters.checked = true;
+      // this.selectedFilters.indeterminate = false;
+      // this.selectedFilters.children.forEach((element) => {
+      //   element.checked = true;
+      // });
     },
     deselectAll() {
-      this.selectedFilters.checked = false;
-      this.selectedFilters.indeterminate = false;
-      this.selectedFilters.children.forEach((element) => {
-        element.checked = false;
-      });
+      // this.selectedFilters.checked = false;
+      // this.selectedFilters.indeterminate = false;
+      // this.selectedFilters.children.forEach((element) => {
+      //   element.checked = false;
+      // });
     },
     checkChildren(arr, checkboxClicked) {
       arr.forEach((child) => {
-     
-        child.checked = checkboxClicked.checked;
+        child.checked = checkboxClicked;
+        if (child.children) {
+          this.checkChildren(child.children, checkboxClicked);
+        }
       });
     },
-    selectCheckbox(event) {
-      console.log('event', event);
-      if (event.item.children) {
-        const result = this.selectedFilters.children.filter((e) => {
-        e.name === event.item.name
-        })
-        console.log(result);
-        this.checkChildren(result.children, event.checked)
+    checkForIndeterminate(arr) {
+      if (arr.children) {
+        const isIndeterminate = arr.children.map((element) => element.checked);
+        if (isIndeterminate.includes(true) && isIndeterminate.includes(false)) {
+          arr.indeterminate = true;
+        } else {
+          arr.indeterminate = false;
+        }
       }
+    },
 
-    //  if (event.id === 'allFilters') {
-    //     this.checked = event.checked;
-    //     this.checkChildren(this.selectedFilters.children, event);
-    //   }
-    //   this.selectedFilters.children.forEach((element) => {
-    //     if (element.id === event.id) {
-    //       element.checked = event.checked;
-    //     }
-    //   });
-    //   const isIndeterminate = this.selectedFilters.children.map((element) => element.checked);
-    //   if (isIndeterminate.includes(true) && isIndeterminate.includes(false)) {
-    //     this.selectedFilters.indeterminate = true;
-    //   } else {
-    //     this.selectedFilters.indeterminate = false;
-    //   }
+    findCheckboxChecked(obj, event) {
+      if (event.item.id === 'allFilters') {
+        this.checkChildren(obj.children, event.checked);
+      } else if (event.item.children) {
+        for (let i = 0; i < obj.children.length; i += 1) {
+          const result = obj.children.find((e) => e.id === event.item.id);
+          if (result) {
+            this.checkChildren(result.children, event.checked);
+          }
+        }
+      }
+    },
+    selectCheckbox(event) {
+      console.log('deselect', event);
+      this.findCheckboxChecked(this.selectedFilters, event);
+      // this.checkForIndeterminate(this.selectedFilters);
+      event.item.checked = !event.item.checked;
     },
     sendDimensionsSelected() {
-      this.$emit('selectFilters', this.filteredDimensions.children[0]);
+      this.$emit('selectFilters', this.filteredDimensions.children);
     },
   },
   beforeMount() {
     this.selectedFilters = this.availableFilters;
   },
+
   mounted() {
     this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
       res.categories.forEach((element) => {

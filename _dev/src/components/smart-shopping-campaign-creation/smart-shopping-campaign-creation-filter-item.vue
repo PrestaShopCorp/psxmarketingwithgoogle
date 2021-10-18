@@ -33,7 +33,7 @@
       :name="`${item.name}Checkbox`"
       inline
       :checked="item.checked"
-      @input="selectCheckbox"
+      @change="selectCheckbox"
       :indeterminate="item.indeterminate"
     >
       {{ item.name }}
@@ -78,7 +78,7 @@ export default {
     };
   },
   props: {
-    item: Object,
+    item: [Array, Object],
     isOpenByDefault: {
       type: Boolean,
       default: false,
@@ -111,7 +111,7 @@ export default {
     },
     deselectFilter() {
       this.$root.$emit('filterSelected', {
-        id: this.item.id,
+        id: this.item,
         checked: false,
       });
     },
@@ -131,7 +131,6 @@ export default {
           tableOfCHildren.push(elem.name);
           return elem.name;
         }
-
         elem.children.forEach((child) => fillTableOfChildren(child));
       }
 
