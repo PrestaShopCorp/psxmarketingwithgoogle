@@ -120,6 +120,24 @@ describe('SSC filters', () => {
       indeterminate: false,
       children: [
         {
+          name: "category0",
+          id: "category0",
+          checked: false,
+          children: [
+            {
+              name: "Entreprise et industrie",
+              resourceName: "productBiddingCategoryConstants/FR~LEVEL1~111",
+              level: "LEVEL1",
+              status: "ACTIVE",
+              id: "111",
+              countryCode: "FR",
+              languageCode: "fr",
+              localizedName: "Entreprise et industrie",
+              checked: false,
+            },
+          ]
+        },
+        {
           name: "category1",
           id: "category1",
           children: [
@@ -185,6 +203,24 @@ describe('SSC filters', () => {
       indeterminate: false,
       children: [
         {
+          name: "category0",
+          id: "category0",
+          checked: false,
+          children: [
+            {
+              name: "Entreprise et industrie",
+              resourceName: "productBiddingCategoryConstants/FR~LEVEL1~111",
+              level: "LEVEL1",
+              status: "ACTIVE",
+              id: "111",
+              countryCode: "FR",
+              languageCode: "fr",
+              localizedName: "Entreprise et industrie",
+              checked: false,
+            },
+          ]
+        },
+        {
           name: "category1",
           id: "category1",
           checked: true,
@@ -217,13 +253,18 @@ describe('SSC filters', () => {
     });
   });
 
-  it('leeps the parent unchecked object if at least one child is checked', () => {
+  it('keeps the unchecked parent object if at least one child is checked', () => {
     const source = {
       name: "All filters",
       id: "allFilters",
       checked: true,
       indeterminate: false,
       children: [
+        {
+          name: "category0",
+          id: "category0",
+          checked: false,
+        },
         {
           name: "category1",
           id: "category1",
