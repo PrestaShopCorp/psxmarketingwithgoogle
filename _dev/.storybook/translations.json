@@ -76,7 +76,8 @@
       "alertCantConnect" : "You can't connect to your Google account right now. Try again later.",
       "alertTokenMissing" : "We weren't able to authenticate your account. Try again or switch to another account.",
       "stepIsMandatory" :"*This step is mandatory",
-      "alertInfo" : "Make sure to allow all requested permissions when authenticating your Google account.  \nThis action is mandatory for this service to work properly."
+      "alertInfo" : "Make sure to allow all requested permissions when authenticating your Google account.  \nThis action is mandatory for this service to work properly.",
+      "missingTokenScopes" : "Some requested permissions are missing.  \nAll requested permissions are mandatory for this service to work properly, please manage your account and make sure to allow all of them."
     },
     "mcaCard" : {
       "title" : "Merchant Center account",

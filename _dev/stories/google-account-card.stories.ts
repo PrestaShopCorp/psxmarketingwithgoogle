@@ -5,6 +5,7 @@ import {
   googleAccountNotConnectedButAuthenticationUrlOK,
   googleAccountFailedToRetrieveAuthenticationUrl,
   googleAccountFailedToRetrieveToken,
+  googleAccountMissingTokenScopes,
 } from "../.storybook/mock/google-account";
 
 export default {
@@ -89,4 +90,13 @@ export const Connected:any = Template.bind({});
 Connected.args = {
   isEnabled: true,
   user: Object.assign({}, googleAccountConnected),
+};
+
+export const missingTokenScopes:any = Template.bind({});
+missingTokenScopes.args = {
+  isEnabled: true,
+  user: Object.assign({}, googleAccountMissingTokenScopes),
+  mounted: function(this: any) {
+    this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountMissingTokenScopes);
+  }
 };

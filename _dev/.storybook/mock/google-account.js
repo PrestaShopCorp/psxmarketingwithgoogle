@@ -27,6 +27,7 @@ export const googleAccountConnected = {
         email: 'v.godard@maisonroyer.com',
         picture: '//source.unsplash.com/bul_3zwYI6E/38x38',
     },
+    missingTokenScopes: [],
     mcaSelectionOptions: [
       {
         "aggregatorId": "123244194",
@@ -599,5 +600,9 @@ export const googleAccountConnectedOnce = {
    connectedOnce: true,
 };
 
+export const googleAccountMissingTokenScopes = {
+  ...googleAccountConnected,
+  missingTokenScopes: ['foo'],
+}
 
 export default googleAccountConnected;
