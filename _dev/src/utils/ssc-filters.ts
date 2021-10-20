@@ -1,4 +1,12 @@
-export const filterUncheckedSegments = (source: any) => {
+export type CampaignFilter = {
+  name: string;
+  id: string;
+  checked: boolean;
+  indeterminate: boolean;
+  children: CampaignFilter[];
+};
+
+export const filterUncheckedSegments = (source: CampaignFilter) => {
   if (!source.children) {
     return source;
   }
