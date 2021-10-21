@@ -125,6 +125,7 @@ class PsxMktgWithGoogleTranslations
                 'alertTokenMissing' => $this->module->l('We weren\'t able to authenticate your account. Try again or switch to another account.', 'PsxMktgWithGoogleTranslations'),
                 'stepIsMandatory' => $this->module->l('*This step is mandatory', 'PsxMktgWithGoogleTranslations'),
                 'alertInfo' => $this->module->l("Make sure to allow all requested permissions when authenticating your Google account.  \nThis action is mandatory for this service to work properly.", 'PsxMktgWithGoogleTranslations'),
+                'missingTokenScopes' => $this->module->l("Some requested permissions are missing.  \nAll requested permissions are mandatory for this service to work properly, please manage your account and make sure to allow all of them.", 'PsxMktgWithGoogleTranslations'),
             ],
             'mcaCard' => [
                 'title' => $this->module->l('Merchant Center account', 'PsxMktgWithGoogleTranslations'),

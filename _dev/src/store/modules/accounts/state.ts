@@ -77,7 +77,7 @@ export type GoogleAccountContext = GoogleAccount
 & GoogleAccountToken & {
   authenticationUrl: string|Error,
   connectedOnce: boolean,
-
+  missingTokenScopes: Array<string>,
   from?: string,
   message?: string,
   status?: string,
@@ -138,6 +138,7 @@ export const state: State = {
     mcaSelectionOptions: null,
     authenticationUrl: '',
     connectedOnce: false,
+    missingTokenScopes: [],
   },
   googleMerchantAccount: {
     id: null,

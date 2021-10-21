@@ -147,6 +147,31 @@
           :markdown="$t('googleAccountCard.alertInfo')"
         />
       </b-alert>
+      <b-alert
+        v-if="!error && accessToken && missingTokenScopes"
+        show
+        variant="warning"
+        class="mb-0 mt-3"
+      >
+        <VueShowdown
+          tag="p"
+          :extensions="['no-p-tag']"
+          class="mb-0"
+          :markdown="$t('googleAccountCard.missingTokenScopes')"
+        />
+        <div
+          class="d-md-flex text-center align-items-center mt-2"
+        >
+          <b-button
+            size="sm"
+            class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
+            variant="outline-secondary"
+            @click="changeAccount"
+          >
+            {{ $t('cta.manageAccount') }}
+          </b-button>
+        </div>
+      </b-alert>
     </template>
     <b-alert
       v-if="error"
@@ -249,6 +274,9 @@ export default {
       }
 
       return null;
+    },
+    missingTokenScopes() {
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'].missingTokenScopes?.length;
     },
   },
   methods: {
