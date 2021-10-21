@@ -255,7 +255,7 @@
           v-if="editMode === true"
           switch
           size="lg"
-          class="ps_gs-switch"
+          class="ps_gs-switch mb-3"
           v-model="campaignIsActive"
         >
           <span class="ps_gs-fz-14">
