@@ -20,11 +20,13 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
-use Context;
 use Order;
-use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
+use Context;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\DTO\Remarketing\ActionData;
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository;
 
 class ActionDataProvider
 {
@@ -38,20 +40,41 @@ class ActionDataProvider
      */
     private $configurationAdapter;
 
-    public function __construct(Context $context, ConfigurationAdapter $configurationAdapter)
+    /**
+     * @var LanguageRepository
+     */
+    private $languageRepository;
+
+    /**
+     * @var CountryRepository
+     */
+    private $countryRepository;
+
+    public function __construct(
+        Context $context,
+        ConfigurationAdapter $configurationAdapter,
+        LanguageRepository $languageRepository,
+        CountryRepository $countryRepository
+    )
     {
         $this->context = $context;
         $this->configurationAdapter = $configurationAdapter;
+        $this->languageRepository = $languageRepository;
+        $this->countryRepository = $countryRepository;
     }
 
     public function getActionDataByOrderObject(Order $order): ActionData
     {
         $actionData = new ActionData();
 
-        $actionData->setDiscount((string) $order->total_discounts_tax_incl);
+        $actionData->setDiscount((float) $order->total_discounts_tax_incl);
         $actionData->setAwMerchandId((int) $this->configurationAdapter->get(Config::MERCHANT_GMC_ID));
-        $actionData->setAwFeedCountry($this->configurationAdapter->get(Config::MERCHANT_GMC_FEED_COUNTRY));
-        $actionData->setAwFeedLanguage($this->configurationAdapter->get(Config::MERCHANT_GMC_FEED_LANGUAGE));
+        $actionData->setAwFeedCountry(
+            $this->countryRepository->getIsoById()
+        );
+        $actionData->setAwFeedLanguage(
+            $this->languageRepository->getIsoById()
+        );
 
         return $actionData;
     }

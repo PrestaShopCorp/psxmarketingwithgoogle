@@ -60,6 +60,7 @@ export default {
       commit,
       rootState,
       state,
+      dispatch,
     },
     payload,
   ) {
@@ -83,6 +84,9 @@ export default {
       );
       throw new HttpClientError(response.statusText, response.status);
     }
+    dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
+      id: selectedAccount.id,
+    });
 
     const json = await response.json();
     commit(MutationsTypes.SAVE_GMC, selectedAccount);
@@ -571,6 +575,9 @@ export default {
 
       commit(MutationsTypes.ADD_NEW_GMC, newGmc);
       commit(MutationsTypes.SAVE_GMC, newGmc);
+      dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
+        id: accountId,
+      });
 
       commit(
         MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
@@ -597,6 +604,9 @@ export default {
       const linkedGmc = await response.json();
       if (linkedGmc) {
         commit(MutationsTypes.SAVE_GMC, linkedGmc);
+        dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
+          id: rootState.accounts.googleMerchantAccount.id,
+        });
         dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
       } else {
         throw new Error('Failed to find GMC!');
@@ -642,5 +652,27 @@ export default {
       throw new HttpClientError(json, response.status);
     }
     return response.json();
+  },
+
+  async [ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP]({
+    rootState,
+  }, gmcInfo) {
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          action: 'setGMCInformations',
+          gmcInformations: gmcInfo,
+        }),
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   },
 };

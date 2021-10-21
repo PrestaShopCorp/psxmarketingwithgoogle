@@ -47,8 +47,8 @@ class ProductDataProvider
                 $this->context->language->iso_code,
             ]
         ));
-        $productData->setPrice((string) $product['product_price_wt']);
-        $productData->setQuantity($product['product_quantity']);
+        $productData->setPrice((float) $product['product_price_wt']);
+        $productData->setQuantity((int) $product['product_quantity']);
 
         return $productData;
     }

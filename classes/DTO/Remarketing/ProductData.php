@@ -36,9 +36,9 @@ class ProductData implements JsonSerializable
 
     /**
      * The price of a product (e.g. 29.20).
-     * Kept as a string to avoid float issues
+     * Kept as a float
      *
-     * @var string|null
+     * @var float|null
      */
     protected $price;
 
@@ -75,7 +75,7 @@ class ProductData implements JsonSerializable
     /**
      * Set kept as a string to avoid float issues
      *
-     * @param string|null $price Kept as a string to avoid float issues
+     * @param float|null $price Kept as a string to avoid float issues
      *
      * @return self
      */

@@ -173,14 +173,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             Config::MERCHANT_GMC_ID,
             $informations['id'],
         );
-        $this->configurationAdapter->updateValue(
-            Config::MERCHANT_GMC_FEED_COUNTRY,
-            $informations['feedCountry']
-        );
-        $this->configurationAdapter->updateValue(
-            Config::MERCHANT_GMC_FEED_LANGUAGE,
-            $informations['feedLanguage']
-        );
 
         $this->ajaxDie(json_encode(['success' => true]));
     }

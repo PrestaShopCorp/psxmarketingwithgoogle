@@ -52,7 +52,7 @@ class ActionData implements JsonSerializable
     protected $sendTo;
 
     /**
-     * @var string
+     * @var float
      */
     protected $discount;
 
@@ -139,11 +139,11 @@ class ActionData implements JsonSerializable
     /**
      * Set the value of discount
      *
-     * @param string $discount
+     * @param float $discount
      *
      * @return self
      */
-    public function setDiscount(string $discount)
+    public function setDiscount(float $discount)
     {
         $this->discount = $discount;
 
