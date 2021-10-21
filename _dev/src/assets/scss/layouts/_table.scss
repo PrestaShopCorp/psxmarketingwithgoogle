@@ -263,7 +263,7 @@ $statusColors: (
 .ps_gs-table-reporting-header {
   background-color: $white;
   border-bottom: 1px solid #dde4e6;
-  
+
   p {
     margin-bottom: 0;
     line-height: 1.2em;
@@ -283,6 +283,7 @@ $statusColors: (
   z-index: 3;
 }
 
-table thead tr + tr th {
+.table thead tr + tr th {
   border-bottom: none;
+  background-color: $grey_extralight;
 }
