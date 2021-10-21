@@ -25,4 +25,3 @@ export const filterUncheckedSegments = (source: CampaignFilter) => {
     children: filteredChildren,
   };
 };
-
