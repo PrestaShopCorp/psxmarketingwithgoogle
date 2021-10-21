@@ -20,11 +20,11 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
-use Language;
 use Context;
+use Language;
 
-class LanguageRepository {
-
+class LanguageRepository
+{
     /**
      * @var Context
      */

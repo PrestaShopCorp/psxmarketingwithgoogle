@@ -20,11 +20,11 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
-use Order;
 use Context;
+use Order;
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\DTO\Remarketing\ActionData;
-use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository;
 
@@ -55,8 +55,7 @@ class ActionDataProvider
         ConfigurationAdapter $configurationAdapter,
         LanguageRepository $languageRepository,
         CountryRepository $countryRepository
-    )
-    {
+    ) {
         $this->context = $context;
         $this->configurationAdapter = $configurationAdapter;
         $this->languageRepository = $languageRepository;
