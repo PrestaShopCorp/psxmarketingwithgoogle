@@ -46,3 +46,10 @@ FieldsErrorFeedback.args = {
     }, 300);
   },
 };
+
+export const Edition:any = Template.bind({});
+Edition.args = {
+  editMode: true,
+  beforeMount(this: any) {
+  },
+}
