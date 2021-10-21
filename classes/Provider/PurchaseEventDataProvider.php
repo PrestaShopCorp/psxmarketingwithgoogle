@@ -56,8 +56,6 @@ class PurchaseEventDataProvider
 
         $actionData->setItems($items);
 
-        dump($actionData);
-
         return $actionData;
     }
 }
