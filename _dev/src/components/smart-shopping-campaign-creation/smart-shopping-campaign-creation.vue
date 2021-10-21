@@ -312,6 +312,7 @@
     <SmartShoppingCampaignCreationFilterPopin
       ref="SmartShoppingCampaignCreationFilterPopin"
       @selectFilters="getDimensionsFiltered"
+      :available-filters="availableFilters"
     />
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
@@ -347,6 +348,28 @@ export default {
       displayError: false,
       campaignIsActive: true,
       targetCountry: [],
+      availableFilters: {
+        name: 'All filters',
+        id: 'allFilters',
+        checked: false,
+        indeterminate: false,
+        children: [
+          {
+            name: 'category1',
+            id: 'category1',
+            children: [],
+            checked: false,
+            indeterminate: false,
+          },
+          {
+            name: 'category2',
+            id: 'category2',
+            children: [],
+            checked: false,
+            indeterminate: false,
+          },
+        ],
+      },
     };
   },
   components: {
@@ -402,7 +425,7 @@ export default {
       return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
     },
     currency() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode || '';
     },
     countries: {
       get() {
@@ -545,6 +568,24 @@ export default {
         this.$router.push({name: 'campaign-list'});
       }
     }
+    this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
+      res.categories.forEach((element) => {
+        // TODO : when API send all dimensions, get rid of the [0]
+        this.availableFilters.children[0].children.push({
+          name: element.localizedName,
+          ...element,
+          checked: false,
+        });
+        this.availableFilters.children[1].children.push({
+          name: element.localizedName,
+          ...element,
+          checked: false,
+        });
+      });
+      this.availableFilters.children.sort(
+        (a, b) => (a.localizedName > b.localizedName ? 1 : -1),
+      );
+    });
   },
   countriesSelectionOptions,
 };
