@@ -56,26 +56,26 @@
                 <b-button
                   variant="invisible"
                   class="text-decoration-underline font-weight-normal py-2 px-1 ml-n1"
-                  @click="selectAll"
+                  @click="checkAll(true)"
                 >
                   {{ $t('cta.selectAll') }}
                 </b-button>
                 <b-button
                   variant="invisible"
                   class="text-decoration-underline font-weight-normal py-2 px-1"
-                  @click="deselectAll"
+                  @click="checkAll(false)"
                 >
                   {{ $t('cta.deselectAll') }}
                 </b-button>
               </div>
               <div class="pt-2">
-                <!-- {{ textFiltersSelected }} -->
+                {{ textFiltersSelected }}
               </div>
             </div>
           </b-col>
         </b-row>
       </b-form-group>
-    </b-form>{{ filteredDimensions }}
+    </b-form>
     <template slot="modal-cancel">
       {{ $t("cta.cancel") }}
     </template>
@@ -97,7 +97,6 @@ export default {
   },
   data() {
     return {
-      selectedFilters: {},
       availableFilters: {
         name: 'All filters',
         id: 'allFilters',
@@ -111,26 +110,37 @@ export default {
             checked: false,
             indeterminate: false,
           },
+          {
+            name: 'category2',
+            id: 'category2',
+            children: [],
+            checked: false,
+            indeterminate: false,
+          },
         ],
       },
 
     };
   },
   computed: {
-    // totalNumberOfProducts() {
-    //   const final = [];
-    //   this.filteredDimensions.children.forEach((dim) => {
-    //     dim.children.forEach((value) => {
-    //       final.push(value);
-    //     });
-    //   });
-    //   return final.length;
-    // },
-    // textFiltersSelected() {
-    //   return this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
-    //     this.totalNumberOfProducts,
-    //     [this.totalNumberOfProducts]);
-    // },
+    totalNumberOfProducts() {
+      const final = [];
+      this.filteredDimensions.children.forEach((dim) => {
+        if (dim.children) {
+          dim.children.forEach((value) => {
+            final.push(value);
+          });
+        } else {
+          final.push(dim);
+        }
+      });
+      return final.length;
+    },
+    textFiltersSelected() {
+      return this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
+        this.totalNumberOfProducts,
+        [this.totalNumberOfProducts]);
+    },
 
     filteredDimensions() {
       return {
@@ -138,39 +148,51 @@ export default {
         id: 'allFilters',
         checked: false,
         indeterminate: false,
-        children: [
-          {
-            name: 'category1',
-            id: 'category1',
-            children: this.availableFilters.children[0]
-              .children.filter((item) => item.checked === true),
-            checked: false,
-            indeterminate: false,
-          },
-        ],
+        children: this.filteredChildren(this.availableFilters),
       };
     },
   },
   watch: {
-    availableFilters(newFilters, oldFilters) {
-      console.log('tas bougé', newFilters, oldFilters);
+    filteredDimensions() {
+      this.$nextTick(() => {
+        this.filteredChildren(this.availableFilters);
+      });
     },
   },
+
   methods: {
-    selectAll() {
-      // this.selectedFilters.checked = true;
-      // this.selectedFilters.indeterminate = false;
-      // this.selectedFilters.children.forEach((element) => {
-      //   element.checked = true;
-      // });
+    filteredChildren(obj) {
+      if (!obj.children) {
+        return ;
+      }
+      const final = [];
+      obj.children.forEach((child, index) => {
+        if (child.checked) {
+          final.push(child);
+            final[index] = {
+              ...final[index],
+              children: [],
+            };
+          if (child.children) {
+            child.children.forEach((child2) => {
+              if (child2.checked) {
+                final[index].children.push(child2);
+              }
+            });
+          }
+        }
+      });
+      return final;
     },
-    deselectAll() {
-      // this.selectedFilters.checked = false;
-      // this.selectedFilters.indeterminate = false;
-      // this.selectedFilters.children.forEach((element) => {
-      //   element.checked = false;
-      // });
+
+    checkAll(status) {
+      this.availableFilters.checked = status;
+      this.availableFilters.indeterminate = false;
+      if (this.availableFilters.children) {
+        this.checkChildren(this.availableFilters.children, status);
+      }
     },
+
     checkChildren(arr, checkboxClicked) {
       arr.forEach((child) => {
         child.checked = checkboxClicked;
@@ -179,41 +201,31 @@ export default {
         }
       });
     },
-    checkForIndeterminate(arr) {
-      if (arr.children) {
-        const isIndeterminate = arr.children.map((element) => element.checked);
-        if (isIndeterminate.includes(true) && isIndeterminate.includes(false)) {
-          arr.indeterminate = true;
-        } else {
-          arr.indeterminate = false;
-        }
+
+    checkForIndeterminate(obj) {
+      const isIndeterminate = obj.children.map((element) => element.checked);
+      if (isIndeterminate.includes(true) && isIndeterminate.includes(false)) {
+        obj.indeterminate = true;
+      } else {
+        obj.indeterminate = false;
       }
+      obj.children.forEach((child) => {
+        if (child.children) {
+          this.checkForIndeterminate(child);
+        }
+      });
     },
 
-    findCheckboxChecked(obj, event) {
-      if (event.item.id === 'allFilters') {
-        this.checkChildren(obj.children, event.checked);
-      } else if (event.item.children) {
-        for (let i = 0; i < obj.children.length; i += 1) {
-          const result = obj.children.find((e) => e.id === event.item.id);
-          if (result) {
-            this.checkChildren(result.children, event.checked);
-          }
-        }
-      }
-    },
     selectCheckbox(event) {
-      console.log('deselect', event);
-      this.findCheckboxChecked(this.selectedFilters, event);
-      // this.checkForIndeterminate(this.selectedFilters);
-      event.item.checked = !event.item.checked;
+      this.checkChildren(event.item?.children || [], event.checked);
+      event.item.checked = event.checked;
+      this.checkForIndeterminate(this.availableFilters);
     },
+
     sendDimensionsSelected() {
       this.$emit('selectFilters', this.filteredDimensions.children);
     },
-  },
-  beforeMount() {
-    this.selectedFilters = this.availableFilters;
+
   },
 
   mounted() {
@@ -221,6 +233,11 @@ export default {
       res.categories.forEach((element) => {
         // TODO : when API send all dimensions, get rid of the [0]
         this.availableFilters.children[0].children.push({
+          name: element.localizedName,
+          ...element,
+          checked: false,
+        });
+        this.availableFilters.children[1].children.push({
           name: element.localizedName,
           ...element,
           checked: false,

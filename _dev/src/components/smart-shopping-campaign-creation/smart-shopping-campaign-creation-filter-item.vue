@@ -111,7 +111,7 @@ export default {
     },
     deselectFilter() {
       this.$root.$emit('filterSelected', {
-        id: this.item,
+        item: this.item,
         checked: false,
       });
     },
