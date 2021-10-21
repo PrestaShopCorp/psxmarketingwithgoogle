@@ -276,7 +276,7 @@ export default {
       return null;
     },
     missingTokenScopes() {
-      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'].missingTokenScopes.length > 0;
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'].missingTokenScopes?.length;
     },
   },
   methods: {
