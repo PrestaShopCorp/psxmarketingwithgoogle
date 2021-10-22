@@ -529,14 +529,59 @@ export default {
         name: 'campaign-list',
       });
     },
+
+    // findLastChild(arr) {
+    //   const final = [];
+    //    arr.forEach((category) => {
+    //     if (category.children) {
+    //      return this.findLastChild(category.children);
+    //     } else {
+    //       final.push(category);
+    //     }
+    //   });
+    //     return final
+    // },
+    findLastChild(source) {
+      const filteredChildren = source.children?.map((child) => {
+        if (child.children) {
+          return this.findLastChild(child);
+        }
+        return child;
+      }).filter((child) => child.checked || child.children?.length);
+
+      if (!filteredChildren?.length && !source.checked) {
+        return {};
+      }
+      // return {
+      //   children: filteredChildren,
+      // };
+      return filteredChildren;
+    },
+
     getDimensionsFiltered(dimensions) {
-      this.filtersChosen.map((filter, index) => {
-        dimensions.children.forEach((el) => {
-          if (filter.dimension.toUpperCase() === dimensions.name.toUpperCase()) {
-            this.filtersChosen[index].values.push(Number(el.id));
-          }
+      const result = this.findLastChild(dimensions);
+      console.log('result', result);
+
+      console.log('filterchosen', this.filtersChosen);
+    },
+    getDatasFiltersDimensions() {
+      this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
+        res.categories.forEach((element) => {
+        // TODO : when API send all dimensions, get rid of the [0]
+          this.availableFilters.children[0].children.push({
+            name: element.localizedName,
+            ...element,
+            checked: false,
+          });
+          this.availableFilters.children[1].children.push({
+            name: element.localizedName,
+            ...element,
+            checked: false,
+          });
         });
-        return this.filtersChosen;
+        this.availableFilters.children.sort(
+          (a, b) => (a.localizedName > b.localizedName ? 1 : -1),
+        );
       });
     },
   },
@@ -568,24 +613,7 @@ export default {
         this.$router.push({name: 'campaign-list'});
       }
     }
-    this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
-      res.categories.forEach((element) => {
-        // TODO : when API send all dimensions, get rid of the [0]
-        this.availableFilters.children[0].children.push({
-          name: element.localizedName,
-          ...element,
-          checked: false,
-        });
-        this.availableFilters.children[1].children.push({
-          name: element.localizedName,
-          ...element,
-          checked: false,
-        });
-      });
-      this.availableFilters.children.sort(
-        (a, b) => (a.localizedName > b.localizedName ? 1 : -1),
-      );
-    });
+    this.getDatasFiltersDimensions();
   },
   countriesSelectionOptions,
 };

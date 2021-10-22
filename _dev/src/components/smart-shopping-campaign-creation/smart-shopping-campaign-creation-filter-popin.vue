@@ -6,6 +6,7 @@
     @ok="sendDimensionsSelected"
     cancel-variant="invisible font-weight-normal"
   >
+    coucou
     <b-form>
       <h5 class="ps_gs-fz-16 font-weight-600 mb-1">
         {{ $t('smartShoppingCampaignCreation.selectProductsTitle') }}
@@ -114,7 +115,7 @@ export default {
     },
     totalNumberOfProducts() {
       const final = [];
-      if (this.filteredDimensions) {
+      if (this.filteredDimensions && this.filteredDimensions.children) {
         this.filteredDimensions.children.forEach((dim) => {
           if (dim.children) {
             dim.children.forEach((value) => {
@@ -124,8 +125,9 @@ export default {
             final.push(dim);
           }
         });
+        return final.length;
       }
-      return final.length;
+      return 0;
     },
 
   },
@@ -169,7 +171,7 @@ export default {
     },
 
     sendDimensionsSelected() {
-      this.$emit('selectFilters', this.filteredDimensions.children);
+      this.$emit('selectFilters', this.filteredDimensions);
     },
   },
   mounted() {
