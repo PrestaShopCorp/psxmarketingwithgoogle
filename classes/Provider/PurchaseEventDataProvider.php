@@ -20,30 +20,83 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
 
+use Context;
 use Order;
-use PrestaShop\Module\PsxMarketingWithGoogle\DTO\ConversionEventData;
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\Remarketing\PurchaseEventData;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository;
 
 class PurchaseEventDataProvider
 {
     /**
-     * @var ConversionEventDataProvider
+     * @var ProductDataProvider
      */
-    protected $conversionEventDataProvider;
+    protected $productDataProvider;
 
-    public function __construct(ConversionEventDataProvider $conversionEventDataProvider)
-    {
-        $this->conversionEventDataProvider = $conversionEventDataProvider;
+    /**
+     * @var Context
+     */
+    protected $context;
+
+    /**
+     * @var ConfigurationAdapter
+     */
+    private $configurationAdapter;
+
+    /**
+     * @var LanguageRepository
+     */
+    private $languageRepository;
+
+    /**
+     * @var CountryRepository
+     */
+    private $countryRepository;
+
+    public function __construct(
+        ProductDataProvider $productDataProvider,
+        Context $context,
+        ConfigurationAdapter $configurationAdapter,
+        LanguageRepository $languageRepository,
+        CountryRepository $countryRepository
+    ) {
+        $this->productDataProvider = $productDataProvider;
+        $this->context = $context;
+        $this->configurationAdapter = $configurationAdapter;
+        $this->languageRepository = $languageRepository;
+        $this->countryRepository = $countryRepository;
     }
 
     /**
      * Return the items concerned by the transaction
      */
-    public function getEventData($sendTo, Order $order): ConversionEventData
+    public function getEventData($sendTo, Order $order): PurchaseEventData
     {
-        // https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce#action-data
-        $conversionEventData = $this->conversionEventDataProvider->getActionDataByOrderObject($order);
-        $conversionEventData->setSendTo($sendTo);
+        $purchaseData = new PurchaseEventData();
 
-        return $conversionEventData;
+        $purchaseData->setDiscount((float) $order->total_discounts_tax_incl);
+        $purchaseData->setAwMerchandId((int) $this->configurationAdapter->get(Config::REMARKETING_CONVERSION_MERCHANT_GMC_ID));
+        $purchaseData->setSendTo($sendTo);
+        $purchaseData->setAwFeedCountry(
+            $this->countryRepository->getIsoById(
+                $this->context->country->id
+            )
+        );
+        $purchaseData->setAwFeedLanguage(
+            $this->languageRepository->getIsoById(
+                $this->context->language->id
+            )
+        );
+
+        $items = [];
+        foreach ($order->getCartProducts() as $product) {
+            $items[] = $this->productDataProvider->getProductDataByProductArray($product);
+        }
+
+        $purchaseData->setItems($items);
+
+        return $purchaseData;
     }
 }

@@ -9,6 +9,7 @@ import {} from '@/../tests/init';
 fetchMock.enableMocks();
 
 let commit;
+let dispatch;
 let rootState;
 let state;
 let payload;
@@ -17,6 +18,7 @@ beforeEach(() => {
   fetchMock.resetMocks();
 
   commit = jest.fn();
+  dispatch = jest.fn();
   rootState = {
     app: {
       psxMktgWithGoogleApiUrl: 'http://perdu.com',
@@ -40,6 +42,7 @@ describe('Action SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', () => {
 
     await actions[ActionsTypes.SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT](
       {
+        dispatch,
         commit,
         rootState,
         state,
@@ -59,6 +62,7 @@ describe('Action SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', () => {
           commit,
           rootState,
           state,
+          dispatch,
         },
         payload,
       );

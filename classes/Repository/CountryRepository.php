@@ -112,6 +112,11 @@ class CountryRepository
         ];
     }
 
+    public function getIsoById(int $countryId)
+    {
+        return Country::getIsoById($countryId);
+    }
+
     public function getShopContactCountry(): array
     {
         if (empty($this->configurationAdapter->get('PS_SHOP_COUNTRY_ID'))) {

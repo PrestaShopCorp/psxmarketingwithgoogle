@@ -22,6 +22,9 @@ services:
     arguments:
       - '@psxmarketingwithgoogle.currency'
 
+  PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository
+
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository
 
