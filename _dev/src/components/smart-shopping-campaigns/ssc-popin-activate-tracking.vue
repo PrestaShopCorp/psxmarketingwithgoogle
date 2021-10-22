@@ -93,12 +93,10 @@ export default {
     return {
       isLoading: false,
       requestNewConversionTrackingTags: true,
+      statusTrackingTag: true,
     };
   },
   computed: {
-    statusTrackingTag() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
-    },
     tagAlreadyExists() {
       return this.$store.state.smartShoppingCampaigns.tagAlreadyExists;
     },
@@ -114,11 +112,7 @@ export default {
   },
   methods: {
     updateTrackingStatus() {
-      if (this.statusTrackingTag === null) {
-        this.$store.commit('smartShoppingCampaigns/TOGGLE_STATUS_REMARKETING_TRACKING_TAG', false);
-      } else {
-        this.$store.commit('smartShoppingCampaigns/TOGGLE_STATUS_REMARKETING_TRACKING_TAG', true);
-      }
+      this.$store.commit('smartShoppingCampaigns/TOGGLE_STATUS_REMARKETING_TRACKING_TAG', this.statusTrackingTag);
       if (this.requestNewConversionTrackingTags) {
         this.$store.dispatch('smartShoppingCampaigns/CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS');
       }
