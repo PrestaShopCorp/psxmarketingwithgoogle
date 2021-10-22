@@ -317,6 +317,7 @@
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
+      :filters="filtersForSummary"
       :filters-exist="!campaignHasNoProductsFilter"
       @openPopinSSCCreated="onCampaignCreated"
       @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
@@ -331,7 +332,11 @@ import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-c
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
+<<<<<<< HEAD
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+=======
+import {returnChildrenIds} from '../../utils/SSCFilters';
+>>>>>>> 0674b23b (filters recap)
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -343,6 +348,7 @@ export default {
       campaignDurationEndDate: null,
       campaignHasNoProductsFilter: true,
       filtersChosen: [],
+      filtersForSummary: null,
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
@@ -530,39 +536,9 @@ export default {
       });
     },
 
-    // findLastChild(arr) {
-    //   const final = [];
-    //    arr.forEach((category) => {
-    //     if (category.children) {
-    //      return this.findLastChild(category.children);
-    //     } else {
-    //       final.push(category);
-    //     }
-    //   });
-    //     return final
-    // },
-    findLastChild(source) {
-      const filteredChildren = source.children?.map((child) => {
-        if (child.children) {
-          return this.findLastChild(child);
-        }
-        return child;
-      }).filter((child) => child.checked || child.children?.length);
-
-      if (!filteredChildren?.length && !source.checked) {
-        return {};
-      }
-      // return {
-      //   children: filteredChildren,
-      // };
-      return filteredChildren;
-    },
-
     getDimensionsFiltered(dimensions) {
-      const result = this.findLastChild(dimensions);
-      console.log('result', result);
-
-      console.log('filterchosen', this.filtersChosen);
+      this.filtersForSummary = dimensions;
+      this.filtersChosen = returnChildrenIds(dimensions);
     },
     getDatasFiltersDimensions() {
       this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {

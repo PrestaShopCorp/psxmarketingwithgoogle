@@ -22,3 +22,15 @@ export function filterUncheckedSegments(source: CampaignFilter) {
     children: filteredChildren,
   };
 }
+
+export function returnChildrenIds(source: CampaignFilter): number[] {
+  const ids: number[] = [];
+  if (source.children) {
+    source.children.forEach((child) => {
+      ids.push(...returnChildrenIds(child));
+    });
+  } else {
+    ids.push(Number(source.id));
+  }
+  return ids;
+}

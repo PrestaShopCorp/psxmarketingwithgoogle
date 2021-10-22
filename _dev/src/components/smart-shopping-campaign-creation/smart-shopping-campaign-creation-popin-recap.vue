@@ -56,20 +56,7 @@
         <template
           v-if="filtersExist"
         >
-          <div
-            v-for="(filter, index) in newCampaign.productFilters"
-            :key="index"
-          >
-            <template>
-              {{ $tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
-                     newCampaign.productFilters.length,
-                     [newCampaign.productFilters.length]) }}
-              -
-              {{ $tc('smartShoppingCampaignCreation.nbValuesSelected',
-                     filter.values.length,
-                     [filter.values.length]) }}
-            </template>
-          </div>
+          {{ nbFilters }}
         </template>
         <template v-else>
           {{ $t('smartShoppingCampaignCreation.recapNoFiltersDescription') }}
@@ -130,6 +117,10 @@ export default {
       required: false,
       type: Boolean,
     },
+    filters: {
+      required: false,
+      type: Object,
+    },
   },
 
   data() {
@@ -137,6 +128,18 @@ export default {
       isValidating: false,
 
     };
+  },
+
+  computed: {
+    nbFilters() {
+      return `${this.$tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
+        this.filters?.children.length,
+        [this.filters?.children.length])
+      } - ${
+        this.$tc('smartShoppingCampaignCreation.nbValuesSelected',
+          this.newCampaign.productFilters.length,
+          [this.newCampaign.productFilters.length])}`;
+    },
   },
 
   methods: {

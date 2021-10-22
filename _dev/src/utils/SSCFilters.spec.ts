@@ -2,9 +2,9 @@
  * @jest-environment jsdom
  */
 
-import {filterUncheckedSegments} from './SSCFilters';
+import {filterUncheckedSegments, returnChildrenIds} from './SSCFilters';
 
-describe('SSC filters', () => {
+describe('SSC filters - filterUncheckedSegments()', () => {
   it('returns an empty array when everything is unchecked', () => {
     const source = {
       name: 'All filters',
@@ -390,5 +390,64 @@ describe('SSC filters', () => {
         },
       ],
     });
+  });
+});
+
+describe('SSC filters - returnChildrenIds()', () => {
+  it('returns all children IDs', () => {
+    const source = {
+      name: 'All filters',
+      id: '99',
+      checked: true,
+      indeterminate: false,
+      children: [
+        {
+          name: 'category1',
+          id: '991',
+          children: [
+            {
+              name: 'Animaux et articles pour animaux de compagnie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~1',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '1',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Animaux et articles pour animaux de compagnie',
+              checked: true,
+            },
+            {
+              name: 'Arts et loisirs',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~8',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '8',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Arts et loisirs',
+              checked: true,
+            },
+            {
+              name: 'Entreprise et industrie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~111',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '111',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Entreprise et industrie',
+              checked: true,
+            },
+          ],
+        },
+        {
+          name: 'category2',
+          id: '992',
+        },
+      ],
+    };
+    const result = returnChildrenIds(source);
+
+    expect(result).toEqual([1, 8, 111, 992]);
   });
 });
