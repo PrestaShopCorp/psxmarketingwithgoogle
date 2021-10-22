@@ -5,6 +5,7 @@
     :title="$t('mcaCard.phoneVerificationNeeded')"
     v-bind="$attrs"
     @ok="ok"
+    @show="getPhoneNumber"
     :ok-disabled="!isPhoneValidated"
   >
     <b-form>
@@ -204,6 +205,9 @@ export default {
         this.error = this.$i18n.t('mcaCard.alertSomethingHappened');
       }
     },
+    getPhoneNumber() {
+      this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
+    },
     async sendCode() {
       this.isCodeValid = null;
       this.isValidationInProgress = true;
@@ -298,11 +302,6 @@ export default {
       }
       return this.$i18n.t('mcaCard.receiveCall');
     },
-  },
-  mounted() {
-    this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS').then(() => {
-      this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
-    });
   },
 
   phonesPrefixSelectionOptions,
