@@ -26,7 +26,6 @@
         size="lg"
         class="mt-3 ps_gs-switch"
         v-model="statusTrackingTag"
-        @change="changeStatus"
       >
         <span class="ps_gs-fz-14">
           {{ $t('smartShoppingCampaignCreation.toggleCreationRemarketingTag') }}
@@ -93,7 +92,7 @@ export default {
     return {
       isLoading: false,
       requestNewConversionTrackingTags: true,
-      statusTrackingTag: true,
+      statusTrackingTag: this.$store.state.smartShoppingCampaigns.tracking,
     };
   },
   computed: {
@@ -121,11 +120,6 @@ export default {
       this.$router.push({
         name: 'campaign-creation',
       });
-    },
-    changeStatus() {
-      this.$store.dispatch(
-        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', this.statusTrackingTag,
-      );
     },
   },
   googleUrl,
