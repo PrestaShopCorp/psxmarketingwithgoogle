@@ -324,8 +324,7 @@ export default {
     },
     accountAwaitsValidation() {
       return this.error === GoogleAdsErrorReason.NeedValidationFromEmail
-       || this.error === GoogleAdsErrorReason.NeedRefreshAfterInvitationLink
-       || this.error === GoogleAdsErrorReason.Cancelled;
+       || this.error === GoogleAdsErrorReason.NeedRefreshAfterInvitationLink;
     },
 
   },
