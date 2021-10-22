@@ -87,7 +87,7 @@ class PsxMarketingWithGoogle extends Module
         $this->js_path = $this->_path . 'views/js/';
         $this->docs_path = $this->_path . 'docs/';
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall this module?');
-        $this->ps_versions_compliancy = ['min' => '1.7.7.0', 'max' => _PS_VERSION_];
+        $this->ps_versions_compliancy = ['min' => '1.7.5.0', 'max' => _PS_VERSION_];
 
         // If PHP is not compliant, we will not load composer and the autoloader
         if (!$this->isPhpVersionCompliant()) {
@@ -116,7 +116,7 @@ class PsxMarketingWithGoogle extends Module
     public function install()
     {
         if (!$this->isPhpVersionCompliant()) {
-            $this->_errors[] = $this->l('This requires PHP 7.3 to work properly. Please upgrade your server configuration.');
+            $this->_errors[] = $this->l('This requires PHP 7.2 to work properly. Please upgrade your server configuration.');
 
             return false;
         }
@@ -225,6 +225,6 @@ class PsxMarketingWithGoogle extends Module
 
     private function isPhpVersionCompliant()
     {
-        return 70300 <= PHP_VERSION_ID;
+        return 70200 <= PHP_VERSION_ID;
     }
 }
