@@ -112,7 +112,9 @@ export default {
   },
   methods: {
     updateTrackingStatus() {
-      this.$store.commit('smartShoppingCampaigns/TOGGLE_STATUS_REMARKETING_TRACKING_TAG', this.statusTrackingTag);
+      this.$store.dispatch(
+        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', this.statusTrackingTag,
+      );
       if (this.requestNewConversionTrackingTags) {
         this.$store.dispatch('smartShoppingCampaigns/CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS');
       }
