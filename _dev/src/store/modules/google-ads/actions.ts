@@ -47,6 +47,7 @@ export default {
     commit, rootState, dispatch, state,
   }) {
     try {
+      commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/status`,
         {
           method: 'GET',
@@ -72,6 +73,7 @@ export default {
         return;
       }
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
+      commit(MutationsTypes.SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE, true);
       if (customer.invitationLink && !customer.isAdmin) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'NeedValidationFromEmail');
       } else if (!customer.billingSettings.isSet) {
