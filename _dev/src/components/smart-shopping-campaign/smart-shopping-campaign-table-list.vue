@@ -9,6 +9,7 @@
         flex-md-shrink-0 text-center"
       >
         <b-button
+          v-if="remarketingTagStatus || remarketingTagAlreadyExistsStatus"
           size="sm"
           class="mx-1 mt-3 mt-md-0"
           variant="outline-primary"
@@ -180,6 +181,12 @@ export default {
         this.$store.commit('smartShoppingCampaigns/SET_SSC_LIST_ORDERING', orderDirection);
         this.fetchCampaigns();
       },
+    },
+    remarketingTagStatus() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
+    },
+    remarketingTagAlreadyExistsStatus() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS'];
     },
   },
   methods: {
