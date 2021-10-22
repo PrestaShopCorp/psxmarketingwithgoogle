@@ -116,6 +116,8 @@ export default {
     updateTrackingStatus() {
       if (this.statusTrackingTag === null) {
         this.$store.commit('smartShoppingCampaigns/TOGGLE_STATUS_REMARKETING_TRACKING_TAG', false);
+      } else {
+        this.$store.commit('smartShoppingCampaigns/TOGGLE_STATUS_REMARKETING_TRACKING_TAG', true);
       }
       if (this.requestNewConversionTrackingTags) {
         this.$store.dispatch('smartShoppingCampaigns/CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS');
