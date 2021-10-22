@@ -178,7 +178,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $informations = $inputs['gmcInformations'];
         $this->configurationAdapter->updateValue(
             Config::REMARKETING_CONVERSION_MERCHANT_GMC_ID,
-            $informations['id'],
+            $informations['id']
         );
 
         $this->ajaxDie(json_encode(['success' => true]));
