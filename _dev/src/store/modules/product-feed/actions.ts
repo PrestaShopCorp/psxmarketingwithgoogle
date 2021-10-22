@@ -128,7 +128,7 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, rootState, rootGetters, commit, dispatch,
+    state, rootState, rootGetters, commit,
   }) {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(rootGetters['app/GET_ACTIVE_COUNTRIES']);

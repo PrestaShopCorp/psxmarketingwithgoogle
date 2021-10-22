@@ -22,9 +22,6 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\DTO\Remarketing;
 
 use JsonSerializable;
 
-/**
- * @see https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce#product-data
- */
 class ProductData implements JsonSerializable
 {
     /**

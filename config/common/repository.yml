@@ -24,8 +24,6 @@ services:
 
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository
-    arguments:
-      - '@psxmarketingwithgoogle.context'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository

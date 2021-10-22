@@ -112,9 +112,9 @@ class CountryRepository
         ];
     }
 
-    public function getIsoById()
+    public function getIsoById(int $countryId)
     {
-        return Country::getIsoById($this->context->country->id);
+        return Country::getIsoById($countryId);
     }
 
     public function getShopContactCountry(): array

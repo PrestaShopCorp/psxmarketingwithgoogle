@@ -167,10 +167,17 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 
     private function setGMCInformations(array $inputs)
     {
-        $informations = $inputs['gmcInformations'];
+        if (!isset($inputs['gmcInformations'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'missing gmc informations',
+            ]));
+        }
 
+        $informations = $inputs['gmcInformations'];
         $this->configurationAdapter->updateValue(
-            Config::MERCHANT_GMC_ID,
+            Config::REMARKETING_CONVERSION_MERCHANT_GMC_ID,
             $informations['id'],
         );
 

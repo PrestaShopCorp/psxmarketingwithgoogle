@@ -22,12 +22,10 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\DTO\Remarketing;
 
 use JsonSerializable;
 
-class ActionData implements JsonSerializable
+class PurchaseEventData implements JsonSerializable
 {
-    /** https://support.google.com/google-ads/answer/9028614?hl=en&ref_topic=3165803#zippy=%2Cinstall-with-global-site-tag */
-
     /**
-     * @var array
+     * @var ProductData[]
      */
     protected $items;
 

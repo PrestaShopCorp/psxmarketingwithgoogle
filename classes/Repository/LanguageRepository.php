@@ -20,23 +20,16 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
-use Context;
 use Language;
 
 class LanguageRepository
 {
-    /**
-     * @var Context
-     */
-    private $context;
-
-    public function __construct(Context $context)
+    public function __construct()
     {
-        $this->context = $context;
     }
 
-    public function getIsoById()
+    public function getIsoById(int $id)
     {
-        return Language::getIsoById($this->context->language->id);
+        return Language::getIsoById($id);
     }
 }
