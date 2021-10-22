@@ -207,6 +207,7 @@
             </template>
           </b-button>
         </div>
+
         <div
           v-else
           class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center align-self-end"
