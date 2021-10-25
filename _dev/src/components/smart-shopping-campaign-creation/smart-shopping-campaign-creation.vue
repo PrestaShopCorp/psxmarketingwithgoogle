@@ -577,7 +577,7 @@ export default {
         this.campaignName = foundSsc.campaignName;
         this.campaignDurationStartDate = foundSsc.startDate;
         this.campaignDurationEndDate = foundSsc.endDate || null;
-        this.campaignHasNoProductsFilter = !(foundSsc.productFilters.length > 0);
+        this.campaignHasProductsFilter = !!foundSsc.productFilters.length;
         this.campaignDailyBudget = foundSsc.dailyBudget;
         this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = foundSsc.id;

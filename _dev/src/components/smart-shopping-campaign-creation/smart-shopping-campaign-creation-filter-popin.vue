@@ -6,7 +6,6 @@
     @ok="sendDimensionsSelected"
     cancel-variant="invisible font-weight-normal"
   >
-    coucou
     <b-form>
       <h5 class="ps_gs-fz-16 font-weight-600 mb-1">
         {{ $t('smartShoppingCampaignCreation.selectProductsTitle') }}
@@ -151,17 +150,17 @@ export default {
     },
 
     checkForIndeterminate(obj) {
-      const isIndeterminate = obj.children.map((element) => element.checked);
+      const isIndeterminate = obj.children.map((element) => {
+        if (element.children) {
+          this.checkForIndeterminate(element);
+        }
+        return element.checked;
+      });
       if (isIndeterminate.includes(true) && isIndeterminate.includes(false)) {
         obj.indeterminate = true;
       } else {
         obj.indeterminate = false;
       }
-      obj.children.forEach((child) => {
-        if (child.children) {
-          this.checkForIndeterminate(child);
-        }
-      });
     },
 
     selectCheckbox(event) {

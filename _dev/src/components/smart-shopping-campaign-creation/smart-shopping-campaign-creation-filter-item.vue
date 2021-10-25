@@ -78,7 +78,7 @@ export default {
     };
   },
   props: {
-    item: [Array, Object],
+    item: Object,
     isOpenByDefault: {
       type: Boolean,
       default: false,
