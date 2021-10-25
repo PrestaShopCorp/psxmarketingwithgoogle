@@ -13,8 +13,8 @@ describe('SSC filters - filterUncheckedSegments()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category1',
-          id: 'category1',
+          name: 'category',
+          id: 'category',
           children: [
             {
               name: 'Animaux et articles pour animaux de compagnie',
@@ -66,8 +66,8 @@ describe('SSC filters - filterUncheckedSegments()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category1',
-          id: 'category1',
+          name: 'category',
+          id: 'category',
           children: [
             {
               name: 'Animaux et articles pour animaux de compagnie',
@@ -119,8 +119,8 @@ describe('SSC filters - filterUncheckedSegments()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category0',
-          id: 'category0',
+          name: 'category',
+          id: 'category',
           checked: false,
           children: [
             {
@@ -137,8 +137,8 @@ describe('SSC filters - filterUncheckedSegments()', () => {
           ],
         },
         {
-          name: 'category1',
-          id: 'category1',
+          name: 'category',
+          id: 'category',
           children: [
             {
               name: 'Animaux et articles pour animaux de compagnie',
@@ -176,8 +176,8 @@ describe('SSC filters - filterUncheckedSegments()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category1',
-          id: 'category1',
+          name: 'category',
+          id: 'category',
           checked: true,
           children: [
             {
@@ -202,8 +202,8 @@ describe('SSC filters - filterUncheckedSegments()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category0',
-          id: 'category0',
+          name: 'category',
+          id: 'category',
           checked: false,
           children: [
             {
@@ -220,8 +220,8 @@ describe('SSC filters - filterUncheckedSegments()', () => {
           ],
         },
         {
-          name: 'category1',
-          id: 'category1',
+          name: 'category',
+          id: 'category',
           checked: true,
           children: [
             {
@@ -260,13 +260,13 @@ describe('SSC filters - filterUncheckedSegments()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category0',
-          id: 'category0',
+          name: 'category',
+          id: 'category',
           checked: false,
         },
         {
-          name: 'category1',
-          id: 'category1',
+          name: 'category',
+          id: 'category',
           children: [
             {
               name: 'Animaux et articles pour animaux de compagnie',
@@ -304,8 +304,8 @@ describe('SSC filters - filterUncheckedSegments()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category1',
-          id: 'category1',
+          name: 'category',
+          id: 'category',
           checked: false,
           children: [
             {
@@ -333,8 +333,8 @@ describe('SSC filters - filterUncheckedSegments()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category1',
-          id: 'category1',
+          name: 'category',
+          id: 'category',
           checked: true,
           children: [
             {
@@ -383,8 +383,8 @@ describe('SSC filters - filterUncheckedSegments()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category1',
-          id: 'category1',
+          name: 'category',
+          id: 'category',
           checked: true,
           children: [],
         },
@@ -402,7 +402,7 @@ describe('SSC filters - returnChildrenIds()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category1',
+          name: 'category',
           id: '991',
           children: [
             {
@@ -441,7 +441,7 @@ describe('SSC filters - returnChildrenIds()', () => {
           ],
         },
         {
-          name: 'category2',
+          name: 'category',
           id: '992',
           children: [
             {
@@ -463,11 +463,11 @@ describe('SSC filters - returnChildrenIds()', () => {
 
     expect(result).toEqual([
       {
-        dimension: 'category1',
+        dimension: 'category',
         values: [1, 8, 111],
       },
       {
-        dimension: 'category2',
+        dimension: 'category',
         values: [11],
       },
     ],
@@ -484,7 +484,7 @@ describe('SSC filters - checkForIndeterminate()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category1',
+          name: 'category',
           id: '991',
           checked: true,
           children: [
@@ -513,7 +513,7 @@ describe('SSC filters - checkForIndeterminate()', () => {
           ],
         },
         {
-          name: 'category2',
+          name: 'category',
           id: '992',
           checked: true,
         },
@@ -531,7 +531,7 @@ describe('SSC filters - checkForIndeterminate()', () => {
       indeterminate: true,
       children: [
         {
-          name: 'category1',
+          name: 'category',
           id: '991',
           checked: true,
           children: [
@@ -560,7 +560,7 @@ describe('SSC filters - checkForIndeterminate()', () => {
           ],
         },
         {
-          name: 'category2',
+          name: 'category',
           id: '992',
           checked: false,
         },
@@ -577,7 +577,7 @@ describe('SSC filters - checkForIndeterminate()', () => {
       indeterminate: false,
       children: [
         {
-          name: 'category1',
+          name: 'category',
           id: '991',
           checked: true,
           indeterminate: true,
@@ -607,7 +607,7 @@ describe('SSC filters - checkForIndeterminate()', () => {
           ],
         },
         {
-          name: 'category2',
+          name: 'category',
           id: '992',
           checked: true,
         },
