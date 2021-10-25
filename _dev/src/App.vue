@@ -20,7 +20,7 @@
         <!-- We display the tab if user has remarketing tag in the module OR already set elsewhere -->
           <template
             v-if="googleAdsChosen
-              && (remarketingTagStatus || remarketingTagAlreadyExistsStatus)"
+              && remarketingTag"
           >
             <MenuItem
               :route="{name: 'reporting'}"
@@ -86,11 +86,8 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
         && this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.isSet;
     },
-    remarketingTagStatus() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
-    },
-    remarketingTagAlreadyExistsStatus() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS'];
+    remarketingTag() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS'];
     },
     shopId() {
       return window.shopIdPsAccounts;
