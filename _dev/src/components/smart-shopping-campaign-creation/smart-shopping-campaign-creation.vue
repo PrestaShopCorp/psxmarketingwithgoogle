@@ -317,7 +317,6 @@
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
-      :filters="filtersForSummary"
       :filters-exist="!campaignHasNoProductsFilter"
       @openPopinSSCCreated="onCampaignCreated"
       @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
@@ -348,7 +347,6 @@ export default {
       campaignDurationEndDate: null,
       campaignHasNoProductsFilter: true,
       filtersChosen: [],
-      filtersForSummary: null,
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
@@ -537,7 +535,6 @@ export default {
     },
 
     getDimensionsFiltered(dimensions) {
-      this.filtersForSummary = dimensions;
       this.filtersChosen = returnChildrenIds(dimensions);
     },
     getDatasFiltersDimensions() {

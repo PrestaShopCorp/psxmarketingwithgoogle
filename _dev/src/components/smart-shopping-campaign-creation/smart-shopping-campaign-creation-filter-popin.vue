@@ -88,7 +88,7 @@
 <script>
 import PsModal from '../commons/ps-modal';
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
-import {filterUncheckedSegments} from '../../utils/SSCFilters';
+import {filterUncheckedSegments, checkForIndeterminate} from '../../utils/SSCFilters';
 
 export default {
   name: 'SmartShoppingCampaignCreationFilterPopin',
@@ -149,24 +149,10 @@ export default {
       });
     },
 
-    checkForIndeterminate(obj) {
-      const isIndeterminate = obj.children.map((element) => {
-        if (element.children) {
-          this.checkForIndeterminate(element);
-        }
-        return element.checked;
-      });
-      if (isIndeterminate.includes(true) && isIndeterminate.includes(false)) {
-        obj.indeterminate = true;
-      } else {
-        obj.indeterminate = false;
-      }
-    },
-
     selectCheckbox(event) {
       this.checkChildren(event.item?.children || [], event.checked);
       event.item.checked = event.checked;
-      this.checkForIndeterminate(this.availableFilters);
+      checkForIndeterminate(this.availableFilters);
     },
 
     sendDimensionsSelected() {

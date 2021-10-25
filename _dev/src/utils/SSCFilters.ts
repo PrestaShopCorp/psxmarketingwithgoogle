@@ -5,6 +5,10 @@ export type CampaignFilter = {
     indeterminate?: boolean;
     children?: CampaignFilter[];
   };
+export type FiltersChosen = {
+    dimension?: string;
+    values: Array<number>;
+  };
 
 export function filterUncheckedSegments(source: CampaignFilter) {
   const filteredChildren = source.children?.map((child) => {
@@ -23,14 +27,45 @@ export function filterUncheckedSegments(source: CampaignFilter) {
   };
 }
 
-export function returnChildrenIds(source: CampaignFilter): number[] {
-  const ids: number[] = [];
+export function returnChildrenIds(source: CampaignFilter): Array<FiltersChosen> {
+  const final : FiltersChosen[] = [];
+
   if (source.children) {
-    source.children.forEach((child) => {
-      ids.push(...returnChildrenIds(child));
+    source.children.forEach((child, index) => {
+      final.push({
+        dimension: '',
+        values: [],
+      });
+      if (child.children) {
+        child.children.forEach((child2) => {
+          // final[index].dimension = child.name;
+          final[index].dimension = 'category';
+          final[index].values.push(Number(child2.id));
+        });
+        returnChildrenIds(child);
+      }
     });
   } else {
-    ids.push(Number(source.id));
+    final.push({
+      // dimension: source.name,
+      dimension: 'category',
+      values: [Number(source.id)],
+    });
   }
-  return ids;
+  return final;
+}
+
+export function checkForIndeterminate(source: CampaignFilter) {
+  const isIndeterminate = source.children?.map((element) => {
+    if (element.children) {
+      return checkForIndeterminate(element);
+    }
+    return element.checked;
+  });
+  if (isIndeterminate && isIndeterminate.includes(true) && isIndeterminate.includes(false)) {
+    source.indeterminate = true;
+  } else {
+    source.indeterminate = false;
+  }
+  return source;
 }

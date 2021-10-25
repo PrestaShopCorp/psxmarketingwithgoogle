@@ -117,10 +117,6 @@ export default {
       required: false,
       type: Boolean,
     },
-    filters: {
-      required: false,
-      type: Object,
-    },
   },
 
   data() {
@@ -132,13 +128,15 @@ export default {
 
   computed: {
     nbFilters() {
+      const total = this.newCampaign.productFilters
+        .map((e) => e.values.length).reduce((a, b) => a + b, 0);
       return `${this.$tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
-        this.filters?.children.length,
-        [this.filters?.children.length])
+        this.newCampaign.productFilters.length,
+        [this.newCampaign.productFilters.length])
       } - ${
         this.$tc('smartShoppingCampaignCreation.nbValuesSelected',
-          this.newCampaign.productFilters.length,
-          [this.newCampaign.productFilters.length])}`;
+          total,
+          [total])}`;
     },
   },
 
