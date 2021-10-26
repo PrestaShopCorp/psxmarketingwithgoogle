@@ -254,6 +254,7 @@ export default {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
       this.$router.push({
         name: 'configuration',
+        hash: '#product-feed-card',
       });
       this.disabledExportButton = false;
     },
