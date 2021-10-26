@@ -72,7 +72,6 @@ export default {
         return;
       }
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
-      commit(MutationsTypes.SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE, true);
       if (customer.invitationLink && !customer.isAdmin) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'NeedValidationFromEmail');
       } else if (!customer.billingSettings.isSet) {
