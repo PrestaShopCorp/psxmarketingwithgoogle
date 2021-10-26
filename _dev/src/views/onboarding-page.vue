@@ -169,7 +169,7 @@ export default {
         });
     },
     onGoogleAdsAccountSelected() {
-    //   this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', true);
+      this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', true);
     },
     onGoogleAccountConnection() {
       this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
