@@ -122,9 +122,7 @@ export default {
       });
     },
     countChildren(item) {
-      // TODO: check if function is OK to count items
       const tableOfCHildren = [];
-
       // eslint-disable-next-line
       function fillTableOfChildren(elem) {
         if (!elem.children) {

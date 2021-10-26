@@ -56,13 +56,13 @@ export function returnChildrenIds(source: CampaignFilter): Array<FiltersChosen> 
 }
 
 export function checkForIndeterminate(source: CampaignFilter) {
-  const isIndeterminate = source.children?.map((element) => {
+  const checkStatus = source.children?.flatMap((element) => {
     if (element.children) {
-      return checkForIndeterminate(element);
+      checkForIndeterminate(element);
     }
     return element.checked;
   });
-  if (isIndeterminate && isIndeterminate.includes(true) && isIndeterminate.includes(false)) {
+  if (checkStatus && checkStatus.includes(true) && checkStatus.includes(false)) {
     source.indeterminate = true;
   } else {
     source.indeterminate = false;
