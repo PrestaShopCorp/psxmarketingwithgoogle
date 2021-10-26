@@ -32,7 +32,7 @@
             <MenuItem
               :route="{name: 'product-feed'}"
             >
-              {{ $t('general.tabs.productFeed') }}
+              {{ $t('general.tabs.exportStatus') }}
             </MenuItem>
             <MenuItem
               v-if="googleAdsChosen"

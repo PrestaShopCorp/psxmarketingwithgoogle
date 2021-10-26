@@ -2,7 +2,7 @@
   "en" : {
     "general" : {
       "tabs" : {
-        "productFeed": "Product Feed",
+        "exportStatus": "Export status",
         "campaign": "Campaign",
         "reporting": "Reporting",
         "configuration" : "Configure",
