@@ -105,7 +105,7 @@ const router = new VueRouter({
         selector: to.hash,
         offset: {
           x: 0,
-          y: 180, // Arbitrary value to take menu height into account
+          y: 200, // Arbitrary value to take menu height into account
         },
       };
     } if (savedPosition) {
