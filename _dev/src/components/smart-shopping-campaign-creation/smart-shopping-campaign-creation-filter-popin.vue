@@ -140,12 +140,10 @@ export default {
       }
     },
 
-    checkChildren(arr, checkboxClicked) {
-      arr.forEach((child) => {
-        child.checked = checkboxClicked;
-        if (child.children) {
-          this.checkChildren(child.children, checkboxClicked);
-        }
+    deepCheckDimension(source, checkboxClicked) {
+      source.checked = checkboxClicked;
+      source.children?.forEach((child) => {
+        this.deepCheckDimension(child, checkboxClicked);
       });
     },
 
