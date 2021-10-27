@@ -32,6 +32,7 @@ export default {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
       this.$router.push({
         name: 'onboarding',
+        hash: '#product-feed-card',
       });
     },
   },

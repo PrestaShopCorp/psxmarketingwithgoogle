@@ -99,7 +99,23 @@ const routes: Array<RouteConfig> = [
 const router = new VueRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
-    return {x: 0, y: 0};
+    // Allows to scroll to an anchor
+    if (to.hash) {
+      return {
+        selector: to.hash,
+        offset: {
+          x: 0,
+          y: 200, // Arbitrary value to take menu height into account
+        },
+      };
+    } if (savedPosition) {
+      // Allows to simulate position in page when using prev / next btn
+      return savedPosition;
+    }
+    return {
+      x: 0,
+      y: 0,
+    };
   },
 });
 
