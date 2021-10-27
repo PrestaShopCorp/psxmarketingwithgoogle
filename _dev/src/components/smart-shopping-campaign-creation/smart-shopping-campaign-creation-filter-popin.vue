@@ -125,9 +125,8 @@ export default {
             final.push(dim);
           }
         });
-        return final.length;
       }
-      return 0;
+      return final.length;
     },
 
   },
