@@ -14,11 +14,11 @@
         </i>
         <span>{{ title }}</span>
       </div>
-      <div
-        class="font-weight-600 ps_gs-fz-16 mt-1 mb-0"
+      <p
+        class="font-weight-600 ps_gs-fz-16 mt-1 mb-0 text-first-letter-uppercase"
       >
         {{ description }}
-      </div>
+      </p>
     </div>
   </b-col>
 </template>

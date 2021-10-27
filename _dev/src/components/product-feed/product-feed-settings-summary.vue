@@ -18,15 +18,16 @@
             :description="nextSyncTotalProducts"
           />
           <product-feed-card-next-sync-card
+            class="ps_gs-productfeed-report-card--66"
             icon="event"
             :title="$t('productFeedSettings.summary.date')"
-            :description="nextSyncDate | timeConverterToDate"
+            :description="nextSyncDate | timeConverterToStringifiedDate"
           />
-          <product-feed-card-next-sync-card
+          <!-- <product-feed-card-next-sync-card
             icon="schedule"
             :title="$t('productFeedSettings.summary.time')"
             :description="formatNextSync"
-          />
+          /> -->
         </b-row>
       </b-container>
     </section>
