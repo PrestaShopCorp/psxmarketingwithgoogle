@@ -23,11 +23,6 @@
             :title="$t('productFeedSettings.summary.date')"
             :description="nextSyncDate | timeConverterToStringifiedDate"
           />
-          <!-- <product-feed-card-next-sync-card
-            icon="schedule"
-            :title="$t('productFeedSettings.summary.time')"
-            :description="formatNextSync"
-          /> -->
         </b-row>
       </b-container>
     </section>
