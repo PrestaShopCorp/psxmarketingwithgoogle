@@ -3,11 +3,13 @@ import Vue from 'vue';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
 import utc from 'dayjs/plugin/utc';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 import store from '@/store';
 import countriesSelectionOptions from '../assets/json/countries.json';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+dayjs.extend(localizedFormat);
 dayjs.tz.setDefault('Europe/London');
 
 Vue.filter(
@@ -21,6 +23,14 @@ Vue.filter(
       const finalDay = day < 10 ? `0${day}` : day;
       const time = `${finalDay}/${finalMonth}/${year}`;
       return time;
+    }
+    return '-';
+  });
+
+Vue.filter(
+  'timeConverterToStringifiedDate', (date : string) => {
+    if (date) {
+      return dayjs(date).locale(window.i18nSettings.languageLocale).format('LLLL');
     }
     return '-';
   });

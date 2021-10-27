@@ -29,6 +29,11 @@
       flex: 0 0 calc(33.33333% - 4px - 4px);
       max-width: calc(33.33333% - 4px - 4px);
     }
+
+    &.ps_gs-productfeed-report-card--66 {
+      flex: 0 0 calc(66.66666% - 4px - 4px);
+      max-width: calc(66.66666% - 4px - 4px);
+    }
   }
 
   &__details {
