@@ -47,6 +47,7 @@ export default {
     commit, rootState, dispatch, state,
   }) {
     try {
+      commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/status`,
         {
           method: 'GET',
@@ -66,8 +67,8 @@ export default {
       };
       const accountIsActivated = state.list.filter((camp) => camp.id === json.customer.id);
       if (!accountIsActivated.length || json.customer.isAccountCancelled) {
-        dispatch(ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT);
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Cancelled');
+        commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
         return;
       }
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
