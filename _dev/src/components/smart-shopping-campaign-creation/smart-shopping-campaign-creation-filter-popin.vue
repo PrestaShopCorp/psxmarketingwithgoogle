@@ -133,11 +133,7 @@ export default {
 
   methods: {
     checkAll(status) {
-      this.availableFilters.checked = status;
-      this.availableFilters.indeterminate = false;
-      if (this.availableFilters.children) {
-        this.checkChildren(this.availableFilters.children, status);
-      }
+      this.deepCheckDimension(this.availableFilters, status);
     },
 
     deepCheckDimension(source, checkboxClicked) {
