@@ -89,7 +89,7 @@
 <script>
 import PsModal from '../commons/ps-modal';
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
-import {filterUncheckedSegments, checkAndUpdateDimensionStatus} from '../../utils/SSCFilters';
+import {filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension} from '../../utils/SSCFilters';
 
 export default {
   name: 'SmartShoppingCampaignCreationFilterPopin',
@@ -133,20 +133,11 @@ export default {
 
   methods: {
     checkAll(status) {
-      this.deepCheckDimension(this.availableFilters, status);
-    },
-
-    deepCheckDimension(source, checkboxClicked) {
-      source.checked = checkboxClicked;
-      if (source.children) {
-        source.children.forEach((child) => {
-          this.deepCheckDimension(child, checkboxClicked);
-        });
-      }
+      deepCheckDimension(this.availableFilters, status);
     },
 
     selectCheckbox(event) {
-      this.deepCheckDimension(event.item, event.checked);
+      deepCheckDimension(event.item, event.checked);
       checkAndUpdateDimensionStatus(this.availableFilters);
     },
 

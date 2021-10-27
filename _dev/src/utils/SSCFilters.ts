@@ -71,3 +71,12 @@ export function checkAndUpdateDimensionStatus(source: CampaignFilter) {
   }
   return source;
 }
+export function deepCheckDimension(source: CampaignFilter, checkboxClicked) {
+  source.checked = checkboxClicked;
+  if (source.children) {
+    source.children.forEach((child) => {
+      deepCheckDimension(child, checkboxClicked);
+    });
+  }
+  return source;
+}
