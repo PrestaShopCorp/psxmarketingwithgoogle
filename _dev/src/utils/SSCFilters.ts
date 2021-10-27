@@ -55,17 +55,19 @@ export function returnChildrenIds(source: CampaignFilter): Array<FiltersChosen> 
   return final;
 }
 
-export function checkForIndeterminate(source: CampaignFilter) {
-  const checkStatus = source.children?.flatMap((element) => {
+export function checkAndUpdateDimensionStatus(source: CampaignFilter) {
+  const checkedChildren = source.children?.filter((element) => {
     if (element.children) {
-      checkForIndeterminate(element);
+      checkAndUpdateDimensionStatus(element);
     }
     return element.checked;
   });
-  if (checkStatus && checkStatus.includes(true) && checkStatus.includes(false)) {
-    source.indeterminate = true;
-  } else {
-    source.indeterminate = false;
+  const indeterminedOrCheckedChildren = source.children?.filter(
+    (element) => element.checked || element.indeterminate);
+
+  if (checkedChildren && indeterminedOrCheckedChildren) {
+    source.checked = checkedChildren.length === source.children?.length;
+    source.indeterminate = !source.checked && !!indeterminedOrCheckedChildren.length;
   }
   return source;
 }

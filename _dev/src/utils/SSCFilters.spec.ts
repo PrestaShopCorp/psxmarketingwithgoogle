@@ -5,7 +5,7 @@
  * @jest-environment jsdom
  */
 
-import {filterUncheckedSegments, returnChildrenIds, checkForIndeterminate} from './SSCFilters';
+import {filterUncheckedSegments, returnChildrenIds, checkAndUpdateDimensionStatus} from './SSCFilters';
 
 describe('SSC filters - filterUncheckedSegments()', () => {
   it('returns an empty array when everything is unchecked', () => {
@@ -478,7 +478,7 @@ describe('SSC filters - returnChildrenIds()', () => {
   });
 });
 
-describe('SSC filters - checkForIndeterminate()', () => {
+describe('SSC filters - checkAndUpdateDimensionStatus()', () => {
   it('check indeterminate to false if children are all unchecked or checked', () => {
     const source = {
       name: 'All filters',
@@ -498,7 +498,7 @@ describe('SSC filters - checkForIndeterminate()', () => {
         },
       ],
     };
-    const result = checkForIndeterminate(source);
+    const result = checkAndUpdateDimensionStatus(source);
     expect(result).toEqual({
       name: 'All filters',
       id: '99',
@@ -523,7 +523,7 @@ describe('SSC filters - checkForIndeterminate()', () => {
     const source = {
       name: 'All filters',
       id: '99',
-      checked: true,
+      checked: false,
       indeterminate: false,
       children: [
         {
@@ -538,11 +538,11 @@ describe('SSC filters - checkForIndeterminate()', () => {
         },
       ],
     };
-    const result = checkForIndeterminate(source);
+    const result = checkAndUpdateDimensionStatus(source);
     expect(result).toEqual({
       name: 'All filters',
       id: '99',
-      checked: true,
+      checked: false,
       indeterminate: true,
       children: [
         {
@@ -559,93 +559,232 @@ describe('SSC filters - checkForIndeterminate()', () => {
     });
   });
 
-  // it('check child and parent indeterminate to true if children have not same checked status', () => {
-  //   const source = {
-  //     name: 'All filters',
-  //     id: '99',
-  //     checked: true,
-  //     indeterminate: false,
-  //     children: [
-  //       {
-  //         name: 'category',
-  //         id: '991',
-  //         checked: true,
-  //         indeterminate: false,
-  //         children: [
-  //           {
-  //             name: 'Animaux et articles pour animaux de compagnie',
-  //             resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~1',
-  //             level: 'LEVEL1',
-  //             status: 'ACTIVE',
-  //             id: '1',
-  //             countryCode: 'FR',
-  //             languageCode: 'fr',
-  //             localizedName: 'Animaux et articles pour animaux de compagnie',
-  //             checked: false,
-  //           },
-  //           {
-  //             name: 'Entreprise et industrie',
-  //             resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~111',
-  //             level: 'LEVEL1',
-  //             status: 'ACTIVE',
-  //             id: '111',
-  //             countryCode: 'FR',
-  //             languageCode: 'fr',
-  //             localizedName: 'Entreprise et industrie',
-  //             checked: true,
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         name: 'category',
-  //         id: '992',
-  //         checked: true,
-  //       },
-  //     ],
-  //   };
-  //   const result = checkForIndeterminate(source);
-  //   expect(result).toEqual({
-  //     name: 'All filters',
-  //     id: '99',
-  //     checked: true,
-  //     indeterminate: true,
-  //     children: [
-  //       {
-  //         name: 'category',
-  //         id: '991',
-  //         checked: true,
-  //         indeterminate: true,
-  //         children: [
-  //           {
-  //             name: 'Animaux et articles pour animaux de compagnie',
-  //             resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~1',
-  //             level: 'LEVEL1',
-  //             status: 'ACTIVE',
-  //             id: '1',
-  //             countryCode: 'FR',
-  //             languageCode: 'fr',
-  //             localizedName: 'Animaux et articles pour animaux de compagnie',
-  //             checked: false,
-  //           },
-  //           {
-  //             name: 'Entreprise et industrie',
-  //             resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~111',
-  //             level: 'LEVEL1',
-  //             status: 'ACTIVE',
-  //             id: '111',
-  //             countryCode: 'FR',
-  //             languageCode: 'fr',
-  //             localizedName: 'Entreprise et industrie',
-  //             checked: true,
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         name: 'category',
-  //         id: '992',
-  //         checked: true,
-  //       },
-  //     ],
-  //   });
-  // });
+  it('check child and parent indeterminate to true if children have not same checked status', () => {
+    const source = {
+      name: 'All filters',
+      id: '99',
+      checked: true,
+      indeterminate: false,
+      children: [
+        {
+          name: 'category',
+          id: '991',
+          checked: true,
+          indeterminate: false,
+          children: [
+            {
+              name: 'Animaux et articles pour animaux de compagnie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~1',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '1',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Animaux et articles pour animaux de compagnie',
+              checked: false,
+            },
+            {
+              name: 'Entreprise et industrie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~111',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '111',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Entreprise et industrie',
+              checked: true,
+            },
+          ],
+        },
+        {
+          name: 'category',
+          id: '992',
+          checked: false,
+        },
+      ],
+    };
+    const result = checkAndUpdateDimensionStatus(source);
+    expect(result).toEqual({
+      name: 'All filters',
+      id: '99',
+      checked: false,
+      indeterminate: true,
+      children: [
+        {
+          name: 'category',
+          id: '991',
+          checked: false,
+          indeterminate: true,
+          children: [
+            {
+              name: 'Animaux et articles pour animaux de compagnie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~1',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '1',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Animaux et articles pour animaux de compagnie',
+              checked: false,
+            },
+            {
+              name: 'Entreprise et industrie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~111',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '111',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Entreprise et industrie',
+              checked: true,
+            },
+          ],
+        },
+        {
+          name: 'category',
+          id: '992',
+          checked: false,
+        },
+      ],
+    });
+  });
+
+  it('sets a parent as indetermined if all children are indetermined too', () => {
+    const source = {
+      name: 'All filters',
+      id: '99',
+      checked: true,
+      indeterminate: false,
+      children: [
+        {
+          name: 'category',
+          id: '991',
+          checked: true,
+          indeterminate: false,
+          children: [
+            {
+              name: 'Animaux et articles pour animaux de compagnie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~1',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '1',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Animaux et articles pour animaux de compagnie',
+              checked: false,
+            },
+            {
+              name: 'Entreprise et industrie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~111',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '111',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Entreprise et industrie',
+              checked: true,
+            },
+          ],
+        },
+        {
+          name: 'category',
+          id: '992',
+          checked: false,
+          children: [
+            {
+              name: 'Animaux et articles pour animaux de compagnie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~1',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '1',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Animaux et articles pour animaux de compagnie',
+              checked: false,
+            },
+            {
+              name: 'Entreprise et industrie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~111',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '111',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Entreprise et industrie',
+              checked: true,
+            },
+          ],
+        },
+      ],
+    };
+    const result = checkAndUpdateDimensionStatus(source);
+    expect(result).toEqual({
+      name: 'All filters',
+      id: '99',
+      checked: false,
+      indeterminate: true,
+      children: [
+        {
+          name: 'category',
+          id: '991',
+          checked: false,
+          indeterminate: true,
+          children: [
+            {
+              name: 'Animaux et articles pour animaux de compagnie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~1',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '1',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Animaux et articles pour animaux de compagnie',
+              checked: false,
+            },
+            {
+              name: 'Entreprise et industrie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~111',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '111',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Entreprise et industrie',
+              checked: true,
+            },
+          ],
+        },
+        {
+          name: 'category',
+          id: '992',
+          checked: false,
+          indeterminate: true,
+          children: [
+            {
+              name: 'Animaux et articles pour animaux de compagnie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~1',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '1',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Animaux et articles pour animaux de compagnie',
+              checked: false,
+            },
+            {
+              name: 'Entreprise et industrie',
+              resourceName: 'productBiddingCategoryConstants/FR~LEVEL1~111',
+              level: 'LEVEL1',
+              status: 'ACTIVE',
+              id: '111',
+              countryCode: 'FR',
+              languageCode: 'fr',
+              localizedName: 'Entreprise et industrie',
+              checked: true,
+            },
+          ],
+        },
+      ],
+    });
+  });
 });

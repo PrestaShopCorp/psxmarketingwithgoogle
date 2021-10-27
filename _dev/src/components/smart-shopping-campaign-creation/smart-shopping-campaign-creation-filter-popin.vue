@@ -42,6 +42,7 @@
             </h6>
             <ul class="ps_gs-filters">
               <SmartShoppingCampaignCreationFilterItem
+                v-if="totalNumberOfProducts"
                 :item="filteredDimensions"
                 :is-open-by-default="true"
                 :selected-filters="true"
@@ -88,7 +89,7 @@
 <script>
 import PsModal from '../commons/ps-modal';
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
-import {filterUncheckedSegments, checkForIndeterminate} from '../../utils/SSCFilters';
+import {filterUncheckedSegments, checkAndUpdateDimensionStatus} from '../../utils/SSCFilters';
 
 export default {
   name: 'SmartShoppingCampaignCreationFilterPopin',
@@ -152,7 +153,7 @@ export default {
     selectCheckbox(event) {
       this.checkChildren(event.item?.children || [], event.checked);
       event.item.checked = event.checked;
-      checkForIndeterminate(this.availableFilters);
+      checkAndUpdateDimensionStatus(this.availableFilters);
     },
 
     sendDimensionsSelected() {
