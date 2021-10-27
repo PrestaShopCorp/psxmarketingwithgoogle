@@ -138,13 +138,15 @@ export default {
 
     deepCheckDimension(source, checkboxClicked) {
       source.checked = checkboxClicked;
-      source.children?.forEach((child) => {
-        this.deepCheckDimension(child, checkboxClicked);
-      });
+      if (source.children) {
+        source.children.forEach((child) => {
+          this.deepCheckDimension(child, checkboxClicked);
+        });
+      }
     },
 
     selectCheckbox(event) {
-      this.availableFilters(event.item, event.checked);
+      this.deepCheckDimension(event.item, event.checked);
       checkAndUpdateDimensionStatus(this.availableFilters);
     },
 
