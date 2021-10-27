@@ -63,7 +63,7 @@
           variant="primary"
           size="sm"
           class="mr-3"
-          :disabled="askAgainIn60Sec"
+          :disabled="askAgainIn60Sec || phoneNumberNotValid"
         >
           {{ btnText }}
         </b-button>
@@ -263,6 +263,9 @@ export default {
     },
   },
   computed: {
+    phoneNumberNotValid() {
+      return /^\d+$/.test(this.phoneNumber) ? null : true;
+    },
     obfuscatedPhoneNumber() {
       return this.phoneNumber.length > 2
         ? `${'•'.repeat(this.phoneNumber.length - 2)}${this.phoneNumber.slice(-2)}`
@@ -270,10 +273,6 @@ export default {
     },
     phoneRegionCode: {
       get() {
-        if (this.dialCode.includes('+')) {
-          return this.dialCode;
-        }
-        // In case we receive country code from shop
         let finish = null;
         finish = this.$options.phonesPrefixSelectionOptions.find((o) => {
           if (o.code === this.dialCode || o.dial_code === this.dialCode) {
@@ -284,7 +283,7 @@ export default {
         return finish.dial_code;
       },
       set(value) {
-        this.dialCode = value.dial_code;
+        this.dialCode = value.code;
       },
     },
     finalPhoneNumber: {
