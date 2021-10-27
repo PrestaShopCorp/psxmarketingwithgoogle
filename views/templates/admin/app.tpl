@@ -19,11 +19,11 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<link href="{$pathApp|escape:'htmlall':'UTF-8'}" rel=preload as=script>
+<link href="{$pathApp|escape:'htmlall':'UTF-8'}?version={$version|escape:'htmlall':'UTF-8'}" rel=preload as=script>
 
 <div id="psxMktgWithGoogleApp"></div>
-<script src="{$chunkVendor|escape:'htmlall':'UTF-8'}"></script>
-<script src="{$pathApp|escape:'htmlall':'UTF-8'}"></script>
+<script src="{$chunkVendor|escape:'htmlall':'UTF-8'}?version={$version|escape:'htmlall':'UTF-8'}"></script>
+<script src="{$pathApp|escape:'htmlall':'UTF-8'}?version={$version|escape:'htmlall':'UTF-8'}"></script>
 
 <style>
   /** Hide native multistore module activation panel, because of visual regressions on non-bootstrap content */
