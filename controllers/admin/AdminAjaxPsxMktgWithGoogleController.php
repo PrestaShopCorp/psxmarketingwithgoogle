@@ -24,6 +24,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository;
@@ -63,6 +64,11 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
      */
     protected $productRepository;
 
+    /**
+     * @var AttributesRepository
+     */
+    protected $attributesRepository;
+
     public function __construct()
     {
         parent::__construct();
@@ -72,6 +78,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
         $this->countryRepository = $this->module->getService(CountryRepository::class);
         $this->productRepository = $this->module->getService(ProductRepository::class);
+        $this->attributesRepository = $this->module->getService(attributesRepository::class);
         $this->googleTagProvider = $this->module->getService(GoogleTagProvider::class);
         $this->currencyRepository = $this->module->getService(CurrencyRepository::class);
         $this->ajax = true;
@@ -134,6 +141,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 break;
             case 'setGMCInformations':
                 $this->setGMCInformations($inputs);
+                break;
+            case 'getShopAttributes':
+                $this->getShopAttributes();
                 break;
             default:
                 http_response_code(400);
@@ -453,6 +463,15 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             ),
             'typesOfSync' => $typesOfSync,
         ]));
+    }
+
+    public function getShopAttributes()
+    {
+        $this->ajaxDie(
+            json_encode(
+                $this->attributesRepository->getAllAttributes()
+            )
+        );
     }
 
     /**
