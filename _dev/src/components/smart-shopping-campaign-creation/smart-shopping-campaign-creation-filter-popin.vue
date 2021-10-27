@@ -144,8 +144,7 @@ export default {
     },
 
     selectCheckbox(event) {
-      this.checkChildren(event.item?.children || [], event.checked);
-      event.item.checked = event.checked;
+      this.availableFilters(event.item, event.checked);
       checkAndUpdateDimensionStatus(this.availableFilters);
     },
 
