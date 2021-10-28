@@ -49,19 +49,38 @@
       </b-dropdown-form>
       <b-dropdown-item-button
         button-class="rounded-0 text-dark"
+        @click="selectNotAvailable"
       >
         <span
           class="px-2"
         >
-          Not available
+          {{ $t('general.notAvailable') }}
         </span>
       </b-dropdown-item-button>
     </b-dropdown>
+    <div
+      v-if="notAvailableSelected"
+      class="maxw-sm-250 d-flex text-muted ps_gs-fz-12 mt-1"
+    >
+      <i class="material-icons-round ps_gs-fz-16 font-weight-normal mr-1">warning_amber</i>
+      <VueShowdown
+        :markdown="$t('productFeedSettings.attributeMapping.requiredForSomeCategories',
+                      [$options.googleUrl.learnRequirementsProductSpecification])"
+        :extensions="['extended-link']"
+      />
+    </div>
   </b-form-group>
 </template>
 
 <script>
+import googleUrl from '@/assets/json/googleUrl.json';
+
 export default {
+  data() {
+    return {
+      notAvailableSelected: false,
+    };
+  },
   props: {
     field: {
       type: Object,
@@ -99,5 +118,12 @@ export default {
       ];
     },
   },
+  methods: {
+    selectNotAvailable() {
+      // TODO: handle uncheck all
+      this.notAvailableSelected = true;
+    },
+  },
+  googleUrl,
 };
 </script>

@@ -65,6 +65,7 @@ class PsxMktgWithGoogleTranslations
                 'unableToFetchData' => $this->module->l('We were unable to fetch datas, please try again later.', 'PsxMktgWithGoogleTranslations'),
                 'searchByX' => $this->module->l('Search by {0}', 'PsxMktgWithGoogleTranslations'),
                 'legendCreateNewAccount' => $this->module->l('You also have the possibility to create a new account within few steps:', 'PsxMktgWithGoogleTranslations'),
+                'notAvailable' => $this->module->l('Not available', 'PsxMktgWithGoogleTranslations'),
             ],
             'configuration' => [
                 'introduction' => $this->module->l('Configuration Page !', 'PsxMktgWithGoogleTranslations'),
@@ -348,6 +349,7 @@ class PsxMktgWithGoogleTranslations
                     'variantSetsSubtitle' => $this->module->l('i.e different graphic prints, patterns, fabrics or materials', 'PsxMktgWithGoogleTranslations'),
                     'commonsTitle' => $this->module->l('None of the above', 'PsxMktgWithGoogleTranslations'),
                     'footerNotice' => $this->module->l('Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.', 'PsxMktgWithGoogleTranslations'),
+                    'requiredForSomeCategories' => $this->module->l('This field is required for some product categories. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]', 'PsxMktgWithGoogleTranslations'),
 
                     'learnAboutAttributeMapping' => $this->module->l('Learn more about product data attributes', 'PsxMktgWithGoogleTranslations'),
                     'introNotice' => $this->module->l('Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.', 'PsxMktgWithGoogleTranslations'),

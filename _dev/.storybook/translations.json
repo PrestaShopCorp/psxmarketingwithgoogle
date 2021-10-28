@@ -15,7 +15,8 @@
       "XIsMandatory" : "{0} is mandatory.",
       "unableToFetchData" : "We were unable to fetch datas, please try again later",
       "searchByX" : "Search by {0}",
-      "legendCreateNewAccount" : "You also have the possibility to create a new account within few steps:"
+      "legendCreateNewAccount" : "You also have the possibility to create a new account within few steps:",
+      "notAvailable" : "Not available"
     },
     "configuration" : {
         "introduction" : "Configuration Page !"
@@ -300,6 +301,7 @@
         "commonsTitle" : "None of the above",
         "learnRequirementsProductSpecification" : "Learn more about requirements & supported values for the Shopping product data specification",
         "footerNotice" : "Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
+        "requiredForSomeCategories" : "This field is required for some product categories. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
 
         "sellApparelAndAccessories" : "Apparel and Accessories",
         "sellRefurbishedProducts" : "Refurbished",
