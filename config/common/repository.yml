@@ -9,6 +9,11 @@ services:
       - '@psxmarketingwithgoogle.db'
       - '@psxmarketingwithgoogle.context'
 
+  PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository
+    arguments:
+      - '@psxmarketingwithgoogle.context'
+
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository
     arguments:
