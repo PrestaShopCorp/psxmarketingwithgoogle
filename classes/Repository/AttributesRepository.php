@@ -46,17 +46,17 @@ class AttributesRepository
         $customAttributes = \AttributeGroupCore::getAttributesGroups($this->context->language->id);
 
         foreach ($productAttributes as $value) {
-            array_push($attributes, [
+            $attributes[] = [
                 'name' => $value,
                 'isCustom' => false,
-            ]);
+            ];
         }
 
         foreach ($customAttributes as $attr) {
-            array_push($attributes, [
+            $attributes[] = [
                 'name' => $attr['name'],
                 'isCustom' => true,
-            ]);
+            ];
         }
 
         return $attributes;
