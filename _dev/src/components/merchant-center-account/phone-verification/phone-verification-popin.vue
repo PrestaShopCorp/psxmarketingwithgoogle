@@ -264,7 +264,7 @@ export default {
   },
   computed: {
     phoneNumberNotValid() {
-      return /^\d+$/.test(this.phoneNumber) ? null : true;
+      return !(/^\d+$/.test(this.phoneNumber));
     },
     obfuscatedPhoneNumber() {
       return this.phoneNumber.length > 2
