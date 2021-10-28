@@ -337,6 +337,17 @@ class PsxMktgWithGoogleTranslations
                 'attributeMapping' => [
                     'title1' => $this->module->l('1. Choose all characteristics that apply to your products', 'PsxMktgWithGoogleTranslations'),
                     'description1' => $this->module->l('This will allow you to map mandatory Google product attributes at the next step depending on your catalog.', 'PsxMktgWithGoogleTranslations'),
+                    'title2' => $this->module->l('2. Map mandatory Google attributes to your custom fields', 'PsxMktgWithGoogleTranslations'),
+                    'description2' => $this->module->l('Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later.', 'PsxMktgWithGoogleTranslations'),
+                    'learnRequirementsProductSpecification' => $this->module->l('Learn more about requirements & supported values for the Shopping product data specification', 'PsxMktgWithGoogleTranslations'),
+                    'apparelAndAccessoriesTitle' => $this->module->l('I sell Apparel and/or Accessories', 'PsxMktgWithGoogleTranslations'),
+                    'apparelAndAccessoriesSubtitle' => $this->module->l('i.e clothing, bags, shoes or hats', 'PsxMktgWithGoogleTranslations'),
+                    'electronicsTitle' => $this->module->l('I sell Home and/or Kitchen appliances', 'PsxMktgWithGoogleTranslations'),
+                    'electronicsSubtitle' => $this->module->l('i.e refrigerators, dishwashers, washing machines, light bulbs', 'PsxMktgWithGoogleTranslations'),
+                    'variantSetsTitle' => $this->module->l('My products have variant sets', 'PsxMktgWithGoogleTranslations'),
+                    'variantSetsSubtitle' => $this->module->l('i.e different graphic prints, patterns, fabrics or materials', 'PsxMktgWithGoogleTranslations'),
+                    'commonsTitle' => $this->module->l('None of the above', 'PsxMktgWithGoogleTranslations'),
+                    'footerNotice' => $this->module->l('Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.', 'PsxMktgWithGoogleTranslations'),
 
                     'learnAboutAttributeMapping' => $this->module->l('Learn more about product data attributes', 'PsxMktgWithGoogleTranslations'),
                     'introNotice' => $this->module->l('Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.', 'PsxMktgWithGoogleTranslations'),
@@ -363,7 +374,6 @@ class PsxMktgWithGoogleTranslations
                     'footerNotice2' => $this->module->l('We encourage submitting as many applicable attributes as possible to ensure accurate and comprehensive data.', 'PsxMktgWithGoogleTranslations'),
                     'learnAboutShippingSettings' => $this->module->l('Learn more about shipping settings', 'PsxMktgWithGoogleTranslations'),
                     'learnHowToSetupShippingSettings' => $this->module->l('Learn how to set up shipping', 'PsxMktgWithGoogleTranslations'),
-                    'learnRequirementsProductSpeficifacion' => $this->module->l('Learn more about product feed specification', 'PsxMktgWithGoogleTranslations'),
                     'weWillRecoverTheseAttributes' => $this->module->l('For your products we will recover these attributes:', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'summary' => [

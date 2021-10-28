@@ -48,10 +48,6 @@
         v-if="activeStep == 3"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
-      <old-product-feed-settings-attribute-mapping
-        v-if="activeStep == 3"
-        @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
-      />
       <product-feed-settings-summary
         v-bind="$attrs"
         v-if="activeStep == 4"
@@ -65,7 +61,6 @@
 import Stepper from '../commons/stepper';
 import ProductFeedSettingsShipping from './product-feed-settings-shipping';
 import ProductFeedSettingsExport from './product-feed-settings-export';
-import OldProductFeedSettingsAttributeMapping from './product-feed-settings-attribute-mapping';
 import ProductFeedSettingsAttributeMapping from './settings/attribute-mapping/attribute-mapping.vue';
 import ProductFeedSettingsSummary from './product-feed-settings-summary';
 
@@ -77,7 +72,6 @@ export default {
     ProductFeedSettingsExport,
     ProductFeedSettingsAttributeMapping,
     ProductFeedSettingsSummary,
-    OldProductFeedSettingsAttributeMapping,
   },
   data() {
     return {

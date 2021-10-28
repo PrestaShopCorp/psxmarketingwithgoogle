@@ -1,47 +1,87 @@
 <template>
   <div>
     <b-form>
-      <h3
-        class="ps_gs-fz-20 font-weight-600 mb-2"
-      >
-        {{ $t('productFeedSettings.attributeMapping.title1') }}
-      </h3>
-      <p>
-        {{ $t('productFeedSettings.attributeMapping.description1') }}
-      </p>
-      <b-form-checkbox-group
-        id="categoryProducts"
-        v-model="categoryProductsSelected"
-        name="categoryProducts"
-        plain
-      >
-        <category-button
-          v-for="category in categories"
-          :key="category.value"
-          :category="category"
-        />
-      </b-form-checkbox-group>
-      <b-form-row>
-        <template
-          v-for="group in attributes"
+      <section>
+        <h3
+          class="ps_gs-fz-20 font-weight-600 mb-2"
         >
-          <b-col
-            v-for="field in group.fields"
-            :key="field.label + group.category"
-            :cols="12"
-            :md="6"
+          {{ $t('productFeedSettings.attributeMapping.title1') }}
+        </h3>
+        <p>
+          {{ $t('productFeedSettings.attributeMapping.description1') }}
+        </p>
+        <b-form-checkbox-group
+          id="categoryProducts"
+          v-model="categoryProductsSelected"
+          name="categoryProducts"
+          class="mb-4 py-2"
+          plain
+        >
+          <category-button
+            v-for="category in categories"
+            :key="category.value"
+            :category="category"
+          />
+        </b-form-checkbox-group>
+      </section>
+      <section
+        class="mb-2"
+        v-if="categoryProductsSelected.length"
+      >
+        <h3
+          class="ps_gs-fz-20 font-weight-600 mb-2"
+        >
+          {{ $t('productFeedSettings.attributeMapping.title2') }}
+        </h3>
+        <p>
+          {{ $t('productFeedSettings.attributeMapping.description2') }}
+        </p>
+        <b-form-row class="mt-2">
+          <template
+            v-for="group in attributes"
           >
-            <attribute-field :field="field" />
-          </b-col>
-        </template>
-      </b-form-row>
-      <p class="ps_gs-fz-12 text-muted">
-        <a href="" target="_blank">Learn more about requirements for the Shopping product data specification</a>
+            <b-col
+              v-for="field in group.fields"
+              :key="field.label + group.category"
+              :cols="12"
+              :md="6"
+            >
+              <attribute-field :field="field" />
+            </b-col>
+          </template>
+        </b-form-row>
+      </section>
+      <p class="ps_gs-fz-12 text-primary">
+        <a
+          :href="$options.googleUrl.learnRequirementsProductSpecification"
+          target="_blank"
+        >
+          {{ $t('productFeedSettings.attributeMapping.learnRequirementsProductSpecification') }}
+        </a>
       </p>
       <p class="ps_gs-fz-12 text-muted">
-        Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.
+        {{ $t('productFeedSettings.attributeMapping.footerNotice') }}
       </p>
     </b-form>
+    <div class="d-md-flex text-center justify-content-end mt-3">
+      <b-button
+        @click="cancel"
+        size="sm"
+        class="mx-1 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
+        {{ $t("cta.cancel") }}
+      </b-button>
+      <b-button
+        @click="nextStep"
+        size="sm"
+        :disabled="disableContinue"
+        class="mx-1 mt-3 mt-md-0 mr-md-0"
+        variant="primary"
+      >
+        {{ $t("cta.continue") }}
+      </b-button>
+    </div>
     <product-feed-settings-footer />
   </div>
 </template>
@@ -50,6 +90,8 @@
 import ProductFeedSettingsFooter from '../../product-feed-settings-footer';
 import AttributeField from './attribute-field.vue';
 import CategoryButton from './category-button.vue';
+import googleUrl from '@/assets/json/googleUrl.json';
+
 export default {
   name: 'ProductFeedSettingsAttributeMapping',
   components: {
@@ -66,33 +108,52 @@ export default {
     disableContinue() {
       return false;
     },
+    // TODO: Use an enum for categories values
+    // Same enum should be reused for attributes categories
     categories() {
       return [
         {
-          title: 'I sell Apparel and/or Accessories',
-          subtitle: 'i.e clothing, bags, shoes or hats',
+          title: this.$i18n.t('productFeedSettings.attributeMapping.apparelAndAccessoriesTitle'),
+          subtitle: this.$i18n.t('productFeedSettings.attributeMapping.apparelAndAccessoriesSubtitle'),
           icon: 'checkroom',
           value: 'apparelAndAccessories',
         },
-      ]
+        {
+          title: this.$i18n.t('productFeedSettings.attributeMapping.electronicsTitle'),
+          subtitle: this.$i18n.t('productFeedSettings.attributeMapping.electronicsSubtitle'),
+          icon: 'blender_black',
+          value: 'electronics',
+        },
+        {
+          title: this.$i18n.t('productFeedSettings.attributeMapping.variantSetsTitle'),
+          subtitle: this.$i18n.t('productFeedSettings.attributeMapping.variantSetsSubtitle'),
+          icon: 'filter_3',
+          value: 'variantSets',
+        },
+        {
+          title: this.$i18n.t('productFeedSettings.attributeMapping.commonsTitle'),
+          icon: 'select_all',
+          value: 'commons',
+        },
+      ];
     },
-    attributes(){
+    attributes() {
+      // TODO: Fill the complete list of attributes
       return [
         {
-          category: 'Commons',
-          legend: null,
+          category: 'commons',
           fields: [
             {
               label: 'Description',
               tooltip: true,
               required: true,
-              default: 'bbb',
+              default: 'tooltip and required',
             },
             {
               label: 'GTIN (Global Trade Item Number)',
-              tooltip: true,
-              required: true,
-              default: 'bbb',
+              tooltip: false,
+              required: false,
+              default: 'no tooltip, not required',
             },
             {
               label: 'MPN (Manufacturer Part Number)',
@@ -109,20 +170,18 @@ export default {
           ],
         },
         {
-          category: 'Apparel and Accessories',
-          legend: 'These fields are mandatory if you sell Apparel and Accessories:',
+          category: 'apparelAndAccessories',
           fields: [
             {
               label: 'Age Group',
-              tooltip: true,
+              tooltip: false,
               required: true,
               default: 'bbb',
             },
           ],
         },
         {
-          category: 'Home or Kitchen appliances',
-          legend: 'This field is mandatory if you sell Home or Kitchen appliances:',
+          category: 'electronics',
           fields: [
             {
               label: 'Energy class',
@@ -132,35 +191,42 @@ export default {
             },
           ],
         },
-      ]
+        {
+          category: 'variantSets',
+          fields: [
+            {
+              label: 'Material',
+              tooltip: true,
+              required: true,
+              default: 'bbb',
+            },
+            {
+              label: 'Pattern',
+              tooltip: true,
+              required: true,
+              default: 'bbb',
+            },
+          ],
+        },
+      ];
     },
+    // TODO: Clean store, those getters/actions are from previous version of attribute mapping
     /*
     sellApparel: {
-
       get() {
-        // TODO
-        // To clean in store
         return this.$store.getters['productFeed/GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES'];
       },
       set(value) {
         return this.$store.commit(
-          // TODO
-          // To clean in store
           'productFeed/TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_SELL_APPAREL', value,
         );
       },
     },
-    */
-    /*
     sellRefurbished: {
       get() {
-        // TODO
-        // To clean in store
         return this.$store.getters['productFeed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
       },
       set(value) {
-        // TODO
-        // To clean in store
         return this.$store.commit(
           'productFeed/TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_REFURBISHED', value,
         );
@@ -177,5 +243,6 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
+  googleUrl,
 };
 </script>

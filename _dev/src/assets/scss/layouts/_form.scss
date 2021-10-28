@@ -89,6 +89,14 @@
 
   .dropdown-toggle {
     padding-right: 6px;
+
+    &[expanded="true"] {
+      border-bottom: 0;
+
+      & + .dropdown-menu {
+        border-top: 0;
+      }
+    }
   }
 
   hr {

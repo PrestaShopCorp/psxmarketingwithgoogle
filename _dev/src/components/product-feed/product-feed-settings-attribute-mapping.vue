@@ -151,10 +151,10 @@
           {{ $t('productFeedSettings.attributeMapping.footerNotice2') }}
           <br>
           <a
-            :href="$options.googleUrl.learnRequirementsProductSpeficifacion"
+            :href="$options.googleUrl.learnRequirementsProductSpecification"
             target="_blank"
           >
-            {{ $t('productFeedSettings.attributeMapping.learnRequirementsProductSpeficifacion') }}
+            {{ $t('productFeedSettings.attributeMapping.learnRequirementsProductSpecification') }}
           </a>
         </p>
       </div>
