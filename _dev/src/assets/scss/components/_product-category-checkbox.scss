@@ -1,0 +1,82 @@
+.ps_gs-product-category-checkbox {
+  $root: '.ps_gs-product-category-checkbox';
+
+  %focusAndHover {
+    #{$root}__title {
+      color: $white;
+    }
+
+    #{$root}__subtitle {
+      color: $white;
+    }
+
+    #{$root}__icon {
+      color: $white;
+    }
+  }
+
+  display: block;
+  max-width: rem(474);
+
+  & + #{$root} {
+    margin-top: rem(16);
+  }
+
+  .form-check-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    &:checked {
+      & + .form-check-label {
+        background-color: $primary;
+        border-color: $primary;
+        @extend %focusAndHover;
+        background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='%23ffffff'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E");
+        background-position: right rem(18) center;
+        background-repeat: no-repeat;
+      }
+    }
+
+    &:focus {
+      & + .form-check-label {
+        box-shadow: 0 0 0 0.2rem rgba($blue_dark, 0.5);
+        border-color: $blue_dark;
+      }
+    }
+  }
+
+  .form-check-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: rem(12) rem(56) rem(12) rem(12);
+    border-radius: $border-radius;
+    border: 1px solid $gray-500;
+
+    &:hover {
+      background-color: $primary-hover;
+      border-color: $primary-hover;
+      @extend %focusAndHover;
+    }
+  }
+
+  &__text {
+    margin-left: rem(16);
+  }
+
+  &__title {
+    margin-bottom: 0;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    margin-bottom: 0;
+    color: $secondary;
+    font-size: rem(12);
+  }
+}

@@ -287,9 +287,11 @@
         }
       },
       "attributeMapping" : {
+        "title1" : "1. Choose all characteristics that apply to your products",
+        "description1" : "This will allow you to map mandatory Google product attributes at the next step depending on your catalog.",
+
         "sellApparelAndAccessories" : "Apparel and Accessories",
         "sellRefurbishedProducts" : "Refurbished",
-        "intro" : "Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.",
         "learnAboutAttributeMapping" : "Learn more about product data attributes",
         "introNotice" : "Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
         "genericTitle" : "Generic",

@@ -4,72 +4,37 @@
       <h3
         class="ps_gs-fz-20 font-weight-600 mb-2"
       >
-        Map mandatory Google attributes to your custom fields
+        {{ $t('productFeedSettings.attributeMapping.title1') }}
       </h3>
       <p>
-        Google requires filling in a specific list of attributes depending on which product categories you sell. Map these attributes to your custom product fields to ensure your products are validated.
+        {{ $t('productFeedSettings.attributeMapping.description1') }}
       </p>
-      <b-form-group
-        v-for="(group, index) in attributes"
-        :key="group.category"
-        :class="{'border-bottom': index !== attributes.length - 1}"
-        class="mb-3 pb-2"
+      <b-form-checkbox-group
+        id="categoryProducts"
+        v-model="categoryProductsSelected"
+        name="categoryProducts"
+        plain
       >
-        <VueShowdown
-          v-if="group.legend"
-          :markdown="group.legend"
-          tag="legend"
-          class="bg-transparent border-0 ps_gs-fz-14 font-weight-normal mb-3"
-          :extensions="['no-p-tag']"
+        <category-button
+          v-for="category in categories"
+          :key="category.value"
+          :category="category"
         />
-        <b-form-row>
+      </b-form-checkbox-group>
+      <b-form-row>
+        <template
+          v-for="group in attributes"
+        >
           <b-col
             v-for="field in group.fields"
-            :key="field.label"
+            :key="field.label + group.category"
             :cols="12"
             :md="6"
           >
-            <b-form-group
-              :label="field.label"
-              :label-for="field.label | slugify"
-              label-class="font-weight-600"
-            >
-              <b-dropdown
-                :id="field.label | slugify"
-                :text="field.default"
-                variant=" "
-                class="maxw-sm-250 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
-                :toggle-class="{'ps-dropdown__placeholder' : true}"
-                menu-class="ps-dropdown"
-                size="sm"
-              >
-                <b-dropdown-item-button
-                  button-class="rounded-0 text-dark"
-                >
-                  <span
-                    class="px-2"
-                  >
-                    Not available
-                  </span>
-                </b-dropdown-item-button>
-                <b-dropdown-form
-                  v-for="option in options"
-                  :key="option.label | slugify"
-                  form-class="dropdown-item dropdown-form-with-checkbox text-dark"
-                >
-                  <b-form-checkbox
-                    class="ps_gs-checkbox"
-                  >
-                    <span class="line-height-15">
-                      "{{ option.label }}"
-                    </span>
-                  </b-form-checkbox>
-                </b-dropdown-form>
-              </b-dropdown>
-            </b-form-group>
+            <attribute-field :field="field" />
           </b-col>
-        </b-form-row>
-      </b-form-group>
+        </template>
+      </b-form-row>
       <p class="ps_gs-fz-12 text-muted">
         <a href="" target="_blank">Learn more about requirements for the Shopping product data specification</a>
       </p>
@@ -83,18 +48,33 @@
 
 <script>
 import ProductFeedSettingsFooter from '../../product-feed-settings-footer';
+import AttributeField from './attribute-field.vue';
+import CategoryButton from './category-button.vue';
 export default {
   name: 'ProductFeedSettingsAttributeMapping',
   components: {
     ProductFeedSettingsFooter,
+    AttributeField,
+    CategoryButton,
   },
   data() {
     return {
+      categoryProductsSelected: [],
     };
   },
   computed: {
     disableContinue() {
       return false;
+    },
+    categories() {
+      return [
+        {
+          title: 'I sell Apparel and/or Accessories',
+          subtitle: 'i.e clothing, bags, shoes or hats',
+          icon: 'checkroom',
+          value: 'apparelAndAccessories',
+        },
+      ]
     },
     attributes(){
       return [
@@ -151,34 +131,6 @@ export default {
               default: 'bbb',
             },
           ],
-        },
-      ]
-    },
-    options(){
-      return [
-        {
-          label: 'Size',
-          value: 'size',
-        },
-        {
-          label: 'ISBN',
-          value: 'isbn',
-        },
-        {
-          label: 'Long description',
-          value: 'longDescription',
-        },
-        {
-          label: 'Fabric color',
-          value: 'fabricColor',
-        },
-        {
-          label: 'Shoe size',
-          value: 'shoeSize',
-        },
-        {
-          label: 'Womens/Mens',
-          value: 'womensMens',
         },
       ]
     },

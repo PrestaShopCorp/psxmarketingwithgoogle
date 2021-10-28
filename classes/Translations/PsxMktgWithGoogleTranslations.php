@@ -335,7 +335,9 @@ class PsxMktgWithGoogleTranslations
                     ],
                 ],
                 'attributeMapping' => [
-                    'intro' => $this->module->l('Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.', 'PsxMktgWithGoogleTranslations'),
+                    'title1' => $this->module->l('1. Choose all characteristics that apply to your products', 'PsxMktgWithGoogleTranslations'),
+                    'description1' => $this->module->l('This will allow you to map mandatory Google product attributes at the next step depending on your catalog.', 'PsxMktgWithGoogleTranslations'),
+
                     'learnAboutAttributeMapping' => $this->module->l('Learn more about product data attributes', 'PsxMktgWithGoogleTranslations'),
                     'introNotice' => $this->module->l('Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.', 'PsxMktgWithGoogleTranslations'),
                     'genericTitle' => $this->module->l('Generic', 'PsxMktgWithGoogleTranslations'),
