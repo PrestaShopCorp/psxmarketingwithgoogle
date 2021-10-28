@@ -79,6 +79,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'pathApp' => $this->module->getPathUri() . 'views/js/app.js',
             'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
             'chunkVendor' => $this->module->getPathUri() . 'views/js/chunk-vendors.js',
+            'version' => $this->module->version,
         ]);
 
         try {
