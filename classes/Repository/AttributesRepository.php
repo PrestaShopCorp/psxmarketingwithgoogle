@@ -42,7 +42,7 @@ class AttributesRepository
     public function getAllAttributes(): array
     {
         $attributes = [];
-        $productAttributes = ['ean13', 'isbn', 'upc', 'mpn'];
+        $productAttributes = ['ean13', 'isbn', 'upc', 'mpn', 'description', 'short description'];
         $customAttributes = \AttributeGroupCore::getAttributesGroups($this->context->language->id);
 
         foreach ($productAttributes as $value) {
