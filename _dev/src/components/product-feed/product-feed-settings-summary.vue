@@ -2,7 +2,7 @@
   <div>
     <section>
       <h3 class="ps_gs-fz-16 font-weight-600 mb-3">
-        {{ $t('productFeedSettings.summary.title1') }}
+        {{ $t('productFeedSettings.summary.title1', [nextSyncInHours]) }}
       </h3>
       <b-container
         fluid
@@ -162,6 +162,8 @@
 </template>
 
 <script>
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
 
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
@@ -170,6 +172,8 @@ import ProductFeedSettingsFooter from './product-feed-settings-footer';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
 import ProductFeedCardNextSyncCard from './product-feed-card-next-sync-card';
+
+dayjs.extend(duration);
 
 export default {
   name: 'ProductFeedSettingsSummary',
@@ -202,6 +206,12 @@ export default {
       get() {
         return this.$store.getters['productFeed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
       },
+    },
+    nextSyncInHours() {
+      // Return how many hours left before next sync
+      const now = dayjs();
+      const nextSync = dayjs(this.nextSyncDate);
+      return dayjs.duration(nextSync.diff(now)).hours();
     },
     nextSyncDate() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt;

@@ -322,7 +322,7 @@
         "learnHowToSetupShippingSettings" : "Learn how to set up shipping"
       },
       "summary" : {
-        "title1" : "Next synchronisation",
+        "title1" : "Next synchronization is planned in {0} hours",
         "title2" : "Product feed summary",
         "xItems" : "{0} items",
         "productItems" : "Product items",

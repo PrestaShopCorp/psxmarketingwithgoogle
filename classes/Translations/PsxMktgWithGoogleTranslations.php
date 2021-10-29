@@ -370,7 +370,7 @@ class PsxMktgWithGoogleTranslations
                     'learnHowToSetupShippingSettings' => $this->module->l('Learn how to set up shipping', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'summary' => [
-                    'title1' => $this->module->l('Next synchronisation', 'PsxMktgWithGoogleTranslations'),
+                    'title1' => $this->module->l('Next synchronization is planned in {0} hours', 'PsxMktgWithGoogleTranslations'),
                     'title2' => $this->module->l('Product feed summary', 'PsxMktgWithGoogleTranslations'),
                     'xItems' => $this->module->l('{0} items', 'PsxMktgWithGoogleTranslations'),
                     'productItems' => $this->module->l('Product items', 'PsxMktgWithGoogleTranslations'),
