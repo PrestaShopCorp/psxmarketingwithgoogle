@@ -18,7 +18,7 @@ export default {
       'tunnel-product-feed.spec.ts',
       'product-feed-settings-summary.spec.ts',
       'product-feed-settings-shipping.spec.ts',
-      'product-feed-settings-attribute-mapping.spec.ts',
+      // 'product-feed-settings-attribute-mapping.spec.ts',
     ],
   },
 };
