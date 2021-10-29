@@ -289,7 +289,6 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     // need to call nestjs when the route is available
-    const result = await response.json();
-    return result;
+    return response.json();
   },
 };
