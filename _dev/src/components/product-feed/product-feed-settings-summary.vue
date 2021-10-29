@@ -156,7 +156,7 @@
       :markdown="$t('productFeedSettings.export.prohibitedContentNotice',
                     [$options.googleUrl.prohibitedContentGuidelines])"
       :extensions="['extended-link']"
-      class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-n3"
+      class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-md-n3"
     />
   </div>
 </template>

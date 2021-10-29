@@ -89,6 +89,14 @@
 
   .dropdown-toggle {
     padding-right: 6px;
+
+    &[expanded="true"] {
+      border-bottom: 0;
+
+      & + .dropdown-menu {
+        border-top: 0;
+      }
+    }
   }
 
   hr {
@@ -97,6 +105,19 @@
 
   li + li .dropdown-header {
     border-top: 1px solid $gray-450;
+  }
+
+  .dropdown-form-with-checkbox {
+    padding: 0;
+
+    label {
+      padding: rem(10) rem(15) rem(10) calc(#{rem(15)} + 1.5rem);
+
+      &:before, &:after {
+        top: rem(12);
+        left: rem(15);
+      }
+    }
   }
 }
 

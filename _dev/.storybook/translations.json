@@ -15,7 +15,8 @@
       "XIsMandatory" : "{0} is mandatory.",
       "unableToFetchData" : "We were unable to fetch datas, please try again later",
       "searchByX" : "Search by {0}",
-      "legendCreateNewAccount" : "You also have the possibility to create a new account within few steps:"
+      "legendCreateNewAccount" : "You also have the possibility to create a new account within few steps:",
+      "notAvailable" : "Not available"
     },
     "configuration" : {
         "introduction" : "Configuration Page !"
@@ -287,15 +288,23 @@
         }
       },
       "attributeMapping" : {
+        "title1" : "1. Choose all characteristics that apply to your products",
+        "description1" : "This will allow you to map mandatory Google product attributes at the next step depending on your catalog.",
+        "title2" : "2. Map mandatory Google attributes to your custom fields",
+        "description2" : "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later.",
+        "apparelAndAccessoriesTitle" : "I sell Apparel and/or Accessories",
+        "apparelAndAccessoriesSubtitle" : "i.e clothing, bags, shoes or hats",
+        "electronicsTitle" : "I sell Home and/or Kitchen appliances",
+        "electronicsSubtitle" : "i.e refrigerators, dishwashers, washing machines, light bulbs",
+        "variantSetsTitle" : "My products have variant sets",
+        "variantSetsSubtitle" : "i.e different graphic prints, patterns, fabrics or materials",
+        "commonsTitle" : "None of the above",
+        "learnRequirementsProductSpecification" : "Learn more about requirements & supported values for the Shopping product data specification",
+        "footerNotice" : "Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
+        "requiredForSomeCategories" : "This field is required for some product categories. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+
         "sellApparelAndAccessories" : "Apparel and Accessories",
         "sellRefurbishedProducts" : "Refurbished",
-        "intro" : "Products that are eligible for enhanced listings will appear in content-rich formats on the Shopping tab, which may boost traffic and drive sales.",
-        "learnAboutAttributeMapping" : "Learn more about product data attributes",
-        "introNotice" : "Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
-        "genericTitle" : "Generic",
-        "toDescribeProducts" : "Create title and description for my product attributes using:",
-        "googleAttribute" : "Google product attribute",
-        "prestashopAttribute" : "Your product value",
         "description" : "Description",
         "longDescription" : "Long description",
         "shortDescription" : "Short description",
@@ -309,12 +318,8 @@
         "gender" : "Gender",
         "theXField" : "The \"{0}\" field",
         "thisCustomField" : "This custom field",
-        "footerNotice1" : "Attributes required for products for apparel items targeted to customers in Brazil, France, Germany, Japan, the UK, and the US.",
-        "footerNotice2" : "We encourage submitting as many applicable attributes as possible to ensure accurate and comprehensive data.",
         "learnAboutShippingSettings" : "Learn more about shipping settings",
-        "learnHowToSetupShippingSettings" : "Learn how to set up shipping",
-        "learnRequirementsProductSpeficifacion" : "Learn more about product feed specification",
-        "weWillRecoverTheseAttributes" : "For your products we will recover these attributes:"
+        "learnHowToSetupShippingSettings" : "Learn how to set up shipping"
       },
       "summary" : {
         "title1" : "Next synchronisation",
