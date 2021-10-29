@@ -16,6 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import i18n from '../../../lib/i18n';
 
 import attributesToMap from './attributes-to-map.json';
 
@@ -60,6 +61,17 @@ export interface ProductsDatas {
   items: Array<ProductInfos>;
 }
 
+export interface AttributesInfos {
+  name: string;
+  type: AttributesTypes;
+}
+
+export enum AttributesTypes {
+  PRODUCT = 'product',
+  CUSTOM = 'custom',
+  FEATURE = 'feature'
+}
+
 export interface State {
   isSyncSummaryLoadingInProgress: boolean;
   errorAPI: boolean;
@@ -72,6 +84,7 @@ export interface State {
   validationSummary : ProductFeedValidationSummary;
   productsDatas: ProductsDatas;
   attributesToMap: any;
+  attributesDatas: Array<AttributesInfos>;
 }
 
 export enum ProductStatues {
@@ -117,4 +130,30 @@ export const state: State = {
     items: [],
   },
   attributesToMap,
+  attributesDatas: [
+    {
+      name: 'ean13',
+      type: AttributesTypes.PRODUCT,
+    },
+    {
+      name: 'isbn',
+      type: AttributesTypes.PRODUCT,
+    },
+    {
+      name: 'upc',
+      type: AttributesTypes.PRODUCT,
+    },
+    {
+      name: 'mpn',
+      type: AttributesTypes.PRODUCT,
+    },
+    {
+      name: String(i18n.t('attributesMapping.description')),
+      type: AttributesTypes.PRODUCT,
+    },
+    {
+      name: String(i18n.t('attributesMapping.shortDescription')),
+      type: AttributesTypes.PRODUCT,
+    },
+  ],
 };

@@ -21,6 +21,7 @@ import {
   State as LocalState,
   ProductInfos,
   ProductFeedValidationSummary,
+  AttributesInfos,
 } from './state';
 
 type payloadObject = {
@@ -112,5 +113,12 @@ export default {
       attributeMapping: {},
       syncSchedule: '1 * * * * *',
     };
+  },
+  [MutationsTypes.SAVE_ATTRIBUTES_SHOP](state: LocalState, payload: Array<AttributesInfos>) {
+    if (payload.length) {
+      payload.forEach((element) => {
+        state.attributesDatas.push(element);
+      });
+    }
   },
 };
