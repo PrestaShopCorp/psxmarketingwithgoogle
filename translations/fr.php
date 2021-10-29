@@ -180,7 +180,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3aea
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3bb1503332637805beddb73a2dd1fe1b'] = 'Conversion';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3cab5fb230afca6ebad229afa80c1502'] = 'Aller à la première page | Aller à la page : {0} Aller à la dernière page';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3cc3bd74387dbede9e3d4e20353a701d'] = 'Connexion...';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3dc023e93299e6d8467b553cf1c8917e'] = '<span style="background-color: rgb(173, 216, 230);">Flux de</span> l\'exportation !';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3dc023e93299e6d8467b553cf1c8917e'] = 'Flux de l\'exportation !';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3de25f76dae7a50410fecd84cc78c542'] = 'Lire les politiques des annonces de shopping';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3e0e813bf6ea535fbf381743128b2cb9'] = 'Prix manquants ou incorrects';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3e54d871ba73c86a767d5a65563bd136'] = 'Non approuvé';
@@ -232,7 +232,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_4f6d
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_4fb22a994172b890e7f38c82e1e6f395'] = 'Un message texte contenant un code à X chiffres vient d\'être envoyé à';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_5017d62f8d8ded938880e3aa18f4f543'] = 'La déclaration de l\'URL du site web a échoué';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_504a119e49e776997bbd206a17d2d2a1'] = 'Mon site web contient du contenu pour adultes';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_5084335733aec1e6833956204249b09a'] = '<span style="background-color: rgb(173, 216, 230);">Flux de</span> produit';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_5084335733aec1e6833956204249b09a'] = 'Flux de produit';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_512041493c03d6dbdc83263d9f14f310'] = 'Une fois que vous aurez téléchargé les données de votre magasin et de vos produits vers Google directement depuis PrestaShop, ces informations seront disponibles et automatiquement synchronisées pour les listings gratuits';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_512339eef27f75b587e8db30b1a58eff'] = 'Heure de synchronisation';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_513f1f296c905c1392b5a3f31b23e08c'] = 'Aucune valeur sélectionnée | {0} valeur sélectionnée | {0} valeurs sélectionnées';
