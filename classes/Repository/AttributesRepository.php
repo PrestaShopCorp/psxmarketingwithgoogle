@@ -42,20 +42,20 @@ class AttributesRepository
     public function getAllAttributes(): array
     {
         $attributes = [];
-        $productAttributes = ['ean13', 'isbn', 'upc', 'mpn', 'description', 'short description'];
         $customAttributes = \AttributeGroupCore::getAttributesGroups($this->context->language->id);
-
-        foreach ($productAttributes as $value) {
-            $attributes[] = [
-                'name' => $value,
-                'isCustom' => false,
-            ];
-        }
+        $features = \FeatureCore::getFeatures($this->context->language->id);
 
         foreach ($customAttributes as $attr) {
             $attributes[] = [
                 'name' => $attr['name'],
-                'isCustom' => true,
+                'type' => 'custom',
+            ];
+        }
+
+        foreach ($features as $feature) {
+            $attributes[] = [
+                'name' => $feature['name'],
+                'type' => 'feature',
             ];
         }
 
