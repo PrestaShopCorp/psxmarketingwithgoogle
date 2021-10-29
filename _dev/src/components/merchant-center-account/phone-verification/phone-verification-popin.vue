@@ -140,6 +140,12 @@
         <span> {{ error }}</span>
       </b-alert>
     </b-form>
+    <template slot="modal-cancel">
+      {{ $t('cta.cancel') }}
+    </template>
+    <template slot="modal-ok">
+      {{ $t('cta.continue') }}
+    </template>
   </ps-modal>
 </template>
 
