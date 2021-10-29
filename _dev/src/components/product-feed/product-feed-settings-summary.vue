@@ -104,8 +104,9 @@
             </b-table-simple>
             <caption
               v-if="mandatoryAttributesNotMapped"
-              class="d-block ps_gs-fz-12 ps_gs-table-caption"
+              class="d-flex ps_gs-fz-12 ps_gs-table-caption mt-3"
             >
+              <i class="material-icons-round ps_gs-fz-16 text-warning mr-2">warning_amber</i>
               <p>
                 <VueShowdown
                   :markdown="$tc('productFeedSettings.summary.mandatoryAttributesNotMapped',
@@ -113,11 +114,12 @@
                   [mandatoryAttributesNotMapped])"
                   :extensions="['no-p-tag']"
                   tag="strong"
-                  class="strong"
+                  class="font-weight-600"
                 />
                 <br>
                 <VueShowdown
-                  :markdown="$t('productFeedSettings.summary.noticeToCompleteMapping', ['https://www.google.com'])"
+                  :markdown="$t('productFeedSettings.summary.noticeToCompleteMapping',
+                  [$options.googleUrl.learnRequirementsProductSpecification])"
                   :extensions="['extended-link', 'no-p-tag']"
                   tag="span"
                 />
@@ -153,7 +155,7 @@
       :markdown="$t('productFeedSettings.export.prohibitedContentNotice',
                     [$options.googleUrl.prohibitedContentGuidelines])"
       :extensions="['extended-link']"
-      class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-md-n3"
+      class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-n3"
     />
   </div>
 </template>
@@ -161,6 +163,7 @@
 <script>
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
+dayjs.extend(duration);
 
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
@@ -169,8 +172,6 @@ import ProductFeedSettingsFooter from './product-feed-settings-footer';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
 import ProductFeedCardNextSyncCard from './product-feed-card-next-sync-card';
-
-dayjs.extend(duration);
 
 export default {
   name: 'ProductFeedSettingsSummary',
