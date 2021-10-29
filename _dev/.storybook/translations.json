@@ -305,12 +305,6 @@
 
         "sellApparelAndAccessories" : "Apparel and Accessories",
         "sellRefurbishedProducts" : "Refurbished",
-        "learnAboutAttributeMapping" : "Learn more about product data attributes",
-        "introNotice" : "Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
-        "genericTitle" : "Generic",
-        "toDescribeProducts" : "Create title and description for my product attributes using:",
-        "googleAttribute" : "Google product attribute",
-        "prestashopAttribute" : "Your product value",
         "description" : "Description",
         "longDescription" : "Long description",
         "shortDescription" : "Short description",
@@ -324,10 +318,8 @@
         "gender" : "Gender",
         "theXField" : "The \"{0}\" field",
         "thisCustomField" : "This custom field",
-        "footerNotice2" : "We encourage submitting as many applicable attributes as possible to ensure accurate and comprehensive data.",
         "learnAboutShippingSettings" : "Learn more about shipping settings",
-        "learnHowToSetupShippingSettings" : "Learn how to set up shipping",
-        "weWillRecoverTheseAttributes" : "For your products we will recover these attributes:"
+        "learnHowToSetupShippingSettings" : "Learn how to set up shipping"
       },
       "summary" : {
         "title1" : "Next synchronisation",
