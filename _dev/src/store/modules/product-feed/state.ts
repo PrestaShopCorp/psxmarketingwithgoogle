@@ -17,6 +17,8 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import attributesToMap from './attributes-to-map.json';
+
 export interface ProductFeedStatus {
   nextJobAt?: string;
   jobEndedAt?: string|null;
@@ -69,6 +71,7 @@ export interface State {
   settings: ProductFeedSettings;
   validationSummary : ProductFeedValidationSummary;
   productsDatas: ProductsDatas;
+  attributesToMap: any;
 }
 
 export enum ProductStatues {
@@ -113,4 +116,5 @@ export const state: State = {
   productsDatas: {
     items: [],
   },
+  attributesToMap,
 };

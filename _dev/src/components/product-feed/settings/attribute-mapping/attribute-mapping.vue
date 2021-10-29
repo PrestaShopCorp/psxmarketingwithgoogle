@@ -21,6 +21,7 @@
             v-for="category in categories"
             :key="category.value"
             :category="category"
+            @categoryProductsChanged="categoryProductsChanged"
           />
         </b-form-checkbox-group>
       </section>
@@ -38,7 +39,7 @@
         </p>
         <b-form-row class="mt-2">
           <template
-            v-for="group in attributes"
+            v-for="group in attributesToMap"
           >
             <b-col
               v-for="field in group.fields"
@@ -91,6 +92,7 @@ import ProductFeedSettingsFooter from '../../product-feed-settings-footer';
 import AttributeField from './attribute-field.vue';
 import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
+import Categories from '@/enums/product-feed/attribute-mapping-categories';
 
 export default {
   name: 'ProductFeedSettingsAttributeMapping',
@@ -106,113 +108,44 @@ export default {
   },
   computed: {
     mappingSectionVisible() {
-      // TODO: Confirm this validation rule
       return this.categoryProductsSelected.length;
     },
     disableContinue() {
-      return false;
+      return this.categoryProductsSelected.length === 0;
     },
-    // TODO: Use an enum for categories values
-    // Same enum should be reused for attributes categories
     categories() {
       return [
         {
           title: this.$i18n.t('productFeedSettings.attributeMapping.apparelAndAccessoriesTitle'),
           subtitle: this.$i18n.t('productFeedSettings.attributeMapping.apparelAndAccessoriesSubtitle'),
           icon: 'checkroom',
-          value: 'apparelAndAccessories',
+          value: Categories.APPAREL_AND_ACCESSORIES,
         },
         {
           title: this.$i18n.t('productFeedSettings.attributeMapping.electronicsTitle'),
           subtitle: this.$i18n.t('productFeedSettings.attributeMapping.electronicsSubtitle'),
           icon: 'blender_black',
-          value: 'electronics',
+          value: Categories.ELECTRONICS,
         },
         {
           title: this.$i18n.t('productFeedSettings.attributeMapping.variantSetsTitle'),
           subtitle: this.$i18n.t('productFeedSettings.attributeMapping.variantSetsSubtitle'),
           icon: 'filter_3',
-          value: 'variantSets',
+          value: Categories.VARIANT_SETS,
         },
         {
           title: this.$i18n.t('productFeedSettings.attributeMapping.commonsTitle'),
           icon: 'select_all',
-          value: 'commons',
+          value: Categories.NONE,
         },
       ];
     },
-    attributes() {
-      // TODO: Fill the complete list of attributes
-      return [
-        {
-          category: 'commons',
-          fields: [
-            {
-              label: 'Description',
-              tooltip: true,
-              required: true,
-              default: 'tooltip and required',
-            },
-            {
-              label: 'GTIN (Global Trade Item Number)',
-              tooltip: false,
-              required: false,
-              default: 'no tooltip, not required',
-            },
-            {
-              label: 'MPN (Manufacturer Part Number)',
-              tooltip: true,
-              required: true,
-              default: 'mpn',
-            },
-            {
-              label: 'Brand',
-              tooltip: true,
-              required: true,
-              default: 'brand',
-            },
-          ],
-        },
-        {
-          category: 'apparelAndAccessories',
-          fields: [
-            {
-              label: 'Age Group',
-              tooltip: false,
-              required: true,
-              default: 'bbb',
-            },
-          ],
-        },
-        {
-          category: 'electronics',
-          fields: [
-            {
-              label: 'Energy class',
-              tooltip: true,
-              required: true,
-              default: 'bbb',
-            },
-          ],
-        },
-        {
-          category: 'variantSets',
-          fields: [
-            {
-              label: 'Material',
-              tooltip: true,
-              required: true,
-              default: 'bbb',
-            },
-            {
-              label: 'Pattern',
-              tooltip: true,
-              required: true,
-              default: 'bbb',
-            },
-          ],
-        },
-      ];
+    attributesToMap() {
+      return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP']
+        .filter(
+          (attr) => this.categoryProductsSelected.includes(attr.category)
+            || attr.category === Categories.COMMONS,
+        );
     },
     // TODO: Clean store, those getters/actions are from previous version of attribute mapping
     /*
@@ -245,6 +178,19 @@ export default {
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
+    },
+    categoryProductsChanged(category, isSelected) {
+      if (!isSelected) {
+        return;
+      }
+      if (category === Categories.NONE) {
+        this.categoryProductsSelected = this.categoryProductsSelected
+          .filter((cat) => cat === Categories.NONE);
+      }
+      if (category !== Categories.NONE && this.categoryProductsSelected.includes(Categories.NONE)) {
+        this.categoryProductsSelected = this.categoryProductsSelected
+          .filter((cat) => cat !== Categories.NONE);
+      }
     },
   },
   googleUrl,

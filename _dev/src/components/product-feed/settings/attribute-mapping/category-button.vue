@@ -3,6 +3,7 @@
     class="ps_gs-product-category-checkbox"
     :value="category.value"
     plain
+    @change="changed"
   >
     <i class="material-icons ps_gs-product-category-checkbox__icon">
       {{ category.icon }}
@@ -27,6 +28,11 @@ export default {
     category: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    changed(event) {
+      this.$emit('categoryProductsChanged', this.category.value, event.includes(this.category.value));
     },
   },
 };
