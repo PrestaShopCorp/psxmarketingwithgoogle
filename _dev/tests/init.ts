@@ -12,11 +12,6 @@ beforeEach(() => {
   windowSpy = jest.spyOn(window, 'window', 'get');
   windowSpy.mockImplementation(() => ({
     // add data needed in window
-    i18nSettings: {
-      "isoCode": "en",
-      "languageLocale": "en-us"
-    },
-    translations
   }));
   localVue = createLocalVue();
   localVue.use(Vuex);
