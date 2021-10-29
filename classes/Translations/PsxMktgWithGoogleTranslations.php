@@ -857,7 +857,7 @@ class PsxMktgWithGoogleTranslations
             'attributesMapping' => [
                 'description' => $this->module->l('Description', 'PsxMktgWithGoogleTranslations'),
                 'shortDescription' => $this->module->l('Short Description', 'PsxMktgWithGoogleTranslations'),
-            ]
+            ],
         ];
 
         return $translations;

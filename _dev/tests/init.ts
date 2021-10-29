@@ -4,14 +4,19 @@ import Vuex from 'vuex';
 import translations from '../.storybook/translations.json';
 
 let windowSpy;
-let localVue; // eslint-disable-line 
+let localVue; // eslint-disable-line
 const defaultLocale = 'en';
-let filters; // eslint-disable-line 
+let filters; // eslint-disable-line
 
 beforeEach(() => {
   windowSpy = jest.spyOn(window, 'window', 'get');
   windowSpy.mockImplementation(() => ({
     // add data needed in window
+    i18nSettings: {
+      "isoCode": "en",
+      "languageLocale": "en-us"
+    },
+    translations
   }));
   localVue = createLocalVue();
   localVue.use(Vuex);
