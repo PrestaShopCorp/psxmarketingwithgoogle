@@ -24,7 +24,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>adminajaxpsxmktgwithgooglecontroll
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmarketingwithgoogle_46e2d06b80d816b2916f1f27492fbabd'] = 'Impossible d\'installer le module';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmarketingwithgoogle_4a8f80bf8fc39256e84b333de389e9b1'] = 'Cela nécessite PHP 7.2 pour fonctionner correctement. Veuillez mettre à jour votre configuration de serveur.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmarketingwithgoogle_9f01c89e9b3ab6d75a1eb366862a82c1'] = 'Marketing avec Google';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmarketingwithgoogle_bb8956c67b82c7444a80c6b2433dd8b4'] = 'Êtes-vous sûr de vouloir désinstaller ce module&nbsp;?';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmarketingwithgoogle_bb8956c67b82c7444a80c6b2433dd8b4'] = 'Êtes-vous sûr de vouloir désinstaller ce module ?';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_002138c1814b4f6c990de93b41dacee9'] = '\'Nombre de conversions. Cela n\'inclut que les actions de conversion dont l\'attribut include_in_conversions_metric a la valeur true. Si vous utilisez les enchères basées sur la conversion';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_002350db8f502cffeb2b3bebca3566db'] = 'Proposez un processus de paiement complet';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0095a9fa74d1713e43e370a7d7846224'] = 'Exportation';
@@ -59,7 +59,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0931
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0947b07ebe6a359e009356635b985736'] = 'Mes produits sont disponibles en';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0a9508e79dc796ade18c34113a27b7f7'] = 'Une fois que vous avez rempli vos informations de facturation dans votre compte Google Ads';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0b701ac8ec43424d95f4ea399d600e60'] = 'Vous êtes connecté avec succès. Une fois que vos produits sont approuvés';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0b820783faf6c76b1d71c6ddb3365608'] = 'Seules les campagnes de shopping intelligent associées à votre compte Google Merchant Center sont répertoriées. 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0b820783faf6c76b1d71c6ddb3365608'] = 'Seules les campagnes de shopping intelligent associées à votre compte Google Merchant Center sont répertoriées.
 Si vous souhaitez voir toutes vos campagnes';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0bc62a28d930bd5af363db36390ca833'] = 'Aide pour PrestaShop Google';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0cbc6611f5540bd0809a388dc95a615b'] = 'Test';
@@ -67,7 +67,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0d34
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0e22fe7d45f8e5632a4abf369b24e29c'] = 'Annulé';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0e4361e59c53810865f580258d4a03ec'] = 'Modifier les attributs du produit';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0e520a1ffa38eba4b2cf41d4d09e8961'] = 'Impression';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0e6ca1fb2c82359e616f6fe5e898e206'] = 'Vous avez également la possibilité de créer un nouveau compte en quelques étapes&nbsp;:';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0e6ca1fb2c82359e616f6fe5e898e206'] = 'Vous avez également la possibilité de créer un nouveau compte en quelques étapes :';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0e7ee6b24181790ff299bdb8cca22f0e'] = 'Cette action entraînera également la réactivation du flux de produit.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_0ea308d83888e6e429911d20f20f9787'] = 'Vérifiez les informations de votre campagne avant de la valider. Vous pouvez toujours modifier certains paramètres pendant que la campagne est en cours.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_10ac3d04253ef7e1ddc73e6091c0cd55'] = 'Suivant';
@@ -91,7 +91,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_17d3
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_17f323d950650b45e71d3c3f1a38fac6'] = 'Coût moyen par clic';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_181b1f9239942d530df9e2ad1e7362e3'] = 'Activation de la campagne';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_187d8391715e5486cf16ef7208d60638'] = 'Comprendre votre trafic';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_18a15359c8d62fb29bf7cba5b24f4c59'] = 'Pour vos produits, nous récupérerons ces attributs&nbsp;:';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_18a15359c8d62fb29bf7cba5b24f4c59'] = 'Pour vos produits, nous récupérerons ces attributs :';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_192debd5a6198482b69a6ec88b90ba53'] = 'La région pré-remplie est celle que vous avez saisie dans le back-office';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_1953ed71cb60b008cc3844b3ee34d196'] = 'Le statut des produits qui sont synchronisés avec Merchant Center';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_19ba2ebb35b21258c25a4ab26ea99bec'] = 'Pour terminer la création du compte Merchant Center';
@@ -141,7 +141,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_28c0
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_28f5aaaa8c74e51b21e21b88b903892c'] = 'Apprenez à mettre en place des politiques de retour';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_290612199861c31d1036b185b4e69b75'] = 'Résumé';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_2a454ae44eccba9e123f2ff0a537750b'] = 'Nécessite une configuration du flux de produits';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_2a7d4f4a214d4278174dc7a00b54122b'] = '*selon la disponibilité régionale 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_2a7d4f4a214d4278174dc7a00b54122b'] = '*selon la disponibilité régionale
  **inclut l\'optimisation des campagnes pour montrer une variété de publicités de vos produits aux clients les plus susceptibles de les acheter';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_2a84bf35647baabac3934127aed63dbe'] = 'URL du site web';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_2be1043fdbaa20848d02dcffb06b6baa'] = 'Apprenez-en plus sur la collecte et l\'utilisation irresponsables des données';
@@ -161,7 +161,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3168
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3334663a04a3a1776b894b4deec3fe1e'] = 'Créer un compte en quelques secondes...';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_335e7903b8ae2ececd59836a04c3a80d'] = 'Les utilisateurs doivent être en mesure de mener à bien le processus d\'achat.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_33b4e6baa9fb82e65cfa61d66cbc7138'] = 'Prenez le temps de [lire le règlement des annonces Google Shopping]({0})[:target=\'_blank\'] certains produits sont interdits ou restreints.';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_34577fc0116aa3a2db0d3bbe55b4638e'] = 'Ce module vous permet de&nbsp;:';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_34577fc0116aa3a2db0d3bbe55b4638e'] = 'Ce module vous permet de :';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_34d3af2a6ded16e1c765e657346768b3'] = 'Taille de votre produit';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3537ab82f293d660eb1c551d1e804bbe'] = 'Paramètres d\'expédition';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_357fa898043f41d0aa5734e49385dc55'] = 'On dirait que vous avez déjà une balise liée à votre compte Google';
@@ -170,7 +170,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_35fb
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_367dad66a81f001de4119f40d4be28a4'] = 'Exclusion de produits spécifiques';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3681908963e101d68b2d528adc45bc9f'] = 'En attente de la publication de votre compte';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_376b03d509f1f5b20bd889bfd3b717de'] = 'Résumé du flux de produits';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_37bee590cc76134e2da91c02bc002670'] = 'Vous avez connecté votre compte Google&nbsp;!';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_37bee590cc76134e2da91c02bc002670'] = 'Vous avez connecté votre compte Google !';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_386c339d37e737a436499d423a77df0c'] = 'Devise';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_39f29fc37aa4181ed693e2f19de86117'] = 'Attributs requis pour les produits destinés aux articles d\'habillement destinés à des clients au Brésil';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3a21d30a73ff81580f1fd842a701bfb2'] = 'Statut de l\'info-bulle du placeholder';
@@ -178,13 +178,13 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3a56
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3adbdb3ac060038aa0e6e6c138ef9873'] = 'Catégorie';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3aea774cdcd8f2c45549f10758a71323'] = 'Informations sur la boutique';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3bb1503332637805beddb73a2dd1fe1b'] = 'Conversion';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3cab5fb230afca6ebad229afa80c1502'] = 'Aller à la première page | Aller à la page&nbsp;: {0} Aller à la dernière page';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3cab5fb230afca6ebad229afa80c1502'] = 'Aller à la première page | Aller à la page : {0} Aller à la dernière page';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3cc3bd74387dbede9e3d4e20353a701d'] = 'Connexion...';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3dc023e93299e6d8467b553cf1c8917e'] = '<span style="background-color: rgb(173, 216, 230);">Flux de</span> l\'exportation&nbsp;!';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3dc023e93299e6d8467b553cf1c8917e'] = '<span style="background-color: rgb(173, 216, 230);">Flux de</span> l\'exportation !';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3de25f76dae7a50410fecd84cc78c542'] = 'Lire les politiques des annonces de shopping';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3e0e813bf6ea535fbf381743128b2cb9'] = 'Prix manquants ou incorrects';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3e54d871ba73c86a767d5a65563bd136'] = 'Non approuvé';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3f18d85a68609039e6ad2dd3e4cfca0b'] = 'Désactiver les listings gratuits&nbsp;?';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3f18d85a68609039e6ad2dd3e4cfca0b'] = 'Désactiver les listings gratuits ?';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3f38bec4bc34403b4399f9cb2fd1f955'] = 'Voyez ces chiffres étonnants';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_3f6dfe8b5ba34a958c0cc96b88133d4d'] = 'Synchronisation prévue le {0}';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_405ee333d34e44237cc6e9d1fc56f865'] = 'Suivre le statut d\'approbation du produit';
@@ -213,7 +213,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_49ab
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_49b0c26ed04338699c8b914b5f84caf6'] = 'Touchez davantage de personnes avec une campagne payante de Smart Shopping';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_49ee3087348e8d44e1feda1917443987'] = 'Nom';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_4c41e0bd957698b58100a5c687d757d9'] = 'Sélectionner tout';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_4cba3500ece63f363204894a7bc9384a'] = 'Un champ obligatoire est manquant&nbsp;: {0}';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_4cba3500ece63f363204894a7bc9384a'] = 'Un champ obligatoire est manquant : {0}';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_4cc46d54662743953232ce7cdd3b8eef'] = 'Eligible (limité)';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_4ce4970143e1d4322949f5b7f57d05ae'] = 'Définir de nouvelles balises de suivi des conversions sur mon site';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_4d2d91c57c0856fb627ad16a7e5bb121'] = 'Ajoutez des informations sur l\'expédition';
@@ -275,17 +275,17 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_5f8a
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_60027d016b72ce2d2584d5eb72845d93'] = 'Sauvegarde et exportation';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6010bc5352c3613f1cd7cdc978c700b1'] = 'En savoir plus sur les listings gratuits';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6087866114048ba82bcf4eabf739cacc'] = 'Sélectionnez la marque';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6172f9c0061aeb5c3267512ccc2b7937'] = 'Remplacer une demande existante&nbsp;?';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6172f9c0061aeb5c3267512ccc2b7937'] = 'Remplacer une demande existante ?';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_61beae632341b942f1dbec3012d74bf6'] = 'Sync en cours...';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_61cad434ab96aa041f912b5cb7572729'] = 'En savoir plus sur les paramètres d\'expédition';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_61e704302fd608d76981e74257a1cf8f'] = 'Vous ne paierez que si quelqu\'un clique sur votre annonce.';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_628356c5200dc6162df138119a8f2459'] = 'Le statut de votre produit vous permet de savoir s\'il est éligible pour apparaître dans la destination que vous avez choisie. 
-Un produit en attente n\'apparaîtra pas dans les annonces ou les listings gratuits car il est en cours d\'examen par Google. 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_628356c5200dc6162df138119a8f2459'] = 'Le statut de votre produit vous permet de savoir s\'il est éligible pour apparaître dans la destination que vous avez choisie.
+Un produit en attente n\'apparaîtra pas dans les annonces ou les listings gratuits car il est en cours d\'examen par Google.
 Les produits en cours d\'expiration expireront dans les 3 prochains jours';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_62f5d708d6ad1fa1ddd9429a65cccbea'] = 'Toutes les catégories';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6332798b12e537b25b1c6ad254e14f54'] = 'Conversions';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_63974e90d685ff582bfa555e1694b67b'] = 'La politique de retour et de remboursement doit être claire (y compris les exigences et les délais) et facile d\'accès sur votre site web.';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_65fbb8fd716ae2137e97c671c2aa8824'] = 'Vous avez soumis avec succès vos données produit au Merchant Center. 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_65fbb8fd716ae2137e97c671c2aa8824'] = 'Vous avez soumis avec succès vos données produit au Merchant Center.
  Une fois approuvé';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_66096c22a6220952b7aef731ef78c167'] = 'Coûts';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_671348d2ff0aaa5635810256535a8ef3'] = 'Sélectionner les filtres';
@@ -294,14 +294,14 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_675a
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_67b2831c49c51561dfa8df3af6a2f541'] = 'Pas de date de fin';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_680ffad9bacba97fd34c074c63cf37fc'] = 'Url non vérifiée';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_686db86954ad47006cf73396e31a2c04'] = 'En savoir plus sur les attributs des données produit';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_68926bc145094146dbce4a839ca772f8'] = '**Un flux de produits existe déjà** 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_68926bc145094146dbce4a839ca772f8'] = '**Un flux de produits existe déjà**
  <small>Votre flux de produits existe déjà. Vous devez l\'écraser pour synchroniser votre flux de produits PrestaShop.</small>';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6a26f548831e6a8c26bfbbd9f6ec61e0'] = 'Aide';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6a29184e8fe86246ab208f1f9976bbe5'] = 'Calendrier de synchronisation personnalisé';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6a6c4451cf7b7ba0ebda32f4270cd4c0'] = 'En savoir plus sur les paramètres des devises et des fuseaux horaires';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6a99c575ab87f8c7d1ed1e52e7e349ce'] = 'placeholder';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6aac926090571bc42dfb53afcea40209'] = 'Produits prêts à être synchronisés';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6aedf09f1535871c91a911c1a7832bf1'] = 'En désactivant les listings gratuits, vos produits ne seront plus disponibles pour une inscription organique dans l\'onglet Shopping. 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6aedf09f1535871c91a911c1a7832bf1'] = 'En désactivant les listings gratuits, vos produits ne seront plus disponibles pour une inscription organique dans l\'onglet Shopping.
  Cependant, votre flux de produits restera disponible.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6c887eeb421a51bede58145cb71cfded'] = 'Créer une campagne';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6cdec37eda6ac1eec892e4bf19aaa78c'] = 'Impressions';
@@ -310,8 +310,8 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6ce6
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6da03a74721a0554b7143254225cc08a'] = 'Remis à neuf';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6dc350544e57d466fca841e7a12aad2d'] = 'Présentez vos produits sur Google et touchez des millions d\'acheteurs qui recherchent activement ce que vous proposez sur le réseau Google.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6dce98af082c2176f127e9018a6f24a9'] = 'Connectez votre compte Google Ads';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6deaf6a97584975045bc97bb7effaaa4'] = 'Déconnecter le compte Google Ads&nbsp;?';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6f385040ac0ccd3e01ada4b56f9843a4'] = 'Aller à la page&nbsp;:';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6deaf6a97584975045bc97bb7effaaa4'] = 'Déconnecter le compte Google Ads ?';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6f385040ac0ccd3e01ada4b56f9843a4'] = 'Aller à la page :';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6f6cb72d544962fa333e2e34ce64f719'] = 'Taille';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_6f8063417ab31f38d864c28302f3de2f'] = 'Approuvé';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_7064be5efd07abc2b8c5a6dc04dfbb26'] = 'Url non déclarée';
@@ -319,16 +319,16 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_7065
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_70ae62478a9aa8bb14e31944f71ce27b'] = 'Vous avez soumis avec succès vos données produit au Merchant Center. Une fois approuvé';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_70b153a2792371e141ce5407a429be70'] = 'Configuration de la synchronisation du flux';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_70c4633c2c707ff1980293dcf6c54565'] = 'Nous n\'avons pas été en mesure de publier votre campagne';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_7110dc5761d52c6b3cf031edbdc30a33'] = 'Produits actifs soumis à Google&nbsp;: {0}';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_7110dc5761d52c6b3cf031edbdc30a33'] = 'Produits actifs soumis à Google : {0}';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_72b90cdf379945e3d84fcfd7b244ed6d'] = 'Vous avez besoin d\'un accès Admin';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_731d981264451f7a5d43003b7f95f7be'] = 'Résumé de la campagne';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_73461bd48c4e247b2d68ad76d493712b'] = 'Construire et gérer l\'inventaire';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_760ba2a986e508cdc2689d67bfa2d862'] = 'Ayez une politique claire de retour et de remboursement';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_769d1ca280c13a9d16f9ab9d079aed5e'] = 'Pour voir plus de détails sur les raisons de la suspension';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_77048fffa45ed57e9ca30d68e9b9b42f'] = 'La synchronisation du produit n\'a pas réussi. Vérifiez les raisons possibles dans [Merchant Center]({0})[:target=\'_blank\'] ou contactez le [customer support](mailto&nbsp;:support-google@prestashop.com).';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_77048fffa45ed57e9ca30d68e9b9b42f'] = 'La synchronisation du produit n\'a pas réussi. Vérifiez les raisons possibles dans [Merchant Center]({0})[:target=\'_blank\'] ou contactez le [customer support](mailto :support-google@prestashop.com).';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_7712beb92a85e717c47186b4b991941e'] = 'Ajoutez le mapping';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_776694be3b2368440866da1b3f871c36'] = 'Accès par le module PrestaShop associé à votre compte de courrier électronique Google Merchant Center et les comptes Google Ads.';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_78111cda65848f7971386a742db38792'] = 'L\'écrasement d\'une demande existante désactivera votre ancien compte et mettra en pause les campagnes existantes liées à ce compte - listings gratuits et campagnes Shopping. 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_78111cda65848f7971386a742db38792'] = 'L\'écrasement d\'une demande existante désactivera votre ancien compte et mettra en pause les campagnes existantes liées à ce compte - listings gratuits et campagnes Shopping.
 Si vous menez une campagne Shopping différente';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_78956a1da16ea9f4a9530b586a12744c'] = 'Sélectionnez les filtres que vous souhaitez ajouter à votre campagne Google Ads';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_78e9afaca2e825f7c59d8afe9de083ef'] = 'Vous devez soumettre les taxes que vous collectez';
@@ -358,11 +358,11 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_892d
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_898c4f4717f4d91a73bdc0196cb18b70'] = 'Activez la balise de remarketing et de suivi des conversions';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_89e340cdac2dec04e4d2920a85f6daf4'] = 'Le numéro de téléphone pré-rempli est celui que vous avez saisi dans le back-office';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_8a20e86727a360d6451fb84264cc3613'] = 'Revoir les problèmes';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_8a6bbde278adb063dc9cf97a25da08f2'] = 'L\'URL du site Web de la boutique doit être vérifiée et déclarée avant que vous puissiez télécharger des données sur les produits. n[Apprenez comment vérifier et déclarer votre site Web](https&nbsp;://support.google.com/merchants/answer/176793?hl=en&amp;ref_topic=)[:target=\'_blank\'].';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_8a6bbde278adb063dc9cf97a25da08f2'] = 'L\'URL du site Web de la boutique doit être vérifiée et déclarée avant que vous puissiez télécharger des données sur les produits. n[Apprenez comment vérifier et déclarer votre site Web](https ://support.google.com/merchants/answer/176793?hl=en&amp;ref_topic=)[:target=\'_blank\'].';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_8a804237321d3811aacb022bf57ec95d'] = '{0} résultats';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_8a89650eaa727d02196c837f7e888b2f'] = 'Mapping des catégories';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_8a8b2efb3535c8bb48236944d551e1f3'] = 'Les informations sur la boutique sont manquantes';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_8ab466bd9d23cc2d4096a99592f0d6e3'] = 'Écraser le flux de produits existant&nbsp;?';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_8ab466bd9d23cc2d4096a99592f0d6e3'] = 'Écraser le flux de produits existant ?';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_8abb3143973cbd8551248ef7f3c4bc54'] = 'L\'IA de Google affichera les annonces des produits recherchés aux acheteurs intéressés au bon moment, ce qui augmentera vos ventes.nnDéfinissez un budget quotidien et lancez facilement votre campagne d\'annonces - vous n\'êtes facturé que lorsque les annonces sont cliquées';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_8adb83cd700acf4e9bcd3de2a2cde754'] = 'Vous êtes sur le point de déconnecter le compte Google. Cela supprimera l\'accès à Google';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_8ae798dd8f2c0cf03ee5aaa4385c8700'] = 'Vous avez demandé ce service trop souvent avec ce numéro de téléphone. Vous devez attendre 24 heures pour réessayer ou changer votre numéro de téléphone.';
@@ -376,11 +376,11 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_904e
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_90bf1bc4815b0b05ab063fe4d6a44e6d'] = 'Commencer à configurer';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9106e1c8de44c7d51b0a88147b962aa3'] = 'Activez les balises de remarketing sur mon site';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_915a036f827463658095d8cdc3d8071f'] = 'Quand quelqu\'un clique sur votre publicité';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_917d465e9a9e8b16a8da50a1ca8156ca'] = 'Montrer&nbsp;:';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_917d465e9a9e8b16a8da50a1ca8156ca'] = 'Montrer :';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_91e4db600bbef8b15ef216413108cdbe'] = 'Association à la taxonomie des produits Google';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_933e3763694f0a6e15ba32169bd625f2'] = 'Décrivez vos données produit à l\'aide d\'attributs. En plus du minimum requis pour les inscriptions gratuites standard';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_93cba07454f06a4a960172bbd6e2a435'] = 'Oui';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_93ddec926ff9c05ff260c4eb90776ea9'] = 'Veillez à autoriser toutes les autorisations demandées lors de l\'authentification de votre compte Google. 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_93ddec926ff9c05ff260c4eb90776ea9'] = 'Veillez à autoriser toutes les autorisations demandées lors de l\'authentification de votre compte Google.
 Cette action est obligatoire pour que ce service fonctionne correctement.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_93f07b720ebf7d1246512569761a5804'] = 'Supprimé';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_942d6ee293e9117fb51c22ea0969a809'] = 'Si la synchronisation du produit est désactivée';
@@ -390,7 +390,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9533
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_956060446ff4a502c23ce1794175a22a'] = 'En savoir plus sur les conditions de paiement';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_95aacd4d4ac87524cfc63d9cc94c008e'] = 'Connectez-vous avec Google';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_95b58d04441d7ae1ff9e64353e56b51e'] = 'Vous n\'avez aucun produits dans ces campagnes';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_96b8a63e70051d69309f7dc72e41ee02'] = 'Besoin d\'aide&nbsp;? Retrouvez ici la documentation de ce module.';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_96b8a63e70051d69309f7dc72e41ee02'] = 'Besoin d\'aide ? Retrouvez ici la documentation de ce module.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_96d64b4c3e4fa07bc7f1eb8618d57261'] = 'Synchronisez automatiquement les données de vos produits avec Google';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9762fbd77457b855a920d6a2e521cfeb'] = 'Allez dans les paramètres de maintenance';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_97cd39ca3f5462ce0fe72fe948ed7d47'] = 'Valeur de votre produit';
@@ -405,16 +405,16 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9adb
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9af160cf410106da5c4b2e27dbd63a79'] = 'Donnez les termes et conditions de facturation';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9af596e8c128e31507aabec602a2c265'] = 'Voir le rapport';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9b52a21b0fb4ae83167d3ffb089476e6'] = 'La somme de vos coûts par clic (CPC) et de vos coûts par millier d\'impressions (CPM) pendant cette période.';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9ba0f87e5311818b92a96b94516d6d4c'] = 'Suivant&nbsp;: {0}';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9ba0f87e5311818b92a96b94516d6d4c'] = 'Suivant : {0}';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9d3cec26f8ade10f3c88950642a1eb8f'] = 'Vous ne pouvez pas activer les listings gratuits pour le moment. Essayez à nouveau plus tard.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9d5fe8b8750e3fbc99170e24239c4865'] = 'Le code postal pré-rempli est celui que vous avez saisi dans le back-office';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9e27a381e168a08c4fad59293a2d9a80'] = 'Pays de facturation';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9e2941b3c81256fac10392aaca4ccfde'] = 'Condition';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9e507e05409511db5d715e802212b083'] = 'Vous ne pouvez pas connecter un compte Google Merchant Center lorsque le mode Maintenance est actif. 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9e507e05409511db5d715e802212b083'] = 'Vous ne pouvez pas connecter un compte Google Merchant Center lorsque le mode Maintenance est actif.
  Veuillez modifier les paramètres de votre boutique.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9e5fa28e70c49b8283d99ce8f1d78519'] = 'Pays pris en charge';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9eb4e1477da300d0d1ab1a51e5ba128a'] = 'Compte du nombre de fois où votre annonce est apparue sur une page de résultats de recherche ou un site Web du réseau Google.';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9f2dd5462feb03a8c4305b7ee2029864'] = '**Veuillez noter&nbsp;:** si vous avez déjà des actions de conversion Google Ads avec des valeurs de conversion spécifiques à une transaction configurées sur votre site pour ce compte Google Ads';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_9f2dd5462feb03a8c4305b7ee2029864'] = '**Veuillez noter :** si vous avez déjà des actions de conversion Google Ads avec des valeurs de conversion spécifiques à une transaction configurées sur votre site pour ce compte Google Ads';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a03126df755c622905afcd70d1de26fc'] = 'Pour cibler plusieurs pays, vous devez créer plusieurs campagnes.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a0bed6768bbb272ec1ed94baa102589e'] = 'Exportation du calendrier de synchronisation';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a0bfb8e59e6c13fc8d990781f77694fe'] = 'Continuer';
@@ -427,7 +427,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a392
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a3bd46de94d6940fe96be2bc051df364'] = 'Votre boutique est associée au compte PrestaShop de';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a3c7b01a83999feb58aacd17c82ce67e'] = 'Le flux de produits est prêt pour l\'exportation';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a441040790abe92eaf9c9a6a52be4da9'] = 'Connexion du compte...';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a4528c6b17f8d152c4024bbe71ebc0b6'] = 'Annuler sans sauvegarder&nbsp;?';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a4528c6b17f8d152c4024bbe71ebc0b6'] = 'Annuler sans sauvegarder ?';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a49131f84be09479d8686cba889a7708'] = 'Valider votre code';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a4c07be227eaaeb4228ca29b4b72aca6'] = 'Si vous ciblez plusieurs pays';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a52ab216dd03c49902ff2a66d8c12f36'] = 'Description longue';
@@ -439,7 +439,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a6b5
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a73b2be2be353eae987aac5a8f25915c'] = 'Vous n\'avez aucun produits dans les campagnes activées';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a76d4ef5f3f6a672bbfab2865563e530'] = 'Heure';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a7e4555ec43586dce45ffc67767ee6b8'] = 'La déconnexion de votre Merchant Center supprimera l\'accès à vos annonces Google dans ce module et mettra en pause toute campagne en cours.';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a8c85c5b9c9f6853f4b9520ecd73a32b'] = 'Prochaine synchronisation&nbsp;: {0}';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a8c85c5b9c9f6853f4b9520ecd73a32b'] = 'Prochaine synchronisation : {0}';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a8d7f04772bf5b0102ed02f8606c1f0e'] = 'Valeur de la dimension sélectionnée';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a8de5bb3cd24ef8ea7509a4b3c993779'] = 'Pour réussir à synchroniser vos données produit';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a92a526f1b79f26c7eb61330c1e0b019'] = 'Sélectionnez les pays où vos produits sont disponibles';
@@ -447,18 +447,18 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a949
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a96d242ac549456a6410cabd3fff5568'] = 'Adresse professionnelle';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_a9be469de55a229621ccec713e38d096'] = 'Vous pouvez [modifier votre code postal]({0})[:target=\'_blank\' class=\'text-decoration-underline text-muted\'] dans votre back-office';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_aa8c01cc541b99bd6155f0eb9941e62f'] = 'Couleur de votre produit';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_abc375ff2da6988d1463c3b1d7804a48'] = 'Si vous trouvez dans l\'Espace économique européen ou en Suisse, votre compte Merchant Center doit être associé à un [Comparison Shopping Service (CSS)]({0})[:target=\'_blank\'] 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_abc375ff2da6988d1463c3b1d7804a48'] = 'Si vous trouvez dans l\'Espace économique européen ou en Suisse, votre compte Merchant Center doit être associé à un [Comparison Shopping Service (CSS)]({0})[:target=\'_blank\']
 Si vous créez un nouveau compte Merchant Center par le biais de cette application';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ace8f9b566068482df654191f2bd8a3c'] = 'Entrez votre code à six chiffres';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_acfa757d1b49f4139f64daebd873d32d'] = 'Vous pouvez [modifier votre adresse professionnelle]({0})[:target=\'_blank\' class=\'text-decoration-underline text-muted\'] dans votre back-office';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ad0ba0086a3604f055f91c316fa9e1c0'] = 'J\'ai lu et j\'accepte ces conditions';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ad3d06d03d94223fa652babc913de686'] = 'Valider';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ae5aeecd81608a879c6d3fbc629c85e2'] = 'Durée de la campagne';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b01a4753f63d063b4a4e421d664bc563'] = 'Ces informations seront utilisées pour créer votre compte. 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b01a4753f63d063b4a4e421d664bc563'] = 'Ces informations seront utilisées pour créer votre compte.
 L\'adresse électronique Google ci-dessous est celle fournie lors de la connexion de votre compte Google.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b07d2a453faae29db282427401d977a7'] = 'Pour utiliser un compte Merchant Center existant';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b0be7dbccd426516656613518d177895'] = 'Nous n\'avons pas été en mesure d\'authentifier votre compte. Réessayez ou passez à un autre compte.';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b0de6d14520a2ed759622c6f6a342058'] = 'Page de configuration&nbsp;!';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b0de6d14520a2ed759622c6f6a342058'] = 'Page de configuration !';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b0f2eafa83df46ec7cb64dffd6af16e3'] = 'Recherchez la marque';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b1906abde8d98946df0a2aeca47983c6'] = 'Ne faites pas la promotion de contenus interdits ou n\'utilisez pas de pratiques interdites pour faire de la publicité. Respectez la politique de contenu restreint et les normes de qualité pour vos annonces et votre site web.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b1c94ca2fbc3e78fc30069c8d0f01680'] = 'Tous';
@@ -483,12 +483,12 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b727
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b7af8e948f847fde6efe0b4faceee93f'] = 'Importation automatique des paramètres fiscaux';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b910b98f495f6da0be49158e19b8781d'] = 'La validation du compte a échoué.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b9519f6b8d32f8d4ffc20935df8ff51a'] = 'Marketing avec Google';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b9bba5b6f850988c410bd604cef96713'] = 'Vous n\'avez pas trouvé de réponse à votre question&nbsp;?';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b9bba5b6f850988c410bd604cef96713'] = 'Vous n\'avez pas trouvé de réponse à votre question ?';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b9bdcec109a8f6bf5558806827c8fcbf'] = 'Découvrez les produits les plus performants';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_b9f5c797ebbf55adccdd8539a65a0241'] = 'Handicapés';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ba2938d9be1c638a705daa84733df710'] = 'Déconnecter votre Merchant Center&nbsp;?';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ba2938d9be1c638a705daa84733df710'] = 'Déconnecter votre Merchant Center ?';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ba31b8869582c0e5dd1780f0ea330e93'] = 'Paramétrage des taxes';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bab4f12aa35414d8b8097e4de427d5dd'] = 'Créez un nouveau compte [Merchant Center]({0})[:target=\'_blank\'] ou reliez un compte existant. 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bab4f12aa35414d8b8097e4de427d5dd'] = 'Créez un nouveau compte [Merchant Center]({0})[:target=\'_blank\'] ou reliez un compte existant.
 Pour afficher vos produits sur Google, vous devez remplir les [conditions d\'admissibilité]({1})[:target=\'_blank\']';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bac40e6b819d3c163f10577c423a49bb'] = 'Je vends des vêtements et des accessoires';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bafd7322c6e97d25b6299b5d6fe8920b'] = 'Non';
@@ -500,18 +500,18 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bd1c
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bd72a8faa87c4dea0a557dbeca197fe8'] = 'Articles de produits';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bd78e201d12e3429c6a3437c83793851'] = 'Vous voulez lancer une campagne';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bd8eeca73790bc1db84d6aa7c6f63e43'] = 'Flux de l\'exportation';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bd9b23594c75812fbc2706cc5c55f233'] = 'Prochaine synchronisation&nbsp;: {0}';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bd9b23594c75812fbc2706cc5c55f233'] = 'Prochaine synchronisation : {0}';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bda17a7d3396dab8f782aef9f5692897'] = 'Synchronisation en cours/terminée';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_be38ef309479376d2023f76e9a9814d3'] = 'Voir sur Google Ads';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_beb7c901346d8f893d7fd9cb53720564'] = 'Ciblage et expédition';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bedf076edfc306dd3f4bb3995a8ce2a7'] = 'Message texte';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_bf6f63550c0344e1a6716f78e172c96b'] = 'Automatiquement';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c0172cb95dc8703af77f8d589a9cc6fe'] = 'Vos produits sont en cours d\'examen 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c0172cb95dc8703af77f8d589a9cc6fe'] = 'Vos produits sont en cours d\'examen
  Cela peut prendre 3 à 5 jours pour examiner vos produits. Une fois approuvé';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c0ae44c4aa837ccda3621d5aac6ca831'] = 'Votre numéro de téléphone a été vérifié';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c0cae60cc83febc60e818278d487c18b'] = 'Ce nom apparaîtra dans vos annonces gratuites et vos annonces d\'achat.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c1069a480848e06782b81b8bea9c0c94'] = 'Description courte';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c2fcd9bfd59f851082d9497b79c3e058'] = 'Dernière synchronisation&nbsp;: {0}';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c2fcd9bfd59f851082d9497b79c3e058'] = 'Dernière synchronisation : {0}';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c3d7c4111333950ea33b15a147882482'] = 'Ajouter l\'adresse du site web';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c3f528f441b06e42f0e4c857924e5310'] = 'L\'adresse pré-remplie est celle que vous avez saisie dans le back-office';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c41a31890959544c6523af684561abe5'] = 'Cible';
@@ -520,9 +520,9 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c556
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c5b8c7b9a767e5a309737b2627642e1f'] = 'Activez les listings gratuits pour afficher gratuitement vos produits dans l\'onglet Shopping.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c5c2153ab02d74dc25953d174746f884'] = 'Les attributs de votre produit ont été enregistrés avec succès. Révisez le résumé puis cliquez sur \'Export\' pour les soumettre à Google';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c5d17ea31fef4959eefde5e7c15b4340'] = 'Performance des produits pour les campagnes actives';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c616cbb428b5fb4d74b0cf51afcc0631'] = 'Pour avoir accès aux annonces gratuites et faire de la publicité sur Google, vous devez accepter et respecter les exigences ci-dessous&nbsp;:';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c616cbb428b5fb4d74b0cf51afcc0631'] = 'Pour avoir accès aux annonces gratuites et faire de la publicité sur Google, vous devez accepter et respecter les exigences ci-dessous :';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c63ad618bcf09a1327e8fc4d3af1f1f6'] = 'Liste des catégories de produits Google';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c63f4041494cfba94bec2dc90d8ac68c'] = 'Créer un titre et une description pour les attributs de mon produit en utilisant&nbsp;:';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c63f4041494cfba94bec2dc90d8ac68c'] = 'Créer un titre et une description pour les attributs de mon produit en utilisant :';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c6adee4fbacecef2a9153e27386dfb2a'] = 'Vérifier le numéro de téléphone';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c7b6a561a00f063217c14a4198ad92a3'] = 'Vérifiez les performances de vos campagnes';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_c80808ec84e4ed68ca976517d7cd4599'] = 'Nous vérifions votre statut GMC...';
@@ -581,7 +581,7 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e017
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e0ed8e71dbd22a1e91cb570b52443fd5'] = 'Code postal';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e102b65f0b34dd8fac6ee2a167e86ae4'] = 'Filtrer par disponibilité';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e168180721ad7b6094618b27c94846b0'] = 'Mettre en pause toutes mes campagnes';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e1bdeb56bf9c83a6aedca658e0bbfadf'] = 'Confirmer la déconnexion&nbsp;?';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e1bdeb56bf9c83a6aedca658e0bbfadf'] = 'Confirmer la déconnexion ?';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e223170428de1027fdb456f47c54d4cf'] = 'Gérer le compte';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e2b4a6e4cc2ec3a25a63dbcff6313622'] = 'Vous ne pouvez pas sélectionner un pays dont la devise est différente de celle de votre boutique principale.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e38d7d3ac73ca5634b19c61aecb70ee7'] = 'Modifiez le mapping';
@@ -600,12 +600,12 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e6c6
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e71efbca7cdac4da7794f4fa650e67fc'] = 'Date de fin (facultatif)';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e72dca5d5a8a4706a206f3225324bf44'] = 'Nom de la boutique';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e7510ef35db7c6122fe9256e492517fc'] = 'Vous n\'avez pas de campagnes activées';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e7893f95fa6f5e83ba2bc8337bea9cb5'] = 'Vous ne pouvez pas trouver un pays&nbsp;? Seuls les pays pris en charge sont répertoriés. [Voir la liste des pays pris en charge]({0})[:target=\'_blank\']';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e7893f95fa6f5e83ba2bc8337bea9cb5'] = 'Vous ne pouvez pas trouver un pays ? Seuls les pays pris en charge sont répertoriés. [Voir la liste des pays pris en charge]({0})[:target=\'_blank\']';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e7f0b73e8b92014ed59ef4357caca7a9'] = 'Nous encourageons la soumission d\'autant d\'attributs applicables que possible afin de garantir des données précises et complètes.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e85319afb827d4268c6451279d6f2a21'] = 'Vous pouvez [modifier votre ville]({0})[:target=\'_blank\' class=\'text-decoration-underline text-muted\'] dans votre back-office';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e895c2cea587b746490bed548574823a'] = 'Ce champ personnalisé';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e8a9f88da7fb7fb5ffc20ed0958f21a8'] = 'Produits exclus';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e8acfea21917c3c6880d3ad3b990b18e'] = 'Quitter sans sauvegarder&nbsp;?';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e8acfea21917c3c6880d3ad3b990b18e'] = 'Quitter sans sauvegarder ?';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_e99180abf47a8b3a856e0bcb2656990a'] = 'En pause';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ea4788705e6873b424c65e91c2846b19'] = 'Annuler';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_eac130d434a18689fe0dda61b92c91a2'] = 'Le nom doit être unique.';
@@ -617,33 +617,33 @@ $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ec53
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ecd5ee22acd70395624c6e2445f205c4'] = 'Cherchez à savoir pourquoi ça n\'a pas marché';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ed1ca3f03c897132e55f4d40f47c30cb'] = 'Ne peut pas être synchronisé';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ed532b409c1373ba1e586e65d01ce0ed'] = 'Pas encore de données';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_edefbba5a5f3dd968edd8c6d85494d97'] = 'Vous avez connecté votre compte Google&nbsp;!';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_edefbba5a5f3dd968edd8c6d85494d97'] = 'Vous avez connecté votre compte Google !';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_ee5ebd05906cdf6ae230483207dd4f89'] = 'Groupe d\'âge';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f00a1d99f6f47917006e88a803ecde1f'] = 'Campagne';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f082891a5cb10f50371b34ece1ead210'] = 'Demande de transfert';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f1206f9fadc5ce41694f69129aecac26'] = 'Configuration';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f2581091d50cd460ddf5e677c123a995'] = 'Vous ne voyez pas le navigateur sécurisé Google&nbsp;? 
- Cliquez sur Continuer pour relancer la fenêtre et terminer la configuration. 
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f2581091d50cd460ddf5e677c123a995'] = 'Vous ne voyez pas le navigateur sécurisé Google ?
+ Cliquez sur Continuer pour relancer la fenêtre et terminer la configuration.
  Vous devrez peut-être activer les fenêtres pop-up dans votre navigateur pour continuer.';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f2ac5205c8f14999cfe08a883a1909fa'] = 'En savoir plus sur la déclaration de site';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f2bbdf9f72c085adc4d0404e370f0f4c'] = 'Attribut';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f3c8a2cedb3cd3e4fbe7898fa69bccfc'] = 'Vérifiez si vous avez des balises de remarketing et de suivi des conversions à ajouter à votre boutique';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f3e3ad4cc3fdec097c6e438d3440b1d5'] = 'Créez un nouveau compte Google Ads';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f447ac856e7e72435904956e3b15f433'] = 'Région';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f482adb4b49209787ac5bc74ff4d6d8c'] = 'Vous avez configuré avec succès votre compte Google Ads&nbsp;!';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f482adb4b49209787ac5bc74ff4d6d8c'] = 'Vous avez configuré avec succès votre compte Google Ads !';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f4967ec1c31e872ed477b21783485f4b'] = 'Inclure tous les produits synchronisés';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f4ef0177eb193bdb210e466a147cee1a'] = 'Vérification du numéro de téléphone';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f5c690864b5c1b2b944e1b904ea34b94'] = 'Produits actifs prêts pour la synchronisation';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f6b7529536ae3ef9196b329e4c93ba0b'] = 'Votre compte ne remplit pas les conditions requises pour bénéficier d\'un référencement amélioré gratuit sur Google';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f869e352c8a4923ef81600170f87ee2d'] = 'Aucun compte existant';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f93d66792d3718f0d61484c38ed6a41e'] = 'Nous allons créer les balises de conversion suivantes&nbsp;: Vue de la page';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f93d66792d3718f0d61484c38ed6a41e'] = 'Nous allons créer les balises de conversion suivantes : Vue de la page';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_f9e7b396ea72458c73cde3c8281d713b'] = 'CPC moyen';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_fa02197d97a9395861104a46e3e1968c'] = 'Atteignez encore plus de clients grâce aux annonces payantes et augmentez vos ventes en promouvant vos produits auprès des bons clients sur Google Search';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_fae45f15201d1e29384d2b8fca48be6d'] = 'Votre budget quotidien doit être un nombre valide supérieur à 1. Pour tout nombre décimal';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_fae81265836d080bf07530f399106ec4'] = 'En savoir plus sur la suspension de compte';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_fbb70cb1c6d4430de7f0122d773b6751'] = 'Recherche par {0}';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_fbcc6617e1e383ecbade39c0559fe972'] = 'La déconnexion a échoué. Veuillez rafraîchir la page et réessayer.';
-$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_fbd78c89353981ca103b4c5ce83cf1e3'] = 'Vous avez créé votre campagne Smart Shopping avec succès&nbsp;!';
+$_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_fbd78c89353981ca103b4c5ce83cf1e3'] = 'Vous avez créé votre campagne Smart Shopping avec succès !';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_fbd8442315206102188bb70cf7d5b3bf'] = 'Statut du produit';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_fc4ffcea3e38f10e446333acb5db233f'] = 'Choisissez votre compte';
 $_MODULE['<{psxmarketingwithgoogle}prestashop>psxmktgwithgoogletranslations_fcf98cf63bcc10e0c4de47fce2e08e60'] = 'Créer une campagne d\'achats intelligente';
