@@ -101,11 +101,8 @@ addDecorator((story, context) => ({
   i18n: new VueI18n({
     defaultLocale: 'en',
     locale: 'en',
-    locales: locales,
-    messages: {
-      en: messages.en,
-      ar: messages.ar,
-    },
+    locales,
+    messages,
   }),
   // add a props to toggle language
   props: {
