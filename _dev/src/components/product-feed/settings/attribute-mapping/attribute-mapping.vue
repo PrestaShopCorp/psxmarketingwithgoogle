@@ -26,7 +26,7 @@
       </section>
       <section
         class="mb-2"
-        v-if="categoryProductsSelected.length"
+        v-if="mappingSectionVisible"
       >
         <h3
           class="ps_gs-fz-20 font-weight-600 mb-2"
@@ -105,6 +105,10 @@ export default {
     };
   },
   computed: {
+    mappingSectionVisible() {
+      // TODO: Confirm this validation rule
+      return this.categoryProductsSelected.length;
+    },
     disableContinue() {
       return false;
     },
