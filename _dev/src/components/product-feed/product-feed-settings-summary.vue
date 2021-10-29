@@ -60,7 +60,7 @@
           />
           <product-feed-card-report-card
             status="success"
-            :title="$t('productFeedSettings.summary.productAttributes')"
+            :title="$t('productFeedSettings.summary.productAttributesMapping')"
             :link="$t('cta.editProductAttributes')"
             :link-to="{type : 'stepper', name: 3}"
             size="full"
@@ -100,31 +100,28 @@
                     </b-form-group>
                   </b-td>
                 </b-tr>
-                <template v-if="sellRefurbished">
-                  <product-feed-settings-attribute-mapping-tablerow-specific
-                    v-for="input in refurbishedInputs"
-                    :key="input"
-                    :input="input"
-                    :is-report="true"
-                  />
-                </template>
-                <template v-if="sellApparel">
-                  <product-feed-settings-attribute-mapping-tablerow-specific
-                    v-for="input in apparelInputs"
-                    :key="input"
-                    :input="input"
-                    :is-report="true"
-                  />
-                </template>
               </b-tbody>
             </b-table-simple>
             <caption
-              v-if="sellRefurbished || sellApparel"
+              v-if="mandatoryAttributesNotMapped"
               class="d-block ps_gs-fz-12 ps_gs-table-caption"
             >
-              <VueShowdown
-                :markdown="$t('productFeedSettings.summary.youSell', [specificProducts])"
-              />
+              <p>
+                <VueShowdown
+                  :markdown="$tc('productFeedSettings.summary.mandatoryAttributesNotMapped',
+                  mandatoryAttributesNotMapped,
+                  [mandatoryAttributesNotMapped])"
+                  :extensions="['no-p-tag']"
+                  tag="strong"
+                  class="strong"
+                />
+                <br>
+                <VueShowdown
+                  :markdown="$t('productFeedSettings.summary.noticeToCompleteMapping', ['https://www.google.com'])"
+                  :extensions="['extended-link', 'no-p-tag']"
+                  tag="span"
+                />
+              </p>
             </caption>
           </product-feed-card-report-card>
         </b-row>
@@ -197,16 +194,6 @@ export default {
     };
   },
   computed: {
-    sellApparel: {
-      get() {
-        return this.$store.getters['productFeed/GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES'];
-      },
-    },
-    sellRefurbished: {
-      get() {
-        return this.$store.getters['productFeed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
-      },
-    },
     nextSyncInHours() {
       // Return how many hours left before next sync
       const now = dayjs();
@@ -224,22 +211,17 @@ export default {
         return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS'];
       },
     },
-    specificProducts() {
-      const tableOfSpecifics = [];
-      if (this.sellRefurbished) {
-        tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellRefurbishedProducts'));
-      }
-      if (this.sellApparel) {
-        tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellApparelAndAccessories'));
-      }
-      return tableOfSpecifics;
-    },
     targetCountries() {
       // change country code into name with the json list
       return this.$options.filters.changeCountriesCodesToNames(
         this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
       );
     },
+    mandatoryAttributesNotMapped() {
+      // TODO: To return the nb of attributes not mapped
+      // Might be attributes with "Not available" selected as mapping ?
+      return 25
+    }
   },
   methods: {
     cancel() {
