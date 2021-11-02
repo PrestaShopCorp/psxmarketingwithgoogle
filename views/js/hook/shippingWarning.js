@@ -17,11 +17,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
     let i = 1;
-    let findDelayDiv = document.querySelector(`#carrier_wizard #step_carrier_general #delay_${i}`);
+    let findDelayDiv;
 
-    while (!!findDelayDiv) {
+    while (findDelayDiv = document.querySelector(`#carrier_wizard #step_carrier_general #delay_${i}`)) {
         findDelayDiv.addEventListener('change', displayWarningMsg);
         i++;
         findDelayDiv = document.querySelector(`#carrier_wizard #step_carrier_general #delay_${i}`);
@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function displayWarningMsg() {
-    const formId = document.querySelector('#carrier_wizard #step_carrier_general #fieldset_form');
     const findAlert = document.querySelector('#carrier_wizard #step_carrier_general #warningTransit');
     if (!!findAlert) {
         return;
@@ -44,5 +43,5 @@ function displayWarningMsg() {
         </div>
     `;
     warningShipping.innerHTML = content;
-    formId.after(warningShipping);
+    document.querySelector('#carrier_wizard #step_carrier_general #fieldset_form').after(warningShipping);
 }
