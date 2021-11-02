@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import SettingsFooter from '../../product-feed-settings-footer';
+import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import AttributeField from './attribute-field.vue';
 import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';

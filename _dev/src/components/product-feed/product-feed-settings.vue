@@ -59,7 +59,7 @@
 
 <script>
 import Stepper from '../commons/stepper';
-import ProductFeedSettingsShipping from './product-feed-settings-shipping';
+import ProductFeedSettingsShipping from './settings/target-countries/target-countries';
 import ProductFeedSettingsExport from './product-feed-settings-export';
 import ProductFeedSettingsAttributeMapping from './settings/attribute-mapping/attribute-mapping';
 import ProductFeedSettingsSummary from './settings/summary/summary';

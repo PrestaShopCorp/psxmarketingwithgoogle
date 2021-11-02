@@ -7,13 +7,13 @@ import Vuex from 'vuex';
 import {shallowMount, mount} from '@vue/test-utils';
 import BootstrapVue, {BFormRadio} from 'bootstrap-vue';
 import config, {localVue, cloneStore, filters} from '@/../tests/init';
-import ProductFeedSettingsShipping from '@/components/product-feed/product-feed-settings-shipping.vue';
+import ProductFeedSettingsShipping from './target-countries.vue';
 import Stepper from '@/components/commons/stepper.vue';
 import PsSelect from '@/components/commons/ps-select.vue';
 import {
   ShippingSettings,
 } from '@/../stories/product-feed-settings.stories';
-import countriesSelectionOptions from '../../assets/json/countries.json';
+import countriesSelectionOptions from '@/assets/json/countries.json';
 
 describe('product-feed-settings-shipping.vue', () => {
   let mockMutation;

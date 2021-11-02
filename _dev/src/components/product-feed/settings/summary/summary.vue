@@ -172,7 +172,7 @@ import duration from 'dayjs/plugin/duration';
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
 import googleUrl from '@/assets/json/googleUrl.json';
-import SettingsFooter from '../../product-feed-settings-footer';
+import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ProductFeedCardReportCard from '../../product-feed-card-report-card';
 import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
 import TableRowMapping from '@/components/product-feed/commons/table-row-mapping';
