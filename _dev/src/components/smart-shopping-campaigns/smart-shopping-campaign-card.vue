@@ -52,7 +52,6 @@
         size="lg"
         class="ps_gs-switch"
         v-model="statusTrackingTag"
-        @change="changeStatus"
       >
         <span class="ps_gs-fz-14">
           {{ toggleTag }}
@@ -106,7 +105,6 @@ export default {
   data() {
     return {
       selected: null,
-      statusTrackingTag: this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'],
     };
   },
   props: {
@@ -116,6 +114,16 @@ export default {
     },
   },
   computed: {
+    statusTrackingTag:   {
+      get(){
+        return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET']
+      },
+      set(value) {
+         this.$store.dispatch(
+        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value,
+      );
+      }
+    },
     alertTag() {
       if (this.statusTrackingTag === false) {
         return {
@@ -159,11 +167,6 @@ export default {
       } else {
         this.$emit('openPopin');
       }
-    },
-    changeStatus() {
-      this.$store.dispatch(
-        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', this.statusTrackingTag,
-      );
     },
   },
 };
