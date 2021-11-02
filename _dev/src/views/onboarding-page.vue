@@ -307,6 +307,13 @@ export default {
       this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
     }
   },
+  beforeDestroy() {
+    this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
+    this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
+    this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
+    this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', false);
+    this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
+  },
   watch: {
     merchantCenterAccountIsChosen(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
