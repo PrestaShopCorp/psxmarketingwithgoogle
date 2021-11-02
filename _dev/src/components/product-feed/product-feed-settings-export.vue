@@ -71,7 +71,7 @@
         {{ $t("cta.continue") }}
       </b-button>
     </div>
-    <product-feed-settings-footer />
+    <settings-footer />
   </div>
   <!-- This is not in batch 1 -->
   <!--
@@ -230,7 +230,7 @@
  ** Should be fetched from PrestaShop data
  * TODO: Replace with real datas.
  */
-import ProductFeedSettingsFooter from './product-feed-settings-footer';
+import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 
 export default {
   name: 'ProductFeedSettingsExport',
@@ -300,7 +300,7 @@ export default {
     };
   },
   components: {
-    ProductFeedSettingsFooter,
+    SettingsFooter,
   },
   computed: {
     disableContinue() {

@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'ProductFeedSettingsFooter',
+  name: 'SettingsFooter',
   props: {
     message: {
       type: String,

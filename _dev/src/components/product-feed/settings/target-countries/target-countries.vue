@@ -99,44 +99,6 @@
         </div>
       </b-alert>
     </div>
-    <!-- Not in batch 1 -->
-    <!--
-    <b-form-group
-      v-if="isUS"
-      class="mt-4"
-      :label="$t('productFeedSettings.shipping.taxSettings')"
-      label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
-    >
-      <p>
-        {{ $t('productFeedSettings.shipping.taxSettingsDescription') }}
-      </p>
-      <b-form-radio
-        v-model="tax"
-        name="taxSettingsRadio"
-        id="taxSettingsAuto"
-        value="taxSettingsAuto"
-        class="mb-2"
-      >
-        <div>
-          <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.shipping.autoImportTax') }}
-          </span>
-        </div>
-      </b-form-radio>
-      <b-form-radio
-        v-model="tax"
-        name="taxSettingsRadio"
-        id="taxSettingsManual"
-        value="taxSettingsManual"
-        class="mb-2"
-      >
-        <div>
-          <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.shipping.manualImportTax') }}
-          </span>
-        </div>
-      </b-form-radio>
-    </b-form-group> -->
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
         @click="cancel"
@@ -164,7 +126,7 @@
 <script>
 import {VueShowdown} from 'vue-showdown';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
-import SelectCountry from '../commons/select-country.vue';
+import SelectCountry from '@/components/commons/select-country.vue';
 
 export default {
   name: 'ProductFeedSettingsShipping',
@@ -196,13 +158,6 @@ export default {
       return `https://merchants.google.com/mc/tax/settings?a=${this.$store.state.accounts.googleMerchantAccount.id}`;
     },
     disableContinue() {
-      /**
-       * ! This condition will be used when
-       * ! we'll be able to set taxSettings manually
-       */
-      // if (this.isUS && this.tax === null) {
-      //   return true;
-      // }
       return this.countries.length < 1 || this.shippingSettings === null;
     },
     shippingSettings: {
