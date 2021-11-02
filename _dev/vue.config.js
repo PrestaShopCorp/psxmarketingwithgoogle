@@ -18,6 +18,7 @@
  */
 const path = require('path');
 
+
 module.exports = {
   chainWebpack: (config) => {
     config.plugins.delete('html');
@@ -54,5 +55,5 @@ module.exports = {
   filenameHashing: false,
   outputDir: '../views/',
   assetsDir: '',
-  publicPath: '../modules/psxmarketingwithgoogle/views/',
+  publicPath: process.env.NODE_ENV === 'production' ? 'https://storage.googleapis.com/psxmarketing-cdn/v1.x.x/img/' : '../modules/psxmarketingwithgoogle/views/img/',
 };
