@@ -54,5 +54,5 @@ module.exports = {
   filenameHashing: false,
   outputDir: '../views/',
   assetsDir: '',
-  publicPath: process.env.NODE_ENV !== 'production' ? '../modules/psxmarketingwithgoogle/views/' : process.env.VUE_APP_CDN_URL,
+  publicPath: process.env.VUE_APP_CDN_URL || '../modules/psxmarketingwithgoogle/views/',
 };
