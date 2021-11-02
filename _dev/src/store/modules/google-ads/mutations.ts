@@ -52,7 +52,9 @@ export default {
   },
   [MutationsTypes.ADD_NEW_GOOGLE_ADS_ACCOUNT](
     state: LocalState, payload: AccountInformations) {
-    state.list.push(payload);
+    if (state.list) {
+      state.list.push(payload);
+    }
   },
   [MutationsTypes.SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE](
     state: LocalState, payload: boolean) {

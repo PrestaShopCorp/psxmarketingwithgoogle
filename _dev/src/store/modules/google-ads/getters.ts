@@ -32,7 +32,7 @@ export default {
     }
     return null;
   },
-  [GettersTypes.GET_GOOGLE_ADS_LIST_OPTIONS](state: LocalState): Array<AccountInformations> {
+  [GettersTypes.GET_GOOGLE_ADS_LIST_OPTIONS](state: LocalState): Array<AccountInformations>|null {
     return state.list;
   },
   [GettersTypes.GET_GOOGLE_ADS_ACCOUNT_CHOSEN](state: LocalState): AccountInformations|null {
