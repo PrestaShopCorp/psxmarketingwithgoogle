@@ -26,7 +26,7 @@
     </b-form-group>
     <b-form-group
       class="mt-4"
-      :label="$t('productFeedSettings.shipping.shippingSettings')"
+      :label="$t('productFeedSettings.shipping.shippingSettingsTitle')"
       label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
       <b-form-radio
@@ -40,11 +40,11 @@
       >
         <div>
           <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.shipping.autoImportShipping') }}
+            {{ $t('productFeedSettings.shipping.shippingLabel1') }}
           </span>
           <VueShowdown
             class="text-muted ps_gs-fz-12 mb-0"
-            :markdown="$t('productFeedSettings.shipping.autoImportShippingDescription')"
+            :markdown="$t('productFeedSettings.shipping.shippingDescription1')"
           />
         </div>
       </b-form-radio>
@@ -58,14 +58,22 @@
       >
         <div>
           <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.shipping.manualShipping') }}
+            {{ $t('productFeedSettings.shipping.shippingLabel2') }}
           </span>
           <VueShowdown
             class="text-muted ps_gs-fz-12 mb-0"
-            :markdown="$t('productFeedSettings.shipping.manualShippingDescription')"
+            :markdown="$t('productFeedSettings.shipping.shippingDescription2')"
           />
         </div>
       </b-form-radio>
+      <div
+        class="d-flex align-items-center"
+      >
+        <i class="material-icons-round ps_gs-fz-14 text-secondary mr-2">warning_amber</i>
+        <p class="ps_gs-fz-12 mb-0">
+          {{ $t('productFeedSettings.shipping.noticeSetupShipping') }}
+        </p>
+      </div>
     </b-form-group>
     <div
       v-if="isUS"
