@@ -61,8 +61,8 @@
 import Stepper from '../commons/stepper';
 import ProductFeedSettingsShipping from './product-feed-settings-shipping';
 import ProductFeedSettingsExport from './product-feed-settings-export';
-import ProductFeedSettingsAttributeMapping from './settings/attribute-mapping/attribute-mapping.vue';
-import ProductFeedSettingsSummary from './product-feed-settings-summary';
+import ProductFeedSettingsAttributeMapping from './settings/attribute-mapping/attribute-mapping';
+import ProductFeedSettingsSummary from './settings/summary/summary';
 
 export default {
   name: 'ProductFeedSettings',

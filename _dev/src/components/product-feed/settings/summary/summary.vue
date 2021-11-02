@@ -2,7 +2,7 @@
   <div>
     <section>
       <h3 class="ps_gs-fz-16 font-weight-600 mb-3">
-        {{ $t('productFeedSettings.summary.title1') }}
+        {{ $t('productFeedSettings.summary.title1', [nextSyncInHours]) }}
       </h3>
       <b-container
         fluid
@@ -60,7 +60,7 @@
           />
           <product-feed-card-report-card
             status="success"
-            :title="$t('productFeedSettings.summary.productAttributes')"
+            :title="$t('productFeedSettings.summary.productAttributesMapping')"
             :link="$t('cta.editProductAttributes')"
             :link-to="{type : 'stepper', name: 3}"
             size="full"
@@ -82,6 +82,11 @@
                 </b-tr>
               </b-thead>
               <b-tbody>
+                <TableRowMapping
+                  v-for="attribute in attributes"
+                  :key="attribute.google"
+                  :attribute="attribute"
+                />
                 <b-tr>
                   <b-td class="pb-0 align-top pt-md-0 pb-md-1">
                     <span class="d-flex align-items-center">
@@ -100,31 +105,30 @@
                     </b-form-group>
                   </b-td>
                 </b-tr>
-                <template v-if="sellRefurbished">
-                  <product-feed-settings-attribute-mapping-tablerow-specific
-                    v-for="input in refurbishedInputs"
-                    :key="input"
-                    :input="input"
-                    :is-report="true"
-                  />
-                </template>
-                <template v-if="sellApparel">
-                  <product-feed-settings-attribute-mapping-tablerow-specific
-                    v-for="input in apparelInputs"
-                    :key="input"
-                    :input="input"
-                    :is-report="true"
-                  />
-                </template>
               </b-tbody>
             </b-table-simple>
             <caption
-              v-if="sellRefurbished || sellApparel"
-              class="d-block ps_gs-fz-12 ps_gs-table-caption"
+              v-if="mandatoryAttributesNotMapped"
+              class="d-flex ps_gs-fz-12 ps_gs-table-caption mt-3"
             >
-              <VueShowdown
-                :markdown="$t('productFeedSettings.summary.youSell', [specificProducts])"
-              />
+              <i class="material-icons-round ps_gs-fz-16 text-warning mr-2">warning_amber</i>
+              <p>
+                <VueShowdown
+                  :markdown="$tc('productFeedSettings.summary.mandatoryAttributesNotMapped',
+                                 mandatoryAttributesNotMapped,
+                                 [mandatoryAttributesNotMapped])"
+                  :extensions="['no-p-tag']"
+                  tag="strong"
+                  class="font-weight-600"
+                />
+                <br>
+                <VueShowdown
+                  :markdown="$t('productFeedSettings.summary.noticeToCompleteMapping',
+                                [$options.googleUrl.learnRequirementsProductSpecification])"
+                  :extensions="['extended-link', 'no-p-tag']"
+                  tag="span"
+                />
+              </p>
             </caption>
           </product-feed-card-report-card>
         </b-row>
@@ -156,30 +160,34 @@
       :markdown="$t('productFeedSettings.export.prohibitedContentNotice',
                     [$options.googleUrl.prohibitedContentGuidelines])"
       :extensions="['extended-link']"
-      class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-md-n3"
+      class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-n3"
     />
   </div>
 </template>
 
 <script>
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
 
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
 import googleUrl from '@/assets/json/googleUrl.json';
-import ProductFeedSettingsFooter from './product-feed-settings-footer';
-import ProductFeedCardReportCard from './product-feed-card-report-card';
-import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
-import ProductFeedCardNextSyncCard from './product-feed-card-next-sync-card';
+import ProductFeedSettingsFooter from '../../product-feed-settings-footer';
+import ProductFeedCardReportCard from '../../product-feed-card-report-card';
+import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
+import TableRowMapping from '@/components/product-feed/commons/table-row-mapping';
+
+dayjs.extend(duration);
 
 export default {
   name: 'ProductFeedSettingsSummary',
   components: {
     ProductFeedSettingsFooter,
     ProductFeedCardReportCard,
-    ProductFeedSettingsAttributeMappingTablerowSpecific,
     ProductFeedCardNextSyncCard,
     BTableSimple,
     VueShowdown,
+    TableRowMapping,
   },
   data() {
     return {
@@ -193,15 +201,11 @@ export default {
     };
   },
   computed: {
-    sellApparel: {
-      get() {
-        return this.$store.getters['productFeed/GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES'];
-      },
-    },
-    sellRefurbished: {
-      get() {
-        return this.$store.getters['productFeed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
-      },
+    nextSyncInHours() {
+      // Return how many hours left before next sync
+      const now = dayjs();
+      const nextSync = dayjs(this.nextSyncDate);
+      return dayjs.duration(nextSync.diff(now)).hours();
     },
     nextSyncDate() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt;
@@ -214,21 +218,25 @@ export default {
         return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS'];
       },
     },
-    specificProducts() {
-      const tableOfSpecifics = [];
-      if (this.sellRefurbished) {
-        tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellRefurbishedProducts'));
-      }
-      if (this.sellApparel) {
-        tableOfSpecifics.push(this.$t('productFeedSettings.attributeMapping.sellApparelAndAccessories'));
-      }
-      return tableOfSpecifics;
-    },
     targetCountries() {
       // change country code into name with the json list
       return this.$options.filters.changeCountriesCodesToNames(
         this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
       );
+    },
+    mandatoryAttributesNotMapped() {
+      // TODO: To return the nb of attributes not mapped
+      // Might be attributes with "Not available" selected as mapping ?
+      return 25;
+    },
+    attributes() {
+      // TODO: To return attributes
+      return [
+        {
+          google: 'description',
+          prestashop: 'longDescription',
+        },
+      ];
     },
   },
   methods: {
