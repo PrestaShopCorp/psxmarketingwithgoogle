@@ -54,7 +54,7 @@ export default {
   components: {
     Chart,
   },
-  created() {
+  mounted() {
     this.fetchGraph();
   },
   computed: {
