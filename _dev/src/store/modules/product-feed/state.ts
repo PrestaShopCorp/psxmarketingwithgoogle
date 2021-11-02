@@ -18,6 +18,7 @@
  */
 
 import attributesToMap from './attributes-to-map.json';
+
 export interface ProductFeedStatus {
   nextJobAt?: string;
   jobEndedAt?: string|null;
