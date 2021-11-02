@@ -3,7 +3,7 @@
   "version": "1.4.4",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build --no-clean",
+    "build": "VUE_APP_CDN_URL=https://storage.googleapis.com/psxmarketing-cdn/v1.x.x/ && vue-cli-service build --no-clean",
     "lint": "vue-cli-service lint --no-fix",
     "lint-fix": "vue-cli-service lint --fix",
     "dev": "vue-cli-service build --no-clean --mode development --watch",

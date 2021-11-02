@@ -72,6 +72,7 @@ For instance to modify the base URL of the services for a local one:
 ```
 PSX_MKTG_WITH_GOOGLE_API_URL=https://localhost:8080
 PSX_MKTG_WITH_GOOGLE_API_KEY=API_KEY
+USE_LOCAL_VUE_APP=0
 ```
 
 ### Microcks
