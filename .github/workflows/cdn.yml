@@ -57,9 +57,9 @@ jobs:
 
       - name: Push to CDN
         run: |
-          gsutil cp -r ./views/ gs://psxmarketing-cdn/${MAJOR}.x.x
-          gsutil cp -r ./views/ gs://psxmarketing-cdn/${MAJOR}.${MINOR}.x
-          gsutil cp -r ./views/ gs://psxmarketing-cdn/${MAJOR}.${MINOR}.${PATCH}
+          gsutil cp -r ./views gs://psxmarketing-cdn/${MAJOR}.x.x
+          gsutil cp -r ./views gs://psxmarketing-cdn/${MAJOR}.${MINOR}.x
+          gsutil cp -r ./views gs://psxmarketing-cdn/${MAJOR}.${MINOR}.${PATCH}
         env:
           MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
           MINOR: ${{ steps.get_tag.outputs.MINOR }}
