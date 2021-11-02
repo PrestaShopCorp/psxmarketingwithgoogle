@@ -265,7 +265,7 @@ export default {
       return this.getGoogleAdsAccount && this.getGoogleAdsAccount.id.length > 0;
     },
     billingSettingsCompleted() {
-      return this.getGoogleAdsAccount.billingSettings.isSet;
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];

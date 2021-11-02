@@ -38,6 +38,9 @@ export default {
   [GettersTypes.GET_GOOGLE_ADS_ACCOUNT_CHOSEN](state: LocalState): AccountInformations|null {
     return state.accountChosen;
   },
+  [GettersTypes.GET_GOOGLE_ADS_ACCOUNT_IS_SERVING](state: LocalState): boolean {
+    return !!state.accountChosen?.id?.length && !!state.accountChosen.billingSettings?.isSet;
+  },
   [GettersTypes.GET_BILLING_SHOP_INFORMATIONS](state: LocalState): object {
     return {
       currency: state.currency,

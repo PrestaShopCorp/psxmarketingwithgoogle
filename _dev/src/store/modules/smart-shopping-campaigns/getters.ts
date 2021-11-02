@@ -50,7 +50,7 @@ export default {
   [GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET](
     state: LocalState,
   ): boolean {
-    return state.tracking !== null && state.tracking;
+    return !!state.tracking;
   },
   [GettersTypes.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS](
     state: LocalState,
@@ -59,8 +59,16 @@ export default {
   },
   [GettersTypes.GET_REMARKETING_TRACKING_TAG_STATUS](
     state: LocalState,
+    getters,
   ): boolean {
-    return state.tagAlreadyExists && (state.tracking !== null && state.tracking);
+    return getters.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS
+      || getters.GET_REMARKETING_TRACKING_TAG_IS_SET;
+  },
+  [GettersTypes.GET_REPORTING_TAB_IS_ACTIVE](
+    state: LocalState, getters, rootState, rootGetters,
+  ) {
+    return getters.GET_REMARKETING_TRACKING_TAG_STATUS
+      && rootGetters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
   },
   [GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
     state: LocalState,
