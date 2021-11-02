@@ -55,5 +55,5 @@ module.exports = {
   filenameHashing: false,
   outputDir: '../views/',
   assetsDir: '',
-  publicPath: process.env.NODE_ENV === 'production' ? 'https://storage.googleapis.com/psxmarketing-cdn/v1.x.x/img/' : '../modules/psxmarketingwithgoogle/views/img/',
+  publicPath: process.env.NODE_ENV === 'production' ? 'https://storage.googleapis.com/psxmarketing-cdn/v1.x.x/' : '../modules/psxmarketingwithgoogle/views/',
 };
