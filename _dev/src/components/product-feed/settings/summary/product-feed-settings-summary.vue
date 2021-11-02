@@ -110,8 +110,8 @@
               <p>
                 <VueShowdown
                   :markdown="$tc('productFeedSettings.summary.mandatoryAttributesNotMapped',
-                  mandatoryAttributesNotMapped,
-                  [mandatoryAttributesNotMapped])"
+                                 mandatoryAttributesNotMapped,
+                                 [mandatoryAttributesNotMapped])"
                   :extensions="['no-p-tag']"
                   tag="strong"
                   class="font-weight-600"
@@ -119,7 +119,7 @@
                 <br>
                 <VueShowdown
                   :markdown="$t('productFeedSettings.summary.noticeToCompleteMapping',
-                  [$options.googleUrl.learnRequirementsProductSpecification])"
+                                [$options.googleUrl.learnRequirementsProductSpecification])"
                   :extensions="['extended-link', 'no-p-tag']"
                   tag="span"
                 />
@@ -163,22 +163,21 @@
 <script>
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-dayjs.extend(duration);
 
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
 import googleUrl from '@/assets/json/googleUrl.json';
-import ProductFeedSettingsFooter from './product-feed-settings-footer';
-import ProductFeedCardReportCard from './product-feed-card-report-card';
-import ProductFeedSettingsAttributeMappingTablerowSpecific from './product-feed-settings-attribute-mapping-tablerow-specific';
-import ProductFeedCardNextSyncCard from './product-feed-card-next-sync-card';
+import ProductFeedSettingsFooter from '../../product-feed-settings-footer';
+import ProductFeedCardReportCard from '../../product-feed-card-report-card';
+import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
+
+dayjs.extend(duration);
 
 export default {
   name: 'ProductFeedSettingsSummary',
   components: {
     ProductFeedSettingsFooter,
     ProductFeedCardReportCard,
-    ProductFeedSettingsAttributeMappingTablerowSpecific,
     ProductFeedCardNextSyncCard,
     BTableSimple,
     VueShowdown,
@@ -221,8 +220,8 @@ export default {
     mandatoryAttributesNotMapped() {
       // TODO: To return the nb of attributes not mapped
       // Might be attributes with "Not available" selected as mapping ?
-      return 25
-    }
+      return 25;
+    },
   },
   methods: {
     cancel() {
