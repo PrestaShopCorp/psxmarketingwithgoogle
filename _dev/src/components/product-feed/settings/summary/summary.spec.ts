@@ -15,7 +15,7 @@ import {
   Summary,
 } from '@/../stories/product-feed-settings.stories';
 
-describe('product-feed-settings-summary.vue', () => {
+describe('summary', () => {
   it('shows datas', () => {
     const wrapper = shallowMount(ProductFeedSettingsSummary, {
       propsData: Summary.args,

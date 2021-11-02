@@ -4,9 +4,9 @@ import Vuex from 'vuex';
 import translations from '../.storybook/translations.json';
 
 let windowSpy;
-let localVue; // eslint-disable-line 
+let localVue; // eslint-disable-line
 const defaultLocale = 'en';
-let filters; // eslint-disable-line 
+let filters; // eslint-disable-line
 
 beforeEach(() => {
   windowSpy = jest.spyOn(window, 'window', 'get');
@@ -20,11 +20,13 @@ beforeEach(() => {
     timeConverterToDate: jest.fn(),
     timeConverterToHour: jest.fn(),
     changeCountriesCodesToNames: jest.fn().mockImplementation(() => []),
+    timeConverterToStringifiedDate: jest.fn().mockImplementation(() => []),
   };
 
   localVue.filter('timeConverterToDate', filters.timeConverterToDate);
   localVue.filter('timeConverterToHour', filters.timeConverterToHour);
   localVue.filter('changeCountriesCodesToNames', filters.changeCountriesCodesToNames);
+  localVue.filter('timeConverterToStringifiedDate', filters.timeConverterToStringifiedDate);
 });
 
 afterEach(() => {
@@ -42,8 +44,20 @@ config.mocks.$t = (key) => {
 
   return property;
 };
+config.mocks.$tc = (key) => {
+  const parts = key.split('.');
+  const {length} = parts;
+  let property = translations[defaultLocale];
+
+  for (let i = 0; i < length; i += 1) {
+    property = property[parts[i]];
+  }
+
+  return property;
+};
 config.mocks.$i18n = {
   t: config.mocks.$t,
+  tc: config.mocks.$tc,
 };
 export default {config};
 
