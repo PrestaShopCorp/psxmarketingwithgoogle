@@ -67,12 +67,13 @@ In case you need to modify these variables during while maintaining this project
 overwrite them by creating a file `.env` in the root directory of this module, and using the
 keys that can be found in `classes/config/Config.php`.
 
+If you want to use local vue app, set on your .env USE_LOCAL_VUE_APP at 1.
 For instance to modify the base URL of the services for a local one:
 
 ```
 PSX_MKTG_WITH_GOOGLE_API_URL=https://localhost:8080
 PSX_MKTG_WITH_GOOGLE_API_KEY=API_KEY
-USE_LOCAL_VUE_APP=0
+USE_LOCAL_VUE_APP=1
 ```
 
 ### Microcks
