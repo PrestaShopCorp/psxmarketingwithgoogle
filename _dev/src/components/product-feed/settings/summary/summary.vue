@@ -82,6 +82,11 @@
                 </b-tr>
               </b-thead>
               <b-tbody>
+                <TableRowMapping
+                  v-for="attribute in attributes"
+                  :key="attribute.google"
+                  :attribute="attribute"
+                />
                 <b-tr>
                   <b-td class="pb-0 align-top pt-md-0 pb-md-1">
                     <span class="d-flex align-items-center">
@@ -170,6 +175,7 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import ProductFeedSettingsFooter from '../../product-feed-settings-footer';
 import ProductFeedCardReportCard from '../../product-feed-card-report-card';
 import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
+import TableRowMapping from '@/components/product-feed/commons/table-row-mapping';
 
 dayjs.extend(duration);
 
@@ -181,6 +187,7 @@ export default {
     ProductFeedCardNextSyncCard,
     BTableSimple,
     VueShowdown,
+    TableRowMapping,
   },
   data() {
     return {
@@ -221,6 +228,15 @@ export default {
       // TODO: To return the nb of attributes not mapped
       // Might be attributes with "Not available" selected as mapping ?
       return 25;
+    },
+    attributes() {
+      // TODO: To return attributes
+      return [
+        {
+          google: 'description',
+          prestashop: 'longDescription',
+        },
+      ];
     },
   },
   methods: {
