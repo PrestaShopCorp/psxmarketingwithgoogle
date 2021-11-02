@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
     while (findDelayDiv = document.querySelector(`#carrier_wizard #step_carrier_general #delay_${i}`)) {
         findDelayDiv.addEventListener('change', displayWarningMsg);
         i++;
-        findDelayDiv = document.querySelector(`#carrier_wizard #step_carrier_general #delay_${i}`);
     }
 })
 
