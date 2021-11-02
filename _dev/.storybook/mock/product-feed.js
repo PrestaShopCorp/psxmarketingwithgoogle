@@ -1,3 +1,5 @@
+import attributesToMap from '@/store/modules/product-feed/attributes-to-map.json';
+
 export const productFeed = {
   isSyncSummaryLoadingInProgress: false,
   errorAPI: false,
@@ -96,7 +98,8 @@ export const productFeed = {
           },
       }
     ]
-  }
+  },
+  attributesToMap,
 };
 
 export const productFeedIsReadyForExport = {

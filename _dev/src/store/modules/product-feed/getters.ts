@@ -67,4 +67,7 @@ export default {
     }
     return 'success';
   },
+  [GettersTypes.GET_FREE_LISTING_ATTRIBUTES_TO_MAP](state: LocalState): any {
+    return state.attributesToMap;
+  },
 };

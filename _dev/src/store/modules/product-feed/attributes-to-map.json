@@ -1,0 +1,70 @@
+[
+  {
+    "category": "commons",
+    "fields": [
+      {
+        "label": "Description",
+        "tooltip": true,
+        "required": true,
+        "default": "tooltip and required"
+      },
+      {
+        "label": "GTIN (Global Trade Item Number)",
+        "tooltip": false,
+        "required": false,
+        "default": "no tooltip, not required"
+      },
+      {
+        "label": "MPN (Manufacturer Part Number)",
+        "tooltip": true,
+        "required": true,
+        "default": "mpn"
+      },
+      {
+        "label": "Brand",
+        "tooltip": true,
+        "required": true,
+        "default": "brand"
+      }
+    ]
+  },
+  {
+    "category": "apparelAndAccessories",
+    "fields": [
+      {
+        "label": "Age Group",
+        "tooltip": false,
+        "required": true,
+        "default": "bbb"
+      }
+    ]
+  },
+  {
+    "category": "electronics",
+    "fields": [
+      {
+        "label": "Energy class",
+        "tooltip": true,
+        "required": true,
+        "default": "bbb"
+      }
+    ]
+  },
+  {
+    "category": "variantSets",
+    "fields": [
+      {
+        "label": "Material",
+        "tooltip": true,
+        "required": true,
+        "default": "bbb"
+      },
+      {
+        "label": "Pattern",
+        "tooltip": true,
+        "required": true,
+        "default": "bbb"
+      }
+    ]
+  }
+]
