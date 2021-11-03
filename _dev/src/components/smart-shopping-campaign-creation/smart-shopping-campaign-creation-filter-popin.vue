@@ -137,6 +137,7 @@ export default {
   methods: {
     checkAll(status) {
       deepCheckDimension(this.availableFilters, status);
+      checkAndUpdateDimensionStatus(this.availableFilters);
     },
 
     selectCheckbox(event) {
