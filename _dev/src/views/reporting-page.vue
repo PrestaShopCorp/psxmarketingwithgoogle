@@ -18,12 +18,8 @@ export default {
     ProductsPerformanceTable,
   },
   computed: {
-    remarketingTagIsSet() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
-    },
-    googleAdsChosen() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
-        && this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.isSet;
+    reportingTabIsActive() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_TAB_IS_ACTIVE'];
     },
   },
   methods: {
@@ -39,7 +35,7 @@ export default {
   mounted() {
     this.getDatas()
       .then(() => {
-        if (!this.remarketingTagIsSet || !this.googleAdsChosen) {
+        if (!this.reportingTabIsActive) {
           this.$router.push({
             name: 'onboarding',
           });

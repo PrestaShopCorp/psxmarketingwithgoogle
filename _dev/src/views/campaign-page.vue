@@ -56,8 +56,8 @@ export default {
     };
   },
   computed: {
-    googleAdsIsChosen() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+    googleAdsIsServing() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
     SSCExist() {
       return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
@@ -97,7 +97,7 @@ export default {
   mounted() {
     this.getDatas()
       .then(() => {
-        if (!this.googleAdsIsChosen?.billingSettings?.isSet) {
+        if (!this.googleAdsIsServing) {
           this.$router.push({
             name: 'onboarding',
           });

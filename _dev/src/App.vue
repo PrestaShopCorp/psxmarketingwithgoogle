@@ -18,10 +18,7 @@
         <Menu>
           <!-- eslint-disable-next-line -->
         <!-- We display the tab if user has remarketing tag in the module OR already set elsewhere -->
-          <template
-            v-if="googleAdsChosen
-              && remarketingTag"
-          >
+          <template v-if="reportingTabVisible">
             <MenuItem
               :route="{name: 'reporting'}"
             >
@@ -35,7 +32,7 @@
               {{ $t('general.tabs.exportStatus') }}
             </MenuItem>
             <MenuItem
-              v-if="googleAdsChosen"
+              v-if="googleAdsServing"
               :route="{name: 'campaign'}"
             >
               {{ $t('general.tabs.campaign') }}
@@ -82,12 +79,14 @@ export default {
     productFeedIsConfigured() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
-    googleAdsChosen() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
-        && this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.isSet;
+    googleAdsServing() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
     remarketingTag() {
       return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS'];
+    },
+    reportingTabVisible() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_TAB_IS_ACTIVE'];
     },
     shopId() {
       return window.shopIdPsAccounts;
