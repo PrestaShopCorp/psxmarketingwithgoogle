@@ -467,11 +467,11 @@ describe('SSC filters - returnChildrenIds()', () => {
     expect(result).toEqual([
       {
         dimension: 'category',
-        values: [1, 8, 111],
+        values: ['1', '8', '111'],
       },
       {
         dimension: 'category',
-        values: [11],
+        values: ['11'],
       },
     ],
     );
