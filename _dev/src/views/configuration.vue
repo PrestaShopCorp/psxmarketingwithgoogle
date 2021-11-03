@@ -39,10 +39,6 @@ export default defineComponent({
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
     },
   },
-  mounted() {
-    console.log(this.googleAccountIsOnboarded());
-    console.log('oui');
-  },
 });
 </script>
 

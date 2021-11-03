@@ -306,7 +306,7 @@ export default {
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
       this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
     }
-    console.log(this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED']);
+
   },
   beforeDestroy() {
     this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
