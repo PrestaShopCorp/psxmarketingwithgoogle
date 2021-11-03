@@ -530,17 +530,23 @@ export default {
     },
     getDatasFiltersDimensions() {
       this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
-        res.categories.forEach((element) => {
-        // TODO : when API send all dimensions, get rid of the [0]
-          this.availableFilters.children[0].children.push({
-            name: element.localizedName,
-            ...element,
+        Object.keys(res).forEach((dimensionName) => {
+          // Do not display a dimension with no filter inside
+          if (!res[dimensionName].length) {
+            return;
+          }
+          this.availableFilters.children.push({
+            name: dimensionName,
+            id: dimensionName,
             checked: false,
-          });
-          this.availableFilters.children[1].children.push({
-            name: element.localizedName,
-            ...element,
-            checked: false,
+            indeterminate: false,
+            children: res[dimensionName].map((child) => ({
+              ...child,
+              name: child.localizedName,
+              checked: false,
+              indeterminate: false,
+            }),
+            ),
           });
         });
         this.availableFilters.children.sort(
