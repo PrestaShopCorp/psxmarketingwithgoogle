@@ -85,11 +85,6 @@ export default {
         {
           title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
         },
-        /**
-         ** Not in batch 1 */
-        // {
-        //   title: this.$i18n.t('productFeedSettings.steps.categoryMapping'),
-        // },
         {
           title: this.$i18n.t('productFeedSettings.steps.summary'),
         },
@@ -97,7 +92,6 @@ export default {
     };
   },
   computed: {
-    // Where do we get the active step ? Is it in backend ? For now it is just in the store
     activeStep() {
       return this.$store.state.productFeed.stepper;
     },

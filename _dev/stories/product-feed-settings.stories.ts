@@ -1,26 +1,18 @@
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue';
-import Stepper from '../src/components/commons/stepper.vue';
 import {productFeed, productFeedIsReadyForExport} from '../.storybook/mock/product-feed';
 import {initialStateApp} from '../.storybook/mock/state-app';
 
 export default {
   title: 'Product feed/Settings',
   component: TunnelProductFeed,
-  subcomponents: {Stepper},
-  argTypes: {
-    activeStep: {
-      options: [1, 2, 3, 4],
-      control: {type: 'select'},
-    },
-  },
-  parameters: {
-    jest: [
-      'tunnel-product-feed.spec.ts',
-      'summary.spec.ts',
-      'target-coiuntries.ts',
-      // 'product-feed-settings-attribute-mapping.spec.ts',
-    ],
-  },
+  // parameters: {
+  //   jest: [
+  //     // 'tunnel-product-feed.spec.ts',
+  //     // 'summary.spec.ts',
+  //     // 'target-countries.spec.ts',
+  //     // 'product-feed-settings-attribute-mapping.spec.ts',
+  //   ],
+  // },
 };
 
 const Template = (args, {argTypes}) => ({
@@ -33,8 +25,8 @@ const Template = (args, {argTypes}) => ({
 export const ShippingSettings:any = Template.bind({});
 ShippingSettings.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeed);
-    this.$store.state.app = Object.assign({}, initialStateApp);
+    this.$store.state.productFeed = Object.assign(productFeed);
+    this.$store.state.app = Object.assign(initialStateApp);
     this.$store.state.productFeed.stepper = 1;
   },
 };
@@ -42,7 +34,7 @@ ShippingSettings.args = {
 export const ExportSettings:any = Template.bind({});
 ExportSettings.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeed);
+    this.$store.state.productFeed = Object.assign(productFeed);
     this.$store.state.productFeed.stepper = 2;
   },
 };
@@ -50,7 +42,7 @@ ExportSettings.args = {
 export const AttributeMapping:any = Template.bind({});
 AttributeMapping.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeed);
+    this.$store.state.productFeed = Object.assign(productFeed);
     this.$store.state.productFeed.stepper = 3;
   },
 };
@@ -58,7 +50,7 @@ AttributeMapping.args = {
 export const Summary:any = Template.bind({});
 Summary.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeedIsReadyForExport);
+    this.$store.state.productFeed = Object.assign(productFeedIsReadyForExport);
     this.$store.state.productFeed.stepper = 4;
   },
 };
