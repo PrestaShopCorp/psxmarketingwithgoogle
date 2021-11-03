@@ -84,7 +84,7 @@
       </b-button>
       <b-button
         variant="primary"
-        @click="ok()"
+        @click="editionMode ? editCampaign() : ok()"
       >
         <template v-if="!isValidating">
           {{ $t('cta.validate') }}
@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import PsModal from '../commons/ps-modal';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
@@ -114,6 +114,10 @@ export default {
       type: Object,
     },
     filtersExist: {
+      required: false,
+      type: Boolean,
+    },
+    editionMode: {
       required: false,
       type: Boolean,
     },
@@ -170,6 +174,29 @@ export default {
             name: 'campaign-list',
           });
           this.$emit('openPopinSSCCreated');
+          this.isValidating = false;
+        }
+      });
+    },
+    editCampaign() {
+      this.isValidating = true;
+      const payload = {
+        ...this.newCampaign,
+        // API wants country code not name so we have to filter it
+        targetCountry: this.$options.filters.changeCountriesNamesToCodes(
+          [this.newCampaign.targetCountry],
+        )[0],
+        status: CampaignStatusToggle.ENABLED,
+      };
+      this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload).then((resp) => {
+        this.$refs.modal.hide();
+        if (resp && resp.error) {
+          this.isValidating = false;
+          this.$emit('displayErrorApiWhenSavingSSC');
+        } else {
+          this.$router.push({
+            name: 'campaign-list',
+          });
           this.isValidating = false;
         }
       });
