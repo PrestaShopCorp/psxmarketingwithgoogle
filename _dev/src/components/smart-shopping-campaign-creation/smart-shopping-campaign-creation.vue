@@ -287,7 +287,7 @@
           </b-button>
           <b-button
             v-if="editMode"
-            @click="editCampaign"
+            @click="openPopinRecap"
             size="sm"
             :disabled="disableCreateCampaign"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
@@ -321,6 +321,7 @@
       :filters-exist="!campaignHasNoProductsFilter"
       @openPopinSSCCreated="onCampaignCreated"
       @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
+      :edition-mode="editMode"
     />
   </b-card>
 </template>
@@ -331,9 +332,9 @@ import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-
 import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
-import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {returnChildrenIds} from '../../utils/SSCFilters';
+import CampaignStatus from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -521,16 +522,6 @@ export default {
         this.campaignDurationEndDate = null;
       }
       this.$refs.campaignDurationEndDateInput.$children[0].show();
-    },
-    async editCampaign() {
-      const payload = this.finalCampaign;
-      payload.status = this.campaignIsActive
-        ? CampaignStatusToggle.ENABLED
-        : CampaignStatusToggle.PAUSED;
-      await this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
-      this.$router.push({
-        name: 'campaign-list',
-      });
     },
 
     getDimensionsFiltered(dimensions) {
