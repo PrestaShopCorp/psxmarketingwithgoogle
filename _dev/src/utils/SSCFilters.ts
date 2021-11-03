@@ -97,18 +97,7 @@ export function getFiltersbyIds(productFilters: Array<FiltersChosen>,
           return child;
         });
       }
-      //  Check for indeterminated or checked status for dimension
-      if (productFilter?.values.length === availableFilter.children?.length) {
-        availableFilter.checked = true;
-      } else {
-        availableFilter.indeterminate = true;
-      }
-      //  Check for indeterminated or checked status for parent
-      if (productFilters.length === availableFilters.children?.length) {
-        availableFilters.checked = true;
-      } else {
-        availableFilters.indeterminate = true;
-      }
+      checkAndUpdateDimensionStatus(availableFilters);
     });
   }
 
