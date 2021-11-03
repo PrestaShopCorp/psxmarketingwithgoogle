@@ -83,12 +83,12 @@
         {{ $t("cta.saveAndContinue") }}
       </b-button>
     </div>
-    <product-feed-settings-footer />
+    <settings-footer />
   </div>
 </template>
 
 <script>
-import ProductFeedSettingsFooter from '../../product-feed-settings-footer';
+import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import AttributeField from './attribute-field.vue';
 import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
@@ -97,7 +97,7 @@ import Categories from '@/enums/product-feed/attribute-mapping-categories';
 export default {
   name: 'ProductFeedSettingsAttributeMapping',
   components: {
-    ProductFeedSettingsFooter,
+    SettingsFooter,
     AttributeField,
     CategoryButton,
   },

@@ -4,20 +4,9 @@
       :label="$t('productFeedSettings.shipping.targetCountries')"
       label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
-      <!-- Removed for now as we can select only one country -->
-      <!---
-      <VueShowdown
-        :markdown="$t('productFeedSettings.shipping.ifMultipleCountries', [
-          $options.googleUrl.countrySpecificShoppingPolicies,
-          $options.googleUrl.localRegulation
-        ])"
-        :extensions="['extended-link']"
-      />
-    -->
       <label class="mb-2">
         {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
-
       <SelectCountry
         :currency="currency"
         @countrySelected="saveCountrySelected"
@@ -26,7 +15,7 @@
     </b-form-group>
     <b-form-group
       class="mt-4"
-      :label="$t('productFeedSettings.shipping.shippingSettings')"
+      :label="$t('productFeedSettings.shipping.shippingSettingsTitle')"
       label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
       <b-form-radio
@@ -40,11 +29,11 @@
       >
         <div>
           <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.shipping.autoImportShipping') }}
+            {{ $t('productFeedSettings.shipping.shippingLabel1') }}
           </span>
           <VueShowdown
             class="text-muted ps_gs-fz-12 mb-0"
-            :markdown="$t('productFeedSettings.shipping.autoImportShippingDescription')"
+            :markdown="$t('productFeedSettings.shipping.shippingDescription1')"
           />
         </div>
       </b-form-radio>
@@ -58,14 +47,22 @@
       >
         <div>
           <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.shipping.manualShipping') }}
+            {{ $t('productFeedSettings.shipping.shippingLabel2') }}
           </span>
           <VueShowdown
             class="text-muted ps_gs-fz-12 mb-0"
-            :markdown="$t('productFeedSettings.shipping.manualShippingDescription')"
+            :markdown="$t('productFeedSettings.shipping.shippingDescription2')"
           />
         </div>
       </b-form-radio>
+      <div
+        class="d-flex align-items-center"
+      >
+        <i class="material-icons-round ps_gs-fz-14 text-secondary mr-2">warning_amber</i>
+        <p class="ps_gs-fz-12 mb-0">
+          {{ $t('productFeedSettings.shipping.noticeSetupShipping') }}
+        </p>
+      </div>
     </b-form-group>
     <div
       v-if="isUS"
@@ -99,44 +96,6 @@
         </div>
       </b-alert>
     </div>
-    <!-- Not in batch 1 -->
-    <!--
-    <b-form-group
-      v-if="isUS"
-      class="mt-4"
-      :label="$t('productFeedSettings.shipping.taxSettings')"
-      label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
-    >
-      <p>
-        {{ $t('productFeedSettings.shipping.taxSettingsDescription') }}
-      </p>
-      <b-form-radio
-        v-model="tax"
-        name="taxSettingsRadio"
-        id="taxSettingsAuto"
-        value="taxSettingsAuto"
-        class="mb-2"
-      >
-        <div>
-          <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.shipping.autoImportTax') }}
-          </span>
-        </div>
-      </b-form-radio>
-      <b-form-radio
-        v-model="tax"
-        name="taxSettingsRadio"
-        id="taxSettingsManual"
-        value="taxSettingsManual"
-        class="mb-2"
-      >
-        <div>
-          <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.shipping.manualImportTax') }}
-          </span>
-        </div>
-      </b-form-radio>
-    </b-form-group> -->
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
         @click="cancel"
@@ -157,19 +116,19 @@
         {{ $t('cta.continue') }}
       </b-button>
     </div>
-    <product-feed-settings-footer />
+    <settings-footer />
   </b-form>
 </template>
 
 <script>
 import {VueShowdown} from 'vue-showdown';
-import ProductFeedSettingsFooter from './product-feed-settings-footer';
-import SelectCountry from '../commons/select-country.vue';
+import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
+import SelectCountry from '@/components/commons/select-country.vue';
 
 export default {
   name: 'ProductFeedSettingsShipping',
   components: {
-    ProductFeedSettingsFooter,
+    SettingsFooter,
     VueShowdown,
     SelectCountry,
   },
@@ -196,13 +155,6 @@ export default {
       return `https://merchants.google.com/mc/tax/settings?a=${this.$store.state.accounts.googleMerchantAccount.id}`;
     },
     disableContinue() {
-      /**
-       * ! This condition will be used when
-       * ! we'll be able to set taxSettings manually
-       */
-      // if (this.isUS && this.tax === null) {
-      //   return true;
-      // }
       return this.countries.length < 1 || this.shippingSettings === null;
     },
     shippingSettings: {

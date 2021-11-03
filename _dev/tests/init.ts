@@ -12,6 +12,7 @@ beforeEach(() => {
   windowSpy = jest.spyOn(window, 'window', 'get');
   windowSpy.mockImplementation(() => ({
     // add data needed in window
+    scrollTo: jest.fn(),
   }));
   localVue = createLocalVue();
   localVue.use(Vuex);
@@ -20,7 +21,7 @@ beforeEach(() => {
     timeConverterToDate: jest.fn(),
     timeConverterToHour: jest.fn(),
     changeCountriesCodesToNames: jest.fn().mockImplementation(() => []),
-    timeConverterToStringifiedDate: jest.fn().mockImplementation(() => []),
+    timeConverterToStringifiedDate: jest.fn().mockImplementation(() => ''),
   };
 
   localVue.filter('timeConverterToDate', filters.timeConverterToDate);
