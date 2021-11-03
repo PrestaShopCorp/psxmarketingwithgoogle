@@ -4,7 +4,7 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {shallowMount, mount} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils'; // eslint-disable-line import/no-extraneous-dependencies
 import BootstrapVue, {BFormRadio} from 'bootstrap-vue';
 import config, {localVue, cloneStore, filters} from '@/../tests/init';
 import ProductFeedSettingsShipping from './target-countries.vue';
