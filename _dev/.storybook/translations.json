@@ -810,6 +810,10 @@
     "stepper": {
       "nextStep" : "Next: {0}",
       "lastStep" : "Last step"
+    },
+    "attributesMapping" : {
+      "description" : "Description",
+      "shortDescription" : "Short Description"
     }
   },
   "ar" : {

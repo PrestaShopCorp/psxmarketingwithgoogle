@@ -22,6 +22,7 @@ import {
   ProductFeedSettings,
   ProductFeedStatus,
   ProductFeedValidationSummary,
+  AttributesInfos,
 } from './state';
 import GettersTypes from './getters-types';
 
@@ -69,5 +70,8 @@ export default {
   },
   [GettersTypes.GET_FREE_LISTING_ATTRIBUTES_TO_MAP](state: LocalState): any {
     return state.attributesToMap;
+  },
+  [GettersTypes.GET_SHOP_ATTRIBUTES](state: LocalState) : AttributesInfos[] {
+    return state.attributesDatas;
   },
 };

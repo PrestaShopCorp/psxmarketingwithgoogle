@@ -60,6 +60,18 @@ export interface ProductsDatas {
   items: Array<ProductInfos>;
 }
 
+export interface AttributesInfos {
+  name: string;
+  displayName?: string;
+  type: AttributesTypes;
+}
+
+export enum AttributesTypes {
+  PRODUCT = 'product',
+  CUSTOM = 'custom',
+  FEATURE = 'feature',
+}
+
 export interface State {
   isSyncSummaryLoadingInProgress: boolean;
   errorAPI: boolean;
@@ -72,6 +84,7 @@ export interface State {
   validationSummary : ProductFeedValidationSummary;
   productsDatas: ProductsDatas;
   attributesToMap: any;
+  attributesDatas: Array<AttributesInfos>;
 }
 
 export enum ProductStatues {
@@ -117,4 +130,32 @@ export const state: State = {
     items: [],
   },
   attributesToMap,
+  attributesDatas: [
+    {
+      name: 'ean13',
+      type: AttributesTypes.PRODUCT,
+    },
+    {
+      name: 'isbn',
+      type: AttributesTypes.PRODUCT,
+    },
+    {
+      name: 'upc',
+      type: AttributesTypes.PRODUCT,
+    },
+    {
+      name: 'mpn',
+      type: AttributesTypes.PRODUCT,
+    },
+    {
+      name: 'description',
+      displayName: 'attributesMapping.description',
+      type: AttributesTypes.PRODUCT,
+    },
+    {
+      name: 'shortDescription',
+      displayName: 'attributesMapping.shortDescription',
+      type: AttributesTypes.PRODUCT,
+    },
+  ],
 };

@@ -277,4 +277,20 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
   },
+  async [ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE]({rootState, commit}) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'getShopAttributes',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    // need to call nestjs when the route is available
+    const json = await response.json();
+    commit(MutationsTypes.SAVE_ATTRIBUTES_SHOP, json);
+    return json;
+  },
 };
