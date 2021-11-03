@@ -114,15 +114,15 @@ export default {
     },
   },
   computed: {
-    statusTrackingTag:   {
-      get(){
-        return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET']
+    statusTrackingTag: {
+      get() {
+        return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
       },
       set(value) {
-         this.$store.dispatch(
-        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value,
-      );
-      }
+        this.$store.dispatch(
+          'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value,
+        );
+      },
     },
     alertTag() {
       if (this.statusTrackingTag === false) {
