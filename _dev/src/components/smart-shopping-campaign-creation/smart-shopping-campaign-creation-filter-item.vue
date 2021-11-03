@@ -59,6 +59,7 @@
       class="ps_gs-filters__item-children"
     >
       <SmartShoppingCampaignCreationFilterItem
+        :is-open-by-default="isOpenByDefault"
         v-for="(child, index) in item.children"
         :key="index"
         :item="child"

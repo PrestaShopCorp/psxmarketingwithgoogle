@@ -89,7 +89,9 @@
 <script>
 import PsModal from '../commons/ps-modal';
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
-import {filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension} from '../../utils/SSCFilters';
+import {
+  filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension,
+} from '../../utils/SSCFilters';
 
 export default {
   name: 'SmartShoppingCampaignCreationFilterPopin',
@@ -102,6 +104,7 @@ export default {
       type: Object,
       required: true,
     },
+
   },
 
   computed: {
@@ -148,5 +151,6 @@ export default {
   mounted() {
     this.$root.$on('filterSelected', this.selectCheckbox);
   },
+
 };
 </script>

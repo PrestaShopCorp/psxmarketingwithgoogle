@@ -7,7 +7,7 @@ export type CampaignFilter = {
   };
 export type FiltersChosen = {
     dimension?: string;
-    values: Array<number>;
+    values: Array<string| undefined>;
   };
 
 export function filterUncheckedSegments(source: CampaignFilter) {
@@ -38,9 +38,10 @@ export function returnChildrenIds(source: CampaignFilter): Array<FiltersChosen> 
       });
       if (child.children) {
         child.children.forEach((child2) => {
+          // TODO : replace when api is implemented on POST
           // final[index].dimension = child.name;
           final[index].dimension = 'category';
-          final[index].values.push(Number(child2.id));
+          final[index].values.push(child2.id);
         });
         returnChildrenIds(child);
       }
@@ -49,7 +50,7 @@ export function returnChildrenIds(source: CampaignFilter): Array<FiltersChosen> 
     final.push({
       // dimension: source.name,
       dimension: 'category',
-      values: [Number(source.id)],
+      values: [source.id],
     });
   }
   return final;
@@ -71,6 +72,7 @@ export function checkAndUpdateDimensionStatus(source: CampaignFilter) {
   }
   return source;
 }
+
 export function deepCheckDimension(source: CampaignFilter, checkboxClicked) {
   source.checked = checkboxClicked;
   if (source.children) {
@@ -79,4 +81,36 @@ export function deepCheckDimension(source: CampaignFilter, checkboxClicked) {
     });
   }
   return source;
+}
+
+export function getFiltersbyIds(productFilters: Array<FiltersChosen>,
+  availableFilters:CampaignFilter):CampaignFilter {
+  if (availableFilters.children) {
+    availableFilters.children.forEach((availableFilter) => {
+      const productFilter = productFilters
+        .find((pro) => pro.dimension === availableFilter.name);
+      if (availableFilter.children) {
+        availableFilter.children.map((child) => {
+          if (child.id && productFilter?.values.includes(child.id)) {
+            child.checked = true;
+          }
+          return child;
+        });
+      }
+      //  Check for indeterminated or checked status for dimension
+      if (productFilter?.values.length === availableFilter.children?.length) {
+        availableFilter.checked = true;
+      } else {
+        availableFilter.indeterminate = true;
+      }
+      //  Check for indeterminated or checked status for parent
+      if (productFilters.length === availableFilters.children?.length) {
+        availableFilters.checked = true;
+      } else {
+        availableFilters.indeterminate = true;
+      }
+    });
+  }
+
+  return availableFilters;
 }

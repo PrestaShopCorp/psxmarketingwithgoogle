@@ -317,6 +317,7 @@
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
+      :filters="filtersForSummary"
       :filters-exist="!campaignHasNoProductsFilter"
       @openPopinSSCCreated="onCampaignCreated"
       @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
@@ -331,11 +332,8 @@ import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-c
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
-<<<<<<< HEAD
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-=======
 import {returnChildrenIds} from '../../utils/SSCFilters';
->>>>>>> 0674b23b (filters recap)
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -347,6 +345,7 @@ export default {
       campaignDurationEndDate: null,
       campaignHasNoProductsFilter: true,
       filtersChosen: [],
+      filtersForSummary: null,
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
@@ -535,6 +534,7 @@ export default {
     },
 
     getDimensionsFiltered(dimensions) {
+      this.filtersForSummary = dimensions;
       this.filtersChosen = returnChildrenIds(dimensions);
     },
     getDatasFiltersDimensions() {
@@ -574,7 +574,7 @@ export default {
         this.campaignName = foundSsc.campaignName;
         this.campaignDurationStartDate = foundSsc.startDate;
         this.campaignDurationEndDate = foundSsc.endDate || null;
-        this.campaignHasProductsFilter = !!foundSsc.productFilters.length;
+        this.campaignHasNoProductsFilter = !(foundSsc.productFilters.length > 0);
         this.campaignDailyBudget = foundSsc.dailyBudget;
         this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = foundSsc.id;
