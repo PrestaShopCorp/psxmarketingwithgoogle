@@ -48,12 +48,17 @@ jobs:
       - name: Build
         working-directory: _dev
         run: npm run build
+        env:
+          VUE_APP_CDN_URL: https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.x.x/
 
       - name: Delete old CDN
         continue-on-error: true
         run: |
           gsutil rm -r gs://psxmarketing-cdn/${MAJOR}.x.x
           gsutil rm -r gs://psxmarketing-cdn/${MAJOR}.${MINOR}.x
+        env:
+          MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
+          MINOR: ${{ steps.get_tag.outputs.MINOR }}
 
       - name: Push to CDN
         run: |
