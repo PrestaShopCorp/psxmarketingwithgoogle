@@ -28,6 +28,9 @@ export default {
   methods: {
     hideLandingPage() {
       this.$root.$emit('onHideLanding');
+       this.$segment.track('Starts configuration', {
+        module: 'psxmarketingwithgoogle',
+      });
     },
   },
 };
