@@ -148,6 +148,9 @@ export default {
     stepStoreInfoValidation(allFieldsNotFilled, containsAdultContent) {
       this.isBtnStepstoreInfoDisabled = allFieldsNotFilled;
       this.containsAdultContent = containsAdultContent;
+      this.$segment.track('[GGL] Create GMC - Step 2 Confirm Store Information', {
+        module: 'psxmarketingwithgoogle',
+      });
     },
     saveFirstStep() {
       this.$segment.track('[GGL] Create GMC - Step 1', {

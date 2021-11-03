@@ -86,20 +86,19 @@ export default {
     onClickAlert() {
       if (this.gAdsAccountAlert.button.type === 'refresh') {
         this.refresh();
-          this.$segment.track('[GGL] Create GAds Account Refresh Billing Settings Step', {
-        module: 'psxmarketingwithgoogle',
-      });
+        this.$segment.track('[GGL] Create GAds Account Refresh Billing Settings Step', {
+          module: 'psxmarketingwithgoogle',
+        });
       } else if (this.gAdsAccountAlert.button.type === 'link') {
         this.changeError('billing');
-          this.$segment.track('[GGL] Create GAds - Step 5 Billing Settings Step', {
-        module: 'psxmarketingwithgoogle',
-      });
-      
+        this.$segment.track('[GGL] Create GAds - Step 5 Billing Settings Step', {
+          module: 'psxmarketingwithgoogle',
+        });
       } else if (this.gAdsAccountAlert.button.type === 'invitationLink') {
         this.changeError('link');
-          this.$segment.track('[GGL] Create GAds - Step 4 Accept invitation', {
-        module: 'psxmarketingwithgoogle',
-      });
+        this.$segment.track('[GGL] Create GAds - Step 4 Accept invitation', {
+          module: 'psxmarketingwithgoogle',
+        });
       }
     },
   },

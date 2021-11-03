@@ -278,17 +278,17 @@ export default {
     stepToChange(value) {
       this.stepActiveData = value;
       if (this.stepActiveData === 1) {
-         this.$segment.track('[GGL] Create GAds - Step 1 Email Step', {
-        module: 'psxmarketingwithgoogle',
-      });
+        this.$segment.track('[GGL] Create GAds - Step 1 Email Step', {
+          module: 'psxmarketingwithgoogle',
+        });
       } else if (this.stepActiveData === 2) {
-           this.$segment.track('[GGL] Create GAds - Step 2 Business Info Step', {
-        module: 'psxmarketingwithgoogle',
-      });
+        this.$segment.track('[GGL] Create GAds - Step 2 Business Info Step', {
+          module: 'psxmarketingwithgoogle',
+        });
       }
     },
     ok() {
-       this.$segment.track('[GGL] Create GAds - Step 3 Terms And Condition Step', {
+      this.$segment.track('[GGL] Create GAds - Step 3 Terms And Condition Step', {
         module: 'psxmarketingwithgoogle',
       });
       this.isCreating = true;
