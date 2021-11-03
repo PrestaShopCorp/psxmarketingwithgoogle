@@ -114,11 +114,7 @@ export default {
       syncSchedule: '1 * * * * *',
     };
   },
-  [MutationsTypes.SAVE_ATTRIBUTES_SHOP](state: LocalState, payload: Array<AttributesInfos>) {
-    if (payload.length) {
-      payload.forEach((element) => {
-        state.attributesDatas.push(element);
-      });
-    }
+  [MutationsTypes.SAVE_ATTRIBUTES_SHOP](state: LocalState, payload: AttributesInfos[]) {
+    state.attributesDatas.push(...payload);
   },
 };
