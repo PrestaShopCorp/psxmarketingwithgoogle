@@ -27,7 +27,7 @@
     </template>
     <b-dropdown
       :id="field.label | slugify"
-      :text="field.default"
+      :text="field.datas.join(',') || field.default"
       variant=" "
       class="maxw-sm-250 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
       :toggle-class="{'ps-dropdown__placeholder' : true}"
@@ -41,6 +41,7 @@
       >
         <b-form-checkbox
           class="ps_gs-checkbox"
+          @change="getAttribute($event, option)"
         >
           <span class="line-height-15">
             {{ option.label }}
@@ -121,7 +122,16 @@ export default {
   methods: {
     selectNotAvailable() {
       // TODO: handle uncheck all
+      this.field.datas = [];
       this.notAvailableSelected = true;
+    },
+    getAttribute(evt, attr) {
+      if (evt === true) {
+        this.field.datas.push(attr.label);
+      } else {
+        const index = this.field.datas.findIndex((el) => el === attr.label);
+        this.field.datas.splice(index);
+      }
     },
   },
   googleUrl,

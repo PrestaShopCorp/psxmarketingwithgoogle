@@ -5,24 +5,28 @@
       {
         "label": "Description",
         "tooltip": true,
+        "datas": [],
         "required": true,
         "default": "tooltip and required"
       },
       {
         "label": "GTIN (Global Trade Item Number)",
         "tooltip": false,
+        "datas": [],
         "required": false,
         "default": "no tooltip, not required"
       },
       {
         "label": "MPN (Manufacturer Part Number)",
         "tooltip": true,
+        "datas": [],
         "required": true,
         "default": "mpn"
       },
       {
         "label": "Brand",
         "tooltip": true,
+        "datas": [],
         "required": true,
         "default": "brand"
       }
@@ -34,6 +38,7 @@
       {
         "label": "Age Group",
         "tooltip": false,
+        "datas": [],
         "required": true,
         "default": "bbb"
       }
@@ -45,6 +50,7 @@
       {
         "label": "Energy class",
         "tooltip": true,
+        "datas": [],
         "required": true,
         "default": "bbb"
       }
@@ -56,12 +62,14 @@
       {
         "label": "Material",
         "tooltip": true,
+        "datas": [],
         "required": true,
         "default": "bbb"
       },
       {
         "label": "Pattern",
         "tooltip": true,
+        "datas": [],
         "required": true,
         "default": "bbb"
       }
