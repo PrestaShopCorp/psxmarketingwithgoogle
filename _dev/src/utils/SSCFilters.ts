@@ -97,8 +97,8 @@ export function getFiltersbyIds(productFilters: Array<FiltersChosen>,
           return child;
         });
       }
-      checkAndUpdateDimensionStatus(availableFilters);
     });
+    checkAndUpdateDimensionStatus(availableFilters);
   }
 
   return availableFilters;
