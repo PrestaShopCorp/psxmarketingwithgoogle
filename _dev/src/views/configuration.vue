@@ -1,7 +1,7 @@
 <template>
   <div id="configuration">
     <multistore v-if="!psAccountsIsOnboarded && shops.length" />
-    <landing-page v-else-if="!psAccountsIsOnboarded" />
+    <landing-page v-else-if="!googleAccountIsOnboarded" />
     <onboarding-page v-else />
   </div>
 </template>
@@ -31,6 +31,9 @@ export default defineComponent({
   computed: {
     psAccountsIsOnboarded() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
+    },
+    googleAccountIsOnboarded() {
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED'];
     },
     shops() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
