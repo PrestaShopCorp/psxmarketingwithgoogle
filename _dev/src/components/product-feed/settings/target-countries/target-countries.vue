@@ -4,20 +4,9 @@
       :label="$t('productFeedSettings.shipping.targetCountries')"
       label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
-      <!-- Removed for now as we can select only one country -->
-      <!---
-      <VueShowdown
-        :markdown="$t('productFeedSettings.shipping.ifMultipleCountries', [
-          $options.googleUrl.countrySpecificShoppingPolicies,
-          $options.googleUrl.localRegulation
-        ])"
-        :extensions="['extended-link']"
-      />
-    -->
       <label class="mb-2">
         {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
-
       <SelectCountry
         :currency="currency"
         @countrySelected="saveCountrySelected"

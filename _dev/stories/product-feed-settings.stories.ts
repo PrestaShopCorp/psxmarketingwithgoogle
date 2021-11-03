@@ -22,8 +22,8 @@ const Template = (args, {argTypes}) => ({
   beforeMount: args.beforeMount,
 });
 
-export const ShippingSettings:any = Template.bind({});
-ShippingSettings.args = {
+export const TargetCountry:any = Template.bind({});
+TargetCountry.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign(productFeed);
     this.$store.state.app = Object.assign(initialStateApp);
