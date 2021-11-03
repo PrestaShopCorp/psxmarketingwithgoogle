@@ -266,6 +266,9 @@ export default {
 
   methods: {
     async selectGoogleAdsAccount() {
+      this.$segment.track('[GGL] Connect GAds', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.isConnecting = true;
       try {
         await this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.googleAdsAccountSelectionOptions[this.selectedIndex]);
@@ -315,6 +318,9 @@ export default {
       this.$emit('disconnectionGoogleAdsAccount');
     },
     openPopinNewAccount() {
+      this.$segment.track('[GGL] Create GAds', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.$emit('creationGoogleAdsAccount');
     },
     displayIdName(option) {

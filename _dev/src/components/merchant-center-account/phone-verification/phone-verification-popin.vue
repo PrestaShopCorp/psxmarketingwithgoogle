@@ -215,6 +215,9 @@ export default {
       this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
     },
     async sendCode() {
+      this.$segment.track('[GGL] Create GMC - Step 4 Confirm Number', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.isCodeValid = null;
       this.isValidationInProgress = true;
       try {
@@ -303,6 +306,9 @@ export default {
 
     btnText() {
       if (this.phoneVerificationMethod === 'SMS') {
+        this.$segment.track('[GGL] Create GMC - Step 3 Send Code', {
+          module: 'psxmarketingwithgoogle',
+        });
         return this.askAgainIn60Sec ? this.$i18n.t('mcaCard.codeSent') : this.$i18n.t('mcaCard.sendCode');
       }
       return this.$i18n.t('mcaCard.receiveCall');

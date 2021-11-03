@@ -150,12 +150,18 @@ export default {
       this.containsAdultContent = containsAdultContent;
     },
     saveFirstStep() {
+      this.$segment.track('[GGL] Create GMC - Step 1', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.stepActiveData = 2;
     },
     stepToChange(value) {
       this.stepActiveData = value;
     },
     ok() {
+      this.$segment.track('[GGL] Start Create GMC', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.isCreating = true;
       const payload = {
         shop_url: this.shopInformations.shop.url,

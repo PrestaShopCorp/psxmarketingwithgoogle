@@ -283,6 +283,9 @@ export default {
     changeAccount() {
       this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH').then(() => {
         this.openPopup(true);
+        this.$segment.track('[GGL] Connect Google Account', {
+          module: 'psxmarketingwithgoogle',
+        });
       }).catch(() => {
         // TODO: maybe display alert
       });
