@@ -73,6 +73,9 @@ export default {
   },
   methods: {
     onGoogleAdsAccountDissociationConfirmation(bvModalEvt) {
+      this.$segment.track('[GGL] Disconnect GAds Account Confirm', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.processing = true;
       bvModalEvt.preventDefault();
       this.$store.dispatch('googleAds/DISSOCIATE_GOOGLE_ADS_ACCOUNT').finally(

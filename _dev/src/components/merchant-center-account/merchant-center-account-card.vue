@@ -672,6 +672,9 @@ export default {
       this.$store.commit('accounts/SAVE_MCA_CONNECTED_AUTOMATICALLY', false);
     },
     dissociateMerchantCenterAccount() {
+      this.$segment.track('[GGL] Disconnect Gmc Account', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.$emit('dissociateMerchantCenterAccount');
     },
     overrideClaim() {

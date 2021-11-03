@@ -111,6 +111,9 @@ export default {
   },
   methods: {
     updateTrackingStatus() {
+      this.$segment.track('[GGL] Create SSC Remarketing Conversion Step', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.$store.dispatch(
         'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', this.statusTrackingTag,
       );

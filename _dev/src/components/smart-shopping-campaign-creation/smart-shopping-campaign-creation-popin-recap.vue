@@ -137,6 +137,9 @@ export default {
       this.$refs.modal.hide();
     },
     ok() {
+      this.$segment.track('[GGL] Create SSC Validation Step', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.isValidating = true;
       const finalCampaign = {
         ...this.newCampaign,

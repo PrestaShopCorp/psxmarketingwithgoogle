@@ -57,6 +57,9 @@ export default {
   },
   methods: {
     openPopinActivateTracking() {
+      this.$segment.track('[GGL] Create SSC Campaign Tab', {
+        module: 'psxmarketingwithgoogle',
+      });
       if (this.SSCExist) {
         this.$router.push({
           name: 'campaign-creation',

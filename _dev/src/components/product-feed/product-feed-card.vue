@@ -500,6 +500,9 @@ export default {
       });
     },
     goToProductFeedSettings(step) {
+      this.$segment.track('[GGL] Start Catalogue Export', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.$router.push({
         name: 'product-feed-settings',
       });

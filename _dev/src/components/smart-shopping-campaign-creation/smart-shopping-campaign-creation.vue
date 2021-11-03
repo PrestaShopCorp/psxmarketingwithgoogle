@@ -462,6 +462,9 @@ export default {
       });
     },
     openPopinRecap() {
+      this.$segment.track('[GGL] Create SSC Settings Step', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.$bvModal.show(
         this.$refs.SmartShoppingCampaignCreationPopinRecap.$refs.modal.id,
       );

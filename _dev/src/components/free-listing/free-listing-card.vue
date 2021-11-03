@@ -167,6 +167,9 @@ export default {
   },
   methods: {
     toggle() {
+      this.$segment.track('[GGL] Enable Disable Free Listing', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.$store.dispatch('freeListing/SEND_FREE_LISTING_STATUS', !this.freeListingStatus);
       this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', true);
     },

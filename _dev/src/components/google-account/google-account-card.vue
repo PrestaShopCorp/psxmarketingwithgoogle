@@ -369,6 +369,9 @@ export default {
       }
     },
     dissociateGoogleAccount() {
+      this.$segment.track('[GGL] Disconnect Google Account', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.$emit('dissociateGoogleAccount');
     },
     refresh() {

@@ -315,6 +315,9 @@ export default {
       this.$router.go();
     },
     disconnectGoogleAdsAccount() {
+      this.$segment.track('[GGL] Disconnect GAds Account', {
+        module: 'psxmarketingwithgoogle',
+      });
       this.$emit('disconnectionGoogleAdsAccount');
     },
     openPopinNewAccount() {
