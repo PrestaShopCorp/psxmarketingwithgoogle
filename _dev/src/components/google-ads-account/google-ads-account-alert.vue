@@ -217,9 +217,7 @@ export default {
   mounted() {
     setTimeout(() => {
       const segmentIsClicked = document.getElementById('clickedSegment');
-      console.log('eee', segmentIsClicked);
       segmentIsClicked.addEventListener('click', () => {
-        console.log('click', this.error);
         switch (this.error) {
           case GoogleAdsErrorReason.Suspended:
             return this.$segment.track('[GGL] Reactivate GAds Account Suspended', {
