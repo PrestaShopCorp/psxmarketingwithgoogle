@@ -109,15 +109,6 @@ export default {
     formatToDisplay() {
       return this.attributesChecked.map((e) => e.name).join(', ');
     },
-    formatForApi() {
-      return this.attributesChecked.reduce((acc, curr) => {
-        acc[curr.name] = {
-          name: curr.name,
-          isCustomField: true,
-        };
-        return acc;
-      }, {});
-    },
   },
   methods: {
     selectNotAvailable() {
@@ -128,12 +119,11 @@ export default {
       return !!this.attributesChecked.find((e) => e.name === attr);
     },
     getAttribute(evt, attr) {
-      if (evt === true) {
-        this.field.recommended.push(attr);
-      } else {
-        const index = this.field.recommended.findIndex((el) => el === attr.name);
-        this.field.recommended.splice(index);
-      }
+      this.$store.commit('productFeed/SET_ATTRIBUTE_MAPPING_SELECTION', {
+        label: this.field.label,
+        target: attr,
+        checked: evt,
+      });
     },
   },
   googleUrl,
