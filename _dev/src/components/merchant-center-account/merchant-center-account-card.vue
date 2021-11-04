@@ -29,6 +29,7 @@
       </div>
     </div>
     <VueShowdown
+      id="segmentClicked"
       class="mb-1"
       tag="p"
       :markdown="message"
@@ -495,6 +496,7 @@ import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
 import PhoneVerificationPopin from './phone-verification/phone-verification-popin.vue';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'MerchantCenterAccountCard',
@@ -674,6 +676,7 @@ export default {
     dissociateMerchantCenterAccount() {
       this.$segment.track('[GGL] Disconnect Gmc Account', {
         module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
       });
       this.$emit('dissociateMerchantCenterAccount');
     },
@@ -737,6 +740,13 @@ export default {
   },
   mounted() {
     this.setFocusOnSelectMCA();
+    const segmentHasBeenClicked = document.getElementById('segmentClicked');
+    segmentHasBeenClicked.addEventListener('click', () => {
+      this.$segment.track('[GGL] Visit GMC info link', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
+    });
   },
   watch: {
     mcaConfigured(newVal, oldVal) {

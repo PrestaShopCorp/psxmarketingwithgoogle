@@ -95,7 +95,7 @@ export default {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
     },
   },
-  created() {
+  mounted() {
     this.$root.identifySegment();
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
   },

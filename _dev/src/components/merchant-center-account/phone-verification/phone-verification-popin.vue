@@ -154,6 +154,7 @@ import PsModal from '@/components/commons/ps-modal';
 import PsSelect from '@/components/commons/ps-select';
 import phonesPrefixSelectionOptions from '@/assets/json/phonesPrefix.json';
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   components: {
@@ -187,6 +188,10 @@ export default {
   },
   methods: {
     async requestCodeorCall() {
+      this.$segment.track('[GGL] Create GMC - Step 3 Send Code', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       this.askAgainIn60Sec = true;
       this.isCodeValid = null;
       const payload = {
@@ -217,6 +222,8 @@ export default {
     async sendCode() {
       this.$segment.track('[GGL] Create GMC - Step 4 Confirm Number', {
         module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+
       });
       this.isCodeValid = null;
       this.isValidationInProgress = true;
@@ -306,9 +313,6 @@ export default {
 
     btnText() {
       if (this.phoneVerificationMethod === 'SMS') {
-        this.$segment.track('[GGL] Create GMC - Step 3 Send Code', {
-          module: 'psxmarketingwithgoogle',
-        });
         return this.askAgainIn60Sec ? this.$i18n.t('mcaCard.codeSent') : this.$i18n.t('mcaCard.sendCode');
       }
       return this.$i18n.t('mcaCard.receiveCall');

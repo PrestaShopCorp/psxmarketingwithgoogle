@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
+
 export default {
   name: 'LandingPageFooter',
   data() {
@@ -30,6 +32,7 @@ export default {
       this.$root.$emit('onHideLanding');
       this.$segment.track('[GGL] Start Configuration', {
         module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
       });
     },
   },

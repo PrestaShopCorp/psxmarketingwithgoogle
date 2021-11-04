@@ -326,6 +326,7 @@ import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-c
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -464,6 +465,7 @@ export default {
     openPopinRecap() {
       this.$segment.track('[GGL] Create SSC Settings Step', {
         module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
       });
       this.$bvModal.show(
         this.$refs.SmartShoppingCampaignCreationPopinRecap.$refs.modal.id,

@@ -103,6 +103,7 @@ import StepRequirements from './website-requirements/step-requirements';
 import StepStoreInfo from './website-requirements/step-store-info';
 import WebsiteRequirementsSteps from '@/enums/stepper/website-requirements-steps';
 import WebsiteRequirements from '@/enums/merchant-center-account/website-requirements';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'MerchantCenterAccountPopinWebsiteRequirements',
@@ -150,11 +151,14 @@ export default {
       this.containsAdultContent = containsAdultContent;
       this.$segment.track('[GGL] Create GMC - Step 2 Confirm Store Information', {
         module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
       });
     },
     saveFirstStep() {
       this.$segment.track('[GGL] Create GMC - Step 1', {
         module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+
       });
       this.stepActiveData = 2;
     },
@@ -164,6 +168,8 @@ export default {
     ok() {
       this.$segment.track('[GGL] Start Create GMC', {
         module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+
       });
       this.isCreating = true;
       const payload = {

@@ -7,6 +7,7 @@
   >
     <div>
       <VueShowdown
+        id="clickedSegment"
         tag="p"
         :class="!!gAdsAccountAlert.link && 'd-inline'"
         :markdown="gAdsAccountAlert.text"
@@ -44,6 +45,7 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import {
   GoogleAdsErrorReason,
 } from '../../store/modules/google-ads/state';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'GoogleAdsAccountAlert',
@@ -88,16 +90,20 @@ export default {
         this.refresh();
         this.$segment.track('[GGL] Create GAds Account Refresh Billing Settings Step', {
           module: 'psxmarketingwithgoogle',
+          params: SegmentGenericParams,
+
         });
       } else if (this.gAdsAccountAlert.button.type === 'link') {
         this.changeError('billing');
         this.$segment.track('[GGL] Create GAds - Step 5 Billing Settings Step', {
           module: 'psxmarketingwithgoogle',
+          params: SegmentGenericParams,
         });
       } else if (this.gAdsAccountAlert.button.type === 'invitationLink') {
         this.changeError('link');
         this.$segment.track('[GGL] Create GAds - Step 4 Accept invitation', {
           module: 'psxmarketingwithgoogle',
+          params: SegmentGenericParams,
         });
       }
     },
@@ -207,6 +213,31 @@ export default {
       deep: true,
       immediate: true,
     },
+  },
+  mounted() {
+    setTimeout(() => {
+      const segmentIsClicked = document.getElementById('clickedSegment');
+      console.log('eee', segmentIsClicked);
+      segmentIsClicked.addEventListener('click', () => {
+        console.log('click', this.error);
+        switch (this.error) {
+          case GoogleAdsErrorReason.Suspended:
+            return this.$segment.track('[GGL] Reactivate GAds Account Suspended', {
+              module: 'psxmarketingwithgoogle',
+              params: SegmentGenericParams,
+
+            });
+          case GoogleAdsErrorReason.Cancelled:
+            return this.$segment.track('[GGL] Reactivate GAds Account Canceled', {
+              module: 'psxmarketingwithgoogle',
+              params: SegmentGenericParams,
+
+            });
+          default:
+            return null;
+        }
+      });
+    }, 5000);
   },
   googleUrl,
 };

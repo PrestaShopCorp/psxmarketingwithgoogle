@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import CampaignsPerformanceTable from '../components/smart-shopping-campaign/reporting/campaigns-performance/campaigns-performance-table.vue';
 import KeyMetricsBlock from '../components/smart-shopping-campaign/reporting/key-metrics/key-metrics-block.vue';
 import ProductsPerformanceTable from '../components/smart-shopping-campaign/reporting/products-performance/products-performance-table.vue';
@@ -41,6 +42,12 @@ export default {
           });
         }
       });
+  },
+  created() {
+    this.$segment.track('[GGL] View Reporting tab', {
+      module: 'psxmarketingwithgoogle',
+      params: SegmentGenericParams,
+    });
   },
 };
 </script>

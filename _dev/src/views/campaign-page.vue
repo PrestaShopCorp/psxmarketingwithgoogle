@@ -39,6 +39,7 @@ import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc
 import SmartShoppingCampaignCreation from '../components/smart-shopping-campaign-creation/smart-shopping-campaign-creation.vue';
 import PsToast from '../components/commons/ps-toast';
 import SmartShoppingCampaignTableList from '../components/smart-shopping-campaign/smart-shopping-campaign-table-list.vue';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   components: {
@@ -116,6 +117,12 @@ export default {
       deep: true,
       immediate: true,
     },
+  },
+  created() {
+    this.$segment.track('[GGL] View Campaign tab', {
+      module: 'psxmarketingwithgoogle',
+      params: SegmentGenericParams,
+    });
   },
 };
 </script>

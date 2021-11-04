@@ -19,6 +19,7 @@
 import ProductFeedProductStatusCard from '@/components/product-feed-page/product-feed-product-status-card';
 import ProductFeedSyncStatusCard from '@/components/product-feed-page/product-feed-sync-status-card';
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   components: {
@@ -53,6 +54,12 @@ export default {
           });
         }
       });
+  },
+  created() {
+    this.$segment.track('[GGL] View Export status tab', {
+      module: 'psxmarketingwithgoogle',
+      params: SegmentGenericParams,
+    });
   },
 };
 </script>

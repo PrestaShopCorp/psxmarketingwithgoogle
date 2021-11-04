@@ -239,7 +239,7 @@ import countriesSelectionOptions from '../../assets/json/countries.json';
 import PsModal from '../commons/ps-modal';
 import Stepper from '../commons/stepper';
 import SelectCountry from '../commons/select-country.vue';
-
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import GoogleAccountContext from '../../store/modules/accounts/state';
 
 export default {
@@ -277,19 +277,27 @@ export default {
   methods: {
     stepToChange(value) {
       this.stepActiveData = value;
-      if (this.stepActiveData === 1) {
+      if (value === 2) {
         this.$segment.track('[GGL] Create GAds - Step 1 Email Step', {
           module: 'psxmarketingwithgoogle',
+          params: SegmentGenericParams,
         });
-      } else if (this.stepActiveData === 2) {
+      }
+      if (value === 3) {
         this.$segment.track('[GGL] Create GAds - Step 2 Business Info Step', {
           module: 'psxmarketingwithgoogle',
+          billing_country: this.countries[0],
+          timezone: this.selectedTimeZone,
+          currency: this.selectedCurrency,
+          params: SegmentGenericParams,
         });
       }
     },
     ok() {
       this.$segment.track('[GGL] Create GAds - Step 3 Terms And Condition Step', {
         module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+
       });
       this.isCreating = true;
       this.$store.dispatch('googleAds/SAVE_NEW_GOOGLE_ADS_ACCOUNT', this.newAccountInfos)

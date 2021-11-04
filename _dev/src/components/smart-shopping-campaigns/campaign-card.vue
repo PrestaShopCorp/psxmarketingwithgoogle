@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'Campaign',
@@ -59,6 +60,7 @@ export default {
     openPopinActivateTracking() {
       this.$segment.track('[GGL] Create SSC Campaign Tab', {
         module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
       });
       if (this.SSCExist) {
         this.$router.push({
