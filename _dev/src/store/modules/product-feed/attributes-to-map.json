@@ -5,28 +5,48 @@
       {
         "label": "Description",
         "tooltip": true,
-        "datas": [],
+        "recommended": [
+          {
+            "name": "description",
+            "type": "product"
+          }
+        ],
         "required": true,
         "default": "tooltip and required"
       },
       {
         "label": "GTIN (Global Trade Item Number)",
         "tooltip": false,
-        "datas": [],
+        "recommended": [
+          {
+            "name": "gtin",
+            "type": "product"
+          }
+        ],
         "required": false,
         "default": "no tooltip, not required"
       },
       {
         "label": "MPN (Manufacturer Part Number)",
         "tooltip": true,
-        "datas": [],
+        "recommended": [
+          {
+            "name": "mpn",
+            "type": "product"
+          }
+        ],
         "required": true,
         "default": "mpn"
       },
       {
         "label": "Brand",
         "tooltip": true,
-        "datas": [],
+        "recommended": [
+          {
+            "name": "Brand",
+            "type": "product"
+          }
+        ],
         "required": true,
         "default": "brand"
       }
@@ -38,7 +58,12 @@
       {
         "label": "Age Group",
         "tooltip": false,
-        "datas": [],
+        "recommended": [
+          {
+            "name": "age group",
+            "type": "product"
+          }
+        ],
         "required": true,
         "default": "bbb"
       }
@@ -50,7 +75,12 @@
       {
         "label": "Energy class",
         "tooltip": true,
-        "datas": [],
+        "recommended": [
+          {
+            "name": "energy class",
+            "type": "product"
+          }
+        ],
         "required": true,
         "default": "bbb"
       }
@@ -62,14 +92,24 @@
       {
         "label": "Material",
         "tooltip": true,
-        "datas": [],
+        "recommended": [
+          {
+            "name": "material",
+            "type": ""
+          }
+        ],
         "required": true,
         "default": "bbb"
       },
       {
         "label": "Pattern",
         "tooltip": true,
-        "datas": [],
+        "recommended": [
+          {
+            "name": "pattern",
+            "type": ""
+          }
+        ],
         "required": true,
         "default": "bbb"
       }

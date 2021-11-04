@@ -25,9 +25,10 @@
         </span>
       </b-button>
     </template>
+    <!-- add translations -->
     <b-dropdown
       :id="field.label | slugify"
-      :text="field.datas.join(',') || field.default"
+      :text="formatToDisplay || 'not available' "
       variant=" "
       class="maxw-sm-250 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
       :toggle-class="{'ps-dropdown__placeholder' : true}"
@@ -36,15 +37,16 @@
     >
       <b-dropdown-form
         v-for="option in options"
-        :key="option.label | slugify"
+        :key="option.name | slugify"
         form-class="dropdown-item dropdown-form-with-checkbox text-dark"
       >
         <b-form-checkbox
           class="ps_gs-checkbox"
+          :checked="findAttribute(option.name)"
           @change="getAttribute($event, option)"
         >
           <span class="line-height-15">
-            {{ option.label }}
+            {{ option.displayName ? $t(option.displayName) : option.name }}
           </span>
         </b-form-checkbox>
       </b-dropdown-form>
@@ -89,48 +91,48 @@ export default {
     },
   },
   computed: {
-    // TODO: Have the real list of possible value
     options() {
-      return [
-        {
-          label: 'Size',
-          value: 'size',
-        },
-        {
-          label: 'ISBN',
-          value: 'isbn',
-        },
-        {
-          label: 'Long description',
-          value: 'longDescription',
-        },
-        {
-          label: 'Fabric color',
-          value: 'fabricColor',
-        },
-        {
-          label: 'Shoe size',
-          value: 'shoeSize',
-        },
-        {
-          label: 'Womens/Mens',
-          value: 'womensMens',
-        },
-      ];
+      return this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
+    },
+    attributesChecked() {
+      // check nest or take recommended
+      const availableAttr = [];
+      this.options.forEach((el) => {
+        this.field.recommended.forEach((recommended) => {
+          if (el.name === recommended.name) {
+            availableAttr.push(el);
+          }
+        });
+      });
+      return availableAttr;
+    },
+    formatToDisplay() {
+      return this.attributesChecked.map((e) => e.name).join(', ');
+    },
+    formatForApi() {
+      return this.attributesChecked.reduce((acc, curr) => {
+        acc[curr.name] = {
+          name: curr.name,
+          isCustomField: true,
+        };
+        return acc;
+      }, {});
     },
   },
   methods: {
     selectNotAvailable() {
-      // TODO: handle uncheck all
-      this.field.datas = [];
+      this.attributesChecked = [];
       this.notAvailableSelected = true;
+    },
+    findAttribute(attr) {
+      return !!this.attributesChecked.find((e) => e.name === attr);
     },
     getAttribute(evt, attr) {
       if (evt === true) {
-        this.field.datas.push(attr.label);
+        this.field.recommended.push(attr);
       } else {
-        const index = this.field.datas.findIndex((el) => el === attr.label);
-        this.field.datas.splice(index);
+        const index = this.field.recommended.findIndex((el) => el === attr.name);
+        this.field.recommended.splice(index);
       }
     },
   },
