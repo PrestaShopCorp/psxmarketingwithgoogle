@@ -120,7 +120,6 @@ export default {
         return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
       },
       set(value) {
-        console.log(SegmentGenericParams);
         this.$segment.track('[GGL] Disable Google SSC', {
           module: 'psxmarketingwithgoogle',
           smart_shopping_campaign_activation_value: value,

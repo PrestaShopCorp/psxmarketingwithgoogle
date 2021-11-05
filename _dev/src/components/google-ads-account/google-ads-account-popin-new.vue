@@ -286,7 +286,7 @@ export default {
       if (value === 3) {
         this.$segment.track('[GGL] Create GAds - Step 2 Business Info Step', {
           module: 'psxmarketingwithgoogle',
-          billing_country: this.countries[0],
+          billing_country: this.countries,
           timezone: this.selectedTimeZone,
           currency: this.selectedCurrency,
           params: SegmentGenericParams,

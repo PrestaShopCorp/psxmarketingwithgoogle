@@ -8,7 +8,6 @@
 
 <script>
 import {defineComponent} from '@vue/composition-api';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import LandingPage from './landing-page.vue';
 import Multistore from './multistore.vue';
 import OnboardingPage from './onboarding-page.vue';
@@ -27,10 +26,6 @@ export default defineComponent({
       this.$router.push({
         name: 'onboarding',
       });
-    });
-    this.$segment.track('[GGL] Start Visit', {
-      module: 'psxmarketingwithgoogle',
-      params: SegmentGenericParams,
     });
   },
   computed: {

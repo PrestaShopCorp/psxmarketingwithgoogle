@@ -128,7 +128,6 @@ import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-accou
 import SmartShoppingCampaignCard from '../components/smart-shopping-campaigns/smart-shopping-campaign-card.vue';
 import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
 import PsToast from '../components/commons/ps-toast';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'OnboardingPage',
@@ -337,11 +336,6 @@ export default {
     },
 
   },
-  created() {
-    this.$segment.track('[GGL] View Configuration tab', {
-      module: 'psxmarketingwithgoogle',
-      params: SegmentGenericParams,
-    });
-  },
+
 };
 </script>
