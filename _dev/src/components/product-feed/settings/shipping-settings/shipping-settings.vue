@@ -50,7 +50,7 @@
           :key="carrier.carrierId"
           :carrier="carrier"
           :carriers-list="carriers"
-          @toggleCarrier="updateCarriersArray"
+          @updateCarrier="updateCarriersArray($event)"
         />
       </b-tbody>
     </b-table-simple>
@@ -105,7 +105,19 @@ export default {
 
   computed: {
     disableContinue() {
-      return true;
+      return false;
+      // let isOK = true;
+      // isOK = this.carriers.forEach((c) => {
+      //   if (c.enabledCarrier) {
+      //     if (c.maxHandlingTimeInDays && c.maxTransitTimeInDays
+      //      && c.minHandlingTimeInDays && c.minTransitTimeInDays && c.deliveryType) {
+      //       return true;
+      //     }
+      //     return false
+      //   }
+      //   console.log(isOK)
+      // });
+      // return isOK;
     },
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
@@ -115,7 +127,7 @@ export default {
         return getEnabledCarriers(this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].shippingSettings);
       },
       set(value) {
-        console.log(value);
+        console.log('value', value);
       },
     },
   },
@@ -142,9 +154,10 @@ export default {
     updateCarriersArray(e) {
       this.carriers.forEach((carrier) => {
         if (carrier.carrierId === e.carrierId) {
-          carrier.enabledCarrier = e.enabledCarrier;
+          carrier[e.type] = e[e.type];
         }
       });
+      console.log('fin', this.carriers);
     },
     nextStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);

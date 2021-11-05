@@ -161,7 +161,7 @@ export default {
     nextStep() {
       this.loading = true;
       if (this.shippingSettings) {
-        this.$store.dispatch('productFeed/GET_SHIPPING_SETTINGS').then(() => {
+        this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
           this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
           window.scrollTo(0, 0);
         });
