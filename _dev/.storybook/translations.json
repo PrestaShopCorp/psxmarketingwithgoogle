@@ -732,7 +732,8 @@
       "noEndDate" : "No end date",
       "verifyPhoneNumber" : "Verify phone number",
       "refreshInformations" : "Refresh informations",
-      "apply" : "Apply"
+      "apply" : "Apply",
+      "select" : "Select"
     },
     "badge" : {
       "free" : "Free",

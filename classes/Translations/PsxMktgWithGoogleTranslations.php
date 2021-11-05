@@ -781,6 +781,7 @@ class PsxMktgWithGoogleTranslations
                 'verifyPhoneNumber' => $this->module->l('Verify phone number', 'PsxMktgWithGoogleTranslations'),
                 'refreshInformations' => $this->module->l('Refresh informations', 'PsxMktgWithGoogleTranslations'),
                 'apply' => $this->module->l('Apply', 'PsxMktgWithGoogleTranslations'),
+                'select' => $this->module->l('Select', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),

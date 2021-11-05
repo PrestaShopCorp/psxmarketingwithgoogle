@@ -24,10 +24,11 @@
     <td class="text-right">
       <b-dropdown
         :ref="`dropdownCarriers${carrier.id_carrier}`"
-        :text="deliveryTypeMessage"
+        :text="deliveryTypeMessage || $t('cta.select')"
         variant="text"
-        class="maxw-sm-80 ps-dropdown ps_gs-carrier__dropdown
+        class="maxw-sm-160 ps-dropdown ps_gs-carrier__dropdown-delivery-type
         psxmarketingwithgoogle-dropdown bordered"
+        :toggle-class="{'ps-dropdown__placeholder' : deliveryTypeMessage === null}"
         menu-class="ps-dropdown"
         size="sm"
         :disabled="!enabled"
@@ -61,16 +62,16 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model="minHandlingTimeInDays"
-          :min="0"
           :disabled="!enabled"
+          :state="timeState('handling')"
         />
         <b-form-input
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model="maxHandlingTimeInDays"
-          :min="this.minHandlingTimeInDays"
           :disabled="!enabled"
+          :state="timeState('handling')"
         />
       </div>
     </td>
@@ -81,16 +82,16 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model="minTransitTimeInDays"
-          :min="0"
           :disabled="!enabled"
+          :state="timeState('delivery')"
         />
         <b-form-input
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model="maxTransitTimeInDays"
-          :min="this.minTransitTimeInDays"
           :disabled="!enabled"
+          :state="timeState('delivery')"
         />
       </div>
     </td>
@@ -168,7 +169,7 @@ export default {
       maxHandlingTimeInDays: null,
       minTransitTimeInDays: null,
       maxTransitTimeInDays: null,
-      deliveryType: DeliveryType.DELIVERY,
+      deliveryType: null,
       selectedIds: [],
     };
   },
@@ -187,8 +188,10 @@ export default {
       switch (this.deliveryType) {
         case DeliveryType.DELIVERY:
           return this.$i18n.t('cta.yes');
-        default:
+        case DeliveryType.PICKUP:
           return this.$i18n.t('cta.no');
+        default:
+          return null;
       }
     },
   },
@@ -201,6 +204,17 @@ export default {
         id_carrier: this.carrier.id_carrier,
         enabledCarrier: this.enabled,
       });
+    },
+    timeState(type) {
+      // TODO: check if condition is correct
+      if (type === 'handling') {
+        return this.minHandlingTimeInDays > this.maxHandlingTimeInDays
+          && this.minHandlingTimeInDays
+          && this.maxHandlingTimeInDays ? false : null;
+      }
+      return this.minTransitTimeInDays > this.maxTransitTimeInDays
+          && this.minTransitTimeInDays
+          && this.maxTransitTimeInDays ? false : null;
     },
     applyInfos() {
       // TODO: apply to selected checkbox
