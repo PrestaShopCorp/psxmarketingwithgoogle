@@ -13,14 +13,15 @@
         :markdown="gAdsAccountAlert.text"
         :extensions="['no-p-tag', 'extended-link']"
       />
-      <a
+      <b-link
         v-if="!!gAdsAccountAlert.link"
         class="text-muted"
         :href="gAdsAccountAlert.link.url"
         target="_blank"
+        @click="segmentClicked"
       >
         {{ gAdsAccountAlert.link.label }}
-      </a>
+      </b-link>
       <div
         v-if="gAdsAccountAlert.button"
         class="mt-2 text-center d-md-flex align-items-center"
@@ -72,6 +73,7 @@ export default {
   data() {
     return {
       GoogleAdsErrorReason,
+
     };
   },
   methods: {
@@ -106,6 +108,13 @@ export default {
           params: SegmentGenericParams,
         });
       }
+    },
+    segmentClicked() {
+      this.$segment.track('[GGL] Reactivate GAds Account Canceled', {
+        module: 'psxmarketingwithgoogle',
+        error: this.error,
+        params: SegmentGenericParams,
+      });
     },
   },
   computed: {
@@ -201,6 +210,7 @@ export default {
       }
       return null;
     },
+
   },
   watch: {
     googleAdsChosen: {
@@ -213,29 +223,6 @@ export default {
       deep: true,
       immediate: true,
     },
-  },
-  mounted() {
-    setTimeout(() => {
-      const segmentIsClicked = document.getElementById('clickedSegment');
-      segmentIsClicked.addEventListener('click', () => {
-        switch (this.error) {
-          case GoogleAdsErrorReason.Suspended:
-            return this.$segment.track('[GGL] Reactivate GAds Account Suspended', {
-              module: 'psxmarketingwithgoogle',
-              params: SegmentGenericParams,
-
-            });
-          case GoogleAdsErrorReason.Cancelled:
-            return this.$segment.track('[GGL] Reactivate GAds Account Canceled', {
-              module: 'psxmarketingwithgoogle',
-              params: SegmentGenericParams,
-
-            });
-          default:
-            return null;
-        }
-      });
-    }, 5000);
   },
   googleUrl,
 };
