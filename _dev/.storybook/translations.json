@@ -264,7 +264,10 @@
         "carrierDescriptionHeader" : "Carrier description",
         "shipToCustomerHeader" : "Ship to customer’s address",
         "handlingTimeHeader" : "Handling time",
-        "transitTimeHeader" : "Transit time"
+        "transitTimeHeader" : "Transit time",
+        "shippingInformationTitle" : "Carriers & shipping information",
+        "shippingInformationTitleTooltip" : "Placeholder TODO to do xxx",
+        "shippingInformationIntro" : "Enter shipping information for your carriers list. They have to ship to an address to be synchronized in Google Shopping."
       },
       "export" : {
         "summarySyncDailyAt" : "Sync daily at {0}",

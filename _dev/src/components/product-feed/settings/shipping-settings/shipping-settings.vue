@@ -4,13 +4,13 @@
       <h3
         class="ps_gs-fz-20 font-weight-600 mb-0"
       >
-        Carriers & shipping information
+        {{$t('productFeedSettings.shipping.shippingInformationTitle')}}
       </h3>
       <b-button
         variant="invisible"
         class="ml-1 p-0"
         v-b-tooltip:psxMktgWithGoogleApp
-        :title="'placeholder todo'"
+        :title="$t('productFeedSettings.shipping.shippingInformationTitleTooltip')"
       >
         <i class="material-icons text-secondary">
           info_outline
@@ -18,8 +18,7 @@
       </b-button>
     </div>
     <p>
-      Enter shipping information for your carriers list.
-      They have to ship to an address to be synchronized in Google Shopping.
+      {{$t('productFeedSettings.shipping.shippingInformationIntro')}}
     </p>
     <!-- START > TABLE -->
     <b-table-simple
