@@ -20,6 +20,7 @@ import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
+import {Carrier, DeliveryDetail, getEnabledCarriers} from '../../../providers/shipping-settings-provider';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
@@ -116,6 +117,10 @@ export default {
           } : {},
         ),
       });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'additionalShippingSettings',
+        data: json?.additionalShippingSettings?.deliveryDetails,
+      });
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
     } catch (error) {
       if (error.code === 404) {
@@ -176,7 +181,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_SHIPPING_SETTINGS]({rootState, commit}) {
+  async [ActionsTypes.GET_SHOP_SHIPPING_SETTINGS]({rootState, commit}) {
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
@@ -190,6 +195,31 @@ export default {
     const result = await response.json();
     commit(MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS, result);
     return result;
+  },
+
+  async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
+    // TODO: These call may be already done, so we might remove them
+    await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
+    await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
+
+    const enabledCarriers = getEnabledCarriers(
+      state.settings.shippingSettings,
+    );
+
+    const carriersList: (Carrier | DeliveryDetail)[] = enabledCarriers.map((enabledCarrier) => {
+      const additionalShippingSetting = state.settings.additionalShippingSettings.find(
+        (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === enabledCarrier.carrierId);
+      if (!additionalShippingSetting) {
+        return enabledCarrier;
+      }
+      return {
+        ...enabledCarrier,
+        ...additionalShippingSetting,
+      };
+    });
+
+    // TODO: Add a mutation to save this information
+    console.log('Initial state of the form', carriersList);
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {

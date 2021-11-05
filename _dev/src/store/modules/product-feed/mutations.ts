@@ -108,6 +108,7 @@ export default {
   ) {
     state.settings = {
       shippingSettings: [],
+      additionalShippingSettings: [],
       autoImportTaxSettings: false,
       autoImportShippingSettings: true,
       attributeMapping: {},
