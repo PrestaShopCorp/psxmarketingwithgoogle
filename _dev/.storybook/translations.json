@@ -16,7 +16,9 @@
       "unableToFetchData" : "We were unable to fetch datas, please try again later",
       "searchByX" : "Search by {0}",
       "legendCreateNewAccount" : "You also have the possibility to create a new account within few steps:",
-      "notAvailable" : "Not available"
+      "notAvailable" : "Not available",
+      "min" : "min.",
+      "max" : "max."
     },
     "configuration" : {
         "introduction" : "Configuration Page !"
@@ -260,7 +262,22 @@
         "manualImportTax" : "Manually set up tax settings in Google Merchant Center",
         "appliedOnlyForUsa" : "(applied only for the USA)",
         "alertTaxes" : "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.",
-        "cantSelectCountryWithDifferentCurrency" : "You can't select country with currency that differs from your main shop."
+        "cantSelectCountryWithDifferentCurrency" : "You can't select country with currency that differs from your main shop.",
+        "carrierDescriptionHeader" : "Carrier description",
+        "shipToCustomerHeader" : "Ship to customer’s address",
+        "handlingTimeHeader" : "Handling time",
+        "transitTimeHeader" : "Transit time",
+        "carrierDescriptionTooltip" : "placeholder TODO to do xxx",
+        "shipToCustomerTooltip" : "placeholder TODO to do xxx",
+        "handlingTimeTooltip" : "placeholder TODO to do xxx",
+        "transitTimeTooltip" : "placeholder TODO to do xxx",
+        "shippingInformationTitle" : "Carriers & shipping information",
+        "shippingInformationTitleTooltip" : "Placeholder TODO to do xxx",
+        "shippingInformationIntro" : "Enter shipping information for your carriers list. They have to ship to an address to be synchronized in Google Shopping.",
+        "shippingTableNotice" : "Make sure your store message matches your Google shopping delivery time information. [Add or update carriers]({0})[:target=\"_blank\" class=\"text-primary\"]",
+        "shippingSwitchCarrier" : "Switch to enable / desable carrier",
+        "carriersDropdownHeader" : "Copy shipping information to",
+        "carriersDropdownHiddenLabel" : "Copy information of the carrier to other carriers"
       },
       "export" : {
         "summarySyncDailyAt" : "Sync daily at {0}",
@@ -716,7 +733,9 @@
       "goToPage" : "Go to first page | Go to page: {0} | Go to last page",
       "noEndDate" : "No end date",
       "verifyPhoneNumber" : "Verify phone number",
-      "refreshInformations" : "Refresh informations"
+      "refreshInformations" : "Refresh informations",
+      "apply" : "Apply",
+      "select" : "Select"
     },
     "badge" : {
       "free" : "Free",

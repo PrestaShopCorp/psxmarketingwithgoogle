@@ -35,20 +35,20 @@
         :steps="steps"
         :active-step="activeStep"
       />
-      <product-feed-settings-shipping
+      <target-country
         v-if="activeStep == 1"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
-      <product-feed-settings-export
+      <shipping-settings
         v-if="activeStep == 2"
         v-bind="$attrs"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
-      <product-feed-settings-attribute-mapping
+      <attribute-mapping
         v-if="activeStep == 3"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
-      <product-feed-settings-summary
+      <Summary
         v-bind="$attrs"
         v-if="activeStep == 4"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
@@ -59,19 +59,19 @@
 
 <script>
 import Stepper from '../commons/stepper';
-import ProductFeedSettingsShipping from './settings/target-countries/target-countries.vue';
-import ProductFeedSettingsExport from './product-feed-settings-export';
-import ProductFeedSettingsAttributeMapping from './settings/attribute-mapping/attribute-mapping';
-import ProductFeedSettingsSummary from './settings/summary/summary';
+import TargetCountry from './settings/target-countries/target-countries.vue';
+import ShippingSettings from './settings/shipping-settings/shipping-settings.vue';
+import AttributeMapping from './settings/attribute-mapping/attribute-mapping';
+import Summary from './settings/summary/summary';
 
 export default {
   name: 'ProductFeedSettings',
   components: {
     Stepper,
-    ProductFeedSettingsShipping,
-    ProductFeedSettingsExport,
-    ProductFeedSettingsAttributeMapping,
-    ProductFeedSettingsSummary,
+    TargetCountry,
+    ShippingSettings,
+    AttributeMapping,
+    Summary,
   },
   data() {
     return {
