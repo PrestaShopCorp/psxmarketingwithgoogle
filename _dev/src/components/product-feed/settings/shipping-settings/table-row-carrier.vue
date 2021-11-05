@@ -10,42 +10,46 @@
         class="ps_gs-switch mb-0"
         v-model="enabled"
         @change="toggleCarrier"
+        :aria-label="$t('productFeedSettings.shipping.shippingSwitchCarrier')"
       />
     </td>
     <td class="py-3">
       <h4 class="ps_gs-carrier__title">
-        {{carrier.name}}
+        {{ carrier.name }}
       </h4>
       <p class="ps_gs-carrier__description">
-        {{carrier.delay}}
+        {{ carrier.delay }}
       </p>
     </td>
     <td class="text-right">
       <b-dropdown
         :ref="`dropdownCarriers${carrier.id_carrier}`"
-        :text="'Yes'"
+        :text="deliveryTypeMessage"
         variant="text"
-        class="maxw-sm-80 ps-dropdown ps_gs-carrier__dropdown psxmarketingwithgoogle-dropdown bordered"
+        class="maxw-sm-80 ps-dropdown ps_gs-carrier__dropdown
+        psxmarketingwithgoogle-dropdown bordered"
         menu-class="ps-dropdown"
         size="sm"
         :disabled="!enabled"
       >
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
+          @click="deliveryType = 'delivery'"
         >
           <span
             class="px-2"
           >
-            Yes
+            {{ $t('cta.yes') }}
           </span>
         </b-dropdown-item-button>
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
+          @click="deliveryType = 'pickup'"
         >
           <span
             class="px-2"
           >
-            No
+            {{ $t('cta.no') }}
           </span>
         </b-dropdown-item-button>
       </b-dropdown>
@@ -102,12 +106,14 @@
       >
         <template #button-content>
           <i class="material-icons">control_point_duplicate</i>
-          <span class="sr-only">Placeholder copy infos</span>
+          <span class="sr-only">
+            {{ $t('productFeedSettings.shipping.carriersDropdownHiddenLabel') }}
+          </span>
         </template>
         <b-dropdown-header
           class="ps_gs-carrier-dropdown__header"
         >
-          Copy shipping information to
+          {{ $t('productFeedSettings.shipping.carriersDropdownHeader') }}
         </b-dropdown-header>
         <b-dropdown-form
           form-class="dropdown-form-with-checkbox text-dark px-3"
@@ -121,7 +127,8 @@
               v-for="carrierOption in carriersList"
               :key="carrierOption.name"
               class="ps_gs-checkbox my-1"
-              :disabled="isInitiatorCarrier(carrierOption.id_carrier) || !carrierOption.enabledCarrier"
+              :disabled="isInitiatorCarrier(carrierOption.id_carrier) ||
+                !carrierOption.enabledCarrier"
               :value="carrierOption.id_carrier"
             >
               <span
@@ -142,7 +149,7 @@
             block
             @click="applyInfos"
           >
-            Apply
+            {{ $t('cta.apply') }}
           </b-button>
         </b-dropdown-form>
       </b-dropdown>
@@ -151,6 +158,8 @@
 </template>
 
 <script>
+import DeliveryType from '@/enums/product-feed/delivery-type.ts';
+
 export default {
   data() {
     return {
@@ -159,7 +168,7 @@ export default {
       maxHandlingTimeInDays: null,
       minTransitTimeInDays: null,
       maxTransitTimeInDays: null,
-      deliveryType: null,
+      deliveryType: DeliveryType.DELIVERY,
       selectedIds: [],
     };
   },
@@ -173,11 +182,21 @@ export default {
       required: true,
     },
   },
+  computed: {
+    deliveryTypeMessage() {
+      switch (this.deliveryType) {
+        case DeliveryType.DELIVERY:
+          return this.$i18n.t('cta.yes');
+        default:
+          return this.$i18n.t('cta.no');
+      }
+    },
+  },
   methods: {
     isInitiatorCarrier(id) {
       return this.carrier.id_carrier === id;
     },
-    toggleCarrier(){
+    toggleCarrier() {
       this.$emit('toggleCarrier', {
         id_carrier: this.carrier.id_carrier,
         enabledCarrier: this.enabled,
@@ -190,12 +209,12 @@ export default {
     updateListState() {
       // if element is disabled, uncheck it
       const idToDelete = [];
-      this.carriersList.forEach(carrier => {
+      this.carriersList.forEach((carrier) => {
         if (!carrier.enabledCarrier) {
           idToDelete.push(carrier.id_carrier);
         }
       });
-      this.selectedIds = this.selectedIds.filter((selectedId) => !idToDelete.includes(selectedId))
+      this.selectedIds = this.selectedIds.filter((selectedId) => !idToDelete.includes(selectedId));
     },
   },
   beforeMount() {

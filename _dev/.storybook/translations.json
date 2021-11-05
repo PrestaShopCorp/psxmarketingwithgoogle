@@ -265,9 +265,17 @@
         "shipToCustomerHeader" : "Ship to customer’s address",
         "handlingTimeHeader" : "Handling time",
         "transitTimeHeader" : "Transit time",
+        "carrierDescriptionTooltip" : "placeholder TODO to do xxx",
+        "shipToCustomerTooltip" : "placeholder TODO to do xxx",
+        "handlingTimeTooltip" : "placeholder TODO to do xxx",
+        "transitTimeTooltip" : "placeholder TODO to do xxx",
         "shippingInformationTitle" : "Carriers & shipping information",
         "shippingInformationTitleTooltip" : "Placeholder TODO to do xxx",
-        "shippingInformationIntro" : "Enter shipping information for your carriers list. They have to ship to an address to be synchronized in Google Shopping."
+        "shippingInformationIntro" : "Enter shipping information for your carriers list. They have to ship to an address to be synchronized in Google Shopping.",
+        "shippingTableNotice" : "Make sure your store message matches your Google shopping delivery time information. [Add or update carriers]({0})[:target=\"_blank\" class=\"text-primary\"]",
+        "shippingSwitchCarrier" : "Switch to enable / desable carrier",
+        "carriersDropdownHeader" : "Copy shipping information to",
+        "carriersDropdownHiddenLabel" : "Copy information of the carrier to other carriers"
       },
       "export" : {
         "summarySyncDailyAt" : "Sync daily at {0}",
@@ -723,7 +731,8 @@
       "goToPage" : "Go to first page | Go to page: {0} | Go to last page",
       "noEndDate" : "No end date",
       "verifyPhoneNumber" : "Verify phone number",
-      "refreshInformations" : "Refresh informations"
+      "refreshInformations" : "Refresh informations",
+      "apply" : "Apply"
     },
     "badge" : {
       "free" : "Free",

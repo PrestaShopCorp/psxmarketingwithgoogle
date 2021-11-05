@@ -4,7 +4,7 @@
       <h3
         class="ps_gs-fz-20 font-weight-600 mb-0"
       >
-        {{$t('productFeedSettings.shipping.shippingInformationTitle')}}
+        {{ $t('productFeedSettings.shipping.shippingInformationTitle') }}
       </h3>
       <b-button
         variant="invisible"
@@ -18,7 +18,7 @@
       </b-button>
     </div>
     <p>
-      {{$t('productFeedSettings.shipping.shippingInformationIntro')}}
+      {{ $t('productFeedSettings.shipping.shippingInformationIntro') }}
     </p>
     <!-- START > TABLE -->
     <b-table-simple
@@ -39,13 +39,13 @@
               class="flex align-items-center text-nowrap"
             >
               <span>
-                {{$t(`productFeedSettings.shipping.${type}Header`)}}
+                {{ $t(`productFeedSettings.shipping.${type}Header`) }}
               </span>
               <b-button
                 v-if="hasToolTip(type)"
                 variant="invisible"
                 v-b-tooltip:psxMktgWithGoogleApp
-                :title="`${type}`"
+                :title="$t(`productFeedSettings.shipping.${type}Tooltip`)"
                 class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
               >
                 <i class="material-icons ps_gs-fz-14 text-secondary">info_outlined</i>
@@ -61,7 +61,7 @@
           v-for="carrier in carriers"
           :key="carrier.id_carrier"
           :carrier="carrier"
-          :carriersList="carriers"
+          :carriers-list="carriers"
           @toggleCarrier="updateCarriersArray"
         />
       </b-tbody>
@@ -71,10 +71,13 @@
       class="d-flex align-items-center justify-content-end"
     >
       <i class="material-icons-round ps_gs-fz-14 text-secondary mr-2">warning_amber</i>
-      <p class="ps_gs-fz-12 mb-0 text-secondary">
-        Make sure your store message matches your Google shopping delivery time information.
-        <a href="" target="_blank" class="text-primary">Add or update carriers</a>
-      </p>
+      <VueShowdown
+        class="ps_gs-fz-12 mb-0 text-secondary"
+        tag="p"
+        :markdown="$t('productFeedSettings.shipping.shippingTableNotice',
+                      ['index.php?controller=AdminCarriers'])"
+        :extensions="['extended-link', 'no-p-tag']"
+      />
     </div>
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
@@ -131,7 +134,7 @@ export default {
           delay: 'Colis livré le lendemain matin avant 13h à votre domicile.',
           enabledCarrier: true,
         },
-               {
+        {
           id_carrier: 6,
           name: 'Livraison express',
           delay: 'Colis livré le lendemain avant 13 h dans le relais Pickup de votre choix.',
@@ -168,12 +171,12 @@ export default {
       }
       return true;
     },
-    updateCarriersArray(e){
-      this.carriers.forEach((carrier)=> {
+    updateCarriersArray(e) {
+      this.carriers.forEach((carrier) => {
         if (carrier.id_carrier === e.id_carrier) {
           carrier.enabledCarrier = e.enabledCarrier;
         }
-      })
+      });
     },
     nextStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
