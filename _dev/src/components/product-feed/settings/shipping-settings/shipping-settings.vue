@@ -47,7 +47,7 @@
       >
         <table-row-carrier
           v-for="carrier in carriers"
-          :key="carrier.id_carrier"
+          :key="carrier.carrierId"
           :carrier="carrier"
           :carriers-list="carriers"
           @toggleCarrier="updateCarriersArray"
@@ -95,48 +95,28 @@
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import TableRowCarrier from './table-row-carrier.vue';
+import {getEnabledCarriers} from '@/providers/shipping-settings-provider';
 
 export default {
   components: {
     SettingsFooter,
     TableRowCarrier,
   },
-  data() {
-    return {
-      carriers: [
-        {
-          id_carrier: 3,
-          name: 'GLS Chez vous +',
-          delay: 'Vous êtes prévenus par mail et SMS de la date et du créneau horaire de livraison.',
-          enabledCarrier: true,
-        },
-        {
-          id_carrier: 4,
-          name: 'GLS Service Point®',
-          delay: 'Retrait en Point Relais® de votre choix. Vous êtes informé par E-mail ou SMS.',
-          enabledCarrier: true,
-        },
-        {
-          id_carrier: 5,
-          name: 'Livraison demain avant 13h',
-          delay: 'Colis livré le lendemain matin avant 13h à votre domicile.',
-          enabledCarrier: true,
-        },
-        {
-          id_carrier: 6,
-          name: 'Livraison express',
-          delay: 'Colis livré le lendemain avant 13 h dans le relais Pickup de votre choix.',
-          enabledCarrier: true,
-        },
-      ],
-    };
-  },
+
   computed: {
     disableContinue() {
       return true;
     },
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
+    },
+    carriers: {
+      get() {
+        return getEnabledCarriers(this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].shippingSettings);
+      },
+      set(value) {
+        console.log(value);
+      },
     },
   },
   methods: {
@@ -161,7 +141,7 @@ export default {
     },
     updateCarriersArray(e) {
       this.carriers.forEach((carrier) => {
-        if (carrier.id_carrier === e.id_carrier) {
+        if (carrier.carrierId === e.carrierId) {
           carrier.enabledCarrier = e.enabledCarrier;
         }
       });
@@ -174,5 +154,6 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
+
 };
 </script>

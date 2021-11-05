@@ -20,10 +20,8 @@
     >
       <b-form-radio
         data-test-id="radioButton"
-        :checked="shippingSettings"
         v-model="shippingSettings"
         name="shippingSettingsRadio"
-        id="shippingSettingsAuto"
         :value="true"
         class="mb-2"
       >
@@ -38,10 +36,8 @@
         </div>
       </b-form-radio>
       <b-form-radio
-        :checked="!shippingSettings"
         v-model="shippingSettings"
         name="shippingSettingsRadio"
-        id="shippingSettingsManual"
         :value="false"
         class="mb-2"
       >
@@ -135,6 +131,8 @@ export default {
   data() {
     return {
       tax: null,
+      shippingSettings: true,
+      loading: false,
     };
   },
   computed: {
@@ -155,25 +153,26 @@ export default {
       return `https://merchants.google.com/mc/tax/settings?a=${this.$store.state.accounts.googleMerchantAccount.id}`;
     },
     disableContinue() {
-      return this.countries.length < 1 || this.shippingSettings === null;
+      return this.countries.length < 1 || this.loading;
     },
-    shippingSettings: {
-      get() {
-        return this.$store.state.productFeed.settings.autoImportShippingSettings !== 'undefined'
-          ? this.$store.state.productFeed.settings.autoImportShippingSettings : null;
-      },
-      set(value) {
-        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-          name: 'autoImportShippingSettings',
-          data: value,
-        });
-      },
-    },
+
   },
   methods: {
     nextStep() {
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
-      window.scrollTo(0, 0);
+      this.loading = true;
+      if (this.shippingSettings) {
+        this.$store.dispatch('productFeed/GET_SHIPPING_SETTINGS').then(() => {
+          this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
+          window.scrollTo(0, 0);
+        });
+      } else {
+        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
+          name: 'autoImportShippingSettings',
+          data: true,
+        });
+        this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+        window.scrollTo(0, 0);
+      }
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
