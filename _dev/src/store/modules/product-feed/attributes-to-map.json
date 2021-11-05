@@ -4,6 +4,7 @@
     "fields": [
       {
         "label": "Description",
+        "name": "description",
         "tooltip": true,
         "recommended": [
           {
@@ -11,11 +12,13 @@
             "type": "product"
           }
         ],
+        "mapped": null,
         "required": true,
         "default": "tooltip and required"
       },
       {
         "label": "GTIN (Global Trade Item Number)",
+        "name": "gtin",
         "tooltip": false,
         "recommended": [
           {
@@ -23,11 +26,13 @@
             "type": "product"
           }
         ],
+        "mapped": null,
         "required": false,
         "default": "no tooltip, not required"
       },
       {
         "label": "MPN (Manufacturer Part Number)",
+        "name": "mpn",
         "tooltip": true,
         "recommended": [
           {
@@ -35,11 +40,13 @@
             "type": "product"
           }
         ],
+        "mapped": null,
         "required": true,
         "default": "mpn"
       },
       {
         "label": "Brand",
+        "name": "brand",
         "tooltip": true,
         "recommended": [
           {
@@ -47,6 +54,7 @@
             "type": "product"
           }
         ],
+        "mapped": null,
         "required": true,
         "default": "brand"
       }
@@ -57,6 +65,7 @@
     "fields": [
       {
         "label": "Age Group",
+        "name": "ageGroup",
         "tooltip": false,
         "recommended": [
           {
@@ -64,6 +73,49 @@
             "type": "product"
           }
         ],
+        "mapped": null,
+        "required": true,
+        "default": "bbb"
+      },
+      {
+        "label": "Color",
+        "name": "color",
+        "tooltip": false,
+        "recommended": [
+          {
+            "name": "color",
+            "type": "attribute"
+          }
+        ],
+        "mapped": null,
+        "required": true,
+        "default": "bbb"
+      },
+      {
+        "label": "Gender",
+        "name": "gender",
+        "tooltip": false,
+        "recommended": [
+          {
+            "name": "gender",
+            "type": "attribute"
+          }
+        ],
+        "mapped": null,
+        "required": true,
+        "default": "bbb"
+      },
+      {
+        "label": "Size",
+        "name": "size",
+        "tooltip": false,
+        "recommended": [
+          {
+            "name": "size",
+            "type": "attribute"
+          }
+        ],
+        "mapped": null,
         "required": true,
         "default": "bbb"
       }
@@ -74,6 +126,7 @@
     "fields": [
       {
         "label": "Energy class",
+        "name": "energyEfficiencyClass",
         "tooltip": true,
         "recommended": [
           {
@@ -81,6 +134,7 @@
             "type": "product"
           }
         ],
+        "mapped": null,
         "required": true,
         "default": "bbb"
       }
@@ -91,6 +145,7 @@
     "fields": [
       {
         "label": "Material",
+        "name": "material",
         "tooltip": true,
         "recommended": [
           {
@@ -98,11 +153,13 @@
             "type": ""
           }
         ],
+        "mapped": null,
         "required": true,
         "default": "bbb"
       },
       {
         "label": "Pattern",
+        "name": "pattern",
         "tooltip": true,
         "recommended": [
           {
@@ -110,6 +167,7 @@
             "type": ""
           }
         ],
+        "mapped": null,
         "required": true,
         "default": "bbb"
       }

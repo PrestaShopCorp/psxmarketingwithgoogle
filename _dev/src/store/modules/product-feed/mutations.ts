@@ -118,14 +118,12 @@ export default {
     state.attributesDatas.push(...payload);
   },
   [MutationsTypes.SET_ATTRIBUTE_MAPPING_SELECTION](state: LocalState, payload) {
-    const index = state.attributesToMap.findIndex((el) => el.fields[0].label === payload.label);
-    if (payload.checked) {
-      state.attributesToMap[index].fields[0].recommended.push(payload.target);
-    } else {
-      const indexInRecommended = state.attributesToMap[index].fields[0].recommended.findIndex(
-        (el) => el.name === payload.target.name,
-      );
-      state.attributesToMap[index].fields[0].recommended.splice(indexInRecommended);
-    }
+    state.attributesToMap.forEach((attribute) => {
+      attribute.fields.forEach((fields) => {
+        if (fields.label === payload.label) {
+          fields.mapped = payload.elements;
+        }
+      });
+    });
   },
 };
