@@ -28,7 +28,7 @@
     <!-- add translations -->
     <b-dropdown
       :id="field.label | slugify"
-      :text="formatToDisplay || 'not available' "
+      :text="formatToDisplay || $t('general.notAvailable') "
       variant=" "
       class="maxw-sm-250 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
       :toggle-class="{'ps-dropdown__placeholder' : true}"
