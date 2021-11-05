@@ -5,14 +5,14 @@ import {initialStateApp} from '../.storybook/mock/state-app';
 export default {
   title: 'Product feed/Settings',
   component: TunnelProductFeed,
-  // parameters: {
-  //   jest: [
-  //     // 'tunnel-product-feed.spec.ts',
-  //     // 'summary.spec.ts',
-  //     // 'target-countries.spec.ts',
-  //     // 'product-feed-settings-attribute-mapping.spec.ts',
-  //   ],
-  // },
+  parameters: {
+    jest: [
+      'tunnel-product-feed.spec.ts',
+      'summary.spec.ts',
+      'target-countries.spec.ts',
+      // 'product-feed-settings-attribute-mapping.spec.ts',
+    ],
+  },
 };
 
 const Template = (args, {argTypes}) => ({
@@ -31,8 +31,8 @@ TargetCountry.args = {
   },
 };
 
-export const ExportSettings:any = Template.bind({});
-ExportSettings.args = {
+export const ShippingSettings:any = Template.bind({});
+ShippingSettings.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign(productFeed);
     this.$store.state.productFeed.stepper = 2;

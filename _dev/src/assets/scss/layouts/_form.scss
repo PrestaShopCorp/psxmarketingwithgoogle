@@ -307,3 +307,15 @@
   width: calc(13ch + 4rem);
   text-align: center;
 }
+
+/* Chrome, Safari, Edge, Opera */
+input.no-arrows::-webkit-outer-spin-button,
+input.no-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number].no-arrows {
+  -moz-appearance: textfield;
+}

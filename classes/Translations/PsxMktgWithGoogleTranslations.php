@@ -309,6 +309,10 @@ class PsxMktgWithGoogleTranslations
                     'appliedOnlyForUsa' => $this->module->l('(applied only for the USA)', 'PsxMktgWithGoogleTranslations'),
                     'alertTaxes' => $this->module->l('You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.', 'PsxMktgWithGoogleTranslations'),
                     'cantSelectCountryWithDifferentCurrency' => $this->module->l("You can't select country with currency that differs from your main shop.", 'PsxMktgWithGoogleTranslations'),
+                    'carrierDescriptionHeader' => $this->module->l('Carrier description', 'PsxMktgWithGoogleTranslations'),
+                    'shipToCustomerHeader' => $this->module->l('Ship to customer’s address', 'PsxMktgWithGoogleTranslations'),
+                    'handlingTimeHeader' => $this->module->l('Handling time', 'PsxMktgWithGoogleTranslations'),
+                    'transitTimeHeader' => $this->module->l('Transit time', 'PsxMktgWithGoogleTranslations'),
                 ],
                 'export' => [
                     'summarySyncDailyAt' => $this->module->l('Sync daily at {0}', 'PsxMktgWithGoogleTranslations'),
