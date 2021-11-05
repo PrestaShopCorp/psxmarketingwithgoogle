@@ -140,7 +140,7 @@ export default {
     },
     getAttribute() {
       this.$store.commit('productFeed/SET_ATTRIBUTE_MAPPING_SELECTION', {
-        label: this.field.label,
+        name: this.field.name,
         elements: this.attributesChecked,
       });
     },

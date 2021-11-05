@@ -17,7 +17,7 @@
         "default": "tooltip and required"
       },
       {
-        "label": "GTIN (Global Trade Item Number)",
+        "label": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
         "name": "gtin",
         "tooltip": false,
         "recommended": [

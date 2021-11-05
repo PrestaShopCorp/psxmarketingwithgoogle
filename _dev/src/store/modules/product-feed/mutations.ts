@@ -120,7 +120,7 @@ export default {
   [MutationsTypes.SET_ATTRIBUTE_MAPPING_SELECTION](state: LocalState, payload) {
     state.attributesToMap.forEach((attribute) => {
       attribute.fields.forEach((fields) => {
-        if (fields.label === payload.label) {
+        if (fields.name === payload.name) {
           fields.mapped = payload.elements;
         }
       });
