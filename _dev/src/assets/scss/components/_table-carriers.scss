@@ -21,6 +21,10 @@
     padding-left: 0.25rem;
     padding-right: 0.25rem;
 
+    &::placeholder {
+      color: $gray-450;
+    }
+
     & + #{$root}__input-number {
       order: 3;
     }

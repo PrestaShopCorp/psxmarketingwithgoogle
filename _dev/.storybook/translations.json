@@ -16,7 +16,9 @@
       "unableToFetchData" : "We were unable to fetch datas, please try again later",
       "searchByX" : "Search by {0}",
       "legendCreateNewAccount" : "You also have the possibility to create a new account within few steps:",
-      "notAvailable" : "Not available"
+      "notAvailable" : "Not available",
+      "min" : "min.",
+      "max" : "max."
     },
     "configuration" : {
         "introduction" : "Configuration Page !"

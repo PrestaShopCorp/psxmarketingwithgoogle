@@ -21,7 +21,7 @@
         {{ carrier.delay }}
       </p>
     </td>
-    <td class="text-right">
+    <td>
       <b-dropdown
         :ref="`dropdownCarriers${carrier.id_carrier}`"
         :text="deliveryTypeMessage || $t('cta.select')"
@@ -64,6 +64,7 @@
           v-model="minHandlingTimeInDays"
           :disabled="!enabled"
           :state="timeState('handling')"
+          :placeholder="$t('general.min')"
         />
         <b-form-input
           type="number"
@@ -72,6 +73,7 @@
           v-model="maxHandlingTimeInDays"
           :disabled="!enabled"
           :state="timeState('handling')"
+          :placeholder="$t('general.max')"
         />
       </div>
     </td>
@@ -84,6 +86,7 @@
           v-model="minTransitTimeInDays"
           :disabled="!enabled"
           :state="timeState('delivery')"
+          :placeholder="$t('general.min')"
         />
         <b-form-input
           type="number"
@@ -92,6 +95,7 @@
           v-model="maxTransitTimeInDays"
           :disabled="!enabled"
           :state="timeState('delivery')"
+          :placeholder="$t('general.max')"
         />
       </div>
     </td>

@@ -66,6 +66,8 @@ class PsxMktgWithGoogleTranslations
                 'searchByX' => $this->module->l('Search by {0}', 'PsxMktgWithGoogleTranslations'),
                 'legendCreateNewAccount' => $this->module->l('You also have the possibility to create a new account within few steps:', 'PsxMktgWithGoogleTranslations'),
                 'notAvailable' => $this->module->l('Not available', 'PsxMktgWithGoogleTranslations'),
+                'min' => $this->module->l('min.', 'PsxMktgWithGoogleTranslations'),
+                'max' => $this->module->l('max.', 'PsxMktgWithGoogleTranslations'),
             ],
             'configuration' => [
                 'introduction' => $this->module->l('Configuration Page !', 'PsxMktgWithGoogleTranslations'),
