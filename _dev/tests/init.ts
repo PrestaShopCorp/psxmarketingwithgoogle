@@ -42,6 +42,11 @@ config.mocks.$t = (key) => {
 
   return property;
 };
+
+config.mocks.$segment = {
+  track: () => null,
+};
+
 config.mocks.$i18n = {
   t: config.mocks.$t,
 };

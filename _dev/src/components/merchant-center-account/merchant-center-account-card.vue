@@ -29,12 +29,13 @@
       </div>
     </div>
     <VueShowdown
-      id="segmentClicked"
+      @click.native="segmentClicked"
       class="mb-1"
       tag="p"
       :markdown="message"
-      :extensions="['extended-link', 'no-p-tag']"
+      :extensions="['no-p-tag', 'extended-b-link']"
       v-if="selectedMcaDetails.id === null"
+      :vue-template="true"
     />
     <BadgeListRequirements
       v-if="!isEnabled"
@@ -734,19 +735,18 @@ export default {
         );
       }
     },
+    segmentClicked() {
+      this.$segment.track('[GGL] Visit GMC info link', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
+    },
   },
   updated() {
     this.setFocusOnSelectMCA();
   },
   mounted() {
     this.setFocusOnSelectMCA();
-    const segmentHasBeenClicked = document.getElementById('segmentClicked');
-    segmentHasBeenClicked.addEventListener('click', () => {
-      this.$segment.track('[GGL] Visit GMC info link', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-    });
   },
   watch: {
     mcaConfigured(newVal, oldVal) {
