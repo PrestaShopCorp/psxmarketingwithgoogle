@@ -244,6 +244,7 @@ import GoogleAdsAccountAlert from './google-ads-account-alert.vue';
 import {
   GoogleAdsErrorReason,
 } from '../../store/modules/google-ads/state';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'GoogleAdsAccountCard',
@@ -266,6 +267,10 @@ export default {
 
   methods: {
     async selectGoogleAdsAccount() {
+      this.$segment.track('[GGL] Connect GAds', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       this.isConnecting = true;
       try {
         await this.$store.dispatch('googleAds/SAVE_SELECTED_GOOGLE_ADS_ACCOUNT', this.googleAdsAccountSelectionOptions[this.selectedIndex]);
@@ -312,9 +317,19 @@ export default {
       this.$router.go();
     },
     disconnectGoogleAdsAccount() {
+      this.$segment.track('[GGL] Disconnect GAds Account', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+
+      });
       this.$emit('disconnectionGoogleAdsAccount');
     },
     openPopinNewAccount() {
+      this.$segment.track('[GGL] Create GAds', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+
+      });
       this.$emit('creationGoogleAdsAccount');
     },
     displayIdName(option) {
@@ -325,7 +340,6 @@ export default {
       return this.error === GoogleAdsErrorReason.NeedValidationFromEmail
        || this.error === GoogleAdsErrorReason.NeedRefreshAfterInvitationLink;
     },
-
   },
   computed: {
     accountChosen() {

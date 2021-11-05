@@ -31,6 +31,7 @@
 
 <script>
 import {defineComponent} from '@vue/composition-api';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import faq from '../components/help/faq.vue';
 
 export default defineComponent({
@@ -45,6 +46,10 @@ export default defineComponent({
   },
   created() {
     this.fetchHelpInformations();
+    this.$segment.track('[GGL] View Help tab', {
+      module: 'psxmarketingwithgoogle',
+      params: SegmentGenericParams,
+    });
   },
   computed: {
     helpInformations() {

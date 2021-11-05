@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import PsModal from '../commons/ps-modal';
 
 export default {
@@ -73,6 +74,12 @@ export default {
   },
   methods: {
     onGoogleAdsAccountDissociationConfirmation(bvModalEvt) {
+      this.$segment.track('[GGL] Disconnect GAds Account Confirm', {
+        module: 'psxmarketingwithgoogle',
+        pause_campaign_value: this.pauseCampaigns,
+        remove_remarketing_tag_value: this.removeTag,
+        params: SegmentGenericParams,
+      });
       this.processing = true;
       bvModalEvt.preventDefault();
       this.$store.dispatch('googleAds/DISSOCIATE_GOOGLE_ADS_ACCOUNT').finally(

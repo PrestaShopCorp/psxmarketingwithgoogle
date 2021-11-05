@@ -110,6 +110,7 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import BadgeListRequirements from '../commons/badge-list-requirements';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'FreeListingCard',
@@ -167,6 +168,11 @@ export default {
   },
   methods: {
     toggle() {
+      this.$segment.track('[GGL] Enable Disable Free Listing', {
+        module: 'psxmarketingwithgoogle',
+        free_listing_activation_value: !this.freeListingStatus,
+        params: SegmentGenericParams,
+      });
       this.$store.dispatch('freeListing/SEND_FREE_LISTING_STATUS', !this.freeListingStatus);
       this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', true);
     },

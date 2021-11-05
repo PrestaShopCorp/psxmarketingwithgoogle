@@ -274,6 +274,7 @@ import ProductFeedCardReportCard from './product-feed-card-report-card';
 // import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
 // import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'ProductFeedCard',
@@ -500,6 +501,10 @@ export default {
       });
     },
     goToProductFeedSettings(step) {
+      this.$segment.track('[GGL] Start Catalogue Export', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       this.$router.push({
         name: 'product-feed-settings',
       });

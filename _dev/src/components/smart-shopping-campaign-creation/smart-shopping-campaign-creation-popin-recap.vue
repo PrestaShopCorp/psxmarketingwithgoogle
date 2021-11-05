@@ -112,6 +112,7 @@
 <script>
 import CampaignStatus from '@/enums/reporting/CampaignStatus';
 import PsModal from '../commons/ps-modal';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'SSCCreationPopinRecap',
@@ -137,6 +138,11 @@ export default {
       this.$refs.modal.hide();
     },
     ok() {
+      this.$segment.track('[GGL] Create SSC Validation Step', {
+        module: 'psxmarketingwithgoogle',
+        remarketing_conversion_value: this.$store.state.smartShoppingCampaigns.tracking,
+        params: SegmentGenericParams,
+      });
       this.isValidating = true;
       const finalCampaign = {
         ...this.newCampaign,

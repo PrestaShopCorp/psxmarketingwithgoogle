@@ -49,6 +49,7 @@ new Vue({
           language: this.$i18n.locale,
           version_ps: this.$store.state.app.psVersion,
           ggl_module_version: this.$store.state.app.psxMktgWithGoogleModuleVersion,
+          ggl_api_endpoint: this.$store.state.app.psxMktgWithGoogleApiUrl,
         });
       }
     },

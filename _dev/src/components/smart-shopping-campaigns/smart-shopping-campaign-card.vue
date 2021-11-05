@@ -95,6 +95,7 @@
 </template>
 
 <script>
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 
 export default {
@@ -119,6 +120,11 @@ export default {
         return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
       },
       set(value) {
+        this.$segment.track('[GGL] Disable Google SSC', {
+          module: 'psxmarketingwithgoogle',
+          smart_shopping_campaign_activation_value: value,
+          params: SegmentGenericParams,
+        });
         this.$store.dispatch(
           'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value,
         );
@@ -159,6 +165,11 @@ export default {
   },
   methods: {
     openPopinActivateTracking() {
+      this.$segment.track('[GGL] Create SSC Config tab', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+
+      });
       // Prevent popin for opening if tracking is a campaign exists
       if (this.SSCExist) {
         this.$router.push({

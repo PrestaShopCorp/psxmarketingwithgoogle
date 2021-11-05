@@ -29,11 +29,13 @@
       </div>
     </div>
     <VueShowdown
+      @click.native="segmentClicked"
       class="mb-1"
       tag="p"
       :markdown="message"
-      :extensions="['extended-link', 'no-p-tag']"
+      :extensions="['no-p-tag', 'extended-b-link']"
       v-if="selectedMcaDetails.id === null"
+      :vue-template="true"
     />
     <BadgeListRequirements
       v-if="!isEnabled"
@@ -495,6 +497,7 @@ import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
 import PhoneVerificationPopin from './phone-verification/phone-verification-popin.vue';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'MerchantCenterAccountCard',
@@ -672,6 +675,10 @@ export default {
       this.$store.commit('accounts/SAVE_MCA_CONNECTED_AUTOMATICALLY', false);
     },
     dissociateMerchantCenterAccount() {
+      this.$segment.track('[GGL] Disconnect Gmc Account', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       this.$emit('dissociateMerchantCenterAccount');
     },
     overrideClaim() {
@@ -727,6 +734,12 @@ export default {
           this.$refs.PhoneVerificationPopin.$refs.modal.id,
         );
       }
+    },
+    segmentClicked() {
+      this.$segment.track('[GGL] Visit GMC info link', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
     },
   },
   updated() {

@@ -216,6 +216,7 @@ import MutationsTypes from '../../store/modules/accounts/mutations-types';
 import ActionsTypes from '../../store/modules/accounts/actions-types';
 import Glass from '../commons/glass';
 import {GoogleAccountContext} from '../../store/modules/accounts/state';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'GoogleAccountCard',
@@ -283,6 +284,10 @@ export default {
     changeAccount() {
       this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH').then(() => {
         this.openPopup(true);
+        this.$segment.track('[GGL] Connect Google Account', {
+          module: 'psxmarketingwithgoogle',
+          params: SegmentGenericParams,
+        });
       }).catch(() => {
         // TODO: maybe display alert
       });
@@ -366,6 +371,10 @@ export default {
       }
     },
     dissociateGoogleAccount() {
+      this.$segment.track('[GGL] Disconnect Google Account', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       this.$emit('dissociateGoogleAccount');
     },
     refresh() {
