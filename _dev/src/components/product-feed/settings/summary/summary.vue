@@ -246,7 +246,7 @@ export default {
     saveAll() {
       this.disabledExportButton = true;
       if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
-        this.$store.dispatch('productFeed/GET_SHIPPING_SETTINGS')
+        this.$store.dispatch('productFeed/GET_SHOP_SHIPPING_SETTINGS')
           .then(() => {
             this.postDatas();
           });

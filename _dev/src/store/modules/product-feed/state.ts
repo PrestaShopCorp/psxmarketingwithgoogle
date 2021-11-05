@@ -17,6 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
 
 export interface ProductFeedStatus {
@@ -36,7 +37,8 @@ export interface ProductFeedSettingsAttributeMapping {
 }
 
 export interface ProductFeedSettings {
-  shippingSettings: Array<object>;
+  shippingSettings: object[];
+  additionalShippingSettings: DeliveryDetail[];
   autoImportTaxSettings: boolean;
   autoImportShippingSettings: boolean;
   attributeMapping: ProductFeedSettingsAttributeMapping;
@@ -108,6 +110,7 @@ export const state: State = {
   },
   settings: {
     shippingSettings: [],
+    additionalShippingSettings: [],
     autoImportTaxSettings: false,
     autoImportShippingSettings: true,
     attributeMapping: {

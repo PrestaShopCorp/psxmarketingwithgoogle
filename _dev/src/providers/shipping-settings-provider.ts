@@ -26,6 +26,22 @@ export type Carrier = {
     delay: string,
 }
 
+export enum ShipmentType {
+  DELIVERY = 'delivery',
+  PICKUP = 'pickup',
+}
+
+/* Object expected on the API */
+export type DeliveryDetail = {
+  country: string;
+  carrierId: string;
+  minHandlingTimeInDays: number;
+  maxHandlingTimeInDays: number;
+  minTransitTimeInDays: number;
+  maxTransitTimeInDays: number;
+  deliveryType: ShipmentType;
+}
+
 export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
   return source.filter((carrier) => carrier.collection === ShopShippingCollectionType.CARRIERS
         && carrier.properties.active === true
