@@ -32,6 +32,9 @@
       class="ps_gs-checkbox ps_gs-filters__item-checkbox"
       :name="`${item.name}Checkbox`"
       inline
+      :checked="item.checked"
+      @change="selectCheckbox"
+      :indeterminate="item.indeterminate"
     >
       {{ item.name }}
     </b-form-checkbox>
@@ -42,7 +45,7 @@
       <b-button
         variant="invisible"
         class="px-1 py-0 border-0 ps_gs-fz-10"
-        @click="deselectFilter(item)"
+        @click="deselectFilter()"
       >
         <i class="material-icons">close</i>
         <span class="sr-only">
@@ -56,17 +59,18 @@
       class="ps_gs-filters__item-children"
     >
       <SmartShoppingCampaignCreationFilterItem
+        :is-open-by-default="isOpenByDefault"
         v-for="(child, index) in item.children"
         :key="index"
         :item="child"
         :selected-filters="selectedFilters"
+        :depth="depth + 1"
       />
     </ul>
   </li>
 </template>
 
 <script>
-
 export default {
   name: 'SmartShoppingCampaignCreationFilterItem',
   data() {
@@ -86,6 +90,14 @@ export default {
       default: false,
       required: false,
     },
+    checked: {
+      type: Boolean,
+      required: false,
+    },
+    depth: {
+      type: Number,
+      default: 0,
+    },
   },
   computed: {
     isFolder() {
@@ -98,23 +110,26 @@ export default {
         this.isOpen = !this.isOpen;
       }
     },
-    // TODO: handle checkboxes
-    // ! Checkboxes are not handled at all
-    deselectFilter(item) {
-      // TODO: fn to deselect an item
-      console.log(item);
+    deselectFilter() {
+      this.$root.$emit('filterSelected', {
+        item: this.item,
+        checked: false,
+      });
+    },
+    selectCheckbox(event) {
+      this.$root.$emit('filterSelected', {
+        item: this.item,
+        checked: event,
+      });
     },
     countChildren(item) {
-      // TODO: check if function is OK to count items
       const tableOfCHildren = [];
-
       // eslint-disable-next-line
       function fillTableOfChildren(elem) {
         if (!elem.children) {
           tableOfCHildren.push(elem.name);
           return elem.name;
         }
-
         elem.children.forEach((child) => fillTableOfChildren(child));
       }
 

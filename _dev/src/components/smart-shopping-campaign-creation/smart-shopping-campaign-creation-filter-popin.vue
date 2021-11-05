@@ -3,6 +3,7 @@
     id="SmartShoppingCampaignCreationFilterPopin"
     ref="modal"
     v-bind="$attrs"
+    @ok="sendDimensionsSelected"
     cancel-variant="invisible font-weight-normal"
   >
     <b-form>
@@ -22,7 +23,9 @@
             <h6 class="ps_gs-fz-16 font-weight-normal">
               {{ $t('smartShoppingCampaignCreation.labelDimensionValue') }}
             </h6>
-            <ul class="ps_gs-filters">
+            <ul
+              class="ps_gs-filters"
+            >
               <SmartShoppingCampaignCreationFilterItem
                 :item="availableFilters"
                 :is-open-by-default="true"
@@ -39,7 +42,8 @@
             </h6>
             <ul class="ps_gs-filters">
               <SmartShoppingCampaignCreationFilterItem
-                :item="selectedFilters"
+                v-if="totalNumberOfProducts"
+                :item="filteredDimensions"
                 :is-open-by-default="true"
                 :selected-filters="true"
               />
@@ -53,14 +57,14 @@
                 <b-button
                   variant="invisible"
                   class="text-decoration-underline font-weight-normal py-2 px-1 ml-n1"
-                  @click="selectAll"
+                  @click="checkAll(true)"
                 >
                   {{ $t('cta.selectAll') }}
                 </b-button>
                 <b-button
                   variant="invisible"
                   class="text-decoration-underline font-weight-normal py-2 px-1"
-                  @click="deselectAll"
+                  @click="checkAll(false)"
                 >
                   {{ $t('cta.deselectAll') }}
                 </b-button>
@@ -85,161 +89,69 @@
 <script>
 import PsModal from '../commons/ps-modal';
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
+import {
+  filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension,
+} from '../../utils/SSCFilters';
 
 export default {
-  /**
-   * TODO:
-   * Handle all events:  close, click on cancel, click on ok, etc...
-   */
-
   name: 'SmartShoppingCampaignCreationFilterPopin',
   components: {
     PsModal,
     SmartShoppingCampaignCreationFilterItem,
   },
-  data() {
-    return {
-      // TODO see if this is the correct way to store selected filters
-      dimensionsSelected: [
-        'biddingCategory',
-        'brands,',
-      ],
-      valuesSelected: [
-        'Adidas',
-        'Reebok',
-        'Tutu',
-        'Tartiflette',
-      ],
-    };
+  props: {
+    availableFilters: {
+      type: Object,
+      required: true,
+    },
+
   },
+
   computed: {
     textFiltersSelected() {
-      const textDimensionsSelected = this.$i18n.tc('smartShoppingCampaignCreation.nbDimensionSelected',
-        this.dimensionsSelected.length,
-        [this.dimensionsSelected.length]);
-      const textValuesSelected = this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
-        this.valuesSelected.length,
-        [this.valuesSelected.length]);
-      return `${textDimensionsSelected} - ${textValuesSelected}`;
+      return this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
+        this.totalNumberOfProducts,
+        [this.totalNumberOfProducts]);
     },
-    // TODO Getting datas
-    // TODO Adding translation
-    availableFilters() {
-      return {
-        name: 'All filters',
-        children: [
-          {
-            name: 'Bidding category',
-          },
-          {
-            name: 'Canonical condition',
-            children: [
-              {
-                name: 'NEW',
-              },
-              {
-                name: 'USED',
-              },
-              {
-                name: 'REFURBISHED',
-              },
-              {
-                name: 'UNKNOWN',
-              },
-            ],
-          },
-          {
-            name: 'Brands',
-            children: [
-              {
-                name: 'Nike',
-                children: [
-                  {
-                    name: 'tutu',
-                  },
-                  {
-                    name: 'tata',
-                  },
-                ],
-              },
-              {
-                name: 'Reebok',
-              },
-              {
-                name: 'Jouet Club',
-                children: [
-                  {
-                    name: 'Hasbro',
-                  },
-                  {
-                    name: 'Mattel',
-                  },
-                  {
-                    name: 'Kenner',
-                  },
-                  {
-                    name: 'Poly pocket',
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            name: 'Custom attribute',
-          },
-          {
-            name: 'Offer ID',
-          },
-          {
-            name: 'Product type',
-          },
-        ],
-      };
+    filteredDimensions() {
+      return filterUncheckedSegments(this.availableFilters);
     },
-    // TODO Getting datas
-    // TODO Adding translation
-    selectedFilters() {
-      return {
-        name: 'All filters',
-        children: [
-          {
-            name: 'Canonical condition',
-            children: [
-              {
-                name: 'NEW',
-              },
-            ],
-          },
-          {
-            name: 'Brands',
-            children: [
-              {
-                name: 'Nike',
-                children: [
-                  {
-                    name: 'tutu',
-                  },
-                  {
-                    name: 'tata',
-                  },
-                ],
-              },
-              {
-                name: 'Reebok',
-              },
-            ],
-          },
-        ],
-      };
+    totalNumberOfProducts() {
+      const final = [];
+      if (this.filteredDimensions && this.filteredDimensions.children) {
+        this.filteredDimensions.children.forEach((dim) => {
+          if (dim.children) {
+            dim.children.forEach((value) => {
+              final.push(value);
+            });
+          } else {
+            final.push(dim);
+          }
+        });
+      }
+      return final.length;
     },
+
   },
+
   methods: {
-    selectAll() {
-      // TODO: handle select all
+    checkAll(status) {
+      deepCheckDimension(this.availableFilters, status);
+      checkAndUpdateDimensionStatus(this.availableFilters);
     },
-    deselectAll() {
-      // TODO: handle deselect all
+
+    selectCheckbox(event) {
+      deepCheckDimension(event.item, event.checked);
+      checkAndUpdateDimensionStatus(this.availableFilters);
+    },
+
+    sendDimensionsSelected() {
+      this.$emit('selectFilters', this.filteredDimensions);
     },
   },
+  mounted() {
+    this.$root.$on('filterSelected', this.selectCheckbox);
+  },
+
 };
 </script>

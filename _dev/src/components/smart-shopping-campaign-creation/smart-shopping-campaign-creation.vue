@@ -178,7 +178,7 @@
           label-class="h4 font-weight-600 border-0 bg-transparent"
         >
           <b-form-radio
-            v-model="campaignProductsFilter"
+            v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
             :value="true"
             class="mb-1"
@@ -186,9 +186,9 @@
             {{ $t('smartShoppingCampaignCreation.inputFiltersAllLabel') }}
           </b-form-radio>
           <b-form-radio
-            v-model="campaignProductsFilter"
+            v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
-            disabled
+            :value="false"
           >
             {{ $t('smartShoppingCampaignCreation.inputFiltersPartialLabel') }}
           </b-form-radio>
@@ -201,7 +201,7 @@
             />
           </template>
           <b-button
-            v-if="campaignProductsFilter === false"
+            v-if="campaignHasNoProductsFilter === false"
             variant="primary"
             size="sm"
             class="my-3"
@@ -287,7 +287,7 @@
           </b-button>
           <b-button
             v-if="editMode"
-            @click="editCampaign"
+            @click="openPopinRecap"
             size="sm"
             :disabled="disableCreateCampaign"
             class="mx-1 mt-3 mt-md-0 mr-md-0"
@@ -309,12 +309,19 @@
         </div>
       </b-form>
     </b-card-body>
-    <SmartShoppingCampaignCreationFilterPopin ref="SmartShoppingCampaignCreationFilterPopin" />
+    <SmartShoppingCampaignCreationFilterPopin
+      ref="SmartShoppingCampaignCreationFilterPopin"
+      @selectFilters="getDimensionsFiltered"
+      :available-filters="availableFilters"
+    />
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
+      :filters="filtersForSummary"
+      :filters-exist="!campaignHasNoProductsFilter"
       @openPopinSSCCreated="onCampaignCreated"
       @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
+      :edition-mode="editMode"
     />
   </b-card>
 </template>
@@ -325,8 +332,9 @@ import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-
 import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
-import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {returnChildrenIds} from '../../utils/SSCFilters';
+import CampaignStatus from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -336,13 +344,36 @@ export default {
       campaignName: null,
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
-      campaignProductsFilter: true,
+      campaignHasNoProductsFilter: true,
       filtersChosen: [],
+      filtersForSummary: null,
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
       campaignIsActive: true,
       targetCountry: [],
+      availableFilters: {
+        name: 'All filters',
+        id: 'allFilters',
+        checked: false,
+        indeterminate: false,
+        children: [
+          {
+            name: 'category1',
+            id: 'category1',
+            children: [],
+            checked: false,
+            indeterminate: false,
+          },
+          {
+            name: 'category2',
+            id: 'category2',
+            children: [],
+            checked: false,
+            indeterminate: false,
+          },
+        ],
+      },
     };
   },
   components: {
@@ -362,8 +393,6 @@ export default {
       && this.errorCampaignNameExistsAlready === false
       && this.campaignDurationStartDate
       && this.targetCountry
-      && (this.campaignProductsFilter === true
-      || (this.campaignProductsFilter === false && this.filtersChosen.length))
       && this.campaignDailyBudget) {
         return false;
       }
@@ -400,7 +429,7 @@ export default {
       return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
     },
     currency() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode || '';
     },
     countries: {
       get() {
@@ -424,7 +453,7 @@ export default {
         endDate: this.campaignDurationEndDate,
         // Countries is still an array because refacto later for multiple countries
         targetCountry: this.targetCountry[0] || this.countries[0],
-        productFilters: [],
+        productFilters: !this.campaignHasNoProductsFilter ? this.filtersChosen : [],
       };
     },
     budgetCurrencySymbol() {
@@ -494,14 +523,35 @@ export default {
       }
       this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
-    async editCampaign() {
-      const payload = this.finalCampaign;
-      payload.status = this.campaignIsActive
-        ? CampaignStatusToggle.ENABLED
-        : CampaignStatusToggle.PAUSED;
-      await this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload);
-      this.$router.push({
-        name: 'campaign-list',
+
+    getDimensionsFiltered(dimensions) {
+      this.filtersForSummary = dimensions;
+      this.filtersChosen = returnChildrenIds(dimensions);
+    },
+    getDatasFiltersDimensions() {
+      this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
+        Object.keys(res).forEach((dimensionName) => {
+          // Do not display a dimension with no filter inside
+          if (!res[dimensionName].length) {
+            return;
+          }
+          this.availableFilters.children.push({
+            name: dimensionName,
+            id: dimensionName,
+            checked: false,
+            indeterminate: false,
+            children: res[dimensionName].map((child) => ({
+              ...child,
+              name: child.localizedName,
+              checked: false,
+              indeterminate: false,
+            }),
+            ),
+          });
+        });
+        this.availableFilters.children.sort(
+          (a, b) => (a.localizedName > b.localizedName ? 1 : -1),
+        );
       });
     },
   },
@@ -521,7 +571,7 @@ export default {
         this.campaignName = foundSsc.campaignName;
         this.campaignDurationStartDate = foundSsc.startDate;
         this.campaignDurationEndDate = foundSsc.endDate || null;
-        this.campaignProductsFilter = !(foundSsc.productFilters.length > 0);
+        this.campaignHasNoProductsFilter = !(foundSsc.productFilters.length > 0);
         this.campaignDailyBudget = foundSsc.dailyBudget;
         this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = foundSsc.id;
@@ -533,6 +583,7 @@ export default {
         this.$router.push({name: 'campaign-list'});
       }
     }
+    this.getDatasFiltersDimensions();
   },
   countriesSelectionOptions,
 };

@@ -40,6 +40,7 @@ enum ActionsTypes {
   GET_SSC_LIST = 'GET_SSC_LIST',
   CHANGE_STATUS_OF_SSC = 'CHANGE_STATUS_OF_SSC',
   UPDATE_SSC = 'UPDATE_SSC',
+  GET_DIMENSIONS_FILTERS = 'GET_DIMENSIONS_FILTERS',
 }
 
 export {ActionsTypes as default};
