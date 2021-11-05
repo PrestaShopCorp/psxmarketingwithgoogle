@@ -372,7 +372,11 @@ export default {
 
     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+      },
     });
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
@@ -380,5 +384,23 @@ export default {
 
     const json = await response.json();
     commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, json);
+  },
+  async [ActionsTypes.SEND_ATTRIBUTE_MAPPED]({rootState}) {
+    const getMapping = localStorage.getItem('attributeMapping');
+
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+      },
+      body: getMapping,
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+
+    localStorage.removeItem('attributeMapping');
   },
 };
