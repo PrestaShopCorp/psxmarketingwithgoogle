@@ -362,4 +362,23 @@ export default {
     commit(MutationsTypes.SAVE_ATTRIBUTES_SHOP, json);
     return json;
   },
+  async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
+    const getMappingFromStorage = localStorage.getItem('attributeMapping');
+
+    if (getMappingFromStorage !== null) {
+      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, JSON.parse(getMappingFromStorage || '{}'));
+      return;
+    }
+
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+
+    const json = await response.json();
+    commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, json);
+  },
 };

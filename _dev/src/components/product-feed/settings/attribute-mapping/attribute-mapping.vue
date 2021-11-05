@@ -193,7 +193,7 @@ export default {
   },
   methods: {
     nextStep() {
-      // call nestjs to send mapping
+      localStorage.setItem('attributeMapping', JSON.stringify(this.formatMappingToApi));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       window.scrollTo(0, 0);
     },
@@ -213,6 +213,9 @@ export default {
           .filter((cat) => cat !== Categories.NONE);
       }
     },
+  },
+  mounted() {
+    this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
   },
   googleUrl,
 };

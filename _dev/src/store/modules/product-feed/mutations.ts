@@ -132,4 +132,19 @@ export default {
         }
       });
   },
+  [MutationsTypes.SET_ATTRIBUTES_MAPPED](state: LocalState, payload) {
+    const getKeys = Object.keys(payload);
+    getKeys.forEach((key) => {
+      state.attributesToMap.forEach((attribute) => {
+        const findAttr = attribute.fields.find((field) => field.name === key);
+        const changeMappingObj = payload[key].map((value) => ({
+          name: value.id,
+          type: value.type,
+        }));
+        if (findAttr) {
+          findAttr.mapped = changeMappingObj;
+        }
+      });
+    });
+  },
 };
