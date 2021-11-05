@@ -25,7 +25,7 @@
         </span>
       </b-button>
     </template>
-    <!-- add translations -->
+
     <b-dropdown
       :id="field.label | slugify"
       :text="formatToDisplay || $t('general.notAvailable') "
