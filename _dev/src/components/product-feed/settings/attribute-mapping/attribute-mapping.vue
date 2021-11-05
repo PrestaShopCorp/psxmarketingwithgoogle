@@ -156,12 +156,12 @@ export default {
           if (cur.mapped !== null) {
             acc[cur.name] = cur.mapped.map((attr) => ({
               id: attr.name,
-              type: attr.type
+              type: attr.type,
             }));
           } else {
             acc[cur.name] = cur.recommended.map((attr) => ({
               id: attr.name,
-              type: attr.type
+              type: attr.type,
             }));
           }
           return acc;
