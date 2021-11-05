@@ -13,8 +13,7 @@
           }
         ],
         "mapped": null,
-        "required": true,
-        "default": "tooltip and required"
+        "required": true
       },
       {
         "label": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
@@ -27,8 +26,7 @@
           }
         ],
         "mapped": null,
-        "required": false,
-        "default": "no tooltip, not required"
+        "required": false
       },
       {
         "label": "MPN (Manufacturer Part Number)",
@@ -41,8 +39,7 @@
           }
         ],
         "mapped": null,
-        "required": true,
-        "default": "mpn"
+        "required": true
       },
       {
         "label": "Brand",
@@ -55,8 +52,7 @@
           }
         ],
         "mapped": null,
-        "required": true,
-        "default": "brand"
+        "required": true
       }
     ]
   },
@@ -70,12 +66,11 @@
         "recommended": [
           {
             "name": "age group",
-            "type": "product"
+            "type": "custom"
           }
         ],
         "mapped": null,
-        "required": true,
-        "default": "bbb"
+        "required": true
       },
       {
         "label": "Color",
@@ -84,12 +79,11 @@
         "recommended": [
           {
             "name": "color",
-            "type": "attribute"
+            "type": "custom"
           }
         ],
         "mapped": null,
-        "required": true,
-        "default": "bbb"
+        "required": true
       },
       {
         "label": "Gender",
@@ -98,12 +92,11 @@
         "recommended": [
           {
             "name": "gender",
-            "type": "attribute"
+            "type": "custom"
           }
         ],
         "mapped": null,
-        "required": true,
-        "default": "bbb"
+        "required": true
       },
       {
         "label": "Size",
@@ -112,12 +105,11 @@
         "recommended": [
           {
             "name": "size",
-            "type": "attribute"
+            "type": "custom"
           }
         ],
         "mapped": null,
-        "required": true,
-        "default": "bbb"
+        "required": true
       }
     ]
   },
@@ -131,12 +123,11 @@
         "recommended": [
           {
             "name": "energy class",
-            "type": "product"
+            "type": "feature"
           }
         ],
         "mapped": null,
-        "required": true,
-        "default": "bbb"
+        "required": true
       }
     ]
   },
@@ -150,12 +141,11 @@
         "recommended": [
           {
             "name": "material",
-            "type": ""
+            "type": "feature"
           }
         ],
         "mapped": null,
-        "required": true,
-        "default": "bbb"
+        "required": true
       },
       {
         "label": "Pattern",
@@ -164,12 +154,11 @@
         "recommended": [
           {
             "name": "pattern",
-            "type": ""
+            "type": "feature"
           }
         ],
         "mapped": null,
-        "required": true,
-        "default": "bbb"
+        "required": true
       }
     ]
   }
