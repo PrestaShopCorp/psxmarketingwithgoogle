@@ -213,13 +213,11 @@ export default {
       }
       return {
         ...enabledCarrier,
-        enabledCarrier: true,
         ...additionalShippingSetting,
       };
     });
 
-    // TODO: Add a mutation to save this information
-    console.log('Initial state of the form', carriersList);
+    commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {

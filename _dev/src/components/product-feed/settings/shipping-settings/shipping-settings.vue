@@ -95,7 +95,6 @@
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import TableRowCarrier from './table-row-carrier.vue';
-import {getEnabledCarriers} from '@/providers/shipping-settings-provider';
 
 export default {
   components: {
@@ -105,21 +104,15 @@ export default {
 
   data() {
     return {
-      disableContinue: true,
-      error: false,
+      disableContinue: false,
     };
   },
   computed: {
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
     },
-    carriers: {
-      get() {
-        return getEnabledCarriers(this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].shippingSettings);
-      },
-      set(value) {
-        console.log('value', value);
-      },
+    carriers() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].shippingSettings;
     },
   },
   methods: {
@@ -143,13 +136,19 @@ export default {
       return true;
     },
     checkForContinue(carriers) {
-      carriers.forEach((c) => {
-        if (c.enabledCarrier && c.maxHandlingTimeInDays && c.maxTransitTimeInDays
-        && c.minHandlingTimeInDays && c.minTransitTimeInDays && c.deliveryType) {
-          this.disableContinue = false;
-        }
-        this.disableContinue = true;
-      });
+      this.disableContinue = true;
+      const checkConditionsToContinue = (arg) => {
+        if (arg.enabledCarrier) {
+          // if object contains the toggle enabledCarrier
+          return arg.enabledCarrier && arg.maxHandlingTimeInDays && arg.maxTransitTimeInDays
+            && arg.minHandlingTimeInDays && arg.minTransitTimeInDays
+            && (arg.minHandlingTimeInDays < arg.maxHandlingTimeInDays)
+            && (arg.minTransitTimeInDays < arg.maxTransitTimeInDays)
+            && arg.deliveryType;
+        } return true;
+        // otherwise we don't take it in consideration
+      };
+      this.disableContinue = !carriers.every(checkConditionsToContinue);
     },
     updateCarriersArray(e) {
       this.carriers.forEach((carrier) => {
@@ -158,12 +157,10 @@ export default {
         }
       });
       this.checkForContinue(this.carriers);
-      console.log('fin', this.carriers);
     },
-    updateError(err) {
-      this.error = err;
-    },
+
     nextStep() {
+      this.$store.commit('productFeed/SAVE_SHIPPING_SETTINGS', this.carriers);
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       window.scrollTo(0, 0);
     },
@@ -171,6 +168,5 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
-
 };
 </script>

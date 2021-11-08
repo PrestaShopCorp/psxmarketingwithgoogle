@@ -169,8 +169,8 @@ export default {
   data() {
     return {
       selectedIds: [],
-      deliveryType: null,
-      enabled: false,
+      deliveryType: this.carrier.deliveryType || null,
+      enabled: this.carrier.enabledCarrier || false,
       transitTime: {
         min: null,
         max: null,
@@ -204,63 +204,58 @@ export default {
     },
     minHandlingTimeInDays: {
       get() {
-        return this.handlingTime.min;
+        return this.carrier.minHandlingTimeInDays || this.handlingTime.min;
       },
       set(value) {
         this.handlingTime.min = value;
         this.$emit('updateCarrier', {
           type: 'minHandlingTimeInDays',
           carrierId: this.carrier.carrierId,
-          minHandlingTimeInDays: value,
-          error: this.timeState
+          minHandlingTimeInDays: Number(value),
         });
       },
     },
     maxHandlingTimeInDays: {
       get() {
-        return this.handlingTime.max;
+        return this.carrier.maxHandlingTimeInDays || this.handlingTime.max;
       },
       set(value) {
         this.handlingTime.max = value;
         this.$emit('updateCarrier', {
           type: 'maxHandlingTimeInDays',
           carrierId: this.carrier.carrierId,
-          maxHandlingTimeInDays: value,
-                    error: this.timeState
+          maxHandlingTimeInDays: Number(value),
 
         });
       },
     },
     maxTransitTimeInDays: {
       get() {
-        return this.transitTime.max;
+        return this.carrier.maxTransitTimeInDays || this.transitTime.max;
       },
       set(value) {
         this.transitTime.max = value;
         this.$emit('updateCarrier', {
           type: 'maxTransitTimeInDays',
           carrierId: this.carrier.carrierId,
-          maxTransitTimeInDays: value,
-                    error: this.timeState
-
+          maxTransitTimeInDays: Number(value),
         });
       },
     },
     minTransitTimeInDays: {
       get() {
-        return this.transitTime.min;
+        return this.carrier.minTransitTimeInDays || this.transitTime.min;
       },
       set(value) {
         this.transitTime.min = value;
         this.$emit('updateCarrier', {
           type: 'minTransitTimeInDays',
           carrierId: this.carrier.carrierId,
-          minTransitTimeInDays: value,
-                    error: this.timeState
-
+          minTransitTimeInDays: Number(value),
         });
       },
     },
+
   },
   methods: {
     isInitiatorCarrier(id) {
@@ -283,13 +278,12 @@ export default {
     },
     timeState(type) {
       if (type === 'handling') {
-      return   this.minHandlingTimeInDays > this.maxHandlingTimeInDays
+        return this.minHandlingTimeInDays > this.maxHandlingTimeInDays
           && this.minHandlingTimeInDays
           && this.maxHandlingTimeInDays ? false : null;
-      }
-      return this.minTransitTimeInDays > this.maxTransitTimeInDays
-          && this.minTransitTimeInDays
-          && this.maxTransitTimeInDays ? false : null;
+      } return this.minTransitTimeInDays > this.maxTransitTimeInDays
+            && this.minTransitTimeInDays
+            && this.maxTransitTimeInDays ? false : null;
     },
 
     applyInfos() {
