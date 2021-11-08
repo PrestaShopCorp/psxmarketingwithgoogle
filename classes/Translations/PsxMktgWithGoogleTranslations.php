@@ -439,7 +439,7 @@ class PsxMktgWithGoogleTranslations
                 'intro' => $this->module->l("Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time.", 'PsxMktgWithGoogleTranslations'),
             ],
             'smartShoppingCampaignCreation' => [
-                'alLFilters' => $this->module->l('All Filters', 'PsxMktgWithGoogleTranslations'),
+                'allFilters' => $this->module->l('All Filters', 'PsxMktgWithGoogleTranslations'),
                 'breadcrumb1' => $this->module->l('Campaign', 'PsxMktgWithGoogleTranslations'),
                 'breadcrumb2' => $this->module->l('Create Smart Shopping campaign', 'PsxMktgWithGoogleTranslations'),
                 'inputNameHelper' => $this->module->l('The name must be unique and 125 chars max.', 'PsxMktgWithGoogleTranslations'),
