@@ -732,7 +732,7 @@ class PsxMktgWithGoogleTranslations
                 'disable' => $this->module->l('Disable', 'PsxMktgWithGoogleTranslations'),
                 'disableProductFeed' => $this->module->l('Disable product feed', 'PsxMktgWithGoogleTranslations'),
                 'enableFreeListingAndProductFeed' => $this->module->l('Enable free listings and product feed', 'PsxMktgWithGoogleTranslations'),
-                'checkRequirements' => $this->module->l('Check requirements', 'PsxMktgWithGoogleTranslations'),
+                'checkRequirements' => $this->module->l('View store requirements', 'PsxMktgWithGoogleTranslations'),
                 'storeMeetsRequirements' => $this->module->l('My store meets all requirements', 'PsxMktgWithGoogleTranslations'),
                 'createAccount' => $this->module->l('Create account', 'PsxMktgWithGoogleTranslations'),
                 'saveChange' => $this->module->l('Save change', 'PsxMktgWithGoogleTranslations'),
@@ -783,6 +783,7 @@ class PsxMktgWithGoogleTranslations
                 'refreshInformations' => $this->module->l('Refresh informations', 'PsxMktgWithGoogleTranslations'),
                 'apply' => $this->module->l('Apply', 'PsxMktgWithGoogleTranslations'),
                 'select' => $this->module->l('Select', 'PsxMktgWithGoogleTranslations'),
+                'editContact' => $this->module->l('Edit contact information', 'PsxMktgWithGoogleTranslations'),
             ],
             'badge' => [
                 'free' => $this->module->l('Free', 'PsxMktgWithGoogleTranslations'),

@@ -238,36 +238,45 @@
       v-if="isLinkedGmcFullyFetched"
       class="d-flex flex-wrap flex-md-nowrap justify-content-between"
     >
-      <div class="d-flex align-items-center">
-        <a
-          :href="merchantCenterWebsitePageUrl.overview"
-          :title="$t('cta.goToYourX', [$t('badge.merchantCenterAccount')])"
-          target="_blank"
-          class="external_link-no_icon link-regular"
+      <div>
+        <div class="d-flex align-items-center">
+          <a
+            :href="merchantCenterWebsitePageUrl.overview"
+            :title="$t('cta.goToYourX', [$t('badge.merchantCenterAccount')])"
+            target="_blank"
+            class="external_link-no_icon link-regular"
+          >
+            <strong>{{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}</strong>
+          </a>
+          <b-badge
+            class="mx-3"
+            :variant="mcaStatusBadge.color"
+          >
+            {{ $t(`badge.${mcaStatusBadge.text}`) }}
+          </b-badge>
+          <span
+            v-if="loaderText"
+            class="text-muted"
+          >
+            <i class="icon-busy icon-busy--dark mr-1" />
+            {{ $t(`badge.${loaderText}`) }}
+          </span>
+          <span
+            v-if="displaySiteVerified"
+            class="text-muted"
+          >
+            <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
+            {{ $t('badge.siteVerified') }}
+          </span>
+        </div>
+        <b-button
+          class=" p-0 m-0 text-primary ps_gs-fz-13 font-weight-600"
+          size="sm"
+          variant="invisible"
+          @click="checkWebsiteRequirements"
         >
-          <strong>{{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}</strong>
-        </a>
-        <b-badge
-          class="mx-3"
-          :variant="mcaStatusBadge.color"
-        >
-          {{ $t(`badge.${mcaStatusBadge.text}`) }}
-        </b-badge>
-        <span
-          v-if="loaderText"
-          class="text-muted"
-        >
-          <i class="icon-busy icon-busy--dark mr-1" />
-          {{ $t(`badge.${loaderText}`) }}
-        </span>
-        <span
-          v-if="displaySiteVerified"
-          class="text-muted"
-        >
-
-          <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
-          {{ $t('badge.siteVerified') }}
-        </span>
+          {{ $t("cta.checkRequirements") }}
+        </b-button>
       </div>
       <div
         class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
@@ -276,17 +285,18 @@
           class="mx-1 mt-3 mt-md-0"
           size="sm"
           variant="outline-secondary"
-          @click="checkWebsiteRequirements"
+          @click="dissociateMerchantCenterAccount"
         >
-          {{ $t("cta.checkRequirements") }}
+          {{ $t("cta.disconnect") }}
         </b-button>
         <b-button
           class="mx-1 mt-3 mt-md-0 mr-md-0"
           size="sm"
           variant="outline-secondary"
-          @click="dissociateMerchantCenterAccount"
+          target="_blank"
+          :href="merchantCenterWebsitePageUrl.businessInfo"
         >
-          {{ $t("cta.disconnect") }}
+          {{ $t("cta.editContact") }}
         </b-button>
       </div>
     </div>
