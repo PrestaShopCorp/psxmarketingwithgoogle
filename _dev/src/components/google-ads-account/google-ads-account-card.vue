@@ -161,7 +161,7 @@
               class="left material-icons mr-2 ps_gs-fz-24"
               aria-hidden="true"
             >person_add</i>
-            <span class="align-middle">
+            <span class="align-middle text-wrap">
               {{ $t('cta.createNewGoogleAdsAccount') }}
             </span>
           </b-button>
