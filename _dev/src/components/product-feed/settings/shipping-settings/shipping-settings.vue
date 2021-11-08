@@ -1,10 +1,24 @@
 <template>
   <div>
-    <h3
-      class="ps_gs-fz-20 font-weight-600 mb-2"
-    >
-      {{ $t('productFeedSettings.shipping.shippingInformationTitle') }}
-    </h3>
+
+    <div class="d-flex mb-2 align-items-center">
+      <h3
+        class="ps_gs-fz-20 font-weight-600 mb-2"
+        v-html="$t('productFeedSettings.shipping.shippingInformationTitle')"
+      >
+        <!-- {{  }} -->
+      </h3>
+      <b-button
+        variant="invisible"
+        class="ml-1 p-0"
+        v-b-tooltip:psxMktgWithGoogleApp
+        :title="$t('productFeedSettings.shipping.shippingInformationTitleTooltip')"
+      >
+        <i class="material-icons text-secondary">
+          info_outline
+        </i>
+      </b-button>
+    </div>
     <p>
       {{ $t('productFeedSettings.shipping.shippingInformationIntro') }}
     </p>
@@ -138,15 +152,14 @@ export default {
     checkForContinue(carriers) {
       this.disableContinue = true;
       const checkConditionsToContinue = (arg) => {
-        if (arg.enabledCarrier) {
-          // if object contains the toggle enabledCarrier
-          return arg.enabledCarrier && arg.maxHandlingTimeInDays && arg.maxTransitTimeInDays
+        if (!arg.enabledCarrier) {
+          return true;
+        }
+        return arg.maxHandlingTimeInDays && arg.maxTransitTimeInDays
             && arg.minHandlingTimeInDays && arg.minTransitTimeInDays
             && (arg.minHandlingTimeInDays < arg.maxHandlingTimeInDays)
             && (arg.minTransitTimeInDays < arg.maxTransitTimeInDays)
             && arg.deliveryType;
-        } return true;
-        // otherwise we don't take it in consideration
       };
       this.disableContinue = !carriers.every(checkConditionsToContinue);
     },

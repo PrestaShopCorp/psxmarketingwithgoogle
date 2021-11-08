@@ -129,16 +129,17 @@
             v-model="selectedIds"
           >
             <b-form-checkbox
+              @change="checkboxClicked(carrierOption)"
               v-for="carrierOption in carriersList"
               :key="carrierOption.name"
               class="ps_gs-checkbox my-1"
-              :disabled="isInitiatorCarrier(carrierOption.id_carrier) ||
+              :disabled="isInitiatorCarrier(carrierOption.carrierId) ||
                 !carrierOption.enabledCarrier"
-              :value="carrierOption.id_carrier"
+              :value="carrierOption.carrierId"
             >
               <span
                 class="line-height-15"
-                :class="{'text-dark': isInitiatorCarrier(carrierOption.id_carrier)}"
+                :class="{'text-dark': isInitiatorCarrier(carrierOption.carrierId)}"
               >
                 {{ carrierOption.name }}
               </span>
@@ -259,7 +260,7 @@ export default {
   },
   methods: {
     isInitiatorCarrier(id) {
-      return this.carrier.id_carrier === id;
+      return this.carrier.carrierId === id;
     },
     toggleCarrier() {
       this.$emit('updateCarrier', {
@@ -285,9 +286,12 @@ export default {
             && this.minTransitTimeInDays
             && this.maxTransitTimeInDays ? false : null;
     },
-
+    checkboxClicked(option) {
+      console.log(option);
+    },
     applyInfos() {
-      // TODO: apply to selected checkbox
+      console.log(this.carrier);
+      console.log(this.carriersList);
       this.$refs[`dropdownCarriers${this.carrier.id_carrier}`].showMenu();
     },
     updateListState() {
@@ -295,7 +299,7 @@ export default {
       const idToDelete = [];
       this.carriersList.forEach((carrier) => {
         if (!carrier.enabledCarrier) {
-          idToDelete.push(carrier.id_carrier);
+          idToDelete.push(carrier.carrierId);
         }
       });
       this.selectedIds = this.selectedIds.filter((selectedId) => !idToDelete.includes(selectedId));
@@ -303,7 +307,7 @@ export default {
   },
   beforeMount() {
     this.enabled = this.carrier.enabledCarrier;
-    this.selectedIds = [this.carrier.id_carrier];
+    this.selectedIds = [this.carrier.carrierId];
   },
 };
 </script>
