@@ -497,7 +497,10 @@ class PsxMktgWithGoogleTranslations
                 'descriptiveMessage' => $this->module->l("Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].", 'PsxMktgWithGoogleTranslations'),
                 'nbProductsFiltersSelected' => $this->module->l('No product filter selected | {0} product filter selected | {0} products filters selected', 'PsxMktgWithGoogleTranslations'),
                 'nbProductsSelected' => $this->module->l('No product selected | {0} product selected | {0} products selected', 'PsxMktgWithGoogleTranslations'),
-                ],
+                'categories' => $this->module->l('Categories', 'PsxMktgWithGoogleTranslations'),
+                'brands' => $this->module->l('Brands', 'PsxMktgWithGoogleTranslations'),
+                'products' => $this->module->l('Products', 'PsxMktgWithGoogleTranslations'),
+            ],
             'campaignCard' => [
                 'title' => $this->module->l('Create your Smart Shopping campaign in a few clicks', 'PsxMktgWithGoogleTranslations'),
                 'description' => $this->module->l("Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it\'s that easy!", 'PsxMktgWithGoogleTranslations'),

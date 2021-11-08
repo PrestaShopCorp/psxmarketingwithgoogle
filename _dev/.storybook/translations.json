@@ -445,7 +445,10 @@
             "toggleNewConversionTag": "Set new conversion tracking tags on my site",
             "toggleNewConversionTag2": "We will create the following conversion tags : Page view, Purchase, Add to basket",
             "remarketingTagLoading": "Checking if you have a remarketing and conversion tracking tags to add to your shop",
-            "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"]."
+            "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
+            "categories": "Categories",
+            "brands": "Brands",
+            "products": "Products"
         },
         "campaignCard": {
             "title": "Create your Smart Shopping campaign in a few clicks",
