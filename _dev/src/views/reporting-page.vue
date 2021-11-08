@@ -32,7 +32,7 @@ export default {
       await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
     },
   },
-  mounted() {
+  created() {
     this.getDatas()
       .then(() => {
         if (!this.reportingTabIsActive) {
