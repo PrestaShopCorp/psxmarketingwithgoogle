@@ -121,7 +121,9 @@ export default {
     state.attributesToMap
       .reduce((acc, curr) => [...acc, ...curr.fields], [])
       .forEach((fields) => {
-        if (fields.name === payload.name) fields.mapped = payload.elements;
+        if (fields.name === payload.name) {
+          fields.mapped = payload.elements;
+        }
       });
   },
 };
