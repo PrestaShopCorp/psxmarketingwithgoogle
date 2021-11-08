@@ -350,7 +350,7 @@ export default {
       campaignIsActive: true,
       targetCountry: [],
       availableFilters: {
-        name: 'All filters',
+        name: this.$t('smartShoppingCampaignCreation.allFilters'),
         id: 'allFilters',
         checked: false,
         indeterminate: false,
@@ -514,7 +514,6 @@ export default {
     },
     getDatasFiltersDimensions() {
       this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
-        console.log('res', res);
         Object.keys(res).forEach((dimensionName) => {
           // Do not display a dimension with no filter inside
           if (!res[dimensionName].length) {
