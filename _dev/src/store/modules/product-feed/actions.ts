@@ -370,7 +370,7 @@ export default {
       return;
     }
 
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/attributes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -388,7 +388,7 @@ export default {
   async [ActionsTypes.SEND_ATTRIBUTE_MAPPED]({rootState}) {
     const getMapping = localStorage.getItem('attributeMapping');
 
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/attributes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
