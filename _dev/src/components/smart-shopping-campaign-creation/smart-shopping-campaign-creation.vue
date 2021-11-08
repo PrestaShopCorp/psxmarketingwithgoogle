@@ -317,7 +317,6 @@
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
-      :filters="filtersForSummary"
       :filters-exist="!campaignHasNoProductsFilter"
       @openPopinSSCCreated="onCampaignCreated"
       @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
@@ -332,9 +331,8 @@ import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-
 import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import {returnChildrenIds} from '../../utils/SSCFilters';
 import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import {returnChildrenIds, getFiltersbyIds} from '../../utils/SSCFilters';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -346,7 +344,6 @@ export default {
       campaignDurationEndDate: null,
       campaignHasNoProductsFilter: true,
       filtersChosen: [],
-      filtersForSummary: null,
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
@@ -357,22 +354,7 @@ export default {
         id: 'allFilters',
         checked: false,
         indeterminate: false,
-        children: [
-          {
-            name: 'category1',
-            id: 'category1',
-            children: [],
-            checked: false,
-            indeterminate: false,
-          },
-          {
-            name: 'category2',
-            id: 'category2',
-            children: [],
-            checked: false,
-            indeterminate: false,
-          },
-        ],
+        children: [],
       },
     };
   },
@@ -472,6 +454,13 @@ export default {
     productsHaveBeenApprovedByGoogle() {
       return this.$store.state.productFeed.validationSummary.activeItems > 0;
     },
+    sscList() {
+      return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+    },
+    foundSsc() {
+      return this.sscList.find((el) => el.id === this.$route.params.id);
+    },
+
   },
   methods: {
     debounceName() {
@@ -492,10 +481,6 @@ export default {
       });
     },
     openPopinRecap() {
-      this.$segment.track('[GGL] Create SSC Settings Step', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
       this.$bvModal.show(
         this.$refs.SmartShoppingCampaignCreationPopinRecap.$refs.modal.id,
       );
@@ -525,11 +510,11 @@ export default {
     },
 
     getDimensionsFiltered(dimensions) {
-      this.filtersForSummary = dimensions;
       this.filtersChosen = returnChildrenIds(dimensions);
     },
     getDatasFiltersDimensions() {
       this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
+        console.log('res', res);
         Object.keys(res).forEach((dimensionName) => {
           // Do not display a dimension with no filter inside
           if (!res[dimensionName].length) {
@@ -549,9 +534,10 @@ export default {
             ),
           });
         });
-        this.availableFilters.children.sort(
-          (a, b) => (a.localizedName > b.localizedName ? 1 : -1),
-        );
+        if (this.editMode) {
+          const result = getFiltersbyIds(this.foundSsc.productFilters, this.availableFilters);
+          this.availableFilters = result;
+        }
       });
     },
   },
@@ -565,18 +551,17 @@ export default {
   mounted() {
     window.scrollTo(0, 0);
     if (this.editMode === true) {
-      const sscList = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
-      const foundSsc = sscList.find((el) => el.id === this.$route.params.id);
-      if (foundSsc !== undefined) {
-        this.campaignName = foundSsc.campaignName;
-        this.campaignDurationStartDate = foundSsc.startDate;
-        this.campaignDurationEndDate = foundSsc.endDate || null;
-        this.campaignHasNoProductsFilter = !(foundSsc.productFilters.length > 0);
-        this.campaignDailyBudget = foundSsc.dailyBudget;
-        this.campaignIsActive = foundSsc.status === CampaignStatus.ELIGIBLE;
-        this.campaignId = foundSsc.id;
+      if (this.foundSsc !== undefined) {
+        this.campaignName = this.foundSsc.campaignName;
+        this.campaignDurationStartDate = this.foundSsc.startDate;
+        this.campaignDurationEndDate = this.foundSsc.endDate || null;
+        this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length;
+        this.filtersChosen = this.foundSsc.productFilters;
+        this.campaignDailyBudget = this.foundSsc.dailyBudget;
+        this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
+        this.campaignId = this.foundSsc.id;
         this.targetCountry = this.$options.filters.changeCountriesCodesToNames(
-          [foundSsc.targetCountry],
+          [this.foundSsc.targetCountry],
         );
         this.debounceName();
       } else {
