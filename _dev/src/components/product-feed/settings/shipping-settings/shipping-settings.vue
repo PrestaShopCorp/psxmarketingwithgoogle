@@ -103,22 +103,13 @@ export default {
     TableRowCarrier,
   },
 
+  data() {
+    return {
+      disableContinue: true,
+      error: false,
+    };
+  },
   computed: {
-    disableContinue() {
-      return false;
-      // let isOK = true;
-      // isOK = this.carriers.forEach((c) => {
-      //   if (c.enabledCarrier) {
-      //     if (c.maxHandlingTimeInDays && c.maxTransitTimeInDays
-      //      && c.minHandlingTimeInDays && c.minTransitTimeInDays && c.deliveryType) {
-      //       return true;
-      //     }
-      //     return false
-      //   }
-      //   console.log(isOK)
-      // });
-      // return isOK;
-    },
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
     },
@@ -151,13 +142,26 @@ export default {
       }
       return true;
     },
+    checkForContinue(carriers) {
+      carriers.forEach((c) => {
+        if (c.enabledCarrier && c.maxHandlingTimeInDays && c.maxTransitTimeInDays
+        && c.minHandlingTimeInDays && c.minTransitTimeInDays && c.deliveryType) {
+          this.disableContinue = false;
+        }
+        this.disableContinue = true;
+      });
+    },
     updateCarriersArray(e) {
       this.carriers.forEach((carrier) => {
         if (carrier.carrierId === e.carrierId) {
           carrier[e.type] = e[e.type];
         }
       });
+      this.checkForContinue(this.carriers);
       console.log('fin', this.carriers);
+    },
+    updateError(err) {
+      this.error = err;
     },
     nextStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);

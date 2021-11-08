@@ -9,6 +9,7 @@
         size="sm"
         class="ps_gs-switch mb-0"
         v-model="enabled"
+        @change="toggleCarrier"
         :aria-label="$t('productFeedSettings.shipping.shippingSwitchCarrier')"
       />
     </td>
@@ -34,11 +35,7 @@
       >
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
-          @click="$emit('updateCarrier', {
-            type: 'deliveryType',
-            carrierId: carrier.carrierId,
-            deliveryType: 'delivery',
-          })"
+          @click="updateDelivery('delivery')"
         >
           <span
             class="px-2"
@@ -48,11 +45,7 @@
         </b-dropdown-item-button>
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
-          @click="$emit('updateCarrier', {
-            type: 'deliveryType',
-            carrierId: carrier.carrierId,
-            deliveryType: 'pickup',
-          })"
+          @click="updateDelivery('pickup')"
         >
           <span
             class="px-2"
@@ -178,6 +171,14 @@ export default {
       selectedIds: [],
       deliveryType: null,
       enabled: false,
+      transitTime: {
+        min: null,
+        max: null,
+      },
+      handlingTime: {
+        min: null,
+        max: null,
+      },
     };
   },
   props: {
@@ -203,49 +204,60 @@ export default {
     },
     minHandlingTimeInDays: {
       get() {
-        return null;
+        return this.handlingTime.min;
       },
       set(value) {
+        this.handlingTime.min = value;
         this.$emit('updateCarrier', {
           type: 'minHandlingTimeInDays',
           carrierId: this.carrier.carrierId,
           minHandlingTimeInDays: value,
+          error: this.timeState
         });
       },
     },
     maxHandlingTimeInDays: {
       get() {
-        return null;
+        return this.handlingTime.max;
       },
       set(value) {
+        this.handlingTime.max = value;
         this.$emit('updateCarrier', {
           type: 'maxHandlingTimeInDays',
           carrierId: this.carrier.carrierId,
           maxHandlingTimeInDays: value,
+                    error: this.timeState
+
         });
       },
     },
     maxTransitTimeInDays: {
       get() {
-        return null;
+        return this.transitTime.max;
       },
       set(value) {
+        this.transitTime.max = value;
         this.$emit('updateCarrier', {
           type: 'maxTransitTimeInDays',
           carrierId: this.carrier.carrierId,
           maxTransitTimeInDays: value,
+                    error: this.timeState
+
         });
       },
     },
     minTransitTimeInDays: {
       get() {
-        return null;
+        return this.transitTime.min;
       },
       set(value) {
+        this.transitTime.min = value;
         this.$emit('updateCarrier', {
           type: 'minTransitTimeInDays',
           carrierId: this.carrier.carrierId,
           minTransitTimeInDays: value,
+                    error: this.timeState
+
         });
       },
     },
@@ -261,9 +273,17 @@ export default {
         enabledCarrier: this.enabled,
       });
     },
+    updateDelivery(deliveryChosen) {
+      this.deliveryType = deliveryChosen;
+      this.$emit('updateCarrier', {
+        type: 'deliveryType',
+        carrierId: this.carrier.carrierId,
+        deliveryType: deliveryChosen,
+      });
+    },
     timeState(type) {
       if (type === 'handling') {
-        return this.minHandlingTimeInDays > this.maxHandlingTimeInDays
+      return   this.minHandlingTimeInDays > this.maxHandlingTimeInDays
           && this.minHandlingTimeInDays
           && this.maxHandlingTimeInDays ? false : null;
       }
