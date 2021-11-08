@@ -23,7 +23,7 @@
     </td>
     <td>
       <b-dropdown
-        :ref="`dropdownCarriers${carrier.id_carrier}`"
+        :ref="`dropdownCarriers${carrier.carrierId}`"
         :text="deliveryTypeMessage || $t('cta.select')"
         variant="text"
         class="maxw-sm-160 ps-dropdown ps_gs-carrier__dropdown-delivery-type
@@ -63,7 +63,7 @@
           size="sm"
           v-model="minHandlingTimeInDays"
           :disabled="!enabled"
-          :state="timeState('handling')"
+          :state="timeStateHandling"
           :placeholder="$t('general.min')"
         />
         <b-form-input
@@ -72,7 +72,7 @@
           size="sm"
           v-model="maxHandlingTimeInDays"
           :disabled="!enabled"
-          :state="timeState('handling')"
+          :state="timeStateHandling"
           :placeholder="$t('general.max')"
         />
       </div>
@@ -85,7 +85,7 @@
           size="sm"
           v-model="minTransitTimeInDays"
           :disabled="!enabled"
-          :state="timeState('delivery')"
+          :state="timeStateDelivery"
           :placeholder="$t('general.min')"
         />
         <b-form-input
@@ -94,7 +94,7 @@
           size="sm"
           v-model="maxTransitTimeInDays"
           :disabled="!enabled"
-          :state="timeState('delivery')"
+          :state="timeStateDelivery"
           :placeholder="$t('general.max')"
         />
       </div>
@@ -125,7 +125,7 @@
         >
           <b-form-checkbox-group
             class="mb-0"
-            :name="`carriers${carrier.id_carrier}`"
+            :name="`carriers${carrier.carrierId}`"
             v-model="selectedIds"
           >
             <b-form-checkbox
@@ -180,6 +180,7 @@ export default {
         min: null,
         max: null,
       },
+      carrierChosenToReceiveCopy: null,
     };
   },
   props: {
@@ -256,6 +257,17 @@ export default {
         });
       },
     },
+    timeStateHandling() {
+      return Number(this.handlingTime.min) > Number(this.handlingTime.max)
+          && this.handlingTime.min
+          && this.handlingTime.min ? false : null;
+    },
+
+    timeStateDelivery() {
+      return Number(this.transitTime.min) > Number(this.transitTime.max)
+              && this.transitTime.min
+              && this.transitTime.max ? false : null;
+    },
 
   },
   methods: {
@@ -277,22 +289,25 @@ export default {
         deliveryType: deliveryChosen,
       });
     },
-    timeState(type) {
-      if (type === 'handling') {
-        return this.minHandlingTimeInDays > this.maxHandlingTimeInDays
-          && this.minHandlingTimeInDays
-          && this.maxHandlingTimeInDays ? false : null;
-      } return this.minTransitTimeInDays > this.maxTransitTimeInDays
-            && this.minTransitTimeInDays
-            && this.maxTransitTimeInDays ? false : null;
-    },
     checkboxClicked(option) {
-      console.log(option);
+      this.carrierChosenToReceiveCopy = option;
     },
     applyInfos() {
-      console.log(this.carrier);
-      console.log(this.carriersList);
-      this.$refs[`dropdownCarriers${this.carrier.id_carrier}`].showMenu();
+      const indexToCopy = this.carriersList
+        .findIndex((e) => e.carrierId === this.carrier.carrierId);
+      const indexToReceiveCopy = this.carriersList
+        .findIndex((e) => e.carrierId === this.carrierChosenToReceiveCopy.carrierId);
+      console.log(indexToCopy, indexToReceiveCopy);
+      this.carriersList[indexToReceiveCopy] = {
+        ...this.carriersList[indexToReceiveCopy],
+        minHandlingTimeInDays: this.carriersList[indexToCopy].minHandlingTimeInDays,
+        maxHandlingTimeInDays: this.carriersList[indexToCopy].maxHandlingTimeInDays,
+        minTransitTimeInDays: this.carriersList[indexToCopy].minTransitTimeInDays,
+        maxTransitTimeInDays: this.carriersList[indexToCopy].maxTransitTimeInDays,
+        deliveryType: this.carriersList[indexToCopy].deliveryType,
+      };
+      console.log(this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].shippingSettings);
+      this.$refs[`dropdownCarriers${this.carrier.carrierId}`].showMenu();
     },
     updateListState() {
       // if element is disabled, uncheck it

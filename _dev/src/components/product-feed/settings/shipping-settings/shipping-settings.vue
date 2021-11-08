@@ -5,8 +5,7 @@
       <h3
         class="ps_gs-fz-20 font-weight-600 mb-2"
         v-html="$t('productFeedSettings.shipping.shippingInformationTitle')"
-      >
-      </h3>
+      />
       <b-button
         variant="invisible"
         class="ml-1 p-0"
@@ -172,7 +171,6 @@ export default {
     },
 
     nextStep() {
-      this.$store.commit('productFeed/SAVE_SHIPPING_SETTINGS', this.carriers);
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       window.scrollTo(0, 0);
     },
