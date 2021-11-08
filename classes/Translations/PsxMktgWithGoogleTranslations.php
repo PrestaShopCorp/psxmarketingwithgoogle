@@ -315,7 +315,6 @@ class PsxMktgWithGoogleTranslations
                     'shipToCustomerHeader' => $this->module->l('Ship to customer’s address', 'PsxMktgWithGoogleTranslations'),
                     'handlingTimeHeader' => $this->module->l('Handling time', 'PsxMktgWithGoogleTranslations'),
                     'transitTimeHeader' => $this->module->l('Transit time', 'PsxMktgWithGoogleTranslations'),
-                    'carrierDescriptionTooltip' => $this->module->l('placeholder TODO to do xxx', 'PsxMktgWithGoogleTranslations'),
                     'shipToCustomerTooltip' => $this->module->l('Select if this carrier delivers to a customer’s address or not (service point, in store pickup). Google only allows enabling carriers who ship to an address.', 'PsxMktgWithGoogleTranslations'),
                     'handlingTimeTooltip' => $this->module->l('Enter how long it takes you to prepare an order until it’s picked up by the carrier in working days.', 'PsxMktgWithGoogleTranslations'),
                     'transitTimeTooltip' => $this->module->l('Enter how long it takes for your order to be shipped to the customer once it leaves your facility.', 'PsxMktgWithGoogleTranslations'),

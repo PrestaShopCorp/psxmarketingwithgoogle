@@ -267,7 +267,6 @@
         "shipToCustomerHeader" : "Ship to customer’s address",
         "handlingTimeHeader" : "Handling time",
         "transitTimeHeader" : "Transit time",
-        "carrierDescriptionTooltip" : "placeholder TODO to do xxx",
         "shipToCustomerTooltip" : "Select if this carrier delivers to a customer’s address or not (service point, in store pickup). Google only allows enabling carriers who ship to an address.",
         "handlingTimeTooltip" : "Enter how long it takes you to prepare an order until it’s picked up by the carrier in working days.",
         "transitTimeTooltip" : "Enter how long it takes for your order to be shipped to the customer once it leaves your facility.",
