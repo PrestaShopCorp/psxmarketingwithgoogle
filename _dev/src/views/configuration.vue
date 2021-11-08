@@ -42,11 +42,10 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').then((res) => {
-      if (res) {
-        this.displayLandingPage = false;
-      }
-    });
+    const canDisplayLanding = JSON.parse(localStorage.getItem('canDisplayLanding'));
+    if (canDisplayLanding === false) {
+      this.displayLandingPage = false;
+    }
   },
 });
 </script>

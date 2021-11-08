@@ -60,6 +60,7 @@ export default {
   methods: {
     hideLandingPage() {
       this.$root.$emit('onHideLanding');
+      localStorage.setItem('canDisplayLanding', false);
       this.$segment.track('[GGL] Start Configuration', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
