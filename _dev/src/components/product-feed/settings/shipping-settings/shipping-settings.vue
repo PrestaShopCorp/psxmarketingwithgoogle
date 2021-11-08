@@ -6,7 +6,6 @@
         class="ps_gs-fz-20 font-weight-600 mb-2"
         v-html="$t('productFeedSettings.shipping.shippingInformationTitle')"
       >
-        <!-- {{  }} -->
       </h3>
       <b-button
         variant="invisible"
