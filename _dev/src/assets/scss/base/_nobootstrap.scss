@@ -1,6 +1,13 @@
+:root {
+  // has to be a css custom propertie to be modified via JS
+  // because the height differs with PS versions
+  --header-height: 100px;
+  --header-height-full: 136px;
+}
+
 .nobootstrap {
   background-color: unset !important;
-  padding: 100px 0 100px;
+  padding: var(--header-height) 0 100px;
   min-width: unset !important;
 
   form p {
@@ -67,7 +74,6 @@
 @media screen and (min-width: 1024px) {
   .nobootstrap {
     background-color: unset !important;
-    padding: 100px 0 100px;
     min-width: unset !important;
   }
 }

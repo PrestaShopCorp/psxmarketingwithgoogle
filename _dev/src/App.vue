@@ -69,6 +69,11 @@
 import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 
+let resizeEventTimer;
+const root = document.documentElement;
+const header = document.querySelector('#content .page-head');
+const headerFull = document.querySelector('#header_infos');
+
 export default {
   name: 'Home',
   components: {
@@ -98,6 +103,24 @@ export default {
   created() {
     this.$root.identifySegment();
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
+
+    this.setCustomProperties();
+    window.addEventListener('resize', this.resizeEventHandler);
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.resizeEventHandler);
+  },
+  methods: {
+    resizeEventHandler() {
+      clearTimeout(resizeEventTimer);
+      resizeEventTimer = setTimeout(() => {
+        this.setCustomProperties();
+      }, 250);
+    },
+    setCustomProperties() {
+      root.style.setProperty('--header-height', `${header.clientHeight}px`);
+      root.style.setProperty('--header-height-full', `${header.clientHeight + headerFull.clientHeight}px`);
+    },
   },
   watch: {
     $route() {
