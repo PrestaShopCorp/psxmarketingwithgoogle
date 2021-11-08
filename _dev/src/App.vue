@@ -129,19 +129,3 @@ export default {
   },
 };
 </script>
-
-<style>
-  #helper-shopid {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    z-index: 10000;
-    color: white;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    transition: all .3s;
-  }
-
-  #helper-shopid:hover {
-    text-shadow: 0 0 8px rgba(0, 0, 0, 1);
-  }
-</style>
