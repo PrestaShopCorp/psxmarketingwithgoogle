@@ -25,9 +25,10 @@
         </span>
       </b-button>
     </template>
+
     <b-dropdown
       :id="field.label | slugify"
-      :text="field.default"
+      :text="formatToDisplay || $t('general.notAvailable') "
       variant=" "
       class="maxw-sm-250 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
       :toggle-class="{'ps-dropdown__placeholder' : true}"
@@ -35,17 +36,25 @@
       size="sm"
     >
       <b-dropdown-form
-        v-for="option in options"
-        :key="option.label | slugify"
-        form-class="dropdown-item dropdown-form-with-checkbox text-dark"
+        form-class="dropdown-form-with-checkbox text-dark"
       >
-        <b-form-checkbox
-          class="ps_gs-checkbox"
+        <b-form-checkbox-group
+          :name="`dropdown-attribute-${field.label}`"
+          v-model="attributesChecked"
+          @change="getAttribute"
+          stacked
         >
-          <span class="line-height-15">
-            {{ option.label }}
-          </span>
-        </b-form-checkbox>
+          <b-form-checkbox
+            class="ps_gs-checkbox"
+            v-for="option in options"
+            :key="option.name | slugify"
+            :value="option"
+          >
+            <span class="line-height-15">
+              {{ option.displayName ? $t(option.displayName) : option.name }}
+            </span>
+          </b-form-checkbox>
+        </b-form-checkbox-group>
       </b-dropdown-form>
       <b-dropdown-item-button
         button-class="rounded-0 text-dark"
@@ -88,40 +97,52 @@ export default {
     },
   },
   computed: {
-    // TODO: Have the real list of possible value
     options() {
-      return [
-        {
-          label: 'Size',
-          value: 'size',
-        },
-        {
-          label: 'ISBN',
-          value: 'isbn',
-        },
-        {
-          label: 'Long description',
-          value: 'longDescription',
-        },
-        {
-          label: 'Fabric color',
-          value: 'fabricColor',
-        },
-        {
-          label: 'Shoe size',
-          value: 'shoeSize',
-        },
-        {
-          label: 'Womens/Mens',
-          value: 'womensMens',
-        },
-      ];
+      return this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
+    },
+    attributesChecked: {
+      get() {
+        const availableAttr = [];
+        if (this.field.mapped !== null) {
+          this.options.forEach((el) => {
+            this.field.mapped.forEach((mapped) => {
+              if (el.name === mapped.name) {
+                availableAttr.push(el);
+              }
+            });
+          });
+        } else {
+          this.options.forEach((el) => {
+            this.field.recommended.forEach((recommended) => {
+              if (el.name === recommended.name) {
+                availableAttr.push(el);
+              }
+            });
+          });
+        }
+        return availableAttr;
+      },
+      set(value) {
+        this.field.mapped = value;
+      },
+    },
+    formatToDisplay() {
+      return this.attributesChecked.map((e) => e.name).join(', ');
     },
   },
   methods: {
     selectNotAvailable() {
-      // TODO: handle uncheck all
+      this.attributesChecked = [];
       this.notAvailableSelected = true;
+    },
+    findAttribute(attr) {
+      return !!this.attributesChecked.find((e) => e.name === attr);
+    },
+    getAttribute() {
+      this.$store.commit('productFeed/SET_ATTRIBUTE_MAPPING_SELECTION', {
+        name: this.field.name,
+        elements: this.attributesChecked,
+      });
     },
   },
   googleUrl,

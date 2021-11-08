@@ -141,11 +141,31 @@ export default {
       ];
     },
     attributesToMap() {
+      // call nestjs to fill mapped attributes
       return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP']
         .filter(
           (attr) => this.categoryProductsSelected.includes(attr.category)
             || attr.category === Categories.COMMONS,
         );
+    },
+    formatMappingToApi() {
+      return this.attributesToMap
+        .map((attr) => attr.fields)
+        .reduce((acc, cur) => acc.concat(cur), [])
+        .reduce((acc, cur) => {
+          if (cur.mapped !== null) {
+            acc[cur.name] = cur.mapped.map((attr) => ({
+              id: attr.name,
+              type: attr.type,
+            }));
+          } else {
+            acc[cur.name] = cur.recommended.map((attr) => ({
+              id: attr.name,
+              type: attr.type,
+            }));
+          }
+          return acc;
+        }, {});
     },
     // TODO: Clean store, those getters/actions are from previous version of attribute mapping
     /*
@@ -173,6 +193,7 @@ export default {
   },
   methods: {
     nextStep() {
+      // call nestjs to send mapping
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       window.scrollTo(0, 0);
     },

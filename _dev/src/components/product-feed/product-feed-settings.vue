@@ -96,6 +96,9 @@ export default {
       return this.$store.state.productFeed.stepper;
     },
   },
+  mounted() {
+    this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE');
+  },
   methods: {
     productFeedCancelProcess() {
       this.$emit('cancelProductFeedProcess');

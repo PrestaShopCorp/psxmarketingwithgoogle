@@ -118,4 +118,13 @@ export default {
   [MutationsTypes.SAVE_ATTRIBUTES_SHOP](state: LocalState, payload: AttributesInfos[]) {
     state.attributesDatas.push(...payload);
   },
+  [MutationsTypes.SET_ATTRIBUTE_MAPPING_SELECTION](state: LocalState, payload) {
+    state.attributesToMap
+      .reduce((acc, curr) => [...acc, ...curr.fields], [])
+      .forEach((fields) => {
+        if (fields.name === payload.name) {
+          fields.mapped = payload.elements;
+        }
+      });
+  },
 };
