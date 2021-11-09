@@ -245,11 +245,11 @@ export default {
       endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
     });
   },
-  [ActionsTypes.CHANGE_REPORTING_DATES](
+  async [ActionsTypes.CHANGE_REPORTING_DATES](
     {commit, dispatch}, payload: ReportingPeriod,
   ) {
     commit(MutationsTypes.SET_REPORTING_PERIOD_SELECTED, payload);
-    dispatch('SET_REPORTING_DATES_RANGE');
+    await dispatch('SET_REPORTING_DATES_RANGE');
     dispatch('UPDATE_ALL_REPORTING_DATA');
   },
 
