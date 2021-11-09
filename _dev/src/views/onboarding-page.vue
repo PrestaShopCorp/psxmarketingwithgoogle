@@ -47,6 +47,7 @@
       <FreeListingCard
         v-if="stepsAreCompleted.step1"
         :is-enabled="productFeedIsConfigured"
+        :loading="freeListingIsLoading"
         :error-a-p-i="false"
         @openPopin="togglePopinFreeListingDisabled"
       />
@@ -58,7 +59,7 @@
       />
       <GoogleAdsAccountCard
         :is-enabled="stepsAreCompleted.step2"
-        :loading="googleAdsLoads"
+        :loading="googleAdsIsLoading"
         @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
         @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
         @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
@@ -66,6 +67,7 @@
       <SmartShoppingCampaignCard
         v-if="stepsAreCompleted.step2"
         :is-enabled="stepsAreCompleted.step3"
+        :loading="SSCIsLoading"
         @openPopin="onOpenPopinActivateTracking"
       />
     </template>
@@ -156,10 +158,12 @@ export default {
   data() {
     return {
       isMcaLinking: false,
-      googleAdsLoads: true,
-      googleIsLoading: true,
-      MCAIsLoading: true,
-      productFeedIsLoading: true,
+      googleAdsIsLoading: false,
+      googleIsLoading: false,
+      MCAIsLoading: false,
+      productFeedIsLoading: false,
+      freeListingIsLoading: false,
+      SSCIsLoading: false,
     };
   },
   methods: {
@@ -312,6 +316,8 @@ export default {
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
+      this.googleIsLoading = true;
+      this.MCAIsLoading = true;
       this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').then(() => {
         this.googleIsLoading = false;
         this.MCAIsLoading = false;
@@ -328,6 +334,7 @@ export default {
   watch: {
     merchantCenterAccountIsChosen(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
+        this.productFeedIsLoading = true;
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS').then(() => {
           this.productFeedIsLoading = false;
@@ -336,16 +343,23 @@ export default {
     },
     productFeedIsConfigured(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
-        this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS');
+        this.googleAdsIsLoading = true;
+        this.freeListingIsLoading = true;
+        this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS').then(() => {
+          this.freeListingIsLoading = false;
+        });
         this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST').then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT')
           .then(() => {
-            this.googleAdsLoads = false;
+            this.googleAdsIsLoading = false;
           }));
       }
     },
     googleAdsAccountIsChosen(newVal, oldVal) {
       if (oldVal === null && newVal === true) {
-        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+        this.SSCIsLoading = true;
+        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST').then(() => {
+          this.SSCIsLoading = false;
+        });
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
       }

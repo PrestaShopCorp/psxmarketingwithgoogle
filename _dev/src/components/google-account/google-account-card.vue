@@ -57,7 +57,10 @@
               check_circle
             </i>
           </div>
-          <div class="d-flex flex-wrap flex-md-nowrap justify-content-between align-items-center mt-3">
+          <div
+            class="d-flex flex-wrap flex-md-nowrap
+          justify-content-between align-items-center mt-3"
+          >
             <p
               v-if="!accessToken"
               class="mb-0"
