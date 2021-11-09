@@ -118,7 +118,7 @@ export default {
         ),
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'additionalShippingSettings',
+        name: 'deliveryDetails',
         data: json?.additionalShippingSettings?.deliveryDetails || [],
       });
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
@@ -141,7 +141,10 @@ export default {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
       targetCountries,
-      shippingSettings: productFeedSettings.shippingSettings.filter((e) => e.enabledCarrier),
+      shippingSettings: productFeedSettings.shippingSettings,
+      additionalShippingSettings: {
+        deliveryDetails: productFeedSettings.deliveryDetails.filter((e) => e.enabledCarrier),
+      },
       attributeMapping: {
         exportProductsWithShortDescription:
         productFeedSettings?.attributeMapping?.exportProductsWithShortDescription
@@ -206,7 +209,7 @@ export default {
       state.settings.shippingSettings,
     );
     const carriersList: (Carrier | DeliveryDetail)[] = enabledCarriers.map((enabledCarrier) => {
-      const additionalShippingSetting = state.settings.additionalShippingSettings.find(
+      const additionalShippingSetting = state.settings.deliveryDetails.find(
         (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === enabledCarrier.carrierId);
       if (!additionalShippingSetting) {
         return enabledCarrier;
