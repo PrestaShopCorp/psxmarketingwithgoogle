@@ -186,6 +186,7 @@
             {{ $t('smartShoppingCampaignCreation.inputFiltersAllLabel') }}
           </b-form-radio>
           <b-form-radio
+            :disabled="!productsHaveBeenApprovedByGoogle"
             v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
             :value="false"
