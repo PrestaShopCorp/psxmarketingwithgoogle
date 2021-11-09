@@ -145,7 +145,6 @@ export default {
     if (!response.ok) {
       console.log('dissociate failed');
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);
-
       throw new HttpClientError(response.statusText, response.status);
     }
     commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);
