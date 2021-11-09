@@ -58,11 +58,12 @@
         class="bg-white"
       >
         <table-row-carrier
-          v-for="carrier in carriers"
-          :key="carrier.carrierId"
+          v-for="(carrier, index) in carriers"
+          :key="updateKey(index)"
           :carrier="carrier"
           :carriers-list="carriers"
           @updateCarrier="updateCarriersArray($event)"
+          @applyInfos="modifyCarriersList($event)"
         />
       </b-tbody>
     </b-table-simple>
@@ -116,18 +117,21 @@ export default {
 
   data() {
     return {
+      updatedKey: 0,
       disableContinue: false,
+      carriers: this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].shippingSettings,
     };
   },
   computed: {
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
     },
-    carriers() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].shippingSettings;
-    },
+
   },
   methods: {
+    updateKey(index) {
+      return index + this.updatedKey;
+    },
     hasToolTip(headerType) {
       if (
         headerType === ShippingSettingsHeaderType.SHIP_TO_CUSTOMER
@@ -153,7 +157,7 @@ export default {
         if (!arg.enabledCarrier) {
           return true;
         }
-        return arg.maxHandlingTimeInDays && arg.maxTransitTimeInDays
+        return arg.enabledCarrier && arg.maxHandlingTimeInDays && arg.maxTransitTimeInDays
             && arg.minHandlingTimeInDays && arg.minTransitTimeInDays
             && (arg.minHandlingTimeInDays < arg.maxHandlingTimeInDays)
             && (arg.minTransitTimeInDays < arg.maxTransitTimeInDays)
@@ -176,6 +180,21 @@ export default {
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
+    },
+    modifyCarriersList(event) {
+      const {
+        name, delay, country, carrierId, ...carrierSource
+      } = this.carriers[event.indexToCopy];
+      this.carriers[event.indexToReceiveCopy] = {
+        ...this.carriers[event.indexToReceiveCopy],
+        ...carrierSource,
+      };
+
+      const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+      const randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)];
+      // TODO : find a way to re-render the :key on v-for automatically
+      this.updatedKey = randomCharacter;
+      this.checkForContinue(this.carriers);
     },
   },
 };
