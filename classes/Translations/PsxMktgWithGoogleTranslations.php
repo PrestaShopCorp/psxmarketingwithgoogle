@@ -319,7 +319,6 @@ class PsxMktgWithGoogleTranslations
                     'handlingTimeTooltip' => $this->module->l('Enter how long it takes you to prepare an order until it’s picked up by the carrier in working days.', 'PsxMktgWithGoogleTranslations'),
                     'transitTimeTooltip' => $this->module->l('Enter how long it takes for your order to be shipped to the customer once it leaves your facility.', 'PsxMktgWithGoogleTranslations'),
                     'shippingInformationTitle' => $this->module->l('Carriers & shipping information', 'PsxMktgWithGoogleTranslations'),
-                    'shippingInformationTitleTooltip' => $this->module->l('Placeholder TODO to do xxx', 'PsxMktgWithGoogleTranslations'),
                     'shippingInformationIntro' => $this->module->l('Enter shipping information for your carriers list. They have to ship to an address to be synchronized in Google Shopping.', 'PsxMktgWithGoogleTranslations'),
                     'shippingTableNotice' => $this->module->l('Make sure your store message matches your Google shopping delivery time information. [Add or update carriers]({0})[:target=\"_blank\" class=\"text-primary\"]', 'PsxMktgWithGoogleTranslations'),
                     'shippingSwitchCarrier' => $this->module->l('Switch to enable / desable carrier', 'PsxMktgWithGoogleTranslations'),
