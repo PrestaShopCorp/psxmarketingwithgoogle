@@ -73,12 +73,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-  .ps-google-help-tab {
-    div.card {
-      border: none !important;
-      border-radius: 3px;
-    }
-  }
-</style>
