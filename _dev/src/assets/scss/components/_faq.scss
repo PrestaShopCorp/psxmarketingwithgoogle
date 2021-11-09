@@ -1,0 +1,23 @@
+.faq__answer {
+  margin: 0px 15px 10px 15px;
+  padding: 15px;
+  background-color: #f7f7f7;
+}
+.faq__details > .faq__summary {
+  list-style: none;
+}
+.faq__details > .faq__summary::-webkit-details-marker {
+  display: none;
+}
+.faq__details .material-icons {
+  transition: transform .15s;
+}
+.faq__details[open] .material-icons {
+  transform: rotate(90deg)
+}
+.faq__details .faq__summary:focus {
+  box-shadow: 0 0 0 1px #25b9d7;
+  border-radius: 4px;
+  outline: none;
+  position: relative;
+}
