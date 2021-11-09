@@ -106,14 +106,17 @@ export default {
     return {
       updatedKey: 0,
       disableContinue: false,
-      carriers: this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].deliveryDetails,
+      countries: this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
     };
   },
   computed: {
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
     },
-
+    carriers() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS']
+        .deliveryDetails.filter((carrier) => this.countries.includes(carrier.country));
+    },
   },
   methods: {
     updateKey(index) {

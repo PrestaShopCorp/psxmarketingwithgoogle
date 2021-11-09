@@ -210,7 +210,8 @@ export default {
     );
     const carriersList: (Carrier | DeliveryDetail)[] = enabledCarriers.map((enabledCarrier) => {
       const additionalShippingSetting = state.settings.deliveryDetails.find(
-        (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === enabledCarrier.carrierId);
+        (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === enabledCarrier.carrierId
+        && enabledCarrier.country === deliveryDetail.country);
       if (!additionalShippingSetting) {
         return enabledCarrier;
       }
