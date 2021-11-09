@@ -177,10 +177,10 @@ export default {
       selectedIds: [],
       deliveryType: this.carrier.deliveryType || null,
       enabled: this.carrier.enabledCarrier || false,
-      minHandlingTimeInDays: this.carrier.minHandlingTimeInDays || null,
-      maxHandlingTimeInDays: this.carrier.maxHandlingTimeInDays || null,
-      maxTransitTimeInDays: this.carrier.maxTransitTimeInDays || null,
-      minTransitTimeInDays: this.carrier.minTransitTimeInDays || null,
+      minHandlingTimeInDays: this.getInitialValue(this.carrier.minHandlingTimeInDays),
+      maxHandlingTimeInDays: this.getInitialValue(this.carrier.maxHandlingTimeInDays),
+      maxTransitTimeInDays: this.getInitialValue(this.carrier.maxTransitTimeInDays),
+      minTransitTimeInDays: this.getInitialValue(this.carrier.minTransitTimeInDays),
       carrierChosenToReceiveCopy: null,
     };
   },
@@ -268,6 +268,9 @@ export default {
         }
       });
       this.selectedIds = this.selectedIds.filter((selectedId) => !idToDelete.includes(selectedId));
+    },
+    getInitialValue(value) {
+      return Number.isInteger(value) ? value : null;
     },
   },
   beforeMount() {

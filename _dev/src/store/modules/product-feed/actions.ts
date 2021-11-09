@@ -215,6 +215,7 @@ export default {
         return enabledCarrier;
       }
       return {
+        enabledCarrier: true,
         ...enabledCarrier,
         ...additionalShippingSetting,
       };
