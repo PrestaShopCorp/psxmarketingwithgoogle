@@ -141,7 +141,7 @@ export default {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
       targetCountries,
-      shippingSettings: productFeedSettings.shippingSettings,
+      shippingSettings: productFeedSettings.shippingSettings.filter((e) => e.enabledCarrier),
       attributeMapping: {
         exportProductsWithShortDescription:
         productFeedSettings?.attributeMapping?.exportProductsWithShortDescription

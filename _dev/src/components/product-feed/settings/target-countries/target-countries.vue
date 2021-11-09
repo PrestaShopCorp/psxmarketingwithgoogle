@@ -168,7 +168,7 @@ export default {
       } else {
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'autoImportShippingSettings',
-          data: true,
+          data: false,
         });
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
         window.scrollTo(0, 0);
