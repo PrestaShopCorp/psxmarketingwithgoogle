@@ -526,7 +526,7 @@ export default {
             return;
           }
           this.availableFilters.children.push({
-            name: dimensionName,
+            name: this.$t(`smartShoppingCampaignCreation.${dimensionName}`),
             id: dimensionName,
             checked: false,
             indeterminate: false,

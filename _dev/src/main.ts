@@ -60,3 +60,4 @@ new Vue({
 console.error('#################################################');
 console.error('### SHOP ID:  ', window.shopIdPsAccounts, '  ###');
 console.error('#################################################');
+console.error('Test CDN update 1');
