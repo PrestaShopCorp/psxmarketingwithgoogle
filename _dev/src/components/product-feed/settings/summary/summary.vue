@@ -245,14 +245,7 @@ export default {
     },
     saveAll() {
       this.disabledExportButton = true;
-      if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
-        this.$store.dispatch('productFeed/GET_SHOP_SHIPPING_SETTINGS')
-          .then(() => {
-            this.postDatas();
-          });
-      } else {
-        this.postDatas();
-      }
+      this.postDatas();
     },
     postDatas() {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
