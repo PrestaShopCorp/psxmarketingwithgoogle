@@ -73,7 +73,7 @@
     #{$root}__dropdown-delivery-type {
       border-color: rgba($gray-300, 0.5);
 
-      .dropdown-toggle {
+      .dropdown-toggle, .dropdown-toggle:after {
         color: $gray-450;
         background-color: transparent;
       }
