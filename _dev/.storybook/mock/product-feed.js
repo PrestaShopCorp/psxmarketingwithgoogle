@@ -100,6 +100,14 @@ export const productFeed = {
     ]
   },
   attributesToMap,
+  attributesDatas: [
+    {"name":"ean13","type":"product"},
+    {"name":"isbn","type":"product"},
+    {"name":"upc","type":"product"},
+    {"name":"mpn","type":"product"},
+    {"name":"description","displayName":"attributesMapping.description","type":"product"},
+    {"name":"shortDescription","displayName":"attributesMapping.shortDescription","type":"product"},
+  ],
 };
 
 export const productFeedIsReadyForExport = {
