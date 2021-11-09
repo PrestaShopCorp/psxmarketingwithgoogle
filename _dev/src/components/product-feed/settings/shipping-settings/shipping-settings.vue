@@ -106,7 +106,7 @@ export default {
     return {
       updatedKey: 0,
       disableContinue: false,
-      carriers: this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].shippingSettings,
+      carriers: this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].deliveryDetails,
     };
   },
   computed: {

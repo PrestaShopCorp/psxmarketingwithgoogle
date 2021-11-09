@@ -16,6 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import MutationsTypes from './mutations-types';
 import {
   State as LocalState,
@@ -89,9 +90,9 @@ export default {
   ) {
     state.settings.shippingSettings = payload;
   },
-  [MutationsTypes.SAVE_SHIPPING_SETTINGS](state: LocalState, payload:Array<object>,
+  [MutationsTypes.SAVE_SHIPPING_SETTINGS](state: LocalState, payload: DeliveryDetail[],
   ) {
-    state.settings.shippingSettings = payload;
+    state.settings.deliveryDetails = payload;
   },
   [MutationsTypes.SET_VALIDATION_SUMMARY](state: LocalState, payload: ProductFeedValidationSummary,
   ) {
@@ -112,7 +113,7 @@ export default {
   ) {
     state.settings = {
       shippingSettings: [],
-      additionalShippingSettings: [],
+      deliveryDetails: [],
       autoImportTaxSettings: false,
       autoImportShippingSettings: true,
       attributeMapping: {},

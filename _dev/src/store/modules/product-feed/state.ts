@@ -38,7 +38,7 @@ export interface ProductFeedSettingsAttributeMapping {
 
 export interface ProductFeedSettings {
   shippingSettings: object[];
-  additionalShippingSettings: DeliveryDetail[];
+  deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
   autoImportShippingSettings: boolean;
   attributeMapping: ProductFeedSettingsAttributeMapping;
@@ -110,7 +110,7 @@ export const state: State = {
   },
   settings: {
     shippingSettings: [],
-    additionalShippingSettings: [],
+    deliveryDetails: [],
     autoImportTaxSettings: false,
     autoImportShippingSettings: true,
     attributeMapping: {
