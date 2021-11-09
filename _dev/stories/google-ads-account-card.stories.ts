@@ -54,6 +54,7 @@ Disabled.args = {
 export const Enabled:any = Template.bind({});
 Enabled.args = {
   isEnabled: true,
+  loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
   },
@@ -63,6 +64,7 @@ Enabled.args = {
 export const EnabledSpinner:any = Template.bind({});
 EnabledSpinner.args = {
   isEnabled: true,
+  loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
     this.$store.state.googleAds.list = null;
@@ -73,6 +75,7 @@ EnabledSpinner.args = {
 export const EnabledButNoAccount:any = Template.bind({});
 EnabledButNoAccount.args = {
   isEnabled: true,
+  loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
     this.$store.state.googleAds.list = [];
@@ -82,6 +85,7 @@ EnabledButNoAccount.args = {
 export const EnabledConnected:any = Template.bind({});
 EnabledConnected.args = {
   isEnabled: true,
+  loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);``
   },
@@ -90,6 +94,7 @@ EnabledConnected.args = {
 export const CantConnect:any = Template.bind({});
 CantConnect.args = {
   isEnabled: true,
+  loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
     this.$store.state.googleAds.status = GoogleAdsErrorReason.CantConnect;

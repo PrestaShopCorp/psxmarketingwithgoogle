@@ -55,6 +55,7 @@
       />
       <GoogleAdsAccountCard
         :is-enabled="stepsAreCompleted.step2"
+        :loading="googleAdsLoads"
         @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
         @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
         @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
@@ -152,6 +153,7 @@ export default {
   data() {
     return {
       isMcaLinking: false,
+      googleAdsLoads: true,
     };
   },
   methods: {
@@ -324,7 +326,10 @@ export default {
     productFeedIsConfigured(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
         this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS');
-        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST').then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT'));
+        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST').then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT')
+          .then(() => {
+            this.googleAdsLoads = false;
+          }));
       }
     },
     googleAdsAccountIsChosen(newVal, oldVal) {
