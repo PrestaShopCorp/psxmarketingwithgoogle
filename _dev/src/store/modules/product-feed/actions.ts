@@ -119,7 +119,7 @@ export default {
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'additionalShippingSettings',
-        data: json?.additionalShippingSettings?.deliveryDetails,
+        data: json?.additionalShippingSettings?.deliveryDetails || [],
       });
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
     } catch (error) {
@@ -205,7 +205,6 @@ export default {
     const enabledCarriers = getEnabledCarriers(
       state.settings.shippingSettings,
     );
-
     const carriersList: (Carrier | DeliveryDetail)[] = enabledCarriers.map((enabledCarrier) => {
       const additionalShippingSetting = state.settings.additionalShippingSettings.find(
         (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === enabledCarrier.carrierId);
@@ -218,8 +217,7 @@ export default {
       };
     });
 
-    // TODO: Add a mutation to save this information
-    console.log('Initial state of the form', carriersList);
+    commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {

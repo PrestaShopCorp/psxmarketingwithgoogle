@@ -89,6 +89,10 @@ export default {
   ) {
     state.settings.shippingSettings = payload;
   },
+  [MutationsTypes.SAVE_SHIPPING_SETTINGS](state: LocalState, payload:Array<object>,
+  ) {
+    state.settings.shippingSettings = payload;
+  },
   [MutationsTypes.SET_VALIDATION_SUMMARY](state: LocalState, payload: ProductFeedValidationSummary,
   ) {
     state.validationSummary = payload;

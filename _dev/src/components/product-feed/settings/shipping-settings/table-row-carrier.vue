@@ -23,7 +23,7 @@
     </td>
     <td>
       <b-dropdown
-        :ref="`dropdownCarriers${carrier.id_carrier}`"
+        :ref="`dropdownCarriers${carrier.carrierId}`"
         :text="deliveryTypeMessage || $t('cta.select')"
         variant="text"
         class="maxw-sm-160 ps-dropdown ps_gs-carrier__dropdown-delivery-type
@@ -35,7 +35,7 @@
       >
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
-          @click="deliveryType = 'delivery'"
+          @click="updateDelivery('delivery')"
         >
           <span
             class="px-2"
@@ -45,7 +45,7 @@
         </b-dropdown-item-button>
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
-          @click="deliveryType = 'pickup'"
+          @click="updateDelivery('pickup')"
         >
           <span
             class="px-2"
@@ -62,8 +62,9 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model="minHandlingTimeInDays"
+          @change="toggleTime('minHandlingTimeInDays')"
           :disabled="!enabled"
-          :state="timeState('handling')"
+          :state="timeStateHandling"
           :placeholder="$t('general.min')"
         />
         <b-form-input
@@ -71,8 +72,9 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model="maxHandlingTimeInDays"
+          @change="toggleTime('maxHandlingTimeInDays')"
           :disabled="!enabled"
-          :state="timeState('handling')"
+          :state="timeStateHandling"
           :placeholder="$t('general.max')"
         />
       </div>
@@ -84,17 +86,20 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model="minTransitTimeInDays"
+          @change="toggleTime('minTransitTimeInDays')"
+
           :disabled="!enabled"
-          :state="timeState('delivery')"
+          :state="timeStateDelivery"
           :placeholder="$t('general.min')"
         />
         <b-form-input
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
-          v-model="maxTransitTimeInDays"
+          v-model="(maxTransitTimeInDays)"
+          @change="toggleTime('maxTransitTimeInDays')"
           :disabled="!enabled"
-          :state="timeState('delivery')"
+          :state="timeStateDelivery"
           :placeholder="$t('general.max')"
         />
       </div>
@@ -125,20 +130,21 @@
         >
           <b-form-checkbox-group
             class="mb-0"
-            :name="`carriers${carrier.id_carrier}`"
+            :name="`carriers${carrier.carrierId}`"
             v-model="selectedIds"
           >
             <b-form-checkbox
+              @change="checkboxClicked(carrierOption)"
               v-for="carrierOption in carriersList"
               :key="carrierOption.name"
               class="ps_gs-checkbox my-1"
-              :disabled="isInitiatorCarrier(carrierOption.id_carrier) ||
+              :disabled="isInitiatorCarrier(carrierOption.carrierId) ||
                 !carrierOption.enabledCarrier"
-              :value="carrierOption.id_carrier"
+              :value="carrierOption.carrierId"
             >
               <span
                 class="line-height-15"
-                :class="{'text-dark': isInitiatorCarrier(carrierOption.id_carrier)}"
+                :class="{'text-dark': isInitiatorCarrier(carrierOption.carrierId)}"
               >
                 {{ carrierOption.name }}
               </span>
@@ -168,13 +174,14 @@ import DeliveryType from '@/enums/product-feed/delivery-type.ts';
 export default {
   data() {
     return {
-      enabled: true,
-      minHandlingTimeInDays: null,
-      maxHandlingTimeInDays: null,
-      minTransitTimeInDays: null,
-      maxTransitTimeInDays: null,
-      deliveryType: null,
       selectedIds: [],
+      deliveryType: this.carrier.deliveryType || null,
+      enabled: this.carrier.enabledCarrier || false,
+      minHandlingTimeInDays: this.carrier.minHandlingTimeInDays || null,
+      maxHandlingTimeInDays: this.carrier.maxHandlingTimeInDays || null,
+      maxTransitTimeInDays: this.carrier.maxTransitTimeInDays || null,
+      minTransitTimeInDays: this.carrier.minTransitTimeInDays || null,
+      carrierChosenToReceiveCopy: null,
     };
   },
   props: {
@@ -198,38 +205,66 @@ export default {
           return null;
       }
     },
+
+    timeStateHandling() {
+      return Number(this.minHandlingTimeInDays) > Number(this.maxHandlingTimeInDays)
+          && this.minHandlingTimeInDays
+          && this.maxHandlingTimeInDays ? false : null;
+    },
+
+    timeStateDelivery() {
+      return Number(this.minTransitTimeInDays) > Number(this.maxTransitTimeInDays)
+              && this.minTransitTimeInDays
+              && this.maxTransitTimeInDays ? false : null;
+    },
+
   },
   methods: {
     isInitiatorCarrier(id) {
-      return this.carrier.id_carrier === id;
+      return this.carrier.carrierId === id;
     },
     toggleCarrier() {
-      this.$emit('toggleCarrier', {
-        id_carrier: this.carrier.id_carrier,
+      this.$emit('updateCarrier', {
+        type: 'enabledCarrier',
+        carrierId: this.carrier.carrierId,
         enabledCarrier: this.enabled,
       });
     },
-    timeState(type) {
-      // TODO: check if condition is correct
-      if (type === 'handling') {
-        return this.minHandlingTimeInDays > this.maxHandlingTimeInDays
-          && this.minHandlingTimeInDays
-          && this.maxHandlingTimeInDays ? false : null;
-      }
-      return this.minTransitTimeInDays > this.maxTransitTimeInDays
-          && this.minTransitTimeInDays
-          && this.maxTransitTimeInDays ? false : null;
+    toggleTime(type) {
+      this.$emit('updateCarrier', {
+        type,
+        carrierId: this.carrier.carrierId,
+        minHandlingTimeInDays: this.minHandlingTimeInDays,
+        maxHandlingTimeInDays: this.maxHandlingTimeInDays,
+        maxTransitTimeInDays: this.maxTransitTimeInDays,
+        minTransitTimeInDays: this.minTransitTimeInDays,
+      });
+    },
+    updateDelivery(deliveryChosen) {
+      this.deliveryType = deliveryChosen;
+      this.$emit('updateCarrier', {
+        type: 'deliveryType',
+        carrierId: this.carrier.carrierId,
+        deliveryType: deliveryChosen,
+      });
+    },
+    checkboxClicked(option) {
+      this.carrierChosenToReceiveCopy = option;
     },
     applyInfos() {
-      // TODO: apply to selected checkbox
-      this.$refs[`dropdownCarriers${this.carrier.id_carrier}`].showMenu();
+      const indexToCopy = this.carriersList
+        .findIndex((e) => e.carrierId === this.carrier.carrierId);
+      const indexToReceiveCopy = this.carriersList
+        .findIndex((e) => e.carrierId === this.carrierChosenToReceiveCopy.carrierId);
+      this.$emit('applyInfos', {indexToCopy, indexToReceiveCopy});
+      this.$refs[`dropdownCarriers${this.carrier.carrierId}`].showMenu();
     },
     updateListState() {
       // if element is disabled, uncheck it
       const idToDelete = [];
       this.carriersList.forEach((carrier) => {
         if (!carrier.enabledCarrier) {
-          idToDelete.push(carrier.id_carrier);
+          idToDelete.push(carrier.carrierId);
         }
       });
       this.selectedIds = this.selectedIds.filter((selectedId) => !idToDelete.includes(selectedId));
@@ -237,7 +272,7 @@ export default {
   },
   beforeMount() {
     this.enabled = this.carrier.enabledCarrier;
-    this.selectedIds = [this.carrier.id_carrier];
+    this.selectedIds = [this.carrier.carrierId];
   },
 };
 </script>

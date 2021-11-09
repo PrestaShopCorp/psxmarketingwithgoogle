@@ -2,9 +2,8 @@
   <div>
     <h3
       class="ps_gs-fz-20 font-weight-600 mb-2"
-    >
-      {{ $t('productFeedSettings.shipping.shippingInformationTitle') }}
-    </h3>
+      v-html="$t('productFeedSettings.shipping.shippingInformationTitle')"
+    />
     <p>
       {{ $t('productFeedSettings.shipping.shippingInformationIntro') }}
     </p>
@@ -46,11 +45,12 @@
         class="bg-white"
       >
         <table-row-carrier
-          v-for="carrier in carriers"
-          :key="carrier.id_carrier"
+          v-for="(carrier, index) in carriers"
+          :key="updateKey(index)"
           :carrier="carrier"
           :carriers-list="carriers"
-          @toggleCarrier="updateCarriersArray"
+          @updateCarrier="updateCarriersArray($event)"
+          @applyInfos="modifyCarriersList($event)"
         />
       </b-tbody>
     </b-table-simple>
@@ -101,45 +101,25 @@ export default {
     SettingsFooter,
     TableRowCarrier,
   },
+
   data() {
     return {
-      carriers: [
-        {
-          id_carrier: 3,
-          name: 'GLS Chez vous +',
-          delay: 'Vous êtes prévenus par mail et SMS de la date et du créneau horaire de livraison.',
-          enabledCarrier: true,
-        },
-        {
-          id_carrier: 4,
-          name: 'GLS Service Point®',
-          delay: 'Retrait en Point Relais® de votre choix. Vous êtes informé par E-mail ou SMS.',
-          enabledCarrier: true,
-        },
-        {
-          id_carrier: 5,
-          name: 'Livraison demain avant 13h',
-          delay: 'Colis livré le lendemain matin avant 13h à votre domicile.',
-          enabledCarrier: true,
-        },
-        {
-          id_carrier: 6,
-          name: 'Livraison express',
-          delay: 'Colis livré le lendemain avant 13 h dans le relais Pickup de votre choix.',
-          enabledCarrier: true,
-        },
-      ],
+      updatedKey: 0,
+      disableContinue: false,
+      carriers: this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].shippingSettings,
     };
   },
   computed: {
-    disableContinue() {
-      return true;
-    },
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
     },
+
   },
   methods: {
+    updateKey(index) {
+      // TODO : find a way to re-render the :key on v-for automatically
+      return index + this.updatedKey;
+    },
     hasToolTip(headerType) {
       if (
         headerType === ShippingSettingsHeaderType.SHIP_TO_CUSTOMER
@@ -159,19 +139,50 @@ export default {
       }
       return true;
     },
+    checkForContinue(carriers) {
+      this.disableContinue = true;
+      const checkConditionsToContinue = (arg) => {
+        if (!arg.enabledCarrier) {
+          return true;
+        }
+        return arg.enabledCarrier && arg.maxHandlingTimeInDays && arg.maxTransitTimeInDays
+            && arg.minHandlingTimeInDays && arg.minTransitTimeInDays
+            && (arg.minHandlingTimeInDays < arg.maxHandlingTimeInDays)
+            && (arg.minTransitTimeInDays < arg.maxTransitTimeInDays)
+            && arg.deliveryType;
+      };
+      this.disableContinue = !carriers.every(checkConditionsToContinue);
+    },
     updateCarriersArray(e) {
       this.carriers.forEach((carrier) => {
-        if (carrier.id_carrier === e.id_carrier) {
-          carrier.enabledCarrier = e.enabledCarrier;
+        if (carrier.carrierId === e.carrierId) {
+          carrier[e.type] = e[e.type];
         }
       });
+      this.checkForContinue(this.carriers);
     },
+
     nextStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       window.scrollTo(0, 0);
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
+    },
+    modifyCarriersList(event) {
+      const {
+        name, delay, country, carrierId, ...carrierSource
+      } = this.carriers[event.indexToCopy];
+      this.carriers[event.indexToReceiveCopy] = {
+        ...this.carriers[event.indexToReceiveCopy],
+        ...carrierSource,
+      };
+
+      const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+      const randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)];
+      // TODO : find a way to re-render the :key on v-for automatically
+      this.updatedKey = randomCharacter;
+      this.checkForContinue(this.carriers);
     },
   },
 };
