@@ -22,6 +22,7 @@
       />
       <google-account-card
         :is-enabled="stepsAreCompleted.step1"
+        :loading="googleIsLoading"
         :user="getGoogleAccount"
         :is-connected="googleAccountIsOnboarded"
         @connectGoogleAccount="onGoogleAccountConnection"
@@ -31,6 +32,7 @@
         v-if="stepsAreCompleted.step1"
         :is-enabled="googleAccountIsOnboarded"
         :is-connected="merchantCenterAccountIsChosen"
+        :loading="MCAIsLoading"
         :is-e-u="showCSSForMCA"
         :is-linking="isMcaLinking"
         @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
@@ -39,6 +41,7 @@
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
         :is-enabled="merchantCenterAccountIsChosen"
+        :loading="productFeedIsLoading"
       />
 
       <FreeListingCard
@@ -154,6 +157,9 @@ export default {
     return {
       isMcaLinking: false,
       googleAdsLoads: true,
+      googleIsLoading: true,
+      MCAIsLoading: true,
+      productFeedIsLoading: true,
     };
   },
   methods: {
@@ -306,7 +312,10 @@ export default {
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
-      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
+      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').then(() => {
+        this.googleIsLoading = false;
+        this.MCAIsLoading = false;
+      });
     }
   },
   beforeDestroy() {
@@ -320,7 +329,9 @@ export default {
     merchantCenterAccountIsChosen(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
+        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS').then(() => {
+          this.productFeedIsLoading = false;
+        });
       }
     },
     productFeedIsConfigured(newVal, oldVal) {

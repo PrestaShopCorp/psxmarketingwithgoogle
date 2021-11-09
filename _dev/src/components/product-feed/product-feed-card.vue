@@ -1,137 +1,149 @@
 <template>
-  <b-card
-    no-body
-    class="ps_gs-onboardingcard p-3"
-    :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
-    id="product-feed-card"
-  >
-    <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
-      <div class="d-flex align-items-center">
-        <img
-          class="mr-3"
-          :src="
-            isEnabled
-              ? require('@/assets/images/product-feed-icon.png')
-              : require('@/assets/images/product-feed-icon-grey.png')
-          "
-          width="40"
-          height="40"
-          alt=""
-        >
-        <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
-          {{ $t("productFeedCard.title") }}
-        </b-card-text>
-      </div>
-    </div>
-    <p
-      class="mb-1"
-      v-if="!isEnabled"
+  <div>
+    <b-skeleton-wrapper
+      :loading="loading"
+      class="mb-3"
     >
-      {{ $t("productFeedCard.intro") }}
-    </p>
-    <BadgeListRequirements
-      v-if="!isEnabled"
-      :badges="['merchantCenterAccount']"
-    />
-    <div v-if="(isEnabled && toConfigure) || isErrorApi">
-      <p>
-        {{ $t("productFeedCard.introToConfigure") }}<br>
-        <a
-          class="ps_gs-fz-12 text-muted"
-          :href="$options.googleUrl.productConfiguration"
-          target="_blank"
-        >
-          {{ $t("cta.learnAboutProductConfiguration") }}
-        </a>
-      </p>
-      <stepper
-        class="mt-2"
-        :steps="steps"
-        :active-step="1"
-      />
-      <div
-        class="d-flex justify-content-center justify-content-md-end mt-n1"
-        v-if="isEnabled"
+      <template #loading>
+        <b-card>
+          <b-skeleton width="85%" />
+          <b-skeleton width="55%" />
+          <b-skeleton width="70%" />
+        </b-card>
+      </template>
+      <b-card
+        no-body
+        class="ps_gs-onboardingcard p-3"
+        :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
+        id="product-feed-card"
       >
-        <b-button
-          size="sm"
-          variant="primary"
-          @click="startConfiguration"
-          :disabled="isErrorApi"
-        >
-          {{ $t("cta.configureAndExportProductFeed") }}
-        </b-button>
-      </div>
-    </div>
-    <div
-      v-if="isEnabled && isErrorApi"
-      class="mt-3"
-    >
-      <b-alert
-        variant="warning"
-        show
-      >
-        <VueShowdown
-          :markdown="$t('productFeedCard.alertErrorApi')"
-        />
-        <div
-          class="mt-1"
-        >
-          <b-button
-            @click="refresh"
-            variant="outline-secondary"
-          >
-            {{ $t("general.refreshPage") }}
-          </b-button>
+        <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+          <div class="d-flex align-items-center">
+            <img
+              class="mr-3"
+              :src="
+                isEnabled
+                  ? require('@/assets/images/product-feed-icon.png')
+                  : require('@/assets/images/product-feed-icon-grey.png')
+              "
+              width="40"
+              height="40"
+              alt=""
+            >
+            <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
+              {{ $t("productFeedCard.title") }}
+            </b-card-text>
+          </div>
         </div>
-      </b-alert>
-    </div>
-    <div v-if="isEnabled && !toConfigure && !isErrorApi">
-      <b-alert
-        :variant="alert === 'FeedSettingSubmissionSuccess' ? 'info' : 'warning'"
-        :show="!!alert && alert !== 'ShippingSettingsMissing'"
-      >
-        <VueShowdown
-          :markdown="$t(`productFeedCard.alert${alert}`, alertLink)"
-          :extensions="['extended-link']"
-        />
-        <div
-          v-if="alert === 'ProductFeedExists'"
-          class="mt-1"
+        <p
+          class="mb-1"
+          v-if="!isEnabled"
         >
-          <b-button variant="outline-secondary">
-            {{ $t("cta.overwrite") }}
-          </b-button>
-        </div>
-      </b-alert>
-      <h3 class="font-weight-600 ps_gs-fz-14 d-flex align-items-center">
-        <i
-          class="ps_gs-fz-20 mr-2"
-          :class="[`text-${title.color}`, title.materialClass || 'material-icons']"
-        >
-          {{ title.icon }}
-        </i>
-        <span>{{ title.message }}</span>
-      </h3>
-      <div
-        v-if="syncStatus !== 'warning'"
-        class="d-sm-flex align-items-end mb-1"
-      >
-        <p class="ps_gs-fz-12 text-muted mb-0">
-          {{ syncStatus === 'schedule'
-            ? $t("productFeedPage.syncStatus.scheduleOn", [nextSyncTime])
-            : $t("productFeedCard.nextSync", [nextSyncTime])
-          }}
+          {{ $t("productFeedCard.intro") }}
         </p>
-        <b-button
-          variant="invisible"
-          class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 ml-auto text-primary"
-          @click="goToProductFeed()"
+        <BadgeListRequirements
+          v-if="!isEnabled"
+          :badges="['merchantCenterAccount']"
+        />
+        <div v-if="(isEnabled && toConfigure) || isErrorApi">
+          <p>
+            {{ $t("productFeedCard.introToConfigure") }}<br>
+            <a
+              class="ps_gs-fz-12 text-muted"
+              :href="$options.googleUrl.productConfiguration"
+              target="_blank"
+            >
+              {{ $t("cta.learnAboutProductConfiguration") }}
+            </a>
+          </p>
+          <stepper
+            class="mt-2"
+            :steps="steps"
+            :active-step="1"
+          />
+          <div
+            class="d-flex justify-content-center justify-content-md-end mt-n1"
+            v-if="isEnabled"
+          >
+            <b-button
+              size="sm"
+              variant="primary"
+              @click="startConfiguration"
+              :disabled="isErrorApi"
+            >
+              {{ $t("cta.configureAndExportProductFeed") }}
+            </b-button>
+          </div>
+        </div>
+        <div
+          v-if="isEnabled && isErrorApi"
+          class="mt-3"
         >
-          {{ $t("cta.trackProductStatus") }}
-        </b-button>
-        <!-- Not in free plan -->
-        <!-- <b-button
+          <b-alert
+            variant="warning"
+            show
+          >
+            <VueShowdown
+              :markdown="$t('productFeedCard.alertErrorApi')"
+            />
+            <div
+              class="mt-1"
+            >
+              <b-button
+                @click="refresh"
+                variant="outline-secondary"
+              >
+                {{ $t("general.refreshPage") }}
+              </b-button>
+            </div>
+          </b-alert>
+        </div>
+        <div v-if="isEnabled && !toConfigure && !isErrorApi">
+          <b-alert
+            :variant="alert === 'FeedSettingSubmissionSuccess' ? 'info' : 'warning'"
+            :show="!!alert && alert !== 'ShippingSettingsMissing'"
+          >
+            <VueShowdown
+              :markdown="$t(`productFeedCard.alert${alert}`, alertLink)"
+              :extensions="['extended-link']"
+            />
+            <div
+              v-if="alert === 'ProductFeedExists'"
+              class="mt-1"
+            >
+              <b-button variant="outline-secondary">
+                {{ $t("cta.overwrite") }}
+              </b-button>
+            </div>
+          </b-alert>
+          <h3 class="font-weight-600 ps_gs-fz-14 d-flex align-items-center">
+            <i
+              class="ps_gs-fz-20 mr-2"
+              :class="[`text-${title.color}`, title.materialClass || 'material-icons']"
+            >
+              {{ title.icon }}
+            </i>
+            <span>{{ title.message }}</span>
+          </h3>
+          <div
+            v-if="syncStatus !== 'warning'"
+            class="d-sm-flex align-items-end mb-1"
+          >
+            <p class="ps_gs-fz-12 text-muted mb-0">
+              {{ syncStatus === 'schedule'
+                ? $t("productFeedPage.syncStatus.scheduleOn", [nextSyncTime])
+                : $t("productFeedCard.nextSync", [nextSyncTime])
+              }}
+            </p>
+            <b-button
+              variant="invisible"
+              class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 ml-auto text-primary"
+              @click="goToProductFeed()"
+            >
+              {{ $t("cta.trackProductStatus") }}
+            </b-button>
+            <!-- Not in free plan -->
+            <!-- <b-button
           v-if="syncStatus === 'failed'"
           variant="primary"
           class="d-block mx-auto my-2 my-sm-0 ml-sm-3 mr-sm-0"
@@ -141,9 +153,9 @@
           </span>
           {{ $t('cta.forceSync') }}
         </b-button> -->
-      </div>
-      <!--  NOT IN BATCH 1 -->
-      <!-- <b-container
+          </div>
+          <!--  NOT IN BATCH 1 -->
+          <!-- <b-container
         fluid
         class="p-0 mb-2"
       >
@@ -167,68 +179,68 @@
           />
         </b-row>
       </b-container> -->
-      <div class="d-flex justify-content-between align-items-center mb-3 mt-3 pt-2">
-        <h3 class="font-weight-600 ps_gs-fz-14 mb-0">
-          {{ $t("productFeedSettings.breadcrumb2") }}
-        </h3>
-      </div>
-      <b-alert
-        variant="warning"
-        :show="!!alert && alert === 'ShippingSettingsMissing'"
-      >
-        <p class="mb-2">
-          <VueShowdown
-            tag="strong"
-            class="font-weight-600"
-            :markdown="$t('productFeedCard.alertShippingSettingsMissing')"
-            :extensions="['extended-link', 'no-p-tag']"
-          />
-          <br>
-          <span class="ps_gs-fz-12">
-            {{ $t("productFeedCard.alertShippingSettingsMissingDescription") }}
-          </span>
-        </p>
-        <div class="mt-1">
-          <b-button
-            variant="outline-secondary"
-            @click="goToProductFeedSettings(1)"
+          <div class="d-flex justify-content-between align-items-center mb-3 mt-3 pt-2">
+            <h3 class="font-weight-600 ps_gs-fz-14 mb-0">
+              {{ $t("productFeedSettings.breadcrumb2") }}
+            </h3>
+          </div>
+          <b-alert
+            variant="warning"
+            :show="!!alert && alert === 'ShippingSettingsMissing'"
           >
-            {{ $t("cta.addShippingInfo") }}
-          </b-button>
-        </div>
-      </b-alert>
-      <b-container
-        fluid
-        class="p-0 mb-0 mt-n1"
-      >
-        <b-row
-          no-gutters
-          class="mx-n1"
-        >
-          <product-feed-card-report-card
-            :status="targetCountriesStatus"
-            :title="$t('productFeedSettings.shipping.targetCountries')"
-            :description="targetCountries.join(', ')"
-            :link="$t('cta.editCountries')"
-            :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
-          />
-          <product-feed-card-report-card
-            :status="shippingSettingsStatus"
-            :title="$t('productFeedSettings.shipping.shippingSettings')"
-            :description="shippingSettings"
-            :link="$t('cta.editSettings')"
-            :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
-          />
-          <product-feed-card-report-card
-            v-if="isUS"
-            :status="taxSettingsStatus"
-            :title="$t('productFeedSettings.shipping.taxSettings')"
-            :description="taxSettings"
-            :link="$t('cta.editSettings')"
-            :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
-          />
-          <!--  NOT IN BATCH 1 -->
-          <!-- <product-feed-card-report-card
+            <p class="mb-2">
+              <VueShowdown
+                tag="strong"
+                class="font-weight-600"
+                :markdown="$t('productFeedCard.alertShippingSettingsMissing')"
+                :extensions="['extended-link', 'no-p-tag']"
+              />
+              <br>
+              <span class="ps_gs-fz-12">
+                {{ $t("productFeedCard.alertShippingSettingsMissingDescription") }}
+              </span>
+            </p>
+            <div class="mt-1">
+              <b-button
+                variant="outline-secondary"
+                @click="goToProductFeedSettings(1)"
+              >
+                {{ $t("cta.addShippingInfo") }}
+              </b-button>
+            </div>
+          </b-alert>
+          <b-container
+            fluid
+            class="p-0 mb-0 mt-n1"
+          >
+            <b-row
+              no-gutters
+              class="mx-n1"
+            >
+              <product-feed-card-report-card
+                :status="targetCountriesStatus"
+                :title="$t('productFeedSettings.shipping.targetCountries')"
+                :description="targetCountries.join(', ')"
+                :link="$t('cta.editCountries')"
+                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
+              />
+              <product-feed-card-report-card
+                :status="shippingSettingsStatus"
+                :title="$t('productFeedSettings.shipping.shippingSettings')"
+                :description="shippingSettings"
+                :link="$t('cta.editSettings')"
+                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
+              />
+              <product-feed-card-report-card
+                v-if="isUS"
+                :status="taxSettingsStatus"
+                :title="$t('productFeedSettings.shipping.taxSettings')"
+                :description="taxSettings"
+                :link="$t('cta.editSettings')"
+                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
+              />
+              <!--  NOT IN BATCH 1 -->
+              <!-- <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.steps.syncRules')"
             :description="syncRules.join(', ')"
@@ -246,23 +258,25 @@
             :link="$t('cta.editRules')"
             link-to="#"
           /> -->
-          <product-feed-card-report-card
-            :status="attributeMappingStatus"
-            :title="$t('productFeedSettings.steps.attributeMapping')"
-            :description="attributeMapping.join(', ') + '...'"
-            :link="$t('cta.editProductAttributes')"
-            :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 3 }"
-          />
-          <!--  NOT IN BATCH 1 -->
-          <!-- <product-feed-card-report-mapped-categories-card
+              <product-feed-card-report-card
+                :status="attributeMappingStatus"
+                :title="$t('productFeedSettings.steps.attributeMapping')"
+                :description="attributeMapping.join(', ') + '...'"
+                :link="$t('cta.editProductAttributes')"
+                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 3 }"
+              />
+              <!--  NOT IN BATCH 1 -->
+              <!-- <product-feed-card-report-mapped-categories-card
             :has-mapping="hasMapping"
             :categories-mapped="categoriesMapped"
             :categories-total="categoriesTotal"
           /> -->
-        </b-row>
-      </b-container>
-    </div>
-  </b-card>
+            </b-row>
+          </b-container>
+        </div>
+      </b-card>
+    </b-skeleton-wrapper>
+  </div>
 </template>
 
 <script>
@@ -312,6 +326,10 @@ export default {
     isEnabled: {
       type: Boolean,
       default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: true,
     },
     categoriesTotal: {
       type: Number,
