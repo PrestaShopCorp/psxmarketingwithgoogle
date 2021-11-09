@@ -1,22 +1,9 @@
 <template>
   <div>
-
-    <div class="d-flex mb-2 align-items-center">
-      <h3
-        class="ps_gs-fz-20 font-weight-600 mb-2"
-        v-html="$t('productFeedSettings.shipping.shippingInformationTitle')"
-      />
-      <b-button
-        variant="invisible"
-        class="ml-1 p-0"
-        v-b-tooltip:psxMktgWithGoogleApp
-        :title="$t('productFeedSettings.shipping.shippingInformationTitleTooltip')"
-      >
-        <i class="material-icons text-secondary">
-          info_outline
-        </i>
-      </b-button>
-    </div>
+    <h3
+      class="ps_gs-fz-20 font-weight-600 mb-2"
+      v-html="$t('productFeedSettings.shipping.shippingInformationTitle')"
+    />
     <p>
       {{ $t('productFeedSettings.shipping.shippingInformationIntro') }}
     </p>
