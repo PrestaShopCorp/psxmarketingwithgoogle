@@ -1,22 +1,10 @@
 <template>
   <div>
-    <div class="d-flex mb-2 align-items-center">
-      <h3
-        class="ps_gs-fz-20 font-weight-600 mb-0"
-      >
-        {{ $t('productFeedSettings.shipping.shippingInformationTitle') }}
-      </h3>
-      <b-button
-        variant="invisible"
-        class="ml-1 p-0"
-        v-b-tooltip:psxMktgWithGoogleApp
-        :title="$t('productFeedSettings.shipping.shippingInformationTitleTooltip')"
-      >
-        <i class="material-icons text-secondary">
-          info_outline
-        </i>
-      </b-button>
-    </div>
+    <h3
+      class="ps_gs-fz-20 font-weight-600 mb-2"
+    >
+      {{ $t('productFeedSettings.shipping.shippingInformationTitle') }}
+    </h3>
     <p>
       {{ $t('productFeedSettings.shipping.shippingInformationIntro') }}
     </p>
