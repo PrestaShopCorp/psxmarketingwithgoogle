@@ -17,17 +17,28 @@
  * International Registered Trademark & Property of PrestaShop SA
  *-->
 <template>
-  <b-card no-body>
-    <template v-slot:header>
-      <i class="material-icons">help</i>{{ $t("help.title") }}
+  <b-card
+    no-body
+    class="ps_gs-onboardingcard"
+  >
+    <template #header>
+      <div class="d-flex align-items-center ps_gs-breadcrumb__item">
+        <i class="material-icons mr-2 font-weight-normal">help_outline</i>
+        <span>{{ $t("help.title") }}</span>
+      </div>
     </template>
 
-    <b-card-body>
-      <div class="row">
-        <div class="left-block col-md-6">
+    <b-card-body
+      class="p-3"
+    >
+      <b-row>
+        <b-col
+          cols="12"
+          md="6"
+        >
           <div class="module-desc d-flex mb-4">
             <div>
-              <b>{{ $t("help.allowsYouTo.title") }}</b>
+              <strong class="font-weight-600">{{ $t("help.allowsYouTo.title") }}</strong>
               <ul class="mt-3">
                 <li>{{ $t("help.allowsYouTo.business") }}</li>
                 <li>{{ $t("help.allowsYouTo.account") }}</li>
@@ -37,10 +48,14 @@
               </ul>
             </div>
           </div>
-        </div>
-        <div class="right-block col-md">
-          <div class="doc">
-            <b class="text-muted">{{ $t("help.help.needHelp") }}</b>
+        </b-col>
+        <b-col
+          cols="12"
+          md="6"
+          class="text-center"
+        >
+          <div class="bg-light p-4">
+            <strong class="text-muted font-weight-600">{{ $t("help.help.needHelp") }}</strong>
             <br>
             <b-button
               class="mt-3"
@@ -62,12 +77,14 @@
               </b-button>
             </div>
           </div>
-        </div>
-      </div>
+        </b-col>
+      </b-row>
+
       <div class="row">
         <div class="faq col">
-          <h1>{{ $t("faq.title") }}</h1>
-          <div class="separator my-3" />
+          <h1 class="border-bottom pb-3 mb-3">
+            {{ $t("faq.title") }}
+          </h1>
           <div
             class="mt-3 text-center"
             v-if="loading"
@@ -78,7 +95,7 @@
           </div>
           <template v-else-if="informations.faq && informations.faq.categories">
             <div
-              class="my-3"
+              class="my-3 faq"
               v-for="(categorie, index) in faq.categories"
               :key="index"
               :only-one-active="true"
@@ -93,14 +110,14 @@
                 class="my-3 question"
               >
                 <details
-                  class="details"
+                  class="faq__details"
                   @click="onQuestionClick(index + '_' + i)"
                 >
-                  <summary>
+                  <summary class="faq__summary">
                     <i class="material-icons">keyboard_arrow_right</i>
                     {{ item.question }}
                   </summary>
-                  <p class="answer">
+                  <p class="faq__answer">
                     {{ item.answer }}
                   </p>
                 </details>
@@ -109,6 +126,7 @@
           </template>
           <template v-else>
             <b-alert
+              class="mb-0"
               variant="warning"
               show
             >
@@ -133,47 +151,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.separator {
-  height: 1px;
-  opacity: 0.2;
-  background: #6b868f;
-  border-bottom: 2px solid #6b868f;
-}
-.left-block {
-  flex-grow: 1;
-}
-.right-block {
-  padding: 15px;
-  min-width: 350px;
-  text-align: center;
-}
-.doc {
-  padding: 20px;
-  background-color: #f7f7f7;
-}
-.answer {
-  margin: 0px 15px 10px 15px;
-  padding: 15px;
-  background-color: #f7f7f7;
-}
-.details > summary {
-  list-style: none;
-}
-.details > summary::-webkit-details-marker {
-  display: none;
-}
-.details .material-icons {
-  transition: transform .15s;
-}
-.details[open] .material-icons {
-  transform: rotate(90deg)
-}
-.details summary:focus {
-  box-shadow: 0 0 0 1px #25b9d7;
-  border-radius: 4px;
-  outline: none;
-  position: relative;
-}
-</style>
