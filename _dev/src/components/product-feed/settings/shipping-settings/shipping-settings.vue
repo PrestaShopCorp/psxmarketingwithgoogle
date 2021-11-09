@@ -130,6 +130,7 @@ export default {
   },
   methods: {
     updateKey(index) {
+      // TODO : find a way to re-render the :key on v-for automatically
       return index + this.updatedKey;
     },
     hasToolTip(headerType) {
