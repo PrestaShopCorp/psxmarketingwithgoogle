@@ -2,6 +2,7 @@
   <ps-modal
     id="SmartShoppingCampaignCreationFilterPopin"
     ref="modal"
+    size="xl"
     v-bind="$attrs"
     @ok="sendDimensionsSelected"
     cancel-variant="invisible font-weight-normal"
