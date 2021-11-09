@@ -2,10 +2,10 @@
   <b-card
     no-body
     class="ps_gs-onboardingcard p-3"
-    :class="{ 'ps_gs-onboardingcard--disabled-grey' : !isEnabled }"
+    :class="{ 'ps_gs-onboardingcard--disabled-grey' : !isEnabled || loading}"
   >
     <template
-      v-if="!isEnabled"
+      v-if="!isEnabled && !loading"
     >
       <div
         class="d-flex align-items-center"
@@ -45,7 +45,7 @@
           check_circle
         </i>
       </div>
-      <div v-if="isEnabled && !googleAdsAccountConfigured">
+      <div v-if="isEnabled && !loading && !googleAdsAccountConfigured">
         <b-form class="mt-3 mb-2">
           <legend
             class="mb-1 h4 font-weight-600 border-0 bg-transparent"
@@ -262,6 +262,10 @@ export default {
     isEnabled: {
       type: Boolean,
       default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: true,
     },
   },
 
