@@ -34,7 +34,7 @@
       >
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
-          @click="updateDelivery('delivery')"
+          @click="deliveryType = 'delivery'"
         >
           <span
             class="px-2"
@@ -44,7 +44,7 @@
         </b-dropdown-item-button>
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
-          @click="updateDelivery('pickup')"
+          @click="deliveryType = 'pickup'"
         >
           <span
             class="px-2"
@@ -61,7 +61,6 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model="carrier.minHandlingTimeInDays"
-          @input="toggleTime('minHandlingTimeInDays')"
           :disabled="!carrier.enabledCarrier"
           :state="timeStateHandling"
           :placeholder="$t('general.min')"
@@ -71,7 +70,6 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model="carrier.maxHandlingTimeInDays"
-          @input="toggleTime('maxHandlingTimeInDays')"
           :disabled="!carrier.enabledCarrier"
           :state="timeStateHandling"
           :placeholder="$t('general.max')"
@@ -85,7 +83,6 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model="carrier.minTransitTimeInDays"
-          @input="toggleTime('minTransitTimeInDays')"
 
           :disabled="!carrier.enabledCarrier"
           :state="timeStateDelivery"
@@ -96,7 +93,6 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model="carrier.maxTransitTimeInDays"
-          @input="toggleTime('maxTransitTimeInDays')"
           :disabled="!carrier.enabledCarrier"
           :state="timeStateDelivery"
           :placeholder="$t('general.max')"
@@ -232,31 +228,6 @@ export default {
   methods: {
     isInitiatorCarrier(id) {
       return this.carrier.carrierId === id;
-    },
-    toggleCarrier() {
-      this.$emit('updateCarrier', {
-        type: 'enabledCarrier',
-        carrierId: this.carrier.carrierId,
-        enabledCarrier: this.carrier.enabledCarrier,
-      });
-    },
-    toggleTime(type) {
-      this.$emit('updateCarrier', {
-        type,
-        carrierId: this.carrier.carrierId,
-        minHandlingTimeInDays: this.minHandlingTimeInDays,
-        maxHandlingTimeInDays: this.maxHandlingTimeInDays,
-        maxTransitTimeInDays: this.maxTransitTimeInDays,
-        minTransitTimeInDays: this.minTransitTimeInDays,
-      });
-    },
-    updateDelivery(deliveryChosen) {
-      this.deliveryType = deliveryChosen;
-      this.$emit('updateCarrier', {
-        type: 'deliveryType',
-        carrierId: this.carrier.carrierId,
-        deliveryType: deliveryChosen,
-      });
     },
     applyInfos() {
       this.$store.dispatch('productFeed/DUPLICATE_DELIVERY_DETAILS',

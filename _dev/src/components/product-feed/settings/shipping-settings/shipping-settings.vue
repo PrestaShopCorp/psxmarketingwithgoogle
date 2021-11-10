@@ -49,7 +49,6 @@
           :key="index"
           :carrier="carrier"
           :carriers-list="carriers"
-          @updateCarrier="updateCarriersArray($event)"
         />
       </b-tbody>
     </b-table-simple>
@@ -153,13 +152,6 @@ export default {
           && Number(carrier.minTransitTimeInDays) >= 0
           && Number(carrier.maxTransitTimeInDays) >= 0
           && carrier.deliveryType;
-    },
-    updateCarriersArray(e) {
-      this.carriers.forEach((carrier) => {
-        if (carrier.carrierId === e.carrierId) {
-          carrier[e.type] = e[e.type];
-        }
-      });
     },
 
     nextStep() {
