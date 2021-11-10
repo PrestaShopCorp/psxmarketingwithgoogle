@@ -22,6 +22,7 @@
       />
       <google-account-card
         :is-enabled="stepsAreCompleted.step1"
+        :loading="googleIsLoading"
         :user="getGoogleAccount"
         :is-connected="googleAccountIsOnboarded"
         @connectGoogleAccount="onGoogleAccountConnection"
@@ -31,6 +32,7 @@
         v-if="stepsAreCompleted.step1"
         :is-enabled="googleAccountIsOnboarded"
         :is-connected="merchantCenterAccountIsChosen"
+        :loading="MCAIsLoading"
         :is-e-u="showCSSForMCA"
         :is-linking="isMcaLinking"
         @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
@@ -39,11 +41,13 @@
       <ProductFeedCard
         v-if="stepsAreCompleted.step1"
         :is-enabled="merchantCenterAccountIsChosen"
+        :loading="productFeedIsLoading"
       />
 
       <FreeListingCard
         v-if="stepsAreCompleted.step1"
         :is-enabled="productFeedIsConfigured"
+        :loading="freeListingIsLoading"
         :error-a-p-i="false"
         @openPopin="togglePopinFreeListingDisabled"
       />
@@ -55,7 +59,7 @@
       />
       <GoogleAdsAccountCard
         :is-enabled="stepsAreCompleted.step2"
-        :loading="googleAdsLoads"
+        :loading="googleAdsIsLoading"
         @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
         @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
         @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
@@ -63,6 +67,7 @@
       <SmartShoppingCampaignCard
         v-if="stepsAreCompleted.step2"
         :is-enabled="stepsAreCompleted.step3"
+        :loading="SSCIsLoading"
         @openPopin="onOpenPopinActivateTracking"
       />
     </template>
@@ -153,7 +158,12 @@ export default {
   data() {
     return {
       isMcaLinking: false,
-      googleAdsLoads: true,
+      googleAdsIsLoading: false,
+      googleIsLoading: false,
+      MCAIsLoading: false,
+      productFeedIsLoading: false,
+      freeListingIsLoading: false,
+      SSCIsLoading: false,
     };
   },
   methods: {
@@ -306,7 +316,12 @@ export default {
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
-      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
+      this.googleIsLoading = true;
+      this.MCAIsLoading = true;
+      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').finally(() => {
+        this.googleIsLoading = false;
+        this.MCAIsLoading = false;
+      });
     }
   },
   beforeDestroy() {
@@ -319,22 +334,32 @@ export default {
   watch: {
     merchantCenterAccountIsChosen(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
+        this.productFeedIsLoading = true;
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
+        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS').finally(() => {
+          this.productFeedIsLoading = false;
+        });
       }
     },
     productFeedIsConfigured(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
-        this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS');
+        this.googleAdsIsLoading = true;
+        this.freeListingIsLoading = true;
+        this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS').finally(() => {
+          this.freeListingIsLoading = false;
+        });
         this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST').then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT')
-          .then(() => {
-            this.googleAdsLoads = false;
+          .finally(() => {
+            this.googleAdsIsLoading = false;
           }));
       }
     },
     googleAdsAccountIsChosen(newVal, oldVal) {
       if (oldVal === null && newVal === true) {
-        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+        this.SSCIsLoading = true;
+        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST').finally(() => {
+          this.SSCIsLoading = false;
+        });
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
       }
