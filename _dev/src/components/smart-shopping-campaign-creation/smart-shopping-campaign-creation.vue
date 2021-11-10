@@ -20,7 +20,7 @@
               height="40"
               alt=""
             >
-            {{ $t('productFeedSettings.breadcrumb1') }}
+            {{ $t('smartShoppingCampaignCreation.breadcrumb1') }}
           </router-link>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
