@@ -143,10 +143,15 @@ export default {
       if (!carrier.enabledCarrier) {
         return true;
       }
+      // /!\ duplicated code validating specific parts of carrier in table-row-carrier.vue
       return carrier.enabledCarrier && carrier.maxHandlingTimeInDays && carrier.maxTransitTimeInDays
           && carrier.minHandlingTimeInDays && carrier.minTransitTimeInDays
-          && (carrier.minHandlingTimeInDays < carrier.maxHandlingTimeInDays)
-          && (carrier.minTransitTimeInDays < carrier.maxTransitTimeInDays)
+          && (Number(carrier.minHandlingTimeInDays) < Number(carrier.maxHandlingTimeInDays))
+          && (Number(carrier.minTransitTimeInDays) < Number(carrier.maxTransitTimeInDays))
+          && Number(carrier.minHandlingTimeInDays) >= 0
+          && Number(carrier.maxHandlingTimeInDays) >= 0
+          && Number(carrier.minTransitTimeInDays) >= 0
+          && Number(carrier.maxTransitTimeInDays) >= 0
           && carrier.deliveryType;
     },
     updateCarriersArray(e) {

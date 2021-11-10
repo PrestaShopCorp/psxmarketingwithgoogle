@@ -209,15 +209,23 @@ export default {
     },
 
     timeStateHandling() {
-      return Number(this.minHandlingTimeInDays) > Number(this.maxHandlingTimeInDays)
-          && this.minHandlingTimeInDays
-          && this.maxHandlingTimeInDays ? false : null;
+      return this.carrier.minHandlingTimeInDays
+        && this.carrier.maxHandlingTimeInDays
+        && (
+          Number(this.carrier.minHandlingTimeInDays) > Number(this.carrier.maxHandlingTimeInDays)
+          || Number(this.carrier.minHandlingTimeInDays) < 0
+          || Number(this.carrier.maxHandlingTimeInDays) < 0
+        ) ? false : null;
     },
 
     timeStateDelivery() {
-      return Number(this.minTransitTimeInDays) > Number(this.maxTransitTimeInDays)
-              && this.minTransitTimeInDays
-              && this.maxTransitTimeInDays ? false : null;
+      return this.carrier.minTransitTimeInDays
+        && this.carrier.maxTransitTimeInDays
+        && (
+          Number(this.carrier.minTransitTimeInDays) > Number(this.carrier.maxTransitTimeInDays)
+          || Number(this.carrier.minTransitTimeInDays) < 0
+          || Number(this.carrier.maxTransitTimeInDays) < 0
+        ) ? false : null;
     },
 
   },
