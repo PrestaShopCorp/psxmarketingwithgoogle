@@ -23,7 +23,7 @@
         :key="shop.id"
         href="#"
         @click="event(shop)"
-        class="list-group-item"
+        class="list-group-item maxw-sm-420"
       >
         {{ $t('multiShopSelector.configure') }} <b>{{ shop.name }}</b>
       </b-list-group-item>
@@ -77,9 +77,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.list-group-item {
-  max-width: 400px;
-}
-</style>

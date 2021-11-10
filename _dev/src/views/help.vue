@@ -19,7 +19,6 @@
 <template>
   <div
     id="help"
-    class="ps-google-help-tab"
   >
     <faq
       :informations="helpInformations"
@@ -73,12 +72,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-  .ps-google-help-tab {
-    div.card {
-      border: none !important;
-      border-radius: 3px;
-    }
-  }
-</style>
