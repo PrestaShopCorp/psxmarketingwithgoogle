@@ -130,16 +130,15 @@
           <b-form-checkbox-group
             class="mb-0"
             :name="`carriers${carrier.carrierId}`"
-            v-model="selectedIds"
+            v-model="selectedCarriersForDuplication"
           >
             <b-form-checkbox
-              @change="checkboxClicked(carrierOption)"
               v-for="carrierOption in carriersList"
               :key="carrierOption.name"
               class="ps_gs-checkbox my-1"
               :disabled="isInitiatorCarrier(carrierOption.carrierId) ||
                 !carrierOption.enabledCarrier"
-              :value="carrierOption.carrierId"
+              :value="{carrierId: carrierOption.carrierId, country: carrierOption.country}"
             >
               <span
                 class="line-height-15"
@@ -173,8 +172,10 @@ import DeliveryType from '@/enums/product-feed/delivery-type.ts';
 export default {
   data() {
     return {
-      selectedIds: [],
-      carrierChosenToReceiveCopy: null,
+      selectedCarriersForDuplication: [{
+        carrierId: this.carrier.carrierId,
+        country: this.carrier.country,
+      }],
     };
   },
   props: {
@@ -249,9 +250,6 @@ export default {
         deliveryType: deliveryChosen,
       });
     },
-    checkboxClicked(option) {
-      this.carrierChosenToReceiveCopy = option;
-    },
     applyInfos() {
       this.$store.dispatch('productFeed/DUPLICATE_DELIVERY_DETAILS',
         {
@@ -259,27 +257,20 @@ export default {
             carrierId: this.carrier.carrierId,
             country: this.carrier.country,
           },
-          destinationCarriers: [{
-            carrierId: this.carrierChosenToReceiveCopy.carrierId,
-            country: this.carrierChosenToReceiveCopy.country,
-          }],
+          destinationCarriers: this.selectedCarriersForDuplication,
         },
       );
       this.$refs[`dropdownCarriers${this.carrier.carrierId}-${this.carrier.country}`].showMenu();
     },
     updateListState() {
-      // if element is disabled, uncheck it
-      const idToDelete = [];
-      this.carriersList.forEach((carrier) => {
-        if (!carrier.enabledCarrier) {
-          idToDelete.push(carrier.carrierId);
-        }
-      });
-      this.selectedIds = this.selectedIds.filter((selectedId) => !idToDelete.includes(selectedId));
+      // Find carrier in list and check it is still enabled
+      this.selectedCarriersForDuplication = this.selectedCarriersForDuplication
+        .filter((selectedCarrier) => this.carriersList
+          .find((carrier) => selectedCarrier.carrierId === carrier.carrierId
+            && selectedCarrier.country === carrier.country,
+          ).enabledCarrier,
+        );
     },
-  },
-  beforeMount() {
-    this.selectedIds = [this.carrier.carrierId];
   },
 };
 </script>
