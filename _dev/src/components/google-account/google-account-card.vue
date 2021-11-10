@@ -1,220 +1,218 @@
 <template>
-  <div>
-    <b-skeleton-wrapper
-      :loading="loading"
-      class="mb-3"
+  <b-skeleton-wrapper
+    :loading="loading"
+    class="mb-3"
+  >
+    <template #loading>
+      <b-card>
+        <b-skeleton width="85%" />
+        <b-skeleton width="55%" />
+        <b-skeleton width="70%" />
+      </b-card>
+    </template>
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard p-3"
+      :class="{ 'ps_gs-onboardingcard--disabled-grey' : !isEnabled }"
     >
-      <template #loading>
-        <b-card>
-          <b-skeleton width="85%" />
-          <b-skeleton width="55%" />
-          <b-skeleton width="70%" />
-        </b-card>
-      </template>
-      <b-card
-        no-body
-        class="ps_gs-onboardingcard p-3"
-        :class="{ 'ps_gs-onboardingcard--disabled-grey' : !isEnabled }"
+      <template
+        v-if="!isEnabled"
       >
-        <template
-          v-if="!isEnabled"
+        <div
+          class="d-flex align-items-center"
         >
-          <div
-            class="d-flex align-items-center"
+          <img
+            class="mr-3 rounded-circle"
+            src="@/assets/images/google-icon-grey.svg"
+            width="40"
+            height="40"
           >
-            <img
-              class="mr-3 rounded-circle"
-              src="@/assets/images/google-icon-grey.svg"
-              width="40"
-              height="40"
-            >
-            <b-card-text
-              class="text-left mb-0"
-            >
-              {{ $t('googleAccountCard.introDisabled') }}
-            </b-card-text>
-          </div>
-        </template>
-        <template
-          v-else
+          <b-card-text
+            class="text-left mb-0"
+          >
+            {{ $t('googleAccountCard.introDisabled') }}
+          </b-card-text>
+        </div>
+      </template>
+      <template
+        v-else
+      >
+        <div
+          class="d-flex align-items-center"
         >
-          <div
-            class="d-flex align-items-center"
+          <img
+            class="mr-3 rounded-circle"
+            src="@/assets/images/google-icon.svg"
+            width="40"
+            height="40"
           >
-            <img
-              class="mr-3 rounded-circle"
-              src="@/assets/images/google-icon.svg"
-              width="40"
-              height="40"
-            >
-            <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
-              {{ $t('googleAccountCard.title') }}
-            </b-card-text>
-            <i
-              v-if="user && user.details.email"
-              class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
-            >
-              check_circle
-            </i>
-          </div>
-          <div
-            class="d-flex flex-wrap flex-md-nowrap
+          <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
+            {{ $t('googleAccountCard.title') }}
+          </b-card-text>
+          <i
+            v-if="user && user.details.email"
+            class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
+          >
+            check_circle
+          </i>
+        </div>
+        <div
+          class="d-flex flex-wrap flex-md-nowrap
           justify-content-between align-items-center mt-3"
+        >
+          <p
+            v-if="!accessToken"
+            class="mb-0"
           >
-            <p
-              v-if="!accessToken"
-              class="mb-0"
+            {{ $t('googleAccountCard.introEnabled') }}<br>
+          </p>
+          <div
+            v-else
+            class="d-flex align-items-center pt-3 pr-3 pb-3"
+          >
+            <img
+              class="mr-3 rounded-circle"
+              :src="user.details.picture"
+              width="38"
+              height="38"
+              alt=""
             >
-              {{ $t('googleAccountCard.introEnabled') }}<br>
-            </p>
-            <div
-              v-else
-              class="d-flex align-items-center pt-3 pr-3 pb-3"
+            <a
+              :href="$options.googleUrl.manageGoogleAccount"
+              :title="$t('cta.goToYourX', [$t('badge.googleAccount')])"
+              target="_blank"
+              class="external_link-no_icon link-regular text-break"
             >
-              <img
-                class="mr-3 rounded-circle"
-                :src="user.details.picture"
-                width="38"
-                height="38"
-                alt=""
-              >
-              <a
-                :href="$options.googleUrl.manageGoogleAccount"
-                :title="$t('cta.goToYourX', [$t('badge.googleAccount')])"
-                target="_blank"
-                class="external_link-no_icon link-regular text-break"
-              >
-                <strong>{{ user.details.email }}</strong>
-              </a>
-            </div>
-            <div
-              v-if="!accessToken"
-              class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
-            >
-              <b-button
-                size="sm"
-                variant="invisible"
-                class="btn-google mx-1 mt-3 mt-md-0 mr-md-0 ml-md-3"
-                :class="{'is-busy' : isConnecting}"
-                :disabled="isConnecting || error === 'CantConnect'"
-                @click="openPopup"
-                data-test-id="btn-connect"
-              >
-                <template v-if="!isConnecting">
-                  {{ $t('cta.signInWithGoogle') }}
-                </template>
-                <template v-else>
-                  {{ $t('cta.connectingAccount') }}
-                  <span class="ml-1 icon-busy" />
-                </template>
-              </b-button>
-              <glass
-                v-if="popupClosingLooper"
-                @close="closePopup"
-                @forceFocus="focusPopup"
-              />
-            </div>
-            <div
-              v-else
-              class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
-            >
-              <b-button
-                size="sm"
-                variant="outline-secondary"
-                class="mx-1 mt-3 mt-md-0"
-                @click="dissociateGoogleAccount"
-              >
-                {{ $t('cta.disconnect') }}
-              </b-button>
-              <b-button
-                size="sm"
-                variant="outline-secondary"
-                class="mx-1 mt-3 mt-md-0 mr-md-0"
-                @click="changeAccount"
-              >
-                {{ $t('cta.manageAccount') }}
-              </b-button>
-              <glass
-                v-if="popupClosingLooper"
-                @close="closePopup"
-                @forceFocus="focusPopup"
-              />
-            </div>
+              <strong>{{ user.details.email }}</strong>
+            </a>
           </div>
           <div
-            v-if="accessToken"
-            class="text-md-right text-muted mt-3"
+            v-if="!accessToken"
+            class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
           >
-            <p class="ps_gs-fz-12 mb-0">
-              {{ $t('googleAccountCard.footerDissociating') }}
-            </p>
-          </div>
-          <b-alert
-            v-if="!error && !accessToken"
-            show
-            variant="info"
-            class="mb-0 mt-3"
-          >
-            <VueShowdown
-              tag="p"
-              :extensions="['no-p-tag']"
-              class="mb-0"
-              :markdown="$t('googleAccountCard.alertInfo')"
-            />
-          </b-alert>
-          <b-alert
-            v-if="!error && accessToken && missingTokenScopes"
-            show
-            variant="warning"
-            class="mb-0 mt-3"
-          >
-            <VueShowdown
-              tag="p"
-              :extensions="['no-p-tag']"
-              class="mb-0"
-              :markdown="$t('googleAccountCard.missingTokenScopes')"
-            />
-            <div
-              class="d-md-flex text-center align-items-center mt-2"
+            <b-button
+              size="sm"
+              variant="invisible"
+              class="btn-google mx-1 mt-3 mt-md-0 mr-md-0 ml-md-3"
+              :class="{'is-busy' : isConnecting}"
+              :disabled="isConnecting || error === 'CantConnect'"
+              @click="openPopup"
+              data-test-id="btn-connect"
             >
-              <b-button
-                size="sm"
-                class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
-                variant="outline-secondary"
-                @click="changeAccount"
-              >
-                {{ $t('cta.manageAccount') }}
-              </b-button>
-            </div>
-          </b-alert>
-        </template>
+              <template v-if="!isConnecting">
+                {{ $t('cta.signInWithGoogle') }}
+              </template>
+              <template v-else>
+                {{ $t('cta.connectingAccount') }}
+                <span class="ml-1 icon-busy" />
+              </template>
+            </b-button>
+            <glass
+              v-if="popupClosingLooper"
+              @close="closePopup"
+              @forceFocus="focusPopup"
+            />
+          </div>
+          <div
+            v-else
+            class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
+          >
+            <b-button
+              size="sm"
+              variant="outline-secondary"
+              class="mx-1 mt-3 mt-md-0"
+              @click="dissociateGoogleAccount"
+            >
+              {{ $t('cta.disconnect') }}
+            </b-button>
+            <b-button
+              size="sm"
+              variant="outline-secondary"
+              class="mx-1 mt-3 mt-md-0 mr-md-0"
+              @click="changeAccount"
+            >
+              {{ $t('cta.manageAccount') }}
+            </b-button>
+            <glass
+              v-if="popupClosingLooper"
+              @close="closePopup"
+              @forceFocus="focusPopup"
+            />
+          </div>
+        </div>
+        <div
+          v-if="accessToken"
+          class="text-md-right text-muted mt-3"
+        >
+          <p class="ps_gs-fz-12 mb-0">
+            {{ $t('googleAccountCard.footerDissociating') }}
+          </p>
+        </div>
         <b-alert
-          v-if="error"
+          v-if="!error && !accessToken"
+          show
+          variant="info"
+          class="mb-0 mt-3"
+        >
+          <VueShowdown
+            tag="p"
+            :extensions="['no-p-tag']"
+            class="mb-0"
+            :markdown="$t('googleAccountCard.alertInfo')"
+          />
+        </b-alert>
+        <b-alert
+          v-if="!error && accessToken && missingTokenScopes"
           show
           variant="warning"
           class="mb-0 mt-3"
         >
-          <p class="mb-0">
-            {{ $t(`googleAccountCard.alert${error}`) }}
-          </p>
+          <VueShowdown
+            tag="p"
+            :extensions="['no-p-tag']"
+            class="mb-0"
+            :markdown="$t('googleAccountCard.missingTokenScopes')"
+          />
           <div
-            v-if="error === 'CantConnect'"
             class="d-md-flex text-center align-items-center mt-2"
           >
             <b-button
               size="sm"
               class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
               variant="outline-secondary"
-              @click="refresh"
-              data-test-id="btn-refresh"
+              @click="changeAccount"
             >
-              {{ $t('general.refreshPage') }}
+              {{ $t('cta.manageAccount') }}
             </b-button>
           </div>
         </b-alert>
-      </b-card>
-    </b-skeleton-wrapper>
-  </div>
+      </template>
+      <b-alert
+        v-if="error"
+        show
+        variant="warning"
+        class="mb-0 mt-3"
+      >
+        <p class="mb-0">
+          {{ $t(`googleAccountCard.alert${error}`) }}
+        </p>
+        <div
+          v-if="error === 'CantConnect'"
+          class="d-md-flex text-center align-items-center mt-2"
+        >
+          <b-button
+            size="sm"
+            class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
+            variant="outline-secondary"
+            @click="refresh"
+            data-test-id="btn-refresh"
+          >
+            {{ $t('general.refreshPage') }}
+          </b-button>
+        </div>
+      </b-alert>
+    </b-card>
+  </b-skeleton-wrapper>
 </template>
 
 <script>
