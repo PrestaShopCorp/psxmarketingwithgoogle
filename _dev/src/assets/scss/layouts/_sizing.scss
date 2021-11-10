@@ -1,30 +1,10 @@
-@include media-breakpoint-up(sm) {
-  .maxw-sm-420 {
-    max-width: 420px;
-  }
+$maxWidthsSizing: (80, 140, 160, 250, 320, 420, 500);
 
-  .maxw-sm-320 {
-    max-width: 320px;
-  }
-
-  .maxw-sm-500 {
-    max-width: 500px;
-  }
-
-  .maxw-sm-160 {
-    max-width: 160px;
-  }
-
-  .maxw-sm-250 {
-    max-width: 250px;
-  }
-
-  .maxw-sm-140 {
-    max-width: 140px;
-  }
-
-  .maxw-sm-80 {
-    max-width: 80px;
+@each $width in $maxWidthsSizing {
+  @include media-breakpoint-up(sm) {
+    .maxw-sm-#{$width} {
+      max-width: #{$width}px;
+    }
   }
 }
 
