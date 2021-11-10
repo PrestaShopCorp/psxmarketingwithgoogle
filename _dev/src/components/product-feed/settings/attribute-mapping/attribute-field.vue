@@ -47,7 +47,7 @@
           <b-form-checkbox
             class="ps_gs-checkbox"
             v-for="(option, index) in options"
-            :key="index | slugify"
+            :key="index"
             :value="option"
           >
             <span class="line-height-15">
