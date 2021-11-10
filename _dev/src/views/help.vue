@@ -19,7 +19,6 @@
 <template>
   <div
     id="help"
-    class="ps-google-help-tab"
   >
     <faq
       :informations="helpInformations"
