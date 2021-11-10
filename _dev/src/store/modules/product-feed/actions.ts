@@ -20,7 +20,9 @@ import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
-import {Carrier, DeliveryDetail, getEnabledCarriers} from '../../../providers/shipping-settings-provider';
+import {
+  Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
+} from '../../../providers/shipping-settings-provider';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
@@ -222,6 +224,35 @@ export default {
       };
     });
 
+    commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
+  },
+
+  [ActionsTypes.DUPLICATE_DELIVERY_DETAILS](
+    {state, commit},
+    payload: {sourceCarrier: CarrierIdentifier, destinationCarriers: CarrierIdentifier[]},
+  ) {
+    const carriersList = [...state.settings.deliveryDetails];
+    const indexToCopy = carriersList
+      .findIndex((e) => e.carrierId === payload.sourceCarrier.carrierId
+        && e.country === payload.sourceCarrier.country,
+      );
+    const indexesToReceiveCopy = payload.destinationCarriers
+      .map((destinationCarrier) => carriersList
+        .findIndex((e) => e.carrierId === destinationCarrier.carrierId
+          && e.country === destinationCarrier.country,
+        ),
+      );
+
+    const {
+      name, delay, country, carrierId, ...sourceCarrierData
+    } = carriersList[indexToCopy];
+
+    indexesToReceiveCopy.forEach((index) => {
+      carriersList.splice(index, 1, {
+        ...carriersList[index],
+        ...sourceCarrierData,
+      });
+    });
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 

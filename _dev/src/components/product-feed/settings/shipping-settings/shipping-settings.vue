@@ -46,11 +46,11 @@
       >
         <table-row-carrier
           v-for="(carrier, index) in carriers"
-          :key="updateKey(index)"
+          :key="index"
           :carrier="carrier"
           :carriers-list="carriers"
           @updateCarrier="updateCarriersArray($event)"
-          @applyInfos="modifyCarriersList($event)"
+          @applyInfos="duplicateCarrier($event)"
         />
       </b-tbody>
     </b-table-simple>
@@ -105,7 +105,6 @@ export default {
   data() {
     return {
       updatedKey: 0,
-      disableContinue: false,
       countries: this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
     };
   },
@@ -114,15 +113,14 @@ export default {
       return Object.values(ShippingSettingsHeaderType);
     },
     carriers() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS']
-        .deliveryDetails.filter((carrier) => this.countries.includes(carrier.country));
+      return this.$store.state.productFeed.settings.deliveryDetails
+        .filter((carrier) => this.countries.includes(carrier.country));
+    },
+    disableContinue() {
+      return !this.carriers.every(this.validateCarrier);
     },
   },
   methods: {
-    updateKey(index) {
-      // TODO : find a way to re-render the :key on v-for automatically
-      return index + this.updatedKey;
-    },
     hasToolTip(headerType) {
       if (
         headerType === ShippingSettingsHeaderType.SHIP_TO_CUSTOMER
@@ -142,19 +140,15 @@ export default {
       }
       return true;
     },
-    checkForContinue(carriers) {
-      this.disableContinue = true;
-      const checkConditionsToContinue = (arg) => {
-        if (!arg.enabledCarrier) {
-          return true;
-        }
-        return arg.enabledCarrier && arg.maxHandlingTimeInDays && arg.maxTransitTimeInDays
-            && arg.minHandlingTimeInDays && arg.minTransitTimeInDays
-            && (arg.minHandlingTimeInDays < arg.maxHandlingTimeInDays)
-            && (arg.minTransitTimeInDays < arg.maxTransitTimeInDays)
-            && arg.deliveryType;
-      };
-      this.disableContinue = !carriers.every(checkConditionsToContinue);
+    validateCarrier(carrier) {
+      if (!carrier.enabledCarrier) {
+        return true;
+      }
+      return carrier.enabledCarrier && carrier.maxHandlingTimeInDays && carrier.maxTransitTimeInDays
+          && carrier.minHandlingTimeInDays && carrier.minTransitTimeInDays
+          && (carrier.minHandlingTimeInDays < carrier.maxHandlingTimeInDays)
+          && (carrier.minTransitTimeInDays < carrier.maxTransitTimeInDays)
+          && carrier.deliveryType;
     },
     updateCarriersArray(e) {
       this.carriers.forEach((carrier) => {
@@ -162,7 +156,6 @@ export default {
           carrier[e.type] = e[e.type];
         }
       });
-      this.checkForContinue(this.carriers);
     },
 
     nextStep() {
@@ -172,20 +165,8 @@ export default {
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
-    modifyCarriersList(event) {
-      const {
-        name, delay, country, carrierId, ...carrierSource
-      } = this.carriers[event.indexToCopy];
-      this.carriers[event.indexToReceiveCopy] = {
-        ...this.carriers[event.indexToReceiveCopy],
-        ...carrierSource,
-      };
-
-      const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-      const randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)];
-      // TODO : find a way to re-render the :key on v-for automatically
-      this.updatedKey = randomCharacter;
-      this.checkForContinue(this.carriers);
+    duplicateCarrier(event) {
+      this.$store.dispatch('productFeed/DUPLICATE_DELIVERY_DETAILS', event);
     },
   },
 };

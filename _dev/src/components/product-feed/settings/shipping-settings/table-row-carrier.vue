@@ -8,7 +8,7 @@
         switch
         size="sm"
         class="ps_gs-switch mb-0"
-        v-model="enabled"
+        v-model="carrier.enabledCarrier"
         @change="toggleCarrier"
         :aria-label="$t('productFeedSettings.shipping.shippingSwitchCarrier')"
       />
@@ -23,7 +23,7 @@
     </td>
     <td>
       <b-dropdown
-        :ref="`dropdownCarriers${carrier.carrierId}`"
+        :ref="`dropdownCarriers${carrier.carrierId}-${carrier.country}`"
         :text="deliveryTypeMessage || $t('cta.select')"
         variant="text"
         class="maxw-sm-160 ps-dropdown ps_gs-carrier__dropdown-delivery-type
@@ -61,7 +61,7 @@
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
-          v-model="minHandlingTimeInDays"
+          v-model="carrier.minHandlingTimeInDays"
           @input="toggleTime('minHandlingTimeInDays')"
           :disabled="!enabled"
           :state="timeStateHandling"
@@ -71,7 +71,7 @@
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
-          v-model="maxHandlingTimeInDays"
+          v-model="carrier.maxHandlingTimeInDays"
           @input="toggleTime('maxHandlingTimeInDays')"
           :disabled="!enabled"
           :state="timeStateHandling"
@@ -85,7 +85,7 @@
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
-          v-model="minTransitTimeInDays"
+          v-model="carrier.minTransitTimeInDays"
           @input="toggleTime('minTransitTimeInDays')"
 
           :disabled="!enabled"
@@ -96,7 +96,7 @@
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
-          v-model="(maxTransitTimeInDays)"
+          v-model="carrier.maxTransitTimeInDays"
           @input="toggleTime('maxTransitTimeInDays')"
           :disabled="!enabled"
           :state="timeStateDelivery"
@@ -175,12 +175,6 @@ export default {
   data() {
     return {
       selectedIds: [],
-      deliveryType: this.carrier.deliveryType || null,
-      enabled: this.carrier.enabledCarrier || false,
-      minHandlingTimeInDays: this.getInitialValue(this.carrier.minHandlingTimeInDays),
-      maxHandlingTimeInDays: this.getInitialValue(this.carrier.maxHandlingTimeInDays),
-      maxTransitTimeInDays: this.getInitialValue(this.carrier.maxTransitTimeInDays),
-      minTransitTimeInDays: this.getInitialValue(this.carrier.minTransitTimeInDays),
       carrierChosenToReceiveCopy: null,
     };
   },
@@ -195,6 +189,9 @@ export default {
     },
   },
   computed: {
+    deliveryType() {
+      return this.carrier.deliveryType || null;
+    },
     deliveryTypeMessage() {
       switch (this.deliveryType) {
         case DeliveryType.DELIVERY:
@@ -252,11 +249,18 @@ export default {
       this.carrierChosenToReceiveCopy = option;
     },
     applyInfos() {
-      const indexToCopy = this.carriersList
-        .findIndex((e) => e.carrierId === this.carrier.carrierId);
-      const indexToReceiveCopy = this.carriersList
-        .findIndex((e) => e.carrierId === this.carrierChosenToReceiveCopy.carrierId);
-      this.$emit('applyInfos', {indexToCopy, indexToReceiveCopy});
+      this.$emit('applyInfos',
+        {
+          sourceCarrier: {
+            carrierId: this.carrier.carrierId,
+            country: this.carrier.country,
+          },
+          destinationCarriers: [{
+            carrierId: this.carrierChosenToReceiveCopy.carrierId,
+            country: this.carrierChosenToReceiveCopy.country,
+          }],
+        },
+      );
       this.$refs[`dropdownCarriers${this.carrier.carrierId}`].showMenu();
     },
     updateListState() {
@@ -268,9 +272,6 @@ export default {
         }
       });
       this.selectedIds = this.selectedIds.filter((selectedId) => !idToDelete.includes(selectedId));
-    },
-    getInitialValue(value) {
-      return Number.isInteger(value) ? value : null;
     },
   },
   beforeMount() {

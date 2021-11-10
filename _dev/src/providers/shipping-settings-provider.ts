@@ -19,6 +19,11 @@ export type ShopShippingInterface = {
     }
 }
 
+export type CarrierIdentifier = {
+  carrierId: string,
+  country: string
+}
+
 export type Carrier = {
     carrierId: string,
     country: string
@@ -40,6 +45,10 @@ export type DeliveryDetail = {
   minTransitTimeInDays: number;
   maxTransitTimeInDays: number;
   deliveryType: ShipmentType;
+
+  // Data that can be set by the interface but unused on the API side
+  name?: string;
+  delay?: string;
 }
 
 export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
