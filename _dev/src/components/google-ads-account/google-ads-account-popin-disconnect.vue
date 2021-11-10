@@ -37,9 +37,10 @@
         class="mt-2 ps_gs-switch"
         @change="changeStatusTag"
       >
-        <span class="ps_gs-fz-14">
-          {{ $t('modal.removeTag') }}
-        </span>
+        <span
+          class="ps_gs-fz-14"
+          :v-html="$t('modal.removeTag')"
+        />
         <p
           class="text-muted mb-0 ps_gs-fz-12"
         >
