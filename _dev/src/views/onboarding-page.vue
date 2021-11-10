@@ -318,7 +318,7 @@ export default {
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
       this.googleIsLoading = true;
       this.MCAIsLoading = true;
-      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').then(() => {
+      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').finally(() => {
         this.googleIsLoading = false;
         this.MCAIsLoading = false;
       });
@@ -336,7 +336,7 @@ export default {
       if (oldVal === false && newVal === true) {
         this.productFeedIsLoading = true;
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS').then(() => {
+        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS').finally(() => {
           this.productFeedIsLoading = false;
         });
       }
@@ -345,11 +345,11 @@ export default {
       if (oldVal === false && newVal === true) {
         this.googleAdsIsLoading = true;
         this.freeListingIsLoading = true;
-        this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS').then(() => {
+        this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS').finally(() => {
           this.freeListingIsLoading = false;
         });
         this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST').then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT')
-          .then(() => {
+          .finally(() => {
             this.googleAdsIsLoading = false;
           }));
       }
@@ -357,7 +357,7 @@ export default {
     googleAdsAccountIsChosen(newVal, oldVal) {
       if (oldVal === null && newVal === true) {
         this.SSCIsLoading = true;
-        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST').then(() => {
+        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST').finally(() => {
           this.SSCIsLoading = false;
         });
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
