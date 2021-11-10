@@ -166,6 +166,7 @@ export default {
         || null,
       },
     };
+    console.log(newSettings);
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
         method: 'POST',
@@ -233,10 +234,11 @@ export default {
     const getDeliveryDetailsFromStorage = localStorage.getItem('deliveryDetails');
 
     if (getDeliveryDetailsFromStorage !== null) {
+      console.log('il est dans le store', getDeliveryDetailsFromStorage);
       commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, JSON.parse(getDeliveryDetailsFromStorage || '{}'));
       return;
     }
-    console.log('when chose locastorage', state);
+    console.log('when not chose locastorage', state);
 
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
