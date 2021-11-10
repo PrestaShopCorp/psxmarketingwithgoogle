@@ -69,6 +69,7 @@ export default {
       lang: window.i18nSettings.languageLocale.split('-')[0],
     };
     const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings/?lang=${params.lang}`;
+
     try {
       const response = await fetch(url, {
         method: 'GET',
@@ -82,6 +83,7 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
+
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportShippingSettings', data: json.autoImportShippingSettings,
       });
@@ -181,6 +183,8 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
+      localStorage.removeItem('deliveryDetails');
+      console.log('afterdelete', localStorage);
     } catch (error) {
       console.error(error);
     }
@@ -203,6 +207,8 @@ export default {
   },
 
   async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
+    console.log('get datas');
+
     // TODO: These call may be already done, so we might remove them
     await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
     await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
@@ -223,6 +229,14 @@ export default {
         ...additionalShippingSetting,
       };
     });
+
+    const getDeliveryDetailsFromStorage = localStorage.getItem('deliveryDetails');
+
+    if (getDeliveryDetailsFromStorage !== null) {
+      commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, JSON.parse(getDeliveryDetailsFromStorage || '{}'));
+      return;
+    }
+    console.log('when chose locastorage', state);
 
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
