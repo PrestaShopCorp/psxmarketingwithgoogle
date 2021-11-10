@@ -1,7 +1,7 @@
 <template>
   <tr
     class="ps_gs-carrier"
-    :class="{'ps_gs-carrier--disabled': !enabled}"
+    :class="{'ps_gs-carrier--disabled': !carrier.enabledCarrier}"
   >
     <td class="ps_gs-carrier__cell-switch">
       <b-form-checkbox
@@ -9,7 +9,6 @@
         size="sm"
         class="ps_gs-switch mb-0"
         v-model="carrier.enabledCarrier"
-        @change="toggleCarrier"
         :aria-label="$t('productFeedSettings.shipping.shippingSwitchCarrier')"
       />
     </td>
@@ -31,7 +30,7 @@
         :toggle-class="{'ps-dropdown__placeholder' : deliveryTypeMessage === null}"
         menu-class="ps-dropdown"
         size="sm"
-        :disabled="!enabled"
+        :disabled="!carrier.enabledCarrier"
       >
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
@@ -63,7 +62,7 @@
           size="sm"
           v-model="carrier.minHandlingTimeInDays"
           @input="toggleTime('minHandlingTimeInDays')"
-          :disabled="!enabled"
+          :disabled="!carrier.enabledCarrier"
           :state="timeStateHandling"
           :placeholder="$t('general.min')"
         />
@@ -73,7 +72,7 @@
           size="sm"
           v-model="carrier.maxHandlingTimeInDays"
           @input="toggleTime('maxHandlingTimeInDays')"
-          :disabled="!enabled"
+          :disabled="!carrier.enabledCarrier"
           :state="timeStateHandling"
           :placeholder="$t('general.max')"
         />
@@ -88,7 +87,7 @@
           v-model="carrier.minTransitTimeInDays"
           @input="toggleTime('minTransitTimeInDays')"
 
-          :disabled="!enabled"
+          :disabled="!carrier.enabledCarrier"
           :state="timeStateDelivery"
           :placeholder="$t('general.min')"
         />
@@ -98,7 +97,7 @@
           size="sm"
           v-model="carrier.maxTransitTimeInDays"
           @input="toggleTime('maxTransitTimeInDays')"
-          :disabled="!enabled"
+          :disabled="!carrier.enabledCarrier"
           :state="timeStateDelivery"
           :placeholder="$t('general.max')"
         />
@@ -111,7 +110,7 @@
         menu-class="pb-2"
         class="ps_gs-carrier-dropdown"
         no-caret
-        :disabled="!enabled"
+        :disabled="!carrier.enabledCarrier"
         @show="updateListState"
       >
         <template #button-content>
@@ -189,8 +188,13 @@ export default {
     },
   },
   computed: {
-    deliveryType() {
-      return this.carrier.deliveryType || null;
+    deliveryType: {
+      get() {
+        return this.carrier.deliveryType || null;
+      },
+      set(value) {
+        this.carrier.deliveryType = value;
+      },
     },
     deliveryTypeMessage() {
       switch (this.deliveryType) {
@@ -224,7 +228,7 @@ export default {
       this.$emit('updateCarrier', {
         type: 'enabledCarrier',
         carrierId: this.carrier.carrierId,
-        enabledCarrier: this.enabled,
+        enabledCarrier: this.carrier.enabledCarrier,
       });
     },
     toggleTime(type) {
@@ -249,7 +253,7 @@ export default {
       this.carrierChosenToReceiveCopy = option;
     },
     applyInfos() {
-      this.$emit('applyInfos',
+      this.$store.dispatch('productFeed/DUPLICATE_DELIVERY_DETAILS',
         {
           sourceCarrier: {
             carrierId: this.carrier.carrierId,
@@ -261,7 +265,7 @@ export default {
           }],
         },
       );
-      this.$refs[`dropdownCarriers${this.carrier.carrierId}`].showMenu();
+      this.$refs[`dropdownCarriers${this.carrier.carrierId}-${this.carrier.country}`].showMenu();
     },
     updateListState() {
       // if element is disabled, uncheck it
@@ -275,7 +279,6 @@ export default {
     },
   },
   beforeMount() {
-    this.enabled = this.carrier.enabledCarrier;
     this.selectedIds = [this.carrier.carrierId];
   },
 };

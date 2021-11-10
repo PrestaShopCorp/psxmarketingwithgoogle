@@ -50,7 +50,6 @@
           :carrier="carrier"
           :carriers-list="carriers"
           @updateCarrier="updateCarriersArray($event)"
-          @applyInfos="duplicateCarrier($event)"
         />
       </b-tbody>
     </b-table-simple>
@@ -164,9 +163,6 @@ export default {
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
-    },
-    duplicateCarrier(event) {
-      this.$store.dispatch('productFeed/DUPLICATE_DELIVERY_DETAILS', event);
     },
   },
 };
