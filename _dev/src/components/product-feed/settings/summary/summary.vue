@@ -87,24 +87,6 @@
                   :key="attribute.google"
                   :attribute="attribute"
                 />
-                <b-tr>
-                  <b-td class="pb-0 align-top pt-md-0 pb-md-1">
-                    <span class="d-flex align-items-center">
-                      {{ $t('productFeedSettings.attributeMapping.description') }}
-                      <span
-                        class="material-icons-round ml-auto ps_gs-fz-20
-                          mr-md-2 mb-0 align-middle text-success"
-                      >
-                        link
-                      </span>
-                    </span>
-                  </b-td>
-                  <b-td class="pb-0 align-top pt-md-0 pb-md-1">
-                    <b-form-group class="mb-0 text-left">
-                      {{ $t('productFeedSettings.attributeMapping.longDescription') }}
-                    </b-form-group>
-                  </b-td>
-                </b-tr>
               </b-tbody>
             </b-table-simple>
             <caption
@@ -224,19 +206,39 @@ export default {
         this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
       );
     },
+    categoryProductsSelected() {
+      return localStorage.getItem('categoryProductsSelected')
+        ? JSON.parse(localStorage.getItem('categoryProductsSelected'))
+        : [];
+    },
     mandatoryAttributesNotMapped() {
-      // TODO: To return the nb of attributes not mapped
-      // Might be attributes with "Not available" selected as mapping ?
-      return 25;
+      let getNumberAttrNotMapped = 0;
+
+      this.getMapping.forEach((el) => {
+        if (el.prestashop === '') {
+          getNumberAttrNotMapped += 1;
+        }
+      });
+
+      return getNumberAttrNotMapped;
+    },
+    getMapping() {
+      return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP']
+        .filter((item) => this.categoryProductsSelected.includes(item.category) || item.category === 'commons')
+        .map((attr) => attr.fields)
+        .flat(1)
+        .map((attribute) => ({
+          ...attribute,
+          recommended: attribute.recommended.map((recommended) => recommended.name.toLowerCase()).join(', '),
+          mapped: attribute.mapped?.map((mapped) => mapped.name).join(', '),
+        }))
+        .map((final) => ({
+          google: final.name,
+          prestashop: final.mapped !== undefined ? final.mapped : final.recommended,
+        }));
     },
     attributes() {
-      // TODO: To return attributes
-      return [
-        {
-          google: 'description',
-          prestashop: 'longDescription',
-        },
-      ];
+      return this.getMapping;
     },
   },
   methods: {

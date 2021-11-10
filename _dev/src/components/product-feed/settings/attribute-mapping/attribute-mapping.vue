@@ -113,6 +113,9 @@ export default {
     disableContinue() {
       return this.categoryProductsSelected.length === 0;
     },
+    getPropertyFromShop() {
+      return this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
+    },
     categories() {
       return [
         {
@@ -141,7 +144,6 @@ export default {
       ];
     },
     attributesToMap() {
-      // call nestjs to fill mapped attributes
       return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP']
         .filter(
           (attr) => this.categoryProductsSelected.includes(attr.category)
@@ -167,29 +169,6 @@ export default {
           return acc;
         }, {});
     },
-    // TODO: Clean store, those getters/actions are from previous version of attribute mapping
-    /*
-    sellApparel: {
-      get() {
-        return this.$store.getters['productFeed/GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES'];
-      },
-      set(value) {
-        return this.$store.commit(
-          'productFeed/TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_SELL_APPAREL', value,
-        );
-      },
-    },
-    sellRefurbished: {
-      get() {
-        return this.$store.getters['productFeed/GET_MERCHANT_SELL_REFURBISHED_PRODUCTS'];
-      },
-      set(value) {
-        return this.$store.commit(
-          'productFeed/TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_REFURBISHED', value,
-        );
-      },
-    },
-    */
   },
   methods: {
     nextStep() {
@@ -201,6 +180,7 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     categoryProductsChanged(category, isSelected) {
+      localStorage.setItem('categoryProductsSelected', JSON.stringify(this.categoryProductsSelected));
       if (!isSelected) {
         return;
       }
@@ -216,6 +196,9 @@ export default {
   },
   mounted() {
     this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
+    this.categoryProductsSelected = localStorage.getItem('categoryProductsSelected')
+      ? JSON.parse(localStorage.getItem('categoryProductsSelected'))
+      : [];
   },
   googleUrl,
 };

@@ -65,7 +65,7 @@
         "tooltip": false,
         "recommended": [
           {
-            "name": "age group",
+            "name": "ageGroup",
             "type": "custom"
           }
         ],
@@ -122,7 +122,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "energy class",
+            "name": "energyClass",
             "type": "feature"
           }
         ],
