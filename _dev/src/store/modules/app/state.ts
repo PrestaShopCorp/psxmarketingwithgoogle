@@ -31,7 +31,7 @@ export interface State {
   psxMktgWithGoogleMaintenanceSettingsUrl: string;
   psxMktgWithGoogleProductDetailUrl: string;
   psxMktgWithGoogleStoreSettingsUrl: string;
-  targetCountries: Array<string> | null;
+  targetCountries: string[] | null;
   psxMktgWithGoogleOnProductionEnvironment: boolean;
   debugData: DebugData;
   adBlockerExists: boolean;

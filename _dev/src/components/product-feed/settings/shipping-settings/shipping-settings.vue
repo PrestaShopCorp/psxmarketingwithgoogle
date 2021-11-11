@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import {VueShowdown} from 'vue-showdown';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import TableRowCarrier from './table-row-carrier.vue';
@@ -99,6 +100,7 @@ export default {
   components: {
     SettingsFooter,
     TableRowCarrier,
+    VueShowdown,
   },
 
   data() {

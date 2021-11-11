@@ -31,6 +31,7 @@
         menu-class="ps-dropdown"
         size="sm"
         :disabled="!carrier.enabledCarrier"
+        data-test-id="deliveryType"
       >
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
@@ -108,6 +109,7 @@
         no-caret
         :disabled="!carrier.enabledCarrier"
         @show="updateListState"
+        data-test-id="duplicateDetails"
       >
         <template #button-content>
           <i class="material-icons">control_point_duplicate</i>

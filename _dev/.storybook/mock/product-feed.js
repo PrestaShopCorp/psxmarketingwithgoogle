@@ -71,6 +71,12 @@ export const productFeed = {
         name: "Carrier with fixed price",
         delay: "Maybe 1 day, maybe never",
       },
+      {
+        carrierId: "14",
+        country: "IT",
+        name: "Carrier #2 with fixed price",
+        delay: "Maybe 1 day, maybe never",
+      },
     ],
     autoImportTaxSettings: false,
     targetCountries: ["FR"],
