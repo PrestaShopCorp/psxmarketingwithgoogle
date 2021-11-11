@@ -82,6 +82,7 @@
 <script>
 import PsModal from '../commons/ps-modal';
 import googleUrl from '@/assets/json/googleUrl.json';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'SSCPopinActivateTracking',
@@ -111,6 +112,12 @@ export default {
   },
   methods: {
     updateTrackingStatus() {
+      this.$segment.track('[GGL] Create SSC Remarketing Conversion Step', {
+        module: 'psxmarketingwithgoogle',
+        remarketing_tab_value: this.statusTrackingTag,
+        conversion_tracking_value: this.requestNewConversionTrackingTags,
+        params: SegmentGenericParams,
+      });
       this.$store.dispatch(
         'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', this.statusTrackingTag,
       );

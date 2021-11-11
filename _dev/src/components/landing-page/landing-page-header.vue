@@ -46,6 +46,7 @@
 
 <script>
 import {VueShowdown} from 'vue-showdown';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'LandingPageHeader',
@@ -59,6 +60,11 @@ export default {
   methods: {
     hideLandingPage() {
       this.$root.$emit('onHideLanding');
+      localStorage.setItem('canDisplayLanding', false);
+      this.$segment.track('[GGL] Start Configuration', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
     },
   },
 };

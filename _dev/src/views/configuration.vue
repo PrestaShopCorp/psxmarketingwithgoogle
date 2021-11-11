@@ -1,7 +1,7 @@
 <template>
   <div id="configuration">
     <multistore v-if="!psAccountsIsOnboarded && shops.length" />
-    <landing-page v-else-if="!psAccountsIsOnboarded" />
+    <landing-page v-else-if="displayLandingPage" />
     <onboarding-page v-else />
   </div>
 </template>
@@ -19,6 +19,11 @@ export default defineComponent({
     OnboardingPage,
     Multistore,
   },
+  data() {
+    return {
+      displayLandingPage: true,
+    };
+  },
   props: {
   },
   created() {
@@ -35,6 +40,12 @@ export default defineComponent({
     shops() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
     },
+  },
+  mounted() {
+    const canDisplayLanding = JSON.parse(localStorage.getItem('canDisplayLanding'));
+    if (canDisplayLanding === false) {
+      this.displayLandingPage = false;
+    }
   },
 });
 </script>

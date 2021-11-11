@@ -1,0 +1,71 @@
+name: CDN Publish
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  npm-publish:
+    name: CDN publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get tag
+        id: get_tag
+        run: |
+          echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
+          echo ::set-output name=MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1)
+          echo ::set-output name=MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2)
+          echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.G_PROJECT_PRODUCTION }}
+          service_account_key: ${{ secrets.G_CREDENTIAL_PRODUCTION }}
+          export_default_credentials: true
+
+      - name: Checkout repository
+        uses: actions/checkout@master
+
+      - uses: actions/cache@v2
+        id: cache-deps
+        with:
+          path: '_dev/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('_dev/package-lock.json') }}
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          cache: npm
+          cache-dependency-path: '_dev/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: _dev
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: yarn install
+
+      - name: Build
+        working-directory: _dev
+        run: npm run build
+        env:
+          VUE_APP_CDN_URL: https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.x.x/
+
+      - name: Delete old CDN
+        continue-on-error: true
+        run: |
+          gsutil rm -r gs://psxmarketing-cdn/${MAJOR}.x.x
+          gsutil rm -r gs://psxmarketing-cdn/${MAJOR}.${MINOR}.x
+        env:
+          MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
+          MINOR: ${{ steps.get_tag.outputs.MINOR }}
+
+      - name: Push to CDN
+        run: |
+          gsutil cp -r ./views gs://psxmarketing-cdn/${MAJOR}.x.x
+          gsutil cp -r ./views gs://psxmarketing-cdn/${MAJOR}.${MINOR}.x
+          gsutil cp -r ./views gs://psxmarketing-cdn/${MAJOR}.${MINOR}.${PATCH}
+        env:
+          MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
+          MINOR: ${{ steps.get_tag.outputs.MINOR }}
+          PATCH: ${{ steps.get_tag.outputs.PATCH }}

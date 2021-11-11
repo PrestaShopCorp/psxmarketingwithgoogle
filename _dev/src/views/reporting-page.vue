@@ -18,12 +18,8 @@ export default {
     ProductsPerformanceTable,
   },
   computed: {
-    remarketingTagIsSet() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
-    },
-    googleAdsChosen() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
-        && this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'].billingSettings.isSet;
+    reportingTabIsActive() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_TAB_IS_ACTIVE'];
     },
   },
   methods: {
@@ -36,28 +32,15 @@ export default {
       await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
     },
   },
-  mounted() {
+  created() {
     this.getDatas()
       .then(() => {
-        if (!this.remarketingTagIsSet || !this.googleAdsChosen) {
+        if (!this.reportingTabIsActive) {
           this.$router.push({
             name: 'onboarding',
           });
         }
       });
-  },
-  watch: {
-    $route: {
-      handler() {
-        this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
-        this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
-        this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
-        this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', false);
-        this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
-      },
-      deep: true,
-      immediate: true,
-    },
   },
 };
 </script>

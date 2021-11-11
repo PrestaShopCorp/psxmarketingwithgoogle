@@ -30,6 +30,7 @@
 
 <script>
 import {defineComponent} from '@vue/composition-api';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import faq from '../components/help/faq.vue';
 
 export default defineComponent({
@@ -44,6 +45,10 @@ export default defineComponent({
   },
   created() {
     this.fetchHelpInformations();
+    this.$segment.track('[GGL] View Help tab', {
+      module: 'psxmarketingwithgoogle',
+      params: SegmentGenericParams,
+    });
   },
   computed: {
     helpInformations() {
@@ -55,19 +60,6 @@ export default defineComponent({
       this.$store.dispatch('app/REQUEST_DOC_AND_FAQ').then(() => {
         this.loading = false;
       });
-    },
-  },
-  watch: {
-    $route: {
-      handler() {
-        this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
-        this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
-        this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
-        this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', false);
-        this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
-      },
-      deep: true,
-      immediate: true,
     },
   },
 });

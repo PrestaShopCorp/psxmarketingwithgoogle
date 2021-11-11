@@ -140,6 +140,12 @@
         <span> {{ error }}</span>
       </b-alert>
     </b-form>
+    <template slot="modal-cancel">
+      {{ $t('cta.cancel') }}
+    </template>
+    <template slot="modal-ok">
+      {{ $t('cta.continue') }}
+    </template>
   </ps-modal>
 </template>
 
@@ -148,6 +154,7 @@ import PsModal from '@/components/commons/ps-modal';
 import PsSelect from '@/components/commons/ps-select';
 import phonesPrefixSelectionOptions from '@/assets/json/phonesPrefix.json';
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   components: {
@@ -181,6 +188,10 @@ export default {
   },
   methods: {
     async requestCodeorCall() {
+      this.$segment.track('[GGL] Create GMC - Step 3 Send Code', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       this.askAgainIn60Sec = true;
       this.isCodeValid = null;
       const payload = {
@@ -209,6 +220,11 @@ export default {
       this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
     },
     async sendCode() {
+      this.$segment.track('[GGL] Create GMC - Step 4 Confirm Number', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+
+      });
       this.isCodeValid = null;
       this.isValidationInProgress = true;
       try {

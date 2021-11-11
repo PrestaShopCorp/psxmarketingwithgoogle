@@ -23,6 +23,7 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Config;
 class Config
 {
     const PSX_MKTG_WITH_GOOGLE_API_URL = 'https://googleshopping-api.psessentials.net';
+    const PSX_MKTG_WITH_GOOGLE_CDN_URL = 'https://storage.googleapis.com/psxmarketing-cdn/v1.x.x/js/';
 
     const HOOK_LIST = [
         'displayBackOfficeHeader',
@@ -41,6 +42,7 @@ class Config
 
     const PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_PHP = 'https://446479f8bca645fa8838c1a5f99dceba@o298402.ingest.sentry.io/5949536';
     const PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE = 'https://6504c60594bd490eab93afa78f274e35@o298402.ingest.sentry.io/5984715';
+    const USE_LOCAL_VUE_APP = false;
     const PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY = 'RqYiLJKyoWv13t9aKxBvza6vsCsRpPpC';
 
     const PSX_MKTG_WITH_GOOGLE_ACCOUNT_IS_LINKED = 'PSX_MKTG_WITH_GOOGLE_ACCOUNT_IS_LINKED';

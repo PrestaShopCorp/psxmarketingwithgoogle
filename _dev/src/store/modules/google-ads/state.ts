@@ -20,7 +20,7 @@
 export interface State {
   status: null|GoogleAdsErrorReason,
   accountChosen: null|AccountInformations,
-  list: Array<AccountInformations>,
+  list: Array<AccountInformations>|null,
   connectedOnce: boolean,
   currency: string,
   timeZone: string,
@@ -57,7 +57,7 @@ export interface AccountInformations {
 export const state: State = {
   status: null,
   accountChosen: null,
-  list: [],
+  list: null,
   connectedOnce: false,
   currency: '',
   timeZone: '',

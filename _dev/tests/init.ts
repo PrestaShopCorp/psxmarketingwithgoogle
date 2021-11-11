@@ -45,6 +45,7 @@ config.mocks.$t = (key) => {
 
   return property;
 };
+
 config.mocks.$tc = (key) => {
   const parts = key.split('.');
   const {length} = parts;
@@ -56,6 +57,11 @@ config.mocks.$tc = (key) => {
 
   return property;
 };
+
+config.mocks.$segment = {
+  track: () => null,
+};
+
 config.mocks.$i18n = {
   t: config.mocks.$t,
   tc: config.mocks.$tc,

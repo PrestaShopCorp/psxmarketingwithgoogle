@@ -56,8 +56,8 @@ export default {
     };
   },
   computed: {
-    googleAdsIsChosen() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
+    googleAdsIsServing() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
     SSCExist() {
       return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
@@ -97,7 +97,7 @@ export default {
   mounted() {
     this.getDatas()
       .then(() => {
-        if (!this.googleAdsIsChosen?.billingSettings?.isSet) {
+        if (!this.googleAdsIsServing) {
           this.$router.push({
             name: 'onboarding',
           });
@@ -112,11 +112,6 @@ export default {
             name: 'campaign-list',
           });
         }
-        this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
-        this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
-        this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
-        this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', false);
-        this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
       },
       deep: true,
       immediate: true,

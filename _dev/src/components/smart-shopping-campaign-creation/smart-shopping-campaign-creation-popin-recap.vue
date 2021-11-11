@@ -53,24 +53,13 @@
         {{ $t('smartShoppingCampaignCreation.recapFiltersLabel') }}
       </dt>
       <dd class="text-secondary mb-3">
-        <template v-if="newCampaign.productFilters.length === 0">
-          {{ $t('smartShoppingCampaignCreation.recapNoFiltersDescription') }}
+        <template
+          v-if="filtersExist"
+        >
+          {{ nbFilters }}
         </template>
         <template v-else>
-          <div
-            v-for="(filter, index) in newCampaign.productFilters"
-            :key="index"
-          >
-            <template>
-              titre : {{ filter.dimension }}
-              <div
-                v-for="(oneValue, indexValue) in filter.values"
-                :key="indexValue"
-              >
-                value : {{ oneValue }}
-              </div>
-            </template>
-          </div>
+          {{ $t('smartShoppingCampaignCreation.recapNoFiltersDescription') }}
         </template>
       </dd>
       <dt class="font-weight-600">
@@ -95,7 +84,7 @@
       </b-button>
       <b-button
         variant="primary"
-        @click="ok()"
+        @click="editionMode ? editCampaign() : ok()"
       >
         <template v-if="!isValidating">
           {{ $t('cta.validate') }}
@@ -110,8 +99,9 @@
 </template>
 
 <script>
-import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import PsModal from '../commons/ps-modal';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'SSCCreationPopinRecap',
@@ -123,6 +113,14 @@ export default {
       required: true,
       type: Object,
     },
+    filtersExist: {
+      required: false,
+      type: Boolean,
+    },
+    editionMode: {
+      required: false,
+      type: Boolean,
+    },
   },
 
   data() {
@@ -132,11 +130,30 @@ export default {
     };
   },
 
+  computed: {
+    nbFilters() {
+      const total = this.newCampaign.productFilters
+        .map((e) => e.values.length).reduce((a, b) => a + b, 0);
+      return `${this.$tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
+        this.newCampaign.productFilters.length,
+        [this.newCampaign.productFilters.length])
+      } - ${
+        this.$tc('smartShoppingCampaignCreation.nbValuesSelected',
+          total,
+          [total])}`;
+    },
+  },
+
   methods: {
     cancel() {
       this.$refs.modal.hide();
     },
     ok() {
+      this.$segment.track('[GGL] Create SSC Validation Step', {
+        module: 'psxmarketingwithgoogle',
+        remarketing_conversion_value: this.$store.state.smartShoppingCampaigns.tracking,
+        params: SegmentGenericParams,
+      });
       this.isValidating = true;
       const finalCampaign = {
         ...this.newCampaign,
@@ -157,6 +174,29 @@ export default {
             name: 'campaign-list',
           });
           this.$emit('openPopinSSCCreated');
+          this.isValidating = false;
+        }
+      });
+    },
+    editCampaign() {
+      this.isValidating = true;
+      const payload = {
+        ...this.newCampaign,
+        // API wants country code not name so we have to filter it
+        targetCountry: this.$options.filters.changeCountriesNamesToCodes(
+          [this.newCampaign.targetCountry],
+        )[0],
+        status: CampaignStatusToggle.ENABLED,
+      };
+      this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload).then((resp) => {
+        this.$refs.modal.hide();
+        if (resp && resp.error) {
+          this.isValidating = false;
+          this.$emit('displayErrorApiWhenSavingSSC');
+        } else {
+          this.$router.push({
+            name: 'campaign-list',
+          });
           this.isValidating = false;
         }
       });
