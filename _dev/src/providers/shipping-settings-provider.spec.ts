@@ -1,5 +1,7 @@
 import {shippingPhpExport} from '../../.storybook/mock/shipping-settings';
-import {getEnabledCarriers, Carrier} from './shipping-settings-provider';
+import {
+  getEnabledCarriers, Carrier, validateDeliveryDetail, ShipmentType,
+} from './shipping-settings-provider';
 
 describe('Shipping Settings Provider - getEnabledCarriers()', () => {
   it('returns the active carriers loaded from PHP', () => {
@@ -55,5 +57,220 @@ describe('Shipping Settings Provider - getEnabledCarriers()', () => {
         delay: 'delivery in 5 days',
       },
     ]);
+  });
+});
+
+describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
+  it('does not check disabled carriers', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      enabledCarrier: false,
+    });
+
+    expect(result).toBe(true);
+  });
+
+  it('returns true when delivery details are valid', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 1,
+      maxHandlingTimeInDays: 2,
+      minTransitTimeInDays: 3,
+      maxTransitTimeInDays: 4,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(true);
+  });
+
+  it('fails when min handling time is missing', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      maxHandlingTimeInDays: 2,
+      minTransitTimeInDays: 3,
+      maxTransitTimeInDays: 4,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
+  });
+
+  it('fails when max handling time is missing', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 1,
+      minTransitTimeInDays: 3,
+      maxTransitTimeInDays: 4,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
+  });
+
+  it('fails when min transit time is missing', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 1,
+      maxHandlingTimeInDays: 2,
+      maxTransitTimeInDays: 4,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
+  });
+
+  it('fails when max transit time is missing', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 1,
+      maxHandlingTimeInDays: 2,
+      minTransitTimeInDays: 3,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
+  });
+
+  it('fails when delivery type is missing', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 1,
+      maxHandlingTimeInDays: 2,
+      minTransitTimeInDays: 3,
+      maxTransitTimeInDays: 4,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
+  });
+
+  it('fails when min handling time is negative', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: -1,
+      maxHandlingTimeInDays: 2,
+      minTransitTimeInDays: 3,
+      maxTransitTimeInDays: 4,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
+  });
+
+  it('fails when max handling time is negative', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 1,
+      maxHandlingTimeInDays: -2,
+      minTransitTimeInDays: 3,
+      maxTransitTimeInDays: 4,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
+  });
+
+  it('fails when min transit time is negative', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 1,
+      maxHandlingTimeInDays: 2,
+      minTransitTimeInDays: -3,
+      maxTransitTimeInDays: 4,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
+  });
+
+  it('fails when max transit time is negative', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 1,
+      maxHandlingTimeInDays: 2,
+      minTransitTimeInDays: 3,
+      maxTransitTimeInDays: -4,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
+  });
+
+  it('pass when the min and max are the same', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 0,
+      maxHandlingTimeInDays: 0,
+      minTransitTimeInDays: 3,
+      maxTransitTimeInDays: 3,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(true);
+  });
+
+  it('fails when min handling time is above max', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 3,
+      maxHandlingTimeInDays: 0,
+      minTransitTimeInDays: 0,
+      maxTransitTimeInDays: 0,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
+  });
+
+  it('fails when min transit time is above max', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 0,
+      maxHandlingTimeInDays: 0,
+      minTransitTimeInDays: 3,
+      maxTransitTimeInDays: 0,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
   });
 });

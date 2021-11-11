@@ -93,6 +93,7 @@
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import TableRowCarrier from './table-row-carrier.vue';
+import {validateDeliveryDetail} from '@/providers/shipping-settings-provider';
 
 export default {
   components: {
@@ -115,7 +116,7 @@ export default {
         .filter((carrier) => this.countries.includes(carrier.country));
     },
     disableContinue() {
-      return !this.carriers.every(this.validateCarrier);
+      return !this.carriers.every(validateDeliveryDetail);
     },
   },
   methods: {
@@ -138,22 +139,6 @@ export default {
       }
       return true;
     },
-    validateCarrier(carrier) {
-      if (!carrier.enabledCarrier) {
-        return true;
-      }
-      // /!\ duplicated code validating specific parts of carrier in table-row-carrier.vue
-      return carrier.enabledCarrier && carrier.maxHandlingTimeInDays && carrier.maxTransitTimeInDays
-          && carrier.minHandlingTimeInDays && carrier.minTransitTimeInDays
-          && (Number(carrier.minHandlingTimeInDays) < Number(carrier.maxHandlingTimeInDays))
-          && (Number(carrier.minTransitTimeInDays) < Number(carrier.maxTransitTimeInDays))
-          && Number(carrier.minHandlingTimeInDays) >= 0
-          && Number(carrier.maxHandlingTimeInDays) >= 0
-          && Number(carrier.minTransitTimeInDays) >= 0
-          && Number(carrier.maxTransitTimeInDays) >= 0
-          && carrier.deliveryType;
-    },
-
     nextStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       window.scrollTo(0, 0);

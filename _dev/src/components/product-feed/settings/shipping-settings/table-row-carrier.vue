@@ -164,6 +164,9 @@
 
 <script>
 import DeliveryType from '@/enums/product-feed/delivery-type.ts';
+import {
+  validateHandlingTimes, validateTransitTimes,
+} from '@/providers/shipping-settings-provider';
 
 export default {
   data() {
@@ -205,23 +208,11 @@ export default {
     },
 
     timeStateHandling() {
-      return this.carrier.minHandlingTimeInDays
-        && this.carrier.maxHandlingTimeInDays
-        && (
-          Number(this.carrier.minHandlingTimeInDays) > Number(this.carrier.maxHandlingTimeInDays)
-          || Number(this.carrier.minHandlingTimeInDays) < 0
-          || Number(this.carrier.maxHandlingTimeInDays) < 0
-        ) ? false : null;
+      return validateHandlingTimes(this.carrier) ? null : false;
     },
 
     timeStateDelivery() {
-      return this.carrier.minTransitTimeInDays
-        && this.carrier.maxTransitTimeInDays
-        && (
-          Number(this.carrier.minTransitTimeInDays) > Number(this.carrier.maxTransitTimeInDays)
-          || Number(this.carrier.minTransitTimeInDays) < 0
-          || Number(this.carrier.maxTransitTimeInDays) < 0
-        ) ? false : null;
+      return validateTransitTimes(this.carrier) ? null : false;
     },
 
   },
