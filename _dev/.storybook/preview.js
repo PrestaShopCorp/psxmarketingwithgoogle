@@ -33,6 +33,7 @@ import { withTests } from '@storybook/addon-jest';
 import '../showdown.js';
 import '../src/utils/Filters';
 
+import {messages, locales} from '@/lib/translations';
 // import css style
 // theme.css v1.7.5 from the Back-Office
 // all font import are commented to avoid 404
@@ -53,10 +54,6 @@ import VueRouter from 'vue-router';
 Vue.use(BootstrapVue, BootstrapVueIcons);
 Vue.use(VueShowdown);
 Vue.use(VueRouter);
-
-// import language file
-const messages = require('./translations.json');
-const locales = Object.keys(messages);
 
 // i18n and store
 Vue.use(VueI18n);
@@ -98,12 +95,10 @@ addDecorator((story, context) => ({
     </div>
     `
     ,
-  i18n: new VueI18n({
-    defaultLocale: 'en',
-    locale: 'en',
-    locales,
-    messages,
-  }),
+    i18n: new VueI18n({
+      locale: 'en',
+      messages,
+    }),
   // add a props to toggle language
   props: {
     storybookLocale: {
