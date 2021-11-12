@@ -143,14 +143,19 @@ export default {
       this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_FILTERS_PERFORMANCES')
         .finally(() => {
           this.loading = false;
+          console.log(this.partitionList);
         });
     },
   },
-  created() {
+  mounted() {
     this.fetchProductsPartitionsPerformances();
   },
   computed: {
+<<<<<<< HEAD
     filtersHeaderList() {
+=======
+    partitionHeaderList() {
+>>>>>>> a9e8d1e2 (Rename product partition by filter)
       return Object.values(FiltersPerformanceHeaderType);
     },
     partitionList() {

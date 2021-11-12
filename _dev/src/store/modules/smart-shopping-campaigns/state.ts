@@ -133,7 +133,7 @@ export interface ProductsPerformancesSection {
 }
 
 export interface FiltersPerformancesSection {
-  productsPartitionsPerformanceList: Array<FiltersPerformances>;
+  filtersPerformanceList: Array<FiltersPerformances>;
 }
 
 export interface DailyResult {
@@ -228,7 +228,7 @@ export const state: State = {
         productsPerformanceList: [],
       },
       filtersPerformancesSection: {
-        productsPartitionsPerformanceList: [],
+        filtersPerformanceList: [],
       },
     },
     errorsList: {
