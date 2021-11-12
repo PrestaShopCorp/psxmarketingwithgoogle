@@ -419,7 +419,7 @@ export default {
 
     const result = await response.json();
     commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, false);
-    commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES, result);
+    commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES, result?.productsPartitionsPerformanceList);
   },
   async [ActionsTypes.GET_SSC_LIST]({commit, state, rootState}, isNewRequest = true) {
     const query = new URLSearchParams();
