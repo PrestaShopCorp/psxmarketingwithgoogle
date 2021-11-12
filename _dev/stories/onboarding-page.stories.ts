@@ -28,7 +28,6 @@ PsAccount.args = {
 
 export const GoogleAccount:any = TemplatePsAccount.bind({});
 GoogleAccount.args = {
- 
   beforeMount(this: any) {
     this.$store.state.app = Object.assign(
       {},
@@ -39,7 +38,6 @@ GoogleAccount.args = {
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountNotConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountNotConnected);
   },
-
 };
 
 export const MerchantCenterAccount:any = TemplatePsAccount.bind({});
@@ -68,7 +66,6 @@ ProductFeed.args = {
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnectedOnce);
     this.$store.state.productFeed = Object.assign({}, productFeedEnabled);
-
   },
 };
 
