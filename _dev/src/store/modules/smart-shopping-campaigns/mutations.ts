@@ -26,7 +26,7 @@ import {
   DailyresultChart,
   Kpis,
   OrderByType,
-  ProductsPartitionsPerformancesSection,
+  FiltersPerformancesSection,
   State as LocalState,
   CampaignObject,
   ProductsPerformancesSection,
@@ -73,7 +73,7 @@ export default {
   [MutationsTypes.SET_REPORTING_PRODUCT_PARTITIONS_PERFORMANCES_ORDERING](
     state: LocalState, payload: OrderByType,
   ) {
-    state.reporting.request.ordering.productsPartitionsPerformances = payload;
+    state.reporting.request.ordering.filtersPerformances = payload;
   },
 
   // errors mutations
@@ -92,10 +92,10 @@ export default {
   ) {
     state.reporting.errorsList.productsPerformancesSection = payload;
   },
-  [MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR](
+  [MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR](
     state: LocalState, payload: boolean,
   ) {
-    state.reporting.errorsList.productsPartitionsPerformancesSection = payload;
+    state.reporting.errorsList.filtersPerformancesSection = payload;
   },
 
   // result mutations
@@ -145,11 +145,11 @@ export default {
   ) {
     state.reporting.results.productsPerformancesSection = payload;
   },
-  [MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES](
+  [MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES](
     state: LocalState,
-    payload: ProductsPartitionsPerformancesSection,
+    payload:FiltersPerformancesSection,
   ) {
-    state.reporting.results.productsPartitionsPerformancesSection = payload;
+    state.reporting.results.filtersPerformancesSection = payload;
   },
   [MutationsTypes.SAVE_NEW_SSC](state: LocalState, payload: CampaignObject) {
     state.campaigns.push(payload);

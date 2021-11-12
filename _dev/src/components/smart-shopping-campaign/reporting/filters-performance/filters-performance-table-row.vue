@@ -11,6 +11,9 @@
       </b-button>
     </b-td>
     <b-td class="ps_gs-fz-12">
+      {{ partition.dimension }}
+    </b-td>
+    <b-td class="ps_gs-fz-12">
       {{ partition.productFilter }}
     </b-td>
     <b-td class="text-right ps_gs-fz-12">
