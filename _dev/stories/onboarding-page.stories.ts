@@ -16,6 +16,7 @@ const TemplatePsAccount = (args, { argTypes }) => ({
   components: { OnboardingPage },
   template: `<OnboardingPage/>`,
   beforeMount: args.beforeMount,
+
 });
 
 export const PsAccount:any = TemplatePsAccount.bind({});
@@ -27,6 +28,7 @@ PsAccount.args = {
 
 export const GoogleAccount:any = TemplatePsAccount.bind({});
 GoogleAccount.args = {
+ 
   beforeMount(this: any) {
     this.$store.state.app = Object.assign(
       {},
@@ -37,6 +39,7 @@ GoogleAccount.args = {
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountNotConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountNotConnected);
   },
+
 };
 
 export const MerchantCenterAccount:any = TemplatePsAccount.bind({});
