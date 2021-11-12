@@ -202,7 +202,7 @@ export default {
     commit(MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS, result);
     return result;
   },
-  
+
   async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
     const getDeliveryDetailsFromStorage = localStorage.getItem('deliveryDetails');
     if (getDeliveryDetailsFromStorage !== null) {
