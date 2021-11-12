@@ -181,6 +181,7 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
+      localStorage.removeItem('deliveryDetails');
     } catch (error) {
       console.error(error);
     }
@@ -203,6 +204,11 @@ export default {
   },
 
   async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
+    const getDeliveryDetailsFromStorage = localStorage.getItem('deliveryDetails');
+    if (getDeliveryDetailsFromStorage !== null) {
+      commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, JSON.parse(getDeliveryDetailsFromStorage || '{}'));
+      return;
+    }
     // TODO: These call may be already done, so we might remove them
     await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
     await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
@@ -223,7 +229,6 @@ export default {
         ...additionalShippingSetting,
       };
     });
-
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 
