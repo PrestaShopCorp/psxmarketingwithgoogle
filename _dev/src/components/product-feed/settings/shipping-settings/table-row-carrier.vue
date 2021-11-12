@@ -1,15 +1,14 @@
 <template>
   <tr
     class="ps_gs-carrier"
-    :class="{'ps_gs-carrier--disabled': !enabled}"
+    :class="{'ps_gs-carrier--disabled': !carrier.enabledCarrier}"
   >
     <td class="ps_gs-carrier__cell-switch">
       <b-form-checkbox
         switch
         size="sm"
         class="ps_gs-switch mb-0"
-        v-model="enabled"
-        @change="toggleCarrier"
+        v-model="carrier.enabledCarrier"
         :aria-label="$t('productFeedSettings.shipping.shippingSwitchCarrier')"
       />
     </td>
@@ -23,7 +22,7 @@
     </td>
     <td>
       <b-dropdown
-        :ref="`dropdownCarriers${carrier.carrierId}`"
+        :ref="`dropdownCarriers${carrier.carrierId}-${carrier.country}`"
         :text="deliveryTypeMessage || $t('cta.select')"
         variant="text"
         class="maxw-sm-160 ps-dropdown ps_gs-carrier__dropdown-delivery-type
@@ -31,11 +30,12 @@
         :toggle-class="{'ps-dropdown__placeholder' : deliveryTypeMessage === null}"
         menu-class="ps-dropdown"
         size="sm"
-        :disabled="!enabled"
+        :disabled="!carrier.enabledCarrier"
+        data-test-id="deliveryType"
       >
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
-          @click="updateDelivery('delivery')"
+          @click="deliveryType = 'delivery'"
         >
           <span
             class="px-2"
@@ -45,7 +45,7 @@
         </b-dropdown-item-button>
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
-          @click="updateDelivery('pickup')"
+          @click="deliveryType = 'pickup'"
         >
           <span
             class="px-2"
@@ -61,9 +61,8 @@
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
-          v-model="minHandlingTimeInDays"
-          @input="toggleTime('minHandlingTimeInDays')"
-          :disabled="!enabled"
+          v-model="carrier.minHandlingTimeInDays"
+          :disabled="!carrier.enabledCarrier"
           :state="timeStateHandling"
           :placeholder="$t('general.min')"
         />
@@ -71,9 +70,8 @@
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
-          v-model="maxHandlingTimeInDays"
-          @input="toggleTime('maxHandlingTimeInDays')"
-          :disabled="!enabled"
+          v-model="carrier.maxHandlingTimeInDays"
+          :disabled="!carrier.enabledCarrier"
           :state="timeStateHandling"
           :placeholder="$t('general.max')"
         />
@@ -85,10 +83,9 @@
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
-          v-model="minTransitTimeInDays"
-          @input="toggleTime('minTransitTimeInDays')"
+          v-model="carrier.minTransitTimeInDays"
 
-          :disabled="!enabled"
+          :disabled="!carrier.enabledCarrier"
           :state="timeStateDelivery"
           :placeholder="$t('general.min')"
         />
@@ -96,9 +93,8 @@
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
-          v-model="(maxTransitTimeInDays)"
-          @input="toggleTime('maxTransitTimeInDays')"
-          :disabled="!enabled"
+          v-model="carrier.maxTransitTimeInDays"
+          :disabled="!carrier.enabledCarrier"
           :state="timeStateDelivery"
           :placeholder="$t('general.max')"
         />
@@ -111,8 +107,9 @@
         menu-class="pb-2"
         class="ps_gs-carrier-dropdown"
         no-caret
-        :disabled="!enabled"
+        :disabled="!carrier.enabledCarrier"
         @show="updateListState"
+        data-test-id="duplicateDetails"
       >
         <template #button-content>
           <i class="material-icons">control_point_duplicate</i>
@@ -131,16 +128,15 @@
           <b-form-checkbox-group
             class="mb-0"
             :name="`carriers${carrier.carrierId}`"
-            v-model="selectedIds"
+            v-model="selectedCarriersForDuplication"
           >
             <b-form-checkbox
-              @change="checkboxClicked(carrierOption)"
               v-for="carrierOption in carriersList"
               :key="carrierOption.name"
               class="ps_gs-checkbox my-1"
               :disabled="isInitiatorCarrier(carrierOption.carrierId) ||
                 !carrierOption.enabledCarrier"
-              :value="carrierOption.carrierId"
+              :value="{carrierId: carrierOption.carrierId, country: carrierOption.country}"
             >
               <span
                 class="line-height-15"
@@ -170,18 +166,17 @@
 
 <script>
 import DeliveryType from '@/enums/product-feed/delivery-type.ts';
+import {
+  validateHandlingTimes, validateTransitTimes,
+} from '@/providers/shipping-settings-provider';
 
 export default {
   data() {
     return {
-      selectedIds: [],
-      deliveryType: this.carrier.deliveryType || null,
-      enabled: this.carrier.enabledCarrier || false,
-      minHandlingTimeInDays: this.getInitialValue(this.carrier.minHandlingTimeInDays),
-      maxHandlingTimeInDays: this.getInitialValue(this.carrier.maxHandlingTimeInDays),
-      maxTransitTimeInDays: this.getInitialValue(this.carrier.maxTransitTimeInDays),
-      minTransitTimeInDays: this.getInitialValue(this.carrier.minTransitTimeInDays),
-      carrierChosenToReceiveCopy: null,
+      selectedCarriersForDuplication: [{
+        carrierId: this.carrier.carrierId,
+        country: this.carrier.country,
+      }],
     };
   },
   props: {
@@ -195,6 +190,14 @@ export default {
     },
   },
   computed: {
+    deliveryType: {
+      get() {
+        return this.carrier.deliveryType || null;
+      },
+      set(value) {
+        this.carrier.deliveryType = value;
+      },
+    },
     deliveryTypeMessage() {
       switch (this.deliveryType) {
         case DeliveryType.DELIVERY:
@@ -207,15 +210,11 @@ export default {
     },
 
     timeStateHandling() {
-      return Number(this.minHandlingTimeInDays) > Number(this.maxHandlingTimeInDays)
-          && this.minHandlingTimeInDays
-          && this.maxHandlingTimeInDays ? false : null;
+      return validateHandlingTimes(this.carrier) ? null : false;
     },
 
     timeStateDelivery() {
-      return Number(this.minTransitTimeInDays) > Number(this.maxTransitTimeInDays)
-              && this.minTransitTimeInDays
-              && this.maxTransitTimeInDays ? false : null;
+      return validateTransitTimes(this.carrier) ? null : false;
     },
 
   },
@@ -223,59 +222,27 @@ export default {
     isInitiatorCarrier(id) {
       return this.carrier.carrierId === id;
     },
-    toggleCarrier() {
-      this.$emit('updateCarrier', {
-        type: 'enabledCarrier',
-        carrierId: this.carrier.carrierId,
-        enabledCarrier: this.enabled,
-      });
-    },
-    toggleTime(type) {
-      this.$emit('updateCarrier', {
-        type,
-        carrierId: this.carrier.carrierId,
-        minHandlingTimeInDays: this.minHandlingTimeInDays,
-        maxHandlingTimeInDays: this.maxHandlingTimeInDays,
-        maxTransitTimeInDays: this.maxTransitTimeInDays,
-        minTransitTimeInDays: this.minTransitTimeInDays,
-      });
-    },
-    updateDelivery(deliveryChosen) {
-      this.deliveryType = deliveryChosen;
-      this.$emit('updateCarrier', {
-        type: 'deliveryType',
-        carrierId: this.carrier.carrierId,
-        deliveryType: deliveryChosen,
-      });
-    },
-    checkboxClicked(option) {
-      this.carrierChosenToReceiveCopy = option;
-    },
     applyInfos() {
-      const indexToCopy = this.carriersList
-        .findIndex((e) => e.carrierId === this.carrier.carrierId);
-      const indexToReceiveCopy = this.carriersList
-        .findIndex((e) => e.carrierId === this.carrierChosenToReceiveCopy.carrierId);
-      this.$emit('applyInfos', {indexToCopy, indexToReceiveCopy});
-      this.$refs[`dropdownCarriers${this.carrier.carrierId}`].showMenu();
+      this.$store.dispatch('productFeed/DUPLICATE_DELIVERY_DETAILS',
+        {
+          sourceCarrier: {
+            carrierId: this.carrier.carrierId,
+            country: this.carrier.country,
+          },
+          destinationCarriers: this.selectedCarriersForDuplication,
+        },
+      );
+      this.$refs[`dropdownCarriers${this.carrier.carrierId}-${this.carrier.country}`].showMenu();
     },
     updateListState() {
-      // if element is disabled, uncheck it
-      const idToDelete = [];
-      this.carriersList.forEach((carrier) => {
-        if (!carrier.enabledCarrier) {
-          idToDelete.push(carrier.carrierId);
-        }
-      });
-      this.selectedIds = this.selectedIds.filter((selectedId) => !idToDelete.includes(selectedId));
+      // Find carrier in list and check it is still enabled
+      this.selectedCarriersForDuplication = this.selectedCarriersForDuplication
+        .filter((selectedCarrier) => this.carriersList
+          .find((carrier) => selectedCarrier.carrierId === carrier.carrierId
+            && selectedCarrier.country === carrier.country,
+          ).enabledCarrier,
+        );
     },
-    getInitialValue(value) {
-      return Number.isInteger(value) ? value : null;
-    },
-  },
-  beforeMount() {
-    this.enabled = this.carrier.enabledCarrier;
-    this.selectedIds = [this.carrier.carrierId];
   },
 };
 </script>

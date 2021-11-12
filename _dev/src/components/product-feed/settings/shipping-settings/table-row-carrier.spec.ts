@@ -1,0 +1,96 @@
+/**
+ * @jest-environment jsdom
+ */
+// Import this file first to init mock on window
+import {shallowMount} from '@vue/test-utils';
+import config from '@/../tests/init';
+
+import TableRowCarrier from '@/components/product-feed/settings/shipping-settings/table-row-carrier.vue';
+
+describe('table-row-carrier.vue', () => {
+  it('is visible', () => {
+    const wrapper = shallowMount(TableRowCarrier, {
+      propsData: {
+        carrier: {},
+        carriersList: [],
+      },
+      ...config,
+    });
+
+    expect(wrapper.isVisible()).toBe(true);
+  });
+  it('displays carrier basic info', () => {
+    const wrapper = shallowMount(TableRowCarrier, {
+      propsData: {
+        carrier: {
+          carrierId: '13',
+          country: 'IT',
+          name: 'Carrier with fixed price',
+          delay: 'Maybe 1 day, maybe never',
+        },
+        carriersList: [],
+      },
+      ...config,
+    });
+
+    expect(wrapper.find('.ps_gs-carrier__title').text()).toBe('Carrier with fixed price');
+    expect(wrapper.find('.ps_gs-carrier__description').text()).toBe('Maybe 1 day, maybe never');
+  });
+
+  it('disables fields when toggle is off', () => {
+    const wrapper = shallowMount(TableRowCarrier, {
+      propsData: {
+        carrier: {
+          carrierId: '13',
+          country: 'IT',
+          name: 'Carrier with fixed price',
+          delay: 'Maybe 1 day, maybe never',
+          enabledCarrier: false,
+        },
+        carriersList: [],
+      },
+      ...config,
+    });
+    expect(wrapper.find('.ps_gs-carrier').classes().includes('ps_gs-carrier--disabled')).toBe(true);
+    expect(wrapper.find('[data-test-id="deliveryType"]').attributes('disabled')).toBeTruthy();
+
+    const numberInputs = wrapper.findAll('.ps_gs-carrier__input-number');
+    expect(numberInputs).toHaveLength(4);
+    expect(numberInputs.at(0).attributes('disabled')).toBeTruthy();
+    expect(numberInputs.at(1).attributes('disabled')).toBeTruthy();
+    expect(numberInputs.at(2).attributes('disabled')).toBeTruthy();
+    expect(numberInputs.at(3).attributes('disabled')).toBeTruthy();
+
+    expect(wrapper.find('[data-test-id="duplicateDetails"]').attributes('disabled')).toBeTruthy();
+  });
+
+  it('enables fields when toggle is on', () => {
+    const wrapper = shallowMount(TableRowCarrier, {
+      propsData: {
+        carrier: {
+          carrierId: '13',
+          country: 'IT',
+          name: 'Carrier with fixed price',
+          delay: 'Maybe 1 day, maybe never',
+          enabledCarrier: true,
+        },
+        carriersList: [],
+      },
+      ...config,
+    });
+    expect(wrapper.find('.ps_gs-carrier').classes().includes('ps_gs-carrier--disabled')).toBe(false);
+    expect(wrapper.find('[data-test-id="deliveryType"]').attributes('disabled')).toBeFalsy();
+
+    const numberInputs = wrapper.findAll('.ps_gs-carrier__input-number');
+    expect(numberInputs).toHaveLength(4);
+    expect(numberInputs.at(0).attributes('disabled')).toBeFalsy();
+    expect(numberInputs.at(1).attributes('disabled')).toBeFalsy();
+    expect(numberInputs.at(2).attributes('disabled')).toBeFalsy();
+    expect(numberInputs.at(3).attributes('disabled')).toBeFalsy();
+
+    expect(wrapper.find('[data-test-id="duplicateDetails"]').attributes('disabled')).toBeFalsy();
+  });
+
+  it.skip('shows an error when handling times are wrong', () => {});
+  it.skip('shows an error when delivery times are wrong', () => {});
+});

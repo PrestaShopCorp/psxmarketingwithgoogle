@@ -11,6 +11,9 @@ export default {
       'summary.spec.ts',
       'target-countries.spec.ts',
       // 'product-feed-settings-attribute-mapping.spec.ts',
+      'shipping-settings-provider.spec.ts',
+      'shipping-settings.vue',
+      'table-row-carrier.vue',
     ],
   },
 };

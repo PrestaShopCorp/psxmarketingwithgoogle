@@ -19,6 +19,11 @@ export type ShopShippingInterface = {
     }
 }
 
+export type CarrierIdentifier = {
+  carrierId: string,
+  country: string
+}
+
 export type Carrier = {
     carrierId: string,
     country: string
@@ -35,11 +40,16 @@ export enum ShipmentType {
 export type DeliveryDetail = {
   country: string;
   carrierId: string;
-  minHandlingTimeInDays: number;
-  maxHandlingTimeInDays: number;
-  minTransitTimeInDays: number;
-  maxTransitTimeInDays: number;
-  deliveryType: ShipmentType;
+  minHandlingTimeInDays?: number;
+  maxHandlingTimeInDays?: number;
+  minTransitTimeInDays?: number;
+  maxTransitTimeInDays?: number;
+  deliveryType?: ShipmentType;
+
+  // Data that can be set by the interface but unused on the API side
+  name?: string;
+  delay?: string;
+  enabledCarrier?: boolean;
 }
 
 export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
@@ -53,4 +63,43 @@ export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
     delay: carrier.properties.delay,
   })),
   );
+}
+
+export function validateDeliveryDetail(delivery: DeliveryDetail): boolean {
+  if (!delivery.enabledCarrier) {
+    return true;
+  }
+
+  return delivery.enabledCarrier
+      && validateHandlingTimes(delivery)
+      && validateTransitTimes(delivery)
+      && !!delivery.deliveryType;
+}
+
+export function validateHandlingTimes(delivery: DeliveryDetail): boolean {
+  if (!delivery.enabledCarrier) {
+    return true;
+  }
+
+  return delivery.minHandlingTimeInDays !== null
+    && delivery.maxHandlingTimeInDays !== null
+    && delivery.minHandlingTimeInDays !== undefined
+    && delivery.maxHandlingTimeInDays !== undefined
+    && Number(delivery.minHandlingTimeInDays) <= Number(delivery.maxHandlingTimeInDays)
+    && Number(delivery.minHandlingTimeInDays) >= 0
+    && Number(delivery.maxHandlingTimeInDays) >= 0;
+}
+
+export function validateTransitTimes(delivery: DeliveryDetail): boolean {
+  if (!delivery.enabledCarrier) {
+    return true;
+  }
+
+  return delivery.minTransitTimeInDays !== null
+    && delivery.maxTransitTimeInDays !== null
+    && delivery.minTransitTimeInDays !== undefined
+    && delivery.maxTransitTimeInDays !== undefined
+    && Number(delivery.minTransitTimeInDays) <= Number(delivery.maxTransitTimeInDays)
+    && Number(delivery.minTransitTimeInDays) >= 0
+    && Number(delivery.maxTransitTimeInDays) >= 0;
 }
