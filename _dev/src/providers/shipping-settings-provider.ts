@@ -81,10 +81,8 @@ export function validateHandlingTimes(delivery: DeliveryDetail): boolean {
     return true;
   }
 
-  return delivery.minHandlingTimeInDays !== null
-    && delivery.maxHandlingTimeInDays !== null
-    && delivery.minHandlingTimeInDays !== undefined
-    && delivery.maxHandlingTimeInDays !== undefined
+  return Number.isInteger(delivery.minHandlingTimeInDays)
+    && Number.isInteger(delivery.maxHandlingTimeInDays)
     && Number(delivery.minHandlingTimeInDays) <= Number(delivery.maxHandlingTimeInDays)
     && Number(delivery.minHandlingTimeInDays) >= 0
     && Number(delivery.maxHandlingTimeInDays) >= 0;
@@ -95,10 +93,8 @@ export function validateTransitTimes(delivery: DeliveryDetail): boolean {
     return true;
   }
 
-  return delivery.minTransitTimeInDays !== null
-    && delivery.maxTransitTimeInDays !== null
-    && delivery.minTransitTimeInDays !== undefined
-    && delivery.maxTransitTimeInDays !== undefined
+  return Number.isInteger(delivery.minTransitTimeInDays)
+    && Number.isInteger(delivery.maxTransitTimeInDays)
     && Number(delivery.minTransitTimeInDays) <= Number(delivery.maxTransitTimeInDays)
     && Number(delivery.minTransitTimeInDays) >= 0
     && Number(delivery.maxTransitTimeInDays) >= 0;

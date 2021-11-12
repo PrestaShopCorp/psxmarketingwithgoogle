@@ -81,10 +81,10 @@ describe('shipping-settings.vue', () => {
       name: 'My carrier',
       delay: 'Delivery next day!',
       deliveryType: 'delivery',
-      maxTransitTimeInDays: '3',
-      maxHandlingTimeInDays: '3',
-      minTransitTimeInDays: '0',
-      minHandlingTimeInDays: '0',
+      maxTransitTimeInDays: 3,
+      maxHandlingTimeInDays: 3,
+      minTransitTimeInDays: 0,
+      minHandlingTimeInDays: 0,
     });
     expect(wrapper.findAllComponents(TableRowCarrier).at(2).props('carrier')).toEqual({
       enabledCarrier: true,
@@ -94,9 +94,9 @@ describe('shipping-settings.vue', () => {
       delay: 'Maybe 1 day, maybe never',
       deliveryType: 'delivery',
       maxTransitTimeInDays: 60,
-      minHandlingTimeInDays: '0',
+      minHandlingTimeInDays: 0,
       minTransitTimeInDays: 1,
-      maxHandlingTimeInDays: '3',
+      maxHandlingTimeInDays: 3,
     });
   });
 
