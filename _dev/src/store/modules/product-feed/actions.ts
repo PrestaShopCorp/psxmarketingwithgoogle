@@ -202,8 +202,13 @@ export default {
     commit(MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS, result);
     return result;
   },
-
+  
   async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
+    const getDeliveryDetailsFromStorage = localStorage.getItem('deliveryDetails');
+    if (getDeliveryDetailsFromStorage !== null) {
+      commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, JSON.parse(getDeliveryDetailsFromStorage || '{}'));
+      return;
+    }
     // TODO: These call may be already done, so we might remove them
     await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
     await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
@@ -224,11 +229,6 @@ export default {
         ...additionalShippingSetting,
       };
     });
-    const getDeliveryDetailsFromStorage = localStorage.getItem('deliveryDetails');
-    if (getDeliveryDetailsFromStorage !== null) {
-      commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, JSON.parse(getDeliveryDetailsFromStorage || '{}'));
-      return;
-    }
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 
