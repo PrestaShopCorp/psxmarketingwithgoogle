@@ -91,6 +91,45 @@ describe('table-row-carrier.vue', () => {
     expect(wrapper.find('[data-test-id="duplicateDetails"]').attributes('disabled')).toBeFalsy();
   });
 
-  it.skip('shows an error when handling times are wrong', () => {});
-  it.skip('shows an error when delivery times are wrong', () => {});
+  it('shows an error when handling times are wrong', () => {
+    const carrier = {
+      carrier: {
+        carrierId: '13',
+        country: 'IT',
+        name: 'Carrier with fixed price',
+        delay: 'Maybe 1 day, maybe never',
+        enabledCarrier: true,
+        minHandlingTimeInDays: 3,
+        maxHandlingTimeInDays: 1,
+        minTransitTimeInDays: 0,
+        maxTransitTimeInDays: 3,
+      },
+      carriersList: [],
+    };
+    // @ts-ignore
+    expect(TableRowCarrier.computed.timeStateHandling.call(carrier)).toBe(false);
+    // @ts-ignore
+    expect(TableRowCarrier.computed.timeStateDelivery.call(carrier)).toBe(null);
+  });
+
+  it('shows an error when delivery times are wrong', () => {
+    const carrier = {
+      carrier: {
+        carrierId: '13',
+        country: 'IT',
+        name: 'Carrier with fixed price',
+        delay: 'Maybe 1 day, maybe never',
+        enabledCarrier: true,
+        minHandlingTimeInDays: 99,
+        maxHandlingTimeInDays: 99,
+        minTransitTimeInDays: -5.3,
+        maxTransitTimeInDays: 3,
+      },
+      carriersList: [],
+    };
+    // @ts-ignore
+    expect(TableRowCarrier.computed.timeStateHandling.call(carrier)).toBe(null);
+    // @ts-ignore
+    expect(TableRowCarrier.computed.timeStateDelivery.call(carrier)).toBe(false);
+  });
 });
