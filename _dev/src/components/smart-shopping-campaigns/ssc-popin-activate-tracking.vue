@@ -5,6 +5,8 @@
     :title="$t('modal.titleActivateTrackingSSC')"
     v-bind="$attrs"
     @ok="updateTrackingStatus"
+    @show="onShow"
+    :ok-disabled="isLoading"
   >
     <VueShowdown
       class="mt-1 mb-4"
@@ -73,7 +75,9 @@
     >
       {{ $t("cta.cancel") }}
     </template>
-    <template slot="modal-ok">
+    <template
+      slot="modal-ok"
+    >
       {{ $t("cta.continue") }}
     </template>
   </ps-modal>
@@ -127,6 +131,19 @@ export default {
       this.$router.push({
         name: 'campaign-creation',
       });
+    },
+    onShow() {
+      this.isLoading = true;
+      this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS')
+        .then(() => {
+          // Disable the toggle if the tag is found on the shop, so we can display the alert
+          if (this.tagAlreadyExists) {
+            this.statusTrackingTag = false;
+          }
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
     },
   },
   googleUrl,
