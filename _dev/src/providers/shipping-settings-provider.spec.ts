@@ -273,4 +273,20 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
 
     expect(result).toBe(false);
   });
+
+  it('fails when numbers are not integers', () => {
+    const result = validateDeliveryDetail({
+      country: 'FR',
+      carrierId: '11',
+      minHandlingTimeInDays: 0.2,
+      maxHandlingTimeInDays: 0.3,
+      minTransitTimeInDays: 3.9,
+      maxTransitTimeInDays: 6.444441,
+      deliveryType: ShipmentType.DELIVERY,
+      name: 'Carrier',
+      enabledCarrier: true,
+    });
+
+    expect(result).toBe(false);
+  });
 });
