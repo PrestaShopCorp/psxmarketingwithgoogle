@@ -193,7 +193,7 @@ export default {
     state: LocalState,
   ): Array<FiltersPerformances> {
     return state.reporting.results.filtersPerformancesSection
-      .filtersPerformanceList;
+      .productsPartitionsPerformanceList;
   },
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](
     state: LocalState,

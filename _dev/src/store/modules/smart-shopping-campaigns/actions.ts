@@ -417,9 +417,9 @@ export default {
     }
 
     const result = await response.json();
+    console.log('result', result);
     commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, false);
-    commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES, result?.productsPartitionsPerformanceList);
-    console.log(state);
+    commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES, result);
   },
   async [ActionsTypes.GET_SSC_LIST]({commit, state, rootState}, isNewRequest = true) {
     const query = new URLSearchParams();

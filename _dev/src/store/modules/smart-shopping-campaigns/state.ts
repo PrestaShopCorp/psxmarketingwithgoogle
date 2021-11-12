@@ -133,7 +133,7 @@ export interface ProductsPerformancesSection {
 }
 
 export interface FiltersPerformancesSection {
-  filtersPerformanceList: Array<FiltersPerformances>;
+  productsPartitionsPerformanceList: Array<FiltersPerformances>;
 }
 
 export interface DailyResult {
