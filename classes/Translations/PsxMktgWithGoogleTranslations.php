@@ -146,7 +146,7 @@ class PsxMktgWithGoogleTranslations
                 'unlinkFailed' => $this->module->l('Disconnection failed. Please refresh the page and try again.', 'PsxMktgWithGoogleTranslations'),
                 'verifyOrClaimingFailed' => $this->module->l('Account validation failed', 'PsxMktgWithGoogleTranslations'),
                 'tryAgainLater' => $this->module->l('We can’t verify or claim the current site. Try again later.', 'PsxMktgWithGoogleTranslations'),
-                'alertSuspended' => $this->module->l('Your account has been suspended.', 'PsxMktgWithGoogleTranslations'),
+                'alertSuspended' => $this->module->l('Your account has been deactivated.', 'PsxMktgWithGoogleTranslations'),
                 'alertSuspendedDescription' => $this->module->l('To see more details on the reasons for suspension, please visit your [Merchant Center account]({0})[:target="_blank"]. Once resolved you will need to request a new review by filling out [this form]({1})[:target="_blank"].', 'PsxMktgWithGoogleTranslations'),
                 'notManaged' => $this->module->l('Not associated with PrestaShop', 'PsxMktgWithGoogleTranslations'),
                 'overwriteFailed' => $this->module->l('Website URL claim failed', 'PsxMktgWithGoogleTranslations'),

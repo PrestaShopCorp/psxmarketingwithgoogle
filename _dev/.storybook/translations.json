@@ -97,7 +97,7 @@
             "unlinkFailed": "Disconnection failed. Please refresh the page and try again.",
             "verifyOrClaimingFailed": "Account validation failed",
             "tryAgainLater": "We can\u2019t verify or claim the current site. Try again later.",
-            "alertSuspended": "Your account has been suspended.",
+            "alertSuspended": "Your account has been deactivated.",
             "alertSuspendedDescription": "To see more details on the reasons for suspension, please visit your [Merchant Center account]({0})[:target=\"_blank\"]. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"].",
             "notManaged": "Not associated with PrestaShop",
             "overwriteFailed": "Website URL claim failed",
