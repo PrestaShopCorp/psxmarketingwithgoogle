@@ -61,7 +61,7 @@
         class="ps_gs-fz-12 mb-0 text-secondary"
         tag="p"
         :markdown="$t('productFeedSettings.shipping.shippingTableNotice',
-                      ['index.php?controller=AdminCarriers'])"
+                      [$store.getters['app/GET_CARRIERS_URL']])"
         :extensions="['extended-link', 'no-p-tag']"
       />
     </div>
