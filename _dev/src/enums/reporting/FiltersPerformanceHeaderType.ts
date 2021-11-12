@@ -1,7 +1,7 @@
 enum FiltersPerformanceHeaderType {
   CAMPAIGN = 'campaign',
-  PRODUCT_FILTER = 'productFilter',
   DIMENSION = 'dimension',
+  PRODUCT_FILTER = 'productFilter',
   CLICKS = 'clicks',
   COSTS = 'costs',
   AVERAGE_COST_PER_CLICK = 'averageCostPerClick',

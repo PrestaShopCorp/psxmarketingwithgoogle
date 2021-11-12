@@ -15,7 +15,7 @@
       <b-thead>
         <b-tr>
           <b-th
-            v-for="(type, index) in partitionHeaderList"
+            v-for="(type, index) in filtersHeaderList"
             :key="type"
             class="font-weight-600"
             :class="{
@@ -59,7 +59,7 @@
       <b-tbody class="bg-white">
         <template v-if="errorWithApi">
           <tr>
-            <td :colspan="partitionHeaderList.length">
+            <td :colspan="filtersHeaderList.length">
               <KeyMetricsErrorMessage />
             </td>
           </tr>
@@ -68,7 +68,7 @@
         <template v-else>
           <ReportingTableEmptyMessage
             v-if="partitionList.length === 0"
-            :colspan="partitionHeaderList.length"
+            :colspan="filtersHeaderList.length"
             :text="$t('campaigns.filtersPerformanceTable.emptyListText')"
           />
           <FiltersPerformanceTableRow
@@ -79,7 +79,7 @@
           />
           <b-tr v-if="loading">
             <b-td
-              :colspan="partitionHeaderList.length"
+              :colspan="filtersHeaderList.length"
               class="ps_gs-table-products__loading-slot"
             >
               <i class="ps_gs-table-products__spinner">loading</i>
@@ -151,7 +151,7 @@ export default {
     this.fetchProductsPartitionsPerformances();
   },
   computed: {
-    partitionHeaderList() {
+    filtersHeaderList() {
       return Object.values(FiltersPerformanceHeaderType);
     },
     partitionList() {
