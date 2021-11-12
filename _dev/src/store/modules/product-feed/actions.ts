@@ -166,7 +166,6 @@ export default {
         || null,
       },
     };
-    console.log(newSettings);
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
         method: 'POST',
@@ -185,7 +184,6 @@ export default {
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
       localStorage.removeItem('deliveryDetails');
-      console.log('afterdelete', localStorage);
     } catch (error) {
       console.error(error);
     }
@@ -208,8 +206,6 @@ export default {
   },
 
   async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
-    console.log('get datas');
-
     // TODO: These call may be already done, so we might remove them
     await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
     await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
@@ -234,11 +230,9 @@ export default {
     const getDeliveryDetailsFromStorage = localStorage.getItem('deliveryDetails');
 
     if (getDeliveryDetailsFromStorage !== null) {
-      console.log('il est dans le store', getDeliveryDetailsFromStorage);
       commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, JSON.parse(getDeliveryDetailsFromStorage || '{}'));
       return;
     }
-    console.log('when not chose locastorage', state);
 
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },

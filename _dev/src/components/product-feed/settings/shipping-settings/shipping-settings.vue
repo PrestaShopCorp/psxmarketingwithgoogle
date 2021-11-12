@@ -142,9 +142,7 @@ export default {
       return true;
     },
     nextStep() {
-      console.log(this.carriers);
       localStorage.setItem('deliveryDetails', JSON.stringify(this.carriers));
-      console.log('loc', localStorage);
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       window.scrollTo(0, 0);
     },
