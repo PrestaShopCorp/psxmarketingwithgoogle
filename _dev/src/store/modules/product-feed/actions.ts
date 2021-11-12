@@ -69,7 +69,6 @@ export default {
       lang: window.i18nSettings.languageLocale.split('-')[0],
     };
     const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings/?lang=${params.lang}`;
-
     try {
       const response = await fetch(url, {
         method: 'GET',
@@ -83,7 +82,6 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportShippingSettings', data: json.autoImportShippingSettings,
       });
@@ -226,14 +224,11 @@ export default {
         ...additionalShippingSetting,
       };
     });
-
     const getDeliveryDetailsFromStorage = localStorage.getItem('deliveryDetails');
-
     if (getDeliveryDetailsFromStorage !== null) {
       commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, JSON.parse(getDeliveryDetailsFromStorage || '{}'));
       return;
     }
-
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 
