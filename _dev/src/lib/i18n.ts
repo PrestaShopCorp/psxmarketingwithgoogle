@@ -18,13 +18,12 @@
  */
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
+import {messages} from './translations';
 
 Vue.use(VueI18n);
 
-const {translations} = window;
 const {i18nSettings} = window;
 const locale = i18nSettings.isoCode ? i18nSettings.isoCode : '';
-const messages = Object.assign(translations, {}, {});
 
 export default new VueI18n({
   locale,

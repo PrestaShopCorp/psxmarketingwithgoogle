@@ -1,7 +1,7 @@
 import {config, createLocalVue} from '@vue/test-utils';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import translations from '../.storybook/translations.json';
+import {messages} from '@/lib/translations';
 
 let windowSpy;
 let localVue; // eslint-disable-line
@@ -37,7 +37,7 @@ afterEach(() => {
 config.mocks.$t = (key) => {
   const parts = key.split('.');
   const {length} = parts;
-  let property = translations[defaultLocale];
+  let property = messages[defaultLocale];
 
   for (let i = 0; i < length; i += 1) {
     property = property[parts[i]];
@@ -49,7 +49,7 @@ config.mocks.$t = (key) => {
 config.mocks.$tc = (key) => {
   const parts = key.split('.');
   const {length} = parts;
-  let property = translations[defaultLocale];
+  let property = messages[defaultLocale];
 
   for (let i = 0; i < length; i += 1) {
     property = property[parts[i]];
