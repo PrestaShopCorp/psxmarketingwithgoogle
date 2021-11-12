@@ -143,7 +143,7 @@ export default {
       this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_FILTERS_PERFORMANCES')
         .finally(() => {
           this.loading = false;
-          console.log(this.partitionList);
+          console.log('hey', this.partitionList);
         });
     },
   },
