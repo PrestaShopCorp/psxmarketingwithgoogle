@@ -4,6 +4,7 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
+import cloneDeep from 'lodash.clonedeep';
 import {shallowMount} from '@vue/test-utils';
 import config, {cloneStore} from '@/../tests/init';
 
@@ -23,7 +24,7 @@ describe('shipping-settings.vue', () => {
       stepper: 2,
     };
     store.modules.productFeed.state.settings.deliveryDetails = [
-      ...productFeed.settings.deliveryDetails,
+      ...cloneDeep(productFeed.settings.deliveryDetails),
     ];
   });
 
@@ -40,7 +41,7 @@ describe('shipping-settings.vue', () => {
     expect(wrapper.find('#table-carriers').isVisible()).toBe(true);
   });
 
-  it.skip('shows a default message when there are no carriers', () => {
+  it('shows a default message when there are no carriers', () => {
     store.modules.app.state.targetCountries = ['XXX'];
 
     const wrapper = shallowMount(ShippingSettings, {
@@ -52,8 +53,7 @@ describe('shipping-settings.vue', () => {
     });
 
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(0);
-
-    // TODO: Check the default message is shown
+    expect(wrapper.find('[data-test-id="no-carriers"]').isVisible()).toBe(true);
   });
 
   it('shows the table with carriers filtered by target countries (FR)', () => {
@@ -172,5 +172,36 @@ describe('shipping-settings.vue', () => {
     });
 
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
+  });
+
+  it('allows to "Continue" if no carrier is enabled', () => {
+    store.modules.app.state.targetCountries = ['FR', 'IT', 'ES', 'DE', 'GB'];
+
+    const wrapper = shallowMount(ShippingSettings, {
+      store: new Vuex.Store(store),
+      directives: {
+        'b-tooltip': VBTooltip,
+      },
+      ...config,
+    });
+
+    // No disabled attribute = enabled
+    expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
+  });
+
+  it('allows to "Continue" if no carrier is found', () => {
+    store.modules.app.state.targetCountries = [];
+    store.modules.productFeed.state.settings.deliveryDetails = [];
+
+    const wrapper = shallowMount(ShippingSettings, {
+      store: new Vuex.Store(store),
+      directives: {
+        'b-tooltip': VBTooltip,
+      },
+      ...config,
+    });
+
+    // No disabled attribute = enabled
+    expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
   });
 });
