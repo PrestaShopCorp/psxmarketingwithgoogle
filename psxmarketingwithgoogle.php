@@ -179,9 +179,11 @@ class PsxMarketingWithGoogle extends Module
 
     public function hookDisplayBackOfficeHeader()
     {
-        if ($this->context->controller->controller_name === 'AdminCarrierWizard') {
+        if ($this->context->controller->controller_name === 'AdminCarriers') {
             Media::addJsDef([
-                'transitWarningMsg' => $this->l('Please enter a valid transit time'),
+                'transitWarningMsg' => $this->l('You have updated one or many of your carriers, do not forget to update your shipping settings on your Google Module.'),
+                'redirectMsg' => $this->l('Take me there.'),
+                'moduleLink' => $this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule'),
             ]);
             $this->context->controller->addJs($this->getPathUri() . 'views/js/hook/shippingWarning.js');
         }

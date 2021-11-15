@@ -18,13 +18,24 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-    let i = 1;
-    let findDelayDiv;
-
-    while (findDelayDiv = document.querySelector(`#carrier_wizard #step_carrier_general #delay_${i}`)) {
-        findDelayDiv.addEventListener('change', displayWarningMsg);
-        i++;
+    console.log('coucou');
+    const findCarriersList = document.querySelector('#form-carrier.form-horizontal.clearfix');
+    if (!(!!findCarriersList)) {
+        return;
     }
+    let warningShipping = document.createElement('div');
+    warningShipping.setAttribute('id', 'warningTransit');
+    const content = `
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <div class="alert-text">
+                ${transitWarningMsg} <a href="${moduleLink}" target="_blank">${redirectMsg}</a>
+            </div>
+        </div>
+    `;
+    warningShipping.innerHTML = content;
+    console.log(content);
+    findCarriersList.before(warningShipping);
 })
 
 function displayWarningMsg() {
@@ -37,7 +48,7 @@ function displayWarningMsg() {
     const content = `
         <div class="alert alert-warning">
             <div class="alert-text">
-                ${transitWarningMsg}
+                ${transitWarningMsg} <a href="${moduleLink}" target="_blank">${redirectMsg}</a>
             </div>
         </div>
     `;
