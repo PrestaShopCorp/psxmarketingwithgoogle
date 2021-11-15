@@ -248,7 +248,7 @@
       "shippingSettingsErrors": "This country is not compatible with your currency",
       "shippingSettings": "Shipping settings",
       "shippingSettingsTitle": "Products shipping settings",
-      "shippingLabel1": "Setup my shipping settings now",
+      "shippingLabel1": "Setup my shipping settings now (recommended)",
       "shippingDescription1": "PrestaShop will import your carriers list from your store settings and allow you to provide additional information.",
       "automatically": "Automatically",
       "manually": "Manually",
