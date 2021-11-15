@@ -145,6 +145,9 @@ export default {
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
       targetCountries,
       shippingSettings: productFeedSettings.shippingSettings,
+      additionalShippingSettings: {
+        deliveryDetails: productFeedSettings.deliveryDetails.filter((e) => e.enabledCarrier),
+      },
       attributeMapping,
     };
     try {
