@@ -224,7 +224,7 @@
     "alertErrorApi": "Vous ne pouvez pas envoyer les donn\u00e9es de vos produits \u00e0 Google pour le moment. Essayez \u00e0 nouveau plus tard."
   },
   "productFeedSettings": {
-    "breadcrumb1": "<span style=\"background-color: rgb(173, 216, 230);\">Flux de<\/span> produit",
+    "breadcrumb1": "Flux de produit",
     "breadcrumb2": "Param\u00e8tres du flux de produit",
     "steps": {
       "shippingSettings": "Ciblage et exp\u00e9dition",
@@ -233,7 +233,7 @@
       "attributeMapping": "Attributs du produit",
       "categoryMapping": "Mapping des cat\u00e9gories",
       "summary": "R\u00e9sum\u00e9",
-      "exportFeed": "<span style=\"background-color: rgb(173, 216, 230);\">Flux de<\/span> l'exportation\u202f!"
+      "exportFeed": "Flux de l'exportation\u202f!"
     },
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
     "shipping": {
@@ -718,7 +718,7 @@
     "pendingCheck": "Nous v\u00e9rifions votre statut GMC...",
     "checkingSiteClaim": "V\u00e9rification de la d\u00e9claration de votre site...",
     "siteVerified": "Site v\u00e9rifi\u00e9",
-    "productFeed": "<span style=\"background-color: rgb(173, 216, 230);\">Flux de<\/span> produit",
+    "productFeed": "Flux de produit",
     "productFeedSettings": "Param\u00e8tres du flux de produit",
     "merchantCenterAccount": "Compte Merchant Center",
     "googleAccount": "Compte Google",
