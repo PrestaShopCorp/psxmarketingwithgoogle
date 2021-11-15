@@ -228,7 +228,7 @@ export const state: State = {
         productsPerformanceList: [],
       },
       filtersPerformancesSection: {
-        filtersPerformanceList: [],
+        productsPartitionsPerformanceList: [],
       },
     },
     errorsList: {
