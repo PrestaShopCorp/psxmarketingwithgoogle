@@ -17,16 +17,19 @@ const Template = (args, { argTypes }) => ({
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
+  loading: false,
 };
 
 export const Enabled:any = Template.bind({});
 Enabled.args = {
   isEnabled: true,
+    loading: false,
 };
 
 export const EnabledWithRemarketingSwitchOff:any = Template.bind({});
 EnabledWithRemarketingSwitchOff.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsFalse);
     this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaigns);
@@ -36,6 +39,7 @@ EnabledWithRemarketingSwitchOff.args = {
 export const EnabledWithRemarketingSwitchOn:any = Template.bind({});
 EnabledWithRemarketingSwitchOn.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsTrue);
     this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaigns);
@@ -46,6 +50,7 @@ EnabledWithRemarketingSwitchOn.args = {
 export const AlertAboutMissingConversionActions:any = Template.bind({});
 AlertAboutMissingConversionActions.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsTrue);
     this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaigns);

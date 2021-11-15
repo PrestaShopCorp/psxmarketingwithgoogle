@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <b-skeleton-wrapper
       :loading="loading"
       class="mb-3"
@@ -507,7 +507,7 @@
         />
       </b-card>
     </b-skeleton-wrapper>
-  </div>
+  </section>
 </template>
 
 <script>

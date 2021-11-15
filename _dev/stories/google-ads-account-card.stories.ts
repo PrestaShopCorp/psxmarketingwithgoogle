@@ -46,6 +46,7 @@ const Template = (args, { argTypes }) => ({
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
+  loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
   },
@@ -54,6 +55,7 @@ Disabled.args = {
 export const Enabled:any = Template.bind({});
 Enabled.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
   },
@@ -63,6 +65,7 @@ Enabled.args = {
 export const EnabledSpinner:any = Template.bind({});
 EnabledSpinner.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
     this.$store.state.googleAds.list = null;
@@ -73,6 +76,7 @@ EnabledSpinner.args = {
 export const EnabledButNoAccount:any = Template.bind({});
 EnabledButNoAccount.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
     this.$store.state.googleAds.list = [];
@@ -82,6 +86,7 @@ EnabledButNoAccount.args = {
 export const EnabledConnected:any = Template.bind({});
 EnabledConnected.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);``
   },
@@ -90,6 +95,7 @@ EnabledConnected.args = {
 export const CantConnect:any = Template.bind({});
 CantConnect.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsNotChosen);
     this.$store.state.googleAds.status = GoogleAdsErrorReason.CantConnect;
@@ -99,6 +105,7 @@ CantConnect.args = {
 export const Suspended:any = Template.bind({});
 Suspended.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     this.$store.state.googleAds.status = GoogleAdsErrorReason.Suspended;
@@ -107,6 +114,7 @@ Suspended.args = {
 export const NeedToAcceptInvitation:any = Template.bind({});
 NeedToAcceptInvitation.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     this.$store.state.googleAds.status = GoogleAdsErrorReason.NeedValidationFromEmail;
@@ -116,6 +124,7 @@ NeedToAcceptInvitation.args = {
 export const NeedRefreshAfterInvitation:any = Template.bind({});
 NeedRefreshAfterInvitation.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     this.$store.state.googleAds.status = GoogleAdsErrorReason.NeedRefreshAfterInvitationLink;
@@ -124,6 +133,7 @@ NeedRefreshAfterInvitation.args = {
 export const BillingSettingsMissing:any = Template.bind({});
 BillingSettingsMissing.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     this.$store.state.googleAds.status = GoogleAdsErrorReason.BillingSettingsMissing;
@@ -133,6 +143,7 @@ BillingSettingsMissing.args = {
 export const NeedRefreshAfterBilling:any = Template.bind({});
 NeedRefreshAfterBilling.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     this.$store.state.googleAds.status = GoogleAdsErrorReason.NeedRefreshAfterBilling;
@@ -142,6 +153,7 @@ NeedRefreshAfterBilling.args = {
 export const TestAccount:any = Template.bind({});
 TestAccount.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosenisTestAccount);
   }
@@ -149,6 +161,7 @@ TestAccount.args = {
 export const Canceled:any = Template.bind({});
 Canceled.args = {
   isEnabled: true,
+    loading: false,
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     this.$store.state.googleAds.status = GoogleAdsErrorReason.Cancelled;
