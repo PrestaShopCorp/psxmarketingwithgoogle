@@ -19,7 +19,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     const findCarriersList = document.querySelector('#form-carrier.form-horizontal.clearfix');
-    if (!(!!findCarriersList)) {
+    if (!findCarriersList) {
         return;
     }
     let warningShipping = document.createElement('div');
