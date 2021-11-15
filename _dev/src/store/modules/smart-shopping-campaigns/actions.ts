@@ -418,7 +418,6 @@ export default {
     }
 
     const result = await response.json();
-    console.log('result', result);
     commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES, result?.productsPartitionsPerformanceList);
   },
