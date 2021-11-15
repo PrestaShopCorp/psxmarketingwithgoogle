@@ -102,7 +102,6 @@ export default {
     TableRowCarrier,
     VueShowdown,
   },
-
   data() {
     return {
       updatedKey: 0,

@@ -163,6 +163,14 @@ export const productFeed = {
   ],
 };
 
+export const productFeedNoCarriers = {
+  ...productFeed,
+  settings: {
+    ...productFeed.settings,
+    deliveryDetails: [],
+  },
+};
+
 export const productFeedIsReadyForExport = {
   ...productFeed,
   isConfigured: true,
