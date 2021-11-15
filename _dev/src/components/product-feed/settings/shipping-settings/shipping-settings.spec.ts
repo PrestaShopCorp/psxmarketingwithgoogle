@@ -41,7 +41,7 @@ describe('shipping-settings.vue', () => {
     expect(wrapper.find('#table-carriers').isVisible()).toBe(true);
   });
 
-  it.skip('shows a default message when there are no carriers', () => {
+  it('shows a default message when there are no carriers', () => {
     store.modules.app.state.targetCountries = ['XXX'];
 
     const wrapper = shallowMount(ShippingSettings, {
@@ -53,8 +53,7 @@ describe('shipping-settings.vue', () => {
     });
 
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(0);
-
-    // TODO: Check the default message is shown
+    expect(wrapper.find('[data-test-id="no-carriers"]').isVisible()).toBe(true);
   });
 
   it('shows the table with carriers filtered by target countries (FR)', () => {
