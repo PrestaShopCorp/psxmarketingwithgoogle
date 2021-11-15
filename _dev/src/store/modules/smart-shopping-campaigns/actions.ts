@@ -396,6 +396,7 @@ export default {
     const query = new URLSearchParams({
       startDate: state.reporting.request.dateRange.startDate,
       endDate: state.reporting.request.dateRange.endDate,
+      lang: window.i18nSettings.languageLocale.split('-')[0],
     });
 
     // add order in array format
