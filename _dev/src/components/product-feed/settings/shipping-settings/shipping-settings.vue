@@ -13,6 +13,7 @@
       class="mb-3 ps_gs-table-carriers"
       variant="light"
       responsive="xl"
+      :table-class="{'border-bottom-0': !carriers.length}"
     >
       <b-thead>
         <b-tr>
@@ -44,7 +45,34 @@
       <b-tbody
         class="bg-white"
       >
+        <b-tr
+          v-if="!carriers.length"
+        >
+          <b-td
+            class="text-center py-5"
+            :colspan="shippingSettingsHeaderList.length"
+          >
+            <h4
+              class="font-weight-normal mb-1 mt-5"
+            >
+              {{ $t('productFeedSettings.shipping.noCarriersTitle') }}
+            </h4>
+            <p class="text-secondary mb-1">
+              {{ $t('productFeedSettings.shipping.noCarriersDescription') }}
+            </p>
+            <b-button
+              variant="outline-secondary"
+              :href="$store.getters['app/GET_CARRIERS_URL']"
+              class="mb-5"
+              target="_blank"
+              size="sm"
+            >
+              {{ $t('cta.noCarriers') }}
+            </b-button>
+          </b-td>
+        </b-tr>
         <table-row-carrier
+          v-else
           v-for="(carrier, index) in carriers"
           :key="index"
           :carrier="carrier"
