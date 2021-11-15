@@ -35,6 +35,7 @@ const Template = (args, { argTypes }) => ({
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
+  loading: false,
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
   },
@@ -43,6 +44,7 @@ Disabled.args = {
 export const Enabled:any = Template.bind({});
 Enabled.args = {
   isEnabled: true,
+  loading: false,
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
     this.$store.state.freeListing = Object.assign({}, freeListingEnabled);
@@ -52,6 +54,7 @@ Enabled.args = {
 export const AlertEnableFreeListing:any = Template.bind({});
 AlertEnableFreeListing.args = {
   isEnabled: true,
+  loading: false,
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured)
     this.$store.state.freeListing = Object.assign({}, freeListingDisabled);
@@ -61,6 +64,7 @@ AlertEnableFreeListing.args = {
 export const AlertCantEnableFreeListing:any = Template.bind({});
 AlertCantEnableFreeListing.args = {
   isEnabled: true,
+  loading: false,
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
     this.$store.state.freeListing = Object.assign({}, freeListingErrorAPI);
