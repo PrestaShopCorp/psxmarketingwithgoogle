@@ -14,10 +14,10 @@
     "XIsMandatory": "{0} est obligatoire.",
     "unableToFetchData": "We were unable to fetch datas, please try again later.",
     "searchByX": "Recherche par {0}",
-    "legendCreateNewAccount": "Vous avez \u00e9galement la possibilit\u00e9 de cr\u00e9er un nouveau compte en quelques \u00e9tapes&nbsp;:"
+    "legendCreateNewAccount": "Vous avez \u00e9galement la possibilit\u00e9 de cr\u00e9er un nouveau compte en quelques \u00e9tapes\u202f:"
   },
   "configuration": {
-    "introduction": "Page de configuration&nbsp;!"
+    "introduction": "Page de configuration\u202f!"
   },
   "landingPage": {
     "header": {
@@ -140,7 +140,7 @@
       "phoneValidation": "Validation du num\u00e9ro de t\u00e9l\u00e9phone"
     },
     "title": "Cr\u00e9er un nouveau compte Merchant Center",
-    "legend": "Pour avoir acc\u00e8s aux annonces gratuites et faire de la publicit\u00e9 sur Google, vous devez accepter et respecter les exigences ci-dessous&nbsp;:",
+    "legend": "Pour avoir acc\u00e8s aux annonces gratuites et faire de la publicit\u00e9 sur Google, vous devez accepter et respecter les exigences ci-dessous\u202f:",
     "legend2": "Store's website URL needs to be verified and claimed before you can upload products data.  \n[Learn how to verify and claim your website](https:\/\/support.google.com\/merchants\/answer\/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
     "footer": "Lire la version compl\u00e8te des exigences de la boutique Google",
     "shoppingAdsPolicies": {
@@ -201,7 +201,7 @@
     "title": "Synchronisez automatiquement les donn\u00e9es de vos produits avec Google",
     "intro": "Soumettez les donn\u00e9es de vos produits directement \u00e0 votre Merchant Center et maintenez-les toujours \u00e0 jour pour obtenir des listings et des annonces gratuites.",
     "introToConfigure": "It's important to submit your product feed in the correct format, as Google uses this to make sure your products match the right queries.",
-    "nextSync": "Prochaine synchronisation&nbsp;: {0}",
+    "nextSync": "Prochaine synchronisation\u202f: {0}",
     "syncFailedAt": "\u00c9chec de la synchronisation {0} \u00e0 {1}",
     "syncSuccess": "{0} produits synchronis\u00e9s {1} \u00e0 {2}",
     "syncBusy": "Sync en cours...",
@@ -233,7 +233,7 @@
       "attributeMapping": "Attributs du produit",
       "categoryMapping": "Mapping des cat\u00e9gories",
       "summary": "R\u00e9sum\u00e9",
-      "exportFeed": "<span style=\"background-color: rgb(173, 216, 230);\">Flux de<\/span> l'exportation&nbsp;!"
+      "exportFeed": "<span style=\"background-color: rgb(173, 216, 230);\">Flux de<\/span> l'exportation\u202f!"
     },
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
     "shipping": {
@@ -289,7 +289,7 @@
       "learnAboutAttributeMapping": "En savoir plus sur les attributs des donn\u00e9es produit",
       "introNotice": "Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
       "genericTitle": "G\u00e9n\u00e9rique",
-      "toDescribeProducts": "Cr\u00e9er un titre et une description pour les attributs de mon produit en utilisant&nbsp;:",
+      "toDescribeProducts": "Cr\u00e9er un titre et une description pour les attributs de mon produit en utilisant\u202f:",
       "googleAttribute": "Attribut de produit Google",
       "prestashopAttribute": "Valeur de votre produit",
       "description": "Description",
@@ -312,7 +312,7 @@
       "learnAboutShippingSettings": "En savoir plus sur les param\u00e8tres d'exp\u00e9dition",
       "learnHowToSetupShippingSettings": "Apprenez \u00e0 mettre en place des politiques de retour",
       "learnRequirementsProductSpeficifacion": "En savoir plus sur les sp\u00e9cifications des aliments pour animaux",
-      "weWillRecoverTheseAttributes": "Pour vos produits, nous r\u00e9cup\u00e9rerons ces attributs&nbsp;:"
+      "weWillRecoverTheseAttributes": "Pour vos produits, nous r\u00e9cup\u00e9rerons ces attributs\u202f:"
     },
     "summary": {
       "title1": "Prochaine synchronisation",
@@ -540,8 +540,8 @@
       "readyForExport": "Le flux de produits est pr\u00eat pour l'exportation",
       "syncProcessed": "Synchronisation en cours\/termin\u00e9e",
       "syncFailed": "Sync non r\u00e9ussie",
-      "lastSync": "Derni\u00e8re synchronisation&nbsp;: {0}",
-      "nextSync": "Prochaine synchronisation&nbsp;: {0}",
+      "lastSync": "Derni\u00e8re synchronisation\u202f: {0}",
+      "nextSync": "Prochaine synchronisation\u202f: {0}",
       "prescanTitle": "Prochaine synchronisation \u00e0 venir",
       "scheduleOn": "Synchronisation pr\u00e9vue le {0}",
       "alert": "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact [customer support](mailto:support-google@prestashop.com)."
@@ -554,7 +554,7 @@
       "pendingProducts": "En attente",
       "expiringProducts": "En cours d'expiration",
       "disapprovedProducts": "Non approuv\u00e9",
-      "productsSubmittedToGoogle": "Produits actifs soumis \u00e0 Google&nbsp;: {0}",
+      "productsSubmittedToGoogle": "Produits actifs soumis \u00e0 Google\u202f: {0}",
       "approvalStatusList": "Approved, Pending, Not approved"
     },
     "approvalTable": {
@@ -573,12 +573,12 @@
       "tableHeaderCountry": "Pays",
       "tableHeaderIssue": "Raison",
       "xResults": "{0} r\u00e9sultats",
-      "perPageLabel": "Montrer&nbsp;:",
-      "goToLabel": "Aller \u00e0 la page&nbsp;:",
+      "perPageLabel": "Montrer\u202f:",
+      "goToLabel": "Aller \u00e0 la page\u202f:",
       "editX": "Editer {0}"
     },
     "errorReason": {
-      "fieldXMissing": "Un champ obligatoire est manquant&nbsp;: {0}",
+      "fieldXMissing": "Un champ obligatoire est manquant\u202f: {0}",
       "incorrectInfos": "Fautes de frappe et autres informations manquantes ou incorrectes",
       "invalidDatafeedLocation": "Emplacement du fichier de flux de donn\u00e9es non valide",
       "incorrectPrice": "Prix manquants ou incorrects"
@@ -587,7 +587,7 @@
   "help": {
     "title": "Aide pour PrestaShop Google",
     "allowsYouTo": {
-      "title": "Ce module vous permet de&nbsp;:",
+      "title": "Ce module vous permet de\u202f:",
       "business": "G\u00e9rer votre entreprise",
       "account": "G\u00e9rer votre compte publicitaire",
       "traffic": "Comprendre votre trafic",
@@ -595,9 +595,9 @@
       "people": "Atteindre plus de personnes"
     },
     "help": {
-      "needHelp": "Besoin d'aide&nbsp;? Retrouvez ici la documentation de ce module.",
+      "needHelp": "Besoin d'aide\u202f? Retrouvez ici la documentation de ce module.",
       "downloadPdf": "T\u00e9l\u00e9charger le PDF",
-      "couldntFindAnyAnswer": "Vous n'avez pas trouv\u00e9 de r\u00e9ponse \u00e0 votre question&nbsp;?",
+      "couldntFindAnyAnswer": "Vous n'avez pas trouv\u00e9 de r\u00e9ponse \u00e0 votre question\u202f?",
       "contactUs": "Nous contacter"
     }
   },
@@ -702,7 +702,7 @@
     "viewInGoogleAds": "Afficher dans votre compte Google Ads",
     "previous": "Pr\u00e9c\u00e9dent",
     "next": "Suivant",
-    "goToPage": "Aller \u00e0 la premi\u00e8re page | Aller \u00e0 la page&nbsp;: {0} Aller \u00e0 la derni\u00e8re page",
+    "goToPage": "Aller \u00e0 la premi\u00e8re page | Aller \u00e0 la page\u202f: {0} Aller \u00e0 la derni\u00e8re page",
     "noEndDate": "Pas de date de fin",
     "verifyPhoneNumber": "V\u00e9rifier le num\u00e9ro de t\u00e9l\u00e9phone",
     "refreshInformations": "Refresh informations"
@@ -734,22 +734,22 @@
     "testAccount": "Test"
   },
   "modal": {
-    "titleDisconnectionMerchantCenter": "D\u00e9connecter votre Merchant Center&nbsp;?",
-    "titleDisconnection": "Confirmer la d\u00e9connexion&nbsp;?",
-    "titleoverwrite": "Remplacer une demande existante&nbsp;?",
+    "titleDisconnectionMerchantCenter": "D\u00e9connecter votre Merchant Center\u202f?",
+    "titleDisconnection": "Confirmer la d\u00e9connexion\u202f?",
+    "titleoverwrite": "Remplacer une demande existante\u202f?",
     "textDisconnectGoogleAccount": "You are about to disconnect Google account. This will remove access to Google, Google Merchant Center and Google Ads accounts.",
     "textDisconnectMCA": "Disconnecting your Merchant Center will remove access to your Google Ads in this module and pause any running campaign. ",
     "textoverwrite": "Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  \nIf you are running a different Shopping campaign, we recommend pausing it.",
-    "titleDisableFreeListing": "D\u00e9sactiver les listings gratuits&nbsp;?",
+    "titleDisableFreeListing": "D\u00e9sactiver les listings gratuits\u202f?",
     "textDisableFreeListing": "By disabling free listings your products will no longer be available for organic listing on Shopping tab.  \n However your product feed will stay available.",
     "titleEnableFreeListing": "Activer les listings gratuits",
     "textEnableFreeListing": "Cette action entra\u00eenera \u00e9galement la r\u00e9activation du flux de produit.",
-    "titleCancelWithoutSaving": "Annuler sans sauvegarder&nbsp;?",
+    "titleCancelWithoutSaving": "Annuler sans sauvegarder\u202f?",
     "textCancelProductFeed": "You will lose all unsaved changes if you Continue. To successully submit your product data to Google, you need to complete all steps.",
-    "titleQuitWithoutSaving": "Quitter sans sauvegarder&nbsp;?",
-    "titleOverwriteProductFeed": "\u00c9craser le flux de produits existant&nbsp;?",
+    "titleQuitWithoutSaving": "Quitter sans sauvegarder\u202f?",
+    "titleOverwriteProductFeed": "\u00c9craser le flux de produits existant\u202f?",
     "textOverwriteProductFeed": "\u00c9craser votre flux de produits existant le supprimera. Vous devrez configurer un nouveau flux de produits.",
-    "titleDisconnectionGoogleAds": "D\u00e9connecter le compte Google Ads&nbsp;?",
+    "titleDisconnectionGoogleAds": "D\u00e9connecter le compte Google Ads\u202f?",
     "textDisconnectGoogleAds": "La d\u00e9connexion de votre compte Google Ads supprimera la possibilit\u00e9 d'ex\u00e9cuter des campagnes Smart Shopping \u00e0 partir du module.",
     "pauseCampaigns": "Mettre en pause toutes mes campagnes",
     "pauseCampaignsExplainations": "By pausing all your campaigns, the billing will stop. You can restart your campaigns at any time in your Google ads account.",
@@ -788,15 +788,15 @@
   },
   "toast": {
     "alertActivationSuccess": "Vous avez activ\u00e9 avec succ\u00e8s les listings gratuits de vos produits dans l'onglet Shopping.",
-    "googleAccountConnectedOnceSuccess": "Vous avez connect\u00e9 votre compte Google&nbsp;!",
-    "alertGoogleAdsAccountSuccess": "Vous avez configur\u00e9 avec succ\u00e8s votre compte Google Ads&nbsp;!",
-    "MCAConnectedOnceSuccess": "Vous avez connect\u00e9 votre compte Google&nbsp;!",
+    "googleAccountConnectedOnceSuccess": "Vous avez connect\u00e9 votre compte Google\u202f!",
+    "alertGoogleAdsAccountSuccess": "Vous avez configur\u00e9 avec succ\u00e8s votre compte Google Ads\u202f!",
+    "MCAConnectedOnceSuccess": "Vous avez connect\u00e9 votre compte Google\u202f!",
     "productFeedConfiguredOnceSuccess": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
     "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google",
-    "campaignCreatedSuccess": "Vous avez cr\u00e9\u00e9 votre campagne Smart Shopping avec succ\u00e8s&nbsp;!"
+    "campaignCreatedSuccess": "Vous avez cr\u00e9\u00e9 votre campagne Smart Shopping avec succ\u00e8s\u202f!"
   },
   "stepper": {
-    "nextStep": "Suivant&nbsp;: {0}",
+    "nextStep": "Suivant\u202f: {0}",
     "lastStep": "Derni\u00e8re \u00e9tape"
   }
 }
