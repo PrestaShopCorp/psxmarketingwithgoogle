@@ -18,7 +18,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('coucou');
     const findCarriersList = document.querySelector('#form-carrier.form-horizontal.clearfix');
     if (!(!!findCarriersList)) {
         return;
@@ -34,24 +33,5 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     `;
     warningShipping.innerHTML = content;
-    console.log(content);
     findCarriersList.before(warningShipping);
-})
-
-function displayWarningMsg() {
-    const findAlert = document.querySelector('#carrier_wizard #step_carrier_general #warningTransit');
-    if (!!findAlert) {
-        return;
-    }
-    let warningShipping = document.createElement('div');
-    warningShipping.setAttribute('id', 'warningTransit');
-    const content = `
-        <div class="alert alert-warning">
-            <div class="alert-text">
-                ${transitWarningMsg} <a href="${moduleLink}" target="_blank">${redirectMsg}</a>
-            </div>
-        </div>
-    `;
-    warningShipping.innerHTML = content;
-    document.querySelector('#carrier_wizard #step_carrier_general #fieldset_form').after(warningShipping);
-}
+});
