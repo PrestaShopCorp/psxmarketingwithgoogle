@@ -139,30 +139,13 @@ export default {
   }) {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(rootGetters['app/GET_ACTIVE_COUNTRIES']);
+    const attributeMapping = JSON.parse(localStorage.getItem('attributeMapping') || '{}');
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
       targetCountries,
       shippingSettings: productFeedSettings.shippingSettings,
-      additionalShippingSettings: {
-        deliveryDetails: productFeedSettings.deliveryDetails.filter((e) => e.enabledCarrier),
-      },
-      attributeMapping: {
-        exportProductsWithShortDescription:
-        productFeedSettings?.attributeMapping?.exportProductsWithShortDescription
-        || true,
-        customConditionAttribute: productFeedSettings?.attributeMapping?.customConditionAttribute
-        || null,
-        customColorAttribute: productFeedSettings?.attributeMapping?.customColorAttribute
-        || null,
-        customSizeAttribute: productFeedSettings?.attributeMapping?.customSizeAttribute
-        || null,
-        customAgeGroupAttribute: productFeedSettings?.attributeMapping?.customAgeGroupAttribute
-        || null,
-        customGenderGroupAttribute:
-        productFeedSettings?.attributeMapping?.customGenderGroupAttribute
-        || null,
-      },
+      attributeMapping,
     };
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
@@ -182,6 +165,7 @@ export default {
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
       localStorage.removeItem('deliveryDetails');
+      localStorage.removeItem('attributeMapping');
     } catch (error) {
       console.error(error);
     }
@@ -357,9 +341,35 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    // need to call nestjs when the route is available
+
     const json = await response.json();
     commit(MutationsTypes.SAVE_ATTRIBUTES_SHOP, json);
     return json;
+  },
+  async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
+    const getMappingFromStorage = localStorage.getItem('attributeMapping');
+
+    if (getMappingFromStorage !== null) {
+      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, JSON.parse(getMappingFromStorage || '{}'));
+      return;
+    }
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/attributes`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+
+      const json = await response.json();
+      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, json);
+    } catch (error) {
+      console.log(error);
+    }
   },
 };

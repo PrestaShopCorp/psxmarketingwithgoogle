@@ -47,14 +47,14 @@ class AttributesRepository
 
         foreach ($customAttributes as $attr) {
             $attributes[] = [
-                'name' => $attr['name'],
+                'name' => strtolower($attr['name']),
                 'type' => 'custom',
             ];
         }
 
         foreach ($features as $feature) {
             $attributes[] = [
-                'name' => $feature['name'],
+                'name' => strtolower($feature['name']),
                 'type' => 'feature',
             ];
         }

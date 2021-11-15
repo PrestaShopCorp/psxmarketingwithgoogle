@@ -46,8 +46,8 @@
         >
           <b-form-checkbox
             class="ps_gs-checkbox"
-            v-for="option in options"
-            :key="option.name | slugify"
+            v-for="(option, index) in options"
+            :key="index"
             :value="option"
           >
             <span class="line-height-15">
@@ -102,25 +102,10 @@ export default {
     },
     attributesChecked: {
       get() {
-        const availableAttr = [];
         if (this.field.mapped !== null) {
-          this.options.forEach((el) => {
-            this.field.mapped.forEach((mapped) => {
-              if (el.name === mapped.name) {
-                availableAttr.push(el);
-              }
-            });
-          });
-        } else {
-          this.options.forEach((el) => {
-            this.field.recommended.forEach((recommended) => {
-              if (el.name === recommended.name) {
-                availableAttr.push(el);
-              }
-            });
-          });
+          return this.field.mapped;
         }
-        return availableAttr;
+        return this.field.recommended;
       },
       set(value) {
         this.field.mapped = value;

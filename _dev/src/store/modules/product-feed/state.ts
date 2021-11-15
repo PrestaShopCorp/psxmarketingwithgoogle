@@ -86,7 +86,7 @@ export interface State {
   validationSummary : ProductFeedValidationSummary;
   productsDatas: ProductsDatas;
   attributesToMap: any;
-  attributesDatas: Array<AttributesInfos>;
+  attributesData: Array<AttributesInfos>;
 }
 
 export enum ProductStatues {
@@ -133,7 +133,7 @@ export const state: State = {
     items: [],
   },
   attributesToMap,
-  attributesDatas: [
+  attributesData: [
     {
       name: 'ean13',
       type: AttributesTypes.PRODUCT,

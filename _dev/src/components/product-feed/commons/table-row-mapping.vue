@@ -15,7 +15,9 @@
         class="mb-0 text-left"
         :class="{'text-secondary': attributeNotMapped}"
       >
-        {{ $t(`productFeedSettings.attributeMapping.${attribute.prestashop}`) }}
+        {{
+          attribute.prestashop || $t('productFeedSettings.attributeMapping.notAvailable')
+        }}
       </span>
     </b-td>
   </b-tr>
@@ -31,8 +33,7 @@ export default {
   },
   computed: {
     attributeNotMapped() {
-      // TODO: Write the proper condition
-      return this.attribute.prestashop === 'notAvailable';
+      return this.attribute.prestashop === '';
     },
   },
 };
