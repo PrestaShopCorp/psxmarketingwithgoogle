@@ -205,7 +205,10 @@ export default {
         (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === enabledCarrier.carrierId
         && enabledCarrier.country === deliveryDetail.country);
       if (!additionalShippingSetting) {
-        return enabledCarrier;
+        return {
+          deliveryType: undefined,
+          ...enabledCarrier,
+        };
       }
       return {
         enabledCarrier: true,
