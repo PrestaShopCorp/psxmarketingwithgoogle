@@ -179,7 +179,8 @@ class PsxMarketingWithGoogle extends Module
 
     public function hookDisplayBackOfficeHeader()
     {
-        if ($this->context->controller->controller_name === 'AdminCarriers') {
+        $getConfValue = Tools::getValue('conf');
+        if (!empty($getConfValue) && $getConfValue === '4') {
             Media::addJsDef([
                 'transitWarningMsg' => $this->l('You have updated one or many of your carriers, do not forget to update your shipping settings on your Google Module.'),
                 'redirectMsg' => $this->l('Take me there.'),
