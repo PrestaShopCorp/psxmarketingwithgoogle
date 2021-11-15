@@ -47,6 +47,7 @@
       >
         <b-tr
           v-if="!carriers.length"
+          data-test-id="no-carriers"
         >
           <b-td
             class="text-center py-5"
