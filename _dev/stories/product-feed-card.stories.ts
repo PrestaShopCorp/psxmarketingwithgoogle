@@ -44,7 +44,7 @@ NotConfigured.args = {
     this.$store.state.productFeed = Object.assign({}, productFeed);
   },
   isEnabled: true,
-    loading: false,
+  loading: false,
 };
 
 // Todo: Handle all error cases
@@ -55,7 +55,7 @@ ReadyForExport.args = {
     this.$store.state.productFeed = Object.assign({}, productFeedIsReadyForExport);
   },
   isEnabled: true,
-    loading: false,
+  loading: false,
 };
 
 export const Failed:any = Template.bind({});
@@ -64,7 +64,7 @@ Failed.args = {
     this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncFailed);
   },
   isEnabled: true,
-    loading: false,
+  loading: false,
 };
 
 export const SettingMissing:any = Template.bind({});
@@ -73,7 +73,7 @@ SettingMissing.args = {
     this.$store.state.productFeed = Object.assign({}, productFeedMissingFields);
   },
   isEnabled: true,
-    loading: false,
+  loading: false,
 };
 
 export const OverwriteNeeded:any = Template.bind({});
@@ -82,7 +82,7 @@ OverwriteNeeded.args = {
     this.$store.state.productFeed = Object.assign({}, productFeed);
   },
   isEnabled: true,
-    loading: false,
+  loading: false,
 };
 
 // ! Add BIG warning: not developed yet
@@ -103,7 +103,7 @@ ConfiguredNoTax.args = {
     this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
   },
   isEnabled: true,
-    loading: false,
+  loading: false,
 };
 
 // TODO batch 2
@@ -113,7 +113,7 @@ ConfiguredTax.args = {
     this.$store.state.productFeed = Object.assign({}, productFeedIsConfiguredWithTax);
   },
   isEnabled: true,
-    loading: false,
+  loading: false,
 };
 
 export const ApiError:any = Template.bind({});
@@ -122,5 +122,5 @@ ApiError.args = {
     this.$store.state.productFeed = Object.assign({}, productFeedErrorAPI);
   },
   isEnabled: true,
-    loading: false,
+  loading: false,
 };
