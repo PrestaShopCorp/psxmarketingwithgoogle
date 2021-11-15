@@ -583,7 +583,6 @@ class PsxMktgWithGoogleTranslations
                     'conversionsRate' => $this->module->l('Conversions rate', 'PsxMktgWithGoogleTranslations'),
                     'productFilter' => $this->module->l('Product filter', 'PsxMktgWithGoogleTranslations'),
                     'dimension' => $this->module->l('Dimension', 'PsxMktgWithGoogleTranslations'),
-                    'productFilter' => $this->module->l('Product filter', 'PsxMktgWithGoogleTranslations'),
                     'duration' => $this->module->l('Duration date', 'PsxMktgWithGoogleTranslations'),
                     'target' => $this->module->l('Target', 'PsxMktgWithGoogleTranslations'),
                     'actions' => $this->module->l('Actions', 'PsxMktgWithGoogleTranslations'),
