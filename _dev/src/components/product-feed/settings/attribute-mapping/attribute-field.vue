@@ -28,7 +28,8 @@
 
     <b-dropdown
       :id="field.label | slugify"
-      :text="formatToDisplay || $t('general.notAvailable') "
+      :html="`<span class='text-truncate d-inline-block'>
+        ${formatToDisplay || $t('general.notAvailable')}</span>`"
       variant=" "
       class="maxw-sm-250 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
       :toggle-class="[{'ps-dropdown__placeholder' : !formatToDisplay}, 'w-100']"
@@ -73,8 +74,7 @@
     >
       <i class="material-icons-round ps_gs-fz-16 font-weight-normal mr-1">warning_amber</i>
       <VueShowdown
-        :markdown="$t('productFeedSettings.attributeMapping.requiredForSomeCategories',
-                      [$options.googleUrl.learnRequirementsProductSpecification])"
+        :markdown="markdown"
         :extensions="['extended-link']"
       />
     </div>
@@ -88,6 +88,7 @@ export default {
   data() {
     return {
       notAvailableSelected: false,
+      markdown: this.$t('productFeedSettings.attributeMapping.requiredForSomeCategories', [this.$options.googleUrl.learnRequirementsProductSpecification]),
     };
   },
   props: {
@@ -111,14 +112,25 @@ export default {
         this.field.mapped = value;
       },
     },
+
     formatToDisplay() {
       return this.attributesChecked.map((e) => this.displayTranslation(e)).join(', ');
     },
   },
   methods: {
     selectNotAvailable() {
-      this.attributesChecked = [];
-      this.notAvailableSelected = true;
+      if (this.field.label === 'Description') {
+        this.attributesChecked = [];
+      } else if (this.field.label === 'Maximum energy efficient class'
+      || this.field.label === 'Energy class'
+      || this.field.label === 'Minimum energy efficient class') {
+        this.attributesChecked = [];
+        this.markdown = this.$t('productFeedSettings.attributeMapping.requiredForSomeCategories', [this.$options.googleUrl.learnRequirementsEnergyClass]);
+        this.notAvailableSelected = true;
+      } else {
+        this.attributesChecked = [];
+        this.notAvailableSelected = true;
+      }
     },
     displayTranslation(option) {
       switch (option.name) {
