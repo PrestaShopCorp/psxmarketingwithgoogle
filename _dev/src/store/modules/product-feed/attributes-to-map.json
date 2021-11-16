@@ -18,7 +18,7 @@
       {
         "label": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
         "name": "gtin",
-        "tooltip": false,
+        "tooltip": true,
         "recommended": [
           {
             "name": "gtin",
@@ -62,7 +62,7 @@
       {
         "label": "Age Group",
         "name": "ageGroup",
-        "tooltip": false,
+        "tooltip": true,
         "recommended": [
           {
             "name": "ageGroup",
@@ -75,7 +75,7 @@
       {
         "label": "Color",
         "name": "color",
-        "tooltip": false,
+        "tooltip": true,
         "recommended": [
           {
             "name": "color",
@@ -88,7 +88,7 @@
       {
         "label": "Gender",
         "name": "gender",
-        "tooltip": false,
+        "tooltip": true,
         "recommended": [
           {
             "name": "gender",
@@ -101,7 +101,7 @@
       {
         "label": "Size",
         "name": "size",
-        "tooltip": false,
+        "tooltip": true,
         "recommended": [
           {
             "name": "size",
@@ -116,6 +116,32 @@
   {
     "category": "electronics",
     "fields": [
+      {
+        "label": "Maximum energy efficient class",
+        "name": "maxEnergyEfficiencyClass",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "maxEnergyEfficiencyClass",
+            "type": "feature"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      },
+      {
+        "label": "Minimum energy efficient class",
+        "name": "minEnergyEfficiencyClass",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "minEnergyEfficiencyClass",
+            "type": "feature"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      },
       {
         "label": "Energy class",
         "name": "energyEfficiencyClass",

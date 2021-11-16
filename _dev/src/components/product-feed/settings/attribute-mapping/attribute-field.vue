@@ -18,7 +18,7 @@
         class="ml-1 p-0 d-flex"
         variant="text"
         v-b-tooltip:psxMktgWithGoogleApp
-        :title="'placholder to do todo'"
+        :title="tooltipFormat(field.name)"
       >
         <span class="material-icons-round mb-0 ps_gs-fz-16 w-16 text-secondary">
           info_outlined
@@ -138,6 +138,9 @@ export default {
         name: this.field.name,
         elements: this.attributesChecked,
       });
+    },
+    tooltipFormat(name) {
+      return this.$t(`tooltip.attributeMapping.${name}`);
     },
   },
   googleUrl,
