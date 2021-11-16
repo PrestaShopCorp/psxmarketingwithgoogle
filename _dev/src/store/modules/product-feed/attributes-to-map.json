@@ -6,7 +6,6 @@
         "label": "Description",
         "name": "description",
         "tooltip": true,
-        "tooltipText": "description",
         "recommended": [
           {
             "name": "description",
@@ -20,7 +19,6 @@
         "label": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
         "name": "gtin",
         "tooltip": true,
-        "tooltipText": "gtin",
         "recommended": [
           {
             "name": "gtin",
