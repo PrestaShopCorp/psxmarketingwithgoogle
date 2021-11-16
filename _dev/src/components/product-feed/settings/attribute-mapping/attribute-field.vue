@@ -31,7 +31,7 @@
       :text="formatToDisplay || $t('general.notAvailable') "
       variant=" "
       class="maxw-sm-250 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
-      :toggle-class="{'ps-dropdown__placeholder' : true}"
+      :toggle-class="[{'ps-dropdown__placeholder' : !formatToDisplay}, 'w-100']"
       menu-class="ps-dropdown"
       size="sm"
     >
@@ -51,7 +51,7 @@
             :value="option"
           >
             <span class="line-height-15">
-              {{ option.displayName ? $t(option.displayName) : option.name }}
+              {{ displayTranslation(option) }}
             </span>
           </b-form-checkbox>
         </b-form-checkbox-group>
@@ -112,13 +112,23 @@ export default {
       },
     },
     formatToDisplay() {
-      return this.attributesChecked.map((e) => e.name).join(', ');
+      return this.attributesChecked.map((e) => this.displayTranslation(e)).join(', ');
     },
   },
   methods: {
     selectNotAvailable() {
       this.attributesChecked = [];
       this.notAvailableSelected = true;
+    },
+    displayTranslation(option) {
+      switch (option.name) {
+        case 'description':
+          return this.$t('attributesMapping.description');
+        case 'shortDescription':
+          return this.$t('attributesMapping.shortDescription');
+        default:
+          return option.name;
+      }
     },
     findAttribute(attr) {
       return !!this.attributesChecked.find((e) => e.name === attr);
