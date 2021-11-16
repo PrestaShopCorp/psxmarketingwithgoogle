@@ -75,12 +75,20 @@ export default {
   },
   data() {
     return {
-      steps: [
+    };
+  },
+  computed: {
+    activeStep() {
+      return this.$store.state.productFeed.stepper;
+    },
+    steps() {
+      return [
         {
           title: this.$i18n.t('productFeedSettings.steps.targetCountry'),
         },
         {
           title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
+          notClickable: !this.$store.state.productFeed.settings.autoImportShippingSettings,
         },
         {
           title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
@@ -88,12 +96,7 @@ export default {
         {
           title: this.$i18n.t('productFeedSettings.steps.summary'),
         },
-      ],
-    };
-  },
-  computed: {
-    activeStep() {
-      return this.$store.state.productFeed.stepper;
+      ];
     },
   },
   mounted() {

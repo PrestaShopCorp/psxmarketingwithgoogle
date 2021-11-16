@@ -11,9 +11,9 @@
       :aria-current="isActive(index) ? 'step' : null"
     >
       <component
-        :is="isComplete(index) ? 'a' : 'div'"
-        :href="isComplete(index) ? '#' : null"
-        @click.prevent="isComplete(index) ? handleStepClick(index) : null"
+        :is="isClickable(index, step.notClickable) ? 'a' : 'div'"
+        :href="isClickable(index, step.notClickable) ? '#' : null"
+        @click.prevent="isClickable(index, step.notClickable) ? handleStepClick(index) : null"
         class="ps_gs-stepper-step__link"
       >
         <div
@@ -77,6 +77,15 @@ export default {
     },
     isActive(index) {
       return index + 1 === this.mutableActiveStep;
+    },
+    isClickable(index, notClickable) {
+      if (notClickable) {
+        return false;
+      }
+      if (this.isComplete(index)) {
+        return true;
+      }
+      return false;
     },
     handleStepClick(index) {
       this.mutableActiveStep = index + 1;
