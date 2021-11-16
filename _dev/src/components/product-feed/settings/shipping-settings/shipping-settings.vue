@@ -104,6 +104,14 @@
         {{ $t('cta.cancel') }}
       </b-button>
       <b-button
+        @click="previousStep"
+        size="sm"
+        class="mx-1 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
+        {{ $t('cta.previous') }}
+      </b-button>
+      <b-button
         data-test-id="continueButton"
         @click="nextStep"
         size="sm"
@@ -168,6 +176,11 @@ export default {
         return false;
       }
       return true;
+    },
+    previousStep() {
+      localStorage.setItem('deliveryDetails', JSON.stringify(this.carriers));
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
+      window.scrollTo(0, 0);
     },
     nextStep() {
       localStorage.setItem('deliveryDetails', JSON.stringify(this.carriers));

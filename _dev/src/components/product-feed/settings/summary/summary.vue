@@ -126,6 +126,14 @@
         {{ $t("cta.cancel") }}
       </b-button>
       <b-button
+        @click="previousStep"
+        size="sm"
+        class="mx-1 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
+        {{ $t('cta.previous') }}
+      </b-button>
+      <b-button
         @click="saveAll"
         :disabled="disabledExportButton"
         size="sm"
@@ -248,6 +256,10 @@ export default {
     saveAll() {
       this.disabledExportButton = true;
       this.postDatas();
+    },
+    previousStep() {
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+      window.scrollTo(0, 0);
     },
     postDatas() {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');

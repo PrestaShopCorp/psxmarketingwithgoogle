@@ -109,7 +109,7 @@
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
       >
-        {{ $t("cta.saveAndContinue") }}
+        {{ $t('cta.saveAndContinue') }}
       </b-button>
     </div>
     <settings-footer />
