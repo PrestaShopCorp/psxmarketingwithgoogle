@@ -152,12 +152,10 @@ export const state: State = {
     },
     {
       name: 'description',
-      displayName: 'attributesMapping.description',
       type: AttributesTypes.PRODUCT,
     },
     {
       name: 'shortDescription',
-      displayName: 'attributesMapping.shortDescription',
       type: AttributesTypes.PRODUCT,
     },
   ],
