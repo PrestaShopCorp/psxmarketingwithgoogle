@@ -119,6 +119,7 @@ export default {
   },
   methods: {
     selectNotAvailable() {
+      // TODO  Might need refacto. Not a fan of hardcoding the values in attributes-to-map.json 
       if (this.field.label === 'Description') {
         this.attributesChecked = [];
       } else if (this.field.label === 'Maximum energy efficient class'
