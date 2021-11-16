@@ -77,10 +77,10 @@ export default {
     return {
       steps: [
         {
-          title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
+          title: this.$i18n.t('productFeedSettings.steps.targetCountry'),
         },
         {
-          title: this.$i18n.t('productFeedSettings.steps.syncRules'),
+          title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
         },
         {
           title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),

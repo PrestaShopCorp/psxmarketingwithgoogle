@@ -230,9 +230,9 @@
     "breadcrumb1": "Product feed",
     "breadcrumb2": "Product feed settings",
     "steps": {
-      "shippingSettings": "Targeting & shipping",
-      "syncRules": "Feed sync set-up",
-      "attributeMapping": "Product attributes",
+      "targetCountry": "Target country",
+      "shippingSettings": "Shipping settings",
+      "attributeMapping": "Attribute Mapping",
       "categoryMapping": "Category mapping",
       "summary": "Summary",
       "exportFeed": "Export feed!",
