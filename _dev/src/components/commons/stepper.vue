@@ -20,7 +20,12 @@
           class="ps_gs-stepper-step__step d-flex align-items-center justify-content-center"
         >
           <b-icon-check
-            v-if="isComplete(index)"
+            v-if="isClickable(index, step.notClickable)"
+            variant="white"
+            font-scale="2"
+          />
+          <b-icon-slash
+            v-else-if="step.notClickable && isComplete(index)"
             variant="white"
             font-scale="2"
           />
@@ -50,6 +55,7 @@
 <script>
 import {
   BIconCheck,
+  BIconSlash,
 } from 'bootstrap-vue';
 
 import ProgressRing from '../commons/progress-ring';
@@ -58,6 +64,7 @@ export default {
   name: 'Stepper',
   components: {
     BIconCheck,
+    BIconSlash,
     ProgressRing,
   },
 
