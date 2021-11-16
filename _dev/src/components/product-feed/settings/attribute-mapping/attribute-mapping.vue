@@ -74,6 +74,14 @@
         {{ $t("cta.cancel") }}
       </b-button>
       <b-button
+        @click="previousStep"
+        size="sm"
+        class="mx-1 mt-3 mt-md-0"
+        variant="outline-secondary"
+      >
+        {{ $t('cta.previous') }}
+      </b-button>
+      <b-button
         @click="nextStep"
         size="sm"
         :disabled="disableContinue"
@@ -171,6 +179,15 @@ export default {
     },
   },
   methods: {
+    previousStep() {
+      localStorage.setItem('attributeMapping', JSON.stringify(this.formatMappingToApi));
+      if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
+        this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
+      } else {
+        this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
+      }
+      window.scrollTo(0, 0);
+    },
     nextStep() {
       localStorage.setItem('attributeMapping', JSON.stringify(this.formatMappingToApi));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
