@@ -814,7 +814,7 @@
     "attributeMapping" : {
       "description" : "Your product’s description. Max 5000 characters.",
       "condition" : "The condition of your product at time of sale.",
-      "color" : "Your product’s color(s). Max 100 alphanumeric characters (max 40 characters per color)",
+      "color" : "Your product's color(s). Max 100 alphanumeric characters (max 40 characters per color)",
       "size" : "Your product's size",
       "ageGroup" : "The demographic for which your product is intended (if product is dedicated to specific age group)",
       "gender" : "The gender for which your product is intended",
