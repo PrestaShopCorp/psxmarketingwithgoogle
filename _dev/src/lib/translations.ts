@@ -1,7 +1,7 @@
-import en from '@/assets/json/translations/en.json';
-import es from '@/assets/json/translations/es.json';
-import fr from '@/assets/json/translations/fr.json';
-import it from '@/assets/json/translations/it.json';
+import en from '@/assets/json/translations/en/ui.json';
+import es from '@/assets/json/translations/es/ui.json';
+import fr from '@/assets/json/translations/fr/ui.json';
+import it from '@/assets/json/translations/it/ui.json';
 
 export const messages = {
   en,
