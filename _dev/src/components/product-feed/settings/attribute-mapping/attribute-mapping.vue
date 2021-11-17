@@ -64,39 +64,18 @@
         {{ $t('productFeedSettings.attributeMapping.footerNotice') }}
       </p>
     </b-form>
-    <div class="d-md-flex text-center justify-content-end mt-3">
-      <b-button
-        @click="cancel"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t("cta.cancel") }}
-      </b-button>
-      <b-button
-        @click="previousStep"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t('cta.previous') }}
-      </b-button>
-      <b-button
-        @click="nextStep"
-        size="sm"
-        :disabled="disableContinue"
-        class="mx-1 mt-3 mt-md-0 mr-md-0"
-        variant="primary"
-      >
-        {{ $t("cta.saveAndContinue") }}
-      </b-button>
-    </div>
+    <actions-buttons
+      :next-step="nextStep"
+      :previous-step="previousStep"
+      :disable-continue="disableContinue"
+    />
     <settings-footer />
   </div>
 </template>
 
 <script>
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
+import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import AttributeField from './attribute-field.vue';
 import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
@@ -106,6 +85,7 @@ export default {
   name: 'ProductFeedSettingsAttributeMapping',
   components: {
     SettingsFooter,
+    ActionsButtons,
     AttributeField,
     CategoryButton,
   },

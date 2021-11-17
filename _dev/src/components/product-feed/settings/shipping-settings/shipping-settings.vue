@@ -94,34 +94,11 @@
         :extensions="['extended-link', 'no-p-tag']"
       />
     </div>
-    <div class="d-md-flex text-center justify-content-end mt-3">
-      <b-button
-        @click="cancel"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t('cta.cancel') }}
-      </b-button>
-      <b-button
-        @click="previousStep"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t('cta.previous') }}
-      </b-button>
-      <b-button
-        data-test-id="continueButton"
-        @click="nextStep"
-        size="sm"
-        :disabled="disableContinue"
-        class="mx-1 mt-3 mt-md-0 mr-md-0"
-        variant="primary"
-      >
-        {{ $t("cta.saveAndContinue") }}
-      </b-button>
-    </div>
+    <actions-buttons
+      :next-step="nextStep"
+      :previous-step="previousStep"
+      :disable-continue="disableContinue"
+    />
     <settings-footer />
   </div>
 </template>
@@ -130,6 +107,7 @@
 import {VueShowdown} from 'vue-showdown';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
+import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
 import {validateDeliveryDetail} from '@/providers/shipping-settings-provider';
 
@@ -138,6 +116,7 @@ export default {
     SettingsFooter,
     TableRowCarrier,
     VueShowdown,
+    ActionsButtons,
   },
   data() {
     return {
