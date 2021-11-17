@@ -44,7 +44,6 @@ export default {
       await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
     },
   },
-
   mounted() {
     this.getDatas()
       .then(() => {
