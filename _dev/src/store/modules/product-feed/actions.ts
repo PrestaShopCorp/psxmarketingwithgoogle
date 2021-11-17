@@ -354,7 +354,7 @@ export default {
   },
   async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
     const getMappingFromStorage = localStorage.getItem('attributeMapping');
-    console.log('getMappingFromStorage',getMappingFromStorage);
+    console.log('getMappingFromStorage', getMappingFromStorage);
     if (getMappingFromStorage !== null) {
       commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, JSON.parse(getMappingFromStorage || '{}'));
       return;

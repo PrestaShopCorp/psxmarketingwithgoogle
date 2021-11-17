@@ -81,7 +81,10 @@
       <p class="ps_gs-fz-12">
         |
       </p>
-      <div class="ps_gs-fz-12 text-primary"  @click="refreshComponent">
+      <div
+        class="ps_gs-fz-12 text-primary"
+        @click="refreshComponent"
+      >
         <a
           target="_blank"
         >
@@ -228,12 +231,12 @@ export default {
       : [];
   },
   watch: {
-   getPropertyFromShop(oldVal, newVal) {
-     if (oldVal !== newVal) {
-       console.log('coucou')
-           return this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
-    };
-   }
+    getPropertyFromShop(oldVal, newVal) {
+      if (oldVal !== newVal) {
+        console.log('coucou');
+        this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
+      }
+    },
   },
   googleUrl,
 };

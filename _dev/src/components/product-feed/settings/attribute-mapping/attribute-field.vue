@@ -83,6 +83,7 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
+import Categories from '@/enums/product-feed/attribute-mapping-categories';
 
 export default {
   data() {
@@ -125,7 +126,7 @@ export default {
     selectNotAvailable() {
       if (this.field.name === 'description') {
         this.attributesChecked = [];
-      } else if (this.category === 'electronics') {
+      } else if (this.category === Categories.ELECTRONICS) {
         this.attributesChecked = [];
         this.markdown = this.$t('productFeedSettings.attributeMapping.requiredForSomeCategories', [this.$options.googleUrl.learnRequirementsEnergyClass]);
         this.notAvailableSelected = true;
