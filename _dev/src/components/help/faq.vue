@@ -38,13 +38,15 @@
         >
           <div class="module-desc d-flex mb-4">
             <div>
+              <p>
+                {{ $t("help.intro") }}
+              </p>
               <strong class="font-weight-600">{{ $t("help.allowsYouTo.title") }}</strong>
               <ul class="mt-3">
-                <li>{{ $t("help.allowsYouTo.business") }}</li>
-                <li>{{ $t("help.allowsYouTo.account") }}</li>
-                <li>{{ $t("help.allowsYouTo.traffic") }}</li>
-                <li>{{ $t("help.allowsYouTo.inventory") }}</li>
-                <li>{{ $t("help.allowsYouTo.people") }}</li>
+                <li>{{ $t("help.allowsYouTo.easySync") }}</li>
+                <li>{{ $t("help.allowsYouTo.freeListing") }}</li>
+                <li>{{ $t("help.allowsYouTo.ssc") }}</li>
+                <li>{{ $t("help.allowsYouTo.reporting") }}</li>
               </ul>
             </div>
           </div>
