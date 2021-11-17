@@ -52,8 +52,6 @@ export default {
           this.$router.push({
             name: 'onboarding',
           });
-        } else {
-          console.log('déjà');
         }
       });
   },
