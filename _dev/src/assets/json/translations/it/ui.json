@@ -623,13 +623,13 @@
   },
   "help": {
     "title": "Assistenza per PrestaShop Google",
+    "intro": "PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across different networks like Google Search, YouTube or Gmail. Create Smart Shopping campaigns without leaving your PrestaShop dashboard and drive more traffic.",
     "allowsYouTo": {
       "title": "Questo modulo ti permette di:",
-      "business": "Gestire la tua attività",
-      "account": "Gestire il tuo account pubblicitario",
-      "traffic": "Capire il tuo traffico",
-      "inventory": "Costruire e gestire l'inventario",
-      "people": "Raggiungere più persone"
+      "easySync": "Easily sync your product catalog with Google to keep product details such as price and availability automatically updated",
+      "freeListing": "Enable free listings and broaden your reach by showing your products to shoppers browsing on the Shopping tab, for free",
+      "ssc": "Get started with Smart Shopping campaigns, set a daily budget and let Google’s smart technology optimize your campaigns",
+      "reporting": "Analyze your campaign performance without leaving PrestaShop"
     },
     "help": {
       "needHelp": "Hai bisogno di aiuto? Trovate qui la documentazione di questo modulo.",
