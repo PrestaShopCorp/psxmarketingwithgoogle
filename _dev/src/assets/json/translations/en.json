@@ -230,9 +230,9 @@
     "breadcrumb1": "Product feed",
     "breadcrumb2": "Product feed settings",
     "steps": {
-      "targetCountry": "Target country",
-      "shippingSettings": "Shipping settings",
-      "attributeMapping": "Attribute Mapping",
+      "shippingSettings": "Targeting & shipping",
+      "syncRules": "Feed sync set-up",
+      "attributeMapping": "Product attributes",
       "categoryMapping": "Category mapping",
       "summary": "Summary",
       "exportFeed": "Export feed!",
@@ -319,8 +319,6 @@
       "commonsTitle": "None of the above",
       "learnRequirementsProductSpecification": "Learn more about requirements & supported values for the Shopping product data specification",
       "footerNotice": "Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
-      "addNewAttributes": "[Add new attributes in your PrestaShop Catalog]({0})[:target=\"_blank\" class=\"text-primary\"]",
-      "refreshAttributes": "Refresh if you have added new attributes",    
       "requiredForSomeCategories": "This field is required for some product categories. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
       "sellApparelAndAccessories": "Apparel and Accessories",
       "sellRefurbishedProducts": "Refurbished",
@@ -599,6 +597,7 @@
       "conversions": "Conversions",
       "conversionsRate": "Conversions rate",
       "productFilter": "Product filter",
+      "dimension": "Dimension",
       "duration": "Duration date",
       "target": "Target",
       "actions": "Actions",
@@ -625,13 +624,13 @@
   },
   "help": {
     "title": "Help for PrestaShop Google",
-    "intro": "PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across different networks like Google Search, YouTube or Gmail. Create Smart Shopping campaigns without leaving your PrestaShop dashboard and drive more traffic.",
     "allowsYouTo": {
       "title": "This module allows you to:",
-      "easySync": "Easily sync your product catalog with Google to keep product details such as price and availability automatically updated",
-      "freeListing": "Enable free listings and broaden your reach by showing your products to shoppers browsing on the Shopping tab, for free",
-      "ssc": "Get started with Smart Shopping campaigns, set a daily budget and let Google’s smart technology optimize your campaigns",
-      "reporting": "Analyze your campaign performance without leaving PrestaShop"
+      "business": "Manage your business",
+      "account": "Manage your ad account",
+      "traffic": "Understand your traffic",
+      "inventory": "Build and manage inventory",
+      "people": "Reach more people"
     },
     "help": {
       "needHelp": "Need help? Find here the documentation of this module.",
@@ -814,20 +813,12 @@
     "approvalStatusLang" : "placeholder",
     "approvalStatusIssues" : "Reason why your product is not approved for Google",
     "attributeMapping" : {
-      "description" : "Your product's description. Max 5000 characters.",
+      "description" : "All product details relevant to your customers",
       "condition" : "The condition of your product at time of sale.",
-      "color" : "Your product's color(s). Max 100 alphanumeric characters (max 40 characters per color)",
+      "color" : "Your product's color",
       "size" : "Your product's size",
       "ageGroup" : "The demographic for which your product is intended (if product is dedicated to specific age group)",
-      "gender" : "The gender for which your product is intended",
-      "gtin": "Your product's Global Trade Item Number (GTIN)",
-      "mpn": "Your product's Manufacturer Part Number (mpn)",
-      "brand" : "Name of your brand. Max 70 characters",
-      "energyEfficiencyClass": "Your product's energy label.",
-      "maxEnergyEfficiencyClass": "Your product's energy label.",
-      "minEnergyEfficiencyClass":"Your product's energy label.",
-      "material": "Your product's fabric or material",
-      "pattern": "Your product's pattern or graphic print"
+      "gender" : "The gender for which your product is intended"
     },
     "GMCForm" : {
       "businessAddress" : "The pre-filled address is the one you entered in the back office",

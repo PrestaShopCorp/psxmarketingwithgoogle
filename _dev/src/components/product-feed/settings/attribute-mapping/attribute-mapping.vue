@@ -67,6 +67,29 @@
         {{ $t('productFeedSettings.attributeMapping.footerNotice') }}
       </p>
     </b-form>
+
+    <div
+      class="d-flex"
+    >
+      <VueShowdown
+        class="ps_gs-fz-12 mb-0 text-primary"
+        tag="p"
+        :markdown="$t('productFeedSettings.attributeMapping.addNewAttributes',
+                      [$store.getters['app/GET_ATTRIBUTES_URL']])"
+        :extensions="['extended-link', 'no-p-tag']"
+      />
+      <p class="ps_gs-fz-12">
+        |
+      </p>
+      <div class="ps_gs-fz-12 text-primary"  @click="refreshComponent">
+        <a
+          target="_blank"
+        >
+          {{ $t('productFeedSettings.attributeMapping.refreshAttributes') }}
+        </a>
+      </div>
+    </div>
+
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
@@ -193,12 +216,24 @@ export default {
           .filter((cat) => cat !== Categories.NONE);
       }
     },
+    refreshComponent() {
+      console.log('hey');
+      this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
+    },
   },
   mounted() {
     this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
     this.categoryProductsSelected = localStorage.getItem('categoryProductsSelected')
       ? JSON.parse(localStorage.getItem('categoryProductsSelected'))
       : [];
+  },
+  watch: {
+   getPropertyFromShop(oldVal, newVal) {
+     if (oldVal !== newVal) {
+       console.log('coucou')
+           return this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
+    };
+   }
   },
   googleUrl,
 };
