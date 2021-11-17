@@ -44,6 +44,7 @@ export default {
       await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
     },
   },
+
   mounted() {
     this.getDatas()
       .then(() => {
@@ -51,6 +52,8 @@ export default {
           this.$router.push({
             name: 'onboarding',
           });
+        } else {
+          console.log('déjà');
         }
       });
   },

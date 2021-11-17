@@ -96,6 +96,10 @@ export default {
       type: Object,
       required: true,
     },
+    category: {
+      type: String,
+      required: false,
+    },
   },
   computed: {
     options() {
@@ -119,12 +123,9 @@ export default {
   },
   methods: {
     selectNotAvailable() {
-      // TODO  Might need refacto. Not a fan of hardcoding the values in attributes-to-map.json
-      if (this.field.label === 'Description') {
+      if (this.field.name === 'description') {
         this.attributesChecked = [];
-      } else if (this.field.label === 'Maximum energy efficient class'
-      || this.field.label === 'Energy class'
-      || this.field.label === 'Minimum energy efficient class') {
+      } else if (this.category === 'electronics') {
         this.attributesChecked = [];
         this.markdown = this.$t('productFeedSettings.attributeMapping.requiredForSomeCategories', [this.$options.googleUrl.learnRequirementsEnergyClass]);
         this.notAvailableSelected = true;

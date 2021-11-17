@@ -47,7 +47,10 @@
               :cols="12"
               :md="6"
             >
-              <attribute-field :field="field" />
+              <attribute-field
+                :field="field"
+                :category="group.category"
+              />
             </b-col>
           </template>
         </b-form-row>
