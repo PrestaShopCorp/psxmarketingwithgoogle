@@ -10,6 +10,7 @@ import ProductFeedSettingsSummary from '@/components/product-feed/settings/summa
 import ProductFeedCardNextSyncCard from '@/components/product-feed/product-feed-card-next-sync-card.vue';
 import Stepper from '@/components/commons/stepper.vue';
 import PsSelect from '@/components/commons/ps-select.vue';
+import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 
 import {
   Summary,
@@ -33,6 +34,9 @@ describe('summary', () => {
       beforeMount: Summary.args.beforeMount,
       localVue,
       store: new Vuex.Store(cloneStore()),
+      stubs: {
+        ActionsButtons,
+      },
     });
     expect(wrapper.find('b-button').exists()).toBeTruthy();
     await expect(wrapper.find('b-button').trigger('click'));

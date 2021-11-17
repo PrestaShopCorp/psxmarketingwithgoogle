@@ -116,33 +116,12 @@
         </b-row>
       </b-container>
     </section>
-    <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
-      <b-button
-        @click="cancel"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t("cta.cancel") }}
-      </b-button>
-      <b-button
-        @click="previousStep"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t('cta.previous') }}
-      </b-button>
-      <b-button
-        @click="saveAll"
-        :disabled="disabledExportButton"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0 mr-md-0"
-        variant="primary"
-      >
-        {{ $t("cta.export") }}
-      </b-button>
-    </div>
+    <actions-buttons
+      :next-step="saveAll"
+      :previous-step="previousStep"
+      :disable-continue="disabledExportButton"
+      :ok-label="$t('cta.export')"
+    />
     <settings-footer
       :message="$t('freeListingCard.googleDelay')"
     />
@@ -163,6 +142,7 @@ import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
 import googleUrl from '@/assets/json/googleUrl.json';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
+import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import ProductFeedCardReportCard from '../../product-feed-card-report-card';
 import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
 import TableRowMapping from '@/components/product-feed/commons/table-row-mapping';
@@ -173,6 +153,7 @@ export default {
   name: 'ProductFeedSettingsSummary',
   components: {
     SettingsFooter,
+    ActionsButtons,
     ProductFeedCardReportCard,
     ProductFeedCardNextSyncCard,
     BTableSimple,

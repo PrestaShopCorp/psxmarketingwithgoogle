@@ -92,26 +92,10 @@
         </div>
       </b-alert>
     </div>
-    <div class="d-md-flex text-center justify-content-end mt-3">
-      <b-button
-        @click="cancel"
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-      >
-        {{ $t('cta.cancel') }}
-      </b-button>
-      <b-button
-        data-test-id="continueButton"
-        @click="nextStep"
-        size="sm"
-        :disabled="disableContinue"
-        class="mx-1 mt-3 mt-md-0 mr-md-0"
-        variant="primary"
-      >
-        {{ $t('cta.saveAndContinue') }}
-      </b-button>
-    </div>
+    <actions-buttons
+      :next-step="nextStep"
+      :disable-continue="disableContinue"
+    />
     <settings-footer />
   </b-form>
 </template>
@@ -119,6 +103,7 @@
 <script>
 import {VueShowdown} from 'vue-showdown';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
+import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import SelectCountry from '@/components/commons/select-country.vue';
 
 export default {
@@ -127,6 +112,7 @@ export default {
     SettingsFooter,
     VueShowdown,
     SelectCountry,
+    ActionsButtons,
   },
   data() {
     return {
@@ -155,7 +141,6 @@ export default {
     disableContinue() {
       return this.countries.length < 1 || this.loading;
     },
-
   },
   methods: {
     nextStep() {
@@ -177,9 +162,6 @@ export default {
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
         window.scrollTo(0, 0);
       }
-    },
-    cancel() {
-      this.$emit('cancelProductFeedSettingsConfiguration');
     },
     saveCountrySelected(value) {
       this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', value);

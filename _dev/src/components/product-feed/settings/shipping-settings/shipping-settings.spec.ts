@@ -9,6 +9,7 @@ import {shallowMount} from '@vue/test-utils';
 import config, {cloneStore} from '@/../tests/init';
 
 import ShippingSettings from '@/components/product-feed/settings/shipping-settings/shipping-settings.vue';
+import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from '@/components/product-feed/settings/shipping-settings/table-row-carrier.vue';
 import {productFeed} from '@/../.storybook/mock/product-feed';
 
@@ -151,6 +152,9 @@ describe('shipping-settings.vue', () => {
         'b-tooltip': VBTooltip,
       },
       ...config,
+      stubs: {
+        ActionsButtons,
+      },
     });
 
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
@@ -169,6 +173,9 @@ describe('shipping-settings.vue', () => {
         'b-tooltip': VBTooltip,
       },
       ...config,
+      stubs: {
+        ActionsButtons,
+      },
     });
 
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
@@ -183,6 +190,9 @@ describe('shipping-settings.vue', () => {
         'b-tooltip': VBTooltip,
       },
       ...config,
+      stubs: {
+        ActionsButtons,
+      },
     });
 
     // No disabled attribute = enabled
@@ -199,6 +209,9 @@ describe('shipping-settings.vue', () => {
         'b-tooltip': VBTooltip,
       },
       ...config,
+      stubs: {
+        ActionsButtons,
+      },
     });
 
     // No disabled attribute = enabled
