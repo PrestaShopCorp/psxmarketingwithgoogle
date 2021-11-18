@@ -271,14 +271,14 @@
       "transitTimeTooltip": "Entrez le temps qu'il faut pour que votre commande soit expédiée au client une fois qu'il quitte votre entrepôt.",
       "shippingInformationTitle": "Informations sur les transporteurs et l'expédition",
       "shippingInformationIntro": "Entrez les informations d'expédition de votre liste de transporteurs. Ils doivent expédier à l'adresse d'un client pour être synchronisés dans Google Shopping.",
-      "shippingTableNotice": "",
+      "shippingTableNotice": "Make sure your store message matches your Google shopping delivery time information.",
       "shippingSwitchCarrier": "Cliquer pour activer / désactiver le transporteur",
       "carriersDropdownHeader": "Copier les informations d'expédition dans",
       "carriersDropdownHiddenLabel": "Copier l'information du transporteur vers d'autres transporteurs",
       "noCarriersTitle": "Vous n'avez aucun transporteur de livraison",
       "noCarriersDescription": "Veuillez vous rendre à la page des transporteurs pour ajouter des transporteurs",
-      "addNewCarriers": "",
-      "refreshCarriers": ""
+      "addNewCarriers": "Ajouter ou mettre à jour des transporteurs",
+      "refreshCarriers": "Refresh if you have edited your carriers"
     },
     "export": {
       "summarySyncDailyAt": "Synchronisation quotidienne à {0}",
@@ -321,8 +321,8 @@
       "commonsTitle": "Aucune des propositions mentionnées ci-dessus",
       "learnRequirementsProductSpecification": "En savoir plus sur les exigences et les valeurs prises en charge pour la spécification de données de produit sur Shopping",
       "footerNotice": "Décrivez les données de vos produits à l'aide d'attributs. De plus, vous pouvez ajouter des attributs supplémentaires requis pour les fiches gratuites. La règle générale est : plus il y a d'attributs, mieux c'est.",
-      "addNewAttributes": "",
-      "refreshAttributes": "",
+      "addNewAttributes": "Add new attributes in your PrestaShop Catalog",
+      "refreshAttributes": "Refresh if you have edited your attributes",
       "requiredForSomeCategories": "Ce champ est requis pour certaines catégories de produits. [En savoir plus]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
       "sellApparelAndAccessories": "Vêtements et accessoires",
       "sellRefurbishedProducts": "Remis à neuf",
@@ -506,9 +506,9 @@
       "alert": "La synchronisation produit a échoué. Vérifiez les raisons possibles dans [Merchant Center]({0})[:target=\"_blank\"] ou contactez le [service client](mailto:support-google@prestashop.com)."
     },
     "productStatus": {
-      "title": "Statut du produit",
+      "title": "Statut des produits",
       "description": "Le statut de votre produit vous permet de savoir si votre produit est éligible pour apparaître dans la destination pour laquelle vous avez opté.  \nUn produit en attente n'apparaîtra pas dans les annonces ou les fiches gratuites car il est en cours d'examen par Google.  \nLes produits en cours d'expiration expireront dans les 3 prochains jours et ne pourront plus apparaître dans les annonces ou les fiches gratuites.",
-      "alert": "Il faut compter 3 à 5 jours ouvrables pour examiner les produits",
+      "alert": "Il faut compter 3 à 5 jours ouvrables à Google pour examiner les produits",
       "approvedProducts": "Approuvé",
       "pendingProducts": "En attente",
       "expiringProducts": "En cours d'expiration",
@@ -544,23 +544,23 @@
     }
   },
   "campaignCard": {
-    "title": "Créez votre campagne Smart Shopping en quelques clics",
-    "description": "Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it\\'s that easy!",
+    "title": "Créez votre campagne Shopping Intelligente en quelques clics",
+    "description": "L'IA de Google affichera les annonces des produits recherchés aux acheteurs intéressés au bon moment, augmentant ainsi vos ventes.\n\nDéfinissez un budget quotidien et lancez facilement votre campagne Shopping - vous n'êtes facturé que lorsque les visiteurs cliquent sur vos annonces, c'est aussi simple que cela !",
     "footer": "Nous devrons activer les balises de remarketing et de suivi des conversions pour que vous puissiez mener des campagnes Smart Shopping"
   },
   "keymetrics": {
     "title": "Chiffres clés",
     "accountTitle": "Performance du compte",
-    "accountSubtitle": "Voyez ces chiffres étonnants",
-    "dailyResultTitle": "Résultats quotidiens",
+    "accountSubtitle": "Découvrez ci-dessous l'ensemble des résultats clés de vos campagnes",
+    "dailyResultTitle": "Résultats journaliers",
     "periods": {
       "yesterday": "Hier",
       "last7Days": "7 derniers jours",
       "last30Days": "30 derniers jours",
       "3Months": "3 mois"
     },
-    "impressions": "Impression",
-    "impressionsTooltip": "Compte du nombre de fois où votre annonce est apparue sur une page de résultats de recherche ou un site Web du réseau Google.",
+    "impressions": "Impressions",
+    "impressionsTooltip": "Nombre total de fois où votre annonce est apparue sur une page de résultats de recherche ou un site Web du réseau Google.",
     "clicks": "Clics",
     "clicksTooltip": "Lorsqu'une personne clique sur votre annonce, par exemple sur le titre ou le numéro de téléphone d'une annonce textuelle, Google Ads le comptabilise comme un clic.",
     "conversions": "Conversion",
@@ -568,7 +568,7 @@
     "averageCostPerClick": "Coût moyen par clic",
     "averageCostPerClickTooltip": "Le coût total de tous les clics divisé par le nombre total de clics reçus.",
     "costs": "Coûts",
-    "costsTooltip": "La somme de vos coûts par clic (CPC) et de vos coûts par millier d'impressions (CPM) pendant cette période.",
+    "costsTooltip": "La somme de vos coûts par clic (CPC) et les coûts par mille impressions (CPM) au cours de cette période.",
     "sales": "Ventes",
     "noData": "Pas encore de données",
     "salesTooltip": "La valeur des conversions. Cela inclut uniquement les actions de conversion dont l'attribut include_in_conversions_metric est défini sur true. Si vous utilisez les enchères basées sur les conversions, vos stratégies d'enchères seront optimisées pour ces conversions."
@@ -812,7 +812,7 @@
     "mustAgreeGoogleTerms": "Vous devez accepter les conditions d'utilisation de Google",
     "mustAgreeGoogleAdsTerms": "Vous devez accepter les conditions générales",
     "approvalStatusStatus": "Disponibilité de vos produits pour des annonces et des listings gratuits",
-    "approvalStatusLang": "",
+    "approvalStatusLang": "placeholder",
     "approvalStatusIssues": "Raison pour laquelle votre produit n'est pas approuvé par Google",
     "attributeMapping": {
       "description": "Tous les détails des produits pertinents pour vos clients",
