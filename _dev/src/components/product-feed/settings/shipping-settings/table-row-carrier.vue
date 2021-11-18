@@ -27,6 +27,7 @@
         variant="text"
         class="maxw-sm-160 ps-dropdown ps_gs-carrier__dropdown-delivery-type
         psxmarketingwithgoogle-dropdown bordered"
+        :class="{'is-invalid' : deliveryTypeMessage === null}"
         :toggle-class="{'ps-dropdown__placeholder' : deliveryTypeMessage === null}"
         menu-class="ps-dropdown"
         size="sm"

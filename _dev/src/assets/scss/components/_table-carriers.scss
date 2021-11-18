@@ -16,8 +16,14 @@
     margin-bottom: 0;
   }
 
+  #{$root}__dropdown-delivery-type {
+    &.is-invalid {
+      border-color: $danger;
+    }
+  }
+
   &__input-number {
-    width: calc(4.5ch + 1rem);
+    width: calc(6ch + 1rem);
     padding-left: 0.25rem;
     padding-right: 0.25rem;
 
@@ -45,9 +51,9 @@
     order: 2;
     display: block;
     height: rem(1);
-    width: rem(8);
+    width: rem(4);
     background-color: $body-color;
-    margin: 0 rem(8);
+    margin: 0 rem(4);
   }
 
   &__btn-copy {
@@ -70,7 +76,8 @@
       background-color: transparent;
     }
 
-    #{$root}__dropdown-delivery-type {
+    #{$root}__dropdown-delivery-type,
+    #{$root}__dropdown-delivery-type.is-invalid {
       border-color: rgba($gray-300, 0.5);
 
       .dropdown-toggle, .dropdown-toggle:after {
