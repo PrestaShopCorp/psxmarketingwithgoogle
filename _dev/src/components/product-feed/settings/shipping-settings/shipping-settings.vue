@@ -98,6 +98,7 @@
       :next-step="nextStep"
       :previous-step="previousStep"
       :disable-continue="disableContinue"
+      @cancelProductFeedSettingsConfiguration="cancel()"
     />
     <settings-footer />
   </div>

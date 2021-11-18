@@ -121,6 +121,7 @@
       :previous-step="previousStep"
       :disable-continue="disabledExportButton"
       :ok-label="$t('cta.export')"
+      @cancelProductFeedSettingsConfiguration="cancel()"
     />
     <settings-footer
       :message="$t('freeListingCard.googleDelay')"

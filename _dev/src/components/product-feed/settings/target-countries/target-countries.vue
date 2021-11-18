@@ -95,6 +95,7 @@
     <actions-buttons
       :next-step="nextStep"
       :disable-continue="disableContinue"
+      @cancelProductFeedSettingsConfiguration="cancel()"
     />
     <settings-footer />
   </b-form>
@@ -143,6 +144,9 @@ export default {
     },
   },
   methods: {
+    cancel() {
+      this.$emit('cancelProductFeedSettingsConfiguration');
+    },
     nextStep() {
       this.loading = true;
       if (this.shippingSettings) {
