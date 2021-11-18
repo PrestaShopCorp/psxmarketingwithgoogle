@@ -20,6 +20,15 @@ declare global {
       psxMktgWithGoogleModuleVersion: String,
       psVersion: String,
       psxMktgWithGoogleSegmentId: String,
+      psxMktgWithGoogleAdminAjaxUrl: String,
+      isCountryMemberOfEuropeanUnion: boolean,
+      psxMktgWithGoogleShopCurrency: any,
+      psxMktgWithGoogleMaintenanceSettingsUrl: String,
+      psxMktgWithGoogleCarriersUrl?: String,
+      psxMktgWithGoogleAttributesUrl?: String,
+      psxMktgWithGoogleProductDetailUrl: String,
+      psxMktgWithGoogleStoreSettingsUrl: String,
+      psxMktgWithGoogleOnProductionEnvironment:boolean,
     }
   //   interface IntrinsicElements {
   //     [elem: string]: any;

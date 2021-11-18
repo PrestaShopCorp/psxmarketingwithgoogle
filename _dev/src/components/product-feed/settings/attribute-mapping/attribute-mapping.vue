@@ -67,6 +67,32 @@
         {{ $t('productFeedSettings.attributeMapping.footerNotice') }}
       </p>
     </b-form>
+
+    <div
+      class="text-primary"
+    >
+      <a
+        class="ps_gs-fz-12 mb-0 text-primary"
+        :href="$store.getters['app/GET_ATTRIBUTES_URL']"
+        target="_blank"
+      >
+        {{ $t('productFeedSettings.attributeMapping.addNewAttributes') }}
+      </a>
+      <span class="ps_gs-fz-12 text-dark">
+        |
+      </span>
+      <b-button
+        size="sm"
+        variant="link"
+        class="ps_gs-fz-12 font-weight-normal p-0 border-0
+        text-decoration-underline text-wrap text-left"
+        @click="refreshComponent"
+      >
+        {{ $t('productFeedSettings.attributeMapping.refreshAttributes') }}
+        <i class="material-icons ps_gs-fz-12">refresh</i>
+      </b-button>
+    </div>
+
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
@@ -193,6 +219,9 @@ export default {
         this.categoryProductsSelected = this.categoryProductsSelected
           .filter((cat) => cat !== Categories.NONE);
       }
+    },
+    refreshComponent() {
+      this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE');
     },
   },
   mounted() {

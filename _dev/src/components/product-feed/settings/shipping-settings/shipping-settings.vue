@@ -82,17 +82,34 @@
       </b-tbody>
     </b-table-simple>
     <!-- END > TABLE -->
+    <p class="text-muted">
+      <i class="material-icons-round ps_gs-fz-14 d-inline-block align-middle mr-2">warning_amber</i>
+      <span class="ps_gs-fz-12 align-middle">
+        {{ $t('productFeedSettings.shipping.shippingTableNotice') }}
+      </span>
+    </p>
     <div
-      class="d-flex align-items-center justify-content-end"
+      class="text-primary"
     >
-      <i class="material-icons-round ps_gs-fz-14 text-secondary mr-2">warning_amber</i>
-      <VueShowdown
-        class="ps_gs-fz-12 mb-0 text-secondary"
-        tag="p"
-        :markdown="$t('productFeedSettings.shipping.shippingTableNotice',
-                      [$store.getters['app/GET_CARRIERS_URL']])"
-        :extensions="['extended-link', 'no-p-tag']"
-      />
+      <a
+        class="ps_gs-fz-12 mb-0 text-primary"
+        :href="$store.getters['app/GET_CARRIERS_URL']"
+        target="_blank"
+      >
+        {{ $t('productFeedSettings.shipping.addNewCarriers') }}
+      </a>
+      <span class="ps_gs-fz-12 text-dark">
+        |
+      </span>
+      <b-button
+        variant="link"
+        class="ps_gs-fz-12 font-weight-normal p-0 border-0
+        text-decoration-underline text-wrap text-left"
+        @click="refreshComponent"
+      >
+        {{ $t('productFeedSettings.shipping.refreshCarriers') }}
+        <i class="material-icons ps_gs-fz-12">refresh</i>
+      </b-button>
     </div>
     <actions-buttons
       :next-step="nextStep"
@@ -105,7 +122,6 @@
 </template>
 
 <script>
-import {VueShowdown} from 'vue-showdown';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
@@ -116,7 +132,6 @@ export default {
   components: {
     SettingsFooter,
     TableRowCarrier,
-    VueShowdown,
     ActionsButtons,
   },
   data() {
@@ -169,6 +184,9 @@ export default {
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
+    },
+    refreshComponent() {
+      this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
     },
   },
 };

@@ -74,6 +74,33 @@ export enum AttributesTypes {
   FEATURE = 'feature',
 }
 
+export const commonAttributes: readonly AttributesInfos[] = [
+  {
+    name: 'ean13',
+    type: AttributesTypes.PRODUCT,
+  },
+  {
+    name: 'isbn',
+    type: AttributesTypes.PRODUCT,
+  },
+  {
+    name: 'upc',
+    type: AttributesTypes.PRODUCT,
+  },
+  {
+    name: 'mpn',
+    type: AttributesTypes.PRODUCT,
+  },
+  {
+    name: 'description',
+    type: AttributesTypes.PRODUCT,
+  },
+  {
+    name: 'shortDescription',
+    type: AttributesTypes.PRODUCT,
+  },
+];
+
 export interface State {
   isSyncSummaryLoadingInProgress: boolean;
   errorAPI: boolean;
@@ -133,30 +160,5 @@ export const state: State = {
     items: [],
   },
   attributesToMap,
-  attributesData: [
-    {
-      name: 'ean13',
-      type: AttributesTypes.PRODUCT,
-    },
-    {
-      name: 'isbn',
-      type: AttributesTypes.PRODUCT,
-    },
-    {
-      name: 'upc',
-      type: AttributesTypes.PRODUCT,
-    },
-    {
-      name: 'mpn',
-      type: AttributesTypes.PRODUCT,
-    },
-    {
-      name: 'description',
-      type: AttributesTypes.PRODUCT,
-    },
-    {
-      name: 'shortDescription',
-      type: AttributesTypes.PRODUCT,
-    },
-  ],
+  attributesData: [],
 };

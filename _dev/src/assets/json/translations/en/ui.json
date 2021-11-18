@@ -271,12 +271,14 @@
       "transitTimeTooltip": "Enter how long it takes for your order to be shipped to the customer once it leaves your facility.",
       "shippingInformationTitle": "Carriers & shipping information",
       "shippingInformationIntro": "Enter shipping information for your carriers list. They have to ship to an address to be synchronized in Google Shopping.",
-      "shippingTableNotice": "Make sure your store message matches your Google shopping delivery time information. [Add or update carriers]({0})[:target=\"_blank\" class=\"text-primary\"]",
+      "shippingTableNotice": "Make sure your store message matches your Google shopping delivery time information.",
       "shippingSwitchCarrier": "Switch to enable / desable carrier",
       "carriersDropdownHeader": "Copy shipping information to",
       "carriersDropdownHiddenLabel": "Copy information of the carrier to other carriers",
       "noCarriersTitle": "You don’t have any shipping carriers",
-      "noCarriersDescription": "Please head to carriers page to add shipping carriers"
+      "noCarriersDescription": "Please head to carriers page to add shipping carriers",
+      "addNewCarriers" : "Add or update carriers",
+      "refreshCarriers": "Refresh if you have edited your carriers"
     },
     "export": {
       "summarySyncDailyAt": "Sync daily at {0}",
@@ -319,6 +321,8 @@
       "commonsTitle": "None of the above",
       "learnRequirementsProductSpecification": "Learn more about requirements & supported values for the Shopping product data specification",
       "footerNotice": "Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
+      "addNewAttributes": "Add new attributes in your PrestaShop Catalog",
+      "refreshAttributes": "Refresh if you have edited your attributes",
       "requiredForSomeCategories": "This field is required for some product categories. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
       "sellApparelAndAccessories": "Apparel and Accessories",
       "sellRefurbishedProducts": "Refurbished",

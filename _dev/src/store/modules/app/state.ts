@@ -30,6 +30,7 @@ export interface State {
   shopIsOnMaintenanceMode: boolean;
   psxMktgWithGoogleMaintenanceSettingsUrl: string;
   psxMktgWithGoogleCarriersUrl: string;
+  psxMktgWithGoogleAttributesUrl: string;
   psxMktgWithGoogleProductDetailUrl: string;
   psxMktgWithGoogleStoreSettingsUrl: string;
   targetCountries: string[] | null;
@@ -75,6 +76,7 @@ export const state: State = {
   psxMktgWithGoogleMaintenanceSettingsUrl: '',
   shopIsOnMaintenanceMode: document.getElementById('maintenance-mode') !== null,
   psxMktgWithGoogleCarriersUrl: '',
+  psxMktgWithGoogleAttributesUrl: '',
   psxMktgWithGoogleProductDetailUrl: '',
   psxMktgWithGoogleStoreSettingsUrl: '',
   psxMktgWithGoogleOnProductionEnvironment: false,

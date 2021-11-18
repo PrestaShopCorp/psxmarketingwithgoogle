@@ -14,6 +14,7 @@ const {
   psxMktgWithGoogleModuleVersion,
   psxMktgWithGoogleMaintenanceSettingsUrl,
   psxMktgWithGoogleCarriersUrl,
+  psxMktgWithGoogleAttributesUrl,
   psxMktgWithGoogleProductDetailUrl,
   psxMktgWithGoogleStoreSettingsUrl,
   psxMtgWithGoogleDefaultShopCountry,
@@ -31,11 +32,12 @@ const state = Object.assign(
   {psVersion} || '',
   {psxMktgWithGoogleModuleVersion} || '',
   {psxMktgWithGoogleMaintenanceSettingsUrl} || '',
-  {psxMktgWithGoogleCarriersUrl} || '',
   {psxMktgWithGoogleProductDetailUrl} || '',
   {psxMktgWithGoogleStoreSettingsUrl} || '',
   {psxMtgWithGoogleDefaultShopCountry} || {},
   {psxMktgWithGoogleOnProductionEnvironment} || false,
+  {psxMktgWithGoogleCarriersUrl} || document.querySelector('#subtab-AdminCarriers a')?.getAttribute('href'),
+  {psxMktgWithGoogleAttributesUrl} || document.querySelector('#subtab-AdminParentAttributesGroups a')?.getAttribute('href'),
 );
 
 /**

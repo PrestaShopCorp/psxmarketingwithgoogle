@@ -38,6 +38,9 @@ export default {
   [GettersTypes.GET_CARRIERS_URL](state: LocalState): string {
     return state.psxMktgWithGoogleCarriersUrl;
   },
+  [GettersTypes.GET_ATTRIBUTES_URL](state: LocalState): string {
+    return state.psxMktgWithGoogleAttributesUrl;
+  },
   [GettersTypes.GET_PRODUCT_DETAIL_BASE_URL](state: LocalState): string {
     return state.psxMktgWithGoogleProductDetailUrl;
   },

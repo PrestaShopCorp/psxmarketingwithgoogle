@@ -23,6 +23,7 @@ export const initialStateApp = {
   shopIsOnMaintenanceMode: false,
   psxMktgWithGoogleProductDetailUrl: 'https://my-shop.com/admin-dev/index.php/sell/catalog/products/1?token=blabla',
   psxMktgWithGoogleCarriersUrl: '/',
+  psxMktgWithGoogleAttributesUrl: '/',
 };
 
 export const stateWithMaintenanceModeOn = {

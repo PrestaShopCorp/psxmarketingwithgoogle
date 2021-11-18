@@ -16,6 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import {LogarithmicScale} from 'chart.js';
 import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import MutationsTypes from './mutations-types';
 import {
@@ -23,6 +24,7 @@ import {
   ProductInfos,
   ProductFeedValidationSummary,
   AttributesInfos,
+  commonAttributes,
 } from './state';
 
 type payloadObject = {
@@ -122,8 +124,23 @@ export default {
   },
   [MutationsTypes.SAVE_ATTRIBUTES_SHOP](state: LocalState, payload: AttributesInfos[]) {
     state.attributesData.push(...payload);
+    state.attributesData.forEach((data, indexToDelete) => {
+      // remove deleted attributes if new call without total refresh
+      const find = payload.findIndex((i) => i.name === data.name);
+      if (find === -1) {
+        state.attributesData.splice(indexToDelete, 1);
+      }
+    });
+    state.attributesData.push(...commonAttributes);
+    // remove duplicates attributes if new call without total refresh
+    state.attributesData = state.attributesData.reduce((acc: any, current: AttributesInfos) => {
+      const x = acc.find((item) => item.name === current.name);
+      if (!x) {
+        return acc.concat([current]);
+      }
+      return acc;
+    }, []);
     const getAttributesNames = state.attributesData.map((attribute) => attribute.name);
-
     state.attributesToMap.forEach((category) => {
       category.fields.forEach((field) => {
         field.recommended = field.recommended.filter(
