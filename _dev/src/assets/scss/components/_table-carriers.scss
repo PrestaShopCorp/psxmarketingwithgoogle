@@ -16,6 +16,12 @@
     margin-bottom: 0;
   }
 
+  #{$root}__dropdown-delivery-type {
+    &.is-invalid {
+      border-color: $danger;
+    }
+  }
+
   &__input-number {
     width: calc(4.5ch + 1rem);
     padding-left: 0.25rem;
@@ -70,7 +76,8 @@
       background-color: transparent;
     }
 
-    #{$root}__dropdown-delivery-type {
+    #{$root}__dropdown-delivery-type,
+    #{$root}__dropdown-delivery-type.is-invalid {
       border-color: rgba($gray-300, 0.5);
 
       .dropdown-toggle, .dropdown-toggle:after {
