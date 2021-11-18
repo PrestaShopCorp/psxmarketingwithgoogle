@@ -114,7 +114,6 @@ export interface State {
   productsDatas: ProductsDatas;
   attributesToMap: any;
   attributesData: Array<AttributesInfos>;
-  attributesDataFromState: Array<AttributesInfos>;
 }
 
 export enum ProductStatues {
