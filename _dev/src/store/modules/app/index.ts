@@ -32,12 +32,12 @@ const state = Object.assign(
   {psVersion} || '',
   {psxMktgWithGoogleModuleVersion} || '',
   {psxMktgWithGoogleMaintenanceSettingsUrl} || '',
-  {psxMktgWithGoogleCarriersUrl} || document.getElementById("subtab-AdminCarriers")?.getElementsByTagName('a')[0].getAttribute("href"),
-  {psxMktgWithGoogleAttributesUrl} || document.getElementById("subtab-AdminParentAttributesGroups")?.getElementsByTagName('a')[0].getAttribute("href"),
   {psxMktgWithGoogleProductDetailUrl} || '',
   {psxMktgWithGoogleStoreSettingsUrl} || '',
   {psxMtgWithGoogleDefaultShopCountry} || {},
   {psxMktgWithGoogleOnProductionEnvironment} || false,
+  {psxMktgWithGoogleCarriersUrl} || document.querySelector('#subtab-AdminCarriers a')?.getAttribute('href'),
+  {psxMktgWithGoogleAttributesUrl} || document.querySelector('#subtab-AdminParentAttributesGroups a')?.getAttribute('href'),
 );
 
 /**
