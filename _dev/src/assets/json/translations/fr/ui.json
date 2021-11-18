@@ -271,14 +271,14 @@
       "transitTimeTooltip": "Entrez le temps qu'il faut pour que votre commande soit expédiée au client une fois qu'il quitte votre entrepôt.",
       "shippingInformationTitle": "Informations sur les transporteurs et l'expédition",
       "shippingInformationIntro": "Entrez les informations d'expédition de votre liste de transporteurs. Ils doivent expédier à l'adresse d'un client pour être synchronisés dans Google Shopping.",
-      "shippingTableNotice": "Make sure your store message matches your Google shopping delivery time information.",
+      "shippingTableNotice": "",
       "shippingSwitchCarrier": "Cliquer pour activer / désactiver le transporteur",
       "carriersDropdownHeader": "Copier les informations d'expédition dans",
       "carriersDropdownHiddenLabel": "Copier l'information du transporteur vers d'autres transporteurs",
       "noCarriersTitle": "Vous n'avez aucun transporteur de livraison",
       "noCarriersDescription": "Veuillez vous rendre à la page des transporteurs pour ajouter des transporteurs",
-      "addNewCarriers": "Add or update carriers",
-      "refreshCarriers": "Refresh if you have edited your carriers"
+      "addNewCarriers": "",
+      "refreshCarriers": ""
     },
     "export": {
       "summarySyncDailyAt": "Synchronisation quotidienne à {0}",
@@ -321,8 +321,8 @@
       "commonsTitle": "Aucune des propositions mentionnées ci-dessus",
       "learnRequirementsProductSpecification": "En savoir plus sur les exigences et les valeurs prises en charge pour la spécification de données de produit sur Shopping",
       "footerNotice": "Décrivez les données de vos produits à l'aide d'attributs. De plus, vous pouvez ajouter des attributs supplémentaires requis pour les fiches gratuites. La règle générale est : plus il y a d'attributs, mieux c'est.",
-      "addNewAttributes": "Add new attributes in your PrestaShop Catalog",
-      "refreshAttributes": "Refresh if you have edited your attributes",
+      "addNewAttributes": "",
+      "refreshAttributes": "",
       "requiredForSomeCategories": "Ce champ est requis pour certaines catégories de produits. [En savoir plus]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
       "sellApparelAndAccessories": "Vêtements et accessoires",
       "sellRefurbishedProducts": "Remis à neuf",
@@ -408,7 +408,7 @@
     "business": {
       "name": "Nom",
       "title": "Informations professionnelles",
-      "description": "Both time zone and currency settings are used to determine how you\\'re billed.  \n**You can never change the currency** you choose for your account, so choose it carefully.",
+      "description": "Les paramètres de fuseau horaire et de devise sont utilisés pour déterminer comment vous êtes facturé.  \n**Vous ne pouvez jamais changer la devise** que vous choisissez pour votre compte, alors choisissez la avec précaution.",
       "labelCountry": "Pays de facturation",
       "placeholderCountry": "Sélectionnez votre pays de facturation",
       "labelTimeZone": "Fuseau horaire",
@@ -418,7 +418,7 @@
     },
     "terms": {
       "title": "Conditions d'utilisation du programme Google",
-      "description": "By purchasing Shopping ads, I agree to comply with [Google Ads terms and conditions]({0})[:target=\\\"_blank\\\" class=\\\"ps_gs-fz-12 text-muted\\\"]",
+      "description": "En faisant des annonces Shopping, j'accepte de me conformer aux [conditions générales de Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]",
       "label": "J'ai lu et j'accepte ces conditions"
     }
   },
@@ -428,10 +428,10 @@
   },
   "smartShoppingCampaignCreation": {
     "breadcrumb1": "Campagne",
-    "breadcrumb2": "Créer une campagne d'achats intelligente",
+    "breadcrumb2": "Créer une campagne Shopping Intelligente",
     "inputNameHelper": "Le nom doit être unique et comporter 125 caractères maximum.",
     "inputNameLabel": "Nom de la campagne",
-    "inputNameTooltip": "Choisissez un nom qui décrit clairement le thème de la campagne afin que vous puissiez la retrouver facilement dans votre compte. Le nom de votre campagne n'est pas visible pour vos clients.",
+    "inputNameTooltip": "Choisissez un nom qui décrit clairement le thème de la campagne afin que vous puissiez la retrouver facilement dans votre compte. Le nom de votre campagne n'est pas visible par vos clients.",
     "inputNamePlaceholder": "Tapez le nom de la campagne",
     "inputCampaignNameInvalidFeedback": "Le nom doit être unique.",
     "inputDurationHelper": "Nous recommandons une durée minimale de 30 jours afin que Google puisse optimiser votre campagne.",
@@ -443,11 +443,11 @@
     "inputCountryHelper": "Pour cibler plusieurs pays, vous devez créer plusieurs campagnes.",
     "inputCountryImutable": "Le pays ne peut pas être changé après la création, si vous voulez cibler un autre pays, vous devrez créer une nouvelle campagne",
     "inputCountryLabel": "Pays cible",
-    "inputCountryTooltip": "Your campaign’s ads are eligible to show to customers in your targeted geographic locations, or to customers who have selected your targeted language as their browser’s language setting.",
-    "inputFiltersLegend": "Produits en campagne",
+    "inputCountryTooltip": "Les annonces de votre campagne sont affichées aux clients situés dans le même pays que le pays cible, ou aux clients qui ont choisi la langue ciblée comme paramètre de langue de leur navigateur.",
+    "inputFiltersLegend": "Produits dans la campagne",
     "inputFiltersAllLabel": "Inclure tous les produits synchronisés",
-    "inputFiltersPartialLabel": "Sélectionner des produits à l'aide de filtres de partition de produits",
-    "inputFiltersHelper": "Take some time to [read Google Shopping ads policies]({0})[:target=\\\"_blank\\\"] some product are prohibited or restricted.",
+    "inputFiltersPartialLabel": "Sélectionner des produits à l'aide des filtres",
+    "inputFiltersHelper": "Prenez un peu de temps pour [lire les règles de Google Shopping ads]({0})[:target=\"_blank\"] certains produits sont interdits ou restreints.",
     "inputBudgetHelper": "Vous ne paierez que si quelqu'un clique sur votre annonce.",
     "inputBudgetInvalidFeedback": "Votre budget quotidien doit être un nombre valide supérieur à 1. Pour tout nombre décimal, veuillez utiliser un point comme séparateur.",
     "inputBudgetFeedback": "Budget quotidien de la campagne",
@@ -457,9 +457,9 @@
     "formHelperTitle": "Activation de la campagne",
     "formHelperDescription": "Votre campagne se poursuivra jusqu'à ce que vous la mettiez en pause. Vous pouvez interrompre votre campagne à tout moment.",
     "errorNoProducts": "Vous voulez lancer une campagne, mais votre Google Merchant Center ne contient pas encore de produits. Votre campagne ne démarrera que lorsqu'au moins un produit a été approuvé par Google.",
-    "errorApi": "We were not able to publish your campaign, please try again.",
+    "errorApi": "Nous n'avons pas pu publier votre campagne, veuillez réessayer",
     "recapTitle": "Résumé de la campagne",
-    "recapFiltersLabel": "Produits en campagne",
+    "recapFiltersLabel": "Produits dans la campagne",
     "recapNoFiltersDescription": "Tous les produits synchronisés approuvés par Google",
     "recapFooter": "Vérifiez les informations de votre campagne avant de la valider. Vous pouvez toujours modifier certains paramètres pendant que la campagne est en cours.",
     "toggleCreationRemarketingTag": "Activer la balise Google Ads Remarketing sur mon site",
@@ -468,7 +468,7 @@
     "pauseCampaign": "Votre campagne se poursuivra jusqu'à ce que vous la mettiez en pause ou dès que la date de fin sera atteinte. Vous pouvez interrompre votre campagne à tout moment.",
     "alerts": {
       "noTag": "En n'ajoutant pas automatiquement la balise, Google ne sera pas en mesure d'envoyer les résultats des campagnes",
-      "duplicatedTag": "On dirait que vous avez déjà un tag lié à votre compte Google, la création d'un nouveau tag peut dupliquer des événements pour vos campagnes. Nous vous suggérons de ne conserver que celui que nous générons pour vous.",
+      "duplicatedTag": "Il semble que vous avez déjà un tag lié à votre compte Google, la création d'un nouveau tag peut dupliquer des événements pour vos campagnes. Nous vous suggérons de ne conserver que celui que nous générons pour vous.",
       "noConversionActions": "La balise de suivi a été activée, mais il n'y a aucune action de conversion définie dans la boutique. Cela peut être corrigé en créant de nouvelles."
     },
     "labelSelectedDimension": "Valeur de la dimension sélectionnée",
@@ -491,14 +491,14 @@
   "productFeedPage": {
     "breadcrumb": "Détails sur le statut du produit",
     "alert": {
-      "googleIsReviewing": "Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.",
+      "googleIsReviewing": "Vos produits sont en cours de révision  \nCela peut prendre 3 à 5 jours pour examiner vos produits. Une fois approuvés, ils seront disponibles pour les fiches gratuites et campagnes publicitaires.",
       "alertSuccess": "L'export de votre catalogue est lancé ! Une fois que vos produits sont approuvés, ils apparaîtront dans les résultats de recherche de l'onglet Google Shopping."
     },
     "syncStatus": {
       "title": "État de la synchronisation",
-      "readyForExport": "Le flux de produits est prêt pour l'exportation",
+      "readyForExport": "Le flux de produits est prêt pour l'export",
       "syncProcessed": "Synchronisation en cours/terminée",
-      "syncFailed": "Sync non réussie",
+      "syncFailed": "Échec de la synchronisation",
       "nextSync": "Prochaine synchronisation : {0}",
       "lastSync": "Dernière synchronisation : {0}",
       "prescanTitle": "Prochaine synchronisation à venir",
@@ -812,7 +812,7 @@
     "mustAgreeGoogleTerms": "Vous devez accepter les conditions d'utilisation de Google",
     "mustAgreeGoogleAdsTerms": "Vous devez accepter les conditions générales",
     "approvalStatusStatus": "Disponibilité de vos produits pour des annonces et des listings gratuits",
-    "approvalStatusLang": "placeholder",
+    "approvalStatusLang": "",
     "approvalStatusIssues": "Raison pour laquelle votre produit n'est pas approuvé par Google",
     "attributeMapping": {
       "description": "Tous les détails des produits pertinents pour vos clients",
