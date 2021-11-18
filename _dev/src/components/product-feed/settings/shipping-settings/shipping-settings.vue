@@ -93,6 +93,16 @@
                       [$store.getters['app/GET_CARRIERS_URL']])"
         :extensions="['extended-link', 'no-p-tag']"
       />
+      <p class="ps_gs-fz-12">
+        |
+      </p>
+      <b-button
+        variant="link"
+        class="ps_gs-fz-12 text-primary"
+        @click="refreshComponent"
+      >
+        {{ $t('productFeedSettings.attributeMapping.refreshCarriers') }}
+      </b-button>
     </div>
     <actions-buttons
       :next-step="nextStep"
@@ -168,6 +178,9 @@ export default {
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
+    },
+    refreshComponent() {
+      this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
     },
   },
 };

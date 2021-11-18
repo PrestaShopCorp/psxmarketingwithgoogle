@@ -81,16 +81,13 @@
       <p class="ps_gs-fz-12">
         |
       </p>
-      <div
+      <b-button
+        variant="link"
         class="ps_gs-fz-12 text-primary"
         @click="refreshComponent"
       >
-        <a
-          target="_blank"
-        >
-          {{ $t('productFeedSettings.attributeMapping.refreshAttributes') }}
-        </a>
-      </div>
+        {{ $t('productFeedSettings.attributeMapping.refreshAttributes') }}
+      </b-button>
     </div>
 
     <actions-buttons
@@ -220,8 +217,7 @@ export default {
       }
     },
     refreshComponent() {
-      console.log('hey');
-      this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
+      this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE');
     },
   },
   mounted() {
@@ -230,14 +226,7 @@ export default {
       ? JSON.parse(localStorage.getItem('categoryProductsSelected'))
       : [];
   },
-  watch: {
-    getPropertyFromShop(oldVal, newVal) {
-      if (oldVal !== newVal) {
-        console.log('coucou');
-        this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
-      }
-    },
-  },
+
   googleUrl,
 };
 </script>
