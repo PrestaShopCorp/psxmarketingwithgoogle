@@ -132,4 +132,27 @@ describe('table-row-carrier.vue', () => {
     // @ts-ignore
     expect(TableRowCarrier.computed.timeStateDelivery.call(carrier)).toBe(false);
   });
+
+  it('shows an error when delivery type is not selected', () => {
+    const wrapper = shallowMount(TableRowCarrier, {
+      propsData: {
+        carrier: {
+          carrierId: '13',
+          country: 'IT',
+          name: 'Carrier with fixed price',
+          delay: 'Maybe 1 day, maybe never',
+          enabledCarrier: true,
+          minHandlingTimeInDays: 99,
+          maxHandlingTimeInDays: 99,
+          minTransitTimeInDays: 3,
+          maxTransitTimeInDays: 3,
+          deliveryType: undefined,
+        },
+        carriersList: [],
+      },
+      ...config,
+    });
+    // @ts-ignore
+    expect(wrapper.find('[data-test-id="deliveryType"]').classes()).toContain('is-invalid');
+  });
 });
