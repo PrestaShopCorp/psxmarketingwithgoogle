@@ -230,7 +230,7 @@
     "breadcrumb1": "Flux produit",
     "breadcrumb2": "Paramètres du flux produit",
     "steps": {
-      "targetCountry": "Target country",
+      "targetCountry": "Pays cible",
       "shippingSettings": "Ciblage et expédition",
       "attributeMapping": "Attributs produit",
       "categoryMapping": "Mapping des catégories",
@@ -275,8 +275,8 @@
       "shippingSwitchCarrier": "Cliquer pour activer / désactiver le transporteur",
       "carriersDropdownHeader": "Copier les informations d'expédition dans",
       "carriersDropdownHiddenLabel": "Copier l'information du transporteur vers d'autres transporteurs",
-      "noCarriersTitle": "You don’t have any shipping carriers",
-      "noCarriersDescription": "Please head to carriers page to add shipping carriers"
+      "noCarriersTitle": "Vous n'avez aucun transporteur de livraison",
+      "noCarriersDescription": "Veuillez vous rendre à la page des transporteurs pour ajouter des transporteurs"
     },
     "export": {
       "summarySyncDailyAt": "Synchronisation quotidienne à {0}",
@@ -313,35 +313,35 @@
       "apparelAndAccessoriesTitle": "Je vends des vêtements et/ou des accessoires",
       "apparelAndAccessoriesSubtitle": "ex: vêtements, sacs, chaussures ou chapeaux",
       "electronicsTitle": "Je vend des appareils ménagers et/ou de cuisine",
-      "electronicsSubtitle": "i.e refrigerators, dishwashers, washing machines, light bulbs",
-      "variantSetsTitle": "My products have variant sets",
-      "variantSetsSubtitle": "i.e different graphic prints, patterns, fabrics or materials",
-      "commonsTitle": "None of the above",
-      "learnRequirementsProductSpecification": "Learn more about requirements & supported values for the Shopping product data specification",
-      "footerNotice": "Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
-      "requiredForSomeCategories": "This field is required for some product categories. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+      "electronicsSubtitle": "par exemple : réfrigérateurs, lave-vaisselle, lave-linge, ampoules",
+      "variantSetsTitle": "Mes produits ont des variantes",
+      "variantSetsSubtitle": "c'est-à-dire des motifs, des tissus ou des matériaux différents.",
+      "commonsTitle": "Aucune des propositions mentionnées ci-dessus",
+      "learnRequirementsProductSpecification": "En savoir plus sur les exigences et les valeurs prises en charge pour la spécification de données de produit sur Shopping",
+      "footerNotice": "Décrivez les données de vos produits à l'aide d'attributs. De plus, vous pouvez ajouter des attributs supplémentaires requis pour les fiches gratuites. La règle générale est : plus il y a d'attributs, mieux c'est.",
+      "requiredForSomeCategories": "Ce champ est requis pour certaines catégories de produits. [En savoir plus]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
       "sellApparelAndAccessories": "Vêtements et accessoires",
       "sellRefurbishedProducts": "Remis à neuf",
       "description": "Description",
       "longDescription": "Description longue",
       "shortDescription": "Description courte",
-      "energyEfficiencyClass": "Energy efficiency class",
-      "material": "Material",
-      "pattern": "Pattern",
+      "energyEfficiencyClass": "Classe énergétique",
+      "material": "Matière",
+      "pattern": "Motif",
       "gtin": "GTIN",
       "ean13": "EAN13",
       "mpn": "MPN",
-      "brand": "Brand",
-      "notAvailable": "Not available",
+      "brand": "Marque",
+      "notAvailable": "Inexistant",
       "specificTitle": "Spécifique",
       "sellRefurbished": "Je vends des produits remis à neuf",
       "sellApparel": "Je vends des vêtements et des accessoires",
-      "condition": "Condition",
+      "condition": "État",
       "color": "Couleur",
       "size": "Taille",
       "ageGroup": "Groupe d'âge",
       "gender": "Genre",
-      "theXField": "The \"{0}\" field",
+      "theXField": "Le champ \"{0}\"",
       "thisCustomField": "Ce champ personnalisé",
       "learnAboutShippingSettings": "En savoir plus sur les paramètres d'expédition",
       "learnHowToSetupShippingSettings": "Apprenez à mettre en place des politiques de retour"
@@ -358,9 +358,9 @@
       "time": "Heure",
       "youSell": "**Vous vendez** {0}",
       "dataSyncSetUp": "Configuration de la synchronisation des données",
-      "productAttributesMapping": "Product attribute mapping",
-      "mandatoryAttributesNotMapped": "One mandatory attribute hasn't been mapped to your custom fields | {0} mandatory attributes haven’t been mapped to your custom fields.",
-      "noticeToCompleteMapping": "We recommend completing all your data to ensure your products are validated. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]"
+      "productAttributesMapping": "Mapping des attributs produit",
+      "mandatoryAttributesNotMapped": "Un attribut obligatoire n'a pas été mappé à vos champs personnalisés | {0} attributs obligatoires n'ont pas été mappés à vos champs personnalisés.",
+      "noticeToCompleteMapping": "Nous vous recommandons de compléter toutes vos données pour vous assurer que vos produits soient validés. [En savoir plus]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]"
     }
   },
   "freeListingCard": {
@@ -379,11 +379,11 @@
     "text": "Une fois connecté, vous devrez peut-être configurer vos paramètres de facturation dans votre compte Google Ads.",
     "labelSelect": "Connectez votre compte Google Ads",
     "id": "ID du compte Google Ads",
-    "toUseGAdsNeedsAdminAccess": "To use an existing Google Ads account, you must have Admin access.",
-    "alertCantConnect": "Could not connect your Google Ads account, it's on our side, please give it another try.",
-    "alertBillingSettingsMissing": "To launch Smart Shopping campaigns, you need to add your billing settings in your Google Ads account.",
-    "alertNeedRefreshAfterBilling": "Once filled in your billing info in your Google Ads account, refresh the page to view updates.",
-    "alertNeedRefreshAfterInvitationLink": "Once the invitation is accepted in your Google Ads account, refresh the page to view updates.",
+    "toUseGAdsNeedsAdminAccess": "Pour utiliser un compte Google Ads existant, vous devez avoir un accès administrateur.",
+    "alertCantConnect": "Impossible de connecter votre compte Google Ads, c'est de notre côté, veuillez réessayer.",
+    "alertBillingSettingsMissing": "Pour lancer des campagnes Shopping Intelligentes, vous devez ajouter vos paramètres de facturation dans votre compte Google Ads.",
+    "alertNeedRefreshAfterBilling": "Une fois que vous avez rempli vos informations de facturation dans votre compte Google Ads, actualisez la page.",
+    "alertNeedRefreshAfterInvitationLink": "Une fois l'invitation acceptée dans votre compte Google Ads, actualisez la page.",
     "alertNeedValidationFromEmail": "Veuillez cliquer ici ou vérifier vos emails pour valider votre compte.",
     "alertSuspended": "Vous devez résoudre les problèmes dans votre compte Google Ads.",
     "alertCancelled": "Vous devez réactiver votre compte dans votre compte Google Ads.",
@@ -399,7 +399,7 @@
     },
     "email": {
       "title": "Votre adresse électronique Google",
-      "description": "This information will be used to create your account.  \nGoogle email address below is the one provided during your Google account connection."
+      "description": "Ces informations seront utilisées pour créer votre compte.  \nL'adresse e-mail de Google ci-dessous est celle fournie lors de la connexion de votre compte Google."
     },
     "business": {
       "name": "Nom",
@@ -420,7 +420,7 @@
   },
   "smartShoppingCampaignCard": {
     "title": "Boostez vos ventes avec des campagnes d'achat intelligentes",
-    "intro": "Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time."
+    "intro": "Augmentez la visibilité de vos produits avec les campagnes payantes Shopping Intelligentes.  \nLes publicités cibleront peu à peu et de mieux en mieux la bonne audience au bon moment."
   },
   "smartShoppingCampaignCreation": {
     "breadcrumb1": "Campagne",
@@ -432,12 +432,12 @@
     "inputCampaignNameInvalidFeedback": "Le nom doit être unique.",
     "inputDurationHelper": "Nous recommandons une durée minimale de 30 jours afin que Google puisse optimiser votre campagne.",
     "inputDurationLabel": "Durée de la campagne",
-    "inputDurationTooltip": "Ad campaigns have no end date by default, so that the ads are able to run indefinitely. You can always add an end date to create a shorter campaign.",
+    "inputDurationTooltip": "Les campagnes publicitaires n'ont pas de date de fin par défaut, de sorte que les publicités puissent s'exécuter indéfiniment. Vous pouvez toujours ajouter une date de fin pour créer une campagne plus courte.",
     "inputDurationLabel1": "Date de début",
     "inputDurationLabel2": "Date de fin (facultatif)",
     "inputDatePickerHelper": "Utilisez les touches du curseur pour naviguer dans les dates du calendrier",
     "inputCountryHelper": "Pour cibler plusieurs pays, vous devez créer plusieurs campagnes.",
-    "inputCountryImutable": "Country can't be changed after creation, if you want to target a different country, you'll need to create a new campaign",
+    "inputCountryImutable": "Le pays ne peut pas être changé après la création, si vous voulez cibler un autre pays, vous devrez créer une nouvelle campagne",
     "inputCountryLabel": "Pays cible",
     "inputCountryTooltip": "Your campaign’s ads are eligible to show to customers in your targeted geographic locations, or to customers who have selected your targeted language as their browser’s language setting.",
     "inputFiltersLegend": "Produits en campagne",
@@ -445,27 +445,27 @@
     "inputFiltersPartialLabel": "Sélectionner des produits à l'aide de filtres de partition de produits",
     "inputFiltersHelper": "Take some time to [read Google Shopping ads policies]({0})[:target=\\\"_blank\\\"] some product are prohibited or restricted.",
     "inputBudgetHelper": "Vous ne paierez que si quelqu'un clique sur votre annonce.",
-    "inputBudgetInvalidFeedback": "Your daily budget must be a valid number greater than 1. For any decimal number, please use a dot as separator.",
+    "inputBudgetInvalidFeedback": "Votre budget quotidien doit être un nombre valide supérieur à 1. Pour tout nombre décimal, veuillez utiliser un point comme séparateur.",
     "inputBudgetFeedback": "Budget quotidien de la campagne",
-    "inputBudgetTooltip": "Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time.",
+    "inputBudgetTooltip": "Votre budget est le montant moyen que vous pouvez dépenser chaque jour pour votre campagne. Le budget que vous avez choisi dépend entièrement de vous, et vous pouvez l'ajuster à tout moment.",
     "inputBudgetPlaceholder": "Montant",
     "inputAllSyncedProducts": "Tous les produits synchronisés",
     "formHelperTitle": "Activation de la campagne",
     "formHelperDescription": "Votre campagne se poursuivra jusqu'à ce que vous la mettiez en pause. Vous pouvez interrompre votre campagne à tout moment.",
-    "errorNoProducts": "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.",
+    "errorNoProducts": "Vous voulez lancer une campagne, mais votre Google Merchant Center ne contient pas encore de produits. Votre campagne ne démarrera que lorsqu'au moins un produit a été approuvé par Google.",
     "errorApi": "We were not able to publish your campaign, please try again.",
     "recapTitle": "Résumé de la campagne",
     "recapFiltersLabel": "Produits en campagne",
     "recapNoFiltersDescription": "Tous les produits synchronisés approuvés par Google",
     "recapFooter": "Vérifiez les informations de votre campagne avant de la valider. Vous pouvez toujours modifier certains paramètres pendant que la campagne est en cours.",
-    "toggleCreationRemarketingTag": "Enable remarketing  tags on my site",
+    "toggleCreationRemarketingTag": "Activer la balise Google Ads Remarketing sur mon site",
     "toggleCreationNewRemarketingTag": "Créez une nouvelle balise de remarketing et de suivi des conversions à ajouter à votre boutique",
     "enableCreationRemarketingTag": "Activez la balise de remarketing et de suivi des conversions",
     "pauseCampaign": "Votre campagne se poursuivra jusqu'à ce que vous la mettiez en pause ou dès que la date de fin sera atteinte. Vous pouvez interrompre votre campagne à tout moment.",
     "alerts": {
       "noTag": "En n'ajoutant pas automatiquement la balise, Google ne sera pas en mesure d'envoyer les résultats des campagnes",
-      "duplicatedTag": "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.",
-      "noConversionActions": "The tracking tag has been enabled, but there is no conversion action set on the shop. This can be fixed by creating new ones."
+      "duplicatedTag": "On dirait que vous avez déjà un tag lié à votre compte Google, la création d'un nouveau tag peut dupliquer des événements pour vos campagnes. Nous vous suggérons de ne conserver que celui que nous générons pour vous.",
+      "noConversionActions": "La balise de suivi a été activée, mais il n'y a aucune action de conversion définie dans la boutique. Cela peut être corrigé en créant de nouvelles."
     },
     "labelSelectedDimension": "Valeur de la dimension sélectionnée",
     "labelDimensionValue": "Valeur de la dimension",
@@ -473,13 +473,13 @@
     "nbValuesSelected": "Aucune valeur sélectionnée | {0} valeur sélectionnée | {0} valeurs sélectionnées",
     "selectProductsTitle": "Sélectionnez les produits",
     "selectProductsSubtitle": "Sélectionnez les filtres que vous souhaitez ajouter à votre campagne Google Ads",
-    "remarketingNote": "**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.",
+    "remarketingNote": "**A noter** si vous avez déjà des actions de conversion Google Ads avec des valeurs de conversion spécifiques à une transaction configurées sur votre site pour ce compte Google Ads alors vous n'avez pas besoin de définir de nouvelles balises de conversion sur votre site.",
     "toggleNewConversionTag": "Définir de nouvelles balises de suivi des conversions sur mon site",
-    "toggleNewConversionTag2": "We will create the following conversion tags : Page view, Purchase, Add to basket",
+    "toggleNewConversionTag2": "Nous allons créer les balises de conversion suivantes : Page vue, Achat, Ajouter au panier",
     "remarketingTagLoading": "Vérifiez si vous avez des balises de remarketing et de suivi des conversions à ajouter à votre boutique",
-    "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
-    "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
-    "nbProductsSelected": "No product selected | {0} product selected | {0} products selected"
+    "descriptiveMessage": "Seules les campagnes Shopping Intelligentes associées à votre compte Google Ads sont répertoriées.  \nSi vous voulez voir toutes vos campagnes, [veuillez aller sur votre compte Google Ads]({0})[:target=\"_blank\"].",
+    "nbProductsFiltersSelected": "Aucun filtre sélectionné | {0} filtre sélectionné | {0} filtres sélectionnés",
+    "nbProductsSelected": "Aucun produit sélectionné | {0} produit sélectionné | {0} produits sélectionnés"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Performance de la campagne"
@@ -488,7 +488,7 @@
     "breadcrumb": "Détails sur le statut du produit",
     "alert": {
       "googleIsReviewing": "Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.",
-      "alertSuccess": "You are successfully opted in. Once your products are approved, they can appear in Google Shopping tab search results."
+      "alertSuccess": "L'export de votre catalogue est lancé ! Une fois que vos produits sont approuvés, ils apparaîtront dans les résultats de recherche de l'onglet Google Shopping."
     },
     "syncStatus": {
       "title": "État de la synchronisation",
@@ -623,13 +623,13 @@
   },
   "help": {
     "title": "Aide pour PrestaShop Google",
+    "intro": "PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across different networks like Google Search, YouTube or Gmail. Create Smart Shopping campaigns without leaving your PrestaShop dashboard and drive more traffic.",
     "allowsYouTo": {
       "title": "Ce module vous permet de :",
-      "business": "Gérer votre entreprise",
-      "account": "Gérer votre compte publicitaire",
-      "traffic": "Comprendre votre trafic",
-      "inventory": "Construire et gérer l'inventaire",
-      "people": "Atteindre plus de personnes"
+      "easySync": "Easily sync your product catalog with Google to keep product details such as price and availability automatically updated",
+      "freeListing": "Enable free listings and broaden your reach by showing your products to shoppers browsing on the Shopping tab, for free",
+      "ssc": "Get started with Smart Shopping campaigns, set a daily budget and let Google’s smart technology optimize your campaigns",
+      "reporting": "Analyze your campaign performance without leaving PrestaShop"
     },
     "help": {
       "needHelp": "Besoin d'aide ? Retrouvez ici la documentation de ce module.",
