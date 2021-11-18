@@ -87,6 +87,7 @@ export interface State {
   productsDatas: ProductsDatas;
   attributesToMap: any;
   attributesData: Array<AttributesInfos>;
+  attributesDataFromState: Array<AttributesInfos>;
 }
 
 export enum ProductStatues {
@@ -133,7 +134,7 @@ export const state: State = {
     items: [],
   },
   attributesToMap,
-  attributesData: [
+  attributesDataFromState: [
     {
       name: 'ean13',
       type: AttributesTypes.PRODUCT,
@@ -159,4 +160,5 @@ export const state: State = {
       type: AttributesTypes.PRODUCT,
     },
   ],
+  attributesData: [],
 };

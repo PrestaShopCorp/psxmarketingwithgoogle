@@ -123,7 +123,15 @@ export default {
   },
   [MutationsTypes.SAVE_ATTRIBUTES_SHOP](state: LocalState, payload: AttributesInfos[]) {
     state.attributesData.push(...payload);
-    // remove duplicates if new call without total refresh
+    state.attributesData.forEach((data, indexToDelete) => {
+      // remove deleted attributes if new call without total refresh
+      const find = payload.findIndex((i) => i.name === data.name);
+      if (find === -1) {
+        state.attributesData.splice(indexToDelete, 1);
+      }
+    });
+    state.attributesData.push(...state.attributesDataFromState);
+    // remove duplicates attributes if new call without total refresh
     state.attributesData = state.attributesData.reduce((acc: any, current: AttributesInfos) => {
       const x = acc.find((item) => item.name === current.name);
       if (!x) {
@@ -131,15 +139,6 @@ export default {
       }
       return acc;
     }, []);
-
-    // state.attributesData.forEach((data, indexToDelete) => {
-    //   // remove deleted attributes if new call without total refresh
-    //   const find = payload.findIndex((i) => i.name === data.name);
-    //   if (find == -1) {
-    //     state.attributesData.splice(indexToDelete, 1)
-    //   }
-    // });
-
     const getAttributesNames = state.attributesData.map((attribute) => attribute.name);
     state.attributesToMap.forEach((category) => {
       category.fields.forEach((field) => {
