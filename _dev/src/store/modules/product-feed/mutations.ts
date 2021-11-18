@@ -24,6 +24,7 @@ import {
   ProductInfos,
   ProductFeedValidationSummary,
   AttributesInfos,
+  commonAttributes
 } from './state';
 
 type payloadObject = {
@@ -130,7 +131,7 @@ export default {
         state.attributesData.splice(indexToDelete, 1);
       }
     });
-    state.attributesData.push(...state.attributesDataFromState);
+    state.attributesData.push(...commonAttributes);
     // remove duplicates attributes if new call without total refresh
     state.attributesData = state.attributesData.reduce((acc: any, current: AttributesInfos) => {
       const x = acc.find((item) => item.name === current.name);
