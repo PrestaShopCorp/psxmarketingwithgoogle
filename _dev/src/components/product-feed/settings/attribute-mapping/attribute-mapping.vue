@@ -69,25 +69,27 @@
     </b-form>
 
     <div
-      class="d-flex align-items-center"
+      class="text-primary"
     >
-      <VueShowdown
+      <a
         class="ps_gs-fz-12 mb-0 text-primary"
-        tag="p"
-        :markdown="$t('productFeedSettings.attributeMapping.addNewAttributes',
-                      [$store.getters['app/GET_ATTRIBUTES_URL']])"
-        :extensions="['extended-link', 'no-p-tag']"
-      />
-      <span class="ps_gs-fz-12">
+        :href="$store.getters['app/GET_ATTRIBUTES_URL']"
+        target="_blank"
+      >
+        {{ $t('productFeedSettings.attributeMapping.addNewAttributes') }}
+      </a>
+      <span class="ps_gs-fz-12 text-dark">
         |
       </span>
       <b-button
         size="sm"
         variant="link"
-        class="ps_gs-fz-12 font-weight-normal py-0 border-0 text-decoration-underline"
+        class="ps_gs-fz-12 font-weight-normal p-0 border-0
+        text-decoration-underline text-wrap text-left"
         @click="refreshComponent"
       >
         {{ $t('productFeedSettings.attributeMapping.refreshAttributes') }}
+        <i class="material-icons ps_gs-fz-12">refresh</i>
       </b-button>
     </div>
 
