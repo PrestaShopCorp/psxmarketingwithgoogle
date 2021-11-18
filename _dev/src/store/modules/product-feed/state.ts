@@ -20,7 +20,6 @@
 import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
 
-
 export interface ProductFeedStatus {
   nextJobAt?: string;
   jobEndedAt?: string|null;
@@ -75,7 +74,7 @@ export enum AttributesTypes {
   FEATURE = 'feature',
 }
 
-export const commonAttributes = [
+export const commonAttributes: readonly AttributesInfos[] = [
   {
     name: 'ean13',
     type: AttributesTypes.PRODUCT,
@@ -100,7 +99,7 @@ export const commonAttributes = [
     name: 'shortDescription',
     type: AttributesTypes.PRODUCT,
   },
-]
+];
 
 export interface State {
   isSyncSummaryLoadingInProgress: boolean;

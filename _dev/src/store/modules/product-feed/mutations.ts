@@ -24,7 +24,7 @@ import {
   ProductInfos,
   ProductFeedValidationSummary,
   AttributesInfos,
-  commonAttributes
+  commonAttributes,
 } from './state';
 
 type payloadObject = {
