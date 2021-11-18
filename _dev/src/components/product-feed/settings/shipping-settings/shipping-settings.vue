@@ -93,12 +93,12 @@
                       [$store.getters['app/GET_CARRIERS_URL']])"
         :extensions="['extended-link', 'no-p-tag']"
       />
-      <p class="ps_gs-fz-12">
+      <span class="ps_gs-fz-12">
         |
-      </p>
+      </span>
       <b-button
         variant="link"
-        class="ps_gs-fz-12 text-primary"
+        class="ps_gs-fz-12 font-weight-normal py-0 border-0 text-decoration-underline"
         @click="refreshComponent"
       >
         {{ $t('productFeedSettings.attributeMapping.refreshCarriers') }}

@@ -69,7 +69,7 @@
     </b-form>
 
     <div
-      class="d-flex"
+      class="d-flex align-items-center"
     >
       <VueShowdown
         class="ps_gs-fz-12 mb-0 text-primary"
@@ -78,12 +78,13 @@
                       [$store.getters['app/GET_ATTRIBUTES_URL']])"
         :extensions="['extended-link', 'no-p-tag']"
       />
-      <p class="ps_gs-fz-12">
+      <span class="ps_gs-fz-12">
         |
-      </p>
+      </span>
       <b-button
+        size="sm"
         variant="link"
-        class="ps_gs-fz-12 text-primary"
+        class="ps_gs-fz-12 font-weight-normal py-0 border-0 text-decoration-underline"
         @click="refreshComponent"
       >
         {{ $t('productFeedSettings.attributeMapping.refreshAttributes') }}
