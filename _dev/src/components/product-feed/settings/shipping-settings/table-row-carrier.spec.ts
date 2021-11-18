@@ -152,7 +152,6 @@ describe('table-row-carrier.vue', () => {
       },
       ...config,
     });
-    // @ts-ignore
     expect(wrapper.find('[data-test-id="deliveryType"]').classes()).toContain('is-invalid');
   });
 });
