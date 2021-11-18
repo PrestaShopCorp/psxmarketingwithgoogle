@@ -227,7 +227,6 @@ export default {
       ? JSON.parse(localStorage.getItem('categoryProductsSelected'))
       : [];
   },
-
   googleUrl,
 };
 </script>
