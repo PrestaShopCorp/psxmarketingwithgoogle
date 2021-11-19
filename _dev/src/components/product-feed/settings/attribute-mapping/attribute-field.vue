@@ -51,7 +51,11 @@
             :key="index"
             :value="option"
           >
-            <span class="line-height-15">
+            <span
+              class="line-height-15"
+              :data-test-id="attributesChecked.some(e => e.name === option.name) ?
+                'attribute-is-mapped' : null"
+            >
               {{ displayTranslation(option) }}
             </span>
           </b-form-checkbox>
@@ -70,7 +74,7 @@
     </b-dropdown>
     <div
       v-if="notAvailableSelected"
-      class="maxw-sm-250 d-flex text-muted ps_gs-fz-12 mt-1"
+      class="maxw-sm-250 d-flex text-muted ps_gs-fz-12 mt-1 attribute-field__warning"
     >
       <i class="material-icons-round ps_gs-fz-16 font-weight-normal mr-1">warning_amber</i>
       <VueShowdown

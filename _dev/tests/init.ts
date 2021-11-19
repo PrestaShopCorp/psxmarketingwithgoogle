@@ -22,12 +22,14 @@ beforeEach(() => {
     timeConverterToHour: jest.fn(),
     changeCountriesCodesToNames: jest.fn().mockImplementation(() => []),
     timeConverterToStringifiedDate: jest.fn().mockImplementation(() => ''),
+    slugify: jest.fn().mockImplementation(() => 'foo'),
   };
 
   localVue.filter('timeConverterToDate', filters.timeConverterToDate);
   localVue.filter('timeConverterToHour', filters.timeConverterToHour);
   localVue.filter('changeCountriesCodesToNames', filters.changeCountriesCodesToNames);
   localVue.filter('timeConverterToStringifiedDate', filters.timeConverterToStringifiedDate);
+  localVue.filter('slugify', filters.slugify);
 });
 
 afterEach(() => {
