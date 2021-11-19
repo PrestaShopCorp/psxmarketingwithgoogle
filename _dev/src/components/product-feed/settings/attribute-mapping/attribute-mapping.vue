@@ -190,7 +190,7 @@ export default {
   },
   methods: {
     previousStep() {
-      localStorage.setItem('attributeMapping', JSON.stringify(this.formatMappingToApi));
+      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(this.formatMappingToApi));
       if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
       } else {
@@ -199,7 +199,7 @@ export default {
       window.scrollTo(0, 0);
     },
     nextStep() {
-      localStorage.setItem('attributeMapping', JSON.stringify(this.formatMappingToApi));
+      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(this.formatMappingToApi));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       window.scrollTo(0, 0);
     },

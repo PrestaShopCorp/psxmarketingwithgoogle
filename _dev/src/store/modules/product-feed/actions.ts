@@ -139,7 +139,7 @@ export default {
   }) {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(rootGetters['app/GET_ACTIVE_COUNTRIES']);
-    const attributeMapping = JSON.parse(localStorage.getItem('attributeMapping') || '{}');
+    const attributeMapping = JSON.parse(localStorage.getItem('productFeed-attributeMapping') || '{}');
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
@@ -167,8 +167,10 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
-      localStorage.removeItem('deliveryDetails');
-      localStorage.removeItem('attributeMapping');
+      localStorage.removeItem('productFeed-deliveryDetails');
+      localStorage.removeItem('productFeed-attributeMapping');
+      localStorage.removeItem('productFeed-autoImport');
+      localStorage.removeItem('productFeed-targetCountries');
     } catch (error) {
       console.error(error);
     }
@@ -191,7 +193,7 @@ export default {
   },
 
   async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
-    const getDeliveryDetailsFromStorage = localStorage.getItem('deliveryDetails');
+    const getDeliveryDetailsFromStorage = localStorage.getItem('productFeed-deliveryDetails');
     if (getDeliveryDetailsFromStorage !== null) {
       commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, JSON.parse(getDeliveryDetailsFromStorage || '{}'));
       return;
@@ -353,7 +355,7 @@ export default {
     return json;
   },
   async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
-    const getMappingFromStorage = localStorage.getItem('attributeMapping');
+    const getMappingFromStorage = localStorage.getItem('productFeed-attributeMapping');
     if (getMappingFromStorage !== null) {
       commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, JSON.parse(getMappingFromStorage || '{}'));
       return;
