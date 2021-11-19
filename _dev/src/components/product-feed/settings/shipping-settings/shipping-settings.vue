@@ -173,12 +173,12 @@ export default {
       return true;
     },
     previousStep() {
-      localStorage.setItem('deliveryDetails', JSON.stringify(this.carriers));
+      localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
       window.scrollTo(0, 0);
     },
     nextStep() {
-      localStorage.setItem('deliveryDetails', JSON.stringify(this.carriers));
+      localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       window.scrollTo(0, 0);
     },

@@ -118,14 +118,14 @@ export default {
   data() {
     return {
       tax: null,
-      shippingSettings: JSON.parse(localStorage.getItem('autoImport')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
+      shippingSettings: JSON.parse(localStorage.getItem('productFeed-autoImportShippingSettings')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
       loading: false,
     };
   },
   computed: {
     countries: {
       get() {
-        return this.$options.filters.changeCountriesCodesToNames(
+        return JSON.parse(localStorage.getItem('productFeed-targetCountries')) ?? this.$options.filters.changeCountriesCodesToNames(
           this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
         );
       },
@@ -149,7 +149,8 @@ export default {
     },
     nextStep() {
       this.loading = true;
-      localStorage.setItem('autoImport', JSON.stringify(this.shippingSettings));
+      localStorage.setItem('productFeed-autoImportShippingSettings', JSON.stringify(this.shippingSettings));
+      localStorage.setItem('productFeed-targetCountries', JSON.stringify(this.countries));
       if (this.shippingSettings) {
         this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
           this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
