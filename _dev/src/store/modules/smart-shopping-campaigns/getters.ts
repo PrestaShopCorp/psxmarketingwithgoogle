@@ -26,7 +26,7 @@ import {
   OrderByType,
   State as LocalState,
   ProductPerformances,
-  ProductPartitionPerformances,
+  FiltersPerformances,
   ConversionAction,
 } from './state';
 import GettersTypes from './getters-types';
@@ -135,10 +135,10 @@ export default {
   ): Object {
     return state.reporting.request.ordering.productsPerformances;
   },
-  [GettersTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_ORDERING](
+  [GettersTypes.GET_REPORTING_FILTERS_PERFORMANCES_ORDERING](
     state: LocalState,
   ): Object {
-    return state.reporting.request.ordering.productsPartitionsPerformances;
+    return state.reporting.request.ordering.filtersPerformances;
   },
 
   // errors getters
@@ -157,10 +157,10 @@ export default {
   ): Boolean {
     return state.reporting.errorsList.productsPerformancesSection;
   },
-  [GettersTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR](
+  [GettersTypes.GET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR](
     state: LocalState,
   ): Boolean {
-    return state.reporting.errorsList.productsPartitionsPerformancesSection;
+    return state.reporting.errorsList.filtersPerformancesSection;
   },
 
   // result getters
@@ -189,10 +189,10 @@ export default {
   ): Array<ProductPerformances> {
     return state.reporting.results.productsPerformancesSection.productsPerformanceList;
   },
-  [GettersTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES](
+  [GettersTypes.GET_REPORTING_FILTERS_PERFORMANCES](
     state: LocalState,
-  ): Array<ProductPartitionPerformances> {
-    return state.reporting.results.productsPartitionsPerformancesSection
+  ): Array<FiltersPerformances> {
+    return state.reporting.results.filtersPerformancesSection
       .productsPartitionsPerformanceList;
   },
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](

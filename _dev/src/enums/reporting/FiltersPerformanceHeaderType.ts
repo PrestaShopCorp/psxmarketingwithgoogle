@@ -1,5 +1,6 @@
-enum ProductPartitionPerformanceHeaderType {
+enum FiltersPerformanceHeaderType {
   CAMPAIGN = 'campaign',
+  DIMENSION = 'dimension',
   PRODUCT_FILTER = 'productFilter',
   CLICKS = 'clicks',
   COSTS = 'costs',
@@ -9,4 +10,4 @@ enum ProductPartitionPerformanceHeaderType {
   SALES = 'sales',
 }
 
-export default ProductPartitionPerformanceHeaderType;
+export default FiltersPerformanceHeaderType;

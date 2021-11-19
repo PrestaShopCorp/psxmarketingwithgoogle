@@ -75,7 +75,7 @@ export interface ReportingErrorList {
   kpis: boolean;
   campaignsPerformancesSection: boolean;
   productsPerformancesSection: boolean;
-  productsPartitionsPerformancesSection: boolean;
+  filtersPerformancesSection: boolean;
 }
 
 export interface RequestParams {
@@ -89,7 +89,7 @@ export interface ResultsRequest {
   dailyResultChart: DailyresultChart;
   campaignsPerformancesSection: CampaignsPerformancesSection;
   productsPerformancesSection: ProductsPerformancesSection;
-  productsPartitionsPerformancesSection: ProductsPartitionsPerformancesSection;
+  filtersPerformancesSection: FiltersPerformancesSection;
 }
 export interface DateRange {
   periodSelected: ReportingPeriod;
@@ -100,7 +100,7 @@ export interface DateRange {
 export interface Orderings {
   campaignsPerformances: OrderByType;
   productsPerformances: OrderByType;
-  productsPartitionsPerformances: OrderByType;
+  filtersPerformances: OrderByType;
 }
 
 export interface OrderByType {
@@ -132,8 +132,8 @@ export interface ProductsPerformancesSection {
   productsPerformanceList: Array<ProductPerformances>,
 }
 
-export interface ProductsPartitionsPerformancesSection {
-  productsPartitionsPerformanceList: Array<ProductPartitionPerformances>;
+export interface FiltersPerformancesSection {
+  productsPartitionsPerformanceList: Array<FiltersPerformances>;
 }
 
 export interface DailyResult {
@@ -168,10 +168,10 @@ export interface ProductPerformances {
   sales: number
 }
 
-export interface ProductPartitionPerformances {
+export interface FiltersPerformances {
   campaignName: string,
   dimension: string,
-  dimensionValue: string,
+  productFilter: string,
   clicks: number,
   costs: number,
   averageCostPerClick: number,
@@ -203,7 +203,7 @@ export const state: State = {
         productsPerformances: {
           clicks: QueryOrderDirection.DESCENDING,
         },
-        productsPartitionsPerformances: {
+        filtersPerformances: {
           clicks: QueryOrderDirection.DESCENDING,
         },
       },
@@ -227,7 +227,7 @@ export const state: State = {
       productsPerformancesSection: {
         productsPerformanceList: [],
       },
-      productsPartitionsPerformancesSection: {
+      filtersPerformancesSection: {
         productsPartitionsPerformanceList: [],
       },
     },
@@ -235,7 +235,7 @@ export const state: State = {
       kpis: false,
       campaignsPerformancesSection: false,
       productsPerformancesSection: false,
-      productsPartitionsPerformancesSection: false,
+      filtersPerformancesSection: false,
     },
   },
 };

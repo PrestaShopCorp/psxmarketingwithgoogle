@@ -15,7 +15,7 @@
       <b-thead>
         <b-tr>
           <b-th
-            v-for="(type, index) in partitionHeaderList"
+            v-for="(type, index) in filtersHeaderList"
             :key="type"
             class="font-weight-600"
             :class="{
@@ -59,7 +59,7 @@
       <b-tbody class="bg-white">
         <template v-if="errorWithApi">
           <tr>
-            <td :colspan="partitionHeaderList.length">
+            <td :colspan="filtersHeaderList.length">
               <KeyMetricsErrorMessage />
             </td>
           </tr>
@@ -68,7 +68,7 @@
         <template v-else>
           <ReportingTableEmptyMessage
             v-if="partitionList.length === 0"
-            :colspan="partitionHeaderList.length"
+            :colspan="filtersHeaderList.length"
             :text="$t('campaigns.filtersPerformanceTable.emptyListText')"
           />
           <FiltersPerformanceTableRow
@@ -77,10 +77,9 @@
             :partition="partition"
             :key="index"
           />
-
           <b-tr v-if="loading">
             <b-td
-              :colspan="partitionHeaderList.length"
+              :colspan="filtersHeaderList.length"
               class="ps_gs-table-products__loading-slot"
             >
               <i class="ps_gs-table-products__spinner">loading</i>
@@ -96,7 +95,7 @@
 import ReportingTableHeader from '../commons/reporting-table-header.vue';
 import ReportingTableEmptyMessage from '../commons/reporting-table-empty-message.vue';
 import FiltersPerformanceTableRow from './filters-performance-table-row.vue';
-import ProductPartitionPerformanceHeaderType from '@/enums/reporting/ProductPartitionPerformanceHeaderType';
+import FiltersPerformanceHeaderType from '@/enums/reporting/FiltersPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import KeyMetricsErrorMessage from '../key-metrics/key-metrics-error-message.vue';
 
@@ -115,18 +114,18 @@ export default {
   },
   methods: {
     headerIsNumberType(type) {
-      return type === ProductPartitionPerformanceHeaderType.CLICKS
-        || type === ProductPartitionPerformanceHeaderType.COSTS
-        || type === ProductPartitionPerformanceHeaderType.AVERAGE_COST_PER_CLICK
-        || type === ProductPartitionPerformanceHeaderType.CONVERSIONS
-        || type === ProductPartitionPerformanceHeaderType.CONVERSIONS_RATE
-        || type === ProductPartitionPerformanceHeaderType.SALES;
+      return type === FiltersPerformanceHeaderType.CLICKS
+        || type === FiltersPerformanceHeaderType.COSTS
+        || type === FiltersPerformanceHeaderType.AVERAGE_COST_PER_CLICK
+        || type === FiltersPerformanceHeaderType.CONVERSIONS
+        || type === FiltersPerformanceHeaderType.CONVERSIONS_RATE
+        || type === FiltersPerformanceHeaderType.SALES;
     },
     hasToolTip() {
       return false;
     },
     hasSorting(headerType) {
-      return headerType === ProductPartitionPerformanceHeaderType.CLICKS;
+      return headerType === FiltersPerformanceHeaderType.CLICKS;
     },
     sortByType(headerType) {
       // create new object for satisfy deep getter of vueJS
@@ -141,7 +140,7 @@ export default {
     },
     fetchProductsPartitionsPerformances() {
       this.loading = true;
-      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES')
+      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_FILTERS_PERFORMANCES')
         .finally(() => {
           this.loading = false;
         });
@@ -151,18 +150,18 @@ export default {
     this.fetchProductsPartitionsPerformances();
   },
   computed: {
-    partitionHeaderList() {
-      return Object.values(ProductPartitionPerformanceHeaderType);
+    filtersHeaderList() {
+      return Object.values(FiltersPerformanceHeaderType);
     },
     partitionList() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES'];
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FILTERS_PERFORMANCES'];
     },
     errorWithApi() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR'];
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR'];
     },
     queryOrderDirection: {
       get() {
-        return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_ORDERING'];
+        return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_FILTERS_PERFORMANCES_ORDERING'];
       },
       set(orderDirection) {
         this.$store.commit('smartShoppingCampaigns/SET_REPORTING_PRODUCT_PARTITIONS_PERFORMANCES_ORDERING', orderDirection);
