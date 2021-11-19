@@ -169,6 +169,7 @@ export default {
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
       localStorage.removeItem('deliveryDetails');
       localStorage.removeItem('attributeMapping');
+      localStorage.removeItem('autoImport');
     } catch (error) {
       console.error(error);
     }
