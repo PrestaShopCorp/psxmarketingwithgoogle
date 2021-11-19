@@ -1,7 +1,7 @@
 {
   "general": {
     "tabs": {
-      "exportStatus": "Export status",
+      "exportStatus": "Esportare stato",
       "campaign": "Campagna pubblicitaria",
       "reporting": "Segnala",
       "configuration": "Configura",
@@ -15,9 +15,9 @@
     "unableToFetchData": "We were unable to fetch datas, please try again later.",
     "searchByX": "Cerca per {0}",
     "legendCreateNewAccount": "Hai anche la possibilità di creare un nuovo account in pochi passi:",
-    "notAvailable": "Not available",
+    "notAvailable": "Non Disponibile",
     "min": "min.",
-    "max": "max."
+    "max": "mas."
   },
   "configuration": {
     "introduction": "Pagina di configurazione!"
@@ -26,7 +26,7 @@
     "header": {
       "title": "Marketing con Google",
       "text": "Mostra i tuoi prodotti su Google e raggiungi milioni di acquirenti che cercano attivamente ciò che offri sulla rete di Google.",
-      "reinsurance": "- Easy setup \n- Cancel anytime"
+      "reinsurance": "- Impostazione facile \n- Annulla in qualsiasi momento"
     },
     "content": {
       "content1": {
@@ -36,7 +36,7 @@
       },
       "content2": {
         "title": "Mostra sempre informazioni accurate sul prodotto",
-        "text": "Once you upload your store and products data to Google directly from PrestaShop these information will be available and automatically synced for free listings, Google Ads, and other Google services.",
+        "text": "Una volta che hai caricato i dati del tuo negozio e dei tuoi prodotti su Google direttamente da PrestaShop, queste informazioni saranno disponibili e sincronizzate automaticamente per le liste gratuite, Google Ads e altri servizi di Google.",
         "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
       },
       "content3": {
@@ -230,7 +230,7 @@
     "breadcrumb1": "Feed del prodotto",
     "breadcrumb2": "Impostazioni del feed di prodotto",
     "steps": {
-      "targetCountry": "Target country",
+      "targetCountry": "Paese di destinazione",
       "shippingSettings": "Targeting e spedizione",
       "attributeMapping": "Attributi del prodotto",
       "categoryMapping": "Mappatura della categoria",
@@ -247,7 +247,7 @@
       "cantFindCountry": "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "This country is not compatible with your currency",
       "shippingSettings": "Impostazioni di spedizione",
-      "shippingSettingsTitle": "Products shipping settings",
+      "shippingSettingsTitle": "Impostazioni di spedizione dei prodotti",
       "shippingLabel1": "Setup my shipping settings now (recommended)",
       "shippingDescription1": "PrestaShop will import your carriers list from your store settings and allow you to provide additional information.",
       "automatically": "Automaticamente",
@@ -271,12 +271,14 @@
       "transitTimeTooltip": "Enter how long it takes for your order to be shipped to the customer once it leaves your facility.",
       "shippingInformationTitle": "Carriers & shipping information",
       "shippingInformationIntro": "Enter shipping information for your carriers list. They have to ship to an address to be synchronized in Google Shopping.",
-      "shippingTableNotice": "Make sure your store message matches your Google shopping delivery time information. [Add or update carriers]({0})[:target=\"_blank\" class=\"text-primary\"]",
+      "shippingTableNotice": "Make sure your store message matches your Google shopping delivery time information.",
       "shippingSwitchCarrier": "Switch to enable / desable carrier",
       "carriersDropdownHeader": "Copy shipping information to",
       "carriersDropdownHiddenLabel": "Copy information of the carrier to other carriers",
       "noCarriersTitle": "You don’t have any shipping carriers",
-      "noCarriersDescription": "Please head to carriers page to add shipping carriers"
+      "noCarriersDescription": "Please head to carriers page to add shipping carriers",
+      "addNewCarriers": "Add or update carriers",
+      "refreshCarriers": "Refresh if you have edited your carriers"
     },
     "export": {
       "summarySyncDailyAt": "Sincronizzazione giornaliera alle {0}",
@@ -319,6 +321,8 @@
       "commonsTitle": "None of the above",
       "learnRequirementsProductSpecification": "Learn more about requirements & supported values for the Shopping product data specification",
       "footerNotice": "Describe your product data using attributes. Additionally to required minimum for standard free listings, you can add additional attributes required for enhanced listing. General rule is: the more attributes the better.",
+      "addNewAttributes": "Add new attributes in your PrestaShop Catalog",
+      "refreshAttributes": "Refresh if you have edited your attributes",
       "requiredForSomeCategories": "This field is required for some product categories. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
       "sellApparelAndAccessories": "Abbigliamento e accessori",
       "sellRefurbishedProducts": "Ricondizionato",
@@ -597,6 +601,7 @@
       "conversions": "Conversioni",
       "conversionsRate": "Tasso delle conversioni",
       "productFilter": "Filtro di prodotto",
+      "dimension": "Dimension",
       "duration": "Data di durata",
       "target": "Obiettivo",
       "actions": "Azioni",
