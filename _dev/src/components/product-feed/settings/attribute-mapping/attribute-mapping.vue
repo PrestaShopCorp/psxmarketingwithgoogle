@@ -28,6 +28,7 @@
       <section
         class="mb-2"
         v-if="mappingSectionVisible"
+        data-test-id="section-attribute-field"
       >
         <h3
           class="ps_gs-fz-20 font-weight-600 mb-2"
