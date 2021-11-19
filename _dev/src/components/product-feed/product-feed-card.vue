@@ -457,11 +457,14 @@ export default {
       return {
         icon: 'check_circle',
         color: 'success',
-        message: this.$i18n.t('productFeedCard.syncSuccess', [
+        message: this.$i18n.tc('productFeedCard.syncSuccess',
           this.lastSync.totalProducts,
-          this.lastSync.day,
-          this.lastSync.time,
-        ]),
+          [
+            this.lastSync.totalProducts,
+            this.lastSync.day,
+            this.lastSync.time,
+          ],
+        ),
       };
     },
     alertLink() {

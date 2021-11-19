@@ -19,9 +19,6 @@
     "min": "min.",
     "max": "max."
   },
-  "configuration": {
-    "introduction": "Configuration Page !"
-  },
   "landingPage": {
     "header": {
       "title": "Marketing With Google",
@@ -206,7 +203,7 @@
     "introToConfigure": "It's important to submit your product feed in the correct format, as Google uses this to make sure your products match the right queries.",
     "nextSync": "Next synchronization: {0}",
     "syncFailedAt": "Synchronization failed {0} at {1}",
-    "syncSuccess": "{0} products synced {1} at {2}",
+    "syncSuccess": "Products synced {1} at {2} | {0} product synced {1} at {2} | {0} products synced {1} at {2}",
     "syncBusy": "Sync progressing...",
     "syncCantPerform": "Synchronization can't perform",
     "mappedCategories": "{0}/{1} mapped categories",
@@ -608,7 +605,7 @@
       "dailyBudget": "Daily budget"
     },
     "tooltipCol": {
-      "status": "Placeholder tooltip status"
+      "status": "A status for your ad campaign that describes whether or not its ads can run at the moment."
     },
     "campaignsPerformanceTable": {
       "title": "Campaign performance",
