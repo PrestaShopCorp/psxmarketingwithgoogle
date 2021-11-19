@@ -5,8 +5,10 @@
 import {shallowMount} from '@vue/test-utils';
 import {BDropdown, BFormCheckbox} from 'bootstrap-vue';
 import {localVue} from '@/../tests/init';
-
+import {productFeed} from '@/../.storybook/mock/product-feed.js';
 import AttributeField from '@/components/product-feed/settings/attribute-mapping/attribute-field.vue';
+
+const {attributesData} = productFeed;
 
 describe('attribute-field.vue', () => {
   const VBTooltip = jest.fn();
@@ -32,7 +34,7 @@ describe('attribute-field.vue', () => {
     },
     computed: {
       options() {
-        return [{name: 'ean13', type: 'product'}, {name: 'isbn', type: 'product'}, {name: 'upc', type: 'product'}, {name: 'mpn', type: 'product'}, {name: 'description', type: 'product'}, {name: 'shortDescription', type: 'product'}, {name: 'color', type: 'custom'}, {name: 'dimension', type: 'custom'}, {name: 'paper type', type: 'custom'}, {name: 'size', type: 'custom'}, {name: 'composition', type: 'feature'}, {name: 'property', type: 'feature'}, {name: 'color', type: 'custom'}, {name: 'dimension', type: 'custom'}, {name: 'paper type', type: 'custom'}, {name: 'size', type: 'custom'}, {name: 'composition', type: 'feature'}, {name: 'property', type: 'feature'}];
+        return attributesData;
       },
     },
   };
