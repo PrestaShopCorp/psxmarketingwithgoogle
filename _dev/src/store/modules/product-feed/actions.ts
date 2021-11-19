@@ -195,33 +195,35 @@ export default {
   async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
     const getDeliveryDetailsFromStorage = localStorage.getItem('productFeed-deliveryDetails');
     if (getDeliveryDetailsFromStorage !== null) {
-      commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, JSON.parse(getDeliveryDetailsFromStorage || '{}'));
-      return;
-    }
-    // TODO: These call may be already done, so we might remove them
-    await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
-    await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
+      // TODO: These call may be already done, so we might remove them
+      await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
+      await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
 
-    const enabledCarriers = getEnabledCarriers(
-      state.settings.shippingSettings,
-    );
-    const carriersList: (Carrier | DeliveryDetail)[] = enabledCarriers.map((enabledCarrier) => {
-      const additionalShippingSetting = state.settings.deliveryDetails.find(
-        (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === enabledCarrier.carrierId
-        && enabledCarrier.country === deliveryDetail.country);
-      if (!additionalShippingSetting) {
+      const enabledCarriers = getEnabledCarriers(
+        state.settings.shippingSettings,
+      );
+      const carriersList: (Carrier | DeliveryDetail)[] = enabledCarriers.map((enabledCarrier) => {
+        const additionalShippingSetting = state.settings.deliveryDetails.find(
+          (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === enabledCarrier.carrierId
+          && enabledCarrier.country === deliveryDetail.country);
+        if (!additionalShippingSetting) {
+          return {
+            deliveryType: undefined,
+            ...enabledCarrier,
+          };
+        }
         return {
-          deliveryType: undefined,
+          enabledCarrier: true,
           ...enabledCarrier,
+          ...additionalShippingSetting,
         };
+      });
+      if (carriersList !== JSON.parse(getDeliveryDetailsFromStorage)) {
+        commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
+      } else {
+        commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, JSON.parse(getDeliveryDetailsFromStorage || '{}'));
       }
-      return {
-        enabledCarrier: true,
-        ...enabledCarrier,
-        ...additionalShippingSetting,
-      };
-    });
-    commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
+    }
   },
 
   [ActionsTypes.DUPLICATE_DELIVERY_DETAILS](

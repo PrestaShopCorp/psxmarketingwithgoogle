@@ -4,9 +4,32 @@
       class="ps_gs-fz-20 font-weight-600 mb-2"
       v-html="$t('productFeedSettings.shipping.shippingInformationTitle')"
     />
-    <p>
-      {{ $t('productFeedSettings.shipping.shippingInformationIntro') }}
-    </p>
+    <div class="d-flex  align-items-center pr-3">
+      <p>
+        {{ $t('productFeedSettings.shipping.shippingInformationIntro') }}
+      </p>
+      <b-dropdown
+        v-if="countriesFromCarriers"
+        id="filterByCountryDropdown"
+        variant=" "
+        menu-class="ps-dropdown"
+        :text="this.$options.filters.changeCountriesCodesToNames(countryFilter)[0]
+          || $t('productFeedSettings.shipping.filterTitle')"
+        class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
+      >
+        <b-dropdown-item
+          v-for="(country, index) in countriesFromCarriers"
+          :key="index"
+          @click="filterByCountryName(country)"
+          :value="country"
+          variant="dark"
+          link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
+        >
+          {{ country }}
+        </b-dropdown-item>
+      </b-dropdown>
+    </div>
+
     <!-- START > TABLE -->
     <b-table-simple
       id="table-carriers"
@@ -136,8 +159,8 @@ export default {
   },
   data() {
     return {
-      updatedKey: 0,
       countries: this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+      countryFilter: [],
     };
   },
   computed: {
@@ -145,8 +168,18 @@ export default {
       return Object.values(ShippingSettingsHeaderType);
     },
     carriers() {
-      return this.$store.state.productFeed.settings.deliveryDetails
-        .filter((carrier) => this.countries.includes(carrier.country));
+      if (this.countryFilter.length) {
+        return this.$store.state.productFeed.settings.deliveryDetails
+          .filter((carrier) => carrier.country === this.countryFilter[0]);
+      }
+      return this.$store.state.productFeed.settings.deliveryDetails;
+    },
+
+    countriesFromCarriers() {
+      return this.$options.filters.changeCountriesCodesToNames(
+        this.$store.state.productFeed.settings.deliveryDetails.map((e) => e.country).sort()
+          .filter((item, pos, ary) => !pos || item !== ary[pos - 1]),
+      );
     },
     disableContinue() {
       return !this.carriers.every(validateDeliveryDetail);
@@ -187,6 +220,10 @@ export default {
     },
     refreshComponent() {
       this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
+    },
+    filterByCountryName(country) {
+      const codeCountry = this.$options.filters.changeCountriesNamesToCodes([country]);
+      this.countryFilter = codeCountry;
     },
   },
 };

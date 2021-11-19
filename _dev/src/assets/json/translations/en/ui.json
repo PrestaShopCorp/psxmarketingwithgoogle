@@ -241,6 +241,7 @@
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
     "shipping": {
       "targetCountries": "Target country",
+      "filterTitle": "Filter by country",
       "ifMultipleCountries": "If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target=\"_blank\"] and [local regulation]({1})[:target=\"_blank\"]",
       "productAvailaibleIn": "My products are available in",
       "placeholderSelect": "Select the countries where your products are available",
@@ -266,6 +267,7 @@
       "shipToCustomerHeader": "Ship to customer’s address",
       "handlingTimeHeader": "Handling time",
       "transitTimeHeader": "Transit time",
+      "countryHeader": "Target country",
       "shipToCustomerTooltip": "Select if this carrier delivers to a customer’s address or not (service point, in store pickup). Google only allows enabling carriers who ship to an address.",
       "handlingTimeTooltip": "Enter how long it takes you to prepare an order until it’s picked up by the carrier in working days.",
       "transitTimeTooltip": "Enter how long it takes for your order to be shipped to the customer once it leaves your facility.",
