@@ -424,6 +424,7 @@
     "intro": "Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time."
   },
   "smartShoppingCampaignCreation": {
+    "allFilters": "All Filters",
     "breadcrumb1": "Campaign",
     "breadcrumb2": "Create Smart Shopping campaign",
     "inputNameHelper": "The name must be unique and 125 chars max.",
@@ -480,7 +481,10 @@
     "remarketingTagLoading": "Checking if you have a remarketing and conversion tracking tags to add to your shop",
     "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
-    "nbProductsSelected": "No product selected | {0} product selected | {0} products selected"
+    "nbProductsSelected": "No product selected | {0} product selected | {0} products selected",
+    "categories": "Categories",
+    "brands": "Brands",
+    "products": "Products"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance"
