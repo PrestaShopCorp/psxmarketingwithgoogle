@@ -12,26 +12,27 @@
         id="filterByCountryDropdown"
         variant=" "
         menu-class="ps-dropdown"
-        :text="countryChosen[0] || $t('productFeedSettings.shipping.filterTitle')"
+        :text="countryChosen ? $options.filters.changeCountriesCodesToNames([countryChosen])[0]
+          : $t('productFeedSettings.shipping.filterTitle')"
         class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
       >
         <b-dropdown-item
-          :disabled="!countryChosen.length"
+          :disabled="!countryChosen"
           variant="dark"
           link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
-          @click="countryChosen = []"
+          @click="countryChosen = null"
         >
           {{ $t('productFeedSettings.shipping.filterTitle') }}
         </b-dropdown-item>
         <b-dropdown-item
-          :disabled="country === countryChosen[0]"
+          :disabled="country === countryChosen"
           v-for="(country, index) in countries"
           :key="index"
-          @click="filterByCountryName(country)"
+          @click="countryChosen = country"
           variant="dark"
           link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
         >
-          {{ country }}
+          {{ $options.filters.changeCountriesCodesToNames([country])[0] }}
         </b-dropdown-item>
       </b-dropdown>
     </div>
@@ -165,15 +166,10 @@ export default {
   },
   data() {
     return {
-      // countries: JSON.parse(localStorage.getItem('productFeed-targetCountries'))
-      //   ? this.$options.filters.changeCountriesCodesToNames(
-      //     JSON.parse(localStorage.getItem('productFeed-targetCountries')),
-      //   )
-      //   : this.$options.filters.changeCountriesCodesToNames(
-      //     this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
-      //   ),
-      countries: ['France', 'Italy', 'Spain'],
-      countryChosen: [],
+      countries: JSON.parse(localStorage.getItem('productFeed-targetCountries'))
+        ? JSON.parse(localStorage.getItem('productFeed-targetCountries'))
+        : this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+      countryChosen: null,
     };
   },
   computed: {
@@ -181,12 +177,9 @@ export default {
       return Object.values(ShippingSettingsHeaderType);
     },
     carriers() {
-      if (this.countryChosen.length) {
-        const countryCode = this.$options.filters.changeCountriesNamesToCodes(this.countryChosen);
-        return this.$store.state.productFeed.settings.deliveryDetails
-          .filter((carrier) => carrier.country === countryCode[0]);
-      }
-      return this.$store.state.productFeed.settings.deliveryDetails;
+      return this.$store.state.productFeed.settings.deliveryDetails
+        .filter((carrier) => (this.countryChosen ? [this.countryChosen].includes(carrier.country)
+          : this.countries.includes(carrier.country)));
     },
     disableContinue() {
       return !this.carriers.every(validateDeliveryDetail);
@@ -227,9 +220,6 @@ export default {
     },
     refreshComponent() {
       this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
-    },
-    filterByCountryName(country) {
-      this.countryChosen = [country];
     },
   },
 };
