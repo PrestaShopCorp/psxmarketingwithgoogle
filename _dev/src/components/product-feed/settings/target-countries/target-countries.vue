@@ -10,7 +10,7 @@
       <SelectCountry
         :currency="currency"
         @countrySelected="saveCountrySelected"
-        :default-country="countries"
+        :default-country="countries[0]"
       />
     </b-form-group>
     <b-form-group
@@ -120,16 +120,17 @@ export default {
       tax: null,
       shippingSettings: JSON.parse(localStorage.getItem('productFeed-autoImportShippingSettings')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
       loading: false,
+      countries: localStorage.getItem('productFeed-targetCountries')
+        ? this.$options.filters.changeCountriesCodesToNames(
+          JSON.parse(localStorage.getItem('productFeed-targetCountries')),
+        )
+        : this.$options.filters.changeCountriesCodesToNames(
+          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+        ),
     };
   },
   computed: {
-    countries: {
-      get() {
-        return JSON.parse(localStorage.getItem('productFeed-targetCountries')) ?? this.$options.filters.changeCountriesCodesToNames(
-          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
-        );
-      },
-    },
+
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
@@ -149,8 +150,9 @@ export default {
     },
     nextStep() {
       this.loading = true;
+      const countryCode = this.$options.filters.changeCountriesNamesToCodes(this.countries);
       localStorage.setItem('productFeed-autoImportShippingSettings', JSON.stringify(this.shippingSettings));
-      localStorage.setItem('productFeed-targetCountries', JSON.stringify(this.countries));
+      localStorage.setItem('productFeed-targetCountries', JSON.stringify(countryCode));
       if (this.shippingSettings) {
         this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
           this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
@@ -170,8 +172,12 @@ export default {
       }
     },
     saveCountrySelected(value) {
-      this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', value);
+      const countryCode = this.$options.filters.changeCountriesNamesToCodes(value);
+      this.countries = this.$options.filters.changeCountriesNamesToCodes(value);
+      localStorage.setItem('productFeed-targetCountries', JSON.stringify(countryCode));
+      this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', countryCode);
     },
   },
+
 };
 </script>

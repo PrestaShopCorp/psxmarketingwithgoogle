@@ -142,7 +142,7 @@
               v-for="(carrierOption, index) in carriersList"
               :key="index"
               class="ps_gs-checkbox my-1"
-              :disabled="isInitiatorCarrier(carrierOption.carrierId) ||
+              :disabled="isInitiatorCarrier(carrierOption.carrierId && carrierOption.country) ||
                 !carrierOption.enabledCarrier"
               :value="{carrierId: carrierOption.carrierId, country: carrierOption.country}"
             >
