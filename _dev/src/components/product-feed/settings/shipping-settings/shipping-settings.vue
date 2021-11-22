@@ -13,7 +13,7 @@
         id="filterByCountryDropdown"
         variant=" "
         menu-class="ps-dropdown"
-        :text="this.$options.filters.changeCountriesCodesToNames(countryFilter)[0]
+        :text="this.$options.filters.changeCountriesCodesToNames(countries)[0]
           || $t('productFeedSettings.shipping.filterTitle')"
         class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
       >
@@ -160,7 +160,6 @@ export default {
   data() {
     return {
       countries: this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
-      countryFilter: [],
     };
   },
   computed: {
@@ -168,9 +167,9 @@ export default {
       return Object.values(ShippingSettingsHeaderType);
     },
     carriers() {
-      if (this.countryFilter.length) {
+      if (this.countries.length) {
         return this.$store.state.productFeed.settings.deliveryDetails
-          .filter((carrier) => carrier.country === this.countryFilter[0]);
+          .filter((carrier) => carrier.country === this.countries[0]);
       }
       return this.$store.state.productFeed.settings.deliveryDetails;
     },
@@ -223,7 +222,7 @@ export default {
     },
     filterByCountryName(country) {
       const codeCountry = this.$options.filters.changeCountriesNamesToCodes([country]);
-      this.countryFilter = codeCountry;
+      this.countries = codeCountry;
     },
   },
 };
