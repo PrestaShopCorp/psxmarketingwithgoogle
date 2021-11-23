@@ -181,6 +181,13 @@ export const productFeed = {
   ],
 };
 
+export const productFeedMultiCountries = {
+  ...productFeed,
+  settings: {
+    ...productFeed.settings,
+  targetCountries: ["FR", "IT"]
+  }
+};
 export const productFeedNoCarriers = {
   ...productFeed,
   settings: {

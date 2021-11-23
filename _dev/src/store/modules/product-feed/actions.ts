@@ -218,16 +218,17 @@ export default {
         ...additionalShippingSetting,
       };
     });
-    commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
     if (getDeliveryDetailsFromStorage !== null) {
       const deliveryFromStorage = JSON.parse(getDeliveryDetailsFromStorage);
-      const result = state.settings.deliveryDetails.map((carrier) => {
+      const result = carriersList.map((carrier) => {
         const item = deliveryFromStorage.find((c) => (
           (c.carrierId === carrier.carrierId) && (c.country === carrier.country)
         ));
         return item || carrier;
       });
       commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, result);
+    } else {
+      commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
     }
   },
 
