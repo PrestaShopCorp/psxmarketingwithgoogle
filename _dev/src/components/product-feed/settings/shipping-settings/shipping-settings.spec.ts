@@ -44,20 +44,21 @@ describe('shipping-settings.vue', () => {
     expect(wrapper.find('#table-carriers').isVisible()).toBe(true);
   });
 
-  // it('shows a default message when there are no carriers', () => {
-  //   store.modules.app.state.targetCountries = ['XXX'];
+  it('shows a default message when there are no carriers', () => {
+    store.modules.app.state.targetCountries = ['XXX'];
 
-  //   const wrapper = shallowMount(ShippingSettings, {
-  //     store: new Vuex.Store(store),
-  //     directives: {
-  //       'b-tooltip': VBTooltip,
-  //     },
-  //     ...config,
-  //   });
-  //   expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
-  //   expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(0);
-  //   expect(wrapper.find('[data-test-id="no-carriers"]').isVisible()).toBe(true);
-  // });
+    const wrapper = shallowMount(ShippingSettings, {
+      localVue,
+      store: new Vuex.Store(store),
+      directives: {
+        'b-tooltip': VBTooltip,
+      },
+      ...config,
+    });
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
+    expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(0);
+    expect(wrapper.find('[data-test-id="no-carriers"]').isVisible()).toBe(true);
+  });
 
   it('shows the table with carriers filtered by target countries (FR)', () => {
     store.modules.app.state.targetCountries = ['FR'];
@@ -103,63 +104,66 @@ describe('shipping-settings.vue', () => {
     });
   });
 
-  // it('shows the table with carriers filtered by target countries (IT)', () => {
-  //   store.modules.app.state.targetCountries = ['IT'];
+  it('shows the table with carriers filtered by target countries (IT)', () => {
+    store.modules.app.state.targetCountries = ['IT'];
 
-  //   const wrapper = shallowMount(ShippingSettings, {
-  //     store: new Vuex.Store(store),
-  //     directives: {
-  //       'b-tooltip': VBTooltip,
-  //     },
-  //     ...config,
-  //   });
-  //   expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(4);
-  //   expect(wrapper.findAllComponents(TableRowCarrier).at(0).props('carrier')).toEqual({
-  //     carrierId: '9',
-  //     country: 'IT',
-  //     name: 'PrestaShop',
-  //     delay: 'Pick up in-store',
-  //   });
-  //   expect(wrapper.findAllComponents(TableRowCarrier).at(1).props('carrier')).toEqual({
-  //     carrierId: '11',
-  //     country: 'IT',
-  //     name: 'My carrier',
-  //     delay: 'Delivery next day!',
-  //   });
-  //   expect(wrapper.findAllComponents(TableRowCarrier).at(2).props('carrier')).toEqual({
-  //     carrierId: '13',
-  //     country: 'IT',
-  //     name: 'Carrier with fixed price',
-  //     delay: 'Maybe 1 day, maybe never',
-  //   });
-  //   expect(wrapper.findAllComponents(TableRowCarrier).at(3).props('carrier')).toEqual({
-  //     carrierId: '14',
-  //     country: 'IT',
-  //     name: 'Carrier #2 with fixed price',
-  //     delay: 'Maybe 1 day, maybe never',
-  //   });
-  // });
+    const wrapper = shallowMount(ShippingSettings, {
+      localVue,
+      store: new Vuex.Store(store),
+      directives: {
+        'b-tooltip': VBTooltip,
+      },
+      ...config,
+    });
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
+    expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(4);
+    expect(wrapper.findAllComponents(TableRowCarrier).at(0).props('carrier')).toEqual({
+      carrierId: '9',
+      country: 'IT',
+      name: 'PrestaShop',
+      delay: 'Pick up in-store',
+    });
+    expect(wrapper.findAllComponents(TableRowCarrier).at(1).props('carrier')).toEqual({
+      carrierId: '11',
+      country: 'IT',
+      name: 'My carrier',
+      delay: 'Delivery next day!',
+    });
+    expect(wrapper.findAllComponents(TableRowCarrier).at(2).props('carrier')).toEqual({
+      carrierId: '13',
+      country: 'IT',
+      name: 'Carrier with fixed price',
+      delay: 'Maybe 1 day, maybe never',
+    });
+    expect(wrapper.findAllComponents(TableRowCarrier).at(3).props('carrier')).toEqual({
+      carrierId: '14',
+      country: 'IT',
+      name: 'Carrier #2 with fixed price',
+      delay: 'Maybe 1 day, maybe never',
+    });
+  });
 
-  // it('enables the button "Continue" if all carriers are valid', () => {
-  //   // Select French carriers and one valid carrier
-  //   store.modules.app.state.targetCountries = ['FR'];
-  //   // Based on data in _dev/.storybook/mock/product-feed.js
-  //   // TODO: Mocking the method validateDeliveryDetail() would be safer
-  //   store.modules.productFeed.state.settings.deliveryDetails[3].enabledCarrier = true;
+  it('enables the button "Continue" if all carriers are valid', () => {
+    // Select French carriers and one valid carrier
+    store.modules.app.state.targetCountries = ['FR'];
+    // Based on data in _dev/.storybook/mock/product-feed.js
+    // TODO: Mocking the method validateDeliveryDetail() would be safer
+    store.modules.productFeed.state.settings.deliveryDetails[3].enabledCarrier = true;
 
-  //   const wrapper = shallowMount(ShippingSettings, {
-  //     store: new Vuex.Store(store),
-  //     directives: {
-  //       'b-tooltip': VBTooltip,
-  //     },
-  //     ...config,
-  //     stubs: {
-  //       ActionsButtons,
-  //     },
-  //   });
-  //   expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
-  //   expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
-  // });
+    const wrapper = shallowMount(ShippingSettings, {
+      localVue,
+      store: new Vuex.Store(store),
+      directives: {
+        'b-tooltip': VBTooltip,
+      },
+      ...config,
+      stubs: {
+        ActionsButtons,
+      },
+    });
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
+    expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
+  });
 
   it('disables the button "Continue" if one carrier in invalid', () => {
     // Select French carriers and one invalid carrier
