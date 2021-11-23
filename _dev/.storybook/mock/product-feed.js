@@ -185,7 +185,7 @@ export const productFeedMultiCountries = {
   ...productFeed,
   settings: {
     ...productFeed.settings,
-  targetCountries: ["FR", "IT"]
+    targetCountries: ["FR", "IT"]
   }
 };
 export const productFeedNoCarriers = {
