@@ -179,7 +179,7 @@ export default {
     },
     carriers() {
       return this.$store.state.productFeed.settings.deliveryDetails
-       .filter((carrier) => {
+        .filter((carrier) => {
           if (this.countryChosen) {
             return this.countryChosen === carrier.country;
           }
