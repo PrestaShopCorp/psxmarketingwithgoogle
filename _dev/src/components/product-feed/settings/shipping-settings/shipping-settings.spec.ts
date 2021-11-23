@@ -40,7 +40,7 @@ describe('shipping-settings.vue', () => {
       ...config,
     });
     expect(wrapper.isVisible()).toBe(true);
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.find('#table-carriers').isVisible()).toBe(true);
   });
 
@@ -55,7 +55,7 @@ describe('shipping-settings.vue', () => {
       },
       ...config,
     });
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(0);
     expect(wrapper.find('[data-test-id="no-carriers"]').isVisible()).toBe(true);
   });
@@ -115,7 +115,7 @@ describe('shipping-settings.vue', () => {
       },
       ...config,
     });
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(4);
     expect(wrapper.findAllComponents(TableRowCarrier).at(0).props('carrier')).toEqual({
       carrierId: '9',
@@ -161,7 +161,7 @@ describe('shipping-settings.vue', () => {
         ActionsButtons,
       },
     });
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
   });
 

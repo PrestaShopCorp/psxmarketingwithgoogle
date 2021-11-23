@@ -121,9 +121,9 @@ export default {
       shippingSettings: JSON.parse(localStorage.getItem('productFeed-autoImportShippingSettings')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
       loading: false,
       countries: this.$options.filters.changeCountriesCodesToNames(
-            JSON.parse(localStorage.getItem('productFeed-targetCountries') ||
-            this.$store.getters['app/GET_ACTIVE_COUNTRIES']
-          ),
+        JSON.parse(localStorage.getItem('productFeed-targetCountries'))
+            || this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+      ),
     };
   },
   computed: {
@@ -171,7 +171,6 @@ export default {
     saveCountrySelected(value) {
       const countryCode = this.$options.filters.changeCountriesNamesToCodes(value);
       this.countries = countryCode;
-      localStorage.setItem('productFeed-targetCountries', JSON.stringify(countryCode));
       this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', countryCode);
     },
   },

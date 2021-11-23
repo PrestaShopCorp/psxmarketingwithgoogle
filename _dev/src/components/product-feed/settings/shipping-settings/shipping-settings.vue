@@ -9,6 +9,7 @@
         {{ $t('productFeedSettings.shipping.shippingInformationIntro') }}
       </p>
       <b-dropdown
+        v-if="countries.length > 1"
         id="filterByCountryDropdown"
         variant=" "
         menu-class="ps-dropdown"
@@ -178,8 +179,12 @@ export default {
     },
     carriers() {
       return this.$store.state.productFeed.settings.deliveryDetails
-        .filter((carrier) => (this.countryChosen ? [this.countryChosen].includes(carrier.country)
-          : this.countries.includes(carrier.country)));
+       .filter((carrier) => {
+          if (this.countryChosen) {
+            return this.countryChosen === carrier.country;
+          }
+          return this.countries.includes(carrier.country);
+        });
     },
     disableContinue() {
       return !this.carriers.every(validateDeliveryDetail);
