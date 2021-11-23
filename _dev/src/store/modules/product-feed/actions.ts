@@ -230,6 +230,7 @@ export default {
     } else {
       commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
     }
+    
   },
 
   [ActionsTypes.DUPLICATE_DELIVERY_DETAILS](
