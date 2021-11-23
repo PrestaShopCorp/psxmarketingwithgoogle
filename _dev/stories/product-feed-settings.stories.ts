@@ -1,6 +1,6 @@
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue';
-import {productFeed, productFeedNoCarriers, productFeedMultiCountries ,productFeedIsReadyForExport} from '../.storybook/mock/product-feed';
-import {initialStateApp} from '../.storybook/mock/state-app';
+import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport} from '../.storybook/mock/product-feed';
+import {initialStateApp, appMultiCountries} from '../.storybook/mock/state-app';
 
 export default {
   title: 'Product feed/Settings',
@@ -28,8 +28,8 @@ const Template = (args, {argTypes}) => ({
 export const TargetCountry:any = Template.bind({});
 TargetCountry.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign(productFeed);
-    this.$store.state.app = Object.assign(initialStateApp);
+    this.$store.state.productFeed = Object.assign({},productFeed);
+    this.$store.state.app = Object.assign({},initialStateApp);
     this.$store.state.productFeed.stepper = 1;
   },
 };
@@ -37,7 +37,7 @@ TargetCountry.args = {
 export const ShippingSettings:any = Template.bind({});
 ShippingSettings.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign(productFeed);
+    this.$store.state.productFeed = Object.assign({},productFeed);
     this.$store.state.productFeed.stepper = 2;
   },
 };
@@ -45,8 +45,8 @@ ShippingSettings.args = {
 export const ShippingSettingsMultiCountries:any = Template.bind({});
 ShippingSettingsMultiCountries.args = {
   beforeMount(this: any) {
-    console.log(localStorage)
-    this.$store.state.productFeed = Object.assign(productFeedMultiCountries);
+    this.$store.state.productFeed = Object.assign({}, productFeed);
+    this.$store.state.app = Object.assign({}, appMultiCountries);
     this.$store.state.productFeed.stepper = 2;
   },
 };
@@ -54,7 +54,7 @@ ShippingSettingsMultiCountries.args = {
 export const ShippingSettingsNoCarriers:any = Template.bind({});
 ShippingSettingsNoCarriers.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign(productFeedNoCarriers);
+    this.$store.state.productFeed = Object.assign({},productFeedNoCarriers);
     this.$store.state.productFeed.stepper = 2;
   },
 };
@@ -62,7 +62,7 @@ ShippingSettingsNoCarriers.args = {
 export const AttributeMapping:any = Template.bind({});
 AttributeMapping.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign(productFeed);
+    this.$store.state.productFeed = Object.assign({},productFeed);
     this.$store.state.productFeed.stepper = 3;
   },
 };
@@ -70,7 +70,7 @@ AttributeMapping.args = {
 export const Summary:any = Template.bind({});
 Summary.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign(productFeedIsReadyForExport);
+    this.$store.state.productFeed = Object.assign({},productFeedIsReadyForExport);
     this.$store.state.productFeed.stepper = 4;
   },
 };
