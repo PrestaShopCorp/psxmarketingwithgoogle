@@ -4,9 +4,40 @@
       class="ps_gs-fz-20 font-weight-600 mb-2"
       v-html="$t('productFeedSettings.shipping.shippingInformationTitle')"
     />
-    <p>
-      {{ $t('productFeedSettings.shipping.shippingInformationIntro') }}
-    </p>
+    <div class="d-flex  align-items-center pr-3">
+      <p>
+        {{ $t('productFeedSettings.shipping.shippingInformationIntro') }}
+      </p>
+      <b-dropdown
+        v-if="countries.length > 1"
+        id="filterByCountryDropdown"
+        variant=" "
+        menu-class="ps-dropdown"
+        :text="countryChosen ? $options.filters.changeCountriesCodesToNames([countryChosen])[0]
+          : $t('productFeedSettings.shipping.filterTitle')"
+        class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
+      >
+        <b-dropdown-item
+          :disabled="!countryChosen"
+          variant="dark"
+          link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
+          @click="countryChosen = null"
+        >
+          {{ $t('productFeedSettings.shipping.filterTitle') }}
+        </b-dropdown-item>
+        <b-dropdown-item
+          :disabled="country === countryChosen"
+          v-for="(country, index) in countries"
+          :key="index"
+          @click="countryChosen = country"
+          variant="dark"
+          link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
+        >
+          {{ $options.filters.changeCountriesCodesToNames([country])[0] }}
+        </b-dropdown-item>
+      </b-dropdown>
+    </div>
+
     <!-- START > TABLE -->
     <b-table-simple
       id="table-carriers"
@@ -136,8 +167,8 @@ export default {
   },
   data() {
     return {
-      updatedKey: 0,
       countries: this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+      countryChosen: null,
     };
   },
   computed: {
@@ -146,7 +177,12 @@ export default {
     },
     carriers() {
       return this.$store.state.productFeed.settings.deliveryDetails
-        .filter((carrier) => this.countries.includes(carrier.country));
+        .filter((carrier) => {
+          if (this.countryChosen) {
+            return this.countryChosen === carrier.country;
+          }
+          return this.countries.includes(carrier.country);
+        });
     },
     disableContinue() {
       return !this.carriers.every(validateDeliveryDetail);

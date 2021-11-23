@@ -6,7 +6,7 @@ import Vuex from 'vuex';
 // Import this file first to init mock on window
 import cloneDeep from 'lodash.clonedeep';
 import {shallowMount} from '@vue/test-utils';
-import config, {cloneStore} from '@/../tests/init';
+import config, {localVue, cloneStore, filters} from '@/../tests/init';
 
 import ShippingSettings from '@/components/product-feed/settings/shipping-settings/shipping-settings.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
@@ -24,6 +24,7 @@ describe('shipping-settings.vue', () => {
       ...store.modules.productFeed.state,
       stepper: 2,
     };
+
     store.modules.productFeed.state.settings.deliveryDetails = [
       ...cloneDeep(productFeed.settings.deliveryDetails),
     ];
@@ -31,14 +32,15 @@ describe('shipping-settings.vue', () => {
 
   it('is visible', () => {
     const wrapper = shallowMount(ShippingSettings, {
+      localVue,
       store: new Vuex.Store(store),
       directives: {
         'b-tooltip': VBTooltip,
       },
       ...config,
     });
-
     expect(wrapper.isVisible()).toBe(true);
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.find('#table-carriers').isVisible()).toBe(true);
   });
 
@@ -46,13 +48,14 @@ describe('shipping-settings.vue', () => {
     store.modules.app.state.targetCountries = ['XXX'];
 
     const wrapper = shallowMount(ShippingSettings, {
+      localVue,
       store: new Vuex.Store(store),
       directives: {
         'b-tooltip': VBTooltip,
       },
       ...config,
     });
-
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(0);
     expect(wrapper.find('[data-test-id="no-carriers"]').isVisible()).toBe(true);
   });
@@ -61,13 +64,13 @@ describe('shipping-settings.vue', () => {
     store.modules.app.state.targetCountries = ['FR'];
 
     const wrapper = shallowMount(ShippingSettings, {
+      localVue,
       store: new Vuex.Store(store),
       directives: {
         'b-tooltip': VBTooltip,
       },
       ...config,
     });
-
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(3);
     expect(wrapper.findAllComponents(TableRowCarrier).at(0).props('carrier')).toEqual({
       carrierId: '9',
@@ -105,13 +108,14 @@ describe('shipping-settings.vue', () => {
     store.modules.app.state.targetCountries = ['IT'];
 
     const wrapper = shallowMount(ShippingSettings, {
+      localVue,
       store: new Vuex.Store(store),
       directives: {
         'b-tooltip': VBTooltip,
       },
       ...config,
     });
-
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(4);
     expect(wrapper.findAllComponents(TableRowCarrier).at(0).props('carrier')).toEqual({
       carrierId: '9',
@@ -147,6 +151,7 @@ describe('shipping-settings.vue', () => {
     store.modules.productFeed.state.settings.deliveryDetails[3].enabledCarrier = true;
 
     const wrapper = shallowMount(ShippingSettings, {
+      localVue,
       store: new Vuex.Store(store),
       directives: {
         'b-tooltip': VBTooltip,
@@ -156,7 +161,7 @@ describe('shipping-settings.vue', () => {
         ActionsButtons,
       },
     });
-
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
   });
 
@@ -168,6 +173,7 @@ describe('shipping-settings.vue', () => {
     store.modules.productFeed.state.settings.deliveryDetails[0].enabledCarrier = true;
 
     const wrapper = shallowMount(ShippingSettings, {
+      localVue,
       store: new Vuex.Store(store),
       directives: {
         'b-tooltip': VBTooltip,
@@ -185,6 +191,7 @@ describe('shipping-settings.vue', () => {
     store.modules.app.state.targetCountries = ['FR', 'IT', 'ES', 'DE', 'GB'];
 
     const wrapper = shallowMount(ShippingSettings, {
+      localVue,
       store: new Vuex.Store(store),
       directives: {
         'b-tooltip': VBTooltip,
@@ -196,6 +203,7 @@ describe('shipping-settings.vue', () => {
     });
 
     // No disabled attribute = enabled
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(5);
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
   });
 
@@ -204,6 +212,7 @@ describe('shipping-settings.vue', () => {
     store.modules.productFeed.state.settings.deliveryDetails = [];
 
     const wrapper = shallowMount(ShippingSettings, {
+      localVue,
       store: new Vuex.Store(store),
       directives: {
         'b-tooltip': VBTooltip,
@@ -215,6 +224,7 @@ describe('shipping-settings.vue', () => {
     });
 
     // No disabled attribute = enabled
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
   });
 });

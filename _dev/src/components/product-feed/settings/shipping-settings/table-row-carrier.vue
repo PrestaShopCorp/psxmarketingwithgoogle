@@ -13,6 +13,13 @@
       />
     </td>
     <td class="py-3">
+      <span
+        class="blue-label"
+      >
+        {{ carrier.country }}
+      </span>
+    </td>
+    <td class="py-3">
       <h4 class="ps_gs-carrier__title">
         {{ carrier.name }}
       </h4>
@@ -132,10 +139,10 @@
             v-model="selectedCarriersForDuplication"
           >
             <b-form-checkbox
-              v-for="carrierOption in carriersList"
-              :key="carrierOption.name"
+              v-for="(carrierOption, index) in carriersList"
+              :key="index"
               class="ps_gs-checkbox my-1"
-              :disabled="isInitiatorCarrier(carrierOption.carrierId) ||
+              :disabled="isInitiatorCarrier(carrierOption.carrierId && carrierOption.country) ||
                 !carrierOption.enabledCarrier"
               :value="{carrierId: carrierOption.carrierId, country: carrierOption.country}"
             >
@@ -247,3 +254,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.blue-label {
+  border: none;
+  background-color: #BEEAF3;
+  border-radius: 4px;
+  color: #21A6C1;
+  font-size: 0.75rem;
+  padding-left: 6px;padding-right: 6px
+}
+</style>
