@@ -31,4 +31,9 @@ export const stateWithMaintenanceModeOn = {
   shopIsOnMaintenanceMode: true,
 }
 
+export const appMultiCountries = {
+  ...initialStateApp,
+  targetCountries: ['FR', 'IT'],
+}
+
 export default initialStateApp;

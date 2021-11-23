@@ -51,6 +51,7 @@ export default {
     return state.adBlockerExists;
   },
   [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
+    console.log(state);
     if (state.targetCountries !== null) {
       return state.targetCountries;
     }
