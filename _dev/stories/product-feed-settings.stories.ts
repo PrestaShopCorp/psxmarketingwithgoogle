@@ -1,7 +1,6 @@
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue';
 import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport} from '../.storybook/mock/product-feed';
-import {appMultiCountries, } from '../.storybook/mock/state-app';
-import {initialStateApp} from '../.storybook/mock/state-app';
+import {initialStateApp, appMultiCountries} from '../.storybook/mock/state-app';
 
 export default {
   title: 'Product feed/Settings',
@@ -24,7 +23,6 @@ const Template = (args, {argTypes}) => ({
   components: {TunnelProductFeed},
   template: '<div><TunnelProductFeed v-bind="$props" /></div>',
   beforeMount: args.beforeMount,
-  mounted: args.mounted,
 });
 
 export const TargetCountry:any = Template.bind({});
