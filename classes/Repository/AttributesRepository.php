@@ -44,6 +44,7 @@ class AttributesRepository
         $attributes = [];
         $customAttributes = \AttributeGroupCore::getAttributesGroups($this->context->language->id);
         $features = \FeatureCore::getFeatures($this->context->language->id);
+        $brands = \Manufacturer::getManufacturers(false, $this->context->language->id, true, false, false, false, false, true);
 
         foreach ($customAttributes as $attr) {
             $attributes[] = [
@@ -55,6 +56,13 @@ class AttributesRepository
         foreach ($features as $feature) {
             $attributes[] = [
                 'name' => strtolower($feature['name']),
+                'type' => 'feature',
+            ];
+        }
+
+        foreach ($brands as $brand) {
+            $attributes[] = [
+                'name' => strtolower($brand['name']),
                 'type' => 'feature',
             ];
         }
