@@ -193,8 +193,6 @@ export default {
   },
 
   async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
-    const getDeliveryDetailsFromStorage = localStorage.getItem('productFeed-deliveryDetails');
-
     // TODO: These call may be already done, so we might remove them
     await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
     await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
@@ -202,10 +200,17 @@ export default {
     const enabledCarriers = getEnabledCarriers(
       state.settings.shippingSettings,
     );
+    const deliveryFromStorage = JSON.parse(localStorage.getItem('productFeed-deliveryDetails') || '[]');
     const carriersList: (Carrier | DeliveryDetail)[] = enabledCarriers.map((enabledCarrier) => {
+      const carrierSavedInLocalStorage = deliveryFromStorage?.find((c : DeliveryDetail) => (
+        (c.carrierId === enabledCarrier.carrierId) && (c.country === enabledCarrier.country)
+      ));
+      if (carrierSavedInLocalStorage) {
+        return carrierSavedInLocalStorage;
+      }
       const additionalShippingSetting = state.settings.deliveryDetails.find(
         (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === enabledCarrier.carrierId
-        && enabledCarrier.country === deliveryDetail.country);
+                && enabledCarrier.country === deliveryDetail.country);
       if (!additionalShippingSetting) {
         return {
           deliveryType: undefined,
@@ -218,19 +223,7 @@ export default {
         ...additionalShippingSetting,
       };
     });
-    if (getDeliveryDetailsFromStorage !== null) {
-      const deliveryFromStorage = JSON.parse(getDeliveryDetailsFromStorage);
-      const result = carriersList.map((carrier) => {
-        const item = deliveryFromStorage.find((c) => (
-          (c.carrierId === carrier.carrierId) && (c.country === carrier.country)
-        ));
-        return item || carrier;
-      });
-      commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, result);
-    } else {
-      commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
-    }
-    
+    commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 
   [ActionsTypes.DUPLICATE_DELIVERY_DETAILS](
