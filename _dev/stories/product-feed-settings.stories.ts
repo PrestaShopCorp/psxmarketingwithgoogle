@@ -46,7 +46,7 @@ export const ShippingSettingsMultiCountries:any = Template.bind({});
 ShippingSettingsMultiCountries.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign(productFeed);
-    this.$store.state.app = Object.assign(appMultiCountries);
+    this.$store.state.app = Object.assign({}, appMultiCountries);
     this.$store.state.productFeed.stepper = 2;
   },
 };
