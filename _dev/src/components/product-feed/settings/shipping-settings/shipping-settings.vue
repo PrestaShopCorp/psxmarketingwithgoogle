@@ -167,9 +167,7 @@ export default {
   },
   data() {
     return {
-      countries: JSON.parse(localStorage.getItem('productFeed-targetCountries'))
-        ? JSON.parse(localStorage.getItem('productFeed-targetCountries'))
-        : this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+      countries: this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
       countryChosen: null,
     };
   },

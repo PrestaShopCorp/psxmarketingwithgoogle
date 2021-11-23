@@ -202,7 +202,7 @@ export default {
     );
     const deliveryFromStorage = JSON.parse(localStorage.getItem('productFeed-deliveryDetails') || '[]');
     const carriersList: (Carrier | DeliveryDetail)[] = enabledCarriers.map((enabledCarrier) => {
-      const carrierSavedInLocalStorage = deliveryFromStorage?.find((c : DeliveryDetail) => (
+      const carrierSavedInLocalStorage = deliveryFromStorage.find((c : DeliveryDetail) => (
         (c.carrierId === enabledCarrier.carrierId) && (c.country === enabledCarrier.country)
       ));
       if (carrierSavedInLocalStorage) {

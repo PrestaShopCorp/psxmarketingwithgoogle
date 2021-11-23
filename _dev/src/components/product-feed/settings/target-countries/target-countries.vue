@@ -121,8 +121,7 @@ export default {
       shippingSettings: JSON.parse(localStorage.getItem('productFeed-autoImportShippingSettings')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
       loading: false,
       countries: this.$options.filters.changeCountriesCodesToNames(
-        JSON.parse(localStorage.getItem('productFeed-targetCountries'))
-            || this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+        this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
       ),
     };
   },

@@ -54,6 +54,10 @@ export default {
     if (state.targetCountries !== null) {
       return state.targetCountries;
     }
+    const targetCountriesFromLocalStorage = localStorage.getItem('productFeed-targetCountries');
+    if (targetCountriesFromLocalStorage) {
+      return JSON.parse(targetCountriesFromLocalStorage);
+    }
     if (state.psxMtgWithGoogleDefaultShopCountry !== null) {
       return [state.psxMtgWithGoogleDefaultShopCountry];
     }
