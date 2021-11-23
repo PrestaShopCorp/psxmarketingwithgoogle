@@ -120,13 +120,10 @@ export default {
       tax: null,
       shippingSettings: JSON.parse(localStorage.getItem('productFeed-autoImportShippingSettings')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
       loading: false,
-      countries: localStorage.getItem('productFeed-targetCountries')
-        ? this.$options.filters.changeCountriesCodesToNames(
-          JSON.parse(localStorage.getItem('productFeed-targetCountries')),
-        )
-        : this.$options.filters.changeCountriesCodesToNames(
-          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
-        ),
+      countries: this.$options.filters.changeCountriesCodesToNames(
+            JSON.parse(localStorage.getItem('productFeed-targetCountries') ||
+            this.$store.getters['app/GET_ACTIVE_COUNTRIES']
+          ),
     };
   },
   computed: {
