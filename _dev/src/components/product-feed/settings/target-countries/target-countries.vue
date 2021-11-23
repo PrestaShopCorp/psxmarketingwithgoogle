@@ -170,7 +170,7 @@ export default {
     },
     saveCountrySelected(value) {
       const countryCode = this.$options.filters.changeCountriesNamesToCodes(value);
-      this.countries = this.$options.filters.changeCountriesNamesToCodes(value);
+      this.countries = countryCode;
       localStorage.setItem('productFeed-targetCountries', JSON.stringify(countryCode));
       this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', countryCode);
     },
