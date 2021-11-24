@@ -38,7 +38,7 @@ export default {
     this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
     this.$store.dispatch('productFeed/GET_TOTAL_PRODUCTS');
     this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST')
-    .then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT'));
+      .then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT'));
   },
 
 };
