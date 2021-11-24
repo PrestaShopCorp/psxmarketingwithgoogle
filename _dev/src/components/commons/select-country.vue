@@ -46,7 +46,11 @@ export default {
   },
   data() {
     return {
+<<<<<<< HEAD
       countriesChosen: [],
+=======
+      countryChosen: [],
+>>>>>>> 2026e893 (Modifying the select country input to get multiple if props)
       searchString: '',
     };
   },
