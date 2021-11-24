@@ -3,8 +3,8 @@
     <ps-select
       :deselect-from-dropdown="true"
       :multiple="isMultiple"
-      :options="sortCountries"
-      @search="searchProducts"
+      :options="sortCountries.filter(c => countries.indexOf(c) < 0)"
+      @search="searchCountry"
       label="name"
       v-model="countries"
       :placeholder=" $t('productFeedSettings.shipping.placeholderSelect')"
@@ -70,7 +70,7 @@ export default {
     },
   },
   methods: {
-    searchProducts(event) {
+    searchCountry(event) {
       this.searchString = event;
     },
     highlightSearch(str) {
@@ -101,7 +101,7 @@ export default {
           }
           return ids;
         }, [])
-        : countriesSelectionOptions;
+        : countriesSelectionOptions.map((e) => e.country);
     },
   },
 };
