@@ -67,7 +67,7 @@
 
         <template v-else>
           <ReportingTableEmptyMessage
-            v-if="partitionList.length === 0"
+            v-if="!loading && !partitionList"
             :colspan="filtersHeaderList.length"
             :text="$t('campaigns.filtersPerformanceTable.emptyListText')"
           />
@@ -146,7 +146,7 @@ export default {
         });
     },
   },
-  created() {
+  mounted() {
     this.fetchProductsPartitionsPerformances();
   },
   computed: {
