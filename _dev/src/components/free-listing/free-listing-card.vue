@@ -21,8 +21,8 @@
             <img
               class="mr-3"
               :src="isEnabled
-                ? require('@/assets/images/google-shopping-icon.svg')
-                : require('@/assets/images/google-shopping-icon-grey.svg')"
+                ? require('@/assets/images/google-icon.svg')
+                : require('@/assets/images/google-icon-grey.svg')"
               width="40"
               height="40"
               alt=""
