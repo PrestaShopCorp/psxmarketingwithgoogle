@@ -163,7 +163,7 @@
             v-if="!editMode"
             :currency="currency"
             @countrySelected="saveCountrySelected"
-            :default-country="countries"
+            :default-countries="countries"
             :need-filter="false"
           />
           <span
@@ -417,14 +417,17 @@ export default {
     },
     countries: {
       get() {
-        let countries = this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
-        const allowedCountries = countriesSelectionOptions.filter(
-          (el) => el.currency === this.currency,
+        return this.$options.filters.changeCountriesCodesToNames(
+          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
         );
-        countries = countries.filter(
-          (c) => allowedCountries.find((ac) => ac.code === c),
-        );
-        return this.$options.filters.changeCountriesCodesToNames(countries);
+        // let countries = this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
+        // const allowedCountries = countriesSelectionOptions.filter(
+        //   (el) => el.currency === this.currency,
+        // );
+        // countries = countries.filter(
+        //   (c) => allowedCountries.find((ac) => ac.code === c),
+        // );
+        // return this.$options.filters.changeCountriesCodesToNames(countries);
       },
     },
     finalCampaign() {

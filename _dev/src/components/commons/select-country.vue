@@ -1,19 +1,21 @@
 <template>
   <div>
     <ps-select
-      v-model="country"
-      :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
-      :options="sortCountries"
       :deselect-from-dropdown="true"
-      :clearable="false"
-      class="ps_gs-v-select"
-      label="country"
+      :multiple="isMultiple"
+      :options="sortCountries"
+      @search="searchProducts"
+      label="name"
+      v-model="countries"
+      :placeholder=" $t('productFeedSettings.shipping.placeholderSelect')"
+      class="maxw-sm-500"
     >
-      <template #option="{ country }">
+      <template v-slot:option="option">
         <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
-          <span class="mr-2">
-            {{ country }}
-          </span>
+          <span
+            class="mr-2"
+            v-html="highlightSearch(`${option.name}`)"
+          />
         </div>
       </template>
     </ps-select>
@@ -44,7 +46,8 @@ export default {
   },
   data() {
     return {
-      countryChosen: null,
+      countryChosen: [],
+      searchString: '',
     };
   },
   props: {
@@ -52,7 +55,7 @@ export default {
       type: String,
       required: true,
     },
-    defaultCountry: {
+    defaultCountries: {
       required: true,
     },
     needFilter: {
@@ -60,24 +63,44 @@ export default {
       required: false,
       default: true,
     },
+    isMultiple: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
   },
   methods: {
+    searchProducts(event) {
+      this.searchString = event;
+    },
+    highlightSearch(str) {
+      /** Highlight search terms */
+      const regex = new RegExp(`(${this.searchString})`, 'gi');
+      return str.replace(regex, '<strong>$1</strong>');
+    },
   },
   countriesSelectionOptions,
   googleUrl,
   computed: {
-    country: {
+    countries: {
       get() {
-        return this.countryChosen || this.defaultCountry;
+        return this.countryChosen.length ? this.countryChosen : this.defaultCountries;
       },
       set(value) {
-        this.countryChosen = value.country;
-        this.$emit('countrySelected', [this.countryChosen]);
+        this.countryChosen = value;
+        this.$emit('countrySelected', value);
       },
     },
     sortCountries() {
+      // 'this' is not retrieved inside reduce so we create a new variable
+      const {currency} = this;
       return this.needFilter
-        ? countriesSelectionOptions.filter((el) => el.currency === this.currency)
+        ? countriesSelectionOptions.reduce((ids, obj) => {
+          if (obj.currency === currency) {
+            ids.push(obj.country);
+          }
+          return ids;
+        }, [])
         : countriesSelectionOptions;
     },
   },
