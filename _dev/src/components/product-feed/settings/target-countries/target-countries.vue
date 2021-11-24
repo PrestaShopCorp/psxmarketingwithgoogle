@@ -10,7 +10,8 @@
       <SelectCountry
         :currency="currency"
         @countrySelected="saveCountrySelected"
-        :default-country="countries[0]"
+        :default-countries="countries"
+        :need-filter="true"
       />
     </b-form-group>
     <b-form-group
@@ -126,7 +127,6 @@ export default {
     };
   },
   computed: {
-
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },

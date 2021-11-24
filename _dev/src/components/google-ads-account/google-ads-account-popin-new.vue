@@ -68,7 +68,8 @@
         <SelectCountry
           :currency="currency"
           @countrySelected="saveCountrySelected"
-          :default-country="countries"
+          :default-countries="countries"
+          :is-multiple="false"
         />
         <label
           class="pt-2 mt-3 mb-0 font-weight-600"
@@ -368,7 +369,10 @@ export default {
     },
     countries: {
       get() {
-        return this.newAccountInfos.country;
+        // by default, we take the first of all active countries but user can change
+        return this.$options.filters.changeCountriesCodesToNames(
+          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+        );
       },
     },
     currency() {
