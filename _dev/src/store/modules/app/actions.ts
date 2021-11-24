@@ -71,8 +71,11 @@ export default {
     {
       commit,
       rootState,
+      dispatch,
     },
   ) {
+    const healthcheck = await dispatch(ActionsTypes.GET_API_HEALTHCHECK);
+
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/check-adblocker`,
         {
@@ -84,9 +87,24 @@ export default {
           },
         });
     } catch (error) {
-      if (error instanceof TypeError && error.message === 'Failed to fetch') {
+      if (error instanceof TypeError
+        && error.message === 'Failed to fetch'
+        && healthcheck.status === 'ok'
+      ) {
         commit(MutationsTypes.AD_BLOCKER_EXISTS);
       }
     }
+  },
+  async [ActionsTypes.GET_API_HEALTHCHECK]({rootState}) {
+    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/healthcheck`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+      });
+    return resp.json();
   },
 };
