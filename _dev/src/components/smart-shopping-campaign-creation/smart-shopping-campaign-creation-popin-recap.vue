@@ -47,7 +47,12 @@
         {{ $t('smartShoppingCampaignCreation.inputCountryLabel') }}
       </dt>
       <dd class="text-secondary mb-3">
-        {{ newCampaign.targetCountry }}
+        <span
+          v-for="(country, index) in newCampaign.targetCountries"
+          :key="index"
+        >
+          {{ country }}<span v-if="index !== newCampaign.targetCountries.length-1">,</span>
+        </span>
       </dd>
       <dt class="font-weight-600">
         {{ $t('smartShoppingCampaignCreation.recapFiltersLabel') }}
@@ -159,8 +164,8 @@ export default {
         ...this.newCampaign,
         // API wants country code not name so we have to filter it
         targetCountry: this.$options.filters.changeCountriesNamesToCodes(
-          [this.newCampaign.targetCountry],
-        )[0],
+          this.newCampaign.targetCountries,
+        ),
         // Send default status
         status: CampaignStatus.ELIGIBLE,
       };

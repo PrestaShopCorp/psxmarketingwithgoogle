@@ -170,7 +170,12 @@
           <span
             v-else
           >
-            {{ targetCountry[0] }}
+            <span
+              v-for="(country, index) in countries"
+              :key="index"
+            >
+              {{ country }}<span v-if="index !== countries.length-1">,</span>
+            </span>
           </span>
         </b-form-group>
         <b-form-group
@@ -351,7 +356,9 @@ export default {
       timer: null,
       displayError: false,
       campaignIsActive: true,
-      targetCountry: [],
+      countries: this.$options.filters.changeCountriesCodesToNames(
+        this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+      ),
       availableFilters: {
         name: this.$t('smartShoppingCampaignCreation.allFilters'),
         id: 'allFilters',
@@ -377,7 +384,7 @@ export default {
       if (this.campaignName
       && this.errorCampaignNameExistsAlready === false
       && this.campaignDurationStartDate
-      && this.targetCountry
+      && this.countries
       && this.campaignDailyBudget) {
         return false;
       }
@@ -549,6 +556,7 @@ export default {
     window.scrollTo(0, 0);
     if (this.editMode === true) {
       if (this.foundSsc !== undefined) {
+        console.log('ththt', this.foundSsc);
         this.campaignName = this.foundSsc.campaignName;
         this.campaignDurationStartDate = this.foundSsc.startDate;
         this.campaignDurationEndDate = this.foundSsc.endDate || null;
@@ -557,8 +565,8 @@ export default {
         this.campaignDailyBudget = this.foundSsc.dailyBudget;
         this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = this.foundSsc.id;
-        this.targetCountry = this.$options.filters.changeCountriesCodesToNames(
-          [this.foundSsc.targetCountry],
+        this.targetCountries = this.$options.filters.changeCountriesCodesToNames(
+          this.foundSsc.targetCountry,
         );
         this.debounceName();
       } else {
