@@ -71,6 +71,7 @@ export default {
     {
       commit,
       rootState,
+      dispatch,
     },
   ) {
     try {
@@ -84,9 +85,31 @@ export default {
           },
         });
     } catch (error) {
-      if (error instanceof TypeError && error.message === 'Failed to fetch') {
+      const healthcheck = await dispatch(ActionsTypes.GET_API_HEALTHCHECK);
+
+      if (error instanceof TypeError
+        && error.message === 'Failed to fetch'
+        && healthcheck?.status === 'ok'
+      ) {
         commit(MutationsTypes.AD_BLOCKER_EXISTS);
       }
     }
+  },
+  async [ActionsTypes.GET_API_HEALTHCHECK]({rootState}) {
+    try {
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/healthcheck`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+      return resp.json();
+    } catch (error) {
+      console.log(error);
+    }
+    return null;
   },
 };
