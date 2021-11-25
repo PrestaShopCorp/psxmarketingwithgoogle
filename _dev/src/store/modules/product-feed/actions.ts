@@ -214,6 +214,10 @@ export default {
       if (!additionalShippingSetting) {
         return {
           deliveryType: undefined,
+          minHandlingTimeInDays: undefined,
+          maxHandlingTimeInDays: undefined,
+          minTransitTimeInDays: undefined,
+          maxTransitTimeInDays: undefined,
           ...enabledCarrier,
         };
       }

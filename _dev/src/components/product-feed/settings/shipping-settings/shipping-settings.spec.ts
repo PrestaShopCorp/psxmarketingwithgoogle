@@ -38,6 +38,9 @@ describe('shipping-settings.vue', () => {
         'b-tooltip': VBTooltip,
       },
       ...config,
+      stubs: {
+        VueShowdown: true,
+      },
     });
     expect(wrapper.isVisible()).toBe(true);
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
@@ -54,6 +57,9 @@ describe('shipping-settings.vue', () => {
         'b-tooltip': VBTooltip,
       },
       ...config,
+      stubs: {
+        VueShowdown: true,
+      },
     });
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(0);
@@ -70,6 +76,9 @@ describe('shipping-settings.vue', () => {
         'b-tooltip': VBTooltip,
       },
       ...config,
+      stubs: {
+        VueShowdown: true,
+      },
     });
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(3);
     expect(wrapper.findAllComponents(TableRowCarrier).at(0).props('carrier')).toEqual({
@@ -114,6 +123,9 @@ describe('shipping-settings.vue', () => {
         'b-tooltip': VBTooltip,
       },
       ...config,
+      stubs: {
+        VueShowdown: true,
+      },
     });
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(4);
@@ -159,6 +171,7 @@ describe('shipping-settings.vue', () => {
       ...config,
       stubs: {
         ActionsButtons,
+        VueShowdown: true,
       },
     });
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
@@ -181,6 +194,7 @@ describe('shipping-settings.vue', () => {
       ...config,
       stubs: {
         ActionsButtons,
+        VueShowdown: true,
       },
     });
 
@@ -199,6 +213,7 @@ describe('shipping-settings.vue', () => {
       ...config,
       stubs: {
         ActionsButtons,
+        VueShowdown: true,
       },
     });
 
@@ -220,6 +235,7 @@ describe('shipping-settings.vue', () => {
       ...config,
       stubs: {
         ActionsButtons,
+        VueShowdown: true,
       },
     });
 

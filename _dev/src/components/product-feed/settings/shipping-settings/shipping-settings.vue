@@ -55,11 +55,14 @@
           >
             <div
               v-if="hasHeader(type)"
-              class="flex align-items-center text-nowrap"
+              class="flex align-items-center text-wrap"
             >
-              <span>
-                {{ $t(`productFeedSettings.shipping.${type}Header`) }}
-              </span>
+              <VueShowdown
+                tag="span"
+                class="text-wrap"
+                :markdown="$t(`productFeedSettings.shipping.${type}Header`)"
+                :extensions="['no-p-tag']"
+              />
               <b-button
                 v-if="hasToolTip(type)"
                 variant="invisible"
@@ -201,8 +204,7 @@ export default {
     },
     hasHeader(headerType) {
       if (
-        headerType === ShippingSettingsHeaderType.ENABLE
-        || headerType === ShippingSettingsHeaderType.ACTION
+        headerType === ShippingSettingsHeaderType.ACTION
       ) {
         return false;
       }
