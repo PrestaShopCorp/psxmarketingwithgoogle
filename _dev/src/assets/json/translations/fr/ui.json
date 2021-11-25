@@ -19,9 +19,6 @@
     "min": "min.",
     "max": "max."
   },
-  "configuration": {
-    "introduction": "Page de configuration "
-  },
   "landingPage": {
     "header": {
       "title": "Marketing avec Google",
@@ -88,7 +85,7 @@
     "labelSelect": "Connecter un compte existant",
     "claimCollides": "Votre site web a déjà été déclaré.",
     "claimOverwrite": "Pour terminer la création du compte du Centre Marchand, vous devez remplacer la revendication existante.",
-    "footerEU": "Si vous êtes dans l'Espace Economique Européen ou la Suisse, votre compte de Centre Marchand doit être associé à un [service de Comparaison (CSS)]({0})[:target=\"_blank\"]  \nSi vous créez un nouveau compte de Merchant Center via cette application, il sera associé à Google Shopping, le CSS de Google, par défaut. Vous pouvez modifier le CSS associé à votre compte à tout moment. [Trouvez vos Partenaires CSS]({1})[:target=\"_blank\"]  \nUne fois que vous avez créé votre compte Merchant Center, vous pouvez utiliser notre outil d'intégration quel que soit le CSS que vous utilisez.",
+    "footerEU": "Si vous vous trouvez dans l'Espace économique européen, au Royaume-Uni ou en Suisse, votre compte Merchant Center doit être associé à un [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nSi vous créez un nouveau compte Merchant Center via cette application, il sera associé par défaut à Google Shopping, le CSS de Google. Vous pouvez modifier le CSS associé à votre compte à tout moment. [Trouvez vos partenaires CSS]({1})[:target=\"_blank\"]  \nUne fois que vous avez configuré votre compte Merchant Center, vous pouvez utiliser notre outil d'accueil, quel que soit le CSS que vous utilisez.",
     "shopInfoMissing": "Informations de la boutique manquantes",
     "shopInfoMissingDescription": "Pour compléter les informations manquantes sur la boutique, veuillez vous rendre sur votre [compte Merchant Center]({0})[:target=\"_blank\"].",
     "userIsNotAdmin": "Vous avez besoin d'un accès Admin",
@@ -206,7 +203,7 @@
     "introToConfigure": "Il est important de soumettre votre flux de produits dans le format correct, car Google utilise ceci pour s'assurer que vos produits correspondent aux bonnes requêtes.",
     "nextSync": "Prochaine synchronisation : {0}",
     "syncFailedAt": "Échec de la synchronisation {0} à {1}",
-    "syncSuccess": "{0} produits synchronisés {1} à {2}",
+    "syncSuccess": "Produits synchronisés {1} à {2} | {0} produit synchronisé {1} à {2} | {0} produits synchronisés {1} à {2}",
     "syncBusy": "Synchronisation en cours...",
     "syncCantPerform": "Impossible d'effectuer la synchronisation",
     "mappedCategories": "{0}/{1} catégories mappées",
@@ -241,6 +238,7 @@
     "noticeDataStored": "Les paramètres sont enregistrés à chaque étape mais ne seront soumis qu'à l'étape finale.",
     "shipping": {
       "targetCountries": "Pays cible",
+      "filterTitle": "Filtrer par pays",
       "ifMultipleCountries": "Si vous ciblez plusieurs pays, le prix de chaque produit sera automatiquement converti dans la devise correcte de Google. Cependant, votre boutique doit avoir configuré les frais de port et de taxe pour chaque pays sélectionné. Veuillez respecter [les politiques d'achat propres à chaque pays]({0})[:target=\"_blank\"] et [la réglementation locale]({1})[:target=\"_blank\"]",
       "productAvailaibleIn": "Mes produits sont disponibles en",
       "placeholderSelect": "Sélectionnez les pays où vos produits sont disponibles",
@@ -263,9 +261,11 @@
       "alertTaxes": "Vous devez soumettre les taxes que vous percevez, afin que les utilisateurs comprennent le prix exact qu'ils devront payer pour vos produits.",
       "cantSelectCountryWithDifferentCurrency": "Vous ne pouvez pas sélectionner un pays dont la devise est différente de celle de votre boutique principale.",
       "carrierDescriptionHeader": "Description du transporteur",
-      "shipToCustomerHeader": "Livre à l'adresse d'un client",
+      "enableHeader": "Activer  \n ou désactiver",
+      "shipToCustomerHeader": "Livraison à la porte  ",
       "handlingTimeHeader": "Temps de traitement",
       "transitTimeHeader": "Délai d'acheminement",
+      "countryHeader": "Pays cible",
       "shipToCustomerTooltip": "Sélectionnez si ce transporteur livre à l'adresse d'un client ou non (point relais, retrait en magasin). Google autorise uniquement les transporteurs qui livrent à l'adresse d'un client.",
       "handlingTimeTooltip": "Entrez le temps qu'il vous faut pour préparer une commande jusqu'à ce qu'elle soit prise en charge par le transporteur en jours ouvrés.",
       "transitTimeTooltip": "Entrez le temps qu'il faut pour que votre commande soit expédiée au client une fois qu'il quitte votre entrepôt.",
@@ -427,6 +427,7 @@
     "intro": "Augmentez la visibilité de vos produits avec les campagnes payantes Shopping Intelligentes.  \nLes publicités cibleront peu à peu et de mieux en mieux la bonne audience au bon moment."
   },
   "smartShoppingCampaignCreation": {
+    "allFilters": "Tous les filtres",
     "breadcrumb1": "Campagne",
     "breadcrumb2": "Créer une campagne Shopping Intelligente",
     "inputNameHelper": "Le nom doit être unique et comporter 125 caractères maximum.",
@@ -483,7 +484,10 @@
     "remarketingTagLoading": "Vérifiez si vous avez des balises de remarketing et de suivi des conversions à ajouter à votre boutique",
     "descriptiveMessage": "Seules les campagnes Shopping Intelligentes associées à votre compte Google Ads sont répertoriées.  \nSi vous voulez voir toutes vos campagnes, [veuillez aller sur votre compte Google Ads]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Aucun filtre sélectionné | {0} filtre sélectionné | {0} filtres sélectionnés",
-    "nbProductsSelected": "Aucun produit sélectionné | {0} produit sélectionné | {0} produits sélectionnés"
+    "nbProductsSelected": "Aucun produit sélectionné | {0} produit sélectionné | {0} produits sélectionnés",
+    "categories": "Catégories ",
+    "brands": "Marques",
+    "products": "Produits"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Performance de la campagne"
@@ -507,7 +511,7 @@
     },
     "productStatus": {
       "title": "Statut des produits",
-      "description": "Le statut de votre produit vous permet de savoir si votre produit est éligible pour apparaître dans la destination pour laquelle vous avez opté.  \nUn produit en attente n'apparaîtra pas dans les annonces ou les fiches gratuites car il est en cours d'examen par Google.  \nLes produits en cours d'expiration expireront dans les 3 prochains jours et ne pourront plus apparaître dans les annonces ou les fiches gratuites.",
+      "description": "Le statut de votre produit vous permet de savoir si votre produit est éligible pour apparaître dans la destination que vous avez opté.  \nUn produit en attente n'apparaîtra pas dans les annonces ou les fiches gratuites car il est en cours d'examen par Google.  \nLes produits en cours d'expiration expireront dans les 3 prochains jours et ne pourront plus apparaître dans les annonces ou les fiches gratuites.",
       "alert": "Il faut compter 3 à 5 jours ouvrables à Google pour examiner les produits",
       "approvedProducts": "Approuvé",
       "pendingProducts": "En attente",
@@ -608,7 +612,7 @@
       "dailyBudget": "Budget quotidien"
     },
     "tooltipCol": {
-      "status": "Statut de l'info-bulle du placeholder"
+      "status": "Un statut pour votre campagne publicitaire qui décrit si ses annonces peuvent être lancées ou non pour le moment."
     },
     "campaignsPerformanceTable": {
       "title": "Performance de la campagne",
@@ -855,6 +859,7 @@
   },
   "attributesMapping": {
     "description": "Description",
-    "shortDescription": "Description courte"
+    "shortDescription": "Description courte",
+    "brand": "Brand"
   }
 }
