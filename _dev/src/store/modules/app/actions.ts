@@ -74,8 +74,6 @@ export default {
       dispatch,
     },
   ) {
-    const healthcheck = await dispatch(ActionsTypes.GET_API_HEALTHCHECK);
-
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/check-adblocker`,
         {
@@ -87,6 +85,8 @@ export default {
           },
         });
     } catch (error) {
+      const healthcheck = await dispatch(ActionsTypes.GET_API_HEALTHCHECK);
+
       if (error instanceof TypeError
         && error.message === 'Failed to fetch'
         && healthcheck?.status === 'ok'
