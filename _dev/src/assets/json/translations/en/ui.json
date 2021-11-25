@@ -858,6 +858,6 @@
   "attributesMapping" : {
     "description" : "Description",
     "shortDescription" : "Short Description",
-    "brand": "brand"
+    "brand": "Brand"
   }
 }
