@@ -64,7 +64,7 @@ describe('table-row-carrier.vue', () => {
     expect(wrapper.find('[data-test-id="duplicateDetails"]').attributes('disabled')).toBeTruthy();
   });
 
-  it('enables fields when toggle is on', () => {
+  it('enables delivery type field when toggle is on', () => {
     const wrapper = shallowMount(TableRowCarrier, {
       propsData: {
         carrier: {
@@ -83,12 +83,38 @@ describe('table-row-carrier.vue', () => {
 
     const numberInputs = wrapper.findAll('.ps_gs-carrier__input-number');
     expect(numberInputs).toHaveLength(4);
-    expect(numberInputs.at(0).attributes('disabled')).toBeFalsy();
-    expect(numberInputs.at(1).attributes('disabled')).toBeFalsy();
-    expect(numberInputs.at(2).attributes('disabled')).toBeFalsy();
-    expect(numberInputs.at(3).attributes('disabled')).toBeFalsy();
+    expect(numberInputs.at(0).attributes('disabled')).toBeTruthy();
+    expect(numberInputs.at(1).attributes('disabled')).toBeTruthy();
+    expect(numberInputs.at(2).attributes('disabled')).toBeTruthy();
+    expect(numberInputs.at(3).attributes('disabled')).toBeTruthy();
 
     expect(wrapper.find('[data-test-id="duplicateDetails"]').attributes('disabled')).toBeFalsy();
+  });
+
+  it('enables number inputs when delivery type is set to delivery', () => {
+    const wrapper = shallowMount(TableRowCarrier, {
+      propsData: {
+        carrier: {
+          carrierId: '13',
+          country: 'IT',
+          name: 'Carrier with fixed price',
+          delay: 'Maybe 1 day, maybe never',
+          enabledCarrier: true,
+          deliveryType: 'pickup',
+        },
+        carriersList: [],
+      },
+      ...config,
+    });
+    expect(wrapper.find('.ps_gs-carrier').classes().includes('ps_gs-carrier--disabled')).toBe(false);
+    expect(wrapper.find('[data-test-id="deliveryType"]').attributes('disabled')).toBeFalsy();
+
+    const numberInputs = wrapper.findAll('.ps_gs-carrier__input-number');
+    expect(numberInputs).toHaveLength(4);
+    expect(numberInputs.at(0).attributes('disabled')).toBeTruthy();
+    expect(numberInputs.at(1).attributes('disabled')).toBeTruthy();
+    expect(numberInputs.at(2).attributes('disabled')).toBeTruthy();
+    expect(numberInputs.at(3).attributes('disabled')).toBeTruthy();
   });
 
   it('shows an error when handling times are wrong', () => {
@@ -99,6 +125,7 @@ describe('table-row-carrier.vue', () => {
         name: 'Carrier with fixed price',
         delay: 'Maybe 1 day, maybe never',
         enabledCarrier: true,
+        deliveryType: 'delivery',
         minHandlingTimeInDays: 3,
         maxHandlingTimeInDays: 1,
         minTransitTimeInDays: 0,
@@ -120,6 +147,7 @@ describe('table-row-carrier.vue', () => {
         name: 'Carrier with fixed price',
         delay: 'Maybe 1 day, maybe never',
         enabledCarrier: true,
+        deliveryType: 'delivery',
         minHandlingTimeInDays: 99,
         maxHandlingTimeInDays: 99,
         minTransitTimeInDays: -5.3,
