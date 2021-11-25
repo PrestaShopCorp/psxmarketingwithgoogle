@@ -197,34 +197,45 @@ export default {
     await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
     await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
 
-    const enabledCarriers = getEnabledCarriers(
+    // Load existing carriers on PrestaShop
+    const enabledCarriersFromShop = getEnabledCarriers(
       state.settings.shippingSettings,
     );
+    // Load previous configuration temporarly saved on localStorage
     const deliveryFromStorage = JSON.parse(localStorage.getItem('productFeed-deliveryDetails') || '[]');
-    const carriersList: (Carrier | DeliveryDetail)[] = enabledCarriers.map((enabledCarrier) => {
-      const carrierSavedInLocalStorage = deliveryFromStorage.find((c : DeliveryDetail) => (
-        (c.carrierId === enabledCarrier.carrierId) && (c.country === enabledCarrier.country)
+
+    // Carriers will be all enabled by default if nothing has been configured yet
+    const enableCarriersByDefault = !deliveryFromStorage.length
+      && !state.settings.deliveryDetails.length;
+
+    // Build carriers list based from PHP data, and on previous configuration in localStorage + API
+    const carriersList: DeliveryDetail[] = enabledCarriersFromShop.map((carrierFromShop) => {
+      const deliveryDetailsSavedInLocalStorage = deliveryFromStorage.find((c : DeliveryDetail) => (
+        (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
       ));
-      if (carrierSavedInLocalStorage) {
-        return carrierSavedInLocalStorage;
+      if (deliveryDetailsSavedInLocalStorage) {
+        return deliveryDetailsSavedInLocalStorage;
       }
-      const additionalShippingSetting = state.settings.deliveryDetails.find(
-        (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === enabledCarrier.carrierId
-                && enabledCarrier.country === deliveryDetail.country);
-      if (!additionalShippingSetting) {
+
+      const deliveryDetailsSavedOnAPI = state.settings.deliveryDetails.find(
+        (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === carrierFromShop.carrierId
+                && carrierFromShop.country === deliveryDetail.country);
+      if (deliveryDetailsSavedOnAPI) {
         return {
-          deliveryType: undefined,
-          minHandlingTimeInDays: undefined,
-          maxHandlingTimeInDays: undefined,
-          minTransitTimeInDays: undefined,
-          maxTransitTimeInDays: undefined,
-          ...enabledCarrier,
+          enabledCarrier: true,
+          ...carrierFromShop,
+          ...deliveryDetailsSavedOnAPI,
         };
       }
+
       return {
-        enabledCarrier: true,
-        ...enabledCarrier,
-        ...additionalShippingSetting,
+        enabledCarrier: enableCarriersByDefault,
+        deliveryType: undefined,
+        minHandlingTimeInDays: undefined,
+        maxHandlingTimeInDays: undefined,
+        minTransitTimeInDays: undefined,
+        maxTransitTimeInDays: undefined,
+        ...carrierFromShop,
       };
     });
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
