@@ -234,6 +234,17 @@ export default {
         );
       }
     },
+    triggerLoadOfGoogleAdsAccount() {
+      this.googleAdsIsLoading = true;
+      this.freeListingIsLoading = true;
+      this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS').finally(() => {
+        this.freeListingIsLoading = false;
+      });
+      this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST').then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT')
+        .finally(() => {
+          this.googleAdsIsLoading = false;
+        }));
+    },
   },
   computed: {
     psAccountsContext() {
@@ -323,6 +334,9 @@ export default {
         this.MCAIsLoading = false;
       });
     }
+    if (this.productFeedIsConfigured) {
+      this.triggerLoadOfGoogleAdsAccount();
+    }
   },
   beforeDestroy() {
     this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
@@ -343,15 +357,7 @@ export default {
     },
     productFeedIsConfigured(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
-        this.googleAdsIsLoading = true;
-        this.freeListingIsLoading = true;
-        this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS').finally(() => {
-          this.freeListingIsLoading = false;
-        });
-        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST').then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT')
-          .finally(() => {
-            this.googleAdsIsLoading = false;
-          }));
+        this.triggerLoadOfGoogleAdsAccount();
       }
     },
     googleAdsAccountIsChosen(newVal, oldVal) {
