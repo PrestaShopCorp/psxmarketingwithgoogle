@@ -19,9 +19,6 @@
     "min": "min.",
     "max": "mas."
   },
-  "configuration": {
-    "introduction": "Pagina di configurazione!"
-  },
   "landingPage": {
     "header": {
       "title": "Marketing con Google",
@@ -88,7 +85,7 @@
     "labelSelect": "Collega un account esistente",
     "claimCollides": "Il tuo sito web è già stato richiesto.",
     "claimOverwrite": "To finish Merchant Center account creation, you need to overwrite the existing claim.",
-    "footerEU": "If you are in the European Economic Area or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
+    "footerEU": "If you are in the European Economic Area, the United Kingdom or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
     "shopInfoMissing": "Mancano le informazioni sul negozio",
     "shopInfoMissingDescription": "To complete missing store information please go to your [Merchant Center account]({0})[:target=\"_blank\"].",
     "userIsNotAdmin": "Hai bisogno dell'accesso come Amministratore",
@@ -206,7 +203,7 @@
     "introToConfigure": "It's important to submit your product feed in the correct format, as Google uses this to make sure your products match the right queries.",
     "nextSync": "Prossima sincronizzazione: {0}",
     "syncFailedAt": "Sincronizzazione fallita {0} a {1}",
-    "syncSuccess": "{0} prodotti sincronizzati {1} a {2}",
+    "syncSuccess": "Products synced {1} at {2} | {0} product synced {1} at {2} | {0} products synced {1} at {2}",
     "syncBusy": "Sincronizzazione in corso...",
     "syncCantPerform": "La sincronizzazione non può eseguire",
     "mappedCategories": "{0}/{1} categorie mappate",
@@ -241,6 +238,7 @@
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
     "shipping": {
       "targetCountries": "Paese di destinazione",
+      "filterTitle": "Filter by country",
       "ifMultipleCountries": "If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target=\"_blank\"] and [local regulation]({1})[:target=\"_blank\"]",
       "productAvailaibleIn": "I miei prodotti sono disponibili in",
       "placeholderSelect": "Seleziona i paesi in cui i tuoi prodotti sono disponibili",
@@ -262,10 +260,12 @@
       "appliedOnlyForUsa": "(si applica solo per gli USA)",
       "alertTaxes": "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.",
       "cantSelectCountryWithDifferentCurrency": "Non puoi selezionare un paese con una valuta diversa da quella del tuo negozio principale.",
-      "carrierDescriptionHeader": "Carrier description",
-      "shipToCustomerHeader": "Ship to customer’s address",
-      "handlingTimeHeader": "Handling time",
-      "transitTimeHeader": "Transit time",
+      "carrierDescriptionHeader": "Carrier  \n description",
+      "enableHeader": "Enable  \n or disable",
+      "shipToCustomerHeader": "Doorstep  \n delivery",
+      "handlingTimeHeader": "Handling  \n time",
+      "transitTimeHeader": "Transit  \n time",
+      "countryHeader": "Target  \n country",
       "shipToCustomerTooltip": "Select if this carrier delivers to a customer’s address or not (service point, in store pickup). Google only allows enabling carriers who ship to an address.",
       "handlingTimeTooltip": "Enter how long it takes you to prepare an order until it’s picked up by the carrier in working days.",
       "transitTimeTooltip": "Enter how long it takes for your order to be shipped to the customer once it leaves your facility.",
@@ -427,6 +427,7 @@
     "intro": "Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time."
   },
   "smartShoppingCampaignCreation": {
+    "allFilters": "All Filters",
     "breadcrumb1": "Campagna pubblicitaria",
     "breadcrumb2": "Crea una campagna Smart Shopping",
     "inputNameHelper": "Il nome deve essere unico e di 125 caratteri al massimo.",
@@ -483,7 +484,10 @@
     "remarketingTagLoading": "Stiamo controllando se hai tag di tracciamento del remarketing e delle conversioni da aggiungere al tuo negozio",
     "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
-    "nbProductsSelected": "No product selected | {0} product selected | {0} products selected"
+    "nbProductsSelected": "No product selected | {0} product selected | {0} products selected",
+    "categories": "Categories",
+    "brands": "Brands",
+    "products": "Products"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Performance della campagna"
@@ -601,14 +605,14 @@
       "conversions": "Conversioni",
       "conversionsRate": "Tasso delle conversioni",
       "productFilter": "Filtro di prodotto",
-      "dimension": "Dimension",
+      "dimension": "Dimensione",
       "duration": "Data di durata",
       "target": "Obiettivo",
       "actions": "Azioni",
       "dailyBudget": "Budget giornaliero"
     },
     "tooltipCol": {
-      "status": "Stato del segnaposto"
+      "status": "A status for your ad campaign that describes whether or not its ads can run at the moment."
     },
     "campaignsPerformanceTable": {
       "title": "Performance della campagna",
@@ -855,6 +859,7 @@
   },
   "attributesMapping": {
     "description": "Description",
-    "shortDescription": "Short Description"
+    "shortDescription": "Short Description",
+    "brand": "Brand"
   }
 }
