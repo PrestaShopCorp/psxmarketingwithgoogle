@@ -53,7 +53,7 @@
         </b-dropdown-item-button>
         <b-dropdown-item-button
           button-class="rounded-0 text-dark"
-          @click="deliveryType = 'pickup'"
+          @click="selectPickupType"
         >
           <span
             class="px-2"
@@ -70,7 +70,7 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model.number="carrier.minHandlingTimeInDays"
-          :disabled="!carrier.enabledCarrier"
+          :disabled="disableInputNumber"
           :state="timeStateHandling"
           :placeholder="$t('general.min')"
         />
@@ -79,7 +79,7 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model.number="carrier.maxHandlingTimeInDays"
-          :disabled="!carrier.enabledCarrier"
+          :disabled="disableInputNumber"
           :state="timeStateHandling"
           :placeholder="$t('general.max')"
         />
@@ -93,7 +93,7 @@
           size="sm"
           v-model.number="carrier.minTransitTimeInDays"
 
-          :disabled="!carrier.enabledCarrier"
+          :disabled="disableInputNumber"
           :state="timeStateDelivery"
           :placeholder="$t('general.min')"
         />
@@ -102,7 +102,7 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model.number="carrier.maxTransitTimeInDays"
-          :disabled="!carrier.enabledCarrier"
+          :disabled="disableInputNumber"
           :state="timeStateDelivery"
           :placeholder="$t('general.max')"
         />
@@ -216,15 +216,15 @@ export default {
           return null;
       }
     },
-
     timeStateHandling() {
       return validateHandlingTimes(this.carrier) ? null : false;
     },
-
     timeStateDelivery() {
       return validateTransitTimes(this.carrier) ? null : false;
     },
-
+    disableInputNumber() {
+      return !this.carrier.enabledCarrier || this.carrier.deliveryType !== DeliveryType.DELIVERY;
+    },
   },
   methods: {
     isInitiatorCarrier(id) {
@@ -250,6 +250,13 @@ export default {
             && selectedCarrier.country === carrier.country,
           ).enabledCarrier,
         );
+    },
+    selectPickupType() {
+      this.deliveryType = 'pickup';
+      this.carrier.minHandlingTimeInDays = null;
+      this.carrier.maxHandlingTimeInDays = null;
+      this.carrier.minTransitTimeInDays = null;
+      this.carrier.maxTransitTimeInDays = null;
     },
   },
 };

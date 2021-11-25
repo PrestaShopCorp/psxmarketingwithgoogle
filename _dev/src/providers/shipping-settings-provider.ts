@@ -81,6 +81,10 @@ export function validateHandlingTimes(delivery: DeliveryDetail): boolean {
     return true;
   }
 
+  if (delivery.deliveryType !== ShipmentType.DELIVERY) {
+    return true;
+  }
+
   return Number.isInteger(delivery.minHandlingTimeInDays)
     && Number.isInteger(delivery.maxHandlingTimeInDays)
     && Number(delivery.minHandlingTimeInDays) <= Number(delivery.maxHandlingTimeInDays)
@@ -90,6 +94,10 @@ export function validateHandlingTimes(delivery: DeliveryDetail): boolean {
 
 export function validateTransitTimes(delivery: DeliveryDetail): boolean {
   if (!delivery.enabledCarrier) {
+    return true;
+  }
+
+  if (delivery.deliveryType !== ShipmentType.DELIVERY) {
     return true;
   }
 

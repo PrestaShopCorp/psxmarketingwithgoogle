@@ -62,6 +62,19 @@
     border: none;
   }
 
+  #{$root}__input-number[disabled],
+  &--disabled #{$root}__input-number {
+    border-color: rgba($gray-300, 0.5);
+    background-color: initial;
+    color: $gray-500;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: initial;
+      border-color: rgba($gray-300, 0.5);
+    }
+  }
+
   &--disabled {
     #{$root}__title {
       color: $gray-500;
@@ -83,18 +96,6 @@
       .dropdown-toggle, .dropdown-toggle:after {
         color: $gray-450;
         background-color: transparent;
-      }
-    }
-
-    #{$root}__input-number {
-      border-color: rgba($gray-300, 0.5);
-      background-color: initial;
-      color: $gray-500;
-      cursor: not-allowed;
-
-      &:hover {
-        background-color: initial;
-        border-color: rgba($gray-300, 0.5);
       }
     }
 
