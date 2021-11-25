@@ -99,6 +99,10 @@ export const commonAttributes: readonly AttributesInfos[] = [
     name: 'shortDescription',
     type: AttributesTypes.PRODUCT,
   },
+  {
+    name: 'brand',
+    type: AttributesTypes.CUSTOM,
+  },
 ];
 
 export interface State {

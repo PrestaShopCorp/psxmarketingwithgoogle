@@ -860,6 +860,7 @@
   },
   "attributesMapping" : {
     "description" : "Description",
-    "shortDescription" : "Short Description"
+    "shortDescription" : "Short Description",
+    "brand": "Brand"
   }
 }

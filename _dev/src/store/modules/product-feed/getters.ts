@@ -72,6 +72,6 @@ export default {
     return state.attributesToMap;
   },
   [GettersTypes.GET_SHOP_ATTRIBUTES](state: LocalState) : AttributesInfos[] {
-    return state.attributesData;
+    return state.attributesData.sort((a, b) => a.name.localeCompare(b.name));
   },
 };
