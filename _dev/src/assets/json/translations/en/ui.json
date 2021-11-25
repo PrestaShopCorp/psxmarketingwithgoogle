@@ -261,7 +261,7 @@
       "alertTaxes": "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.",
       "cantSelectCountryWithDifferentCurrency": "You can't select country with currency that differs from your main shop.",
       "carrierDescriptionHeader": "Carrier description",
-      "shipToCustomerHeader": "Ship to customer’s address",
+      "shipToCustomerHeader": "Doorstep delivery",
       "handlingTimeHeader": "Handling time",
       "transitTimeHeader": "Transit time",
       "countryHeader": "Target country",
