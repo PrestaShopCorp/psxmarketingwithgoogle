@@ -141,16 +141,22 @@
             <b-form-checkbox
               v-for="(carrierOption, index) in carriersList"
               :key="index"
+<<<<<<< HEAD
               class="ps_gs-checkbox my-1 w-100"
+=======
+              class="ps_gs-checkbox my-1"
+>>>>>>> 391f0d1f (Disable copy paste if selected)
               :disabled="isInitiatorCarrier(carrierOption.carrierId, carrierOption.country) ||
                 !carrierOption.enabledCarrier"
               :value="{carrierId: carrierOption.carrierId, country: carrierOption.country}"
             >
               <span
                 class="line-height-15"
-                :class="{'text-dark': isInitiatorCarrier(carrierOption.carrierId)}"
+                :class="{'text-dark':
+                  isInitiatorCarrier(carrierOption.carrierId, carrierOption.country)
+                }"
               >
-                {{ carrierOption.name }}
+                {{ carrierOption.name }} - {{ carrierOption.country }}
               </span>
             </b-form-checkbox>
           </b-form-checkbox-group>
@@ -228,7 +234,11 @@ export default {
   },
   methods: {
     isInitiatorCarrier(id, country) {
+<<<<<<< HEAD
       return this.carrier.carrierId === id && this.carrier.country === country;
+=======
+      return ((this.carrier.carrierId === id) && (this.carrier.country === country));
+>>>>>>> 391f0d1f (Disable copy paste if selected)
     },
     applyInfos() {
       this.$store.dispatch('productFeed/DUPLICATE_DELIVERY_DETAILS',
