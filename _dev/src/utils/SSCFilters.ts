@@ -88,7 +88,7 @@ export function getFiltersbyIds(productFilters: Array<FiltersChosen>,
   if (availableFilters.children) {
     availableFilters.children.forEach((availableFilter) => {
       const productFilter = productFilters
-        .find((pro) => pro.dimension === availableFilter.name);
+        .find((pro) => pro.dimension?.toUpperCase() === availableFilter.name?.toUpperCase());
       if (availableFilter.children) {
         availableFilter.children.map((child) => {
           if (child.id && productFilter?.values.includes(child.id)) {
