@@ -18,7 +18,7 @@ Recap.args = {
   visible: true,
   newCampaign: {
     campaignName: 'Tartiflette',
-    startDate: '29/06/2021',
+    startDate: 1637943824888,
     endDate: null,
     targetCountry: 'France',
     dailyBudget : 25,
