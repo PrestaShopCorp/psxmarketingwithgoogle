@@ -98,7 +98,7 @@
           <template v-else-if="informations.faq && informations.faq.categories">
             <div
               class="my-3 faq"
-              v-for="(categorie, index) in faq.categories"
+              v-for="(categorie, index) in informations.faq.categories"
               :key="index"
               :only-one-active="true"
             >
