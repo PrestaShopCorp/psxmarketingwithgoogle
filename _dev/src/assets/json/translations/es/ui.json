@@ -227,8 +227,8 @@
     "breadcrumb1": "Feed de productos",
     "breadcrumb2": "Configuración del feed de productos",
     "steps": {
-      "targetCountry": "Target country",
-      "shippingSettings": "Targeting y envío",
+      "targetCountry": "País objetivo",
+      "shippingSettings": "Configuración del envío",
       "attributeMapping": "Atributos del producto",
       "categoryMapping": "Mapa de la categoría",
       "summary": "Resumen",
@@ -243,7 +243,7 @@
       "productAvailaibleIn": "Mis productos están disponibles en",
       "placeholderSelect": "Selecciona los países en los que están disponibles tus productos",
       "cantFindCountry": "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
-      "shippingSettingsErrors": "This country is not compatible with your currency",
+      "shippingSettingsErrors": "Este país no es compatible con tu moneda",
       "shippingSettings": "Configuración del envío",
       "shippingSettingsTitle": "Products shipping settings",
       "shippingLabel1": "Setup my shipping settings now (recommended)",
@@ -285,7 +285,7 @@
       "synchronizationSchedule": "Calendario de sincronización de la exportación",
       "synchronizationTime": "Tiempo de sincronización",
       "timeZone": "Zona horaria",
-      "exportMethod": "Export method",
+      "exportMethod": "Método de exportación",
       "allProducts": "Todos los productos",
       "byBrand": "Marca",
       "byCategory": "Categoría",
@@ -335,7 +335,7 @@
       "gtin": "GTIN",
       "ean13": "EAN13",
       "mpn": "MPN",
-      "brand": "Brand",
+      "brand": "Marca",
       "notAvailable": "Not available",
       "specificTitle": "Específicos",
       "sellRefurbished": "Vendo productos reacondicionados",
@@ -592,10 +592,10 @@
       "campaign": "Campaña",
       "budget": "Presupuesto",
       "status": "Estado",
-      "impressions": "Impresión",
+      "impressions": "Impresiones",
       "clicks": "Clics",
       "adSpend": "Gasto en publicidad",
-      "conversion": "Conversion",
+      "conversion": "Conversión",
       "sales": "Ventas",
       "id": "ID",
       "products": "Producto",
@@ -775,7 +775,7 @@
     "googleAdsAccount": "ID de la cuenta de Google Ads",
     "readyToSync": "Listo para sincronizar",
     "cantSync": "No se puede sincronizar",
-    "close": "Close",
+    "close": "Cerrar",
     "suspended": "Suspendido",
     "ineligibleForFreeListing": "No elegible para los listados gratuitos",
     "urlUnclaimed": "Url no reclamada",
@@ -803,7 +803,7 @@
     "textDisconnectGoogleAds": "La desconexión de tu cuenta de Google Ads eliminará la posibilidad de ejecutar campañas de Smart Shopping desde el módulo.",
     "pauseCampaigns": "Poner en pausa todas mis campañas",
     "pauseCampaignsExplainations": "By pausing all your campaigns, the billing will stop. You can restart your campaigns at any time in your Google ads account.",
-    "removeTag": "Eliminar la etiqueta \"Remarketing y conversión\" de mi tienda",
+    "removeTag": "Eliminar la etiqueta &quot;Remarketing y conversión&quot; de mi tienda",
     "removeTagExplainations": "La eliminación de la etiqueta significa que Google ya no podrá realizar el seguimiento de tus campañas. Te recomendamos eliminar la etiqueta solamente si piensas eliminar completamente el módulo o cambiar tu cuenta. Siempre puedes añadirla tú mismo en el código de tu sitio.",
     "titleActivateTrackingSSC": "Habilitar la etiqueta de remarketing y seguimiento de la conversión",
     "textActivateTrackingSSC": "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop."
@@ -858,8 +858,8 @@
     "lastStep": "Último paso"
   },
   "attributesMapping": {
-    "description": "Description",
+    "description": "Descripción",
     "shortDescription": "Short Description",
-    "brand": "Brand"
+    "brand": "Marca"
   }
 }
