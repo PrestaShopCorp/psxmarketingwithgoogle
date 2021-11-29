@@ -119,9 +119,10 @@
                     <i class="material-icons">keyboard_arrow_right</i>
                     {{ item.question }}
                   </summary>
-                  <p class="faq__answer">
-                    {{ item.answer }}
-                  </p>
+                  <VueShowdown
+                    class="faq__answer"
+                    :markdown="item.answer"
+                  />
                 </details>
               </div>
             </div>
