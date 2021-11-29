@@ -100,8 +100,8 @@ export const commonAttributes: readonly AttributesInfos[] = [
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'brand',
-    type: AttributesTypes.CUSTOM,
+    name: 'manufacturer',
+    type: AttributesTypes.PRODUCT,
   },
 ];
 

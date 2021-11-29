@@ -145,7 +145,7 @@ export default {
           return this.$t('attributesMapping.description');
         case 'shortDescription':
           return this.$t('attributesMapping.shortDescription');
-        case 'brand':
+        case 'manufacturer':
           return this.$t('attributesMapping.brand');
         default:
           return option.name;
