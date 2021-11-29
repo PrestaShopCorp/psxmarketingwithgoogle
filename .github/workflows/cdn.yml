@@ -45,8 +45,16 @@ jobs:
         if: steps.cache-deps.outputs.cache-hit != 'true'
         run: yarn install
 
+      - name: Build prerelease
+        working-directory: _dev
+        if: "github.event.release.prerelease"
+        run: npm run build
+        env:
+          VUE_APP_CDN_URL: https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}/
+
       - name: Build
         working-directory: _dev
+        if: "!github.event.release.prerelease"
         run: npm run build
         env:
           VUE_APP_CDN_URL: https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.x.x/
