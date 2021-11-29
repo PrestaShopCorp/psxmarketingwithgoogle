@@ -6,7 +6,7 @@ on:
       - '*'
 
 jobs:
-  npm-publish:
+  publish:
     name: CDN publish
     runs-on: ubuntu-latest
     steps:
@@ -60,12 +60,22 @@ jobs:
           MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
           MINOR: ${{ steps.get_tag.outputs.MINOR }}
 
-      - name: Push to CDN
+      - name: Prerelease - Push to CDN
+        if: "github.event.release.prerelease"
         run: |
-          gsutil cp -r ./views gs://psxmarketing-cdn/${MAJOR}.x.x
-          gsutil cp -r ./views gs://psxmarketing-cdn/${MAJOR}.${MINOR}.x
           gsutil cp -r ./views gs://psxmarketing-cdn/${MAJOR}.${MINOR}.${PATCH}
         env:
           MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
           MINOR: ${{ steps.get_tag.outputs.MINOR }}
           PATCH: ${{ steps.get_tag.outputs.PATCH }}
+
+      - name: Release - Push to CDN
+        if: "!github.event.release.prerelease"
+        run: |
+          gsutil cp -r ./views gs://psxmarketing-cdn/${MAJOR}.x.x
+          gsutil cp -r ./views gs://psxmarketing-cdn/${MAJOR}.${MINOR}.x
+        env:
+          MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
+          MINOR: ${{ steps.get_tag.outputs.MINOR }}
+          PATCH: ${{ steps.get_tag.outputs.PATCH }}
+
