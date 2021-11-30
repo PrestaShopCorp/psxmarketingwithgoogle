@@ -60,6 +60,18 @@ config.mocks.$tc = (key) => {
   return property;
 };
 
+config.mocks.$te = (key) => {
+  const parts = key.split('.');
+  const {length} = parts;
+  let property = messages[defaultLocale];
+
+  for (let i = 0; i < length; i += 1) {
+    property = property[parts[i]];
+  }
+
+  return property;
+};
+
 config.mocks.$segment = {
   track: () => null,
 };

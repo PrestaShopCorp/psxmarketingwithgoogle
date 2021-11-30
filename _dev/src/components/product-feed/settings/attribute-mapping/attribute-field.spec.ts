@@ -54,7 +54,7 @@ describe('attribute-field.vue', () => {
       localVue,
     });
 
-    expect(wrapper.find('.dropdown-toggle').text()).toBe('Description');
+    expect(wrapper.find('.dropdown-toggle').text()).toBe('description');
   });
 
   it('recommended option is checked when no mapped attribute', () => {
@@ -92,7 +92,7 @@ describe('attribute-field.vue', () => {
       localVue,
     });
 
-    expect(wrapper.find('[data-test-id="attribute-is-mapped"]').text()).toBe('shortDescription');
+    expect(wrapper.find('[data-test-id="attribute-is-mapped"]').text()).toBe('Short Description');
   });
 
   it('mapped options are checked (multiple)', () => {

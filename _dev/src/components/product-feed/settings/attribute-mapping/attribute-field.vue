@@ -56,9 +56,11 @@
               :data-test-id="attributesChecked.some(e => e.name === option.name) ?
                 'attribute-is-mapped' : null"
             >
-              {{ $t(`attributesMapping.options.${option.name}`)
+              <!-- {{ $t(`attributesMapping.options.${option.name}`)
                 .includes('attributesMapping.options') ?
-                  option.name : $t(`attributesMapping.options.${option.name}`) }}
+                  option.name : $t(`attributesMapping.options.${option.name}`) }} -->
+              {{ $te(`attributesMapping.options.${option.name}`) ?
+                $t(`attributesMapping.options.${option.name}`) : option.name }}
             </span>
           </b-form-checkbox>
         </b-form-checkbox-group>
