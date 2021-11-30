@@ -863,7 +863,6 @@
   "attributesMapping" : {
     "types": {
       "description" : "Description",
-      "shortDescription" : "Short Description",
       "mpn": "MPN",
       "brand": "Brand",
       "color": "Color",
