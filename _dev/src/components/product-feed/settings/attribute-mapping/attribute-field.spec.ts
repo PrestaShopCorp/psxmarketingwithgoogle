@@ -92,7 +92,7 @@ describe('attribute-field.vue', () => {
       localVue,
     });
 
-    expect(wrapper.find('[data-test-id="attribute-is-mapped"]').text()).toBe('Short Description');
+    expect(wrapper.find('[data-test-id="attribute-is-mapped"]').text()).toBe('shortDescription');
   });
 
   it('mapped options are checked (multiple)', () => {
