@@ -5,7 +5,7 @@
   >
     <template #label>
       <span class="font-weight-600">
-        {{ displayTranslation(field) }}
+        {{ $t(`attributesMapping.types.${field.name}`) }}
         <span
           v-if="field.required"
           class=""
@@ -29,7 +29,7 @@
     <b-dropdown
       :id="field.label | slugify"
       :html="`<span class='text-truncate d-inline-block'>
-        ${formatToDisplay || $t('general.notAvailable')}</span>`"
+        ${formatToDisplay}</span>`"
       variant=" "
       class="maxw-sm-250 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
       :toggle-class="[{'ps-dropdown__placeholder' : !formatToDisplay}, 'w-100']"
@@ -56,7 +56,9 @@
               :data-test-id="attributesChecked.some(e => e.name === option.name) ?
                 'attribute-is-mapped' : null"
             >
-              {{ displayTranslation(option) }}
+              {{ $t(`attributesMapping.options.${option.name}`)
+                .includes('attributesMapping.options') ?
+                  option.name : $t(`attributesMapping.options.${option.name}`) }}
             </span>
           </b-form-checkbox>
         </b-form-checkbox-group>
@@ -88,7 +90,6 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
-import attributesToMap from '@/store/modules/product-feed/attributes-to-map.json';
 
 export default {
   data() {
@@ -124,7 +125,8 @@ export default {
     },
 
     formatToDisplay() {
-      return this.attributesChecked.map((e) => this.displayTranslation(e)).join(', ');
+      const result = this.attributesChecked.map((e) => e.name);
+      return result.length ? result.join(', ') : this.$t('general.notAvailable');
     },
   },
   methods: {
@@ -138,24 +140,6 @@ export default {
       } else {
         this.attributesChecked = [];
         this.notAvailableSelected = true;
-      }
-    },
-    displayTranslation(option) {
-      const attributesFields = [];
-      attributesToMap.forEach((attribute) => attribute.fields
-        .forEach((field) => attributesFields.push(field.name)));
-      if (attributesFields.includes(option.name)) {
-        if (option.name === 'gtin') {
-          return option.label;
-        }
-        return this.$t(`attributesMapping.${option.name}`);
-      }
-
-      switch (option.name) {
-        case 'manufacturer':
-          return this.$t('attributesMapping.brand');
-        default:
-          return option.name;
       }
     },
     findAttribute(attr) {
