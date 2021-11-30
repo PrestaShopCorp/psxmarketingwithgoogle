@@ -23,7 +23,7 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Config;
 class Config
 {
     const PSX_MKTG_WITH_GOOGLE_API_URL = 'https://googleshopping-api.psessentials.net';
-    const PSX_MKTG_WITH_GOOGLE_CDN_URL = 'https://storage.googleapis.com/psxmarketing-cdn/v2.x.x/js/';
+    const PSX_MKTG_WITH_GOOGLE_CDN_URL = 'https://storage.googleapis.com/psxmarketing-cdn/v1.x.x/js/';
 
     const HOOK_LIST = [
         'displayBackOfficeHeader',
