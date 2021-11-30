@@ -126,7 +126,7 @@ export default {
 
     formatToDisplay() {
       const result = this.attributesChecked.map((e) => e.name);
-      return result.length ? result.join(', ') : this.$t('general.notAvailable');
+      return result.length ? result.join(', ') : this.$t('attributesMapping.options.notAvailable');
     },
   },
   methods: {
