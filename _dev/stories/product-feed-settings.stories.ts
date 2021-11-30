@@ -10,7 +10,6 @@ export default {
       'tunnel-product-feed.spec.ts',
       'summary.spec.ts',
       'target-countries.spec.ts',
-      // 'product-feed-settings-attribute-mapping.spec.ts',
       'shipping-settings-provider.spec.ts',
       'shipping-settings.vue',
       'table-row-carrier.vue',
@@ -67,10 +66,18 @@ AttributeMapping.args = {
   },
 };
 
+export const SyncSchedule:any = Template.bind({});
+SyncSchedule.args = {
+  beforeMount(this: any) {
+    this.$store.state.productFeed = Object.assign({},productFeed);
+    this.$store.state.productFeed.stepper = 4;
+  },
+};
+
 export const Summary:any = Template.bind({});
 Summary.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeedIsReadyForExport);
-    this.$store.state.productFeed.stepper = 4;
+    this.$store.state.productFeed.stepper = 5;
   },
 };

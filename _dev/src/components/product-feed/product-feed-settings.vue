@@ -48,9 +48,12 @@
         v-if="activeStep == 3"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
+      <sync-schedule
+        v-if="activeStep == 4"
+      />
       <Summary
         v-bind="$attrs"
-        v-if="activeStep == 4"
+        v-if="activeStep == 5"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
     </b-card-body>
@@ -61,7 +64,8 @@
 import Stepper from '../commons/stepper';
 import TargetCountry from './settings/target-countries/target-countries.vue';
 import ShippingSettings from './settings/shipping-settings/shipping-settings.vue';
-import AttributeMapping from './settings/attribute-mapping/attribute-mapping';
+import AttributeMapping from './settings/attribute-mapping/attribute-mapping.vue';
+import SyncSchedule from './settings/sync-schedule/sync-schedule.vue';
 import Summary from './settings/summary/summary';
 
 export default {
@@ -71,6 +75,7 @@ export default {
     TargetCountry,
     ShippingSettings,
     AttributeMapping,
+    SyncSchedule,
     Summary,
   },
   data() {
@@ -92,6 +97,9 @@ export default {
         },
         {
           title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
+        },
+        {
+          title: 'Sync schedule',
         },
         {
           title: this.$i18n.t('productFeedSettings.steps.summary'),
