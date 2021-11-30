@@ -5,7 +5,7 @@
   >
     <template #label>
       <span class="font-weight-600">
-        {{ field.label }}
+        {{ displayTranslation(field) }}
         <span
           v-if="field.required"
           class=""
@@ -88,6 +88,7 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
+import attributesToMap from '@/store/modules/product-feed/attributes-to-map.json';
 
 export default {
   data() {
@@ -140,11 +141,17 @@ export default {
       }
     },
     displayTranslation(option) {
+      const attributesFields = [];
+      attributesToMap.forEach((attribute) => attribute.fields
+        .forEach((field) => attributesFields.push(field.name)));
+      if (attributesFields.includes(option.name)) {
+        if (option.name === 'gtin') {
+          return option.label;
+        }
+        return this.$t(`attributesMapping.${option.name}`);
+      }
+
       switch (option.name) {
-        case 'description':
-          return this.$t('attributesMapping.description');
-        case 'shortDescription':
-          return this.$t('attributesMapping.shortDescription');
         case 'manufacturer':
           return this.$t('attributesMapping.brand');
         default:

@@ -247,6 +247,8 @@
       "shippingSettings": "Shipping settings",
       "shippingSettingsTitle": "Products shipping settings",
       "shippingLabel1": "Setup my shipping settings now (recommended)",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
       "shippingDescription1": "PrestaShop will import your carriers list from your store settings and allow you to provide additional information.",
       "automatically": "Automatically",
       "manually": "Manually",
@@ -861,6 +863,24 @@
   "attributesMapping" : {
     "description" : "Description",
     "shortDescription" : "Short Description",
-    "brand": "Brand"
+    "brand": "Brand",
+    "longDescription": "Long description",
+    "energyEfficiencyClass": "Energy efficiency class",
+    "minEnergyEfficiencyClass": "Minimum efficiency class",
+    "maxEnergyEfficiencyClass": "Maximum efficiency class",
+    "material": "Material",
+    "pattern": "Pattern",
+    "gtin": "GTIN",
+    "ean13": "EAN13",
+    "mpn": "MPN",
+    "notAvailable": "Not available",
+    "specificTitle": "Specific",
+    "sellRefurbished": "I sell refurbished products",
+    "sellApparel": "I sell apparel and accessories",
+    "condition": "Condition",
+    "color": "Color",
+    "size": "Size",
+    "ageGroup": "Age group",
+    "gender": "Gender"
   }
 }
