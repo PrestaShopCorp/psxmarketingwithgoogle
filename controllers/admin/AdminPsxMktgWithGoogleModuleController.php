@@ -24,7 +24,6 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Config\Env;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
-use PrestaShop\Module\PsxMarketingWithGoogle\Translations\PsxMktgWithGoogleTranslations;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 
 class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
@@ -94,7 +93,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'contextPsAccounts' => (object) $this->module->getService(PsAccounts::class)
             ->getPsAccountsPresenter()
             ->present($this->module->name),
-            'translations' => (new PsxMktgWithGoogleTranslations($this->module))->getTranslations(),
             'i18nSettings' => [
                 'isoCode' => $this->context->language->iso_code,
                 'languageLocale' => $this->context->language->language_code,
@@ -137,6 +135,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
                 'AdminMaintenance'
             ),
             'psxMktgWithGoogleCarriersUrl' => $this->context->link->getAdminLink('AdminCarriers'),
+            'psxMktgWithGoogleAttributesUrl' => $this->context->link->getAdminLink('AdminAttributesGroups'),
             'psxMktgWithGoogleStoreSettingsUrl' => $this->context->link->getAdminLink('AdminStores'),
             'psxMktgWithGoogleProductDetailUrl' => $this->context->link->getAdminLink(
                 'AdminProducts',

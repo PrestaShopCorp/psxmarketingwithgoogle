@@ -1,17 +1,18 @@
 import {config, createLocalVue} from '@vue/test-utils';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import translations from '../.storybook/translations.json';
+import {messages} from '@/lib/translations';
 
 let windowSpy;
-let localVue; // eslint-disable-line 
+let localVue; // eslint-disable-line
 const defaultLocale = 'en';
-let filters; // eslint-disable-line 
+let filters; // eslint-disable-line
 
 beforeEach(() => {
   windowSpy = jest.spyOn(window, 'window', 'get');
   windowSpy.mockImplementation(() => ({
     // add data needed in window
+    scrollTo: jest.fn(),
   }));
   localVue = createLocalVue();
   localVue.use(Vuex);
@@ -20,11 +21,15 @@ beforeEach(() => {
     timeConverterToDate: jest.fn(),
     timeConverterToHour: jest.fn(),
     changeCountriesCodesToNames: jest.fn().mockImplementation(() => []),
+    timeConverterToStringifiedDate: jest.fn().mockImplementation(() => ''),
+    slugify: jest.fn().mockImplementation(() => 'foo'),
   };
 
   localVue.filter('timeConverterToDate', filters.timeConverterToDate);
   localVue.filter('timeConverterToHour', filters.timeConverterToHour);
   localVue.filter('changeCountriesCodesToNames', filters.changeCountriesCodesToNames);
+  localVue.filter('timeConverterToStringifiedDate', filters.timeConverterToStringifiedDate);
+  localVue.filter('slugify', filters.slugify);
 });
 
 afterEach(() => {
@@ -34,7 +39,19 @@ afterEach(() => {
 config.mocks.$t = (key) => {
   const parts = key.split('.');
   const {length} = parts;
-  let property = translations[defaultLocale];
+  let property = messages[defaultLocale];
+
+  for (let i = 0; i < length; i += 1) {
+    property = property[parts[i]];
+  }
+
+  return property;
+};
+
+config.mocks.$tc = (key) => {
+  const parts = key.split('.');
+  const {length} = parts;
+  let property = messages[defaultLocale];
 
   for (let i = 0; i < length; i += 1) {
     property = property[parts[i]];
@@ -49,6 +66,7 @@ config.mocks.$segment = {
 
 config.mocks.$i18n = {
   t: config.mocks.$t,
+  tc: config.mocks.$tc,
 };
 export default {config};
 

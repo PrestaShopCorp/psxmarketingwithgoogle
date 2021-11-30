@@ -1,0 +1,191 @@
+[
+  {
+    "category": "commons",
+    "fields": [
+      {
+        "label": "Description",
+        "name": "description",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "description",
+            "type": "product"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      },
+      {
+        "label": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
+        "name": "gtin",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "gtin",
+            "type": "product"
+          }
+        ],
+        "mapped": null,
+        "required": false
+      },
+      {
+        "label": "MPN (Manufacturer Part Number)",
+        "name": "mpn",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "mpn",
+            "type": "product"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      },
+      {
+        "label": "Brand",
+        "name": "brand",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "manufacturer",
+            "type": "product"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      }
+    ]
+  },
+  {
+    "category": "apparelAndAccessories",
+    "fields": [
+      {
+        "label": "Age Group",
+        "name": "ageGroup",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "ageGroup",
+            "type": "custom"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      },
+      {
+        "label": "Color",
+        "name": "color",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "color",
+            "type": "custom"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      },
+      {
+        "label": "Gender",
+        "name": "gender",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "gender",
+            "type": "custom"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      },
+      {
+        "label": "Size",
+        "name": "size",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "size",
+            "type": "custom"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      }
+    ]
+  },
+  {
+    "category": "electronics",
+    "fields": [
+      {
+        "label": "Maximum energy efficient class",
+        "name": "maxEnergyEfficiencyClass",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "maxEnergyEfficiencyClass",
+            "type": "feature"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      },
+      {
+        "label": "Minimum energy efficient class",
+        "name": "minEnergyEfficiencyClass",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "minEnergyEfficiencyClass",
+            "type": "feature"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      },
+      {
+        "label": "Energy class",
+        "name": "energyEfficiencyClass",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "energyClass",
+            "type": "feature"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      }
+    ]
+  },
+  {
+    "category": "variantSets",
+    "fields": [
+      {
+        "label": "Material",
+        "name": "material",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "material",
+            "type": "feature"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      },
+      {
+        "label": "Pattern",
+        "name": "pattern",
+        "tooltip": true,
+        "recommended": [
+          {
+            "name": "pattern",
+            "type": "feature"
+          }
+        ],
+        "mapped": null,
+        "required": true
+      }
+    ]
+  }
+]

@@ -72,12 +72,14 @@ const Template = (args, {argTypes}) => ({
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   isEnabled: false,
+  loading: false,
   initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
 };
 
 export const Enabled:any = Template.bind({});
 Enabled.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
   mounted: function(this: any) {
     this.$store.state.accounts.googleAccount.details.email = "jean.peuplu@prestashop.com"
@@ -87,6 +89,7 @@ Enabled.args = {
 export const EnabledSpinner:any = Template.bind({});
 EnabledSpinner.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
   mounted: function(this: any) {
     // This is not the correct state to show spinner but it works...
@@ -98,6 +101,7 @@ EnabledSpinner.args = {
 export const EnabledButNoAccount:any = Template.bind({});
 EnabledButNoAccount.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
   mounted: function(this: any) {
     this.$store.state.accounts.googleAccount.mcaSelectionOptions = [];
@@ -107,6 +111,7 @@ EnabledButNoAccount.args = {
 export const EnabledLinkingFailed:any = Template.bind({});
 EnabledLinkingFailed.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({},
     merchantCenterAccountNotConnected,
     {
@@ -118,12 +123,14 @@ EnabledLinkingFailed.args = {
 export const Connected:any = Template.bind({});
 Connected.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({}, merchantCenterAccountConnected),
 };
 
 export const ConnectedButApiFails:any = Template.bind({});
 ConnectedButApiFails.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({},
     merchantCenterAccountConnected,
     {
@@ -135,6 +142,7 @@ ConnectedButApiFails.args = {
 export const ShopInfoMissing:any = Template.bind({});
 ShopInfoMissing.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({},
     merchantCenterAccountConnected,
     {
@@ -146,6 +154,7 @@ ShopInfoMissing.args = {
 export const OverwriteNeeded:any = Template.bind({});
 OverwriteNeeded.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({},
     merchantCenterAccountConnected,
     {
@@ -157,6 +166,7 @@ OverwriteNeeded.args = {
 export const OverwriteNeededWithManualAction:any = Template.bind({});
 OverwriteNeededWithManualAction.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({},
     merchantCenterAccountConnected,
     {
@@ -168,6 +178,7 @@ OverwriteNeededWithManualAction.args = {
 export const AccountValidationFailed:any = Template.bind({});
 AccountValidationFailed.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({},
     merchantCenterAccountConnected,
     {
@@ -179,6 +190,7 @@ AccountValidationFailed.args = {
 export const Suspended:any = Template.bind({});
 Suspended.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({},
     merchantCenterAccountConnected,
     {
@@ -212,6 +224,7 @@ Suspended.args = {
 export const UnlinkFailed:any = Template.bind({});
 UnlinkFailed.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({},
     merchantCenterAccountConnected,
     {
@@ -223,6 +236,7 @@ UnlinkFailed.args = {
 export const newGmcNotListed:any = Template.bind({});
 newGmcNotListed.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({},
     merchantCenterNewGmcNotListed
   ),
@@ -231,6 +245,7 @@ newGmcNotListed.args = {
 export const MaintenanceModeDetected:any = Template.bind({});
 MaintenanceModeDetected.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
   mounted (this: any) {
     this.$store.state.app = Object.assign(
@@ -244,6 +259,7 @@ MaintenanceModeDetected.args = {
 export const phoneVerificationNeeded:any = Template.bind({});
 phoneVerificationNeeded.args = {
   isEnabled: true,
+  loading: false,
   initialMcaStatus: Object.assign({},
     merchantCenterAccountConnected,
     {

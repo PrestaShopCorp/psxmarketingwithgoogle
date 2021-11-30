@@ -35,6 +35,12 @@ export default {
   [GettersTypes.GET_STATUS_SHOP_MAINTENANCE](state: LocalState): boolean {
     return state.shopIsOnMaintenanceMode;
   },
+  [GettersTypes.GET_CARRIERS_URL](state: LocalState): string {
+    return state.psxMktgWithGoogleCarriersUrl;
+  },
+  [GettersTypes.GET_ATTRIBUTES_URL](state: LocalState): string {
+    return state.psxMktgWithGoogleAttributesUrl;
+  },
   [GettersTypes.GET_PRODUCT_DETAIL_BASE_URL](state: LocalState): string {
     return state.psxMktgWithGoogleProductDetailUrl;
   },
@@ -47,6 +53,10 @@ export default {
   [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
     if (state.targetCountries !== null) {
       return state.targetCountries;
+    }
+    const targetCountriesFromLocalStorage = localStorage.getItem('productFeed-targetCountries');
+    if (targetCountriesFromLocalStorage) {
+      return JSON.parse(targetCountriesFromLocalStorage);
     }
     if (state.psxMtgWithGoogleDefaultShopCountry !== null) {
       return [state.psxMtgWithGoogleDefaultShopCountry];

@@ -20,6 +20,9 @@ import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
+import {
+  Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
+} from '../../../providers/shipping-settings-provider';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
@@ -116,6 +119,10 @@ export default {
           } : {},
         ),
       });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'deliveryDetails',
+        data: json?.additionalShippingSettings?.deliveryDetails || [],
+      });
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
     } catch (error) {
       if (error.code === 404) {
@@ -132,27 +139,16 @@ export default {
   }) {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(rootGetters['app/GET_ACTIVE_COUNTRIES']);
+    const attributeMapping = JSON.parse(localStorage.getItem('productFeed-attributeMapping') || '{}');
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
       targetCountries,
       shippingSettings: productFeedSettings.shippingSettings,
-      attributeMapping: {
-        exportProductsWithShortDescription:
-        productFeedSettings?.attributeMapping?.exportProductsWithShortDescription
-        || true,
-        customConditionAttribute: productFeedSettings?.attributeMapping?.customConditionAttribute
-        || null,
-        customColorAttribute: productFeedSettings?.attributeMapping?.customColorAttribute
-        || null,
-        customSizeAttribute: productFeedSettings?.attributeMapping?.customSizeAttribute
-        || null,
-        customAgeGroupAttribute: productFeedSettings?.attributeMapping?.customAgeGroupAttribute
-        || null,
-        customGenderGroupAttribute:
-        productFeedSettings?.attributeMapping?.customGenderGroupAttribute
-        || null,
+      additionalShippingSettings: {
+        deliveryDetails: productFeedSettings.deliveryDetails.filter((e) => e.enabledCarrier),
       },
+      attributeMapping,
     };
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
@@ -171,12 +167,16 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
+      localStorage.removeItem('productFeed-deliveryDetails');
+      localStorage.removeItem('productFeed-attributeMapping');
+      localStorage.removeItem('productFeed-autoImport');
+      localStorage.removeItem('productFeed-targetCountries');
     } catch (error) {
       console.error(error);
     }
   },
 
-  async [ActionsTypes.GET_SHIPPING_SETTINGS]({rootState, commit}) {
+  async [ActionsTypes.GET_SHOP_SHIPPING_SETTINGS]({rootState, commit}) {
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
@@ -190,6 +190,84 @@ export default {
     const result = await response.json();
     commit(MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS, result);
     return result;
+  },
+
+  async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
+    // TODO: These call may be already done, so we might remove them
+    await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
+    await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
+
+    // Load existing carriers on PrestaShop
+    const enabledCarriersFromShop = getEnabledCarriers(
+      state.settings.shippingSettings,
+    );
+    // Load previous configuration temporarly saved on localStorage
+    const deliveryFromStorage = JSON.parse(localStorage.getItem('productFeed-deliveryDetails') || '[]');
+
+    // Carriers will be all enabled by default if nothing has been configured yet
+    const enableCarriersByDefault = !deliveryFromStorage.length
+      && !state.settings.deliveryDetails.length;
+
+    // Build carriers list based from PHP data, and on previous configuration in localStorage + API
+    const carriersList: DeliveryDetail[] = enabledCarriersFromShop.map((carrierFromShop) => {
+      const deliveryDetailsSavedInLocalStorage = deliveryFromStorage.find((c : DeliveryDetail) => (
+        (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
+      ));
+      if (deliveryDetailsSavedInLocalStorage) {
+        return deliveryDetailsSavedInLocalStorage;
+      }
+
+      const deliveryDetailsSavedOnAPI = state.settings.deliveryDetails.find(
+        (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === carrierFromShop.carrierId
+                && carrierFromShop.country === deliveryDetail.country);
+      if (deliveryDetailsSavedOnAPI) {
+        return {
+          enabledCarrier: true,
+          ...carrierFromShop,
+          ...deliveryDetailsSavedOnAPI,
+        };
+      }
+
+      return {
+        enabledCarrier: enableCarriersByDefault,
+        deliveryType: undefined,
+        minHandlingTimeInDays: undefined,
+        maxHandlingTimeInDays: undefined,
+        minTransitTimeInDays: undefined,
+        maxTransitTimeInDays: undefined,
+        ...carrierFromShop,
+      };
+    });
+    commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
+  },
+
+  [ActionsTypes.DUPLICATE_DELIVERY_DETAILS](
+    {state, commit},
+    payload: {sourceCarrier: CarrierIdentifier, destinationCarriers: CarrierIdentifier[]},
+  ) {
+    const carriersList = [...state.settings.deliveryDetails];
+    const indexToCopy = carriersList
+      .findIndex((e) => e.carrierId === payload.sourceCarrier.carrierId
+        && e.country === payload.sourceCarrier.country,
+      );
+    const indexesToReceiveCopy = payload.destinationCarriers
+      .map((destinationCarrier) => carriersList
+        .findIndex((e) => e.carrierId === destinationCarrier.carrierId
+          && e.country === destinationCarrier.country,
+        ),
+      );
+
+    const {
+      name, delay, country, carrierId, ...sourceCarrierData
+    } = carriersList[indexToCopy];
+
+    indexesToReceiveCopy.forEach((index) => {
+      carriersList.splice(index, 1, {
+        ...carriersList[index],
+        ...sourceCarrierData,
+      });
+    });
+    commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {
@@ -275,6 +353,47 @@ export default {
     });
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
+    }
+  },
+  async [ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE]({rootState, commit}) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      body: JSON.stringify({
+        action: 'getShopAttributes',
+      }),
+    });
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+
+    const json = await response.json();
+    commit(MutationsTypes.SAVE_ATTRIBUTES_SHOP, json);
+    return json;
+  },
+  async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
+    const getMappingFromStorage = localStorage.getItem('productFeed-attributeMapping');
+    if (getMappingFromStorage !== null) {
+      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, JSON.parse(getMappingFromStorage || '{}'));
+      return;
+    }
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/attributes`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+
+      const json = await response.json();
+      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, json);
+    } catch (error) {
+      console.log(error);
     }
   },
 };

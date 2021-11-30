@@ -116,7 +116,6 @@ export default {
     }
     const result = await response.json();
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.remarketingTagsStatus);
-    dispatch(ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS);
   },
 
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
@@ -211,7 +210,7 @@ export default {
     dispatch('GET_REPORTING_DAILY_RESULTS');
     dispatch('GET_REPORTING_PRODUCTS_PERFORMANCES');
     // temporary disable, waiting final table design
-    // dispatch('GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES');
+    dispatch('GET_REPORTING_FILTERS_PERFORMANCES');
   },
   [ActionsTypes.SET_REPORTING_DATES_RANGE](
     {commit, state},
@@ -333,7 +332,6 @@ export default {
     }
 
     const result = await response.json();
-
     if (isNewRequest) {
       commit('RESET_REPORTING_CAMPAIGNS_PERFORMANCES');
     }
@@ -392,16 +390,17 @@ export default {
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES, result);
   },
 
-  async [ActionsTypes.GET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES](
+  async [ActionsTypes.GET_REPORTING_FILTERS_PERFORMANCES](
     {commit, rootState, state},
   ) {
     const query = new URLSearchParams({
       startDate: state.reporting.request.dateRange.startDate,
       endDate: state.reporting.request.dateRange.endDate,
+      lang: window.i18nSettings.languageLocale.split('-')[0],
     });
 
     // add order in array format
-    query.append('order[clicks]', state.reporting.request.ordering.productsPartitionsPerformances.clicks);
+    query.append('order[clicks]', state.reporting.request.ordering.filtersPerformances.clicks);
 
     const response = await fetch(
       `${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/products-partitions-performances?${query}`, {
@@ -414,14 +413,14 @@ export default {
     );
 
     if (!response.ok) {
-      commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR, true);
+      commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, true);
       throw new HttpClientError(response.statusText, response.status);
     }
 
     const result = await response.json();
-
-    commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES_SECTION_ERROR, false);
-    commit(MutationsTypes.SET_REPORTING_PRODUCTS_PARTITIONS_PERFORMANCES, result);
+    commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, false);
+    commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES,
+       result?.productsPartitionsPerformanceList);
   },
   async [ActionsTypes.GET_SSC_LIST]({commit, state, rootState}, isNewRequest = true) {
     const query = new URLSearchParams();

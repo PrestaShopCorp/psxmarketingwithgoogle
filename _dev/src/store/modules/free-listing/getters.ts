@@ -32,4 +32,5 @@ export default {
   [GettersTypes.GET_FREE_LISTING_IS_ACTIVATED_ONCE](state: LocalState): boolean {
     return state.isActivatedOnce;
   },
+
 };

@@ -16,11 +16,15 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import {LogarithmicScale} from 'chart.js';
+import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import MutationsTypes from './mutations-types';
 import {
   State as LocalState,
   ProductInfos,
   ProductFeedValidationSummary,
+  AttributesInfos,
+  commonAttributes,
 } from './state';
 
 type payloadObject = {
@@ -88,6 +92,10 @@ export default {
   ) {
     state.settings.shippingSettings = payload;
   },
+  [MutationsTypes.SAVE_SHIPPING_SETTINGS](state: LocalState, payload: DeliveryDetail[],
+  ) {
+    state.settings.deliveryDetails = payload;
+  },
   [MutationsTypes.SET_VALIDATION_SUMMARY](state: LocalState, payload: ProductFeedValidationSummary,
   ) {
     state.validationSummary = payload;
@@ -107,10 +115,65 @@ export default {
   ) {
     state.settings = {
       shippingSettings: [],
+      deliveryDetails: [],
       autoImportTaxSettings: false,
       autoImportShippingSettings: true,
       attributeMapping: {},
       syncSchedule: '1 * * * * *',
     };
+  },
+  [MutationsTypes.SAVE_ATTRIBUTES_SHOP](state: LocalState, payload: AttributesInfos[]) {
+    state.attributesData.push(...payload);
+    state.attributesData.forEach((data, indexToDelete) => {
+      // remove deleted attributes if new call without total refresh
+      const find = payload.findIndex((i) => i.name === data.name);
+      if (find === -1) {
+        state.attributesData.splice(indexToDelete, 1);
+      }
+    });
+    state.attributesData.push(...commonAttributes);
+    // remove duplicates attributes if new call without total refresh
+    state.attributesData = state.attributesData.reduce((acc: any, current: AttributesInfos) => {
+      const x = acc.find((item) => item.name === current.name);
+      if (!x) {
+        return acc.concat([current]);
+      }
+      return acc;
+    }, []);
+    const getAttributesNames = state.attributesData.map((attribute) => attribute.name);
+    state.attributesToMap.forEach((category) => {
+      category.fields.forEach((field) => {
+        field.recommended = field.recommended.filter(
+          (reco) => getAttributesNames.includes(reco.name),
+        );
+      });
+    });
+  },
+  [MutationsTypes.SET_ATTRIBUTE_MAPPING_SELECTION](state: LocalState, payload) {
+    state.attributesToMap
+      .reduce((acc, curr) => [...acc, ...curr.fields], [])
+      .forEach((fields) => {
+        if (fields.name === payload.name) {
+          fields.mapped = payload.elements;
+        }
+      });
+  },
+  [MutationsTypes.SET_ATTRIBUTES_MAPPED](state: LocalState, payload) {
+    if (payload.length) {
+      return;
+    }
+    const getKeys = Object.keys(payload);
+    getKeys.forEach((key) => {
+      state.attributesToMap.forEach((attribute) => {
+        const findAttr = attribute.fields.find((field) => field.name === key);
+        const changeMappingObj = payload[key].map((value) => ({
+          name: value.id,
+          type: value.type,
+        }));
+        if (findAttr) {
+          findAttr.mapped = changeMappingObj;
+        }
+      });
+    });
   },
 };

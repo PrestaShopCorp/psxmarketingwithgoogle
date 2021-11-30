@@ -35,20 +35,20 @@
         :steps="steps"
         :active-step="activeStep"
       />
-      <product-feed-settings-shipping
+      <target-country
         v-if="activeStep == 1"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
-      <product-feed-settings-export
+      <shipping-settings
         v-if="activeStep == 2"
         v-bind="$attrs"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
-      <product-feed-settings-attribute-mapping
+      <attribute-mapping
         v-if="activeStep == 3"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
-      <product-feed-settings-summary
+      <Summary
         v-bind="$attrs"
         v-if="activeStep == 4"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
@@ -59,48 +59,48 @@
 
 <script>
 import Stepper from '../commons/stepper';
-import ProductFeedSettingsShipping from './product-feed-settings-shipping';
-import ProductFeedSettingsExport from './product-feed-settings-export';
-import ProductFeedSettingsAttributeMapping from './product-feed-settings-attribute-mapping';
-import ProductFeedSettingsSummary from './product-feed-settings-summary';
+import TargetCountry from './settings/target-countries/target-countries.vue';
+import ShippingSettings from './settings/shipping-settings/shipping-settings.vue';
+import AttributeMapping from './settings/attribute-mapping/attribute-mapping';
+import Summary from './settings/summary/summary';
 
 export default {
   name: 'ProductFeedSettings',
   components: {
     Stepper,
-    ProductFeedSettingsShipping,
-    ProductFeedSettingsExport,
-    ProductFeedSettingsAttributeMapping,
-    ProductFeedSettingsSummary,
+    TargetCountry,
+    ShippingSettings,
+    AttributeMapping,
+    Summary,
   },
   data() {
     return {
-      steps: [
+    };
+  },
+  computed: {
+    activeStep() {
+      return this.$store.state.productFeed.stepper;
+    },
+    steps() {
+      return [
         {
-          title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
+          title: this.$i18n.t('productFeedSettings.steps.targetCountry'),
         },
         {
-          title: this.$i18n.t('productFeedSettings.steps.syncRules'),
+          title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
+          notClickable: !this.$store.state.productFeed.settings.autoImportShippingSettings,
         },
         {
           title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
         },
-        /**
-         ** Not in batch 1 */
-        // {
-        //   title: this.$i18n.t('productFeedSettings.steps.categoryMapping'),
-        // },
         {
           title: this.$i18n.t('productFeedSettings.steps.summary'),
         },
-      ],
-    };
-  },
-  computed: {
-    // Where do we get the active step ? Is it in backend ? For now it is just in the store
-    activeStep() {
-      return this.$store.state.productFeed.stepper;
+      ];
     },
+  },
+  mounted() {
+    this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE');
   },
   methods: {
     productFeedCancelProcess() {

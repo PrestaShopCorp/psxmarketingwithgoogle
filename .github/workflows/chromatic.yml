@@ -4,6 +4,10 @@
 name: 'Chromatic'
 # Event for the workflow
 on:
+  pull_request:
+    types: [opened,edited,reopened,synchronize,labeled]
+    paths:
+      - '_dev/**'
   push:
     branches:
       - master
@@ -13,6 +17,7 @@ jobs:
   chromatic-deployment:
     # Operating System
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' || contains(github.event.pull_request.labels.*.name, 'waiting for UX')
     # Job steps
     steps:
         # 👇 Version 2 of the action

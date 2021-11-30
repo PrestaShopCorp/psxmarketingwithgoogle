@@ -51,16 +51,19 @@ const Template = (args, { argTypes }) => ({
 
 export const Disabled:any = Template.bind({});
 Disabled.args = {
+  loading: false,
   isEnabled: false,
 };
 
 export const NotConnectedAndNoAuthenticationUrlYet:any = Template.bind({});
 NotConnectedAndNoAuthenticationUrlYet.args = {
+  loading: false,
   isEnabled: true,
 };
 
 export const NotConnectedAndCanNotGetAuthenticationUrl:any = Template.bind({});
 NotConnectedAndCanNotGetAuthenticationUrl.args = {
+  loading: false,
   isEnabled: true,
   user: Object.assign({}, googleAccountFailedToRetrieveAuthenticationUrl),
 };
@@ -68,11 +71,13 @@ NotConnectedAndCanNotGetAuthenticationUrl.args = {
 export const NotConnected:any = Template.bind({});
 NotConnected.args = {
   isEnabled: true,
+  loading: false,
   user: Object.assign({}, googleAccountNotConnectedButAuthenticationUrlOK),
 };
 
 export const Connecting:any = Template.bind({});
 Connecting.args = {
+  loading: false,
   isEnabled: true,
   user: Object.assign({}, googleAccountNotConnectedButAuthenticationUrlOK),
   mounted() {
@@ -83,17 +88,20 @@ Connecting.args = {
 export const CouldNotConnect:any = Template.bind({});
 CouldNotConnect.args = {
   isEnabled: true,
+  loading: false,
   user: Object.assign({}, googleAccountFailedToRetrieveToken),
 };
 
 export const Connected:any = Template.bind({});
 Connected.args = {
   isEnabled: true,
+  loading: false,
   user: Object.assign({}, googleAccountConnected),
 };
 
 export const missingTokenScopes:any = Template.bind({});
 missingTokenScopes.args = {
+  loading: false,
   isEnabled: true,
   user: Object.assign({}, googleAccountMissingTokenScopes),
   mounted: function(this: any) {

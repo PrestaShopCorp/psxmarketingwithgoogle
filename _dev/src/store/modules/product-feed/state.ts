@@ -17,6 +17,9 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
+import attributesToMap from './attributes-to-map.json';
+
 export interface ProductFeedStatus {
   nextJobAt?: string;
   jobEndedAt?: string|null;
@@ -34,7 +37,8 @@ export interface ProductFeedSettingsAttributeMapping {
 }
 
 export interface ProductFeedSettings {
-  shippingSettings: Array<object>;
+  shippingSettings: object[];
+  deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
   autoImportShippingSettings: boolean;
   attributeMapping: ProductFeedSettingsAttributeMapping;
@@ -58,6 +62,49 @@ export interface ProductsDatas {
   items: Array<ProductInfos>;
 }
 
+export interface AttributesInfos {
+  name: string;
+  displayName?: string;
+  type: AttributesTypes;
+}
+
+export enum AttributesTypes {
+  PRODUCT = 'product',
+  CUSTOM = 'custom',
+  FEATURE = 'feature',
+}
+
+export const commonAttributes: readonly AttributesInfos[] = [
+  {
+    name: 'ean13',
+    type: AttributesTypes.PRODUCT,
+  },
+  {
+    name: 'isbn',
+    type: AttributesTypes.PRODUCT,
+  },
+  {
+    name: 'upc',
+    type: AttributesTypes.PRODUCT,
+  },
+  {
+    name: 'mpn',
+    type: AttributesTypes.PRODUCT,
+  },
+  {
+    name: 'description',
+    type: AttributesTypes.PRODUCT,
+  },
+  {
+    name: 'shortDescription',
+    type: AttributesTypes.PRODUCT,
+  },
+  {
+    name: 'manufacturer',
+    type: AttributesTypes.PRODUCT,
+  },
+];
+
 export interface State {
   isSyncSummaryLoadingInProgress: boolean;
   errorAPI: boolean;
@@ -69,6 +116,8 @@ export interface State {
   settings: ProductFeedSettings;
   validationSummary : ProductFeedValidationSummary;
   productsDatas: ProductsDatas;
+  attributesToMap: any;
+  attributesData: Array<AttributesInfos>;
 }
 
 export enum ProductStatues {
@@ -92,6 +141,7 @@ export const state: State = {
   },
   settings: {
     shippingSettings: [],
+    deliveryDetails: [],
     autoImportTaxSettings: false,
     autoImportShippingSettings: true,
     attributeMapping: {
@@ -113,4 +163,6 @@ export const state: State = {
   productsDatas: {
     items: [],
   },
+  attributesToMap,
+  attributesData: [],
 };

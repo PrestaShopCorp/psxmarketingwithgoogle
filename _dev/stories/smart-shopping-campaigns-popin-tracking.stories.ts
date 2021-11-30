@@ -26,6 +26,9 @@ Loading.args = {
   visible: true,
   mounted(this: any) {
     this.$refs.SSCPopinActivateTracking.$data.isLoading = true;
+    setTimeout(() => {
+      this.$refs.SSCPopinActivateTracking.$data.isLoading = true;
+    }, 500);
   },
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsTrue);

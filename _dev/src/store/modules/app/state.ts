@@ -29,9 +29,11 @@ export interface State {
   psxMktgWithGoogleModuleVersion: string;
   shopIsOnMaintenanceMode: boolean;
   psxMktgWithGoogleMaintenanceSettingsUrl: string;
+  psxMktgWithGoogleCarriersUrl: string;
+  psxMktgWithGoogleAttributesUrl: string;
   psxMktgWithGoogleProductDetailUrl: string;
   psxMktgWithGoogleStoreSettingsUrl: string;
-  targetCountries: Array<string> | null;
+  targetCountries: string[] | null;
   psxMktgWithGoogleOnProductionEnvironment: boolean;
   debugData: DebugData;
   adBlockerExists: boolean;
@@ -73,6 +75,8 @@ export const state: State = {
   psVersion: '',
   psxMktgWithGoogleMaintenanceSettingsUrl: '',
   shopIsOnMaintenanceMode: document.getElementById('maintenance-mode') !== null,
+  psxMktgWithGoogleCarriersUrl: '',
+  psxMktgWithGoogleAttributesUrl: '',
   psxMktgWithGoogleProductDetailUrl: '',
   psxMktgWithGoogleStoreSettingsUrl: '',
   psxMktgWithGoogleOnProductionEnvironment: false,

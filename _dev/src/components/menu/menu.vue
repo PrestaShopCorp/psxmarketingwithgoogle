@@ -31,13 +31,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.nav {
-  width: 100%;
-  position: fixed;
-  margin-top: -22px;
-  z-index: 499;
-  background-color: #fff;
-}
-</style>

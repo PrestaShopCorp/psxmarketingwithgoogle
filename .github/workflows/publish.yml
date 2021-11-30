@@ -29,6 +29,8 @@ jobs:
 
       - name: Clean-up project
         uses: PrestaShopCorp/github-action-clean-before-deploy@v1.0
+        with:
+          paths: 'crowdin.yml'
 
       - name: Create & upload artifact
         uses: actions/upload-artifact@v1
