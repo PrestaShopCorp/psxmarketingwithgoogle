@@ -587,7 +587,7 @@
       "draft": "Draft",
       "pending": "In attesa"
     },
-    "fromXToX": "Da {data d'inizio} a {data di fine}",
+    "fromXToX": "Da {startDate} a {endDate}",
     "labelCol": {
       "campaign": "Campagna pubblicitaria",
       "budget": "Budget",
@@ -604,8 +604,8 @@
       "averageCostPerClick": "CPC medio",
       "conversions": "Conversioni",
       "conversionsRate": "Tasso delle conversioni",
-      "productFilter": "Filtro di prodotto",
-      "dimension": "Dimensione",
+      "productFilter": "Filter name",
+      "dimension": "Filter type",
       "duration": "Data di durata",
       "target": "Obiettivo",
       "actions": "Azioni",
