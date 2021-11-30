@@ -587,7 +587,7 @@
       "draft": "Draft",
       "pending": "В ожидании"
     },
-    "fromXToX": "С {дата начала} по {дата окончания}",
+    "fromXToX": "С {startDate} по {endDate}",
     "labelCol": {
       "campaign": "Кампания",
       "budget": "Бюджет",
@@ -604,8 +604,8 @@
       "averageCostPerClick": "Средний CPC",
       "conversions": "Конверсии",
       "conversionsRate": "Коэффициент конверсии",
-      "productFilter": "Фильтр для продуктов",
-      "dimension": "Dimension",
+      "productFilter": "Filter name",
+      "dimension": "Filter type",
       "duration": "Дата продолжительности",
       "target": "Цель",
       "actions": "Действия",
