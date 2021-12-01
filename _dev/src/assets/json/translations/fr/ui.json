@@ -186,7 +186,7 @@
     "businessCountry": "Pays",
     "changeCountryField": "Vous pouvez [changer votre pays]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
     "changeRegionField": "Vous pouvez [changer votre région]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
-    "changeAddressField": "Vous pouvez [changer l'adresse de votre entreprise] ({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
+    "changeAddressField": "Vous pouvez [changer l'adresse de votre entreprise]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
     "changeZipCodeField": "Vous pouvez [modifier votre code zip]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back-office",
     "changeCityField": "Vous pouvez [changer votre ville]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
     "changePhoneNumberField": "Vous pouvez [changer votre numéro de téléphone professionnel]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back-office",
@@ -203,7 +203,7 @@
     "introToConfigure": "Il est important de soumettre votre flux de produits dans le format correct, car Google utilise ceci pour s'assurer que vos produits correspondent aux bonnes requêtes.",
     "nextSync": "Prochaine synchronisation : {0}",
     "syncFailedAt": "Échec de la synchronisation {0} à {1}",
-    "syncSuccess": "Produits synchronisés {1} à {2} | {0} produit synchronisé {1} à {2} | {0} produits synchronisés {1} à {2}",
+    "syncSuccess": "Produits synchronisés {1} à {2} | {0} Produits synchronisés {1} à {2} | {0} Produits synchronisés {1} à {2}",
     "syncBusy": "Synchronisation en cours...",
     "syncCantPerform": "Impossible d'effectuer la synchronisation",
     "mappedCategories": "{0}/{1} catégories mappées",
@@ -370,7 +370,7 @@
     }
   },
   "freeListingCard": {
-    "title": "Show your products with free listings ",
+    "title": "Afficher gratuitement vos produits dans l'onglet \"Google Shopping\"",
     "intro": "Afficher gratuitement vos produits en fiches gratuites dans l'onglet Shopping.",
     "learnFreeListing": "En savoir plus sur les fiches gratuites",
     "seeFreeListing": "Voir mes fiches gratuites dans Merchant Center",
@@ -495,7 +495,7 @@
     "tableTitle": "Performance de la campagne"
   },
   "productFeedPage": {
-    "breadcrumb": "Détails sur le statut du produit",
+    "breadcrumb": "Détail sur le statut du produit",
     "alert": {
       "googleIsReviewing": "Vos produits sont en cours de révision  \nCela peut prendre 3 à 5 jours pour examiner vos produits. Une fois approuvés, ils seront disponibles pour les fiches gratuites et campagnes publicitaires.",
       "alertSuccess": "L'export de votre catalogue est lancé ! Une fois que vos produits sont approuvés, ils apparaîtront dans les résultats de recherche de l'onglet Google Shopping."
@@ -697,7 +697,7 @@
     "shopMaintenanceBtn": "Allez dans les paramètres de maintenance",
     "editProductAttributes": "Éditer les attributs",
     "forceSync": "Forcer la synchronisation",
-    "createNewGoogleAdsAccount": "Créez un nouveau compte Google Ads",
+    "createNewGoogleAdsAccount": "Créer un nouveau compte Google Ads",
     "back": "Précédent",
     "saveAndContinue": "Sauvegarder et continuer",
     "yes": "Oui",
@@ -881,13 +881,13 @@
       "ean13": "EAN",
       "mpn": "MPN",
       "description": "Description",
-      "shortDescription": "Short Description",
-      "longDescription": "Long description",
-      "notAvailable": "Not available"
+      "shortDescription": "Description courte",
+      "longDescription": "Description longue",
+      "notAvailable": "N/A"
     },
-    "condition": "Condition",
-    "specificTitle": "Specific",
-    "sellRefurbished": "I sell refurbished products",
-    "sellApparel": "I sell apparel and accessories"
+    "condition": "État",
+    "specificTitle": "Spécifique",
+    "sellRefurbished": "Je vends des produits reconditionnés",
+    "sellApparel": "Je vends des vêtements et/ou des accessoires"
   }
 }
