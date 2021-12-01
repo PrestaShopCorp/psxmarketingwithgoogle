@@ -32,7 +32,7 @@
       </h3>
       <b-container
         fluid
-        class="p-0 mb-2"
+        class="p-0 mb-3"
       >
         <b-row
           no-gutters
@@ -115,6 +115,25 @@
           </product-feed-card-report-card>
         </b-row>
       </b-container>
+      <b-form-group
+        label="I understand and agree to the following conditions"
+        label-class="h4 font-weight-600 mb-3 d-block p-0 bg-transparent border-0"
+      >
+        <b-form-checkbox
+          data-test-id="buttonCheckbox"
+          class="ps_gs-checkbox"
+          v-model="acceptSyncSchedule"
+        >
+          <VueShowdown :markdown="'The synchronization of my product feed will run after I click on save and export (It might take between 1 to 4 hours)'" />
+        </b-form-checkbox>
+        <b-form-checkbox
+          data-test-id="buttonCheckbox"
+          class="ps_gs-checkbox mt-n1"
+          v-model="understandTerms"
+        >
+          <VueShowdown :markdown="'Google products reveiws may take between 3 to 5 business days'" />
+        </b-form-checkbox>
+      </b-form-group>
     </section>
     <actions-buttons
       :next-step="saveAll"
@@ -170,6 +189,8 @@ export default {
         : this.$t('productFeedSettings.shipping.manually'),
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
+      acceptSyncSchedule: false,
+      understandTerms: false,
     };
   },
   computed: {
