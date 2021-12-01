@@ -373,7 +373,10 @@
       "dataSyncSetUp": "Data sync set up",
       "productAttributesMapping": "Product attribute mapping",
       "mandatoryAttributesNotMapped": "One mandatory attribute hasn't been mapped to your custom fields | {0} mandatory attributes haven’t been mapped to your custom fields.",
-      "noticeToCompleteMapping": "We recommend completing all your data to ensure your products are validated. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]"
+      "noticeToCompleteMapping": "We recommend completing all your data to ensure your products are validated. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+      "agreementTitle": "I understand and agree to the following conditions",
+      "agreementCheckboxLabel1": "The synchronization of my product feed will run after I click on save and export (It might take between 1 to 4 hours)",
+      "agreementCheckboxLabel2": "Google products reveiws may take between 3 to 5 business days"
     }
   },
   "freeListingCard": {
