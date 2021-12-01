@@ -587,7 +587,7 @@
       "draft": "Brouillon",
       "pending": "En attente"
     },
-    "fromXToX": "De {date de début} à {date de fin}",
+    "fromXToX": "De {startDate} à {endDate}",
     "labelCol": {
       "campaign": "Campagne",
       "budget": "Budget",
@@ -604,8 +604,8 @@
       "averageCostPerClick": "CPC moyen",
       "conversions": "Conversions",
       "conversionsRate": "Taux de conversion",
-      "productFilter": "Nom du filtre",
-      "dimension": "Type de filtre",
+      "productFilter": "Filter name",
+      "dimension": "Filter type",
       "duration": "Durée",
       "target": "Cible",
       "actions": "Actions",
