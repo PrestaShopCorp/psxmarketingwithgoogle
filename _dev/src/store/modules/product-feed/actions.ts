@@ -197,6 +197,14 @@ export default {
     await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
     await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
 
+    const deliveryDetailsStructure = {
+      deliveryType: undefined,
+      minHandlingTimeInDays: undefined,
+      maxHandlingTimeInDays: undefined,
+      minTransitTimeInDays: undefined,
+      maxTransitTimeInDays: undefined,
+    };
+
     // Load existing carriers on PrestaShop
     const enabledCarriersFromShop = getEnabledCarriers(
       state.settings.shippingSettings,
@@ -214,7 +222,10 @@ export default {
         (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
       ));
       if (deliveryDetailsSavedInLocalStorage) {
-        return deliveryDetailsSavedInLocalStorage;
+        return {
+          ...deliveryDetailsStructure,
+          ...deliveryDetailsSavedInLocalStorage,
+        };
       }
 
       const deliveryDetailsSavedOnAPI = state.settings.deliveryDetails.find(
@@ -222,6 +233,7 @@ export default {
                 && carrierFromShop.country === deliveryDetail.country);
       if (deliveryDetailsSavedOnAPI) {
         return {
+          ...deliveryDetailsStructure,
           enabledCarrier: true,
           ...carrierFromShop,
           ...deliveryDetailsSavedOnAPI,
@@ -229,12 +241,8 @@ export default {
       }
 
       return {
+        ...deliveryDetailsStructure,
         enabledCarrier: enableCarriersByDefault,
-        deliveryType: undefined,
-        minHandlingTimeInDays: undefined,
-        maxHandlingTimeInDays: undefined,
-        minTransitTimeInDays: undefined,
-        maxTransitTimeInDays: undefined,
         ...carrierFromShop,
       };
     });
