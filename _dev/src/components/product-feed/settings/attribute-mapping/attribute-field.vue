@@ -5,7 +5,7 @@
   >
     <template #label>
       <span class="font-weight-600">
-        {{ field.label }}
+        {{ $t(`attributesMapping.types.${field.name}`) }}
         <span
           v-if="field.required"
           class=""
@@ -29,7 +29,7 @@
     <b-dropdown
       :id="field.label | slugify"
       :html="`<span class='text-truncate d-inline-block'>
-        ${formatToDisplay || $t('general.notAvailable')}</span>`"
+        ${formatToDisplay}</span>`"
       variant=" "
       class="maxw-sm-250 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
       :toggle-class="[{'ps-dropdown__placeholder' : !formatToDisplay}, 'w-100']"
@@ -56,7 +56,7 @@
               :data-test-id="attributesChecked.some(e => e.name === option.name) ?
                 'attribute-is-mapped' : null"
             >
-              {{ displayTranslation(option) }}
+              {{ displayAttributeOption(option) }}
             </span>
           </b-form-checkbox>
         </b-form-checkbox-group>
@@ -123,7 +123,8 @@ export default {
     },
 
     formatToDisplay() {
-      return this.attributesChecked.map((e) => this.displayTranslation(e)).join(', ');
+      const result = this.attributesChecked.map((e) => this.displayAttributeOption(e));
+      return result.length ? result.join(', ') : this.$t('attributesMapping.options.notAvailable');
     },
   },
   methods: {
@@ -139,18 +140,6 @@ export default {
         this.notAvailableSelected = true;
       }
     },
-    displayTranslation(option) {
-      switch (option.name) {
-        case 'description':
-          return this.$t('attributesMapping.description');
-        case 'shortDescription':
-          return this.$t('attributesMapping.shortDescription');
-        case 'manufacturer':
-          return this.$t('attributesMapping.brand');
-        default:
-          return option.name;
-      }
-    },
     findAttribute(attr) {
       return !!this.attributesChecked.find((e) => e.name === attr);
     },
@@ -162,6 +151,10 @@ export default {
     },
     tooltipFormat(name) {
       return this.$t(`tooltip.attributeMapping.${name}`);
+    },
+    displayAttributeOption(option) {
+      return this.$te(`attributesMapping.options.${option.name}`)
+        ? this.$t(`attributesMapping.options.${option.name}`) : option.name;
     },
   },
   googleUrl,
