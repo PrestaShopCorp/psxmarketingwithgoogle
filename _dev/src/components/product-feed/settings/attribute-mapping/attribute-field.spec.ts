@@ -54,7 +54,7 @@ describe('attribute-field.vue', () => {
       localVue,
     });
 
-    expect(wrapper.find('.dropdown-toggle').text()).toBe('description');
+    expect(wrapper.find('.dropdown-toggle').text()).toBe('Description');
   });
 
   it('recommended option is checked when no mapped attribute', () => {
@@ -124,7 +124,7 @@ describe('attribute-field.vue', () => {
       },
       localVue,
     });
-    expect(wrapper.findAll('[data-test-id="attribute-is-mapped"]').at(0).text()).toBe('ean13');
+    expect(wrapper.findAll('[data-test-id="attribute-is-mapped"]').at(0).text()).toBe('EAN');
     expect(wrapper.findAll('[data-test-id="attribute-is-mapped"]').at(1).text()).toBe('Description');
   });
 
