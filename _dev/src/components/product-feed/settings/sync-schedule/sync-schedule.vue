@@ -1,6 +1,8 @@
 <template>
   <div>
-    <b-form>
+    <b-form
+      class="mb-5"
+    >
       <b-form-group
         label="Synchronization schedule"
         label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
