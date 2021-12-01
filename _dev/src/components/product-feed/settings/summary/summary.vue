@@ -116,7 +116,7 @@
         </b-row>
       </b-container>
       <b-form-group
-        label="I understand and agree to the following conditions"
+        :label="$t('productFeedSettings.summary.agreementTitle')"
         label-class="h4 font-weight-600 mb-3 d-block p-0 bg-transparent border-0"
       >
         <b-form-checkbox
@@ -124,14 +124,14 @@
           class="ps_gs-checkbox"
           v-model="acceptSyncSchedule"
         >
-          <VueShowdown :markdown="'The synchronization of my product feed will run after I click on save and export (It might take between 1 to 4 hours)'" />
+          <VueShowdown :markdown="$t('productFeedSettings.summary.agreementCheckboxLabel1')" />
         </b-form-checkbox>
         <b-form-checkbox
           data-test-id="buttonCheckbox"
           class="ps_gs-checkbox mt-n1"
           v-model="understandTerms"
         >
-          <VueShowdown :markdown="'Google products reveiws may take between 3 to 5 business days'" />
+          <VueShowdown :markdown="$t('productFeedSettings.summary.agreementCheckboxLabel2')" />
         </b-form-checkbox>
       </b-form-group>
     </section>
@@ -182,7 +182,6 @@ export default {
   },
   data() {
     return {
-      disabledExportButton: false,
       shippingSettings:
       this.$store.state.productFeed.settings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
@@ -194,6 +193,9 @@ export default {
     };
   },
   computed: {
+    disabledExportButton() {
+      return !(this.acceptSyncSchedule && this.understandTerms);
+    },
     nextSyncInHours() {
       // Return how many hours left before next sync
       const now = dayjs();
