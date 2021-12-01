@@ -330,6 +330,8 @@
       "longDescription": "Descripción larga",
       "shortDescription": "Breve descripción",
       "energyEfficiencyClass": "Energy efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
       "material": "Material",
       "pattern": "Pattern",
       "gtin": "GTIN",
@@ -858,8 +860,34 @@
     "lastStep": "Último paso"
   },
   "attributesMapping": {
-    "description": "Descripción",
-    "shortDescription": "Short Description",
-    "brand": "Marca"
+    "types": {
+      "description": "Description",
+      "mpn": "MPN",
+      "brand": "Brand",
+      "color": "Color",
+      "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
+      "size": "Size",
+      "ageGroup": "Age group",
+      "gender": "Gender",
+      "energyEfficiencyClass": "Energy efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "material": "Material",
+      "pattern": "Pattern"
+    },
+    "options": {
+      "upc": "UPC",
+      "isbn": "ISBN",
+      "ean13": "EAN",
+      "mpn": "MPN",
+      "description": "Description",
+      "shortDescription": "Short Description",
+      "longDescription": "Long description",
+      "notAvailable": "Not available"
+    },
+    "condition": "Condition",
+    "specificTitle": "Specific",
+    "sellRefurbished": "I sell refurbished products",
+    "sellApparel": "I sell apparel and accessories"
   }
 }

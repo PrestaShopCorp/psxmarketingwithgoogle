@@ -330,6 +330,8 @@
       "longDescription": "Description longue",
       "shortDescription": "Description courte",
       "energyEfficiencyClass": "Classe énergétique",
+      "maxEnergyEfficiencyClass": "Classe énergétique maximale",
+      "minEnergyEfficiencyClass": "Classe énergétique minimale",
       "material": "Matière",
       "pattern": "Motif",
       "gtin": "GTIN",
@@ -604,8 +606,8 @@
       "averageCostPerClick": "CPC moyen",
       "conversions": "Conversions",
       "conversionsRate": "Taux de conversion",
-      "productFilter": "Filter name",
-      "dimension": "Filter type",
+      "productFilter": "Nom du filtre",
+      "dimension": "Type de filtre",
       "duration": "Durée",
       "target": "Cible",
       "actions": "Actions",
@@ -858,8 +860,34 @@
     "lastStep": "Dernière étape"
   },
   "attributesMapping": {
-    "description": "Description",
-    "shortDescription": "Description courte",
-    "brand": "Marque"
+    "types": {
+      "description": "Description",
+      "mpn": "MPN",
+      "brand": "Marque",
+      "color": "Couleur",
+      "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
+      "size": "Taille",
+      "ageGroup": "Tranche d'âge",
+      "gender": "Genre",
+      "energyEfficiencyClass": "Classe énergétique",
+      "minEnergyEfficiencyClass": "Classe énergétique minimale",
+      "maxEnergyEfficiencyClass": "Classe énergétique maximale",
+      "material": "Matière",
+      "pattern": "Motif"
+    },
+    "options": {
+      "upc": "UPC",
+      "isbn": "ISBN",
+      "ean13": "EAN",
+      "mpn": "MPN",
+      "description": "Description",
+      "shortDescription": "Short Description",
+      "longDescription": "Long description",
+      "notAvailable": "Not available"
+    },
+    "condition": "Condition",
+    "specificTitle": "Specific",
+    "sellRefurbished": "I sell refurbished products",
+    "sellApparel": "I sell apparel and accessories"
   }
 }
