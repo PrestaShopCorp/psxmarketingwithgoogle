@@ -4,18 +4,18 @@
       class="mb-5"
     >
       <b-form-group
-        label="Synchronization schedule"
+        :label="$t('productFeedSettings.syncSchedule.title')"
         label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
       >
         <label class="mb-4">
-          Choose the time when you want the first synchronization to start, the export might slow down your traffic
+          {{$t('productFeedSettings.syncSchedule.subTitle')}}
         </label>
         <b-form-radio
           v-model="selectedSyncSchedule"
           name="sync-schedule"
           value="syncNow"
         >
-          Now, after I finish my configuration (The export might slow down your shop)
+          {{$t('productFeedSettings.syncSchedule.radioLabel1')}}
         </b-form-radio>
         <b-form-radio
           v-model="selectedSyncSchedule"
@@ -23,7 +23,7 @@
           value="syncDefault"
           class="mt-3"
         >
-          Later, appproximatley at 2:00 AM (GMT+1) (When your shop have few visits)
+          {{$t('productFeedSettings.syncSchedule.radioLabel2')}}
         </b-form-radio>
       </b-form-group>
     </b-form>

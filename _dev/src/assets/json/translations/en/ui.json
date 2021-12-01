@@ -229,11 +229,12 @@
     "steps": {
       "targetCountry": "Target country",
       "shippingSettings": "Shipping settings",
-      "attributeMapping": "Attribute Mapping",
+      "attributeMapping": "Attribute mapping",
       "categoryMapping": "Category mapping",
       "summary": "Summary",
       "exportFeed": "Export feed!",
-      "shippingSettingsErrors": "This country is not compatible with your currency"
+      "shippingSettingsErrors": "This country is not compatible with your currency",
+      "syncSchedule" : "Sync schedule"
     },
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
     "shipping": {
@@ -351,6 +352,12 @@
       "thisCustomField": "This custom field",
       "learnAboutShippingSettings": "Learn more about shipping settings",
       "learnHowToSetupShippingSettings": "Learn how to set up shipping"
+    },
+    "syncSchedule": {
+      "title": "Synchronization schedule",
+      "subTitle": "Choose the time when you want the first synchronization to start, the export might slow down your traffic",
+      "radioLabel1": "Now, after I finish my configuration (The export might slow down your shop)",
+      "radioLabel2": "Later, appproximatley at 2:00 AM (GMT+1) (When your shop have few visits)"
     },
     "summary": {
       "title1": "Next synchronization is planned in {0} hours",
