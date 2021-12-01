@@ -877,7 +877,10 @@
       "pattern": "Pattern"
     },
     "options": {
-      "gtin": "GTIN",
+      "upc": "UPC",
+      "isbn": "ISBN",
+      "ean13": "EAN",
+      "mpn": "MPN",
       "description" : "Description",
       "shortDescription" : "Short Description",
       "longDescription": "Long description",

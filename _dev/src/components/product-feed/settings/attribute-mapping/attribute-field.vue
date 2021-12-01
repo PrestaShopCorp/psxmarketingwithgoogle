@@ -56,8 +56,7 @@
               :data-test-id="attributesChecked.some(e => e.name === option.name) ?
                 'attribute-is-mapped' : null"
             >
-              {{ $te(`attributesMapping.options.${option.name}`) ?
-                $t(`attributesMapping.options.${option.name}`) : option.name }}
+              {{ displayAttributeOption(option) }}
             </span>
           </b-form-checkbox>
         </b-form-checkbox-group>
@@ -124,7 +123,7 @@ export default {
     },
 
     formatToDisplay() {
-      const result = this.attributesChecked.map((e) => e.name);
+      const result = this.attributesChecked.map((e) => this.displayAttributeOption(e));
       return result.length ? result.join(', ') : this.$t('attributesMapping.options.notAvailable');
     },
   },
@@ -152,6 +151,10 @@ export default {
     },
     tooltipFormat(name) {
       return this.$t(`tooltip.attributeMapping.${name}`);
+    },
+    displayAttributeOption(option) {
+      return this.$te(`attributesMapping.options.${option.name}`)
+        ? this.$t(`attributesMapping.options.${option.name}`) : option.name;
     },
   },
   googleUrl,
