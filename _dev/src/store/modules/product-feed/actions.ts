@@ -213,7 +213,15 @@ export default {
       const deliveryDetailsSavedInLocalStorage = deliveryFromStorage.find((c : DeliveryDetail) => (
         (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
       ));
+
       if (deliveryDetailsSavedInLocalStorage) {
+        // Add key deliveryType if carrier is from localStorage so it can be changed
+        deliveryFromStorage.forEach((c: DeliveryDetail) => {
+          if ('deliveryType' in c) {
+            return;
+          }
+          c.deliveryType = null;
+        });
         return deliveryDetailsSavedInLocalStorage;
       }
 
