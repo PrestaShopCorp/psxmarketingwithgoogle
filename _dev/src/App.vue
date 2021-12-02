@@ -131,7 +131,6 @@ export default {
           email: this.$store.state.accounts.contextPsAccounts.user.email,
           psx_pg_report_last_activity: new Date(),
         },
-
         params: SegmentGenericParams,
       });
     },
