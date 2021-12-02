@@ -27,18 +27,18 @@
     },
     "content": {
       "content1": {
-        "title": "Lassen Sie Ihre Produkte von interessierten Käufern finden",
-        "text": "Mit den kostenlosen Einträgen können Sie Ihre Produkte kostenlos in der Registerkarte Einkaufen\" auflisten und sie potenziellen Kunden genau dann zeigen, wenn sie nach dem Angebot Ihres Geschäfts suchen*.",
+        "title": "Sync your product catalog with Google",
+        "text": "Connect your store to Google Merchant Center and synchroniwe your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday.",
         "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
       },
       "content2": {
-        "title": "Stets genaue Produktinformationen anzeigen",
-        "text": "Sobald Sie Ihre Shop- und Produktdaten direkt aus PrestaShop in Google hochladen, sind diese Informationen verfügbar und werden automatisch für kostenlose Inserate, Google Ads und andere Google-Dienste synchronisiert.",
+        "title": "Enable free listings for your products",
+        "text": "Free listings allow to show your product attributes, including image and price in organically-ranked listings on the Shopping tab.  \n \n Once your catalog has been synchronised, enable free listings on your dashboard and start showing your products on the Shopping tab for free.",
         "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Steigern Sie Besucherzahlen und Umsatz mit einer Smart-Shopping-Kampagne",
-        "text": "Erreichen Sie noch mehr Kunden mit bezahlten Anzeigen und steigern Sie Ihren Umsatz, indem Sie Ihre Produkte über die Google-Suche, Shopping, YouTube, Google Mail und das Display-Netzwerk an die richtigen Kunden weitergeben - dank der Technologie, die Smart Shopping-Kampagnen ermöglicht**",
+        "title": "Create and manage Smart Shopping campaigns",
+        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click.",
         "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
       },
       "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
