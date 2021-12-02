@@ -22,23 +22,23 @@
   "landingPage": {
     "header": {
       "title": "Marketing con Google",
-      "text": "Muestra tus productos en Google y llega a millones de compradores que buscan activamente lo que ofreces en la red de Google.",
+      "text": "Tus compradores potenciales ya están buscando productos como los que tú ofreces en Internet. Llega a ellos en Google con PrestaShop Marketing en unos pocos y sencillos pasos.",
       "reinsurance": "- Easy setup \n- Cancel anytime"
     },
     "content": {
       "content1": {
-        "title": "Logra que los compradores interesados encuentren tus productos",
-        "text": "Los listados gratuitos te permiten tener un listado de productos de forma gratuita en la pestaña de Compras y mostrarlos a los clientes potenciales en el momento exacto en que están buscando lo que tu tienda ofrece*.",
+        "title": "Sincroniza tu catálogo de productos con Google",
+        "text": "Conecta tu tienda a Google Merchant Center y sincroniza todo tu catálogo de productos en unos pocos clics, los atributos de los productos como el precio y la disponibilidad se actualizarán automáticamente todos los días.",
         "footer": "[Learn more about free listings]({0})[:target=\\\"_blank\\\"]"
       },
       "content2": {
-        "title": "Muestra siempre información precisa sobre el producto",
-        "text": "Once you upload your store and products data to Google directly from PrestaShop these information will be available and automatically synced for free listings, Google Ads, and other Google services.",
+        "title": "Activa las fichas órganicas para tus productos",
+        "text": "Las fichas órganicas permiten mostrar los atributos de tus productos, incluyendo la imagen y el precio en los listados de clasificación orgánica en la pestaña Shopping.  \n \nUna vez sincronizado tu catálogo, habilita fácilmente las fichas órganicas en tu panel de control y comienza a mostrar tus productos en la pestaña Shopping de forma gratuita.",
         "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Aumenta el tráfico y las ventas con la campaña Smart Shopping",
-        "text": "Reach even more customers with paid ads and grow your sale by promoting your products to the right customers across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns**",
+        "title": "Crea y gestiona campañas de Shopping Inteligentes",
+        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click.",
         "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\\\"_blank\\\"]"
       },
       "notice": "*depending on regional availability   \n **includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
