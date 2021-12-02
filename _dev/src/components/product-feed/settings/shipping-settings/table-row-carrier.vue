@@ -141,8 +141,8 @@
             <b-form-checkbox
               v-for="(carrierOption, index) in carriersList"
               :key="index"
-              class="ps_gs-checkbox my-1 w-100"
-              :disabled="isInitiatorCarrier(carrierOption.carrierId && carrierOption.country) ||
+              class="ps_gs-checkbox my-1"
+              :disabled="isInitiatorCarrier(carrierOption.carrierId, carrierOption.country) ||
                 !carrierOption.enabledCarrier"
               :value="{carrierId: carrierOption.carrierId, country: carrierOption.country}"
             >
@@ -227,8 +227,8 @@ export default {
     },
   },
   methods: {
-    isInitiatorCarrier(id) {
-      return this.carrier.carrierId === id;
+    isInitiatorCarrier(id, country) {
+      return this.carrier.carrierId === id && this.carrier.country === country;
     },
     applyInfos() {
       this.$store.dispatch('productFeed/DUPLICATE_DELIVERY_DETAILS',
