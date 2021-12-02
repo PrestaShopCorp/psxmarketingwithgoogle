@@ -22,23 +22,23 @@
   "landingPage": {
     "header": {
       "title": "Marketing avec Google",
-      "text": "Affichez vos produits sur Google et atteignez des millions de clients à la recherche active de ce que vous proposez à travers le réseau Google.",
+      "text": "Vos acheteurs potentiels sont déjà en ligne à la recherche de produits tels que ceux que vous proposez. Touchez-les sur Google avec PrestaShop Marketing en quelques étapes faciles.",
       "reinsurance": "- Configuration facile \n- Annulez à tout moment"
     },
     "content": {
       "content1": {
-        "title": "Améliorez la visibilité de vos produits pour les acheteurs potentiels",
-        "text": "Les fiches gratuites vous permettent de lister gratuitement vos produits dans l'onglet Shopping et de les montrer aux clients potentiels au moment exact où ils recherchent ce que votre boutique offre*.",
+        "title": "Synchronisez votre catalogue de produits avec Google",
+        "text": "Connectez votre boutique à Google Merchant Center et synchronisez l'ensemble de votre catalogue de produits en quelques clics. Les attributs des produits tels que le prix et la disponibilité seront automatiquement et quotidiennement mis à jour.",
         "footer": "[En savoir plus sur les fiches gratuites]({0})[:target=\"_blank\"]"
       },
       "content2": {
-        "title": "Toujours afficher des informations exactes sur les produits",
-        "text": "Une fois que vous aurez téléchargé les données de votre boutique et de vos produits directement depuis PrestaShop, ces informations seront disponibles et automatiquement synchronisées pour des annonces gratuites, Google Ads, et autres services Google.",
+        "title": "Activez les fiches produit pour vos produits",
+        "text": "Les fiches produit permettent d'afficher les attributs de vos produits, y compris l'image et le prix, dans des listes classées naturellement dans l'onglet Shopping.  \n \nUne fois que votre catalogue a été synchronisé, activez facilement les fiches produit sur votre tableau de bord et commencez à afficher gratuitement vos produits dans l'onglet Shopping.",
         "footer": "Créez un nouveau compte [Merchant Center]({0})[:target=\"_blank\"] ou liez un compte existant.  \nPour afficher vos produits sur Google, vous devrez répondre aux [exigences d'éligibilité]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Boostez vos ventes avec des campagnes Shopping Intelligentes",
-        "text": "Atteignez encore plus de clients avec des annonces payantes et augmentez vos ventes en faisant la promotion de vos produits auprès des bons clients à travers Google Search, Shopping, YouTube, Gmail et le réseau d'affichage grâce à la technologie qui alimente les campagnes Shopping Intelligentes**",
+        "title": "Créez et gérez vos campagnes Shopping intelligentes",
+        "text": "Les campagnes Shopping intelligentes sont des annonces Google qui utilisent la technologie intelligente de Google pour les enchères et le placement des annonces afin de maximiser la valeur de conversion et d'afficher stratégiquement vos annonces auprès des personnes qui recherchent des produits comme les vôtres.  \n \nDéfinissez un budget quotidien et laissez la technologie intelligente de Google optimiser vos campagnes sur différents réseaux tels que Google Search, YouTube ou Gmail. Vous ne payez que lorsque les gens cliquent.",
         "footer": "[En savoir plus sur les campagnes Shopping Intelligentes] ({0})[:target=\"_blank\"]"
       },
       "notice": "*selon la disponibilité régionale   \n**inclut l'optimisation de la campagne pour montrer la variété de vos produits aux clients les plus susceptibles de les acheter"
