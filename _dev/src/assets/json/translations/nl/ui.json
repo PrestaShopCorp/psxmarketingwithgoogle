@@ -22,23 +22,23 @@
   "landingPage": {
     "header": {
       "title": "Marketing met Google",
-      "text": "Toon uw producten op Google en bereik miljoenen kopers die actief op zoek zijn naar wat u aanbiedt in het Google-netwerk.",
+      "text": "Uw potentiële kopers zijn al online op zoek naar producten zoals degene die u aanbiedt. Bereik ze op Google met PrestaShop Marketing in een paar eenvoudige stappen.",
       "reinsurance": "- Easy setup \n- Cancel anytime"
     },
     "content": {
       "content1": {
-        "title": "Sync your product catalog with Google",
-        "text": "Connect your store to Google Merchant Center and synchroniwe your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday.",
+        "title": "Synchroniseer uw productcatalogus met Google",
+        "text": "Verbind uw winkel met Google Merchant Center en synchroniseer uw volledige productcatalogus in een paar klikken, productkenmerken zoals prijs en beschikbaarheid worden elke dag automatisch bijgewerkt.",
         "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
       },
       "content2": {
-        "title": "Enable free listings for your products",
-        "text": "Free listings allow to show your product attributes, including image and price in organically-ranked listings on the Shopping tab.  \n \n Once your catalog has been synchronised, enable free listings on your dashboard and start showing your products on the Shopping tab for free.",
+        "title": "Maak gratis vermeldingen voor uw producten mogelijk",
+        "text": "Gratis vermeldingen maken het mogelijk om uw productkenmerken te tonen, inclusief afbeelding en prijs in organisch gerangschikte vermeldingen op het tabblad Winkelen.  \n \n Zodra uw catalogus is gesynchroniseerd, kunt u eenvoudig gratis vermeldingen op uw dashboard inschakelen en uw producten gratis op het tabblad Winkelen tonen.",
         "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Create and manage Smart Shopping campaigns",
-        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click.",
+        "title": "Creëer en beheer uw Smart Shopping campagnes",
+        "text": "Smart Shopping campagnes zijn Google Ads die gebruikmaken van de slimme technologie van Google voor prijsopgaven en advertentieplaatsing om de conversiewaarde te maximaliseren en uw advertenties strategisch weer te geven aan mensen die zoeken naar producten zoals die van u.  \n \n Stel een dagelijks budget in en laat de slimme technologie van Google uw campagnes optimaliseren over verschillende netwerken zoals Google Zoeken, YouTube of Gmail. U betaalt alleen als mensen klikken.",
         "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
       },
       "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
