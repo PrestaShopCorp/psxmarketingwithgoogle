@@ -27,18 +27,18 @@
     },
     "content": {
       "content1": {
-        "title": "Pozwól, aby Twoje produkty zostały znalezione przez zainteresowanych kupujących",
-        "text": "Wyświetlanie bezpłatnych informacji o produkcie umożliwia prezentowanie Twoich produktów za darmo w karcie Zakupy i pokazanie ich potencjalnym klientom dokładnie w momencie, gdy szukają tego, co oferuje Twój sklep*.",
+        "title": "Sync your product catalog with Google",
+        "text": "Connect your store to Google Merchant Center and synchroniwe your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday.",
         "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
       },
       "content2": {
-        "title": "Zawsze wyświetlaj aktualne informacje o produkcie",
-        "text": "Po przesłaniu danych sklepu i produktów do Google bezpośrednio z PrestaShop, informacje te będą dostępne i automatycznie synchronizowane dla usługi wyświetlania bezpłatnych informacji o produkcie, Google Ads i innych usług Google.",
+        "title": "Enable free listings for your products",
+        "text": "Free listings allow to show your product attributes, including image and price in organically-ranked listings on the Shopping tab.  \n \n Once your catalog has been synchronised, enable free listings on your dashboard and start showing your products on the Shopping tab for free.",
         "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Zwiększ ruch na stronie i sprzedaż dzięki inteligentnym kampaniom produktowym",
-        "text": "Dotrzyj do jeszcze większej liczby klientów za pomocą płatnych reklam i zwiększ sprzedaż, promując swoje produkty wśród właściwych klientów w wyszukiwarce Google, w karcie Zakupy, na YouTube, na Gmailu i w sieci reklamowej Display Network dzięki technologii, na której opierają się inteligentne kampanie produktowe**",
+        "title": "Create and manage Smart Shopping campaigns",
+        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click.",
         "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
       },
       "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
