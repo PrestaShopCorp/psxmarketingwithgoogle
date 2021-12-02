@@ -22,23 +22,23 @@
   "landingPage": {
     "header": {
       "title": "Marketing With Google",
-      "text": "Pokaż swoje produkty w Google i dotrzyj do milionów kupujących, którzy aktywnie poszukują Twojej oferty w sieci Google.",
+      "text": "Potencjalni klienci szukają w internecie produktów, takich jakie masz w ofercie. Dotrzyj do nich w Google dzięki PrestaShop Marketing w kilku prostych krokach.",
       "reinsurance": "- Easy setup \n- Cancel anytime"
     },
     "content": {
       "content1": {
-        "title": "Pozwól, aby Twoje produkty zostały znalezione przez zainteresowanych kupujących",
-        "text": "Wyświetlanie bezpłatnych informacji o produkcie umożliwia prezentowanie Twoich produktów za darmo w karcie Zakupy i pokazanie ich potencjalnym klientom dokładnie w momencie, gdy szukają tego, co oferuje Twój sklep*.",
+        "title": "Zsynchronizuj swój katalog produktów z Google",
+        "text": "Połącz swój sklep z Google Merchant Center i zsynchronizuj cały swój katalog produktów. Atrybuty produktów, takie jak cena czy dostępność, będą codziennie automatycznie aktualizowane.",
         "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
       },
       "content2": {
-        "title": "Zawsze wyświetlaj aktualne informacje o produkcie",
-        "text": "Po przesłaniu danych sklepu i produktów do Google bezpośrednio z PrestaShop, informacje te będą dostępne i automatycznie synchronizowane dla usługi wyświetlania bezpłatnych informacji o produkcie, Google Ads i innych usług Google.",
+        "title": "Włącz wyświetlanie bezpłatnych informacji o produktach",
+        "text": "Opcja wyświetlania bezpłatych informacji o produktach umożliwia pokazanie atrybutów produktu, takich jak zdjęcie czy cena, w organicznych wynikach wyszukiwania na karcie \"Zakupy”.  \n \nPo zsynchronizowaniu swojego katalogu produktów, w prosty sposób włącz wyświetlanie bezpłatnych informacji o produktach poziomu swojego panelu zarządzania i zacznij pokazywać swoje produkty w karcie „Zakupy” za darmo.",
         "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Zwiększ ruch na stronie i sprzedaż dzięki inteligentnym kampaniom produktowym",
-        "text": "Dotrzyj do jeszcze większej liczby klientów za pomocą płatnych reklam i zwiększ sprzedaż, promując swoje produkty wśród właściwych klientów w wyszukiwarce Google, w karcie Zakupy, na YouTube, na Gmailu i w sieci reklamowej Display Network dzięki technologii, na której opierają się inteligentne kampanie produktowe**",
+        "title": "Stwórz inteligentne kampanie produktowe i zarządzaj nimi",
+        "text": "Inteligentne kampanie produktowe to usługa w ramach Google Ads, która wykorzystuje inteligentną technologię Google do umieszczania reklam i określania stawek, tak aby maksymalizować wartość konwersji i pokazywać je osobom szukającym produktow, takich jakie masz w swojej ofercie.  \n \n Ustal dzienny budżet i pozwól inteligentnej technologii Google na zoptymalizowanie Twoich kampanii w różnych sieciach reklamowych, takich jak wyszukiwarka Google, YouTube czy Gmail. Płacisz tylko wtedy, kiedy ludzie klikają.",
         "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
       },
       "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
