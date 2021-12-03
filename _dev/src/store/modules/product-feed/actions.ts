@@ -213,7 +213,6 @@ export default {
       const deliveryDetailsSavedInLocalStorage = deliveryFromStorage.find((c : DeliveryDetail) => (
         (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
       ));
-
       if (deliveryDetailsSavedInLocalStorage) {
         return deliveryDetailsSavedInLocalStorage;
       }
