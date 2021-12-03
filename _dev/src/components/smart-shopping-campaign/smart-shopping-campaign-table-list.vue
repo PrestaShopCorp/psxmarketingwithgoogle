@@ -43,13 +43,13 @@
     <div>
       <b-table-simple
         id="table-filters-performance"
-        class="ps_gs-table-products mb-0 table-ssc-list"
+        class="ps_gs-table-products mb-0 table-with-maxheight b-table-sticky-header"
         :table-class="{'border-bottom-0': loading}"
         variant="light"
         responsive="xl"
       >
         <b-thead>
-          <b-tr>
+          <b-tr class="bg-prestashop-bg">
             <b-th
               v-for="(type, index) in campaignHeaderList"
               :key="type"
@@ -234,7 +234,7 @@ export default {
         });
     },
     handleScroll() {
-      const body = document.getElementsByClassName('table-ssc-list')[0];
+      const body = document.getElementsByClassName('table-with-maxheight')[0];
       const token = this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
       if (body.scrollTop >= body.scrollHeight - body.clientHeight
       && body.scrollTop > 0
@@ -244,7 +244,7 @@ export default {
     },
   },
   mounted() {
-    const tableBody = document.getElementsByClassName('table-ssc-list')[0];
+    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
 
     if (tableBody) {
       tableBody.addEventListener('scroll', this.handleScroll);
@@ -253,7 +253,7 @@ export default {
     this.fetchCampaigns();
   },
   beforeDestroy() {
-    const tableBody = document.getElementsByClassName('table-ssc-list')[0];
+    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
 
     if (tableBody) {
       tableBody.removeEventListener('scroll', this.handleScroll);
