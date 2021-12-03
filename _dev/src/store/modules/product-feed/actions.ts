@@ -215,13 +215,6 @@ export default {
       ));
 
       if (deliveryDetailsSavedInLocalStorage) {
-        // Add key deliveryType if carrier is from localStorage so it can be changed
-        deliveryFromStorage.forEach((c: DeliveryDetail) => {
-          if ('deliveryType' in c) {
-            return;
-          }
-          c.deliveryType = null;
-        });
         return deliveryDetailsSavedInLocalStorage;
       }
 
