@@ -44,7 +44,7 @@ export type DeliveryDetail = {
   maxHandlingTimeInDays?: number;
   minTransitTimeInDays?: number;
   maxTransitTimeInDays?: number;
-  deliveryType?: ShipmentType|null;
+  deliveryType?: ShipmentType;
 
   // Data that can be set by the interface but unused on the API side
   name?: string;
