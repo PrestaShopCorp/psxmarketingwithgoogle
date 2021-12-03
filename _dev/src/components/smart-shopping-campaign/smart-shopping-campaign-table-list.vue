@@ -99,7 +99,8 @@
                 v-if="hasInput(type)"
                 id="campaign-name-input-filter"
                 v-model="campaignName"
-                :placeholder="$t('general.searchByX', [type])"
+                :placeholder="$t('general.searchByX',
+                                 [$t(`campaigns.labelCol.${type}`).toLowerCase()])"
                 size="sm"
                 class="border-0"
                 type="text"
