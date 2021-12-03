@@ -62,4 +62,30 @@ Edition.args = {
       ['FR'],
     );
   },
-}
+};
+
+export const EditionWithUnhandledFilters:any = Template.bind({});
+EditionWithUnhandledFilters.args = {
+  editMode: true,
+  mounted(this: any) {
+    this.$refs.sscCreation.$data.campaignName = 'A super name';
+    this.$refs.sscCreation.$data.campaignDurationStartDate = '2021-10-30';
+    this.$refs.sscCreation.$data.campaignDurationEndDate = '2021-12-30';
+    this.$refs.sscCreation.$data.campaignProductsFilter = [];
+    this.$refs.sscCreation.$data.campaignDailyBudget = 7;
+    this.$refs.sscCreation.$data.campaignIsActive = true;
+    this.$refs.sscCreation.$data.campaignId = 'foo';
+    this.$refs.sscCreation.$data.targetCountry = this.$options.filters.changeCountriesCodesToNames(
+      ['FR'],
+    );
+    this.$refs.sscCreation.$data.campaignHasNoProductsFilter = false;
+    this.$refs.sscCreation.$data.filtersChosen = [
+      {
+        dimension: 'categories',
+        values: ['42'],
+      }
+    ];
+    this.$refs.sscCreation.$data.hasUnhandledFilters = true;
+  },
+};
+
