@@ -43,7 +43,7 @@
     <div>
       <b-table-simple
         id="table-filters-performance"
-        class="ps_gs-table-products mb-0 table-ssc-list b-table-sticky-header"
+        class="ps_gs-table-products mb-0 table-with-maxheight b-table-sticky-header"
         :table-class="{'border-bottom-0': loading}"
         variant="light"
         responsive="xl"
@@ -161,7 +161,6 @@ export default {
     },
     campaignList() {
       const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
-      console.log('hey', campaigns);
       const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
       if (searchQuery) {
         return campaigns.filter((campaign) => {
@@ -233,7 +232,7 @@ export default {
     },
     handleScroll() {
       this.$emit('loader', true);
-      const body = document.getElementsByClassName('table-ssc-list')[0];
+      const body = document.getElementsByClassName('table-with-maxheight')[0];
       const token = this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
       if (body.scrollTop >= body.scrollHeight - body.clientHeight
       && body.scrollTop > 0
@@ -248,7 +247,7 @@ export default {
     },
   },
   mounted() {
-    const tableBody = document.getElementsByClassName('table-ssc-list')[0];
+    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
 
     if (tableBody) {
       tableBody.addEventListener('scroll', this.handleScroll);
@@ -257,7 +256,7 @@ export default {
     this.fetchCampaigns();
   },
   beforeDestroy() {
-    const tableBody = document.getElementsByClassName('table-ssc-list')[0];
+    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
 
     if (tableBody) {
       tableBody.removeEventListener('scroll', this.handleScroll);
