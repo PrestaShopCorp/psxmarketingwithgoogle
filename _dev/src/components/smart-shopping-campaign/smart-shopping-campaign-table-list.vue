@@ -110,7 +110,7 @@
           </b-tr>
         </b-thead>
         <b-tbody class="bg-white">
-          <template v-if="!loading">
+          <template v-if="campaignList.length">
             <SmartShoppingCampaignTableListRow
               v-for="campaign in campaignList"
               :key="campaign.campaignName"
@@ -170,9 +170,6 @@ export default {
         });
       }
       return campaigns;
-    },
-    tokenNextPage() {
-      return this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
     },
     queryOrderDirection: {
       get() {
@@ -235,6 +232,9 @@ export default {
         });
     },
     handleScroll() {
+      if (this.loading === true) {
+        return;
+      }
       const body = document.getElementsByClassName('table-with-maxheight')[0];
       const token = this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
       if (body.scrollTop >= body.scrollHeight - body.clientHeight
