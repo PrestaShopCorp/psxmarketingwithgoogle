@@ -231,18 +231,15 @@ export default {
         });
     },
     handleScroll() {
-      this.$emit('loader', true);
+      if (this.loading === true) {
+        return;
+      }
       const body = document.getElementsByClassName('table-with-maxheight')[0];
       const token = this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
       if (body.scrollTop >= body.scrollHeight - body.clientHeight
       && body.scrollTop > 0
       && token !== null) {
-        clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
-          this.fetchCampaigns(false);
-        }, 1000);
-      } else {
-        this.$emit('loader', false);
+        this.fetchCampaigns(false);
       }
     },
   },
