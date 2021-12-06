@@ -43,7 +43,7 @@
     <div>
       <b-table-simple
         id="table-filters-performance"
-        class="ps_gs-table-products mb-0 table-with-maxheight b-table-sticky-header"
+        class="ps_gs-table-products mb-0 table-ssc-list b-table-sticky-header"
         :table-class="{'border-bottom-0': loading}"
         variant="light"
         responsive="xl"
@@ -109,7 +109,7 @@
           </b-tr>
         </b-thead>
         <b-tbody class="bg-white">
-          <template v-if="!loading">
+          <template v-if="campaignList.length">
             <SmartShoppingCampaignTableListRow
               v-for="campaign in campaignList"
               :key="campaign.campaignName"
@@ -161,6 +161,7 @@ export default {
     },
     campaignList() {
       const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      console.log('hey', campaigns);
       const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
       if (searchQuery) {
         return campaigns.filter((campaign) => {
@@ -169,9 +170,6 @@ export default {
         });
       }
       return campaigns;
-    },
-    tokenNextPage() {
-      return this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
     },
     queryOrderDirection: {
       get() {
@@ -234,17 +232,23 @@ export default {
         });
     },
     handleScroll() {
-      const body = document.getElementsByClassName('table-with-maxheight')[0];
+      this.$emit('loader', true);
+      const body = document.getElementsByClassName('table-ssc-list')[0];
       const token = this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
       if (body.scrollTop >= body.scrollHeight - body.clientHeight
       && body.scrollTop > 0
       && token !== null) {
-        this.fetchCampaigns(false);
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+          this.fetchCampaigns(false);
+        }, 1000);
+      } else {
+        this.$emit('loader', false);
       }
     },
   },
   mounted() {
-    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
+    const tableBody = document.getElementsByClassName('table-ssc-list')[0];
 
     if (tableBody) {
       tableBody.addEventListener('scroll', this.handleScroll);
@@ -253,7 +257,7 @@ export default {
     this.fetchCampaigns();
   },
   beforeDestroy() {
-    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
+    const tableBody = document.getElementsByClassName('table-ssc-list')[0];
 
     if (tableBody) {
       tableBody.removeEventListener('scroll', this.handleScroll);
