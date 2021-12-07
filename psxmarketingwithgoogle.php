@@ -71,7 +71,7 @@ class PsxMarketingWithGoogle extends Module
     {
         $this->name = 'psxmarketingwithgoogle';
         $this->tab = 'advertising_marketing';
-        $this->version = '1.10.2';
+        $this->version = '1.10.3';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
         $this->module_key = '16b273e77e02c0cc36cd006463951593';
@@ -118,7 +118,9 @@ class PsxMarketingWithGoogle extends Module
         if (!$this->isPhpVersionCompliant()) {
             $this->_errors[] = $this->l('This requires PHP 7.2 to work properly. Please upgrade your server configuration.');
 
-            return false;
+            // We return true during the installation of PrestaShop to not stop the whole process,
+            // Otherwise we warn properly the installation failed.
+            return defined('PS_INSTALLATION_IN_PROGRESS');
         }
 
         // We can't init the Uninstaller in CLI, as it has been declared in the admin container and PrestaShop
