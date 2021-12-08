@@ -30,14 +30,15 @@
           ? disableTooltip
           : ''
       "
-      tabindex="0"
+      :tabindex="disableContinue ? 0 : null"
+      class="mx-1"
     >
     <b-button
       data-test-id="continueButton"
       @click="nextStep"
       size="sm"
       :disabled="disableContinue"
-      class="mx-1 mt-3 mt-md-0 mr-md-0"
+      class="mx-0 mt-3 mt-md-0 mr-md-0"
       variant="primary"
     >
       {{ okLabel || $t("cta.saveAndContinue") }}

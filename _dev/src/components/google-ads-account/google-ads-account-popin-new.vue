@@ -211,6 +211,7 @@
             ? $t('tooltip.mustAgreeGoogleAdsTerms')
             : ''
         "
+        :tabindex="isStepThreeReadyToValidate() ? 0 : null"
       >
         <b-button
           variant="primary"
