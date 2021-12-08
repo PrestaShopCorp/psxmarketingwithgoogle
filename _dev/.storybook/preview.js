@@ -17,7 +17,6 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import { addDecorator } from '@storybook/vue';
-import { select } from '@storybook/addon-knobs';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -99,13 +98,6 @@ addDecorator((story, context) => ({
       locale: 'en',
       messages,
     }),
-  // add a props to toggle language
-  props: {
-    storybookLocale: {
-      type: String,
-      default: select('I18n locale', locales, 'en'),
-    },
-  },
   watch: {
     // add a watcher to toggle language
     storybookLocale: {
