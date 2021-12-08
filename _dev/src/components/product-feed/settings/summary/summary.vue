@@ -139,7 +139,8 @@
       :next-step="saveAll"
       :previous-step="previousStep"
       :disable-continue="disabledExportButton"
-      :ok-label="$t('cta.export')"
+      :disable-tooltip="$t('productFeedSettings.summary.disabledButtonTooltip')"
+      :ok-label="$t('cta.saveAndExport')"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
     <settings-footer
