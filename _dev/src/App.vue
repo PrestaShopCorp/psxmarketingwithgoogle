@@ -13,6 +13,32 @@
         </b-card-header>
       </b-card>
     </template>
+    <b-alert
+      v-else-if="!eventBusStatus"
+      variant="warning"
+      class="mb-0 mt-3"
+      show
+    >
+      <VueShowdown
+        tag="p"
+        :extensions="['no-p-tag']"
+        class="mb-0 ml-4"
+        :markdown="$t('general.eventBusMustbeUpdated')"
+      />
+      <div
+        class="d-md-flex text-center align-items-center mt-2"
+      >
+        <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
+          variant="primary"
+          @click="updateEventBus"
+          data-test-id="btn-refresh"
+        >
+          {{ $t('cta.update') }}
+        </b-button>
+      </div>
+    </b-alert>
     <template v-else>
       <div class="ps_gs-sticky-head">
         <Menu>
@@ -82,6 +108,11 @@ export default {
     Menu,
     MenuItem,
   },
+  data() {
+    return {
+      eventBusStatus: false,
+    };
+  },
   computed: {
     productFeedIsConfigured() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
@@ -101,10 +132,14 @@ export default {
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
     },
+    // healthCheckEventBus() {
+    //   return this.$store.getters['app/GET_DEBUG_DATA'].urlEventBusHealthCheck
+    // }
   },
   created() {
     this.$root.identifySegment();
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
+    this.checkForEventBusVersion();
 
     this.setCustomProperties();
     window.addEventListener('resize', this.resizeEventHandler);
@@ -134,6 +169,12 @@ export default {
         params: SegmentGenericParams,
       });
     },
+    checkForEventBusVersion() {
+      console.log('check');
+    },
+    updateEventBus() {
+      this.$store.dispatch('app/UPDATE_EVENTBUS_MODULE');
+    },
   },
 
   watch: {
@@ -141,5 +182,6 @@ export default {
       this.$root.identifySegment();
     },
   },
+
 };
 </script>

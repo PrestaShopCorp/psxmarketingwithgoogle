@@ -8,6 +8,7 @@
       "catalog": "Product catalog",
       "help": "Help"
     },
+    "eventBusMustbeUpdated": "Please update the PrestaShop Eventbus module so you can use the Marketing with Google one",
     "adblockerActivated": "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",
     "refreshPage": "Refresh page",
     "mandatory": "are mandatory",
@@ -772,7 +773,8 @@
     "apply": "Apply",
     "select": "Select",
     "editContact": "Edit contact information",
-    "noCarriers" : "Take me to Carriers page"
+    "noCarriers" : "Take me to Carriers page",
+    "update": "Update"
   },
   "badge": {
     "free": "Free",
