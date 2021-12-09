@@ -51,12 +51,12 @@ export default {
     return state.adBlockerExists;
   },
   [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
-    if (state.targetCountries !== null) {
-      return state.targetCountries;
-    }
     const targetCountriesFromLocalStorage = localStorage.getItem('productFeed-targetCountries');
     if (targetCountriesFromLocalStorage) {
       return JSON.parse(targetCountriesFromLocalStorage);
+    }
+    if (state.targetCountries !== null) {
+      return state.targetCountries;
     }
     if (state.psxMtgWithGoogleDefaultShopCountry !== null) {
       return [state.psxMtgWithGoogleDefaultShopCountry];

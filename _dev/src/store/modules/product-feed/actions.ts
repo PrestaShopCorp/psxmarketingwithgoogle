@@ -17,6 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import MutationsTypes from './mutations-types';
+import MutationsAppTypes from '../app/mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
@@ -88,6 +89,8 @@ export default {
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'targetCountries', data: json.targetCountries,
       });
+      // To save them also in the whole app
+      commit(`app/${MutationsAppTypes.SET_SELECTED_TARGET_COUNTRY}`, json.targetCountries, {root: true});
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
       });
