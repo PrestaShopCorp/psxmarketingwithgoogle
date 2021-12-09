@@ -1,5 +1,6 @@
 <template>
-  <div>    <product-feed-settings
+  <div>
+    <product-feed-settings
       :active-step="activeStep"
       @cancelProductFeedProcess="onCancelProductFeedSettingsConfiguration"
     />

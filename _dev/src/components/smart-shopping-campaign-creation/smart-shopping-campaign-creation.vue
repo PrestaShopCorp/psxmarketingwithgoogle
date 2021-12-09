@@ -356,9 +356,7 @@ export default {
       timer: null,
       displayError: false,
       campaignIsActive: true,
-      countries: this.$options.filters.changeCountriesCodesToNames(
-        this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
-      ),
+
       availableFilters: {
         name: this.$t('smartShoppingCampaignCreation.allFilters'),
         id: 'allFilters',
@@ -366,6 +364,7 @@ export default {
         indeterminate: false,
         children: [],
       },
+      countries: this.$options.filters.changeCountriesCodesToNames(this.$store.getters['app/GET_ACTIVE_COUNTRIES']),
     };
   },
   components: {
@@ -380,6 +379,7 @@ export default {
     },
   },
   computed: {
+
     disableCreateCampaign() {
       if (this.campaignName
       && this.errorCampaignNameExistsAlready === false
