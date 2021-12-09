@@ -14,7 +14,11 @@
       </b-card>
     </template>
     <b-alert
+<<<<<<< HEAD
       v-else-if="!eventbusIsOK"
+=======
+      v-else-if="!eventBusStatus"
+>>>>>>> 4aecde01 (Set up event bus check)
       variant="warning"
       class="mb-0 mt-3"
       show
@@ -32,9 +36,14 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
           variant="primary"
+<<<<<<< HEAD
           :href="linkToUpdateEventbus"
           target="_blank"
           @click="eventBusUpdated"
+=======
+          @click="updateEventBus"
+          data-test-id="btn-refresh"
+>>>>>>> 4aecde01 (Set up event bus check)
         >
           {{ $t('cta.update') }}
         </b-button>
@@ -109,11 +118,17 @@ export default {
     Menu,
     MenuItem,
   },
+<<<<<<< HEAD
 
   data() {
     return {
       eventbusIsOK: true,
       linkToUpdateEventbus: null,
+=======
+  data() {
+    return {
+      eventBusStatus: false,
+>>>>>>> 4aecde01 (Set up event bus check)
     };
   },
   computed: {
@@ -135,6 +150,9 @@ export default {
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
     },
+    // healthCheckEventBus() {
+    //   return this.$store.getters['app/GET_DEBUG_DATA'].urlEventBusHealthCheck
+    // }
   },
   created() {
     this.$root.identifySegment();
