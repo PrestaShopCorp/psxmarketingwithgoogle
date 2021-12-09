@@ -118,18 +118,11 @@ export default {
     Menu,
     MenuItem,
   },
-<<<<<<< HEAD
-
   data() {
     return {
       eventbusIsOK: true,
       linkToUpdateEventbus: null,
-=======
-  data() {
-    return {
-      eventBusStatus: false,
->>>>>>> 4aecde01 (Set up event bus check)
-    };
+    }
   },
   computed: {
     productFeedIsConfigured() {
