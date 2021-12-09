@@ -17,7 +17,6 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-// storybook/addon-controls instead of knobs packages
  module.exports = {
    "stories": [
      "../stories/**/*.stories.mdx",
@@ -27,6 +26,7 @@
      "@storybook/addon-links",
      "@storybook/addon-essentials",
      "@storybook/addon-a11y",
+     "@storybook/addon-knobs",
      "@storybook/addon-actions",
      "@storybook/addon-jest",
     ],
