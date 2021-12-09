@@ -21,7 +21,9 @@
             class="ps_gs-productfeed-report-card--66"
             icon="event"
             :title="$t('productFeedSettings.summary.date')"
-            :description="nextSyncDate | timeConverterToStringifiedDate"
+            :description="selectedSyncScheduleIsDefault ?
+              (nextSyncDate | timeConverterToStringifiedDate)
+              : $t('productFeedSettings.summary.syncScheduledNow')"
           />
         </b-row>
       </b-container>
@@ -124,7 +126,15 @@
           class="ps_gs-checkbox"
           v-model="acceptSyncSchedule"
         >
-          <VueShowdown :markdown="$t('productFeedSettings.summary.agreementCheckboxLabel1')" />
+          <VueShowdown
+            v-if="selectedSyncScheduleIsDefault"
+            :markdown="$t('productFeedSettings.summary.agreementCheckboxLabel1Default',
+                          {time: formatNextSync})"
+          />
+          <VueShowdown
+            v-else
+            :markdown="$t('productFeedSettings.summary.agreementCheckboxLabel1Instant')"
+          />
         </b-form-checkbox>
         <b-form-checkbox
           data-test-id="buttonCheckbox"
@@ -253,6 +263,16 @@ export default {
     },
     attributes() {
       return this.getMapping;
+    },
+    selectedSyncSchedule() {
+      // TODO
+      // Get value from store I guess ?
+      return 'tutu';
+    },
+    selectedSyncScheduleIsDefault() {
+      // TODO
+      // We might benefit from an enum here
+      return this.selectedSyncSchedule === 'syncDefault';
     },
   },
   methods: {
