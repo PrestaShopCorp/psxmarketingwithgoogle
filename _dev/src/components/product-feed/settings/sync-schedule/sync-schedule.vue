@@ -8,14 +8,14 @@
         label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
       >
         <label class="mb-4">
-          {{$t('productFeedSettings.syncSchedule.subTitle')}}
+          {{ $t('productFeedSettings.syncSchedule.subTitle') }}
         </label>
         <b-form-radio
           v-model="selectedSyncSchedule"
           name="sync-schedule"
           value="syncNow"
         >
-          {{$t('productFeedSettings.syncSchedule.radioLabel1')}}
+          {{ $t('productFeedSettings.syncSchedule.radioLabel1') }}
         </b-form-radio>
         <b-form-radio
           v-model="selectedSyncSchedule"
@@ -23,7 +23,7 @@
           value="syncDefault"
           class="mt-3"
         >
-          {{$t('productFeedSettings.syncSchedule.radioLabel2')}}
+          {{ $t('productFeedSettings.syncSchedule.radioLabel2') }}
         </b-form-radio>
       </b-form-group>
     </b-form>
