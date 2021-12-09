@@ -121,12 +121,15 @@ export default {
       tax: null,
       shippingSettings: JSON.parse(localStorage.getItem('productFeed-autoImportShippingSettings')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
       loading: false,
-      countries: this.$options.filters.changeCountriesCodesToNames(
-        this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
-      ),
+
     };
   },
   computed: {
+    countries() {
+      return this.$options.filters.changeCountriesCodesToNames(
+        this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+      );
+    },
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
@@ -169,7 +172,6 @@ export default {
     },
     saveCountrySelected(value) {
       const countryCode = this.$options.filters.changeCountriesNamesToCodes(value);
-      this.countries = countryCode;
       this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', countryCode);
     },
   },
