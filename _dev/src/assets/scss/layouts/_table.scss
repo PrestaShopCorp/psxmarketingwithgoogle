@@ -268,15 +268,13 @@ $statusColors: (
 }
 
 .table-with-maxheight {
-  max-height: max(rem(200), rem(300));
-  overflow-y: auto;
-}
-.table-ssc-list{
-  max-height: max(rem(300), rem(400));
+  max-height: max(rem(300), rem(480));
   overflow-y: auto;
 }
 
-.b-table-sticky-header > .table.b-table > thead > tr > th {
+.b-table-sticky-header > .table.b-table > thead {
+  position: sticky;
+  top: 0;
   z-index: 3;
 }
 

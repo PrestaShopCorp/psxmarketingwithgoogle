@@ -22,23 +22,23 @@
   "landingPage": {
     "header": {
       "title": "Marketing com Google",
-      "text": "Mostre os seus produtos no Google e alcance milhões de compradores que procuram ativamente o que tem para oferecer em toda a rede Google.",
+      "text": "Os seus potenciais compradores já estão à procura online de produtos como os que você oferece. Alcance-os no Google com o PrestaShop Marketing em alguns passos fáceis.",
       "reinsurance": "- Easy setup \n- Cancel anytime"
     },
     "content": {
       "content1": {
-        "title": "Faça com que os seus produtos sejam vistos por compradores interessados",
-        "text": "Os anúncios gratuitos permitem-lhe listar os seus produtos gratuitamente no separador Compras e mostrá-los aos seus potenciais clientes no exato momento em que estes procuram o que a sua loja tem para oferecer*.",
+        "title": "Sincronize o seu catálogo de produtos com o Google",
+        "text": "Ligue a sua loja ao Google Merchant Center e sincronize todo o seu catálogo de produtos em poucos cliques, os atributos do produto, tais como preço e disponibilidade, serão automaticamente atualizados diariamente.",
         "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
       },
       "content2": {
-        "title": "Mostrar sempre informações precisas sobre produtos",
-        "text": "Assim que enviar os dados da sua loja e produtos para o Google diretamente do PrestaShop, essas informações ficarão disponíveis e sincronizadas automaticamente para listagens gratuitas, Google Ads e outros serviços Google.",
+        "title": "Ative listagens gratuitas para os seus produtos",
+        "text": "As listagens gratuitas permitem apresentar as caraterísticas dos produtos, incluindo imagem e preço em listagens organicamente ordenadas na guia \"Shopping\".  \n \n Uma vez sincronizado o seu catálogo, ative facilmente as listagens gratuitas no seu painel de instrumentos e comece a mostrar os seus produtos gratuitamente na guia \"Shopping\".",
         "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Aumente o tráfego e as vendas com a campanha Smart Shopping",
-        "text": "Alcance ainda mais clientes com anúncios pagos e aumente as suas vendas ao promover os seus produtos aos clientes certos em toda o Google Search, Compras, YouTube, Gmail e Display Network, graças à tecnologia que potencializa as campanhas Smart Shopping**",
+        "title": "Crie e faça a gestão das suas campanhas inteligentes do Shopping",
+        "text": "Campanhas inteligentes do Shopping são anúncios do Google que utilizam a tecnologia inteligente do Google para licitação e colocação de anúncios que maximizam o valor de conversão e exibem estrategicamente os seus anúncios para pessoas que procuram produtos como o seu.  \n \n Defina um orçamento diário e deixe que a tecnologia inteligente do Google otimize as suas campanhas em diferentes redes como o Google Search, o YouTube ou o Gmail. Só paga quando as pessoas clicam.",
         "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
       },
       "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
@@ -330,6 +330,8 @@
       "longDescription": "Descrição longa",
       "shortDescription": "Breve descrição",
       "energyEfficiencyClass": "Energy efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
       "material": "Material",
       "pattern": "Pattern",
       "gtin": "GTIN",
@@ -604,8 +606,8 @@
       "averageCostPerClick": "Média CPC",
       "conversions": "Conversões",
       "conversionsRate": "Taxa de conversão",
-      "productFilter": "Filtro do produto",
-      "dimension": "Dimension",
+      "productFilter": "Filter name",
+      "dimension": "Filter type",
       "duration": "Data de duração",
       "target": "Alvo",
       "actions": "Ações",
@@ -858,8 +860,34 @@
     "lastStep": "Último passo"
   },
   "attributesMapping": {
-    "description": "Descrição",
-    "shortDescription": "Short Description",
-    "brand": "Marca"
+    "types": {
+      "description": "Description",
+      "mpn": "MPN",
+      "brand": "Brand",
+      "color": "Color",
+      "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
+      "size": "Size",
+      "ageGroup": "Age group",
+      "gender": "Gender",
+      "energyEfficiencyClass": "Energy efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "material": "Material",
+      "pattern": "Pattern"
+    },
+    "options": {
+      "upc": "UPC",
+      "isbn": "ISBN",
+      "ean13": "EAN",
+      "mpn": "MPN",
+      "description": "Description",
+      "shortDescription": "Short Description",
+      "longDescription": "Long description",
+      "notAvailable": "Not available"
+    },
+    "condition": "Condition",
+    "specificTitle": "Specific",
+    "sellRefurbished": "I sell refurbished products",
+    "sellApparel": "I sell apparel and accessories"
   }
 }

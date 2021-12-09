@@ -27,18 +27,18 @@
     },
     "content": {
       "content1": {
-        "title": "Чтобы ваши товары находили заинтересованные покупатели",
-        "text": "Бесплатные объявления позволяют вам бесплатно разместить список ваших товаров на вкладке Покупки\" и показать их потенциальным покупателям именно в тот момент, когда они ищут то, что предлагает ваш магазин*.",
+        "title": "Sync your product catalog with Google",
+        "text": "Connect your store to Google Merchant Center and synchroniwe your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday.",
         "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
       },
       "content2": {
-        "title": "Всегда показывайте точную информацию о продукте",
-        "text": "Как только вы загрузите данные о вашем магазине и товарах в Google непосредственно из PrestaShop, эта информация будет доступна и автоматически синхронизирована для бесплатных объявлений, Google Ads и других сервисов Google.",
+        "title": "Enable free listings for your products",
+        "text": "Free listings allow to show your product attributes, including image and price in organically-ranked listings on the Shopping tab.  \n \n Once your catalog has been synchronised, enable free listings on your dashboard and start showing your products on the Shopping tab for free.",
         "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Увеличьте трафик и продажи с помощью кампании Smart Shopping",
-        "text": "Охватите еще больше клиентов с помощью платной рекламы и увеличивайте продажи, продвигая свои товары нужным клиентам в Google Search, Shopping, YouTube, Gmail и Display Network благодаря технологии, лежащей в основе кампаний Smart Shopping**",
+        "title": "Create and manage Smart Shopping campaigns",
+        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click.",
         "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
       },
       "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
@@ -330,6 +330,8 @@
       "longDescription": "Длинное описание",
       "shortDescription": "Краткое описание",
       "energyEfficiencyClass": "Energy efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
       "material": "Material",
       "pattern": "Pattern",
       "gtin": "GTIN",
@@ -587,7 +589,7 @@
       "draft": "Draft",
       "pending": "В ожидании"
     },
-    "fromXToX": "С {дата начала} по {дата окончания}",
+    "fromXToX": "С {startDate} по {endDate}",
     "labelCol": {
       "campaign": "Кампания",
       "budget": "Бюджет",
@@ -604,8 +606,8 @@
       "averageCostPerClick": "Средний CPC",
       "conversions": "Конверсии",
       "conversionsRate": "Коэффициент конверсии",
-      "productFilter": "Фильтр для продуктов",
-      "dimension": "Dimension",
+      "productFilter": "Filter name",
+      "dimension": "Filter type",
       "duration": "Дата продолжительности",
       "target": "Цель",
       "actions": "Действия",
@@ -858,8 +860,34 @@
     "lastStep": "Последний шаг"
   },
   "attributesMapping": {
-    "description": "Описание",
-    "shortDescription": "Short Description",
-    "brand": "Бренд"
+    "types": {
+      "description": "Description",
+      "mpn": "MPN",
+      "brand": "Brand",
+      "color": "Color",
+      "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
+      "size": "Size",
+      "ageGroup": "Age group",
+      "gender": "Gender",
+      "energyEfficiencyClass": "Energy efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "material": "Material",
+      "pattern": "Pattern"
+    },
+    "options": {
+      "upc": "UPC",
+      "isbn": "ISBN",
+      "ean13": "EAN",
+      "mpn": "MPN",
+      "description": "Description",
+      "shortDescription": "Short Description",
+      "longDescription": "Long description",
+      "notAvailable": "Not available"
+    },
+    "condition": "Condition",
+    "specificTitle": "Specific",
+    "sellRefurbished": "I sell refurbished products",
+    "sellApparel": "I sell apparel and accessories"
   }
 }

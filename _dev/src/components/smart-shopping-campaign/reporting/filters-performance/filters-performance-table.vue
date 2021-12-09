@@ -67,7 +67,7 @@
 
         <template v-else>
           <ReportingTableEmptyMessage
-            v-if="!loading && !partitionList"
+            v-if="!loading && partitionList.length === 0"
             :colspan="filtersHeaderList.length"
             :text="$t('campaigns.filtersPerformanceTable.emptyListText')"
           />

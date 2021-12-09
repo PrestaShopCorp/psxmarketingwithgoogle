@@ -22,23 +22,23 @@
   "landingPage": {
     "header": {
       "title": "Marketing With Google",
-      "text": "Show your products on Google and reach millions of shoppers actively looking for what you offer across Google network.",
+      "text": "Your potential buyers are already searching online for products like the ones you offer. Reach them on Google with PrestaShop Marketing in a few easy steps.",
       "reinsurance": "- Easy setup \n- Cancel anytime"
     },
     "content": {
       "content1": {
-        "title": "Get your products found by interested shoppers",
-        "text": "Free listings let you list your products for free in the Shopping tab and show them to potential customers at the exact moment when they are looking for what your store offers*.",
+        "title": "Sync your product catalog with Google",
+        "text": "Connect your store to Google Merchant Center and synchroniwe your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday.",
         "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
       },
       "content2": {
-        "title": "Always show accurate product information",
-        "text": "Once you upload your store and products data to Google directly from PrestaShop these information will be available and automatically synced for free listings, Google Ads, and other Google services.",
+        "title": "Enable free listings for your products",
+        "text": "Free listings allow to show your product attributes, including image and price in organically-ranked listings on the Shopping tab.  \n \n Once your catalog has been synchronised, enable free listings on your dashboard and start showing your products on the Shopping tab for free.",
         "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Boost traffic and sales with Smart Shopping campaign",
-        "text": "Reach even more customers with paid ads and grow your sale by promoting your products to the right customers across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns**",
+        "title": "Create and manage Smart Shopping campaigns",
+        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click.",
         "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
       },
       "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
@@ -330,6 +330,8 @@
       "longDescription": "Long description",
       "shortDescription": "Short description",
       "energyEfficiencyClass": "Energy efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
       "material": "Material",
       "pattern": "Pattern",
       "gtin": "GTIN",
@@ -604,8 +606,8 @@
       "averageCostPerClick": "Average CPC",
       "conversions": "Conversions",
       "conversionsRate": "Conversions rate",
-      "productFilter": "Product filter",
-      "dimension": "Dimension",
+      "productFilter": "Filter name",
+      "dimension": "Filter type",
       "duration": "Duration date",
       "target": "Target",
       "actions": "Actions",
@@ -859,8 +861,34 @@
     "lastStep" : "Last step"
   },
   "attributesMapping" : {
-    "description" : "Description",
-    "shortDescription" : "Short Description",
-    "brand": "Brand"
+    "types": {
+      "description" : "Description",
+      "mpn": "MPN",
+      "brand": "Brand",
+      "color": "Color",
+      "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
+      "size": "Size",
+      "ageGroup": "Age group",
+      "gender": "Gender",
+      "energyEfficiencyClass": "Energy efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "material": "Material",
+      "pattern": "Pattern"
+    },
+    "options": {
+      "upc": "UPC",
+      "isbn": "ISBN",
+      "ean13": "EAN",
+      "mpn": "MPN",
+      "description" : "Description",
+      "shortDescription" : "Short Description",
+      "longDescription": "Long description",
+      "notAvailable": "Not available"
+    },
+    "condition": "Condition",
+    "specificTitle": "Specific",
+    "sellRefurbished": "I sell refurbished products",
+    "sellApparel": "I sell apparel and accessories"
   }
 }

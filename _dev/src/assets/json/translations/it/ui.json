@@ -22,23 +22,23 @@
   "landingPage": {
     "header": {
       "title": "Marketing con Google",
-      "text": "Mostra i tuoi prodotti su Google e raggiungi milioni di acquirenti che cercano attivamente ciò che offri sulla rete di Google.",
+      "text": "I tuoi potenziali shoppers stanno già cercando su Internet prodotti come quelli che stai vendendo. Raggiungili su Google con PrestaShop Marketing in pochi semplici passi.",
       "reinsurance": "- Impostazione facile \n- Annulla in qualsiasi momento"
     },
     "content": {
       "content1": {
-        "title": "Fai trovare i tuoi prodotti agli acquirenti interessati",
-        "text": "Le inserzioni gratuite ti permettono di elencare gratuitamente i tuoi prodotti nella scheda Shopping e di mostrarli ai potenziali clienti nel momento esatto in cui stanno cercando ciò che il tuo negozio offre*.",
+        "title": "Sincronizza il tuo catalogo prodotti con Google",
+        "text": "Collega il tuo negozio a Google Merchant Center e sincronizza tutto il tuo catalogo prodotti in pochi click, gli attributi dei prodotti come il prezzo e la disponibilità saranno automaticamente aggiornati ogni giorno.",
         "footer": "[Learn more about free listings]({0})[:target=\\\"_blank\\\"]"
       },
       "content2": {
-        "title": "Mostra sempre informazioni accurate sul prodotto",
-        "text": "Una volta che hai caricato i dati del tuo negozio e dei tuoi prodotti su Google direttamente da PrestaShop, queste informazioni saranno disponibili e sincronizzate automaticamente per le liste gratuite, Google Ads e altri servizi di Google.",
+        "title": "Abilita le schede gratuite per i tuoi prodotti",
+        "text": "Le schede gratuite permettono di mostrare le caratteristiche del tuo prodotto, tra cui l'immagine e il prezzo, in inserzioni ordinate organicamente nella scheda Shopping.\n \nDopo aver sincronizzato il tuo catalogo, abilita facilmente le schede gratuite sulla tua dashboard e inizia a mettere in vetrina gratuitamente i tuoi prodotti nella scheda Shopping.",
         "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Aumenta il traffico e le vendite con la campagna Smart Shopping",
-        "text": "Reach even more customers with paid ads and grow your sale by promoting your products to the right customers across Google Search, Shopping, YouTube, Gmail, and the Display Network thanks to technology powering Smart Shopping campaigns**",
+        "title": "Crea e gestisci Campagne Shopping Intelligenti",
+        "text": "Le Campagne Shopping Intelligenti sono annunci di Google che usano la tecnologia intelligente di Google per determinare le offerte e il posizionamento degli annunci, massimizzando il valore di conversione e mostrando strategicamente i tuoi annunci alle persone che cercano prodotti come i tuoi.  \n \nImposta un budget giornaliero e lascia che la tecnologia intelligente di Google ottimizzi le tue campagne su diverse reti come Ricerca Google, YouTube o Gmail. Pagherai solo quando le persone cliccano sui tuoi annunci.",
         "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\\\"_blank\\\"]"
       },
       "notice": "*depending on regional availability   \n **includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
@@ -330,6 +330,8 @@
       "longDescription": "Descrizione lunga",
       "shortDescription": "Descrizione breve",
       "energyEfficiencyClass": "Energy efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
       "material": "Material",
       "pattern": "Pattern",
       "gtin": "GTIN",
@@ -587,7 +589,7 @@
       "draft": "Draft",
       "pending": "In attesa"
     },
-    "fromXToX": "Da {data d'inizio} a {data di fine}",
+    "fromXToX": "Da {startDate} a {endDate}",
     "labelCol": {
       "campaign": "Campagna pubblicitaria",
       "budget": "Budget",
@@ -604,8 +606,8 @@
       "averageCostPerClick": "CPC medio",
       "conversions": "Conversioni",
       "conversionsRate": "Tasso delle conversioni",
-      "productFilter": "Filtro di prodotto",
-      "dimension": "Dimensione",
+      "productFilter": "Filter name",
+      "dimension": "Filter type",
       "duration": "Data di durata",
       "target": "Obiettivo",
       "actions": "Azioni",
@@ -858,8 +860,34 @@
     "lastStep": "Ultimo passo"
   },
   "attributesMapping": {
-    "description": "Descrizione",
-    "shortDescription": "Short Description",
-    "brand": "Marchio"
+    "types": {
+      "description": "Description",
+      "mpn": "MPN",
+      "brand": "Brand",
+      "color": "Color",
+      "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
+      "size": "Size",
+      "ageGroup": "Age group",
+      "gender": "Gender",
+      "energyEfficiencyClass": "Energy efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "material": "Material",
+      "pattern": "Pattern"
+    },
+    "options": {
+      "upc": "UPC",
+      "isbn": "ISBN",
+      "ean13": "EAN",
+      "mpn": "MPN",
+      "description": "Description",
+      "shortDescription": "Short Description",
+      "longDescription": "Long description",
+      "notAvailable": "Not available"
+    },
+    "condition": "Condition",
+    "specificTitle": "Specific",
+    "sellRefurbished": "I sell refurbished products",
+    "sellApparel": "I sell apparel and accessories"
   }
 }

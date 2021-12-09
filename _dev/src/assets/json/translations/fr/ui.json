@@ -22,23 +22,23 @@
   "landingPage": {
     "header": {
       "title": "Marketing avec Google",
-      "text": "Affichez vos produits sur Google et atteignez des millions de clients à la recherche active de ce que vous proposez à travers le réseau Google.",
+      "text": "Vos acheteurs potentiels sont déjà en ligne à la recherche de produits tels que ceux que vous proposez. Touchez-les sur Google avec PrestaShop Marketing en quelques étapes faciles.",
       "reinsurance": "- Configuration facile \n- Annulez à tout moment"
     },
     "content": {
       "content1": {
-        "title": "Améliorez la visibilité de vos produits pour les acheteurs potentiels",
-        "text": "Les fiches gratuites vous permettent de lister gratuitement vos produits dans l'onglet Shopping et de les montrer aux clients potentiels au moment exact où ils recherchent ce que votre boutique offre*.",
+        "title": "Synchronisez votre catalogue de produits avec Google",
+        "text": "Connectez votre boutique à Google Merchant Center et synchronisez l'ensemble de votre catalogue de produits en quelques clics. Les attributs des produits tels que le prix et la disponibilité seront automatiquement et quotidiennement mis à jour.",
         "footer": "[En savoir plus sur les fiches gratuites]({0})[:target=\"_blank\"]"
       },
       "content2": {
-        "title": "Toujours afficher des informations exactes sur les produits",
-        "text": "Une fois que vous aurez téléchargé les données de votre boutique et de vos produits directement depuis PrestaShop, ces informations seront disponibles et automatiquement synchronisées pour des annonces gratuites, Google Ads, et autres services Google.",
+        "title": "Activez les fiches produit pour vos produits",
+        "text": "Les fiches produit permettent d'afficher les attributs de vos produits, y compris l'image et le prix, dans des listes classées naturellement dans l'onglet Shopping.  \n \nUne fois que votre catalogue a été synchronisé, activez facilement les fiches produit sur votre tableau de bord et commencez à afficher gratuitement vos produits dans l'onglet Shopping.",
         "footer": "Créez un nouveau compte [Merchant Center]({0})[:target=\"_blank\"] ou liez un compte existant.  \nPour afficher vos produits sur Google, vous devrez répondre aux [exigences d'éligibilité]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Boostez vos ventes avec des campagnes Shopping Intelligentes",
-        "text": "Atteignez encore plus de clients avec des annonces payantes et augmentez vos ventes en faisant la promotion de vos produits auprès des bons clients à travers Google Search, Shopping, YouTube, Gmail et le réseau d'affichage grâce à la technologie qui alimente les campagnes Shopping Intelligentes**",
+        "title": "Créez et gérez vos campagnes Shopping intelligentes",
+        "text": "Les campagnes Shopping intelligentes sont des annonces Google qui utilisent la technologie intelligente de Google pour les enchères et le placement des annonces afin de maximiser la valeur de conversion et d'afficher stratégiquement vos annonces auprès des personnes qui recherchent des produits comme les vôtres.  \n \nDéfinissez un budget quotidien et laissez la technologie intelligente de Google optimiser vos campagnes sur différents réseaux tels que Google Search, YouTube ou Gmail. Vous ne payez que lorsque les gens cliquent.",
         "footer": "[En savoir plus sur les campagnes Shopping Intelligentes] ({0})[:target=\"_blank\"]"
       },
       "notice": "*selon la disponibilité régionale   \n**inclut l'optimisation de la campagne pour montrer la variété de vos produits aux clients les plus susceptibles de les acheter"
@@ -186,7 +186,7 @@
     "businessCountry": "Pays",
     "changeCountryField": "Vous pouvez [changer votre pays]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
     "changeRegionField": "Vous pouvez [changer votre région]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
-    "changeAddressField": "Vous pouvez [changer l'adresse de votre entreprise] ({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
+    "changeAddressField": "Vous pouvez [changer l'adresse de votre entreprise]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
     "changeZipCodeField": "Vous pouvez [modifier votre code zip]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back-office",
     "changeCityField": "Vous pouvez [changer votre ville]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
     "changePhoneNumberField": "Vous pouvez [changer votre numéro de téléphone professionnel]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back-office",
@@ -203,7 +203,7 @@
     "introToConfigure": "Il est important de soumettre votre flux de produits dans le format correct, car Google utilise ceci pour s'assurer que vos produits correspondent aux bonnes requêtes.",
     "nextSync": "Prochaine synchronisation : {0}",
     "syncFailedAt": "Échec de la synchronisation {0} à {1}",
-    "syncSuccess": "Produits synchronisés {1} à {2} | {0} produit synchronisé {1} à {2} | {0} produits synchronisés {1} à {2}",
+    "syncSuccess": "Produits synchronisés {1} à {2} | {0} Produits synchronisés {1} à {2} | {0} Produits synchronisés {1} à {2}",
     "syncBusy": "Synchronisation en cours...",
     "syncCantPerform": "Impossible d'effectuer la synchronisation",
     "mappedCategories": "{0}/{1} catégories mappées",
@@ -271,7 +271,7 @@
       "transitTimeTooltip": "Entrez le temps qu'il faut pour que votre commande soit expédiée au client une fois qu'il quitte votre entrepôt.",
       "shippingInformationTitle": "Informations sur les transporteurs et l'expédition",
       "shippingInformationIntro": "Entrez les informations d'expédition de votre liste de transporteurs. Ils doivent expédier à l'adresse d'un client pour être synchronisés dans Google Shopping.",
-      "shippingTableNotice": "Assurez-vous que le message de votre boutique correspond aux informations de livraison de votre boutique Google.",
+      "shippingTableNotice": "Assurez-vous que les informations de livraison de votre boutique correspondent aux informations de livraison de votre boutique Google.",
       "shippingSwitchCarrier": "Cliquer pour activer / désactiver le transporteur",
       "carriersDropdownHeader": "Copier les informations d'expédition dans",
       "carriersDropdownHiddenLabel": "Copier l'information du transporteur vers d'autres transporteurs",
@@ -310,14 +310,14 @@
     "attributeMapping": {
       "title1": "1. Sélectionnez toutes les caractéristiques qui s'appliquent à vos produits",
       "description1": "Cela vous permettra de mapper les attributs produits Google obligatoires à l'étape suivante en fonction de votre catalogue.",
-      "title2": "2. Associer les attributs Google obligatoires à vos champs personnalisés",
+      "title2": "2. Associez les attributs Google obligatoires à vos champs personnalisés",
       "description2": "Remplissez toutes les valeurs pour vous assurer que vos produits soient validés. Si une valeur est manquante dans votre catalogue, nous vous recommandons de la créer et de la compléter plus tard.",
       "apparelAndAccessoriesTitle": "Je vends des vêtements et/ou des accessoires",
-      "apparelAndAccessoriesSubtitle": "ex: vêtements, sacs, chaussures ou chapeaux",
-      "electronicsTitle": "Je vend des appareils ménagers et/ou de cuisine",
+      "apparelAndAccessoriesSubtitle": "par exemple : vêtements, sacs, chaussures ou chapeaux",
+      "electronicsTitle": "Je vends des appareils ménagers et/ou de cuisine",
       "electronicsSubtitle": "par exemple : réfrigérateurs, lave-vaisselle, lave-linge, ampoules",
       "variantSetsTitle": "Mes produits ont des variantes",
-      "variantSetsSubtitle": "c'est-à-dire des motifs, des tissus ou des matériaux différents.",
+      "variantSetsSubtitle": "par exemple : motifs, des tissus ou des matériaux différents",
       "commonsTitle": "Aucune des propositions mentionnées ci-dessus",
       "learnRequirementsProductSpecification": "En savoir plus sur les exigences et les valeurs prises en charge pour la spécification de données de produit sur Shopping",
       "footerNotice": "Décrivez les données de vos produits à l'aide d'attributs. De plus, vous pouvez ajouter des attributs supplémentaires requis pour les fiches gratuites. La règle générale est : plus il y a d'attributs, mieux c'est.",
@@ -330,6 +330,8 @@
       "longDescription": "Description longue",
       "shortDescription": "Description courte",
       "energyEfficiencyClass": "Classe énergétique",
+      "maxEnergyEfficiencyClass": "Classe énergétique maximale",
+      "minEnergyEfficiencyClass": "Classe énergétique minimale",
       "material": "Matière",
       "pattern": "Motif",
       "gtin": "GTIN",
@@ -368,7 +370,7 @@
     }
   },
   "freeListingCard": {
-    "title": "Show your products with free listings ",
+    "title": "Afficher gratuitement vos produits dans l'onglet \"Google Shopping\"",
     "intro": "Afficher gratuitement vos produits en fiches gratuites dans l'onglet Shopping.",
     "learnFreeListing": "En savoir plus sur les fiches gratuites",
     "seeFreeListing": "Voir mes fiches gratuites dans Merchant Center",
@@ -493,7 +495,7 @@
     "tableTitle": "Performance de la campagne"
   },
   "productFeedPage": {
-    "breadcrumb": "Détails sur le statut du produit",
+    "breadcrumb": "Détail sur le statut du produit",
     "alert": {
       "googleIsReviewing": "Vos produits sont en cours de révision  \nCela peut prendre 3 à 5 jours pour examiner vos produits. Une fois approuvés, ils seront disponibles pour les fiches gratuites et campagnes publicitaires.",
       "alertSuccess": "L'export de votre catalogue est lancé ! Une fois que vos produits sont approuvés, ils apparaîtront dans les résultats de recherche de l'onglet Google Shopping."
@@ -587,7 +589,7 @@
       "draft": "Brouillon",
       "pending": "En attente"
     },
-    "fromXToX": "De {date de début} à {date de fin}",
+    "fromXToX": "De {startDate} à {endDate}",
     "labelCol": {
       "campaign": "Campagne",
       "budget": "Budget",
@@ -604,8 +606,8 @@
       "averageCostPerClick": "CPC moyen",
       "conversions": "Conversions",
       "conversionsRate": "Taux de conversion",
-      "productFilter": "Filtres produit",
-      "dimension": "Dimension",
+      "productFilter": "Nom du filtre",
+      "dimension": "Type de filtre",
       "duration": "Durée",
       "target": "Cible",
       "actions": "Actions",
@@ -695,7 +697,7 @@
     "shopMaintenanceBtn": "Allez dans les paramètres de maintenance",
     "editProductAttributes": "Éditer les attributs",
     "forceSync": "Forcer la synchronisation",
-    "createNewGoogleAdsAccount": "Créez un nouveau compte Google Ads",
+    "createNewGoogleAdsAccount": "Créer un nouveau compte Google Ads",
     "back": "Précédent",
     "saveAndContinue": "Sauvegarder et continuer",
     "yes": "Oui",
@@ -858,8 +860,34 @@
     "lastStep": "Dernière étape"
   },
   "attributesMapping": {
-    "description": "Description",
-    "shortDescription": "Description courte",
-    "brand": "Marque"
+    "types": {
+      "description": "Description",
+      "mpn": "MPN",
+      "brand": "Marque",
+      "color": "Couleur",
+      "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
+      "size": "Taille",
+      "ageGroup": "Tranche d'âge",
+      "gender": "Genre",
+      "energyEfficiencyClass": "Classe énergétique",
+      "minEnergyEfficiencyClass": "Classe énergétique minimale",
+      "maxEnergyEfficiencyClass": "Classe énergétique maximale",
+      "material": "Matière",
+      "pattern": "Motif"
+    },
+    "options": {
+      "upc": "UPC",
+      "isbn": "ISBN",
+      "ean13": "EAN",
+      "mpn": "MPN",
+      "description": "Description",
+      "shortDescription": "Description courte",
+      "longDescription": "Description longue",
+      "notAvailable": "N/A"
+    },
+    "condition": "État",
+    "specificTitle": "Spécifique",
+    "sellRefurbished": "Je vends des produits reconditionnés",
+    "sellApparel": "Je vends des vêtements et/ou des accessoires"
   }
 }

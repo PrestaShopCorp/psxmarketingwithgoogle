@@ -22,23 +22,23 @@
   "landingPage": {
     "header": {
       "title": "Marketing met Google",
-      "text": "Toon uw producten op Google en bereik miljoenen kopers die actief op zoek zijn naar wat u aanbiedt in het Google-netwerk.",
+      "text": "Uw potentiële kopers zijn al online op zoek naar producten zoals degene die u aanbiedt. Bereik ze op Google met PrestaShop Marketing in een paar eenvoudige stappen.",
       "reinsurance": "- Easy setup \n- Cancel anytime"
     },
     "content": {
       "content1": {
-        "title": "Laat uw producten vinden door geïnteresseerde kopers",
-        "text": "Met gratis vermeldingen kunt u uw producten gratis in het tabblad Shopping plaatsen en ze aan potentiële klanten tonen op het moment dat zij op zoek zijn naar wat uw winkel aanbiedt*.",
+        "title": "Synchroniseer uw productcatalogus met Google",
+        "text": "Verbind uw winkel met Google Merchant Center en synchroniseer uw volledige productcatalogus in een paar klikken, productkenmerken zoals prijs en beschikbaarheid worden elke dag automatisch bijgewerkt.",
         "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
       },
       "content2": {
-        "title": "Toon altijd nauwkeurige productinformatie",
-        "text": "Zodra u uw winkel en producten gegevens uploaden naar Google rechtstreeks vanuit PrestaShop deze informatie beschikbaar zal zijn en automatisch gesynchroniseerd voor gratis listings, Google Ads, en andere Google-diensten.",
+        "title": "Maak gratis vermeldingen voor uw producten mogelijk",
+        "text": "Gratis vermeldingen maken het mogelijk om uw productkenmerken te tonen, inclusief afbeelding en prijs in organisch gerangschikte vermeldingen op het tabblad Winkelen.  \n \n Zodra uw catalogus is gesynchroniseerd, kunt u eenvoudig gratis vermeldingen op uw dashboard inschakelen en uw producten gratis op het tabblad Winkelen tonen.",
         "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Verhoog verkeer en verkoop met Smart Shopping-campagne",
-        "text": "Bereik nog meer klanten met betaalde advertenties en laat uw verkoop groeien door uw producten bij de juiste klanten te promoten in Google Search, Shopping, YouTube, Gmail en het Display Network dankzij de technologie die Smart Shopping-campagnes mogelijk maakt**",
+        "title": "Creëer en beheer uw Smart Shopping campagnes",
+        "text": "Smart Shopping campagnes zijn Google Ads die gebruikmaken van de slimme technologie van Google voor prijsopgaven en advertentieplaatsing om de conversiewaarde te maximaliseren en uw advertenties strategisch weer te geven aan mensen die zoeken naar producten zoals die van u.  \n \n Stel een dagelijks budget in en laat de slimme technologie van Google uw campagnes optimaliseren over verschillende netwerken zoals Google Zoeken, YouTube of Gmail. U betaalt alleen als mensen klikken.",
         "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
       },
       "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
@@ -330,6 +330,8 @@
       "longDescription": "Lange beschrijving",
       "shortDescription": "Korte beschrijving",
       "energyEfficiencyClass": "Energy efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
       "material": "Material",
       "pattern": "Pattern",
       "gtin": "GTIN",
@@ -604,8 +606,8 @@
       "averageCostPerClick": "Gemiddelde CPC",
       "conversions": "Conversies",
       "conversionsRate": "Omzettingspercentage",
-      "productFilter": "Product filter",
-      "dimension": "Dimension",
+      "productFilter": "Filter name",
+      "dimension": "Filter type",
       "duration": "Duur datum",
       "target": "Doel",
       "actions": "Acties",
@@ -858,8 +860,34 @@
     "lastStep": "Laatste stap"
   },
   "attributesMapping": {
-    "description": "Beschrijving",
-    "shortDescription": "Short Description",
-    "brand": "Merk"
+    "types": {
+      "description": "Description",
+      "mpn": "MPN",
+      "brand": "Brand",
+      "color": "Color",
+      "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
+      "size": "Size",
+      "ageGroup": "Age group",
+      "gender": "Gender",
+      "energyEfficiencyClass": "Energy efficiency class",
+      "minEnergyEfficiencyClass": "Minimum efficiency class",
+      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "material": "Material",
+      "pattern": "Pattern"
+    },
+    "options": {
+      "upc": "UPC",
+      "isbn": "ISBN",
+      "ean13": "EAN",
+      "mpn": "MPN",
+      "description": "Description",
+      "shortDescription": "Short Description",
+      "longDescription": "Long description",
+      "notAvailable": "Not available"
+    },
+    "condition": "Condition",
+    "specificTitle": "Specific",
+    "sellRefurbished": "I sell refurbished products",
+    "sellApparel": "I sell apparel and accessories"
   }
 }

@@ -20,6 +20,7 @@
         <!-- We display the tab if user has remarketing tag in the module OR already set elsewhere -->
           <template v-if="reportingTabVisible">
             <MenuItem
+              @click.native="throwSegmentEvent"
               :route="{name: 'reporting'}"
             >
               {{ $t('general.tabs.reporting') }}
@@ -68,6 +69,7 @@
 <script>
 import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 let resizeEventTimer;
 const root = document.documentElement;
@@ -121,7 +123,19 @@ export default {
       root.style.setProperty('--header-height', `${header.clientHeight}px`);
       root.style.setProperty('--header-height-full', `${header.clientHeight + headerFull.clientHeight}px`);
     },
+    throwSegmentEvent() {
+      this.$segment.track('[GGL] Clicked on reporting tab', {
+        module: 'psxmarketingwithgoogle',
+        userId: this.$store.state.accounts.shopIdPsAccounts,
+        traits: {
+          email: this.$store.state.accounts.contextPsAccounts.user.email,
+          psx_pg_report_last_activity: new Date(),
+        },
+        params: SegmentGenericParams,
+      });
+    },
   },
+
   watch: {
     $route() {
       this.$root.identifySegment();
