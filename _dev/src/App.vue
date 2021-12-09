@@ -110,7 +110,7 @@ export default {
   },
   data() {
     return {
-      eventBusStatus: false,
+      eventBusStatus: true,
     };
   },
   computed: {
