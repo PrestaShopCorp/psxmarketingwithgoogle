@@ -143,9 +143,10 @@ export default {
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
     },
-    // healthCheckEventBus() {
-    //   return this.$store.getters['app/GET_DEBUG_DATA'].urlEventBusHealthCheck
-    // }
+    eventBusStatus() {
+      return false;
+    },
+
   },
   created() {
     this.$root.identifySegment();
