@@ -3,7 +3,6 @@
     no-body
     class="ps_gs-onboardingcard"
   >
-    {{ countries }}
     <b-card-header
       header-tag="nav"
       header-class="px-3 py-1"
@@ -166,17 +165,12 @@
             @countrySelected="saveCountrySelected"
             :default-countries="countries"
             :need-filter="false"
-            :multiple="false"
+            :is-multiple="false"
           />
           <span
             v-else
           >
-            <span
-              v-for="(country, index) in countries"
-              :key="index"
-            >
-              {{ country }}<span v-if="index !== countries.length-1">,</span>
-            </span>
+            {{ targetCountry[0] }}
           </span>
         </b-form-group>
         <b-form-group
@@ -357,7 +351,7 @@ export default {
       timer: null,
       displayError: false,
       campaignIsActive: true,
-
+      targetCountry: [],
       availableFilters: {
         name: this.$t('smartShoppingCampaignCreation.allFilters'),
         id: 'allFilters',
@@ -365,7 +359,6 @@ export default {
         indeterminate: false,
         children: [],
       },
-      countries: this.$options.filters.changeCountriesCodesToNames(this.$store.getters['app/GET_ACTIVE_COUNTRIES']),
     };
   },
   components: {
@@ -380,12 +373,11 @@ export default {
     },
   },
   computed: {
-
     disableCreateCampaign() {
       if (this.campaignName
       && this.errorCampaignNameExistsAlready === false
       && this.campaignDurationStartDate
-      && this.countries
+      && this.targetCountry
       && this.campaignDailyBudget) {
         return false;
       }
@@ -424,7 +416,10 @@ export default {
     currency() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode || '';
     },
-
+    countries() {
+      return this.$options.filters
+        .changeCountriesCodesToNames([this.$store.state.app.psxMtgWithGoogleDefaultShopCountry]);
+    },
     finalCampaign() {
       return {
         id: this.campaignId,
@@ -433,7 +428,7 @@ export default {
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
-        targetCountry: this.countries,
+        targetCountry: this.targetCountry[0] || this.countries[0],
         productFilters: !this.campaignHasNoProductsFilter ? this.filtersChosen : [],
       };
     },
@@ -489,7 +484,7 @@ export default {
       );
     },
     saveCountrySelected(value) {
-      this.countries = value;
+      this.targetCountry.push(value);
     },
     openFilterPopin() {
       this.$bvModal.show(
@@ -563,7 +558,7 @@ export default {
         this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = this.foundSsc.id;
         this.targetCountry = this.$options.filters.changeCountriesCodesToNames(
-          this.foundSsc.targetCountry,
+          [this.foundSsc.targetCountry],
         );
         this.debounceName();
       } else {
