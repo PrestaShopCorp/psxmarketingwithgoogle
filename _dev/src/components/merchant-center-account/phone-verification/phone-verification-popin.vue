@@ -4,7 +4,6 @@
     ref="modal"
     :title="$t('mcaCard.phoneVerificationNeeded')"
     v-bind="$attrs"
-    @ok="ok"
     @show="getPhoneNumber"
     :ok-disabled="!isPhoneValidated"
   >
@@ -98,19 +97,17 @@
             :disabled="isValidationInProgress"
             aria-describedby="input-code-feedback"
             :state="isCodeValid"
+            @input="sendCode"
           />
           <b-button
             variant="primary"
             size="sm"
             class="ml-3"
-            @click="sendCode"
+            v-if="isValidationInProgress"
           >
-            <template v-if="isValidationInProgress">
+            <template>
               {{ $t('mcaCard.validatingCode') }}
               <span class="ml-1 icon-busy" />
-            </template>
-            <template v-else>
-              {{ $t('cta.validate') }}
             </template>
           </b-button>
         </div>
@@ -142,9 +139,6 @@
     </b-form>
     <template slot="modal-cancel">
       {{ $t('cta.cancel') }}
-    </template>
-    <template slot="modal-ok">
-      {{ $t('cta.continue') }}
     </template>
   </ps-modal>
 </template>
@@ -220,6 +214,9 @@ export default {
       this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
     },
     async sendCode() {
+      if (this.invitationId.length !== 6) {
+        return;
+      }
       this.$segment.track('[GGL] Create GMC - Step 4 Confirm Number', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
@@ -233,6 +230,7 @@ export default {
         this.isCodeValid = true;
         this.isPhoneValidated = true;
         this.isValidationInProgress = false;
+        this.ok();
       } catch (error) {
         if (error.code === 400 && error.message.includes('Wrong code')) {
           this.isCodeValid = false;
@@ -261,6 +259,7 @@ export default {
     ok() {
       this.resetFields();
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', []).then(() => {
+        this.$bvModal.hide('PhoneVerificationPopin');
         this.$store.commit('accounts/SAVE_STATUS_OVERRIDE_CLAIMING',
           WebsiteClaimErrorReason.PendingCreation);
         setTimeout(async () => {
