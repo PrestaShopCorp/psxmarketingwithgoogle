@@ -3,6 +3,7 @@
     no-body
     class="ps_gs-onboardingcard"
   >
+    {{ countries }}
     <b-card-header
       header-tag="nav"
       header-class="px-3 py-1"
@@ -556,7 +557,6 @@ export default {
     window.scrollTo(0, 0);
     if (this.editMode === true) {
       if (this.foundSsc !== undefined) {
-        console.log('ththt', this.foundSsc);
         this.campaignName = this.foundSsc.campaignName;
         this.campaignDurationStartDate = this.foundSsc.startDate;
         this.campaignDurationEndDate = this.foundSsc.endDate || null;
@@ -565,7 +565,7 @@ export default {
         this.campaignDailyBudget = this.foundSsc.dailyBudget;
         this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = this.foundSsc.id;
-        this.targetCountries = this.$options.filters.changeCountriesCodesToNames(
+        this.targetCountry = this.$options.filters.changeCountriesCodesToNames(
           this.foundSsc.targetCountry,
         );
         this.debounceName();

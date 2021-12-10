@@ -48,10 +48,10 @@
       </dt>
       <dd class="text-secondary mb-3">
         <span
-          v-for="(country, index) in newCampaign.targetCountries"
+          v-for="(country, index) in newCampaign.targetCountry"
           :key="index"
         >
-          {{ country }}<span v-if="index !== newCampaign.targetCountries.length-1">,</span>
+          {{ country }}<span v-if="index !== newCampaign.targetCountry.length-1">,</span>
         </span>
       </dd>
       <dt class="font-weight-600">
@@ -164,8 +164,8 @@ export default {
         ...this.newCampaign,
         // API wants country code not name so we have to filter it
         targetCountry: this.$options.filters.changeCountriesNamesToCodes(
-          this.newCampaign.targetCountries,
-        ),
+          this.newCampaign.targetCountry,
+        )[0],
         // Send default status
         status: CampaignStatus.ELIGIBLE,
       };
@@ -189,7 +189,12 @@ export default {
         ...this.newCampaign,
         // API wants country code not name so we have to filter it
         targetCountry: this.$options.filters.changeCountriesNamesToCodes(
+<<<<<<< HEAD
           [this.newCampaign.targetCountry])[0],
+=======
+          this.newCampaign.targetCountry,
+        ),
+>>>>>>> 14a67542 (No need to multiple countries for SSc creation)
         status: CampaignStatusToggle.ENABLED,
       };
       this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload).then((resp) => {
