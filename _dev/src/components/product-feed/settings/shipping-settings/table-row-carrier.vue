@@ -230,7 +230,7 @@ export default {
   },
   methods: {
     isInitiatorCarrier(id, country) {
-      return ((this.carrier.carrierId === id) && (this.carrier.country === country));
+      return this.carrier.carrierId === id && this.carrier.country === country;
     },
     applyInfos() {
       this.$store.dispatch('productFeed/DUPLICATE_DELIVERY_DETAILS',
