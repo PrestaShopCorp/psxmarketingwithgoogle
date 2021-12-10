@@ -22,12 +22,7 @@
       {{ $t(`campaigns.status.${campaign.status.toLowerCase()}`) }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      <span
-        v-for="(country, index) in campaignCountryName"
-        :key="index"
-      >
-        {{ country }}<span v-if="index !== campaignCountryName.length-1">,</span>
-      </span>
+      {{ campaignCountryName }}
     </b-td>
     <b-td class="ps_gs-fz-12">
       {{ campaignProducts }}
@@ -97,8 +92,7 @@ export default {
       }-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}`;
     },
     campaignCountryName() {
-      // TODO : remove the array when API sends right type of data (array not string)
-      return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry]);
+      return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];
     },
     // No need for this since we have only one dimension for now
     // campaignProducts() {

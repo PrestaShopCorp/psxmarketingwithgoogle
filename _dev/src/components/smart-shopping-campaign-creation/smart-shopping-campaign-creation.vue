@@ -3,7 +3,6 @@
     no-body
     class="ps_gs-onboardingcard"
   >
-    {{ countries }}
     <b-card-header
       header-tag="nav"
       header-class="px-3 py-1"
@@ -171,12 +170,7 @@
           <span
             v-else
           >
-            <span
-              v-for="(country, index) in countries"
-              :key="index"
-            >
-              {{ country }}<span v-if="index !== countries.length-1">,</span>
-            </span>
+            {{ targetCountry[0] }}
           </span>
         </b-form-group>
         <b-form-group
@@ -357,7 +351,7 @@ export default {
       timer: null,
       displayError: false,
       campaignIsActive: true,
-
+      targetCountry: [],
       availableFilters: {
         name: this.$t('smartShoppingCampaignCreation.allFilters'),
         id: 'allFilters',
@@ -365,7 +359,6 @@ export default {
         indeterminate: false,
         children: [],
       },
-      countries: this.$options.filters.changeCountriesCodesToNames(this.$store.getters['app/GET_ACTIVE_COUNTRIES']),
     };
   },
   components: {
@@ -380,12 +373,11 @@ export default {
     },
   },
   computed: {
-
     disableCreateCampaign() {
       if (this.campaignName
       && this.errorCampaignNameExistsAlready === false
       && this.campaignDurationStartDate
-      && this.countries
+      && this.targetCountry
       && this.campaignDailyBudget) {
         return false;
       }
@@ -566,7 +558,7 @@ export default {
         this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = this.foundSsc.id;
         this.targetCountry = this.$options.filters.changeCountriesCodesToNames(
-          this.foundSsc.targetCountry,
+          [this.foundSsc.targetCountry],
         );
         this.debounceName();
       } else {
