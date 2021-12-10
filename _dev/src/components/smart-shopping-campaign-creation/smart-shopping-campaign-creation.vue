@@ -35,6 +35,7 @@
         v-if="hasUnhandledFilters"
         show
         variant="info"
+        data-test-id="unhandled-filters-alert"
       >
         {{ $t('smartShoppingCampaignCreation.alerts.hasUnhandledFilters') }}
       </b-alert>
