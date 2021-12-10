@@ -108,11 +108,6 @@ export default {
     Menu,
     MenuItem,
   },
-  data() {
-    return {
-      eventBusStatus: true,
-    };
-  },
   computed: {
     productFeedIsConfigured() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
@@ -132,9 +127,10 @@ export default {
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
     },
-    // healthCheckEventBus() {
-    //   return this.$store.getters['app/GET_DEBUG_DATA'].urlEventBusHealthCheck
-    // }
+    eventBusStatus() {
+      return false;
+    },
+
   },
   created() {
     this.$root.identifySegment();
