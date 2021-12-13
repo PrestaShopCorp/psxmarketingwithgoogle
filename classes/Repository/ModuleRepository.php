@@ -25,21 +25,52 @@ use Module;
 class ModuleRepository
 {
     const MODULE_NAME = 'ps_eventbus';
-    const VERSION = '1.4.0';
 
-    public function eventBusIsUpToDate()
+    /**
+     * @return bool
+     *
+     * @param string $version
+     */
+    public function eventBusIsUpToDate(string $version): bool
     {
         $module = Module::getInstanceByName(self::MODULE_NAME);
 
         if ($module instanceof \Ps_EventBus) {
             return version_compare(
-                self::VERSION,
+                $version,
                 $module->version,
                 '>='
             );
         }
 
         return false;
+    }
+
+    /**
+     * @return string|null
+     *
+     */
+    public function getUpgradeLink()
+    {
+        $router = \SymfonyContainer::getInstance()->get('router');
+
+        return \Tools::getHttpHost(true) . $router->generate('admin_module_manage_action', [
+            'action' => 'upgrade',
+            'module_name' => self::MODULE_NAME,
+        ]);
+    }
+
+    /**
+     * @return array
+     */
+    public function getStatusFromEventBusModule(string $version) : array
+    {
+        $isUpToDate = $this->eventBusIsUpToDate($version);
+
+        return [
+            'isUpToDate' => $isUpToDate,
+            'upgradeLink' => $isUpToDate ? '' : $this->getUpgradeLink(),
+        ];
     }
 }
 

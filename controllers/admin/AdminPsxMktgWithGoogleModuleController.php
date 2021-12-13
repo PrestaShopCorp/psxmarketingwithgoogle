@@ -24,7 +24,6 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Config\Env;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
-use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 
 class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
@@ -53,11 +52,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
      */
     private $currencyRepository;
 
-    /**
-     * @var ModuleRepository
-     */
-    private $moduleRepository;
-
     public function __construct()
     {
         parent::__construct();
@@ -68,7 +62,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
         $this->countryRepository = $this->module->getService(CountryRepository::class);
         $this->currencyRepository = $this->module->getService(CurrencyRepository::class);
-        $this->moduleRepository = $this->module->getService(ModuleRepository::class);
     }
 
     public function initContent()
@@ -154,7 +147,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'psxMktgWithGoogleActiveCountries' => $this->countryRepository->getActiveCountries(),
             'psxMtgWithGoogleDefaultShopCountry' => $this->countryRepository->getShopDefaultCountry()['iso_code'],
             'psxMktgWithGoogleShopCurrency' => $this->currencyRepository->getShopCurrency(),
-            'psxMtktgWithGoogleEventBusIsUpToDate' => $this->moduleRepository->eventBusIsUpToDate(),
             'psxMktgWithGoogleRemarketingTagsStatus' => (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS),
         ]);
 

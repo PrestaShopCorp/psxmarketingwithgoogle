@@ -19,16 +19,17 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
+use PrestaShop\ModuleLibFaq\Faq;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
-use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider;
-use PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
-use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository;
-use PrestaShop\ModuleLibFaq\Faq;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository;
 
 class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 {
@@ -69,6 +70,11 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
      */
     protected $attributesRepository;
 
+    /**
+     * @var ModuleRepository
+     */
+    private $moduleRepository;
+
     public function __construct()
     {
         parent::__construct();
@@ -81,6 +87,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $this->attributesRepository = $this->module->getService(attributesRepository::class);
         $this->googleTagProvider = $this->module->getService(GoogleTagProvider::class);
         $this->currencyRepository = $this->module->getService(CurrencyRepository::class);
+        $this->moduleRepository = $this->module->getService(ModuleRepository::class);
         $this->ajax = true;
     }
 
@@ -144,6 +151,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 break;
             case 'getShopAttributes':
                 $this->getShopAttributes();
+                break;
+            case 'getEventBusModuleStatus':
+                $this->getEventBusModuleStatus($inputs);
                 break;
             default:
                 http_response_code(400);
@@ -470,6 +480,22 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $this->ajaxDie(
             json_encode(
                 $this->attributesRepository->getAllAttributes()
+            )
+        );
+    }
+
+    private function getEventBusModuleStatus(array $inputs) {
+        if (!isset($inputs['version'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing version key',
+            ]));
+        }
+
+        $this->ajaxDie(
+            json_encode(
+                $this->moduleRepository->getStatusFromEventBusModule($inputs['version'])
             )
         );
     }
