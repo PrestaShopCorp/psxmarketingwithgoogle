@@ -29,6 +29,12 @@ import VueShowdown from 'vue-showdown';
 // import jest
 import { withTests } from '@storybook/addon-jest';
 
+
+import { initialize, mswDecorator } from 'msw-storybook-addon';
+// Initialize MSW
+initialize();
+
+
 // import showdown extension
 import '../showdown.js';
 import '../src/utils/Filters';
@@ -134,6 +140,10 @@ addDecorator(
   withTests({
     results,
   })
+);
+
+addDecorator(
+  mswDecorator
 );
 
 export const parameters = {
