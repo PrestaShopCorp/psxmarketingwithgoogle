@@ -29,9 +29,13 @@
  // import jest
  import { withTests } from '@storybook/addon-jest';
 
- // import showdown extension
- import '../showdown.js';
- import '../src/utils/Filters';
+import { initialize, mswDecorator } from 'msw-storybook-addon';
+// Initialize MSW
+initialize();
+
+// import showdown extension
+import '../showdown.js';
+import '../src/utils/Filters';
 
  import {messages, locales} from '@/lib/translations';
  // import css style
@@ -136,63 +140,67 @@
    })
  );
 
- export const parameters = {
-   actions: { argTypesRegex: '^on[A-Z].*' },
-   backgrounds: {
-     default: 'backOffice',
-     values: [
-       {
-         name: 'backOffice',
-         value: '#F1F1F1',
-       },
-       {
-         name: 'white',
-         value: '#ffffff',
-       },
-       {
-         name: 'black',
-         value: '#000000',
-       },
-     ],
-   },
-   chromatic: {
-     delay: 500,
-     diffThreshold: 0.15, // Test to see if we have less false positive
-   },
-   options: {
-     storySort: {
-       order: [
-         'LandingPage',
-         ['Components', ['Header', 'Content', 'Footer'], 'LandingPage'],
-         'Onboarding',
-         'Multistore',
-         [
-           'Components',
-           [
-             'SectionTitle',
-             'Notice - Product feed',
-             'Card - PS Account',
-             'Card - Google Account',
-             'Card - MCA',
-             'Card - Product feed',
-             'Card - Free listing',
-             'Settings - Poduct feed',
-           ],
-           'OnboardingPage',
-           ['Header', 'Content', 'Footer'],
-         ],
-         'PS Account',
-         'Google Account',
-         'Merchant Center Account',
-         'Product feed',
-         'Free listing',
-         'Google Ads Account',
-         'Smart Shopping Campaign',
-         'Product Feed Page',
-         'Reporting',
-         ['Key Metrics'],
-         'Basic Components',
-       ],
-     },
-   },
- };
+addDecorator(
+  mswDecorator
+);
+
+export const parameters = {
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  backgrounds: {
+    default: 'backOffice',
+    values: [
+      {
+        name: 'backOffice',
+        value: '#F1F1F1',
+      },
+      {
+        name: 'white',
+        value: '#ffffff',
+      },
+      {
+        name: 'black',
+        value: '#000000',
+      },
+    ],
+  },
+  chromatic: {
+    delay: 500,
+    diffThreshold: 0.15, // Test to see if we have less false positive
+  },
+  options: {
+    storySort: {
+      order: [
+        'LandingPage',
+        ['Components', ['Header', 'Content', 'Footer'], 'LandingPage'],
+        'Onboarding',
+        'Multistore',
+        [
+          'Components',
+          [
+            'SectionTitle',
+            'Notice - Product feed',
+            'Card - PS Account',
+            'Card - Google Account',
+            'Card - MCA',
+            'Card - Product feed',
+            'Card - Free listing',
+            'Settings - Poduct feed',
+          ],
+          'OnboardingPage',
+          ['Header', 'Content', 'Footer'],
+        ],
+        'PS Account',
+        'Google Account',
+        'Merchant Center Account',
+        'Product feed',
+        'Free listing',
+        'Google Ads Account',
+        'Smart Shopping Campaign',
+        'Product Feed Page',
+        'Reporting',
+        ['Key Metrics'],
+        'Basic Components',
+      ],
+    },
+  },
+};
