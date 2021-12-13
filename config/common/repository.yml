@@ -36,6 +36,9 @@ services:
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\ShopRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\ShopRepository
 
+  PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository
+
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\StateRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\StateRepository
     arguments:
