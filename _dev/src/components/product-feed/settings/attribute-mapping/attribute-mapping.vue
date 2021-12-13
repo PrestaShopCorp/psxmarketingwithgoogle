@@ -209,7 +209,7 @@ export default {
     },
     categoryProductsChanged(category, isSelected) {
       localStorage.setItem('categoryProductsSelected', JSON.stringify(this.categoryProductsSelected));
-      console.log(isSelected, category);
+
       if (!isSelected) {
         return;
       }
