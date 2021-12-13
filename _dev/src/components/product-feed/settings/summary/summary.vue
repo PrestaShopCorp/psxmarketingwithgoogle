@@ -21,7 +21,9 @@
             class="ps_gs-productfeed-report-card--66"
             icon="event"
             :title="$t('productFeedSettings.summary.date')"
-            :description="nextSyncDate | timeConverterToStringifiedDate"
+            :description="selectedSyncScheduleIsDefault ?
+              (nextSyncDate | timeConverterToStringifiedDate)
+              : $t('productFeedSettings.summary.syncScheduledNow')"
           />
         </b-row>
       </b-container>
@@ -32,7 +34,7 @@
       </h3>
       <b-container
         fluid
-        class="p-0 mb-2"
+        class="p-0 mb-3"
       >
         <b-row
           no-gutters
@@ -115,12 +117,40 @@
           </product-feed-card-report-card>
         </b-row>
       </b-container>
+      <b-form-group
+        :label="$t('productFeedSettings.summary.agreementTitle')"
+        label-class="h4 font-weight-600 mb-3 d-block p-0 bg-transparent border-0"
+      >
+        <b-form-checkbox
+          data-test-id="buttonCheckbox"
+          class="ps_gs-checkbox"
+          v-model="acceptSyncSchedule"
+        >
+          <VueShowdown
+            v-if="selectedSyncScheduleIsDefault"
+            :markdown="$t('productFeedSettings.summary.agreementCheckboxLabel1Default',
+                          {time: formatNextSync})"
+          />
+          <VueShowdown
+            v-else
+            :markdown="$t('productFeedSettings.summary.agreementCheckboxLabel1Instant')"
+          />
+        </b-form-checkbox>
+        <b-form-checkbox
+          data-test-id="buttonCheckbox"
+          class="ps_gs-checkbox mt-n1"
+          v-model="understandTerms"
+        >
+          <VueShowdown :markdown="$t('productFeedSettings.summary.agreementCheckboxLabel2')" />
+        </b-form-checkbox>
+      </b-form-group>
     </section>
     <actions-buttons
       :next-step="saveAll"
       :previous-step="previousStep"
       :disable-continue="disabledExportButton"
-      :ok-label="$t('cta.export')"
+      :disable-tooltip="$t('productFeedSettings.summary.disabledButtonTooltip')"
+      :ok-label="$t('cta.saveAndExport')"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
     <settings-footer
@@ -163,16 +193,20 @@ export default {
   },
   data() {
     return {
-      disabledExportButton: false,
       shippingSettings:
       this.$store.state.productFeed.settings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
         : this.$t('productFeedSettings.shipping.manually'),
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
+      acceptSyncSchedule: false,
+      understandTerms: false,
     };
   },
   computed: {
+    disabledExportButton() {
+      return !(this.acceptSyncSchedule && this.understandTerms);
+    },
     nextSyncInHours() {
       // Return how many hours left before next sync
       const now = dayjs();
@@ -229,6 +263,16 @@ export default {
     },
     attributes() {
       return this.getMapping;
+    },
+    selectedSyncSchedule() {
+      // TODO
+      // Get value from store I guess ?
+      return 'tutu';
+    },
+    selectedSyncScheduleIsDefault() {
+      // TODO
+      // We might benefit from an enum here
+      return this.selectedSyncSchedule === 'syncDefault';
     },
   },
   methods: {
