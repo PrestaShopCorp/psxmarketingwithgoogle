@@ -208,13 +208,10 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     categoryProductsChanged(category, isSelected) {
-      localStorage.setItem('categoryProductsSelected', JSON.stringify(this.categoryProductsSelected));
-
       if (!isSelected) {
         return;
       }
       if (category === Categories.NONE) {
-        localStorage.setItem('categoryProductsSelected', JSON.stringify([Categories.NONE]));
         this.categoryProductsSelected = this.categoryProductsSelected
           .filter((cat) => cat === Categories.NONE);
       }
@@ -222,6 +219,7 @@ export default {
         this.categoryProductsSelected = this.categoryProductsSelected
           .filter((cat) => cat !== Categories.NONE);
       }
+      localStorage.setItem('categoryProductsSelected', JSON.stringify(this.categoryProductsSelected));
     },
     refreshComponent() {
       this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE');
