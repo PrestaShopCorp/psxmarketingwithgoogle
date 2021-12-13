@@ -209,10 +209,12 @@ export default {
     },
     categoryProductsChanged(category, isSelected) {
       localStorage.setItem('categoryProductsSelected', JSON.stringify(this.categoryProductsSelected));
+
       if (!isSelected) {
         return;
       }
       if (category === Categories.NONE) {
+        localStorage.setItem('categoryProductsSelected', JSON.stringify([Categories.NONE]));
         this.categoryProductsSelected = this.categoryProductsSelected
           .filter((cat) => cat === Categories.NONE);
       }
