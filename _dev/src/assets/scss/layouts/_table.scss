@@ -268,7 +268,8 @@ $statusColors: (
 }
 
 .table-with-maxheight {
-  max-height: max(rem(300), rem(480));
+  // This is tricky as lazyloading will work depending on the height
+  max-height: max(rem(300), rem(380));
   overflow-y: auto;
 }
 
