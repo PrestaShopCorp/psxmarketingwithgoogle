@@ -70,7 +70,7 @@ class ModuleRepository
 
         return [
             'needUpdate' => $needUpdate,
-            'upgradeLink' => !$needUpdate ? '' : $this->getUpgradeLink(),
+            'upgradeLink' => $needUpdate ? $this->getUpgradeLink() : '',
         ];
     }
 }
