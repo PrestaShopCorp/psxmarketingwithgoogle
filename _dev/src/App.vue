@@ -14,11 +14,7 @@
       </b-card>
     </template>
     <b-alert
-<<<<<<< HEAD
       v-else-if="!eventbusIsOK"
-=======
-      v-else-if="!eventBusStatus"
->>>>>>> 4aecde01 (Set up event bus check)
       variant="warning"
       class="mb-0 mt-3"
       show
@@ -36,14 +32,9 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
           variant="primary"
-<<<<<<< HEAD
           :href="linkToUpdateEventbus"
           target="_blank"
           @click="eventBusUpdated"
-=======
-          @click="updateEventBus"
-          data-test-id="btn-refresh"
->>>>>>> 4aecde01 (Set up event bus check)
         >
           {{ $t('cta.update') }}
         </b-button>
@@ -106,12 +97,10 @@
 import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-
 let resizeEventTimer;
 const root = document.documentElement;
 const header = document.querySelector('#content .page-head');
 const headerFull = document.querySelector('#header_infos');
-
 export default {
   name: 'Home',
   components: {
@@ -122,7 +111,7 @@ export default {
     return {
       eventbusIsOK: true,
       linkToUpdateEventbus: null,
-    }
+    };
   },
   computed: {
     productFeedIsConfigured() {
@@ -143,16 +132,11 @@ export default {
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
     },
-    eventBusStatus() {
-      return false;
-    },
-
   },
   created() {
     this.$root.identifySegment();
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
     this.checkForEventBusVersion();
-
     this.setCustomProperties();
     window.addEventListener('resize', this.resizeEventHandler);
   },
@@ -194,12 +178,10 @@ export default {
       this.eventbusIsOK = true;
     },
   },
-
   watch: {
     $route() {
       this.$root.identifySegment();
     },
   },
-
 };
 </script>
