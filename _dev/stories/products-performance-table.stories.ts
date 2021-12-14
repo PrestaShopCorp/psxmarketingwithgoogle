@@ -1,6 +1,9 @@
 const {dateGenerator} = require('../.storybook/utils/date-generator');
 import ProductsPerformanceTable from '../src/components/smart-shopping-campaign/reporting/products-performance/products-performance-table.vue'
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
+import {rest} from 'msw'
+import {productsPerformanceListEmpty, productsPerformanceList} from '../.storybook/mock/reporting/products-performance.js';
+import {nextPageTokenEmpty, nextPageToken} from '../.storybook/mock/reporting/next-page-token.js';
 
 export default {
   title: 'Reporting/Products Performance',
@@ -28,12 +31,43 @@ Table.args = {
   },
 }
 
+Table.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/ads-reporting/products-performances', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productsPerformanceList,
+            ...nextPageToken,
+          })
+        );
+      }),
+    ],
+  },
+};
+
 export const Empty:any = Template.bind({});
 Empty.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
   },
 }
+
+Empty.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/ads-reporting/products-performances', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productsPerformanceListEmpty,
+            ...nextPageTokenEmpty,
+          })
+        );
+      }),
+    ],
+  },
+};
+
 
 export const ErrorApi:any = Template.bind({});
 ErrorApi.args = {
@@ -43,3 +77,15 @@ ErrorApi.args = {
     this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = dateGenerator(1);
     this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.endDate = dateGenerator(0);  },
 }
+
+ErrorApi.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/ads-reporting/products-performances', (req, res, ctx) => {
+        return res(
+          ctx.status(500)
+        );
+      }),
+    ],
+  },
+};
