@@ -13,5 +13,6 @@ parameters:
     - '#Parameter \#1 \$id of class [a-zA-Z0-9\\_]+ constructor expects null, bool\|string given.#'
     - '#Parameter \#1 \$id of class [a-zA-Z0-9\\_]+ constructor expects int\|null, bool\|string given.#'
     - '#Parameter \#1 \$id of class [a-zA-Z0-9\\_]+ constructor expects null, int given.#'
+    - '#Class Ps_EventBus not found.#'
 
   level: 5

@@ -34,6 +34,7 @@ class ModuleRepository
      */
     public function eventBusModuleNeedUpdate(string $version): bool
     {
+        /** @var Module $module */
         $module = Module::getInstanceByName(self::MODULE_NAME);
 
         if ($module instanceof \Ps_EventBus) {
