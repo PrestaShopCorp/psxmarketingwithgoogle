@@ -113,21 +113,23 @@ export default {
     return null;
   },
   async [ActionsTypes.UPDATE_EVENTBUS_MODULE]({rootState}) {
-    console.log('update');
-
-    // try {
-    //   const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-    //     method: 'POST',
-    //     headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-    //     body: JSON.stringify({
-    //       action: 'retrieveFaq',
-    //     }),
-    //   });
-    //   if (!response.ok) {
-    //     throw new HttpClientError(response.statusText, response.status);
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        body: JSON.stringify({
+          action: 'getEventBusModuleStatus',
+          version: rootState.app.eventbusVersion,
+        }),
+      });
+      console.log('response', response);
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
   },
 };

@@ -36,6 +36,7 @@ export interface State {
   psxMktgWithGoogleOnProductionEnvironment: boolean;
   debugData: DebugData;
   adBlockerExists: boolean;
+  eventbusVersion: string;
 }
 
 export interface ShopCurrency {
@@ -82,4 +83,5 @@ export const state: State = {
     typesOfSync: [],
   },
   adBlockerExists: false,
+  eventbusVersion: '1.5.0',
 };

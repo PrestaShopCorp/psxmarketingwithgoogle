@@ -14,7 +14,7 @@
       </b-card>
     </template>
     <b-alert
-      v-else-if="!eventBusStatus"
+      v-else-if="!eventbusIsOK"
       variant="warning"
       class="mb-0 mt-3"
       show
@@ -32,8 +32,9 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
           variant="primary"
-          @click="updateEventBus"
-          data-test-id="btn-refresh"
+          :href="linkToUpdateEventbus"
+          target="_blank"
+          @click="eventBusUpdated"
         >
           {{ $t('cta.update') }}
         </b-button>
@@ -108,6 +109,13 @@ export default {
     Menu,
     MenuItem,
   },
+
+  data() {
+    return {
+      eventbusIsOK: true,
+      linkToUpdateEventbus: null,
+    };
+  },
   computed: {
     productFeedIsConfigured() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
@@ -127,10 +135,6 @@ export default {
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
     },
-    eventBusStatus() {
-      return false;
-    },
-
   },
   created() {
     this.$root.identifySegment();
@@ -166,10 +170,16 @@ export default {
       });
     },
     checkForEventBusVersion() {
-      console.log('check');
+      this.$store.dispatch('app/UPDATE_EVENTBUS_MODULE').then((res) => {
+        if (!res) {
+          console.log('pas de res');
+          this.eventbusIsOK = false;
+          this.linkToUpdateEventbus = 'http://google.fr';
+        }
+      });
     },
-    updateEventBus() {
-      this.$store.dispatch('app/UPDATE_EVENTBUS_MODULE');
+    eventBusUpdated() {
+      this.eventbusIsOK = true;
     },
   },
 
