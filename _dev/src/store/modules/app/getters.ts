@@ -58,9 +58,10 @@ export default {
     if (targetCountriesFromLocalStorage) {
       return JSON.parse(targetCountriesFromLocalStorage);
     }
-    if (state.psxMtgWithGoogleDefaultShopCountry !== null) {
-      return [state.psxMtgWithGoogleDefaultShopCountry];
-    }
-    return null;
+    // We don't send default country from shop because we never know if it's the right one
+    // if (state.psxMtgWithGoogleDefaultShopCountry !== null) {
+    //   return [state.psxMtgWithGoogleDefaultShopCountry];
+    // }
+    return [];
   },
 };
