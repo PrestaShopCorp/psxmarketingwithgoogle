@@ -19,17 +19,17 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-use PrestaShop\ModuleLibFaq\Faq;
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
-use PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider;
-use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
-use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
-use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
-use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository;
-use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository;
+use PrestaShop\ModuleLibFaq\Faq;
 
 class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 {
@@ -484,7 +484,8 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         );
     }
 
-    private function getEventBusModuleStatus(array $inputs) {
+    private function getEventBusModuleStatus(array $inputs)
+    {
         if (!isset($inputs['version'])) {
             http_response_code(400);
             $this->ajaxDie(json_encode([

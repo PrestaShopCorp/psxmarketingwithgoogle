@@ -21,6 +21,7 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
 use Module;
+use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
 class ModuleRepository
 {
@@ -31,7 +32,7 @@ class ModuleRepository
      *
      * @param string $version
      */
-    public function eventBusIsUpToDate(string $version): bool
+    public function eventBusModuleNeedUpdate(string $version): bool
     {
         $module = Module::getInstanceByName(self::MODULE_NAME);
 
@@ -47,12 +48,11 @@ class ModuleRepository
     }
 
     /**
-     * @return string|null
-     *
+     * @return string
      */
     public function getUpgradeLink()
     {
-        $router = \SymfonyContainer::getInstance()->get('router');
+        $router = SymfonyContainer::getInstance()->get('router');
 
         return \Tools::getHttpHost(true) . $router->generate('admin_module_manage_action', [
             'action' => 'upgrade',
@@ -63,16 +63,13 @@ class ModuleRepository
     /**
      * @return array
      */
-    public function getStatusFromEventBusModule(string $version) : array
+    public function getStatusFromEventBusModule(string $version): array
     {
-        $isUpToDate = $this->eventBusIsUpToDate($version);
+        $needUpdate = $this->eventBusModuleNeedUpdate($version);
 
         return [
-            'isUpToDate' => $isUpToDate,
-            'upgradeLink' => $isUpToDate ? '' : $this->getUpgradeLink(),
+            'needUpdate' => $needUpdate,
+            'upgradeLink' => !$needUpdate ? '' : $this->getUpgradeLink(),
         ];
     }
 }
-
-
-?>
