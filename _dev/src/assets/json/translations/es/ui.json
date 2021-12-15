@@ -472,7 +472,8 @@
     "alerts": {
       "noTag": "Al no añadir la etiqueta automáticamente, Google no podrá enviar los resultados de las campañas",
       "duplicatedTag": "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.",
-      "noConversionActions": "The tracking tag has been enabled, but there is no conversion action set on the shop. This can be fixed by creating new ones."
+      "noConversionActions": "The tracking tag has been enabled, but there is no conversion action set on the shop. This can be fixed by creating new ones.",
+      "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
     },
     "labelSelectedDimension": "Valor de la dimensión seleccionada",
     "labelDimensionValue": "Valor de la dimensión",
