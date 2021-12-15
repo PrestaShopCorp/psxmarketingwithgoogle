@@ -1,6 +1,7 @@
 import SmartShoppingCampaignCreation from '../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation.vue'
 import {initialStateApp} from '../.storybook/mock/state-app';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads.js';
+import {campaignWithUnhandledFilters} from '../.storybook/mock/smart-shopping-campaigns';
 
 export default {
   title: 'Smart Shopping Campaign/Creation',
@@ -62,4 +63,16 @@ Edition.args = {
       ['FR'],
     );
   },
-}
+};
+
+export const EditionWithUnhandledFilters:any = Template.bind({});
+EditionWithUnhandledFilters.args = {
+  editMode: true,
+  mounted(this: any) {
+    this.$refs.sscCreation.$data = Object.assign(
+      this.$refs.sscCreation.$data,
+      campaignWithUnhandledFilters,
+    );
+  },
+};
+

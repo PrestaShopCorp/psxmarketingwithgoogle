@@ -62,7 +62,8 @@ export interface CampaignObject {
   dailyBudget : number,
   currencyCode: string,
   productFilters?: ProductsFilteredObject[],
-  status?: CampaignStatus|CampaignStatusToggle
+  status?: CampaignStatus|CampaignStatusToggle,
+  hasUnhandledFilters?: boolean,
 }
 
 export interface Reporting {
