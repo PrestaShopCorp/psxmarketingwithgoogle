@@ -92,7 +92,8 @@ export default {
   computed: {
     countries: {
       get() {
-        return this.countriesChosen.length ? this.countriesChosen : this.verifyDefaultCountriesExist(this.defaultCountries);
+        return this.countriesChosen.length ? this.countriesChosen
+          : this.verifyDefaultCountriesExist(this.defaultCountries);
       },
       set(value) {
         this.countriesChosen = value;
