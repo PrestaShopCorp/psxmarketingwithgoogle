@@ -472,7 +472,8 @@
     "alerts": {
       "noTag": "Door de tag niet automatisch toe te voegen zal Google niet in staat zijn om campagnes resultaten te sturen",
       "duplicatedTag": "Het lijkt erop dat u al een tag hebt gekoppeld aan uw google-account, het maken van een nieuwe tag kan gebeurtenissen dupliceren voor uw campagnes. Wij stellen voor om alleen degene te houden die wij voor u genereren.",
-      "noConversionActions": "De tracking tag is ingeschakeld, maar er is geen conversie actie ingesteld op de winkel. Dit kan worden verholpen door nieuwe te maken."
+      "noConversionActions": "De tracking tag is ingeschakeld, maar er is geen conversie actie ingesteld op de winkel. Dit kan worden verholpen door nieuwe te maken.",
+      "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
     },
     "labelSelectedDimension": "Geselecteerde dimensie waarde",
     "labelDimensionValue": "Afmeting waarde",
