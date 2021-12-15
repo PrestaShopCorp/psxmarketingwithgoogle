@@ -46,7 +46,7 @@ class CarrierRepository
 
     public function getCarriers(int $langId): array
     {
-        $carriers = Carrier::getCarriers($langId);
+        $carriers = Carrier::getCarriers($langId, false, false, false, null, Carrier::ALL_CARRIERS);
 
         $data = [];
         foreach ($carriers as $key => $carrier) {
