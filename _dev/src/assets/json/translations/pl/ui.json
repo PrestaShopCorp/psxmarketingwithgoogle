@@ -472,7 +472,8 @@
     "alerts": {
       "noTag": "Przez brak automatycznie dodanego tagu, Google nie będzie w stanie wysyłać wyników kampanii",
       "duplicatedTag": "Wygląda na to, że masz już tag powiązany z Twoim kontem Google, stworzenie nowego tagu może spowodować zduplikowanie zdarzeń dla Twoich kampanii. Sugerujemy, aby zachować tylko ten, który wygenerujemy dla Ciebie.",
-      "noConversionActions": "Tag śledzenia został włączony, ale w sklepie nie ma ustawionych akcji konwersji. Można to naprawić poprzez stworzenie nowych."
+      "noConversionActions": "Tag śledzenia został włączony, ale w sklepie nie ma ustawionych akcji konwersji. Można to naprawić poprzez stworzenie nowych.",
+      "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
     },
     "labelSelectedDimension": "Wybrana wartość wymiaru",
     "labelDimensionValue": "Wartość wymiaru",
