@@ -472,7 +472,8 @@
     "alerts": {
       "noTag": "Wenn das Tag nicht automatisch hinzugefügt wird, kann Google keine Kampagnenergebnisse senden",
       "duplicatedTag": "Sieht so aus, als hätten Sie bereits ein Tag, das mit Ihrem Google-Konto verknüpft ist. Wenn Sie ein neues Tag erstellen, können Ereignisse für Ihre Kampagnen dupliziert werden. Wir schlagen vor, dass Sie nur die von uns für Sie erstellte Datei behalten.",
-      "noConversionActions": "Das Tracking-Tag wurde aktiviert, aber es ist keine Konvertierungsaktion für den Shop festgelegt. Dies kann durch die Erstellung neuer Dokumente behoben werden."
+      "noConversionActions": "Das Tracking-Tag wurde aktiviert, aber es ist keine Konvertierungsaktion für den Shop festgelegt. Dies kann durch die Erstellung neuer Dokumente behoben werden.",
+      "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
     },
     "labelSelectedDimension": "Ausgewählter Dimensionswert",
     "labelDimensionValue": "Wert der Dimension",
