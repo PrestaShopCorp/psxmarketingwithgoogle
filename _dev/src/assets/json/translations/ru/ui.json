@@ -472,7 +472,8 @@
     "alerts": {
       "noTag": "Если не добавить тег автоматически, Google не сможет отправлять результаты кампаний",
       "duplicatedTag": "Похоже, у вас уже есть метка, связанная с вашей учетной записью google, создание новой метки может привести к дублированию событий для ваших кампаний. Мы предлагаем сохранить только ту, которую мы генерируем для вас.",
-      "noConversionActions": "Метка отслеживания была включена, но в магазине не установлено действие конверсии. Это можно исправить путем создания новых."
+      "noConversionActions": "Метка отслеживания была включена, но в магазине не установлено действие конверсии. Это можно исправить путем создания новых.",
+      "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
     },
     "labelSelectedDimension": "Выбранное значение измерения",
     "labelDimensionValue": "Размерное значение",

@@ -472,7 +472,8 @@
     "alerts": {
       "noTag": "En n'ajoutant pas automatiquement la balise, Google ne sera pas en mesure d'envoyer les résultats des campagnes",
       "duplicatedTag": "Il semble que vous avez déjà un tag lié à votre compte Google, la création d'un nouveau tag peut dupliquer des événements pour vos campagnes. Nous vous suggérons de ne conserver que celui que nous générons pour vous.",
-      "noConversionActions": "La balise de suivi a été activée, mais il n'y a aucune action de conversion définie dans la boutique. Cela peut être corrigé en créant de nouvelles."
+      "noConversionActions": "La balise de suivi a été activée, mais il n'y a aucune action de conversion définie dans la boutique. Cela peut être corrigé en créant de nouvelles.",
+      "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
     },
     "labelSelectedDimension": "Valeur de la dimension sélectionnée",
     "labelDimensionValue": "Valeur de la dimension",
