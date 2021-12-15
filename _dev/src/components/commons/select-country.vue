@@ -4,7 +4,7 @@
       :deselect-from-dropdown="true"
       :multiple="isMultiple"
       :options="sortCountries.filter(c => countries.indexOf(c) < 0)"
-      @search="searchCountry"
+      @search="onSearchCountry"
       label="name"
       v-model="countries"
       :placeholder=" $t('productFeedSettings.shipping.placeholderSelect')"
@@ -46,7 +46,7 @@ export default {
   },
   data() {
     return {
-      countryChosen: [],
+      countriesChosen: [],
       searchString: '',
     };
   },
@@ -56,6 +56,7 @@ export default {
       required: true,
     },
     defaultCountries: {
+      type: Array,
       required: true,
     },
     needFilter: {
@@ -70,7 +71,7 @@ export default {
     },
   },
   methods: {
-    searchCountry(event) {
+    onSearchCountry(event) {
       this.searchString = event;
     },
     highlightSearch(str) {
@@ -84,10 +85,10 @@ export default {
   computed: {
     countries: {
       get() {
-        return this.countryChosen.length ? this.countryChosen : this.defaultCountries;
+        return this.countriesChosen.length ? this.countriesChosen : this.defaultCountries;
       },
       set(value) {
-        this.countryChosen = value;
+        this.countriesChosen = value;
         this.$emit('countrySelected', value);
       },
     },
