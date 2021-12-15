@@ -79,13 +79,20 @@ export default {
       const regex = new RegExp(`(${this.searchString})`, 'gi');
       return str.replace(regex, '<strong>$1</strong>');
     },
+    verifyDefaultCountriesExist(countries) {
+      if (!this.sortCountries.length) {
+        return [];
+      }
+      const exist = countriesSelectionOptions.some((c) => countries.includes(c.country));
+      return exist ? countries : [];
+    },
   },
   countriesSelectionOptions,
   googleUrl,
   computed: {
     countries: {
       get() {
-        return this.countriesChosen.length ? this.countriesChosen : this.defaultCountries;
+        return this.countriesChosen.length ? this.countriesChosen : this.verifyDefaultCountriesExist(this.defaultCountries);
       },
       set(value) {
         this.countriesChosen = value;

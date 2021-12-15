@@ -121,7 +121,6 @@ export default {
       tax: null,
       shippingSettings: JSON.parse(localStorage.getItem('productFeed-autoImportShippingSettings')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
       loading: false,
-
     };
   },
   computed: {
