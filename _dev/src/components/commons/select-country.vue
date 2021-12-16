@@ -83,7 +83,7 @@ export default {
       if (!this.sortCountries.length) {
         return [];
       }
-      const exist = countriesSelectionOptions.some((c) => countries.includes(c.country));
+      const exist = countriesSelectionOptions.filter((c) => countries.includes(c.country));
       return exist ? countries : [];
     },
   },
