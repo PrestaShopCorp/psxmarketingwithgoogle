@@ -260,7 +260,7 @@ export default {
       this.resetFields();
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', []).then(() => {
         this.$bvModal.hide('PhoneVerificationPopin');
-        this.$emit('verifiyPhoneNumber');
+        this.$emit('phoneNumberVerified');
         this.$store.commit('accounts/SAVE_STATUS_OVERRIDE_CLAIMING',
           WebsiteClaimErrorReason.PendingCreation);
         setTimeout(async () => {
