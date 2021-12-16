@@ -71,7 +71,8 @@ class ModuleRepository
         ];
     }
 
-    private function setModuleName(string $moduleName) {
+    private function setModuleName(string $moduleName)
+    {
         $this->moduleName = $moduleName;
     }
 }
