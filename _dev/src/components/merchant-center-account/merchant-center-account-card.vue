@@ -504,7 +504,7 @@
         />
         <PhoneVerificationPopin
           ref="PhoneVerificationPopin"
-          @verifiyPhoneNumber="phoneNumberVerified"
+          @phoneNumberVerified="phoneNumberVerified"
         />
       </b-card>
     </b-skeleton-wrapper>
