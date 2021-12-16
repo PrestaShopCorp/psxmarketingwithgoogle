@@ -152,8 +152,8 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             case 'getShopAttributes':
                 $this->getShopAttributes();
                 break;
-            case 'getEventBusModuleStatus':
-                $this->getEventBusModuleStatus($inputs);
+            case 'getModuleStatus':
+                $this->getModuleStatus($inputs);
                 break;
             default:
                 http_response_code(400);
@@ -484,19 +484,19 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         );
     }
 
-    private function getEventBusModuleStatus(array $inputs)
+    private function getModuleStatus(array $inputs)
     {
-        if (!isset($inputs['version'])) {
+        if (!isset($inputs['moduleName'])) {
             http_response_code(400);
             $this->ajaxDie(json_encode([
                 'success' => false,
-                'message' => 'Missing version key',
+                'message' => 'Missing moduleName key',
             ]));
         }
 
         $this->ajaxDie(
             json_encode(
-                $this->moduleRepository->getStatusFromEventBusModule($inputs['version'])
+                $this->moduleRepository->getInformationsAboutModule($inputs['moduleName'])
             )
         );
     }

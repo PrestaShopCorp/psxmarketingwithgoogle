@@ -25,27 +25,24 @@ use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
 class ModuleRepository
 {
-    const MODULE_NAME = 'ps_eventbus';
+    /**
+     * @var string
+     */
+    private $moduleName;
 
     /**
-     * @return bool
-     *
-     * @param string $version
+     * @return string
      */
-    public function eventBusModuleNeedUpdate(string $version): bool
+    public function getModuleVersion(): string
     {
         /** @var Module $module */
-        $module = Module::getInstanceByName(self::MODULE_NAME);
+        $module = Module::getInstanceByName($this->moduleName);
 
-        if ($module instanceof \Ps_EventBus) {
-            return version_compare(
-                $version,
-                $module->version,
-                '>='
-            );
+        if (!empty($module)) {
+            return $module->version;
         }
 
-        return false;
+        return '';
     }
 
     /**
@@ -57,20 +54,24 @@ class ModuleRepository
 
         return \Tools::getHttpHost(true) . $router->generate('admin_module_manage_action', [
             'action' => 'upgrade',
-            'module_name' => self::MODULE_NAME,
+            'module_name' => $this->moduleName,
         ]);
     }
 
     /**
      * @return array
      */
-    public function getStatusFromEventBusModule(string $version): array
+    public function getInformationsAboutModule(string $moduleName): array
     {
-        $needUpdate = $this->eventBusModuleNeedUpdate($version);
+        $this->setModuleName($moduleName);
 
         return [
-            'needUpdate' => $needUpdate,
-            'upgradeLink' => $needUpdate ? $this->getUpgradeLink() : '',
+            'version' => $this->getModuleVersion(),
+            'upgradeLink' => $this->getUpgradeLink(),
         ];
+    }
+
+    private function setModuleName(string $moduleName) {
+        $this->moduleName = $moduleName;
     }
 }
