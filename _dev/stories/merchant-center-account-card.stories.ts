@@ -13,7 +13,7 @@ import {rest} from 'msw'
 const getWebsiteRequirementStatusRouteObject = {
   msw: {
     handlers: [
-      rest.post('/', (req, res, ctx) => {
+      rest.post('/', (req: any, res, ctx) => {
         const payload = req.body.action;
         if (payload === 'getWebsiteRequirementStatus')
         return res(

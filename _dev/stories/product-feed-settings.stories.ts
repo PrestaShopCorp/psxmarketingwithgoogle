@@ -65,7 +65,7 @@ export default {
             })
           );
         }),
-        rest.post('/', (req, res, ctx) => {
+        rest.post('/', (req: any, res, ctx) => {
           const payload = req.body.action;
           if (payload === 'getProductsReadyToSync') {
             return res(
