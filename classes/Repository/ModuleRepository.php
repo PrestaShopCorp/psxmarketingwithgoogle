@@ -31,9 +31,9 @@ class ModuleRepository
     private $moduleName;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getModuleVersion(): string
+    public function getModuleVersion()
     {
         /** @var Module $module */
         $module = Module::getInstanceByName($this->moduleName);
@@ -42,7 +42,7 @@ class ModuleRepository
             return $module->version;
         }
 
-        return '';
+        return null;
     }
 
     /**
