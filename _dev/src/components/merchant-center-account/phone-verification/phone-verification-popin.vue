@@ -102,7 +102,7 @@
             variant="primary"
             size="sm"
             class="ml-3"
-           @click="sendCode"
+            @click="sendCode"
           >
             <template v-if="isValidationInProgress">
               {{ $t('mcaCard.validatingCode') }}
@@ -216,9 +216,6 @@ export default {
       this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
     },
     async sendCode() {
-      // if (this.invitationId.length !== 6) {
-      //   return;
-      // }
       this.$segment.track('[GGL] Create GMC - Step 4 Confirm Number', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
