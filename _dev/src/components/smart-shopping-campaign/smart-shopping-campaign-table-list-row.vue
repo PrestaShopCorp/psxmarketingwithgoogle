@@ -81,12 +81,12 @@ export default {
   computed: {
     campaignDuration() {
       if (!this.campaign.endDate) {
-        return `From ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
+        return `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
       }
       const endDate = new Date(this.campaign.endDate).getFullYear();
       const todayYear = new Date().getFullYear();
       if (endDate - 10 > todayYear) {
-        return `From ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
+        return `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
       }
       return `${this.$options.filters.timeConverterToDate(this.campaign.startDate)
       }-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}`;
