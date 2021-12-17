@@ -1,8 +1,8 @@
 const {dateGenerator} = require('../.storybook/utils/date-generator');
 import KeyMetricsBlock from '../src/components/smart-shopping-campaign/reporting/key-metrics/key-metrics-block.vue'
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads.js';
-
-import {rest} from 'msw'
+// @ts-ignore
+import {rest} from 'msw';
 import {dailyResultsEmpty, dailyResultsDatas, dailyResultsBigDatas} from '../.storybook/mock/reporting/daily-results.js';
 import {kpisEmpty, kpiDatas} from '../.storybook/mock/reporting/kpi.js';
 import {campaignsPerformanceListEmpty, campaignsPerformanceList} from '../.storybook/mock/reporting/campaigns-performance.js';

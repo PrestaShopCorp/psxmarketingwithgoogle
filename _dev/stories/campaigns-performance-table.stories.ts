@@ -1,7 +1,8 @@
 const {dateGenerator} = require('../.storybook/utils/date-generator');
 import CampaignsPerformanceTable from '../src/components/smart-shopping-campaign/reporting/campaigns-performance/campaigns-performance-table.vue';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
-import {rest} from 'msw'
+// @ts-ignore
+import {rest} from 'msw';
 import {campaignsPerformanceListEmpty, campaignsPerformanceList} from '../.storybook/mock/reporting/campaigns-performance.js';
 import {nextPageTokenEmpty, nextPageToken} from '../.storybook/mock/reporting/next-page-token.js';
 

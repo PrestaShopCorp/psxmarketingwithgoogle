@@ -2,7 +2,8 @@ import SmartShoppingCampaignCreation from '../src/components/smart-shopping-camp
 import {initialStateApp} from '../.storybook/mock/state-app';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads.js';
 import {campaignWithUnhandledFilters} from '../.storybook/mock/smart-shopping-campaigns';
-import {rest} from 'msw'
+// @ts-ignore
+import {rest} from 'msw';
 
 export default {
   title: 'Smart Shopping Campaign/Creation',

@@ -131,7 +131,7 @@ export default {
       }
       commit(MutationsTypes.SET_SYNC_SCHEDULE, json?.requestSynchronizationNow || false);
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === 404) {
         console.log('Incremental-Sync settings not found: ask user to configure it');
       } else {
