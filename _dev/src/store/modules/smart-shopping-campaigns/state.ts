@@ -58,7 +58,6 @@ export interface CampaignObject {
   campaignName: string;
   startDate: string,
   endDate?: string,
-  // TODO : replace as array when API sends right type of data (array not string)
   targetCountry: string;
   dailyBudget : number,
   currencyCode: string,

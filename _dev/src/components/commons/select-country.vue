@@ -3,7 +3,7 @@
     <ps-select
       :deselect-from-dropdown="true"
       :multiple="isMultiple"
-      :options="sortCountries.filter(c => countries.indexOf(c) < 0)"
+      :options="filterCountries.filter(c => countries.indexOf(c) < 0)"
       @search="onSearchCountry"
       label="name"
       v-model="countries"
@@ -80,7 +80,7 @@ export default {
       return str.replace(regex, '<strong>$1</strong>');
     },
     verifyDefaultCountriesExist(countries) {
-      if (!this.sortCountries.length) {
+      if (!this.filterCountries.length) {
         return [];
       }
       const exist = countriesSelectionOptions.filter((c) => countries.includes(c.country));
@@ -100,17 +100,18 @@ export default {
         this.$emit('countrySelected', value);
       },
     },
-    sortCountries() {
+    filterCountries() {
       // 'this' is not retrieved inside reduce so we create a new variable
       const {currency} = this;
-      return this.needFilter
-        ? countriesSelectionOptions.reduce((ids, obj) => {
-          if (obj.currency === currency) {
-            ids.push(obj.country);
-          }
-          return ids;
-        }, [])
-        : countriesSelectionOptions.map((e) => e.country);
+      if (!this.needFilter) {
+        return countriesSelectionOptions.map((e) => e.country);
+      }
+      return countriesSelectionOptions.reduce((ids, obj) => {
+        if (obj.currency === currency) {
+          ids.push(obj.country);
+        }
+        return ids;
+      }, []);
     },
   },
 };

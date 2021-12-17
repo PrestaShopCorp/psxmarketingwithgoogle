@@ -351,7 +351,7 @@ export default {
       timer: null,
       displayError: false,
       campaignIsActive: true,
-      targetCountry: [],
+      targetCountry: null,
       availableFilters: {
         name: this.$t('smartShoppingCampaignCreation.allFilters'),
         id: 'allFilters',
@@ -377,7 +377,7 @@ export default {
       if (this.campaignName
       && this.errorCampaignNameExistsAlready === false
       && this.campaignDurationStartDate
-      && this.targetCountry
+      && (this.targetCountry || this.countries)
       && this.campaignDailyBudget) {
         return false;
       }
@@ -428,7 +428,7 @@ export default {
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
-        targetCountry: this.targetCountry[0] || this.countries[0],
+        targetCountry: this.targetCountry || this.countries[0],
         productFilters: !this.campaignHasNoProductsFilter ? this.filtersChosen : [],
       };
     },
@@ -484,7 +484,7 @@ export default {
       );
     },
     saveCountrySelected(value) {
-      this.targetCountry.push(value);
+      this.targetCountry = value;
     },
     openFilterPopin() {
       this.$bvModal.show(
