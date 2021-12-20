@@ -175,4 +175,7 @@ export default {
       });
     });
   },
+  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_TARGET_COUNTRIES](state: LocalState, payload) {
+    state.targetCountries = payload;
+  },
 };

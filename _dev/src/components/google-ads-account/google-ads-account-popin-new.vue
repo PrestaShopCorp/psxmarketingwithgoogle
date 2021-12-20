@@ -70,6 +70,7 @@
           @countrySelected="saveCountrySelected"
           :default-countries="countries"
           :is-multiple="false"
+          :dropdown-options="activeCountriesWithCurrency"
         />
         <label
           class="pt-2 mt-3 mb-0 font-weight-600"
@@ -326,7 +327,6 @@ export default {
     },
     saveCountrySelected(value) {
       this.newAccountInfos.country = value;
-      this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', value);
     },
   },
   props: {
@@ -367,13 +367,10 @@ export default {
         this.newAccountInfos.name = value;
       },
     },
-    countries: {
-      get() {
-        // by default, we take the first of all active countries but user can change
-        return this.$options.filters.changeCountriesCodesToNames(
-          this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
-        );
-      },
+    countries() {
+      return this.$options.filters.changeCountriesCodesToNames(
+        [this.$store.state.app.psxMtgWithGoogleDefaultShopCountry],
+      );
     },
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
@@ -384,14 +381,17 @@ export default {
         .reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]), [])
         .sort();
     },
+    activeCountriesWithCurrency() {
+      return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
+    },
   },
   mounted() {
     this.$store.dispatch('googleAds/GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING').then(() => {
       this.newAccountInfos.timeZone = this.$store.getters['googleAds/GET_BILLING_SHOP_INFORMATIONS'].timeZone;
     });
     this.stepActiveData = this.stepActive;
-    this.newAccountInfos.country = this.$store.getters['app/GET_ACTIVE_COUNTRIES']
-      ? this.$options.filters.changeCountriesCodesToNames(this.$store.getters['app/GET_ACTIVE_COUNTRIES']) : '';
+    this.newAccountInfos.country = this.$store.getters['productFeed/GET_TARGET_COUNTRIES']
+      ? this.$options.filters.changeCountriesCodesToNames(this.$store.getters['productFeed/GET_TARGET_COUNTRIES']) : '';
   },
   googleUrl,
   countriesSelectionOptions,

@@ -3,7 +3,7 @@
     <ps-select
       :deselect-from-dropdown="true"
       :multiple="isMultiple"
-      :options="filterCountries.filter(c => countries.indexOf(c) < 0)"
+      :options="dropdownOptions"
       @search="onSearchCountry"
       label="name"
       v-model="countries"
@@ -36,7 +36,7 @@
 
 <script>
 import PsSelect from '../commons/ps-select';
-import countriesSelectionOptions from '../../assets/json/countries.json';
+import countriesFromGoogle from '../../assets/json/countries.json';
 import googleUrl from '../../assets/json/googleUrl.json';
 
 export default {
@@ -59,15 +59,19 @@ export default {
       type: Array,
       required: true,
     },
-    needFilter: {
-      type: Boolean,
-      required: false,
-      default: true,
+    dropdownOptions: {
+      type: Array,
+      required: true,
     },
     isMultiple: {
       type: Boolean,
       required: false,
       default: true,
+    },
+    needFilter: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   methods: {
@@ -79,39 +83,22 @@ export default {
       const regex = new RegExp(`(${this.searchString})`, 'gi');
       return str.replace(regex, '<strong>$1</strong>');
     },
-    verifyDefaultCountriesExist(countries) {
-      if (!this.filterCountries.length) {
-        return [];
-      }
-      const exist = countriesSelectionOptions.filter((c) => countries.includes(c.country));
-      return exist ? countries : [];
+    getCountriesFilteredWithList(arg) {
+      return this.dropdownOptions.filter((c) => arg.includes(c));
     },
   },
-  countriesSelectionOptions,
+  countriesFromGoogle,
   googleUrl,
   computed: {
     countries: {
       get() {
         return this.countriesChosen.length ? this.countriesChosen
-          : this.verifyDefaultCountriesExist(this.defaultCountries);
+          : this.getCountriesFilteredWithList(this.defaultCountries);
       },
       set(value) {
         this.countriesChosen = value;
         this.$emit('countrySelected', value);
       },
-    },
-    filterCountries() {
-      // 'this' is not retrieved inside reduce so we create a new variable
-      const {currency} = this;
-      if (!this.needFilter) {
-        return countriesSelectionOptions.map((e) => e.country);
-      }
-      return countriesSelectionOptions.reduce((ids, obj) => {
-        if (obj.currency === currency) {
-          ids.push(obj.country);
-        }
-        return ids;
-      }, []);
     },
   },
 };

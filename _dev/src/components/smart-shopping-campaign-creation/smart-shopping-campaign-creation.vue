@@ -166,6 +166,7 @@
             :default-countries="countries"
             :need-filter="false"
             :is-multiple="false"
+            :dropdown-options="activeCountries"
           />
           <span
             v-else
@@ -454,7 +455,9 @@ export default {
     foundSsc() {
       return this.sscList.find((el) => el.id === this.$route.params.id);
     },
-
+    activeCountries() {
+      return this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
+    },
   },
   methods: {
     debounceName() {

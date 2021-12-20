@@ -18,6 +18,7 @@
  */
 import GettersTypes from './getters-types';
 import {State as LocalState, HelpInformations, DebugData} from './state';
+import countriesSelectionOptions from '../../../assets/json/countries.json';
 
 export default {
   [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
@@ -50,17 +51,15 @@ export default {
   [GettersTypes.GET_ADD_BLOCKER_STATUS](state: LocalState): boolean {
     return state.adBlockerExists;
   },
-  [GettersTypes.GET_ACTIVE_COUNTRIES](state: LocalState) : Array<string> | null {
-    const targetCountriesFromLocalStorage = localStorage.getItem('productFeed-targetCountries');
-    if (targetCountriesFromLocalStorage) {
-      return JSON.parse(targetCountriesFromLocalStorage);
-    }
-    if (state.targetCountries !== null) {
-      return state.targetCountries;
-    }
-    if (state.psxMtgWithGoogleDefaultShopCountry !== null) {
-      return [state.psxMtgWithGoogleDefaultShopCountry];
-    }
-    return null;
+  [GettersTypes.GET_ACTIVE_COUNTRIES](): string[] {
+    return countriesSelectionOptions.map((e) => e.country);
+  },
+  [GettersTypes.GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY](state: LocalState) : string[] {
+    return countriesSelectionOptions.reduce((ids : string[], obj) => {
+      if (obj.currency === state.psxMktgWithGoogleShopCurrency.isoCode) {
+        ids.push(obj.country);
+      }
+      return ids;
+    }, []);
   },
 };

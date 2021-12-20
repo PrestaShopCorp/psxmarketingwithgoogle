@@ -358,14 +358,14 @@ export default {
       );
     },
     isUS() {
-      return this.$store.getters['app/GET_ACTIVE_COUNTRIES'].includes('US');
+      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].includes('US');
     },
     toConfigure() {
       return !this.$store.state.productFeed.isConfigured;
     },
     targetCountries() {
       return this.$options.filters.changeCountriesCodesToNames(
-        this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+        this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
       );
     },
     shippingSettings() {

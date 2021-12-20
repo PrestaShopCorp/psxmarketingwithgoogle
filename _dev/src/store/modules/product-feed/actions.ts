@@ -89,8 +89,6 @@ export default {
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'targetCountries', data: json.targetCountries,
       });
-      // To save them also in the whole app
-      commit(`app/${MutationsAppTypes.SET_SELECTED_TARGET_COUNTRY}`, json.targetCountries, {root: true});
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
       });
@@ -138,10 +136,10 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, rootState, rootGetters, commit,
+    state, rootState, getters, commit,
   }) {
     const productFeedSettings = state.settings;
-    const targetCountries = changeCountriesNamesToCodes(rootGetters['app/GET_ACTIVE_COUNTRIES']);
+    const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = JSON.parse(localStorage.getItem('productFeed-attributeMapping') || '{}');
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,

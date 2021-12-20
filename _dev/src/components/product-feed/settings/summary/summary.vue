@@ -227,7 +227,7 @@ export default {
     targetCountries() {
       // change country code into name with the json list
       return this.$options.filters.changeCountriesCodesToNames(
-        this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+        this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
       );
     },
     categoryProductsSelected() {

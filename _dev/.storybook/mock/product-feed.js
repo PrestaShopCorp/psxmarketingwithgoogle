@@ -5,7 +5,7 @@ export const productFeed = {
   errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
-  psxMtgWithGoogleDefaultShopCountry: ["FR"],
+  targetCountries: ["FR"],
   totalProducts: 0,
   stepper: 1,
   status: {

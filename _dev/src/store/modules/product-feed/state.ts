@@ -118,6 +118,7 @@ export interface State {
   productsDatas: ProductsDatas;
   attributesToMap: any;
   attributesData: Array<AttributesInfos>;
+  targetCountries: string[] | null;
 }
 
 export enum ProductStatues {
@@ -133,6 +134,7 @@ export const state: State = {
   isConfiguredOnce: false,
   totalProducts: 0,
   stepper: 1,
+  targetCountries: null,
   status: {
     success: false,
     jobEndedAt: '',

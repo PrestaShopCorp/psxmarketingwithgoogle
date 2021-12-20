@@ -33,7 +33,6 @@ export interface State {
   psxMktgWithGoogleAttributesUrl: string;
   psxMktgWithGoogleProductDetailUrl: string;
   psxMktgWithGoogleStoreSettingsUrl: string;
-  targetCountries: string[] | null;
   psxMktgWithGoogleOnProductionEnvironment: boolean;
   debugData: DebugData;
   adBlockerExists: boolean;
@@ -62,7 +61,6 @@ export const state: State = {
   psxMktgWithGoogleShopUrl: '',
   isCountryMemberOfEuropeanUnion: false,
   psxMtgWithGoogleDefaultShopCountry: null,
-  targetCountries: null,
   psxMktgWithGoogleShopCurrency: {
     isoCode: '',
   },
