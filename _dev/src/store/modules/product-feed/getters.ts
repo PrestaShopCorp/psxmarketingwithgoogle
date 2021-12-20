@@ -80,10 +80,10 @@ export default {
     rootState) : Array<string> | null {
     const targetCountriesFromLocalStorage = localStorage.getItem('productFeed-targetCountries');
     if (targetCountriesFromLocalStorage) {
-      state.targetCountries = JSON.parse(targetCountriesFromLocalStorage);
+      state.settings.targetCountries = JSON.parse(targetCountriesFromLocalStorage);
     }
-    if (state.targetCountries !== null) {
-      return state.targetCountries;
+    if (state.settings.targetCountries !== null) {
+      return state.settings.targetCountries;
     }
     if (rootState.app.psxMtgWithGoogleDefaultShopCountry !== null) {
       return [rootState.app.psxMtgWithGoogleDefaultShopCountry];

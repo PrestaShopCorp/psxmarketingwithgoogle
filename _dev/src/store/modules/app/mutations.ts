@@ -31,9 +31,6 @@ export default {
   [MutationsTypes.SAVE_DEBUG_DATA](state: LocalState, response: DebugData) {
     state.debugData = response;
   },
-  // [MutationsTypes.SET_SELECTED_TARGET_COUNTRY](state: LocalState, payload: Array<string>) {
-  //   state.targetCountries = payload;
-  // },
   [MutationsTypes.AD_BLOCKER_EXISTS](state: LocalState) {
     state.adBlockerExists = !state.adBlockerExists;
   },

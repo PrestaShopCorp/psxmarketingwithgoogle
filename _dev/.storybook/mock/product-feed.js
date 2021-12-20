@@ -5,7 +5,6 @@ export const productFeed = {
   errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
-  targetCountries: ["FR"],
   totalProducts: 0,
   stepper: 1,
   status: {
@@ -16,6 +15,7 @@ export const productFeed = {
   },
   settings: {
     shippingSettings: [],
+    targetCountries: ["FR"],
     deliveryDetails: [
       {
         carrierId: "9",

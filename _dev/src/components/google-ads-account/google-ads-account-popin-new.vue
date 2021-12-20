@@ -390,8 +390,8 @@ export default {
       this.newAccountInfos.timeZone = this.$store.getters['googleAds/GET_BILLING_SHOP_INFORMATIONS'].timeZone;
     });
     this.stepActiveData = this.stepActive;
-    this.newAccountInfos.country = this.$store.getters['productFeed/GET_TARGET_COUNTRIES']
-      ? this.$options.filters.changeCountriesCodesToNames(this.$store.getters['productFeed/GET_TARGET_COUNTRIES']) : '';
+    this.newAccountInfos.country = this.$store.state.app.psxMtgWithGoogleDefaultShopCountry
+      ? this.$options.filters.changeCountriesCodesToNames([this.$store.state.app.psxMtgWithGoogleDefaultShopCountry]) : '';
   },
   googleUrl,
   countriesSelectionOptions,

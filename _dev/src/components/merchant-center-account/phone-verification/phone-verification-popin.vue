@@ -177,7 +177,7 @@ export default {
       isValidationInProgress: false,
       isPhoneValidated: false,
       phoneNumber: null,
-      dialCode: this.$store.getters['productFeed/GET_TARGET_COUNTRIES'][0],
+      dialCode: this.$store.state.app.psxMtgWithGoogleDefaultShopCountry,
       askAgainIn60Sec: false,
       invalidInputFeedback: this.$i18n.t('mcaCard.invalidCode'),
     };

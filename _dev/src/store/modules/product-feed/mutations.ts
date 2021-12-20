@@ -119,6 +119,7 @@ export default {
       autoImportShippingSettings: true,
       attributeMapping: {},
       syncSchedule: '1 * * * * *',
+      targetCountries: null,
     };
   },
   [MutationsTypes.SAVE_ATTRIBUTES_SHOP](state: LocalState, payload: AttributesInfos[]) {
@@ -174,8 +175,5 @@ export default {
         }
       });
     });
-  },
-  [MutationsTypes.SET_SELECTED_PRODUCT_FEED_TARGET_COUNTRIES](state: LocalState, payload) {
-    state.targetCountries = payload;
   },
 };
