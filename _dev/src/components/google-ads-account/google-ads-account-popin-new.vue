@@ -66,10 +66,10 @@
           {{ $t("googleAdsAccountNew.business.labelCountry") }}
         </label>
         <SelectCountry
-          :currency="currency"
           @countrySelected="saveCountrySelected"
           :default-countries="countries"
           :is-multiple="false"
+          :need-filter="true"
           :dropdown-options="activeCountriesWithCurrency"
         />
         <label

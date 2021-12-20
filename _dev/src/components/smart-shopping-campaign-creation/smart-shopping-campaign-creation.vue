@@ -161,7 +161,6 @@
           </template>
           <SelectCountry
             v-if="!editMode"
-            :currency="currency"
             @countrySelected="saveCountrySelected"
             :default-countries="countries"
             :need-filter="false"

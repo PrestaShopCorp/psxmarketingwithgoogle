@@ -8,11 +8,11 @@
         {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
       <SelectCountry
-        :currency="currency"
         @countrySelected="saveCountrySelected"
         :default-countries="countries"
         :dropdown-options="activeCountriesWithCurrency"
         :need-filter="true"
+        :is-multiple="true"
       />
     </b-form-group>
     <b-form-group
