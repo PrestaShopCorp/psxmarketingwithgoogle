@@ -51,10 +51,6 @@ export default {
     };
   },
   props: {
-    currency: {
-      type: String,
-      required: true,
-    },
     defaultCountries: {
       type: Array,
       required: true,
