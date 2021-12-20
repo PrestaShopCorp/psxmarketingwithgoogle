@@ -36,7 +36,7 @@
 
 <script>
 import PsSelect from '../commons/ps-select';
-import countriesFromGoogle from '../../assets/json/countries.json';
+import countriesSelectionOptions from '../../assets/json/countries.json';
 import googleUrl from '../../assets/json/googleUrl.json';
 
 export default {
@@ -83,7 +83,7 @@ export default {
       return this.dropdownOptions.filter((c) => arg.includes(c));
     },
   },
-  countriesFromGoogle,
+  countriesSelectionOptions,
   googleUrl,
   computed: {
     countries: {
