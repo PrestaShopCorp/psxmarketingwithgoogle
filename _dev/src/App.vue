@@ -170,7 +170,7 @@ export default {
       });
     },
     checkForEventBusVersion() {
-      this.$store.dispatch('app/UPDATE_EVENTBUS_MODULE').then((res) => {
+      this.$store.dispatch('app/GET_MODULES_VERSIONS').then((res) => {
         if (!res) {
           console.log('pas de res');
           this.eventbusIsOK = false;

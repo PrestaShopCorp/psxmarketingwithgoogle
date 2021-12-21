@@ -112,21 +112,23 @@ export default {
     }
     return null;
   },
-  async [ActionsTypes.UPDATE_EVENTBUS_MODULE]({rootState}) {
+  async [ActionsTypes.GET_MODULES_VERSIONS]({rootState}) {
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify({
-          action: 'getEventBusModuleStatus',
-          version: rootState.app.eventbusVersion,
+          action: 'getModuleStatus',
+          moduleName: 'psxmarketingwithgoogle',
         }),
       });
-      console.log('response', response);
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
-      return response;
+      const json = await response.json();
+      console.log('response', json);
+
+      return json;
     } catch (error) {
       console.error(error);
       return error;
