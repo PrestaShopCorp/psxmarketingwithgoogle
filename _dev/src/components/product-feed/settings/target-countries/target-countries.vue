@@ -9,7 +9,7 @@
       </label>
       <SelectCountry
         @countrySelected="saveCountrySelected"
-        :default-countries="countries"
+        :default-value="countries"
         :dropdown-options="activeCountriesWithCurrency"
         :need-filter="true"
         :is-multiple="true"

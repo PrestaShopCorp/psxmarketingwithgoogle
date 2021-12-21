@@ -51,8 +51,8 @@ export default {
     };
   },
   props: {
-    defaultCountries: {
-      type: Array,
+    defaultValue: {
+      type: [String, Array],
       required: true,
     },
     dropdownOptions: {
@@ -89,7 +89,7 @@ export default {
     countries: {
       get() {
         return this.countriesChosen.length ? this.countriesChosen
-          : this.getCountriesFilteredWithList(this.defaultCountries);
+          : this.getCountriesFilteredWithList(this.defaultValue);
       },
       set(value) {
         this.countriesChosen = value;

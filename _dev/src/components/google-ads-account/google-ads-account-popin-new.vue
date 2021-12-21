@@ -67,7 +67,7 @@
         </label>
         <SelectCountry
           @countrySelected="saveCountrySelected"
-          :default-countries="defaultCountry"
+          :default-value="defaultCountry"
           :is-multiple="false"
           :need-filter="true"
           :dropdown-options="activeCountriesWithCurrency"

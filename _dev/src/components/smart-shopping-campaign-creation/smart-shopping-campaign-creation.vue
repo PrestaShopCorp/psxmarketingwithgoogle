@@ -162,7 +162,7 @@
           <SelectCountry
             v-if="!editMode"
             @countrySelected="saveCountrySelected"
-            :default-countries="countries"
+            :default-value="countries"
             :need-filter="false"
             :is-multiple="false"
             :dropdown-options="activeCountries"
@@ -416,9 +416,9 @@ export default {
     currency() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode || '';
     },
-    countries() {
+    defaultCountry() {
       return this.$options.filters
-        .changeCountriesCodesToNames([this.$store.state.app.psxMtgWithGoogleDefaultShopCountry]);
+        .changeCountriesCodesToNames([this.$store.state.app.psxMtgWithGoogleDefaultShopCountry])[0];
     },
     finalCampaign() {
       return {
@@ -428,7 +428,7 @@ export default {
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
-        targetCountry: this.targetCountry || this.countries[0],
+        targetCountry: this.targetCountry || this.defaultCountry,
         productFilters: !this.campaignHasNoProductsFilter ? this.filtersChosen : [],
       };
     },
