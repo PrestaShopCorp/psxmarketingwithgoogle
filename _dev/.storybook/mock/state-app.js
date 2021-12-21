@@ -19,7 +19,7 @@ export const initialStateApp = {
   psxMktgWithGoogleModuleVersion: '',
   psxMktgWithGoogleModuleVersionNeeded: '1.10.4',
   eventbusVersionNeeded: '1.5.0',
-  psxMktgWithGoogleMaintenanceSettingsUrl: '1.10.3',
+  psxMktgWithGoogleMaintenanceSettingsUrl: '',
   psxMktgWithGoogleStoreSettingsUrl: '',
   shopIsOnMaintenanceMode: false,
   psxMktgWithGoogleProductDetailUrl: 'https://my-shop.com/admin-dev/index.php/sell/catalog/products/1?token=blabla',
