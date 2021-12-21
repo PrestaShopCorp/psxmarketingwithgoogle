@@ -7,7 +7,6 @@ export const initialStateApp = {
   tokenPsAccounts: '',
   psxMtgWithGoogleDefaultShopCountry: null,
   isCountryMemberOfEuropeanUnion: false,
-  targetCountries: ['FR'],
   psxMktgWithGoogleShopCurrency: {
     isoCode: 'EUR',
   },
@@ -29,11 +28,6 @@ export const initialStateApp = {
 export const stateWithMaintenanceModeOn = {
   ...initialStateApp,
   shopIsOnMaintenanceMode: true,
-}
-
-export const appMultiCountries = {
-  ...initialStateApp,
-  targetCountries: ['FR', 'IT'],
 }
 
 export default initialStateApp;

@@ -148,9 +148,11 @@
             >
               <span
                 class="line-height-15"
-                :class="{'text-dark': isInitiatorCarrier(carrierOption.carrierId)}"
+                :class="{'text-dark':
+                  isInitiatorCarrier(carrierOption.carrierId, carrierOption.country)
+                }"
               >
-                {{ carrierOption.name }}
+                {{ carrierOption.name }} - {{ carrierOption.country }}
               </span>
             </b-form-checkbox>
           </b-form-checkbox-group>

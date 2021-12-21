@@ -43,6 +43,7 @@ export interface ProductFeedSettings {
   autoImportShippingSettings: boolean;
   attributeMapping: ProductFeedSettingsAttributeMapping;
   syncSchedule?: string;
+  targetCountries: string[]|null;
 }
 
 export interface ProductFeedValidationSummary {
@@ -143,6 +144,7 @@ export const state: State = {
     shippingSettings: [],
     deliveryDetails: [],
     autoImportTaxSettings: false,
+    targetCountries: null,
     autoImportShippingSettings: true,
     attributeMapping: {
       exportProductsWithShortDescription: true,

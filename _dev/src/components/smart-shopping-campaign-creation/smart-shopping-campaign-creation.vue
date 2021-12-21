@@ -161,10 +161,11 @@
           </template>
           <SelectCountry
             v-if="!editMode"
-            :currency="currency"
             @countrySelected="saveCountrySelected"
-            :default-country="countries"
+            :default-value="defaultCountry()"
             :need-filter="false"
+            :is-multiple="false"
+            :dropdown-options="activeCountries"
           />
           <span
             v-else
@@ -350,7 +351,7 @@ export default {
       timer: null,
       displayError: false,
       campaignIsActive: true,
-      targetCountry: [],
+      targetCountry: null,
       availableFilters: {
         name: this.$t('smartShoppingCampaignCreation.allFilters'),
         id: 'allFilters',
@@ -376,7 +377,7 @@ export default {
       if (this.campaignName
       && this.errorCampaignNameExistsAlready === false
       && this.campaignDurationStartDate
-      && this.targetCountry
+      && (this.targetCountry || this.defaultCountry())
       && this.campaignDailyBudget) {
         return false;
       }
@@ -415,18 +416,6 @@ export default {
     currency() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode || '';
     },
-    countries: {
-      get() {
-        let countries = this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
-        const allowedCountries = countriesSelectionOptions.filter(
-          (el) => el.currency === this.currency,
-        );
-        countries = countries.filter(
-          (c) => allowedCountries.find((ac) => ac.code === c),
-        );
-        return this.$options.filters.changeCountriesCodesToNames(countries);
-      },
-    },
     finalCampaign() {
       return {
         id: this.campaignId,
@@ -435,15 +424,14 @@ export default {
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
-        // Countries is still an array because refacto later for multiple countries
-        targetCountry: this.targetCountry[0] || this.countries[0],
+        targetCountry: this.targetCountry || this.defaultCountry(),
         productFilters: !this.campaignHasNoProductsFilter ? this.filtersChosen : [],
       };
     },
     budgetCurrencySymbol() {
       try {
         const displayAmount = 0;
-        const country = this.countries && this.countries[0];
+        const country = this.defaultCountry();
         const currencyFormatted = displayAmount.toLocaleString(country, {
           style: 'currency', currency: this.currency,
         });
@@ -462,9 +450,19 @@ export default {
     foundSsc() {
       return this.sscList.find((el) => el.id === this.$route.params.id);
     },
-
+    activeCountries() {
+      return this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
+    },
   },
   methods: {
+    defaultCountry() {
+      if (!this.$store.state.app.psxMtgWithGoogleDefaultShopCountry) {
+        return '';
+      }
+      return this.$options.filters.changeCountriesCodesToNames(
+        [this.$store.state.app.psxMtgWithGoogleDefaultShopCountry],
+      )[0];
+    },
     debounceName() {
       if (!this.campaignName.length) {
         return;

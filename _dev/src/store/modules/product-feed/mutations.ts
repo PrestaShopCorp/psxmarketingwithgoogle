@@ -16,7 +16,6 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-import {LogarithmicScale} from 'chart.js';
 import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import MutationsTypes from './mutations-types';
 import {
@@ -120,6 +119,7 @@ export default {
       autoImportShippingSettings: true,
       attributeMapping: {},
       syncSchedule: '1 * * * * *',
+      targetCountries: null,
     };
   },
   [MutationsTypes.SAVE_ATTRIBUTES_SHOP](state: LocalState, payload: AttributesInfos[]) {

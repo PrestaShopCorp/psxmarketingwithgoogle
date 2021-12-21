@@ -1,6 +1,6 @@
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue';
 import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport} from '../.storybook/mock/product-feed';
-import {initialStateApp, appMultiCountries} from '../.storybook/mock/state-app';
+import {initialStateApp} from '../.storybook/mock/state-app';
 
 export default {
   title: 'Product feed/Settings',
@@ -41,14 +41,6 @@ ShippingSettings.args = {
   },
 };
 
-export const ShippingSettingsMultiCountries:any = Template.bind({});
-ShippingSettingsMultiCountries.args = {
-  beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeed);
-    this.$store.state.app = Object.assign({}, appMultiCountries);
-    this.$store.state.productFeed.stepper = 2;
-  },
-};
 
 export const ShippingSettingsNoCarriers:any = Template.bind({});
 ShippingSettingsNoCarriers.args = {

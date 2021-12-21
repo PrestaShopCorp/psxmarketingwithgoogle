@@ -74,4 +74,20 @@ export default {
   [GettersTypes.GET_SHOP_ATTRIBUTES](state: LocalState) : AttributesInfos[] {
     return state.attributesData.sort((a, b) => a.name.localeCompare(b.name));
   },
+  [GettersTypes.GET_TARGET_COUNTRIES](
+    state: LocalState,
+    getters,
+    rootState) : Array<string> | null {
+    const targetCountriesFromLocalStorage = localStorage.getItem('productFeed-targetCountries');
+    if (targetCountriesFromLocalStorage) {
+      state.settings.targetCountries = JSON.parse(targetCountriesFromLocalStorage);
+    }
+    if (state.settings.targetCountries !== null) {
+      return state.settings.targetCountries;
+    }
+    if (rootState.app.psxMtgWithGoogleDefaultShopCountry !== null) {
+      return [rootState.app.psxMtgWithGoogleDefaultShopCountry];
+    }
+    return null;
+  },
 };
