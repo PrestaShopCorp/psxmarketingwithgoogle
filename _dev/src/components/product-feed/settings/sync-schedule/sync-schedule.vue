@@ -13,14 +13,14 @@
         <b-form-radio
           v-model="selectedSyncSchedule"
           name="sync-schedule"
-          :value="SyncScheduleStatus.SYNC_NOW"
+          :value="true"
         >
           {{ $t('productFeedSettings.syncSchedule.radioLabel1') }}
         </b-form-radio>
         <b-form-radio
           v-model="selectedSyncSchedule"
           name="sync-schedule"
-          :value="SyncScheduleStatus.SYNC_DEFAULT"
+          :value="false"
           class="mt-3"
         >
           {{ $t('productFeedSettings.syncSchedule.radioLabel2') }}
@@ -39,7 +39,6 @@
 <script>
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
-import {SyncScheduleStatus} from '../../../../store/modules/product-feed/state';
 
 export default {
   components: {
@@ -48,7 +47,6 @@ export default {
   },
   data() {
     return {
-      SyncScheduleStatus,
     };
   },
   computed: {

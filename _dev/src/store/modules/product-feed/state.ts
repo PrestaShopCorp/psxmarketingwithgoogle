@@ -106,11 +106,6 @@ export const commonAttributes: readonly AttributesInfos[] = [
   },
 ];
 
-export enum SyncScheduleStatus {
-  SYNC_DEFAULT = 'syncDefault',
-  SYNC_NOW = 'syncNow',
-}
-
 export interface State {
   isSyncSummaryLoadingInProgress: boolean;
   errorAPI: boolean;
@@ -125,7 +120,7 @@ export interface State {
   attributesToMap: any;
   attributesData: Array<AttributesInfos>;
   selectedProductCategories: Array<String>;
-  syncSchedule: SyncScheduleStatus;
+  requestSynchronizationNow: boolean;
 }
 
 export enum ProductStatues {
@@ -173,7 +168,7 @@ export const state: State = {
     items: [],
   },
   attributesToMap,
-  syncSchedule: SyncScheduleStatus.SYNC_DEFAULT,
+  requestSynchronizationNow: false,
   attributesData: [],
   selectedProductCategories: [],
 };

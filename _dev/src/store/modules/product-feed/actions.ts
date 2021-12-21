@@ -97,6 +97,9 @@ export default {
         name: 'syncSchedule', data: json.syncSchedule,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'requestSynchronizationNow', data: json.requestSynchronizationNow,
+      });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'attributeMapping',
         data: Object.assign(
           (json.attributeMapping?.exportProductsWithShortDescription) ? {
@@ -146,6 +149,7 @@ export default {
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = JSON.parse(localStorage.getItem('productFeed-attributeMapping') || '{}');
     const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
+    const productFeedSync = state.requestSynchronizationNow;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
@@ -156,6 +160,7 @@ export default {
       },
       attributeMapping,
       selectedProductCategories,
+      requestSynchronizationNow: productFeedSync,
     };
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {

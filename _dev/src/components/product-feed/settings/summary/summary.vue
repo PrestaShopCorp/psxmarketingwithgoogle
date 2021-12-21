@@ -270,7 +270,7 @@ export default {
       return this.$store.getters['productFeed/GET_SYNC_SCHEDULE'];
     },
     selectedSyncScheduleIsDefault() {
-      return this.selectedSyncSchedule === SyncScheduleStatus.SYNC_DEFAULT;
+      return this.selectedSyncSchedule === false;
     },
   },
   methods: {
