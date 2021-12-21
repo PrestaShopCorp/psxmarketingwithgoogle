@@ -70,11 +70,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
      */
     protected $attributesRepository;
 
-    /**
-     * @var ModuleRepository
-     */
-    private $moduleRepository;
-
     public function __construct()
     {
         parent::__construct();
@@ -87,7 +82,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $this->attributesRepository = $this->module->getService(attributesRepository::class);
         $this->googleTagProvider = $this->module->getService(GoogleTagProvider::class);
         $this->currencyRepository = $this->module->getService(CurrencyRepository::class);
-        $this->moduleRepository = $this->module->getService(ModuleRepository::class);
         $this->ajax = true;
     }
 
@@ -496,7 +490,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 
         $this->ajaxDie(
             json_encode(
-                $this->moduleRepository->getInformationsAboutModule($inputs['moduleName'])
+                (new ModuleRepository($inputs['moduleName']))->getInformationsAboutModule()
             )
         );
     }

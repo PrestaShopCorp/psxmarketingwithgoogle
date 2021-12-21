@@ -30,6 +30,11 @@ class ModuleRepository
      */
     private $moduleName;
 
+    public function __construct(string $moduleName)
+    {
+        $this->moduleName = $moduleName;
+    }
+
     /**
      * @return string|null
      */
@@ -61,18 +66,11 @@ class ModuleRepository
     /**
      * @return array
      */
-    public function getInformationsAboutModule(string $moduleName): array
+    public function getInformationsAboutModule(): array
     {
-        $this->setModuleName($moduleName);
-
         return [
             'version' => $this->getModuleVersion(),
             'upgradeLink' => $this->getUpgradeLink(),
         ];
-    }
-
-    private function setModuleName(string $moduleName)
-    {
-        $this->moduleName = $moduleName;
     }
 }
