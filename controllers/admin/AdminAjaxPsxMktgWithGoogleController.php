@@ -27,6 +27,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository;
 use PrestaShop\ModuleLibFaq\Faq;
 
@@ -144,6 +145,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 break;
             case 'getShopAttributes':
                 $this->getShopAttributes();
+                break;
+            case 'getModuleStatus':
+                $this->getModuleStatus($inputs);
                 break;
             default:
                 http_response_code(400);
@@ -470,6 +474,23 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $this->ajaxDie(
             json_encode(
                 $this->attributesRepository->getAllAttributes()
+            )
+        );
+    }
+
+    private function getModuleStatus(array $inputs)
+    {
+        if (!isset($inputs['moduleName'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing moduleName key',
+            ]));
+        }
+
+        $this->ajaxDie(
+            json_encode(
+                (new ModuleRepository($inputs['moduleName']))->getInformationsAboutModule()
             )
         );
     }
