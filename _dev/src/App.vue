@@ -223,14 +223,14 @@ export default {
         }
         if (moduleChosen.name === 'ps_eventbus') {
           // if module version >= version wanted
-          if (semver.gte(res.version, this.$store.state.app.eventbusVersion)) {
+          if (semver.gte(res.version, this.$store.state.app.eventbusVersionNeeded)) {
             return;
           }
           this.eventbusIsOK = false;
           this.eventBusVersion.upgradeLink = res.upgradeLink;
         } else {
           // if module version >= version wanted
-          if (!semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersion)) {
+          if (semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded)) {
             return;
           }
           this.psxmarketingwithgoogleIsOk = false;
