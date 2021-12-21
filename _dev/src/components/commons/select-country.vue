@@ -14,7 +14,7 @@
         <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
           <span
             class="mr-2"
-            v-html="highlightSearch(`${option.name}`)"
+            v-html="highlightSearch(option.name)"
           />
         </div>
       </template>

@@ -67,7 +67,7 @@
         </label>
         <SelectCountry
           @countrySelected="saveCountrySelected"
-          :default-countries="countries"
+          :default-countries="defaultCountry"
           :is-multiple="false"
           :need-filter="true"
           :dropdown-options="activeCountriesWithCurrency"
@@ -328,6 +328,14 @@ export default {
     saveCountrySelected(value) {
       this.newAccountInfos.country = value;
     },
+    defaultCountry() {
+      if (!this.$store.state.app.psxMtgWithGoogleDefaultShopCountry) {
+        return '';
+      }
+      return this.$options.filters.changeCountriesCodesToNames(
+        [this.$store.state.app.psxMtgWithGoogleDefaultShopCountry],
+      )[0];
+    },
   },
   props: {
     user: {
@@ -367,11 +375,6 @@ export default {
         this.newAccountInfos.name = value;
       },
     },
-    countries() {
-      return this.$options.filters.changeCountriesCodesToNames(
-        [this.$store.state.app.psxMtgWithGoogleDefaultShopCountry],
-      );
-    },
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
@@ -390,8 +393,7 @@ export default {
       this.newAccountInfos.timeZone = this.$store.getters['googleAds/GET_BILLING_SHOP_INFORMATIONS'].timeZone;
     });
     this.stepActiveData = this.stepActive;
-    this.newAccountInfos.country = this.$store.state.app.psxMtgWithGoogleDefaultShopCountry
-      ? this.$options.filters.changeCountriesCodesToNames([this.$store.state.app.psxMtgWithGoogleDefaultShopCountry]) : '';
+    this.newAccountInfos.country = this.defaultCountry();
   },
   googleUrl,
   countriesSelectionOptions,
