@@ -171,7 +171,6 @@ import duration from 'dayjs/plugin/duration';
 
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
-import {SyncScheduleStatus} from '../../../../store/modules/product-feed/state';
 import googleUrl from '@/assets/json/googleUrl.json';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
@@ -202,7 +201,6 @@ export default {
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
       acceptSyncSchedule: false,
       understandTerms: false,
-      SyncScheduleStatus,
     };
   },
   computed: {
