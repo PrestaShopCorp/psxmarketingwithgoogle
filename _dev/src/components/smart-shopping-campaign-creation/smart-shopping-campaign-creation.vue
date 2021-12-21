@@ -162,7 +162,7 @@
           <SelectCountry
             v-if="!editMode"
             @countrySelected="saveCountrySelected"
-            :default-value="countries"
+            :default-value="defaultCountry()"
             :need-filter="false"
             :is-multiple="false"
             :dropdown-options="activeCountries"
@@ -377,7 +377,7 @@ export default {
       if (this.campaignName
       && this.errorCampaignNameExistsAlready === false
       && this.campaignDurationStartDate
-      && (this.targetCountry || this.countries)
+      && (this.targetCountry || this.defaultCountry())
       && this.campaignDailyBudget) {
         return false;
       }
@@ -416,10 +416,6 @@ export default {
     currency() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode || '';
     },
-    defaultCountry() {
-      return this.$options.filters
-        .changeCountriesCodesToNames([this.$store.state.app.psxMtgWithGoogleDefaultShopCountry])[0];
-    },
     finalCampaign() {
       return {
         id: this.campaignId,
@@ -428,14 +424,14 @@ export default {
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
-        targetCountry: this.targetCountry || this.defaultCountry,
+        targetCountry: this.targetCountry || this.defaultCountry(),
         productFilters: !this.campaignHasNoProductsFilter ? this.filtersChosen : [],
       };
     },
     budgetCurrencySymbol() {
       try {
         const displayAmount = 0;
-        const country = this.countries && this.countries[0];
+        const country = this.defaultCountry();
         const currencyFormatted = displayAmount.toLocaleString(country, {
           style: 'currency', currency: this.currency,
         });
@@ -459,6 +455,14 @@ export default {
     },
   },
   methods: {
+    defaultCountry() {
+      if (!this.$store.state.app.psxMtgWithGoogleDefaultShopCountry) {
+        return '';
+      }
+      return this.$options.filters.changeCountriesCodesToNames(
+        [this.$store.state.app.psxMtgWithGoogleDefaultShopCountry],
+      )[0];
+    },
     debounceName() {
       if (!this.campaignName.length) {
         return;
