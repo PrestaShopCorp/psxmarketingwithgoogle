@@ -602,6 +602,7 @@
       "draft": "Draft",
       "pending": "Pending"
     },
+    "from": "From",
     "fromXToX": "From {startDate} to {endDate}",
     "labelCol": {
       "campaign": "Campaign",
