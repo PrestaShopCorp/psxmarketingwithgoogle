@@ -114,7 +114,7 @@ describe('shipping-settings.vue', () => {
   });
 
   it('shows the table with carriers filtered by target countries (IT)', () => {
-    store.modules.productFeed.state.settings.targetCountries = ['IT'];    
+    store.modules.productFeed.state.settings.targetCountries = ['IT'];
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
@@ -156,7 +156,7 @@ describe('shipping-settings.vue', () => {
 
   it('enables the button "Continue" if all carriers are valid', () => {
     // Select French carriers and one valid carrier
-    store.modules.productFeed.state.settings.targetCountries = ['FR'];    
+    store.modules.productFeed.state.settings.targetCountries = ['FR'];
     // Based on data in _dev/.storybook/mock/product-feed.js
     // TODO: Mocking the method validateDeliveryDetail() would be safer
     store.modules.productFeed.state.settings.deliveryDetails[3].enabledCarrier = true;
@@ -179,7 +179,7 @@ describe('shipping-settings.vue', () => {
 
   it('disables the button "Continue" if one carrier in invalid', () => {
     // Select French carriers and one invalid carrier
-    store.modules.productFeed.state.settings.targetCountries = ['FR'];    
+    store.modules.productFeed.state.settings.targetCountries = ['FR'];
     // Based on data in _dev/.storybook/mock/product-feed.js
     // TODO: Mocking the method validateDeliveryDetail() would be safer
     store.modules.productFeed.state.settings.deliveryDetails[0].enabledCarrier = true;
