@@ -32,13 +32,48 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
           variant="primary"
-          :href="linkToUpdateEventbus"
+          :href="eventBusVersion.upgradeLink"
           target="_blank"
-          @click="eventBusUpdated"
+          @click="moduleUpdated('ps_eventbus')"
         >
           {{ $t('cta.update') }}
         </b-button>
       </div>
+    </b-alert>
+    <b-alert
+      v-else-if="!psxmarketingwithgoogleIsOk"
+      variant="warning"
+      class="mb-0 mt-3"
+      show
+    >
+      <VueShowdown
+        tag="p"
+        :extensions="['no-p-tag']"
+        class="mb-0 ml-4"
+        :markdown="$t('general.psxmarketingwithgoogleMustBedUpdated')"
+      />
+      <div
+        class="d-md-flex text-center align-items-center mt-2"
+      >
+        <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
+          variant="primary"
+          :href="psxmarketingwithgoogleVersion.upgradeLink"
+          target="_blank"
+          @click="moduleUpdated('psxmarketingwithgoogle')"
+        >
+          {{ $t('cta.update') }}
+        </b-button>
+      </div>
+    </b-alert>
+    <b-alert
+      v-if="error"
+      show
+      variant="warning"
+      class="mb-0 mt-2"
+    >
+      <span class="ml-2"> {{ $t('mcaCard.alertSomethingHappened') }}</span>
     </b-alert>
     <template v-else>
       <div class="ps_gs-sticky-head">
@@ -97,10 +132,13 @@
 import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+
 let resizeEventTimer;
 const root = document.documentElement;
 const header = document.querySelector('#content .page-head');
 const headerFull = document.querySelector('#header_infos');
+const semver = require('semver');
+
 export default {
   name: 'Home',
   components: {
@@ -109,8 +147,19 @@ export default {
   },
   data() {
     return {
+      error: false,
       eventbusIsOK: true,
-      linkToUpdateEventbus: null,
+      psxmarketingwithgoogleIsOk: true,
+      eventBusVersion: {
+        name: 'ps_eventbus',
+        version: '',
+        upgradeLink: null,
+      },
+      psxmarketingwithgoogleVersion: {
+        name: 'psxmarketingwithgoogle',
+        version: '',
+        upgradeLink: null,
+      },
     };
   },
   computed: {
@@ -136,7 +185,8 @@ export default {
   created() {
     this.$root.identifySegment();
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
-    this.checkForEventBusVersion();
+    this.checkForModuleVersion(this.eventBusVersion);
+    this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
     this.setCustomProperties();
     window.addEventListener('resize', this.resizeEventHandler);
   },
@@ -165,17 +215,37 @@ export default {
         params: SegmentGenericParams,
       });
     },
-    checkForEventBusVersion() {
-      this.$store.dispatch('app/GET_MODULES_VERSIONS').then((res) => {
+    checkForModuleVersion(moduleChosen) {
+      this.$store.dispatch('app/GET_MODULES_VERSIONS', moduleChosen.name).then((res) => {
         if (!res) {
-          console.log('pas de res');
+          this.error = true;
+          return;
+        }
+        if (moduleChosen.name === 'ps_eventbus') {
+          // if module version >= version wanted
+          if (semver.gte(res.version, this.$store.state.app.eventbusVersion)) {
+            return;
+          }
           this.eventbusIsOK = false;
-          this.linkToUpdateEventbus = 'http://google.fr';
+          this.eventBusVersion.upgradeLink = res.upgradeLink;
+        } else {
+          // if module version >= version wanted
+          if (semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersion)) {
+            return;
+          }
+          this.psxmarketingwithgoogleIsOk = false;
+          this.psxmarketingwithgoogleVersion.upgradeLink = res.upgradeLink;
         }
       });
     },
-    eventBusUpdated() {
-      this.eventbusIsOK = true;
+    moduleUpdated(moduleChosen) {
+      if (moduleChosen === 'ps_eventbus') {
+        this.eventbusIsOK = true;
+        this.checkForModuleVersion(this.eventBusVersion);
+      } else {
+        this.psxmarketingwithgoogleIsOk = true;
+        this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
+      }
     },
   },
   watch: {

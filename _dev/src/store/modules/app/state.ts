@@ -70,7 +70,6 @@ export const state: State = {
     doc: '',
     contactUs: '',
   },
-  psxMktgWithGoogleModuleVersion: '',
   psVersion: '',
   psxMktgWithGoogleMaintenanceSettingsUrl: '',
   shopIsOnMaintenanceMode: document.getElementById('maintenance-mode') !== null,
@@ -83,5 +82,6 @@ export const state: State = {
     typesOfSync: [],
   },
   adBlockerExists: false,
+  psxMktgWithGoogleModuleVersion: '1.10.3',
   eventbusVersion: '1.5.0',
 };
