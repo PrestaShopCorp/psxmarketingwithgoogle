@@ -23,6 +23,7 @@ import {
   ProductFeedStatus,
   ProductFeedValidationSummary,
   AttributesInfos,
+  SyncScheduleStatus,
 } from './state';
 import GettersTypes from './getters-types';
 
@@ -96,5 +97,8 @@ export default {
       state.selectedProductCategories = JSON.parse(getCategoriesFromLocalStorage);
     }
     return state.selectedProductCategories;
+  },
+  [GettersTypes.GET_SYNC_SCHEDULE](state: LocalState) : SyncScheduleStatus {
+    return state.syncSchedule;
   },
 };

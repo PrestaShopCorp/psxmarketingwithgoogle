@@ -24,6 +24,7 @@ import {
   ProductFeedValidationSummary,
   AttributesInfos,
   commonAttributes,
+  SyncScheduleStatus,
 } from './state';
 
 type payloadObject = {
@@ -179,5 +180,8 @@ export default {
   [MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES](state: LocalState, payload) {
     localStorage.setItem('selectedProductCategories', JSON.stringify(payload));
     state.selectedProductCategories = payload;
+  },
+  [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload: SyncScheduleStatus) {
+    state.syncSchedule = payload;
   },
 };
