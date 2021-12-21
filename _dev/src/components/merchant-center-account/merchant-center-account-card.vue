@@ -504,6 +504,7 @@
         />
         <PhoneVerificationPopin
           ref="PhoneVerificationPopin"
+          @phoneNumberVerified="phoneNumberVerified"
         />
       </b-card>
     </b-skeleton-wrapper>
@@ -769,6 +770,9 @@ export default {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
+    },
+    phoneNumberVerified() {
+      this.$emit('phoneNumberHasBeenVerified');
     },
   },
   updated() {
