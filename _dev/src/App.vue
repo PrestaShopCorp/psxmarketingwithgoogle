@@ -68,7 +68,7 @@
       </div>
     </b-alert>
     <b-alert
-      v-if="error"
+      v-else-if="error"
       show
       variant="warning"
       class="mb-0 mt-2"
@@ -230,7 +230,7 @@ export default {
           this.eventBusVersion.upgradeLink = res.upgradeLink;
         } else {
           // if module version >= version wanted
-          if (semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersion)) {
+          if (!semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersion)) {
             return;
           }
           this.psxmarketingwithgoogleIsOk = false;
