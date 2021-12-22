@@ -13,14 +13,6 @@
         </b-card-header>
       </b-card>
     </template>
-    <b-alert
-      v-else-if="error"
-      show
-      variant="warning"
-      class="mb-0 mt-2"
-    >
-      <span class="ml-2"> {{ $t('mcaCard.alertSomethingHappened') }}</span>
-    </b-alert>
     <template v-else>
       <div class="ps_gs-sticky-head">
         <Menu>
@@ -130,6 +122,14 @@
             </b-button>
           </div>
         </b-alert>
+        <b-alert
+          v-else-if="error"
+          show
+          variant="warning"
+          class="mb-0 mt-2"
+        >
+          <span class="ml-2"> {{ $t('mcaCard.alertSomethingHappened') }}</span>
+        </b-alert>
       </div>
       <router-view />
       <div
@@ -231,15 +231,12 @@ export default {
       });
     },
     checkForModuleVersion(moduleChosen) {
-      console.log('coucou');
       this.$store.dispatch('app/GET_MODULES_VERSIONS', moduleChosen.name).then((res) => {
         if (!res.version) {
           this.error = true;
           return;
         }
         if (moduleChosen.name === 'ps_eventbus') {
-          console.log(res.version);
-          console.log(this.$store.state.app.eventbusVersionNeeded);
           // if module version >= version wanted
           if (semver.gte(res.version, this.$store.state.app.eventbusVersionNeeded)) {
             return;
@@ -247,8 +244,6 @@ export default {
           this.eventbusIsOK = false;
           this.eventBusVersion.upgradeLink = res.upgradeLink;
         } else {
-          console.log(res.version);
-          console.log(this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded);
           // if module version >= version wanted
           if (semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded)) {
             return;
