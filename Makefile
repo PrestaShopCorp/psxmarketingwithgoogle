@@ -37,14 +37,13 @@ endif
 	php -r "unlink('composer-setup.php');"
 
 # target: zip                                    - Make a zip bundle
-zip: ./vendor
+zip:
 	mkdir -p ./dist
 	cd .. && zip -r ${PACKAGE}.zip ${MODULE} -x '*.git*' -x '*/_dev/*' \
 	  ${MODULE}/dist/\* \
-	  ${MODULE}/composer.phar \
+	  ${MODULE}/composer \
 	  ${MODULE}/Makefile
 	mv ../${PACKAGE}.zip ./dist
-
 # target: docker-build-composer          - Watch VueJS files and compile when saved
 docker-build-composer:
 	docker-compose run --rm php sh -c "composer install"

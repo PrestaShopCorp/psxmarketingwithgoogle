@@ -63,6 +63,7 @@
           class="ps_gs-toaster-top-right"
         />
       </div>
+        <div class="mb-2">
       <b-alert
         v-if="!eventbusIsOK"
         variant="warning"
@@ -72,7 +73,7 @@
         <VueShowdown
           tag="p"
           :extensions="['no-p-tag']"
-          class="mb-0 ml-4"
+          class="mb-0"
           :markdown="$t('general.eventBusMustbeUpdated')"
         />
         <div
@@ -80,7 +81,7 @@
         >
           <b-button
             size="sm"
-            class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
+            class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
             variant="primary"
             target="_blank"
             @click="moduleUpdated(eventBusVersion)"
@@ -105,7 +106,7 @@
         <VueShowdown
           tag="p"
           :extensions="['no-p-tag']"
-          class="mb-0 ml-4"
+          class="mb-0"
           :markdown="$t('general.psxmarketingwithgoogleMustBedUpdated')"
         />
         <div
@@ -113,7 +114,7 @@
         >
           <b-button
             size="sm"
-            class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
+            class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
             variant="primary"
             target="_blank"
             @click="moduleUpdated(psxmarketingwithgoogleVersion)"
@@ -129,6 +130,7 @@
           </b-button>
         </div>
       </b-alert>
+        </div>
       <router-view />
       <div
         v-if="shopId"
@@ -229,7 +231,12 @@ export default {
       });
     },
     checkForModuleVersion(moduleChosen) {
+      console.log('coucou');
       this.$store.dispatch('app/GET_MODULES_VERSIONS', moduleChosen.name).then((res) => {
+        if (!res.version){
+           this.error= true;
+           return
+        }
         if (moduleChosen.name === 'ps_eventbus') {
           console.log(res.version);
           console.log(this.$store.state.app.eventbusVersionNeeded);
@@ -260,10 +267,10 @@ export default {
 
       if (moduleChosen.name === 'ps_eventbus') {
         this.eventbusIsOK = true;
-        // this.checkForModuleVersion(this.eventBusVersion);
+        this.checkForModuleVersion(this.eventBusVersion);
       } else {
         this.psxmarketingwithgoogleIsOk = true;
-        // this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
+        this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
       }
       this.loading = false;
     },
