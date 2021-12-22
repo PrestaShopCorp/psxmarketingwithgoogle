@@ -63,74 +63,74 @@
           class="ps_gs-toaster-top-right"
         />
       </div>
-        <div class="mb-2">
-      <b-alert
-        v-if="!eventbusIsOK"
-        variant="warning"
-        class="mb-0 mt-3"
-        show
-      >
-        <VueShowdown
-          tag="p"
-          :extensions="['no-p-tag']"
-          class="mb-0"
-          :markdown="$t('general.eventBusMustbeUpdated')"
-        />
-        <div
-          class="d-md-flex text-center align-items-center mt-2"
+      <div class="mb-2">
+        <b-alert
+          v-if="!eventbusIsOK"
+          variant="warning"
+          class="mb-0 mt-3"
+          show
         >
-          <b-button
-            size="sm"
-            class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
-            variant="primary"
-            target="_blank"
-            @click="moduleUpdated(eventBusVersion)"
+          <VueShowdown
+            tag="p"
+            :extensions="['no-p-tag']"
+            class="mb-0"
+            :markdown="$t('general.eventBusMustbeUpdated')"
+          />
+          <div
+            class="d-md-flex text-center align-items-center mt-2"
           >
-            <span v-if="loading">
-              <span class="icon-busy icon-busy--dark" />
-            </span>
-            <span
-              v-else
+            <b-button
+              size="sm"
+              class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
+              variant="primary"
+              target="_blank"
+              @click="moduleUpdated(eventBusVersion)"
             >
-              {{ $t('cta.update') }}
-            </span>
-          </b-button>
-        </div>
-      </b-alert>
-      <b-alert
-        v-else-if="!psxmarketingwithgoogleIsOk"
-        variant="warning"
-        class="mb-0 mt-3"
-        show
-      >
-        <VueShowdown
-          tag="p"
-          :extensions="['no-p-tag']"
-          class="mb-0"
-          :markdown="$t('general.psxmarketingwithgoogleMustBedUpdated')"
-        />
-        <div
-          class="d-md-flex text-center align-items-center mt-2"
+              <span v-if="loading">
+                <span class="icon-busy icon-busy--dark" />
+              </span>
+              <span
+                v-else
+              >
+                {{ $t('cta.update') }}
+              </span>
+            </b-button>
+          </div>
+        </b-alert>
+        <b-alert
+          v-else-if="!psxmarketingwithgoogleIsOk"
+          variant="warning"
+          class="mb-0 mt-3"
+          show
         >
-          <b-button
-            size="sm"
-            class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
-            variant="primary"
-            target="_blank"
-            @click="moduleUpdated(psxmarketingwithgoogleVersion)"
+          <VueShowdown
+            tag="p"
+            :extensions="['no-p-tag']"
+            class="mb-0"
+            :markdown="$t('general.psxmarketingwithgoogleMustBedUpdated')"
+          />
+          <div
+            class="d-md-flex text-center align-items-center mt-2"
           >
-            <span v-if="loading">
-              <span class="icon-busy icon-busy--dark" />
-            </span>
-            <span
-              v-else
+            <b-button
+              size="sm"
+              class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
+              variant="primary"
+              target="_blank"
+              @click="moduleUpdated(psxmarketingwithgoogleVersion)"
             >
-              {{ $t('cta.update') }}
-            </span>
-          </b-button>
-        </div>
-      </b-alert>
-        </div>
+              <span v-if="loading">
+                <span class="icon-busy icon-busy--dark" />
+              </span>
+              <span
+                v-else
+              >
+                {{ $t('cta.update') }}
+              </span>
+            </b-button>
+          </div>
+        </b-alert>
+      </div>
       <router-view />
       <div
         v-if="shopId"
@@ -233,9 +233,9 @@ export default {
     checkForModuleVersion(moduleChosen) {
       console.log('coucou');
       this.$store.dispatch('app/GET_MODULES_VERSIONS', moduleChosen.name).then((res) => {
-        if (!res.version){
-           this.error= true;
-           return
+        if (!res.version) {
+          this.error = true;
+          return;
         }
         if (moduleChosen.name === 'ps_eventbus') {
           console.log(res.version);
