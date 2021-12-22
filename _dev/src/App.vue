@@ -14,60 +14,6 @@
       </b-card>
     </template>
     <b-alert
-      v-else-if="!eventbusIsOK"
-      variant="warning"
-      class="mb-0 mt-3"
-      show
-    >
-      <VueShowdown
-        tag="p"
-        :extensions="['no-p-tag']"
-        class="mb-0 ml-4"
-        :markdown="$t('general.eventBusMustbeUpdated')"
-      />
-      <div
-        class="d-md-flex text-center align-items-center mt-2"
-      >
-        <b-button
-          size="sm"
-          class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
-          variant="primary"
-          :href="eventBusVersion.upgradeLink"
-          target="_blank"
-          @click="moduleUpdated('ps_eventbus')"
-        >
-          {{ $t('cta.update') }}
-        </b-button>
-      </div>
-    </b-alert>
-    <b-alert
-      v-else-if="!psxmarketingwithgoogleIsOk"
-      variant="warning"
-      class="mb-0 mt-3"
-      show
-    >
-      <VueShowdown
-        tag="p"
-        :extensions="['no-p-tag']"
-        class="mb-0 ml-4"
-        :markdown="$t('general.psxmarketingwithgoogleMustBedUpdated')"
-      />
-      <div
-        class="d-md-flex text-center align-items-center mt-2"
-      >
-        <b-button
-          size="sm"
-          class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
-          variant="primary"
-          :href="psxmarketingwithgoogleVersion.upgradeLink"
-          target="_blank"
-          @click="moduleUpdated('psxmarketingwithgoogle')"
-        >
-          {{ $t('cta.update') }}
-        </b-button>
-      </div>
-    </b-alert>
-    <b-alert
       v-else-if="error"
       show
       variant="warning"
@@ -117,6 +63,72 @@
           class="ps_gs-toaster-top-right"
         />
       </div>
+      <b-alert
+        v-if="!eventbusIsOK"
+        variant="warning"
+        class="mb-0 mt-3"
+        show
+      >
+        <VueShowdown
+          tag="p"
+          :extensions="['no-p-tag']"
+          class="mb-0 ml-4"
+          :markdown="$t('general.eventBusMustbeUpdated')"
+        />
+        <div
+          class="d-md-flex text-center align-items-center mt-2"
+        >
+          <b-button
+            size="sm"
+            class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
+            variant="primary"
+            target="_blank"
+            @click="moduleUpdated(eventBusVersion)"
+          >
+            <span v-if="loading">
+              <span class="icon-busy icon-busy--dark" />
+            </span>
+            <span
+              v-else
+            >
+              {{ $t('cta.update') }}
+            </span>
+          </b-button>
+        </div>
+      </b-alert>
+      <b-alert
+        v-else-if="!psxmarketingwithgoogleIsOk"
+        variant="warning"
+        class="mb-0 mt-3"
+        show
+      >
+        <VueShowdown
+          tag="p"
+          :extensions="['no-p-tag']"
+          class="mb-0 ml-4"
+          :markdown="$t('general.psxmarketingwithgoogleMustBedUpdated')"
+        />
+        <div
+          class="d-md-flex text-center align-items-center mt-2"
+        >
+          <b-button
+            size="sm"
+            class="mx-1 mt-3 mt-md-0 ml-md-4 mr-md-1"
+            variant="primary"
+            target="_blank"
+            @click="moduleUpdated(psxmarketingwithgoogleVersion)"
+          >
+            <span v-if="loading">
+              <span class="icon-busy icon-busy--dark" />
+            </span>
+            <span
+              v-else
+            >
+              {{ $t('cta.update') }}
+            </span>
+          </b-button>
+        </div>
+      </b-alert>
       <router-view />
       <div
         v-if="shopId"
@@ -148,6 +160,7 @@ export default {
   data() {
     return {
       error: false,
+      loading: false,
       eventbusIsOK: true,
       psxmarketingwithgoogleIsOk: true,
       eventBusVersion: {
@@ -217,11 +230,9 @@ export default {
     },
     checkForModuleVersion(moduleChosen) {
       this.$store.dispatch('app/GET_MODULES_VERSIONS', moduleChosen.name).then((res) => {
-        if (!res) {
-          this.error = true;
-          return;
-        }
         if (moduleChosen.name === 'ps_eventbus') {
+          console.log(res.version);
+          console.log(this.$store.state.app.eventbusVersionNeeded);
           // if module version >= version wanted
           if (semver.gte(res.version, this.$store.state.app.eventbusVersionNeeded)) {
             return;
@@ -229,6 +240,8 @@ export default {
           this.eventbusIsOK = false;
           this.eventBusVersion.upgradeLink = res.upgradeLink;
         } else {
+          console.log(res.version);
+          console.log(this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded);
           // if module version >= version wanted
           if (semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded)) {
             return;
@@ -238,14 +251,21 @@ export default {
         }
       });
     },
-    moduleUpdated(moduleChosen) {
-      if (moduleChosen === 'ps_eventbus') {
+    async moduleUpdated(moduleChosen) {
+      this.loading = true;
+      await fetch(moduleChosen.upgradeLink, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+      });
+
+      if (moduleChosen.name === 'ps_eventbus') {
         this.eventbusIsOK = true;
-        this.checkForModuleVersion(this.eventBusVersion);
+        // this.checkForModuleVersion(this.eventBusVersion);
       } else {
         this.psxmarketingwithgoogleIsOk = true;
-        this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
+        // this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
       }
+      this.loading = false;
     },
   },
   watch: {
