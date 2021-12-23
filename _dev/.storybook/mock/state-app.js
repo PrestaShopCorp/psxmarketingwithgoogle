@@ -5,7 +5,7 @@ export const initialStateApp = {
   psxMktgWithGoogleAdminAjaxUrl: '/',
   shopIdPsAccounts: '',
   tokenPsAccounts: '',
-  psxMtgWithGoogleDefaultShopCountry: null,
+  psxMtgWithGoogleDefaultShopCountry: 'FR',
   isCountryMemberOfEuropeanUnion: false,
   psxMktgWithGoogleShopCurrency: {
     isoCode: 'EUR',
