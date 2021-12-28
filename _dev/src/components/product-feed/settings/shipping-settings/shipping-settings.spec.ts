@@ -13,8 +13,6 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import TableRowCarrier from '@/components/product-feed/settings/shipping-settings/table-row-carrier.vue';
 import {productFeed} from '@/../.storybook/mock/product-feed';
 
-const VBTooltip = jest.fn();
-
 describe('shipping-settings.vue', () => {
   let store;
 
@@ -24,7 +22,6 @@ describe('shipping-settings.vue', () => {
       ...store.modules.productFeed.state,
       stepper: 2,
     };
-
     store.modules.productFeed.state.settings.deliveryDetails = [
       ...cloneDeep(productFeed.settings.deliveryDetails),
     ];
@@ -34,9 +31,6 @@ describe('shipping-settings.vue', () => {
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         VueShowdown: true,
@@ -53,9 +47,6 @@ describe('shipping-settings.vue', () => {
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         VueShowdown: true,
@@ -72,9 +63,7 @@ describe('shipping-settings.vue', () => {
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
+
       ...config,
       stubs: {
         VueShowdown: true,
@@ -118,9 +107,7 @@ describe('shipping-settings.vue', () => {
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
+
       ...config,
       stubs: {
         VueShowdown: true,
@@ -164,9 +151,6 @@ describe('shipping-settings.vue', () => {
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         ActionsButtons,
@@ -187,16 +171,12 @@ describe('shipping-settings.vue', () => {
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         ActionsButtons,
         VueShowdown: true,
       },
     });
-
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
   });
 
@@ -206,16 +186,13 @@ describe('shipping-settings.vue', () => {
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
+
       ...config,
       stubs: {
         ActionsButtons,
         VueShowdown: true,
       },
     });
-
     // No disabled attribute = enabled
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(5);
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
@@ -224,20 +201,15 @@ describe('shipping-settings.vue', () => {
   it('allows to "Continue" if no carrier is found', () => {
     store.modules.productFeed.state.settings.targetCountries = [];
     store.modules.productFeed.state.settings.deliveryDetails = [];
-
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         ActionsButtons,
         VueShowdown: true,
       },
     });
-
     // No disabled attribute = enabled
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();

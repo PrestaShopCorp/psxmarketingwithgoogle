@@ -1,5 +1,3 @@
-// TODO ERROR :  Cancelled / Suspended
-
 /**
  * 2007-2021 PrestaShop and Contributors
  *
@@ -80,6 +78,7 @@ export default {
     } catch (error) {
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
         // This is likely caused by a missing Google Ads account
+        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Suspended');
         return;
       }
       commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');

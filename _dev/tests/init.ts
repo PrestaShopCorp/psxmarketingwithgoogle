@@ -1,5 +1,4 @@
 import {config, createLocalVue} from '@vue/test-utils';
-import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import {messages} from '@/lib/translations';
 
@@ -7,6 +6,7 @@ let windowSpy;
 let localVue; // eslint-disable-line
 const defaultLocale = 'en';
 let filters; // eslint-disable-line
+let VBTooltip;
 
 beforeEach(() => {
   windowSpy = jest.spyOn(window, 'window', 'get');
@@ -14,6 +14,7 @@ beforeEach(() => {
     // add data needed in window
     scrollTo: jest.fn(),
   }));
+  VBTooltip = jest.fn();
   localVue = createLocalVue();
   localVue.use(Vuex);
 
@@ -30,6 +31,7 @@ beforeEach(() => {
   localVue.filter('changeCountriesCodesToNames', filters.changeCountriesCodesToNames);
   localVue.filter('timeConverterToStringifiedDate', filters.timeConverterToStringifiedDate);
   localVue.filter('slugify', filters.slugify);
+  localVue.directive('b-tooltip', VBTooltip);
 });
 
 afterEach(() => {
@@ -79,6 +81,10 @@ config.mocks.$segment = {
 config.mocks.$i18n = {
   t: config.mocks.$t,
   tc: config.mocks.$tc,
+};
+
+config.mocks.fetch = {
+
 };
 export default {config};
 

@@ -54,6 +54,9 @@ export default {
     defaultValue: {
       type: [String, Array],
       required: true,
+      default() {
+        return [];
+      },
     },
     dropdownOptions: {
       type: Array,

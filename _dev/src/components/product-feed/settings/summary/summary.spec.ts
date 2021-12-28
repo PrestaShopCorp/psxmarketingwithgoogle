@@ -4,14 +4,11 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {mount, shallowMount} from '@vue/test-utils';
-import config, {localVue, cloneStore, filters} from '@/../tests/init';
+import {shallowMount} from '@vue/test-utils';
+import {cloneStore, filters, localVue} from '@/../tests/init';
 import ProductFeedSettingsSummary from '@/components/product-feed/settings/summary/summary.vue';
 import ProductFeedCardNextSyncCard from '@/components/product-feed/product-feed-card-next-sync-card.vue';
-import Stepper from '@/components/commons/stepper.vue';
-import PsSelect from '@/components/commons/ps-select.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
-
 import {
   Summary,
 } from '@/../stories/product-feed-settings.stories';

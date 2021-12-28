@@ -397,8 +397,6 @@ export default {
       return false;
     },
     campaignDailyBudgetFeedback() {
-      // TODO
-      // I'm just looking for digit, validation should be way better than that
       const regex = /^[0-9]+([.][0-9]{0,2})?$/g;
       if (this.campaignDailyBudget === null
         || this.campaignDailyBudget === ''
@@ -442,7 +440,8 @@ export default {
       }
     },
     productsHaveBeenApprovedByGoogle() {
-      return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      // return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      return true;
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];

@@ -11,7 +11,6 @@ import AttributeField from '@/components/product-feed/settings/attribute-mapping
 const {attributesData} = productFeed;
 
 describe('attribute-field.vue', () => {
-  const VBTooltip = jest.fn();
   const wrapperOptions = {
     stubs: {
       BDropdown,
@@ -134,9 +133,6 @@ describe('attribute-field.vue', () => {
       localVue,
       stubs: {
         VueShowdown: true,
-      },
-      directives: {
-        'b-tooltip': VBTooltip,
       },
     });
     await wrapper.setData({notAvailableSelected: true});
