@@ -43,7 +43,6 @@ describe('shipping-settings.vue', () => {
 
   it('shows a default message when there are no carriers', () => {
     store.modules.productFeed.state.settings.targetCountries = ['XXX'];
-
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
@@ -63,7 +62,6 @@ describe('shipping-settings.vue', () => {
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-
       ...config,
       stubs: {
         VueShowdown: true,
@@ -147,7 +145,6 @@ describe('shipping-settings.vue', () => {
     // Based on data in _dev/.storybook/mock/product-feed.js
     // TODO: Mocking the method validateDeliveryDetail() would be safer
     store.modules.productFeed.state.settings.deliveryDetails[3].enabledCarrier = true;
-
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
@@ -167,7 +164,6 @@ describe('shipping-settings.vue', () => {
     // Based on data in _dev/.storybook/mock/product-feed.js
     // TODO: Mocking the method validateDeliveryDetail() would be safer
     store.modules.productFeed.state.settings.deliveryDetails[0].enabledCarrier = true;
-
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
@@ -186,7 +182,6 @@ describe('shipping-settings.vue', () => {
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-
       ...config,
       stubs: {
         ActionsButtons,
