@@ -602,7 +602,7 @@ module.exports = function (router) {
             id: '1',
             countryCode: 'US',
             languageCode: 'en',
-            localizedName: 'Animals & Pet Supplies',
+            name: 'Animals & Pet Supplies',
           },
         ],
         brands: [],
