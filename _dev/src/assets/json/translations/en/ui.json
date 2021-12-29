@@ -502,7 +502,8 @@
     "nbProductsSelected": "No product selected | {0} product selected | {0} products selected",
     "categories": "Categories",
     "brands": "Brands",
-    "products": "Products"
+    "products": "Products",
+    "conditions": "Conditions"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance"
