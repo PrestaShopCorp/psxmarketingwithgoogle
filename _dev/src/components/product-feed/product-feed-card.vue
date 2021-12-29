@@ -520,12 +520,12 @@ export default {
       this.$router.push({
         name: 'product-feed-settings',
       });
-    },
-    goToProductFeedSettings(step) {
       this.$segment.track('[GGL] Start Catalogue Export', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
+    },
+    goToProductFeedSettings(step) {
       this.$router.push({
         name: 'product-feed-settings',
       });
