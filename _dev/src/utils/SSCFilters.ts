@@ -10,15 +10,15 @@ export type FiltersChosen = {
     values: Array<string| undefined>;
   };
 
-export function addPropertiesToDimensions(dimension) {
-  const finalDim = dimension.map((oneFilter) => {
+export function addPropertiesToDimension(dimension: CampaignFilter[]) :CampaignFilter[] {
+  const finalDimension = dimension.map((oneFilter) => {
     if (oneFilter.children) {
       return {
         name: oneFilter.name,
         id: oneFilter.name,
         checked: false,
         indeterminate: false,
-        children: addPropertiesToDimensions(oneFilter.children),
+        children: addPropertiesToDimension(oneFilter.children),
       };
     }
     return {
@@ -28,7 +28,7 @@ export function addPropertiesToDimensions(dimension) {
       indeterminate: false,
     };
   });
-  return finalDim;
+  return finalDimension;
 }
 
 export function filterUncheckedSegments(source: CampaignFilter) {

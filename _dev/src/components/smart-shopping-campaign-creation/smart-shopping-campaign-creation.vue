@@ -334,7 +334,7 @@ import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-c
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
 import CampaignStatus from '@/enums/reporting/CampaignStatus';
-import {returnChildrenIds, getFiltersbyIds, addPropertiesToDimensions} from '../../utils/SSCFilters';
+import {returnChildrenIds, getFiltersbyIds, addPropertiesToDimension} from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
@@ -528,7 +528,7 @@ export default {
             id: dimensionName,
             checked: false,
             indeterminate: false,
-            children: addPropertiesToDimensions(res[dimensionName]),
+            children: addPropertiesToDimension(res[dimensionName]),
           });
         });
         if (this.editMode) {
