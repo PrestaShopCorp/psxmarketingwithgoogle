@@ -42,7 +42,7 @@ export const merchantCenterAccountConnected = {
   claimError: '',
   users: [
       {
-          "emailAddress": "elise.griset@prestashop.com",
+          "emailAddress": "someonesadress@prestashop.com",
           "admin": true
       }
   ],
@@ -94,7 +94,7 @@ export const merchantCenterPhoneVerificationNeeded = {
   claimError: '',
   users: [
     {
-        "emailAddress": "elise.griset@prestashop.com",
+        "emailAddress": "someonesadress@prestashop.com",
         "admin": true
     }
   ],
