@@ -36,11 +36,11 @@
       @change="selectCheckbox"
       :indeterminate="item.indeterminate"
     >
-      {{ item.name }}
+      {{ item.id }} - {{ item.name }} - {{ item.numberOfProductsAssociated }}
     </b-form-checkbox>
     <template v-else>
       <template v-if="!isFolder">
-        {{ item.name }}
+        {{ item.id }} - {{ item.name }} - {{ item.numberOfProductsAssociated }}
       </template>
       <b-button
         variant="invisible"

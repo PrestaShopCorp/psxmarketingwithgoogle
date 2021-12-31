@@ -17,6 +17,7 @@
       <b-form-group>
         <b-row>
           <b-col
+            v-if="availableFilters.children.length"
             cols="12"
             md="6"
             class="mb-3 mb-md-0"
@@ -24,14 +25,19 @@
             <h6 class="ps_gs-fz-16 font-weight-normal">
               {{ $t('smartShoppingCampaignCreation.labelDimensionValue') }}
             </h6>
-            <ul
-              class="ps_gs-filters"
+            <ps-select
+              :options="availableFilters.children"
+              :deselect-from-dropdown="true"
+              @input="selectDimension"
+              @search="searchDimension"
+              label="name"
+              placeholder="Dimension"
+              class="maxw-sm-500"
             >
-              <SmartShoppingCampaignCreationFilterItem
-                :item="availableFilters"
-                :is-open-by-default="true"
-              />
-            </ul>
+              <template v-slot:option="option">
+                <span v-html="highlightSearch(`${option.name}`)" />
+              </template>
+            </ps-select>
           </b-col>
           <b-col
             cols="12"
@@ -43,12 +49,19 @@
             </h6>
             <ul class="ps_gs-filters">
               <SmartShoppingCampaignCreationFilterItem
-                v-if="totalNumberOfProducts"
-                :item="filteredDimensions"
+                v-if="dimensionChosen"
+                :item="dimensionChosen"
                 :is-open-by-default="true"
-                :selected-filters="true"
               />
+              <div v-else>
+                {{ $t('smartShoppingCampaignCreation.selectFilterInfo') }}
+              </div>
             </ul>
+          </b-col>
+          <b-col
+            cols="12"
+          >
+            {{ $t('smartShoppingCampaignCreation.infos') }}
           </b-col>
           <b-col
             cols="12"
@@ -89,15 +102,17 @@
 
 <script>
 import PsModal from '../commons/ps-modal';
+import PsSelect from '../commons/ps-select';
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
 import {
-  filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension,
+  filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension, countFinalFilters,
 } from '../../utils/SSCFilters';
 
 export default {
   name: 'SmartShoppingCampaignCreationFilterPopin',
   components: {
     PsModal,
+    PsSelect,
     SmartShoppingCampaignCreationFilterItem,
   },
   props: {
@@ -105,9 +120,13 @@ export default {
       type: Object,
       required: true,
     },
-
   },
-
+  data() {
+    return {
+      searchString: '',
+      dimensionChosen: null,
+    };
+  },
   computed: {
     textFiltersSelected() {
       return this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
@@ -117,20 +136,10 @@ export default {
     filteredDimensions() {
       return filterUncheckedSegments(this.availableFilters);
     },
+
     totalNumberOfProducts() {
       const final = [];
-      if (this.filteredDimensions && this.filteredDimensions.children) {
-        this.filteredDimensions.children.forEach((dim) => {
-          if (dim.children) {
-            dim.children.forEach((value) => {
-              final.push(value);
-            });
-          } else {
-            final.push(dim);
-          }
-        });
-      }
-      return final.length;
+      return countFinalFilters(this.filteredDimensions, final);
     },
 
   },
@@ -148,6 +157,17 @@ export default {
 
     sendDimensionsSelected() {
       this.$emit('selectFilters', this.filteredDimensions);
+    },
+    selectDimension(dimension) {
+      this.dimensionChosen = dimension;
+    },
+    searchDimension(event) {
+      this.searchString = event;
+    },
+    highlightSearch(str) {
+      /** Highlight search terms */
+      const regex = new RegExp(`(${this.searchString})`, 'gi');
+      return str.replace(regex, '<strong>$1</strong>');
     },
   },
   mounted() {

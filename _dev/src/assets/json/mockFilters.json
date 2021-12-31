@@ -1,0 +1,118 @@
+{
+  "categories": [
+      {
+          "name": "Animaux et articles pour animaux de compagnie",
+          "id": "1",
+          "numberOfProductsAssociated": 2,
+          "children": [
+              {
+                  "name": "Articles pour animaux de compagnie",
+                  "id": "2",
+                  "numberOfProductsAssociated": 1,
+                  "children": [
+                      {
+                          "name": "Accessoires pour chiens",
+                          "id": "5",
+                          "numberOfProductsAssociated": 1,
+                          "children": [
+                              {
+                                  "name": "Nourriture pour chiens",
+                                  "id": "3530",
+                                  "numberOfProductsAssociated": 1,
+                                  "children": [
+                                      {
+                                          "name": "Aliments pour chiens sans ordonnance",
+                                          "id": "543682",
+                                          "numberOfProductsAssociated": 1
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  ]
+                },
+              {
+                  "name": "Test",
+                  "id": "3",
+                  "numberOfProductsAssociated": 321,
+                  "children": [
+                      {
+                          "name": "test1",
+                          "id": "5",
+                          "numberOfProductsAssociated": 1,
+                          "children": [
+                              {
+                                  "name": "Test1 enfant",
+                                  "id": "3530",
+                                  "numberOfProductsAssociated": 1,
+                                  "children": [
+                                      {
+                                          "name": "test1 enfant",
+                                          "id": "543682",
+                                          "numberOfProductsAssociated": 1
+                                      }
+                                  ]
+                              }
+                          ]
+                      },
+                      {
+                          "name": "test2",
+                          "id": "5",
+                          "numberOfProductsAssociated": 1,
+                          "children": [
+                              {
+                                  "name": "Test2 enfant",
+                                  "id": "3530",
+                                  "numberOfProductsAssociated": 1,
+                                  "children": [
+                                      {
+                                          "name": "test2 enfant enfant",
+                                          "id": "543682",
+                                          "numberOfProductsAssociated": 1
+                                      },
+                                      {
+                                          "name": "test2 enfant enfant2",
+                                          "id": "5436832322",
+                                          "numberOfProductsAssociated": 1
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  ]
+              },
+              {
+                  "name": "Animaux vivants",
+                  "id": "3237",
+                  "numberOfProductsAssociated": 1
+              }
+          ]
+      }
+  ],
+  "brands": [
+      {
+          "name": "The Pokemon Company France",
+          "numberOfProductsAssociated": 1
+      },
+      {
+          "name": "The Pokemon Company",
+          "numberOfProductsAssociated": 1
+      }
+  ],
+  "products": [
+      {
+          "name": "Canarticho",
+          "id": "ifxsvkip"
+      },
+      {
+          "name": "Farfetchd",
+          "id": "dctikisg"
+      }
+  ],
+  "conditions": [
+      {
+          "name": "new",
+          "numberOfProductsAssociated": 2
+      }
+  ]
+}

@@ -494,7 +494,7 @@
       "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
     },
     "labelSelectedDimension": "Selected dimension value",
-    "labelDimensionValue": "Dimension value",
+    "labelDimensionValue": "Dimension value*",
     "nbDimensionSelected": "No dimension selected | {0} dimension selected | {0} dimensions selected",
     "nbValuesSelected": "No value selected | {0} value selected | {0} values selected",
     "selectProductsTitle": "Select products",
@@ -509,7 +509,9 @@
     "categories": "Categories",
     "brands": "Brands",
     "products": "Products",
-    "conditions": "Conditions"
+    "conditions": "Conditions",
+    "infos": "*Smart Shopping Campaign can only have one dimension with one or multiple values.",
+    "selectFilterInfo": "  Select the product filters you want to use in your campaign"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance",

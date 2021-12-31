@@ -3,6 +3,7 @@ export type CampaignFilter = {
     id?: string;
     checked?: boolean;
     indeterminate?: boolean;
+    numberOfProductsAssociated?: number,
     children?: CampaignFilter[];
   };
 export type FiltersChosen = {
@@ -15,17 +16,19 @@ export function addPropertiesToDimension(dimension: CampaignFilter[]) :CampaignF
     if (oneFilter.children) {
       return {
         name: oneFilter.name,
-        id: oneFilter.name,
+        id: oneFilter.id,
         checked: false,
         indeterminate: false,
+        numberOfProductsAssociated: oneFilter.numberOfProductsAssociated,
         children: addPropertiesToDimension(oneFilter.children),
       };
     }
     return {
       name: oneFilter.name,
-      id: oneFilter.name,
+      id: oneFilter.id,
       checked: false,
       indeterminate: false,
+      numberOfProductsAssociated: oneFilter.numberOfProductsAssociated,
     };
   });
   return finalDimension;
@@ -120,4 +123,13 @@ export function getFiltersbyIds(productFilters: Array<FiltersChosen>,
   }
 
   return availableFilters;
+}
+
+export function countFinalFilters(arg, final) {
+  if (arg.children) {
+    arg.children.forEach((child) => countFinalFilters(child, final));
+  } else if (arg.checked) {
+    final.push(arg);
+  }
+  return final.length;
 }

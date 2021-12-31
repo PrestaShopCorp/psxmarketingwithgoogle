@@ -9,6 +9,7 @@ import {
   returnChildrenIds,
   checkAndUpdateDimensionStatus,
   addPropertiesToDimension,
+  countFinalFilters,
 } from "./SSCFilters";
 
 describe("SSC filters - filterUncheckedSegments()", () => {
@@ -813,10 +814,12 @@ describe("SSC filters - addPropertiesToDimension()", () => {
               countryCode: "FR",
               languageCode: "fr",
               localizedName: "Animaux et articles pour animaux de compagnie",
+              numberOfProductsAssociated : 1,
               children: [
                 {
                   name: "Animal vivant",
                   id: "1",
+                  numberOfProductsAssociated : 1,
                 },
               ],
             },
@@ -829,24 +832,29 @@ describe("SSC filters - addPropertiesToDimension()", () => {
               countryCode: "FR",
               languageCode: "fr",
               localizedName: "Arts et loisirs",
+              numberOfProductsAssociated : 1,
               children: [
                 {
                   name: "Peinture",
                   id: "1",
+                  numberOfProductsAssociated : 1,
                   children: [
                     {
                       name: "Huile",
                       id: "1",
+                      numberOfProductsAssociated : 1,
                     },
                     {
                       name: "Gouache",
                       id: "2",
+                      numberOfProductsAssociated : 1,
                     },
                   ],
                 },
                 {
                   name: "Dessin",
                   id: "2",
+                  numberOfProductsAssociated : 1,
                 },
               ],
             },
@@ -865,49 +873,56 @@ describe("SSC filters - addPropertiesToDimension()", () => {
           children: [
             {
               name: "Animaux et articles pour animaux de compagnie",
-              id: "Animaux et articles pour animaux de compagnie",
+              id: "1",
               checked: false,
               indeterminate: false,
+              numberOfProductsAssociated : 1,
               children: [
                 {
                   name: "Animal vivant",
-                  id: "Animal vivant",
+                  id: "1",
                   checked: false,
                   indeterminate: false,
+                  numberOfProductsAssociated : 1,
                 },
               ],
             },
             {
               name: "Arts et loisirs",
-              id: "Arts et loisirs",
+              id: "8",
               checked: false,
               indeterminate: false,
+              numberOfProductsAssociated : 1,
               children: [
                 {
                   name: "Peinture",
-                  id: "Peinture",
+                  id: "1",
                   checked: false,
                   indeterminate: false,
+                  numberOfProductsAssociated : 1,
                   children: [
                     {
                       name: "Huile",
-                      id: "Huile",
+                      id: "1",
                       checked: false,
                       indeterminate: false,
+                      numberOfProductsAssociated : 1,
                     },
                     {
                       name: "Gouache",
-                      id: "Gouache",
+                      id: "2",
                       checked: false,
                       indeterminate: false,
+                      numberOfProductsAssociated : 1,
                     },
                   ],
                 },
                 {
                   name: "Dessin",
-                  id: "Dessin",
+                  id: "2",
                   checked: false,
                   indeterminate: false,
+                  numberOfProductsAssociated : 1,
                 },
               ],
             },
@@ -915,4 +930,100 @@ describe("SSC filters - addPropertiesToDimension()", () => {
         },
       ]);
   });
+});
+describe("SSC filters - countFinalFilters()", () => {
+  it("returns the count of last filter, the one with no children", () => {
+    const source =  {
+          name: "Animaux et articles pour animaux de compagnie",
+          id: "1",
+          numberOfProductsAssociated: 2,
+          checked: false,
+          children: [
+              {
+                  name: "Articles pour animaux de compagnie",
+                  id: "2",
+                  numberOfProductsAssociated: 1,
+                  checked: true,
+                  children: [
+                      {
+                          name: "Accessoires pour chiens",
+                          id: "5",
+                          numberOfProductsAssociated: 1,
+                          checked: true,
+                          children: [
+                              {
+                                  name: "Nourriture pour chiens",
+                                  id: "3530",
+                                  numberOfProductsAssociated: 1,
+                                  checked: true,
+                                  children: [
+                                      {
+                                          name: "Aliments pour chiens sans ordonnance",
+                                          id: "543682",
+                                          numberOfProductsAssociated: 1,
+                                          checked: true,
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  ]
+                },
+              {
+                  name: "Test",
+                  id: "3",
+                  numberOfProductsAssociated: 321,
+                  checked: false,
+                  children: [
+                      {
+                          name: "test1",
+                          id: "5",
+                          numberOfProductsAssociated: 1,
+                          checked: false,
+                          children: [
+                              {
+                                  name: "Test1 enfant",
+                                  id: "3530",
+                                  numberOfProductsAssociated: 1,
+                                  checked: false,
+                                  children: [
+                                      {
+                                          name: "test1 enfant",
+                                          id: "543682",
+                                          numberOfProductsAssociated: 1,
+                                          checked: false,
+                                      }
+                                  ]
+                              }
+                          ]
+                      },
+                      {
+                          name: "test2",
+                          id: "5",
+                          numberOfProductsAssociated: 1,
+                          checked: false,
+                          children: [
+                              {
+                                  name: "Test2 enfant",
+                                  id: "3530",
+                                  numberOfProductsAssociated: 1,
+                                  checked: false,
+                                  children: [
+                                      {
+                                          name: "test2 enfant enfant2",
+                                          id: "5436832322",
+                                          numberOfProductsAssociated: 1,
+                                          checked: false,
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  ]
+              },
+          ]
+      };
+    const result = countFinalFilters(source, []);
+    expect(result).toEqual(1);
+});
 });
