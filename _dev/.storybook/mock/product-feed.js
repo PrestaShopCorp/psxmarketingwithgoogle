@@ -89,6 +89,7 @@ export const productFeed = {
     autoImportShippingSettings: true,
     attributeMapping: {},
     syncSchedule: "1 * * * * *",
+    requestSynchronizationNow: false,
   },
   validationSummary: {
     activeItems: null,
@@ -306,3 +307,8 @@ export const productFeedIsConfiguredOnce = {
   ...productFeedIsConfigured,
   isConfiguredOnce: true,
 };
+
+export const productFeedSyncScheduleNow = {
+  ...productFeedIsConfigured,
+  requestSynchronizationNow: true,
+}
