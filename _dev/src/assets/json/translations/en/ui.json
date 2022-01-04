@@ -495,7 +495,6 @@
       "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
     },
     "labelSelectedDimension": "Selected dimension value",
-    "labelDimensionValue": "Dimension value*",
     "nbDimensionSelected": "No dimension selected | {0} dimension selected | {0} dimensions selected",
     "nbValuesSelected": "No value selected | {0} value selected | {0} values selected",
     "selectProductsTitle": "Choose a product filter",
