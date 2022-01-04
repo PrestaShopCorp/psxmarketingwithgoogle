@@ -8,7 +8,7 @@
       "catalog": "Product catalog",
       "help": "Help"
     },
-    "eventBusMustbeUpdated": "Please update the PrestaShop Eventbus module so you can use properly the Marketing with Google module",
+    "eventBusMustbeUpdated": "The version of the module PrestaShop EventBus running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop EventBus",
     "psxmarketingwithgoogleMustBedUpdated": "Please update the PrestaShop Marketing With Google module in order to make it work properly",
     "adblockerActivated": "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",
     "refreshPage": "Refresh page",
