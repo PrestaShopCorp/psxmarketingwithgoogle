@@ -132,15 +132,17 @@ export default {
 
   computed: {
     nbFilters() {
-      const total = this.newCampaign.productFilters
-        .map((e) => e.values.length).reduce((a, b) => a + b, 0);
-      return `${this.$tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
-        this.newCampaign.productFilters.length,
-        [this.newCampaign.productFilters.length])
-      } - ${
-        this.$tc('smartShoppingCampaignCreation.nbValuesSelected',
-          total,
-          [total])}`;
+      // TODO also check with PM how it is supposed to be
+      return 0;
+      // const total = this.newCampaign.productFilters
+      //   .map((e) => e.values.length).reduce((a, b) => a + b, 0);
+      // return `${this.$tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
+      //   this.newCampaign.productFilters.length,
+      //   [this.newCampaign.productFilters.length])
+      // } - ${
+      //   this.$tc('smartShoppingCampaignCreation.nbValuesSelected',
+      //     total,
+      //     [total])}`;
     },
   },
 

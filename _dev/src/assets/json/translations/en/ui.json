@@ -779,6 +779,7 @@
     "removeFilter": "Remove filter | Remove filters",
     "selectAll": "Select all",
     "deselectAll": "Deselect all",
+    "clearAll": "Clear all",
     "signInWithGoogle": "Sign in with Google",
     "viewReporting": "View reporting",
     "pauseCampaign": "Pause campaign",

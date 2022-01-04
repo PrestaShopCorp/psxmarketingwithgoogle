@@ -18,24 +18,23 @@
         :selected-filters="false"
       />
     </ul>
-    <div class="d-flex">
-      <b-form-tags
-        input-id="tags-separators"
-        v-model="filtersChosen"
-        separator=" ,;"
+    <!-- v-model="filtersChosen" -->
+    <div class="d-flex mt-2">
+      <b-form-tag
+        class="mr-1"
+        v-for="(filter, index) in filtersChosen"
+        :key="index"
+        @remove="removeTag(filter)"
+        :title="filter.name"
         placeholder=""
-        tag-variant="info"
       />
       <b-button
         variant="invisible"
-        class="text-decoration-underline font-weight-normal py-2 px-1"
+        class="text-decoration-underline font-weight-normal py-2 px-1 justify-content-end"
         @click="checkAll(false)"
       >
-        {{ $t('cta.deselectAll') }}
+        {{ $t('cta.clearAll') }}
       </b-button>
-      <div class="pt-2">
-        {{ textFiltersSelected }}
-      </div>
     </div>
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button
@@ -62,7 +61,7 @@
 <script>
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
 import {
-  filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension, getFiltersNames,
+  filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension, getFilters,
 } from '../../../utils/SSCFilters';
 
 export default {
@@ -86,23 +85,18 @@ export default {
     };
   },
   computed: {
-    textFiltersSelected() {
-      return this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
-        this.totalNumberOfProducts,
-        [this.totalNumberOfProducts]);
-    },
     filteredDimensions() {
       return filterUncheckedSegments(this.availableFilters);
     },
-    filtersChosen() {
-      return getFiltersNames(this.filteredDimensions, []);
-    },
-    totalNumberOfProducts() {
-      return getFiltersNames(this.filteredDimensions, []).length;
-    },
+    filtersChosen: {
+      get() {
+        return getFilters(this.filteredDimensions, []);
+      },
+      set() {
 
+      },
+    },
   },
-
   methods: {
     checkAll(status) {
       deepCheckDimension(this.availableFilters, status);
@@ -125,6 +119,9 @@ export default {
     goBack() {
       this.checkAll(false);
       this.$emit('sendStep', 1);
+    },
+    removeTag(filter) {
+      this.selectCheckbox({item: filter, checked: false});
     },
   },
   mounted() {

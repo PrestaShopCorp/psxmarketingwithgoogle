@@ -39,7 +39,7 @@ import PsModal from '../../commons/ps-modal';
 import SmartShoppingCampaignCreationPopinDimension from './smart-shopping-campaign-creation-popin-dimension.vue';
 import SmartShoppingCampaignCreationPopinFilter from './smart-shopping-campaign-creation-popin-filter.vue';
 import SmartShoppingCampaignCreationFilterConfirmCancel from './smart-shopping-campaign-creation-filter-confirm-cancel.vue';
-import {filterUncheckedSegments, getFiltersNames} from '../../../utils/SSCFilters';
+import {filterUncheckedSegments, getFilters} from '../../../utils/SSCFilters';
 
 export default {
   name: 'SmartShoppingCampaignCreationPopin',
@@ -73,8 +73,7 @@ export default {
     },
 
     totalNumberOfProducts() {
-      const final = [];
-      return getFiltersNames(this.filteredDimensions, final).length;
+      return getFilters(this.filteredDimensions, []).length;
     },
   },
   methods: {

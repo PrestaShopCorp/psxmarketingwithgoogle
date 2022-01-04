@@ -52,6 +52,7 @@ export function filterUncheckedSegments(source: CampaignFilter) {
 }
 
 export function returnChildrenIds(source: CampaignFilter): Array<FiltersChosen> {
+  //  TODO and to discuss with backend
   const final : FiltersChosen[] = [];
 
   if (source.children) {
@@ -125,11 +126,11 @@ export function getFiltersbyIds(productFilters: Array<FiltersChosen>,
   return availableFilters;
 }
 
-export function getFiltersNames(arg, final) {
+export function getFilters(arg, final) {
   if (arg.children) {
-    arg.children.forEach((child) => getFiltersNames(child, final));
+    arg.children.forEach((child) => getFilters(child, final));
   } else if (arg.checked) {
-    final.push(arg.name);
+    final.push(arg);
   }
   return final;
 }
