@@ -1,18 +1,18 @@
-import SmartShoppingCampaignCreationFilterPopin from '../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation-filter-popin.vue';
+import SmartShoppingCampaignCreationPopin from '../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin.vue';
 import {initialStateApp} from '../.storybook/mock/state-app';
 import {availableFilters} from '../.storybook/mock/smart-shopping-campaigns';
 
 export default {
   title: 'Smart Shopping Campaign/Popins/Select Filters',
-  component: SmartShoppingCampaignCreationFilterPopin,
+  component: SmartShoppingCampaignCreationPopin,
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { SmartShoppingCampaignCreationFilterPopin },
+  components: { SmartShoppingCampaignCreationPopin },
   template: `
     <div>
-      <SmartShoppingCampaignCreationFilterPopin v-bind="$props" />
+      <SmartShoppingCampaignCreationPopin v-bind="$props" />
     </div>
   `,
   beforeMount(this: any) {
