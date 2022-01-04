@@ -100,7 +100,7 @@
 
 <script>
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
-import PsModal from '../commons/ps-modal';
+import PsModal from '../../commons/ps-modal';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {

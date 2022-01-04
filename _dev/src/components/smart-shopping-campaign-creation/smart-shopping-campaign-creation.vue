@@ -321,8 +321,8 @@
         </div>
       </b-form>
     </b-card-body>
-    <SmartShoppingCampaignCreationFilterPopin
-      ref="SmartShoppingCampaignCreationFilterPopin"
+    <SmartShoppingCampaignCreationPopin
+      ref="SmartShoppingCampaignCreationPopin"
       @selectFilters="getDimensionsFiltered"
       :available-filters="availableFilters"
     />
@@ -339,8 +339,8 @@
 
 <script>
 import countriesSelectionOptions from '@/assets/json/countries.json';
-import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-creation-filter-popin.vue';
-import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
+import SmartShoppingCampaignCreationPopin from './smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin.vue';
+import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
 import CampaignStatus from '@/enums/reporting/CampaignStatus';
@@ -373,7 +373,7 @@ export default {
     };
   },
   components: {
-    SmartShoppingCampaignCreationFilterPopin,
+    SmartShoppingCampaignCreationPopin,
     SmartShoppingCampaignCreationPopinRecap,
     SelectCountry,
   },
@@ -462,7 +462,8 @@ export default {
       }
     },
     productsHaveBeenApprovedByGoogle() {
-      return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      return true;
+      // return this.$store.state.productFeed.validationSummary.activeItems > 0;
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
@@ -514,7 +515,7 @@ export default {
     },
     openFilterPopin() {
       this.$bvModal.show(
-        this.$refs.SmartShoppingCampaignCreationFilterPopin.$refs.modal.id,
+        this.$refs.SmartShoppingCampaignCreationPopin.$refs.modal.id,
       );
     },
     onCampaignCreated() {

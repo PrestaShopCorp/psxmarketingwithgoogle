@@ -9,7 +9,7 @@ import {
   returnChildrenIds,
   checkAndUpdateDimensionStatus,
   addPropertiesToDimension,
-  countFinalFilters,
+  getFiltersNames,
 } from "./SSCFilters";
 
 describe("SSC filters - filterUncheckedSegments()", () => {
@@ -931,7 +931,7 @@ describe("SSC filters - addPropertiesToDimension()", () => {
       ]);
   });
 });
-describe("SSC filters - countFinalFilters()", () => {
+describe("SSC filters - getFiltersNames()", () => {
   it("returns the count of last filter, the one with no children", () => {
     const source =  {
           name: "Animaux et articles pour animaux de compagnie",
@@ -1023,7 +1023,7 @@ describe("SSC filters - countFinalFilters()", () => {
               },
           ]
       };
-    const result = countFinalFilters(source, []);
-    expect(result).toEqual(1);
+    const result = getFiltersNames(source, []);
+    expect(result).toEqual(['Aliments pour chiens sans ordonnance']);
 });
 });

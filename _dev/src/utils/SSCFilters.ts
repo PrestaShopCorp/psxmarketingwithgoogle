@@ -125,11 +125,11 @@ export function getFiltersbyIds(productFilters: Array<FiltersChosen>,
   return availableFilters;
 }
 
-export function countFinalFilters(arg, final) {
+export function getFiltersNames(arg, final) {
   if (arg.children) {
-    arg.children.forEach((child) => countFinalFilters(child, final));
+    arg.children.forEach((child) => getFiltersNames(child, final));
   } else if (arg.checked) {
-    final.push(arg);
+    final.push(arg.name);
   }
-  return final.length;
+  return final;
 }

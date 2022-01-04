@@ -73,7 +73,14 @@
                                       {
                                           "name": "test2 enfant enfant2",
                                           "id": "5436832322",
-                                          "numberOfProductsAssociated": 1
+                                          "numberOfProductsAssociated": 1,
+                                          "children": [
+                                            {
+                                                "name": "test3 enfant ",
+                                                "id": "5436282",
+                                                "numberOfProductsAssociated": 1
+                                            }
+                                          ]
                                       }
                                   ]
                               }

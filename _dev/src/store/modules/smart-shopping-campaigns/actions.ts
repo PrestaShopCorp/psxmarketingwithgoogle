@@ -23,6 +23,7 @@ import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import {CampaignObject, CampaignStatusPayload, ConversionAction} from './state';
+import filtersFromMock from '../../../assets/json/mockFilters.json';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, rootState}, payload : CampaignObject) {
@@ -494,18 +495,19 @@ export default {
     return json;
   },
   async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState}) {
-    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/dimensions/filters?language_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}&country_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-      });
-    if (!resp.ok) {
-      throw new HttpClientError(resp.statusText, resp.status);
-    }
-    const json = await resp.json();
-    return json;
+    return filtersFromMock;
+    // const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/dimensions/filters?language_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}&country_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}`,
+    //   {
+    //     method: 'GET',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+    //     },
+    //   });
+    // if (!resp.ok) {
+    //   throw new HttpClientError(resp.statusText, resp.status);
+    // }
+    // const json = await resp.json();
+    // return json;
   },
 };
