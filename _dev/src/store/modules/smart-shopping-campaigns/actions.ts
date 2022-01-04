@@ -496,7 +496,10 @@ export default {
   },
   async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState}) {
     return filtersFromMock;
-    // const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/dimensions/filters?language_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}&country_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}`,
+    // const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}
+    // /shopping-campaigns/dimensions/filters?language_code=
+    // ${rootState.app.psxMtgWithGoogleDefaultShopCountry}
+    // &country_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}`,
     //   {
     //     method: 'GET',
     //     headers: {

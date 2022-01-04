@@ -11,17 +11,13 @@
 
     <ul class="ps_gs-filters">
       <SmartShoppingCampaignCreationFilterItem
-        v-if="dimensionChosen"
-        :item="dimensionChosen"
         :is-open-by-default="true"
+        v-for="(child, index) in dimensionChosen.children"
+        :key="index"
+        :item="child"
+        :selected-filters="false"
       />
-      <div v-else>
-        {{ $t('smartShoppingCampaignCreation.selectFilterInfo') }}
-      </div>
     </ul>
-
-    {{ $t('smartShoppingCampaignCreation.infos') }}
-
     <div class="d-flex">
       <b-form-tags
         input-id="tags-separators"
@@ -52,7 +48,7 @@
       </b-button>
       <b-button
         size="sm"
-        :disabled="dimensionChosen.length >0"
+        :disabled="!filtersChosen.length"
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
         @click="confirmation"
@@ -116,6 +112,7 @@ export default {
       this.availableFilters.children.filter((f) => {
         console.log(f.name.toUpperCase());
         console.log(this.searchFilterName.toUpperCase());
+        return f;
       });
     },
     selectCheckbox(event) {

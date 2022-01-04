@@ -10,6 +10,7 @@
         <label class="mb-4">
           {{ $t('smartShoppingCampaignCreation.selectProductsSubtitle') }}
         </label>
+
         <div v-if="availableFilters.children.length">
           <div
             v-for="(oneDim, index) in availableFilters.children"
@@ -37,7 +38,7 @@
       </b-button>
       <b-button
         size="sm"
-        :disabled="dimensionChosen.length >0"
+        :disabled="!dimensionChosen"
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
         @click="nextStep"
@@ -62,7 +63,7 @@ export default {
   },
   data() {
     return {
-      dimensionChosen: '',
+      dimensionChosen: null,
     };
   },
   methods: {

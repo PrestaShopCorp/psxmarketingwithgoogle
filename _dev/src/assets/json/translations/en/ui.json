@@ -498,8 +498,8 @@
     "labelDimensionValue": "Dimension value*",
     "nbDimensionSelected": "No dimension selected | {0} dimension selected | {0} dimensions selected",
     "nbValuesSelected": "No value selected | {0} value selected | {0} values selected",
-    "selectProductsTitle": "Select products",
-    "selectProductsSubtitle": "Select the filters you want to add in your Google Ads campaign",
+    "selectProductsTitle": "Choose a product filter",
+    "selectProductsSubtitle": "Smart Shopping Campaign can only have one dimension with one or multiple values.",
     "remarketingNote": "**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.",
     "toggleNewConversionTag": "Set new conversion tracking tags on my site",
     "toggleNewConversionTag2": "We will create the following conversion tags : Page view, Purchase, Add to basket",
@@ -510,9 +510,7 @@
     "categories": "Categories",
     "brands": "Brands",
     "products": "Products",
-    "conditions": "Conditions",
-    "infos": "*Smart Shopping Campaign can only have one dimension with one or multiple values.",
-    "selectFilterInfo": "Select the product filters you want to use in your campaign"
+    "conditions": "Conditions"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance",

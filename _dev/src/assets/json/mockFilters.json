@@ -78,7 +78,28 @@
                                             {
                                                 "name": "test3 enfant ",
                                                 "id": "5436282",
-                                                "numberOfProductsAssociated": 1
+                                                "numberOfProductsAssociated": 1,
+                                                "children": [
+                                                    {
+                                                        "name": "test4 enfant ",
+                                                        "id": "5436282",
+                                                        "numberOfProductsAssociated": 123,
+                                                        "children": [
+                                                            {
+                                                                "name": "test5 enfant ",
+                                                                "id": "5436282",
+                                                                "numberOfProductsAssociated": 109,
+                                                                "children": [
+                                                                    {
+                                                                        "name": "test6 enfant ",
+                                                                        "id": "5436282",
+                                                                        "numberOfProductsAssociated": 1
+                                                                    }
+                                                                  ]
+                                                            }
+                                                          ]
+                                                    }
+                                                  ]
                                             }
                                           ]
                                       }
