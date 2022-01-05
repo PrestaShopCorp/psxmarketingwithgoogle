@@ -176,4 +176,7 @@ export default {
       });
     });
   },
+  [MutationsTypes.SET_CATEGORY_PRODUCTS_SELECTED](state: LocalState, payload) {
+    state.selectedProductCategories = payload;
+  },
 };

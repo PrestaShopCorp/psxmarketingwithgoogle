@@ -12,7 +12,7 @@
         </p>
         <b-form-checkbox-group
           id="categoryProducts"
-          v-model="categoryProductsSelected"
+          v-model="selectedProductCategories"
           name="categoryProducts"
           class="mb-4 py-2"
           plain
@@ -122,15 +122,15 @@ export default {
   },
   data() {
     return {
-      categoryProductsSelected: [],
+      selectedProductCategories: this.$store.getters['productFeed/GET_CATEGORY_PRODUCTS_SELECTED'],
     };
   },
   computed: {
     mappingSectionVisible() {
-      return this.categoryProductsSelected.length;
+      return this.selectedProductCategories.length;
     },
     disableContinue() {
-      return this.categoryProductsSelected.length === 0;
+      return this.selectedProductCategories.length === 0;
     },
     getPropertyFromShop() {
       return this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
@@ -165,7 +165,7 @@ export default {
     attributesToMap() {
       return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP']
         .filter(
-          (attr) => this.categoryProductsSelected.includes(attr.category)
+          (attr) => this.selectedProductCategories.includes(attr.category)
             || attr.category === Categories.COMMONS,
         );
     },
@@ -212,14 +212,15 @@ export default {
         return;
       }
       if (category === Categories.NONE) {
-        this.categoryProductsSelected = this.categoryProductsSelected
+        this.selectedProductCategories = this.selectedProductCategories
           .filter((cat) => cat === Categories.NONE);
       }
-      if (category !== Categories.NONE && this.categoryProductsSelected.includes(Categories.NONE)) {
-        this.categoryProductsSelected = this.categoryProductsSelected
+      if (category !== Categories.NONE && this.selectedProductCategories.includes(Categories.NONE)) {
+        this.selectedProductCategories = this.selectedProductCategories
           .filter((cat) => cat !== Categories.NONE);
       }
-      localStorage.setItem('categoryProductsSelected', JSON.stringify(this.categoryProductsSelected));
+      this.$store.commit('productFeed/SET_CATEGORY_PRODUCTS_SELECTED', this.selectedProductCategories);
+      localStorage.setItem('selectedProductCategories', JSON.stringify(this.selectedProductCategories));
     },
     refreshComponent() {
       this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE');
@@ -227,9 +228,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
-    this.categoryProductsSelected = localStorage.getItem('categoryProductsSelected')
-      ? JSON.parse(localStorage.getItem('categoryProductsSelected'))
-      : [];
   },
   googleUrl,
 };

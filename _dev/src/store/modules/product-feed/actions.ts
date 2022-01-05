@@ -124,6 +124,9 @@ export default {
         name: 'deliveryDetails',
         data: json?.additionalShippingSettings?.deliveryDetails || [],
       });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'selectedProductCategories', data: json?.selectedProductCategories || [],
+      });
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
     } catch (error) {
       if (error.code === 404) {
@@ -141,6 +144,7 @@ export default {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = JSON.parse(localStorage.getItem('productFeed-attributeMapping') || '{}');
+    const selectedProductCategories = JSON.parse(localStorage.getItem('selectedProductCategories') || '{}');
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
@@ -150,6 +154,7 @@ export default {
         deliveryDetails: productFeedSettings.deliveryDetails.filter((e) => e.enabledCarrier),
       },
       attributeMapping,
+      selectedProductCategories,
     };
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {

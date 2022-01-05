@@ -119,6 +119,7 @@ export interface State {
   productsDatas: ProductsDatas;
   attributesToMap: any;
   attributesData: Array<AttributesInfos>;
+  selectedProductCategories: Array<String>;
 }
 
 export enum ProductStatues {
@@ -167,4 +168,5 @@ export const state: State = {
   },
   attributesToMap,
   attributesData: [],
+  selectedProductCategories: [],
 };
