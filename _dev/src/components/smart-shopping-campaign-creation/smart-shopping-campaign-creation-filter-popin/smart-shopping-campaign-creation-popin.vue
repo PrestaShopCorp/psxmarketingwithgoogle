@@ -1,5 +1,4 @@
 <template>
-    <!-- :hide-footer="step !== 2 && totalNumberOfProducts === 0" -->
     <ps-modal
       :ok-disabled="totalNumberOfProducts === 0"
       id="SmartShoppingCampaignCreationPopin"
@@ -10,7 +9,6 @@
       cancel-variant="invisible font-weight-normal"
       :title="'Campaign’s products filters'"
     >
-      <b-form class="mb-4">
         <SmartShoppingCampaignCreationPopinDimension
           v-if="step === 1"
           :available-dimensions="availableDimensions"
@@ -27,12 +25,11 @@
           @validateCreationFilters="sendFiltersSelected"
           @filterByName="filtersAreChosenByName"
         />
-      </b-form>
     <SmartShoppingCampaignCreationFilterConfirmCancel
       ref="SmartShoppingCampaignCreationFilterConfirmCancel"
       @confirmation="sendFiltersSelected"
     />
-  </ps-modal>
+     </ps-modal>
 </template>
 
 <script>
