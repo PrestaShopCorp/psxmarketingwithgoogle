@@ -506,10 +506,14 @@
     "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
     "nbProductsSelected": "No product selected | {0} product selected | {0} products selected",
-    "categories": "Categories",
-    "brands": "Brands",
-    "products": "Products",
-    "conditions": "Conditions"
+    "categories": "Category",
+    "categoriesSubTitle": "Google-defined product category for your product (ex: Apparel & Accessories > Clothing > Coats & Jackets)",
+    "brands": "Brand",
+    "brandsSubTitle": "Product’s brand name",
+    "products": "Product ID",
+    "productsSubTitle": "Your product’s unique identifier",
+    "conditions": "Product Condition",
+    "conditionsSubTitle": "The condition of your product at time of sale (ex: New, used or refurbished)"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance",

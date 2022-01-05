@@ -5,26 +5,33 @@
     >
       <b-form-group
         :label="$t('smartShoppingCampaignCreation.selectProductsTitle')"
-        label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
+        label-class="font-weight-600 ps_gs-fz-16 d-block mb-0 p-0 bg-transparent border-0"
       >
-        <label class="mb-4">
+        <p class="ps_gs-fz-13 text-secondary mb-3">
           {{ $t('smartShoppingCampaignCreation.selectProductsSubtitle') }}
-        </label>
+        </p>
 
-        <div v-if="availableDimensions.length">
-          <div
-            v-for="(oneDim, index) in availableDimensions"
+        <b-form-radio-group
+          v-model="dimensionChosen"
+          name="dimension"
+          stacked
+          class="pt-1"
+          v-if="availableFilters.children.length"
+        >
+          <b-form-radio
+            :value="oneDim"
+            v-for="(oneDim, index) in availableFilters.children"
             :key="index"
-          >
-            <b-form-radio
-              v-model="chosenOrModifiedDimension"
-              name="dimension"
-              :value="oneDim"
+            class="mb-3"
             >
+            <strong class="font-weight-normal d-block">
               {{ oneDim.name }}
-            </b-form-radio>
-          </div>
-        </div>
+            </strong>
+            <span class="ps_gs-fz-12 text-secondary d-block">
+              {{ oneDim.subtitle }}
+            </span>
+          </b-form-radio>
+        </b-form-radio-group>
       </b-form-group>
     </b-form>
     <div class="d-md-flex text-center justify-content-end mt-3">

@@ -551,6 +551,7 @@ export default {
           }
           this.availableFilters.children.push({
             name: this.$t(`smartShoppingCampaignCreation.${dimensionName}`),
+            subtitle: this.$t(`smartShoppingCampaignCreation.${dimensionName}SubTitle`),
             id: dimensionName,
             checked: false,
             indeterminate: false,

@@ -1,14 +1,14 @@
 <template>
-  <div>
     <!-- :hide-footer="step !== 2 && totalNumberOfProducts === 0" -->
     <ps-modal
       :ok-disabled="totalNumberOfProducts === 0"
-      hide-footer
       id="SmartShoppingCampaignCreationPopin"
       ref="modal"
       size="xl"
+      hide-footer
       v-bind="$attrs"
       cancel-variant="invisible font-weight-normal"
+      :title="'Campaign’s products filters'"
     >
       <b-form class="mb-4">
         <SmartShoppingCampaignCreationPopinDimension
@@ -28,12 +28,11 @@
           @filterByName="filtersAreChosenByName"
         />
       </b-form>
-    </ps-modal>
     <SmartShoppingCampaignCreationFilterConfirmCancel
       ref="SmartShoppingCampaignCreationFilterConfirmCancel"
       @confirmation="sendFiltersSelected"
     />
-  </div>
+  </ps-modal>
 </template>
 
 <script>
@@ -107,6 +106,5 @@ export default {
       );
     },
   },
-
 };
 </script>
