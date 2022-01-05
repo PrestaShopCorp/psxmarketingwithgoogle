@@ -62,7 +62,7 @@ class CarrierDataProvider
         $language = new Language($this->configurationAdapter->get('PS_LANG_DEFAULT'));
         $currency = new Currency($this->configurationAdapter->get('PS_CURRENCY_DEFAULT'));
 
-        $carriers = Carrier::getCarriers($language->id);
+        $carriers = Carrier::getCarriers($language->id, false, false, false, null, Carrier::ALL_CARRIERS);
 
         /** @var DTOCarrier[] $carrierLines */
         $carrierLines = $this->carrierBuilder->buildCarriers(

@@ -31,6 +31,14 @@
     <b-card-body
       body-class="p-3 p-md-4"
     >
+      <b-alert
+        v-if="hasUnhandledFilters"
+        show
+        variant="info"
+        data-test-id="unhandled-filters-alert"
+      >
+        {{ $t('smartShoppingCampaignCreation.alerts.hasUnhandledFilters') }}
+      </b-alert>
       <b-form>
         <b-form-group
           id="campaign-name-fieldset"
@@ -179,6 +187,7 @@
           label-class="h4 font-weight-600 border-0 bg-transparent"
         >
           <b-form-radio
+            :disabled="hasUnhandledFilters"
             v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
             :value="true"
@@ -187,7 +196,7 @@
             {{ $t('smartShoppingCampaignCreation.inputFiltersAllLabel') }}
           </b-form-radio>
           <b-form-radio
-            :disabled="!productsHaveBeenApprovedByGoogle"
+            :disabled="!productsHaveBeenApprovedByGoogle || hasUnhandledFilters"
             v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
             :value="false"
@@ -203,7 +212,8 @@
             />
           </template>
           <b-button
-            v-if="campaignHasNoProductsFilter === false"
+            v-if="!campaignHasNoProductsFilter"
+            :disabled="hasUnhandledFilters"
             variant="primary"
             size="sm"
             class="my-3"
@@ -359,6 +369,7 @@ export default {
         indeterminate: false,
         children: [],
       },
+      hasUnhandledFilters: false,
     };
   },
   components: {
@@ -416,6 +427,17 @@ export default {
     currency() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode || '';
     },
+    finalCampaignFilters() {
+      // IMPORTANT: Do not send the filters property if the campaign has unhandled filters
+      if (!this.hasUnhandledFilters) {
+        return undefined;
+      }
+      // An empty array is returned if we want to delete existing filters
+      if (this.campaignHasNoProductsFilter) {
+        return [];
+      }
+      return this.filtersChosen;
+    },
     finalCampaign() {
       return {
         id: this.campaignId,
@@ -425,7 +447,7 @@ export default {
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
         targetCountry: this.targetCountry || this.defaultCountry(),
-        productFilters: !this.campaignHasNoProductsFilter ? this.filtersChosen : [],
+        productFilters: this.finalCampaignFilters,
       };
     },
     budgetCurrencySymbol() {
@@ -552,7 +574,8 @@ export default {
         this.campaignName = this.foundSsc.campaignName;
         this.campaignDurationStartDate = this.foundSsc.startDate;
         this.campaignDurationEndDate = this.foundSsc.endDate || null;
-        this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length;
+        this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
+          && !this.foundSsc.hasUnhandledFilters;
         this.filtersChosen = this.foundSsc.productFilters;
         this.campaignDailyBudget = this.foundSsc.dailyBudget;
         this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
@@ -560,6 +583,7 @@ export default {
         this.targetCountry = this.$options.filters.changeCountriesCodesToNames(
           [this.foundSsc.targetCountry],
         );
+        this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
         this.debounceName();
       } else {
         this.$router.push({name: 'campaign-list'});
