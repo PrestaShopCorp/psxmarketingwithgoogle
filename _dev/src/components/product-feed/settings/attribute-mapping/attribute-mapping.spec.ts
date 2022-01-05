@@ -55,7 +55,7 @@ describe('attribute-mapping.vue', () => {
       store: new Vuex.Store(store),
     });
 
-    await wrapper.setData({categoryProductsSelected: []});
+    await wrapper.setData({selectedProductCategories: []});
     expect(wrapper.find('[data-test-id="section-attribute-field"]').exists()).toBeFalsy();
   });
 
@@ -66,7 +66,7 @@ describe('attribute-mapping.vue', () => {
       store: new Vuex.Store(store),
     });
 
-    await wrapper.setData({categoryProductsSelected: ['none']});
+    await wrapper.setData({selectedProductCategories: ['none']});
     expect(wrapper.find('[data-test-id="section-attribute-field"]').exists()).toBeTruthy();
   });
 
@@ -77,7 +77,7 @@ describe('attribute-mapping.vue', () => {
       store: new Vuex.Store(store),
     });
 
-    await wrapper.setData({categoryProductsSelected: []});
+    await wrapper.setData({selectedProductCategories: []});
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
   });
 
@@ -88,7 +88,7 @@ describe('attribute-mapping.vue', () => {
       store: new Vuex.Store(store),
     });
 
-    await wrapper.setData({categoryProductsSelected: ['none']});
+    await wrapper.setData({selectedProductCategories: ['none']});
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
   });
 

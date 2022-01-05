@@ -230,9 +230,9 @@ export default {
         this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
       );
     },
-    categoryProductsSelected() {
-      return localStorage.getItem('categoryProductsSelected')
-        ? JSON.parse(localStorage.getItem('categoryProductsSelected'))
+    selectedProductCategories() {
+      return localStorage.getItem('selectedProductCategories')
+        ? JSON.parse(localStorage.getItem('selectedProductCategories'))
         : [];
     },
     mandatoryAttributesNotMapped() {
@@ -248,7 +248,7 @@ export default {
     },
     getMapping() {
       return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP']
-        .filter((item) => this.categoryProductsSelected.includes(item.category) || item.category === 'commons')
+        .filter((item) => this.selectedProductCategories.includes(item.category) || item.category === 'commons')
         .map((attr) => attr.fields)
         .flat(1)
         .map((attribute) => ({

@@ -90,4 +90,11 @@ export default {
     }
     return null;
   },
+  [GettersTypes.GET_PRODUCT_CATEGORIES_SELECTED](state: LocalState) : Array<String> {
+    const getCategoriesFromLocalStorage = localStorage.getItem('selectedProductCategories');
+    if (getCategoriesFromLocalStorage) {
+      state.selectedProductCategories = JSON.parse(getCategoriesFromLocalStorage);
+    }
+    return state.selectedProductCategories;
+  },
 };

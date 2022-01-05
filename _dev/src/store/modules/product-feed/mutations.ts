@@ -176,4 +176,8 @@ export default {
       });
     });
   },
+  [MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES](state: LocalState, payload) {
+    localStorage.setItem('selectedProductCategories', JSON.stringify(payload));
+    state.selectedProductCategories = payload;
+  },
 };
