@@ -1,8 +1,6 @@
 <template>
   <div>
-    <b-form
-      class="mb-5"
-    >
+    <b-form>
       <b-form-group
         :label="$t('smartShoppingCampaignCreation.selectProductsTitle')"
         label-class="font-weight-600 ps_gs-fz-16 d-block mb-0 p-0 bg-transparent border-0"
@@ -33,6 +31,25 @@
           </b-form-radio>
         </b-form-radio-group>
       </b-form-group>
+      <div class="d-md-flex text-center justify-content-end mt-3">
+        <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0"
+          variant="outline-secondary"
+          @click="confirmCancel"
+        >
+          {{ $t("cta.cancel") }}
+        </b-button>
+        <b-button
+          size="sm"
+          :disabled="!dimensionChosen"
+          class="mx-1 mt-3 mt-md-0 mr-md-0"
+          variant="primary"
+          @click="nextStep"
+        >
+          {{ $t("cta.next") }}
+        </b-button>
+      </div>
     </b-form>
     <div class="d-md-flex text-center justify-content-end mt-3">
       <b-button

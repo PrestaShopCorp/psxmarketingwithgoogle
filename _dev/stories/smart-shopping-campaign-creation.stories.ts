@@ -3,6 +3,7 @@ import {initialStateApp} from '../.storybook/mock/state-app';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads.js';
 import {campaignWithUnhandledFilters} from '../.storybook/mock/smart-shopping-campaigns';
 import {rest} from 'msw';
+import {availableFilters} from '../.storybook/mock/smart-shopping-campaigns.js';
 
 export default {
   title: 'Smart Shopping Campaign/Creation',
@@ -300,3 +301,26 @@ EditionWithUnhandledFilters.args = {
   },
 };
 
+export const PopinFiltersDimensionStep:any = Template.bind({});
+PopinFiltersDimensionStep.args = {
+  beforeMount(this: any) {
+    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+  },
+  mounted(this: any) {
+    // @ts-ignore
+    this.$refs.sscCreation.openFilterPopin();
+  },
+};
+
+export const PopinFiltersFiltersStep:any = Template.bind({});
+PopinFiltersFiltersStep.args = {
+  beforeMount(this: any) {
+    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+  },
+  mounted(this: any) {
+    // @ts-ignore
+    this.$refs.sscCreation.openFilterPopin();
+    this.$refs.sscCreation.$refs.SmartShoppingCampaignCreationPopin.$data.dimensionChosen = availableFilters.children[0];
+    this.$refs.sscCreation.$refs.SmartShoppingCampaignCreationPopin.$data.step = 2;
+  },
+};
