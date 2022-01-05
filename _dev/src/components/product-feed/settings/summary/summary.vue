@@ -265,14 +265,10 @@ export default {
       return this.getMapping;
     },
     selectedSyncSchedule() {
-      // TODO
-      // Get value from store I guess ?
-      return 'tutu';
+      return this.$store.getters['productFeed/GET_SYNC_SCHEDULE'];
     },
     selectedSyncScheduleIsDefault() {
-      // TODO
-      // We might benefit from an enum here
-      return this.selectedSyncSchedule === 'syncDefault';
+      return this.selectedSyncSchedule === false;
     },
   },
   methods: {
@@ -284,7 +280,7 @@ export default {
       this.postDatas();
     },
     previousStep() {
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       window.scrollTo(0, 0);
     },
     postDatas() {

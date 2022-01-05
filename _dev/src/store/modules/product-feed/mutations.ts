@@ -180,4 +180,7 @@ export default {
     localStorage.setItem('selectedProductCategories', JSON.stringify(payload));
     state.selectedProductCategories = payload;
   },
+  [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload: boolean) {
+    state.requestSynchronizationNow = payload;
+  },
 };

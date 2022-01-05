@@ -97,4 +97,7 @@ export default {
     }
     return state.selectedProductCategories;
   },
+  [GettersTypes.GET_SYNC_SCHEDULE](state: LocalState) : boolean {
+    return state.requestSynchronizationNow;
+  },
 };

@@ -1,5 +1,5 @@
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue';
-import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport} from '../.storybook/mock/product-feed';
+import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport, productFeedSyncScheduleNow} from '../.storybook/mock/product-feed';
 import {initialStateApp} from '../.storybook/mock/state-app';
 
 export default {
@@ -61,7 +61,7 @@ AttributeMapping.args = {
 export const SyncSchedule:any = Template.bind({});
 SyncSchedule.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({},productFeed);
+    this.$store.state.productFeed = Object.assign({},productFeedSyncScheduleNow);
     this.$store.state.productFeed.stepper = 4;
   },
 };

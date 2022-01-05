@@ -13,14 +13,14 @@
         <b-form-radio
           v-model="selectedSyncSchedule"
           name="sync-schedule"
-          value="syncNow"
+          :value="true"
         >
           {{ $t('productFeedSettings.syncSchedule.radioLabel1') }}
         </b-form-radio>
         <b-form-radio
           v-model="selectedSyncSchedule"
           name="sync-schedule"
-          value="syncDefault"
+          :value="false"
           class="mt-3"
         >
           {{ $t('productFeedSettings.syncSchedule.radioLabel2') }}
@@ -47,12 +47,19 @@ export default {
   },
   data() {
     return {
-      selectedSyncSchedule: 'syncDefault',
     };
   },
   computed: {
     disableContinue() {
       return false;
+    },
+    selectedSyncSchedule: {
+      get() {
+        return this.$store.getters['productFeed/GET_SYNC_SCHEDULE'];
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_SYNC_SCHEDULE', value);
+      },
     },
   },
   methods: {

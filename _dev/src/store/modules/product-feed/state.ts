@@ -120,6 +120,7 @@ export interface State {
   attributesToMap: any;
   attributesData: Array<AttributesInfos>;
   selectedProductCategories: Array<String>;
+  requestSynchronizationNow: boolean;
 }
 
 export enum ProductStatues {
@@ -167,6 +168,7 @@ export const state: State = {
     items: [],
   },
   attributesToMap,
+  requestSynchronizationNow: false,
   attributesData: [],
   selectedProductCategories: [],
 };
