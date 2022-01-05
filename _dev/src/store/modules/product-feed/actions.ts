@@ -149,7 +149,7 @@ export default {
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = JSON.parse(localStorage.getItem('productFeed-attributeMapping') || '{}');
     const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
-    const productFeedSync = state.requestSynchronizationNow;
+    const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
@@ -160,7 +160,7 @@ export default {
       },
       attributeMapping,
       selectedProductCategories,
-      requestSynchronizationNow: productFeedSync,
+      requestSynchronizationNow,
     };
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
