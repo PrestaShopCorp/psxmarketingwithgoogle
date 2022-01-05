@@ -90,10 +90,10 @@ export default {
     }
     return null;
   },
-  [GettersTypes.GET_CATEGORY_PRODUCTS_SELECTED](state: LocalState) : Array<String> {
-    const getCtgSelected = localStorage.getItem('selectedProductCategories');
-    if (getCtgSelected) {
-      state.selectedProductCategories = JSON.parse(localStorage.getItem('selectedProductCategories') || '{}');
+  [GettersTypes.GET_PRODUCT_CATEGORIES_SELECTED](state: LocalState) : Array<String> {
+    const getCategoriesFromLocalStorage = localStorage.getItem('selectedProductCategories');
+    if (getCategoriesFromLocalStorage) {
+      state.selectedProductCategories = JSON.parse(getCategoriesFromLocalStorage);
     }
     return state.selectedProductCategories;
   },

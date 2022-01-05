@@ -120,11 +120,6 @@ export default {
     AttributeField,
     CategoryButton,
   },
-  data() {
-    return {
-      selectedProductCategories: this.$store.getters['productFeed/GET_CATEGORY_PRODUCTS_SELECTED'],
-    };
-  },
   computed: {
     mappingSectionVisible() {
       return this.selectedProductCategories.length;
@@ -134,6 +129,14 @@ export default {
     },
     getPropertyFromShop() {
       return this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
+    },
+    selectedProductCategories: {
+      get() {
+        return this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_CATEGORIES', value);
+      },
     },
     categories() {
       return [
@@ -211,16 +214,7 @@ export default {
       if (!isSelected) {
         return;
       }
-      if (category === Categories.NONE) {
-        this.selectedProductCategories = this.selectedProductCategories
-          .filter((cat) => cat === Categories.NONE);
-      }
-      if (category !== Categories.NONE && this.selectedProductCategories.includes(Categories.NONE)) {
-        this.selectedProductCategories = this.selectedProductCategories
-          .filter((cat) => cat !== Categories.NONE);
-      }
-      this.$store.commit('productFeed/SET_CATEGORY_PRODUCTS_SELECTED', this.selectedProductCategories);
-      localStorage.setItem('selectedProductCategories', JSON.stringify(this.selectedProductCategories));
+      this.$store.dispatch('productFeed/REQUEST_PRODUCT_CATEGORIES_CHANGED', category);
     },
     refreshComponent() {
       this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE');

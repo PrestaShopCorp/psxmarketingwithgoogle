@@ -24,6 +24,7 @@ import countriesSelectionOptions from '../../../assets/json/countries.json';
 import {
   Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
 } from '../../../providers/shipping-settings-provider';
+import Categories from '@/enums/product-feed/attribute-mapping-categories';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
@@ -144,7 +145,7 @@ export default {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = JSON.parse(localStorage.getItem('productFeed-attributeMapping') || '{}');
-    const selectedProductCategories = JSON.parse(localStorage.getItem('selectedProductCategories') || '{}');
+    const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
@@ -409,5 +410,15 @@ export default {
     } catch (error) {
       console.log(error);
     }
+  },
+  async [ActionsTypes.REQUEST_PRODUCT_CATEGORIES_CHANGED]({rootState, commit}, category) {
+    let getSelectedCtg = rootState.productFeed.selectedProductCategories;
+    if (category === Categories.NONE) {
+      getSelectedCtg = getSelectedCtg.filter((cat) => cat === Categories.NONE);
+    }
+    if (category !== Categories.NONE && getSelectedCtg.includes(Categories.NONE)) {
+      getSelectedCtg = getSelectedCtg.filter((cat) => cat !== Categories.NONE);
+    }
+    commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, getSelectedCtg);
   },
 };
