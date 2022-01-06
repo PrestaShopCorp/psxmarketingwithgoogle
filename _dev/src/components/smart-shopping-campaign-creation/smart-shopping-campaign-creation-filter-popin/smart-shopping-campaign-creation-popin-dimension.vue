@@ -11,13 +11,13 @@
           {{ $t('smartShoppingCampaignCreation.selectProductsSubtitle') }}
         </label>
 
-        <div v-if="availableFilters.children.length">
+        <div v-if="availableDimensions.length">
           <div
-            v-for="(oneDim, index) in availableFilters.children"
+            v-for="(oneDim, index) in availableDimensions"
             :key="index"
           >
             <b-form-radio
-              v-model="dimensionChosen"
+              v-model="chosenOrModifiedDimension"
               name="dimension"
               :value="oneDim"
             >
@@ -38,7 +38,7 @@
       </b-button>
       <b-button
         size="sm"
-        :disabled="!dimensionChosen"
+        :disabled="!chosenOrModifiedDimension"
         class="mx-1 mt-3 mt-md-0 mr-md-0"
         variant="primary"
         @click="nextStep"
@@ -56,19 +56,34 @@ export default {
   components: {
   },
   props: {
-    availableFilters: {
+    availableDimensions: {
+      type: Array,
+      required: true,
+    },
+    dimensionChosen: {
       type: Object,
       required: true,
     },
   },
+
   data() {
     return {
-      dimensionChosen: null,
+      chosenOrModifiedDimension: this.dimensionChosen ? this.dimensionChosen : null,
     };
   },
   methods: {
     nextStep() {
-      this.$emit('dimensionChosen', this.dimensionChosen);
+      let reset = false;
+      // We check if there is already a dimension chosen, if so we will reset all checkbox
+      if (this.dimensionChosen.name
+       && (this.dimensionChosen.name !== this.chosenOrModifiedDimension.name)) {
+        localStorage.removeItem('SSCDimensionsFiltered');
+        reset = true;
+      }
+      this.$emit('dimensionChosen', {
+        reset,
+        newDimension: this.chosenOrModifiedDimension,
+      });
       this.$emit('sendStep', 2);
     },
     confirmCancel() {

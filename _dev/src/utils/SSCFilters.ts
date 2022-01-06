@@ -52,7 +52,7 @@ export function filterUncheckedSegments(source: CampaignFilter) {
 }
 
 export function returnChildrenIds(source: CampaignFilter): Array<FiltersChosen> {
-  //  TODO and to discuss with backend
+  //  REWRITE NEEDED and to discuss with backend
   const final : FiltersChosen[] = [];
 
   if (source.children) {
@@ -133,4 +133,18 @@ export function getFilters(arg, final) {
     final.push(arg);
   }
   return final;
+}
+
+export function filterByName(dimensionFilters, search, arr) {
+  dimensionFilters.filter((f) => {
+    if (f.name.toUpperCase().includes(search.toUpperCase())) {
+      arr.push(f);
+    }
+    if (f.children) {
+      return filterByName(f.children, search, arr);
+    }
+
+    return arr;
+  });
+  return arr;
 }

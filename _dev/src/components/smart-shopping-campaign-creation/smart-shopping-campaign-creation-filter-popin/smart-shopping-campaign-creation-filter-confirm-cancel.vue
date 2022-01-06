@@ -14,7 +14,7 @@
       {{ $t("cta.cancel") }}
     </template>
     <template slot="modal-ok">
-      <!-- {{ $t("cta.validateSelection") }} --> I agree
+      {{ $t("cta.agree") }}
     </template>
   </ps-modal>
 </template>
@@ -31,6 +31,7 @@ export default {
   methods: {
     onAgreed() {
       this.$emit('confirmation');
+      localStorage.removeItem('SSCDimensionsFiltered');
       this.$bvModal.hide('GoogleAdsAccountPopinDisconnect');
     },
   },

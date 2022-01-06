@@ -323,7 +323,7 @@
     </b-card-body>
     <SmartShoppingCampaignCreationPopin
       ref="SmartShoppingCampaignCreationPopin"
-      @selectFilters="getDimensionsFiltered"
+      @selectFilters="setDimensionsFiltered"
       :available-filters="availableFilters"
     />
     <SmartShoppingCampaignCreationPopinRecap
@@ -534,11 +534,16 @@ export default {
       this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
 
-    getDimensionsFiltered(dimensions) {
+    setDimensionsFiltered(dimensions) {
       this.filtersChosen = returnChildrenIds(dimensions);
+      // localStorage.setItem('SSCDimensionsFiltered', JSON.stringify(this.availableFilters));
     },
     getDatasFiltersDimensions() {
       this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
+        if (localStorage.getItem('SSCDimensionsFiltered')) {
+          this.availableFilters = JSON.parse(localStorage.getItem('SSCDimensionsFiltered'));
+          return;
+        }
         Object.keys(res).forEach((dimensionName) => {
           // Do not display a dimension with no filter inside
           if (!res[dimensionName].length) {

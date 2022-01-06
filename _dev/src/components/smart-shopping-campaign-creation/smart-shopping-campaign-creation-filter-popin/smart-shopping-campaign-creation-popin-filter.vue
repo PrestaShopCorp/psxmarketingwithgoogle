@@ -6,9 +6,8 @@
       :placeholder="$t('general.search')"
       size="sm"
       type="text"
-      @keyup="debounceName()"
+      @keyup="debounceName(dimensionChosen.children)"
     />
-
     <ul class="ps_gs-filters">
       <SmartShoppingCampaignCreationFilterItem
         :is-open-by-default="true"
@@ -18,7 +17,6 @@
         :selected-filters="false"
       />
     </ul>
-    <!-- v-model="filtersChosen" -->
     <div class="d-flex mt-2">
       <b-form-tag
         class="mr-1"
@@ -62,6 +60,7 @@
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
 import {
   filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension, getFilters,
+  // filterByName,
 } from '../../../utils/SSCFilters';
 
 export default {
@@ -85,12 +84,9 @@ export default {
     };
   },
   computed: {
-    filteredDimensions() {
-      return filterUncheckedSegments(this.availableFilters);
-    },
     filtersChosen: {
       get() {
-        return getFilters(this.filteredDimensions, []);
+        return getFilters(filterUncheckedSegments(this.availableFilters), []);
       },
       set() {
 
@@ -102,12 +98,13 @@ export default {
       deepCheckDimension(this.availableFilters, status);
       checkAndUpdateDimensionStatus(this.availableFilters);
     },
-    debounceName() {
-      this.availableFilters.children.filter((f) => {
-        console.log(f.name.toUpperCase());
-        console.log(this.searchFilterName.toUpperCase());
-        return f;
-      });
+    debounceName(arg) {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        console.log('arg', arg);
+      //  let result = filterByName(arg, this.searchFilterName.toUpperCase(), []);
+      //  this.$emit('filterByName', result)
+      }, 1000);
     },
     selectCheckbox(event) {
       deepCheckDimension(event.item, event.checked);
@@ -115,9 +112,9 @@ export default {
     },
     confirmation() {
       this.$emit('validateCreationFilters');
+      this.$emit('sendStep', 1);
     },
     goBack() {
-      this.checkAll(false);
       this.$emit('sendStep', 1);
     },
     removeTag(filter) {
