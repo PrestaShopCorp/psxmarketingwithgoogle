@@ -178,30 +178,29 @@ export default {
         params: SegmentGenericParams,
       });
     },
-    checkForModuleVersion(moduleChosen) {
-      this.$store.dispatch('app/GET_MODULES_VERSIONS', moduleChosen.name).then((res) => {
-        if (!res.version) {
-          this.error = true;
+    async checkForModuleVersion(moduleChosen) {
+      const res = await this.$store.dispatch('app/GET_MODULES_VERSIONS', moduleChosen.name);
+      if (!res.version) {
+        this.error = true;
+        return;
+      }
+      if (moduleChosen.name === 'ps_eventbus') {
+        // if module version >= version wanted
+        if (semver.gte(res.version, this.$store.state.app.eventbusVersionNeeded)) {
           return;
         }
-        if (moduleChosen.name === 'ps_eventbus') {
-          // if module version >= version wanted
-          if (semver.gte(res.version, this.$store.state.app.eventbusVersionNeeded)) {
-            return;
-          }
-          this.eventbusIsOK = false;
-          this.eventBusVersion.upgradeLink = res.upgradeLink;
-          this.eventBusVersion.version = res.version;
-        } else {
-          // if module version >= version wanted
-          if (semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded)) {
-            return;
-          }
-          this.psxmarketingwithgoogleIsOk = false;
-          this.psxmarketingwithgoogleVersion.upgradeLink = res.upgradeLink;
-          this.psxmarketingwithgoogleVersion.version = res.version;
+        this.eventbusIsOK = false;
+        this.eventBusVersion.upgradeLink = res.upgradeLink;
+        this.eventBusVersion.version = res.version;
+      } else {
+        // if module version >= version wanted
+        if (semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded)) {
+          return;
         }
-      });
+        this.psxmarketingwithgoogleIsOk = false;
+        this.psxmarketingwithgoogleVersion.upgradeLink = res.upgradeLink;
+        this.psxmarketingwithgoogleVersion.version = res.version;
+      }
     },
     async moduleUpdated(moduleChosen) {
       this.loading = true;
@@ -213,7 +212,7 @@ export default {
         if (moduleChosen.name === 'ps_eventbus') {
           this.eventbusIsOK = true;
           this.checkForModuleVersion(this.eventBusVersion);
-        } else {
+        } else if (moduleChosen.name === 'psxmarketingwithgoogle') {
           this.psxmarketingwithgoogleIsOk = true;
           this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
         }
