@@ -126,10 +126,10 @@ export default {
         data: json?.additionalShippingSettings?.deliveryDetails || [],
       });
 
-      if (json?.selectedProductCategories) {
+      if (json.selectedProductCategories) {
         commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, json.selectedProductCategories);
       }
-      commit(MutationsTypes.SET_SYNC_SCHEDULE, json.requestSynchronizationNow);
+      commit(MutationsTypes.SET_SYNC_SCHEDULE, json?.requestSynchronizationNow || false);
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
     } catch (error) {
       if (error.code === 404) {
