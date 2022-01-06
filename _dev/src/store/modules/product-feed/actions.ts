@@ -97,9 +97,6 @@ export default {
         name: 'syncSchedule', data: json.syncSchedule,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'requestSynchronizationNow', data: json.requestSynchronizationNow,
-      });
-      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'attributeMapping',
         data: Object.assign(
           (json.attributeMapping?.exportProductsWithShortDescription) ? {
@@ -128,9 +125,11 @@ export default {
         name: 'deliveryDetails',
         data: json?.additionalShippingSettings?.deliveryDetails || [],
       });
-      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'selectedProductCategories', data: json?.selectedProductCategories || [],
-      });
+
+      if (json?.selectedProductCategories) {
+        commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, json.selectedProductCategories);
+      }
+      commit(MutationsTypes.SET_SYNC_SCHEDULE, json.requestSynchronizationNow);
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
     } catch (error) {
       if (error.code === 404) {
