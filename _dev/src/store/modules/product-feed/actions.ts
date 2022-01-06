@@ -126,7 +126,7 @@ export default {
         data: json?.additionalShippingSettings?.deliveryDetails || [],
       });
 
-      if (json?.selectedProductCategories) {
+      if (json.selectedProductCategories) {
         commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, json.selectedProductCategories);
       }
       commit(MutationsTypes.SET_SYNC_SCHEDULE, json.requestSynchronizationNow);
