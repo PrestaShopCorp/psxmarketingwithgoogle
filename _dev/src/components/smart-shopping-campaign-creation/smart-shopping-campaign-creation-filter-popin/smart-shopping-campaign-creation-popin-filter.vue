@@ -6,9 +6,12 @@
       :placeholder="$t('general.search')"
       size="sm"
       type="text"
-      @keyup="debounceName(dimensionChosen.children)"
+      @keyup="debounceName(availableFilters.children[0].children)"
     />
-    <ul class="ps_gs-filters">
+    <ul
+      class="ps_gs-filters"
+      v-if="dimensionChosen.children"
+    >
       <SmartShoppingCampaignCreationFilterItem
         :is-open-by-default="true"
         v-for="(child, index) in dimensionChosen.children"
@@ -60,7 +63,7 @@
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
 import {
   filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension, getFilters,
-  // filterByName,
+  filterByName,
 } from '../../../utils/SSCFilters';
 
 export default {
@@ -86,7 +89,7 @@ export default {
   computed: {
     filtersChosen: {
       get() {
-        return getFilters(filterUncheckedSegments(this.availableFilters), []);
+        return getFilters(filterUncheckedSegments(this.dimensionChosen), []);
       },
       set() {
 
@@ -95,20 +98,18 @@ export default {
   },
   methods: {
     checkAll(status) {
-      deepCheckDimension(this.availableFilters, status);
-      checkAndUpdateDimensionStatus(this.availableFilters);
+      deepCheckDimension(this.dimensionChosen, status);
+      checkAndUpdateDimensionStatus(this.dimensionChosen);
     },
     debounceName(arg) {
-      clearTimeout(this.timer);
-      this.timer = setTimeout(() => {
-        console.log('arg', arg);
-      //  let result = filterByName(arg, this.searchFilterName.toUpperCase(), []);
-      //  this.$emit('filterByName', result)
+      setTimeout(() => {
+        const result = filterByName(arg, this.searchFilterName.toUpperCase(), []);
+        this.$emit('filterByName', result);
       }, 1000);
     },
     selectCheckbox(event) {
       deepCheckDimension(event.item, event.checked);
-      checkAndUpdateDimensionStatus(this.availableFilters);
+      checkAndUpdateDimensionStatus(this.dimensionChosen);
     },
     confirmation() {
       this.$emit('validateCreationFilters');

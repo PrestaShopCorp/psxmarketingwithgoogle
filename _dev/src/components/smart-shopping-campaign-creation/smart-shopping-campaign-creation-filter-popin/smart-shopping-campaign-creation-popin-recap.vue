@@ -121,6 +121,10 @@ export default {
       required: false,
       type: Boolean,
     },
+    totalProducts: {
+      required: false,
+      type: Number,
+    },
   },
 
   data() {

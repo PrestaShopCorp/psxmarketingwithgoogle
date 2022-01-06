@@ -136,6 +136,9 @@ export function getFilters(arg, final) {
 }
 
 export function filterByName(dimensionFilters, search, arr) {
+  if (!search.length) {
+    return [];
+  }
   dimensionFilters.filter((f) => {
     if (f.name.toUpperCase().includes(search.toUpperCase())) {
       arr.push(f);

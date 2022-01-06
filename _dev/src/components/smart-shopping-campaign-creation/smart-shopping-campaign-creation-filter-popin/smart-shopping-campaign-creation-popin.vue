@@ -1,6 +1,6 @@
 <template>
   <ps-modal
-    :ok-disabled="totalNumberOfProducts === 0"
+    :ok-disabled="totalNumberOfFilters === 0"
     hide-footer
     id="SSCampaignCreationPopin"
     ref="modal"
@@ -64,31 +64,27 @@ export default {
     };
   },
   computed: {
-    textFiltersSelected() {
-      return this.$i18n.tc('smartShoppingCampaignCreation.nbValuesSelected',
-        this.totalNumberOfProducts,
-        [this.totalNumberOfProducts]);
-    },
     filteredDimensions() {
-      return filterUncheckedSegments(this.availableFilters);
+      return filterUncheckedSegments(this.dimensionChosen);
     },
-    totalNumberOfProducts() {
+    totalNumberOfFilters() {
       return getFilters(this.filteredDimensions, []).length;
     },
   },
   methods: {
     dimensionHasBeenSelected(obj) {
       if (obj.reset) {
-        deepCheckDimension(this.availableFilters, false);
-        checkAndUpdateDimensionStatus(this.availableFilters);
+        deepCheckDimension(this.dimensionChosen, false);
+        checkAndUpdateDimensionStatus(this.dimensionChosen);
       }
       this.dimensionChosen = obj.newDimension;
     },
     filtersAreChosenByName(filters) {
-      this.dimensionChosen = {
-        ...this.dimensionChosen,
-        children: filters,
-      };
+      if (!filters.length) {
+        this.dimensionChosen.children = this.availableFilters.children[0].children;
+      } else {
+        this.dimensionChosen.children = filters;
+      }
     },
     stepIs(event) {
       this.step = event;

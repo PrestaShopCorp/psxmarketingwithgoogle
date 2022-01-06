@@ -329,6 +329,7 @@
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
+      :total-products="totalProducts"
       :filters-exist="!campaignHasNoProductsFilter"
       @openPopinSSCCreated="onCampaignCreated"
       @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
@@ -474,6 +475,10 @@ export default {
     activeCountries() {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
     },
+    totalProducts() {
+      console.log('final filters', this.filtersChosen);
+      return this.filtersChosen.length;
+    },
   },
   methods: {
     defaultCountry() {
@@ -536,7 +541,6 @@ export default {
 
     setDimensionsFiltered(dimensions) {
       this.filtersChosen = returnChildrenIds(dimensions);
-      // localStorage.setItem('SSCDimensionsFiltered', JSON.stringify(this.availableFilters));
     },
     getDatasFiltersDimensions() {
       this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
