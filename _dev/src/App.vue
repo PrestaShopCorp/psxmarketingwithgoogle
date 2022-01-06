@@ -55,82 +55,27 @@
           class="ps_gs-toaster-top-right"
         />
       </div>
-      <div class="mb-2">
-        <b-alert
-          v-if="!eventbusIsOK"
-          variant="warning"
-          class="mb-0 mt-3"
-          show
-        >
-          <VueShowdown
-            tag="p"
-            :extensions="['no-p-tag']"
-            class="mb-0"
-            :markdown="$t('general.eventBusMustbeUpdated')"
-          />
-          <div
-            class="d-md-flex text-center align-items-center mt-2"
-          >
-            <b-button
-              size="sm"
-              class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
-              variant="primary"
-              target="_blank"
-              @click="moduleUpdated(eventBusVersion)"
-            >
-              <span v-if="loading">
-                <span class="icon-busy icon-busy--dark" />
-              </span>
-              <span
-                v-else
-              >
-                {{ $t('cta.update') }}
-              </span>
-            </b-button>
-          </div>
-        </b-alert>
-        <b-alert
-          v-else-if="!psxmarketingwithgoogleIsOk"
-          variant="warning"
-          class="mb-0 mt-3"
-          show
-        >
-          <VueShowdown
-            tag="p"
-            :extensions="['no-p-tag']"
-            class="mb-0"
-            :markdown="$t('general.psxmarketingwithgoogleMustBedUpdated')"
-          />
-          <div
-            class="d-md-flex text-center align-items-center mt-2"
-          >
-            <b-button
-              size="sm"
-              class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
-              variant="primary"
-              target="_blank"
-              @click="moduleUpdated(psxmarketingwithgoogleVersion)"
-            >
-              <span v-if="loading">
-                <span class="icon-busy icon-busy--dark" />
-              </span>
-              <span
-                v-else
-              >
-                {{ $t('cta.update') }}
-              </span>
-            </b-button>
-          </div>
-        </b-alert>
-        <b-alert
-          v-else-if="error"
-          show
-          variant="warning"
-          class="mb-0 mt-2"
-        >
-          <span class="ml-2"> {{ $t('mcaCard.alertSomethingHappened') }}</span>
-        </b-alert>
+      <div
+        class="mb-2"
+        v-if="!eventbusIsOK || !psxmarketingwithgoogleIsOk"
+      >
+        <AlertModuleUpdate
+          :alert-is="!eventbusIsOK ? 'eventubus' : 'psxmarketingwithgoogle'"
+          @moduleUpdated="moduleUpdated($event)"
+          :psxmarketingwithgoogle-version="psxmarketingwithgoogleVersion"
+          :event-bus-version="eventBusVersion"
+          :loading="loading"
+        />
       </div>
+
+      <b-alert
+        v-if="error"
+        show
+        variant="warning"
+        class="mb-0 mt-2 mb-2"
+      >
+        <span class="ml-2"> {{ $t('mcaCard.alertSomethingHappened') }}</span>
+      </b-alert>
       <router-view />
       <div
         v-if="shopId"
@@ -146,6 +91,7 @@
 import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import AlertModuleUpdate from '@/components/commons/alert-update-module';
 
 let resizeEventTimer;
 const root = document.documentElement;
@@ -158,6 +104,7 @@ export default {
   components: {
     Menu,
     MenuItem,
+    AlertModuleUpdate,
   },
   data() {
     return {
@@ -175,6 +122,7 @@ export default {
         version: '',
         upgradeLink: null,
       },
+
     };
   },
   computed: {
@@ -243,6 +191,7 @@ export default {
           }
           this.eventbusIsOK = false;
           this.eventBusVersion.upgradeLink = res.upgradeLink;
+          this.eventBusVersion.version = res.version;
         } else {
           // if module version >= version wanted
           if (semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded)) {
@@ -250,24 +199,29 @@ export default {
           }
           this.psxmarketingwithgoogleIsOk = false;
           this.psxmarketingwithgoogleVersion.upgradeLink = res.upgradeLink;
+          this.psxmarketingwithgoogleVersion.version = res.version;
         }
       });
     },
     async moduleUpdated(moduleChosen) {
       this.loading = true;
-      await fetch(moduleChosen.upgradeLink, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      });
-
-      if (moduleChosen.name === 'ps_eventbus') {
-        this.eventbusIsOK = true;
-        this.checkForModuleVersion(this.eventBusVersion);
-      } else {
-        this.psxmarketingwithgoogleIsOk = true;
-        this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
+      try {
+        await fetch(moduleChosen.upgradeLink, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        });
+        if (moduleChosen.name === 'ps_eventbus') {
+          this.eventbusIsOK = true;
+          this.checkForModuleVersion(this.eventBusVersion);
+        } else {
+          this.psxmarketingwithgoogleIsOk = true;
+          this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        this.loading = false;
       }
-      this.loading = false;
     },
   },
   watch: {
