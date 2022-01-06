@@ -1,10 +1,10 @@
 <template>
   <ps-modal
     :ok-disabled="totalNumberOfProducts === 0"
-    id="SmartShoppingCampaignCreationPopin"
+    hide-footer
+    id="SSCampaignCreationPopin"
     ref="modal"
     size="xl"
-    hide-footer
     v-bind="$attrs"
     cancel-variant="invisible font-weight-normal"
     :title="'Campaign’s products filters'"
@@ -25,7 +25,6 @@
       @validateCreationFilters="sendFiltersSelected"
       @filterByName="filtersAreChosenByName"
     />
-
     <SmartShoppingCampaignCreationFilterConfirmCancel
       ref="SmartShoppingCampaignCreationFilterConfirmCancel"
       @confirmation="sendFiltersSelected"
@@ -43,7 +42,7 @@ import {
 } from '../../../utils/SSCFilters';
 
 export default {
-  name: 'SmartShoppingCampaignCreationPopin',
+  name: 'SSCampaignCreationPopin',
   components: {
     PsModal,
     SmartShoppingCampaignCreationPopinDimension,
@@ -96,7 +95,7 @@ export default {
     },
     sendFiltersSelected() {
       this.$emit('selectFilters', this.filteredDimensions);
-      this.$bvModal.hide('SmartShoppingCampaignCreationPopin');
+      this.$bvModal.hide('SSCampaignCreationPopin');
     },
     confirmCancel() {
       this.$bvModal.show(

@@ -34,7 +34,7 @@
         {{ $t('cta.clearAll') }}
       </b-button>
     </div>
-    <div class="d-md-flex text-center justify-content-end mt-3">
+    <div class="d-md-flex text-center justify-content-end mt-3 mb-2">
       <b-button
         size="sm"
         class="mx-1 mt-3 mt-md-0"

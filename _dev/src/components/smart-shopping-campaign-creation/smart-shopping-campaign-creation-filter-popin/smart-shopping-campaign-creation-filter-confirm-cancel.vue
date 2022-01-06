@@ -1,6 +1,6 @@
 <template>
   <ps-modal
-    id="SmartShoppingCampaignCreationFilterConfirmCancel"
+    id="SSCampaignCreationFilterConfirmCancel"
     ref="modal"
     v-bind="$attrs"
     @ok="onAgreed"
@@ -23,7 +23,7 @@
 import PsModal from '../../commons/ps-modal';
 
 export default {
-  name: 'SmartShoppingCampaignCreationPopin',
+  name: 'SSCampaignCreationFilterConfirmCancel',
   components: {
     PsModal,
   },

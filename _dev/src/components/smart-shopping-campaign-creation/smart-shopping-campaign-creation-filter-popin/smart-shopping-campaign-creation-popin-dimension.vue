@@ -15,16 +15,16 @@
             :key="index"
           >
             <b-form-radio-group
-              v-model="dimensionChosen"
+              v-model="chosenOrModifiedDimension"
               name="dimension"
               stacked
               class="pt-1"
-              v-if="availableFilters.children.length"
+              v-if="availableDimensions.length"
             >
               <b-form-radio
-                v-model="chosenOrModifiedDimension"
                 name="dimension"
                 :value="oneDim"
+                class="mb-3"
               >
                 <strong class="font-weight-normal d-block">
                   {{ oneDim.name }}
@@ -37,7 +37,7 @@
           </div>
         </div>
       </b-form-group>
-      <div class="d-md-flex text-center justify-content-end mt-3">
+      <div class="d-md-flex text-center justify-content-end mt-3 mb-2">
         <b-button
           size="sm"
           class="mx-1 mt-3 mt-md-0"
@@ -48,7 +48,7 @@
         </b-button>
         <b-button
           size="sm"
-          :disabled="!dimensionChosen"
+          :disabled="!chosenOrModifiedDimension"
           class="mx-1 mt-3 mt-md-0 mr-md-0"
           variant="primary"
           @click="nextStep"
@@ -57,25 +57,6 @@
         </b-button>
       </div>
     </b-form>
-    <div class="d-md-flex text-center justify-content-end mt-3">
-      <b-button
-        size="sm"
-        class="mx-1 mt-3 mt-md-0"
-        variant="outline-secondary"
-        @click="confirmCancel"
-      >
-        {{ $t("cta.cancel") }}
-      </b-button>
-      <b-button
-        size="sm"
-        :disabled="!chosenOrModifiedDimension"
-        class="mx-1 mt-3 mt-md-0 mr-md-0"
-        variant="primary"
-        @click="nextStep"
-      >
-        {{ $t("cta.next") }}
-      </b-button>
-    </div>
   </div>
 </template>
 
