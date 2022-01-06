@@ -75,8 +75,8 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         }
 
         $this->context->smarty->assign([
-            'pathApp' => (bool) $this->env->get('USE_LOCAL_VUE_APP') ? $this->module->getPathUri() . 'views/js/app.js' : Config::PSX_MKTG_WITH_GOOGLE_CDN_URL . 'app.js',
-            'chunkVendor' => (bool) $this->env->get('USE_LOCAL_VUE_APP') ? $this->module->getPathUri() . 'views/js/chunk-vendors.js' : Config::PSX_MKTG_WITH_GOOGLE_CDN_URL . 'chunk-vendors.js',
+            'pathApp' => (bool) $this->env->get('USE_LOCAL_VUE_APP') ? $this->module->getPathUri() . 'views/js/app.js' : $this->env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'app.js',
+            'chunkVendor' => (bool) $this->env->get('USE_LOCAL_VUE_APP') ? $this->module->getPathUri() . 'views/js/chunk-vendors.js' : $this->env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'chunk-vendors.js',
             'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
         ]);
 
