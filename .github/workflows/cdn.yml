@@ -1,9 +1,8 @@
 name: CDN Publish
 
 on:
-  push:
-    tags:
-      - '*'
+  release:
+    types: [prereleased, released]
 
 jobs:
   publish:
