@@ -9,27 +9,33 @@
           {{ $t('smartShoppingCampaignCreation.selectProductsSubtitle') }}
         </p>
 
-        <b-form-radio-group
-          v-model="dimensionChosen"
-          name="dimension"
-          stacked
-          class="pt-1"
-          v-if="availableFilters.children.length"
-        >
-          <b-form-radio
-            :value="oneDim"
-            v-for="(oneDim, index) in availableFilters.children"
+        <div v-if="availableDimensions.length">
+          <div
+            v-for="(oneDim, index) in availableDimensions"
             :key="index"
-            class="mb-3"
+          >
+            <b-form-radio-group
+              v-model="dimensionChosen"
+              name="dimension"
+              stacked
+              class="pt-1"
+              v-if="availableFilters.children.length"
             >
-            <strong class="font-weight-normal d-block">
-              {{ oneDim.name }}
-            </strong>
-            <span class="ps_gs-fz-12 text-secondary d-block">
-              {{ oneDim.subtitle }}
-            </span>
-          </b-form-radio>
-        </b-form-radio-group>
+              <b-form-radio
+                v-model="chosenOrModifiedDimension"
+                name="dimension"
+                :value="oneDim"
+              >
+                <strong class="font-weight-normal d-block">
+                  {{ oneDim.name }}
+                </strong>
+                <span class="ps_gs-fz-12 text-secondary d-block">
+                  {{ oneDim.subtitle }}
+                </span>
+              </b-form-radio>
+            </b-form-radio-group>
+          </div>
+        </div>
       </b-form-group>
       <div class="d-md-flex text-center justify-content-end mt-3">
         <b-button

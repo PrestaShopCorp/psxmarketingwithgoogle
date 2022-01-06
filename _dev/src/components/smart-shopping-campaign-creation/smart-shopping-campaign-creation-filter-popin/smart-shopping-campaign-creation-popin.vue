@@ -1,30 +1,31 @@
 <template>
-    <ps-modal
-      :ok-disabled="totalNumberOfProducts === 0"
-      id="SmartShoppingCampaignCreationPopin"
-      ref="modal"
-      size="xl"
-      hide-footer
-      v-bind="$attrs"
-      cancel-variant="invisible font-weight-normal"
-      :title="'Campaign’s products filters'"
-    >
-        <SmartShoppingCampaignCreationPopinDimension
-          v-if="step === 1"
-          :available-dimensions="availableDimensions"
-          :dimension-chosen="dimensionChosen"
-          @dimensionChosen="dimensionHasBeenSelected($event)"
-          @sendStep="stepIs($event)"
-          @confirmCancel="confirmCancel"
-        />
-        <SmartShoppingCampaignCreationPopinFilter
-          v-if="step === 2"
-          :available-filters="availableFilters"
-          :dimension-chosen="dimensionChosen"
-          @sendStep="stepIs($event)"
-          @validateCreationFilters="sendFiltersSelected"
-          @filterByName="filtersAreChosenByName"
-        />
+  <ps-modal
+    :ok-disabled="totalNumberOfProducts === 0"
+    id="SmartShoppingCampaignCreationPopin"
+    ref="modal"
+    size="xl"
+    hide-footer
+    v-bind="$attrs"
+    cancel-variant="invisible font-weight-normal"
+    :title="'Campaign’s products filters'"
+  >
+    <SmartShoppingCampaignCreationPopinDimension
+      v-if="step === 1"
+      :available-dimensions="availableDimensions"
+      :dimension-chosen="dimensionChosen"
+      @dimensionChosen="dimensionHasBeenSelected($event)"
+      @sendStep="stepIs($event)"
+      @confirmCancel="confirmCancel"
+    />
+    <SmartShoppingCampaignCreationPopinFilter
+      v-if="step === 2"
+      :available-filters="availableFilters"
+      :dimension-chosen="dimensionChosen"
+      @sendStep="stepIs($event)"
+      @validateCreationFilters="sendFiltersSelected"
+      @filterByName="filtersAreChosenByName"
+    />
+
     <SmartShoppingCampaignCreationFilterConfirmCancel
       ref="SmartShoppingCampaignCreationFilterConfirmCancel"
       @confirmation="sendFiltersSelected"
