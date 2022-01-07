@@ -1,8 +1,9 @@
 <template>
   <b-alert
-    show
+    :show="!timelineAlertIsHidden"
     dismissible
     class="ps_gs-alert-timeline"
+    @dismissed="saveAlertVisibility"
   >
     <ol class="ps_gs-timeline position-relative justify-content-center">
       <li
@@ -60,6 +61,16 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    timelineAlertIsHidden() {
+      return JSON.parse(localStorage.getItem('timelineAlertIsHidden'));
+    },
+  },
+  methods: {
+    saveAlertVisibility() {
+      localStorage.setItem('timelineAlertIsHidden', true);
+    }
   },
 };
 </script>
