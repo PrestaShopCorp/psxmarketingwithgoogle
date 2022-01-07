@@ -23,7 +23,7 @@
                                       {
                                           "name": "Aliments pour chiens sans ordonnance",
                                           "id": "543682",
-                                          "numberOfProductsAssociated": 1
+                                          "numberOfProductsAssociated": 1432
                                       }
                                   ]
                               }
@@ -93,7 +93,7 @@
                                                                     {
                                                                         "name": "test6 enfant ",
                                                                         "id": "5436282",
-                                                                        "numberOfProductsAssociated": 1
+                                                                        "numberOfProductsAssociated": 114
                                                                     }
                                                                   ]
                                                             }
@@ -140,7 +140,7 @@
   "conditions": [
       {
           "name": "new",
-          "numberOfProductsAssociated": 2
+          "numberOfProductsAssociated": 243
       }
   ]
 }

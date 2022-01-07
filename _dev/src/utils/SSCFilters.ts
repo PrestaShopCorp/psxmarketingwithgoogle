@@ -1,3 +1,5 @@
+import {LogarithmicScale} from 'chart.js';
+
 export type CampaignFilter = {
     name?: string;
     id?: string;
@@ -152,12 +154,16 @@ export function filterByName(dimensionFilters, search, arr) {
   return arr;
 }
 
-export function returnCountProducts(source : CampaignFilter, total): number {
-  const add = (accumulator, a) => accumulator + a;
-  add(total, source.numberOfProductsAssociated);
-  if (source.children) {
-    return returnCountProducts(source.children, total);
+export function returnCountProducts(source : CampaignFilter): number {
+  let total = 0;
+  if (!source.checked && !source.indeterminate) {
+    return total;
   }
-  console.log(total)
-  return total;
+  if (source.children) {
+    source.children.forEach((child) => {
+      total += returnCountProducts(child);
+    });
+    return total;
+  }
+  return total + Number(source.numberOfProductsAssociated);
 }

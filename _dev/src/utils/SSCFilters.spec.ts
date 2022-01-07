@@ -10,6 +10,7 @@ import {
   checkAndUpdateDimensionStatus,
   addPropertiesToDimension,
   getFilters,
+  returnCountProducts,
 } from "./SSCFilters";
 
 describe("SSC filters - filterUncheckedSegments()", () => {
@@ -1030,5 +1031,111 @@ describe("SSC filters - getFilters()", () => {
       numberOfProductsAssociated: 1,
       checked: true,
   }]);
+});
+});
+
+describe("SSC filters - returnCountProducts()", () => {
+  it("returns the count of prodicts of last filter, the one with no children", () => {
+    const source =  {
+          name: "Animaux et articles pour animaux de compagnie",
+          id: "1",
+          numberOfProductsAssociated: 2,
+          checked: false,
+          indeterminate: true,
+          children: [
+              {
+                  name: "Articles pour animaux de compagnie",
+                  id: "2",
+                  numberOfProductsAssociated: 1,
+                  checked: true,
+                  indeterminate: false,
+                  children: [
+                      {
+                          name: "Accessoires pour chiens",
+                          id: "5",
+                          numberOfProductsAssociated: 1,
+                          checked: true,
+                          indeterminate: false,
+                          children: [
+                              {
+                                  name: "Nourriture pour chiens",
+                                  id: "3530",
+                                  numberOfProductsAssociated: 1,
+                                  checked: true,
+                                  indeterminate: false,
+                                  children: [
+                                      {
+                                          name: "Aliments pour chiens sans ordonnance",
+                                          id: "543682",
+                                          numberOfProductsAssociated: 11,
+                                          checked: true,
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  ]
+                },
+              {
+                  name: "Test",
+                  id: "3",
+                  numberOfProductsAssociated: 321,
+                  checked: false,
+                  indeterminate: true,
+                  children: [
+                      {
+                          name: "test1",
+                          id: "5",
+                          numberOfProductsAssociated: 1,
+                          checked: false,
+                          indeterminate: false,
+                          children: [
+                              {
+                                  name: "Test1 enfant",
+                                  id: "3530",
+                                  numberOfProductsAssociated: 1,
+                                  checked: false,
+                                  indeterminate: false,
+                                  children: [
+                                      {
+                                          name: "test1 enfant",
+                                          id: "543682",
+                                          numberOfProductsAssociated: 1,
+                                          checked: false,
+                                      }
+                                  ]
+                              }
+                          ]
+                      },
+                      {
+                          name: "test2",
+                          id: "5",
+                          numberOfProductsAssociated: 1,
+                          checked: true,
+                          indeterminate: false,
+                          children: [
+                              {
+                                  name: "Test2 enfant",
+                                  id: "3530",
+                                  numberOfProductsAssociated: 1,
+                                  checked: true,
+                                  indeterminate: false,
+                                  children: [
+                                      {
+                                          name: "test2 enfant enfant2",
+                                          id: "5436832322",
+                                          numberOfProductsAssociated: 10,
+                                          checked: true,
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  ]
+              },
+          ]
+      };
+    const result = returnCountProducts(source);
+    expect(result).toEqual(21);
 });
 });

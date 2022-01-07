@@ -540,7 +540,7 @@ export default {
     },
 
     setDimensionFiltered(dimension = {}) {
-      this.totalProducts = returnCountProducts(dimension, 0);
+      this.totalProducts = returnCountProducts(dimension);
       this.filtersChosen = returnChildrenIds(dimension);
     },
     getDatasFiltersDimensions() {

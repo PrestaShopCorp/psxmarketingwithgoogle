@@ -136,17 +136,8 @@ export default {
 
   computed: {
     nbFilters() {
-      // TODO also check with PM how it is supposed to be
+      // TODO also check with PM how it is supposed to be presented
       return this.totalProducts;
-      // const total = this.newCampaign.productFilters
-      //   .map((e) => e.values.length).reduce((a, b) => a + b, 0);
-      // return `${this.$tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
-      //   this.newCampaign.productFilters.length,
-      //   [this.newCampaign.productFilters.length])
-      // } - ${
-      //   this.$tc('smartShoppingCampaignCreation.nbValuesSelected',
-      //     total,
-      //     [total])}`;
     },
   },
 
