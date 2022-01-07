@@ -96,7 +96,7 @@ jobs:
       - name: Copy env files
         run: |
           gcloud components install beta
-          gcloud beta secrets versions access latest --secret="google-shopping-module" >> .env
+          gcloud beta secrets versions access latest --secret="google-shopping-module" >> psxmarketingwithgoogle/psxmarketingwithgoogle/.env
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
 
