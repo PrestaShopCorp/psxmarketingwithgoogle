@@ -43,20 +43,20 @@ export default {
     return {
       steps: [
         {
-          title: 'Synchronisation Start',
-          subtitle: 'Immediate or later schedule',
+          title: this.$i18n.t('syncTimeline.title1'),
+          subtitle: this.$i18n.t('syncTimeline.subtitle1'),
         },
         {
-          title: 'Product Feed Sync',
-          subtitle: 'All active exported to Merchant Center',
+          title: this.$i18n.t('syncTimeline.title2'),
+          subtitle: this.$i18n.t('syncTimeline.subtitle2'),
         },
         {
-          title: 'Google Review',
-          subtitle: 'Between 2 to 5 bank days',
+          title: this.$i18n.t('syncTimeline.title3'),
+          subtitle: this.$i18n.t('syncTimeline.subtitle3'),
         },
         {
-          title: 'Synchronisation Complete',
-          subtitle: 'If products updated, a new sync will take place',
+          title: this.$i18n.t('syncTimeline.title4'),
+          subtitle: this.$i18n.t('syncTimeline.subtitle4'),
         },
       ],
     };

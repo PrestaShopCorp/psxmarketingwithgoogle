@@ -564,6 +564,16 @@
       "incorrectPrice": "Missing or incorrect prices"
     }
   },
+  "syncTimeline": {
+    "title1" : "Synchronisation Start",
+    "subtitle1" : "Immediate or later schedule",
+    "title2" : "Product Feed Sync",
+    "subtitle2" : "All active exported to Merchant Center",
+    "title3" : "Google Review",
+    "subtitle3" : "Between 2 to 5 bank days",
+    "title4" : "Synchronisation Complete",
+    "subtitle4" : "If products updated, a new sync will take place"
+  },
   "campaignCard": {
     "title": "Create your Smart Shopping campaign in a few clicks",
     "description": "Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it's that easy!",
