@@ -74,7 +74,6 @@
 </template>
 
 <script>
-// TODO: Add linkTo "View all detailed statuses"
 
 import productFeedCardReportProductsSyncCard from '../product-feed/product-feed-card-report-products-sync-card';
 

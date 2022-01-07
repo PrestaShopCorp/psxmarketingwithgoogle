@@ -408,8 +408,6 @@ export default {
       return false;
     },
     campaignDailyBudgetFeedback() {
-      // TODO
-      // I'm just looking for digit, validation should be way better than that
       const regex = /^[0-9]+([.][0-9]{0,2})?$/g;
       if (this.campaignDailyBudget === null
         || this.campaignDailyBudget === ''

@@ -1,5 +1,3 @@
-// TODO ERROR :  Cancelled / Suspended
-
 /**
  * 2007-2021 PrestaShop and Contributors
  *
