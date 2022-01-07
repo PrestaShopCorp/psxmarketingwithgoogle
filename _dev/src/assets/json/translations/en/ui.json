@@ -648,6 +648,11 @@
       "emptyListText": "You don't have any products in this campaigns"
     }
   },
+  "notConfiguredState": {
+    "title": "Nothing configured yet !",
+    "text": "Configure your GMC to start creating campaigns with Google",
+    "cta": "Go to configuration page"
+  },
   "help": {
     "title": "Help for PrestaShop Google",
     "intro": "PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across different networks like Google Search, YouTube or Gmail. Create Smart Shopping campaigns without leaving your PrestaShop dashboard and drive more traffic.",
