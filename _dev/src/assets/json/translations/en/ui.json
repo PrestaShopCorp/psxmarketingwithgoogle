@@ -568,10 +568,10 @@
     "title1" : "Synchronisation Start",
     "subtitle1" : "Immediate or later schedule",
     "title2" : "Product Feed Sync",
-    "subtitle2" : "All active exported to Merchant Center",
+    "subtitle2" : "Will take 1 to 4 hours",
     "title3" : "Google Review",
     "subtitle3" : "Between 2 to 5 bank days",
-    "title4" : "Synchronisation Complete",
+    "title4" : "Synchronisation Completed",
     "subtitle4" : "If products updated, a new sync will take place"
   },
   "campaignCard": {
