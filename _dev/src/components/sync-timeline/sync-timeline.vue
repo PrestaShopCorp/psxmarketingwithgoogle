@@ -17,8 +17,7 @@
           <div
             class="ps_gs-timeline-step__step d-flex align-items-center justify-content-center"
           >
-            <span
-            >
+            <span>
               {{ index + 1 }}
             </span>
           </div>
@@ -70,7 +69,7 @@ export default {
   methods: {
     saveAlertVisibility() {
       localStorage.setItem('timelineAlertIsHidden', true);
-    }
+    },
   },
 };
 </script>

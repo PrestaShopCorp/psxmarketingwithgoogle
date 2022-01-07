@@ -9,6 +9,7 @@
       >
         {{ $t('productFeedPage.alert.alertSuccess') }}
       </b-alert>
+      <sync-timeline />
       <product-feed-sync-status-card />
       <product-feed-product-status-card />
     </template>
@@ -19,12 +20,14 @@
 import ProductFeedProductStatusCard from '@/components/product-feed-page/product-feed-product-status-card';
 import ProductFeedSyncStatusCard from '@/components/product-feed-page/product-feed-sync-status-card';
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
+import SyncTimeline from '@/components/sync-timeline/sync-timeline';
 
 export default {
   components: {
     ProductFeedSyncStatusCard,
     ProductFeedProductStatusCard,
     ProductFeedTableStatusDetails,
+    SyncTimeline,
   },
   computed: {
     syncStatus() {
