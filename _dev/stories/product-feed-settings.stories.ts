@@ -1,6 +1,6 @@
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue';
-import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport} from '../.storybook/mock/product-feed';
-import {initialStateApp, appMultiCountries} from '../.storybook/mock/state-app';
+import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport, productFeedSyncScheduleNow} from '../.storybook/mock/product-feed';
+import {initialStateApp} from '../.storybook/mock/state-app';
 
 export default {
   title: 'Product feed/Settings',
@@ -10,7 +10,6 @@ export default {
       'tunnel-product-feed.spec.ts',
       'summary.spec.ts',
       'target-countries.spec.ts',
-      // 'product-feed-settings-attribute-mapping.spec.ts',
       'shipping-settings-provider.spec.ts',
       'shipping-settings.vue',
       'table-row-carrier.vue',
@@ -42,14 +41,6 @@ ShippingSettings.args = {
   },
 };
 
-export const ShippingSettingsMultiCountries:any = Template.bind({});
-ShippingSettingsMultiCountries.args = {
-  beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeed);
-    this.$store.state.app = Object.assign({}, appMultiCountries);
-    this.$store.state.productFeed.stepper = 2;
-  },
-};
 
 export const ShippingSettingsNoCarriers:any = Template.bind({});
 ShippingSettingsNoCarriers.args = {
@@ -67,10 +58,18 @@ AttributeMapping.args = {
   },
 };
 
+export const SyncSchedule:any = Template.bind({});
+SyncSchedule.args = {
+  beforeMount(this: any) {
+    this.$store.state.productFeed = Object.assign({},productFeedSyncScheduleNow);
+    this.$store.state.productFeed.stepper = 4;
+  },
+};
+
 export const Summary:any = Template.bind({});
 Summary.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeedIsReadyForExport);
-    this.$store.state.productFeed.stepper = 4;
+    this.$store.state.productFeed.stepper = 5;
   },
 };

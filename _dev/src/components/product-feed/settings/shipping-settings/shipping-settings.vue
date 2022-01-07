@@ -170,7 +170,7 @@ export default {
   },
   data() {
     return {
-      countries: this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+      countries: this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
       countryChosen: null,
     };
   },

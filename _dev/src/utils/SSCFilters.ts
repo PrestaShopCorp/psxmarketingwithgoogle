@@ -10,6 +10,27 @@ export type FiltersChosen = {
     values: Array<string| undefined>;
   };
 
+export function addPropertiesToDimension(dimension: CampaignFilter[]) :CampaignFilter[] {
+  const finalDimension = dimension.map((oneFilter) => {
+    if (oneFilter.children) {
+      return {
+        name: oneFilter.name,
+        id: oneFilter.name,
+        checked: false,
+        indeterminate: false,
+        children: addPropertiesToDimension(oneFilter.children),
+      };
+    }
+    return {
+      name: oneFilter.name,
+      id: oneFilter.name,
+      checked: false,
+      indeterminate: false,
+    };
+  });
+  return finalDimension;
+}
+
 export function filterUncheckedSegments(source: CampaignFilter) {
   const filteredChildren = source.children?.map((child) => {
     if (child.children) {
@@ -38,9 +59,7 @@ export function returnChildrenIds(source: CampaignFilter): Array<FiltersChosen> 
       });
       if (child.children) {
         child.children.forEach((child2) => {
-          // TODO : replace when api is implemented on POST
-          // final[index].dimension = child.name;
-          final[index].dimension = 'category';
+          final[index].dimension = child.name;
           final[index].values.push(child2.id);
         });
         returnChildrenIds(child);
@@ -48,8 +67,7 @@ export function returnChildrenIds(source: CampaignFilter): Array<FiltersChosen> 
     });
   } else {
     final.push({
-      // dimension: source.name,
-      dimension: 'category',
+      dimension: source.name,
       values: [source.id],
     });
   }

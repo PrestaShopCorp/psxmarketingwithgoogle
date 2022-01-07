@@ -16,8 +16,6 @@ import {
   initialStateApp,
 } from '../../../.storybook/mock/state-app';
 
-const VBTooltip = jest.fn();
-
 const wrapperOptions = {
   propsData: {
     visible: true,
@@ -27,9 +25,6 @@ const wrapperOptions = {
     VueShowdown: true,
     BButton,
     BFormCheckbox,
-  },
-  directives: {
-    'b-tooltip': VBTooltip,
   },
   ...config,
 };

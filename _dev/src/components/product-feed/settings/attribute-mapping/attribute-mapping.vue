@@ -12,7 +12,7 @@
         </p>
         <b-form-checkbox-group
           id="categoryProducts"
-          v-model="categoryProductsSelected"
+          v-model="selectedProductCategories"
           name="categoryProducts"
           class="mb-4 py-2"
           plain
@@ -120,20 +120,23 @@ export default {
     AttributeField,
     CategoryButton,
   },
-  data() {
-    return {
-      categoryProductsSelected: [],
-    };
-  },
   computed: {
     mappingSectionVisible() {
-      return this.categoryProductsSelected.length;
+      return this.selectedProductCategories.length;
     },
     disableContinue() {
-      return this.categoryProductsSelected.length === 0;
+      return this.selectedProductCategories.length === 0;
     },
     getPropertyFromShop() {
       return this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
+    },
+    selectedProductCategories: {
+      get() {
+        return this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_CATEGORIES', value);
+      },
     },
     categories() {
       return [
@@ -165,7 +168,7 @@ export default {
     attributesToMap() {
       return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP']
         .filter(
-          (attr) => this.categoryProductsSelected.includes(attr.category)
+          (attr) => this.selectedProductCategories.includes(attr.category)
             || attr.category === Categories.COMMONS,
         );
     },
@@ -208,18 +211,10 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     categoryProductsChanged(category, isSelected) {
-      localStorage.setItem('categoryProductsSelected', JSON.stringify(this.categoryProductsSelected));
       if (!isSelected) {
         return;
       }
-      if (category === Categories.NONE) {
-        this.categoryProductsSelected = this.categoryProductsSelected
-          .filter((cat) => cat === Categories.NONE);
-      }
-      if (category !== Categories.NONE && this.categoryProductsSelected.includes(Categories.NONE)) {
-        this.categoryProductsSelected = this.categoryProductsSelected
-          .filter((cat) => cat !== Categories.NONE);
-      }
+      this.$store.dispatch('productFeed/REQUEST_PRODUCT_CATEGORIES_CHANGED', category);
     },
     refreshComponent() {
       this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE');
@@ -227,9 +222,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
-    this.categoryProductsSelected = localStorage.getItem('categoryProductsSelected')
-      ? JSON.parse(localStorage.getItem('categoryProductsSelected'))
-      : [];
   },
   googleUrl,
 };

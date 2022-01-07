@@ -184,8 +184,7 @@ export default {
         ...this.newCampaign,
         // API wants country code not name so we have to filter it
         targetCountry: this.$options.filters.changeCountriesNamesToCodes(
-          [this.newCampaign.targetCountry],
-        )[0],
+          [this.newCampaign.targetCountry])[0],
         status: CampaignStatusToggle.ENABLED,
       };
       this.$store.dispatch('smartShoppingCampaigns/UPDATE_SSC', payload).then((resp) => {

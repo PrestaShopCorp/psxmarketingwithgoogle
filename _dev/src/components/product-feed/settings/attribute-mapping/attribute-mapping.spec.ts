@@ -4,23 +4,18 @@
 import Vuex from 'vuex';
 import {shallowMount} from '@vue/test-utils';
 import {BFormCheckboxGroup, BFormCheckbox} from 'bootstrap-vue';
-import config, {localVue, cloneStore} from '@/../tests/init';
+import config, {cloneStore, localVue} from '@/../tests/init';
 import AttributeMapping from '@/components/product-feed/settings/attribute-mapping/attribute-mapping.vue';
 import CategoryButton from '@/components/product-feed/settings/attribute-mapping/category-button.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 
 describe('attribute-mapping.vue', () => {
-  const VBTooltip = jest.fn();
   const wrapperOptions = {
     stubs: {
       ActionsButtons,
       CategoryButton,
       BFormCheckboxGroup,
       BFormCheckbox,
-    },
-    propsData: {
-    },
-    computed: {
     },
   };
 
@@ -42,6 +37,7 @@ describe('attribute-mapping.vue', () => {
     const wrapper = shallowMount(AttributeMapping, {
       ...wrapperOptions,
       ...config,
+      localVue,
       store: new Vuex.Store(store),
     });
 
@@ -52,10 +48,11 @@ describe('attribute-mapping.vue', () => {
     const wrapper = shallowMount(AttributeMapping, {
       ...wrapperOptions,
       ...config,
+      localVue,
       store: new Vuex.Store(store),
     });
 
-    await wrapper.setData({categoryProductsSelected: []});
+    await wrapper.setData({selectedProductCategories: []});
     expect(wrapper.find('[data-test-id="section-attribute-field"]').exists()).toBeFalsy();
   });
 
@@ -63,10 +60,11 @@ describe('attribute-mapping.vue', () => {
     const wrapper = shallowMount(AttributeMapping, {
       ...wrapperOptions,
       ...config,
+      localVue,
       store: new Vuex.Store(store),
     });
 
-    await wrapper.setData({categoryProductsSelected: ['none']});
+    await wrapper.setData({selectedProductCategories: ['none']});
     expect(wrapper.find('[data-test-id="section-attribute-field"]').exists()).toBeTruthy();
   });
 
@@ -74,10 +72,11 @@ describe('attribute-mapping.vue', () => {
     const wrapper = shallowMount(AttributeMapping, {
       ...wrapperOptions,
       ...config,
+      localVue,
       store: new Vuex.Store(store),
     });
 
-    await wrapper.setData({categoryProductsSelected: []});
+    await wrapper.setData({selectedProductCategories: []});
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
   });
 
@@ -85,10 +84,11 @@ describe('attribute-mapping.vue', () => {
     const wrapper = shallowMount(AttributeMapping, {
       ...wrapperOptions,
       ...config,
+      localVue,
       store: new Vuex.Store(store),
     });
 
-    await wrapper.setData({categoryProductsSelected: ['none']});
+    await wrapper.setData({selectedProductCategories: ['none']});
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
   });
 

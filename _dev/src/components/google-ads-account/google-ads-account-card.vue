@@ -298,7 +298,7 @@ export default {
           this.$emit('selectGoogleAdsAccount');
         }
       } catch (err) {
-        // TODO: display error message
+        this.$store.commit('googleAds/SET_GOOGLE_ADS_STATUS', 'CantConnect');
         console.error(err);
       } finally {
         this.isConnecting = false;

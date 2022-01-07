@@ -17,16 +17,28 @@
     >
       {{ $t('cta.previous') }}
     </b-button>
-    <b-button
-      data-test-id="continueButton"
-      @click="nextStep"
-      size="sm"
-      :disabled="disableContinue"
-      class="mx-1 mt-3 mt-md-0 mr-md-0"
-      variant="primary"
+
+    <span
+      v-b-tooltip:psxMktgWithGoogleApp
+      :title="
+        disableContinue
+          ? disableTooltip
+          : ''
+      "
+      :tabindex="disableContinue ? 0 : null"
+      class="mx-1"
     >
-      {{ okLabel || $t("cta.saveAndContinue") }}
-    </b-button>
+      <b-button
+        data-test-id="continueButton"
+        @click="nextStep"
+        size="sm"
+        :disabled="disableContinue"
+        class="mx-0 mt-3 mt-md-0 mr-md-0"
+        variant="primary"
+      >
+        {{ okLabel || $t("cta.saveAndContinue") }}
+      </b-button>
+    </span>
   </div>
 </template>
 
@@ -47,6 +59,10 @@ export default {
       type: Boolean,
       required: false,
       default: true,
+    },
+    disableTooltip: {
+      type: String,
+      required: false,
     },
     okLabel: {
       type: String,

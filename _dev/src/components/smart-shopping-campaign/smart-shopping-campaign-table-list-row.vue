@@ -80,10 +80,16 @@ export default {
   },
   computed: {
     campaignDuration() {
-      return this.campaign.endDate?.length > 1
-        ? `${this.$options.filters.timeConverterToDate(this.campaign.startDate)
-        }-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}`
-        : `From ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
+      if (!this.campaign.endDate) {
+        return `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
+      }
+      const endDate = new Date(this.campaign.endDate).getFullYear();
+      const todayYear = new Date().getFullYear();
+      if (endDate - 10 > todayYear) {
+        return `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
+      }
+      return `${this.$options.filters.timeConverterToDate(this.campaign.startDate)
+      }-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}`;
     },
     campaignCountryName() {
       return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];

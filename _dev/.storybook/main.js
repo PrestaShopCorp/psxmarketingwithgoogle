@@ -16,6 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+
  module.exports = {
    "stories": [
      "../stories/**/*.stories.mdx",
@@ -24,8 +25,8 @@
    "addons": [
      "@storybook/addon-links",
      "@storybook/addon-essentials",
-     "@storybook/addon-knobs",
      "@storybook/addon-a11y",
+     "@storybook/addon-knobs",
      "@storybook/addon-actions",
      "@storybook/addon-jest",
     ],

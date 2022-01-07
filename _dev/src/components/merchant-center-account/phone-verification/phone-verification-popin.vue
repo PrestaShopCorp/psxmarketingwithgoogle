@@ -4,7 +4,6 @@
     ref="modal"
     :title="$t('mcaCard.phoneVerificationNeeded')"
     v-bind="$attrs"
-    @ok="ok"
     @show="getPhoneNumber"
     :ok-disabled="!isPhoneValidated"
   >
@@ -143,9 +142,6 @@
     <template slot="modal-cancel">
       {{ $t('cta.cancel') }}
     </template>
-    <template slot="modal-ok">
-      {{ $t('cta.continue') }}
-    </template>
   </ps-modal>
 </template>
 
@@ -181,7 +177,7 @@ export default {
       isValidationInProgress: false,
       isPhoneValidated: false,
       phoneNumber: null,
-      dialCode: this.$store.getters['app/GET_ACTIVE_COUNTRIES'][0],
+      dialCode: this.$store.state.app.psxMtgWithGoogleDefaultShopCountry,
       askAgainIn60Sec: false,
       invalidInputFeedback: this.$i18n.t('mcaCard.invalidCode'),
     };
@@ -233,6 +229,7 @@ export default {
         this.isCodeValid = true;
         this.isPhoneValidated = true;
         this.isValidationInProgress = false;
+        this.ok();
       } catch (error) {
         if (error.code === 400 && error.message.includes('Wrong code')) {
           this.isCodeValid = false;
@@ -261,6 +258,8 @@ export default {
     ok() {
       this.resetFields();
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', []).then(() => {
+        this.$bvModal.hide('PhoneVerificationPopin');
+        this.$emit('phoneNumberVerified');
         this.$store.commit('accounts/SAVE_STATUS_OVERRIDE_CLAIMING',
           WebsiteClaimErrorReason.PendingCreation);
         setTimeout(async () => {

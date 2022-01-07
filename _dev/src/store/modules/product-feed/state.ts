@@ -43,6 +43,7 @@ export interface ProductFeedSettings {
   autoImportShippingSettings: boolean;
   attributeMapping: ProductFeedSettingsAttributeMapping;
   syncSchedule?: string;
+  targetCountries: string[]|null;
 }
 
 export interface ProductFeedValidationSummary {
@@ -118,6 +119,8 @@ export interface State {
   productsDatas: ProductsDatas;
   attributesToMap: any;
   attributesData: Array<AttributesInfos>;
+  selectedProductCategories: Array<String>;
+  requestSynchronizationNow: boolean;
 }
 
 export enum ProductStatues {
@@ -143,6 +146,7 @@ export const state: State = {
     shippingSettings: [],
     deliveryDetails: [],
     autoImportTaxSettings: false,
+    targetCountries: null,
     autoImportShippingSettings: true,
     attributeMapping: {
       exportProductsWithShortDescription: true,
@@ -164,5 +168,7 @@ export const state: State = {
     items: [],
   },
   attributesToMap,
+  requestSynchronizationNow: false,
   attributesData: [],
+  selectedProductCategories: [],
 };

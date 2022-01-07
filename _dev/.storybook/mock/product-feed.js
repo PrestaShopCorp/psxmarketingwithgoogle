@@ -5,7 +5,6 @@ export const productFeed = {
   errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
-  psxMtgWithGoogleDefaultShopCountry: ["FR"],
   totalProducts: 0,
   stepper: 1,
   status: {
@@ -16,6 +15,7 @@ export const productFeed = {
   },
   settings: {
     shippingSettings: [],
+    targetCountries: ["FR"],
     deliveryDetails: [
       {
         carrierId: "9",
@@ -89,6 +89,7 @@ export const productFeed = {
     autoImportShippingSettings: true,
     attributeMapping: {},
     syncSchedule: "1 * * * * *",
+    requestSynchronizationNow: false,
   },
   validationSummary: {
     activeItems: null,
@@ -306,3 +307,8 @@ export const productFeedIsConfiguredOnce = {
   ...productFeedIsConfigured,
   isConfiguredOnce: true,
 };
+
+export const productFeedSyncScheduleNow = {
+  ...productFeedIsConfigured,
+  requestSynchronizationNow: true,
+}

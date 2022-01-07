@@ -5,9 +5,8 @@ export const initialStateApp = {
   psxMktgWithGoogleAdminAjaxUrl: '/',
   shopIdPsAccounts: '',
   tokenPsAccounts: '',
-  psxMtgWithGoogleDefaultShopCountry: null,
+  psxMtgWithGoogleDefaultShopCountry: 'FR',
   isCountryMemberOfEuropeanUnion: false,
-  targetCountries: ['FR'],
   psxMktgWithGoogleShopCurrency: {
     isoCode: 'EUR',
   },
@@ -29,11 +28,6 @@ export const initialStateApp = {
 export const stateWithMaintenanceModeOn = {
   ...initialStateApp,
   shopIsOnMaintenanceMode: true,
-}
-
-export const appMultiCountries = {
-  ...initialStateApp,
-  targetCountries: ['FR', 'IT'],
 }
 
 export default initialStateApp;

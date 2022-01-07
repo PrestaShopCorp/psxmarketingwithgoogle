@@ -41,7 +41,10 @@ export const merchantCenterAccountConnected = {
   adultContent: false,
   claimError: '',
   users: [
-      // ToDo: Fill it with mocked data
+      {
+          "emailAddress": "someonesadress@prestashop.com",
+          "admin": true
+      }
   ],
 }
 
@@ -90,7 +93,10 @@ export const merchantCenterPhoneVerificationNeeded = {
   adultContent: false,
   claimError: '',
   users: [
-      // ToDo: Fill it with mocked data
+    {
+        "emailAddress": "someonesadress@prestashop.com",
+        "admin": true
+    }
   ],
 }
 

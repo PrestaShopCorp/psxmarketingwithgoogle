@@ -13,8 +13,6 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import TableRowCarrier from '@/components/product-feed/settings/shipping-settings/table-row-carrier.vue';
 import {productFeed} from '@/../.storybook/mock/product-feed';
 
-const VBTooltip = jest.fn();
-
 describe('shipping-settings.vue', () => {
   let store;
 
@@ -24,7 +22,6 @@ describe('shipping-settings.vue', () => {
       ...store.modules.productFeed.state,
       stepper: 2,
     };
-
     store.modules.productFeed.state.settings.deliveryDetails = [
       ...cloneDeep(productFeed.settings.deliveryDetails),
     ];
@@ -34,9 +31,6 @@ describe('shipping-settings.vue', () => {
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         VueShowdown: true,
@@ -48,14 +42,10 @@ describe('shipping-settings.vue', () => {
   });
 
   it('shows a default message when there are no carriers', () => {
-    store.modules.app.state.targetCountries = ['XXX'];
-
+    store.modules.productFeed.state.settings.targetCountries = ['XXX'];
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         VueShowdown: true,
@@ -67,14 +57,11 @@ describe('shipping-settings.vue', () => {
   });
 
   it('shows the table with carriers filtered by target countries (FR)', () => {
-    store.modules.app.state.targetCountries = ['FR'];
+    store.modules.productFeed.state.settings.targetCountries = ['FR'];
 
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         VueShowdown: true,
@@ -114,14 +101,11 @@ describe('shipping-settings.vue', () => {
   });
 
   it('shows the table with carriers filtered by target countries (IT)', () => {
-    store.modules.app.state.targetCountries = ['IT'];
-
+    store.modules.productFeed.state.settings.targetCountries = ['IT'];
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
+
       ...config,
       stubs: {
         VueShowdown: true,
@@ -157,17 +141,13 @@ describe('shipping-settings.vue', () => {
 
   it('enables the button "Continue" if all carriers are valid', () => {
     // Select French carriers and one valid carrier
-    store.modules.app.state.targetCountries = ['FR'];
+    store.modules.productFeed.state.settings.targetCountries = ['FR'];
     // Based on data in _dev/.storybook/mock/product-feed.js
     // TODO: Mocking the method validateDeliveryDetail() would be safer
     store.modules.productFeed.state.settings.deliveryDetails[3].enabledCarrier = true;
-
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         ActionsButtons,
@@ -180,65 +160,51 @@ describe('shipping-settings.vue', () => {
 
   it('disables the button "Continue" if one carrier in invalid', () => {
     // Select French carriers and one invalid carrier
-    store.modules.app.state.targetCountries = ['FR'];
+    store.modules.productFeed.state.settings.targetCountries = ['FR'];
     // Based on data in _dev/.storybook/mock/product-feed.js
     // TODO: Mocking the method validateDeliveryDetail() would be safer
     store.modules.productFeed.state.settings.deliveryDetails[0].enabledCarrier = true;
-
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         ActionsButtons,
         VueShowdown: true,
       },
     });
-
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
   });
 
   it('allows to "Continue" if no carrier is enabled', () => {
-    store.modules.app.state.targetCountries = ['FR', 'IT', 'ES', 'DE', 'GB'];
+    store.modules.productFeed.state.settings.targetCountries = ['FR', 'IT', 'ES', 'DE', 'GB'];
 
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         ActionsButtons,
         VueShowdown: true,
       },
     });
-
     // No disabled attribute = enabled
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(5);
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
   });
 
   it('allows to "Continue" if no carrier is found', () => {
-    store.modules.app.state.targetCountries = [];
+    store.modules.productFeed.state.settings.targetCountries = [];
     store.modules.productFeed.state.settings.deliveryDetails = [];
-
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
       ...config,
       stubs: {
         ActionsButtons,
         VueShowdown: true,
       },
     });
-
     // No disabled attribute = enabled
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();

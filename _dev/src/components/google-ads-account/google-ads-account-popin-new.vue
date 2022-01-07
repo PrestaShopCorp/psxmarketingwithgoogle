@@ -66,9 +66,11 @@
           {{ $t("googleAdsAccountNew.business.labelCountry") }}
         </label>
         <SelectCountry
-          :currency="currency"
           @countrySelected="saveCountrySelected"
-          :default-country="countries"
+          :default-value="defaultCountry()"
+          :is-multiple="false"
+          :need-filter="true"
+          :dropdown-options="activeCountriesWithCurrency"
         />
         <label
           class="pt-2 mt-3 mb-0 font-weight-600"
@@ -211,6 +213,7 @@
             ? $t('tooltip.mustAgreeGoogleAdsTerms')
             : ''
         "
+        :tabindex="isStepThreeReadyToValidate() ? 0 : null"
       >
         <b-button
           variant="primary"
@@ -324,7 +327,14 @@ export default {
     },
     saveCountrySelected(value) {
       this.newAccountInfos.country = value;
-      this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', value);
+    },
+    defaultCountry() {
+      if (!this.$store.state.app.psxMtgWithGoogleDefaultShopCountry) {
+        return '';
+      }
+      return this.$options.filters.changeCountriesCodesToNames(
+        [this.$store.state.app.psxMtgWithGoogleDefaultShopCountry],
+      )[0];
     },
   },
   props: {
@@ -365,11 +375,6 @@ export default {
         this.newAccountInfos.name = value;
       },
     },
-    countries: {
-      get() {
-        return this.newAccountInfos.country;
-      },
-    },
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
@@ -379,14 +384,16 @@ export default {
         .reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]), [])
         .sort();
     },
+    activeCountriesWithCurrency() {
+      return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
+    },
   },
   mounted() {
     this.$store.dispatch('googleAds/GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING').then(() => {
       this.newAccountInfos.timeZone = this.$store.getters['googleAds/GET_BILLING_SHOP_INFORMATIONS'].timeZone;
     });
     this.stepActiveData = this.stepActive;
-    this.newAccountInfos.country = this.$store.getters['app/GET_ACTIVE_COUNTRIES']
-      ? this.$options.filters.changeCountriesCodesToNames(this.$store.getters['app/GET_ACTIVE_COUNTRIES']) : '';
+    this.newAccountInfos.country = this.defaultCountry();
   },
   googleUrl,
   countriesSelectionOptions,

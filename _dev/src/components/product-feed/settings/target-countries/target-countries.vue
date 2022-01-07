@@ -8,9 +8,11 @@
         {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
       <SelectCountry
-        :currency="currency"
         @countrySelected="saveCountrySelected"
-        :default-country="countries[0]"
+        :default-value="countries"
+        :dropdown-options="activeCountriesWithCurrency"
+        :need-filter="true"
+        :is-multiple="true"
       />
     </b-form-group>
     <b-form-group
@@ -120,24 +122,28 @@ export default {
       tax: null,
       shippingSettings: JSON.parse(localStorage.getItem('productFeed-autoImportShippingSettings')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
       loading: false,
-      countries: this.$options.filters.changeCountriesCodesToNames(
-        this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
-      ),
     };
   },
   computed: {
-
+    countries() {
+      return this.$options.filters.changeCountriesCodesToNames(
+        this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
+      );
+    },
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
     isUS() {
-      return this.$store.getters['app/GET_ACTIVE_COUNTRIES'].includes('US');
+      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].includes('US');
     },
     taxSettingsWithMerchantId() {
       return `https://merchants.google.com/mc/tax/settings?a=${this.$store.state.accounts.googleMerchantAccount.id}`;
     },
     disableContinue() {
       return this.countries.length < 1 || this.loading;
+    },
+    activeCountriesWithCurrency() {
+      return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
     },
   },
   methods: {
@@ -146,9 +152,7 @@ export default {
     },
     nextStep() {
       this.loading = true;
-      const countryCode = this.$options.filters.changeCountriesNamesToCodes(this.countries);
       localStorage.setItem('productFeed-autoImportShippingSettings', JSON.stringify(this.shippingSettings));
-      localStorage.setItem('productFeed-targetCountries', JSON.stringify(countryCode));
       if (this.shippingSettings) {
         this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
           this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
@@ -169,8 +173,10 @@ export default {
     },
     saveCountrySelected(value) {
       const countryCode = this.$options.filters.changeCountriesNamesToCodes(value);
-      this.countries = countryCode;
-      this.$store.commit('app/SET_SELECTED_TARGET_COUNTRY', countryCode);
+      localStorage.setItem('productFeed-targetCountries', JSON.stringify(countryCode));
+      this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
+        name: 'targetCountries', data: countryCode,
+      });
     },
   },
 

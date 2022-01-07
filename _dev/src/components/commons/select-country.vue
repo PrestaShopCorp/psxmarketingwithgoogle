@@ -1,19 +1,21 @@
 <template>
   <div>
     <ps-select
-      v-model="country"
-      :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
-      :options="sortCountries"
       :deselect-from-dropdown="true"
-      :clearable="false"
-      class="ps_gs-v-select"
-      label="country"
+      :multiple="isMultiple"
+      :options="dropdownOptions"
+      @search="onSearchCountry"
+      label="name"
+      v-model="countries"
+      :placeholder=" $t('productFeedSettings.shipping.placeholderSelect')"
+      class="maxw-sm-500"
     >
-      <template #option="{ country }">
+      <template v-slot:option="option">
         <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
-          <span class="mr-2">
-            {{ country }}
-          </span>
+          <span
+            class="mr-2"
+            v-html="highlightSearch(option.name)"
+          />
         </div>
       </template>
     </ps-select>
@@ -44,41 +46,58 @@ export default {
   },
   data() {
     return {
-      countryChosen: null,
+      countriesChosen: [],
+      searchString: '',
     };
   },
   props: {
-    currency: {
-      type: String,
+    defaultValue: {
+      type: [String, Array],
+      required: true,
+      default() {
+        return [];
+      },
+    },
+    dropdownOptions: {
+      type: Array,
       required: true,
     },
-    defaultCountry: {
-      required: true,
-    },
-    needFilter: {
+    isMultiple: {
       type: Boolean,
       required: false,
       default: true,
     },
+    needFilter: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   methods: {
+    onSearchCountry(event) {
+      this.searchString = event;
+    },
+    highlightSearch(str) {
+      /** Highlight search terms */
+      const regex = new RegExp(`(${this.searchString})`, 'gi');
+      return str.replace(regex, '<strong>$1</strong>');
+    },
+    getCountriesFilteredWithList(arg) {
+      return this.dropdownOptions.filter((c) => arg.includes(c));
+    },
   },
   countriesSelectionOptions,
   googleUrl,
   computed: {
-    country: {
+    countries: {
       get() {
-        return this.countryChosen || this.defaultCountry;
+        return this.countriesChosen.length ? this.countriesChosen
+          : this.getCountriesFilteredWithList(this.defaultValue);
       },
       set(value) {
-        this.countryChosen = value.country;
-        this.$emit('countrySelected', [this.countryChosen]);
+        this.countriesChosen = value;
+        this.$emit('countrySelected', value);
       },
-    },
-    sortCountries() {
-      return this.needFilter
-        ? countriesSelectionOptions.filter((el) => el.currency === this.currency)
-        : countriesSelectionOptions;
     },
   },
 };

@@ -17,12 +17,14 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import MutationsTypes from './mutations-types';
+import MutationsAppTypes from '../app/mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
 import {
   Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
 } from '../../../providers/shipping-settings-provider';
+import Categories from '@/enums/product-feed/attribute-mapping-categories';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
@@ -123,6 +125,11 @@ export default {
         name: 'deliveryDetails',
         data: json?.additionalShippingSettings?.deliveryDetails || [],
       });
+
+      if (json.selectedProductCategories) {
+        commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, json.selectedProductCategories);
+      }
+      commit(MutationsTypes.SET_SYNC_SCHEDULE, json?.requestSynchronizationNow || false);
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
     } catch (error) {
       if (error.code === 404) {
@@ -135,11 +142,13 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, rootState, rootGetters, commit,
+    state, rootState, getters, commit,
   }) {
     const productFeedSettings = state.settings;
-    const targetCountries = changeCountriesNamesToCodes(rootGetters['app/GET_ACTIVE_COUNTRIES']);
+    const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = JSON.parse(localStorage.getItem('productFeed-attributeMapping') || '{}');
+    const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
+    const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
@@ -149,6 +158,8 @@ export default {
         deliveryDetails: productFeedSettings.deliveryDetails.filter((e) => e.enabledCarrier),
       },
       attributeMapping,
+      selectedProductCategories,
+      requestSynchronizationNow,
     };
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
@@ -403,5 +414,15 @@ export default {
     } catch (error) {
       console.log(error);
     }
+  },
+  async [ActionsTypes.REQUEST_PRODUCT_CATEGORIES_CHANGED]({rootState, commit}, category) {
+    let getSelectedCtg = rootState.productFeed.selectedProductCategories;
+    if (category === Categories.NONE) {
+      getSelectedCtg = getSelectedCtg.filter((cat) => cat === Categories.NONE);
+    }
+    if (category !== Categories.NONE && getSelectedCtg.includes(Categories.NONE)) {
+      getSelectedCtg = getSelectedCtg.filter((cat) => cat !== Categories.NONE);
+    }
+    commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, getSelectedCtg);
   },
 };

@@ -314,11 +314,11 @@ export default {
           title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
         },
         {
+          title: this.$i18n.t('productFeedSettings.steps.syncSchedule'),
+        },
+        {
           title: this.$i18n.t('productFeedSettings.steps.summary'),
         },
-        // {
-        //   title: this.$i18n.t('productFeedSettings.steps.exportFeed'),
-        // },
       ],
     };
   },
@@ -358,14 +358,14 @@ export default {
       );
     },
     isUS() {
-      return this.$store.getters['app/GET_ACTIVE_COUNTRIES'].includes('US');
+      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].includes('US');
     },
     toConfigure() {
       return !this.$store.state.productFeed.isConfigured;
     },
     targetCountries() {
       return this.$options.filters.changeCountriesCodesToNames(
-        this.$store.getters['app/GET_ACTIVE_COUNTRIES'],
+        this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
       );
     },
     shippingSettings() {
@@ -520,12 +520,12 @@ export default {
       this.$router.push({
         name: 'product-feed-settings',
       });
-    },
-    goToProductFeedSettings(step) {
       this.$segment.track('[GGL] Start Catalogue Export', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
+    },
+    goToProductFeedSettings(step) {
       this.$router.push({
         name: 'product-feed-settings',
       });
