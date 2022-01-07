@@ -57,17 +57,17 @@
       </div>
       <div
         class="mb-2"
-        v-if="!eventbusIsOK || !psxmarketingwithgoogleIsOk"
+        v-for="(oneError, index) in errorModule"
+        :key="index"
       >
         <AlertModuleUpdate
-          :alert-is="!eventbusIsOK ? 'eventubus' : 'psxmarketingwithgoogle'"
+          :alert-is="oneError "
           @moduleUpdated="moduleUpdated($event)"
           :psxmarketingwithgoogle-version="psxmarketingwithgoogleVersion"
           :event-bus-version="eventBusVersion"
           :loading="loading"
         />
       </div>
-
       <b-alert
         v-if="error"
         show
@@ -109,9 +109,8 @@ export default {
   data() {
     return {
       error: false,
+      errorModule: [],
       loading: false,
-      eventbusIsOK: true,
-      psxmarketingwithgoogleIsOk: true,
       eventBusVersion: {
         name: 'ps_eventbus',
         version: '',
@@ -189,7 +188,8 @@ export default {
         if (semver.gte(res.version, this.$store.state.app.eventbusVersionNeeded)) {
           return;
         }
-        this.eventbusIsOK = false;
+        this.errorModule.push('eventbus');
+
         this.eventBusVersion.upgradeLink = res.upgradeLink;
         this.eventBusVersion.version = res.version;
       } else {
@@ -197,7 +197,7 @@ export default {
         if (semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded)) {
           return;
         }
-        this.psxmarketingwithgoogleIsOk = false;
+        this.errorModule.push('psxmarketingwithgoogle');
         this.psxmarketingwithgoogleVersion.upgradeLink = res.upgradeLink;
         this.psxmarketingwithgoogleVersion.version = res.version;
       }
@@ -210,10 +210,12 @@ export default {
           headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         });
         if (moduleChosen.name === 'ps_eventbus') {
-          this.eventbusIsOK = true;
+          this.errorModule = this.errorModule.filter((e) => e !== 'eventbus');
+
           this.checkForModuleVersion(this.eventBusVersion);
         } else if (moduleChosen.name === 'psxmarketingwithgoogle') {
-          this.psxmarketingwithgoogleIsOk = true;
+          this.errorModule = this.errorModule.filter((e) => e !== 'psxmarketingwithgoogle');
+
           this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
         }
       } catch (err) {
