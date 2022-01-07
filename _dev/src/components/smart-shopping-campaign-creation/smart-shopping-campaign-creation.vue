@@ -431,7 +431,7 @@ export default {
     },
     finalCampaignFilters() {
       // IMPORTANT: Do not send the filters property if the campaign has unhandled filters
-      if (!this.hasUnhandledFilters) {
+      if (this.hasUnhandledFilters) {
         return undefined;
       }
       // An empty array is returned if we want to delete existing filters
@@ -541,7 +541,10 @@ export default {
 
     setDimensionFiltered(dimension = {}) {
       this.totalProducts = returnCountProducts(dimension);
-      this.filtersChosen = returnChildrenIds(dimension);
+      this.filtersChosen = [{
+        dimension: dimension.name.toLowerCase(),
+        values: returnChildrenIds(dimension),
+      }];
     },
     getDatasFiltersDimensions() {
       this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {

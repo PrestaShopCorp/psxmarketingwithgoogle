@@ -29,7 +29,6 @@ export function addPropertiesToDimension(dimension: CampaignFilter[]) :CampaignF
       name: oneFilter.name,
       id: oneFilter.id,
       checked: false,
-      indeterminate: false,
       numberOfProductsAssociated: oneFilter.numberOfProductsAssociated,
     };
   });
@@ -53,31 +52,21 @@ export function filterUncheckedSegments(source: CampaignFilter) {
   };
 }
 
-export function returnChildrenIds(source: CampaignFilter): Array<FiltersChosen> {
-  //  REWRITE NEEDED and to discuss with backend
-  const final : FiltersChosen[] = [];
-
-  if (source.children) {
-    source.children.forEach((child, index) => {
-      final.push({
-        dimension: '',
-        values: [],
-      });
-      if (child.children) {
-        child.children.forEach((child2) => {
-          final[index].dimension = child.name;
-          final[index].values.push(child2.id);
-        });
-        returnChildrenIds(child);
-      }
-    });
-  } else {
-    final.push({
-      dimension: source.name,
-      values: [source.id],
-    });
+export function returnChildrenIds(source: CampaignFilter) {
+  let values : string[] = [];
+  if (!source.children && source.id) {
+    values.push(source.id);
   }
-  return final;
+  if (!source.checked && !source.indeterminate) {
+    return values;
+  }
+  if (source.children) {
+    source.children.forEach((child) => {
+      values = values.concat(returnChildrenIds(child));
+    });
+    return values;
+  }
+  return values;
 }
 
 export function checkAndUpdateDimensionStatus(source: CampaignFilter) {

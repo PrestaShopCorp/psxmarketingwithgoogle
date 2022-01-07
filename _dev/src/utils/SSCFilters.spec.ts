@@ -404,84 +404,68 @@ describe("SSC filters - filterUncheckedSegments()", () => {
 
 describe("SSC filters - returnChildrenIds()", () => {
   it("returns all children IDs", () => {
-    const source = {
-      name: "All filters",
-      id: "99",
-      checked: true,
-      indeterminate: false,
+
+  let source = {
+      name: "category",
+      id: "category",
+      checked: false,
+      indeterminate: true,
       children: [
         {
-          name: "category",
-          id: "991",
+          name: "Animaux et articles pour animaux de compagnie",
+          id: "1",
+          checked: false,
+          indeterminate: true,
+          numberOfProductsAssociated : 1,
           children: [
             {
-              name: "Animaux et articles pour animaux de compagnie",
-              resourceName: "productBiddingCategoryConstants/FR~LEVEL1~1",
-              level: "LEVEL1",
-              status: "ACTIVE",
+              name: "Animal vivant",
               id: "1",
-              countryCode: "FR",
-              languageCode: "fr",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: true,
-            },
-            {
-              name: "Arts et loisirs",
-              resourceName: "productBiddingCategoryConstants/FR~LEVEL1~8",
-              level: "LEVEL1",
-              status: "ACTIVE",
-              id: "8",
-              countryCode: "FR",
-              languageCode: "fr",
-              localizedName: "Arts et loisirs",
-              checked: true,
-            },
-            {
-              name: "Entreprise et industrie",
-              resourceName: "productBiddingCategoryConstants/FR~LEVEL1~111",
-              level: "LEVEL1",
-              status: "ACTIVE",
-              id: "111",
-              countryCode: "FR",
-              languageCode: "fr",
-              localizedName: "Entreprise et industrie",
-              checked: true,
+              numberOfProductsAssociated : 1,
             },
           ],
         },
         {
-          name: "category",
-          id: "992",
+          name: "Arts et loisirs",
+          id: "8",
+          checked: false,
+          indeterminate: true,
+          numberOfProductsAssociated : 1,
           children: [
             {
-              name: "Entreprise et industrie",
-              resourceName: "productBiddingCategoryConstants/FR~LEVEL1~111",
-              level: "LEVEL1",
-              status: "ACTIVE",
-              id: "11",
-              countryCode: "FR",
-              languageCode: "fr",
-              localizedName: "Entreprise et industrie",
+              name: "Peinture",
+              id: "1",
               checked: true,
+              indeterminate: false,
+              numberOfProductsAssociated : 1,
+              children: [
+                {
+                  name: "Gouache",
+                  id: "22",
+                  checked: true,
+                  numberOfProductsAssociated : 1,
+                },
+              ],
+            },
+            {
+              name: "Dessin",
+              id: "2",
+              checked: true,
+              numberOfProductsAssociated : 1,
             },
           ],
         },
       ],
     };
-    const result = returnChildrenIds(source);
 
-    expect(result).toEqual([
-      {
-        dimension: "category",
-        values: ["1", "8", "111"],
-      },
-      {
-        dimension: "category",
-        values: ["11"],
-      },
-    ]);
-  });
+    const result = returnChildrenIds(source);
+    
+    expect(result).toEqual(["1", "22", "2"])
+
 });
+});
+    
 
 describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
   it("check indeterminate to false if children are all unchecked or checked", () => {
@@ -883,7 +867,6 @@ describe("SSC filters - addPropertiesToDimension()", () => {
                   name: "Animal vivant",
                   id: "1",
                   checked: false,
-                  indeterminate: false,
                   numberOfProductsAssociated : 1,
                 },
               ],
@@ -906,14 +889,12 @@ describe("SSC filters - addPropertiesToDimension()", () => {
                       name: "Huile",
                       id: "1",
                       checked: false,
-                      indeterminate: false,
                       numberOfProductsAssociated : 1,
                     },
                     {
                       name: "Gouache",
                       id: "2",
                       checked: false,
-                      indeterminate: false,
                       numberOfProductsAssociated : 1,
                     },
                   ],
@@ -922,7 +903,6 @@ describe("SSC filters - addPropertiesToDimension()", () => {
                   name: "Dessin",
                   id: "2",
                   checked: false,
-                  indeterminate: false,
                   numberOfProductsAssociated : 1,
                 },
               ],
