@@ -229,11 +229,12 @@
     "steps": {
       "targetCountry": "Land van bestemming",
       "shippingSettings": "Verzendingsinstellingen",
-      "attributeMapping": "Attribute Mapping",
+      "attributeMapping": "Attribute mapping",
       "categoryMapping": "Categorie in kaart brengen",
       "summary": "Samenvatting",
       "exportFeed": "Voer uit!",
-      "shippingSettingsErrors": "Dit land is niet compatibel met uw munteenheid"
+      "shippingSettingsErrors": "Dit land is niet compatibel met uw munteenheid",
+      "syncSchedule": "Sync schedule"
     },
     "noticeDataStored": "Instellingen worden bij elke stap opgeslagen en pas bij de laatste stap ingediend.",
     "shipping": {
@@ -352,6 +353,12 @@
       "learnAboutShippingSettings": "Meer informatie over verzendinstellingen",
       "learnHowToSetupShippingSettings": "Leer hoe u de verzending instelt"
     },
+    "syncSchedule": {
+      "title": "Synchronization schedule",
+      "subTitle": "Choose the time when you want the first synchronization to start, the export might slow down your traffic",
+      "radioLabel1": "Now, after I finish my configuration (The export might slow down your shop)",
+      "radioLabel2": "Later, appproximatley at 2:00 AM (GMT+1) (When your shop have few visits)"
+    },
     "summary": {
       "title1": "Next synchronization is planned in {0} hours",
       "title2": "Product feed settings summary",
@@ -366,7 +373,13 @@
       "dataSyncSetUp": "Gegevenssynchronisatie ingesteld",
       "productAttributesMapping": "Product attribute mapping",
       "mandatoryAttributesNotMapped": "One mandatory attribute hasn't been mapped to your custom fields | {0} mandatory attributes haven’t been mapped to your custom fields.",
-      "noticeToCompleteMapping": "We recommend completing all your data to ensure your products are validated. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]"
+      "noticeToCompleteMapping": "We recommend completing all your data to ensure your products are validated. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+      "agreementTitle": "I understand and agree to the following conditions*",
+      "agreementCheckboxLabel1Instant": "The synchronization of my product feed will run after I click on save and export (It might take between 1 to 4 hours)",
+      "agreementCheckboxLabel1Default": "The synchronization of my product feed will take time at {time} (It might take between 1 to 4 hours)",
+      "agreementCheckboxLabel2": "Google products reviews may take between 3 to 5 business days",
+      "disabledButtonTooltip": "Check our conditions before moving forward",
+      "syncScheduledNow": "Today, right after I save and export"
     }
   },
   "freeListingCard": {
@@ -490,7 +503,8 @@
     "nbProductsSelected": "Geen product geselecteerd | {0} product geselecteerd | {0} producten geselecteerd",
     "categories": "Categories",
     "brands": "Brands",
-    "products": "Products"
+    "products": "Products",
+    "conditions": "Conditions"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Prestaties van de campagne"
@@ -590,6 +604,7 @@
       "draft": "Draft",
       "pending": "In afwachting van"
     },
+    "from": "From",
     "fromXToX": "Van {startDatum} tot {eindDatum}",
     "labelCol": {
       "campaign": "Campagne",
@@ -854,7 +869,8 @@
     "MCAConnectedOnceSuccess": "U hebt uw Merchant Center-account aangesloten!",
     "productFeedConfiguredOnceSuccess": "U heeft met succes uw productgegevens ingediend bij Merchant Center. Eenmaal goedgekeurd, zullen ze beschikbaar zijn voor gratis advertenties.",
     "attributesMapppingSuccess": "Uw producteigenschappen zijn succesvol opgeslagen. Bekijk de samenvatting en klik op \"Exporteren\" om ze naar Google te sturen",
-    "campaignCreatedSuccess": "U hebt uw Smart Shopping-campagne met succes aangemaakt!"
+    "campaignCreatedSuccess": "U hebt uw Smart Shopping-campagne met succes aangemaakt!",
+    "phoneNumberVerifiedSuccess": "Your phone number has been verified. The Merchant Account is being created"
   },
   "stepper": {
     "nextStep": "Volgende: {0}",
