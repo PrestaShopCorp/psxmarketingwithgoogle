@@ -26,6 +26,19 @@ jobs:
 
       - name: Install composer dependencies
         run: composer install --no-dev -o
+      
+      - name: Get tag
+        id: get_tag
+        run: |
+          echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
+          echo ::set-output name=MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1)
+          echo ::set-output name=MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2)
+          echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
+
+      - name: Write .env file with specific CDN URL
+        if: "github.event.release.prerelease"
+        run: echo 'PSX_MKTG_WITH_GOOGLE_CDN_URL=https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}/js/' >> .env
+
 
       - name: Clean-up project
         uses: PrestaShopCorp/github-action-clean-before-deploy@v1.0
@@ -68,14 +81,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Get tag
-        id: get_tag
-        run: |
-          echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
-          echo ::set-output name=MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1)
-          echo ::set-output name=MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2)
-          echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
-
       - name: Download artifact
         uses: actions/download-artifact@v1
         with:
@@ -91,13 +96,9 @@ jobs:
       - name: Copy env files
         run: |
           gcloud components install beta
-          gcloud beta secrets versions access latest --secret="google-shopping-module" > psxmarketingwithgoogle/psxmarketingwithgoogle/.env
+          gcloud beta secrets versions access latest --secret="google-shopping-module" >> psxmarketingwithgoogle/psxmarketingwithgoogle/.env
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
-
-      - name: Write .env file with specific CDN URL
-        if: "github.event.release.prerelease"
-        run: echo 'PSX_MKTG_WITH_GOOGLE_CDN_URL=https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}/js/' >> .env
 
       - name: Prepare the integration zip
         run: |
