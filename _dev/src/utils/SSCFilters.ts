@@ -151,3 +151,13 @@ export function filterByName(dimensionFilters, search, arr) {
   });
   return arr;
 }
+
+export function returnCountProducts(source : CampaignFilter, total): number {
+  const add = (accumulator, a) => accumulator + a;
+  add(total, source.numberOfProductsAssociated);
+  if (source.children) {
+    return returnCountProducts(source.children, total);
+  }
+  console.log(total)
+  return total;
+}

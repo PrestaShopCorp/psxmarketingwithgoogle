@@ -29,7 +29,7 @@
       ref="SmartShoppingCampaignCreationFilterConfirmCancel"
       @confirmation="sendFiltersSelected"
     />
-     </ps-modal>
+  </ps-modal>
 </template>
 
 <script>

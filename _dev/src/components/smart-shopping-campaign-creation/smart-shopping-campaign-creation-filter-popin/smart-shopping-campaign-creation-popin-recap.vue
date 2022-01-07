@@ -137,7 +137,7 @@ export default {
   computed: {
     nbFilters() {
       // TODO also check with PM how it is supposed to be
-      return 0;
+      return this.totalProducts;
       // const total = this.newCampaign.productFilters
       //   .map((e) => e.values.length).reduce((a, b) => a + b, 0);
       // return `${this.$tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
