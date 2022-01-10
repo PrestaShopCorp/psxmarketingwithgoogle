@@ -405,9 +405,11 @@ export default {
         const arr = [];
         const getMapping = this.getProductFeedSettings.attributeMapping;
         Object.keys(getMapping).forEach((key) => {
-          getMapping[key].forEach((item) => {
-            arr.push(item.id);
-          });
+          if (getMapping[key]) {
+            getMapping[key].forEach((item) => {
+              arr.push(item.id);
+            });
+          }
         });
         return arr;
       },
