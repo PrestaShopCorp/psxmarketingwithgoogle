@@ -59,33 +59,6 @@ export default {
     state.stepper = payload;
   },
 
-  [MutationsTypes.TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_REFURBISHED](
-    state: LocalState, payload: boolean,
-  ) {
-    if (payload) {
-      state.settings.attributeMapping.customConditionAttribute = 'extra:condition';
-    } else {
-      delete state.settings.attributeMapping.customConditionAttribute;
-    }
-    state.settings.attributeMapping = {...state.settings.attributeMapping};
-  },
-  [MutationsTypes.TOGGLE_PRODUCT_FEED_SETTINGS_ATTRIBUTE_MAPPING_SELL_APPAREL](
-    state: LocalState, payload: boolean,
-  ) {
-    if (payload) {
-      state.settings.attributeMapping.customColorAttribute = 'extra:color';
-      state.settings.attributeMapping.customSizeAttribute = 'extra:size';
-      state.settings.attributeMapping.customAgeGroupAttribute = 'extra:age-group';
-      state.settings.attributeMapping.customGenderGroupAttribute = 'extra:gender-group';
-    } else {
-      delete state.settings.attributeMapping.customColorAttribute;
-      delete state.settings.attributeMapping.customSizeAttribute;
-      delete state.settings.attributeMapping.customAgeGroupAttribute;
-      delete state.settings.attributeMapping.customGenderGroupAttribute;
-    }
-    state.settings.attributeMapping = {...state.settings.attributeMapping};
-  },
-
   [MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS](state: LocalState, payload:
     payloadArrayShipping,
   ) {

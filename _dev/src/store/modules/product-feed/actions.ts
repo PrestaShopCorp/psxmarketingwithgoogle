@@ -98,28 +98,7 @@ export default {
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'attributeMapping',
-        data: Object.assign(
-          (json.attributeMapping?.exportProductsWithShortDescription) ? {
-            exportProductsWithShortDescription:
-            json.attributeMapping?.exportProductsWithShortDescription,
-          } : {},
-          (json.attributeMapping?.customColorAttribute) ? {
-            customColorAttribute: json.attributeMapping?.customColorAttribute,
-          } : {},
-          (json.attributeMapping?.customAgeGroupAttribute) ? {
-            customAgeGroupAttribute: json.attributeMapping?.customAgeGroupAttribute,
-          } : {},
-          (json.attributeMapping?.customSizeAttribute) ? {
-            customSizeAttribute: json.attributeMapping?.customSizeAttribute,
-          } : {},
-          (json.attributeMapping?.customGenderGroupAttribute) ? {
-            customGenderGroupAttribute:
-            json.attributeMapping?.customGenderGroupAttribute,
-          } : {},
-          (json.attributeMapping?.customConditionAttribute) ? {
-            customConditionAttribute: json.attributeMapping?.customConditionAttribute,
-          } : {},
-        ),
+        data: json.attributeMapping,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'deliveryDetails',
@@ -147,6 +126,9 @@ export default {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = JSON.parse(localStorage.getItem('productFeed-attributeMapping') || '{}');
+    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+      name: 'attributeMapping', data: attributeMapping,
+    });
     const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
     const newSettings = {
