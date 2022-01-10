@@ -1,5 +1,3 @@
-import {LogarithmicScale} from 'chart.js';
-
 export type CampaignFilter = {
     name?: string;
     id?: string;
