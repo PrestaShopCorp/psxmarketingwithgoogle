@@ -144,12 +144,19 @@
 
 <script lang="ts">
 import {defineComponent} from '@vue/composition-api';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   props: ['informations', 'loading'],
   methods: {
     getDocumentation() {
       window.open(this.$props.informations.doc, '_blank');
+    },
+    onQuestionClick(ref) {
+      this.$segment.track(`[GGL] Click on the question #${ref}`, {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
     },
   },
 });
