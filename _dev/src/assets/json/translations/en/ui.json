@@ -507,7 +507,8 @@
     "conditions": "Conditions"
   },
   "smartShoppingCampaignList": {
-    "tableTitle": "Campaign performance"
+    "tableTitle": "Campaign performance",
+    "xCampaign": "No campaigns | {0} campaign | {0} campaigns"
   },
   "productFeedPage": {
     "breadcrumb": "Product status details",
