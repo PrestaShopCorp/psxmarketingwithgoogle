@@ -81,7 +81,7 @@ export default {
         return;
       }
       // if module version >= version needed
-      if (!semver.gte(res.version, this.neededVersion)) {
+      if (semver.gte(res.version, this.neededVersion)) {
         return;
       }
       this.upgradeLink = res.upgradeLink;
