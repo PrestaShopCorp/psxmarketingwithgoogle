@@ -10,7 +10,7 @@
         tag="p"
         :extensions="['no-p-tag']"
         class="mb-0"
-        :markdown="alert"
+        :markdown="$t(`general.moduleUpdateNeeded.${moduleName}`)"
       />
       <div
         class="d-md-flex text-center align-items-center mt-2"
@@ -73,15 +73,6 @@ export default {
     };
   },
 
-  computed: {
-    alert() {
-      if (this.moduleName === 'ps_eventbus') {
-        return this.$i18n.t('general.eventBusMustbeUpdated');
-      }
-      return this.$i18n.t('general.psxmarketingwithgoogleMustBedUpdated');
-    },
-  },
-
   methods: {
     async checkForInstalledVersion() {
       const res = await this.$store.dispatch('app/GET_MODULES_VERSIONS', this.moduleName);
@@ -90,7 +81,7 @@ export default {
         return;
       }
       // if module version >= version needed
-      if (semver.gte(res.version, this.neededVersion)) {
+      if (!semver.gte(res.version, this.neededVersion)) {
         return;
       }
       this.upgradeLink = res.upgradeLink;
