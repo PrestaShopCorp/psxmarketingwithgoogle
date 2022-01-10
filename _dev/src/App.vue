@@ -55,27 +55,14 @@
           class="ps_gs-toaster-top-right"
         />
       </div>
-      <div
-        class="mb-2"
-        v-for="(oneError, index) in errorModule"
-        :key="index"
-      >
-        <AlertModuleUpdate
-          :alert-is="oneError "
-          @moduleUpdated="moduleUpdated($event)"
-          :psxmarketingwithgoogle-version="psxmarketingwithgoogleVersion"
-          :event-bus-version="eventBusVersion"
-          :loading="loading"
-        />
-      </div>
-      <b-alert
-        v-if="error"
-        show
-        variant="warning"
-        class="mb-0 mt-2 mb-2"
-      >
-        <span class="ml-2"> {{ $t('mcaCard.alertSomethingHappened') }}</span>
-      </b-alert>
+      <AlertModuleUpdate
+        module-name="ps_eventbus"
+        :needed-version="this.$store.state.app.eventbusVersionNeeded"
+      />
+      <AlertModuleUpdate
+        module-name="psxmarketingwithgoogle"
+        :needed-version="this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded"
+      />
       <router-view />
       <div
         v-if="shopId"
@@ -97,7 +84,6 @@ let resizeEventTimer;
 const root = document.documentElement;
 const header = document.querySelector('#content .page-head');
 const headerFull = document.querySelector('#header_infos');
-const semver = require('semver');
 
 export default {
   name: 'Home',
@@ -106,24 +92,7 @@ export default {
     MenuItem,
     AlertModuleUpdate,
   },
-  data() {
-    return {
-      error: false,
-      errorModule: [],
-      loading: false,
-      eventBusVersion: {
-        name: 'ps_eventbus',
-        version: '',
-        upgradeLink: null,
-      },
-      psxmarketingwithgoogleVersion: {
-        name: 'psxmarketingwithgoogle',
-        version: '',
-        upgradeLink: null,
-      },
 
-    };
-  },
   computed: {
     productFeedIsConfigured() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
@@ -147,8 +116,6 @@ export default {
   created() {
     this.$root.identifySegment();
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
-    this.checkForModuleVersion(this.eventBusVersion);
-    this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
     this.setCustomProperties();
     window.addEventListener('resize', this.resizeEventHandler);
   },
@@ -177,53 +144,7 @@ export default {
         params: SegmentGenericParams,
       });
     },
-    async checkForModuleVersion(moduleChosen) {
-      const res = await this.$store.dispatch('app/GET_MODULES_VERSIONS', moduleChosen.name);
-      if (!res.version) {
-        this.error = true;
-        return;
-      }
-      if (moduleChosen.name === 'ps_eventbus') {
-        // if module version >= version wanted
-        if (semver.gte(res.version, this.$store.state.app.eventbusVersionNeeded)) {
-          return;
-        }
-        this.errorModule.push('eventbus');
 
-        this.eventBusVersion.upgradeLink = res.upgradeLink;
-        this.eventBusVersion.version = res.version;
-      } else {
-        // if module version >= version wanted
-        if (semver.gte(res.version, this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded)) {
-          return;
-        }
-        this.errorModule.push('psxmarketingwithgoogle');
-        this.psxmarketingwithgoogleVersion.upgradeLink = res.upgradeLink;
-        this.psxmarketingwithgoogleVersion.version = res.version;
-      }
-    },
-    async moduleUpdated(moduleChosen) {
-      this.loading = true;
-      try {
-        await fetch(moduleChosen.upgradeLink, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        });
-        if (moduleChosen.name === 'ps_eventbus') {
-          this.errorModule = this.errorModule.filter((e) => e !== 'eventbus');
-
-          this.checkForModuleVersion(this.eventBusVersion);
-        } else if (moduleChosen.name === 'psxmarketingwithgoogle') {
-          this.errorModule = this.errorModule.filter((e) => e !== 'psxmarketingwithgoogle');
-
-          this.checkForModuleVersion(this.psxmarketingwithgoogleVersion);
-        }
-      } catch (err) {
-        console.error(err);
-      } finally {
-        this.loading = false;
-      }
-    },
   },
   watch: {
     $route() {
