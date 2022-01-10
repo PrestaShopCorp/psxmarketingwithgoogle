@@ -8,20 +8,20 @@
       <h3
         class="font-weight-600"
       >
-        {{$t('notConfiguredState.title')}}
+        {{ $t('notConfiguredState.title') }}
       </h3>
       <img
         src="@/assets/images/coaching.svg"
         alt=""
       >
       <p>
-        {{$t('notConfiguredState.text')}}
+        {{ $t('notConfiguredState.text') }}
       </p>
       <b-button
         :to="{name: 'configuration'}"
         variant="primary"
       >
-        {{$t('notConfiguredState.cta')}}
+        {{ $t('notConfiguredState.cta') }}
       </b-button>
     </b-card-body>
   </b-card>
@@ -30,5 +30,5 @@
 <script>
 export default {
 
-}
+};
 </script>
