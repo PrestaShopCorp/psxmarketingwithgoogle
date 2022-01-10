@@ -112,4 +112,24 @@ export default {
     }
     return null;
   },
+  async [ActionsTypes.GET_MODULES_VERSIONS]({rootState}, moduleName) {
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        body: JSON.stringify({
+          action: 'getModuleStatus',
+          moduleName,
+        }),
+      });
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      const json = await response.json();
+      return json;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  },
 };

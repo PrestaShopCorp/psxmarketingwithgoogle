@@ -36,6 +36,8 @@ export interface State {
   psxMktgWithGoogleOnProductionEnvironment: boolean;
   debugData: DebugData;
   adBlockerExists: boolean;
+  eventbusVersionNeeded: string;
+  psxMktgWithGoogleModuleVersionNeeded: string;
 }
 
 export interface ShopCurrency {
@@ -69,7 +71,6 @@ export const state: State = {
     doc: '',
     contactUs: '',
   },
-  psxMktgWithGoogleModuleVersion: '',
   psVersion: '',
   psxMktgWithGoogleMaintenanceSettingsUrl: '',
   shopIsOnMaintenanceMode: document.getElementById('maintenance-mode') !== null,
@@ -82,4 +83,7 @@ export const state: State = {
     typesOfSync: [],
   },
   adBlockerExists: false,
+  psxMktgWithGoogleModuleVersion: '',
+  eventbusVersionNeeded: '1.5.0',
+  psxMktgWithGoogleModuleVersionNeeded: '1.10.4',
 };

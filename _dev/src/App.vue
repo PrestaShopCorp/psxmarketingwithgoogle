@@ -55,6 +55,14 @@
           class="ps_gs-toaster-top-right"
         />
       </div>
+      <AlertModuleUpdate
+        module-name="ps_eventbus"
+        :needed-version="this.$store.state.app.eventbusVersionNeeded"
+      />
+      <AlertModuleUpdate
+        module-name="psxmarketingwithgoogle"
+        :needed-version="this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded"
+      />
       <router-view />
       <div
         v-if="shopId"
@@ -70,6 +78,7 @@
 import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import AlertModuleUpdate from '@/components/commons/alert-update-module';
 
 let resizeEventTimer;
 const root = document.documentElement;
@@ -81,7 +90,9 @@ export default {
   components: {
     Menu,
     MenuItem,
+    AlertModuleUpdate,
   },
+
   computed: {
     productFeedIsConfigured() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
@@ -105,7 +116,6 @@ export default {
   created() {
     this.$root.identifySegment();
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
-
     this.setCustomProperties();
     window.addEventListener('resize', this.resizeEventHandler);
   },
@@ -134,8 +144,8 @@ export default {
         params: SegmentGenericParams,
       });
     },
-  },
 
+  },
   watch: {
     $route() {
       this.$root.identifySegment();
