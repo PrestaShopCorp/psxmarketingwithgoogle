@@ -21,6 +21,7 @@ import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import MutationsTypes from './mutations-types';
+import i18n from '../../../lib/i18n';
 import {
   CampaignPerformances,
   DailyresultChart,
@@ -33,6 +34,9 @@ import {
   ConversionAction,
   CampaignStatusPayload,
 } from './state';
+import {
+  addPropertiesToDimension,
+} from '@/utils/SSCFilters';
 
 export default {
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](state: LocalState, payload: boolean) {
@@ -96,6 +100,25 @@ export default {
     state: LocalState, payload: boolean,
   ) {
     state.reporting.errorsList.filtersPerformancesSection = payload;
+  },
+  [MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS](
+    state: LocalState, payload: Array<object>,
+  ) {
+    Object.keys(payload).forEach((dimensionName) => {
+      //    Do not display a dimension with no filter inside
+      if (!payload[dimensionName].length) {
+        return;
+      }
+      state.sscAvailableFilters.push({
+        name: i18n.t(`smartShoppingCampaignCreation.${dimensionName}`),
+        subtitle: i18n.t(`smartShoppingCampaignCreation.${dimensionName}SubTitle`),
+        id: dimensionName,
+        checked: false,
+        indeterminate: false,
+        children: addPropertiesToDimension(payload[dimensionName]),
+      });
+    });
+    console.log(state.sscAvailableFilters);
   },
 
   // result mutations

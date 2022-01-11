@@ -32,6 +32,7 @@ export interface State {
   tagAlreadyExists: boolean;
   conversionActions: ConversionAction[];
   reporting: Reporting;
+  sscAvailableFilters: Array<object>;
 }
 
 export interface ConversionAction {
@@ -189,6 +190,7 @@ export const state: State = {
   tracking: true,
   tagAlreadyExists: false,
   conversionActions: [],
+  sscAvailableFilters: [],
   reporting: {
     request: {
       dateRange: {

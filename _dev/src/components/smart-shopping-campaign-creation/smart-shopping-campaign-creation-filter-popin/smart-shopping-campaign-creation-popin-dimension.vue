@@ -88,7 +88,6 @@ export default {
       // We check if there is already a dimension chosen, if so we will reset all checkbox
       if (this.dimensionChosen.name
        && (this.dimensionChosen.name !== this.chosenOrModifiedDimension.name)) {
-        localStorage.removeItem('SSCDimensionsFiltered');
         reset = true;
       }
       this.$emit('dimensionChosen', {

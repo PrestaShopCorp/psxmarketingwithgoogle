@@ -6,7 +6,7 @@
       :placeholder="$t('general.search')"
       size="sm"
       type="text"
-      @keyup="debounceName(availableFilters.children[0].children)"
+      @input="debounceName()"
     />
     <ul
       class="ps_gs-filters"
@@ -63,7 +63,6 @@
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
 import {
   filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension, getFilters,
-  filterByName,
 } from '../../../utils/SSCFilters';
 
 export default {
@@ -72,10 +71,6 @@ export default {
     SmartShoppingCampaignCreationFilterItem,
   },
   props: {
-    availableFilters: {
-      type: Object,
-      required: true,
-    },
     dimensionChosen: {
       type: Object,
       required: true,
@@ -84,6 +79,7 @@ export default {
   data() {
     return {
       searchFilterName: null,
+      timer: null,
     };
   },
   computed: {
@@ -101,10 +97,10 @@ export default {
       deepCheckDimension(this.dimensionChosen, status);
       checkAndUpdateDimensionStatus(this.dimensionChosen);
     },
-    debounceName(arg) {
-      setTimeout(() => {
-        const result = filterByName(arg, this.searchFilterName.toUpperCase(), []);
-        this.$emit('filterByName', result);
+    debounceName() {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.$root.$emit('filterByName', this.searchFilterName);
       }, 1000);
     },
     selectCheckbox(event) {

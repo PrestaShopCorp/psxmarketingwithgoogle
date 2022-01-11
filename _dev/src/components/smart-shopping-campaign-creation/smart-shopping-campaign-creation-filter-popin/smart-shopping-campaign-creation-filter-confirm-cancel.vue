@@ -31,7 +31,6 @@ export default {
   methods: {
     onAgreed() {
       this.$emit('confirmation');
-      localStorage.removeItem('SSCDimensionsFiltered');
       this.$bvModal.hide('GoogleAdsAccountPopinDisconnect');
     },
   },

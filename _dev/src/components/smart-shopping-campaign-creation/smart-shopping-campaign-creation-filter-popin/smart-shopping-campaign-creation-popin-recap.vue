@@ -172,7 +172,6 @@ export default {
           });
           this.$emit('openPopinSSCCreated');
           this.isValidating = false;
-          localStorage.removeItem('SSCDimensionsFiltered');
         }
       });
     },

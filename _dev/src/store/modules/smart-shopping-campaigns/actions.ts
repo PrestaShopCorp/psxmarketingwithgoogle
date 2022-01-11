@@ -298,9 +298,7 @@ export default {
       commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
       throw new HttpClientError(response.statusText, response.status);
     }
-
     const result = await response.json();
-
     commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_DAILY_RESULTS, result);
   },
@@ -335,7 +333,6 @@ export default {
     if (isNewRequest) {
       commit('RESET_REPORTING_CAMPAIGNS_PERFORMANCES');
     }
-
     commit(
       MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR,
       false,
@@ -493,8 +490,16 @@ export default {
     commit(MutationsTypes.UPDATE_SSC, payload);
     return json;
   },
-  async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState}) {
-    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/dimensions/filters?language_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}&country_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}`,
+  async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState}, search) {
+    const query = new URLSearchParams({
+      language_code: rootState.app.psxMtgWithGoogleDefaultShopCountry,
+      country_code: rootState.app.psxMtgWithGoogleDefaultShopCountry,
+    });
+    if (search) {
+      query.append('searchQuery', search);
+    }
+
+    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/dimensions/filters?${query}`,
       {
         method: 'GET',
         headers: {
@@ -506,6 +511,6 @@ export default {
       throw new HttpClientError(resp.statusText, resp.status);
     }
     const json = await resp.json();
-    return json;
+    commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, json);
   },
 };

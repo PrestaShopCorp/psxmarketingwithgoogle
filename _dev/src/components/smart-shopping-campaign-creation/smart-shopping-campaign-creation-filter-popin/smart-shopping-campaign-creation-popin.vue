@@ -19,11 +19,9 @@
     />
     <SmartShoppingCampaignCreationPopinFilter
       v-if="step === 2"
-      :available-filters="availableFilters"
       :dimension-chosen="dimensionChosen"
       @sendStep="stepIs($event)"
       @validateCreationFilters="sendFiltersSelected"
-      @filterByName="filtersAreChosenByName"
     />
     <SmartShoppingCampaignCreationFilterConfirmCancel
       ref="SmartShoppingCampaignCreationFilterConfirmCancel"
@@ -49,18 +47,12 @@ export default {
     SmartShoppingCampaignCreationPopinFilter,
     SmartShoppingCampaignCreationFilterConfirmCancel,
   },
-  props: {
-    availableFilters: {
-      type: Object,
-      required: true,
-    },
-  },
+
   data() {
     return {
       searchString: '',
       dimensionChosen: {},
       step: 1,
-      availableDimensions: this.availableFilters.children,
     };
   },
   computed: {
@@ -70,6 +62,14 @@ export default {
     totalNumberOfFilters() {
       return getFilters(this.filteredDimensions, []).length;
     },
+    availableDimensions: {
+      get() {
+        return this.$store.getters['smartShoppingCampaigns/GET_SSC_DIMENSIONS_AND_FILTERS'];
+      },
+      set(value) {
+        console.log('commit value', value);
+      },
+    },
   },
   methods: {
     dimensionHasBeenSelected(obj) {
@@ -78,13 +78,6 @@ export default {
         checkAndUpdateDimensionStatus(this.dimensionChosen);
       }
       this.dimensionChosen = obj.newDimension;
-    },
-    filtersAreChosenByName(filters) {
-      if (!filters.length) {
-        this.dimensionChosen.children = this.availableFilters.children[0].children;
-      } else {
-        this.dimensionChosen.children = filters;
-      }
     },
     stepIs(event) {
       this.step = event;

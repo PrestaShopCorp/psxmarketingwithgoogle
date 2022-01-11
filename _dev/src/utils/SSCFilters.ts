@@ -94,26 +94,26 @@ export function deepCheckDimension(source: CampaignFilter, checkboxClicked) {
   return source;
 }
 
-export function getFiltersbyIds(productFilters: Array<FiltersChosen>,
-  availableFilters:CampaignFilter):CampaignFilter {
-  if (availableFilters.children) {
-    availableFilters.children.forEach((availableFilter) => {
-      const productFilter = productFilters
-        .find((pro) => pro.dimension?.toUpperCase() === availableFilter.name?.toUpperCase());
-      if (availableFilter.children) {
-        availableFilter.children.map((child) => {
-          if (child.id && productFilter?.values.includes(child.id)) {
-            child.checked = true;
-          }
-          return child;
-        });
-      }
-    });
-    checkAndUpdateDimensionStatus(availableFilters);
-  }
+// export function getFiltersbyIds(productFilters: Array<FiltersChosen>,
+//   availableFilters:CampaignFilter):CampaignFilter {
+//   if (availableFilters.children) {
+//     availableFilters.children.forEach((availableFilter) => {
+//       const productFilter = productFilters
+//         .find((pro) => pro.dimension?.toUpperCase() === availableFilter.name?.toUpperCase());
+//       if (availableFilter.children) {
+//         availableFilter.children.map((child) => {
+//           if (child.id && productFilter?.values.includes(child.id)) {
+//             child.checked = true;
+//           }
+//           return child;
+//         });
+//       }
+//     });
+//     checkAndUpdateDimensionStatus(availableFilters);
+//   }
 
-  return availableFilters;
-}
+//   return availableFilters;
+// }
 
 export function getFilters(arg, final) {
   if (arg.children) {
@@ -124,22 +124,22 @@ export function getFilters(arg, final) {
   return final;
 }
 
-export function filterByName(dimensionFilters, search, arr) {
-  if (!search.length) {
-    return [];
-  }
-  dimensionFilters.filter((f) => {
-    if (f.name.toUpperCase().includes(search.toUpperCase())) {
-      arr.push(f);
-    }
-    if (f.children) {
-      return filterByName(f.children, search, arr);
-    }
+// export function filterByName(dimensionFilters, search, arr) {
+//   if (!search.length) {
+//     return [];
+//   }
+//   dimensionFilters.filter((f) => {
+//     if (f.name.toUpperCase().includes(search.toUpperCase())) {
+//       arr.push(f);
+//     }
+//     if (f.children) {
+//       return filterByName(f.children, search, arr);
+//     }
 
-    return arr;
-  });
-  return arr;
-}
+//     return arr;
+//   });
+//   return arr;
+// }
 
 export function returnCountProducts(source : CampaignFilter): number {
   let total = 0;

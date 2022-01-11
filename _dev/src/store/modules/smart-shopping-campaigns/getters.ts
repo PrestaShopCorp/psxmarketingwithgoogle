@@ -140,6 +140,11 @@ export default {
   ): Object {
     return state.reporting.request.ordering.filtersPerformances;
   },
+  [GettersTypes.GET_SSC_DIMENSIONS_AND_FILTERS](
+    state: LocalState,
+  ): Object {
+    return state.sscAvailableFilters;
+  },
 
   // errors getters
   [GettersTypes.GET_REPORTING_KPIS_ERROR](
