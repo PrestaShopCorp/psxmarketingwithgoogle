@@ -58,6 +58,10 @@ export default {
           title: this.$i18n.t('syncTimeline.title4'),
           subtitle: this.$i18n.t('syncTimeline.subtitle4'),
         },
+        {
+          title: this.$i18n.t('syncTimeline.title5'),
+          subtitle: this.$i18n.t('syncTimeline.subtitle5'),
+        },
       ],
     };
   },

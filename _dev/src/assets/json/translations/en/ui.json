@@ -565,14 +565,16 @@
     }
   },
   "syncTimeline": {
-    "title1" : "Synchronisation Start",
-    "subtitle1" : "Immediate or later schedule",
-    "title2" : "Product Feed Sync",
-    "subtitle2" : "Will take 1 to 4 hours",
-    "title3" : "Google Review",
-    "subtitle3" : "Between 2 to 5 bank days",
-    "title4" : "Synchronisation Completed",
-    "subtitle4" : "If products updated, a new sync will take place"
+    "title1" : "Products Extraction",
+    "subtitle1" : "Now or later, depends on your sync settings",
+    "title2" : "Products Verification",
+    "subtitle2" : "Filtering products with missing information",
+    "title3" : "Export to Google",
+    "subtitle3" : "Sending filtered products",
+    "title4" : "Google Review",
+    "subtitle4" : "Compliance verification",
+    "title5" : "New Sync",
+    "subtitle5" : "If you update your products"
   },
   "campaignCard": {
     "title": "Create your Smart Shopping campaign in a few clicks",
