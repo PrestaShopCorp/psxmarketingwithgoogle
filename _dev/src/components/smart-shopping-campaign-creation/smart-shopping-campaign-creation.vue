@@ -382,7 +382,7 @@ export default {
   },
   computed: {
     filtersChosen() {
-      return this.foundSsc?.productFilters 
+      return this.foundSsc?.productFilters
       ?? this.$store.state.smartShoppingCampaigns.filtersChosen;
     },
     disableCreateCampaign() {

@@ -15,7 +15,7 @@
             :key="index"
           >
             <b-form-radio-group
-              v-model="chosenOrModifiedDimension"
+              v-model="dimensionChosen"
               name="dimension"
               stacked
               class="pt-1"
@@ -48,7 +48,7 @@
         </b-button>
         <b-button
           size="sm"
-          :disabled="!chosenOrModifiedDimension"
+          :disabled="!dimensionChosen"
           class="mx-1 mt-3 mt-md-0 mr-md-0"
           variant="primary"
           @click="nextStep"
@@ -71,29 +71,25 @@ export default {
       type: Array,
       required: true,
     },
-    dimensionChosen: {
-      type: Object,
-      required: true,
-    },
   },
 
-  data() {
-    return {
-      chosenOrModifiedDimension: this.dimensionChosen ? this.dimensionChosen : null,
-    };
+  computed: {
+    dimensionChosen: {
+      get() {
+        return this.$store.state.smartShoppingCampaigns.dimensionChosen;
+      },
+      set(value) {
+        if (value.id !== this.dimensionChosen.id) {
+          this.$emit('dimensionChosen', {
+            reset: true,
+            newDimension: value,
+          });
+        }
+      },
+    },
   },
   methods: {
     nextStep() {
-      let reset = false;
-      // We check if there is already a dimension chosen, if so we will reset all checkbox
-      if (this.dimensionChosen.name
-       && (this.dimensionChosen.name !== this.chosenOrModifiedDimension.name)) {
-        reset = true;
-      }
-      this.$emit('dimensionChosen', {
-        reset,
-        newDimension: this.chosenOrModifiedDimension,
-      });
       this.$emit('sendStep', 2);
     },
     confirmCancel() {

@@ -33,6 +33,7 @@ export interface State {
   conversionActions: ConversionAction[];
   reporting: Reporting;
   sscAvailableFilters: Array<object>;
+  dimensionChosen: {},
   filtersChosen: Array<FiltersChosen>;
 }
 
@@ -44,7 +45,6 @@ export interface FiltersChosen {
   dimension?: string,
   values?: Array<string>,
 }
-
 export interface CampaignsOrdering {
   name?: string,
   duration?: QueryOrderDirection,
@@ -196,6 +196,7 @@ export const state: State = {
   tagAlreadyExists: false,
   conversionActions: [],
   sscAvailableFilters: [],
+  dimensionChosen: {},
   filtersChosen: [],
   reporting: {
     request: {

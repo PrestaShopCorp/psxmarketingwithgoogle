@@ -110,20 +110,32 @@ export default {
   [MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS](
     state: LocalState, payload,
   ) {
+    if (state.sscAvailableFilters.length) {
+      state.sscAvailableFilters = [];
+    }
     Object.keys(payload.list).forEach((dimensionName) => {
-      //    Do not display a dimension with no filter inside
+      // Do not display a dimension with no filter inside
       if (!payload.list[dimensionName].length) {
         return;
       }
-      state.sscAvailableFilters.push({
+      const resp = {
         name: i18n.t(`smartShoppingCampaignCreation.${dimensionName}`),
         subtitle: i18n.t(`smartShoppingCampaignCreation.${dimensionName}SubTitle`),
         id: dimensionName,
         checked: false,
         indeterminate: false,
         children: addPropertiesToDimension(payload.list[dimensionName]),
-      });
+      };
+      state.sscAvailableFilters.push(resp);
     });
+    const findFilter = state.sscAvailableFilters
+    .findIndex((el) => el?.id === state.dimensionChosen?.id);
+    if (findFilter !== -1) {
+      state.sscAvailableFilters[findFilter] = state.dimensionChosen;
+    }
+  },
+  [MutationsTypes.SET_DIMENSION_CHOSEN](state: LocalState, payload) {
+    state.dimensionChosen = payload;
   },
   // result mutations
   [MutationsTypes.SET_REPORTING_KPIS](state: LocalState, payload: Kpis) {

@@ -12,14 +12,12 @@
     <SmartShoppingCampaignCreationPopinDimension
       v-if="step === 1"
       :available-dimensions="availableDimensions"
-      :dimension-chosen="dimensionChosen"
       @dimensionChosen="dimensionHasBeenSelected($event)"
       @sendStep="stepIs($event)"
       @confirmCancel="confirmCancel"
     />
     <SmartShoppingCampaignCreationPopinFilter
       v-if="step === 2"
-      :dimension-chosen="dimensionChosen"
       @sendStep="stepIs($event)"
       @validateCreationFilters="sendFiltersSelected"
       :loader="loader"
@@ -52,7 +50,6 @@ export default {
   data() {
     return {
       searchString: '',
-      dimensionChosen: {},
       step: 1,
     };
   },
@@ -64,6 +61,9 @@ export default {
     },
   },
   computed: {
+    dimensionChosen() {
+      return this.$store.state.smartShoppingCampaigns.dimensionChosen;
+    },
     filteredDimensions() {
       return filterUncheckedSegments(this.dimensionChosen);
     },
@@ -82,11 +82,11 @@ export default {
   methods: {
     dimensionHasBeenSelected(obj) {
       if (obj.reset) {
-        let resultDimensions = deepCheckDimension(this.dimensionChosen, false);
-        resultDimensions = checkAndUpdateDimensionStatus(this.dimensionChosen);
-        this.dimensionChosen = resultDimensions;
+        let resultDimension = deepCheckDimension(this.dimensionChosen, false);
+        resultDimension = checkAndUpdateDimensionStatus(this.dimensionChosen);
+        this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', resultDimension);
       }
-      this.dimensionChosen = obj.newDimension;
+      this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', obj.newDimension);
     },
     stepIs(event) {
       this.step = event;

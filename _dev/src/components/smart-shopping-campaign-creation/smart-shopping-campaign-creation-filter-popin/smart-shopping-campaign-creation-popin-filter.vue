@@ -26,7 +26,7 @@
         :item="child"
         :selected-filters="false"
       />
-    </ul>
+    </ul>{{ filtersChosen }}
     <div class="d-flex mt-2">
       <b-form-tag
         class="mr-1"
@@ -78,10 +78,10 @@ export default {
     SmartShoppingCampaignCreationFilterItem,
   },
   props: {
-    dimensionChosen: {
-      type: Object,
-      required: true,
-    },
+    // dimensionChosen: {
+    //   type: Object,
+    //   required: true,
+    // },
     loader: {
       type: Boolean,
       required: true,
@@ -99,6 +99,9 @@ export default {
       get() {
         return getFilters(filterUncheckedSegments(this.dimensionChosen), []);
       },
+    },
+    dimensionChosen() {
+      return this.$store.state.smartShoppingCampaigns.dimensionChosen;
     },
   },
   methods: {
