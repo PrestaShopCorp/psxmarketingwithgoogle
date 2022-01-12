@@ -324,6 +324,7 @@
     <SmartShoppingCampaignCreationPopin
       ref="SmartShoppingCampaignCreationPopin"
       @selectFilters="setDimensionFiltered"
+      :loader="loader"
     />
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
@@ -358,13 +359,12 @@ export default {
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
       campaignHasNoProductsFilter: true,
-      filtersChosen: [],
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
       campaignIsActive: true,
       targetCountry: null,
-
+      loader: true,
       hasUnhandledFilters: false,
       totalProducts: 0,
     };
@@ -381,6 +381,10 @@ export default {
     },
   },
   computed: {
+    filtersChosen() {
+      return this.foundSsc?.productFilters 
+      ?? this.$store.state.smartShoppingCampaigns.filtersChosen;
+    },
     disableCreateCampaign() {
       if (this.campaignName
       && this.errorCampaignNameExistsAlready === false
@@ -534,13 +538,16 @@ export default {
 
     setDimensionFiltered(dimension) {
       this.totalProducts = returnCountProducts(dimension);
-      this.filtersChosen = [{
+      this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', [{
         dimension: dimension.name.toLowerCase(),
         values: returnChildrenIds(dimension),
-      }];
+      }]);
     },
     getDatasFiltersDimensions(search) {
-      this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search);
+      this.loader = true;
+      this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search).then(() => {
+        this.loader = false;
+      });
     },
   },
   watch: {
@@ -559,7 +566,6 @@ export default {
         this.campaignDurationEndDate = this.foundSsc.endDate || null;
         this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
           && !this.foundSsc.hasUnhandledFilters;
-        this.filtersChosen = this.foundSsc.productFilters;
         this.campaignDailyBudget = this.foundSsc.dailyBudget;
         this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = this.foundSsc.id;

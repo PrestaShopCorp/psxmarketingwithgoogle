@@ -36,6 +36,7 @@ import {
 } from './state';
 import {
   addPropertiesToDimension,
+  filterUncheckedSegments,
 } from '@/utils/SSCFilters';
 
 export default {
@@ -101,12 +102,17 @@ export default {
   ) {
     state.reporting.errorsList.filtersPerformancesSection = payload;
   },
-  [MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS](
-    state: LocalState, payload: Array<object>,
+  [MutationsTypes.SET_FILTERS_CHOSEN](
+    state: LocalState, payload,
   ) {
-    Object.keys(payload).forEach((dimensionName) => {
+    state.filtersChosen = payload;
+  },
+  [MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS](
+    state: LocalState, payload,
+  ) {
+    Object.keys(payload.list).forEach((dimensionName) => {
       //    Do not display a dimension with no filter inside
-      if (!payload[dimensionName].length) {
+      if (!payload.list[dimensionName].length) {
         return;
       }
       state.sscAvailableFilters.push({
@@ -115,12 +121,10 @@ export default {
         id: dimensionName,
         checked: false,
         indeterminate: false,
-        children: addPropertiesToDimension(payload[dimensionName]),
+        children: addPropertiesToDimension(payload.list[dimensionName]),
       });
     });
-    console.log(state.sscAvailableFilters);
   },
-
   // result mutations
   [MutationsTypes.SET_REPORTING_KPIS](state: LocalState, payload: Kpis) {
     state.reporting.results.kpis = payload;

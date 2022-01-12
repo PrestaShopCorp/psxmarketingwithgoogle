@@ -8,9 +8,16 @@
       type="text"
       @input="debounceName()"
     />
+    <span
+      v-if="loader"
+      class="text-muted"
+    >
+      <i class="icon-busy icon-busy--dark mr-1" />
+      {{ $t('badge.loading') }}
+    </span>
     <ul
       class="ps_gs-filters"
-      v-if="dimensionChosen.children"
+      v-if="dimensionChosen.children && !loader"
     >
       <SmartShoppingCampaignCreationFilterItem
         :is-open-by-default="true"
@@ -75,6 +82,11 @@ export default {
       type: Object,
       required: true,
     },
+    loader: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   data() {
     return {
@@ -86,9 +98,6 @@ export default {
     filtersChosen: {
       get() {
         return getFilters(filterUncheckedSegments(this.dimensionChosen), []);
-      },
-      set() {
-
       },
     },
   },

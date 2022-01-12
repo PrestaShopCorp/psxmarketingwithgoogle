@@ -830,7 +830,8 @@
     "urlUnclaimed": "Url unclaimed",
     "urlUnverified": "Url unverified",
     "canceled": "Canceled",
-    "testAccount": "Test"
+    "testAccount": "Test",
+    "loading": "Loading"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "Disconnect your Merchant Center?",

@@ -22,6 +22,7 @@
       :dimension-chosen="dimensionChosen"
       @sendStep="stepIs($event)"
       @validateCreationFilters="sendFiltersSelected"
+      :loader="loader"
     />
     <SmartShoppingCampaignCreationFilterConfirmCancel
       ref="SmartShoppingCampaignCreationFilterConfirmCancel"
@@ -55,6 +56,13 @@ export default {
       step: 1,
     };
   },
+  props: {
+    loader: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+  },
   computed: {
     filteredDimensions() {
       return filterUncheckedSegments(this.dimensionChosen);
@@ -74,8 +82,9 @@ export default {
   methods: {
     dimensionHasBeenSelected(obj) {
       if (obj.reset) {
-        deepCheckDimension(this.dimensionChosen, false);
-        checkAndUpdateDimensionStatus(this.dimensionChosen);
+        let resultDimensions = deepCheckDimension(this.dimensionChosen, false);
+        resultDimensions = checkAndUpdateDimensionStatus(this.dimensionChosen);
+        this.dimensionChosen = resultDimensions;
       }
       this.dimensionChosen = obj.newDimension;
     },

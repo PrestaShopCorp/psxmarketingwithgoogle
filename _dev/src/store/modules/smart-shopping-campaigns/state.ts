@@ -33,11 +33,16 @@ export interface State {
   conversionActions: ConversionAction[];
   reporting: Reporting;
   sscAvailableFilters: Array<object>;
+  filtersChosen: Array<FiltersChosen>;
 }
 
 export interface ConversionAction {
   category: string,
   tag: string,
+}
+export interface FiltersChosen {
+  dimension?: string,
+  values?: Array<string>,
 }
 
 export interface CampaignsOrdering {
@@ -191,6 +196,7 @@ export const state: State = {
   tagAlreadyExists: false,
   conversionActions: [],
   sscAvailableFilters: [],
+  filtersChosen: [],
   reporting: {
     request: {
       dateRange: {

@@ -511,6 +511,6 @@ export default {
       throw new HttpClientError(resp.statusText, resp.status);
     }
     const json = await resp.json();
-    commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, json);
+    commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: json, search});
   },
 };
