@@ -18,7 +18,7 @@ export const initialStateApp = {
   psVersion: '',
   psxMktgWithGoogleModuleVersion: '',
   psxMktgWithGoogleModuleVersionNeeded: '1.10.4',
-  eventbusVersionNeeded: '1.5.0',
+  eventbusVersionNeeded: '1.6.5',
   psxMktgWithGoogleMaintenanceSettingsUrl: '',
   psxMktgWithGoogleStoreSettingsUrl: '',
   shopIsOnMaintenanceMode: false,
