@@ -1,37 +1,39 @@
 <template>
-  <b-alert
-    v-if="errorModule"
-    variant="warning"
-    class="mb-0 mt-3 mb-2"
-    show
-  >
-    <VueShowdown
-      tag="p"
-      :extensions="['no-p-tag']"
-      class="mb-0"
-      :markdown="$t(`general.moduleUpdateNeeded.${moduleName}`)"
-    />
-    <div
-      class="d-md-flex text-center align-items-center mt-2"
+  <div class="mb-2">
+    <b-alert
+      v-if="errorModule"
+      variant="warning"
+      class="mb-0 mt-3"
+      show
     >
-      <b-button
-        size="sm"
-        class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
-        variant="primary"
-        target="_blank"
-        @click="updateModule"
+      <VueShowdown
+        tag="p"
+        :extensions="['no-p-tag']"
+        class="mb-0"
+        :markdown="$t(`general.moduleUpdateNeeded.${moduleName}`)"
+      />
+      <div
+        class="d-md-flex text-center align-items-center mt-2"
       >
-        <span v-if="loading">
-          <span class="icon-busy icon-busy--dark" />
-        </span>
-        <span
-          v-else
+        <b-button
+          size="sm"
+          class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
+          variant="primary"
+          target="_blank"
+          @click="updateModule"
         >
-          {{ $t('cta.update') }}
-        </span>
-      </b-button>
-    </div>
-  </b-alert>
+          <span v-if="loading">
+            <span class="icon-busy icon-busy--dark" />
+          </span>
+          <span
+            v-else
+          >
+            {{ $t('cta.update') }}
+          </span>
+        </b-button>
+      </div>
+    </b-alert>
+  </div>
 </template>
 
 <script>
