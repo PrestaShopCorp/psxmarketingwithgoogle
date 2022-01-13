@@ -84,6 +84,6 @@ export const state: State = {
   },
   adBlockerExists: false,
   psxMktgWithGoogleModuleVersion: '',
-  eventbusVersionNeeded: '1.5.0',
+  eventbusVersionNeeded: '1.6.5',
   psxMktgWithGoogleModuleVersionNeeded: '1.10.4',
 };
