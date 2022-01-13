@@ -496,7 +496,7 @@ export default {
       country_code: rootState.app.psxMtgWithGoogleDefaultShopCountry,
     });
     if (search) {
-      query.append('searchQuery', search);
+      query.append('search_query', search);
     }
 
     const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/dimensions/filters?${query}`,

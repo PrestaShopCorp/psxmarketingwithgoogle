@@ -128,10 +128,12 @@ export default {
       };
       state.sscAvailableFilters.push(resp);
     });
-    const findFilter = state.sscAvailableFilters
-    .findIndex((el) => el?.id === state.dimensionChosen?.id);
-    if (findFilter !== -1) {
-      state.sscAvailableFilters[findFilter] = state.dimensionChosen;
+    const findDimension = state.sscAvailableFilters
+      .findIndex((el) => el?.id === state.dimensionChosen?.id);
+    if (findDimension !== -1) {
+      const checkedFilters = state.dimensionChosen.children.filter((fil) => fil.checked === true);
+      state.dimensionChosen.children = checkedFilters
+        .concat(state.sscAvailableFilters[findDimension].children);
     }
   },
   [MutationsTypes.SET_DIMENSION_CHOSEN](state: LocalState, payload) {

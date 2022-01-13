@@ -26,7 +26,7 @@
         :item="child"
         :selected-filters="false"
       />
-    </ul>{{ filtersChosen }}
+    </ul>
     <div class="d-flex mt-2">
       <b-form-tag
         class="mr-1"
@@ -78,10 +78,6 @@ export default {
     SmartShoppingCampaignCreationFilterItem,
   },
   props: {
-    // dimensionChosen: {
-    //   type: Object,
-    //   required: true,
-    // },
     loader: {
       type: Boolean,
       required: true,

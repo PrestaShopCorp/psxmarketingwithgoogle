@@ -33,7 +33,7 @@ export interface State {
   conversionActions: ConversionAction[];
   reporting: Reporting;
   sscAvailableFilters: Array<object>;
-  dimensionChosen: {},
+  dimensionChosen: DimensionChosen,
   filtersChosen: Array<FiltersChosen>;
 }
 
@@ -44,6 +44,14 @@ export interface ConversionAction {
 export interface FiltersChosen {
   dimension?: string,
   values?: Array<string>,
+}
+export interface DimensionChosen {
+  name?: string;
+  id?: string;
+  checked?: boolean;
+  indeterminate?: boolean;
+  numberOfProductsAssociated?: number,
+  children?: DimensionChosen[];
 }
 export interface CampaignsOrdering {
   name?: string,

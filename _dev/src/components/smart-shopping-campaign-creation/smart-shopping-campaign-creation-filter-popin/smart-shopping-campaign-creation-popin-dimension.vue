@@ -8,8 +8,14 @@
         <p class="ps_gs-fz-13 text-secondary mb-3">
           {{ $t('smartShoppingCampaignCreation.selectProductsSubtitle') }}
         </p>
-
-        <div v-if="availableDimensions.length">
+        <span
+          v-if="!availableDimensions.length"
+          class="text-muted"
+        >
+          <i class="icon-busy icon-busy--dark mr-1" />
+          {{ $t('badge.loading') }}
+        </span>
+        <div v-else>
           <div
             v-for="(oneDim, index) in availableDimensions"
             :key="index"
@@ -48,7 +54,7 @@
         </b-button>
         <b-button
           size="sm"
-          :disabled="!dimensionChosen"
+          :disabled="!dimensionChosen.name"
           class="mx-1 mt-3 mt-md-0 mr-md-0"
           variant="primary"
           @click="nextStep"
@@ -64,8 +70,7 @@
 
 export default {
   name: 'SmartShoppingCampaignCreationPopinDimension',
-  components: {
-  },
+
   props: {
     availableDimensions: {
       type: Array,
@@ -79,12 +84,10 @@ export default {
         return this.$store.state.smartShoppingCampaigns.dimensionChosen;
       },
       set(value) {
-        if (value.id !== this.dimensionChosen.id) {
-          this.$emit('dimensionChosen', {
-            reset: true,
-            newDimension: value,
-          });
-        }
+        this.$emit('dimensionChosen', {
+          reset: value.id !== this.dimensionChosen.id,
+          newDimension: value,
+        });
       },
     },
   },
