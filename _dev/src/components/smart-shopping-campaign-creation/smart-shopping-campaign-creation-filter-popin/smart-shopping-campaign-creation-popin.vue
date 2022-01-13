@@ -70,13 +70,8 @@ export default {
     totalNumberOfFilters() {
       return getFilters(this.filteredDimensions, []).length;
     },
-    availableDimensions: {
-      get() {
-        return this.$store.getters['smartShoppingCampaigns/GET_SSC_DIMENSIONS_AND_FILTERS'];
-      },
-      set(value) {
-        console.log('commit value', value);
-      },
+    availableDimensions() {
+      return this.$store.getters['smartShoppingCampaigns/GET_SSC_DIMENSIONS_AND_FILTERS'];
     },
   },
   methods: {

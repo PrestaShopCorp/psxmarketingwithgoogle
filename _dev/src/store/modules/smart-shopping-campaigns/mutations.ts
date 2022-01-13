@@ -33,10 +33,11 @@ import {
   ProductsPerformancesSection,
   ConversionAction,
   CampaignStatusPayload,
+  DimensionChosen,
 } from './state';
 import {
   addPropertiesToDimension,
-  filterUncheckedSegments,
+
 } from '@/utils/SSCFilters';
 
 export default {
@@ -108,7 +109,7 @@ export default {
     state.filtersChosen = payload;
   },
   [MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS](
-    state: LocalState, payload,
+    state: LocalState, payload : {list: Array<DimensionChosen>, search: string},
   ) {
     if (state.sscAvailableFilters.length) {
       state.sscAvailableFilters = [];
@@ -129,20 +130,22 @@ export default {
       state.sscAvailableFilters.push(resp);
     });
     const findDimension = state.sscAvailableFilters
-      .findIndex((el) => el?.id === state.dimensionChosen?.id);
+      .findIndex((el : DimensionChosen) => el?.id === state.dimensionChosen?.id);
     if (findDimension !== -1) {
-      const checkedFilters = state.dimensionChosen.children.filter((fil) => fil.checked === true);
-      state.dimensionChosen.children = checkedFilters
-        .concat(state.sscAvailableFilters[findDimension].children);
+      const checkedFilters = state.dimensionChosen?.children?.filter((fil) => fil.checked === true);
+      state.dimensionChosen.children = checkedFilters?.concat(
+        state.sscAvailableFilters[findDimension].children
+        );
 
-      //  remove duplicate in case API sent all filters and user has some checked
-      state.dimensionChosen.children = state.dimensionChosen.children.reduce((acc, current) => {
-        const x = acc.find((item) => item.id === current.id);
-        if (!x) {
-          return acc.concat([current]);
-        }
-        return acc;
-      }, []);
+      //  remove duplicate in case API sent all filters and user has some already checked
+      state.dimensionChosen.children = state.dimensionChosen?.children?.reduce(
+        (acc :Array<DimensionChosen>, current) => {
+          const x = acc.find((item) => item.id === current.id);
+          if (!x) {
+            return acc.concat([current]);
+          }
+          return acc;
+        }, []);
     }
   },
   [MutationsTypes.SET_DIMENSION_CHOSEN](state: LocalState, payload) {

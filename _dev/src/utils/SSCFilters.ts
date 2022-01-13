@@ -1,17 +1,6 @@
-export type CampaignFilter = {
-    name?: string;
-    id?: string;
-    checked?: boolean;
-    indeterminate?: boolean;
-    numberOfProductsAssociated?: number,
-    children?: CampaignFilter[];
-  };
-export type FiltersChosen = {
-    dimension?: string;
-    values: Array<string| undefined>;
-  };
+import {DimensionChosen} from '@/store/modules/smart-shopping-campaigns/state';
 
-export function addPropertiesToDimension(dimension: CampaignFilter[]) :CampaignFilter[] {
+export function addPropertiesToDimension(dimension: DimensionChosen[]) :DimensionChosen[] {
   const finalDimension = dimension.map((oneFilter) => {
     if (oneFilter.children) {
       return {
@@ -33,7 +22,7 @@ export function addPropertiesToDimension(dimension: CampaignFilter[]) :CampaignF
   return finalDimension;
 }
 
-export function filterUncheckedSegments(source: CampaignFilter) {
+export function filterUncheckedSegments(source: DimensionChosen) {
   const filteredChildren = source.children?.map((child) => {
     if (child.children) {
       return filterUncheckedSegments(child);
@@ -50,7 +39,7 @@ export function filterUncheckedSegments(source: CampaignFilter) {
   };
 }
 
-export function returnChildrenIds(source: CampaignFilter) {
+export function returnChildrenIds(source: DimensionChosen) {
   let values : string[] = [];
   if (!source.children && source.id) {
     values.push(source.id);
@@ -67,7 +56,7 @@ export function returnChildrenIds(source: CampaignFilter) {
   return values;
 }
 
-export function checkAndUpdateDimensionStatus(source: CampaignFilter) {
+export function checkAndUpdateDimensionStatus(source: DimensionChosen) {
   const checkedChildren = source.children?.filter((element) => {
     if (element.children) {
       checkAndUpdateDimensionStatus(element);
@@ -84,7 +73,7 @@ export function checkAndUpdateDimensionStatus(source: CampaignFilter) {
   return source;
 }
 
-export function deepCheckDimension(source: CampaignFilter, checkboxClicked) {
+export function deepCheckDimension(source: DimensionChosen, checkboxClicked) {
   source.checked = checkboxClicked;
   if (source.children) {
     source.children.forEach((child) => {
@@ -93,27 +82,6 @@ export function deepCheckDimension(source: CampaignFilter, checkboxClicked) {
   }
   return source;
 }
-
-// export function getFiltersbyIds(productFilters: Array<FiltersChosen>,
-//   availableFilters:CampaignFilter):CampaignFilter {
-//   if (availableFilters.children) {
-//     availableFilters.children.forEach((availableFilter) => {
-//       const productFilter = productFilters
-//         .find((pro) => pro.dimension?.toUpperCase() === availableFilter.name?.toUpperCase());
-//       if (availableFilter.children) {
-//         availableFilter.children.map((child) => {
-//           if (child.id && productFilter?.values.includes(child.id)) {
-//             child.checked = true;
-//           }
-//           return child;
-//         });
-//       }
-//     });
-//     checkAndUpdateDimensionStatus(availableFilters);
-//   }
-
-//   return availableFilters;
-// }
 
 export function getFilters(arg, final) {
   if (arg.children) {
@@ -124,24 +92,7 @@ export function getFilters(arg, final) {
   return final;
 }
 
-// export function filterByName(dimensionFilters, search, arr) {
-//   if (!search.length) {
-//     return [];
-//   }
-//   dimensionFilters.filter((f) => {
-//     if (f.name.toUpperCase().includes(search.toUpperCase())) {
-//       arr.push(f);
-//     }
-//     if (f.children) {
-//       return filterByName(f.children, search, arr);
-//     }
-
-//     return arr;
-//   });
-//   return arr;
-// }
-
-export function returnCountProducts(source : CampaignFilter): number {
+export function returnCountProducts(source : DimensionChosen): number {
   let total = 0;
   if (!source.checked && !source.indeterminate) {
     return total;
