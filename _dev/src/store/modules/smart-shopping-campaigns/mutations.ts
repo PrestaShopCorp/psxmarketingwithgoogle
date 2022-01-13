@@ -134,6 +134,15 @@ export default {
       const checkedFilters = state.dimensionChosen.children.filter((fil) => fil.checked === true);
       state.dimensionChosen.children = checkedFilters
         .concat(state.sscAvailableFilters[findDimension].children);
+
+      //  remove duplicate in case API sent all filters and user has some checked
+      state.dimensionChosen.children = state.dimensionChosen.children.reduce((acc, current) => {
+        const x = acc.find((item) => item.id === current.id);
+        if (!x) {
+          return acc.concat([current]);
+        }
+        return acc;
+      }, []);
     }
   },
   [MutationsTypes.SET_DIMENSION_CHOSEN](state: LocalState, payload) {
