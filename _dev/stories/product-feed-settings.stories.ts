@@ -1,7 +1,6 @@
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue';
 import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport, productFeedSyncScheduleNow} from '../.storybook/mock/product-feed';
 import {initialStateApp, appMultiCountries} from '../.storybook/mock/state-app';
-// @ts-ignore
 import {rest} from 'msw';
 
 export default {

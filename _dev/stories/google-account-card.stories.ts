@@ -7,7 +7,7 @@ import {
   googleAccountFailedToRetrieveToken,
   googleAccountMissingTokenScopes,
 } from "../.storybook/mock/google-account";
-// @ts-ignore
+
 import {rest} from 'msw';
 
 export default {

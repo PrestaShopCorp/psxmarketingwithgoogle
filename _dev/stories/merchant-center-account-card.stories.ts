@@ -8,7 +8,6 @@ import {
   merchantCenterNewGmcNotListed,
 } from '../.storybook/mock/merchant-center-account';
 import {WebsiteClaimErrorReason} from '../src/store/modules/accounts/state';
-// @ts-ignore
 import {rest} from 'msw';
 
 const getWebsiteRequirementStatusRouteObject = {
