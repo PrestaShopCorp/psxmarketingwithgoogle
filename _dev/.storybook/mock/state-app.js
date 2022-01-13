@@ -1,8 +1,8 @@
 export const initialStateApp = {
-  psxMktgWithGoogleApiUrl: '',
+  psxMktgWithGoogleApiUrl: '/PS+Google+Shopping+all-in-one/',
   psxMktgWithGoogleShopUrl: 'https://my-shop.com',
   psxMktgWithGoogleAdminUrl: 'https://my-shop.com/admin-dev',
-  psxMktgWithGoogleAdminAjaxUrl: '/',
+  psxMktgWithGoogleAdminAjaxUrl: '/Ajax+requests+to+shop+specification/',
   shopIdPsAccounts: '',
   tokenPsAccounts: '',
   psxMtgWithGoogleDefaultShopCountry: 'FR',

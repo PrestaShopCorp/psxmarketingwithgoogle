@@ -16,22 +16,40 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
- import { addDecorator } from '@storybook/vue';
- import { select } from '@storybook/addon-knobs';
- import Vue from 'vue';
- import Vuex from 'vuex';
 
- // import vue plugins
- import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
- import VueI18n from 'vue-i18n';
- import VueShowdown from 'vue-showdown';
+import { addDecorator } from '@storybook/vue';
+import { select } from '@storybook/addon-knobs';
+import Vue from 'vue';
+import Vuex from 'vuex';
 
- // import jest
- import { withTests } from '@storybook/addon-jest';
+// import vue plugins
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
+import VueI18n from 'vue-i18n';
+import VueShowdown from 'vue-showdown';
+
+// import jest
+import { withTests } from '@storybook/addon-jest';
+
+// Test utils
+import {cloneStore} from '@/../tests/store';
+import {initialStateApp} from "../.storybook/mock/state-app";
 
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 // Initialize MSW
-initialize();
+initialize({
+  serviceWorker: {
+    // Points to the custom location of the Service Worker file.
+    url: './mockServiceWorker.js'
+  },
+  onUnhandledRequest: ({ method, url }) => {
+    if (url.pathname.startsWith(initialStateApp.psxMktgWithGoogleApiUrl) || url.pathname.startsWith(initialStateApp.psxMktgWithGoogleAdminAjaxUrl)) {
+      console.error(`Unhandled ${method} request to ${url}.
+        This exception has been only logged in the console, however, it's strongly recommended to resolve this error as you don't want unmocked data in Storybook stories.
+        If you wish to mock an error response, please refer to this guide: https://mswjs.io/docs/recipes/mocking-error-responses
+      `)
+    }
+  },
+});
 
 // import showdown extension
 import '../showdown.js';
@@ -46,10 +64,6 @@ import '../src/utils/Filters';
  import '!style-loader!css-loader?url=false!./assets/shame.css';
  // app.scss all the styles for the module
  import '!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss';
-
- // Test utils
- import {cloneStore} from '@/../tests/store';
- import {initialStateApp} from "../.storybook/mock/state-app";
 
  // jest results file
  import results from '../.jest-test-results.json';

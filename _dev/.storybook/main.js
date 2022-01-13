@@ -33,5 +33,5 @@ module.exports = {
   "presets": [
     "@storybook/preset-scss"
   ],
-  staticDirs: ['../public'],
+  staticDirs: ['./assets'],
 }
