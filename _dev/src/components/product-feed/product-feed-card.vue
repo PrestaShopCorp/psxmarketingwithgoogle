@@ -261,7 +261,7 @@
               <product-feed-card-report-card
                 :status="attributeMappingStatus"
                 :title="$t('productFeedSettings.steps.attributeMapping')"
-                :description="attributeMapping.join(', ') + '...'"
+                :description="attributeMapping.join(', ')"
                 :link="$t('cta.editProductAttributes')"
                 :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 3 }"
               />
@@ -401,17 +401,14 @@ export default {
       return 'success';
     },
     attributeMapping: {
-      // TODO BATCH 2 refacto when dynamic fields
-      // TODO  BATCH 2 + to push also the long description attribute if needed
       get() {
-        const arr = ['Long description'];
-        Object.keys(this.getProductFeedSettings.attributeMapping).forEach((key) => {
-          // Because the variables names contain "custom" and "Attribute"
-          if (key === 'customColorAttribute') {
-            arr.push('Color', 'Age', 'Gender', 'Size');
-          }
-          if (key === 'customConditionAttribute') {
-            arr.push('Condition');
+        const arr = [];
+        const getMapping = this.getProductFeedSettings.attributeMapping;
+        Object.keys(getMapping).forEach((key) => {
+          if (getMapping[key]) {
+            getMapping[key].forEach((item) => {
+              arr.push(item.id);
+            });
           }
         });
         return arr;

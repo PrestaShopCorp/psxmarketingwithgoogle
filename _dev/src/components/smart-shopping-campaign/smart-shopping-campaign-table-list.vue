@@ -28,7 +28,8 @@
       </div>
     </div>
     <ReportingTableHeader
-      :title="campaignList.length + ' campaign(s)'"
+      :title="$tc(`smartShoppingCampaignList.xCampaign`,
+                  campaignList.length, [campaignList.length])"
       :use-date="false"
     />
     <!-- TODO : use this header when API returs only GMC linked campaigns -->
@@ -36,7 +37,8 @@
       :subtitle="$t('smartShoppingCampaignCreation.descriptiveMessage',[
         $options.googleUrl.googleAdsAccount
       ])"
-      :title="campaignList.length + ' campaign(s)'"
+      :title="$tc(`smartShoppingCampaignList.xCampaign`,
+        campaignList.length, [campaignList.length])"
       :use-date="false"
     /> -->
 

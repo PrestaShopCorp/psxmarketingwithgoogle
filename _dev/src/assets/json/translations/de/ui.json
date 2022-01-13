@@ -8,6 +8,10 @@
       "catalog": "Produktkatalog",
       "help": "Hilfe"
     },
+    "moduleUpdateNeeded": {
+      "ps_eventbus": "The version of the module PrestaShop EventBus running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop EventBus",
+      "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"
+    },
     "adblockerActivated": "Bitte deaktivieren Sie Ihren Werbeblocker, damit das Modul richtig funktioniert, und aktualisieren Sie Ihren Navigator.",
     "refreshPage": "Seite aktualisieren",
     "mandatory": "sind obligatorisch",
@@ -229,11 +233,12 @@
     "steps": {
       "targetCountry": "Zielland",
       "shippingSettings": "Einstellungen für den Versand",
-      "attributeMapping": "Attribute Mapping",
+      "attributeMapping": "Attribute mapping",
       "categoryMapping": "Kategorie Mapping",
       "summary": "Zusammenfassung",
       "exportFeed": "Feed exportieren!",
-      "shippingSettingsErrors": "Dieses Land ist nicht mit Ihrer Währung kompatibel"
+      "shippingSettingsErrors": "Dieses Land ist nicht mit Ihrer Währung kompatibel",
+      "syncSchedule": "Sync schedule"
     },
     "noticeDataStored": "Die Einstellungen werden bei jedem Schritt gespeichert, erst beim letzten Schritt werden sie übermittelt.",
     "shipping": {
@@ -352,6 +357,12 @@
       "learnAboutShippingSettings": "Erfahren Sie mehr über Versandeinstellungen",
       "learnHowToSetupShippingSettings": "Erfahren Sie, wie Sie den Versand einrichten"
     },
+    "syncSchedule": {
+      "title": "Synchronization schedule",
+      "subTitle": "Choose the time when you want the first synchronization to start, the export might slow down your traffic",
+      "radioLabel1": "Now, after I finish my configuration (The export might slow down your shop)",
+      "radioLabel2": "Later, appproximatley at 2:00 AM (GMT+1) (When your shop have few visits)"
+    },
     "summary": {
       "title1": "Next synchronization is planned in {0} hours",
       "title2": "Product feed settings summary",
@@ -366,7 +377,13 @@
       "dataSyncSetUp": "Datensynchronisation einrichten",
       "productAttributesMapping": "Product attribute mapping",
       "mandatoryAttributesNotMapped": "One mandatory attribute hasn't been mapped to your custom fields | {0} mandatory attributes haven’t been mapped to your custom fields.",
-      "noticeToCompleteMapping": "We recommend completing all your data to ensure your products are validated. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]"
+      "noticeToCompleteMapping": "We recommend completing all your data to ensure your products are validated. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+      "agreementTitle": "I understand and agree to the following conditions*",
+      "agreementCheckboxLabel1Instant": "The synchronization of my product feed will run after I click on save and export (It might take between 1 to 4 hours)",
+      "agreementCheckboxLabel1Default": "The synchronization of my product feed will take time at {time} (It might take between 1 to 4 hours)",
+      "agreementCheckboxLabel2": "Google products reviews may take between 3 to 5 business days",
+      "disabledButtonTooltip": "Check our conditions before moving forward",
+      "syncScheduledNow": "Today, right after I save and export"
     }
   },
   "freeListingCard": {
@@ -490,10 +507,12 @@
     "nbProductsSelected": "Kein Produkt ausgewählt | {0} Produkt ausgewählt | {0} Produkte ausgewählt",
     "categories": "Categories",
     "brands": "Brands",
-    "products": "Products"
+    "products": "Products",
+    "conditions": "Conditions"
   },
   "smartShoppingCampaignList": {
-    "tableTitle": "Leistung der Kampagne"
+    "tableTitle": "Leistung der Kampagne",
+    "xCampaign": "No campaigns | {0} campaign | {0} campaigns"
   },
   "productFeedPage": {
     "breadcrumb": "Details zum Produktstatus",
@@ -590,6 +609,7 @@
       "draft": "Draft",
       "pending": "Anhängig"
     },
+    "from": "From",
     "fromXToX": "Von {startDate} bis {endDate}",
     "labelCol": {
       "campaign": "Kampagne",
@@ -757,7 +777,8 @@
     "apply": "Apply",
     "select": "Select",
     "editContact": "Edit contact information",
-    "noCarriers": "Take me to Carriers page"
+    "noCarriers": "Take me to Carriers page",
+    "update": "Update"
   },
   "badge": {
     "free": "Kostenlos",
@@ -854,7 +875,8 @@
     "MCAConnectedOnceSuccess": "Sie haben Ihr Merchant Center-Konto verbunden!",
     "productFeedConfiguredOnceSuccess": "Sie haben Ihre Produktdaten erfolgreich an Merchant Center übermittelt. Sobald sie genehmigt sind, werden sie für kostenlose Inserate und Anzeigen zur Verfügung stehen.",
     "attributesMapppingSuccess": "Ihre Produktattribute wurden erfolgreich gespeichert. Überprüfen Sie die Zusammenfassung und klicken Sie auf \"Exportieren\", um sie an Google zu übermitteln",
-    "campaignCreatedSuccess": "Sie haben Ihre Smart Shopping Kampagne erfolgreich erstellt!"
+    "campaignCreatedSuccess": "Sie haben Ihre Smart Shopping Kampagne erfolgreich erstellt!",
+    "phoneNumberVerifiedSuccess": "Your phone number has been verified. The Merchant Account is being created"
   },
   "stepper": {
     "nextStep": "Nächste: {0}",

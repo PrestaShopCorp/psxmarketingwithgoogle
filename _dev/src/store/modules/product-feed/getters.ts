@@ -39,15 +39,6 @@ export default {
   [GettersTypes.GET_PRODUCT_FEED_STATUS](state: LocalState): ProductFeedStatus {
     return state.status;
   },
-  [GettersTypes.GET_MERCHANT_SELL_APPAREL_AND_ACCESSORIES](state: LocalState): boolean {
-    return !!state.settings.attributeMapping?.customColorAttribute
-          || !!state.settings.attributeMapping?.customSizeAttribute
-          || !!state.settings.attributeMapping?.customAgeGroupAttribute
-          || !!state.settings.attributeMapping?.customGenderGroupAttribute;
-  },
-  [GettersTypes.GET_MERCHANT_SELL_REFURBISHED_PRODUCTS](state: LocalState): boolean {
-    return !!state.settings.attributeMapping?.customConditionAttribute;
-  },
   [GettersTypes.GET_TOTAL_PRODUCTS](state: LocalState) :number {
     return state.totalProducts;
   },

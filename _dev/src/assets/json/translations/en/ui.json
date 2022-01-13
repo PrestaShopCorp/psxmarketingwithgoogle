@@ -8,7 +8,12 @@
       "catalog": "Product catalog",
       "help": "Help"
     },
-    "adblockerActivated": "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",
+    "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
+    "moduleUpdateNeeded": {
+      "ps_eventbus": "The version of the module PrestaShop EventBus running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop EventBus",
+      "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"
+    },
+  "adblockerActivated": "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",
     "refreshPage": "Refresh page",
     "mandatory": "are mandatory",
     "XIsMandatory": "{0} is mandatory.",
@@ -507,7 +512,8 @@
     "conditions": "Conditions"
   },
   "smartShoppingCampaignList": {
-    "tableTitle": "Campaign performance"
+    "tableTitle": "Campaign performance",
+    "xCampaign": "No campaigns | {0} campaign | {0} campaigns"
   },
   "productFeedPage": {
     "breadcrumb": "Product status details",
@@ -784,7 +790,8 @@
     "apply": "Apply",
     "select": "Select",
     "editContact": "Edit contact information",
-    "noCarriers" : "Take me to Carriers page"
+    "noCarriers" : "Take me to Carriers page",
+    "update": "Update"
   },
   "badge": {
     "free": "Free",

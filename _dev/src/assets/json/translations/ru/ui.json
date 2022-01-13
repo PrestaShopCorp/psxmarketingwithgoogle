@@ -8,6 +8,11 @@
       "catalog": "Каталог продукции",
       "help": "Помощь"
     },
+    "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
+    "moduleUpdateNeeded": {
+      "ps_eventbus": "The version of the module PrestaShop EventBus running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop EventBus",
+      "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"
+    },
     "adblockerActivated": "Пожалуйста, отключите блокировщик рекламы для корректной работы модуля и обновите навигатор.",
     "refreshPage": "Обновить страницу",
     "mandatory": "обязательны",
@@ -229,11 +234,12 @@
     "steps": {
       "targetCountry": "Целевая страна",
       "shippingSettings": "Настройки доставки",
-      "attributeMapping": "Attribute Mapping",
+      "attributeMapping": "Attribute mapping",
       "categoryMapping": "Картирование категорий",
       "summary": "Резюме",
       "exportFeed": "Экспортный корм!",
-      "shippingSettingsErrors": "Эта страна не совместима с вашей валютой"
+      "shippingSettingsErrors": "Эта страна не совместима с вашей валютой",
+      "syncSchedule": "Sync schedule"
     },
     "noticeDataStored": "Настройки сохраняются на каждом шаге и будут переданы только на последнем шаге.",
     "shipping": {
@@ -352,6 +358,12 @@
       "learnAboutShippingSettings": "Узнайте больше о настройках доставки",
       "learnHowToSetupShippingSettings": "Узнайте, как настроить доставку"
     },
+    "syncSchedule": {
+      "title": "Synchronization schedule",
+      "subTitle": "Choose the time when you want the first synchronization to start, the export might slow down your traffic",
+      "radioLabel1": "Now, after I finish my configuration (The export might slow down your shop)",
+      "radioLabel2": "Later, appproximatley at 2:00 AM (GMT+1) (When your shop have few visits)"
+    },
     "summary": {
       "title1": "Next synchronization is planned in {0} hours",
       "title2": "Product feed settings summary",
@@ -366,7 +378,13 @@
       "dataSyncSetUp": "Настройка синхронизации данных",
       "productAttributesMapping": "Product attribute mapping",
       "mandatoryAttributesNotMapped": "One mandatory attribute hasn't been mapped to your custom fields | {0} mandatory attributes haven’t been mapped to your custom fields.",
-      "noticeToCompleteMapping": "We recommend completing all your data to ensure your products are validated. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]"
+      "noticeToCompleteMapping": "We recommend completing all your data to ensure your products are validated. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+      "agreementTitle": "I understand and agree to the following conditions*",
+      "agreementCheckboxLabel1Instant": "The synchronization of my product feed will run after I click on save and export (It might take between 1 to 4 hours)",
+      "agreementCheckboxLabel1Default": "The synchronization of my product feed will take time at {time} (It might take between 1 to 4 hours)",
+      "agreementCheckboxLabel2": "Google products reviews may take between 3 to 5 business days",
+      "disabledButtonTooltip": "Check our conditions before moving forward",
+      "syncScheduledNow": "Today, right after I save and export"
     }
   },
   "freeListingCard": {
@@ -490,10 +508,12 @@
     "nbProductsSelected": "Товар не выбран | {0} товар выбран | {0} товары выбраны",
     "categories": "Categories",
     "brands": "Brands",
-    "products": "Products"
+    "products": "Products",
+    "conditions": "Conditions"
   },
   "smartShoppingCampaignList": {
-    "tableTitle": "Эффективность кампании"
+    "tableTitle": "Эффективность кампании",
+    "xCampaign": "No campaigns | {0} campaign | {0} campaigns"
   },
   "productFeedPage": {
     "breadcrumb": "Сведения о состоянии продукта",
@@ -590,6 +610,7 @@
       "draft": "Draft",
       "pending": "В ожидании"
     },
+    "from": "From",
     "fromXToX": "С {startDate} по {endDate}",
     "labelCol": {
       "campaign": "Кампания",
@@ -757,7 +778,8 @@
     "apply": "Apply",
     "select": "Select",
     "editContact": "Edit contact information",
-    "noCarriers": "Take me to Carriers page"
+    "noCarriers": "Take me to Carriers page",
+    "update": "Update"
   },
   "badge": {
     "free": "Бесплатно",
@@ -854,7 +876,8 @@
     "MCAConnectedOnceSuccess": "Вы подключили свою учетную запись Merchant Center!",
     "productFeedConfiguredOnceSuccess": "Вы успешно отправили данные о своем продукте в Merchant Center. После утверждения они будут доступны для бесплатных объявлений и листингов.",
     "attributesMapppingSuccess": "Атрибуты вашего продукта успешно сохранены. Просмотрите резюме, затем нажмите \"Экспорт\", чтобы отправить их в Google",
-    "campaignCreatedSuccess": "Вы успешно создали кампанию Smart Shopping!"
+    "campaignCreatedSuccess": "Вы успешно создали кампанию Smart Shopping!",
+    "phoneNumberVerifiedSuccess": "Your phone number has been verified. The Merchant Account is being created"
   },
   "stepper": {
     "nextStep": "Следующий: {0}",

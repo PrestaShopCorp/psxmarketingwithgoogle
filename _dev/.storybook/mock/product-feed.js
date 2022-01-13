@@ -204,13 +204,25 @@ export const productFeedIsReadyForExport = {
     ...productFeed.settings,
     targetCountries: ["FR"],
     attributeMapping: {
-      exportProductsWithShortDescription: false,
-      customColorAttribute: "extra:color",
-      customSizeAttribute: "extra:size",
-      customAgeGroupAttribute: "extra:age-group",
-      customGenderGroupAttribute: "extra:gender-group",
-      customConditionAttribute: "extra:condition",
-    },
+      "brand": [],
+      "color": [],
+      "mpn": [],
+      "gtin": [
+          {
+              "id": "mpn",
+              "type": "product"
+          }
+      ],
+      "size": [],
+      "gender": [],
+      "description": [
+          {
+              "id": "description",
+              "type": "product"
+          }
+      ],
+      "ageGroup": []
+    }
   },
 };
 
@@ -228,13 +240,25 @@ export const productFeedIsConfigured = {
     ...productFeed.settings,
     targetCountries: ["FR"],
     attributeMapping: {
-      exportProductsWithShortDescription: false,
-      customColorAttribute: "extra:color",
-      customSizeAttribute: "extra:size",
-      customAgeGroupAttribute: "extra:age-group",
-      customGenderGroupAttribute: "extra:gender-group",
-      customConditionAttribute: "extra:condition",
-    },
+      "brand": [],
+      "color": [],
+      "mpn": [],
+      "gtin": [
+          {
+              "id": "mpn",
+              "type": "product"
+          }
+      ],
+      "size": [],
+      "gender": [],
+      "description": [
+          {
+              "id": "description",
+              "type": "product"
+          }
+      ],
+      "ageGroup": []
+  }
   },
 };
 

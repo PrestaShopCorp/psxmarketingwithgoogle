@@ -27,21 +27,13 @@ export interface ProductFeedStatus {
   success: boolean;
   syncSchedule?: string;
 }
-export interface ProductFeedSettingsAttributeMapping {
-  exportProductsWithShortDescription?: boolean;
-  customColorAttribute?: string;
-  customSizeAttribute?: string;
-  customAgeGroupAttribute?: string;
-  customGenderGroupAttribute?: string;
-  customConditionAttribute?: string;
-}
 
 export interface ProductFeedSettings {
   shippingSettings: object[];
   deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
   autoImportShippingSettings: boolean;
-  attributeMapping: ProductFeedSettingsAttributeMapping;
+  attributeMapping: object;
   syncSchedule?: string;
   targetCountries: string[]|null;
 }
