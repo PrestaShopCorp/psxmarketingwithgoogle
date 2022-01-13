@@ -33,15 +33,6 @@
         </b-button>
       </div>
     </b-alert>
-    <b-alert
-      v-if="error"
-      show
-      variant="warning"
-      class="mb-0 mt-2"
-    >
-      <span class="ml-2"> {{ $t('general.versionDoesNotExist') }}</span>
-    </b-alert>
-    <div />
   </div>
 </template>
 
@@ -66,7 +57,6 @@ export default {
   data() {
     return {
       loading: false,
-      error: false,
       errorModule: false,
       upgradeLink: null,
       installedVersion: null,
@@ -77,7 +67,6 @@ export default {
     async checkForInstalledVersion() {
       const res = await this.$store.dispatch('app/GET_MODULES_VERSIONS', this.moduleName);
       if (!res.version) {
-        this.error = true;
         return;
       }
       // if module version >= version needed
