@@ -15,19 +15,20 @@ const getWebsiteRequirementStatusRouteObject = {
     handlers: [
       rest.post('/', (req: any, res, ctx) => {
         const payload = req.body.action;
-        if (payload === 'getWebsiteRequirementStatus')
-        return res(
-          ctx.json({
-            "requirements": [
-              "shoppingAdsPolicies",
-              "secureCheckoutProcess",
-              "accurateContactInformation",
-              "billingTerms",
-              "completeCheckoutProcess",
-              "returnPolicy"
-            ]
-          })
-        );
+        if (payload === 'getWebsiteRequirementStatus') {
+          return res(
+            ctx.json({
+              "requirements": [
+                "shoppingAdsPolicies",
+                "secureCheckoutProcess",
+                "accurateContactInformation",
+                "billingTerms",
+                "completeCheckoutProcess",
+                "returnPolicy"
+              ]
+            })
+          );
+        };
       }),
     ],
   },
