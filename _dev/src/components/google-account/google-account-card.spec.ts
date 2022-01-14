@@ -9,7 +9,6 @@ import config, {cloneStore} from '@/../tests/init';
 
 import {
   Disabled,
-  NotConnectedAndNoAuthenticationUrlYet,
   NotConnectedAndCanNotGetAuthenticationUrl,
   NotConnected,
   CouldNotConnect,

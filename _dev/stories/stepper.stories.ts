@@ -1,4 +1,4 @@
-  import Stepper from '../src/components/commons/stepper.vue'
+import Stepper from '../src/components/commons/stepper.vue'
 
 export default {
   title: 'Basic Components/Horizontal Stepper',

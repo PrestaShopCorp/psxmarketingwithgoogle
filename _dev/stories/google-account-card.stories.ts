@@ -8,6 +8,8 @@ import {
   googleAccountMissingTokenScopes,
 } from "../.storybook/mock/google-account";
 
+import {rest} from 'msw';
+
 export default {
   title: 'Google Account/Card',
   component: {
@@ -55,12 +57,6 @@ Disabled.args = {
   isEnabled: false,
 };
 
-export const NotConnectedAndNoAuthenticationUrlYet:any = Template.bind({});
-NotConnectedAndNoAuthenticationUrlYet.args = {
-  loading: false,
-  isEnabled: true,
-};
-
 export const NotConnectedAndCanNotGetAuthenticationUrl:any = Template.bind({});
 NotConnectedAndCanNotGetAuthenticationUrl.args = {
   loading: false,
@@ -68,11 +64,57 @@ NotConnectedAndCanNotGetAuthenticationUrl.args = {
   user: Object.assign({}, googleAccountFailedToRetrieveAuthenticationUrl),
 };
 
+NotConnectedAndCanNotGetAuthenticationUrl.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/oauth', (req, res, ctx) => {
+        return res(
+          ctx.status(404),
+          ctx.json({
+            "statusCode": 404,
+            "message": "Google account not found!",
+            "error": "{\"shopId\":\"foobar\",\"correlationId\":\"foobar2\"}"
+          })
+        );
+      }),
+      rest.get('/oauth/authorized-url', (req, res, ctx) => {
+        return res(
+          ctx.status(500)
+        );
+      }),
+    ],
+  },
+};
+
 export const NotConnected:any = Template.bind({});
 NotConnected.args = {
   isEnabled: true,
   loading: false,
   user: Object.assign({}, googleAccountNotConnectedButAuthenticationUrlOK),
+};
+
+NotConnected.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/oauth', (req, res, ctx) => {
+        return res(
+          ctx.status(404),
+          ctx.json({
+            "statusCode": 404,
+            "message": "Google account not found!",
+            "error": "{\"shopId\":\"foobar\",\"correlationId\":\"foobar2\"}"
+          })
+        );
+      }),
+      rest.get('/oauth/authorized-url', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            "authorizedUrl": "https://accounts.google.com/o/oauth2/v2/auth?foobar"
+          })
+        );
+      }),
+    ],
+  },
 };
 
 export const Connecting:any = Template.bind({});
