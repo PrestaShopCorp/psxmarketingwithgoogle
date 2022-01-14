@@ -10,6 +10,12 @@ export default {
   parameters: {
     msw: {
       handlers: [
+        /**
+         * TODO
+         * This route is getting some changes
+         * We need to change the mock when it's done, see:
+         * https://github.com/PrestaShopCorp/psxmarketingwithgoogle/pull/782
+         */
         rest.get('/shopping-campaigns/dimensions/filters', (req, res, ctx) => {
           return res(
             ctx.json({
