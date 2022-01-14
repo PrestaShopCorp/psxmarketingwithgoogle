@@ -1,6 +1,8 @@
 const {dateGenerator} = require('../.storybook/utils/date-generator');
 import KeyMetricsChartWrapper from '@/components/smart-shopping-campaign/reporting/key-metrics/key-metrics-chart-wrapper.vue';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads.js';
+import {rest} from 'msw';
+import {dailyResultsEmpty, dailyResultsDatas, dailyResultsBigDatas} from '../.storybook/mock/reporting/daily-results.js';
 
 export default {
   title: 'Reporting/Daily Result Chart',
@@ -28,6 +30,18 @@ ApiError.args = {
   },
 };
 
+ApiError.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
+        return res(
+          ctx.status(500)
+        );
+      }),
+    ],
+  },
+};
+
 export const WithResults: any = Template.bind({});
 WithResults.args = {
   beforeMount(this: any) {
@@ -38,10 +52,38 @@ WithResults.args = {
   },
 };
 
+WithResults.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...dailyResultsDatas
+          })
+        );
+      }),
+    ],
+  },
+};
+
 export const NoResults: any = Template.bind({});
 NoResults.args = {
   beforeMount(this: any) {
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+  },
+};
+
+NoResults.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...dailyResultsEmpty
+          })
+        );
+      }),
+    ],
   },
 };
 
@@ -52,5 +94,19 @@ LotOfResults.args = {
     // fake date that will be intercepted by the storybook middleware to return results
     this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = dateGenerator(59);
     this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.endDate = dateGenerator(0);
+  },
+};
+
+LotOfResults.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...dailyResultsBigDatas
+          })
+        );
+      }),
+    ],
   },
 };

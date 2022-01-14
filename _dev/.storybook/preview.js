@@ -16,22 +16,44 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
- import { addDecorator } from '@storybook/vue';
- import { select } from '@storybook/addon-knobs';
- import Vue from 'vue';
- import Vuex from 'vuex';
 
- // import vue plugins
- import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
- import VueI18n from 'vue-i18n';
- import VueShowdown from 'vue-showdown';
+import { addDecorator } from '@storybook/vue';
+import { select } from '@storybook/addon-knobs';
+import Vue from 'vue';
+import Vuex from 'vuex';
 
- // import jest
- import { withTests } from '@storybook/addon-jest';
+// import vue plugins
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
+import VueI18n from 'vue-i18n';
+import VueShowdown from 'vue-showdown';
 
- // import showdown extension
- import '../showdown.js';
- import '../src/utils/Filters';
+// import jest
+import { withTests } from '@storybook/addon-jest';
+
+// Test utils
+import {cloneStore} from '@/../tests/store';
+import {initialStateApp} from "../.storybook/mock/state-app";
+
+import { initialize, mswDecorator } from 'msw-storybook-addon';
+// Initialize MSW
+initialize({
+  serviceWorker: {
+    // Points to the custom location of the Service Worker file.
+    url: './mockServiceWorker.js'
+  },
+  onUnhandledRequest: ({ method, url }) => {
+    if (url.pathname.startsWith(initialStateApp.psxMktgWithGoogleApiUrl) || url.pathname.startsWith(initialStateApp.psxMktgWithGoogleAdminAjaxUrl)) {
+      console.error(`Unhandled ${method} request to ${url}.
+        This exception has been only logged in the console, however, it's strongly recommended to resolve this error as you don't want unmocked data in Storybook stories.
+        If you wish to mock an error response, please refer to this guide: https://mswjs.io/docs/recipes/mocking-error-responses
+      `)
+    }
+  },
+});
+
+// import showdown extension
+import '../showdown.js';
+import '../src/utils/Filters';
 
  import {messages, locales} from '@/lib/translations';
  // import css style
@@ -42,10 +64,6 @@
  import '!style-loader!css-loader?url=false!./assets/shame.css';
  // app.scss all the styles for the module
  import '!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss';
-
- // Test utils
- import {cloneStore} from '@/../tests/store';
- import {initialStateApp} from "../.storybook/mock/state-app";
 
  // jest results file
  import results from '../.jest-test-results.json';
@@ -136,63 +154,67 @@
    })
  );
 
- export const parameters = {
-   actions: { argTypesRegex: '^on[A-Z].*' },
-   backgrounds: {
-     default: 'backOffice',
-     values: [
-       {
-         name: 'backOffice',
-         value: '#F1F1F1',
-       },
-       {
-         name: 'white',
-         value: '#ffffff',
-       },
-       {
-         name: 'black',
-         value: '#000000',
-       },
-     ],
-   },
-   chromatic: {
-     delay: 500,
-     diffThreshold: 0.15, // Test to see if we have less false positive
-   },
-   options: {
-     storySort: {
-       order: [
-         'LandingPage',
-         ['Components', ['Header', 'Content', 'Footer'], 'LandingPage'],
-         'Onboarding',
-         'Multistore',
-         [
-           'Components',
-           [
-             'SectionTitle',
-             'Notice - Product feed',
-             'Card - PS Account',
-             'Card - Google Account',
-             'Card - MCA',
-             'Card - Product feed',
-             'Card - Free listing',
-             'Settings - Poduct feed',
-           ],
-           'OnboardingPage',
-           ['Header', 'Content', 'Footer'],
-         ],
-         'PS Account',
-         'Google Account',
-         'Merchant Center Account',
-         'Product feed',
-         'Free listing',
-         'Google Ads Account',
-         'Smart Shopping Campaign',
-         'Product Feed Page',
-         'Reporting',
-         ['Key Metrics'],
-         'Basic Components',
-       ],
-     },
-   },
- };
+addDecorator(
+  mswDecorator
+);
+
+export const parameters = {
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  backgrounds: {
+    default: 'backOffice',
+    values: [
+      {
+        name: 'backOffice',
+        value: '#F1F1F1',
+      },
+      {
+        name: 'white',
+        value: '#ffffff',
+      },
+      {
+        name: 'black',
+        value: '#000000',
+      },
+    ],
+  },
+  chromatic: {
+    delay: 500,
+    diffThreshold: 0.15, // Test to see if we have less false positive
+  },
+  options: {
+    storySort: {
+      order: [
+        'LandingPage',
+        ['Components', ['Header', 'Content', 'Footer'], 'LandingPage'],
+        'Onboarding',
+        'Multistore',
+        [
+          'Components',
+          [
+            'SectionTitle',
+            'Notice - Product feed',
+            'Card - PS Account',
+            'Card - Google Account',
+            'Card - MCA',
+            'Card - Product feed',
+            'Card - Free listing',
+            'Settings - Poduct feed',
+          ],
+          'OnboardingPage',
+          ['Header', 'Content', 'Footer'],
+        ],
+        'PS Account',
+        'Google Account',
+        'Merchant Center Account',
+        'Product feed',
+        'Free listing',
+        'Google Ads Account',
+        'Smart Shopping Campaign',
+        'Product Feed Page',
+        'Reporting',
+        ['Key Metrics'],
+        'Basic Components',
+      ],
+    },
+  },
+};

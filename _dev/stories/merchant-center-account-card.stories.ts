@@ -8,6 +8,31 @@ import {
   merchantCenterNewGmcNotListed,
 } from '../.storybook/mock/merchant-center-account';
 import {WebsiteClaimErrorReason} from '../src/store/modules/accounts/state';
+import {rest} from 'msw';
+
+const getWebsiteRequirementStatusRouteObject = {
+  msw: {
+    handlers: [
+      rest.post('/', (req: any, res, ctx) => {
+        const payload = req.body.action;
+        if (payload === 'getWebsiteRequirementStatus') {
+          return res(
+            ctx.json({
+              "requirements": [
+                "shoppingAdsPolicies",
+                "secureCheckoutProcess",
+                "accurateContactInformation",
+                "billingTerms",
+                "completeCheckoutProcess",
+                "returnPolicy"
+              ]
+            })
+          );
+        };
+      }),
+    ],
+  },
+};
 
 export default {
   title: 'Merchant Center Account/Card',
@@ -23,6 +48,7 @@ export default {
   },
   parameters: {
     jest: ['merchant-center-account-card.spec.ts'],
+    ...getWebsiteRequirementStatusRouteObject,
   },
 };
 
