@@ -305,11 +305,13 @@ export const PopinFiltersDimensionStep:any = Template.bind({});
 PopinFiltersDimensionStep.args = {
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
-    this.$store.state.smartShoppingCampaigns.sscAvailableFilters = Object.assign([],availableFilters);
   },
   mounted(this: any) {
     // @ts-ignore
     this.$refs.sscCreation.openFilterPopin();
+    window.setTimeout(() => {
+      this.$store.state.smartShoppingCampaigns.sscAvailableFilters = Object.assign([],availableFilters);
+    }, 2000)
   },
 };
 

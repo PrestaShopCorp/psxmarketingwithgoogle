@@ -119,9 +119,7 @@ export default {
       if (!payload.list[dimensionName].length) {
         return;
       }
-      const resp = {
-        name: i18n.t(`smartShoppingCampaignCreation.${dimensionName}`),
-        subtitle: i18n.t(`smartShoppingCampaignCreation.${dimensionName}SubTitle`),
+      const resp :DimensionChosen = {
         id: dimensionName,
         checked: false,
         indeterminate: false,
@@ -131,17 +129,19 @@ export default {
     });
     const findDimension = state.sscAvailableFilters
       .findIndex((el : DimensionChosen) => el?.id === state.dimensionChosen?.id);
+      // If dimension has been chosen by user, we check if there are some filters checked
+      // and we add them to API's response
     if (findDimension !== -1) {
-      const checkedFilters = state.dimensionChosen?.children?.filter((fil) => fil.checked === true);
+      const checkedFilters = state.dimensionChosen.children?.filter(
+        (fil : DimensionChosen) => fil.checked === true);
       state.dimensionChosen.children = checkedFilters?.concat(
-        state.sscAvailableFilters[findDimension].children
-        );
+        state.sscAvailableFilters[findDimension].children as DimensionChosen[]);
 
       //  remove duplicate in case API sent all filters and user has some already checked
       state.dimensionChosen.children = state.dimensionChosen?.children?.reduce(
-        (acc :Array<DimensionChosen>, current) => {
-          const x = acc.find((item) => item.id === current.id);
-          if (!x) {
+        (acc :DimensionChosen[], current) => {
+          const filterExists = acc.find((item) => item.id === current.id);
+          if (!filterExists) {
             return acc.concat([current]);
           }
           return acc;

@@ -10,7 +10,7 @@
     :title="'Campaign’s products filters'"
   >
     <SmartShoppingCampaignCreationPopinDimension
-      v-if="step === 1"
+      v-if="step === 1 && availableDimensions"
       :available-dimensions="availableDimensions"
       @dimensionChosen="dimensionHasBeenSelected($event)"
       @sendStep="stepIs($event)"
@@ -71,7 +71,12 @@ export default {
       return getFilters(this.filteredDimensions, []).length;
     },
     availableDimensions() {
-      return this.$store.getters['smartShoppingCampaigns/GET_SSC_DIMENSIONS_AND_FILTERS'];
+      const final = this.$store.getters['smartShoppingCampaigns/GET_SSC_DIMENSIONS_AND_FILTERS'].map((fil) => ({
+        ...fil,
+        name: this.$t(`smartShoppingCampaignCreation.${fil.id}`),
+        subtitle: this.$t(`smartShoppingCampaignCreation.${fil.id}SubTitle`),
+      }));
+      return final;
     },
   },
   methods: {
