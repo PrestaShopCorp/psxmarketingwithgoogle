@@ -2,12 +2,12 @@
   <div>
     <campaign-card
       @openPopin="onOpenPopinActivateTracking"
-      v-if="$route.name === 'campaign'"
+      v-if="$route.name === 'campaign' && !SSCExist"
     />
     <smart-shopping-campaign-table-list
       :loading="loading"
       @loader="changeLoadingState($event)"
-      v-else-if="$route.name === 'campaign-list'"
+      v-else-if="$route.name === 'campaign-list' || $route.name === 'campaign' && SSCExist"
     />
     <smart-shopping-campaign-creation
       v-else-if="$route.name === 'campaign-creation'"
@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       campaignCreated: false,
-      loading: true,
+      loading: false,
     };
   },
   computed: {
