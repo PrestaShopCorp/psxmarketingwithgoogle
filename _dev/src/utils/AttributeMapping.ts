@@ -18,19 +18,19 @@ export type RecommendedFieldType = {
 }
 
 export type AttributeResponseFromAPI = {
-  description?: CategoryDetail[]| [];
-  gtin?: CategoryDetail[]| [];
-  mpn?: CategoryDetail[]| [];
-  brand?: CategoryDetail[]| [];
-  ageGroup?: CategoryDetail[]| [];
-  color?: CategoryDetail[]| [];
-  gender?: CategoryDetail[]| [];
-  size?: CategoryDetail[]| [];
-  maxEnergyEfficiencyClass?: CategoryDetail[]| [];
-  minEnergyEfficiencyClass?: CategoryDetail[]| [];
-  energyEfficiencyClass?: CategoryDetail[]| [];
-  material?: CategoryDetail[]| [];
-  pattern?: CategoryDetail[] | [];
+  description?: CategoryDetail[];
+  gtin?: CategoryDetail[];
+  mpn?: CategoryDetail[];
+  brand?: CategoryDetail[];
+  ageGroup?: CategoryDetail[];
+  color?: CategoryDetail[];
+  gender?: CategoryDetail[];
+  size?: CategoryDetail[];
+  maxEnergyEfficiencyClass?: CategoryDetail[];
+  minEnergyEfficiencyClass?: CategoryDetail[];
+  energyEfficiencyClass?: CategoryDetail[];
+  material?: CategoryDetail[];
+  pattern?: CategoryDetail[];
 }
 
 export type CategoryDetail = {
