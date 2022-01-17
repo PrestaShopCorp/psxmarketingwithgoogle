@@ -180,6 +180,7 @@ export const productFeed = {
     {"name":"composition","type":"feature"},
     {"name":"property","type":"feature"}
   ],
+  selectedProductCategories: [],
 };
 
 export const productFeedNoCarriers = {
