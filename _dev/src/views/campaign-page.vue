@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       campaignCreated: false,
-      loading: false,
+      loading: true,
     };
   },
   computed: {
