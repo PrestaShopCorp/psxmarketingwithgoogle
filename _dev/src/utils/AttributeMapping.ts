@@ -38,7 +38,7 @@ export type CategoryDetail = {
   type: string;
 }
 
-export function formatMappingToApi(attributes: AttributeToMap[]) {
+export function formatMappingToApi(attributes: AttributeToMap[]): AttributeResponseFromAPI {
   return attributes
     .map((attr) => attr.fields)
     .reduce((acc, cur) => acc.concat(cur), [])
