@@ -79,8 +79,10 @@ class CarrierBuilder
     {
         $carrierLines = [];
         foreach ($carriers as $carrier) {
+            $newCarrier = new Carrier($carrier['id_carrier'], $lang->id);
+            $newCarrier->external_module_name = $newCarrier->external_module_name ?? '';
             $carrierLines[] = self::buildCarrier(
-                new Carrier($carrier['id_carrier'], $lang->id),
+                $newCarrier,
                 $currency->iso_code,
                 $weightUnit
             );
