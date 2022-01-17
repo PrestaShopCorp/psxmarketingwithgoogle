@@ -51,7 +51,6 @@ export function returnChildrenIds(source: DimensionChosen) {
     source.children.forEach((child) => {
       values = values.concat(returnChildrenIds(child));
     });
-    return values;
   }
   return values;
 }

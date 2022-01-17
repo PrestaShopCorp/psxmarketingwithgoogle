@@ -109,7 +109,7 @@ export default {
     state.filtersChosen = payload;
   },
   [MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS](
-    state: LocalState, payload : {list: Array<DimensionChosen>, search: string},
+    state: LocalState, payload: {list: Array<DimensionChosen>, search: string},
   ) {
     if (state.sscAvailableFilters.length) {
       state.sscAvailableFilters = [];
@@ -119,7 +119,7 @@ export default {
       if (!payload.list[dimensionName].length) {
         return;
       }
-      const resp :DimensionChosen = {
+      const resp: DimensionChosen = {
         id: dimensionName,
         checked: false,
         indeterminate: false,
@@ -128,18 +128,18 @@ export default {
       state.sscAvailableFilters.push(resp);
     });
     const findDimension = state.sscAvailableFilters
-      .findIndex((el : DimensionChosen) => el?.id === state.dimensionChosen?.id);
+      .findIndex((el: DimensionChosen) => el?.id === state.dimensionChosen?.id);
       // If dimension has been chosen by user, we check if there are some filters checked
       // and we add them to API's response
     if (findDimension !== -1) {
       const checkedFilters = state.dimensionChosen.children?.filter(
-        (fil : DimensionChosen) => fil.checked === true);
+        (fil: DimensionChosen) => fil.checked === true);
       state.dimensionChosen.children = checkedFilters?.concat(
         state.sscAvailableFilters[findDimension].children as DimensionChosen[]);
 
       //  remove duplicate in case API sent all filters and user has some already checked
       state.dimensionChosen.children = state.dimensionChosen?.children?.reduce(
-        (acc :DimensionChosen[], current) => {
+        (acc: DimensionChosen[], current) => {
           const filterExists = acc.find((item) => item.id === current.id);
           if (!filterExists) {
             return acc.concat([current]);
@@ -188,7 +188,7 @@ export default {
   },
   [MutationsTypes.SET_SSC_LIST_ORDERING](
     state: LocalState,
-    payload : OrderByType,
+    payload: OrderByType,
   ) {
     state.campaignsOrdering = payload;
   },
@@ -200,7 +200,7 @@ export default {
   },
   [MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES](
     state: LocalState,
-    payload:FiltersPerformancesSection,
+    payload: FiltersPerformancesSection,
   ) {
     state.reporting.results.filtersPerformancesSection = payload;
   },

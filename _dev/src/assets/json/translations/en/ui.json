@@ -513,7 +513,8 @@
     "products": "Product ID",
     "productsSubTitle": "Your product’s unique identifier",
     "conditions": "Product Condition",
-    "conditionsSubTitle": "The condition of your product at time of sale (ex: New, used or refurbished)"
+    "conditionsSubTitle": "The condition of your product at time of sale (ex: New, used or refurbished)",
+    "popinTitle": "Campaign’s products filters"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance",

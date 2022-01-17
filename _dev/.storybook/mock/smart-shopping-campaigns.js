@@ -40,8 +40,6 @@ export const availableFilters = [{
           children: [
             {
               id:"a",
-              countryCode: "FR",
-              languageCode: "fr",
               name: "Chien",
               checked: true,
               indeterminate: false,
@@ -70,8 +68,6 @@ export const availableFilters = [{
   
               status: "ACTIVE",
               id: "b",
-              countryCode: "FR",
-              languageCode: "fr",
               name: "Chat",
               checked: true,
               indeterminate: false,
@@ -100,8 +96,6 @@ export const availableFilters = [{
             {
               status: "ACTIVE",
               id: "111",
-              countryCode: "FR",
-              languageCode: "fr",
               name: "Entreprise et industrie",
               checked: true,
               numberOfProductsAssociated: 12,
@@ -109,8 +103,6 @@ export const availableFilters = [{
             {
               status: "ACTIVE",
               id: "141",
-              countryCode: "FR",
-              languageCode: "fr",
               name: "Appareils photo, caméras et instruments d'optique",
               checked: true,
               numberOfProductsAssociated: 12,
@@ -172,16 +164,12 @@ export const availableFilters = [{
           children: [
             {
               id:"ab",
-              countryCode: "FR",
-              languageCode: "fr",
               name: "Labrador",
               checked: true,
               numberOfProductsAssociated: 10,
             },
             {
               id:"abc",
-              countryCode: "FR",
-              languageCode: "fr",
               name: "Berger Allemand",
               checked: true,
               numberOfProductsAssociated: 2,

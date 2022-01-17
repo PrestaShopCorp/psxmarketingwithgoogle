@@ -492,7 +492,7 @@ export default {
   },
   async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState}, search) {
     const query = new URLSearchParams({
-      language_code: rootState.app.psxMtgWithGoogleDefaultShopCountry,
+      language_code: window.i18nSettings.isoCode,
       country_code: rootState.app.psxMtgWithGoogleDefaultShopCountry,
     });
     if (search) {

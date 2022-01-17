@@ -7,7 +7,7 @@
     size="xl"
     v-bind="$attrs"
     cancel-variant="invisible font-weight-normal"
-    :title="'Campaign’s products filters'"
+    :title="$t('smartShoppingCampaignCreation.popinTitle')"
   >
     <SmartShoppingCampaignCreationPopinDimension
       v-if="step === 1 && availableDimensions"
