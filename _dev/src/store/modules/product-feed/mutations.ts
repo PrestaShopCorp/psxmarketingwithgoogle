@@ -18,6 +18,7 @@
  */
 import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import MutationsTypes from './mutations-types';
+import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
 import {
   State as LocalState,
   ProductInfos,
@@ -131,12 +132,11 @@ export default {
         }
       });
   },
-  [MutationsTypes.SET_ATTRIBUTES_MAPPED](state: LocalState, payload) {
+  [MutationsTypes.SET_ATTRIBUTES_MAPPED](state: LocalState, payload: AttributeResponseFromAPI[]) {
     if (payload.length) {
       return;
     }
-    const getKeys = Object.keys(payload);
-    getKeys.forEach((key) => {
+    Object.keys(payload).forEach((key) => {
       state.attributesToMap.forEach((attribute) => {
         const findAttr = attribute.fields.find((field) => field.name === key);
         const changeMappingObj = payload[key].map((value) => ({

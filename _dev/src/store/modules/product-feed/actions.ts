@@ -143,6 +143,7 @@ export default {
       selectedProductCategories,
       requestSynchronizationNow,
     };
+
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
         method: 'POST',

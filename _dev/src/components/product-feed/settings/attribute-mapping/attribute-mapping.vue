@@ -111,6 +111,9 @@ import AttributeField from './attribute-field.vue';
 import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
+import {
+  formatMappingToApi,
+} from '../../../../utils/AttributeMapping';
 
 export default {
   name: 'ProductFeedSettingsAttributeMapping',
@@ -172,29 +175,10 @@ export default {
             || attr.category === Categories.COMMONS,
         );
     },
-    formatMappingToApi() {
-      return this.attributesToMap
-        .map((attr) => attr.fields)
-        .reduce((acc, cur) => acc.concat(cur), [])
-        .reduce((acc, cur) => {
-          if (cur.mapped !== null) {
-            acc[cur.name] = cur.mapped.map((attr) => ({
-              id: attr.name,
-              type: attr.type,
-            }));
-          } else {
-            acc[cur.name] = cur.recommended.map((attr) => ({
-              id: attr.name,
-              type: attr.type,
-            }));
-          }
-          return acc;
-        }, {});
-    },
   },
   methods: {
     previousStep() {
-      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(this.formatMappingToApi));
+      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
       if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
       } else {
@@ -203,7 +187,7 @@ export default {
       window.scrollTo(0, 0);
     },
     nextStep() {
-      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(this.formatMappingToApi));
+      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       window.scrollTo(0, 0);
     },
