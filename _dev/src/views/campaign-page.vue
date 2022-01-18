@@ -1,13 +1,25 @@
 <template>
   <div>
+    <b-skeleton-wrapper
+      :loading="loader"
+      class="mb-3"
+    >
+      <template #loading>
+        <b-card>
+          <b-skeleton width="85%" />
+          <b-skeleton width="55%" />
+          <b-skeleton width="70%" />
+        </b-card>
+      </template>
+  
     <campaign-card
       @openPopin="onOpenPopinActivateTracking"
-      v-if="$route.name === 'campaign' && !SSCExist"
+      v-if="$route.name === 'campaign'"
     />
     <smart-shopping-campaign-table-list
-      :loading="loading"
+      :loading="loadingCampaignList"
       @loader="changeLoadingState($event)"
-      v-else-if="$route.name === 'campaign-list' || $route.name === 'campaign' && SSCExist"
+      v-else-if="$route.name === 'campaign-list'"
     />
     <smart-shopping-campaign-creation
       v-else-if="$route.name === 'campaign-creation'"
@@ -18,6 +30,7 @@
       :edit-mode="true"
       @campaignCreated="onCampaignHasBeenCreated"
     />
+   </b-skeleton-wrapper>
     <SSCPopinActivateTracking
       ref="SSCPopinActivateTracking"
     />
@@ -52,7 +65,8 @@ export default {
   data() {
     return {
       campaignCreated: false,
-      loading: true,
+      loadingCampaignList: true,
+      loader : true,
     };
   },
   computed: {
@@ -94,7 +108,7 @@ export default {
       this.campaignCreated = false;
     },
     changeLoadingState(event) {
-      this.loading = event;
+      this.loadingCampaignList = event;
     },
   },
   mounted() {
@@ -103,6 +117,13 @@ export default {
         if (!this.googleAdsIsServing) {
           this.$router.push({
             name: 'onboarding',
+          });
+        }
+      }).finally(() => {
+        this.loader = false;
+        if (this.$route.name === 'campaign' && this.SSCExist) {
+          this.$router.push({
+            name: 'campaign-list',
           });
         }
       });
