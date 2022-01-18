@@ -11,26 +11,26 @@
           <b-skeleton width="70%" />
         </b-card>
       </template>
-  
-    <campaign-card
-      @openPopin="onOpenPopinActivateTracking"
-      v-if="$route.name === 'campaign'"
-    />
-    <smart-shopping-campaign-table-list
-      :loading="loadingCampaignList"
-      @loader="changeLoadingState($event)"
-      v-else-if="$route.name === 'campaign-list'"
-    />
-    <smart-shopping-campaign-creation
-      v-else-if="$route.name === 'campaign-creation'"
-      @campaignCreated="onCampaignHasBeenCreated"
-    />
-    <smart-shopping-campaign-creation
-      v-if="$route.name === 'campaign-edition'"
-      :edit-mode="true"
-      @campaignCreated="onCampaignHasBeenCreated"
-    />
-   </b-skeleton-wrapper>
+
+      <campaign-card
+        @openPopin="onOpenPopinActivateTracking"
+        v-if="$route.name === 'campaign'"
+      />
+      <smart-shopping-campaign-table-list
+        :loading="loadingCampaignList"
+        @loader="changeLoadingState($event)"
+        v-else-if="$route.name === 'campaign-list'"
+      />
+      <smart-shopping-campaign-creation
+        v-else-if="$route.name === 'campaign-creation'"
+        @campaignCreated="onCampaignHasBeenCreated"
+      />
+      <smart-shopping-campaign-creation
+        v-if="$route.name === 'campaign-edition'"
+        :edit-mode="true"
+        @campaignCreated="onCampaignHasBeenCreated"
+      />
+    </b-skeleton-wrapper>
     <SSCPopinActivateTracking
       ref="SSCPopinActivateTracking"
     />
@@ -66,7 +66,7 @@ export default {
     return {
       campaignCreated: false,
       loadingCampaignList: true,
-      loader : true,
+      loader: true,
     };
   },
   computed: {
