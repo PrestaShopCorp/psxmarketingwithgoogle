@@ -108,6 +108,7 @@ import {VueShowdown} from 'vue-showdown';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import SelectCountry from '@/components/commons/select-country.vue';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'ProductFeedSettingsShipping',
@@ -151,6 +152,10 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     nextStep() {
+      this.$segment.track('[GGL] Product feed config - Step 1', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       this.loading = true;
       localStorage.setItem('productFeed-autoImportShippingSettings', JSON.stringify(this.shippingSettings));
       if (this.shippingSettings) {

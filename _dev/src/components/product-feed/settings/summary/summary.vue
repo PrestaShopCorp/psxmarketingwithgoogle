@@ -177,6 +177,7 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import ProductFeedCardReportCard from '../../product-feed-card-report-card';
 import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
 import TableRowMapping from '@/components/product-feed/commons/table-row-mapping';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 dayjs.extend(duration);
 
@@ -276,6 +277,10 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     saveAll() {
+      this.$segment.track('[GGL] Product feed config - Export catalog', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       this.disabledExportButton = true;
       this.postDatas();
     },

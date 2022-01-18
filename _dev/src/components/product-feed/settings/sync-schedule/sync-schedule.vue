@@ -39,6 +39,7 @@
 <script>
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   components: {
@@ -69,6 +70,10 @@ export default {
       window.scrollTo(0, 0);
     },
     nextStep() {
+      this.$segment.track('[GGL] Product feed config - Step 4', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 5);
       window.scrollTo(0, 0);
