@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-skeleton-wrapper
-      :loading="loader"
+      :loading="loadingPage"
       class="mb-3"
     >
       <template #loading>
@@ -66,7 +66,7 @@ export default {
     return {
       campaignCreated: false,
       loadingCampaignList: true,
-      loader: true,
+      loadingPage: true,
     };
   },
   computed: {
@@ -120,7 +120,7 @@ export default {
           });
         }
       }).finally(() => {
-        this.loader = false;
+        this.loadingPage = false;
         if (this.$route.name === 'campaign' && this.SSCExist) {
           this.$router.push({
             name: 'campaign-list',
