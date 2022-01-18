@@ -701,6 +701,10 @@ export default {
   },
   methods: {
     selectMerchantCenterAccount() {
+      this.$segment.track('[GGL] Connect my existing GMC', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       this.$emit('selectMerchantCenterAccount', this.mcaSelectionOptions[this.selectedMcaIndex]);
       this.$store.commit('accounts/SAVE_MCA_CONNECTED_AUTOMATICALLY', false);
     },

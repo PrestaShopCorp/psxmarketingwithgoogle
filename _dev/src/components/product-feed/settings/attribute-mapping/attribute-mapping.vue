@@ -111,6 +111,7 @@ import AttributeField from './attribute-field.vue';
 import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'ProductFeedSettingsAttributeMapping',
@@ -203,6 +204,10 @@ export default {
       window.scrollTo(0, 0);
     },
     nextStep() {
+      this.$segment.track('[GGL] Product feed config - Step 3', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       localStorage.setItem('productFeed-attributeMapping', JSON.stringify(this.formatMappingToApi));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       window.scrollTo(0, 0);
