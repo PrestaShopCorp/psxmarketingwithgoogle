@@ -9,8 +9,7 @@ if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
     // @ts-ignore
     dsn: global.psxMktgWithGoogleDsnSentry,
     allowUrls: [
-      // @ts-ignore
-      process.env.VUE_APP_CDN_URL,
+      'https://storage.googleapis.com/psxmarketing-cdn/',
     ],
     tracesSampleRate: 1.0,
     logErrors: true,
