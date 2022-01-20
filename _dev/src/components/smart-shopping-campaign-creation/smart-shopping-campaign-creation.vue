@@ -361,7 +361,7 @@ export default {
       timer: null,
       displayError: false,
       campaignIsActive: true,
-      targetCountry: null,
+      targetCountry: [],
       availableFilters: {
         name: this.$t('smartShoppingCampaignCreation.allFilters'),
         id: 'allFilters',
@@ -370,6 +370,7 @@ export default {
         children: [],
       },
       hasUnhandledFilters: false,
+      routeParamId: this.$route.params.id,
     };
   },
   components: {
@@ -468,7 +469,7 @@ export default {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
     },
     foundSsc() {
-      return this.sscList.find((el) => el.id === this.$route.params.id);
+      return this.sscList.find((el) => el.id === this.routeParamId);
     },
     activeCountries() {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES'];

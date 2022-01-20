@@ -1,7 +1,7 @@
 import SmartShoppingCampaignCreation from '../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation.vue'
 import {initialStateApp} from '../.storybook/mock/state-app';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads.js';
-import {campaignWithUnhandledFilters} from '../.storybook/mock/smart-shopping-campaigns';
+import {campaignWithUnhandledFilters, allSSC, campaignWithFilters} from '../.storybook/mock/smart-shopping-campaigns';
 import {rest} from 'msw';
 
 export default {
@@ -25,8 +25,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "1",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Animaux et articles pour animaux de compagnie"
                 },
                 {
@@ -34,8 +32,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "8",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Arts et loisirs"
                 },
                 {
@@ -43,8 +39,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "111",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Entreprise et industrie"
                 },
                 {
@@ -52,8 +46,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "141",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Appareils photo, caméras et instruments d'optique"
                 },
                 {
@@ -61,8 +53,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "166",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Vêtements et accessoires"
                 },
                 {
@@ -70,8 +60,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "222",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Appareils électroniques"
                 },
                 {
@@ -79,8 +67,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "412",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Alimentation, boissons et tabac"
                 },
                 {
@@ -88,8 +74,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "436",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Meubles"
                 },
                 {
@@ -97,8 +81,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "469",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Santé et beauté"
                 },
                 {
@@ -106,8 +88,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "536",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Maison et jardin"
                 },
                 {
@@ -115,8 +95,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "537",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Bébés et tout-petits"
                 },
                 {
@@ -124,8 +102,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "632",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Quincaillerie"
                 },
                 {
@@ -133,8 +109,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "772",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Adulte"
                 },
                 {
@@ -142,8 +116,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "783",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Médias"
                 },
                 {
@@ -151,8 +123,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "888",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Véhicules et accessoires"
                 },
                 {
@@ -160,8 +130,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "922",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Fournitures de bureau"
                 },
                 {
@@ -169,8 +137,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "988",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Équipements sportifs"
                 },
                 {
@@ -178,8 +144,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "1239",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Jeux et jouets"
                 },
                 {
@@ -187,8 +151,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "2092",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Logiciels"
                 },
                 {
@@ -196,8 +158,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "5181",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Bagages et maroquinerie"
                 },
                 {
@@ -205,8 +165,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "5605",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Offices religieux et cérémonies"
                 }
               ],
@@ -275,16 +233,9 @@ Edition.args = {
   editMode: true,
   mounted(this: any) {
     this.$store.state.productFeed.validationSummary.activeItems = 2;
-    this.$refs.sscCreation.$data.campaignName = 'A super name';
-    this.$refs.sscCreation.$data.campaignDurationStartDate = '2021-10-30';
-    this.$refs.sscCreation.$data.campaignDurationEndDate = '2021-12-30';
-    this.$refs.sscCreation.$data.campaignProductsFilter = [];
-    this.$refs.sscCreation.$data.campaignDailyBudget = 7;
-    this.$refs.sscCreation.$data.campaignIsActive = true;
-    this.$refs.sscCreation.$data.campaignId = 'foo';
-    this.$refs.sscCreation.$data.targetCountry = this.$options.filters.changeCountriesCodesToNames(
-      ['FR'],
-    );
+    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([],allSSC);
+    this.$refs.sscCreation.$data.routeParamId = 12;
+    this.$refs.sscCreation.$data.targetCountry = ['France'];
   },
 };
 
@@ -293,10 +244,12 @@ EditionWithUnhandledFilters.args = {
   editMode: true,
   mounted(this: any) {
     this.$store.state.productFeed.validationSummary.activeItems = 2;
+    this.$refs.sscCreation.$data.routeParamId = 12;
+    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([],allSSC);
     this.$refs.sscCreation.$data = Object.assign(
       this.$refs.sscCreation.$data,
       campaignWithUnhandledFilters,
-    );
+      );
   },
 };
 
