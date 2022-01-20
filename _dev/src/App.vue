@@ -16,8 +16,8 @@
     <template v-else>
       <div class="ps_gs-sticky-head">
         <Menu>
-        <!-- eslint-disable-next-line -->
-        <!-- We display the tab if user has remarketing tag in the module OR already set elsewhere -->
+          <!-- eslint-disable-next-line -->
+          <!-- We display the tab if user has remarketing tag in the module OR already set elsewhere -->
           <template v-if="reportingTabVisible">
             <MenuItem
               @click.native="throwSegmentEvent"
