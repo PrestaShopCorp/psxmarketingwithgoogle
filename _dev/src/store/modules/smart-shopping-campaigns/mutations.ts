@@ -21,6 +21,7 @@ import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import MutationsTypes from './mutations-types';
+import i18n from '../../../lib/i18n';
 import {
   CampaignPerformances,
   DailyresultChart,
@@ -32,7 +33,12 @@ import {
   ProductsPerformancesSection,
   ConversionAction,
   CampaignStatusPayload,
+  DimensionChosen,
 } from './state';
+import {
+  addPropertiesToDimension,
+
+} from '@/utils/SSCFilters';
 
 export default {
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](state: LocalState, payload: boolean) {
@@ -97,7 +103,54 @@ export default {
   ) {
     state.reporting.errorsList.filtersPerformancesSection = payload;
   },
+  [MutationsTypes.SET_FILTERS_CHOSEN](
+    state: LocalState, payload,
+  ) {
+    state.filtersChosen = payload;
+  },
+  [MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS](
+    state: LocalState, payload: {list: Array<DimensionChosen>, search: string},
+  ) {
+    if (state.sscAvailableFilters.length) {
+      state.sscAvailableFilters = [];
+    }
+    Object.keys(payload.list).forEach((dimensionName) => {
+      // Do not display a dimension with no filter inside
+      if (!payload.list[dimensionName].length) {
+        return;
+      }
+      const resp: DimensionChosen = {
+        id: dimensionName,
+        checked: false,
+        indeterminate: false,
+        children: addPropertiesToDimension(payload.list[dimensionName]),
+      };
+      state.sscAvailableFilters.push(resp);
+    });
+    const findDimension = state.sscAvailableFilters
+      .findIndex((el: DimensionChosen) => el?.id === state.dimensionChosen?.id);
+      // If dimension has been chosen by user, we check if there are some filters checked
+      // and we add them to API's response
+    if (findDimension !== -1) {
+      const checkedFilters = state.dimensionChosen.children?.filter(
+        (fil: DimensionChosen) => fil.checked === true);
+      state.dimensionChosen.children = checkedFilters?.concat(
+        state.sscAvailableFilters[findDimension].children as DimensionChosen[]);
 
+      //  remove duplicate in case API sent all filters and user has some already checked
+      state.dimensionChosen.children = state.dimensionChosen?.children?.reduce(
+        (acc: DimensionChosen[], current) => {
+          const filterExists = acc.find((item) => item.id === current.id);
+          if (!filterExists) {
+            return acc.concat([current]);
+          }
+          return acc;
+        }, []);
+    }
+  },
+  [MutationsTypes.SET_DIMENSION_CHOSEN](state: LocalState, payload) {
+    state.dimensionChosen = payload;
+  },
   // result mutations
   [MutationsTypes.SET_REPORTING_KPIS](state: LocalState, payload: Kpis) {
     state.reporting.results.kpis = payload;
@@ -135,7 +188,7 @@ export default {
   },
   [MutationsTypes.SET_SSC_LIST_ORDERING](
     state: LocalState,
-    payload : OrderByType,
+    payload: OrderByType,
   ) {
     state.campaignsOrdering = payload;
   },
@@ -147,7 +200,7 @@ export default {
   },
   [MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES](
     state: LocalState,
-    payload:FiltersPerformancesSection,
+    payload: FiltersPerformancesSection,
   ) {
     state.reporting.results.filtersPerformancesSection = payload;
   },

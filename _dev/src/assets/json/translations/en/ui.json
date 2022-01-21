@@ -19,6 +19,7 @@
     "XIsMandatory": "{0} is mandatory.",
     "unableToFetchData": "We were unable to fetch datas, please try again later",
     "searchByX": "Search by {0}",
+    "search": "Search",
     "legendCreateNewAccount": "You also have the possibility to create a new account within few steps:",
     "notAvailable": "Not available",
     "min": "min.",
@@ -494,11 +495,10 @@
       "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
     },
     "labelSelectedDimension": "Selected dimension value",
-    "labelDimensionValue": "Dimension value",
     "nbDimensionSelected": "No dimension selected | {0} dimension selected | {0} dimensions selected",
     "nbValuesSelected": "No value selected | {0} value selected | {0} values selected",
-    "selectProductsTitle": "Select products",
-    "selectProductsSubtitle": "Select the filters you want to add in your Google Ads campaign",
+    "selectProductsTitle": "Choose a product filter",
+    "selectProductsSubtitle": "Smart Shopping Campaign can only have one dimension with one or multiple values.",
     "remarketingNote": "**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.",
     "toggleNewConversionTag": "Set new conversion tracking tags on my site",
     "toggleNewConversionTag2": "We will create the following conversion tags : Page view, Purchase, Add to basket",
@@ -506,10 +506,15 @@
     "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
     "nbProductsSelected": "No product selected | {0} product selected | {0} products selected",
-    "categories": "Categories",
-    "brands": "Brands",
-    "products": "Products",
-    "conditions": "Conditions"
+    "categories": "Category",
+    "categoriesSubTitle": "Google-defined product category for your product (ex: Apparel & Accessories > Clothing > Coats & Jackets)",
+    "brands": "Brand",
+    "brandsSubTitle": "Product’s brand name",
+    "products": "Product ID",
+    "productsSubTitle": "Your product’s unique identifier",
+    "conditions": "Product Condition",
+    "conditionsSubTitle": "The condition of your product at time of sale (ex: New, used or refurbished)",
+    "popinTitle": "Campaign’s products filters"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance",
@@ -709,6 +714,7 @@
     "continue": "Continue",
     "disabled": "Disabled",
     "enabled": "Enabled",
+    "agree": "I agree",
     "enableFreeListing": "Enable free listings",
     "connectAccount": "Connect account",
     "connectingAccount": "Connecting account...",
@@ -779,6 +785,7 @@
     "removeFilter": "Remove filter | Remove filters",
     "selectAll": "Select all",
     "deselectAll": "Deselect all",
+    "clearAll": "Clear all",
     "signInWithGoogle": "Sign in with Google",
     "viewReporting": "View reporting",
     "pauseCampaign": "Pause campaign",
@@ -796,7 +803,8 @@
     "select": "Select",
     "editContact": "Edit contact information",
     "noCarriers" : "Take me to Carriers page",
-    "update": "Update"
+    "update": "Update",
+    "validateSelection" : "Validate Selection"
   },
   "badge": {
     "free": "Free",
@@ -823,7 +831,8 @@
     "urlUnclaimed": "Url unclaimed",
     "urlUnverified": "Url unverified",
     "canceled": "Canceled",
-    "testAccount": "Test"
+    "testAccount": "Test",
+    "loading": "Loading"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "Disconnect your Merchant Center?",
@@ -848,7 +857,8 @@
     "removeTag": "Remove “Remarketing and conversion” tag from my shop",
     "removeTagExplainations": "Removing the tag means that Google will no longer be able to track your campaigns. We recommend that you only remove the tag if you plan to completely remove the module or change your account. You can always add it yourself in the code of your site.",
     "titleActivateTrackingSSC": "Activate remarketing and conversion tracking tag.",
-    "textActivateTrackingSSC": "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop."
+    "textActivateTrackingSSC": "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
+    "textConfirmCancel" : "If you go back you will lose your selected values"
   },
 
   "tooltip" : {

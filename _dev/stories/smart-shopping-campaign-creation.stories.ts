@@ -3,6 +3,7 @@ import {initialStateApp} from '../.storybook/mock/state-app';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads.js';
 import {campaignWithUnhandledFilters} from '../.storybook/mock/smart-shopping-campaigns';
 import {rest} from 'msw';
+import {availableFilters} from '../.storybook/mock/smart-shopping-campaigns.js';
 
 export default {
   title: 'Smart Shopping Campaign/Creation',
@@ -25,8 +26,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "1",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Animaux et articles pour animaux de compagnie"
                 },
                 {
@@ -34,8 +33,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "8",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Arts et loisirs"
                 },
                 {
@@ -43,8 +40,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "111",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Entreprise et industrie"
                 },
                 {
@@ -52,8 +47,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "141",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Appareils photo, caméras et instruments d'optique"
                 },
                 {
@@ -61,8 +54,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "166",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Vêtements et accessoires"
                 },
                 {
@@ -70,8 +61,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "222",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Appareils électroniques"
                 },
                 {
@@ -79,8 +68,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "412",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Alimentation, boissons et tabac"
                 },
                 {
@@ -88,8 +75,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "436",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Meubles"
                 },
                 {
@@ -97,8 +82,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "469",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Santé et beauté"
                 },
                 {
@@ -106,8 +89,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "536",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Maison et jardin"
                 },
                 {
@@ -115,8 +96,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "537",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Bébés et tout-petits"
                 },
                 {
@@ -124,8 +103,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "632",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Quincaillerie"
                 },
                 {
@@ -133,8 +110,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "772",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Adulte"
                 },
                 {
@@ -142,8 +117,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "783",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Médias"
                 },
                 {
@@ -151,8 +124,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "888",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Véhicules et accessoires"
                 },
                 {
@@ -160,8 +131,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "922",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Fournitures de bureau"
                 },
                 {
@@ -169,8 +138,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "988",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Équipements sportifs"
                 },
                 {
@@ -178,8 +145,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "1239",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Jeux et jouets"
                 },
                 {
@@ -187,8 +152,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "2092",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Logiciels"
                 },
                 {
@@ -196,8 +159,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "5181",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Bagages et maroquinerie"
                 },
                 {
@@ -205,8 +166,6 @@ export default {
                   "level": "LEVEL1",
                   "status": "ACTIVE",
                   "id": "5605",
-                  "countryCode": "FR",
-                  "languageCode": "fr",
                   "localizedName": "Offices religieux et cérémonies"
                 }
               ],
@@ -300,3 +259,29 @@ EditionWithUnhandledFilters.args = {
   },
 };
 
+export const PopinFiltersDimensionStep:any = Template.bind({});
+PopinFiltersDimensionStep.args = {
+  beforeMount(this: any) {
+    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+  },
+  mounted(this: any) {
+    // @ts-ignore
+    this.$refs.sscCreation.openFilterPopin();
+    window.setTimeout(() => {
+      this.$store.state.smartShoppingCampaigns.sscAvailableFilters = Object.assign([],availableFilters);
+    }, 2000)
+  },
+};
+
+export const PopinFiltersFiltersStep:any = Template.bind({});
+PopinFiltersFiltersStep.args = {
+  beforeMount(this: any) {
+    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+  },
+  mounted(this: any) {
+    // @ts-ignore
+    this.$refs.sscCreation.openFilterPopin();
+    this.$store.state.smartShoppingCampaigns.dimensionChosen = Object.assign({},availableFilters[0]);
+    this.$refs.sscCreation.$refs.SmartShoppingCampaignCreationPopin.$data.step = 2;
+  },
+};

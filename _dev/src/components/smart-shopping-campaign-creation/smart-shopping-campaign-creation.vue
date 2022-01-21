@@ -321,14 +321,15 @@
         </div>
       </b-form>
     </b-card-body>
-    <SmartShoppingCampaignCreationFilterPopin
-      ref="SmartShoppingCampaignCreationFilterPopin"
-      @selectFilters="getDimensionsFiltered"
-      :available-filters="availableFilters"
+    <SmartShoppingCampaignCreationPopin
+      ref="SmartShoppingCampaignCreationPopin"
+      @selectFilters="setDimensionFiltered"
+      :loader="loader"
     />
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
       :new-campaign="finalCampaign"
+      :total-products="totalProducts"
       :filters-exist="!campaignHasNoProductsFilter"
       @openPopinSSCCreated="onCampaignCreated"
       @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
@@ -339,12 +340,14 @@
 
 <script>
 import countriesSelectionOptions from '@/assets/json/countries.json';
-import SmartShoppingCampaignCreationFilterPopin from './smart-shopping-campaign-creation-filter-popin.vue';
-import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-popin-recap.vue';
+import SmartShoppingCampaignCreationPopin from './smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin.vue';
+import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
 import CampaignStatus from '@/enums/reporting/CampaignStatus';
-import {returnChildrenIds, getFiltersbyIds, addPropertiesToDimension} from '../../utils/SSCFilters';
+import {
+  returnChildrenIds, returnCountProducts,
+} from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
@@ -356,24 +359,18 @@ export default {
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
       campaignHasNoProductsFilter: true,
-      filtersChosen: [],
       campaignDailyBudget: null,
       timer: null,
       displayError: false,
       campaignIsActive: true,
       targetCountry: null,
-      availableFilters: {
-        name: this.$t('smartShoppingCampaignCreation.allFilters'),
-        id: 'allFilters',
-        checked: false,
-        indeterminate: false,
-        children: [],
-      },
+      loader: true,
       hasUnhandledFilters: false,
+      totalProducts: 0,
     };
   },
   components: {
-    SmartShoppingCampaignCreationFilterPopin,
+    SmartShoppingCampaignCreationPopin,
     SmartShoppingCampaignCreationPopinRecap,
     SelectCountry,
   },
@@ -384,6 +381,10 @@ export default {
     },
   },
   computed: {
+    filtersChosen() {
+      return this.foundSsc?.productFilters
+      ?? this.$store.state.smartShoppingCampaigns.filtersChosen;
+    },
     disableCreateCampaign() {
       if (this.campaignName
       && this.errorCampaignNameExistsAlready === false
@@ -427,7 +428,7 @@ export default {
     },
     finalCampaignFilters() {
       // IMPORTANT: Do not send the filters property if the campaign has unhandled filters
-      if (!this.hasUnhandledFilters) {
+      if (this.hasUnhandledFilters) {
         return undefined;
       }
       // An empty array is returned if we want to delete existing filters
@@ -473,6 +474,7 @@ export default {
     activeCountries() {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
     },
+
   },
   methods: {
     defaultCountry() {
@@ -514,7 +516,7 @@ export default {
     },
     openFilterPopin() {
       this.$bvModal.show(
-        this.$refs.SmartShoppingCampaignCreationFilterPopin.$refs.modal.id,
+        this.$refs.SmartShoppingCampaignCreationPopin.$refs.modal.id,
       );
     },
     onCampaignCreated() {
@@ -533,28 +535,17 @@ export default {
       this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
 
-    getDimensionsFiltered(dimensions) {
-      this.filtersChosen = returnChildrenIds(dimensions);
+    setDimensionFiltered(dimension) {
+      this.totalProducts = returnCountProducts(dimension);
+      this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', [{
+        dimension: dimension.name.toLowerCase(),
+        values: returnChildrenIds(dimension),
+      }]);
     },
-    getDatasFiltersDimensions() {
-      this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS').then((res) => {
-        Object.keys(res).forEach((dimensionName) => {
-          // Do not display a dimension with no filter inside
-          if (!res[dimensionName].length) {
-            return;
-          }
-          this.availableFilters.children.push({
-            name: this.$t(`smartShoppingCampaignCreation.${dimensionName}`),
-            id: dimensionName,
-            checked: false,
-            indeterminate: false,
-            children: addPropertiesToDimension(res[dimensionName]),
-          });
-        });
-        if (this.editMode) {
-          const result = getFiltersbyIds(this.foundSsc.productFilters, this.availableFilters);
-          this.availableFilters = result;
-        }
+    getDatasFiltersDimensions(search) {
+      this.loader = true;
+      this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search).then(() => {
+        this.loader = false;
       });
     },
   },
@@ -574,7 +565,6 @@ export default {
         this.campaignDurationEndDate = this.foundSsc.endDate || null;
         this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
           && !this.foundSsc.hasUnhandledFilters;
-        this.filtersChosen = this.foundSsc.productFilters;
         this.campaignDailyBudget = this.foundSsc.dailyBudget;
         this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
         this.campaignId = this.foundSsc.id;
@@ -588,6 +578,9 @@ export default {
       }
     }
     this.getDatasFiltersDimensions();
+  },
+  created() {
+    this.$root.$on('filterByName', this.getDatasFiltersDimensions);
   },
   countriesSelectionOptions,
 };

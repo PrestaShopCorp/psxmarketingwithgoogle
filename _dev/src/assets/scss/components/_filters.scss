@@ -1,5 +1,4 @@
 .ps_gs-filters {
-  @extend .maxw-sm-500;
   height: 332px;
   overflow: auto;
   border-radius: 3px;
@@ -42,4 +41,8 @@
       padding-right: rem(18);
     }
   }
+
+}
+.b-form-tags-input {
+  display: none;
 }
