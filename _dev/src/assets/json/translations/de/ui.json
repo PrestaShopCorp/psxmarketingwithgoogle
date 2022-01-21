@@ -8,6 +8,7 @@
       "catalog": "Produktkatalog",
       "help": "Hilfe"
     },
+    "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
     "moduleUpdateNeeded": {
       "ps_eventbus": "The version of the module PrestaShop EventBus running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop EventBus",
       "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"

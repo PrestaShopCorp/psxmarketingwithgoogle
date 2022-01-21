@@ -114,6 +114,7 @@ import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import {
   formatMappingToApi,
 } from '../../../../utils/AttributeMapping';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'ProductFeedSettingsAttributeMapping',
@@ -187,6 +188,10 @@ export default {
       window.scrollTo(0, 0);
     },
     nextStep() {
+      this.$segment.track('[GGL] Product feed config - Step 3', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       window.scrollTo(0, 0);

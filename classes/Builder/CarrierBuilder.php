@@ -123,7 +123,7 @@ class CarrierBuilder
             ->setIsFree($carrier->is_free)
             ->setShippingExternal($carrier->shipping_external)
             ->setNeedRange($carrier->need_range)
-            ->setExternalModuleName($carrier->external_module_name)
+            ->setExternalModuleName((string) $carrier->external_module_name)
             ->setMaxWidth($carrier->max_width)
             ->setMaxHeight($carrier->max_height)
             ->setMaxDepth($carrier->max_depth)

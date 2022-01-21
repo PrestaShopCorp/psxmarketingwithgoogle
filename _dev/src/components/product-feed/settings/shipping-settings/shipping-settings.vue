@@ -161,6 +161,7 @@ import SettingsFooter from '@/components/product-feed/settings/commons/settings-
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
 import {validateDeliveryDetail} from '@/providers/shipping-settings-provider';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   components: {
@@ -216,6 +217,10 @@ export default {
       window.scrollTo(0, 0);
     },
     nextStep() {
+      this.$segment.track('[GGL] Product feed config - Step 2', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
       localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       window.scrollTo(0, 0);
