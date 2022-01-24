@@ -1,6 +1,8 @@
 import {DimensionChosen} from '@/store/modules/smart-shopping-campaigns/state';
 
-export function addPropertiesToDimension(dimension: DimensionChosen[]) :DimensionChosen[] {
+export function addPropertiesToDimension(
+  dimension: DimensionChosen[],
+): DimensionChosen[] {
   const finalDimension = dimension.map((oneFilter) => {
     if (oneFilter.children) {
       return {
@@ -23,12 +25,14 @@ export function addPropertiesToDimension(dimension: DimensionChosen[]) :Dimensio
 }
 
 export function filterUncheckedSegments(source: DimensionChosen) {
-  const filteredChildren = source.children?.map((child) => {
-    if (child.children) {
-      return filterUncheckedSegments(child);
-    }
-    return child;
-  }).filter((child) => child.checked || child.children?.length);
+  const filteredChildren = source.children
+    ?.map((child) => {
+      if (child.children) {
+        return filterUncheckedSegments(child);
+      }
+      return child;
+    })
+    .filter((child) => child.checked || child.children?.length);
 
   if (!filteredChildren?.length && !source.checked) {
     return {};
@@ -40,7 +44,7 @@ export function filterUncheckedSegments(source: DimensionChosen) {
 }
 
 export function returnChildrenIds(source: DimensionChosen) {
-  let values : string[] = [];
+  let values: string[] = [];
   if (!source.children && source.id) {
     values.push(source.id);
   }
@@ -63,7 +67,8 @@ export function checkAndUpdateDimensionStatus(source: DimensionChosen) {
     return element.checked;
   });
   const indeterminedOrCheckedChildren = source.children?.filter(
-    (element) => element.checked || element.indeterminate);
+    (element) => element.checked || element.indeterminate,
+  );
 
   if (checkedChildren && indeterminedOrCheckedChildren) {
     source.checked = checkedChildren.length === source.children?.length;
@@ -91,7 +96,7 @@ export function getFilters(arg, final) {
   return final;
 }
 
-export function returnCountProducts(source : DimensionChosen): number {
+export function returnCountProducts(source: DimensionChosen): number {
   let total = 0;
   if (!source.checked && !source.indeterminate) {
     return total;
@@ -103,4 +108,23 @@ export function returnCountProducts(source : DimensionChosen): number {
     return total;
   }
   return total + Number(source.numberOfProductsAssociated);
+}
+
+export function findAndCheckFilter(
+  dimension: DimensionChosen,
+  filtersList: string[],
+) {
+  dimension.children?.forEach((fil) => {
+    if (fil.children) {
+      return findAndCheckFilter(fil, filtersList);
+    }
+    filtersList.forEach((valueId) => {
+      if (fil.id === valueId) {
+        fil.checked = true;
+      }
+    });
+    checkAndUpdateDimensionStatus(fil);
+  });
+  checkAndUpdateDimensionStatus(dimension);
+  return dimension;
 }

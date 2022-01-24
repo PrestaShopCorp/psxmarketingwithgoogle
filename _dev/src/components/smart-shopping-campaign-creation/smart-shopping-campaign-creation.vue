@@ -346,6 +346,7 @@ import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
 import CampaignStatus from '@/enums/reporting/CampaignStatus';
 import {
+  findAndCheckFilter,
   returnChildrenIds, returnCountProducts,
 } from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -354,7 +355,6 @@ export default {
   name: 'SmartShoppingCampaignCreation',
   data() {
     return {
-      campaignId: 0,
       campaignName: null,
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
@@ -381,9 +381,15 @@ export default {
     },
   },
   computed: {
-    filtersChosen() {
-      return this.foundSsc?.productFilters
+    filtersChosen: {
+      get() {
+return this.foundSsc?.productFilters
       ?? this.$store.state.smartShoppingCampaigns.filtersChosen;
+      },
+      set(value) {
+        console.log('value',value);
+      }
+      
     },
     disableCreateCampaign() {
       if (this.campaignName
@@ -439,7 +445,7 @@ export default {
     },
     finalCampaign() {
       return {
-        id: this.campaignId,
+        id: this.foundSsc?.id?? 0,
         campaignName: this.campaignName,
         dailyBudget: Number(this.campaignDailyBudget),
         currencyCode: this.currency,
@@ -463,7 +469,8 @@ export default {
       }
     },
     productsHaveBeenApprovedByGoogle() {
-      return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      // return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      return true;
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
@@ -493,7 +500,7 @@ export default {
       this.timer = setTimeout(() => {
         this.$store.dispatch('smartShoppingCampaigns/CHECK_CAMPAIGN_NAME_ALREADY_EXISTS', {
           name: this.campaignName,
-          id: this.campaignId,
+          id: this.finalCampaign.id,
         });
       }, 1000);
     },
@@ -536,11 +543,15 @@ export default {
     },
 
     setDimensionFiltered(dimension) {
+      console.log('dimen', dimension)
       this.totalProducts = returnCountProducts(dimension);
-      this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', [{
+      let filtersForAPI = [{
         dimension: dimension.name.toLowerCase(),
         values: returnChildrenIds(dimension),
-      }]);
+      }]
+      this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', filtersForAPI);
+      this.foundSsc.productFilters = filtersForAPI;
+      console.log('final',this.filtersChosen);
     },
     getDatasFiltersDimensions(search) {
       this.loader = true;
@@ -567,12 +578,20 @@ export default {
           && !this.foundSsc.hasUnhandledFilters;
         this.campaignDailyBudget = this.foundSsc.dailyBudget;
         this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
-        this.campaignId = this.foundSsc.id;
+        this.filtersChosen = this.foundSsc.productFilters;
         this.targetCountry = this.$options.filters.changeCountriesCodesToNames(
           [this.foundSsc.targetCountry],
         );
         this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
         this.debounceName();
+        this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', this.filtersChosen);
+       
+       
+       let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters
+          .find((dim) => dim.id === this.filtersChosen[0].dimension);
+        const filtersToFind = this.filtersChosen[0].values;
+        dimensionToEdit = findAndCheckFilter(dimensionToEdit, filtersToFind);
+        this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', dimensionToEdit);
       } else {
         this.$router.push({name: 'campaign-list'});
       }
