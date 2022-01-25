@@ -22,11 +22,11 @@
               height="40"
               alt=""
             >
-            {{ $t("smartShoppingCampaignCreation.breadcrumb1") }}
+            {{ $t('smartShoppingCampaignCreation.breadcrumb1') }}
           </router-link>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
-          {{ $t("smartShoppingCampaignCreation.breadcrumb2") }}
+          {{ $t('smartShoppingCampaignCreation.breadcrumb2') }}
         </li>
       </ol>
     </b-card-header>
@@ -37,7 +37,7 @@
         variant="info"
         data-test-id="unhandled-filters-alert"
       >
-        {{ $t("smartShoppingCampaignCreation.alerts.hasUnhandledFilters") }}
+        {{ $t('smartShoppingCampaignCreation.alerts.hasUnhandledFilters') }}
       </b-alert>
       <b-form>
         <b-form-group
@@ -51,7 +51,7 @@
           "
         >
           <template #label>
-            {{ $t("smartShoppingCampaignCreation.inputNameLabel") }}
+            {{ $t('smartShoppingCampaignCreation.inputNameLabel') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -81,7 +81,7 @@
           label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
         >
           <template #label>
-            {{ $t("smartShoppingCampaignCreation.inputDurationLabel") }}
+            {{ $t('smartShoppingCampaignCreation.inputDurationLabel') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -100,7 +100,7 @@
               class="mb-3 mb-md-0"
             >
               <label for="campaign-duration-start-date-input">
-                {{ $t("smartShoppingCampaignCreation.inputDurationLabel1") }}
+                {{ $t('smartShoppingCampaignCreation.inputDurationLabel1') }}
               </label>
               <b-form-datepicker
                 id="campaign-duration-start-date-input"
@@ -131,7 +131,7 @@
               md="6"
             >
               <label for="campaign-duration-end-date-input">
-                {{ $t("smartShoppingCampaignCreation.inputDurationLabel2") }}
+                {{ $t('smartShoppingCampaignCreation.inputDurationLabel2') }}
               </label>
               <b-form-datepicker
                 id="campaign-duration-end-date-input"
@@ -173,7 +173,7 @@
           class="maxw-sm-420"
         >
           <template #label>
-            {{ $t("smartShoppingCampaignCreation.inputCountryLabel") }}
+            {{ $t('smartShoppingCampaignCreation.inputCountryLabel') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -209,7 +209,7 @@
             :value="true"
             class="mb-1"
           >
-            {{ $t("smartShoppingCampaignCreation.inputFiltersAllLabel") }}
+            {{ $t('smartShoppingCampaignCreation.inputFiltersAllLabel') }}
           </b-form-radio>
           <b-form-radio
             :disabled="!productsHaveBeenApprovedByGoogle || hasUnhandledFilters"
@@ -217,7 +217,7 @@
             name="campaign-product-filter-radios"
             :value="false"
           >
-            {{ $t("smartShoppingCampaignCreation.inputFiltersPartialLabel") }}
+            {{ $t('smartShoppingCampaignCreation.inputFiltersPartialLabel') }}
           </b-form-radio>
           <template #description>
             <VueShowdown
@@ -254,7 +254,7 @@
           "
         >
           <template #label>
-            {{ $t("smartShoppingCampaignCreation.inputBudgetFeedback") }}
+            {{ $t('smartShoppingCampaignCreation.inputBudgetFeedback') }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -282,10 +282,10 @@
           </b-input-group>
         </b-form-group>
         <span class="font-weight-600">
-          {{ $t("smartShoppingCampaignCreation.formHelperTitle") }}
+          {{ $t('smartShoppingCampaignCreation.formHelperTitle') }}
         </span>
         <p>
-          {{ $t("smartShoppingCampaignCreation.formHelperDescription") }}
+          {{ $t('smartShoppingCampaignCreation.formHelperDescription') }}
         </p>
         <b-form-checkbox
           v-if="editMode === true"
@@ -303,14 +303,14 @@
           variant="warning"
           show
         >
-          {{ $t("smartShoppingCampaignCreation.errorNoProducts") }}
+          {{ $t('smartShoppingCampaignCreation.errorNoProducts') }}
         </b-alert>
         <b-alert
           v-if="displayError"
           variant="danger"
           show
         >
-          {{ $t("smartShoppingCampaignCreation.errorApi") }}
+          {{ $t('smartShoppingCampaignCreation.errorApi') }}
         </b-alert>
         <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
           <b-button

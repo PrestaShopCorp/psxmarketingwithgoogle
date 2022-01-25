@@ -80,8 +80,6 @@ export default {
   computed: {
     dimensionChosen: {
       get() {
-        // We had name and subtitle so the v-model works
-        // because it compares with the dimensionChosen to check the radio button
         let final = this.$store.state.smartShoppingCampaigns.dimensionChosen;
         if (this.$store.state.smartShoppingCampaigns.dimensionChosen) {
           final = {
