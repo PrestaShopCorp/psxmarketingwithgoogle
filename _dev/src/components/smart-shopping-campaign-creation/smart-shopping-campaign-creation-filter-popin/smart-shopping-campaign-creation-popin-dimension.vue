@@ -80,19 +80,19 @@ export default {
   computed: {
     dimensionChosen: {
       get() {
-        let final = this.$store.state.smartShoppingCampaigns.dimensionChosen;
+        let chosenDimension = this.$store.state.smartShoppingCampaigns.dimensionChosen;
         if (this.$store.state.smartShoppingCampaigns.dimensionChosen) {
-          final = {
+          chosenDimension = {
             ...this.$store.state.smartShoppingCampaigns.dimensionChosen,
             name: this.$t(
-              `smartShoppingCampaignCreation.${this.$store.state.smartShoppingCampaigns.dimensionChosen.id}`,
+              `smartShoppingCampaignCreation.${chosenDimension.id}`,
             ),
             subtitle: this.$t(
-              `smartShoppingCampaignCreation.${this.$store.state.smartShoppingCampaigns.dimensionChosen.id}SubTitle`,
+              `smartShoppingCampaignCreation.${chosenDimension.id}SubTitle`,
             ),
           };
         }
-        return final;
+        return chosenDimension;
       },
       set(value) {
         this.$emit('dimensionChosen', {

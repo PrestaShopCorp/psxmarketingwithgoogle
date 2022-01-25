@@ -148,7 +148,6 @@ export default {
     if (state.sscAvailableFilters.length) {
       state.sscAvailableFilters = [];
     }
-
     Object.keys(payload.list).forEach((dimensionName) => {
       // Do not display a dimension with no filter inside
       if (!payload.list[dimensionName].length) {

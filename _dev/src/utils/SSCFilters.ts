@@ -6,7 +6,7 @@ export function addPropertiesToDimension(
   const finalDimension = dimension.map((oneFilter) => {
     if (oneFilter.children) {
       return {
-        name: oneFilter.name,
+        name: oneFilter.name ?? oneFilter.localizedName,
         id: oneFilter.id,
         checked: false,
         indeterminate: false,
@@ -15,7 +15,7 @@ export function addPropertiesToDimension(
       };
     }
     return {
-      name: oneFilter.name,
+      name: oneFilter.name ?? oneFilter.localizedName,
       id: oneFilter.id,
       checked: false,
       numberOfProductsAssociated: oneFilter.numberOfProductsAssociated,

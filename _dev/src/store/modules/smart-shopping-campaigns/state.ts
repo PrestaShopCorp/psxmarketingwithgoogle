@@ -47,6 +47,7 @@ export interface FiltersChosen {
 }
 export interface DimensionChosen {
   name?: string;
+  localizedName?: string;
   subtitle?: string;
   id?: string;
   checked?: boolean;
