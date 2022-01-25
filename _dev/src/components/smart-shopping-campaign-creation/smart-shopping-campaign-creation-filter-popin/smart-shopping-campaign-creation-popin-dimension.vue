@@ -6,7 +6,7 @@
         label-class="font-weight-600 ps_gs-fz-16 d-block mb-0 p-0 bg-transparent border-0"
       >
         <p class="ps_gs-fz-13 text-secondary mb-3">
-          {{ $t("smartShoppingCampaignCreation.selectProductsSubtitle") }}
+          {{ $t('smartShoppingCampaignCreation.selectProductsSubtitle') }}
         </p>
         <span
           v-if="!availableDimensions.length"
