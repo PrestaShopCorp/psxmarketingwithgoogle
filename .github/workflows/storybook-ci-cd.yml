@@ -1,6 +1,8 @@
 name: Storybook CI/CD
 
 on:
+  pull_request:
+    types: [opened,edited,reopened,synchronize,labeled]
   push:
     branches:
       - master
@@ -9,72 +11,37 @@ jobs:
   alpha:
     name: Alpha - Storybook
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    if: contains(github.event.pull_request.labels.*.name, 'Storybook Test')
 
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v1
+      - name: Get branch name
+        id: branch
+        uses: tj-actions/branch-names@v5.1
 
-      - uses: hashicorp/setup-terraform@v1
+      - name: Trigger build and deploy
+        uses: aurelien-baudet/workflow-dispatch@v2
         with:
-          terraform_version: 0.14.5
+          workflow: googleshopping-storybook.yml
+          repo: PrestaShopCorp/services-deployment
+          token: ${{ secrets.ACCESS_TOKEN }}
+          ref: 'refs/heads/main'
+          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "14", "path": "_dev", "issue": "${{ github.event.number }}" }'
 
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@master
+  stable:
+    name: Stable - Storybook
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Get branch name
+        id: branch
+        uses: tj-actions/branch-names@v5.1
+
+      - name: Trigger build and deploy
+        uses: aurelien-baudet/workflow-dispatch@v2
         with:
-          project_id: ${{ secrets.G_PROJECT_INTEGRATION }}
-          service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
-          export_default_credentials: true
-
-      - name: Configure gcloud
-        run: |
-          gcloud container clusters get-credentials essentials \
-          --zone europe-west1-c --project psessentials-integration
-          gcloud auth configure-docker
-
-      - name: Terraform init
-        working-directory: _dev/.cloud
-        run: |
-          terraform init
-          terraform workspace select alpha
-          terraform fmt
-
-      - name: Get the version
-        id: get_tag
-        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-
-      - name: Configure docker
-        run: gcloud auth configure-docker
-
-      - name: Pull package
-        continue-on-error: true
-        run: docker pull "$REGISTRY/googleshopping-storybook-package:latest"
-        env:
-          REGISTRY: ${{ secrets.REGISTRY }}
-
-      - name: Build package
-        working-directory: _dev
-        run: |
-          docker build \
-            --target=package \
-            --tag="$REGISTRY/googleshopping-storybook-package:latest" .
-          docker push "$REGISTRY/googleshopping-storybook-package:latest"
-        env:
-          REGISTRY: ${{ secrets.REGISTRY }}
-
-      - name: Build and push finale image
-        working-directory: _dev
-        run: |
-          docker build . \
-            --tag="eu.gcr.io/psessentials-integration/googleshopping-storybook:latest" \
-            --cache-from="eu.gcr.io/psessentials-integration/googleshopping-storybook-package:latest"
-          docker push "eu.gcr.io/psessentials-integration/googleshopping-storybook:latest"
-        env:
-          TAG: ${{ steps.get_tag.outputs.TAG }}
-          REGISTRY: ${{ secrets.REGISTRY }}
-
-      - name: Terraform apply
-        working-directory: _dev/.cloud
-        run: terraform apply -auto-approve --var app_version=$SHA --var hash_id=$SHA
-        env:
-          SHA: ${{ github.sha }}
+          workflow: googleshopping-storybook.yml
+          repo: PrestaShopCorp/services-deployment
+          token: ${{ secrets.ACCESS_TOKEN }}
+          ref: 'refs/heads/main'
+          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "14", "path": "_dev", "environment": "stable" }'
