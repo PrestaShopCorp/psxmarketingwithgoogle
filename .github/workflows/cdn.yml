@@ -4,6 +4,9 @@ on:
   release:
     types: [prereleased, released]
 
+env:
+  WORKFLOW: googleshopping-storage.yml
+
 jobs:
   publish:
     name: CDN publish
@@ -16,8 +19,8 @@ jobs:
       - name: Trigger storage
         uses: aurelien-baudet/workflow-dispatch@v2
         with:
-          workflow: metrics-storage.yml
+          workflow: ${{ env.WORKFLOW }}
           repo: PrestaShopCorp/services-deployment
           token: ${{ secrets.ACCESS_TOKEN }}
           ref: 'refs/heads/main'
-          inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "14", "vuejsPath": "_dev/apps/metrics", "vuejsBuildPath": "views", "isRelease": "${{ !github.event.release.prerelease && true || false }}" }'
+          inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "14", "vuejsPath": "_dev", "vuejsBuildPath": "views", "isRelease": "${{ !github.event.release.prerelease && true || false }}" }'
