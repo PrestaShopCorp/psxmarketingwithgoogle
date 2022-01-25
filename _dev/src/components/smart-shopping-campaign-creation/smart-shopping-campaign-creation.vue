@@ -7,11 +7,13 @@
       header-tag="nav"
       header-class="px-3 py-1"
     >
-      <ol class="list-inline mb-0 d-sm-flex align-items-center ps_gs-breadcrumb">
+      <ol
+        class="list-inline mb-0 d-sm-flex align-items-center ps_gs-breadcrumb"
+      >
         <li class="list-inline-item ps_gs-breadcrumb__item">
           <router-link
             class="d-flex align-items-center ps_gs-breadcrumb__link"
-            :to="{name: 'campaign'}"
+            :to="{ name: 'campaign' }"
           >
             <img
               class="ps_gs-breadcrumb__icon"
@@ -20,24 +22,22 @@
               height="40"
               alt=""
             >
-            {{ $t('smartShoppingCampaignCreation.breadcrumb1') }}
+            {{ $t("smartShoppingCampaignCreation.breadcrumb1") }}
           </router-link>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
-          {{ $t('smartShoppingCampaignCreation.breadcrumb2') }}
+          {{ $t("smartShoppingCampaignCreation.breadcrumb2") }}
         </li>
       </ol>
     </b-card-header>
-    <b-card-body
-      body-class="p-3 p-md-4"
-    >
+    <b-card-body body-class="p-3 p-md-4">
       <b-alert
         v-if="hasUnhandledFilters"
         show
         variant="info"
         data-test-id="unhandled-filters-alert"
       >
-        {{ $t('smartShoppingCampaignCreation.alerts.hasUnhandledFilters') }}
+        {{ $t("smartShoppingCampaignCreation.alerts.hasUnhandledFilters") }}
       </b-alert>
       <b-form>
         <b-form-group
@@ -46,10 +46,12 @@
           label-for="campaign-name-input"
           label-class="d-flex align-items-center font-weight-600"
           :state="campaignNameFeedback"
-          :invalid-feedback="$t('smartShoppingCampaignCreation.inputCampaignNameInvalidFeedback')"
+          :invalid-feedback="
+            $t('smartShoppingCampaignCreation.inputCampaignNameInvalidFeedback')
+          "
         >
           <template #label>
-            {{ $t('smartShoppingCampaignCreation.inputNameLabel') }}
+            {{ $t("smartShoppingCampaignCreation.inputNameLabel") }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -66,7 +68,9 @@
             @keyup="debounceName()"
             v-model="campaignName"
             :state="campaignNameFeedback"
-            :placeholder="$t('smartShoppingCampaignCreation.inputNamePlaceholder')"
+            :placeholder="
+              $t('smartShoppingCampaignCreation.inputNamePlaceholder')
+            "
             class="maxw-sm-420"
           />
         </b-form-group>
@@ -77,7 +81,7 @@
           label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
         >
           <template #label>
-            {{ $t('smartShoppingCampaignCreation.inputDurationLabel') }}
+            {{ $t("smartShoppingCampaignCreation.inputDurationLabel") }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -96,7 +100,7 @@
               class="mb-3 mb-md-0"
             >
               <label for="campaign-duration-start-date-input">
-                {{ $t('smartShoppingCampaignCreation.inputDurationLabel1') }}
+                {{ $t("smartShoppingCampaignCreation.inputDurationLabel1") }}
               </label>
               <b-form-datepicker
                 id="campaign-duration-start-date-input"
@@ -104,13 +108,19 @@
                 :start-weekday="1"
                 v-model="campaignDurationStartDate"
                 :min="new Date()"
-                :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
+                :date-format-options="{
+                  year: 'numeric',
+                  month: 'numeric',
+                  day: 'numeric',
+                }"
                 reset-button
                 :label-reset-button="$t('cta.resetDate')"
                 :reset-value="new Date()"
                 reset-button-variant="outline-secondary sm"
                 :hide-header="true"
-                :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
+                :label-help="
+                  $t('smartShoppingCampaignCreation.inputDatePickerHelper')
+                "
                 :required="true"
                 class="ps_gs-datepicker"
                 @input="openEndDatepicker"
@@ -121,14 +131,18 @@
               md="6"
             >
               <label for="campaign-duration-end-date-input">
-                {{ $t('smartShoppingCampaignCreation.inputDurationLabel2') }}
+                {{ $t("smartShoppingCampaignCreation.inputDurationLabel2") }}
               </label>
               <b-form-datepicker
                 id="campaign-duration-end-date-input"
                 ref="campaignDurationEndDateInput"
                 :start-weekday="1"
                 v-model="campaignDurationEndDate"
-                :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
+                :date-format-options="{
+                  year: 'numeric',
+                  month: 'numeric',
+                  day: 'numeric',
+                }"
                 :min="campaignDurationStartDate"
                 reset-button
                 :label-reset-button="$t('cta.resetDate')"
@@ -137,7 +151,9 @@
                 :label-close-button="$t('cta.noEndDate')"
                 close-button-variant="outline-secondary sm"
                 :hide-header="true"
-                :label-help="$t('smartShoppingCampaignCreation.inputDatePickerHelper')"
+                :label-help="
+                  $t('smartShoppingCampaignCreation.inputDatePickerHelper')
+                "
                 :required="false"
                 class="ps_gs-datepicker"
                 menu-class="ps_gs-datepicker-end"
@@ -149,13 +165,15 @@
           id="campaign-target-country-fieldset"
           label-class="d-flex align-items-center font-weight-600"
           label-for="campaign-target-country-input"
-          :description="!editMode ?
-            $t('smartShoppingCampaignCreation.inputCountryHelper')
-            : $t('smartShoppingCampaignCreation.inputCountryImutable')"
+          :description="
+            !editMode
+              ? $t('smartShoppingCampaignCreation.inputCountryHelper')
+              : $t('smartShoppingCampaignCreation.inputCountryImutable')
+          "
           class="maxw-sm-420"
         >
           <template #label>
-            {{ $t('smartShoppingCampaignCreation.inputCountryLabel') }}
+            {{ $t("smartShoppingCampaignCreation.inputCountryLabel") }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -175,9 +193,7 @@
             :is-multiple="false"
             :dropdown-options="activeCountries"
           />
-          <span
-            v-else
-          >
+          <span v-else>
             {{ targetCountry[0] }}
           </span>
         </b-form-group>
@@ -193,7 +209,7 @@
             :value="true"
             class="mb-1"
           >
-            {{ $t('smartShoppingCampaignCreation.inputFiltersAllLabel') }}
+            {{ $t("smartShoppingCampaignCreation.inputFiltersAllLabel") }}
           </b-form-radio>
           <b-form-radio
             :disabled="!productsHaveBeenApprovedByGoogle || hasUnhandledFilters"
@@ -201,13 +217,17 @@
             name="campaign-product-filter-radios"
             :value="false"
           >
-            {{ $t('smartShoppingCampaignCreation.inputFiltersPartialLabel') }}
+            {{ $t("smartShoppingCampaignCreation.inputFiltersPartialLabel") }}
           </b-form-radio>
           <template #description>
             <VueShowdown
               tag="p"
               class="mb-0"
-              :markdown="$t('smartShoppingCampaignCreation.inputFiltersHelper', ['//google.com'])"
+              :markdown="
+                $t('smartShoppingCampaignCreation.inputFiltersHelper', [
+                  '//google.com',
+                ])
+              "
               :extensions="['extended-link', 'no-p-tag']"
             />
           </template>
@@ -219,7 +239,7 @@
             class="my-3"
             @click="openFilterPopin"
           >
-            {{ $t('cta.selectFilters') }}
+            {{ $t("cta.selectFilters") }}
           </b-button>
         </b-form-group>
         <b-form-group
@@ -229,10 +249,12 @@
           label-class="d-flex align-items-center font-weight-600"
           :state="campaignDailyBudgetFeedback"
           aria-describedby="campaign-daily-budget-fieldset__BV_description_ input-live-feedback"
-          :invalid-feedback="$t('smartShoppingCampaignCreation.inputBudgetInvalidFeedback')"
+          :invalid-feedback="
+            $t('smartShoppingCampaignCreation.inputBudgetInvalidFeedback')
+          "
         >
           <template #label>
-            {{ $t('smartShoppingCampaignCreation.inputBudgetFeedback') }}
+            {{ $t("smartShoppingCampaignCreation.inputBudgetFeedback") }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -252,16 +274,18 @@
             <b-form-input
               id="campaign-dailyBudget-input"
               v-model="campaignDailyBudget"
-              :placeholder="$t('smartShoppingCampaignCreation.inputBudgetPlaceholder')"
+              :placeholder="
+                $t('smartShoppingCampaignCreation.inputBudgetPlaceholder')
+              "
               :state="campaignDailyBudgetFeedback"
             />
           </b-input-group>
         </b-form-group>
         <span class="font-weight-600">
-          {{ $t('smartShoppingCampaignCreation.formHelperTitle') }}
+          {{ $t("smartShoppingCampaignCreation.formHelperTitle") }}
         </span>
         <p>
-          {{ $t('smartShoppingCampaignCreation.formHelperDescription') }}
+          {{ $t("smartShoppingCampaignCreation.formHelperDescription") }}
         </p>
         <b-form-checkbox
           v-if="editMode === true"
@@ -271,7 +295,7 @@
           v-model="campaignIsActive"
         >
           <span class="ps_gs-fz-14">
-            {{ $t('cta.enabled') }}
+            {{ $t("cta.enabled") }}
           </span>
         </b-form-checkbox>
         <b-alert
@@ -279,14 +303,14 @@
           variant="warning"
           show
         >
-          {{ $t('smartShoppingCampaignCreation.errorNoProducts') }}
+          {{ $t("smartShoppingCampaignCreation.errorNoProducts") }}
         </b-alert>
         <b-alert
           v-if="displayError"
           variant="danger"
           show
         >
-          {{ $t('smartShoppingCampaignCreation.errorApi') }}
+          {{ $t("smartShoppingCampaignCreation.errorApi") }}
         </b-alert>
         <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
           <b-button
@@ -295,7 +319,7 @@
             class="mx-1 mt-3 mt-md-0"
             variant="outline-secondary"
           >
-            {{ $t('cta.cancel') }}
+            {{ $t("cta.cancel") }}
           </b-button>
           <b-button
             v-if="editMode"
@@ -305,7 +329,7 @@
             class="mx-1 mt-3 mt-md-0 mr-md-0"
             variant="primary"
           >
-            {{ $t('cta.editCampaign') }}
+            {{ $t("cta.editCampaign") }}
           </b-button>
           <b-button
             v-else
@@ -316,7 +340,7 @@
             class="mx-1 mt-3 mt-md-0 mr-md-0"
             variant="primary"
           >
-            {{ $t('cta.createCampaign') }}
+            {{ $t("cta.createCampaign") }}
           </b-button>
         </div>
       </b-form>
@@ -347,7 +371,8 @@ import symbols from '../../assets/json/symbols.json';
 import CampaignStatus from '@/enums/reporting/CampaignStatus';
 import {
   findAndCheckFilter,
-  returnChildrenIds, returnCountProducts,
+  returnChildrenIds,
+  returnCountProducts,
 } from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
@@ -363,7 +388,7 @@ export default {
       timer: null,
       displayError: false,
       campaignIsActive: true,
-      targetCountry: null,
+      targetCountry: [],
       loader: true,
       hasUnhandledFilters: false,
       totalProducts: 0,
@@ -383,29 +408,34 @@ export default {
   computed: {
     filtersChosen: {
       get() {
-return this.foundSsc?.productFilters
-      ?? this.$store.state.smartShoppingCampaigns.filtersChosen;
+        return (
+          this.foundSsc?.productFilters
+          ?? this.$store.state.smartShoppingCampaigns.filtersChosen
+        );
       },
-      set(value) {
-        console.log('value',value);
-      }
-      
+      set() {},
     },
     disableCreateCampaign() {
-      if (this.campaignName
-      && this.errorCampaignNameExistsAlready === false
-      && this.campaignDurationStartDate
-      && (this.targetCountry || this.defaultCountry())
-      && this.campaignDailyBudget) {
+      if (
+        this.campaignName
+        && this.errorCampaignNameExistsAlready === false
+        && this.campaignDurationStartDate
+        && (this.targetCountry || this.defaultCountry())
+        && this.campaignDailyBudget
+      ) {
         return false;
       }
       return true;
     },
     campaignNameFeedback() {
-      if (!this.campaignName?.length || this.errorCampaignNameExistsAlready === null) {
+      if (
+        !this.campaignName?.length
+        || this.errorCampaignNameExistsAlready === null
+      ) {
         return null;
       }
-      if (this.campaignName
+      if (
+        this.campaignName
         && this.campaignName.length <= 125
         && this.campaignName.length > 0
         && this.errorCampaignNameExistsAlready === false
@@ -416,7 +446,8 @@ return this.foundSsc?.productFilters
     },
     campaignDailyBudgetFeedback() {
       const regex = /^[0-9]+([.][0-9]{0,2})?$/g;
-      if (this.campaignDailyBudget === null
+      if (
+        this.campaignDailyBudget === null
         || this.campaignDailyBudget === ''
       ) {
         return null;
@@ -427,10 +458,15 @@ return this.foundSsc?.productFilters
       return !!regex.test(this.campaignDailyBudget);
     },
     errorCampaignNameExistsAlready() {
-      return this.$store.getters['smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'];
+      return this.$store.getters[
+        'smartShoppingCampaigns/GET_ERROR_CAMPAIGN_NAME'
+      ];
     },
     currency() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode || '';
+      return (
+        this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
+          ?.currencyCode || ''
+      );
     },
     finalCampaignFilters() {
       // IMPORTANT: Do not send the filters property if the campaign has unhandled filters
@@ -445,13 +481,13 @@ return this.foundSsc?.productFilters
     },
     finalCampaign() {
       return {
-        id: this.foundSsc?.id?? 0,
+        id: this.foundSsc?.id ?? 0,
         campaignName: this.campaignName,
         dailyBudget: Number(this.campaignDailyBudget),
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
-        targetCountry: this.targetCountry || this.defaultCountry(),
+        targetCountry: this.targetCountry.length ? this.targetCountry : this.defaultCountry(),
         productFilters: this.finalCampaignFilters,
       };
     },
@@ -460,7 +496,8 @@ return this.foundSsc?.productFilters
         const displayAmount = 0;
         const country = this.defaultCountry();
         const currencyFormatted = displayAmount.toLocaleString(country, {
-          style: 'currency', currency: this.currency,
+          style: 'currency',
+          currency: this.currency,
         });
         return currencyFormatted.replace(/[ .,0]*/, '');
       } catch (error) {
@@ -469,8 +506,7 @@ return this.foundSsc?.productFilters
       }
     },
     productsHaveBeenApprovedByGoogle() {
-      // return this.$store.state.productFeed.validationSummary.activeItems > 0;
-      return true;
+      return this.$store.state.productFeed.validationSummary.activeItems > 0;
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
@@ -481,16 +517,15 @@ return this.foundSsc?.productFilters
     activeCountries() {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
     },
-
   },
   methods: {
     defaultCountry() {
       if (!this.$store.state.app.psxMtgWithGoogleDefaultShopCountry) {
         return '';
       }
-      return this.$options.filters.changeCountriesCodesToNames(
-        [this.$store.state.app.psxMtgWithGoogleDefaultShopCountry],
-      )[0];
+      return this.$options.filters.changeCountriesCodesToNames([
+        this.$store.state.app.psxMtgWithGoogleDefaultShopCountry,
+      ])[0];
     },
     debounceName() {
       if (!this.campaignName.length) {
@@ -498,10 +533,13 @@ return this.foundSsc?.productFilters
       }
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        this.$store.dispatch('smartShoppingCampaigns/CHECK_CAMPAIGN_NAME_ALREADY_EXISTS', {
-          name: this.campaignName,
-          id: this.finalCampaign.id,
-        });
+        this.$store.dispatch(
+          'smartShoppingCampaigns/CHECK_CAMPAIGN_NAME_ALREADY_EXISTS',
+          {
+            name: this.campaignName,
+            id: this.finalCampaign.id,
+          },
+        );
       }, 1000);
     },
     cancel() {
@@ -535,7 +573,7 @@ return this.foundSsc?.productFilters
     openEndDatepicker() {
       if (
         this.campaignDurationEndDate
-          && this.campaignDurationEndDate < this.campaignDurationStartDate
+        && this.campaignDurationEndDate < this.campaignDurationStartDate
       ) {
         this.campaignDurationEndDate = null;
       }
@@ -543,27 +581,37 @@ return this.foundSsc?.productFilters
     },
 
     setDimensionFiltered(dimension) {
-      console.log('dimen', dimension)
       this.totalProducts = returnCountProducts(dimension);
-      let filtersForAPI = [{
-        dimension: dimension.name.toLowerCase(),
-        values: returnChildrenIds(dimension),
-      }]
-      this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', filtersForAPI);
-      this.foundSsc.productFilters = filtersForAPI;
-      console.log('final',this.filtersChosen);
+      const filtersForAPI = [
+        {
+          dimension: dimension.id,
+          values: returnChildrenIds(dimension),
+        },
+      ];
+      this.$store.commit(
+        'smartShoppingCampaigns/SET_FILTERS_CHOSEN',
+        filtersForAPI,
+      );
+      if (this.editMode) {
+        this.foundSsc.productFilters = filtersForAPI;
+      }
     },
     getDatasFiltersDimensions(search) {
       this.loader = true;
-      this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search).then(() => {
-        this.loader = false;
-      });
+      this.$store
+        .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search)
+        .then(() => {
+          this.loader = false;
+        });
     },
   },
   watch: {
     campaignName(oldVal, newVal) {
-      if ((newVal !== oldVal) && this.errorCampaignNameExistsAlready !== null) {
-        this.$store.commit('smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS', null);
+      if (newVal !== oldVal && this.errorCampaignNameExistsAlready !== null) {
+        this.$store.commit(
+          'smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS',
+          null,
+        );
       }
     },
   },
@@ -571,27 +619,38 @@ return this.foundSsc?.productFilters
     window.scrollTo(0, 0);
     if (this.editMode === true) {
       if (this.foundSsc !== undefined) {
+        let endDate = new Date(this.foundSsc.endDate).getFullYear();
+        const todayYear = new Date().getFullYear();
+        if (endDate - 10 > todayYear) {
+          endDate = null;
+        }
         this.campaignName = this.foundSsc.campaignName;
         this.campaignDurationStartDate = this.foundSsc.startDate;
-        this.campaignDurationEndDate = this.foundSsc.endDate || null;
+        this.campaignDurationEndDate = endDate;
         this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
           && !this.foundSsc.hasUnhandledFilters;
         this.campaignDailyBudget = this.foundSsc.dailyBudget;
         this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
         this.filtersChosen = this.foundSsc.productFilters;
-        this.targetCountry = this.$options.filters.changeCountriesCodesToNames(
-          [this.foundSsc.targetCountry],
-        );
+        this.targetCountry = this.$options.filters.changeCountriesCodesToNames([
+          this.foundSsc.targetCountry,
+        ]);
         this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
         this.debounceName();
-        this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', this.filtersChosen);
-       
-       
-       let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters
-          .find((dim) => dim.id === this.filtersChosen[0].dimension);
+        this.$store.commit(
+          'smartShoppingCampaigns/SET_FILTERS_CHOSEN',
+          this.filtersChosen,
+        );
+        let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
+          (dim) => dim.id === this.filtersChosen[0].dimension,
+        );
         const filtersToFind = this.filtersChosen[0].values;
         dimensionToEdit = findAndCheckFilter(dimensionToEdit, filtersToFind);
-        this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', dimensionToEdit);
+
+        this.$store.commit(
+          'smartShoppingCampaigns/SET_DIMENSION_CHOSEN',
+          dimensionToEdit,
+        );
       } else {
         this.$router.push({name: 'campaign-list'});
       }

@@ -114,17 +114,20 @@ export function findAndCheckFilter(
   dimension: DimensionChosen,
   filtersList: string[],
 ) {
-  dimension.children?.forEach((fil) => {
-    if (fil.children) {
-      return findAndCheckFilter(fil, filtersList);
-    }
-    filtersList.forEach((valueId) => {
-      if (fil.id === valueId) {
-        fil.checked = true;
+  if (dimension.children) {
+    dimension.children.forEach((fil) => {
+      if (fil.children) {
+        return findAndCheckFilter(fil, filtersList);
       }
+      filtersList.forEach((valueId) => {
+        if (fil.id === valueId) {
+          fil.checked = true;
+        }
+      });
+      checkAndUpdateDimensionStatus(fil);
+      return dimension;
     });
-    checkAndUpdateDimensionStatus(fil);
-  });
+  }
   checkAndUpdateDimensionStatus(dimension);
   return dimension;
 }

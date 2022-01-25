@@ -38,7 +38,7 @@
               {{ $t('smartShoppingCampaignCreation.inputDurationLabel2') }}
             </span><br>
             <span class="text-secondary">
-              {{ newCampaign.endDate | timeConverterToDate }}
+              {{ endDate }}
             </span>
           </b-col>
         </b-form-row>
@@ -138,6 +138,14 @@ export default {
     nbFilters() {
       // TODO also check with PM how it is supposed to be presented
       return this.totalProducts;
+    },
+    endDate() {
+      const endDate = new Date(this.newCampaign.endDate).getFullYear();
+      const todayYear = new Date().getFullYear();
+      if (endDate - 10 > todayYear) {
+        return null;
+      }
+      return this.$options.filters.timeConverterToDate(this.newCampaign.endDate);
     },
   },
 

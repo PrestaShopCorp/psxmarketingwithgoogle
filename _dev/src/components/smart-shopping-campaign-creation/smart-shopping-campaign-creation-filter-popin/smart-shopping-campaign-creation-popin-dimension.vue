@@ -7,13 +7,19 @@
       >
         <p class="ps_gs-fz-13 text-secondary mb-3">
           {{ $t("smartShoppingCampaignCreation.selectProductsSubtitle") }}
-        </p>{
-        <span v-if="!availableDimensions.length" class="text-muted">
+        </p>
+        <span
+          v-if="!availableDimensions.length"
+          class="text-muted"
+        >
           <i class="icon-busy icon-busy--dark mr-1" />
           {{ $t("badge.loading") }}
         </span>
         <div v-else>
-          <div v-for="(oneDim, index) in availableDimensions" :key="index">
+          <div
+            v-for="(oneDim, index) in availableDimensions"
+            :key="index"
+          >
             <b-form-radio-group
               v-model="dimensionChosen"
               name="dimension"
@@ -21,7 +27,11 @@
               class="pt-1"
               v-if="availableDimensions.length"
             >
-              <b-form-radio name="dimension" :value="oneDim" class="mb-3">
+              <b-form-radio
+                name="dimension"
+                :value="oneDim"
+                class="mb-3"
+              >
                 <strong class="font-weight-normal d-block">
                   {{ oneDim.name }}
                 </strong>
@@ -58,7 +68,7 @@
 
 <script>
 export default {
-  name: "SmartShoppingCampaignCreationPopinDimension",
+  name: 'SmartShoppingCampaignCreationPopinDimension',
 
   props: {
     availableDimensions: {
@@ -70,24 +80,24 @@ export default {
   computed: {
     dimensionChosen: {
       get() {
-        // We had name and subtitle so the v-model works 
+        // We had name and subtitle so the v-model works
         // because it compares with the dimensionChosen to check the radio button
-        let final = this.$store.state.smartShoppingCampaigns.dimensionChosen
-        if (this.$store.state.smartShoppingCampaigns.dimensionChosen){
+        let final = this.$store.state.smartShoppingCampaigns.dimensionChosen;
+        if (this.$store.state.smartShoppingCampaigns.dimensionChosen) {
           final = {
             ...this.$store.state.smartShoppingCampaigns.dimensionChosen,
             name: this.$t(
-              `smartShoppingCampaignCreation.${this.$store.state.smartShoppingCampaigns.dimensionChosen.id}`
+              `smartShoppingCampaignCreation.${this.$store.state.smartShoppingCampaigns.dimensionChosen.id}`,
             ),
             subtitle: this.$t(
-              `smartShoppingCampaignCreation.${this.$store.state.smartShoppingCampaigns.dimensionChosen.id}SubTitle`
+              `smartShoppingCampaignCreation.${this.$store.state.smartShoppingCampaigns.dimensionChosen.id}SubTitle`,
             ),
           };
         }
         return final;
       },
       set(value) {
-        this.$emit("dimensionChosen", {
+        this.$emit('dimensionChosen', {
           reset: value.id !== this.dimensionChosen.id,
           newDimension: value,
         });
@@ -96,10 +106,10 @@ export default {
   },
   methods: {
     nextStep() {
-      this.$emit("sendStep", 2);
+      this.$emit('sendStep', 2);
     },
     confirmCancel() {
-      this.$emit("confirmCancel");
+      this.$emit('confirmCancel');
     },
   },
 };
