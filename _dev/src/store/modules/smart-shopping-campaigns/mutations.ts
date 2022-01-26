@@ -133,7 +133,7 @@ export default {
     state: LocalState,
     payload: { list: Array<DimensionChosen>; search: string },
   ) {
-    if (state.filtersChosen.length) {
+    if (state.filtersChosen.length && state.sscAvailableFilters.length) {
       const dimensionToUpdate = state.sscAvailableFilters.findIndex(
         (dim) => dim.id === state.filtersChosen[0].dimension,
       );
@@ -186,6 +186,18 @@ export default {
         },
         [],
       );
+      // if (state.filtersChosen.length) {
+      //   const dimensionToUpdate = state.sscAvailableFilters.findIndex(
+      //     (dim) => dim.id === state.filtersChosen[0].dimension,
+      //   );
+      //   state.sscAvailableFilters.splice(
+      //     dimensionToUpdate,
+      //     1,
+      //     state.dimensionChosen,
+      //   );
+
+      //   return;
+      // }
     }
   },
   [MutationsTypes.SET_DIMENSION_CHOSEN](state: LocalState, payload) {

@@ -22,11 +22,11 @@
               height="40"
               alt=""
             >
-            {{ $t('smartShoppingCampaignCreation.breadcrumb1') }}
+            {{ $t("smartShoppingCampaignCreation.breadcrumb1") }}
           </router-link>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
-          {{ $t('smartShoppingCampaignCreation.breadcrumb2') }}
+          {{ $t("smartShoppingCampaignCreation.breadcrumb2") }}
         </li>
       </ol>
     </b-card-header>
@@ -37,7 +37,7 @@
         variant="info"
         data-test-id="unhandled-filters-alert"
       >
-        {{ $t('smartShoppingCampaignCreation.alerts.hasUnhandledFilters') }}
+        {{ $t("smartShoppingCampaignCreation.alerts.hasUnhandledFilters") }}
       </b-alert>
       <b-form>
         <b-form-group
@@ -51,7 +51,7 @@
           "
         >
           <template #label>
-            {{ $t('smartShoppingCampaignCreation.inputNameLabel') }}
+            {{ $t("smartShoppingCampaignCreation.inputNameLabel") }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -81,7 +81,7 @@
           label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
         >
           <template #label>
-            {{ $t('smartShoppingCampaignCreation.inputDurationLabel') }}
+            {{ $t("smartShoppingCampaignCreation.inputDurationLabel") }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -100,7 +100,7 @@
               class="mb-3 mb-md-0"
             >
               <label for="campaign-duration-start-date-input">
-                {{ $t('smartShoppingCampaignCreation.inputDurationLabel1') }}
+                {{ $t("smartShoppingCampaignCreation.inputDurationLabel1") }}
               </label>
               <b-form-datepicker
                 id="campaign-duration-start-date-input"
@@ -131,7 +131,7 @@
               md="6"
             >
               <label for="campaign-duration-end-date-input">
-                {{ $t('smartShoppingCampaignCreation.inputDurationLabel2') }}
+                {{ $t("smartShoppingCampaignCreation.inputDurationLabel2") }}
               </label>
               <b-form-datepicker
                 id="campaign-duration-end-date-input"
@@ -173,7 +173,7 @@
           class="maxw-sm-420"
         >
           <template #label>
-            {{ $t('smartShoppingCampaignCreation.inputCountryLabel') }}
+            {{ $t("smartShoppingCampaignCreation.inputCountryLabel") }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -209,7 +209,7 @@
             :value="true"
             class="mb-1"
           >
-            {{ $t('smartShoppingCampaignCreation.inputFiltersAllLabel') }}
+            {{ $t("smartShoppingCampaignCreation.inputFiltersAllLabel") }}
           </b-form-radio>
           <b-form-radio
             :disabled="!productsHaveBeenApprovedByGoogle || hasUnhandledFilters"
@@ -217,7 +217,7 @@
             name="campaign-product-filter-radios"
             :value="false"
           >
-            {{ $t('smartShoppingCampaignCreation.inputFiltersPartialLabel') }}
+            {{ $t("smartShoppingCampaignCreation.inputFiltersPartialLabel") }}
           </b-form-radio>
           <template #description>
             <VueShowdown
@@ -254,7 +254,7 @@
           "
         >
           <template #label>
-            {{ $t('smartShoppingCampaignCreation.inputBudgetFeedback') }}
+            {{ $t("smartShoppingCampaignCreation.inputBudgetFeedback") }}
             <b-button
               class="ml-1 p-0 d-flex align-items-center"
               variant="text-primary"
@@ -282,10 +282,10 @@
           </b-input-group>
         </b-form-group>
         <span class="font-weight-600">
-          {{ $t('smartShoppingCampaignCreation.formHelperTitle') }}
+          {{ $t("smartShoppingCampaignCreation.formHelperTitle") }}
         </span>
         <p>
-          {{ $t('smartShoppingCampaignCreation.formHelperDescription') }}
+          {{ $t("smartShoppingCampaignCreation.formHelperDescription") }}
         </p>
         <b-form-checkbox
           v-if="editMode === true"
@@ -303,14 +303,14 @@
           variant="warning"
           show
         >
-          {{ $t('smartShoppingCampaignCreation.errorNoProducts') }}
+          {{ $t("smartShoppingCampaignCreation.errorNoProducts") }}
         </b-alert>
         <b-alert
           v-if="displayError"
           variant="danger"
           show
         >
-          {{ $t('smartShoppingCampaignCreation.errorApi') }}
+          {{ $t("smartShoppingCampaignCreation.errorApi") }}
         </b-alert>
         <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
           <b-button
@@ -487,7 +487,9 @@ export default {
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
-        targetCountry: this.targetCountry.length ? this.targetCountry : this.defaultCountry(),
+        targetCountry: this.targetCountry.length
+          ? this.targetCountry
+          : this.defaultCountry(),
         productFilters: this.finalCampaignFilters,
       };
     },
@@ -589,10 +591,7 @@ export default {
           values: returnChildrenIds(dimension),
         },
       ];
-      this.$store.commit(
-        'smartShoppingCampaigns/SET_FILTERS_CHOSEN',
-        filtersForAPI,
-      );
+      this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', filtersForAPI);
       if (this.editMode) {
         this.foundSsc.productFilters = filtersForAPI;
       }
@@ -604,6 +603,37 @@ export default {
         .then(() => {
           this.loader = false;
         });
+    },
+    setInterfaceForEdition() {
+      let {endDate} = this.foundSsc;
+
+      const todayYear = new Date().getFullYear();
+      if (new Date(endDate).getFullYear() - 10 > todayYear) {
+        endDate = null;
+      }
+      this.campaignName = this.foundSsc.campaignName;
+      this.campaignDurationStartDate = this.foundSsc.startDate;
+      this.campaignDurationEndDate = endDate;
+      this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
+          && !this.foundSsc.hasUnhandledFilters;
+      this.campaignDailyBudget = this.foundSsc.dailyBudget;
+      this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
+      this.filtersChosen = this.foundSsc.productFilters;
+      this.targetCountry = this.$options.filters.changeCountriesCodesToNames([
+        this.foundSsc.targetCountry,
+      ]);
+      this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
+      this.debounceName();
+      this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', this.filtersChosen);
+
+      let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
+        (dim) => dim.id === this.filtersChosen[0].dimension,
+      );
+      const filtersToFind = this.filtersChosen[0].values;
+      dimensionToEdit = findAndCheckFilter(dimensionToEdit, filtersToFind);
+
+      this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', dimensionToEdit);
+      this.loader = false;
     },
   },
   watch: {
@@ -618,45 +648,11 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0);
-    if (this.editMode === true) {
-      if (this.foundSsc !== undefined) {
-        let endDate = new Date(this.foundSsc.endDate).getFullYear();
-        const todayYear = new Date().getFullYear();
-        if (endDate - 10 > todayYear) {
-          endDate = null;
-        }
-        this.campaignName = this.foundSsc.campaignName;
-        this.campaignDurationStartDate = this.foundSsc.startDate;
-        this.campaignDurationEndDate = endDate;
-        this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
-          && !this.foundSsc.hasUnhandledFilters;
-        this.campaignDailyBudget = this.foundSsc.dailyBudget;
-        this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
-        this.filtersChosen = this.foundSsc.productFilters;
-        this.targetCountry = this.$options.filters.changeCountriesCodesToNames([
-          this.foundSsc.targetCountry,
-        ]);
-        this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
-        this.debounceName();
-        this.$store.commit(
-          'smartShoppingCampaigns/SET_FILTERS_CHOSEN',
-          this.filtersChosen,
-        );
-        let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
-          (dim) => dim.id === this.filtersChosen[0].dimension,
-        );
-        const filtersToFind = this.filtersChosen[0].values;
-        dimensionToEdit = findAndCheckFilter(dimensionToEdit, filtersToFind);
-
-        this.$store.commit(
-          'smartShoppingCampaigns/SET_DIMENSION_CHOSEN',
-          dimensionToEdit,
-        );
-      } else {
-        this.$router.push({name: 'campaign-list'});
-      }
+    if (this.editMode === true && this.foundSsc !== undefined) {
+      this.setInterfaceForEdition();
+    } else {
+      this.loader = false;
     }
-    this.getDatasFiltersDimensions();
   },
   created() {
     this.$root.$on('filterByName', this.getDatasFiltersDimensions);

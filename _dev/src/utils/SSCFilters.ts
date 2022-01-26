@@ -107,7 +107,10 @@ export function returnCountProducts(source: DimensionChosen): number {
     });
     return total;
   }
-  return total + Number(source.numberOfProductsAssociated);
+  if (source.numberOfProductsAssociated !== undefined) {
+    return total + Number(source.numberOfProductsAssociated);
+  }
+  return total;
 }
 
 export function findAndCheckFilter(
