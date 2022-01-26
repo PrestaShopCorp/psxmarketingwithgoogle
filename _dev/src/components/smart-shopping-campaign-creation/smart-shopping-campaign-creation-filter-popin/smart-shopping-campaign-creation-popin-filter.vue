@@ -1,20 +1,22 @@
 <template>
   <div>
-    <b-form-input
-      id="campaign-name-input-filter"
-      v-model="searchFilterName"
-      :placeholder="$t('general.search')"
-      size="sm"
-      type="text"
-      @input="debounceName()"
-    />
-    <span
+    <div class="bg-light px-2 pt-2 pb-1 rounded-top border border-bottom-0 border-450">
+      <b-form-input
+        id="campaign-name-input-filter"
+        v-model="searchFilterName"
+        :placeholder="$t('general.search')"
+        size="sm"
+        type="text"
+        @input="debounceName()"
+      />
+    </div>
+    <div
       v-if="loader"
-      class="text-muted"
+      class="text-muted rounded-bottom border border-450 p-3 text-center"
     >
       <i class="icon-busy icon-busy--dark mr-1" />
       {{ $t('badge.loading') }}
-    </span>
+    </div>
     <ul
       class="ps_gs-filters"
       v-if="dimensionChosen.children && !loader"
@@ -27,18 +29,21 @@
         :selected-filters="false"
       />
     </ul>
-    <div class="d-flex mt-2">
-      <b-form-tag
-        class="mr-1"
-        v-for="(filter, index) in filtersChosen"
-        :key="index"
-        @remove="removeTag(filter)"
-        :title="filter.name"
-        placeholder=""
-      />
+    <div class="ps_gs-selected-filters"
+      v-if="!loader"
+    >
+      <div class="d-flex flex-wrap align-items-center pr-2">
+        <b-form-tag
+          class="mr-1 mb-1"
+          v-for="(filter, index) in filtersChosen"
+          :key="index"
+          @remove="removeTag(filter)"
+          :title="filter.name"
+        />
+      </div>
       <b-button
-        variant="invisible"
-        class="text-decoration-underline font-weight-normal py-2 px-1 justify-content-end"
+        variant="outline-secondary"
+        size="sm"
         @click="checkAll(false)"
       >
         {{ $t('cta.clearAll') }}

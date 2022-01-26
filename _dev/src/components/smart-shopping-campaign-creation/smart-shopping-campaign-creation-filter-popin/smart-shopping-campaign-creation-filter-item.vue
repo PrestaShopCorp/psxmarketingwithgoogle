@@ -36,9 +36,16 @@
       @change="selectCheckbox"
       :indeterminate="item.indeterminate"
     >
-      {{ item.id }} - {{ item.name }} - {{ item.numberOfProductsAssociated }}
+      <div class="d-flex w-100 justify-content-between pr-3">
+        <span>
+          {{ item.id }} - {{ item.name }}
+        </span>
+        <span class="text-secondary">
+        {{ $tc('smartShoppingCampaignCreation.xProducts', item.numberOfProductsAssociated, [item.numberOfProductsAssociated]) }}
+        </span>
+      </div>
     </b-form-checkbox>
-    <template v-else>
+    <div v-else>
       <template v-if="!isFolder">
         {{ item.id }} - {{ item.name }} - {{ item.numberOfProductsAssociated }}
       </template>
@@ -52,7 +59,7 @@
           {{ $tc('cta.removeFilter', !!item.children ? item.children.length : 1) }}
         </span>
       </b-button>
-    </template>
+    </div>
     <ul
       v-show="isOpen"
       v-if="isFolder"

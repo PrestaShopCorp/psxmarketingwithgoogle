@@ -62,8 +62,8 @@ export const availableFilters = [{
               ]
             },
             {
-  
-  
+
+
               status: "ACTIVE",
               id: "b",
               name: "Chat",
@@ -85,7 +85,7 @@ export const availableFilters = [{
           name: "Vêtements et accessoires",
           checked: true,
           indeterminate: false,
-          numberOfProductsAssociated: 24,
+          numberOfProductsAssociated: 13,
           children: [
             {
               status: "ACTIVE",
@@ -99,7 +99,7 @@ export const availableFilters = [{
               id: "141",
               name: "Appareils photo, caméras et instruments d'optique",
               checked: true,
-              numberOfProductsAssociated: 12,
+              numberOfProductsAssociated: 1,
             },
           ]
         },

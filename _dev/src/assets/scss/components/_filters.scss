@@ -1,10 +1,8 @@
 .ps_gs-filters {
   height: 332px;
   overflow: auto;
-  border-radius: 3px;
   border: 1px solid $gray-450;
   padding: rem(18) 0 rem(18) rem(18);
-  margin-top: rem(10);
   margin-bottom: 0;
 
   &,
@@ -12,7 +10,7 @@
     list-style: none;
   }
 
-  > .ps_gs-filters__item {
+  > .ps_gs-filters__item:first-child {
     margin-top: 0;
   }
 
@@ -20,6 +18,16 @@
     position: relative;
     margin-top: rem(10);
     padding-left: rem(24);
+
+    &-checkbox {
+      margin-right: 0;
+      display: flex;
+
+      label {
+        display: flex;
+        flex-grow: 1;
+      }
+    }
 
     &-button {
       position: absolute;
@@ -38,11 +46,18 @@
     &-children {
       padding-left: 0;
       margin-top: rem(10);
-      padding-right: rem(18);
+      // padding-right: rem(18);
     }
   }
-
 }
-.b-form-tags-input {
-  display: none;
+
+.ps_gs-selected-filters {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: rem(8);
+  border-radius: 0 0 3px 3px;
+  border-right: 1px solid $gray-450;
+  border-bottom: 1px solid $gray-450;
+  border-left: 1px solid $gray-450;
 }
