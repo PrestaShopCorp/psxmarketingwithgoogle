@@ -32,7 +32,7 @@
     <div class="ps_gs-selected-filters"
       v-if="!loader"
     >
-      <div class="d-flex flex-wrap align-items-center pr-2">
+      <div class="d-flex flex-wrap align-items-center mr-2 ps_gs-selected-filters__badges">
         <b-form-tag
           class="mr-1 mb-1"
           v-for="(filter, index) in filtersChosen"

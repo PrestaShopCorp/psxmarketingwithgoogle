@@ -60,4 +60,9 @@
   border-right: 1px solid $gray-450;
   border-bottom: 1px solid $gray-450;
   border-left: 1px solid $gray-450;
+
+  &__badges {
+    max-height: calc(1.5 * 1rem * 3);
+    overflow: auto;
+  }
 }
