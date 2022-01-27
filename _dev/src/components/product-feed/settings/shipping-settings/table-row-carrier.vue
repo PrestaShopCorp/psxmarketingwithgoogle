@@ -174,14 +174,20 @@
   </tr>
 </template>
 
-<script>
+<script lang="ts">
+import {PropType} from '@vue/composition-api';
 import DeliveryType from '@/enums/product-feed/delivery-type.ts';
 import {
   validateHandlingTimes, validateTransitTimes,
 } from '@/providers/shipping-settings-provider';
+import {CarrierIdentifier, DeliveryDetail} from '../../../../providers/shipping-settings-provider';
+
+type State = {
+  selectedCarriersForDuplication: CarrierIdentifier[];
+}
 
 export default {
-  data() {
+  data(): State {
     return {
       selectedCarriersForDuplication: [{
         carrierId: this.carrier.carrierId,
@@ -191,7 +197,7 @@ export default {
   },
   props: {
     carrier: {
-      type: Object,
+      type: Object as PropType<DeliveryDetail>,
       required: true,
     },
     carriersList: {
@@ -201,14 +207,14 @@ export default {
   },
   computed: {
     deliveryType: {
-      get() {
+      get(): DeliveryType|null {
         return this.carrier.deliveryType || null;
       },
-      set(value) {
+      set(value: DeliveryType) {
         this.carrier.deliveryType = value;
       },
     },
-    deliveryTypeMessage() {
+    deliveryTypeMessage(): string|null {
       switch (this.deliveryType) {
         case DeliveryType.DELIVERY:
           return this.$i18n.t('cta.yes');
@@ -218,18 +224,18 @@ export default {
           return null;
       }
     },
-    timeStateHandling() {
+    timeStateHandling(): boolean|null {
       return validateHandlingTimes(this.carrier) ? null : false;
     },
-    timeStateDelivery() {
+    timeStateDelivery(): boolean|null {
       return validateTransitTimes(this.carrier) ? null : false;
     },
-    disableInputNumber() {
+    disableInputNumber(): boolean {
       return !this.carrier.enabledCarrier || this.carrier.deliveryType !== DeliveryType.DELIVERY;
     },
   },
   methods: {
-    isInitiatorCarrier(id, country) {
+    isInitiatorCarrier(id: string, country: string) {
       return this.carrier.carrierId === id && this.carrier.country === country;
     },
     applyInfos() {
@@ -247,8 +253,8 @@ export default {
     updateListState() {
       // Find carrier in list and check it is still enabled
       this.selectedCarriersForDuplication = this.selectedCarriersForDuplication
-        .filter((selectedCarrier) => this.carriersList
-          .find((carrier) => selectedCarrier.carrierId === carrier.carrierId
+        .filter((selectedCarrier: CarrierIdentifier) => this.carriersList
+          .find((carrier: DeliveryDetail) => selectedCarrier.carrierId === carrier.carrierId
             && selectedCarrier.country === carrier.country,
           ).enabledCarrier,
         );
