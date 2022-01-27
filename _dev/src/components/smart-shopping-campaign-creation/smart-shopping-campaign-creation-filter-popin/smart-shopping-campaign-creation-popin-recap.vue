@@ -47,7 +47,7 @@
         {{ $t('smartShoppingCampaignCreation.inputCountryLabel') }}
       </dt>
       <dd class="text-secondary mb-3">
-        {{ newCampaign.targetCountry }}
+        {{ targetCountry }}
       </dd>
       <dt class="font-weight-600">
         {{ $t('smartShoppingCampaignCreation.recapFiltersLabel') }}
@@ -146,6 +146,12 @@ export default {
         return null;
       }
       return this.$options.filters.timeConverterToDate(this.newCampaign.endDate);
+    },
+    targetCountry() {
+      if (typeof this.newCampaign.targetCountry !== 'string') {
+        return this.newCampaign.targetCountry[0];
+      }
+      return this.newCampaign.targetCountry;
     },
   },
 

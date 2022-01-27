@@ -349,6 +349,7 @@
       ref="SmartShoppingCampaignCreationPopin"
       @selectFilters="setDimensionFiltered"
       :loader="loader"
+      :edit-mode="editMode"
     />
     <SmartShoppingCampaignCreationPopinRecap
       ref="SmartShoppingCampaignCreationPopinRecap"
@@ -373,6 +374,7 @@ import {
   findAndCheckFilter,
   returnChildrenIds,
   returnCountProducts,
+  deepCheckDimension,
 } from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
@@ -406,14 +408,9 @@ export default {
     },
   },
   computed: {
-    filtersChosen: {
-      get() {
-        return (
-          this.foundSsc?.productFilters
-          ?? this.$store.state.smartShoppingCampaigns.filtersChosen
-        );
-      },
-      set() {},
+    filtersChosen() {
+      return this.foundSsc?.productFilters
+      ?? this.$store.state.smartShoppingCampaigns.filtersChosen;
     },
     disableCreateCampaign() {
       if (
@@ -508,8 +505,7 @@ export default {
       }
     },
     productsHaveBeenApprovedByGoogle() {
-      // return this.$store.state.productFeed.validationSummary.activeItems > 0;
-      return true;
+      return this.$store.state.productFeed.validationSummary.activeItems > 0;
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
@@ -618,21 +614,21 @@ export default {
           && !this.foundSsc.hasUnhandledFilters;
       this.campaignDailyBudget = this.foundSsc.dailyBudget;
       this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
-      this.filtersChosen = this.foundSsc.productFilters;
       this.targetCountry = this.$options.filters.changeCountriesCodesToNames([
         this.foundSsc.targetCountry,
       ]);
       this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
       this.debounceName();
       this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', this.filtersChosen);
+      if (this.filtersChosen.length) {
+        let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
+          (dim) => dim.id === this.filtersChosen[0].dimension,
+        );
+        const filtersToFind = this.filtersChosen[0].values;
+        dimensionToEdit = findAndCheckFilter(dimensionToEdit, filtersToFind);
+        this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', dimensionToEdit);
+      }
 
-      let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
-        (dim) => dim.id === this.filtersChosen[0].dimension,
-      );
-      const filtersToFind = this.filtersChosen[0].values;
-      dimensionToEdit = findAndCheckFilter(dimensionToEdit, filtersToFind);
-
-      this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', dimensionToEdit);
       this.loader = false;
     },
   },
@@ -644,6 +640,18 @@ export default {
           null,
         );
       }
+    },
+    $route: {
+      handler(route) {
+        if (route.name === 'campaign-creation') {
+          this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', {});
+          this.$store.state.smartShoppingCampaigns.sscAvailableFilters.forEach((dim) => {
+            deepCheckDimension(dim, false);
+          });
+        }
+      },
+      deep: true,
+      immediate: true,
     },
   },
   mounted() {

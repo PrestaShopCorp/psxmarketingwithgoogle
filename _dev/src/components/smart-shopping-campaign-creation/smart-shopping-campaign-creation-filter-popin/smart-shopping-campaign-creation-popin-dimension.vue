@@ -54,7 +54,7 @@
         </b-button>
         <b-button
           size="sm"
-          :disabled="!dimensionChosen.name"
+          :disabled="!dimensionChosen.id"
           class="mx-1 mt-3 mt-md-0 mr-md-0"
           variant="primary"
           @click="nextStep"
@@ -81,7 +81,7 @@ export default {
     dimensionChosen: {
       get() {
         let chosenDimension = this.$store.state.smartShoppingCampaigns.dimensionChosen;
-        if (this.$store.state.smartShoppingCampaigns.dimensionChosen) {
+        if (chosenDimension) {
           chosenDimension = {
             ...this.$store.state.smartShoppingCampaigns.dimensionChosen,
             name: this.$t(

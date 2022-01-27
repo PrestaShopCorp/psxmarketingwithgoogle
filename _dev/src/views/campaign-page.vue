@@ -22,12 +22,8 @@
         v-else-if="$route.name === 'campaign-list'"
       />
       <smart-shopping-campaign-creation
-        v-else-if="$route.name === 'campaign-creation'"
-        @campaignCreated="onCampaignHasBeenCreated"
-      />
-      <smart-shopping-campaign-creation
-        v-if="$route.name === 'campaign-edition'"
-        :edit-mode="true"
+        v-else-if="$route.name === 'campaign-edition' || $route.name === 'campaign-creation'"
+        :edit-mode="$route.name === 'campaign-edition' ? true : false"
         @campaignCreated="onCampaignHasBeenCreated"
       />
     </b-skeleton-wrapper>
