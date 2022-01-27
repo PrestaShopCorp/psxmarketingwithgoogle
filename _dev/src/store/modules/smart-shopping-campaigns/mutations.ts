@@ -186,18 +186,6 @@ export default {
         },
         [],
       );
-      // if (state.filtersChosen.length) {
-      //   const dimensionToUpdate = state.sscAvailableFilters.findIndex(
-      //     (dim) => dim.id === state.filtersChosen[0].dimension,
-      //   );
-      //   state.sscAvailableFilters.splice(
-      //     dimensionToUpdate,
-      //     1,
-      //     state.dimensionChosen,
-      //   );
-
-      //   return;
-      // }
     }
   },
   [MutationsTypes.SET_DIMENSION_CHOSEN](state: LocalState, payload) {

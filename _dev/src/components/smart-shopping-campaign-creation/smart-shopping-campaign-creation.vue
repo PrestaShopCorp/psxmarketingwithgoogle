@@ -508,7 +508,8 @@ export default {
       }
     },
     productsHaveBeenApprovedByGoogle() {
-      return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      // return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      return true;
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
@@ -604,6 +605,8 @@ export default {
         });
     },
     setInterfaceForEdition() {
+      console.log(this.foundSsc);
+      console.log(this.filtersChosen);
       let {endDate} = this.foundSsc;
 
       const todayYear = new Date().getFullYear();
@@ -624,6 +627,7 @@ export default {
       this.debounceName();
       this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', this.filtersChosen);
       if (this.filtersChosen.length) {
+        console.log('oui');
         let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
           (dim) => dim.id === this.filtersChosen[0].dimension,
         );
