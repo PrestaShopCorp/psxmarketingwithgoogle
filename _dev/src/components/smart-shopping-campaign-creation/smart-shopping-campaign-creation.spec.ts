@@ -10,17 +10,98 @@ import config, {localVue, cloneStore} from '@/../tests/init';
 
 import {initialStateApp} from '../../../.storybook/mock/state-app';
 import {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads.js';
-import {campaignWithUnhandledFilters} from '../../../.storybook/mock/smart-shopping-campaigns';
+import {campaignWithUnhandledFilters, campaignWithoutUnhandledFilters, availableFilters} from '../../../.storybook/mock/smart-shopping-campaigns';
 import SmartShoppingCampaignCreation from './smart-shopping-campaign-creation.vue';
 
 const VBTooltip = jest.fn();
 
 describe('smart-shopping-campaign-creation.vue - Campaign creation', () => {
-  // TODO: Describe behavior of this component
+  let store;
+  let wrapper;
+  const mockRoute = {
+    name: 'campaign-creation',
+  };
+  beforeEach(() => {
+    store = cloneStore();
+
+    store.modules.productFeed.state.app = {
+      ...cloneDeep(initialStateApp),
+    };
+    store.modules.productFeed.state.googleAds = {
+      ...cloneDeep(googleAdsAccountChosen),
+    };
+
+    store.modules.smartShoppingCampaigns.state.sscAvailableFilters = availableFilters;
+
+    wrapper = shallowMount(SmartShoppingCampaignCreation, {
+      localVue,
+      store: new Vuex.Store(store),
+      directives: {
+        'b-tooltip': VBTooltip,
+      },
+      ...config,
+      stubs: {
+        VueShowdown: true,
+      },
+      mocks: {
+        $route: mockRoute,
+      },
+      data() {
+        return campaignWithoutUnhandledFilters;
+      },
+    });
+  });
+
+  it('should render the component', () => {
+    expect(wrapper.isVisible()).toBe(true);
+  });
+
+  it('should have all inputs to null', () => {
+    expect(wrapper.find('[data-test-id="campaign-name-input"]').text()).toEqual('');
+    expect(wrapper.find('[data-test-id="campaign-dailyBudget-input"]').text()).toEqual('');
+  });
 });
 
 describe('smart-shopping-campaign-creation.vue - Campaign edition', () => {
-  // TODO: Describe behavior of this component
+  let store;
+  let wrapper;
+  const mockRoute = {
+    name: 'campaign-edition',
+  };
+  beforeEach(() => {
+    store = cloneStore();
+
+    store.modules.productFeed.state.app = {
+      ...cloneDeep(initialStateApp),
+    };
+    store.modules.productFeed.state.googleAds = {
+      ...cloneDeep(googleAdsAccountChosen),
+    };
+
+    store.modules.smartShoppingCampaigns.state.sscAvailableFilters = availableFilters;
+
+    wrapper = shallowMount(SmartShoppingCampaignCreation, {
+      localVue,
+      store: new Vuex.Store(store),
+      directives: {
+        'b-tooltip': VBTooltip,
+      },
+      ...config,
+      stubs: {
+        VueShowdown: true,
+      },
+      mocks: {
+        $route: mockRoute,
+      },
+      data() {
+        return campaignWithoutUnhandledFilters;
+      },
+    });
+  });
+
+  it('should render the component', () => {
+    expect(wrapper.isVisible()).toBe(true);
+  });
 });
 
 describe('smart-shopping-campaign-creation.vue - Campaign edition - Unhandled filters', () => {
@@ -38,7 +119,6 @@ describe('smart-shopping-campaign-creation.vue - Campaign edition - Unhandled fi
     store.modules.productFeed.state.googleAds = {
       ...cloneDeep(googleAdsAccountChosen),
     };
-
 
     wrapper = shallowMount(SmartShoppingCampaignCreation, {
       localVue,

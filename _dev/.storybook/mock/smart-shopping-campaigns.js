@@ -256,5 +256,9 @@ export const campaignWithUnhandledFilters = {
   ],
   hasUnhandledFilters: true,
 };
+export const campaignWithoutUnhandledFilters = {
+ ...campaignWithUnhandledFilters,
+  hasUnhandledFilters: false,
+};
 
 export default sscDefault;

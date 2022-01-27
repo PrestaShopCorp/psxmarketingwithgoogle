@@ -44,6 +44,7 @@
           id="campaign-name-fieldset"
           :description="$t('smartShoppingCampaignCreation.inputNameHelper')"
           label-for="campaign-name-input"
+          data-test-id="campaign-name-input"
           label-class="d-flex align-items-center font-weight-600"
           :state="campaignNameFeedback"
           :invalid-feedback="
@@ -232,6 +233,7 @@
             />
           </template>
           <b-button
+            data-test-id="campaign-select-filter-button"
             v-if="!campaignHasNoProductsFilter"
             :disabled="hasUnhandledFilters"
             variant="primary"
@@ -272,6 +274,7 @@
             class="maxw-sm-420"
           >
             <b-form-input
+              data-test-id="campaign-dailyBudget-input"
               id="campaign-dailyBudget-input"
               v-model="campaignDailyBudget"
               :placeholder="
