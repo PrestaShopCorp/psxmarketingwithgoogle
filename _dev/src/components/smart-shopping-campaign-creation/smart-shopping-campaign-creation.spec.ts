@@ -26,7 +26,9 @@ describe('smart-shopping-campaign-creation.vue - Campaign edition', () => {
 describe('smart-shopping-campaign-creation.vue - Campaign edition - Unhandled filters', () => {
   let store;
   let wrapper;
-
+  const mockRoute = {
+    name: 'campaign-edition',
+  };
   beforeEach(() => {
     store = cloneStore();
 
@@ -37,6 +39,7 @@ describe('smart-shopping-campaign-creation.vue - Campaign edition - Unhandled fi
       ...cloneDeep(googleAdsAccountChosen),
     };
 
+
     wrapper = shallowMount(SmartShoppingCampaignCreation, {
       localVue,
       store: new Vuex.Store(store),
@@ -46,6 +49,9 @@ describe('smart-shopping-campaign-creation.vue - Campaign edition - Unhandled fi
       ...config,
       stubs: {
         VueShowdown: true,
+      },
+      mocks: {
+        $route: mockRoute,
       },
       data() {
         return campaignWithUnhandledFilters;
