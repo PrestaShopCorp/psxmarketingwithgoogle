@@ -226,7 +226,7 @@
               class="mb-0"
               :markdown="
                 $t('smartShoppingCampaignCreation.inputFiltersHelper', [
-                  '//google.com',
+                  $options.googleUrl.shoppingAdsPolicies,
                 ])
               "
               :extensions="['extended-link', 'no-p-tag']"
@@ -380,6 +380,7 @@ import {
   deepCheckDimension,
 } from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import googleUrl from '@/assets/json/googleUrl.json';
 
 export default {
   name: 'SmartShoppingCampaignCreation',
@@ -668,5 +669,6 @@ export default {
     this.$root.$on('filterByName', this.getDatasFiltersDimensions);
   },
   countriesSelectionOptions,
+  googleUrl,
 };
 </script>
