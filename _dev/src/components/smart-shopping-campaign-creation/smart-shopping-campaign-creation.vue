@@ -195,7 +195,7 @@
             :dropdown-options="activeCountries"
           />
           <span v-else>
-            {{ targetCountry[0] }}
+            {{ targetCountry }}
           </span>
         </b-form-group>
         <b-form-group
@@ -487,9 +487,8 @@ export default {
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
-        targetCountry: this.targetCountry.length
-          ? this.targetCountry
-          : this.defaultCountry(),
+        targetCountry: this.targetCountry
+          || this.defaultCountry(),
         productFilters: this.finalCampaignFilters,
       };
     },
@@ -508,8 +507,7 @@ export default {
       }
     },
     productsHaveBeenApprovedByGoogle() {
-      // return this.$store.state.productFeed.validationSummary.activeItems > 0;
-      return true;
+      return this.$store.state.productFeed.validationSummary.activeItems > 0;
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
@@ -605,8 +603,6 @@ export default {
         });
     },
     setInterfaceForEdition() {
-      console.log(this.foundSsc);
-      console.log(this.filtersChosen);
       let {endDate} = this.foundSsc;
 
       const todayYear = new Date().getFullYear();
@@ -620,14 +616,13 @@ export default {
           && !this.foundSsc.hasUnhandledFilters;
       this.campaignDailyBudget = this.foundSsc.dailyBudget;
       this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
-      this.targetCountry = this.$options.filters.changeCountriesCodesToNames([
+      [this.targetCountry] = this.$options.filters.changeCountriesCodesToNames([
         this.foundSsc.targetCountry,
       ]);
       this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
       this.debounceName();
       this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', this.filtersChosen);
       if (this.filtersChosen.length) {
-        console.log('oui');
         let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
           (dim) => dim.id === this.filtersChosen[0].dimension,
         );
