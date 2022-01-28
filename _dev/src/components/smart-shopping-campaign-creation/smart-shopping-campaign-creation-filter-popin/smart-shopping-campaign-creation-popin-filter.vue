@@ -29,7 +29,8 @@
         :selected-filters="false"
       />
     </ul>
-    <div class="ps_gs-selected-filters"
+    <div
+      class="ps_gs-selected-filters"
       v-if="!loader"
     >
       <div class="d-flex flex-wrap align-items-center mr-2 ps_gs-selected-filters__badges">

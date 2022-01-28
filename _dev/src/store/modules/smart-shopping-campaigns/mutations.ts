@@ -23,7 +23,6 @@ import CampaignStatus, {
   CampaignStatusToggle,
 } from '@/enums/reporting/CampaignStatus';
 import MutationsTypes from './mutations-types';
-import i18n from '../../../lib/i18n';
 import {
   CampaignPerformances,
   DailyresultChart,

@@ -23,6 +23,7 @@ import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import {CampaignObject, CampaignStatusPayload, ConversionAction} from './state';
+import i18n from '../../../lib/i18n';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, rootState}, payload : CampaignObject) {

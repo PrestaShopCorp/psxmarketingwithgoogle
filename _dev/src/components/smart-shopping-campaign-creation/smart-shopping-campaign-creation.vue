@@ -393,7 +393,7 @@ export default {
       timer: null,
       displayError: false,
       campaignIsActive: true,
-      targetCountry: [],
+      targetCountry: null,
       loader: true,
       hasUnhandledFilters: false,
       totalProducts: 0,

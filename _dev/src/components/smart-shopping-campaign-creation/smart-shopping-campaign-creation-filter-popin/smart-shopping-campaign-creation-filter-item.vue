@@ -41,7 +41,11 @@
           {{ item.id }} - {{ item.name }}
         </span>
         <span class="text-secondary">
-        {{ $tc('smartShoppingCampaignCreation.xProducts', item.numberOfProductsAssociated, [item.numberOfProductsAssociated]) }}
+          {{ $tc(
+            'smartShoppingCampaignCreation.xProducts',
+            item.numberOfProductsAssociated,
+            [item.numberOfProductsAssociated]
+          ) }}
         </span>
       </div>
     </b-form-checkbox>

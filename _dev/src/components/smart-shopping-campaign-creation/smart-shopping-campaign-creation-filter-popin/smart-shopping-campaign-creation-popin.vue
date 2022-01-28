@@ -71,22 +71,12 @@ export default {
       return getFilters(this.filteredDimensions, []).length;
     },
     availableDimensions() {
-      const final = this.$store.getters['smartShoppingCampaigns/GET_SSC_DIMENSIONS_AND_FILTERS'].map((fil) => ({
-        ...fil,
-        name: this.$t(`smartShoppingCampaignCreation.${fil.id}`),
-        subtitle: this.$t(`smartShoppingCampaignCreation.${fil.id}SubTitle`),
-      }));
-      return final;
+      return this.$store.getters['smartShoppingCampaigns/GET_SSC_DIMENSIONS_AND_FILTERS'];
     },
   },
   methods: {
     dimensionHasBeenSelected(obj) {
-      if (obj.reset) {
-        let resultDimension = deepCheckDimension(this.dimensionChosen, false);
-        resultDimension = checkAndUpdateDimensionStatus(this.dimensionChosen);
-        this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', resultDimension);
-      }
-      this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', obj.newDimension);
+      this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', checkAndUpdateDimensionStatus(deepCheckDimension(obj.newDimension, false)));
     },
     stepIs(event) {
       this.step = event;

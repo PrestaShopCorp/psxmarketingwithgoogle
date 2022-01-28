@@ -33,10 +33,10 @@
                 class="mb-3"
               >
                 <strong class="font-weight-normal d-block">
-                  {{ oneDim.name }}
+                  {{ $t(`smartShoppingCampaignCreation.${oneDim.id}`) }}
                 </strong>
                 <span class="ps_gs-fz-12 text-secondary d-block">
-                  {{ oneDim.subtitle }}
+                  {{ $t(`smartShoppingCampaignCreation.${oneDim.id}SubTitle`) }}
                 </span>
               </b-form-radio>
             </b-form-radio-group>
@@ -80,19 +80,7 @@ export default {
   computed: {
     dimensionChosen: {
       get() {
-        let chosenDimension = this.$store.state.smartShoppingCampaigns.dimensionChosen;
-        if (chosenDimension) {
-          chosenDimension = {
-            ...this.$store.state.smartShoppingCampaigns.dimensionChosen,
-            name: this.$t(
-              `smartShoppingCampaignCreation.${chosenDimension.id}`,
-            ),
-            subtitle: this.$t(
-              `smartShoppingCampaignCreation.${chosenDimension.id}SubTitle`,
-            ),
-          };
-        }
-        return chosenDimension;
+        return this.$store.state.smartShoppingCampaigns.dimensionChosen;
       },
       set(value) {
         this.$emit('dimensionChosen', {
