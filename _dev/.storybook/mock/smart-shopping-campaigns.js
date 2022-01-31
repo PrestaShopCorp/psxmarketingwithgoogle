@@ -246,7 +246,7 @@ export const campaignWithUnhandledFilters = {
   campaignDailyBudget: 7,
   campaignIsActive: true,
   campaignId: 'foo',
-  targetCountry: ['France'],
+  targetCountry: 'France',
   campaignHasNoProductsFilter: false,
   hasUnhandledFilters: true,
 };
