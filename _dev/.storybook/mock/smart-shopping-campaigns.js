@@ -248,12 +248,6 @@ export const campaignWithUnhandledFilters = {
   campaignId: 'foo',
   targetCountry: ['France'],
   campaignHasNoProductsFilter: false,
-  filtersChosen: [
-    {
-      dimension: 'categories',
-      values: ['42'],
-    },
-  ],
   hasUnhandledFilters: true,
 };
 export const campaignWithoutUnhandledFilters = {
