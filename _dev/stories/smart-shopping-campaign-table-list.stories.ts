@@ -23,7 +23,6 @@ export const Table:any = Template.bind({});
 Table.args = {
   beforeCreate() {
     this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaigns);
-    console.log(this.$store.state.smartShoppingCampaigns.campaigns)
   },
   loading: false,
 }
