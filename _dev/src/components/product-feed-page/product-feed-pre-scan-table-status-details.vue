@@ -31,7 +31,7 @@
         id="filterByCountryDropdown"
         variant=" "
         menu-class="ps-dropdown"
-        :text="langSelected ? $options.filters.changeCountriesCodesToNames([langSelected])[0]
+        :text="langSelected ? langSelected
           : $t('productFeedSettings.shipping.filterTitle')"
         class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
       >
@@ -51,7 +51,7 @@
           variant="dark"
           link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
         >
-          {{ $options.filters.changeCountriesCodesToNames([country])[0] }}
+          {{ country }}
         </b-dropdown-item>
       </b-dropdown>
     </div>
@@ -150,6 +150,51 @@ export default {
       currentPage: 1,
       loading: false,
       items: [
+        {
+          id: 1,
+          name: 'Product 1',
+          language: 'EN',
+          image: 'product-1.jpg',
+          description: 'Product 1 description',
+          barcode: '',
+          price: '$10.00',
+        },
+        {
+          id: 2,
+          name: 'Product 2',
+          language: 'FR',
+          image: 'product-2.jpg',
+          description: 'Product 2 description',
+          barcode: '',
+          price: '$10.00',
+        },
+        {
+          id: 3,
+          name: 'Product 3',
+          language: 'FR',
+          image: 'product-3.jpg',
+          description: 'Product 3 description',
+          barcode: '',
+          price: '$10.00',
+        },
+        {
+          id: 4,
+          name: 'Product 4',
+          language: 'FR',
+          image: 'product-4.jpg',
+          description: 'Product 4 description',
+          barcode: '',
+          price: '$10.00',
+        },
+        {
+          id: 5,
+          name: 'Product 5',
+          language: 'FR',
+          image: 'product-5.jpg',
+          description: 'Product 5 description',
+          barcode: '',
+          price: '$10.00',
+        },
       ],
       fields: [
         {
@@ -204,6 +249,7 @@ export default {
           // update currentPage
         })
         .catch((error) => {
+          this.loading = false;
           console.error(error);
         });
     },
