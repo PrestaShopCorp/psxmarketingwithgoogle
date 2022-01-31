@@ -1,6 +1,9 @@
 <template>
   <div>
     <product-feed-table-status-details v-if="$route.path === '/product-feed/status'" />
+    <product-feed-pre-scan-table-status-details
+      v-else-if="$route.path === '/product-feed/pre-scan'"
+    />
     <template v-else>
       <b-alert
         :show="syncStatus === 'success'"
@@ -20,6 +23,7 @@
 import ProductFeedProductStatusCard from '@/components/product-feed-page/product-feed-product-status-card';
 import ProductFeedSyncStatusCard from '@/components/product-feed-page/product-feed-sync-status-card';
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
+import ProductFeedPreScanTableStatusDetails from '@/components/product-feed-page/product-feed-pre-scan-table-status-details';
 import SyncTimeline from '@/components/sync-timeline/sync-timeline';
 
 export default {
@@ -27,6 +31,7 @@ export default {
     ProductFeedSyncStatusCard,
     ProductFeedProductStatusCard,
     ProductFeedTableStatusDetails,
+    ProductFeedPreScanTableStatusDetails,
     SyncTimeline,
   },
   computed: {

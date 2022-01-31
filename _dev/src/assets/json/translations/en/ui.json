@@ -582,6 +582,17 @@
       "title" : "Active products submitted to Google",
       "description" : "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
     },
+    "preScan": {
+      "description": "products with problems that couldn't be synced are listed below.",
+      "fields": {
+        "name": "Name",
+        "language": "Language",
+        "image": "Image",
+        "description": "Description",
+        "barcode": "Barcode/Brand",
+        "price": "Price"
+      }
+    },
     "approvalTable": {
       "description": "The status of products that are synced with Merchant Center",
       "filterTitle": "Filter by availability",
