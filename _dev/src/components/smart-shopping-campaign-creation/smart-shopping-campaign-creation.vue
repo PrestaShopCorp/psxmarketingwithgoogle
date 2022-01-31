@@ -603,9 +603,14 @@ export default {
           this.loader = false;
         });
     },
+    setInterfaceForCreation() {
+      this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', {});
+      this.$store.state.smartShoppingCampaigns.sscAvailableFilters.forEach((dim) => {
+        deepCheckDimension(dim, false);
+      });
+    },
     setInterfaceForEdition() {
       let {endDate} = this.foundSsc;
-
       const todayYear = new Date().getFullYear();
       if (new Date(endDate).getFullYear() - 10 > todayYear) {
         endDate = null;
@@ -647,10 +652,7 @@ export default {
     $route: {
       handler(route) {
         if (route.name === 'campaign-creation') {
-          this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', {});
-          this.$store.state.smartShoppingCampaigns.sscAvailableFilters.forEach((dim) => {
-            deepCheckDimension(dim, false);
-          });
+          this.setInterfaceForCreation();
         }
       },
       deep: true,

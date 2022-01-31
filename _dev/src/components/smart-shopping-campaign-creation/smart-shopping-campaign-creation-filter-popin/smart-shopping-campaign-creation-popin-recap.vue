@@ -102,6 +102,7 @@
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import PsModal from '../../commons/ps-modal';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import compareYears from '../../../utils/CompareYears';
 
 export default {
   name: 'SSCCreationPopinRecap',
@@ -140,12 +141,9 @@ export default {
       return this.totalProducts;
     },
     endDate() {
-      const endDate = new Date(this.newCampaign.endDate).getFullYear();
-      const todayYear = new Date().getFullYear();
-      if (endDate - 10 > todayYear) {
-        return null;
-      }
-      return this.$options.filters.timeConverterToDate(this.newCampaign.endDate);
+      const isThereAnEndDate = compareYears(this.newCampaign.endDate);
+      return isThereAnEndDate
+        ? this.$options.filters.timeConverterToDate(this.newCampaign.endDate) : null;
     },
   },
 
