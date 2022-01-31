@@ -36,5 +36,5 @@ Empty.args = {
   beforeCreate() {
     this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaignsEmpty);
   },
-  loading: true,
+  loading: false,
 }

@@ -208,8 +208,7 @@ Edition.args = {
     this.$refs.sscCreation.$data.campaignDailyBudget = 7;
     this.$refs.sscCreation.$data.campaignIsActive = true;
     this.$refs.sscCreation.$data.campaignId = "foo";
-    this.$refs.sscCreation.$data.targetCountry =
-      this.$options.filters.changeCountriesCodesToNames(["FR"]);
+    this.$refs.sscCreation.$data.targetCountry = "France"
   },
 };
 
@@ -229,10 +228,13 @@ export const PopinFiltersDimensionStep: any = Template.bind({});
 PopinFiltersDimensionStep.args = {
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+    
   },
   mounted(this: any) {
     // @ts-ignore
     this.$refs.sscCreation.openFilterPopin();
+    this.$store.state.smartShoppingCampaigns.sscAvailableFilters  = Object.assign([], availableFilters);
+    this.$store.state.smartShoppingCampaigns.dimensionChosen  = Object.assign({}, availableFilters[0]);
   },
 };
 

@@ -81,10 +81,14 @@ export default {
   },
   computed: {
     campaignDuration() {
-      const isThereAnEndDate = compareYears(this.campaign.endDate);
+      if (this.campaign.endDate) {
+        const isThereAnEndDate = compareYears(this.campaign.endDate);
 
-      return isThereAnEndDate ? `${this.$options.filters.timeConverterToDate(this.campaign.startDate)
-      }-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}` : `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
+        return isThereAnEndDate
+          ? `${this.$options.filters.timeConverterToDate(this.campaign.startDate)}-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}`
+          : `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
+      }
+      return `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
     },
     campaignCountryName() {
       return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];

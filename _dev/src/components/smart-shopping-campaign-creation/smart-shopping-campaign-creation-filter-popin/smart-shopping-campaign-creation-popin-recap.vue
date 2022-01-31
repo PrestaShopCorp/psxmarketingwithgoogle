@@ -141,10 +141,13 @@ export default {
       return this.totalProducts;
     },
     endDate() {
-      const isThereAnEndDate = compareYears(this.newCampaign.endDate);
+      if (this.newCampaign.endDate) {
+        const isThereAnEndDate = compareYears(this.newCampaign.endDate);
 
-      return isThereAnEndDate
-        ? this.$options.filters.timeConverterToDate(this.newCampaign.endDate) : null;
+        return isThereAnEndDate
+          ? this.$options.filters.timeConverterToDate(this.newCampaign.endDate) : null;
+      }
+      return '-';
     },
   },
 
