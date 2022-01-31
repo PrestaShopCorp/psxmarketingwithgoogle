@@ -76,7 +76,8 @@ export default {
   },
   methods: {
     dimensionHasBeenSelected(obj) {
-      this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', checkAndUpdateDimensionStatus(deepCheckDimension(obj.newDimension, false)));
+      const dimension = obj.reset ? deepCheckDimension(obj.newDimension, false) : obj.newDimension;
+      this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', checkAndUpdateDimensionStatus(dimension));
     },
     stepIs(event) {
       this.step = event;
