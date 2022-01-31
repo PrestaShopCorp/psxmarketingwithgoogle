@@ -5,7 +5,7 @@ import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import cloneDeep from 'lodash.clonedeep';
-import {shallowMount} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import config, {localVue, cloneStore} from '@/../tests/init';
 
 import {initialStateApp} from '../../../.storybook/mock/state-app';
@@ -96,11 +96,89 @@ describe('smart-shopping-campaign-creation.vue - Campaign edition', () => {
       data() {
         return campaignWithoutUnhandledFilters;
       },
+      computed: {
+        filtersChosen() {
+          return [
+            {
+              dimension: 'categories',
+              values: ['42'],
+            },
+          ];
+        },
+        productsHaveBeenApprovedByGoogle() {
+          return true;
+        },
+      },
     });
   });
 
   it('should render the component', () => {
     expect(wrapper.isVisible()).toBe(true);
+  });
+
+  it('shows the button "Select filters" as filters are chosen', () => {
+    expect(wrapper.find('#campaign-products-filter-fieldset b-button').isVisible()).toBe(true);
+    expect(wrapper.find('#campaign-products-filter-fieldset b-button').attributes('disabled')).toBeFalsy();
+  });
+});
+
+describe('smart-shopping-campaign-creation.vue - Campaign edition - No active products', () => {
+  let store;
+  let wrapper;
+  const mockRoute = {
+    name: 'campaign-edition',
+  };
+  beforeEach(() => {
+    store = cloneStore();
+
+    store.modules.productFeed.state.app = {
+      ...cloneDeep(initialStateApp),
+    };
+    store.modules.productFeed.state.googleAds = {
+      ...cloneDeep(googleAdsAccountChosen),
+    };
+
+    store.modules.smartShoppingCampaigns.state.sscAvailableFilters = availableFilters;
+
+    wrapper = shallowMount(SmartShoppingCampaignCreation, {
+      localVue,
+      store: new Vuex.Store(store),
+      directives: {
+        'b-tooltip': VBTooltip,
+      },
+      ...config,
+      stubs: {
+        VueShowdown: true,
+      },
+      mocks: {
+        $route: mockRoute,
+      },
+      data() {
+        return campaignWithoutUnhandledFilters;
+      },
+      computed: {
+        filtersChosen() {
+          return [
+            {
+              dimension: 'categories',
+              values: ['42'],
+            },
+          ];
+        },
+        productsHaveBeenApprovedByGoogle() {
+          return false;
+        },
+      },
+    });
+  });
+
+  it('should render the component', () => {
+    expect(wrapper.isVisible()).toBe(true);
+  });
+
+  it('shows & disables the button "Select filters"', () => {
+    expect(wrapper.find('#campaign-products-filter-fieldset b-button').isVisible()).toBe(true);
+    expect(wrapper.find('#campaign-products-filter-fieldset b-button').attributes('disabled')).toBeTruthy();
   });
 });
 
@@ -135,6 +213,19 @@ describe('smart-shopping-campaign-creation.vue - Campaign edition - Unhandled fi
       },
       data() {
         return campaignWithUnhandledFilters;
+      },
+      computed: {
+        filtersChosen() {
+          return [
+            {
+              dimension: 'categories',
+              values: ['42'],
+            },
+          ];
+        },
+        productsHaveBeenApprovedByGoogle() {
+          return true;
+        },
       },
     });
   });
