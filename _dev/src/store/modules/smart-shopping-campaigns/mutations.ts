@@ -19,9 +19,10 @@
 
 import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {
+  CampaignStatusToggle,
+} from '@/enums/reporting/CampaignStatus';
 import MutationsTypes from './mutations-types';
-import i18n from '../../../lib/i18n';
 import {
   CampaignPerformances,
   DailyresultChart,
@@ -35,82 +36,114 @@ import {
   CampaignStatusPayload,
   DimensionChosen,
 } from './state';
-import {
-  addPropertiesToDimension,
-
-} from '@/utils/SSCFilters';
+import {addPropertiesToDimension} from '@/utils/SSCFilters';
 
 export default {
-  [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](state: LocalState, payload: boolean) {
+  [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](
+    state: LocalState,
+    payload: boolean,
+  ) {
     state.tracking = payload;
   },
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG_ALREADY_EXIST](
-    state: LocalState, payload: boolean,
+    state: LocalState,
+    payload: boolean,
   ) {
     state.tagAlreadyExists = payload;
   },
   [MutationsTypes.SET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
-    state: LocalState, payload: ConversionAction[],
+    state: LocalState,
+    payload: ConversionAction[],
   ) {
     state.conversionActions = payload;
   },
 
   // request mutations
-  [MutationsTypes.SET_REPORTING_PERIOD_SELECTED](state: LocalState, payload: ReportingPeriod) {
+  [MutationsTypes.SET_REPORTING_PERIOD_SELECTED](
+    state: LocalState,
+    payload: ReportingPeriod,
+  ) {
     state.reporting.request.dateRange.periodSelected = payload;
   },
-  [MutationsTypes.SET_REPORTING_DATES](state: LocalState, payload: Record<string, string>) {
-    state.reporting.request.dateRange = {...state.reporting.request.dateRange, ...payload};
+  [MutationsTypes.SET_REPORTING_DATES](
+    state: LocalState,
+    payload: Record<string, string>,
+  ) {
+    state.reporting.request.dateRange = {
+      ...state.reporting.request.dateRange,
+      ...payload,
+    };
   },
 
-  [MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPE](state: LocalState, payload: KpiType) {
+  [MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPE](
+    state: LocalState,
+    payload: KpiType,
+  ) {
     state.reporting.request.dailyResultType = payload;
   },
   [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING](
-    state: LocalState, payload: OrderByType,
+    state: LocalState,
+    payload: OrderByType,
   ) {
     state.reporting.request.ordering.campaignsPerformances = payload;
   },
   [MutationsTypes.SET_REPORTING_PRODUCT_PERFORMANCES_ORDERING](
-    state: LocalState, payload: OrderByType,
+    state: LocalState,
+    payload: OrderByType,
   ) {
     state.reporting.request.ordering.productsPerformances = payload;
   },
   [MutationsTypes.SET_REPORTING_PRODUCT_PARTITIONS_PERFORMANCES_ORDERING](
-    state: LocalState, payload: OrderByType,
+    state: LocalState,
+    payload: OrderByType,
   ) {
     state.reporting.request.ordering.filtersPerformances = payload;
   },
 
   // errors mutations
   [MutationsTypes.SET_REPORTING_KPIS_ERROR](
-    state: LocalState, payload: boolean,
+    state: LocalState,
+    payload: boolean,
   ) {
     state.reporting.errorsList.kpis = payload;
   },
   [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR](
-    state: LocalState, payload: boolean,
+    state: LocalState,
+    payload: boolean,
   ) {
     state.reporting.errorsList.campaignsPerformancesSection = payload;
   },
   [MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR](
-    state: LocalState, payload: boolean,
+    state: LocalState,
+    payload: boolean,
   ) {
     state.reporting.errorsList.productsPerformancesSection = payload;
   },
   [MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR](
-    state: LocalState, payload: boolean,
+    state: LocalState,
+    payload: boolean,
   ) {
     state.reporting.errorsList.filtersPerformancesSection = payload;
   },
-  [MutationsTypes.SET_FILTERS_CHOSEN](
-    state: LocalState, payload,
-  ) {
+  [MutationsTypes.SET_FILTERS_CHOSEN](state: LocalState, payload) {
     state.filtersChosen = payload;
   },
   [MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS](
-    state: LocalState, payload: {list: Array<DimensionChosen>, search: string},
+    state: LocalState,
+    payload: { list: Array<DimensionChosen>; search: string },
   ) {
+    if (state.filtersChosen.length && state.sscAvailableFilters.length) {
+      const dimensionToUpdate = state.sscAvailableFilters.findIndex(
+        (dim) => dim.id === state.filtersChosen[0].dimension,
+      );
+      state.sscAvailableFilters.splice(
+        dimensionToUpdate,
+        1,
+        state.dimensionChosen,
+      );
+
+      return;
+    }
     if (state.sscAvailableFilters.length) {
       state.sscAvailableFilters = [];
     }
@@ -121,21 +154,25 @@ export default {
       }
       const resp: DimensionChosen = {
         id: dimensionName,
+        name: dimensionName,
         checked: false,
         indeterminate: false,
         children: addPropertiesToDimension(payload.list[dimensionName]),
       };
       state.sscAvailableFilters.push(resp);
     });
-    const findDimension = state.sscAvailableFilters
-      .findIndex((el: DimensionChosen) => el?.id === state.dimensionChosen?.id);
-      // If dimension has been chosen by user, we check if there are some filters checked
-      // and we add them to API's response
+    const findDimension = state.sscAvailableFilters.findIndex(
+      (el: DimensionChosen) => el?.id === state.dimensionChosen?.id,
+    );
+    // If dimension has been chosen by user, we check if there are some filters checked
+    // and we add them to API's response
     if (findDimension !== -1) {
       const checkedFilters = state.dimensionChosen.children?.filter(
-        (fil: DimensionChosen) => fil.checked === true);
+        (fil: DimensionChosen) => fil.checked === true,
+      );
       state.dimensionChosen.children = checkedFilters?.concat(
-        state.sscAvailableFilters[findDimension].children as DimensionChosen[]);
+        state.sscAvailableFilters[findDimension].children as DimensionChosen[],
+      );
 
       //  remove duplicate in case API sent all filters and user has some already checked
       state.dimensionChosen.children = state.dimensionChosen?.children?.reduce(
@@ -145,7 +182,9 @@ export default {
             return acc.concat([current]);
           }
           return acc;
-        }, []);
+        },
+        [],
+      );
     }
   },
   [MutationsTypes.SET_DIMENSION_CHOSEN](state: LocalState, payload) {
@@ -155,35 +194,38 @@ export default {
   [MutationsTypes.SET_REPORTING_KPIS](state: LocalState, payload: Kpis) {
     state.reporting.results.kpis = payload;
   },
-  [MutationsTypes.SET_REPORTING_DAILY_RESULTS](state: LocalState, payload: DailyresultChart) {
+  [MutationsTypes.SET_REPORTING_DAILY_RESULTS](
+    state: LocalState,
+    payload: DailyresultChart,
+  ) {
     state.reporting.results.dailyResultChart = payload;
   },
   [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS](
     state: LocalState,
     payload: Array<CampaignPerformances>,
   ) {
-    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(...payload);
+    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(
+      ...payload,
+    );
   },
   [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS](
     state: LocalState,
     payload: Array<CampaignPerformances>,
   ) {
-    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(...payload);
+    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(
+      ...payload,
+    );
   },
   [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN](
     state: LocalState,
-    payload: string|null,
+    payload: string | null,
   ) {
     state.reporting.results.campaignsPerformancesSection.nextPageToken = payload;
   },
-  [MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES](
-    state: LocalState,
-  ) {
+  [MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES](state: LocalState) {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
-  [MutationsTypes.RESET_SSC_LIST](
-    state: LocalState,
-  ) {
+  [MutationsTypes.RESET_SSC_LIST](state: LocalState) {
     state.campaigns = [];
   },
   [MutationsTypes.SET_SSC_LIST_ORDERING](
@@ -207,16 +249,28 @@ export default {
   [MutationsTypes.SAVE_NEW_SSC](state: LocalState, payload: CampaignObject) {
     state.campaigns.push(payload);
   },
-  [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](state: LocalState, payload: boolean) {
+  [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](
+    state: LocalState,
+    payload: boolean,
+  ) {
     state.errorCampaignNameExists = payload;
   },
-  [MutationsTypes.SAVE_SSC_LIST](state: LocalState, payload: Array<CampaignObject>) {
+  [MutationsTypes.SAVE_SSC_LIST](
+    state: LocalState,
+    payload: Array<CampaignObject>,
+  ) {
     state.campaigns.push(...payload);
   },
-  [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](state: LocalState, payload: string) {
+  [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](
+    state: LocalState,
+    payload: string,
+  ) {
     state.tokenNextPageCampaignList = payload;
   },
-  [MutationsTypes.UPDATE_SSC_STATUS](state: LocalState, payload: CampaignStatusPayload) {
+  [MutationsTypes.UPDATE_SSC_STATUS](
+    state: LocalState,
+    payload: CampaignStatusPayload,
+  ) {
     const getScc = state.campaigns.find((el) => el.id === payload.id);
     if (getScc !== undefined) {
       getScc.status = payload.status === CampaignStatusToggle.ENABLED
@@ -230,7 +284,9 @@ export default {
       ? CampaignStatus.ELIGIBLE
       : CampaignStatus.PAUSED;
     // it's works but there are no id now in SSC object
-    const findCampaign = state.campaigns.findIndex((el) => el.id === payload.id);
+    const findCampaign = state.campaigns.findIndex(
+      (el) => el.id === payload.id,
+    );
     state.campaigns.splice(findCampaign, 1, payload);
   },
 };

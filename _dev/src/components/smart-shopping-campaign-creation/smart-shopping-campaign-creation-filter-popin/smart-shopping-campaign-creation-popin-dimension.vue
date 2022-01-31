@@ -13,7 +13,7 @@
           class="text-muted"
         >
           <i class="icon-busy icon-busy--dark mr-1" />
-          {{ $t('badge.loading') }}
+          {{ $t("badge.loading") }}
         </span>
         <div v-else>
           <div
@@ -33,10 +33,10 @@
                 class="mb-3"
               >
                 <strong class="font-weight-normal d-block">
-                  {{ oneDim.name }}
+                  {{ $t(`smartShoppingCampaignCreation.${oneDim.id}`) }}
                 </strong>
                 <span class="ps_gs-fz-12 text-secondary d-block">
-                  {{ oneDim.subtitle }}
+                  {{ $t(`smartShoppingCampaignCreation.${oneDim.id}SubTitle`) }}
                 </span>
               </b-form-radio>
             </b-form-radio-group>
@@ -54,7 +54,7 @@
         </b-button>
         <b-button
           size="sm"
-          :disabled="!dimensionChosen.name"
+          :disabled="!dimensionChosen.id"
           class="mx-1 mt-3 mt-md-0 mr-md-0"
           variant="primary"
           @click="nextStep"
@@ -67,7 +67,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'SmartShoppingCampaignCreationPopinDimension',
 

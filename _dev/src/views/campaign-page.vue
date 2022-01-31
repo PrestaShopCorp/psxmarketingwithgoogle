@@ -22,12 +22,8 @@
         v-else-if="$route.name === 'campaign-list'"
       />
       <smart-shopping-campaign-creation
-        v-else-if="$route.name === 'campaign-creation'"
-        @campaignCreated="onCampaignHasBeenCreated"
-      />
-      <smart-shopping-campaign-creation
-        v-if="$route.name === 'campaign-edition'"
-        :edit-mode="true"
+        v-else-if="$route.name === 'campaign-edition' || $route.name === 'campaign-creation'"
+        :edit-mode="$route.name === 'campaign-edition' ? true : false"
         @campaignCreated="onCampaignHasBeenCreated"
       />
     </b-skeleton-wrapper>
@@ -95,6 +91,7 @@ export default {
       await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
       await this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
       await this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
+      await this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(

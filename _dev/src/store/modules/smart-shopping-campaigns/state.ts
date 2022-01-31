@@ -47,6 +47,8 @@ export interface FiltersChosen {
 }
 export interface DimensionChosen {
   name?: string;
+    // TODO: Remove this in a near future as this will removed from the API
+  localizedName?: string;
   subtitle?: string;
   id?: string;
   checked?: boolean;

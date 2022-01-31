@@ -32,8 +32,6 @@ export const availableFilters = [{
         {
           status: "ACTIVE",
           id: "1",
-          countryCode: "FR",
-          languageCode: "fr",
           name: "Animaux et articles pour animaux de compagnie",
           checked: false,
           indeterminate: true,
@@ -64,8 +62,8 @@ export const availableFilters = [{
               ]
             },
             {
-  
-  
+
+
               status: "ACTIVE",
               id: "b",
               name: "Chat",
@@ -77,8 +75,6 @@ export const availableFilters = [{
         {
           status: "ACTIVE",
           id: "8",
-          countryCode: "FR",
-          languageCode: "fr",
           name: "Arts et loisirs",
           checked: false,
           indeterminate: false,
@@ -86,12 +82,10 @@ export const availableFilters = [{
         {
           status: "ACTIVE",
           id: "166",
-          countryCode: "FR",
-          languageCode: "fr",
           name: "Vêtements et accessoires",
           checked: true,
           indeterminate: false,
-          numberOfProductsAssociated: 24,
+          numberOfProductsAssociated: 13,
           children: [
             {
               status: "ACTIVE",
@@ -105,15 +99,13 @@ export const availableFilters = [{
               id: "141",
               name: "Appareils photo, caméras et instruments d'optique",
               checked: true,
-              numberOfProductsAssociated: 12,
+              numberOfProductsAssociated: 1,
             },
           ]
         },
         {
           status: "ACTIVE",
           id: "222",
-          countryCode: "FR",
-          languageCode: "fr",
           name: "Appareils électroniques",
           checked: false,
           indeterminate: false,
@@ -121,8 +113,6 @@ export const availableFilters = [{
         {
           status: "ACTIVE",
           id: "412",
-          countryCode: "FR",
-          languageCode: "fr",
           name: "Alimentation, boissons et tabac",
           checked: false,
           indeterminate: false,
@@ -130,8 +120,6 @@ export const availableFilters = [{
         {
           status: "ACTIVE",
           id: "436",
-          countryCode: "FR",
-          languageCode: "fr",
           name: "Meubles",
           checked: false,
           indeterminate: false,
@@ -155,8 +143,6 @@ export const availableFilters = [{
       children: [
         {
           id:"a",
-          countryCode: "FR",
-          languageCode: "fr",
           name: "Chien",
           checked: true,
           indeterminate: false,
@@ -181,8 +167,6 @@ export const availableFilters = [{
 
           status: "ACTIVE",
           id: "b",
-          countryCode: "FR",
-          languageCode: "fr",
           name: "Chat",
           checked: true,
           indeterminate: false,
@@ -211,8 +195,6 @@ export const availableFilters = [{
         {
           status: "ACTIVE",
           id: "111",
-          countryCode: "FR",
-          languageCode: "fr",
           name: "Entreprise et industrie",
           checked: true,
           numberOfProductsAssociated: 12,
@@ -220,8 +202,6 @@ export const availableFilters = [{
         {
           status: "ACTIVE",
           id: "141",
-          countryCode: "FR",
-          languageCode: "fr",
           name: "Appareils photo, caméras et instruments d'optique",
           checked: true,
           numberOfProductsAssociated: 12,
@@ -275,6 +255,10 @@ export const campaignWithUnhandledFilters = {
     },
   ],
   hasUnhandledFilters: true,
+};
+export const campaignWithoutUnhandledFilters = {
+ ...campaignWithUnhandledFilters,
+  hasUnhandledFilters: false,
 };
 
 export default sscDefault;
