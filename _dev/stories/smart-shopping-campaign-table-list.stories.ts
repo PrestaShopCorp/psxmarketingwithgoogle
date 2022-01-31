@@ -1,6 +1,5 @@
 import SmartShoppingCampaignTableList from '../src/components/smart-shopping-campaign/smart-shopping-campaign-table-list.vue'
 import {campaigns, campaignsEmpty} from '../.storybook/mock/campaigns-list.js';
-import compareYears from './../src/utils/CompareYears';
 
 export default {
   title: 'Smart Shopping Campaign/Campaigns\'s list',
