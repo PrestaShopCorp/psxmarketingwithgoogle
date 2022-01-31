@@ -218,7 +218,7 @@ EditionWithUnhandledFilters.args = {
   editMode: true,
   mounted(this: any) {
     this.$store.state.productFeed.validationSummary.activeItems = 2;
-    this.$refs.sscCreation.$data = Object.assign(
+    Object.assign(
       this.$refs.sscCreation.$data,
       campaignWithUnhandledFilters
     );
