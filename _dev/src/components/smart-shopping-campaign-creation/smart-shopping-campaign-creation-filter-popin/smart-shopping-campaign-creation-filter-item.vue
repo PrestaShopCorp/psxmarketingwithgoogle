@@ -150,7 +150,7 @@ export default {
     },
     idAndName(item) {
       if (this.$store.state.smartShoppingCampaigns.dimensionChosen.id === 'conditions') {
-        return item.id !== item.name ? `${item.id} - ${item.name}` : this.$t(`smartShoppingCampaignCreation.productConditions.${item.name}`);
+        return this.$t(`smartShoppingCampaignCreation.productConditions.${item.name}`);
       }
       return item.id !== item.name ? `${item.id} - ${item.name}` : item.name;
     },
