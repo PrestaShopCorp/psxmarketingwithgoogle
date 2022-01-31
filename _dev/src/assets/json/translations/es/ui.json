@@ -19,6 +19,7 @@
     "XIsMandatory": "{0} es obligatorio.",
     "unableToFetchData": "We were unable to fetch datas, please try again later.",
     "searchByX": "Buscar por {0}",
+    "search": "Search",
     "legendCreateNewAccount": "También tienes la posibilidad de crear una nueva cuenta en pocos pasos:",
     "notAvailable": "Not available",
     "min": "min.",
@@ -494,11 +495,10 @@
       "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
     },
     "labelSelectedDimension": "Valor de la dimensión seleccionada",
-    "labelDimensionValue": "Valor de la dimensión",
     "nbDimensionSelected": "Ninguna dimensión seleccionada | {0} dimensión seleccionada | {0} dimensiones seleccionadas",
     "nbValuesSelected": "Ningún valor seleccionado | {0} valor seleccionado | {0} valores seleccionados",
-    "selectProductsTitle": "Selecciona los productos",
-    "selectProductsSubtitle": "Selecciona los filtros que quieres añadir en tu campaña de Google Ads",
+    "selectProductsTitle": "Choose a product filter",
+    "selectProductsSubtitle": "Smart Shopping Campaign can only have one dimension with one or multiple values.",
     "remarketingNote": "**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.",
     "toggleNewConversionTag": "Establecer nuevas etiquetas de seguimiento de la conversión en mi sitio",
     "toggleNewConversionTag2": "We will create the following conversion tags : Page view, Purchase, Add to basket",
@@ -506,10 +506,16 @@
     "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
     "nbProductsSelected": "No product selected | {0} product selected | {0} products selected",
-    "categories": "Categories",
-    "brands": "Brands",
-    "products": "Products",
-    "conditions": "Conditions"
+    "categories": "Category",
+    "categoriesSubTitle": "Google-defined product category for your product (ex: Apparel & Accessories > Clothing > Coats & Jackets)",
+    "brands": "Brand",
+    "brandsSubTitle": "Product’s brand name",
+    "products": "Product ID",
+    "productsSubTitle": "Your product’s unique identifier",
+    "conditions": "Product Condition",
+    "conditionsSubTitle": "The condition of your product at time of sale (ex: New, used or refurbished)",
+    "popinTitle": "Campaign’s products filters",
+    "xProducts": "{0} Products | {0} Product | {0} Products"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Rendimiento de la campaña",
@@ -569,6 +575,18 @@
       "invalidDatafeedLocation": "Ubicación del archivo del feed de datos no válida",
       "incorrectPrice": "Precios inexistentes o incorrectos"
     }
+  },
+  "syncTimeline": {
+    "title1": "Products Extraction",
+    "subtitle1": "Now or later, depends on your sync settings",
+    "title2": "Products Verification",
+    "subtitle2": "Filtering products with missing information",
+    "title3": "Export to Google",
+    "subtitle3": "Sending filtered products",
+    "title4": "Google Review",
+    "subtitle4": "Compliance verification",
+    "title5": "New Sync",
+    "subtitle5": "If you update your products"
   },
   "campaignCard": {
     "title": "Crea tu campaña de Smart Shopping en unos pocos clics",
@@ -654,6 +672,11 @@
       "emptyListText": "No tienes ninguna campaña habilitada"
     }
   },
+  "notConfiguredState": {
+    "title": "Nothing configured yet !",
+    "text": "Configure your GMC to start creating campaigns with Google",
+    "cta": "Go to configuration page"
+  },
   "help": {
     "title": "Ayuda para PrestaShop Google",
     "intro": "PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across different networks like Google Search, YouTube or Gmail. Create Smart Shopping campaigns without leaving your PrestaShop dashboard and drive more traffic.",
@@ -692,6 +715,7 @@
     "continue": "Continuar",
     "disabled": "Desactivado",
     "enabled": "Activado",
+    "agree": "I agree",
     "enableFreeListing": "Activar los listados gratuitos",
     "connectAccount": "Conectar la cuenta",
     "connectingAccount": "Conectando la cuenta...",
@@ -762,6 +786,7 @@
     "removeFilter": "Eliminar el filtro | Eliminar los filtros",
     "selectAll": "Seleccionar todo",
     "deselectAll": "Deseleccionar todo",
+    "clearAll": "Clear all",
     "signInWithGoogle": "Iniciar sesión con Google",
     "viewReporting": "Ver informe",
     "pauseCampaign": "Pausar campaña",
@@ -779,7 +804,8 @@
     "select": "Select",
     "editContact": "Edit contact information",
     "noCarriers": "Take me to Carriers page",
-    "update": "Update"
+    "update": "Update",
+    "validateSelection": "Validate Selection"
   },
   "badge": {
     "free": "Gratis",
@@ -806,7 +832,8 @@
     "urlUnclaimed": "Url no reclamada",
     "urlUnverified": "Url no verificada",
     "canceled": "Cancelado",
-    "testAccount": "Prueba"
+    "testAccount": "Prueba",
+    "loading": "Loading"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "¿Desconectar tu Merchant Center?",
@@ -831,7 +858,8 @@
     "removeTag": "Eliminar la etiqueta &quot;Remarketing y conversión&quot; de mi tienda",
     "removeTagExplainations": "La eliminación de la etiqueta significa que Google ya no podrá realizar el seguimiento de tus campañas. Te recomendamos eliminar la etiqueta solamente si piensas eliminar completamente el módulo o cambiar tu cuenta. Siempre puedes añadirla tú mismo en el código de tu sitio.",
     "titleActivateTrackingSSC": "Habilitar la etiqueta de remarketing y seguimiento de la conversión",
-    "textActivateTrackingSSC": "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop."
+    "textActivateTrackingSSC": "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
+    "textConfirmCancel": "If you go back you will lose your selected values"
   },
   "tooltip": {
     "googleAccountRequired": "Requiere la configuración de la cuenta de Google",
