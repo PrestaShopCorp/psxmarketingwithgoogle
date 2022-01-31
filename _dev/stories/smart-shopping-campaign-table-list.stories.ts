@@ -1,5 +1,6 @@
 import SmartShoppingCampaignTableList from '../src/components/smart-shopping-campaign/smart-shopping-campaign-table-list.vue'
 import {campaigns, campaignsEmpty} from '../.storybook/mock/campaigns-list.js';
+import compareYears from './../src/utils/CompareYears';
 
 export default {
   title: 'Smart Shopping Campaign/Campaigns\'s list',
@@ -22,6 +23,7 @@ export const Table:any = Template.bind({});
 Table.args = {
   beforeCreate() {
     this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaigns);
+    console.log(this.$store.state.smartShoppingCampaigns.campaigns)
   },
   loading: false,
 }
@@ -36,5 +38,5 @@ Empty.args = {
   beforeCreate() {
     this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaignsEmpty);
   },
-  loading: true,
+  loading: false,
 }
