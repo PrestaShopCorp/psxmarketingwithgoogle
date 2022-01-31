@@ -517,11 +517,11 @@
     "popinTitle": "Campaign’s products filters",
     "xProducts" : "{0} Products | {0} Product | {0} Products",
     "productConditions": {
-      "unspecified" : "unspecified",
-      "unknown" : "unknown",
-      "new" : "new",
-      "refurbished" : "refurbished",
-      "used" : "used"
+      "unspecified" : "Unspecified",
+      "unknown" : "Unknown",
+      "new" : "New",
+      "refurbished" : "Refurbished",
+      "used" : "Used"
     }
   },
   "smartShoppingCampaignList": {
