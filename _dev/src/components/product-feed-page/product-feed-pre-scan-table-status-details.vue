@@ -63,6 +63,7 @@
         :filter="langSelected"
         :per-page="perPage"
         :current-page="currentPage"
+        :busy="loading"
         id="table-products"
         class="ps_gs-table-products mb-3"
         variant="light"
@@ -142,57 +143,13 @@ export default {
   components: {},
   data() {
     return {
-      loading: false,
+      // use a method for filtering with the actif lang
       countries: ['EN', 'FR'],
       langSelected: null,
       perPage: 10,
       currentPage: 1,
+      loading: false,
       items: [
-        {
-          id: 1,
-          name: 'Product 1',
-          language: 'EN',
-          image: 'product-1.jpg',
-          description: 'Product 1 description',
-          barcode: '',
-          price: '$10.00',
-        },
-        {
-          id: 2,
-          name: 'Product 2',
-          language: 'FR',
-          image: 'product-2.jpg',
-          description: 'Product 2 description',
-          barcode: '',
-          price: '$10.00',
-        },
-        {
-          id: 3,
-          name: 'Product 3',
-          language: 'FR',
-          image: 'product-3.jpg',
-          description: 'Product 3 description',
-          barcode: '',
-          price: '$10.00',
-        },
-        {
-          id: 4,
-          name: 'Product 4',
-          language: 'FR',
-          image: 'product-4.jpg',
-          description: 'Product 4 description',
-          barcode: '',
-          price: '$10.00',
-        },
-        {
-          id: 5,
-          name: 'Product 5',
-          language: 'FR',
-          image: 'product-5.jpg',
-          description: 'Product 5 description',
-          barcode: '',
-          price: '$10.00',
-        },
       ],
       fields: [
         {
@@ -227,9 +184,6 @@ export default {
     };
   },
   computed: {
-    productsStatus() {
-      return this.$store.getters['productFeed/getProductsStatus'];
-    },
     getProductBaseUrl() {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
     },
@@ -241,8 +195,21 @@ export default {
     filterByLang(row, filter) {
       return row.language === filter;
     },
+    getPreScanProducts() {
+      this.loading = true;
+      this.$store.dispatch('productFeed/GET_PREVALIDATION_PRODUCTS')
+        .then((res) => {
+          this.loading = false;
+          this.items = res;
+          // update currentPage
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
   },
   mounted() {
+    this.getPreScanProducts();
   },
 };
 </script>
