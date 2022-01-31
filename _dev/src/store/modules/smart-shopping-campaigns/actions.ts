@@ -37,6 +37,7 @@ export default {
           },
           body: JSON.stringify(payload),
         });
+
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
@@ -69,10 +70,12 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
+
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
+
       if (json && json.campaignName && payload.id !== json.id) {
         commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       }
@@ -94,6 +97,7 @@ export default {
         tagSnippet: remarketingSnippet,
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -111,6 +115,7 @@ export default {
         action: 'getRemarketingTagsStatus',
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -124,6 +129,7 @@ export default {
     const regex = new RegExp('AW-[0-9]+');
     const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
     const idTag = regex.exec(remarketingSnippet);
+
     if (!idTag || !idTag.length) {
       return;
     }
@@ -135,6 +141,7 @@ export default {
         tag: idTag[0],
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -152,6 +159,7 @@ export default {
         action: 'getConversionActionLabels',
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -174,6 +182,7 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
+
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
@@ -195,6 +204,7 @@ export default {
         conversionActions,
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -330,6 +340,7 @@ export default {
     }
 
     const result = await response.json();
+
     if (isNewRequest) {
       commit('RESET_REPORTING_CAMPAIGNS_PERFORMANCES');
     }
@@ -421,6 +432,7 @@ export default {
   },
   async [ActionsTypes.GET_SSC_LIST]({commit, state, rootState}, isNewRequest = true) {
     const query = new URLSearchParams();
+
     if (state.campaignsOrdering && state.campaignsOrdering.duration) {
       query.append('order[startDate]', state.campaignsOrdering.duration);
     }
@@ -439,10 +451,12 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
+
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
+
       if (isNewRequest) {
         commit(MutationsTypes.RESET_SSC_LIST);
       }
@@ -465,6 +479,7 @@ export default {
           status: payload.status,
         }),
       });
+
     if (!resp.ok) {
       throw new HttpClientError(resp.statusText, resp.status);
     }
@@ -483,6 +498,7 @@ export default {
         },
         body: JSON.stringify(payload),
       });
+
     if (!resp.ok) {
       throw new HttpClientError(resp.statusText, resp.status);
     }
@@ -495,6 +511,7 @@ export default {
       language_code: window.i18nSettings.isoCode,
       country_code: rootState.app.psxMtgWithGoogleDefaultShopCountry,
     });
+
     if (search) {
       query.append('search_query', search);
     }
@@ -507,6 +524,7 @@ export default {
           Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
         },
       });
+
     if (!resp.ok) {
       throw new HttpClientError(resp.statusText, resp.status);
     }

@@ -117,6 +117,7 @@ export default {
     highlightSearch(str) {
       /** Highlight search terms */
       const regex = new RegExp(`(${this.searchString})`, 'gi');
+
       return str.replace(regex, '<strong>$1</strong>');
     },
   },

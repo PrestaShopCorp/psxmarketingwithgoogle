@@ -164,6 +164,7 @@ export default {
     const findDimension = state.sscAvailableFilters.findIndex(
       (el: DimensionChosen) => el?.id === state.dimensionChosen?.id,
     );
+
     // If dimension has been chosen by user, we check if there are some filters checked
     // and we add them to API's response
     if (findDimension !== -1) {
@@ -178,6 +179,7 @@ export default {
       state.dimensionChosen.children = state.dimensionChosen?.children?.reduce(
         (acc: DimensionChosen[], current) => {
           const filterExists = acc.find((item) => item.id === current.id);
+
           if (!filterExists) {
             return acc.concat([current]);
           }
@@ -272,6 +274,7 @@ export default {
     payload: CampaignStatusPayload,
   ) {
     const getScc = state.campaigns.find((el) => el.id === payload.id);
+
     if (getScc !== undefined) {
       getScc.status = payload.status === CampaignStatusToggle.ENABLED
         ? CampaignStatus.ELIGIBLE

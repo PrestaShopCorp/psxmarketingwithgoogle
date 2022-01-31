@@ -66,6 +66,7 @@ export default {
   methods: {
     async checkForInstalledVersion() {
       const res = await this.$store.dispatch('app/GET_MODULES_VERSIONS', this.moduleName);
+
       if (!res.version) {
         return;
       }

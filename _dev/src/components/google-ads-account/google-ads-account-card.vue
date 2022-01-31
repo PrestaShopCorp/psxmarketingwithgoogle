@@ -308,6 +308,7 @@ export default {
       if (this.googleAdsAccountSelectionOptions && this.googleAdsAccountSelectionOptions[index]) {
         const ga = this.googleAdsAccountSelectionOptions[index];
         const name = ga.name || '';
+
         return name ? `${ga.id} - ${name}` : ga.id;
       }
       return null;

@@ -32,6 +32,7 @@ const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map
       return countriesSelectionOptions[i].code;
     }
   }
+
   return country;
 });
 
@@ -52,6 +53,7 @@ export default {
         },
       },
       );
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -80,6 +82,7 @@ export default {
           Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
         },
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -154,6 +157,7 @@ export default {
         },
         body: JSON.stringify(newSettings),
       });
+
       if (!response.ok) {
         commit(MutationsTypes.API_ERROR, true);
         throw new HttpClientError(response.statusText, response.status);
@@ -178,6 +182,7 @@ export default {
         action: 'getCarrierValues',
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -215,6 +220,7 @@ export default {
       const deliveryDetailsSavedInLocalStorage = deliveryFromStorage.find((c : DeliveryDetail) => (
         (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
       ));
+
       if (deliveryDetailsSavedInLocalStorage) {
         return {
           ...deliveryDetailsStructure,
@@ -225,6 +231,7 @@ export default {
       const deliveryDetailsSavedOnAPI = state.settings.deliveryDetails.find(
         (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === carrierFromShop.carrierId
                 && carrierFromShop.country === deliveryDetail.country);
+
       if (deliveryDetailsSavedOnAPI) {
         return {
           ...deliveryDetailsStructure,
@@ -283,6 +290,7 @@ export default {
           Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
         },
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -303,6 +311,7 @@ export default {
         action: 'getProductsReadyToSync',
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -320,10 +329,12 @@ export default {
         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
       },
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
     const result = await response.json();
+
     return result;
   },
   async [ActionsTypes.REQUEST_SYNCHRONISATION]({rootState}, full = false) {
@@ -335,6 +346,7 @@ export default {
         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
       },
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -353,6 +365,7 @@ export default {
         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
       },
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -365,6 +378,7 @@ export default {
         action: 'getShopAttributes',
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -375,6 +389,7 @@ export default {
   },
   async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
     const getMappingFromStorage = localStorage.getItem('productFeed-attributeMapping');
+
     if (getMappingFromStorage !== null) {
       commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, JSON.parse(getMappingFromStorage || '{}'));
       return;
@@ -388,6 +403,7 @@ export default {
           Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
         },
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -400,6 +416,7 @@ export default {
   },
   async [ActionsTypes.REQUEST_PRODUCT_CATEGORIES_CHANGED]({rootState, commit}, category) {
     let getSelectedCtg = rootState.productFeed.selectedProductCategories;
+
     if (category === Categories.NONE) {
       getSelectedCtg = getSelectedCtg.filter((cat) => cat === Categories.NONE);
     }

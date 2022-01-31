@@ -21,6 +21,7 @@ export function addPropertiesToDimension(
       numberOfProductsAssociated: oneFilter.numberOfProductsAssociated,
     };
   });
+
   return finalDimension;
 }
 
@@ -45,6 +46,7 @@ export function filterUncheckedSegments(source: DimensionChosen) {
 
 export function returnChildrenIds(source: DimensionChosen) {
   let values: string[] = [];
+
   if (!source.children && source.id) {
     values.push(source.id);
   }
@@ -98,6 +100,7 @@ export function getFilters(arg, final) {
 
 export function returnCountProducts(source: DimensionChosen): number {
   let total = 0;
+
   if (!source.checked && !source.indeterminate) {
     return total;
   }

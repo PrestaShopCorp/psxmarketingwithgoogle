@@ -70,6 +70,7 @@ export default {
     getters,
     rootState) : Array<string> | null {
     const targetCountriesFromLocalStorage = localStorage.getItem('productFeed-targetCountries');
+
     if (targetCountriesFromLocalStorage) {
       state.settings.targetCountries = JSON.parse(targetCountriesFromLocalStorage);
     }
@@ -83,6 +84,7 @@ export default {
   },
   [GettersTypes.GET_PRODUCT_CATEGORIES_SELECTED](state: LocalState) : Array<String> {
     const getCategoriesFromLocalStorage = localStorage.getItem('selectedProductCategories');
+
     if (getCategoriesFromLocalStorage) {
       state.selectedProductCategories = JSON.parse(getCategoriesFromLocalStorage);
     }

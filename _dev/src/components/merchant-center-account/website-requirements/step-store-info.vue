@@ -381,6 +381,7 @@ export default {
         && this.shopInformations.store.postalCode
         && this.shopInformations.store.locality
       );
+
       if (this.shopInformations.store.region !== undefined
         && !this.shopInformations.store.region) {
         validate = false;

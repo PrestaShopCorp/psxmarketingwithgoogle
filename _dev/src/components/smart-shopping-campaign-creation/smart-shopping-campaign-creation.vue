@@ -447,6 +447,7 @@ export default {
     },
     campaignDailyBudgetFeedback() {
       const regex = /^[0-9]+([.][0-9]{0,2})?$/g;
+
       if (
         this.campaignDailyBudget === null
         || this.campaignDailyBudget === ''
@@ -501,9 +502,11 @@ export default {
           style: 'currency',
           currency: this.currency,
         });
+
         return currencyFormatted.replace(/[ .,0]*/, '');
       } catch (error) {
         const currency = symbols.find((c) => c.currency === this.currency);
+
         return currency ? currency.symbol : '';
       }
     },
@@ -612,6 +615,7 @@ export default {
     setInterfaceForEdition() {
       let {endDate} = this.foundSsc;
       const todayYear = new Date().getFullYear();
+
       if (new Date(endDate).getFullYear() - 10 > todayYear) {
         endDate = null;
       }

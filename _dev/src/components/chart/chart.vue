@@ -56,6 +56,7 @@ export default {
       deep: true,
       handler() {
         const chart = Chart.getChart(this.$refs.chartRef.getContext('2d'));
+
         if (chart !== undefined) {
           chart.data = this.data;
           chart.destroy();

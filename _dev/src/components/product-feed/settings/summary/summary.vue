@@ -212,6 +212,7 @@ export default {
       // Return how many hours left before next sync
       const now = dayjs();
       const nextSync = dayjs(this.nextSyncDate);
+
       return dayjs.duration(nextSync.diff(now)).hours();
     },
     nextSyncDate() {
