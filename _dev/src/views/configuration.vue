@@ -43,6 +43,7 @@ export default defineComponent({
   },
   mounted() {
     const canDisplayLanding = JSON.parse(localStorage.getItem('canDisplayLanding'));
+
     if (canDisplayLanding === false) {
       this.displayLandingPage = false;
     }

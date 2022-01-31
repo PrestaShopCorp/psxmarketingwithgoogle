@@ -101,6 +101,7 @@ export default {
     state.attributesData.forEach((data, indexToDelete) => {
       // remove deleted attributes if new call without total refresh
       const find = payload.findIndex((i) => i.name === data.name);
+
       if (find === -1) {
         state.attributesData.splice(indexToDelete, 1);
       }
@@ -109,6 +110,7 @@ export default {
     // remove duplicates attributes if new call without total refresh
     state.attributesData = state.attributesData.reduce((acc: any, current: AttributesInfos) => {
       const x = acc.find((item) => item.name === current.name);
+
       if (!x) {
         return acc.concat([current]);
       }
@@ -143,6 +145,7 @@ export default {
           name: value.id,
           type: value.type,
         }));
+
         if (findAttr) {
           findAttr.mapped = changeMappingObj;
         }

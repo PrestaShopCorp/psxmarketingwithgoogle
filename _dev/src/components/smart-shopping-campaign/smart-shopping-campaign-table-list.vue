@@ -165,9 +165,11 @@ export default {
     campaignList() {
       const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
       const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
+
       if (searchQuery) {
         return campaigns.filter((campaign) => {
           const nameMatch = campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase());
+
           return nameMatch;
         });
       }
@@ -209,6 +211,7 @@ export default {
     sortByType(headerType) {
       // create new object for satisfy deep getter of vueJS
       const newOrderDirection = {...this.queryOrderDirection};
+
       if (this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING) {
         newOrderDirection[headerType] = QueryOrderDirection.DESCENDING;
       } else {
@@ -239,6 +242,7 @@ export default {
       }
       const body = document.getElementsByClassName('table-with-maxheight')[0];
       const token = this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
+
       if (body.scrollTop >= body.scrollHeight - body.clientHeight
       && body.scrollTop > 0
       && token !== null) {

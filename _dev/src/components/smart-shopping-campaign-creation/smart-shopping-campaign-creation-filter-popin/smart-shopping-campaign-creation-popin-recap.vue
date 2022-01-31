@@ -142,6 +142,7 @@ export default {
     },
     endDate() {
       const isThereAnEndDate = compareYears(this.newCampaign.endDate);
+
       return isThereAnEndDate
         ? this.$options.filters.timeConverterToDate(this.newCampaign.endDate) : null;
     },

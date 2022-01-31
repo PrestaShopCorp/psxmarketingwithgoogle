@@ -31,6 +31,7 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
+
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
@@ -54,6 +55,7 @@ export default {
             enabled,
           }),
         });
+
       if (!resp.ok) {
         commit(MutationsTypes.SET_ERROR_API, true);
         throw new HttpClientError(resp.statusText, resp.status);

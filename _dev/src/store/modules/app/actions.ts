@@ -36,6 +36,7 @@ export default {
           action: 'retrieveFaq',
         }),
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -59,6 +60,7 @@ export default {
           action: 'getDebugData',
         }),
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -106,6 +108,7 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
+
       return resp.json();
     } catch (error) {
       console.log(error);
@@ -122,10 +125,12 @@ export default {
           moduleName,
         }),
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
+
       return json;
     } catch (error) {
       console.error(error);

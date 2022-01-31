@@ -124,6 +124,7 @@ export default {
 
     formatToDisplay() {
       const result = this.attributesChecked.map((e) => this.displayAttributeOption(e));
+
       return result.length ? result.join(', ') : this.$t('attributesMapping.options.notAvailable');
     },
   },
