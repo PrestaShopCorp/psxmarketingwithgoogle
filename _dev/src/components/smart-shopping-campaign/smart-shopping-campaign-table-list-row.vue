@@ -83,8 +83,10 @@ export default {
     campaignDuration() {
       if (this.campaign.endDate) {
         const isThereAnEndDate = compareYears(this.campaign.endDate);
-        return isThereAnEndDate ? `${this.$options.filters.timeConverterToDate(this.campaign.startDate)
-        }-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}` : `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
+
+        return isThereAnEndDate
+          ? `${this.$options.filters.timeConverterToDate(this.campaign.startDate)}-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}`
+          : `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
       }
       return `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
     },
