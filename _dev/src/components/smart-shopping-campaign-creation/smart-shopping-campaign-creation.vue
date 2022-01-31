@@ -235,7 +235,7 @@
           <b-button
             data-test-id="campaign-select-filter-button"
             v-if="!campaignHasNoProductsFilter"
-            :disabled="hasUnhandledFilters"
+            :disabled="!productsHaveBeenApprovedByGoogle || hasUnhandledFilters"
             variant="primary"
             size="sm"
             class="my-3"
