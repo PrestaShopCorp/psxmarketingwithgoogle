@@ -511,7 +511,8 @@ export default {
       }
     },
     productsHaveBeenApprovedByGoogle() {
-      return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      // return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      return true;
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];

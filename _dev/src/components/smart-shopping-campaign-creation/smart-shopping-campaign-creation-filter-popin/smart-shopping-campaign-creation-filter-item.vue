@@ -38,7 +38,7 @@
     >
       <div class="d-flex w-100 justify-content-between pr-3">
         <span>
-          {{ item.id }} - {{ item.name }}
+          {{ idAndName(item) }}
         </span>
         <span class="text-secondary">
           {{ $tc(
@@ -114,6 +114,7 @@ export default {
     isFolder() {
       return this.item.children && this.item.children.length;
     },
+
   },
   methods: {
     toggle() {
@@ -146,6 +147,12 @@ export default {
 
       fillTableOfChildren(item);
       return tableOfCHildren.length;
+    },
+    idAndName(item) {
+      if (this.$store.state.smartShoppingCampaigns.dimensionChosen.id === 'conditions') {
+        return item.id !== item.name ? `${item.id} - ${item.name}` : this.$t(`smartShoppingCampaignCreation.productConditions.${item.name}`);
+      }
+      return item.id !== item.name ? `${item.id} - ${item.name}` : item.name;
     },
   },
 };
