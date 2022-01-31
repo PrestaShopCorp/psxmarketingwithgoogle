@@ -18,6 +18,7 @@
  */
 import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import MutationsTypes from './mutations-types';
+import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
 import {
   State as LocalState,
   ProductInfos,
@@ -100,6 +101,7 @@ export default {
     state.attributesData.forEach((data, indexToDelete) => {
       // remove deleted attributes if new call without total refresh
       const find = payload.findIndex((i) => i.name === data.name);
+
       if (find === -1) {
         state.attributesData.splice(indexToDelete, 1);
       }
@@ -108,6 +110,7 @@ export default {
     // remove duplicates attributes if new call without total refresh
     state.attributesData = state.attributesData.reduce((acc: any, current: AttributesInfos) => {
       const x = acc.find((item) => item.name === current.name);
+
       if (!x) {
         return acc.concat([current]);
       }
@@ -131,18 +134,18 @@ export default {
         }
       });
   },
-  [MutationsTypes.SET_ATTRIBUTES_MAPPED](state: LocalState, payload) {
+  [MutationsTypes.SET_ATTRIBUTES_MAPPED](state: LocalState, payload: AttributeResponseFromAPI[]) {
     if (payload.length) {
       return;
     }
-    const getKeys = Object.keys(payload);
-    getKeys.forEach((key) => {
+    Object.keys(payload).forEach((key) => {
       state.attributesToMap.forEach((attribute) => {
         const findAttr = attribute.fields.find((field) => field.name === key);
         const changeMappingObj = payload[key].map((value) => ({
           name: value.id,
           type: value.type,
         }));
+
         if (findAttr) {
           findAttr.mapped = changeMappingObj;
         }

@@ -22,6 +22,7 @@ Vue.filter(
       const day = a.getDate();
       const finalDay = day < 10 ? `0${day}` : day;
       const time = `${finalDay}/${finalMonth}/${year}`;
+
       return time;
     }
     return '-';
@@ -56,6 +57,7 @@ Vue.filter(
         return countriesSelectionOptions[i].country;
       }
     }
+
     return country;
   }));
 
@@ -77,6 +79,7 @@ Vue.filter(
         return countriesSelectionOptions[i].code;
       }
     }
+
     return country;
   }));
 

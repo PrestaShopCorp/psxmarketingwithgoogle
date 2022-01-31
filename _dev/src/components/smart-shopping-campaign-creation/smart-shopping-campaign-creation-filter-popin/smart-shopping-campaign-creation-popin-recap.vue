@@ -38,7 +38,7 @@
               {{ $t('smartShoppingCampaignCreation.inputDurationLabel2') }}
             </span><br>
             <span class="text-secondary">
-              {{ newCampaign.endDate | timeConverterToDate }}
+              {{ endDate }}
             </span>
           </b-col>
         </b-form-row>
@@ -100,8 +100,9 @@
 
 <script>
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
-import PsModal from '../commons/ps-modal';
+import PsModal from '../../commons/ps-modal';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import compareYears from '../../../utils/CompareYears';
 
 export default {
   name: 'SSCCreationPopinRecap',
@@ -121,6 +122,10 @@ export default {
       required: false,
       type: Boolean,
     },
+    totalProducts: {
+      required: false,
+      type: Number,
+    },
   },
 
   data() {
@@ -132,15 +137,14 @@ export default {
 
   computed: {
     nbFilters() {
-      const total = this.newCampaign.productFilters
-        .map((e) => e.values.length).reduce((a, b) => a + b, 0);
-      return `${this.$tc('smartShoppingCampaignCreation.nbProductsFiltersSelected',
-        this.newCampaign.productFilters.length,
-        [this.newCampaign.productFilters.length])
-      } - ${
-        this.$tc('smartShoppingCampaignCreation.nbValuesSelected',
-          total,
-          [total])}`;
+      // TODO also check with PM how it is supposed to be presented
+      return this.totalProducts;
+    },
+    endDate() {
+      const isThereAnEndDate = compareYears(this.newCampaign.endDate);
+
+      return isThereAnEndDate
+        ? this.$options.filters.timeConverterToDate(this.newCampaign.endDate) : null;
     },
   },
 

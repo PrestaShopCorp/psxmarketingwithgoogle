@@ -445,8 +445,10 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $typesOfSync = [];
         try {
             $sql = new DbQuery();
-            $sql->select('ets.type, ets.full_sync_finished, ets.last_sync_date');
+            $sql->select('ets.type, ets.lang_iso, ets.full_sync_finished, ets.last_sync_date');
             $sql->from('eventbus_type_sync', 'ets');
+            $sql->where('ets.id_shop = ' . (int) $this->context->shop->id);
+            $sql->orderBy('ets.last_sync_date DESC');
             $typesOfSync = \Db::getInstance()->executeS($sql);
         } catch (Exception $e) {
             $this->errorHandler->handle(

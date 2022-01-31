@@ -23,7 +23,7 @@ import {messages} from './translations';
 Vue.use(VueI18n);
 
 const {i18nSettings} = window;
-const locale = i18nSettings.isoCode ? i18nSettings.isoCode : '';
+const locale = i18nSettings?.isoCode || '';
 
 export default new VueI18n({
   locale,

@@ -31,6 +31,7 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
+
       if (!resp.ok) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
         throw new HttpClientError(resp.statusText, resp.status);
@@ -54,6 +55,7 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
+
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
@@ -64,6 +66,7 @@ export default {
         billingSettings: json.billingSettings,
       };
       const accountIsActivated = state.list.filter((camp) => camp.id === json.customer.id);
+
       if (!accountIsActivated.length || json.customer.isAccountCancelled) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'Cancelled');
         commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, customer);
@@ -104,6 +107,7 @@ export default {
           },
           body: JSON.stringify(newUser),
         });
+
       if (!resp.ok) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
         throw new HttpClientError(resp.statusText, resp.status);
@@ -140,6 +144,7 @@ export default {
         'x-correlation-id': correlationId,
       },
     });
+
     if (!response.ok) {
       console.log('dissociate failed');
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);
@@ -162,6 +167,7 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
+
       if (!resp.ok) {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
         throw new HttpClientError(resp.statusText, resp.status);
@@ -180,6 +186,7 @@ export default {
         action: 'getShopConfigurationForAds',
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }

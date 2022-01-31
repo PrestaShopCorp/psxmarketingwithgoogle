@@ -571,6 +571,7 @@ export default {
         .map((account) => {
           if (account.aggregatorName) {
             const managed = account.subAccountNotManagedByPrestashop ? this.$t('mcaCard.notManaged') : null;
+
             return {...account, aggregatorManagement: managed};
           }
           return account;
@@ -582,6 +583,7 @@ export default {
           .map((account) => ({name: account.aggregatorName, info: account.aggregatorManagement})),
         'name',
       );
+
       return [
         list.filter((gmc) => !gmc.aggregatorName),
         groups.map((mca) => ({mca, gmcs: list.filter((gmc) => gmc.aggregatorName === mca.name)})),
@@ -663,6 +665,7 @@ export default {
     },
     merchantCenterWebsitePageUrl() {
       const {id} = this.$store.state.accounts.googleMerchantAccount;
+
       return {
         website: `https://merchants.google.com/mc/settings/website?a=${id}`,
         businessInfo: `https://merchants.google.com/mc/merchantprofile/businessinfo?a=${id}`,
@@ -725,6 +728,7 @@ export default {
     gmcLabel(index) {
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         const gmc = this.mcaSelectionOptions[index];
+
         return `${gmc.id} - ${gmc.name}`;
       }
       return null;

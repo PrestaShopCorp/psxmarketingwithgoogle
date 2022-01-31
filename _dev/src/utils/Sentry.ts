@@ -8,6 +8,9 @@ if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
     Vue,
     // @ts-ignore
     dsn: global.psxMktgWithGoogleDsnSentry,
+    allowUrls: [
+      'https://storage.googleapis.com/psxmarketing-cdn/',
+    ],
     tracesSampleRate: 1.0,
     logErrors: true,
     initialScope: {

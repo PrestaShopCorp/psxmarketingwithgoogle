@@ -325,6 +325,7 @@ export default {
         },
         {},
         );
+
         if (paramsFound.from === 'SVC' && paramsFound.message === 'ok') {
           this.$store.commit(`accounts/${MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE}`, paramsFound);
           if (changeAccount === true) { // don't cast here!
@@ -374,6 +375,7 @@ export default {
       this.isConnecting = true;
       try {
         const res = await this.$store.dispatch(`accounts/${ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS}`);
+
         if (errorIfNot && !res) {
           throw new Error();
         }

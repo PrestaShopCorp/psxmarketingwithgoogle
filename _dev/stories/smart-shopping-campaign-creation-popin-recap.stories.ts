@@ -1,4 +1,4 @@
-import SmartShoppingCampaignCreationPopinRecap from '../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation-popin-recap.vue'
+import SmartShoppingCampaignCreationPopinRecap from '../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin-recap.vue'
 
 export default {
   title: 'Smart Shopping Campaign/Popins/Recap',
