@@ -83,14 +83,17 @@ export default {
   methods: {
     async getDatas() {
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
-      await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
-      await this.$store.dispatch('productFeed/GET_TOTAL_PRODUCTS');
-      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
-      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
-      await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
-      await this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
-      await this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
+      await Promise.allSettled([
+        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT'),
+        this.$store.dispatch('productFeed/GET_TOTAL_PRODUCTS'),
+        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS'),
+        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS'),
+        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY'),
+        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST'),
+        this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE'),
+        this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'),
+      ]);
+      // No need to wait for this one to resolve
       this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
     },
     onOpenPopinActivateTracking() {
