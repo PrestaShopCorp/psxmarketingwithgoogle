@@ -91,7 +91,7 @@ export default {
       await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
       await this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
       await this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
-      await this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
+      this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
