@@ -39,6 +39,13 @@
       >
         {{ $t("smartShoppingCampaignCreation.alerts.hasUnhandledFilters") }}
       </b-alert>
+      <b-alert
+        v-if="errorFetchingFilters"
+        variant="danger"
+        show
+      >
+        {{ $t("smartShoppingCampaignCreation.errorFetchingFilters") }}
+      </b-alert>
       <b-form>
         <b-form-group
           id="campaign-name-fieldset"
@@ -213,7 +220,9 @@
             {{ $t("smartShoppingCampaignCreation.inputFiltersAllLabel") }}
           </b-form-radio>
           <b-form-radio
-            :disabled="!productsHaveBeenApprovedByGoogle || hasUnhandledFilters"
+            :disabled="!productsHaveBeenApprovedByGoogle
+              || hasUnhandledFilters
+              || errorFetchingFilters"
             v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
             :value="false"
@@ -232,10 +241,13 @@
               :extensions="['extended-link', 'no-p-tag']"
             />
           </template>
+
           <b-button
             data-test-id="campaign-select-filter-button"
             v-if="!campaignHasNoProductsFilter"
-            :disabled="!productsHaveBeenApprovedByGoogle || hasUnhandledFilters"
+            :disabled="!productsHaveBeenApprovedByGoogle
+              || hasUnhandledFilters
+              || errorFetchingFilters"
             variant="primary"
             size="sm"
             class="my-3"
@@ -512,6 +524,10 @@ export default {
     },
     productsHaveBeenApprovedByGoogle() {
       return this.$store.state.productFeed.validationSummary.activeItems > 0;
+    },
+    errorFetchingFilters() {
+      return !this.$store.getters['smartShoppingCampaigns/GET_SSC_DIMENSIONS_AND_FILTERS'].length
+      && this.$store.state.smartShoppingCampaigns.errorFetchingFilters;
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];

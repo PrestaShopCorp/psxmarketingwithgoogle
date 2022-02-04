@@ -18,6 +18,7 @@
  */
 
 import dayjs from 'dayjs';
+import {is} from 'date-fns/locale';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
@@ -524,11 +525,14 @@ export default {
           Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
         },
       });
-
+    if (resp.status === 500) {
+      commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: [], search, error: true});
+      return;
+    }
     if (!resp.ok) {
       throw new HttpClientError(resp.statusText, resp.status);
     }
     const json = await resp.json();
-    commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: json, search});
+    commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: json, search, error: false});
   },
 };

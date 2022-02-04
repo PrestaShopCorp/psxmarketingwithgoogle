@@ -130,8 +130,9 @@ export default {
   },
   [MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS](
     state: LocalState,
-    payload: { list: Array<DimensionChosen>; search: string },
+    payload: { list: Array<DimensionChosen>; search: string, error: boolean },
   ) {
+    state.errorFetchingFilters = payload.error;
     if (state.filtersChosen.length && state.sscAvailableFilters.length) {
       const dimensionToUpdate = state.sscAvailableFilters.findIndex(
         (dim) => dim.id === state.filtersChosen[0].dimension,
