@@ -21,6 +21,7 @@ import MutationsAppTypes from '../app/mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
+import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 import {
   Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
 } from '../../../providers/shipping-settings-provider';
@@ -128,7 +129,7 @@ export default {
   }) {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
-    const attributeMapping = JSON.parse(localStorage.getItem('productFeed-attributeMapping') || '{}');
+    const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
     commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
       name: 'attributeMapping', data: attributeMapping,
     });
@@ -209,7 +210,7 @@ export default {
       state.settings.shippingSettings,
     );
     // Load previous configuration temporarly saved on localStorage
-    const deliveryFromStorage = JSON.parse(localStorage.getItem('productFeed-deliveryDetails') || '[]');
+    const deliveryFromStorage = getDataFromLocalStorage('productFeed-deliveryDetails') ?? [];
 
     // Carriers will be all enabled by default if nothing has been configured yet
     const enableCarriersByDefault = !deliveryFromStorage.length
@@ -388,10 +389,10 @@ export default {
     return json;
   },
   async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
-    const getMappingFromStorage = localStorage.getItem('productFeed-attributeMapping');
+    const getMappingFromStorage = getDataFromLocalStorage('productFeed-attributeMapping');
 
     if (getMappingFromStorage !== null) {
-      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, JSON.parse(getMappingFromStorage || '{}'));
+      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, getMappingFromStorage);
       return;
     }
     try {

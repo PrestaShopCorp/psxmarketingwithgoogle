@@ -233,9 +233,7 @@ export default {
       );
     },
     selectedProductCategories() {
-      return localStorage.getItem('selectedProductCategories')
-        ? JSON.parse(localStorage.getItem('selectedProductCategories'))
-        : [];
+      return this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];
     },
     mandatoryAttributesNotMapped() {
       let getNumberAttrNotMapped = 0;

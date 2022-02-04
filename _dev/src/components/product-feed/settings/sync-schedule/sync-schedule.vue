@@ -65,7 +65,6 @@ export default {
   },
   methods: {
     previousStep() {
-      localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       window.scrollTo(0, 0);
     },
@@ -74,7 +73,6 @@ export default {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 5);
       window.scrollTo(0, 0);
     },
