@@ -226,7 +226,7 @@ export default {
       if (deliveryDetailsSavedInLocalStorage) {
         return {
           ...deliveryDetailsStructure,
-          deliveryDetailsSavedInLocalStorage,
+          ...deliveryDetailsSavedInLocalStorage,
         };
       }
 

@@ -70,10 +70,11 @@ export default {
     state: LocalState,
     getters,
     rootState) : Array<string> | null {
-    const targetCountriesFromLocalStorage = getDataFromLocalStorage('productFeed-targetCountries');
-    if (targetCountriesFromLocalStorage !== null) {
-      state.settings.targetCountries = targetCountriesFromLocalStorage;
+    const getCountriesFromStorage = getDataFromLocalStorage('productFeed-targetCountries');
+    if (getCountriesFromStorage !== null) {
+      state.settings.targetCountries = getCountriesFromStorage;
     }
+
     if (state.settings.targetCountries !== null) {
       return state.settings.targetCountries;
     }
