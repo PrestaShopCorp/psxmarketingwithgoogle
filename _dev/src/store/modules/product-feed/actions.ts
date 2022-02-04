@@ -390,6 +390,7 @@ export default {
   },
   async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
     const getMappingFromStorage = getDataFromLocalStorage('productFeed-attributeMapping');
+
     if (getMappingFromStorage !== null) {
       commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, getMappingFromStorage);
       return;
