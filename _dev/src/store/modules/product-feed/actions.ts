@@ -209,7 +209,13 @@ export default {
       state.settings.shippingSettings,
     );
     // Load previous configuration temporarly saved on localStorage
-    const deliveryFromStorage = JSON.parse(localStorage.getItem('productFeed-deliveryDetails') || '[]');
+    const checkDeliveryStorage = localStorage.getItem('productFeed-deliveryDetails');
+    let deliveryFromStorage = [];
+
+    // we need to check if the localStorage is empty or undefined to avoid error
+    if (checkDeliveryStorage !== 'undefined' && checkDeliveryStorage !== null) {
+      deliveryFromStorage = JSON.parse(checkDeliveryStorage);
+    }
 
     // Carriers will be all enabled by default if nothing has been configured yet
     const enableCarriersByDefault = !deliveryFromStorage.length
@@ -224,7 +230,7 @@ export default {
       if (deliveryDetailsSavedInLocalStorage) {
         return {
           ...deliveryDetailsStructure,
-          ...deliveryDetailsSavedInLocalStorage,
+          deliveryDetailsSavedInLocalStorage,
         };
       }
 
