@@ -25,6 +25,7 @@ import {
   AttributesInfos,
 } from './state';
 import GettersTypes from './getters-types';
+import getDataFromLocalStorage from '../../../utils/LocalStorage';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -69,10 +70,9 @@ export default {
     state: LocalState,
     getters,
     rootState) : Array<string> | null {
-    const targetCountriesFromLocalStorage = localStorage.getItem('productFeed-targetCountries');
-
-    if (targetCountriesFromLocalStorage) {
-      state.settings.targetCountries = JSON.parse(targetCountriesFromLocalStorage);
+    const targetCountriesFromLocalStorage = getDataFromLocalStorage('productFeed-targetCountries');
+    if (targetCountriesFromLocalStorage !== null) {
+      state.settings.targetCountries = targetCountriesFromLocalStorage;
     }
     if (state.settings.targetCountries !== null) {
       return state.settings.targetCountries;
@@ -83,10 +83,9 @@ export default {
     return null;
   },
   [GettersTypes.GET_PRODUCT_CATEGORIES_SELECTED](state: LocalState) : Array<String> {
-    const getCategoriesFromLocalStorage = localStorage.getItem('selectedProductCategories');
-
-    if (getCategoriesFromLocalStorage) {
-      state.selectedProductCategories = JSON.parse(getCategoriesFromLocalStorage);
+    const getCategoriesFromLocalStorage = getDataFromLocalStorage('selectedProductCategories');
+    if (getCategoriesFromLocalStorage !== null) {
+      state.selectedProductCategories = getCategoriesFromLocalStorage;
     }
     return state.selectedProductCategories;
   },

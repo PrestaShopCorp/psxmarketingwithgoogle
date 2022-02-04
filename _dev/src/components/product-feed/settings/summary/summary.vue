@@ -178,6 +178,7 @@ import ProductFeedCardReportCard from '../../product-feed-card-report-card';
 import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
 import TableRowMapping from '@/components/product-feed/commons/table-row-mapping';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import getDataFromLocalStorage from '@/utils/LocalStorage';
 
 dayjs.extend(duration);
 
@@ -233,9 +234,7 @@ export default {
       );
     },
     selectedProductCategories() {
-      return localStorage.getItem('selectedProductCategories')
-        ? JSON.parse(localStorage.getItem('selectedProductCategories'))
-        : [];
+      return getDataFromLocalStorage('selectedProductCategories') || [];
     },
     mandatoryAttributesNotMapped() {
       let getNumberAttrNotMapped = 0;
