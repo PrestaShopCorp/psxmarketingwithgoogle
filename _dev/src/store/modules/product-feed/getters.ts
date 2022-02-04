@@ -25,7 +25,7 @@ import {
   AttributesInfos,
 } from './state';
 import GettersTypes from './getters-types';
-import getDataFromLocalStorage from '../../../utils/LocalStorage';
+import { getDataFromLocalStorage } from '../../../utils/LocalStorage';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {

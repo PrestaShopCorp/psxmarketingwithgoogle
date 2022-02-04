@@ -1,4 +1,4 @@
-export default function getDataFromLocalStorage(key: string) {
+export function getDataFromLocalStorage(key: string) {
   try {
     const data = localStorage.getItem(key);
     if (data !== 'undefined' && data !== null) {
@@ -7,6 +7,8 @@ export default function getDataFromLocalStorage(key: string) {
     return null;
   } catch (error: any) {
     localStorage.removeItem(key);
-    throw error;
+    return null;
   }
 }
+
+export default {getDataFromLocalStorage};

@@ -21,7 +21,7 @@ import MutationsAppTypes from '../app/mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
-import getDataFromLocalStorage from '../../../utils/LocalStorage';
+import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 import {
   Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
 } from '../../../providers/shipping-settings-provider';
@@ -210,8 +210,7 @@ export default {
       state.settings.shippingSettings,
     );
     // Load previous configuration temporarly saved on localStorage
-    const checkDeliveryStorage = getDataFromLocalStorage('productFeed-deliveryDetails');
-    const deliveryFromStorage = checkDeliveryStorage === null ? [] : checkDeliveryStorage;
+    const deliveryFromStorage = getDataFromLocalStorage('productFeed-deliveryDetails') ?? [];
 
     // Carriers will be all enabled by default if nothing has been configured yet
     const enableCarriersByDefault = !deliveryFromStorage.length
