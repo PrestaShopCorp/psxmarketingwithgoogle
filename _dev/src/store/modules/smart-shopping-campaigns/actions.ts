@@ -524,6 +524,7 @@ export default {
           Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
         },
       });
+      
     if (resp.status === 500) {
       commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: [], search, error: true});
       return;
