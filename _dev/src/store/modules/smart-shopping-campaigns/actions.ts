@@ -18,7 +18,6 @@
  */
 
 import dayjs from 'dayjs';
-import {is} from 'date-fns/locale';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
