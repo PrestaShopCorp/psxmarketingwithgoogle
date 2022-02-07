@@ -33,6 +33,7 @@ export interface State {
   conversionActions: ConversionAction[];
   reporting: Reporting;
   sscAvailableFilters: DimensionChosen[];
+  errorFetchingFilters: boolean;
   dimensionChosen: DimensionChosen,
   filtersChosen: FiltersChosen[];
 }
@@ -207,6 +208,7 @@ export const state: State = {
   tagAlreadyExists: false,
   conversionActions: [],
   sscAvailableFilters: [],
+  errorFetchingFilters: false,
   dimensionChosen: {},
   filtersChosen: [],
   reporting: {

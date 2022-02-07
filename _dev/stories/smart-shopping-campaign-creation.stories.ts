@@ -224,6 +224,14 @@ EditionWithUnhandledFilters.args = {
   },
 };
 
+export const ErrorRetrievingFilters: any = Template.bind({});
+ErrorRetrievingFilters.args = {
+  mounted(this: any) {
+    this.$store.state.productFeed.validationSummary.activeItems = 2;
+    this.$store.state.smartShoppingCampaigns.errorFetchingFilters = true
+  },
+};
+
 export const PopinFiltersDimensionStep: any = Template.bind({});
 PopinFiltersDimensionStep.args = {
   beforeMount(this: any) {

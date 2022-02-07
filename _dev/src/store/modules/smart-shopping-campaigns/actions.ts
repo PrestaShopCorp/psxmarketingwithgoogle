@@ -525,10 +525,14 @@ export default {
         },
       });
 
+    if (resp.status === 500) {
+      commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: [], search, error: true});
+      return;
+    }
     if (!resp.ok) {
       throw new HttpClientError(resp.statusText, resp.status);
     }
     const json = await resp.json();
-    commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: json, search});
+    commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: json, search, error: false});
   },
 };

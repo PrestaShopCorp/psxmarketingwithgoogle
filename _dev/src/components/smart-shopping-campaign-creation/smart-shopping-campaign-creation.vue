@@ -39,6 +39,13 @@
       >
         {{ $t("smartShoppingCampaignCreation.alerts.hasUnhandledFilters") }}
       </b-alert>
+      <b-alert
+        v-if="errorFetchingFilters"
+        variant="info"
+        show
+      >
+        {{ $t("smartShoppingCampaignCreation.errorFetchingFilters") }}
+      </b-alert>
       <b-form>
         <b-form-group
           id="campaign-name-fieldset"
@@ -204,7 +211,7 @@
           label-class="h4 font-weight-600 border-0 bg-transparent"
         >
           <b-form-radio
-            :disabled="hasUnhandledFilters"
+            :disabled="hasUnhandledFilters || errorFetchingFilters"
             v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
             :value="true"
@@ -213,7 +220,9 @@
             {{ $t("smartShoppingCampaignCreation.inputFiltersAllLabel") }}
           </b-form-radio>
           <b-form-radio
-            :disabled="!productsHaveBeenApprovedByGoogle || hasUnhandledFilters"
+            :disabled="!productsHaveBeenApprovedByGoogle
+              || hasUnhandledFilters
+              || errorFetchingFilters"
             v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
             :value="false"
@@ -232,10 +241,13 @@
               :extensions="['extended-link', 'no-p-tag']"
             />
           </template>
+
           <b-button
             data-test-id="campaign-select-filter-button"
             v-if="!campaignHasNoProductsFilter"
-            :disabled="!productsHaveBeenApprovedByGoogle || hasUnhandledFilters"
+            :disabled="!productsHaveBeenApprovedByGoogle
+              || hasUnhandledFilters
+              || errorFetchingFilters"
             variant="primary"
             size="sm"
             class="my-3"
@@ -472,7 +484,11 @@ export default {
     },
     finalCampaignFilters() {
       // IMPORTANT: Do not send the filters property if the campaign has unhandled filters
+      // or if we could not retrieve them
       if (this.hasUnhandledFilters) {
+        return undefined;
+      }
+      if (this.errorFetchingFilters) {
         return undefined;
       }
       // An empty array is returned if we want to delete existing filters
@@ -512,6 +528,9 @@ export default {
     },
     productsHaveBeenApprovedByGoogle() {
       return this.$store.state.productFeed.validationSummary.activeItems > 0;
+    },
+    errorFetchingFilters() {
+      return this.$store.getters['smartShoppingCampaigns/GET_ERROR_FETCHING_FILTERS_STATUS'];
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];

@@ -9,7 +9,7 @@
           {{ $t('smartShoppingCampaignCreation.selectProductsSubtitle') }}
         </p>
         <span
-          v-if="!availableDimensions.length"
+          v-if="!availableDimensions.length && !errorFetchingFilters"
           class="text-muted"
         >
           <i class="icon-busy icon-busy--dark mr-1" />
@@ -89,6 +89,9 @@ export default {
         });
       },
     },
+    errorFetchingFilters() {
+      return this.$store.getters['smartShoppingCampaigns/GET_ERROR_FETCHING_FILTERS_STATUS'];
+    },
   },
   methods: {
     nextStep() {
@@ -96,6 +99,13 @@ export default {
     },
     confirmCancel() {
       this.$emit('confirmCancel');
+    },
+  },
+  watch: {
+    errorFetchingFilters(newVal, oldVal) {
+      if (oldVal === false && newVal === true) {
+        this.$bvModal.hide('SSCampaignCreationPopin');
+      }
     },
   },
 };

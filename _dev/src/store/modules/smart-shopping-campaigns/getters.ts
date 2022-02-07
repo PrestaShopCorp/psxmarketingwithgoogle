@@ -146,6 +146,11 @@ export default {
   ): DimensionChosen[] {
     return state.sscAvailableFilters;
   },
+  [GettersTypes.GET_ERROR_FETCHING_FILTERS_STATUS](
+    state: LocalState,
+  ): boolean {
+    return !state.sscAvailableFilters.length && state.errorFetchingFilters;
+  },
 
   // errors getters
   [GettersTypes.GET_REPORTING_KPIS_ERROR](
