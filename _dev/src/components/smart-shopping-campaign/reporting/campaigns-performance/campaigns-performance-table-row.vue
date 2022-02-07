@@ -29,7 +29,7 @@
       {{ campaign.adSpend|formatPrice(currencyCode) }}
     </b-td>
     <b-td class="text-right ps_gs-fz-12">
-      {{ Math.round(campaign.conversions) }}
+      {{ Number.parseFloat(campaign.conversions).toFixed(4) }}
     </b-td>
     <b-td class="text-right ps_gs-fz-12">
       {{ campaign.sales|formatPrice(currencyCode) }}
