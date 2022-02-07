@@ -211,7 +211,7 @@
           label-class="h4 font-weight-600 border-0 bg-transparent"
         >
           <b-form-radio
-            :disabled="hasUnhandledFilters"
+            :disabled="hasUnhandledFilters || errorFetchingFilters"
             v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
             :value="true"
