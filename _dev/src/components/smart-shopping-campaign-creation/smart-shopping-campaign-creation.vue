@@ -41,7 +41,7 @@
       </b-alert>
       <b-alert
         v-if="errorFetchingFilters"
-        variant="danger"
+        variant="info"
         show
       >
         {{ $t("smartShoppingCampaignCreation.errorFetchingFilters") }}
