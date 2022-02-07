@@ -53,9 +53,14 @@
             :key="type"
             class="font-weight-600"
           >
-            <div
+            <component
+              :is="hasToolTip(type) ? 'b-button' : 'div'"
+              class="d-flex align-items-start text-wrap"
+              :class="hasToolTip(type) && 'p-0 text-left'"
+              :variant="hasToolTip(type) && 'text'"
+              v-b-tooltip:psxMktgWithGoogleApp="{disabled: !hasToolTip(type)}"
+              :title="hasToolTip(type) && $t(`productFeedSettings.shipping.${type}Tooltip`)"
               v-if="hasHeader(type)"
-              class="flex align-items-center text-wrap"
             >
               <VueShowdown
                 tag="span"
@@ -63,16 +68,14 @@
                 :markdown="$t(`productFeedSettings.shipping.${type}Header`)"
                 :extensions="['no-p-tag']"
               />
-              <b-button
+              <span
                 v-if="hasToolTip(type)"
                 variant="invisible"
-                v-b-tooltip:psxMktgWithGoogleApp
-                :title="$t(`productFeedSettings.shipping.${type}Tooltip`)"
-                class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
+                class="p-1 ml-1 mr-n1 border-0 d-inline-flex align-items-center"
               >
                 <i class="material-icons ps_gs-fz-14 text-secondary">info_outlined</i>
-              </b-button>
-            </div>
+              </span>
+            </component>
           </b-th>
         </b-tr>
       </b-thead>
