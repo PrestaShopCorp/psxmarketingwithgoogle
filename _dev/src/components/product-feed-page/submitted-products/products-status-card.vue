@@ -18,7 +18,7 @@
         </p>
       </div>
       <span class="font-weight-600 ml-auto">
-        {{ numberOfProducts }}
+        {{ productStatus.numberOfProducts }}
       </span>
     </div>
   </div>
@@ -29,21 +29,21 @@ import ProductsStatusType from '@/enums/product-feed/products-status-type';
 
 export default {
   props: {
-    statusOfProducts: {
-      type: String,
+    productStatus: {
+      type: Object,
       required: true,
-      validator(value) {
-        return Object.values(ProductsStatusType).includes(value);
+      validator(obj) {
+        const statusOfProductsValidator = Object.values(ProductsStatusType)
+          .includes(obj.statusOfProducts);
+        const numberOfProductsValidator = typeof (obj.numberOfProducts) === 'number';
+
+        return statusOfProductsValidator && numberOfProductsValidator;
       },
-    },
-    numberOfProducts: {
-      type: Number,
-      required: true,
     },
   },
   computed: {
     card() {
-      if (this.statusOfProducts === ProductsStatusType.APPROVED) {
+      if (this.productStatus.statusOfProducts === ProductsStatusType.APPROVED) {
         return {
           icon: 'check_circle',
           color: 'text-success',
@@ -51,7 +51,7 @@ export default {
           description: this.$i18n.t(`productFeedPage.productStatus.${ProductsStatusType.APPROVED}ProductsDescription`),
         };
       }
-      if (this.statusOfProducts === ProductsStatusType.PENDING) {
+      if (this.productStatus.statusOfProducts === ProductsStatusType.PENDING) {
         return {
           icon: 'autorenew',
           color: 'text-info',
@@ -59,7 +59,7 @@ export default {
           description: this.$i18n.t(`productFeedPage.productStatus.${ProductsStatusType.PENDING}ProductsDescription`),
         };
       }
-      if (this.statusOfProducts === ProductsStatusType.EXPIRING) {
+      if (this.productStatus.statusOfProducts === ProductsStatusType.EXPIRING) {
         return {
           icon: 'warning',
           color: 'text-warning',

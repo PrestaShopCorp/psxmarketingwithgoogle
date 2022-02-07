@@ -15,7 +15,7 @@
           <SyncState
             v-for="syncState, i in syncStates"
             :key="i"
-            v-bind="{...syncState}"
+            :sync-state="syncState"
           />
         </SyncHistory>
         <i18n
@@ -36,9 +36,9 @@
           v-slot="{ productStatuses }"
         >
           <ProductsStatusCard
-            v-for="productStatusData, i in productStatuses"
+            v-for="productStatus, i in productStatuses"
             :key="i"
-            v-bind="{...productStatusData}"
+            :product-status="productStatus"
           />
         </SubmittedProducts>
         <div class="mt-4 ps_gs-fz-13 text-right">
