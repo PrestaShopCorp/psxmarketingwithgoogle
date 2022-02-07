@@ -484,7 +484,11 @@ export default {
     },
     finalCampaignFilters() {
       // IMPORTANT: Do not send the filters property if the campaign has unhandled filters
+      // or if we could not retreive them
       if (this.hasUnhandledFilters) {
+        return undefined;
+      }
+      if (this.errorFetchingFilters) {
         return undefined;
       }
       // An empty array is returned if we want to delete existing filters
