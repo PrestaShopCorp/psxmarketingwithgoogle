@@ -90,8 +90,7 @@ export default {
       },
     },
     errorFetchingFilters() {
-      return !this.$store.getters['smartShoppingCampaigns/GET_SSC_DIMENSIONS_AND_FILTERS'].length
-      && this.$store.state.smartShoppingCampaigns.errorFetchingFilters;
+      return this.$store.getters['smartShoppingCampaigns/GET_ERROR_FETCHING_FILTERS_STATUS'];
     },
   },
   methods: {

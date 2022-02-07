@@ -526,8 +526,7 @@ export default {
       return this.$store.state.productFeed.validationSummary.activeItems > 0;
     },
     errorFetchingFilters() {
-      return !this.$store.getters['smartShoppingCampaigns/GET_SSC_DIMENSIONS_AND_FILTERS'].length
-      && this.$store.state.smartShoppingCampaigns.errorFetchingFilters;
+      return this.$store.getters['smartShoppingCampaigns/GET_ERROR_FETCHING_FILTERS_STATUS'];
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
