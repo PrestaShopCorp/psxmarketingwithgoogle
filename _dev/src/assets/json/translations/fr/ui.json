@@ -480,6 +480,7 @@
     "formHelperDescription": "Votre campagne se poursuivra jusqu'à ce que vous la mettiez en pause. Vous pouvez interrompre votre campagne à tout moment.",
     "errorNoProducts": "Vous voulez lancer une campagne, mais votre Google Merchant Center ne contient pas encore de produits. Votre campagne ne démarrera que lorsqu'au moins un produit a été approuvé par Google.",
     "errorApi": "Nous n'avons pas pu publier votre campagne, veuillez réessayer",
+    "errorFetchingFilters": "We were not able to retrieve all filters from Google. You can't modify them for now.",
     "recapTitle": "Résumé de la campagne",
     "recapFiltersLabel": "Produits dans la campagne",
     "recapNoFiltersDescription": "Tous les produits synchronisés approuvés par Google",
