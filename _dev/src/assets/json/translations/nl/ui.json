@@ -23,7 +23,8 @@
     "legendCreateNewAccount": "U hebt ook de mogelijkheid om in enkele stappen een nieuwe account aan te maken:",
     "notAvailable": "Not available",
     "min": "min.",
-    "max": "max."
+    "max": "max.",
+    "helpPage": "Help Page"
   },
   "landingPage": {
     "header": {
@@ -546,16 +547,40 @@
       "scheduleOn": "Synchronisatie gepland op {0}",
       "alert": "Product sync was niet succesvol. Controleer mogelijke redenen in [Merchant Center]({0})[:target=\"_blank\"] of neem contact op met [klantenservice](mailto:support-google@prestashop.com)."
     },
+    "syncSummary": {
+      "syncHistory": {
+        "title": {
+          "planned": "Synchronisation planned",
+          "started": "Synchronisation started",
+          "failed": "Synchronisation failed",
+          "completed": "Synchronisation completed",
+          "next": "Next synchronisation"
+        },
+        "subtitle": {
+          "willHappenOnDate": "Will start on {date}",
+          "happenedOnDate": "On {date}",
+          "error": "Due to a technical issue, the sync failed, a new sync planned for tomorrow"
+        }
+      }
+    },
     "productStatus": {
       "title": "Products status",
       "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.  \nA pending product won't show in ads or free listings because it's being reviewed by Google.  \nExpiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "alert": "Het duurt 3-5 werkdagen om producten te beoordelen",
       "approvedProducts": "Goedgekeurd",
+      "approvedProductsDescription": "Active products are fully approved and eligible to appear in results.",
       "pendingProducts": "In afwachting van",
+      "pendingProductsDescription": "A pending product won't show in ads or free listings because it's being reviewed by Google.",
       "expiringProducts": "Aflopend",
+      "expiringProductsDescription": "Expiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Niet goedgekeurd",
+      "disapprovedProductsDescription": "Your product is disapproved for a destination and isn't active.",
       "productsSubmittedToGoogle": "Actieve producten ingediend bij Google: {0}",
       "approvalStatusList": "Goedgekeurd, In afwachting van, Niet goedgekeurd"
+    },
+    "overview": {
+      "title": "Active products submitted to Google",
+      "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
     },
     "approvalTable": {
       "description": "De status van producten die gesynchroniseerd zijn met Merchant Center",
@@ -813,7 +838,9 @@
     "editContact": "Edit contact information",
     "noCarriers": "Take me to Carriers page",
     "update": "Update",
-    "validateSelection": "Validate Selection"
+    "validateSelection": "Validate Selection",
+    "googleProductStatusDefinitions": "Google product status definitions",
+    "visitThe": "Visit the {0} for more information"
   },
   "badge": {
     "free": "Gratis",
