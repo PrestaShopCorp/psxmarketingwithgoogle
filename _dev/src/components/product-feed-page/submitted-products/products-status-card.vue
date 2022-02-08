@@ -1,5 +1,8 @@
 <template>
-  <div class="border rounded mb-2 px-3 py-2 d-flex">
+  <b-link
+    :to="{name: 'TODO'}"
+    class="border border-600-20 rounded mb-2 px-3 py-2 d-flex without-hover"
+  >
     <i
       class="material-icons-round ps_gs-fz-24 mr-3 mb-0"
       :class="card.color"
@@ -17,11 +20,11 @@
           {{ card.description }}
         </p>
       </div>
-      <span class="font-weight-600 ml-auto">
+      <span class="font-weight-600 ml-auto text-dark">
         {{ productStatus.numberOfProducts }}
       </span>
     </div>
-  </div>
+  </b-link>
 </template>
 
 <script>
