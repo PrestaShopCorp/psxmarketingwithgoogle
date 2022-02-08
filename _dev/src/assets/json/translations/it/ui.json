@@ -23,7 +23,8 @@
     "legendCreateNewAccount": "Hai anche la possibilità di creare un nuovo account in pochi passi:",
     "notAvailable": "Non Disponibile",
     "min": "min.",
-    "max": "mas."
+    "max": "mas.",
+    "helpPage": "Help Page"
   },
   "landingPage": {
     "header": {
@@ -546,16 +547,40 @@
       "scheduleOn": "Sincronizzazione programmata il {0}",
       "alert": "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact [customer support](mailto:support-google@prestashop.com)."
     },
+    "syncSummary": {
+      "syncHistory": {
+        "title": {
+          "planned": "Synchronisation planned",
+          "started": "Synchronisation started",
+          "failed": "Synchronisation failed",
+          "completed": "Synchronisation completed",
+          "next": "Next synchronisation"
+        },
+        "subtitle": {
+          "willHappenOnDate": "Will start on {date}",
+          "happenedOnDate": "On {date}",
+          "error": "Due to a technical issue, the sync failed, a new sync planned for tomorrow"
+        }
+      }
+    },
     "productStatus": {
       "title": "Stato del prodotto",
       "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.  \nA pending product won't show in ads or free listings because it's being reviewed by Google.  \nExpiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "alert": "Ci vogliono 3-5 giorni lavorativi per rivedere i prodotti",
       "approvedProducts": "Approvato",
+      "approvedProductsDescription": "Active products are fully approved and eligible to appear in results.",
       "pendingProducts": "In attesa",
+      "pendingProductsDescription": "A pending product won't show in ads or free listings because it's being reviewed by Google.",
       "expiringProducts": "In scadenza",
+      "expiringProductsDescription": "Expiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Non approvato",
+      "disapprovedProductsDescription": "Your product is disapproved for a destination and isn't active.",
       "productsSubmittedToGoogle": "Prodotti attivi inviati a Google: {0}",
       "approvalStatusList": "Approved, Pending, Not approved"
+    },
+    "overview": {
+      "title": "Active products submitted to Google",
+      "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
     },
     "approvalTable": {
       "description": "Lo stato dei prodotti che sono sincronizzati con Merchant Center",
@@ -813,7 +838,9 @@
     "editContact": "Edit contact information",
     "noCarriers": "Take me to Carriers page",
     "update": "Update",
-    "validateSelection": "Validate Selection"
+    "validateSelection": "Validate Selection",
+    "googleProductStatusDefinitions": "Google product status definitions",
+    "visitThe": "Visit the {0} for more information"
   },
   "badge": {
     "free": "Libero",
