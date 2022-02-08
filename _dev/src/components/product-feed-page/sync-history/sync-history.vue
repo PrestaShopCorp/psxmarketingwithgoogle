@@ -8,11 +8,13 @@
 export default {
   computed: {
     syncStatus() {
+      return this.$store.getters['productFeed/GET_SYNC_STATUS'];
+    },
+    syncInfos() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
     syncStates() {
-      if (!this.syncStatus.success && !this.syncStatus.nextJobAt) {
-        //  sync in progress
+      if (this.syncStatus === 'schedule') {
         return [
           {
             title: this.$i18n.t(
@@ -20,18 +22,15 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-              {date: this.$options.filters.timeConverterToDate(this.syncStatus.lastUpdatedAt)},
+              {date: this.$options.filters.timeConverterToDate(this.syncInfos.lastUpdatedAt)},
             ),
             icon: 'schedule',
           },
         ];
       }
       if (
-        !this.syncStatus.success
-        && this.syncStatus.nextJobAt
-        && !this.syncStatus.jobEndedAt
+        this.syncStatus === 'planned'
       ) {
-        //  sync planned
         return [
           {
             title: this.$i18n.t(
@@ -39,14 +38,13 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate',
-              {date: this.$options.filters.timeConverterToDate(this.syncStatus.nextJobAt)},
+              {date: this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt)},
             ),
             icon: 'change_circle',
           },
         ];
       }
-      if (!this.syncStatus.success && this.syncStatus.jobEndedAt) {
-        //  sync failed
+      if (this.syncStatus === 'failed') {
         return [
           {
             title: this.$i18n.t(
@@ -54,7 +52,7 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-              {date: this.$options.filters.timeConverterToDate(this.syncStatus.lastUpdatedAt)},
+              {date: this.$options.filters.timeConverterToDate(this.syncInfos.lastUpdatedAt)},
             ),
             icon: 'check_circle',
             lineColor: 'danger',
@@ -65,14 +63,14 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.error',
-              {date: this.$options.filters.timeConverterToDate(this.syncStatus.jobEndedAt)},
+              {date: this.$options.filters.timeConverterToDate(this.syncInfos.jobEndedAt)},
             ),
             icon: 'cancel',
           },
 
         ];
       }
-      // sync success
+      // Case success
       return [
         {
           title: this.$i18n.t(
@@ -80,7 +78,7 @@ export default {
           ),
           description: this.$i18n.t(
             'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-            {date: this.$options.filters.timeConverterToDate(this.syncStatus.lastUpdatedAt)},
+            {date: this.$options.filters.timeConverterToDate(this.syncInfos.lastUpdatedAt)},
           ),
           icon: 'check_circle',
           lineColor: 'info',
@@ -91,11 +89,10 @@ export default {
           ),
           description: this.$i18n.t(
             'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-            {date: this.$options.filters.timeConverterToDate(this.syncStatus.jobEndedAt)},
+            {date: this.$options.filters.timeConverterToDate(this.syncInfos.jobEndedAt)},
           ),
           icon: 'check_circle',
           lineColor: 'info',
-
         },
         {
           title: this.$i18n.t(
@@ -103,7 +100,7 @@ export default {
           ),
           description: this.$i18n.t(
             'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate',
-            {date: this.$options.filters.timeConverterToDate(this.syncStatus.nextJobAt)},
+            {date: this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt)},
           ),
           icon: 'schedule',
         },

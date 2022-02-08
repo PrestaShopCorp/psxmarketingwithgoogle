@@ -3,9 +3,9 @@
     <product-feed-table-status-details v-if="$route.path === '/product-feed/status'" />
     <template v-else>
       <PsToast
-        v-if="syncStatus === 'success'"
-        variant="success"
-        :visible="syncStatus === 'success'"
+        v-if="syncStatus === 'schedule'"
+        variant="schedule"
+        :visible="syncStatus === 'schedule'"
         toaster="b-toaster-top-right"
       >
         <p> {{ $t('productFeedPage.alert.alertSuccess') }}</p>
