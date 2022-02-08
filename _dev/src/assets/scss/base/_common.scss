@@ -41,6 +41,13 @@ a.text-muted.with-hover {
   }
 }
 
+a.without-hover {
+  &:hover, &:focus {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
 .ps_gs-ps-account-card a[target="_blank"]:after {
   content: none !important;
 }
