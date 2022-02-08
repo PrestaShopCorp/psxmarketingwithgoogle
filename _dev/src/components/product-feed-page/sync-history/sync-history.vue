@@ -10,6 +10,12 @@ import {
 } from '@/enums/product-feed/sync-history.ts';
 
 export default {
+  props: {
+    inNeedOfConfiguration: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
@@ -17,7 +23,16 @@ export default {
     syncInfos() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
+
     syncStates() {
+      if (this.inNeedOfConfiguration) {
+        return [
+          {
+            title: this.$i18n.t('productFeedPage.syncSummary.syncHistory.title.notPlanned'), // This is a mock
+            icon: 'info', // This is a mock
+          },
+        ];
+      }
       if (this.syncStatus === SyncHystoryType.SCHEDULE) {
         return [
           {

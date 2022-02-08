@@ -11,7 +11,10 @@
       <h3 class="sync-history__item-title">
         {{ syncState.title }}
       </h3>
-      <span class="sync-history__item-description">
+      <span
+        v-if="syncState.description"
+        class="sync-history__item-description"
+      >
         {{ syncState.description }}
       </span>
     </div>
@@ -31,7 +34,8 @@ export default {
       required: true,
       validator(obj) {
         const titleValidator = typeof (obj.title) === 'string';
-        const descriptionValidator = typeof (obj.description) === 'string';
+        const descriptionValidator = typeof (obj.description) === 'string'
+          || typeof (obj.description) === 'undefined';
         const iconValidator = Object.values(SyncHystoryIcons).includes(obj.icon);
         let lineColorValidator = false;
 
