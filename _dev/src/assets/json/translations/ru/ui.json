@@ -23,7 +23,8 @@
     "legendCreateNewAccount": "У вас также есть возможность создать новую учетную запись в несколько шагов:",
     "notAvailable": "Not available",
     "min": "min.",
-    "max": "max."
+    "max": "max.",
+    "helpPage": "Help Page"
   },
   "landingPage": {
     "header": {
@@ -480,6 +481,7 @@
     "formHelperDescription": "Ваша кампания будет работать до тех пор, пока вы не приостановите ее. Вы можете приостановить свою кампанию в любое время.",
     "errorNoProducts": "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.",
     "errorApi": "We were not able to publish your campaign, please try again",
+    "errorFetchingFilters": "We were not able to retrieve all filters from Google. You can't modify them for now.",
     "recapTitle": "Краткое описание кампании",
     "recapFiltersLabel": "Продукты в кампании",
     "recapNoFiltersDescription": "Все синхронизированные продукты одобрены Google",
@@ -545,16 +547,40 @@
       "scheduleOn": "Синхронизация запланирована на {0}",
       "alert": "Синхронизация продукта не была успешной. Проверьте возможные причины в [Merchant Center]({0})[:target=\"_blank\"] или обратитесь в [службу поддержки](mailto:support-google@prestashop.com)."
     },
+    "syncSummary": {
+      "syncHistory": {
+        "title": {
+          "planned": "Synchronisation planned",
+          "started": "Synchronisation started",
+          "failed": "Synchronisation failed",
+          "completed": "Synchronisation completed",
+          "next": "Next synchronisation"
+        },
+        "subtitle": {
+          "willHappenOnDate": "Will start on {date}",
+          "happenedOnDate": "On {date}",
+          "error": "Due to a technical issue, the sync failed, a new sync planned for tomorrow"
+        }
+      }
+    },
     "productStatus": {
       "title": "Products status",
       "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.  \nA pending product won't show in ads or free listings because it's being reviewed by Google.  \nExpiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "alert": "Рассмотрение продукции занимает 3-5 рабочих дней",
       "approvedProducts": "Одобрено",
+      "approvedProductsDescription": "Active products are fully approved and eligible to appear in results.",
       "pendingProducts": "В ожидании",
+      "pendingProductsDescription": "A pending product won't show in ads or free listings because it's being reviewed by Google.",
       "expiringProducts": "Истекающий",
+      "expiringProductsDescription": "Expiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Не утверждено",
+      "disapprovedProductsDescription": "Your product is disapproved for a destination and isn't active.",
       "productsSubmittedToGoogle": "Активные продукты, переданные в Google: {0}",
       "approvalStatusList": "Утверждено, Ожидает утверждения, Не утверждено"
+    },
+    "overview": {
+      "title": "Active products submitted to Google",
+      "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
     },
     "approvalTable": {
       "description": "Статус продуктов, синхронизированных с Merchant Center",
@@ -812,7 +838,9 @@
     "editContact": "Edit contact information",
     "noCarriers": "Take me to Carriers page",
     "update": "Update",
-    "validateSelection": "Validate Selection"
+    "validateSelection": "Validate Selection",
+    "googleProductStatusDefinitions": "Google product status definitions",
+    "visitThe": "Visit the {0} for more information"
   },
   "badge": {
     "free": "Бесплатно",

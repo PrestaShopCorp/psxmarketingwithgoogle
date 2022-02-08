@@ -23,7 +23,8 @@
     "legendCreateNewAccount": "Vous avez également la possibilité de créer un nouveau compte en quelques étapes :",
     "notAvailable": "Non disponible",
     "min": "min.",
-    "max": "max."
+    "max": "max.",
+    "helpPage": "Help Page"
   },
   "landingPage": {
     "header": {
@@ -480,6 +481,7 @@
     "formHelperDescription": "Votre campagne se poursuivra jusqu'à ce que vous la mettiez en pause. Vous pouvez interrompre votre campagne à tout moment.",
     "errorNoProducts": "Vous voulez lancer une campagne, mais votre Google Merchant Center ne contient pas encore de produits. Votre campagne ne démarrera que lorsqu'au moins un produit a été approuvé par Google.",
     "errorApi": "Nous n'avons pas pu publier votre campagne, veuillez réessayer",
+    "errorFetchingFilters": "We were not able to retrieve all filters from Google. You can't modify them for now.",
     "recapTitle": "Résumé de la campagne",
     "recapFiltersLabel": "Produits dans la campagne",
     "recapNoFiltersDescription": "Tous les produits synchronisés approuvés par Google",
@@ -545,16 +547,40 @@
       "scheduleOn": "Synchronisation prévue le {0}",
       "alert": "La synchronisation produit a échoué. Vérifiez les raisons possibles dans [Merchant Center]({0})[:target=\"_blank\"] ou contactez le [service client](mailto:support-google@prestashop.com)."
     },
+    "syncSummary": {
+      "syncHistory": {
+        "title": {
+          "planned": "Synchronisation planned",
+          "started": "Synchronisation started",
+          "failed": "Synchronisation failed",
+          "completed": "Synchronisation completed",
+          "next": "Next synchronisation"
+        },
+        "subtitle": {
+          "willHappenOnDate": "Will start on {date}",
+          "happenedOnDate": "On {date}",
+          "error": "Due to a technical issue, the sync failed, a new sync planned for tomorrow"
+        }
+      }
+    },
     "productStatus": {
       "title": "Statut des produits",
       "description": "Le statut de votre produit vous permet de savoir si votre produit est éligible pour apparaître dans la destination que vous avez opté.  \nUn produit en attente n'apparaîtra pas dans les annonces ou les fiches gratuites car il est en cours d'examen par Google.  \nLes produits en cours d'expiration expireront dans les 3 prochains jours et ne pourront plus apparaître dans les annonces ou les fiches gratuites.",
       "alert": "Il faut compter 3 à 5 jours ouvrables à Google pour examiner les produits",
       "approvedProducts": "Approuvé",
+      "approvedProductsDescription": "Active products are fully approved and eligible to appear in results.",
       "pendingProducts": "En attente",
+      "pendingProductsDescription": "A pending product won't show in ads or free listings because it's being reviewed by Google.",
       "expiringProducts": "En cours d'expiration",
+      "expiringProductsDescription": "Expiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Non approuvé",
+      "disapprovedProductsDescription": "Your product is disapproved for a destination and isn't active.",
       "productsSubmittedToGoogle": "Produits actifs soumis à Google : {0}",
       "approvalStatusList": "Approuvé, En attente, Non approuvé"
+    },
+    "overview": {
+      "title": "Active products submitted to Google",
+      "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
     },
     "approvalTable": {
       "description": "Le statut des produits qui sont synchronisés avec Merchant Center",
@@ -812,7 +838,9 @@
     "editContact": "Modifier les informations de contact",
     "noCarriers": "Aller à la page Transporteurs",
     "update": "Update",
-    "validateSelection": "Validate Selection"
+    "validateSelection": "Validate Selection",
+    "googleProductStatusDefinitions": "Google product status definitions",
+    "visitThe": "Visit the {0} for more information"
   },
   "badge": {
     "free": "Gratuit",
