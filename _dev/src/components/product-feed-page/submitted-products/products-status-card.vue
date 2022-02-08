@@ -1,6 +1,5 @@
 <template>
-  <b-link
-    :to="{name: 'product-feed-status'}"
+  <div
     class="border border-600-20 rounded mb-2 px-3 py-2 d-flex without-hover"
   >
     <i
@@ -31,7 +30,7 @@
         <i class="icon-busy icon-busy--dark mr-1" />
       </span>
     </div>
-  </b-link>
+  </div>
 </template>
 
 <script>
