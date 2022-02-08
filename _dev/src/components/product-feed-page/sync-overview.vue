@@ -41,16 +41,7 @@
             :product-status="productStatus"
           />
         </SubmittedProducts>
-        <div class="text-muted ps_gs-fz-13 d-flex justify-content-end">
-          <a
-            :href="$options.googleUrl.learnRequirementsProductSpecification"
-            target="_blank"
-            class="d-inline-block"
-          >{{ $t("cta.googleProductStatusDefinitions") }}</a>
-        </div>
-        <div
-          class="d-flex justify-content-end"
-        >
+        <div class="text-muted ps_gs-fz-13 d-flex justify-content-between">
           <b-button
             v-if="productsSent"
             variant="invisible"
@@ -59,6 +50,11 @@
           >
             {{ $t("cta.viewDetailedStatuses") }}
           </b-button>
+          <a
+            :href="$options.googleUrl.learnRequirementsProductSpecification"
+            target="_blank"
+            class="d-inline-block"
+          >{{ $t("cta.googleProductStatusDefinitions") }}</a>
         </div>
       </div>
     </div>
