@@ -23,7 +23,8 @@
     "legendCreateNewAccount": "Sie haben auch die Möglichkeit, in wenigen Schritten ein neues Konto zu erstellen:",
     "notAvailable": "Not available",
     "min": "min.",
-    "max": "max."
+    "max": "max.",
+    "helpPage": "Help Page"
   },
   "landingPage": {
     "header": {
@@ -546,16 +547,40 @@
       "scheduleOn": "Synchronisierung geplant am {0}",
       "alert": "Die Produktsynchronisierung war nicht erfolgreich. Prüfen Sie mögliche Gründe im [Merchant Center]({0})[:target=\"_blank\"] oder wenden Sie sich an [Kundensupport](mailto:support-google@prestashop.com)."
     },
+    "syncSummary": {
+      "syncHistory": {
+        "title": {
+          "planned": "Synchronisation planned",
+          "started": "Synchronisation started",
+          "failed": "Synchronisation failed",
+          "completed": "Synchronisation completed",
+          "next": "Next synchronisation"
+        },
+        "subtitle": {
+          "willHappenOnDate": "Will start on {date}",
+          "happenedOnDate": "On {date}",
+          "error": "Due to a technical issue, the sync failed, a new sync planned for tomorrow"
+        }
+      }
+    },
     "productStatus": {
       "title": "Products status",
       "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.  \nA pending product won't show in ads or free listings because it's being reviewed by Google.  \nExpiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "alert": "Die Überprüfung von Produkten dauert 3-5 Werktage",
       "approvedProducts": "Genehmigt",
+      "approvedProductsDescription": "Active products are fully approved and eligible to appear in results.",
       "pendingProducts": "Anhängig",
+      "pendingProductsDescription": "A pending product won't show in ads or free listings because it's being reviewed by Google.",
       "expiringProducts": "Auslaufende",
+      "expiringProductsDescription": "Expiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Nicht genehmigt",
+      "disapprovedProductsDescription": "Your product is disapproved for a destination and isn't active.",
       "productsSubmittedToGoogle": "Aktive Produkte, die an Google übermittelt wurden: {0}",
       "approvalStatusList": "Genehmigt, Anhängig, Nicht genehmigt"
+    },
+    "overview": {
+      "title": "Active products submitted to Google",
+      "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
     },
     "approvalTable": {
       "description": "Der Status von Produkten, die mit Merchant Center synchronisiert sind",
@@ -813,7 +838,9 @@
     "editContact": "Edit contact information",
     "noCarriers": "Take me to Carriers page",
     "update": "Update",
-    "validateSelection": "Validate Selection"
+    "validateSelection": "Validate Selection",
+    "googleProductStatusDefinitions": "Google product status definitions",
+    "visitThe": "Visit the {0} for more information"
   },
   "badge": {
     "free": "Kostenlos",
