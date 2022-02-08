@@ -13,7 +13,7 @@
       "ps_eventbus": "The version of the module PrestaShop EventBus running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop EventBus",
       "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"
     },
-  "adblockerActivated": "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",
+    "adblockerActivated": "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",
     "refreshPage": "Refresh page",
     "mandatory": "are mandatory",
     "XIsMandatory": "{0} is mandatory.",
@@ -23,7 +23,8 @@
     "legendCreateNewAccount": "You also have the possibility to create a new account within few steps:",
     "notAvailable": "Not available",
     "min": "min.",
-    "max": "max."
+    "max": "max.",
+    "helpPage" : "Help Page"
   },
   "landingPage": {
     "header": {
@@ -546,16 +547,40 @@
       "scheduleOn": "Synchronization scheduled on {0}",
       "alert": "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact [customer support](mailto:support-google@prestashop.com)."
     },
+    "syncSummary" : {
+      "syncHistory" : {
+        "title" : {
+          "planned" : "Synchronisation planned",
+          "started" : "Synchronisation started",
+          "failed" : "Synchronisation failed",
+          "completed" : "Synchronisation completed",
+          "next" : "Next synchronisation"
+        },
+        "subtitle" : {
+          "willHappenOnDate" : "Will start on {date}",
+          "happenedOnDate" : "On {date}",
+          "error" : "Due to a technical issue, the sync failed, a new sync planned for tomorrow"
+        }
+      }
+    },
     "productStatus": {
       "title": "Products status",
       "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.  \nA pending product won't show in ads or free listings because it's being reviewed by Google.  \nExpiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "alert": "It takes 3-5 business days to review products",
       "approvedProducts": "Approved",
+      "approvedProductsDescription": "Active products are fully approved and eligible to appear in results.",
       "pendingProducts": "Pending",
+      "pendingProductsDescription": "A pending product won't show in ads or free listings because it's being reviewed by Google.",
       "expiringProducts": "Expiring",
+      "expiringProductsDescription": "Expiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Not approved",
+      "disapprovedProductsDescription": "Your product is disapproved for a destination and isn't active.",
       "productsSubmittedToGoogle": "Active products submitted to Google: {0}",
       "approvalStatusList": "Approved, Pending, Not approved"
+    },
+    "overview": {
+      "title" : "Active products submitted to Google",
+      "description" : "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
     },
     "approvalTable": {
       "description": "The status of products that are synced with Merchant Center",
@@ -813,7 +838,9 @@
     "editContact": "Edit contact information",
     "noCarriers" : "Take me to Carriers page",
     "update": "Update",
-    "validateSelection" : "Validate Selection"
+    "validateSelection" : "Validate Selection",
+    "googleProductStatusDefinitions" : "Google product status definitions",
+    "visitThe" : "Visit the {0} for more information"
   },
   "badge": {
     "free": "Free",

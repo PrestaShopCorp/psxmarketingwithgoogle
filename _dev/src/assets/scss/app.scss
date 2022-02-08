@@ -63,6 +63,7 @@
   @import "base/typography";
   @import "base/common";
   @import "base/color";
+  @import "base/border";
 
   // page
   @import "layouts/form";
@@ -90,6 +91,7 @@
   @import "components/product-category-checkbox";
   @import "components/table-carriers";
   @import "components/faq";
+  @import "components/sync-history";
 
   // page
   @import "pages/landingpage";

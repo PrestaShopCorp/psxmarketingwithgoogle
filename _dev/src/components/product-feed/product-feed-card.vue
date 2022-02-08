@@ -142,43 +142,7 @@
             >
               {{ $t("cta.trackProductStatus") }}
             </b-button>
-          <!-- Not in free plan -->
-          <!-- <b-button
-          v-if="syncStatus === 'failed'"
-          variant="primary"
-          class="d-block mx-auto my-2 my-sm-0 ml-sm-3 mr-sm-0"
-        >
-          <span class="material-icons">
-            autorenew
-          </span>
-          {{ $t('cta.forceSync') }}
-        </b-button> -->
           </div>
-          <!--  NOT IN BATCH 1 -->
-          <!-- <b-container
-        fluid
-        class="p-0 mb-2"
-      >
-        <b-row
-          no-gutters
-          class="mx-n1"
-        >
-          <product-feed-card-report-products-card
-            status="success"
-            :title="$t('productFeedCard.productsReadyToBeSynced')"
-            :nb-products="nbProductsReadyToSync"
-            :sync-status="syncStatus"
-          />
-          <product-feed-card-report-products-card
-            status="warning"
-            :title="$t('productFeedCard.productsWithProblems')"
-            :nb-products="nbProductsCantSync"
-            :sync-status="syncStatus"
-            :link="$t('cta.reviewProblems')"
-            link-to="#"
-          />
-        </b-row>
-      </b-container> -->
           <div class="d-flex justify-content-between align-items-center mb-3 mt-3 pt-2">
             <h3 class="font-weight-600 ps_gs-fz-14 mb-0">
               {{ $t("productFeedSettings.breadcrumb2") }}
@@ -239,25 +203,6 @@
                 :link="$t('cta.editSettings')"
                 :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
               />
-              <!--  NOT IN BATCH 1 -->
-              <!-- <product-feed-card-report-card
-            status="success"
-            :title="$t('productFeedSettings.steps.syncRules')"
-            :description="syncRules.join(', ')"
-            :details="syncRulesDetails.join(', ')"
-            :link="$t('cta.editRules')"
-            link-to="#"
-          />
-           <product-feed-card-report-card
-            status="success"
-            :title="$t('productFeedCard.excludedProducts')"
-            :description="`
-              ${$t('productFeedCard.excludedProducts')} (${excludedProductsDetails.length})
-            `"
-            :details="excludedProductsDetails.join(', ')"
-            :link="$t('cta.editRules')"
-            link-to="#"
-          /> -->
               <product-feed-card-report-card
                 :status="attributeMappingStatus"
                 :title="$t('productFeedSettings.steps.attributeMapping')"
@@ -265,12 +210,6 @@
                 :link="$t('cta.editProductAttributes')"
                 :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 3 }"
               />
-            <!--  NOT IN BATCH 1 -->
-            <!-- <product-feed-card-report-mapped-categories-card
-            :has-mapping="hasMapping"
-            :categories-mapped="categoriesMapped"
-            :categories-total="categoriesTotal"
-          /> -->
             </b-row>
           </b-container>
         </div>
@@ -284,9 +223,6 @@ import {VueShowdown} from 'vue-showdown';
 import googleUrl from '@/assets/json/googleUrl.json';
 import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
-//  eslint-disable-next-line
-// import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
-// import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
@@ -295,11 +231,8 @@ export default {
   components: {
     Stepper,
     ProductFeedCardReportCard,
-    // NOT IN BATCH 1
     BadgeListRequirements,
     VueShowdown,
-    // ProductFeedCardReportMappedCategoriesCard,
-    // ProductFeedCardReportProductsCard,
   },
   data() {
     return {
