@@ -10,8 +10,9 @@
         {{ $t('productFeedPage.alert.alertSuccess') }}
       </b-alert>
       <sync-timeline />
-      <product-feed-sync-status-card />
-      <product-feed-product-status-card />
+      <sync-overview />
+      <!-- <product-feed-sync-status-card />
+      <product-feed-product-status-card /> -->
     </template>
   </div>
 </template>
@@ -21,6 +22,7 @@ import ProductFeedProductStatusCard from '@/components/product-feed-page/product
 import ProductFeedSyncStatusCard from '@/components/product-feed-page/product-feed-sync-status-card';
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
 import SyncTimeline from '@/components/sync-timeline/sync-timeline';
+import SyncOverview from '@/components/product-feed-page/sync-overview.vue';
 
 export default {
   components: {
@@ -28,6 +30,7 @@ export default {
     ProductFeedProductStatusCard,
     ProductFeedTableStatusDetails,
     SyncTimeline,
+    SyncOverview,
   },
   computed: {
     syncStatus() {
