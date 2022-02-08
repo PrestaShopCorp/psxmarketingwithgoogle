@@ -288,6 +288,12 @@ export const productFeedStatusSyncFailed = {
     lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
     nextJobAt: new Date("July 22, 2021 03:24:00"),
   },
+  validationSummary: {
+    activeItems: 0,
+    expiringItems: 0,
+    pendingItems: 0,
+    disapprovedItems: 0,
+  },
 };
 
 export const productFeedErrorAPI = {
@@ -304,6 +310,12 @@ export const productFeedSyncSummaryInProgress = {
     lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
     jobEndedAt: null,
   },
+  validationSummary: {
+    activeItems: null,
+    expiringItems: null,
+    pendingItems: null,
+    disapprovedItems: null,
+  },
 };
 
 export const productFeedStatusSyncScheduled = {
@@ -313,6 +325,12 @@ export const productFeedStatusSyncScheduled = {
     nextJobAt: new Date("July 22, 2021 03:24:00"),
     lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
     jobEndedAt: null,
+  },
+  validationSummary: {
+    activeItems: null,
+    expiringItems: null,
+    pendingItems: null,
+    disapprovedItems: null,
   },
 };
 

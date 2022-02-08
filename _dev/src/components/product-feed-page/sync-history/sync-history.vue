@@ -20,7 +20,7 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-              {date: this.syncStatus.lastUpdatedAt},
+              {date: this.$options.filters.timeConverterToDate(this.syncStatus.lastUpdatedAt)},
             ),
             icon: 'schedule',
           },
@@ -39,7 +39,7 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate',
-              {date: this.syncStatus.nextJobAt},
+              {date: this.$options.filters.timeConverterToDate(this.syncStatus.nextJobAt)},
             ),
             icon: 'change_circle',
           },
@@ -54,7 +54,7 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-              {date: this.syncStatus.lastUpdatedAt},
+              {date: this.$options.filters.timeConverterToDate(this.syncStatus.lastUpdatedAt)},
             ),
             icon: 'check_circle',
             lineColor: 'danger',
@@ -65,7 +65,7 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.error',
-              {date: this.syncStatus.jobEndedAt},
+              {date: this.$options.filters.timeConverterToDate(this.syncStatus.jobEndedAt)},
             ),
             icon: 'cancel',
           },
@@ -80,7 +80,7 @@ export default {
           ),
           description: this.$i18n.t(
             'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-            {date: this.syncStatus.lastUpdatedAt},
+            {date: this.$options.filters.timeConverterToDate(this.syncStatus.lastUpdatedAt)},
           ),
           icon: 'check_circle',
           lineColor: 'info',
@@ -91,7 +91,7 @@ export default {
           ),
           description: this.$i18n.t(
             'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-            {date: this.syncStatus.jobEndedAt},
+            {date: this.$options.filters.timeConverterToDate(this.syncStatus.jobEndedAt)},
           ),
           icon: 'check_circle',
           lineColor: 'info',
@@ -103,7 +103,7 @@ export default {
           ),
           description: this.$i18n.t(
             'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate',
-            {date: this.syncStatus.nextJobAt},
+            {date: this.$options.filters.timeConverterToDate(this.syncStatus.nextJobAt)},
           ),
           icon: 'schedule',
         },
