@@ -54,11 +54,12 @@ const routes: Array<RouteConfig> = [
     name: 'product-feed-status',
     component: ProductFeedPage,
   },
-  {
-    path: '/product-feed/pre-scan',
-    name: 'product-feed-pre-scan',
-    component: ProductFeedPage,
-  },
+  // this route is used for pre-scan table
+  // {
+  //   path: '/product-feed/pre-scan',
+  //   name: 'product-feed-pre-scan',
+  //   component: ProductFeedPage,
+  // },
   {
     path: '/campaign',
     name: 'campaign',

@@ -150,51 +150,51 @@ export default {
       currentPage: 1,
       loading: false,
       items: [
-        {
-          id: 1,
-          name: 'Product 1',
-          language: 'EN',
-          image: 'product-1.jpg',
-          description: 'Product 1 description',
-          barcode: '',
-          price: '$10.00',
-        },
-        {
-          id: 2,
-          name: 'Product 2',
-          language: 'FR',
-          image: 'product-2.jpg',
-          description: 'Product 2 description',
-          barcode: '',
-          price: '$10.00',
-        },
-        {
-          id: 3,
-          name: 'Product 3',
-          language: 'FR',
-          image: 'product-3.jpg',
-          description: 'Product 3 description',
-          barcode: '',
-          price: '$10.00',
-        },
-        {
-          id: 4,
-          name: 'Product 4',
-          language: 'FR',
-          image: 'product-4.jpg',
-          description: 'Product 4 description',
-          barcode: '',
-          price: '$10.00',
-        },
-        {
-          id: 5,
-          name: 'Product 5',
-          language: 'FR',
-          image: 'product-5.jpg',
-          description: 'Product 5 description',
-          barcode: '',
-          price: '$10.00',
-        },
+        // {
+        //   id: 1,
+        //   name: 'Product 1',
+        //   language: 'EN',
+        //   image: 'product-1.jpg',
+        //   description: 'Product 1 description',
+        //   barcode: '',
+        //   price: '$10.00',
+        // },
+        // {
+        //   id: 2,
+        //   name: 'Product 2',
+        //   language: 'FR',
+        //   image: 'product-2.jpg',
+        //   description: 'Product 2 description',
+        //   barcode: '',
+        //   price: '$10.00',
+        // },
+        // {
+        //   id: 3,
+        //   name: 'Product 3',
+        //   language: 'FR',
+        //   image: 'product-3.jpg',
+        //   description: 'Product 3 description',
+        //   barcode: 'xx',
+        //   price: '',
+        // },
+        // {
+        //   id: 4,
+        //   name: 'Product 4',
+        //   language: 'FR',
+        //   image: 'product-4.jpg',
+        //   description: 'Product 4 description',
+        //   barcode: '',
+        //   price: '$10.00',
+        // },
+        // {
+        //   id: 5,
+        //   name: 'Product 5',
+        //   language: 'FR',
+        //   image: 'product-5.jpg',
+        //   description: 'Product 5 description',
+        //   barcode: 'xx',
+        //   price: '$10.00',
+        // },
       ],
       fields: [
         {
@@ -212,18 +212,22 @@ export default {
         {
           key: 'image',
           label: this.$i18n.t('productFeedPage.preScan.fields.image'),
+          sortable: true,
         },
         {
           key: 'description',
           label: this.$i18n.t('productFeedPage.preScan.fields.description'),
+          sortable: true,
         },
         {
           key: 'barcode',
           label: this.$i18n.t('productFeedPage.preScan.fields.barcode'),
+          sortable: true,
         },
         {
           key: 'price',
           label: this.$i18n.t('productFeedPage.preScan.fields.price'),
+          sortable: true,
         },
       ],
     };
@@ -246,7 +250,6 @@ export default {
         .then((res) => {
           this.loading = false;
           this.items = res;
-          // update currentPage
         })
         .catch((error) => {
           this.loading = false;
