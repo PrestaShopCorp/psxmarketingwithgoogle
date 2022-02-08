@@ -427,7 +427,7 @@ export default {
     commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, getSelectedCtg);
   },
   async [ActionsTypes.GET_PREVALIDATION_PRODUCTS]({rootState}) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/`, {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/prevalidation-scan`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
