@@ -25,13 +25,13 @@
         >
           <b-link
             :to="{name: 'help'}"
-            class="text-muted text-decoration-underline"
+            class="with-hover text-decoration-underline"
           >
             {{ $t('general.helpPage') }}
           </b-link>
         </i18n>
       </div>
-      <div class="flex-grow-1 p-3 border-top border-sm-top-0 border-sm-left">
+      <div class="flex-grow-1 p-3 border-top border-sm-top-0 border-sm-left border-600-20">
         <SubmittedProducts
           v-slot="{ productStatuses }"
         >
@@ -41,11 +41,11 @@
             :product-status="productStatus"
           />
         </SubmittedProducts>
-        <div class="mt-4 ps_gs-fz-13 text-right">
+        <div class="text-muted mt-4 ps_gs-fz-13 text-right">
           <a
             :href="$options.googleUrl.learnRequirementsProductSpecification"
             target="_blank"
-            class="text-muted d-inline-block"
+            class="d-inline-block"
           >{{ $t('cta.googleProductStatusDefinitions') }}</a>
         </div>
       </div>

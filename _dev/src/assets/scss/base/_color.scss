@@ -16,6 +16,11 @@
   background-color: $background-color;
 }
 
-.border.border-450 {
-  border-color: $gray-450;
+.border-450 {
+  border-color: $gray-450 !important;
 }
+
+[class*="border"].border-600-20 {
+  border-color: rgba($gray-600, 0.2) !important;
+}
+

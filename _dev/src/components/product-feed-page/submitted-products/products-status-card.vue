@@ -1,5 +1,5 @@
 <template>
-  <div class="border rounded mb-2 px-3 py-2 d-flex">
+  <div class="border border-600-20 rounded mb-2 px-3 py-2 d-flex">
     <i
       class="material-icons-round ps_gs-fz-24 mr-3 mb-0"
       :class="card.color"
