@@ -691,18 +691,18 @@
     },
     "campaignsPerformanceTable": {
       "title": "Эффективность кампании",
-      "subTitle": "Проверьте, насколько эффективны ваши кампании",
-      "emptyListText": "You don't have any enabled campaigns"
+      "subTitle": "Check out how well your campaigns perform",
+      "emptyListText": "You don't have any enabled campaign"
     },
     "productsPerformanceTable": {
       "title": "Производительность продукта для активных кампаний",
-      "subTitle": "Проверьте, какой продукт работает лучше всего",
+      "subTitle": "Check out which product performs the best",
       "emptyListText": "You don't have any products in active campaigns"
     },
     "filtersPerformanceTable": {
       "title": "Общая эффективность фильтрации (топ-10)",
-      "subTitle": "Проверьте, какие измерения работают лучше всего",
-      "emptyListText": "You don't have any products in this campaigns"
+      "subTitle": "Check out which dimension performs the best",
+      "emptyListText": "You don't have any active campaigns with filters"
     }
   },
   "notConfiguredState": {
