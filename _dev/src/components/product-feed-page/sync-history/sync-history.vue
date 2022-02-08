@@ -7,34 +7,105 @@
 <script>
 export default {
   computed: {
-  // TODO
-  /**
-   * Create data structure for the sync history (vertical timeline)
-   * An ENUM has been written in _dev/src/enums/product-feed/sync-history.ts
-   * Use $t('productFeedPage.syncSummary.syncHistory.title.{$foo}') for the title
-   * (with foo being planned | started | failed | completed | next)
-   * Use $t('productFeedPage.syncSummary.syncHistory.subtitle.{$foo}', {date}) for the subtitle
-   * (with foo being willHappenOnDate | happenedOnDate | error)
-   * Icons and line colors are handled with css class:
-   * Icons might be: sync-history__item--icon-{foo}
-   * (with foo being check | schedule | cancel | change_circle)
-   * Line colors might be: sync-history__item--bg-{foo}, the line is to applied on the top
-   * (with foo being blue | red)
-   */
+    syncStatus() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
+    },
     syncStates() {
+      if (!this.syncStatus.success && !this.syncStatus.nextJobAt) {
+        //  sync in progress
+        return [
+          {
+            title: this.$i18n.t(
+              'productFeedPage.syncSummary.syncHistory.title.started',
+            ),
+            description: this.$i18n.t(
+              'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
+              {date: this.syncStatus.lastUpdatedAt},
+            ),
+            icon: 'schedule',
+          },
+        ];
+      }
+      if (
+        !this.syncStatus.success
+        && this.syncStatus.nextJobAt
+        && !this.syncStatus.jobEndedAt
+      ) {
+        //  sync planned
+        return [
+          {
+            title: this.$i18n.t(
+              'productFeedPage.syncSummary.syncHistory.title.planned',
+            ),
+            description: this.$i18n.t(
+              'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate',
+              {date: this.syncStatus.nextJobAt},
+            ),
+            icon: 'change_circle',
+          },
+        ];
+      }
+      if (!this.syncStatus.success && this.syncStatus.jobEndedAt) {
+        //  sync failed
+        return [
+          {
+            title: this.$i18n.t(
+              'productFeedPage.syncSummary.syncHistory.title.started',
+            ),
+            description: this.$i18n.t(
+              'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
+              {date: this.syncStatus.lastUpdatedAt},
+            ),
+            icon: 'check_circle',
+            lineColor: 'danger',
+          },
+          {
+            title: this.$i18n.t(
+              'productFeedPage.syncSummary.syncHistory.title.failed',
+            ),
+            description: this.$i18n.t(
+              'productFeedPage.syncSummary.syncHistory.subtitle.error',
+              {date: this.syncStatus.jobEndedAt},
+            ),
+            icon: 'cancel',
+          },
+
+        ];
+      }
+      // sync success
       return [
         {
-          title: this.$i18n.t('productFeedPage.syncSummary.syncHistory.title.started'), // This is a mock
-          description: this.$i18n.t('productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-            {date: '05/12/21 02:00 AM'}), // This is a mock
-          icon: 'check_circle', // This is a mock
-          lineColor: 'info', // This is a mock
+          title: this.$i18n.t(
+            'productFeedPage.syncSummary.syncHistory.title.started',
+          ),
+          description: this.$i18n.t(
+            'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
+            {date: this.syncStatus.lastUpdatedAt},
+          ),
+          icon: 'check_circle',
+          lineColor: 'info',
         },
         {
-          title: this.$i18n.t('productFeedPage.syncSummary.syncHistory.title.failed'), // This is a mock
-          description: this.$i18n.t('productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-            {date: '05/12/21 02:00 AM'}), // This is a mock
-          icon: 'cancel', // This is a mock
+          title: this.$i18n.t(
+            'productFeedPage.syncSummary.syncHistory.title.completed',
+          ),
+          description: this.$i18n.t(
+            'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
+            {date: this.syncStatus.jobEndedAt},
+          ),
+          icon: 'check_circle',
+          lineColor: 'info',
+
+        },
+        {
+          title: this.$i18n.t(
+            'productFeedPage.syncSummary.syncHistory.title.next',
+          ),
+          description: this.$i18n.t(
+            'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate',
+            {date: this.syncStatus.nextJobAt},
+          ),
+          icon: 'schedule',
         },
       ];
     },

@@ -19,24 +19,24 @@ const ProductFeed = (args, { argTypes }) => ({
 export const Planned:any = ProductFeed.bind({});
 Planned.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed.status = Object.assign({}, productFeedStatusSyncScheduled);
+    this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncScheduled);
   }
 };
 export const InProgress:any = ProductFeed.bind({});
 InProgress.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed.status = Object.assign({}, productFeedSyncSummaryInProgress);
+    this.$store.state.productFeed = Object.assign({}, productFeedSyncSummaryInProgress);
   }
 };
 export const Success:any = ProductFeed.bind({});
 Success.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed.status = Object.assign({}, productFeedStatusSyncSuccess);
+    this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncSuccess);
   }
 };
 export const Failed:any = ProductFeed.bind({});
 Failed.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed.status = Object.assign({}, productFeedStatusSyncFailed);
+    this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncFailed);
   }
 };

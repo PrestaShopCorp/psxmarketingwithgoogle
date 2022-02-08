@@ -2,35 +2,32 @@
   <div>
     <product-feed-table-status-details v-if="$route.path === '/product-feed/status'" />
     <template v-else>
-      <b-alert
-        :show="syncStatus === 'success'"
+      <PsToast
+        v-if="syncStatus === 'success'"
         variant="success"
-        class="mb-0 mt-3 mb-3"
+        :visible="syncStatus === 'success'"
+        toaster="b-toaster-top-right"
       >
-        {{ $t('productFeedPage.alert.alertSuccess') }}
-      </b-alert>
+        <p> {{ $t('productFeedPage.alert.alertSuccess') }}</p>
+      </PsToast>
       <sync-timeline />
       <sync-overview />
-      <!-- <product-feed-sync-status-card />
-      <product-feed-product-status-card /> -->
     </template>
   </div>
 </template>
 
 <script>
-import ProductFeedProductStatusCard from '@/components/product-feed-page/product-feed-product-status-card';
-import ProductFeedSyncStatusCard from '@/components/product-feed-page/product-feed-sync-status-card';
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
 import SyncTimeline from '@/components/sync-timeline/sync-timeline';
 import SyncOverview from '@/components/product-feed-page/sync-overview.vue';
+import PsToast from '../components/commons/ps-toast';
 
 export default {
   components: {
-    ProductFeedSyncStatusCard,
-    ProductFeedProductStatusCard,
     ProductFeedTableStatusDetails,
     SyncTimeline,
     SyncOverview,
+    PsToast,
   },
   computed: {
     syncStatus() {
