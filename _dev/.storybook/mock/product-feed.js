@@ -337,3 +337,51 @@ export const productFeedSyncScheduleNow = {
   ...productFeedIsConfigured,
   requestSynchronizationNow: true,
 }
+
+export const prevalidationScan = [
+  {
+    id: 1,
+    name: 'Product 1',
+    language: 'EN',
+    image: 'product-1.jpg',
+    description: 'Product 1 description',
+    barcode: '',
+    price: '$10.00',
+  },
+  {
+    id: 2,
+    name: 'Product 2',
+    language: 'FR',
+    image: 'product-2.jpg',
+    description: 'Product 2 description',
+    barcode: '',
+    price: '$10.00',
+  },
+  {
+    id: 3,
+    name: 'Product 3',
+    language: 'FR',
+    image: 'product-3.jpg',
+    description: 'Product 3 description',
+    barcode: 'xx',
+    price: '',
+  },
+  {
+    id: 4,
+    name: 'Product 4',
+    language: 'FR',
+    image: 'product-4.jpg',
+    description: 'Product 4 description',
+    barcode: '',
+    price: '$10.00',
+  },
+  {
+    id: 5,
+    name: 'Product 5',
+    language: 'FR',
+    image: 'product-5.jpg',
+    description: 'Product 5 description',
+    barcode: 'xx',
+    price: '$10.00',
+  },
+];

@@ -2,7 +2,10 @@ import ProductFeedPreScanTableStatusDetails from '../src/components/product-feed
 import {initialStateApp} from '../.storybook/mock/state-app';
 import {
   productFeed,
+  prevalidationScan,
 } from '../.storybook/mock/product-feed';
+
+import {rest} from 'msw';
 
 export default {
   title: 'Product feed page/Table PreScan Status Details',
@@ -32,3 +35,16 @@ export const Loading:any = Template.bind({});
 Loading.args = {
   loading: true,
 }
+
+PreScanTableDetail.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/product-feeds/prevalidation-scan', (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json(prevalidationScan)
+        );
+      }),
+    ],
+  },
+};
