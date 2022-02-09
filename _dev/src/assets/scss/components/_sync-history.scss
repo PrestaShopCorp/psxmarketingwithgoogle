@@ -6,6 +6,9 @@
   // Available colors
   $lineColors: ('danger' : $danger, 'info': $info);
 
+  width: 280px;
+  max-width: 100%;
+
   &__item {
     display: flex;
     align-items: start;
