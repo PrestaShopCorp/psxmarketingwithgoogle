@@ -284,9 +284,15 @@ export const productFeedStatusSyncFailed = {
   status: {
     ...productFeedIsConfigured.status,
     success: false,
-    jobEndedAt: "12.05",
-    lastUpdatedAt: "12.05",
-    nextJobAt: "12.05",
+    jobEndedAt: new Date("July 22, 2021 03:24:00"),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2021 03:24:00"),
+  },
+  validationSummary: {
+    activeItems: 0,
+    expiringItems: 0,
+    pendingItems: 0,
+    disapprovedItems: 0,
   },
 };
 
@@ -298,27 +304,43 @@ export const productFeedErrorAPI = {
 export const productFeedSyncSummaryInProgress = {
   ...productFeed,
   isSyncSummaryLoadingInProgress: true,
+  status: {
+    success: false,
+    nextJobAt:null,
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    jobEndedAt: null,
+  },
+  validationSummary: {
+    activeItems: null,
+    expiringItems: null,
+    pendingItems: null,
+    disapprovedItems: null,
+  },
 };
 
 export const productFeedStatusSyncScheduled = {
   ...productFeedIsConfigured,
   status: {
-    ...productFeedIsConfigured.status,
     success: false,
-    nextJobAt: "12.05",
-    lastUpdatedAt: "12.05",
+    nextJobAt: new Date("July 22, 2021 03:24:00"),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
     jobEndedAt: null,
+  },
+  validationSummary: {
+    activeItems: null,
+    expiringItems: null,
+    pendingItems: null,
+    disapprovedItems: null,
   },
 };
 
 export const productFeedStatusSyncSuccess = {
   ...productFeedIsConfigured,
   status: {
-    ...productFeedIsConfigured.status,
     success: true,
-    jobEndedAt: "12.05",
-    lastUpdatedAt: "12.05",
-    nextJobAt: "12.05",
+    jobEndedAt: new Date("July 22, 2021 03:24:00"),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2021 03:24:00"),
   },
   validationSummary: {
     activeItems: 5,

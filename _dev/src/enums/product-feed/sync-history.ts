@@ -1,6 +1,7 @@
-enum SyncHystoryType {
+export enum SyncHystoryType {
   PLANNED = 'planned',
   STARTED = 'started',
+  SCHEDULE = 'schedule',
   FAILED = 'failed',
   COMPLETED = 'completed',
 }

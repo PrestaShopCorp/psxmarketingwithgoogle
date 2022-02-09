@@ -1,6 +1,5 @@
 <template>
-  <b-link
-    :to="{name: 'TODO'}"
+  <div
     class="border border-600-20 rounded mb-2 px-3 py-2 d-flex without-hover"
   >
     <i
@@ -14,17 +13,24 @@
         <h3 class="ps_gs-fz-13 font-weight-600 mb-1 line-height-15">
           {{ card.title }}
         </h3>
-        <p
-          class="mb-0 ps_gs-fz-12 line-height-13 text-secondary"
-        >
+        <p class="mb-0 ps_gs-fz-12 line-height-13 text-secondary">
           {{ card.description }}
         </p>
       </div>
-      <span class="font-weight-600 ml-auto text-dark">
+      <span
+        class="font-weight-600 ml-auto text-dark"
+        v-if="syncStatus.success || syncStatus.nextJobAt"
+      >
         {{ productStatus.numberOfProducts }}
       </span>
+      <span
+        v-else
+        class="text-muted"
+      >
+        <i class="icon-busy icon-busy--dark mr-1" />
+      </span>
     </div>
-  </b-link>
+  </div>
 </template>
 
 <script>
@@ -36,9 +42,10 @@ export default {
       type: Object,
       required: true,
       validator(obj) {
-        const statusOfProductsValidator = Object.values(ProductsStatusType)
-          .includes(obj.statusOfProducts);
-        const numberOfProductsValidator = typeof (obj.numberOfProducts) === 'number';
+        const statusOfProductsValidator = Object.values(
+          ProductsStatusType,
+        ).includes(obj.statusOfProducts);
+        const numberOfProductsValidator = typeof obj.numberOfProducts === 'number';
 
         return statusOfProductsValidator && numberOfProductsValidator;
       },
@@ -50,32 +57,51 @@ export default {
         return {
           icon: 'check_circle',
           color: 'text-success',
-          title: this.$i18n.t(`productFeedPage.productStatus.${ProductsStatusType.APPROVED}Products`),
-          description: this.$i18n.t(`productFeedPage.productStatus.${ProductsStatusType.APPROVED}ProductsDescription`),
+          title: this.$i18n.t(
+            `productFeedPage.productStatus.${ProductsStatusType.APPROVED}Products`,
+          ),
+          description: this.$i18n.t(
+            `productFeedPage.productStatus.${ProductsStatusType.APPROVED}ProductsDescription`,
+          ),
         };
       }
       if (this.productStatus.statusOfProducts === ProductsStatusType.PENDING) {
         return {
           icon: 'autorenew',
           color: 'text-info',
-          title: this.$i18n.t(`productFeedPage.productStatus.${ProductsStatusType.PENDING}Products`),
-          description: this.$i18n.t(`productFeedPage.productStatus.${ProductsStatusType.PENDING}ProductsDescription`),
+          title: this.$i18n.t(
+            `productFeedPage.productStatus.${ProductsStatusType.PENDING}Products`,
+          ),
+          description: this.$i18n.t(
+            `productFeedPage.productStatus.${ProductsStatusType.PENDING}ProductsDescription`,
+          ),
         };
       }
       if (this.productStatus.statusOfProducts === ProductsStatusType.EXPIRING) {
         return {
           icon: 'warning',
           color: 'text-warning',
-          title: this.$i18n.t(`productFeedPage.productStatus.${ProductsStatusType.EXPIRING}Products`),
-          description: this.$i18n.t(`productFeedPage.productStatus.${ProductsStatusType.EXPIRING}ProductsDescription`),
+          title: this.$i18n.t(
+            `productFeedPage.productStatus.${ProductsStatusType.EXPIRING}Products`,
+          ),
+          description: this.$i18n.t(
+            `productFeedPage.productStatus.${ProductsStatusType.EXPIRING}ProductsDescription`,
+          ),
         };
       }
       return {
         icon: 'cancel',
         color: 'text-danger',
-        title: this.$i18n.t(`productFeedPage.productStatus.${ProductsStatusType.DISAPPROVED}Products`),
-        description: this.$i18n.t(`productFeedPage.productStatus.${ProductsStatusType.DISAPPROVED}ProductsDescription`),
+        title: this.$i18n.t(
+          `productFeedPage.productStatus.${ProductsStatusType.DISAPPROVED}Products`,
+        ),
+        description: this.$i18n.t(
+          `productFeedPage.productStatus.${ProductsStatusType.DISAPPROVED}ProductsDescription`,
+        ),
       };
+    },
+    syncStatus() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
   },
 };
