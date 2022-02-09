@@ -303,6 +303,7 @@ export const productFeedErrorAPI = {
 
 export const productFeedSyncSummaryInProgress = {
   ...productFeed,
+  isConfigured: true,
   isSyncSummaryLoadingInProgress: true,
   status: {
     success: false,

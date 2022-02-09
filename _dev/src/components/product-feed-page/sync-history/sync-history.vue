@@ -23,7 +23,6 @@ export default {
     syncInfos() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
-
     syncStates() {
       if (this.inNeedOfConfiguration) {
         return [

@@ -10,8 +10,12 @@
       >
         <p> {{ $t('productFeedPage.alert.alertSuccess') }}</p>
       </PsToast>
-      <sync-timeline />
-      <sync-overview />
+      <sync-timeline
+        v-if="!inNeedOfConfiguration"
+      />
+      <sync-overview
+        :inNeedOfConfiguration="inNeedOfConfiguration"
+      />
     </template>
   </div>
 </template>
@@ -33,8 +37,9 @@ export default {
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
-    productFeedIsConfigured() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
+    inNeedOfConfiguration() {
+      // TODO: check if in need of configuration
+      return !this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
   },
   methods: {
@@ -48,14 +53,9 @@ export default {
     },
   },
   mounted() {
-    this.getDatas()
-      .then(() => {
-        if (!this.productFeedIsConfigured) {
-          this.$router.push({
-            name: 'onboarding',
-          });
-        }
-      });
+    if (!this.inNeedOfConfiguration){
+      this.getDatas();
+    };
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border border-600-20 rounded mb-2 px-3 py-2 d-flex without-hover"
+    class="border border-600-20 rounded mb-2 px-3 py-2 d-flex"
   >
     <i
       class="material-icons-round ps_gs-fz-24 mr-3 mb-0"
@@ -25,7 +25,6 @@
       </span>
       <span
         v-else
-        class="text-muted"
       >
         <i class="icon-busy icon-busy--dark mr-1" />
       </span>

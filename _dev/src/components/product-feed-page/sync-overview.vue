@@ -5,7 +5,7 @@
         {{ $t("productFeedSettings.breadcrumb1") }}
       </h1>
     </template>
-    <div class="d-sm-flex position-relative">
+    <div class="d-md-flex position-relative">
       <div
         v-if="inNeedOfConfiguration"
         class="ps_gs-onboardingcard__not-configured"
@@ -41,7 +41,7 @@
         class="
           flex-grow-1
           p-3
-          border-top border-sm-top-0 border-sm-left border-600-20
+          border-top border-md-top-0 border-md-left border-600-20
         "
       >
         <SubmittedProducts
@@ -54,12 +54,12 @@
             :product-status="productStatus"
           />
         </SubmittedProducts>
-        <div class="text-muted ps_gs-fz-13 d-flex justify-content-between">
+        <div class="mt-4 text-muted ps_gs-fz-13 d-flex justify-content-between flex-wrap">
           <b-button
             v-if="productsSent"
             variant="invisible"
-            @click="displayReporting"
-            class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13"
+            :to="{name: 'product-feed-status'}"
+            class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 mr-2"
           >
             {{ $t("cta.viewDetailedStatuses") }}
           </b-button>
@@ -90,6 +90,12 @@ export default {
     SyncHistory,
     SyncState,
   },
+  props: {
+    inNeedOfConfiguration: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     validationSummary() {
       return this.$store.getters[
@@ -103,21 +109,6 @@ export default {
         || this.validationSummary.expiringItems !== null
         || this.validationSummary.disapprovedItems !== null
       );
-    },
-  },
-  methods: {
-    displayReporting() {
-      this.$router.push({
-        path: '/product-feed/status',
-      });
-      // Now we just generate link for redirect merchant for products statuses
-      // window.open(`https://merchants.google.com/mc/products/diagnostics?a=${this.getGMCInformations.id}`);
-    },
-  },
-  computed: {
-    inNeedOfConfiguration() {
-      // TODO: check if in need of configuration
-      return false;
     },
   },
   googleUrl,
