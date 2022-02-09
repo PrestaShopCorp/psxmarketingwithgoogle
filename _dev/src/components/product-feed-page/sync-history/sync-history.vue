@@ -5,6 +5,10 @@
 </template>
 
 <script>
+import {
+  SyncHystoryType,
+} from '@/enums/product-feed/sync-history.ts';
+
 export default {
   computed: {
     syncStatus() {
@@ -14,7 +18,7 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
     syncStates() {
-      if (this.syncStatus === 'schedule') {
+      if (this.syncStatus === SyncHystoryType.SCHEDULE) {
         return [
           {
             title: this.$i18n.t(
@@ -29,7 +33,7 @@ export default {
         ];
       }
       if (
-        this.syncStatus === 'planned'
+        this.syncStatus === SyncHystoryType.PLANNED
       ) {
         return [
           {
@@ -44,7 +48,7 @@ export default {
           },
         ];
       }
-      if (this.syncStatus === 'failed') {
+      if (this.syncStatus === SyncHystoryType.FAILED) {
         return [
           {
             title: this.$i18n.t(
