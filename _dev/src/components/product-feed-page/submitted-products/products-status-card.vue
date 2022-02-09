@@ -19,13 +19,17 @@
       </div>
       <span
         class="font-weight-600 ml-auto text-dark text-nowrap"
-        v-if="productFeedStatus.nextJobAt"
+        v-if="syncStatus === 'success' || syncStatus === 'planned' || syncStatus === 'failed'"
       >
-        <template v-if="isSyncStatusPlanned">
-          --
-        </template>
-        <template v-else>
+        <template
+          v-if="syncStatus === 'success' || syncStatus === 'failed'"
+        >
           {{ productStatus.numberOfProducts }}
+        </template>
+        <template
+          v-else
+        >
+          --
         </template>
       </span>
       <span
@@ -39,9 +43,6 @@
 
 <script>
 import ProductsStatusType from '@/enums/product-feed/products-status-type';
-import {
-  SyncHystoryType,
-} from '@/enums/product-feed/sync-history.ts';
 
 export default {
   props: {
@@ -49,7 +50,6 @@ export default {
       type: Object,
       required: true,
       validator(obj) {
-        console.log(`obj.statusOfProducts: ${obj.statusOfProducts}`, `obj.numberOfProducts: ${obj.numberOfProducts}`);
         const statusOfProductsValidator = Object.values(
           ProductsStatusType,
         ).includes(obj.statusOfProducts);
@@ -113,9 +113,6 @@ export default {
     },
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
-    },
-    isSyncStatusPlanned() {
-      return this.syncStatus === SyncHystoryType.PLANNED;
     },
   },
 };
