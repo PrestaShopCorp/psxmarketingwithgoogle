@@ -435,10 +435,12 @@ export default {
         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
       },
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
     const json = await response.json();
+
     return json;
   },
 };
