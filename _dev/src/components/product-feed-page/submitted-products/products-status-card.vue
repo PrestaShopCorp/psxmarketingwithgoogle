@@ -22,7 +22,7 @@
         v-if="syncStatus === 'success' || syncStatus === 'planned' || syncStatus === 'failed'"
       >
         <template
-          v-if="syncStatus === 'success' || syncStatus === 'failed'"
+          v-if="syncStatus === 'success'"
         >
           {{ productStatus.numberOfProducts }}
         </template>
