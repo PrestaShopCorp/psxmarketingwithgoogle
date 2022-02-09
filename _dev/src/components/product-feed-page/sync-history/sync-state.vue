@@ -1,6 +1,6 @@
 <template>
   <li
-    class="sync-history__item sync-history__item--icon-check sync-history__item--bg-blue"
+    class="sync-history__item sync-history__item--bg-blue"
     :class="{
       ['sync-history__item--icon-' + syncState.icon]: true,
       ['sync-history__item--bg-' + syncState.lineColor]:

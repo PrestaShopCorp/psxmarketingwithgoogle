@@ -14,7 +14,7 @@
         v-if="!inNeedOfConfiguration"
       />
       <sync-overview
-        :inNeedOfConfiguration="inNeedOfConfiguration"
+        :in-need-of-configuration="inNeedOfConfiguration"
       />
     </template>
   </div>
@@ -53,9 +53,9 @@ export default {
     },
   },
   mounted() {
-    if (!this.inNeedOfConfiguration){
+    if (!this.inNeedOfConfiguration) {
       this.getDatas();
-    };
+    }
   },
 };
 </script>

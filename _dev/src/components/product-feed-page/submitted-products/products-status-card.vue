@@ -9,7 +9,7 @@
       {{ card.icon }}
     </i>
     <div class="d-flex justify-content-between flex-grow-1">
-      <div>
+      <div class="mr-2">
         <h3 class="ps_gs-fz-13 font-weight-600 mb-1 line-height-15">
           {{ card.title }}
         </h3>
@@ -18,10 +18,15 @@
         </p>
       </div>
       <span
-        class="font-weight-600 ml-auto text-dark"
-        v-if="syncStatus.success || syncStatus.nextJobAt"
+        class="font-weight-600 ml-auto text-dark text-nowrap"
+        v-if="productFeedStatus.nextJobAt"
       >
-        {{ productStatus.numberOfProducts }}
+        <template v-if="isSyncStatusPlanned">
+          --
+        </template>
+        <template v-else>
+          {{ productStatus.numberOfProducts }}
+        </template>
       </span>
       <span
         v-else
@@ -34,6 +39,9 @@
 
 <script>
 import ProductsStatusType from '@/enums/product-feed/products-status-type';
+import {
+  SyncHystoryType,
+} from '@/enums/product-feed/sync-history.ts';
 
 export default {
   props: {
@@ -41,10 +49,11 @@ export default {
       type: Object,
       required: true,
       validator(obj) {
+        console.log(`obj.statusOfProducts: ${obj.statusOfProducts}`, `obj.numberOfProducts: ${obj.numberOfProducts}`);
         const statusOfProductsValidator = Object.values(
           ProductsStatusType,
         ).includes(obj.statusOfProducts);
-        const numberOfProductsValidator = typeof obj.numberOfProducts === 'number';
+        const numberOfProductsValidator = typeof obj.numberOfProducts === 'number' || obj.numberOfProducts === null;
 
         return statusOfProductsValidator && numberOfProductsValidator;
       },
@@ -99,8 +108,14 @@ export default {
         ),
       };
     },
-    syncStatus() {
+    productFeedStatus() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
+    },
+    syncStatus() {
+      return this.$store.getters['productFeed/GET_SYNC_STATUS'];
+    },
+    isSyncStatusPlanned() {
+      return this.syncStatus === SyncHystoryType.PLANNED;
     },
   },
 };

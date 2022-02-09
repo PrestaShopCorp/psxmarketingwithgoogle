@@ -42,7 +42,7 @@ export default {
               'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
               {date: this.$options.filters.timeConverterToDate(this.syncInfos.lastUpdatedAt)},
             ),
-            icon: 'schedule',
+            icon: 'change_circle',
           },
         ];
       }
@@ -58,7 +58,7 @@ export default {
               'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate',
               {date: this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt)},
             ),
-            icon: 'change_circle',
+            icon: 'schedule',
           },
         ];
       }
