@@ -100,6 +100,9 @@ export default {
       } else if (link.type === 'routeStep') {
         this.$router.push({
           name: link.name,
+          params: {
+            step: link.params,
+          },
         });
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', link.step);
       }

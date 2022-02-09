@@ -1,7 +1,7 @@
 <template>
   <b-card no-body>
     <div class="ps_gs-landingpage">
-      <LandingPageHeader />
+      <LandingPageHeader @hideLandingPage="hideLandingPage" />
       <hr class="my-4">
       <LandingPageContent
         content-image="Merchant-Center-img.png"
@@ -33,7 +33,7 @@
         class="text-muted ps_gs-fz-12 mt-2 mt-md-4 pb-1"
       />
       <hr class="my-4">
-      <LandingPageFooter />
+      <LandingPageFooter @hideLandingPage="hideLandingPage" />
     </div>
   </b-card>
 </template>
@@ -45,6 +45,7 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import LandingPageHeader from '../components/landing-page/landing-page-header';
 import LandingPageContent from '../components/landing-page/landing-page-content';
 import LandingPageFooter from '../components/landing-page/landing-page-footer';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'LandingPage',
@@ -53,6 +54,18 @@ export default {
     LandingPageHeader,
     LandingPageContent,
     LandingPageFooter,
+  },
+  methods: {
+    hideLandingPage() {
+      this.$router.push({
+        name: 'configuration',
+      });
+      localStorage.setItem('landingHasBeenSeen', true);
+      this.$segment.track('[GGL] Start Configuration', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
+    },
   },
   googleUrl,
 };

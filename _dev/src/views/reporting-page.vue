@@ -36,14 +36,7 @@ export default {
     },
   },
   created() {
-    this.getDatas()
-      .then(() => {
-        if (!this.reportingTabIsActive) {
-          this.$router.push({
-            name: 'onboarding',
-          });
-        }
-      });
+    this.getDatas();
   },
 };
 </script>

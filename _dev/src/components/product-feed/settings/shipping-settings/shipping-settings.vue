@@ -159,6 +159,7 @@
 </template>
 
 <script>
+import ProductFeedSettingsPages from '@enums/product-feed/product-feed-settings-pages';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
@@ -217,6 +218,12 @@ export default {
     previousStep() {
       localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.TARGET_COUNTRY,
+        },
+      });
       window.scrollTo(0, 0);
     },
     nextStep() {
@@ -226,6 +233,12 @@ export default {
       });
       localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
+        },
+      });
       window.scrollTo(0, 0);
     },
     cancel() {

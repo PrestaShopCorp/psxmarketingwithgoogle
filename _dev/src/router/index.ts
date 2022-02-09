@@ -2,10 +2,10 @@ import Vue from 'vue';
 import VueRouter, {RouteConfig} from 'vue-router';
 import Store from '../store';
 import CampaignPage from '../views/campaign-page.vue';
-import Configuration from '../views/configuration.vue';
+import LandingPage from '../views/landing-page.vue';
 import Debug from '../views/debug.vue';
 import Help from '../views/help.vue';
-import OnboardingPage from '../views/onboarding-page.vue';
+import Configuration from '../views/configuration.vue';
 import ProductFeedPage from '../views/product-feed-page.vue';
 import ReportingPage from '../views/reporting-page.vue';
 import TunnelProductFeed from '../views/tunnel-product-feed.vue';
@@ -17,25 +17,36 @@ const initialPath = (to, from, next) => {
     && (!Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED']
       || Store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'].length)
   ) {
-    next({name: 'configuration'});
+    next({name: 'landingPage'});
   } else {
-    next({name: 'onboarding'});
+    next({name: 'configuration'});
+  }
+};
+
+const landingExistsInLocalstorage = (to, from, next) => {
+  let existInLocalstorage = window.localStorage.getItem('landingHasBeenSeen') || '';
+  existInLocalstorage = JSON.parse(existInLocalstorage);
+  if (existInLocalstorage) {
+    next();
+  } else {
+    next({name: 'landingPage'});
   }
 };
 
 const routes: Array<RouteConfig> = [
   {
+    path: '/landing-page',
+    name: 'landingPage',
+    component: LandingPage,
+  },
+  {
     path: '/configuration',
     name: 'configuration',
     component: Configuration,
+    beforeEnter: landingExistsInLocalstorage,
   },
   {
-    path: '/configuration/onboarding',
-    name: 'onboarding',
-    component: OnboardingPage,
-  },
-  {
-    path: '/configuration/product-feed-settings',
+    path: '/configuration/product-feed-settings/:step',
     name: 'product-feed-settings',
     component: TunnelProductFeed,
   },

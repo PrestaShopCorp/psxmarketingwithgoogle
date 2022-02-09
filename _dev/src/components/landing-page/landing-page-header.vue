@@ -29,7 +29,7 @@
         size="sm"
         variant="primary"
         class="my-2"
-        @click="hideLandingPage"
+        @click="$emit('hideLandingPage')"
         data-test-id="lp-header-cta"
       >
         {{ $t('cta.startConfiguring') }}
@@ -46,26 +46,11 @@
 
 <script>
 import {VueShowdown} from 'vue-showdown';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'LandingPageHeader',
   components: {
     VueShowdown,
-  },
-  data() {
-    return {
-    };
-  },
-  methods: {
-    hideLandingPage() {
-      this.$root.$emit('onHideLanding');
-      localStorage.setItem('canDisplayLanding', false);
-      this.$segment.track('[GGL] Start Configuration', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-    },
   },
 };
 </script>

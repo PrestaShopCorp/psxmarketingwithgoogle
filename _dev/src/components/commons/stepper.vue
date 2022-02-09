@@ -57,7 +57,7 @@ import {
   BIconCheck,
   BIconSlash,
 } from 'bootstrap-vue';
-
+import ProductFeedSettingsPages from '@enums/product-feed/product-feed-settings-pages';
 import ProgressRing from '../commons/progress-ring';
 
 export default {
@@ -114,6 +114,21 @@ export default {
         if (this.mutableActiveStep >= value) {
           if (this.$route.name === 'product-feed-settings') {
             this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', value);
+            this.$router.push({
+              name: 'product-feed-settings',
+              params: {
+                /* eslint-disable no-nested-ternary */
+
+                step: value === 1 ? ProductFeedSettingsPages.TARGET_COUNTRY
+                  : value === 2 ? ProductFeedSettingsPages.SHIPPING_SETTINGS
+                    : value === 3 ? ProductFeedSettingsPages.ATTRIBUTE_MAPPING
+                      : value === 4 ? ProductFeedSettingsPages.SYNC_SCHEDULE
+                        : value === 5 ? ProductFeedSettingsPages.SUMMARY
+                          : null,
+                /* eslint-enable no-nested-ternary */
+
+              },
+            });
           } else {
             this.$emit('changeStep', value);
           }

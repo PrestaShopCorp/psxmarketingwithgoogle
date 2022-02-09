@@ -114,12 +114,6 @@ export default {
   mounted() {
     this.getDatas()
       .then(() => {
-        if (!this.googleAdsIsServing) {
-          this.$router.push({
-            name: 'onboarding',
-          });
-        }
-      }).finally(() => {
         this.loadingPage = false;
         if (this.$route.name === 'campaign' && this.SSCExist) {
           this.$router.push({

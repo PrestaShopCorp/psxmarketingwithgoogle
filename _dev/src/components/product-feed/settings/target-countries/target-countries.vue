@@ -105,6 +105,7 @@
 
 <script>
 import {VueShowdown} from 'vue-showdown';
+import ProductFeedSettingsPages from '@enums/product-feed/product-feed-settings-pages';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import SelectCountry from '@/components/commons/select-country.vue';
@@ -165,6 +166,13 @@ export default {
             data: true,
           });
           this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
+          this.$router.push({
+            name: 'product-feed-settings',
+            params: {
+              step: ProductFeedSettingsPages.SHIPPING_SETTINGS
+              ,
+            },
+          });
           window.scrollTo(0, 0);
         });
       } else {
@@ -177,6 +185,12 @@ export default {
           data: false,
         });
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+        this.$router.push({
+          name: 'product-feed-settings',
+          params: {
+            step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
+          },
+        });
         window.scrollTo(0, 0);
       }
     },
