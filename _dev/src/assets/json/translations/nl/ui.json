@@ -691,18 +691,18 @@
     },
     "campaignsPerformanceTable": {
       "title": "Prestaties van de campagne",
-      "subTitle": "Kijk hoe goed uw campagnes presteren",
-      "emptyListText": "You don't have any enabled campaigns"
+      "subTitle": "Check out how well your campaigns perform",
+      "emptyListText": "You don't have any enabled campaign"
     },
     "productsPerformanceTable": {
       "title": "Productprestaties voor actieve campagnes",
-      "subTitle": "Kijk welk product het beste presteert",
+      "subTitle": "Check out which product performs the best",
       "emptyListText": "You don't have any products in active campaigns"
     },
     "filtersPerformanceTable": {
       "title": "Algemene filterprestaties (top 10)",
-      "subTitle": "Kijk welke dimensie het beste presteert",
-      "emptyListText": "You don't have any products in this campaigns"
+      "subTitle": "Check out which dimension performs the best",
+      "emptyListText": "You don't have any active campaigns with filters"
     }
   },
   "notConfiguredState": {
