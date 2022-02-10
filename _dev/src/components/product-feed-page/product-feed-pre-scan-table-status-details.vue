@@ -22,50 +22,50 @@
       </ol>
     </b-card-header>
     <b-card-body body-class="p-3 mt-2">
-    <div class="d-flex justify-content-between align-items-center">
-      <i18n
-        path="productFeedPage.preScan.description"
-        tag="h2"
-        class="font-weight-normal ps_gs-fz-14"
-      >
-        <span class="font-weight-bold text-lowercase">
-          {{
-            $tc('smartShoppingCampaignCreation.xProducts',
-              rows,
-              [rows]
-            )
-          }}
-        </span>
-      </i18n>
-      <b-dropdown
-        v-if="countries.length > 1"
-        id="filterByCountryDropdown"
-        variant=" "
-        menu-class="ps-dropdown"
-        :text="langSelected ? langSelected
-          : $t('productFeedSettings.shipping.filterTitle')"
-        class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
-      >
-        <b-dropdown-item
-          :disabled="!langSelected"
-          variant="dark"
-          link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
-          @click="langSelected = null"
+      <div class="d-flex justify-content-between align-items-center">
+        <i18n
+          path="productFeedPage.preScan.description"
+          tag="h2"
+          class="font-weight-normal ps_gs-fz-14"
         >
-          {{ $t('productFeedSettings.shipping.filterTitle') }}
-        </b-dropdown-item>
-        <b-dropdown-item
-          :disabled="country === langSelected"
-          v-for="(country, index) in countries"
-          :key="index"
-          @click="langSelected = country"
-          variant="dark"
-          link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
+          <span class="font-weight-bold text-lowercase">
+            {{
+              $tc('smartShoppingCampaignCreation.xProducts',
+                  rows,
+                  [rows]
+              )
+            }}
+          </span>
+        </i18n>
+        <b-dropdown
+          v-if="countries.length > 1"
+          id="filterByCountryDropdown"
+          variant=" "
+          menu-class="ps-dropdown"
+          :text="langSelected ? langSelected
+            : $t('productFeedSettings.shipping.filterTitle')"
+          class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
         >
-          {{ country }}
-        </b-dropdown-item>
-      </b-dropdown>
-    </div>
+          <b-dropdown-item
+            :disabled="!langSelected"
+            variant="dark"
+            link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
+            @click="langSelected = null"
+          >
+            {{ $t('productFeedSettings.shipping.filterTitle') }}
+          </b-dropdown-item>
+          <b-dropdown-item
+            :disabled="country === langSelected"
+            v-for="(country, index) in countries"
+            :key="index"
+            @click="langSelected = country"
+            variant="dark"
+            link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
+          >
+            {{ country }}
+          </b-dropdown-item>
+        </b-dropdown>
+      </div>
       <b-table
         :items="items"
         :fields="fields"
@@ -134,15 +134,14 @@
         </template>
       </b-table>
       <div class="overflow-auto">
-        <div class="mt-3">
-          <b-pagination
-            v-model="currentPage"
-            :total-rows="rows"
-            :per-page="perPage"
-            aria-controls="table-products"
-            align="center"
-          ></b-pagination>
-        </div>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          aria-controls="table-products"
+          align="center"
+          class="mb-0"
+        />
       </div>
     </b-card-body>
   </b-card>
