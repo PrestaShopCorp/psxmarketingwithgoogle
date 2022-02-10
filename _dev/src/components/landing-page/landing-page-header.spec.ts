@@ -3,21 +3,25 @@
  */
 
 // Import this file first to init mock on window
-import {createWrapper, shallowMount} from '@vue/test-utils';
+import {shallowMount} from '@vue/test-utils';
 import config from '@/../tests/init';
 
 import LandingPageHeader from '@/components/landing-page/landing-page-header.vue';
 
 describe('landing-page-header.vue', () => {
-  it('Emit event to hide landing page when click on CTA', async () => {
+  const $route = {
+    name: "configuration"
+  }
+  it('Emit event to route push when click on CTA', async () => {
     const wrapper = shallowMount(LandingPageHeader, {
       ...config,
+      mocks: {
+        $route
+      } 
     });
 
-    // Check if onHideLanding event has been emmited when btn is clicked
     await wrapper.find('[data-test-id="lp-header-cta"]').trigger('click');
-    const rootWrapper = createWrapper(wrapper.vm.$root);
-
-    expect(rootWrapper.emitted('onHideLanding')).toBeTruthy();
+     expect(wrapper.vm.$route.name).toBe($route.name)
+     expect(wrapper.emitted('hideLandingPage')).toBeTruthy();
   });
 });

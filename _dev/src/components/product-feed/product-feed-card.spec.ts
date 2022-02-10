@@ -12,11 +12,12 @@ import BadgeListRequirements from '@/components/commons/badge-list-requirements.
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import Stepper from '@/components/commons/stepper.vue';
+import ProductFeedSettingsPages from '../../enums/product-feed/product-feed-settings-pages';
+
 import {
   productFeed,
   productFeedIsReadyForExport,
   productFeedIsConfigured,
-  productFeedIsConfiguredWithTax,
   productFeedMissingFields,
   productFeedStatusSyncFailed,
   productFeedErrorAPI,
@@ -25,6 +26,9 @@ import {
 describe('product-feed-card.vue', () => {
   const mockRoute = {
     name: 'product-feed-settings',
+    params: {
+      step: ProductFeedSettingsPages.TARGET_COUNTRY
+    }
   };
   const mockRouter = {
     push: jest.fn(),
@@ -121,9 +125,6 @@ describe('product-feed-card.vue', () => {
         isEnabled: true,
       },
       ...config,
-      mocks: {
-        $router: mockRouter,
-      },
       localVue,
       store: new Vuex.Store(storeConfigured),
     });
@@ -141,9 +142,6 @@ describe('product-feed-card.vue', () => {
         isEnabled: true,
       },
       ...config,
-      mocks: {
-        $router: mockRouter,
-      },
       localVue,
       stubs: {
         VueShowdown: true,
@@ -164,9 +162,6 @@ describe('product-feed-card.vue', () => {
         isEnabled: true,
       },
       ...config,
-      mocks: {
-        $router: mockRouter,
-      },
       localVue,
       store: new Vuex.Store(storeMissingFields),
       stubs: {
@@ -211,9 +206,6 @@ describe('product-feed-card.vue', () => {
         isEnabled: true,
       },
       ...config,
-      mocks: {
-        $router: mockRouter,
-      },
       localVue,
       store: new Vuex.Store(storeSyncFailed),
       stubs: {

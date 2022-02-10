@@ -241,6 +241,7 @@ export default {
   },
   data() {
     return {
+      ProductFeedSettingsPages,
       steps: [
         {
           title: this.$i18n.t('productFeedSettings.steps.targetCountry'),

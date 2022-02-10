@@ -6,18 +6,21 @@ import Vuex from 'vuex';
 // Import this file first to init mock on window
 import {shallowMount} from '@vue/test-utils';
 import config, {cloneStore} from '@/../tests/init';
-
 import Stepper from '@/components/commons/stepper.vue';
 import {state} from '../../store/modules/product-feed/state';
 
 describe('stepper.vue', () => {
   const productFeedSettingsRoute = {
     name: 'product-feed-settings',
+    params: {
+      step: "target-country"
+    }
   };
-  const fooRoute = {
+ 
+  const routeName = {
     name: 'foo',
   };
-
+const push = jest.fn();
   const mockRouter = {
     push: jest.fn(),
   };
@@ -26,6 +29,9 @@ describe('stepper.vue', () => {
     activeStep: 3,
     steps: [
       {
+        title: 'Target Country',
+      },
+      {
         title: 'Shipping settings',
       },
       {
@@ -33,6 +39,9 @@ describe('stepper.vue', () => {
       },
       {
         title: 'Attribute mapping',
+      },
+      {
+        title: 'Sync schedule',
       },
       {
         title: 'Summary',
@@ -100,12 +109,13 @@ describe('stepper.vue', () => {
     // Check if the mutation SET_ACTIVE_CONFIGURATION_STEP has been called
     await wrapper.findAll('a').at(0).trigger('click');
     expect(mutations.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledWith(state, 1);
+
   });
 
   it('test event emited when we click on a previous step on any other page', async () => {
     const wrapper = shallowMount(Stepper, {
       mocks: {
-        $route: fooRoute,
+        $route: routeName,
         $router: mockRouter,
       },
       propsData,
