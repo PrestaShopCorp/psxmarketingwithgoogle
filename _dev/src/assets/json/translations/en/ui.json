@@ -583,7 +583,7 @@
       "description" : "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
     },
     "preScan": {
-      "description": "products with problems that couldn't be synced are listed below.",
+      "description": "{0} with problems that couldn't be synced are listed below.",
       "fields": {
         "name": "Name",
         "language": "Language",

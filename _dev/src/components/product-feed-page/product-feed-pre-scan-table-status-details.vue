@@ -9,12 +9,12 @@
     >
       <ol class="list-inline mb-0 d-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
-          <a
-            href=""
+          <b-link
+            :to="{name: 'product-feed'}"
             class="d-flex align-items-center ps_gs-breadcrumb__link"
           >
             {{ $t('productFeedSettings.breadcrumb1') }}
-          </a>
+          </b-link>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item">
           {{ $t('productFeedPage.breadcrumb') }}
@@ -22,10 +22,21 @@
       </ol>
     </b-card-header>
     <b-card-body body-class="p-3 mt-2">
-    <div class="d-flex  align-items-center pr-3">
-      <p class="w-75">
-        {{rows}} {{ $t('productFeedPage.preScan.description') }}
-      </p>
+    <div class="d-flex justify-content-between align-items-center">
+      <i18n
+        path="productFeedPage.preScan.description"
+        tag="h2"
+        class="font-weight-normal ps_gs-fz-14"
+      >
+        <span class="font-weight-bold text-lowercase">
+          {{
+            $tc('smartShoppingCampaignCreation.xProducts',
+              rows,
+              [rows]
+            )
+          }}
+        </span>
+      </i18n>
       <b-dropdown
         v-if="countries.length > 1"
         id="filterByCountryDropdown"
@@ -56,7 +67,6 @@
       </b-dropdown>
     </div>
       <b-table
-        striped
         :items="items"
         :fields="fields"
         :filter-function="filterByLang"
@@ -66,6 +76,7 @@
         :busy="loading"
         id="table-products"
         class="ps_gs-table-products mb-3"
+        table-class="border-bottom-0"
         variant="light"
         responsive="xl"
       >
@@ -200,34 +211,41 @@ export default {
         {
           key: 'id',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderID'),
+          thClass: 'font-weight-600',
         },
         {
           key: 'name',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
+          thClass: 'font-weight-600',
         },
         {
           key: 'language',
           label: this.$i18n.t('productFeedPage.preScan.fields.language'),
+          thClass: 'font-weight-600',
         },
         {
           key: 'image',
           label: this.$i18n.t('productFeedPage.preScan.fields.image'),
           sortable: true,
+          thClass: 'font-weight-600',
         },
         {
           key: 'description',
           label: this.$i18n.t('productFeedPage.preScan.fields.description'),
           sortable: true,
+          thClass: 'font-weight-600',
         },
         {
           key: 'barcode',
           label: this.$i18n.t('productFeedPage.preScan.fields.barcode'),
           sortable: true,
+          thClass: 'font-weight-600',
         },
         {
           key: 'price',
           label: this.$i18n.t('productFeedPage.preScan.fields.price'),
           sortable: true,
+          thClass: 'font-weight-600',
         },
       ],
     };
