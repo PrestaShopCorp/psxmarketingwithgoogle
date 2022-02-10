@@ -1,7 +1,7 @@
 {
   "general": {
     "tabs": {
-      "exportStatus": "Export status",
+      "exportStatus": "Estado de las exportaciones",
       "campaign": "Campaña",
       "reporting": "Informes",
       "configuration": "Configuración",
@@ -21,16 +21,16 @@
     "searchByX": "Buscar por {0}",
     "search": "Search",
     "legendCreateNewAccount": "También tienes la posibilidad de crear una nueva cuenta en pocos pasos:",
-    "notAvailable": "Not available",
+    "notAvailable": "No disponible",
     "min": "min.",
-    "max": "max.",
+    "max": "máximo.",
     "helpPage": "Help Page"
   },
   "landingPage": {
     "header": {
       "title": "Marketing con Google",
       "text": "Tus compradores potenciales ya están buscando productos como los que tú ofreces en Internet. Llega a ellos en Google con PrestaShop Marketing en unos pocos y sencillos pasos.",
-      "reinsurance": "- Easy setup \n- Cancel anytime"
+      "reinsurance": "- Fácil configuración \n- Cancelar en cualquier momento"
     },
     "content": {
       "content1": {
@@ -41,7 +41,7 @@
       "content2": {
         "title": "Activa las fichas órganicas para tus productos",
         "text": "Las fichas órganicas permiten mostrar los atributos de tus productos, incluyendo la imagen y el precio en los listados de clasificación orgánica en la pestaña Shopping.  \n \nUna vez sincronizado tu catálogo, habilita fácilmente las fichas órganicas en tu panel de control y comienza a mostrar tus productos en la pestaña Shopping de forma gratuita.",
-        "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
+        "footer": "Cree una nueva [cuenta de Merchant Center]({0})[:target=\"_blank\"] o vincule una existente.  \nPara mostrar tus productos en Google deberás cumplir los [requisitos de elegibilidad]({1})[:target=\"_blank\"]"
       },
       "content3": {
         "title": "Crea y gestiona campañas de Shopping Inteligentes",
@@ -66,9 +66,9 @@
     "title": "Modo multitienda activado",
     "subtitle": "Debes configurar tus tiendas una por una para este servicio pero podrás utilizar la misma cuenta.",
     "selectStore": "Por favor, selecciona la primera tienda a configurar de la lista siguiente",
-    "tips": "After you are done with the first shop, you can configure the others by selecting them one by one in the shop selector, in the horizontal menu",
+    "tips": "Una vez configurada la primera tienda, puedes continuar con las demás seleccionándolas una a una en el selector de tiendas del menú horizontal.",
     "configure": "Configuración",
-    "group": "Shop group"
+    "group": "Grupo de tiendas"
   },
   "psAccountCard": {
     "disonboardedText": "Autoriza tu cuenta para gestionar los servicios de tu tienda",
@@ -82,8 +82,8 @@
     "alertCantConnect": "No puedes conectarte a tu cuenta de Google en este momento. Vuelve a intentarlo más tarde.",
     "alertTokenMissing": "No hemos podido autenticar tu cuenta. Inténtalo de nuevo o cambia de cuenta.",
     "stepIsMandatory": "*Este paso es obligatorio",
-    "alertInfo": "Make sure to allow all requested permissions when authenticating your Google account.  \nThis action is mandatory for this service to work properly.",
-    "missingTokenScopes": "Some requested permissions are missing.  \nAll requested permissions are mandatory for this service to work properly, please manage your account and make sure to allow all of them."
+    "alertInfo": "Asegúrate de permitir todos los permisos solicitados al autenticar tu cuenta de Google.  \nEsta acción es obligatoria para que este servicio funcione correctamente.",
+    "missingTokenScopes": "Faltan algunos permisos solicitados.  \nTodos los permisos solicitados son obligatorios para que este servicio funcione correctamente, por favor gestione su cuenta y asegúrese de permitirlos todos."
   },
   "mcaCard": {
     "title": "Cuenta Merchant Center",
@@ -91,44 +91,44 @@
     "introEnabled": "[Google Merchant Center]({0})[:target=\\\"_blank\\\"] helps you get your store and product info into Google and make it available to shoppers across Google.",
     "labelSelect": "Conectar una cuenta existente",
     "claimCollides": "Tu sitio web ya ha sido reclamado.",
-    "claimOverwrite": "To finish Merchant Center account creation, you need to overwrite the existing claim.",
-    "footerEU": "If you are in the European Economic Area, the United Kingdom or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
+    "claimOverwrite": "Para finalizar la creación de la cuenta de Merchant Center, es necesario sobrescribir la reclamación existente.",
+    "footerEU": "Si se encuentra en el Espacio Económico Europeo, en el Reino Unido o en Suiza, su cuenta de Merchant Center debe estar asociada a un [Servicio de comparación de compras (CSS)]({0})[:target=\"_blank\"]  \nSi crea una nueva cuenta de Merchant Center a través de esta aplicación, se asociará por defecto a Google Shopping, el CSS de Google. Puedes cambiar el CSS asociado a tu cuenta en cualquier momento. [Encuentre sus socios CSS]({1})[:target=\"_blank\"]  \nUna vez que haya configurado su cuenta de Merchant Center, podrá utilizar nuestra herramienta de incorporación independientemente del CSS que utilice.",
     "shopInfoMissing": "Falta la información de la tienda",
-    "shopInfoMissingDescription": "To complete missing store information please go to your [Merchant Center account]({0})[:target=\"_blank\"].",
+    "shopInfoMissingDescription": "Para completar la información de la tienda que falta por favor vaya a su [cuenta de Merchant Center]({0})[:target=\"_blank\"].",
     "userIsNotAdmin": "Necesitas Acceso de administrador",
     "userIsTestAccount": "Esta es una cuenta de prueba",
     "googleMCA": "Cuenta Merchant Center",
-    "shopMaintenance": "You cannot connect a Google Merchant Center account while Maintenance mode is active.  \n Please change your shop parameters.",
-    "toUseGmcNeedsAdminAccess": "To use an existing Merchant Center account, you must have Admin access.",
+    "shopMaintenance": "No se puede conectar una cuenta de Google Merchant Center mientras el modo de mantenimiento está activo.  \n Por favor, cambie los parámetros de su tienda.",
+    "toUseGmcNeedsAdminAccess": "Para utilizar una cuenta existente de Merchant Center, debe tener acceso de administrador.",
     "linkingFailed": "No puedes conectarte a tu cuenta Merchant Center en este momento. Vuelve a intentarlo más tarde.",
     "AccountValidationFailed": "Ha fallado la validación de la cuenta.",
     "unlinkFailed": "Desconexión fallida. Por favor, actualiza la página e inténtalo de nuevo.",
     "tryAgainLater": "No podemos verificar ni reclamar el sitio actual. Vuelve a intentarlo más tarde.",
     "alertSuspended": "Tu cuenta ha sido suspendida.",
-    "alertSuspendedDescription": "To see more details on the reasons for suspension, please visit your [Merchant Center account]({0})[:target=\"_blank\"]. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"].",
+    "alertSuspendedDescription": "Para ver más detalles sobre los motivos de la suspensión, visite su [cuenta de Merchant Center]({0})[:target=\"_blank\"]. Una vez resuelta, deberá solicitar una nueva revisión rellenando [este formulario]({1})[:target=\"_blank\"].",
     "notManaged": "No está asociada a PrestaShop",
     "overwriteFailed": "No se ha podido reclamar la URL del sitio web",
     "overwriteToBeDoneManually": "Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\\\"_blank\\\"] , and change the Website URL with this one : {1}",
     "ineligibleForFreeListing": "Tu cuenta no es elegible para los listados gratuitos mejorados en Google",
     "ineligibleForFreeListingDescription": "Por favor, examina las desaprobaciones a nivel de producto así como tu cuenta en general.",
-    "claimOverwriteWithManualAction": "To finalize your Google Merchant Center account connection, you need to provide your website URL ({0}) in your Google Merchant Center account.",
+    "claimOverwriteWithManualAction": "Para finalizar la conexión de su cuenta de Google Merchant Center, debe proporcionar la URL de su sitio web ({0}) en su cuenta de Google Merchant Center.",
     "noExistingAccount": "No hay cuenta existente",
-    "linkLearnMoreAbout": "Learn more about \"{0}\"",
+    "linkLearnMoreAbout": "Más información sobre \"{0}\"",
     "newGmcNotListed": "A la espera de que se publique tu cuenta",
-    "newGmcNotListedDescription": "If you just created a new account, it means Google is still building it. You have to wait or come back later. This operation can take up to 5 minutes on Google side. In other cases, check that your GMC is still existing, and that you still have rights on it.",
+    "newGmcNotListedDescription": "Si acabas de crear una nueva cuenta, significa que Google todavía la está construyendo. Tienes que esperar o volver más tarde. Esta operación puede tardar hasta 5 minutos por parte de Google. En otros casos, comprueba que tu GMC sigue existiendo y que todavía tienes derechos sobre ella.",
     "phoneVerificationNeeded": "Verificación del número de teléfono",
     "phoneVerificationNeededDescription": "Para poder utilizar tu cuenta de Merchant Center tienes que verificar tu número de teléfono",
     "codeSent": "Código enviado",
     "sendCode": "Enviar código",
     "receiveCall": "Recibir llamada",
-    "phoneVerifiedContinue": "Your phone number has been verified, you can continue your account creation.",
+    "phoneVerifiedContinue": "Su número de teléfono ha sido verificado, puede continuar con la creación de su cuenta.",
     "enterCode": "Introduce tu código de seis dígitos",
     "validatingCode": "Validación del código",
     "textMessageHasBeenSent": "Se acaba de enviar un mensaje de texto con un código de X dígitos a",
     "askAgain60sec": "Podrás pedir un nuevo código en 60 segundos",
     "needPhoneVerification": "Necesitamos verificar tu número de teléfono para asegurarnos de que eres realmente tú",
     "fillInputs": "Introduce tu número de teléfono y selecciona tu prefijo internacional",
-    "invalidCode": "Your code is invalid, please check your code or ask for a new one.",
+    "invalidCode": "Su código no es válido, por favor compruebe su código o pida uno nuevo.",
     "code": "Código",
     "contactMethod": "Método de contacto",
     "dialCode": "Marca el código",
@@ -148,7 +148,7 @@
     },
     "title": "Crear una nueva cuenta de Merchant Center",
     "legend": "Para participar en los listados gratuitos y anunciarte en Google debes reconocer y cumplir los siguientes requisitos:",
-    "legend2": "Store's website URL needs to be verified and claimed before you can upload products data.  \n[Learn how to verify and claim your website](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
+    "legend2": "La URL del sitio web de la tienda debe ser verificada y reclamada antes de poder cargar los datos de los productos.  \n[Aprende a verificar y reclamar tu sitio web](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Leer la versión completa de los requisitos de la tienda de Google",
     "shoppingAdsPolicies": {
       "title": "Cumplir con las políticas de los anuncios de compras",
@@ -157,12 +157,12 @@
     },
     "accurateContactInformation": {
       "title": "Proporciona información de contacto precisa",
-      "description": "Merchants need to have at least one contact method listed on their website, this can be any type of contact method.",
+      "description": "Los comerciantes deben tener al menos un método de contacto en su sitio web, que puede ser cualquier tipo de método de contacto.",
       "link": "Descubre cómo añadir información de contacto"
     },
     "secureCheckoutProcess": {
       "title": "Proporciona un proceso de compra y recogida de datos personales seguro",
-      "description": "Do not misuse information about user, nor collect it for unclear purposes or without appropriate security measures.",
+      "description": "No utilizar indebidamente la información sobre el usuario, ni recogerla con fines poco claros o sin las medidas de seguridad adecuadas.",
       "link": "Aprende sobre la recopilación y el uso irresponsable de datos"
     },
     "returnPolicy": {
@@ -172,7 +172,7 @@
     },
     "billingTerms": {
       "title": "Proporciona los términos y condiciones de facturación",
-      "description": "Website needs to clearly and visibly disclose payment options and all expenses that user will bare, before and after purchase.",
+      "description": "El sitio web debe revelar de forma clara y visible las opciones de pago y todos los gastos que soportará el usuario, antes y después de la compra.",
       "link": "Lee las directrices de Merchant Center"
     },
     "completeCheckoutProcess": {
@@ -200,33 +200,33 @@
     "siteContainsAdultContent": "Mi sitio web tiene contenido para adultos",
     "seePolicyAdultContent": "Ver política de contenidos para adultos",
     "labelReadAndAgree": "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies]({0})[:target=\\\"_blank\\\"], including [Google’s Merchant Center terms of service]({1})[:target=\\\"_blank\\\"], [Shopping ads policies]({2})[:target=\\\"_blank\\\"], and [Google Ads Terms and Conditions]({3})[:target=\\\"_blank\\\"].",
-    "alert": "Your store will be reviewed so if one of these requirements is missing, your account will be suspended.",
+    "alert": "Su tienda será revisada, por lo que si falta uno de estos requisitos, su cuenta será suspendida.",
     "phoneFormat": "El número de teléfono de tu empresa no es un formato válido (sólo se acepta el número), por favor, cámbialo.",
-    "updateData": "If you have made any modification in your backoffice, please refresh your information to see the changes reflected here."
+    "updateData": "Si ha realizado alguna modificación en su backoffice, actualice su información para ver los cambios reflejados aquí."
   },
   "productFeedCard": {
     "title": "Sincroniza automáticamente los datos de tus productos con Google",
     "intro": "Envía los datos de tus productos directamente a tu Merchant Center y manténlos siempre actualizados para obtener listados y anuncios gratuitos.",
-    "introToConfigure": "It's important to submit your product feed in the correct format, as Google uses this to make sure your products match the right queries.",
+    "introToConfigure": "Es importante que envíes tu feed de productos en el formato correcto, ya que Google lo utiliza para asegurarse de que tus productos coinciden con las consultas correctas.",
     "nextSync": "Próxima sincronización: {0}",
     "syncFailedAt": "Sincronización fallida {0} en {1}",
-    "syncSuccess": "Products synced {1} at {2} | {0} product synced {1} at {2} | {0} products synced {1} at {2}",
+    "syncSuccess": "Productos sincronizados {1} en {2} | {0} producto sincronizado {1} en {2} | {0} productos sincronizados {1} en {2}",
     "syncBusy": "Sincronización en curso...",
     "syncCantPerform": "La sincronización no puede realizarse",
     "mappedCategories": "{0}/{1} categorías mapeadas",
-    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.",
-    "alertFailed": "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact [customer support](mailto:support-google@prestashop.com).",
+    "alertFeedSettingSubmissionSuccess": "Has enviado con éxito los datos de tu producto a Merchant Center.  \n Una vez aprobados, estarán disponibles para listados y anuncios gratuitos.",
+    "alertFailed": "La sincronización del producto no se ha realizado correctamente. Compruebe los posibles motivos en [Merchant Center]({0})[:target=\"_blank\"] o póngase en contacto con [atención al cliente](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. [Add shipping settings]({0})[:target=\\\"_blank\\\"]",
-    "alertShippingSettingsMissingDescription": "To successfully sync your product data, add shipping info.",
-    "alertProductFeedDeactivated": "If the product sync is deactivated, there will be no new products pushed into the GMC. The account itself will continue to exist and the products will expire after 30 days. This stops the catalog items to show on both Free Listings and the ad campaigns.",
+    "alertShippingSettingsMissingDescription": "Para sincronizar correctamente los datos de sus productos, añada la información de envío.",
+    "alertProductFeedDeactivated": "Si se desactiva la sincronización de productos, no se introducirán nuevos productos en el GMC. La cuenta en sí seguirá existiendo y los productos expirarán después de 30 días. Esto hace que los artículos del catálogo dejen de mostrarse tanto en los anuncios gratuitos como en las campañas publicitarias.",
     "alertProductFeedExists": "**A product feed already exists**  \n  <small>Your product feed already exists. You need to overwrite it to sync your PrestaShop product feed.</small>",
     "googleTaxonomyAssociation": "Asociación de taxonomía Google Product",
     "optional": "Opcional",
-    "attributeDescription": "With these attributes, you can organize your advertising campaigns in Google Ads and override the category automatically assigned by Google in some cases.",
+    "attributeDescription": "Con estos atributos, puede organizar sus campañas publicitarias en Google Ads y anular la categoría asignada automáticamente por Google en algunos casos.",
     "excludedProducts": "Productos excluidos",
     "productsReadyToBeSynced": "Productos listos para ser sincronizados",
     "productsWithProblems": "Productos con problemas",
-    "alertGoogleIsReviewingProducts": "Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.",
+    "alertGoogleIsReviewingProducts": "Tus productos están siendo revisados  \n La revisión de tus productos puede tardar entre 3 y 5 días. Una vez aprobados, estarán disponibles para listados y anuncios gratuitos.",
     "missingInformation": "Información que falta",
     "alertErrorApi": "Ahora mismo no puedes enviar los datos de tus productos a Google. Vuelve a intentarlo más tarde."
   },
@@ -243,18 +243,18 @@
       "shippingSettingsErrors": "Este país no es compatible con tu moneda",
       "syncSchedule": "Sync schedule"
     },
-    "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
+    "noticeDataStored": "Los ajustes se guardan en cada paso, se presentarán sólo en el paso final.",
     "shipping": {
       "targetCountries": "País objetivo",
-      "filterTitle": "Filter by country",
-      "ifMultipleCountries": "If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target=\"_blank\"] and [local regulation]({1})[:target=\"_blank\"]",
+      "filterTitle": "Filtrar por país",
+      "ifMultipleCountries": "Si se dirige a varios países, el precio de cada producto se convertirá automáticamente a la moneda correcta en Google. Sin embargo, su tienda debe haber configurado las tasas de envío y de impuestos para cada país seleccionado. Respeta las [políticas de compra específicas de cada país]({0})[:target=\"_blank\"] y la [normativa local]({1})[:target=\"_blank\"].",
       "productAvailaibleIn": "Mis productos están disponibles en",
       "placeholderSelect": "Selecciona los países en los que están disponibles tus productos",
-      "cantFindCountry": "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
+      "cantFindCountry": "¿No encuentra un país? Sólo aparecen los países admitidos. [Ver lista de países admitidos]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "Este país no es compatible con tu moneda",
       "shippingSettings": "Configuración del envío",
-      "shippingSettingsTitle": "Products shipping settings",
-      "shippingLabel1": "Setup my shipping settings now (recommended)",
+      "shippingSettingsTitle": "Configuración de envío de productos",
+      "shippingLabel1": "Configurar mis ajustes de envío ahora (recomendado)",
       "shippingDescription1": "PrestaShop will import your carriers list from your store settings and allow you to provide additional information.",
       "automatically": "Automáticamente",
       "manually": "Manualmente",
@@ -508,9 +508,9 @@
     "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
     "nbProductsSelected": "No product selected | {0} product selected | {0} products selected",
-    "categories": "Category",
+    "categories": "Categoría",
     "categoriesSubTitle": "Google-defined product category for your product (ex: Apparel & Accessories > Clothing > Coats & Jackets)",
-    "brands": "Brand",
+    "brands": "Marca",
     "brandsSubTitle": "Product’s brand name",
     "products": "Product ID",
     "productsSubTitle": "Your product’s unique identifier",
@@ -522,7 +522,7 @@
       "unspecified": "Unspecified",
       "unknown": "Unknown",
       "new": "New",
-      "refurbished": "Refurbished",
+      "refurbished": "Reacondicionado",
       "used": "Used"
     }
   },
@@ -837,7 +837,7 @@
     "select": "Select",
     "editContact": "Edit contact information",
     "noCarriers": "Take me to Carriers page",
-    "update": "Update",
+    "update": "Actualizar",
     "validateSelection": "Validate Selection",
     "googleProductStatusDefinitions": "Google product status definitions",
     "visitThe": "Visit the {0} for more information"
@@ -948,14 +948,14 @@
   },
   "attributesMapping": {
     "types": {
-      "description": "Description",
+      "description": "Descripción",
       "mpn": "MPN",
-      "brand": "Brand",
+      "brand": "Marca",
       "color": "Color",
       "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
-      "size": "Size",
-      "ageGroup": "Age group",
-      "gender": "Gender",
+      "size": "Tamaño",
+      "ageGroup": "Grupo de edad",
+      "gender": "Género",
       "energyEfficiencyClass": "Energy efficiency class",
       "minEnergyEfficiencyClass": "Minimum efficiency class",
       "maxEnergyEfficiencyClass": "Maximum efficiency class",
@@ -967,14 +967,14 @@
       "isbn": "ISBN",
       "ean13": "EAN",
       "mpn": "MPN",
-      "description": "Description",
+      "description": "Descripción",
       "shortDescription": "Short Description",
-      "longDescription": "Long description",
+      "longDescription": "Descripción larga",
       "notAvailable": "Not available"
     },
-    "condition": "Condition",
-    "specificTitle": "Specific",
-    "sellRefurbished": "I sell refurbished products",
-    "sellApparel": "I sell apparel and accessories"
+    "condition": "Condición",
+    "specificTitle": "Específicos",
+    "sellRefurbished": "Vendo productos reacondicionados",
+    "sellApparel": "Vendo ropa y accesorios"
   }
 }
