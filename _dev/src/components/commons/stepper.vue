@@ -57,7 +57,7 @@ import {
   BIconCheck,
   BIconSlash,
 } from 'bootstrap-vue';
-import ProductFeedSettingsPages from '@enums/product-feed/product-feed-settings-pages';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ProgressRing from '../commons/progress-ring';
 
 export default {

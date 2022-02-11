@@ -12,7 +12,7 @@ import BadgeListRequirements from '@/components/commons/badge-list-requirements.
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import Stepper from '@/components/commons/stepper.vue';
-import ProductFeedSettingsPages from '../../enums/product-feed/product-feed-settings-pages';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 
 import {
   productFeed,

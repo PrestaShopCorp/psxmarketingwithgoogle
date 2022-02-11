@@ -37,7 +37,7 @@
   </div>
 </template>
 <script>
-import ProductFeedSettingsPages from '@enums/product-feed/product-feed-settings-pages';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';

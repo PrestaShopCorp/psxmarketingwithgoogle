@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import ProductFeedSettingsPages from '@enums/product-feed/product-feed-settings-pages';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import Stepper from '../commons/stepper';
 import TargetCountry from './settings/target-countries/target-countries.vue';
 import ShippingSettings from './settings/shipping-settings/shipping-settings.vue';

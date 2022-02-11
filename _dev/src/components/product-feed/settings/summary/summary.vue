@@ -213,7 +213,7 @@ import duration from 'dayjs/plugin/duration';
 
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
-import ProductFeedSettingsPages from '@enums/product-feed/product-feed-settings-pages';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
