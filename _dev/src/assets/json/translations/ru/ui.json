@@ -554,7 +554,8 @@
           "started": "Синхронизация началась",
           "failed": "Сбой синхронизации",
           "completed": "Синхронизация завершена",
-          "next": "Следующая синхронизация"
+          "next": "Следующая синхронизация",
+          "notPlanned": "No planned synchronisation"
         },
         "subtitle": {
           "willHappenOnDate": "Начнется на {date}",
