@@ -554,7 +554,8 @@
           "started": "Synchronisatie gestart",
           "failed": "Synchronisatie mislukt",
           "completed": "Synchronisatie voltooid",
-          "next": "Volgende synchronisatie"
+          "next": "Volgende synchronisatie",
+          "notPlanned": "No planned synchronisation"
         },
         "subtitle": {
           "willHappenOnDate": "Zal beginnen op {date}",
