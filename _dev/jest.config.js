@@ -16,7 +16,7 @@ module.exports = {
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
-    "^@enums/(.*)": "<rootDir>/src/enums/$1"
+    '^@enums/(.*)': '<rootDir>/src/enums/$1',
   },
   snapshotSerializers: [
     'jest-serializer-vue',

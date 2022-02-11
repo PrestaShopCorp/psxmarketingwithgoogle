@@ -27,8 +27,8 @@ describe('product-feed-card.vue', () => {
   const mockRoute = {
     name: 'product-feed-settings',
     params: {
-      step: ProductFeedSettingsPages.TARGET_COUNTRY
-    }
+      step: ProductFeedSettingsPages.TARGET_COUNTRY,
+    },
   };
   const mockRouter = {
     push: jest.fn(),

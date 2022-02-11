@@ -10,6 +10,7 @@ import {shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import config, {cloneStore} from '@/../tests/init';
 import TunnelProductFeed from '@/views/tunnel-product-feed.vue';
+
 describe('tunnel-product-feed.vue', () => {
   let actions;
   let store;

@@ -13,14 +13,14 @@ describe('stepper.vue', () => {
   const productFeedSettingsRoute = {
     name: 'product-feed-settings',
     params: {
-      step: "target-country"
-    }
+      step: 'target-country',
+    },
   };
- 
+
   const routeName = {
     name: 'foo',
   };
-const push = jest.fn();
+  const push = jest.fn();
   const mockRouter = {
     push: jest.fn(),
   };
@@ -109,7 +109,6 @@ const push = jest.fn();
     // Check if the mutation SET_ACTIVE_CONFIGURATION_STEP has been called
     await wrapper.findAll('a').at(0).trigger('click');
     expect(mutations.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledWith(state, 1);
-
   });
 
   it('test event emited when we click on a previous step on any other page', async () => {
