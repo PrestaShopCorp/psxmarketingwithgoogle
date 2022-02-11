@@ -554,7 +554,8 @@
           "started": "Synchronisation commencée",
           "failed": "Échec de la synchronisation",
           "completed": "Synchronisation terminée",
-          "next": "Synchronisation suivante"
+          "next": "Synchronisation suivante",
+          "notPlanned": "No planned synchronisation"
         },
         "subtitle": {
           "willHappenOnDate": "Commencera le {date}",
