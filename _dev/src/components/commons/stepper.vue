@@ -125,7 +125,6 @@ export default {
                   ProductFeedSettingsPages.SYNC_SCHEDULE,
                   ProductFeedSettingsPages.SUMMARY,
                 ][value] || null,
-                /* eslint-enable no-nested-ternary */
 
               },
             });
