@@ -57,7 +57,7 @@ import {
   BIconCheck,
   BIconSlash,
 } from 'bootstrap-vue';
-import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import ProductFeedSettingsSteps from '@/enums/product-feed/product-feed-settings-pages';
 import ProgressRing from '../commons/progress-ring';
 
 export default {
@@ -117,14 +117,7 @@ export default {
             this.$router.push({
               name: 'product-feed-settings',
               params: {
-                step: [
-                  null,
-                  ProductFeedSettingsPages.TARGET_COUNTRY,
-                  ProductFeedSettingsPages.SHIPPING_SETTINGS,
-                  ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
-                  ProductFeedSettingsPages.SYNC_SCHEDULE,
-                  ProductFeedSettingsPages.SUMMARY,
-                ][value] || null,
+                step: ProductFeedSettingsSteps[value] || null,
 
               },
             });

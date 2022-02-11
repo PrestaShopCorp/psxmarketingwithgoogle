@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import {ProductFeedSettingsSteps} from '@/enums/product-feed/product-feed-settings-pages';
 import Stepper from '../commons/stepper';
 import TargetCountry from './settings/target-countries/target-countries.vue';
 import ShippingSettings from './settings/shipping-settings/shipping-settings.vue';
@@ -85,14 +85,9 @@ export default {
       if (this.$store.state.productFeed.stepper > 0) {
         return this.$store.state.productFeed.stepper;
       }
-      /* eslint-disable no-nested-ternary */
-      return this.$route.path.includes(ProductFeedSettingsPages.TARGET_COUNTRY) ? 1
-        : this.$route.path.includes(ProductFeedSettingsPages.SHIPPING_SETTINGS) ? 2
-          : this.$route.path.includes(ProductFeedSettingsPages.ATTRIBUTE_MAPPING) ? 3
-            : this.$route.path.includes(ProductFeedSettingsPages.SYNC_SCHEDULE) ? 4
-              : this.$route.path.includes(ProductFeedSettingsPages.SUMMARY) ? 5
-                : 1;
-      /* eslint-enable no-nested-ternary  */
+      const stepIs = ProductFeedSettingsSteps.indexOf(this.$route.params.step);
+
+      return stepIs;
     },
     steps() {
       return [
@@ -116,7 +111,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$store.state.productFeed.stepper);
     this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE');
   },
   methods: {

@@ -248,5 +248,8 @@ export default {
       this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
     },
   },
+  mounted() {
+    this.refreshComponent();
+  },
 };
 </script>

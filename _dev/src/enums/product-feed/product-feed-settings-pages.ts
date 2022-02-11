@@ -6,4 +6,13 @@ enum ProductFeedSettingsPages {
   SUMMARY = 'summary',
 }
 
+export const ProductFeedSettingsSteps = [
+  null,
+  ProductFeedSettingsPages.TARGET_COUNTRY,
+  ProductFeedSettingsPages.SHIPPING_SETTINGS,
+  ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
+  ProductFeedSettingsPages.SYNC_SCHEDULE,
+  ProductFeedSettingsPages.SUMMARY,
+];
+
 export default ProductFeedSettingsPages;
