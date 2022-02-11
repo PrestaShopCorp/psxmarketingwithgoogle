@@ -10,6 +10,12 @@ import {
 } from '@/enums/product-feed/sync-history.ts';
 
 export default {
+  props: {
+    inNeedOfConfiguration: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
@@ -18,6 +24,14 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
     syncStates() {
+      if (this.inNeedOfConfiguration) {
+        return [
+          {
+            title: this.$i18n.t('productFeedPage.syncSummary.syncHistory.title.notPlanned'), // This is a mock
+            icon: 'info', // This is a mock
+          },
+        ];
+      }
       if (this.syncStatus === SyncHystoryType.SCHEDULE) {
         return [
           {
@@ -28,7 +42,7 @@ export default {
               'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
               {date: this.$options.filters.timeConverterToDate(this.syncInfos.lastUpdatedAt)},
             ),
-            icon: 'schedule',
+            icon: 'change_circle',
           },
         ];
       }
@@ -44,7 +58,7 @@ export default {
               'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate',
               {date: this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt)},
             ),
-            icon: 'change_circle',
+            icon: 'schedule',
           },
         ];
       }

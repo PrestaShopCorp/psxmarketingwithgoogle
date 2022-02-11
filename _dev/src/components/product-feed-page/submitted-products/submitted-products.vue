@@ -19,9 +19,22 @@
 
 <script>
 export default {
+  props: {
+    inNeedOfConfiguration: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     validationSummary() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_VALIDATION_SUMMARY'];
+      return this.inNeedOfConfiguration
+        ? {
+          activeItems: 0,
+          pendingItems: 0,
+          disapprovedItems: 0,
+          expiringItems: 0,
+        }
+        : this.$store.getters['productFeed/GET_PRODUCT_FEED_VALIDATION_SUMMARY'];
     },
     nbProductsTotal() {
       return this.validationSummary.activeItems + this.validationSummary.pendingItems

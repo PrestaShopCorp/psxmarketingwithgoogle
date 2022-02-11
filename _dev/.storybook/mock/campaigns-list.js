@@ -7,3 +7,8 @@ export const campaigns = [
   {"campaignName":"Black friday","startDate":"2021-07-10","endDate":"2037-12-01","targetCountry":"FR","dailyBudget":1,"status":"ELIGIBLE","currencyCode":"EUR","productFilters":[]},
   {"campaignName":"Tartiflette day","startDate":"2021-06-20","endDate":"2021-11-15","targetCountry":"FR","dailyBudget":112,"status":"ELIGIBLE","currencyCode":"EUR","productFilters":[]}
 ];
+
+export const campaignsListResponse = {
+  campaigns: campaigns,
+  'nextPageToken': "foobar"
+}

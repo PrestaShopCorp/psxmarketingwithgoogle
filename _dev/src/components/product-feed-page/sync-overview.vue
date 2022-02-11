@@ -5,9 +5,18 @@
         {{ $t("productFeedSettings.breadcrumb1") }}
       </h1>
     </template>
-    <div class="d-sm-flex">
+    <div class="d-md-flex position-relative">
+      <div
+        v-if="inNeedOfConfiguration"
+        class="ps_gs-onboardingcard__not-configured"
+      >
+        <NotConfiguredCard />
+      </div>
       <div class="flex-shrink-0 d-flex flex-column p-3">
-        <SyncHistory v-slot="{ syncStates }">
+        <SyncHistory
+          v-slot="{ syncStates }"
+          :in-need-of-configuration="inNeedOfConfiguration"
+        >
           <SyncState
             v-for="(syncState, i) in syncStates"
             :key="i"
@@ -15,6 +24,7 @@
           />
         </SyncHistory>
         <i18n
+          v-if="!inNeedOfConfiguration"
           path="cta.visitThe"
           tag="div"
           class="mt-4 ps_gs-fz-13 text-right text-muted"
@@ -31,22 +41,25 @@
         class="
           flex-grow-1
           p-3
-          border-top border-sm-top-0 border-sm-left border-600-20
+          border-top border-md-top-0 border-md-left border-600-20
         "
       >
-        <SubmittedProducts v-slot="{ productStatuses }">
+        <SubmittedProducts
+          v-slot="{ productStatuses }"
+          :in-need-of-configuration="inNeedOfConfiguration"
+        >
           <ProductsStatusCard
             v-for="(productStatus, i) in productStatuses"
             :key="i"
             :product-status="productStatus"
           />
         </SubmittedProducts>
-        <div class="text-muted ps_gs-fz-13 d-flex justify-content-between">
+        <div class="mt-4 text-muted ps_gs-fz-13 d-flex justify-content-between flex-wrap">
           <b-button
             v-if="productsSent"
             variant="invisible"
-            @click="displayReporting"
-            class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13"
+            :to="{name: 'product-feed-status'}"
+            class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 mr-2"
           >
             {{ $t("cta.viewDetailedStatuses") }}
           </b-button>
@@ -62,18 +75,26 @@
 </template>
 
 <script>
+import NotConfiguredCard from '@/components/commons/not-configured-card';
 import SubmittedProducts from './submitted-products/submitted-products';
-import ProductsStatusCard from './submitted-products/products-status-card.vue';
-import SyncHistory from './sync-history/sync-history.vue';
-import SyncState from './sync-history/sync-state.vue';
+import ProductsStatusCard from './submitted-products/products-status-card';
+import SyncHistory from './sync-history/sync-history';
+import SyncState from './sync-history/sync-state';
 import googleUrl from '@/assets/json/googleUrl.json';
 
 export default {
   components: {
+    NotConfiguredCard,
     SubmittedProducts,
     ProductsStatusCard,
     SyncHistory,
     SyncState,
+  },
+  props: {
+    inNeedOfConfiguration: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     validationSummary() {
@@ -88,15 +109,6 @@ export default {
         || this.validationSummary.expiringItems !== null
         || this.validationSummary.disapprovedItems !== null
       );
-    },
-  },
-  methods: {
-    displayReporting() {
-      this.$router.push({
-        path: '/product-feed/status',
-      });
-      // Now we just generate link for redirect merchant for products statuses
-      // window.open(`https://merchants.google.com/mc/products/diagnostics?a=${this.getGMCInformations.id}`);
     },
   },
   googleUrl,

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border border-600-20 rounded mb-2 px-3 py-2 d-flex without-hover"
+    class="border border-600-20 rounded mb-2 px-3 py-2 d-flex"
   >
     <i
       class="material-icons-round ps_gs-fz-24 mr-3 mb-0"
@@ -9,7 +9,7 @@
       {{ card.icon }}
     </i>
     <div class="d-flex justify-content-between flex-grow-1">
-      <div>
+      <div class="mr-2">
         <h3 class="ps_gs-fz-13 font-weight-600 mb-1 line-height-15">
           {{ card.title }}
         </h3>
@@ -18,14 +18,22 @@
         </p>
       </div>
       <span
-        class="font-weight-600 ml-auto text-dark"
-        v-if="syncStatus.success || syncStatus.nextJobAt"
+        class="font-weight-600 ml-auto text-dark text-nowrap"
+        v-if="syncStatus === 'success' || syncStatus === 'planned' || syncStatus === 'failed'"
       >
-        {{ productStatus.numberOfProducts }}
+        <template
+          v-if="syncStatus === 'success'"
+        >
+          {{ productStatus.numberOfProducts }}
+        </template>
+        <template
+          v-else
+        >
+          --
+        </template>
       </span>
       <span
         v-else
-        class="text-muted"
       >
         <i class="icon-busy icon-busy--dark mr-1" />
       </span>
@@ -45,7 +53,7 @@ export default {
         const statusOfProductsValidator = Object.values(
           ProductsStatusType,
         ).includes(obj.statusOfProducts);
-        const numberOfProductsValidator = typeof obj.numberOfProducts === 'number';
+        const numberOfProductsValidator = typeof obj.numberOfProducts === 'number' || obj.numberOfProducts === null;
 
         return statusOfProductsValidator && numberOfProductsValidator;
       },
@@ -100,8 +108,11 @@ export default {
         ),
       };
     },
-    syncStatus() {
+    productFeedStatus() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
+    },
+    syncStatus() {
+      return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
   },
 };

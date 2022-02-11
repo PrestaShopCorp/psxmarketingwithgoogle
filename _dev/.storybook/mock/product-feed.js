@@ -303,6 +303,7 @@ export const productFeedErrorAPI = {
 
 export const productFeedSyncSummaryInProgress = {
   ...productFeed,
+  isConfigured: true,
   isSyncSummaryLoadingInProgress: true,
   status: {
     success: false,
@@ -322,7 +323,7 @@ export const productFeedStatusSyncScheduled = {
   ...productFeedIsConfigured,
   status: {
     success: false,
-    nextJobAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2022 03:24:00"),
     lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
     jobEndedAt: null,
   },

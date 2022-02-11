@@ -2,9 +2,12 @@
   $iconWidth: rem(20);
 
   // Available icons
-  $icons: 'check_circle', 'schedule', 'cancel', 'change_circle';
+  $icons: 'check_circle', 'schedule', 'cancel', 'change_circle', 'info';
   // Available colors
   $lineColors: ('danger' : $danger, 'info': $info);
+
+  width: 280px;
+  max-width: 100%;
 
   &__item {
     display: flex;

@@ -11,6 +11,7 @@ export enum SyncHystoryIcons {
   SCHEDULE = 'schedule',
   CANCEL = 'cancel',
   CHANGE_CIRCLE = 'change_circle',
+  INFO = 'info',
 }
 
 export enum syncHystoryLineColors {
