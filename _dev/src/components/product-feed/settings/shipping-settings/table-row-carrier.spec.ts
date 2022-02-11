@@ -139,6 +139,28 @@ describe('table-row-carrier.vue', () => {
     expect(TableRowCarrier.computed.timeStateDelivery.call(carrier)).toBe(null);
   });
 
+  it('shows an error when handling times are exceeds 250', () => {
+    const carrier = {
+      carrier: {
+        carrierId: '13',
+        country: 'IT',
+        name: 'Carrier with fixed price',
+        delay: 'Maybe 1 day, maybe never',
+        enabledCarrier: true,
+        deliveryType: 'delivery',
+        minHandlingTimeInDays: 251,
+        maxHandlingTimeInDays: 22,
+        minTransitTimeInDays: 0,
+        maxTransitTimeInDays: 3,
+      },
+      carriersList: [],
+    };
+    // @ts-ignore
+    expect(TableRowCarrier.computed.timeStateHandling.call(carrier)).toBe(false);
+    // @ts-ignore
+    expect(TableRowCarrier.computed.timeStateDelivery.call(carrier)).toBe(null);
+  });
+
   it('shows an error when delivery times are wrong', () => {
     const carrier = {
       carrier: {
