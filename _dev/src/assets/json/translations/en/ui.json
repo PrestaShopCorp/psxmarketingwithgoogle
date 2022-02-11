@@ -581,7 +581,11 @@
     },
     "overview": {
       "title" : "Active products submitted to Google",
-      "description" : "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
+      "description" : "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.",
+      "alert" : {
+        "prescanTitle": "Warning {0} product couldn’t be export to Google | Warning {0} products couldn’t be export to Google",
+        "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
+      }
     },
     "approvalTable": {
       "description": "The status of products that are synced with Merchant Center",
@@ -841,7 +845,8 @@
     "update": "Update",
     "validateSelection" : "Validate Selection",
     "googleProductStatusDefinitions" : "Google product status definitions",
-    "visitThe" : "Visit the {0} for more information"
+    "visitThe" : "Visit the {0} for more information",
+    "investigate" : "Investigate"
   },
   "badge": {
     "free": "Free",
