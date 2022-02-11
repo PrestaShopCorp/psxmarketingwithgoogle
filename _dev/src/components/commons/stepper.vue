@@ -117,14 +117,14 @@ export default {
             this.$router.push({
               name: 'product-feed-settings',
               params: {
-                /* eslint-disable no-nested-ternary */
-
-                step: value === 1 ? ProductFeedSettingsPages.TARGET_COUNTRY
-                  : value === 2 ? ProductFeedSettingsPages.SHIPPING_SETTINGS
-                    : value === 3 ? ProductFeedSettingsPages.ATTRIBUTE_MAPPING
-                      : value === 4 ? ProductFeedSettingsPages.SYNC_SCHEDULE
-                        : value === 5 ? ProductFeedSettingsPages.SUMMARY
-                          : null,
+                step: [
+                  null,
+                  ProductFeedSettingsPages.TARGET_COUNTRY,
+                  ProductFeedSettingsPages.SHIPPING_SETTINGS,
+                  ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
+                  ProductFeedSettingsPages.SYNC_SCHEDULE,
+                  ProductFeedSettingsPages.SUMMARY,
+                ][value] || null,
                 /* eslint-enable no-nested-ternary */
 
               },
