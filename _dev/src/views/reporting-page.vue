@@ -24,8 +24,12 @@ export default {
     reportingTabIsActive() {
       return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_TAB_IS_ACTIVE'];
     },
+    inNeedOfConfiguration() {
+      return !this.reportingTabIsActive;
+    },
   },
   methods: {
+
     async getDatas() {
       await this.$store.dispatch('smartShoppingCampaigns/SET_REPORTING_DATES_RANGE');
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
@@ -36,7 +40,9 @@ export default {
     },
   },
   created() {
-    this.getDatas();
+    if (!this.inNeedOfConfiguration) {
+      this.getDatas();
+    }
   },
 };
 </script>

@@ -9,34 +9,39 @@ import Configuration from '../views/configuration.vue';
 import ProductFeedPage from '../views/product-feed-page.vue';
 import ReportingPage from '../views/reporting-page.vue';
 import TunnelProductFeed from '../views/tunnel-product-feed.vue';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
 Vue.use(VueRouter);
 
 const initialPath = (to, from, next) => {
   if (from.path === '/'
-    && (!Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED']
-      || Store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'].length)
+    && Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'] === false
   ) {
-    next({name: 'landingPage'});
+    next({name: 'landing-page'});
   } else {
     next({name: 'configuration'});
   }
 };
 
 const landingExistsInLocalstorage = (to, from, next) => {
-  let existInLocalstorage = window.localStorage.getItem('landingHasBeenSeen') || '';
-  existInLocalstorage = JSON.parse(existInLocalstorage);
-  if (existInLocalstorage) {
+  if (getDataFromLocalStorage('landingHasBeenSeen')) {
     next();
   } else {
-    next({name: 'landingPage'});
+    next({name: 'landing-page'});
   }
+};
+
+const campaignsAlreadyExist = (to, from, next) => {
+  if (!Store.getters['smartShoppingCampaigns/GET_ALL_SSC'].length) {
+    next();
+  }
+  next({name: 'campaign-list'});
 };
 
 const routes: Array<RouteConfig> = [
   {
     path: '/landing-page',
-    name: 'landingPage',
+    name: 'landing-page',
     component: LandingPage,
   },
   {
@@ -73,21 +78,22 @@ const routes: Array<RouteConfig> = [
   // },
   {
     path: '/campaign',
-    name: 'campaign',
+    name: 'campaign-info',
     component: CampaignPage,
+    beforeEnter: campaignsAlreadyExist,
   },
   {
-    path: '/campaign/creation',
-    name: 'campaign-creation',
-    component: CampaignPage,
-  },
-  {
-    path: '/campaign/list',
+    path: '/campaign-list',
     name: 'campaign-list',
     component: CampaignPage,
   },
   {
-    path: '/campaign/edit/:id',
+    path: '/campaign-creation',
+    name: 'campaign-creation',
+    component: CampaignPage,
+  },
+  {
+    path: '/campaign-edit/:id',
     name: 'campaign-edition',
     component: CampaignPage,
   },

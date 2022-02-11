@@ -1,12 +1,26 @@
 <template>
   <div>
-    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mb-md-3 rounded-top">
+    <div
+      v-if="inNeedOfConfiguration"
+      class="ps_gs-onboardingcard__not-configured"
+    >
+      <NotConfiguredCard />
+    </div>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between  mb-md-3 rounded-top">
       <h3 class="order-2 order-md-1 ps_gs-fz-20 font-weight-600">
-        {{ $t('smartShoppingCampaignList.tableTitle') }}
+        {{ $t("smartShoppingCampaignList.tableTitle") }}
       </h3>
       <div
-        class="order-1 order-md-2 ml-auto d-flex-md mr-md-0 mb-2 mt-n3 mt-md-0
-        flex-md-shrink-0 text-center"
+        class="
+          order-1 order-md-2
+          ml-auto
+          d-flex-md
+          mr-md-0
+          mb-2
+          mt-n3 mt-md-0
+          flex-md-shrink-0
+          text-center
+        "
       >
         <b-button
           v-if="remarketingTag"
@@ -15,7 +29,7 @@
           variant="outline-primary"
           @click="redirectToReporting"
         >
-          {{ $t('cta.viewReporting') }}
+          {{ $t("cta.viewReporting") }}
         </b-button>
         <b-button
           size="sm"
@@ -23,13 +37,16 @@
           variant="primary"
           @click="redirectToCreateCampaign"
         >
-          {{ $t('cta.createCampaign') }}
+          {{ $t("cta.createCampaign") }}
         </b-button>
       </div>
     </div>
     <ReportingTableHeader
-      :title="$tc(`smartShoppingCampaignList.xCampaign`,
-                  campaignList.length, [campaignList.length])"
+      :title="
+        $tc(`smartShoppingCampaignList.xCampaign`, campaignList.length, [
+          campaignList.length,
+        ])
+      "
       :use-date="false"
     />
     <!-- TODO : use this header when API returs only GMC linked campaigns -->
@@ -45,8 +62,13 @@
     <div>
       <b-table-simple
         id="table-filters-performance"
-        class="ps_gs-table-products mb-0 table-with-maxheight b-table-sticky-header"
-        :table-class="{'border-bottom-0': loading}"
+        class="
+          ps_gs-table-products
+          mb-0
+          table-with-maxheight
+          b-table-sticky-header
+        "
+        :table-class="{ 'border-bottom-0': loading }"
         variant="light"
         responsive="xl"
       >
@@ -56,7 +78,10 @@
               v-for="(type, index) in campaignHeaderList"
               :key="type"
               class="font-weight-600"
-              :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
+              :class="{
+                'b-table-sticky-column b-table-sticky-column--invisible':
+                  index === 0,
+              }"
             >
               <div class="flex align-items-center text-nowrap">
                 <b-button
@@ -68,11 +93,11 @@
                   <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
                   <template v-if="queryOrderDirection[type] === 'ASC'">
                     <i class="material-icons ps_gs-fz-14">expand_more</i>
-                    <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
+                    <span class="sr-only">{{ $t("cta.clickToSortAsc") }}</span>
                   </template>
                   <template v-else>
                     <i class="material-icons ps_gs-fz-14">expand_less</i>
-                    <span class="sr-only">{{ $t('cta.clickToSortDesc') }}</span>
+                    <span class="sr-only">{{ $t("cta.clickToSortDesc") }}</span>
                   </template>
                 </b-button>
                 <span v-else>
@@ -83,9 +108,18 @@
                   variant="invisible"
                   v-b-tooltip:psxMktgWithGoogleApp
                   :title="$t(`campaigns.tooltipCol.${type}`)"
-                  class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
+                  class="
+                    p-0
+                    mt-0
+                    ml-1
+                    border-0
+                    d-inline-flex
+                    align-items-center
+                  "
                 >
-                  <i class="material-icons ps_gs-fz-14 text-secondary">info_outlined</i>
+                  <i
+                    class="material-icons ps_gs-fz-14 text-secondary"
+                  >info_outlined</i>
                 </b-button>
               </div>
             </b-th>
@@ -95,14 +129,20 @@
               v-for="(type, index) in campaignHeaderList"
               :key="type"
               class="font-weight-600"
-              :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
+              :class="{
+                'b-table-sticky-column b-table-sticky-column--invisible':
+                  index === 0,
+              }"
             >
               <b-form-input
                 v-if="hasInput(type)"
                 id="campaign-name-input-filter"
                 v-model="campaignName"
-                :placeholder="$t('general.searchByX',
-                                 [$t(`campaigns.labelCol.${type}`).toLowerCase()])"
+                :placeholder="
+                  $t('general.searchByX', [
+                    $t(`campaigns.labelCol.${type}`).toLowerCase(),
+                  ])
+                "
                 size="sm"
                 class="border-0"
                 type="text"
@@ -139,12 +179,14 @@ import ReportingTableHeader from './reporting/commons/reporting-table-header.vue
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import googleUrl from '../../assets/json/googleUrl.json';
+import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
   components: {
     SmartShoppingCampaignTableListRow,
     ReportingTableHeader,
+    NotConfiguredCard,
   },
   data() {
     return {
@@ -154,6 +196,10 @@ export default {
   },
   props: {
     loading: {
+      type: Boolean,
+      required: true,
+    },
+    inNeedOfConfiguration: {
       type: Boolean,
       required: true,
     },
@@ -168,7 +214,9 @@ export default {
 
       if (searchQuery) {
         return campaigns.filter((campaign) => {
-          const nameMatch = campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase());
+          const nameMatch = campaign.campaignName
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase());
 
           return nameMatch;
         });
@@ -177,15 +225,22 @@ export default {
     },
     queryOrderDirection: {
       get() {
-        return this.$store.getters['smartShoppingCampaigns/GET_SSC_LIST_ORDERING'];
+        return this.$store.getters[
+          'smartShoppingCampaigns/GET_SSC_LIST_ORDERING'
+        ];
       },
       set(orderDirection) {
-        this.$store.commit('smartShoppingCampaigns/SET_SSC_LIST_ORDERING', orderDirection);
+        this.$store.commit(
+          'smartShoppingCampaigns/SET_SSC_LIST_ORDERING',
+          orderDirection,
+        );
         this.fetchCampaigns();
       },
     },
     remarketingTag() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS'];
+      return this.$store.getters[
+        'smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS'
+      ];
     },
   },
   methods: {
@@ -213,7 +268,9 @@ export default {
       // create new object for satisfy deep getter of vueJS
       const newOrderDirection = {...this.queryOrderDirection};
 
-      if (this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING) {
+      if (
+        this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING
+      ) {
         newOrderDirection[headerType] = QueryOrderDirection.DESCENDING;
       } else {
         newOrderDirection[headerType] = QueryOrderDirection.ASCENDING;
@@ -225,14 +282,17 @@ export default {
       this.$emit('loader', true);
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        this.$store.commit('smartShoppingCampaigns/SET_SSC_LIST_ORDERING', {name: this.campaignName});
+        this.$store.commit('smartShoppingCampaigns/SET_SSC_LIST_ORDERING', {
+          name: this.campaignName,
+        });
         this.fetchCampaigns();
       }, 1000);
     },
 
     fetchCampaigns(isNewRequest = true) {
       this.$emit('loader', true);
-      this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST', isNewRequest)
+      this.$store
+        .dispatch('smartShoppingCampaigns/GET_SSC_LIST', isNewRequest)
         .finally(() => {
           this.$emit('loader', false);
         });
@@ -242,17 +302,23 @@ export default {
         return;
       }
       const body = document.getElementsByClassName('table-with-maxheight')[0];
-      const token = this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
+      const token = this.$store.getters[
+        'smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'
+      ];
 
-      if (body.scrollTop >= body.scrollHeight - body.clientHeight
-      && body.scrollTop > 0
-      && token !== null) {
+      if (
+        body.scrollTop >= body.scrollHeight - body.clientHeight
+        && body.scrollTop > 0
+        && token !== null
+      ) {
         this.fetchCampaigns(false);
       }
     },
   },
   mounted() {
-    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
+    const tableBody = document.getElementsByClassName(
+      'table-with-maxheight',
+    )[0];
 
     if (tableBody) {
       tableBody.addEventListener('scroll', this.handleScroll);
@@ -261,13 +327,14 @@ export default {
     this.fetchCampaigns();
   },
   beforeDestroy() {
-    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
+    const tableBody = document.getElementsByClassName(
+      'table-with-maxheight',
+    )[0];
 
     if (tableBody) {
       tableBody.removeEventListener('scroll', this.handleScroll);
     }
   },
   googleUrl,
-
 };
 </script>
