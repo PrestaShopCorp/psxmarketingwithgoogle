@@ -8,47 +8,47 @@
       "catalog": "Каталог продукции",
       "help": "Помощь"
     },
-    "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
+    "versionDoesNotExist": "Похоже, что версия модуля не может быть получена. Это на нашей стороне, пожалуйста, попробуйте еще раз.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "The version of the module PrestaShop EventBus running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop EventBus",
-      "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"
+      "ps_eventbus": "Версия модуля PrestaShop EventBus, установленного в этом магазине, старше минимально необходимой.\n\nВы можете использовать PrestaShop Marketing with Google, но некоторые функции (например, синхронизация товаров) будут недоступны, пока вы не обновите PrestaShop EventBus.",
+      "psxmarketingwithgoogle": "Пожалуйста, обновите модуль PrestaShop Marketing With Google, чтобы он работал правильно"
     },
     "adblockerActivated": "Пожалуйста, отключите блокировщик рекламы для корректной работы модуля и обновите навигатор.",
     "refreshPage": "Обновить страницу",
     "mandatory": "обязательны",
     "XIsMandatory": "{0} является обязательным.",
-    "unableToFetchData": "We were unable to fetch datas, please try again later",
+    "unableToFetchData": "Мы не смогли получить данные, пожалуйста, повторите попытку позже",
     "searchByX": "Поиск по {0}",
-    "search": "Search",
+    "search": "Поиск",
     "legendCreateNewAccount": "У вас также есть возможность создать новую учетную запись в несколько шагов:",
-    "notAvailable": "Not available",
-    "min": "min.",
-    "max": "max.",
-    "helpPage": "Help Page"
+    "notAvailable": "Нет в наличии",
+    "min": "мин.",
+    "max": "макс.",
+    "helpPage": "Страница помощи"
   },
   "landingPage": {
     "header": {
       "title": "Маркетинг с помощью Google",
       "text": "Показывайте свои товары в Google и привлекайте миллионы покупателей, которые активно ищут то, что вы предлагаете в сети Google.",
-      "reinsurance": "- Easy setup \n- Cancel anytime"
+      "reinsurance": "- Простая настройка \n- Отмена в любое время"
     },
     "content": {
       "content1": {
-        "title": "Sync your product catalog with Google",
-        "text": "Connect your store to Google Merchant Center and synchroniwe your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday.",
-        "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
+        "title": "Синхронизация каталога продукции с Google",
+        "text": "Подключите свой магазин к Google Merchant Center и синхронизируйте весь каталог товаров в несколько кликов. Атрибуты товара, такие как цена и наличие, будут автоматически обновляться каждый день.",
+        "footer": "[Узнать больше о бесплатных объявлениях]({0})[:target=\"_blank\"]"
       },
       "content2": {
-        "title": "Enable free listings for your products",
-        "text": "Free listings allow to show your product attributes, including image and price in organically-ranked listings on the Shopping tab.  \n \n Once your catalog has been synchronised, enable free listings on your dashboard and start showing your products on the Shopping tab for free.",
-        "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
+        "title": "Включите бесплатные объявления о продаже ваших товаров",
+        "text": "Бесплатные объявления позволяют показывать атрибуты вашего товара, включая изображение и цену, в органично ранжированных объявлениях на вкладке \"Покупки\".  \n \n После синхронизации каталога включите бесплатные объявления на приборной панели и начните бесплатно показывать свои товары на вкладке \"Покупки\".",
+        "footer": "Создайте новый аккаунт [Merchant Center]({0})[:target=\"_blank\"] или привяжите существующий.  \nДля показа ваших товаров в Google вам необходимо соответствовать [требованиям приемлемости]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Create and manage Smart Shopping campaigns",
-        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click.",
-        "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
+        "title": "Создание и управление кампаниями Smart Shopping",
+        "text": "Кампании Smart Shopping - это рекламные объявления, в которых используется интеллектуальная технология Google для выставления ставок и размещения объявлений с целью максимизации конверсии и стратегического показа ваших объявлений людям, ищущим товары, подобные вашим.  \n \n Установите дневной бюджет и позвольте интеллектуальной технологии Google оптимизировать ваши кампании в различных сетях, таких как Google Search, YouTube или Gmail. Вы платите только тогда, когда люди нажимают.",
+        "footer": "[Узнайте больше о кампаниях Smart Shopping]({0})[:target=\"_blank\"]"
       },
-      "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
+      "notice": "*в зависимости от региональной доступности   \n**включает оптимизацию кампании для показа различных объявлений о ваших товарах клиентам, которые с наибольшей вероятностью их купят"
     },
     "footer": {
       "text": "Найдите свою продукцию в Google с помощью PS Marketing with Google"
@@ -68,7 +68,7 @@
     "selectStore": "Пожалуйста, выберите первый магазин для настройки из списка ниже",
     "tips": "После того, как вы закончили с первым магазином, вы можете настроить остальные, выбирая их по очереди в селекторе магазинов в горизонтальном меню",
     "configure": "Настроить",
-    "group": "Shop group"
+    "group": "Группа магазинов"
   },
   "psAccountCard": {
     "disonboardedText": "Авторизация учетной записи для управления услугами вашего магазина",
@@ -79,36 +79,36 @@
     "introDisabled": "Подключите свой аккаунт Google и связанный с ним Google Merchant Center, чтобы разблокировать бесплатные объявления.",
     "introEnabled": "Доступ через модуль PrestaShop, связанный с вашим аккаунтом электронной почты Google Merchant Center и аккаунтами Google Ads.",
     "footerDissociating": "PrestaShop использует этот аккаунт для управления и синхронизации аккаунтов Merchant Center и Google Ads.",
-    "alertCantConnect": "You can't connect to your Google account right now. Try again later.",
-    "alertTokenMissing": "We weren't able to authenticate your account. Try again or switch to another account.",
+    "alertCantConnect": "В данный момент вы не можете подключиться к своему аккаунту Google. Повторите попытку позже.",
+    "alertTokenMissing": "Мы не смогли проверить подлинность вашей учетной записи. Попробуйте еще раз или переключитесь на другую учетную запись.",
     "stepIsMandatory": "*Этот шаг является обязательным",
-    "alertInfo": "Make sure to allow all requested permissions when authenticating your Google account.  \nThis action is mandatory for this service to work properly.",
-    "missingTokenScopes": "Some requested permissions are missing.  \nAll requested permissions are mandatory for this service to work properly, please manage your account and make sure to allow all of them."
+    "alertInfo": "Убедитесь, что разрешены все запрашиваемые разрешения при аутентификации учетной записи Google.  \nЭто действие является обязательным для правильной работы данной службы.",
+    "missingTokenScopes": "Некоторые запрошенные разрешения отсутствуют.  \nВсе запрошенные разрешения являются обязательными для правильной работы этой службы, пожалуйста, управляйте своей учетной записью и убедитесь, что все они разрешены."
   },
   "mcaCard": {
     "title": "Счет в торговом центре",
     "introDisabled": "Свяжите свой аккаунт Merchant Center с PrestaShop, чтобы облегчить синхронизацию данных о вашем магазине и товарах",
-    "introEnabled": "[Google Merchant Center]({0})[:target=\"_blank\"] helps you get your store and product info into Google and make it available to shoppers across Google.",
+    "introEnabled": "[Google Merchant Center]({0})[:target=\"_blank\"] поможет вам внести информацию о вашем магазине и товарах в Google и сделать ее доступной для покупателей во всем Google.",
     "labelSelect": "Подключить существующий счет",
     "claimCollides": "Ваш сайт уже заявлен.",
     "claimOverwrite": "Чтобы завершить создание учетной записи Merchant Center, необходимо перезаписать существующее заявление.",
-    "footerEU": "If you are in the European Economic Area, the United Kingdom or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
+    "footerEU": "Если вы находитесь в Европейской экономической зоне, Великобритании или Швейцарии, ваш аккаунт Merchant Center должен быть связан с [Службой сравнительных покупок (CSS)]({0})[:target=\"_blank\"]  \nЕсли вы создаете новый аккаунт Merchant Center через это приложение, он по умолчанию будет связан с Google Shopping, CSS Google. Вы можете в любое время изменить CSS, связанный с вашим аккаунтом. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nПосле настройки аккаунта Merchant Center вы можете использовать наш инструмент onboarding независимо от того, какой CSS вы используете.",
     "shopInfoMissing": "Информация о магазине отсутствует",
     "shopInfoMissingDescription": "Чтобы заполнить недостающую информацию о магазине, перейдите в свой аккаунт [Merchant Center]({0})[:target=\"_blank\"].",
     "userIsNotAdmin": "Вам нужен доступ администратора",
     "userIsTestAccount": "Это тестовый счет",
     "googleMCA": "Аккаунт Google Merchant Center",
-    "shopMaintenance": "You cannot connect a Google Merchant Center account while Maintenance mode is active.  \n Please change your shop parameters.",
+    "shopMaintenance": "Вы не можете подключить аккаунт Google Merchant Center, пока активен режим обслуживания.  \n Пожалуйста, измените параметры вашего магазина.",
     "toUseGmcNeedsAdminAccess": "Чтобы использовать существующую учетную запись Merchant Center, вы должны иметь доступ администратора.",
-    "linkingFailed": "You can't connect to your Merchant Center account right now. Try again later.",
+    "linkingFailed": "Вы не можете подключиться к своей учетной записи Merchant Center прямо сейчас. Повторите попытку позже.",
     "AccountValidationFailed": "Проверка учетной записи не прошла",
     "unlinkFailed": "Отключение не удалось. Пожалуйста, обновите страницу и попробуйте снова.",
     "tryAgainLater": "Мы не можем проверить или заявить о текущем сайте. Повторите попытку позже.",
-    "alertSuspended": "Your account has been deactivated.",
+    "alertSuspended": "Ваш аккаунт был деактивирован.",
     "alertSuspendedDescription": "Чтобы узнать более подробную информацию о причинах приостановки, посетите свой [Merchant Center account]({0})[:target=\"_blank\"]. После решения проблемы вам нужно будет запросить новый отзыв, заполнив [эту форму]({1})[:target=\"_blank\"].",
     "notManaged": "Не связано с PrestaShop",
     "overwriteFailed": "Утверждение URL-адреса веб-сайта не удалось",
-    "overwriteToBeDoneManually": "Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}",
+    "overwriteToBeDoneManually": "Ваш сайт уже был заявлен в другом торговом центре. Поскольку мы не являемся администратором вашего аккаунта, мы не можем переписать это заявление для вас. Пожалуйста, зайдите в свой [Google Merchant Center]({0})[:target=\"_blank\"], и измените URL веб-сайта на этот: {1}",
     "ineligibleForFreeListing": "Ваш аккаунт не имеет права на бесплатные расширенные объявления в Google",
     "ineligibleForFreeListingDescription": "Пожалуйста, изучите отказы на уровне продукта, а также в целом по вашему счету.",
     "claimOverwriteWithManualAction": "Чтобы завершить подключение аккаунта Google Merchant Center, необходимо указать URL вашего сайта ({0}) в аккаунте Google Merchant Center.",
@@ -137,7 +137,7 @@
     "callMethod": "Телефонный звонок",
     "selectMethod": "Пожалуйста, выберите желаемый способ связи для подтверждения вашей личности",
     "alertTooManyRequests": "Вы слишком часто запрашивали эту услугу с этим номером телефона. Вам нужно подождать 24 часа, чтобы повторить попытку или изменить номер телефона.",
-    "alertSomethingHappened": "Something happened. It's on our side please try again.",
+    "alertSomethingHappened": "Что-то случилось. Это на нашей стороне, пожалуйста, попробуйте еще раз.",
     "alertCodeExpired": "Срок действия кода истек. Пожалуйста, попросите другой"
   },
   "mcaRequirements": {
@@ -148,7 +148,7 @@
     },
     "title": "Создайте новую учетную запись Merchant Center",
     "legend": "Чтобы участвовать в бесплатных объявлениях и рекламе в Google, вы должны признать и соблюдать следующие требования:",
-    "legend2": "Store's website URL needs to be verified and claimed before you can upload products data.  \n[Learn how to verify and claim your website](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
+    "legend2": "URL сайта магазина должен быть проверен и заявлен, прежде чем вы сможете загрузить данные о товарах.  \n[Узнайте, как проверить и заявить свой сайт](https://support.google.com/merchants/answer/176793?hl=en)",
     "footer": "Прочитать полную версию требований к магазину Google",
     "shoppingAdsPolicies": {
       "title": "Соблюдайте правила размещения рекламы в магазинах",
@@ -191,44 +191,44 @@
     "businessCity": "Город",
     "businessRegion": "Регион",
     "businessCountry": "Страна",
-    "changeCountryField": "You can [change your country]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-    "changeRegionField": "You can [change your region]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-    "changeAddressField": "You can [change your business address]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-    "changeZipCodeField": "You can [change your zipcode]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-    "changeCityField": "You can [change your city]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-    "changePhoneNumberField": "You can [change your business phone number]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
+    "changeCountryField": "Вы можете [изменить страну]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информации в вашем бэк-офисе",
+    "changeRegionField": "Вы можете [изменить регион]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информации в вашем бэк-офисе",
+    "changeAddressField": "Вы можете [изменить свой бизнес-адрес]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информацию в своем бэк-офисе",
+    "changeZipCodeField": "Вы можете [изменить свой почтовый индекс]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информации в вашем бэк-офисе",
+    "changeCityField": "Вы можете [изменить свой город]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информацию в своем бэк-офисе",
+    "changePhoneNumberField": "Вы можете [изменить номер телефона вашего предприятия]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информацию в вашем бэк-офисе",
     "siteContainsAdultContent": "Мой сайт содержит материалы для взрослых",
     "seePolicyAdultContent": "См. политику в отношении контента, ориентированного на взрослых",
-    "labelReadAndAgree": "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies]({0})[:target=\"_blank\"], including [Google’s Merchant Center terms of service]({1})[:target=\"_blank\"], [Shopping ads policies]({2})[:target=\"_blank\"], and [Google Ads Terms and Conditions]({3})[:target=\"_blank\"].",
+    "labelReadAndAgree": "Приобретая рекламу в магазинах, я прочитал и согласен соблюдать условия и правила [Google]({0})[:target=\"_blank\"], включая условия обслуживания [Google Merchant Center]({1})[:target=\"_blank\"], [Правила размещения рекламы в магазинах]({2})[:target=\"_blank\"] и [Условия и положения Google Ads]({3})[:target=\"_blank\"].",
     "alert": "Ваш магазин будет проверен, и если одно из этих требований будет отсутствовать, ваша учетная запись будет приостановлена.",
-    "phoneFormat": "Your business phone number isn't a valid format (only accept number) please change it.",
+    "phoneFormat": "Номер телефона вашего предприятия не соответствует формату (принимается только номер), пожалуйста, измените его.",
     "updateData": "Если вы внесли какие-либо изменения в свой бэк-офис, пожалуйста, обновите информацию, чтобы увидеть изменения, отраженные здесь."
   },
   "productFeedCard": {
     "title": "Автоматическая синхронизация данных о ваших товарах с Google",
     "intro": "Отправляйте данные о своих товарах непосредственно в Merchant Center и постоянно обновляйте их для бесплатных объявлений и листингов.",
-    "introToConfigure": "It's important to submit your product feed in the correct format, as Google uses this to make sure your products match the right queries.",
+    "introToConfigure": "Очень важно представить свою ленту товаров в правильном формате, поскольку Google использует его, чтобы убедиться, что ваши товары соответствуют правильным запросам.",
     "nextSync": "Следующая синхронизация: {0}",
     "syncFailedAt": "Сбой синхронизации {0} на {1}",
-    "syncSuccess": "Products synced {1} at {2} | {0} product synced {1} at {2} | {0} products synced {1} at {2}",
+    "syncSuccess": "Продукты синхронизированы {1} при {2} | {0} продукт синхронизирован {1} при {2} | {0} продукты синхронизированы {1} при {2}",
     "syncBusy": "Синхронизация идет...",
-    "syncCantPerform": "Synchronization can't perform",
+    "syncCantPerform": "Синхронизация не может быть выполнена",
     "mappedCategories": "{0}/{1} сопоставленные категории",
-    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.",
+    "alertFeedSettingSubmissionSuccess": "Вы успешно отправили данные о своих товарах в Merchant Center.  \n После одобрения они будут доступны для бесплатных объявлений и листингов.",
     "alertFailed": "Синхронизация продукта не была успешной. Проверьте возможные причины в [Merchant Center]({0})[:target=\"_blank\"] или обратитесь в [службу поддержки](mailto:support-google@prestashop.com).",
-    "alertShippingSettingsMissing": "Your shipping information is missing.",
+    "alertShippingSettingsMissing": "Ваша информация о доставке отсутствует.",
     "alertShippingSettingsMissingDescription": "Чтобы успешно синхронизировать данные о товаре, добавьте информацию о доставке.",
     "alertProductFeedDeactivated": "Если синхронизация продуктов деактивирована, новые продукты не будут загружаться в GMC. Сам аккаунт будет продолжать существовать, а срок действия продуктов истечет через 30 дней. Это останавливает показ элементов каталога как в Бесплатных объявлениях, так и в рекламных кампаниях.",
-    "alertProductFeedExists": "**A product feed already exists**  \n<small>Your product feed already exists. You need to overwrite it to sync your PrestaShop product feed. </small>",
+    "alertProductFeedExists": "**Фид товара уже существует**  \n<small>Ваш фид товара уже существует. Вам нужно перезаписать его, чтобы синхронизировать ваш фид товаров PrestaShop. </small>",
     "googleTaxonomyAssociation": "Ассоциация с таксономией Google Product",
     "optional": "Дополнительно",
     "attributeDescription": "С помощью этих атрибутов вы можете организовать свои рекламные кампании в Google Ads и в некоторых случаях переопределить категорию, автоматически присвоенную Google.",
     "excludedProducts": "Исключенные продукты",
     "productsReadyToBeSynced": "Продукты, готовые к синхронизации",
     "productsWithProblems": "Продукты с проблемами",
-    "alertGoogleIsReviewingProducts": "Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.",
+    "alertGoogleIsReviewingProducts": "Ваши товары находятся на рассмотрении  \n Рассмотрение ваших товаров может занять 3-5 дней. После одобрения они будут доступны для бесплатного листинга и рекламы.",
     "missingInformation": "Отсутствующая информация",
-    "alertErrorApi": "You can't send your products data to Google right now. Try again later."
+    "alertErrorApi": "Вы не можете отправить данные о своих продуктах в Google прямо сейчас. Повторите попытку позже."
   },
   "productFeedSettings": {
     "breadcrumb1": "Подача продукта",
@@ -236,31 +236,31 @@
     "steps": {
       "targetCountry": "Целевая страна",
       "shippingSettings": "Настройки доставки",
-      "attributeMapping": "Attribute mapping",
+      "attributeMapping": "Сопоставление атрибутов",
       "categoryMapping": "Картирование категорий",
       "summary": "Резюме",
       "exportFeed": "Экспортный корм!",
       "shippingSettingsErrors": "Эта страна не совместима с вашей валютой",
-      "syncSchedule": "Sync schedule"
+      "syncSchedule": "Расписание синхронизации"
     },
     "noticeDataStored": "Настройки сохраняются на каждом шаге и будут переданы только на последнем шаге.",
     "shipping": {
       "targetCountries": "Целевая страна",
-      "filterTitle": "Filter by country",
+      "filterTitle": "Фильтр по странам",
       "ifMultipleCountries": "Если вы нацелены на несколько стран, цена каждого продукта будет автоматически конвертироваться в нужную валюту в Google. Однако в вашем магазине должны быть настроены ставки доставки и налогов для каждой выбранной страны. Пожалуйста, соблюдайте [правила покупок в конкретной стране]({0})[:target=\"_blank\"] и [местные правила]({1})[:target=\"_blank\"]",
       "productAvailaibleIn": "Моя продукция доступна в",
       "placeholderSelect": "Выберите страны, в которых доступны ваши продукты",
       "cantFindCountry": "Не можете найти страну? Перечислены только поддерживаемые страны. [См. список поддерживаемых стран]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "Эта страна не совместима с вашей валютой",
       "shippingSettings": "Настройки доставки",
-      "shippingSettingsTitle": "Products shipping settings",
-      "shippingLabel1": "Setup my shipping settings now (recommended)",
-      "shippingDescription1": "PrestaShop will import your carriers list from your store settings and allow you to provide additional information.",
+      "shippingSettingsTitle": "Настройки доставки продуктов",
+      "shippingLabel1": "Настройте мои параметры доставки сейчас (рекомендуется)",
+      "shippingDescription1": "PrestaShop импортирует список ваших носителей из настроек магазина и позволит вам предоставить дополнительную информацию.",
       "automatically": "Автоматически",
       "manually": "Вручную",
-      "shippingLabel2": "Skip and setup later in Google Merchant Center",
-      "shippingDescription2": "You will have to enter your product shipping information yourself in Google Merchant center. ",
-      "noticeSetupShipping": "Your products won’t sync until you setup your products shipping information.",
+      "shippingLabel2": "Пропустить и настроить позже в Google Merchant Center",
+      "shippingDescription2": "Вам придется самостоятельно ввести информацию о доставке товара в Google Merchant center. ",
+      "noticeSetupShipping": "Ваши товары не будут синхронизированы, пока вы не настроите информацию о доставке товаров.",
       "taxSettings": "Налоговые настройки",
       "taxSettingsDescription": "Чтобы пользователи понимали точную цену, которую им придется заплатить за товар, вы должны представить данные о налогах, которые вы собираете. Выберите способ настройки параметров налогообложения.",
       "autoImportTax": "Автоматический импорт налоговых настроек",
@@ -268,25 +268,25 @@
       "appliedOnlyForUsa": "(применяется только для СШАUSA)",
       "alertTaxes": "Вы должны предоставить информацию о налогах, которые вы собираете, чтобы пользователи понимали точную цену, которую им придется заплатить за ваши продукты.",
       "cantSelectCountryWithDifferentCurrency": "Вы не можете выбрать страну с валютой, отличной от валюты вашего основного магазина.",
-      "carrierDescriptionHeader": "Carrier  \n description",
-      "enableHeader": "Enable  \n or disable",
-      "shipToCustomerHeader": "Doorstep  \n delivery",
-      "handlingTimeHeader": "Handling  \n time",
-      "transitTimeHeader": "Transit  \n time",
-      "countryHeader": "Target  \n country",
-      "shipToCustomerTooltip": "Select if this carrier delivers to a customer’s address or not (service point, in store pickup). Google only allows enabling carriers who ship to an address.",
-      "handlingTimeTooltip": "Enter how long it takes you to prepare an order until it’s picked up by the carrier in working days.",
-      "transitTimeTooltip": "Enter how long it takes for your order to be shipped to the customer once it leaves your facility.",
-      "shippingInformationTitle": "Carriers & shipping information",
-      "shippingInformationIntro": "Enter shipping information for your carriers list. They have to ship to an address to be synchronized in Google Shopping.",
-      "shippingTableNotice": "Make sure your store message matches your Google shopping delivery time information.",
-      "shippingSwitchCarrier": "Switch to enable / desable carrier",
-      "carriersDropdownHeader": "Copy shipping information to",
-      "carriersDropdownHiddenLabel": "Copy information of the carrier to other carriers",
-      "noCarriersTitle": "You don’t have any shipping carriers",
-      "noCarriersDescription": "Please head to carriers page to add shipping carriers",
-      "addNewCarriers": "Add or update carriers",
-      "refreshCarriers": "Refresh if you have edited your carriers"
+      "carrierDescriptionHeader": "Перевозчик  \n описание",
+      "enableHeader": "Включить  \n или отключить",
+      "shipToCustomerHeader": "Доставка до двери  \n",
+      "handlingTimeHeader": "Обработка  \n время",
+      "transitTimeHeader": "Транзит  \n время",
+      "countryHeader": "Цель  \n страна",
+      "shipToCustomerTooltip": "Выберите, осуществляет ли этот перевозчик доставку по адресу клиента или нет (пункт обслуживания, самовывоз в магазине). Google позволяет включить только тех перевозчиков, которые доставляют товары по адресу.",
+      "handlingTimeTooltip": "Укажите, сколько времени требуется на подготовку заказа до его получения перевозчиком в рабочих днях.",
+      "transitTimeTooltip": "Введите время, необходимое для отправки заказа клиенту после того, как он покинет ваше предприятие.",
+      "shippingInformationTitle": "Перевозчики",
+      "shippingInformationIntro": "Введите информацию о доставке для списка ваших перевозчиков. Для синхронизации в Google Shopping они должны отправлять товары по адресу.",
+      "shippingTableNotice": "Убедитесь, что сообщение вашего магазина соответствует информации о времени доставки в магазине Google.",
+      "shippingSwitchCarrier": "Переключение на включение / желаемый носитель",
+      "carriersDropdownHeader": "Скопируйте информацию о доставке на",
+      "carriersDropdownHiddenLabel": "Копировать информацию перевозчика другим перевозчикам",
+      "noCarriersTitle": "У вас нет перевозчиков",
+      "noCarriersDescription": "Пожалуйста, перейдите на страницу перевозчиков, чтобы добавить перевозчиков.",
+      "addNewCarriers": "Добавить или обновить перевозчиков",
+      "refreshCarriers": "Обновите, если вы отредактировали своих носителей"
     },
     "export": {
       "summarySyncDailyAt": "Синхронизация ежедневно в {0}",
@@ -294,9 +294,9 @@
       "synchronizationTime": "Время синхронизации",
       "timeZone": "Часовой пояс",
       "exportMethod": "Метод экспорта",
-      "allProducts": "Export all products",
-      "byBrand": "Export by brand",
-      "byCategory": "Export by category",
+      "allProducts": "Экспортировать все продукты",
+      "byBrand": "Экспорт по брендам",
+      "byCategory": "Экспорт по категориям",
       "labelExcludeProducts": "Исключить конкретные продукты",
       "placeholderExcludeProducts": "Поиск продукта",
       "selectCategoriesToExport": "Выберите категории для экспорта",
@@ -316,37 +316,37 @@
       }
     },
     "attributeMapping": {
-      "title1": "1. Choose all characteristics that apply to your products",
-      "description1": "This will allow you to map mandatory Google product attributes at the next step depending on your catalog.",
-      "title2": "2. Map mandatory Google attributes to your custom fields",
-      "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later.",
-      "apparelAndAccessoriesTitle": "I sell Apparel and/or Accessories",
-      "apparelAndAccessoriesSubtitle": "i.e clothing, bags, shoes or hats",
-      "electronicsTitle": "I sell Home and/or Kitchen appliances",
-      "electronicsSubtitle": "i.e refrigerators, dishwashers, washing machines, light bulbs",
-      "variantSetsTitle": "My products have variant sets",
-      "variantSetsSubtitle": "i.e different graphic prints, patterns, fabrics or materials",
-      "commonsTitle": "None of the above",
-      "learnRequirementsProductSpecification": "Learn more about requirements & supported values for the Shopping product data specification",
+      "title1": "1. Выберите все характеристики, которые относятся к вашей продукции",
+      "description1": "Это позволит вам на следующем этапе сопоставить обязательные атрибуты продукта Google в зависимости от вашего каталога.",
+      "title2": "2. Сопоставьте обязательные атрибуты Google с пользовательскими полями",
+      "description2": "Заполните все значения, чтобы ваши продукты были проверены. Если в вашем каталоге отсутствует какое-либо значение, мы рекомендуем вам создать его и завершить настройку позже.",
+      "apparelAndAccessoriesTitle": "Я продаю одежду и/или аксессуары",
+      "apparelAndAccessoriesSubtitle": "т.е. одежда, сумки, обувь или головные уборы",
+      "electronicsTitle": "Я продаю бытовую и/или кухонную технику",
+      "electronicsSubtitle": "т.е. холодильники, посудомоечные машины, стиральные машины, лампочки",
+      "variantSetsTitle": "У моих продуктов есть наборы вариантов",
+      "variantSetsSubtitle": "т.е. различные графические принты, узоры, ткани или материалы",
+      "commonsTitle": "Ничего из вышеперечисленного",
+      "learnRequirementsProductSpecification": "Узнайте больше о требованиях",
       "footerNotice": "Опишите данные о продукте с помощью атрибутов. Помимо необходимого минимума для стандартного бесплатного объявления, вы можете добавить дополнительные атрибуты, необходимые для расширенного объявления. Общее правило: чем больше атрибутов, тем лучше.",
-      "addNewAttributes": "Add new attributes in your PrestaShop Catalog",
-      "refreshAttributes": "Refresh if you have edited your attributes",
-      "requiredForSomeCategories": "This field is required for some product categories. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+      "addNewAttributes": "Добавьте новые атрибуты в каталог PrestaShop",
+      "refreshAttributes": "Обновите, если вы отредактировали свои атрибуты",
+      "requiredForSomeCategories": "Это поле необходимо для некоторых категорий товаров. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
       "sellApparelAndAccessories": "Одежда и аксессуары",
       "sellRefurbishedProducts": "Восстановленный",
       "description": "Описание",
       "longDescription": "Длинное описание",
       "shortDescription": "Краткое описание",
-      "energyEfficiencyClass": "Energy efficiency class",
-      "maxEnergyEfficiencyClass": "Maximum efficiency class",
-      "minEnergyEfficiencyClass": "Minimum efficiency class",
-      "material": "Material",
-      "pattern": "Pattern",
+      "energyEfficiencyClass": "Класс энергоэффективности",
+      "maxEnergyEfficiencyClass": "Максимальный класс эффективности",
+      "minEnergyEfficiencyClass": "Минимальный класс эффективности",
+      "material": "Материал",
+      "pattern": "Узор",
       "gtin": "GTIN",
       "ean13": "EAN13",
       "mpn": "MPN",
       "brand": "Бренд",
-      "notAvailable": "Not available",
+      "notAvailable": "Нет в наличии",
       "specificTitle": "Конкретный",
       "sellRefurbished": "Я продаю восстановленные товары",
       "sellApparel": "Я продаю одежду и аксессуары",
@@ -361,42 +361,42 @@
       "learnHowToSetupShippingSettings": "Узнайте, как настроить доставку"
     },
     "syncSchedule": {
-      "title": "Synchronization schedule",
-      "subTitle": "Choose the time when you want the first synchronization to start, the export might slow down your traffic",
-      "radioLabel1": "Now, after I finish my configuration (The export might slow down your shop)",
-      "radioLabel2": "Later, appproximatley at 2:00 AM (GMT+1) (When your shop have few visits)"
+      "title": "Расписание синхронизации",
+      "subTitle": "Выберите время, когда вы хотите начать первую синхронизацию, экспорт может замедлить ваш трафик",
+      "radioLabel1": "Теперь, после того, как я закончу свою конфигурацию (экспорт может замедлить работу вашего магазина)",
+      "radioLabel2": "Позже, примерно в 2:00 AM (GMT 1) (Когда в вашем магазине мало посещений)"
     },
     "summary": {
-      "title1": "Next synchronization is planned in {0} hours",
-      "title2": "Product feed settings summary",
+      "title1": "Следующая синхронизация запланирована через {0} часов",
+      "title2": "Сводка настроек подачи продукта",
       "xItems": "{0} элементов",
       "productItems": "Товарные позиции",
-      "tableHeader1": "Google product attributes",
-      "tableHeader2": "Your custom product fields",
+      "tableHeader1": "Атрибуты продуктов Google",
+      "tableHeader2": "Ваши пользовательские поля продукта",
       "totalProducts": "Активные продукты готовы к синхронизации",
       "date": "Дата",
       "time": "Время",
       "youSell": "**Вы продаете** {0}",
       "dataSyncSetUp": "Настройка синхронизации данных",
-      "productAttributesMapping": "Product attribute mapping",
-      "mandatoryAttributesNotMapped": "One mandatory attribute hasn't been mapped to your custom fields | {0} mandatory attributes haven’t been mapped to your custom fields.",
-      "noticeToCompleteMapping": "We recommend completing all your data to ensure your products are validated. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
-      "agreementTitle": "I understand and agree to the following conditions*",
-      "agreementCheckboxLabel1Instant": "The synchronization of my product feed will run after I click on save and export (It might take between 1 to 4 hours)",
-      "agreementCheckboxLabel1Default": "The synchronization of my product feed will take time at {time} (It might take between 1 to 4 hours)",
-      "agreementCheckboxLabel2": "Google products reviews may take between 3 to 5 business days",
-      "disabledButtonTooltip": "Check our conditions before moving forward",
-      "syncScheduledNow": "Today, right after I save and export"
+      "productAttributesMapping": "Сопоставление атрибутов продукта",
+      "mandatoryAttributesNotMapped": "Один обязательный атрибут не был сопоставлен с вашими пользовательскими полями | {0} обязательные атрибуты не были сопоставлены с вашими пользовательскими полями.",
+      "noticeToCompleteMapping": "Мы рекомендуем заполнить все ваши данные, чтобы убедиться, что ваши продукты проверены. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+      "agreementTitle": "Я понимаю и согласен со следующими условиями*",
+      "agreementCheckboxLabel1Instant": "Синхронизация моей ленты товаров будет запущена после того, как я нажму на кнопку сохранения и экспорта (это может занять от 1 до 4 часов).",
+      "agreementCheckboxLabel1Default": "Синхронизация моей ленты товаров займет время {time} (Это может занять от 1 до 4 часов).",
+      "agreementCheckboxLabel2": "Обзоры продуктов Google могут занять от 3 до 5 рабочих дней",
+      "disabledButtonTooltip": "Проверьте наши условия, прежде чем двигаться дальше",
+      "syncScheduledNow": "Сегодня, сразу после сохранения и экспорта"
     }
   },
   "freeListingCard": {
-    "title": "Show your products with free listings",
+    "title": "Покажите свои товары с помощью бесплатных объявлений",
     "intro": "Бесплатно демонстрируйте свой продукт в органически ранжированном листинге на вкладке Shopping.",
     "learnFreeListing": "Узнайте больше о бесплатных объявлениях",
     "seeFreeListing": "Смотрите мои бесплатные объявления в разделе \"Торговый центр",
     "googleDelay": "Рассмотрение продукции занимает 3-5 рабочих дней",
     "alertEnableFreeListing": "Включите бесплатные объявления, чтобы бесплатно показывать ваши товары на вкладке Покупки\".",
-    "alertCantEnableFreeListing": "You can't enable free listings right now. Try again later.",
+    "alertCantEnableFreeListing": "Вы не можете включить бесплатные объявления прямо сейчас. Повторите попытку позже.",
     "alertCountryNotEligible": "Выбранная вами целевая страна не имеет права на бесплатные листинги и объявления."
   },
   "googleAdsAccountCard": {
@@ -406,7 +406,7 @@
     "labelSelect": "Подключите существующий аккаунт Google Ads",
     "id": "Идентификатор аккаунта Google AdsID",
     "toUseGAdsNeedsAdminAccess": "Чтобы использовать существующий аккаунт Google Ads, вы должны иметь доступ администратора.",
-    "alertCantConnect": "Could not connect your Google Ads account, it's on our side, please give it another try.",
+    "alertCantConnect": "Не удалось подключить ваш аккаунт Google Ads, это на нашей стороне, пожалуйста, попробуйте еще раз.",
     "alertBillingSettingsMissing": "Для запуска кампаний Smart Shopping необходимо добавить настройки биллинга в аккаунте Google Ads.",
     "alertNeedRefreshAfterBilling": "После заполнения информации для выставления счетов в аккаунте Google Ads обновите страницу для просмотра обновлений.",
     "alertNeedRefreshAfterInvitationLink": "Как только приглашение будет принято в вашем аккаунте Google Ads, обновите страницу для просмотра обновлений.",
@@ -425,12 +425,12 @@
     },
     "email": {
       "title": "Ваш адрес электронной почты Google",
-      "description": "This information will be used to create your account.  \nGoogle email address below is the one provided during your Google account connection."
+      "description": "Эта информация будет использована для создания вашего аккаунта.  \nУказанный ниже адрес электронной почты Google - это адрес, указанный при подключении аккаунта Google."
     },
     "business": {
       "name": "Имя",
       "title": "Деловая информация",
-      "description": "Both time zone and currency settings are used to determine how you're billed.  \n**You can never change the currency** you choose for your account, so choose it carefully.",
+      "description": "Настройки часового пояса и валюты используются для определения того, как вам будет выставлен счет.  \n**Вы никогда не сможете изменить валюту**, выбранную для вашего счета, поэтому выбирайте ее тщательно.",
       "labelCountry": "Страна выставления счетов",
       "placeholderCountry": "Выберите страну выставления счетов",
       "labelTimeZone": "Часовой пояс",
@@ -440,13 +440,13 @@
     },
     "terms": {
       "title": "Условия обслуживания для программы Google",
-      "description": "By purchasing Shopping ads, I agree to comply with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]",
+      "description": "Приобретая рекламу \"Покупки\", я соглашаюсь соблюдать [правила и условия Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"].",
       "label": "Я прочитал и принимаю эти условия"
     }
   },
   "smartShoppingCampaignCard": {
     "title": "Повышайте продажи с помощью умных торговых кампаний",
-    "intro": "Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time."
+    "intro": "Повысьте видимость ваших товаров с помощью платных кампаний Smart Shopping Campaigns.  \nОбъявления будут все чаще показываться нужным людям в нужное время."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "Все фильтры",
@@ -454,7 +454,7 @@
     "breadcrumb2": "Создайте кампанию \"Умные покупки",
     "inputNameHelper": "Имя должно быть уникальным и содержать не более 125 символов.",
     "inputNameLabel": "Название кампании",
-    "inputNameTooltip": "Choose a name that clearly describes the theme of the campaign so that you can easily find it in your account. Your campaign name isn't visible to your customers.",
+    "inputNameTooltip": "Выберите название, которое четко описывает тему кампании, чтобы вы могли легко найти ее в своем аккаунте. Название вашей кампании не видно вашим клиентам.",
     "inputNamePlaceholder": "Введите название кампании",
     "inputCampaignNameInvalidFeedback": "Имя должно быть уникальным.",
     "inputDurationHelper": "Мы рекомендуем минимальный срок в 30 дней, чтобы Google мог оптимизировать вашу кампанию.",
@@ -464,13 +464,13 @@
     "inputDurationLabel2": "Дата окончания (необязательно)",
     "inputDatePickerHelper": "Используйте клавиши курсора для перемещения по датам календаря",
     "inputCountryHelper": "Чтобы нацелиться на несколько стран, необходимо создать несколько кампаний.",
-    "inputCountryImutable": "Country can't be changed after creation, if you want to target a different country, you'll need to create a new campaign",
+    "inputCountryImutable": "Страна не может быть изменена после создания, если вы хотите выбрать другую страну, вам нужно будет создать новую кампанию.",
     "inputCountryLabel": "Целевая страна",
     "inputCountryTooltip": "Объявления вашей кампании могут показываться клиентам в целевых географических регионах или клиентам, которые выбрали целевой язык в качестве языковой настройки браузера.",
     "inputFiltersLegend": "Продукты в кампании",
     "inputFiltersAllLabel": "Включить все синхронизированные продукты",
     "inputFiltersPartialLabel": "Выберите продукты, используя фильтры разделов продуктов",
-    "inputFiltersHelper": "Take some time to [read Google Shopping ads policies]({0})[:target=\"_blank\"] some product are prohibited or restricted.",
+    "inputFiltersHelper": "Потратьте немного времени, чтобы [прочитать рекламную политику Google Shopping]({0})[:target=\"_blank\"] некоторые товары запрещены или ограничены.",
     "inputBudgetHelper": "Вы будете платить только в том случае, если кто-то нажмет на ваше объявление.",
     "inputBudgetInvalidFeedback": "Ваш дневной бюджет должен быть действительным числом больше 1. Для любого десятичного числа используйте точку в качестве разделителя.",
     "inputBudgetFeedback": "Ежедневный бюджет кампании",
@@ -479,61 +479,61 @@
     "inputAllSyncedProducts": "Все синхронизированные продукты",
     "formHelperTitle": "Активация кампании",
     "formHelperDescription": "Ваша кампания будет работать до тех пор, пока вы не приостановите ее. Вы можете приостановить свою кампанию в любое время.",
-    "errorNoProducts": "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.",
-    "errorApi": "We were not able to publish your campaign, please try again",
-    "errorFetchingFilters": "We were not able to retrieve all filters from Google. You can't modify them for now.",
+    "errorNoProducts": "Вы хотите запустить кампанию, но в вашем торговом центре Google пока нет ни одного продукта. Ваша кампания начнется только тогда, когда хотя бы один продукт будет одобрен Google.",
+    "errorApi": "Мы не смогли опубликовать вашу кампанию, пожалуйста, попробуйте еще раз",
+    "errorFetchingFilters": "Мы не смогли получить все фильтры из Google. Пока что вы не можете их изменить.",
     "recapTitle": "Краткое описание кампании",
     "recapFiltersLabel": "Продукты в кампании",
     "recapNoFiltersDescription": "Все синхронизированные продукты одобрены Google",
     "recapFooter": "Проверьте информацию о вашей кампании, прежде чем подтвердить ее. Вы всегда можете изменить некоторые параметры во время проведения кампании.",
     "toggleCreationRemarketingTag": "Включить метки ремаркетинга на моем сайте",
-    "toggleCreationNewRemarketingTag": "Create a new remarketing and conversion tracking tag to your shop",
+    "toggleCreationNewRemarketingTag": "Создайте новый тег ремаркетинга и отслеживания конверсии для вашего магазина",
     "enableCreationRemarketingTag": "Включите тег ремаркетинга и отслеживания конверсии",
     "pauseCampaign": "Ваша кампания будет работать до тех пор, пока вы не приостановите ее или как только наступит дата окончания. Вы можете приостановить его в любое время.",
     "alerts": {
       "noTag": "Если не добавить тег автоматически, Google не сможет отправлять результаты кампаний",
       "duplicatedTag": "Похоже, у вас уже есть метка, связанная с вашей учетной записью google, создание новой метки может привести к дублированию событий для ваших кампаний. Мы предлагаем сохранить только ту, которую мы генерируем для вас.",
       "noConversionActions": "Метка отслеживания была включена, но в магазине не установлено действие конверсии. Это можно исправить путем создания новых.",
-      "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
+      "hasUnhandledFilters": "По крайней мере один фильтр этой кампании не поддерживается данным модулем. Во избежание потерь в существующей конфигурации можно изменить только основные детали кампании."
     },
     "labelSelectedDimension": "Выбранное значение измерения",
     "nbDimensionSelected": "Размеры не выбраны | {0} размеры выбраны | {0} размеры выбраны",
     "nbValuesSelected": "Значение не выбрано | {0} значение выбрано | {0} значения выбраны",
-    "selectProductsTitle": "Choose a product filter",
-    "selectProductsSubtitle": "Smart Shopping Campaign can only have one dimension with one or multiple values.",
+    "selectProductsTitle": "Выберите фильтр продуктов",
+    "selectProductsSubtitle": "Smart Shopping Campaign может иметь только одно измерение с одним или несколькими значениями.",
     "remarketingNote": "**Примечание:** если на вашем сайте уже настроены действия по конверсии Google Ads со значениями конверсии для конкретной сделки для данного аккаунта Google Ads, то вам не нужно устанавливать новые теги конверсии на вашем сайте.",
     "toggleNewConversionTag": "Установите новые теги отслеживания конверсии на моем сайте",
     "toggleNewConversionTag2": "Мы создадим следующие теги преобразования: Просмотр страницы, Покупка, Добавить в корзину",
     "remarketingTagLoading": "Проверка наличия тегов ремаркетинга и отслеживания конверсии для добавления в ваш магазин",
-    "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
+    "descriptiveMessage": "В списке отображаются только кампании умных покупок, связанные с вашим аккаунтом Google Merchant Center.  \nЕсли вы хотите увидеть все свои кампании, [перейдите в свой аккаунт Google Ads]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Фильтр продуктов не выбран | {0} фильтр продуктов выбран | {0} фильтры продуктов выбраны",
     "nbProductsSelected": "Товар не выбран | {0} товар выбран | {0} товары выбраны",
-    "categories": "Category",
-    "categoriesSubTitle": "Google-defined product category for your product (ex: Apparel & Accessories > Clothing > Coats & Jackets)",
-    "brands": "Brand",
-    "brandsSubTitle": "Product’s brand name",
-    "products": "Product ID",
-    "productsSubTitle": "Your product’s unique identifier",
-    "conditions": "Product Condition",
-    "conditionsSubTitle": "The condition of your product at time of sale (ex: New, used or refurbished)",
-    "popinTitle": "Campaign’s products filters",
-    "xProducts": "{0} Products | {0} Product | {0} Products",
+    "categories": "Категория",
+    "categoriesSubTitle": "Определенная Google категория продукта для вашего продукта (например: Одежда",
+    "brands": "Бренд",
+    "brandsSubTitle": "Название бренда продукта",
+    "products": "ID продукта",
+    "productsSubTitle": "Уникальный идентификатор вашего продукта",
+    "conditions": "Состояние продукта",
+    "conditionsSubTitle": "Состояние вашего товара на момент продажи (например: новый, бывший в употреблении или восстановленный)",
+    "popinTitle": "Фильтры продуктов кампании",
+    "xProducts": "{0} Продукты | {0} Продукт | {0} Продукты",
     "productConditions": {
-      "unspecified": "Unspecified",
-      "unknown": "Unknown",
-      "new": "New",
-      "refurbished": "Refurbished",
-      "used": "Used"
+      "unspecified": "Неуказанный",
+      "unknown": "Неизвестно",
+      "new": "Новый",
+      "refurbished": "Восстановленный",
+      "used": "Используется"
     }
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Эффективность кампании",
-    "xCampaign": "No campaigns | {0} campaign | {0} campaigns"
+    "xCampaign": "Нет кампаний | {0} кампаний | {0} кампаний"
   },
   "productFeedPage": {
     "breadcrumb": "Сведения о состоянии продукта",
     "alert": {
-      "googleIsReviewing": "Your products are being reviewed.  \n It might take 3-5 days to review your products. Once approved, your products will be available for free listings and ads.",
+      "googleIsReviewing": "Ваши товары находятся на рассмотрении.  \n Рассмотрение ваших продуктов может занять 3-5 дней. После одобрения ваши товары будут доступны для бесплатного размещения объявлений и листингов.",
       "alertSuccess": "Вы успешно зарегистрированы. После того как ваши товары будут одобрены, они могут появиться в результатах поиска на вкладке Google Shopping."
     },
     "syncStatus": {
@@ -550,37 +550,38 @@
     "syncSummary": {
       "syncHistory": {
         "title": {
-          "planned": "Synchronisation planned",
-          "started": "Synchronisation started",
-          "failed": "Synchronisation failed",
-          "completed": "Synchronisation completed",
-          "next": "Next synchronisation"
+          "planned": "Планируется синхронизация",
+          "started": "Синхронизация началась",
+          "failed": "Сбой синхронизации",
+          "completed": "Синхронизация завершена",
+          "next": "Следующая синхронизация",
+          "notPlanned": "No planned synchronisation"
         },
         "subtitle": {
-          "willHappenOnDate": "Will start on {date}",
-          "happenedOnDate": "On {date}",
-          "error": "Due to a technical issue, the sync failed, a new sync planned for tomorrow"
+          "willHappenOnDate": "Начнется на {date}",
+          "happenedOnDate": "На {date}",
+          "error": "Из-за технической проблемы синхронизация не удалась, новая синхронизация запланирована на завтра."
         }
       }
     },
     "productStatus": {
-      "title": "Products status",
-      "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.  \nA pending product won't show in ads or free listings because it's being reviewed by Google.  \nExpiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
+      "title": "Состояние продукции",
+      "description": "Статус вашего продукта позволяет узнать, может ли ваш продукт отображаться в выбранном вами направлении.  \nПродукт, находящийся на рассмотрении, не будет отображаться в объявлениях или бесплатных объявлениях, поскольку он находится на рассмотрении Google.  \nСрок действия продукта истекает в ближайшие 3 дня, и он больше не будет отображаться в объявлениях или бесплатных объявлениях.",
       "alert": "Рассмотрение продукции занимает 3-5 рабочих дней",
       "approvedProducts": "Одобрено",
-      "approvedProductsDescription": "Active products are fully approved and eligible to appear in results.",
+      "approvedProductsDescription": "Активные продукты полностью одобрены и имеют право появляться в результатах.",
       "pendingProducts": "В ожидании",
-      "pendingProductsDescription": "A pending product won't show in ads or free listings because it's being reviewed by Google.",
+      "pendingProductsDescription": "Продукт, находящийся на рассмотрении, не будет отображаться в объявлениях или бесплатных объявлениях, поскольку он находится на рассмотрении Google.",
       "expiringProducts": "Истекающий",
-      "expiringProductsDescription": "Expiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
+      "expiringProductsDescription": "Срок годности продуктов истекает в ближайшие 3 дня, и они больше не могут появляться в объявлениях или бесплатных объявлениях.",
       "disapprovedProducts": "Не утверждено",
-      "disapprovedProductsDescription": "Your product is disapproved for a destination and isn't active.",
+      "disapprovedProductsDescription": "Ваш продукт не одобрен для назначения и не активен.",
       "productsSubmittedToGoogle": "Активные продукты, переданные в Google: {0}",
       "approvalStatusList": "Утверждено, Ожидает утверждения, Не утверждено"
     },
     "overview": {
-      "title": "Active products submitted to Google",
-      "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
+      "title": "Активные продукты, представленные в Google",
+      "description": "Статус вашего продукта позволяет узнать, может ли ваш продукт появиться в выбранном вами направлении."
     },
     "approvalTable": {
       "description": "Статус продуктов, синхронизированных с Merchant Center",
@@ -610,21 +611,21 @@
     }
   },
   "syncTimeline": {
-    "title1": "Products Extraction",
-    "subtitle1": "Now or later, depends on your sync settings",
-    "title2": "Products Verification",
-    "subtitle2": "Filtering products with missing information",
-    "title3": "Export to Google",
-    "subtitle3": "Sending filtered products",
-    "title4": "Google Review",
-    "subtitle4": "Compliance verification",
-    "title5": "New Sync",
-    "subtitle5": "If you update your products"
+    "title1": "Извлечение продуктов",
+    "subtitle1": "Сейчас или позже, зависит от ваших настроек синхронизации",
+    "title2": "Верификация продукции",
+    "subtitle2": "Фильтрация продуктов с недостающей информацией",
+    "title3": "Экспорт в Google",
+    "subtitle3": "Отправка отфильтрованных продуктов",
+    "title4": "Обзор Google",
+    "subtitle4": "Проверка соответствия",
+    "title5": "Новая синхронизация",
+    "subtitle5": "Если вы обновляете свои продукты"
   },
   "campaignCard": {
     "title": "Создайте свою кампанию Smart Shopping в несколько кликов",
-    "description": "Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it's that easy!",
-    "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Smart Shopping campaigns"
+    "description": "Google A.I. будет показывать рекламу искомых товаров заинтересованным покупателям в нужное время, увеличивая ваши продажи.\n\nУстановите дневной бюджет и легко запустите свою рекламную кампанию - вы получите счет только тогда, когда на объявления нажмут, это так просто!",
+    "footer": "Нам нужно будет активировать тег ремаркетинга и отслеживания конверсий, чтобы вы могли проводить кампании Smart Shopping"
   },
   "keymetrics": {
     "title": "Ключевые показатели",
@@ -658,10 +659,10 @@
       "ended": "Завершено",
       "paused": "Приостановлено",
       "notEligible": "Не имеет права",
-      "draft": "Draft",
+      "draft": "Проект",
       "pending": "В ожидании"
     },
-    "from": "From",
+    "from": "С сайта",
     "fromXToX": "С {startDate} по {endDate}",
     "labelCol": {
       "campaign": "Кампания",
@@ -673,57 +674,57 @@
       "conversion": "Конверсия",
       "sales": "Продажи",
       "id": "ID",
-      "products": "Products",
+      "products": "Продукция",
       "click": "Нажмите",
       "costs": "Затраты",
       "averageCostPerClick": "Средний CPC",
       "conversions": "Конверсии",
       "conversionsRate": "Коэффициент конверсии",
-      "productFilter": "Filter name",
-      "dimension": "Filter type",
+      "productFilter": "Название фильтра",
+      "dimension": "Тип фильтра",
       "duration": "Дата продолжительности",
       "target": "Цель",
       "actions": "Действия",
       "dailyBudget": "Ежедневный бюджет"
     },
     "tooltipCol": {
-      "status": "A status for your ad campaign that describes whether or not its ads can run at the moment."
+      "status": "Статус рекламной кампании, описывающий, могут ли ее объявления запускаться в данный момент."
     },
     "campaignsPerformanceTable": {
       "title": "Эффективность кампании",
-      "subTitle": "Проверьте, насколько эффективны ваши кампании",
-      "emptyListText": "You don't have any enabled campaigns"
+      "subTitle": "Проверьте, насколько хорошо работают ваши кампании",
+      "emptyListText": "У вас нет ни одной включенной кампании"
     },
     "productsPerformanceTable": {
       "title": "Производительность продукта для активных кампаний",
       "subTitle": "Проверьте, какой продукт работает лучше всего",
-      "emptyListText": "You don't have any products in active campaigns"
+      "emptyListText": "У вас нет продуктов в активных кампаниях"
     },
     "filtersPerformanceTable": {
       "title": "Общая эффективность фильтрации (топ-10)",
-      "subTitle": "Проверьте, какие измерения работают лучше всего",
-      "emptyListText": "You don't have any products in this campaigns"
+      "subTitle": "Проверьте, какое измерение работает лучше всего",
+      "emptyListText": "У вас нет активных кампаний с фильтрами"
     }
   },
   "notConfiguredState": {
-    "title": "Nothing configured yet !",
-    "text": "Configure your GMC to start creating campaigns with Google",
-    "cta": "Go to configuration page"
+    "title": "Пока ничего не настроено!",
+    "text": "Настройте свой GMC, чтобы начать создавать кампании в Google",
+    "cta": "Перейдите на страницу конфигурации"
   },
   "help": {
     "title": "Помощь для PrestaShop Google",
     "intro": "PrestaShop Marketing позволяет легко связать ваш магазин с Google и продвигать ваши товары миллионам покупателей в различных сетях, таких как Google Search, YouTube или Gmail. Создавайте кампании Smart Shopping, не покидая приборной панели PrestaShop, и привлекайте больше трафика.",
     "allowsYouTo": {
       "title": "Этот модуль позволяет:",
-      "easySync": "Easily sync your product catalog with Google to keep product details such as price and availability automatically updated",
-      "freeListing": "Enable free listings and broaden your reach by showing your products to shoppers browsing on the Shopping tab, for free",
-      "ssc": "Get started with Smart Shopping campaigns, set a daily budget and let Google’s smart technology optimize your campaigns",
-      "reporting": "Analyze your campaign performance without leaving PrestaShop"
+      "easySync": "Простая синхронизация каталога товаров с Google для автоматического обновления таких сведений о товаре, как цена и наличие.",
+      "freeListing": "Включите бесплатные объявления и расширьте свой охват, бесплатно показывая свои товары покупателям, просматривающим вкладку \"Покупки\".",
+      "ssc": "Начните работу с кампаниями Smart Shopping, установите дневной бюджет и позвольте интеллектуальной технологии Google оптимизировать ваши кампании.",
+      "reporting": "Анализируйте эффективность вашей кампании, не выходя из PrestaShop"
     },
     "help": {
       "needHelp": "Нужна помощь? Найти документацию по этому модулю можно здесь.",
       "downloadPdf": "Скачать PDF",
-      "couldntFindAnyAnswer": "Couldn\"t find any answer to your question?",
+      "couldntFindAnyAnswer": "Не смогли найти ответ на свой вопрос?",
       "contactUs": "Свяжитесь с нами"
     }
   },
@@ -732,7 +733,7 @@
     "noFaq": "Часто задаваемые вопросы отсутствуют."
   },
   "glass": {
-    "message": "Can't see Google secured browser?  \nHit Continue to relaunch the window and finish configuration.\n\nYou may need to activate popups in your browser to continue."
+    "message": "Не видите защищенный браузер Google?  \nНажмите кнопку Продолжить, чтобы перезапустить окно и завершить настройку.\n\nДля продолжения может потребоваться активировать всплывающие окна в браузере."
   },
   "cta": {
     "startConfiguring": "Начните настройку",
@@ -748,7 +749,7 @@
     "continue": "Продолжить",
     "disabled": "Инвалид",
     "enabled": "Включено",
-    "agree": "I agree",
+    "agree": "Я согласен",
     "enableFreeListing": "Включить бесплатные объявления",
     "connectAccount": "Подключить счет",
     "connectingAccount": "Подключение счета...",
@@ -774,7 +775,7 @@
     "editSettings": "Редактирование настроек",
     "editRules": "Правила редактирования",
     "shopMaintenanceBtn": "Перейдите к настройкам технического обслуживания",
-    "editProductAttributes": "Edit attributes",
+    "editProductAttributes": "Редактировать атрибуты",
     "forceSync": "Принудительная синхронизация",
     "createNewGoogleAdsAccount": "Создайте новый аккаунт Google Ads",
     "back": "Назад",
@@ -784,7 +785,7 @@
     "disable": "Отключить",
     "disableProductFeed": "Отключить подачу продуктов",
     "enableFreeListingAndProductFeed": "Включить бесплатные объявления и ленту товаров",
-    "checkRequirements": "View store requirements",
+    "checkRequirements": "Посмотреть требования к магазину",
     "storeMeetsRequirements": "Мой магазин отвечает всем требованиям",
     "createAccount": "Создать учетную запись",
     "saveChange": "Сохранить изменения",
@@ -819,7 +820,7 @@
     "removeFilter": "Удалить фильтр | Удалить фильтры",
     "selectAll": "Выбрать все",
     "deselectAll": "Отменить выбор всех",
-    "clearAll": "Clear all",
+    "clearAll": "Очистить все",
     "signInWithGoogle": "Войти в систему с помощью Google",
     "viewReporting": "Просмотр отчетности",
     "pauseCampaign": "Приостановить кампанию",
@@ -833,14 +834,14 @@
     "noEndDate": "Нет даты окончания",
     "verifyPhoneNumber": "Проверить номер телефона",
     "refreshInformations": "Обновить информацию",
-    "apply": "Apply",
-    "select": "Select",
-    "editContact": "Edit contact information",
-    "noCarriers": "Take me to Carriers page",
-    "update": "Update",
-    "validateSelection": "Validate Selection",
-    "googleProductStatusDefinitions": "Google product status definitions",
-    "visitThe": "Visit the {0} for more information"
+    "apply": "Применить",
+    "select": "Выберите",
+    "editContact": "Редактирование контактной информации",
+    "noCarriers": "Переведите меня на страницу перевозчиков",
+    "update": "Обновление",
+    "validateSelection": "Проверить правильность выбора",
+    "googleProductStatusDefinitions": "Определения статуса продукта Google",
+    "visitThe": "Посетите {0} для получения дополнительной информации"
   },
   "badge": {
     "free": "Бесплатно",
@@ -868,7 +869,7 @@
     "urlUnverified": "Урл непроверенный",
     "canceled": "Отменено",
     "testAccount": "Тест",
-    "loading": "Loading"
+    "loading": "Загрузка"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "Отключить свой торговый центр?",
@@ -876,9 +877,9 @@
     "titleoverwrite": "Переписать существующее заявление?",
     "textDisconnectGoogleAccount": "Вы собираетесь отключить аккаунт Google. Это приведет к удалению доступа к аккаунтам Google, Google Merchant Center и Google Ads.",
     "textDisconnectMCA": "Отключение Merchant Center приведет к удалению доступа к объявлениям Google Ads в этом модуле и приостановке любой запущенной кампании.",
-    "textoverwrite": "Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  \nIf you are running a different Shopping campaign, we recommend pausing it.",
+    "textoverwrite": "Перезапись существующего заявления приведет к деактивации вашей предыдущей учетной записи и приостановке существующих кампаний, связанных с этой учетной записью - бесплатных объявлений и кампаний Shopping.  \nЕсли вы запускаете другую кампанию Shopping, мы рекомендуем приостановить ее.",
     "titleDisableFreeListing": "Отключить бесплатные объявления?",
-    "textDisableFreeListing": "By disabling free listings your products will no longer be available for organic listing on Shopping tab.  \n However your product feed will stay available.",
+    "textDisableFreeListing": "При отключении бесплатных объявлений ваши товары больше не будут доступны для органического листинга на вкладке Shopping.  \n Однако ваша лента товаров останется доступной.",
     "titleEnableFreeListing": "Включить бесплатные объявления?",
     "textEnableFreeListing": "Это действие также приведет к повторной активации подачи продукта.",
     "titleCancelWithoutSaving": "Отменить без сохранения?",
@@ -893,8 +894,8 @@
     "removeTag": "Удалите тег \"Ремаркетинг и конверсия\" из моего магазина",
     "removeTagExplainations": "Удаление тега означает, что Google больше не сможет отслеживать ваши кампании. Мы рекомендуем удалять тег только в том случае, если вы планируете полностью удалить модуль или изменить учетную запись. Вы всегда можете добавить его самостоятельно в код вашего сайта.",
     "titleActivateTrackingSSC": "Активируйте тег ремаркетинга и отслеживания конверсий.",
-    "textActivateTrackingSSC": "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
-    "textConfirmCancel": "If you go back you will lose your selected values"
+    "textActivateTrackingSSC": "Для проведения кампаний \"умных покупок\" Google Ads должен иметь возможность создать [список ремаркетинга]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] и [тег отслеживания конверсий]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] на вашем сайте.   \n PrestaShop автоматически установит эти фрагменты кода в вашем магазине.",
+    "textConfirmCancel": "Если вы вернетесь назад, то потеряете выбранные значения."
   },
   "tooltip": {
     "googleAccountRequired": "Требуется настройка аккаунта Google",
@@ -908,20 +909,20 @@
     "approvalStatusLang": "заполнитель",
     "approvalStatusIssues": "Причина, по которой ваш продукт не одобрен для Google",
     "attributeMapping": {
-      "description": "Your product's description. Max 5000 characters.",
+      "description": "Описание вашего продукта. Максимум 5000 символов.",
       "condition": "Состояние вашего товара на момент продажи.",
-      "color": "Your product's color(s). Max 100 alphanumeric characters (max 40 characters per color)",
-      "size": "Your product's size",
+      "color": "Цвет (цвета) вашего продукта. Максимум 100 буквенно-цифровых символов (максимум 40 символов на цвет)",
+      "size": "Размер вашего продукта",
       "ageGroup": "Демографическая группа, для которой предназначен ваш продукт (если продукт предназначен для определенной возрастной группы)",
       "gender": "Пол, для которого предназначен ваш продукт",
-      "gtin": "Your product's Global Trade Item Number (GTIN)",
-      "mpn": "Your product's Manufacturer Part Number (mpn)",
-      "brand": "Name of your brand. Max 70 characters",
-      "energyEfficiencyClass": "Your product's energy label.",
-      "maxEnergyEfficiencyClass": "Your product's energy label.",
-      "minEnergyEfficiencyClass": "Your product's energy label.",
-      "material": "Your product's fabric or material",
-      "pattern": "Your product's pattern or graphic print"
+      "gtin": "Номер товара в глобальной торговле (GTIN)",
+      "mpn": "Номер детали производителя вашего продукта (mpn)",
+      "brand": "Название вашего бренда. Максимум 70 символов",
+      "energyEfficiencyClass": "Маркировка энергопотребления вашего изделия.",
+      "maxEnergyEfficiencyClass": "Маркировка энергопотребления вашего изделия.",
+      "minEnergyEfficiencyClass": "Маркировка энергопотребления вашего изделия.",
+      "material": "Ткань или материал вашего изделия",
+      "pattern": "Узор или графический принт вашего изделия"
     },
     "GMCForm": {
       "businessAddress": "Предварительно заполненный адрес - это адрес, который вы ввели в бэк-офисе",
@@ -940,7 +941,7 @@
     "productFeedConfiguredOnceSuccess": "Вы успешно отправили данные о своем продукте в Merchant Center. После утверждения они будут доступны для бесплатных объявлений и листингов.",
     "attributesMapppingSuccess": "Атрибуты вашего продукта успешно сохранены. Просмотрите резюме, затем нажмите \"Экспорт\", чтобы отправить их в Google",
     "campaignCreatedSuccess": "Вы успешно создали кампанию Smart Shopping!",
-    "phoneNumberVerifiedSuccess": "Your phone number has been verified. The Merchant Account is being created"
+    "phoneNumberVerifiedSuccess": "Ваш номер телефона был проверен. Создается торговый счет"
   },
   "stepper": {
     "nextStep": "Следующий: {0}",
@@ -948,33 +949,33 @@
   },
   "attributesMapping": {
     "types": {
-      "description": "Description",
+      "description": "Описание",
       "mpn": "MPN",
-      "brand": "Brand",
-      "color": "Color",
+      "brand": "Бренд",
+      "color": "Цвет",
       "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
-      "size": "Size",
-      "ageGroup": "Age group",
-      "gender": "Gender",
-      "energyEfficiencyClass": "Energy efficiency class",
-      "minEnergyEfficiencyClass": "Minimum efficiency class",
-      "maxEnergyEfficiencyClass": "Maximum efficiency class",
-      "material": "Material",
-      "pattern": "Pattern"
+      "size": "Размер",
+      "ageGroup": "Возрастная группа",
+      "gender": "Пол",
+      "energyEfficiencyClass": "Класс энергоэффективности",
+      "minEnergyEfficiencyClass": "Минимальный класс эффективности",
+      "maxEnergyEfficiencyClass": "Максимальный класс эффективности",
+      "material": "Материал",
+      "pattern": "Узор"
     },
     "options": {
       "upc": "UPC",
       "isbn": "ISBN",
       "ean13": "EAN",
       "mpn": "MPN",
-      "description": "Description",
-      "shortDescription": "Short Description",
-      "longDescription": "Long description",
-      "notAvailable": "Not available"
+      "description": "Описание",
+      "shortDescription": "Краткое описание",
+      "longDescription": "Длинное описание",
+      "notAvailable": "Нет в наличии"
     },
-    "condition": "Condition",
-    "specificTitle": "Specific",
-    "sellRefurbished": "I sell refurbished products",
-    "sellApparel": "I sell apparel and accessories"
+    "condition": "Состояние",
+    "specificTitle": "Конкретный",
+    "sellRefurbished": "Я продаю восстановленные товары",
+    "sellApparel": "Я продаю одежду и аксессуары"
   }
 }

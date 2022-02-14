@@ -8,47 +8,47 @@
       "catalog": "Catálogo de produtos",
       "help": "Ajuda"
     },
-    "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
+    "versionDoesNotExist": "Parece que a versão do módulo não pode ser recuperada. Está do nosso lado, por favor tente novamente.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "The version of the module PrestaShop EventBus running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop EventBus",
-      "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"
+      "ps_eventbus": "A versão do módulo PrestaShop EventBus executado nesta loja é mais antiga do que o mínimo exigido.\n\nVocê pode usar PrestaShop Marketing com o Google mas alguns recursos (ou seja, sincronização de produtos) não estarão disponíveis até que você atualize o PrestaShop EventBus",
+      "psxmarketingwithgoogle": "Por favor, atualize o módulo PrestaShop Marketing com o Google para que ele funcione corretamente"
     },
     "adblockerActivated": "Desative o seu ad-blocker (bloqueador de anúncios) para que o módulo funcione corretamente e atualize o seu navegador.",
     "refreshPage": "Atualizar página",
     "mandatory": "são obrigatórias",
     "XIsMandatory": "{0} é obrigatório.",
-    "unableToFetchData": "We were unable to fetch datas, please try again later",
+    "unableToFetchData": "Não conseguimos obter dados, por favor tente novamente mais tarde.",
     "searchByX": "Pesquisar por {0}",
-    "search": "Search",
+    "search": "Pesquisa",
     "legendCreateNewAccount": "Também tem possibilidade de criar uma nova conta em poucos passos:",
-    "notAvailable": "Not available",
-    "min": "min.",
-    "max": "max.",
-    "helpPage": "Help Page"
+    "notAvailable": "Não disponível",
+    "min": "Min.",
+    "max": "máximo.",
+    "helpPage": "Página de Ajuda"
   },
   "landingPage": {
     "header": {
       "title": "Marketing com Google",
       "text": "Os seus potenciais compradores já estão à procura online de produtos como os que você oferece. Alcance-os no Google com o PrestaShop Marketing em alguns passos fáceis.",
-      "reinsurance": "- Easy setup \n- Cancel anytime"
+      "reinsurance": "- Fácil configuração \n- Cancelar a qualquer momento"
     },
     "content": {
       "content1": {
         "title": "Sincronize o seu catálogo de produtos com o Google",
         "text": "Ligue a sua loja ao Google Merchant Center e sincronize todo o seu catálogo de produtos em poucos cliques, os atributos do produto, tais como preço e disponibilidade, serão automaticamente atualizados diariamente.",
-        "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
+        "footer": "[Saiba mais sobre listagens livres]({0})[:target=\"_blank\"]"
       },
       "content2": {
         "title": "Ative listagens gratuitas para os seus produtos",
         "text": "As listagens gratuitas permitem apresentar as caraterísticas dos produtos, incluindo imagem e preço em listagens organicamente ordenadas na guia \"Shopping\".  \n \n Uma vez sincronizado o seu catálogo, ative facilmente as listagens gratuitas no seu painel de instrumentos e comece a mostrar os seus produtos gratuitamente na guia \"Shopping\".",
-        "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
+        "footer": "Crie uma nova conta [Merchant Center]({0})[:target=\"_blank\"] ou crie um link para uma conta existente.  \nPara mostrar seus produtos no Google você precisará cumprir os [requisitos de elegibilidade]({1})[:target=\"_blank\"]"
       },
       "content3": {
         "title": "Crie e faça a gestão das suas campanhas inteligentes do Shopping",
         "text": "Campanhas inteligentes do Shopping são anúncios do Google que utilizam a tecnologia inteligente do Google para licitação e colocação de anúncios que maximizam o valor de conversão e exibem estrategicamente os seus anúncios para pessoas que procuram produtos como o seu.  \n \n Defina um orçamento diário e deixe que a tecnologia inteligente do Google otimize as suas campanhas em diferentes redes como o Google Search, o YouTube ou o Gmail. Só paga quando as pessoas clicam.",
-        "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
+        "footer": "[Saiba mais sobre campanhas de Smart Shopping]({0})[:target=\"_blank\"]"
       },
-      "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
+      "notice": "*dependendo da disponibilidade regional   \n**inclui otimização de campanha para mostrar variedade de anúncios de seus produtos aos clientes mais propensos a comprá-los"
     },
     "footer": {
       "text": "Faça com que os seus produtos sejam visualizados no Google com o PS Marketing com Google"
@@ -68,7 +68,7 @@
     "selectStore": "Selecione a primeira loja a configurar da lista abaixo",
     "tips": "Depois de terminar a primeira loja, pode configurar as outras, selecionando uma a uma no seletor de lojas, no menu horizontal",
     "configure": "Configurar",
-    "group": "Shop group"
+    "group": "Grupo de lojas"
   },
   "psAccountCard": {
     "disonboardedText": "Autorize a sua conta a gerir os serviços da sua loja",
@@ -79,36 +79,36 @@
     "introDisabled": "Conecte a sua conta Google e associe-a ao Google Merchant Center para poder desbloquear as listagens gratuitas.",
     "introEnabled": "Aceda através do módulo PrestaShop associado à sua conta de e-mail Google Merchant Center e contas Google Ads.",
     "footerDissociating": "A PrestaShop utiliza esta conta para gerir e sincronizar as contas Merchant Center e Google Ads.",
-    "alertCantConnect": "You can't connect to your Google account right now. Try again later.",
-    "alertTokenMissing": "We weren't able to authenticate your account. Try again or switch to another account.",
+    "alertCantConnect": "Você não pode se conectar à sua conta do Google agora mesmo. Tente novamente mais tarde.",
+    "alertTokenMissing": "Não fomos capazes de autenticar a sua conta. Tente novamente ou mude para outra conta.",
     "stepIsMandatory": "*Este passo é obrigatório",
-    "alertInfo": "Make sure to allow all requested permissions when authenticating your Google account.  \nThis action is mandatory for this service to work properly.",
-    "missingTokenScopes": "Some requested permissions are missing.  \nAll requested permissions are mandatory for this service to work properly, please manage your account and make sure to allow all of them."
+    "alertInfo": "Certifique-se de permitir todas as permissões solicitadas ao autenticar a sua conta Google.  \nEsta acção é obrigatória para que este serviço funcione correctamente.",
+    "missingTokenScopes": "Faltam algumas permissões solicitadas.  \nTodas as permissões solicitadas são obrigatórias para que este serviço funcione corretamente, por favor, gerencie sua conta e certifique-se de permitir todas elas."
   },
   "mcaCard": {
     "title": "Conta Merchant Center",
     "introDisabled": "Associe a sua conta Merchant Center à PrestaShop para facilitar a sincronização dos dados da sua loja e dos seus produtos",
-    "introEnabled": "[Google Merchant Center]({0})[:target=\"_blank\"] helps you get your store and product info into Google and make it available to shoppers across Google.",
+    "introEnabled": "[Google Merchant Center]({0})[:target=\"_blank\"] ajuda-o a obter informações sobre a sua loja e produtos no Google e a disponibilizá-las aos compradores em todo o Google.",
     "labelSelect": "Conectar uma conta existente",
     "claimCollides": "O seu site já foi reclamado.",
     "claimOverwrite": "Para terminar a criação da conta do Merchant Center, necessita sobrescrever a reclamação existente.",
-    "footerEU": "If you are in the European Economic Area, the United Kingdom or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
+    "footerEU": "Se está no Espaço Económico Europeu, no Reino Unido ou na Suíça, a sua conta de Centro Comercial deve estar associada a um [Serviço de Comparação de Compras (CSS)]({0})[:target=\"_blank\"]  \nSe criar uma nova conta de Centro Comercial através desta aplicação, esta será associada ao Google Shopping, o CSS do Google, por defeito. Você pode alterar o CSS associado à sua conta a qualquer momento. [Encontre seus Parceiros CSS]({1})[:target=\"_blank\"]  \nUma vez que você tenha configurado sua conta Merchant Center você pode usar nossa ferramenta onboarding, independentemente do CSS que você usa.",
     "shopInfoMissing": "Faltam informações da loja",
     "shopInfoMissingDescription": "Para concluir as informações que faltam sobre a loja, vá para a sua conta [Merchant Center]({0})[:target=\"_blank\"].",
     "userIsNotAdmin": "Precisa de acesso Admin",
     "userIsTestAccount": "Esta é uma conta de teste",
     "googleMCA": "Conta Merchant Center Google",
-    "shopMaintenance": "You cannot connect a Google Merchant Center account while Maintenance mode is active.  \n Please change your shop parameters.",
+    "shopMaintenance": "Não é possível conectar uma conta do Google Merchant Center enquanto o modo Manutenção estiver ativo.  \n Por favor, altere os parâmetros da sua loja.",
     "toUseGmcNeedsAdminAccess": "Para utilizar uma conta existente no Centro Comercial, deve ter acesso Admin.",
-    "linkingFailed": "You can't connect to your Merchant Center account right now. Try again later.",
+    "linkingFailed": "Você não pode se conectar à sua conta do Merchant Center agora mesmo. Tente novamente mais tarde.",
     "AccountValidationFailed": "A validação da conta falhou.",
     "unlinkFailed": "A desconexão falhou. Atualize a página e tente novamente.",
     "tryAgainLater": "Não nos foi possível verificar ou reivindicar o site atual. Tente novamente mais tarde.",
-    "alertSuspended": "Your account has been deactivated.",
+    "alertSuspended": "A sua conta foi desactivada.",
     "alertSuspendedDescription": "Para mais detalhes sobre os motivos da suspensão, por favor visite a sua [Conta Merchant Center]({0})[:target=\"_blank\"]. Uma vez resolvido, necessita solicitar uma nova revisão, preenchendo [este formulário]({1})[:target=\"_blank\"].",
     "notManaged": "Não associado à PrestaShop",
     "overwriteFailed": "Falha na alegação de URL do site",
-    "overwriteToBeDoneManually": "Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}",
+    "overwriteToBeDoneManually": "O seu site já foi reclamado em outra conta do centro comercial. Como não somos administradores da sua conta, não podemos sobregravar esta reivindicação para você. Por favor vá ao seu [Google Merchant Center]({0})[:target=\"_blank\"] , e altere a URL do site com esta: {1}",
     "ineligibleForFreeListing": "A sua conta não é elegível para listagens gratuitas melhoradas no Google",
     "ineligibleForFreeListingDescription": "Verifique as não aprovações ao nível do produto, bem como a sua conta geral.",
     "claimOverwriteWithManualAction": "Para finalizar a sua ligação à conta Google Merchant Center, é necessário que forneça a URL ({0}) do seu website na sua conta Google Merchant Center.",
@@ -137,7 +137,7 @@
     "callMethod": "Chamada telefónica",
     "selectMethod": "Selecione o método de contacto desejado para verificação da sua identidade",
     "alertTooManyRequests": "Já solicitou este serviço inúmeras vezes com este número de telefone. É necessário aguardar 24 horas para tentar novamente ou mudar o seu número de telefone.",
-    "alertSomethingHappened": "Something happened. It's on our side please try again.",
+    "alertSomethingHappened": "Alguma coisa aconteceu. Está do nosso lado, por favor tente novamente.",
     "alertCodeExpired": "O código expirou. Por favor, peça outro"
   },
   "mcaRequirements": {
@@ -148,7 +148,7 @@
     },
     "title": "Criar nova conta Merchant Center",
     "legend": "Para participar nas listagens gratuitas e anunciar no Google, deve reconhecer e cumprir os requisitos abaixo:",
-    "legend2": "Store's website URL needs to be verified and claimed before you can upload products data.  \n[Learn how to verify and claim your website](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
+    "legend2": "O URL do site da loja precisa ser verificado e reclamado antes que você possa carregar os dados dos produtos.  \n[Saiba como verificar e reivindicar o seu site](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Leia a versão completa dos requisitos da loja Google",
     "shoppingAdsPolicies": {
       "title": "Cumprir as políticas de anúncios de compras",
@@ -191,44 +191,44 @@
     "businessCity": "Cidade",
     "businessRegion": "Região",
     "businessCountry": "País de Origem",
-    "changeCountryField": "You can [change your country]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-    "changeRegionField": "You can [change your region]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-    "changeAddressField": "You can [change your business address]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-    "changeZipCodeField": "You can [change your zipcode]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-    "changeCityField": "You can [change your city]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-    "changePhoneNumberField": "You can [change your business phone number]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
+    "changeCountryField": "Você pode [mudar o seu país]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informações no seu back office",
+    "changeRegionField": "Você pode [mudar a sua região]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informações no seu back office",
+    "changeAddressField": "Você pode [mudar o seu endereço comercial]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informações no seu back office",
+    "changeZipCodeField": "Você pode [mudar seu código postal]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informações no seu back office",
+    "changeCityField": "Você pode [mudar a sua cidade]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informações no seu back office",
+    "changePhoneNumberField": "Você pode [mudar o seu número de telefone comercial]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informações no seu back office",
     "siteContainsAdultContent": "O meu site contém conteúdo adulto",
     "seePolicyAdultContent": "Ver política sobre conteúdo orientado para adultos",
-    "labelReadAndAgree": "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies]({0})[:target=\"_blank\"], including [Google’s Merchant Center terms of service]({1})[:target=\"_blank\"], [Shopping ads policies]({2})[:target=\"_blank\"], and [Google Ads Terms and Conditions]({3})[:target=\"_blank\"].",
+    "labelReadAndAgree": "Ao comprar anúncios de compras, li e concordo em cumprir [termos e políticas do Google]({0})[:target=\"_blank\"], incluindo [termos de serviço do Google Merchant Center]({1})[:target=\"_blank\"], [Políticas de anúncios de compras]({2})[:target=\"_blank\"], e [Termos e condições dos anúncios do Google]({3})[:target=\"_blank\"].",
     "alert": "A sua loja será revista de modo a que, se um destes requisitos faltar, a sua conta seja suspensa.",
-    "phoneFormat": "Your business phone number isn't a valid format (only accept number) please change it.",
+    "phoneFormat": "O seu número de telefone comercial não é um formato válido (aceite apenas o número), por favor mude-o.",
     "updateData": "Se fez alguma alteração no seu back office, por favor atualize as suas informações para visualizar as mudanças refletidas aqui."
   },
   "productFeedCard": {
     "title": "Sincronize automaticamente os dados dos seus produtos com o Google",
     "intro": "Envie os seus dados de produto diretamente para o seu Merchant Center e mantenha-os sempre atualizados em termos de listagens e anúncios gratuitos.",
-    "introToConfigure": "It's important to submit your product feed in the correct format, as Google uses this to make sure your products match the right queries.",
+    "introToConfigure": "É importante enviar o feed do seu produto no formato correto, pois o Google usa isso para garantir que seus produtos correspondam às consultas certas.",
     "nextSync": "Próxima sincronização: {0}",
     "syncFailedAt": "A sincronização falhou {0} em {1}",
     "syncSuccess": "Products synced {1} at {2} | {0} product synced {1} at {2} | {0} products synced {1} at {2}",
     "syncBusy": "Sincronização a progredir...",
-    "syncCantPerform": "Synchronization can't perform",
+    "syncCantPerform": "A sincronização não pode realizar",
     "mappedCategories": "{0}/{1} categorias mapeadas",
-    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.",
+    "alertFeedSettingSubmissionSuccess": "Você submeteu com sucesso seus dados de produto ao Merchant Center.  \n Uma vez aprovados, eles estarão disponíveis para anúncios e listagens gratuitas.",
     "alertFailed": "A sincronização de produtos não foi bem sucedida. Verifique as possíveis razões no [Merchant Center]({0})[:target=\"_blank\"] ou contacte [apoio ao cliente](mailto:support-google@prestashop.com).",
-    "alertShippingSettingsMissing": "Your shipping information is missing.",
+    "alertShippingSettingsMissing": "A sua informação de envio está em falta.",
     "alertShippingSettingsMissingDescription": "Para sincronizar com sucesso os dados do seu produto, adicione as informações de envio.",
     "alertProductFeedDeactivated": "Se a sincronização do produto estiver desativada, não haverá novos produtos empurrados para o GMC. A conta em si continuará a existir e os produtos expirarão após 30 dias. Isto impede que os itens do catálogo sejam apresentados tanto nas listagens gratuitas como nas campanhas publicitárias.",
-    "alertProductFeedExists": "**A product feed already exists**  \n<small>Your product feed already exists. You need to overwrite it to sync your PrestaShop product feed. </small>",
+    "alertProductFeedExists": "**Já existe uma alimentação de produto**  \n<small>A alimentação do seu produto já existe. Você precisa sobrescrevê-lo para sincronizar a alimentação do seu produto PrestaShop. </small>",
     "googleTaxonomyAssociation": "Associação de taxonomia de produtos Google",
     "optional": "Opcional",
     "attributeDescription": "Com estes atributos, pode organizar as suas campanhas publicitárias nos Google Ads e substituir a categoria atribuída automaticamente pelo Google em alguns casos.",
     "excludedProducts": "Produtos Excluídos",
     "productsReadyToBeSynced": "Produtos prontos para serem sincronizados",
     "productsWithProblems": "Produtos com problemas",
-    "alertGoogleIsReviewingProducts": "Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.",
+    "alertGoogleIsReviewingProducts": "Seus produtos estão sendo revisados  \n Pode levar de 3 a 5 dias para revisar seus produtos. Uma vez aprovados, eles estarão disponíveis para anúncios e listagens gratuitas.",
     "missingInformation": "Informação em falta",
-    "alertErrorApi": "You can't send your products data to Google right now. Try again later."
+    "alertErrorApi": "Você não pode enviar os dados de seus produtos para o Google agora mesmo. Tente novamente mais tarde."
   },
   "productFeedSettings": {
     "breadcrumb1": "Feed de produtos",
@@ -236,31 +236,31 @@
     "steps": {
       "targetCountry": "País de destino",
       "shippingSettings": "Configurações de envio",
-      "attributeMapping": "Attribute mapping",
+      "attributeMapping": "Mapeamento de atributos",
       "categoryMapping": "Mapeamento de categorias",
       "summary": "Resumo",
       "exportFeed": "Exportar feed",
       "shippingSettingsErrors": "Este país não é compatível com a sua moeda",
-      "syncSchedule": "Sync schedule"
+      "syncSchedule": "Horário de sincronização"
     },
     "noticeDataStored": "As configurações são guardadas em cada etapa, e serão submetidas apenas na etapa final.",
     "shipping": {
       "targetCountries": "País de destino",
-      "filterTitle": "Filter by country",
+      "filterTitle": "Filtrar por país",
       "ifMultipleCountries": "Se visar vários países, o preço de cada produto será automaticamente convertido para a moeda correta no Google. No entanto, a sua loja deve ter configuradas as taxas de envio e impostos para cada país selecionado. Por favor respeite [políticas de compras específicas do país]({0})[:target=\"_blank\"] e [regulamento local]({1})[:target=\"_blank\"]",
       "productAvailaibleIn": "Os meus produtos estão disponíveis em",
       "placeholderSelect": "Selecione os países onde os seus produtos estão disponíveis",
       "cantFindCountry": "Não consegues encontrar um país? Apenas os países suportados são listados. [Ver lista de países suportados]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "Este país não é compatível com a sua moeda",
       "shippingSettings": "Configurações de envio",
-      "shippingSettingsTitle": "Products shipping settings",
-      "shippingLabel1": "Setup my shipping settings now (recommended)",
-      "shippingDescription1": "PrestaShop will import your carriers list from your store settings and allow you to provide additional information.",
+      "shippingSettingsTitle": "Configurações de envio de produtos",
+      "shippingLabel1": "Configurar as minhas definições de envio agora (recomendado)",
+      "shippingDescription1": "PrestaShop irá importar a sua lista de transportadoras das configurações da sua loja e permitir que você forneça informações adicionais.",
       "automatically": "Automaticamente",
       "manually": "Manualmente",
-      "shippingLabel2": "Skip and setup later in Google Merchant Center",
-      "shippingDescription2": "You will have to enter your product shipping information yourself in Google Merchant center. ",
-      "noticeSetupShipping": "Your products won’t sync until you setup your products shipping information.",
+      "shippingLabel2": "Saltar e configurar mais tarde no Google Merchant Center",
+      "shippingDescription2": "Você mesmo terá que inserir as informações de envio do seu produto no Google Merchant center. ",
+      "noticeSetupShipping": "Seus produtos não serão sincronizados até que você configure as informações de envio de seus produtos.",
       "taxSettings": "Definições de impostos",
       "taxSettingsDescription": "Para que os utilizadores entendam o preço exato que terão que pagar por um produto, deverá apresentar os impostos cobrados. Selecione como deseja configurar as configurações de impostos.",
       "autoImportTax": "Configurações de impostos de importação automática",
@@ -268,25 +268,25 @@
       "appliedOnlyForUsa": "(aplicado apenas para os EUA)",
       "alertTaxes": "Você deve enviar os impostos que você recolhe, para que os usuários entendam o preço exato que terão que pagar por seus produtos.",
       "cantSelectCountryWithDifferentCurrency": "Você não pode selecionar um país com moeda diferente da sua loja principal.",
-      "carrierDescriptionHeader": "Carrier  \n description",
-      "enableHeader": "Enable  \n or disable",
-      "shipToCustomerHeader": "Doorstep  \n delivery",
-      "handlingTimeHeader": "Handling  \n time",
-      "transitTimeHeader": "Transit  \n time",
-      "countryHeader": "Target  \n country",
-      "shipToCustomerTooltip": "Select if this carrier delivers to a customer’s address or not (service point, in store pickup). Google only allows enabling carriers who ship to an address.",
-      "handlingTimeTooltip": "Enter how long it takes you to prepare an order until it’s picked up by the carrier in working days.",
-      "transitTimeTooltip": "Enter how long it takes for your order to be shipped to the customer once it leaves your facility.",
-      "shippingInformationTitle": "Carriers & shipping information",
-      "shippingInformationIntro": "Enter shipping information for your carriers list. They have to ship to an address to be synchronized in Google Shopping.",
-      "shippingTableNotice": "Make sure your store message matches your Google shopping delivery time information.",
-      "shippingSwitchCarrier": "Switch to enable / desable carrier",
-      "carriersDropdownHeader": "Copy shipping information to",
-      "carriersDropdownHiddenLabel": "Copy information of the carrier to other carriers",
-      "noCarriersTitle": "You don’t have any shipping carriers",
-      "noCarriersDescription": "Please head to carriers page to add shipping carriers",
-      "addNewCarriers": "Add or update carriers",
-      "refreshCarriers": "Refresh if you have edited your carriers"
+      "carrierDescriptionHeader": "Portador  \n descrição",
+      "enableHeader": "Habilitar  \n ou desabilitar",
+      "shipToCustomerHeader": "Passo das portas  \n entrega",
+      "handlingTimeHeader": "Manuseio  \n tempo",
+      "transitTimeHeader": "Trânsito  \n tempo",
+      "countryHeader": "Meta  \n país",
+      "shipToCustomerTooltip": "Seleccione se esta transportadora entrega ou não no endereço de um cliente (ponto de serviço, na recolha da loja). O Google só permite que transportadoras que enviem para um endereço.",
+      "handlingTimeTooltip": "Digite quanto tempo leva para preparar um pedido até que ele seja pego pela transportadora em dias úteis.",
+      "transitTimeTooltip": "Digite o tempo que leva para a sua encomenda ser enviada ao cliente assim que ela sair das suas instalações.",
+      "shippingInformationTitle": "Portadoras",
+      "shippingInformationIntro": "Introduza as informações de envio para a sua lista de transportadoras. Eles têm de enviar para um endereço a ser sincronizado no Google Shopping.",
+      "shippingTableNotice": "Certifique-se de que a mensagem da sua loja corresponde à informação do seu tempo de entrega de compras no Google.",
+      "shippingSwitchCarrier": "Mudar para ativar / desativar o portador",
+      "carriersDropdownHeader": "Copiar informação de envio para",
+      "carriersDropdownHiddenLabel": "Copiar informações da transportadora para outras transportadoras",
+      "noCarriersTitle": "Você não tem nenhum transportador",
+      "noCarriersDescription": "Dirija-se à página das transportadoras para adicionar transportadoras",
+      "addNewCarriers": "Adicionar ou atualizar portadores",
+      "refreshCarriers": "Atualize se você editou seus portadores"
     },
     "export": {
       "summarySyncDailyAt": "Sincronizar diariamente em {0}",
@@ -294,9 +294,9 @@
       "synchronizationTime": "Tempo de sincronização",
       "timeZone": "Fuso horário",
       "exportMethod": "Método de exportação",
-      "allProducts": "Export all products",
-      "byBrand": "Export by brand",
-      "byCategory": "Export by category",
+      "allProducts": "Exportar todos os produtos",
+      "byBrand": "Exportação por marca",
+      "byCategory": "Exportação por categoria",
       "labelExcludeProducts": "Excluir produtos específicos",
       "placeholderExcludeProducts": "Pesquisar produto",
       "selectCategoriesToExport": "Selecione categorias para exportar",
@@ -316,37 +316,37 @@
       }
     },
     "attributeMapping": {
-      "title1": "1. Choose all characteristics that apply to your products",
-      "description1": "This will allow you to map mandatory Google product attributes at the next step depending on your catalog.",
-      "title2": "2. Map mandatory Google attributes to your custom fields",
-      "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later.",
-      "apparelAndAccessoriesTitle": "I sell Apparel and/or Accessories",
-      "apparelAndAccessoriesSubtitle": "i.e clothing, bags, shoes or hats",
-      "electronicsTitle": "I sell Home and/or Kitchen appliances",
-      "electronicsSubtitle": "i.e refrigerators, dishwashers, washing machines, light bulbs",
-      "variantSetsTitle": "My products have variant sets",
-      "variantSetsSubtitle": "i.e different graphic prints, patterns, fabrics or materials",
-      "commonsTitle": "None of the above",
-      "learnRequirementsProductSpecification": "Learn more about requirements & supported values for the Shopping product data specification",
+      "title1": "1. Escolha todas as características que se aplicam aos seus produtos",
+      "description1": "Isto irá permitir-lhe mapear atributos obrigatórios do produto Google no próximo passo, dependendo do seu catálogo.",
+      "title2": "2. Mapa atributos obrigatórios do Google para os seus campos personalizados",
+      "description2": "Preencha todos os valores para garantir que os seus produtos são validados. Se faltar um valor no seu catálogo, recomendamos que o crie e complete a configuração mais tarde.",
+      "apparelAndAccessoriesTitle": "Eu vendo Roupa e/ou Acessórios",
+      "apparelAndAccessoriesSubtitle": "ou seja, roupas, bolsas, sapatos ou chapéus",
+      "electronicsTitle": "Eu vendo electrodomésticos para casa e/ou cozinha",
+      "electronicsSubtitle": "ou seja, frigoríficos, máquinas de lavar louça, máquinas de lavar roupa, lâmpadas",
+      "variantSetsTitle": "Os meus produtos têm conjuntos de variantes",
+      "variantSetsSubtitle": "ou seja, diferentes estampas gráficas, padrões, tecidos ou materiais",
+      "commonsTitle": "Nenhuma das anteriores",
+      "learnRequirementsProductSpecification": "Saiba mais sobre os requisitos",
       "footerNotice": "Descreva os dados do seu produto usando atributos. Além do mínimo necessário para listagens livres padrão, você pode adicionar atributos adicionais necessários para listagens melhoradas. A regra geral é: quanto mais atributos, melhor.",
-      "addNewAttributes": "Add new attributes in your PrestaShop Catalog",
-      "refreshAttributes": "Refresh if you have edited your attributes",
-      "requiredForSomeCategories": "This field is required for some product categories. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+      "addNewAttributes": "Adicione novos atributos no seu Catálogo PrestaShop",
+      "refreshAttributes": "Atualize se você editou seus atributos",
+      "requiredForSomeCategories": "Este campo é necessário para algumas categorias de produtos. [Veja mais]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
       "sellApparelAndAccessories": "Vestuário e Acessórios",
       "sellRefurbishedProducts": "Remodelado",
       "description": "Descrição",
       "longDescription": "Descrição longa",
       "shortDescription": "Breve descrição",
-      "energyEfficiencyClass": "Energy efficiency class",
-      "maxEnergyEfficiencyClass": "Maximum efficiency class",
-      "minEnergyEfficiencyClass": "Minimum efficiency class",
+      "energyEfficiencyClass": "Classe de eficiência energética",
+      "maxEnergyEfficiencyClass": "Classe de eficiência máxima",
+      "minEnergyEfficiencyClass": "Classe mínima de eficiência",
       "material": "Material",
-      "pattern": "Pattern",
+      "pattern": "Padrão",
       "gtin": "GTIN",
       "ean13": "EAN13",
       "mpn": "MPN",
       "brand": "Marca",
-      "notAvailable": "Not available",
+      "notAvailable": "Não disponível",
       "specificTitle": "Específico",
       "sellRefurbished": "Eu vendo produtos remodelados",
       "sellApparel": "Eu vendo vestuário e acessórios",
@@ -361,42 +361,42 @@
       "learnHowToSetupShippingSettings": "Saiba como preparar o envio"
     },
     "syncSchedule": {
-      "title": "Synchronization schedule",
-      "subTitle": "Choose the time when you want the first synchronization to start, the export might slow down your traffic",
-      "radioLabel1": "Now, after I finish my configuration (The export might slow down your shop)",
-      "radioLabel2": "Later, appproximatley at 2:00 AM (GMT+1) (When your shop have few visits)"
+      "title": "Cronograma de sincronização",
+      "subTitle": "Escolha a hora em que deseja que a primeira sincronização comece, a exportação pode retardar o seu tráfego",
+      "radioLabel1": "Agora, depois de eu terminar a minha configuração (A exportação pode atrasar a sua loja)",
+      "radioLabel2": "Mais tarde, appproximatley às 2:00 da manhã (GMT 1) (Quando a sua loja tiver poucas visitas)"
     },
     "summary": {
-      "title1": "Next synchronization is planned in {0} hours",
-      "title2": "Product feed settings summary",
+      "title1": "A próxima sincronização é planejada em {0} horas",
+      "title2": "Resumo das configurações de alimentação do produto",
       "xItems": "{0} itens",
       "productItems": "Itens do produto",
-      "tableHeader1": "Google product attributes",
-      "tableHeader2": "Your custom product fields",
+      "tableHeader1": "Atributos do produto Google",
+      "tableHeader2": "Os seus campos de produtos personalizados",
       "totalProducts": "Produtos ativos prontos para sincronia",
       "date": "Data",
       "time": "Hora",
       "youSell": "**Vende*** {0}",
       "dataSyncSetUp": "Sincronização de dados configurada",
-      "productAttributesMapping": "Product attribute mapping",
-      "mandatoryAttributesNotMapped": "One mandatory attribute hasn't been mapped to your custom fields | {0} mandatory attributes haven’t been mapped to your custom fields.",
-      "noticeToCompleteMapping": "We recommend completing all your data to ensure your products are validated. [See more]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
-      "agreementTitle": "I understand and agree to the following conditions*",
-      "agreementCheckboxLabel1Instant": "The synchronization of my product feed will run after I click on save and export (It might take between 1 to 4 hours)",
-      "agreementCheckboxLabel1Default": "The synchronization of my product feed will take time at {time} (It might take between 1 to 4 hours)",
-      "agreementCheckboxLabel2": "Google products reviews may take between 3 to 5 business days",
-      "disabledButtonTooltip": "Check our conditions before moving forward",
-      "syncScheduledNow": "Today, right after I save and export"
+      "productAttributesMapping": "Mapeamento de atributos do produto",
+      "mandatoryAttributesNotMapped": "Um atributo obrigatório não foi mapeado para os seus campos personalizados | {0} atributos obrigatórios não foram mapeados para os seus campos personalizados.",
+      "noticeToCompleteMapping": "Recomendamos o preenchimento de todos os seus dados para garantir que os seus produtos sejam validados. [Ver mais]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+      "agreementTitle": "Eu entendo e concordo com as seguintes condições*",
+      "agreementCheckboxLabel1Instant": "A sincronização da alimentação do meu produto será feita após eu clicar em salvar e exportar (pode levar de 1 a 4 horas)",
+      "agreementCheckboxLabel1Default": "A sincronização da alimentação do meu produto levará tempo a {time} (Pode levar entre 1 a 4 horas)",
+      "agreementCheckboxLabel2": "As análises dos produtos Google podem demorar entre 3 a 5 dias úteis",
+      "disabledButtonTooltip": "Verifique as nossas condições antes de seguir em frente",
+      "syncScheduledNow": "Hoje, logo após eu salvar e exportar"
     }
   },
   "freeListingCard": {
-    "title": "Show your products with free listings",
+    "title": "Mostre os seus produtos com listagens gratuitas",
     "intro": "Mostre o seu produto gratuitamente na listagem de classificados orgânicos na guia Compras.",
     "learnFreeListing": "Saiba mais sobre listagens gratuitas",
     "seeFreeListing": "Ver os meus anúncios gratuitos no Merchant Center",
     "googleDelay": "Demora 3-5 dias úteis para analisar os produtos",
     "alertEnableFreeListing": "Habilite anúncios gratuitos para mostrar seus produtos na guia Compras de graça.",
-    "alertCantEnableFreeListing": "You can't enable free listings right now. Try again later.",
+    "alertCantEnableFreeListing": "Não pode activar listagens grátis neste momento. Tente novamente mais tarde.",
     "alertCountryNotEligible": "O país de destino que você selecionou não é elegível para listagens e anúncios gratuitos."
   },
   "googleAdsAccountCard": {
@@ -406,7 +406,7 @@
     "labelSelect": "Conectar uma conta existente no Google Ads",
     "id": "ID da conta Google Ads",
     "toUseGAdsNeedsAdminAccess": "Para usar uma conta existente no Google Ads, você precisa ter acesso administrativo.",
-    "alertCantConnect": "Could not connect your Google Ads account, it's on our side, please give it another try.",
+    "alertCantConnect": "Não conseguiu conectar sua conta no Google Ads, ela está do nosso lado, por favor, tente novamente.",
     "alertBillingSettingsMissing": "Para lançar campanhas de Smart Shopping, você precisa adicionar suas configurações de faturamento em sua conta de Anúncios do Google.",
     "alertNeedRefreshAfterBilling": "Depois de preencher as suas informações de faturamento na sua conta do Google Ads, atualize a página para ver as atualizações.",
     "alertNeedRefreshAfterInvitationLink": "Assim que o convite for aceite na sua conta do Google Ads, actualize a página para ver as actualizações.",
@@ -419,18 +419,18 @@
   "googleAdsAccountNew": {
     "title": "Criar uma nova conta no Google Ads",
     "steps": {
-      "email": "Email",
+      "email": "E-mail",
       "businessInfo": "Informações comerciais",
       "termsOfService": "Termos de serviço"
     },
     "email": {
       "title": "O seu endereço de e-mail do Google",
-      "description": "This information will be used to create your account.  \nGoogle email address below is the one provided during your Google account connection."
+      "description": "Esta informação será usada para criar a sua conta.  \nO endereço de e-mail do Google abaixo é o fornecido durante a ligação da sua conta Google."
     },
     "business": {
       "name": "Nome",
       "title": "Informações comerciais",
-      "description": "Both time zone and currency settings are used to determine how you're billed.  \n**You can never change the currency** you choose for your account, so choose it carefully.",
+      "description": "As configurações de fuso horário e de moeda são usadas para determinar como você é faturado.  \n**Você nunca poderá mudar a moeda*** que escolher para a sua conta, portanto escolha-a com cuidado.",
       "labelCountry": "País de facturação",
       "placeholderCountry": "Seleccione o seu país de facturação",
       "labelTimeZone": "Fuso horário",
@@ -440,13 +440,13 @@
     },
     "terms": {
       "title": "Termos de serviço para o Programa Google",
-      "description": "By purchasing Shopping ads, I agree to comply with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]",
+      "description": "Ao comprar anúncios de compras, concordo em cumprir [termos e condições dos anúncios do Google]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]",
       "label": "Eu li e aceito estes termos"
     }
   },
   "smartShoppingCampaignCard": {
     "title": "Impulsione as suas vendas com Campanhas Smart Campaigns",
-    "intro": "Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time."
+    "intro": "Aumente a visibilidade dos seus produtos com Campanhas de Compras Inteligentes pagas.  \nOs anúncios serão cada vez mais exibidos para as pessoas certas no momento certo."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "Todos os Filtros",
@@ -454,7 +454,7 @@
     "breadcrumb2": "Crie uma campanha Smart Shopping",
     "inputNameHelper": "O nome deve ser único e ter, no máximo, 125 caracteres.",
     "inputNameLabel": "Nome da campanha",
-    "inputNameTooltip": "Choose a name that clearly describes the theme of the campaign so that you can easily find it in your account. Your campaign name isn't visible to your customers.",
+    "inputNameTooltip": "Escolha um nome que descreva claramente o tema da campanha para que você possa encontrá-lo facilmente na sua conta. O nome da sua campanha não é visível para os seus clientes.",
     "inputNamePlaceholder": "Insira nome da campanha",
     "inputCampaignNameInvalidFeedback": "O nome deve ser único.",
     "inputDurationHelper": "Recomendamos uma duração mínima de 30 dias para que o Google possa otimizar a sua campanha.",
@@ -464,13 +464,13 @@
     "inputDurationLabel2": "Data de fim (opcional)",
     "inputDatePickerHelper": "Use as teclas do cursor para navegar pelas datas do calendário",
     "inputCountryHelper": "Para atingir vários países, é necessário criar várias campanhas.",
-    "inputCountryImutable": "Country can't be changed after creation, if you want to target a different country, you'll need to create a new campaign",
+    "inputCountryImutable": "O país não pode ser alterado após a criação, se você quiser atingir um país diferente, você precisará criar uma nova campanha",
     "inputCountryLabel": "País de destino",
     "inputCountryTooltip": "Os anúncios da sua campanha são elegíveis para mostrar aos clientes nas suas localizações geográficas alvo, ou aos clientes que selecionaram o seu idioma alvo como configuração de idioma do navegador deles.",
     "inputFiltersLegend": "Produtos em campanha",
     "inputFiltersAllLabel": "Incluir todos os produtos sincronizados",
     "inputFiltersPartialLabel": "Selecione produtos usando filtros divisórios de produtos",
-    "inputFiltersHelper": "Take some time to [read Google Shopping ads policies]({0})[:target=\"_blank\"] some product are prohibited or restricted.",
+    "inputFiltersHelper": "Leve algum tempo para [ler as políticas de anúncios do Google Shopping]({0})[:target=\"_blank\"] algum produto é proibido ou restrito.",
     "inputBudgetHelper": "Você só pagará se alguém clicar no seu anúncio.",
     "inputBudgetInvalidFeedback": "O seu orçamento diário deve ser um número válido superior a 1. Para qualquer número decimal, por favor use um ponto como separador.",
     "inputBudgetFeedback": "Orçamento diário da campanha",
@@ -479,61 +479,61 @@
     "inputAllSyncedProducts": "Todos os produtos sincronizados",
     "formHelperTitle": "Ativação da campanha",
     "formHelperDescription": "A sua campanha irá decorrer até que a interrompa. Pode fazer uma pausa na sua campanha a qualquer momento.",
-    "errorNoProducts": "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.",
-    "errorApi": "We were not able to publish your campaign, please try again",
-    "errorFetchingFilters": "We were not able to retrieve all filters from Google. You can't modify them for now.",
+    "errorNoProducts": "Você quer lançar uma campanha, mas o seu centro comercial Google ainda não contém nenhum produto. A sua campanha só começará quando pelo menos um produto tiver sido aprovado pelo Google.",
+    "errorApi": "Não fomos capazes de publicar a sua campanha, por favor tente novamente",
+    "errorFetchingFilters": "Não fomos capazes de recuperar todos os filtros do Google. Por agora, não os pode modificar.",
     "recapTitle": "Resumo da campanha",
     "recapFiltersLabel": "Produtos em campanha",
     "recapNoFiltersDescription": "Todos os produtos sincronizados aprovados pelo Google",
     "recapFooter": "Verifique as informações da sua campanha antes de validá-la. Pode sempre modificar alguns parâmetros enquanto a campanha estiver em andamento.",
     "toggleCreationRemarketingTag": "Ativar os separadores de remarketing no meu site",
-    "toggleCreationNewRemarketingTag": "Create a new remarketing and conversion tracking tag to your shop",
+    "toggleCreationNewRemarketingTag": "Crie uma nova etiqueta de rastreamento de remarketing e conversão para a sua loja",
     "enableCreationRemarketingTag": "Ativar o separador de rastreio de remarketing e conversão.",
     "pauseCampaign": "A sua campanha decorrerá até que faça uma pausa ou assim que a data de término for cumprida. Pode fazer uma pausa na sua campanha a qualquer momento.",
     "alerts": {
       "noTag": "Ao não adicionar o separador automaticamente, o Google não poderá enviar resultados de campanhas",
       "duplicatedTag": "Parece que já tem um separador ligado à sua conta google, criando um novo separador pode duplicar os eventos para as suas campanhas. Sugerimos que fique apenas com aquele que geramos para si.",
       "noConversionActions": "O separador de rastreio foi ativado, mas não existe nenhuma ação de conversão definida na loja. Isto pode ser corrigido através da criação de novos separadores.",
-      "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
+      "hasUnhandledFilters": "Pelo menos um filtro desta campanha não é suportado por este módulo. Para evitar qualquer perda na sua configuração existente, apenas os detalhes básicos da campanha podem ser modificados."
     },
     "labelSelectedDimension": "Valor de dimensão selecionado",
     "nbDimensionSelected": "Nenhuma dimensão selecionada | {0} dimensão selecionada | {0} dimensões selecionadas",
     "nbValuesSelected": "Nenhum valor selecionado | {0} valor selecionado | {0} valores selecionados",
-    "selectProductsTitle": "Choose a product filter",
-    "selectProductsSubtitle": "Smart Shopping Campaign can only have one dimension with one or multiple values.",
+    "selectProductsTitle": "Escolha um filtro de produto",
+    "selectProductsSubtitle": "A Smart Shopping Campaign só pode ter uma dimensão com um ou vários valores.",
     "remarketingNote": "**Nota:** se já tem Ações de Conversão Google Ads com valores de conversão específicos da transação configurados no seu site para esta conta Google Ads, então não necessita de definir novos separadores de conversão no seu site.",
     "toggleNewConversionTag": "Definir novos separadores de rastreio de conversão no meu site",
     "toggleNewConversionTag2": "Iremos criar os seguintes separadores de conversão: Vista da página, Comprar, Adicionar ao cesto",
     "remarketingTagLoading": "Verifique se tem separadores de rastreio de remarketing e conversão para adicionar à sua loja",
-    "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
+    "descriptiveMessage": "Apenas as campanhas de compras inteligentes associadas à sua conta no Google Merchant Center são listadas.  \nSe você quer ver todas as suas campanhas, [por favor vá para sua conta de anúncios do Google]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Nenhum filtro de produto selecionado | {0} filtro de produto selecionado | {0} filtros de produtos selecionados",
     "nbProductsSelected": "Nenhum produto selecionado | {0} produto selecionado | {0} produtos selecionados",
-    "categories": "Category",
-    "categoriesSubTitle": "Google-defined product category for your product (ex: Apparel & Accessories > Clothing > Coats & Jackets)",
-    "brands": "Brand",
-    "brandsSubTitle": "Product’s brand name",
-    "products": "Product ID",
-    "productsSubTitle": "Your product’s unique identifier",
-    "conditions": "Product Condition",
-    "conditionsSubTitle": "The condition of your product at time of sale (ex: New, used or refurbished)",
-    "popinTitle": "Campaign’s products filters",
-    "xProducts": "{0} Products | {0} Product | {0} Products",
+    "categories": "Categoria",
+    "categoriesSubTitle": "Categoria de produto definida pelo Google para o seu produto (ex: Vestuário",
+    "brands": "Marca",
+    "brandsSubTitle": "Marca do produto",
+    "products": "Identificação do produto",
+    "productsSubTitle": "O identificador único do seu produto",
+    "conditions": "Condição do produto",
+    "conditionsSubTitle": "O estado do seu produto no momento da venda (ex: novo, usado ou remodelado)",
+    "popinTitle": "Filtros dos produtos da campanha",
+    "xProducts": "{0} Produtos | {0} Produto | {0} Produtos",
     "productConditions": {
-      "unspecified": "Unspecified",
-      "unknown": "Unknown",
-      "new": "New",
-      "refurbished": "Refurbished",
-      "used": "Used"
+      "unspecified": "Não especificado",
+      "unknown": "Desconhecido",
+      "new": "Novo",
+      "refurbished": "Remodelado",
+      "used": "Usado"
     }
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Desempenho da campanha",
-    "xCampaign": "No campaigns | {0} campaign | {0} campaigns"
+    "xCampaign": "Sem campanhas | {0} campanha | {0} campanhas"
   },
   "productFeedPage": {
     "breadcrumb": "Detalhes do status do produto",
     "alert": {
-      "googleIsReviewing": "Your products are being reviewed.  \n It might take 3-5 days to review your products. Once approved, your products will be available for free listings and ads.",
+      "googleIsReviewing": "Os seus produtos estão a ser revistos.  \n Pode demorar 3-5 dias para rever os seus produtos. Uma vez aprovados, os seus produtos estarão disponíveis para anúncios e listagens gratuitas.",
       "alertSuccess": "Você foi escolhido com sucesso. Uma vez aprovados, os seus produtos podem aparecer nos resultados de pesquisa do separador Google Shopping."
     },
     "syncStatus": {
@@ -550,37 +550,38 @@
     "syncSummary": {
       "syncHistory": {
         "title": {
-          "planned": "Synchronisation planned",
-          "started": "Synchronisation started",
-          "failed": "Synchronisation failed",
-          "completed": "Synchronisation completed",
-          "next": "Next synchronisation"
+          "planned": "Sincronização planejada",
+          "started": "Iniciada a sincronização",
+          "failed": "A sincronização falhou",
+          "completed": "Sincronização concluída",
+          "next": "Próxima sincronização",
+          "notPlanned": "No planned synchronisation"
         },
         "subtitle": {
-          "willHappenOnDate": "Will start on {date}",
-          "happenedOnDate": "On {date}",
-          "error": "Due to a technical issue, the sync failed, a new sync planned for tomorrow"
+          "willHappenOnDate": "Vai começar em {date}",
+          "happenedOnDate": "Em {date}",
+          "error": "Devido a uma questão técnica, a sincronização falhou, uma nova sincronização planeada para amanhã."
         }
       }
     },
     "productStatus": {
-      "title": "Products status",
-      "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.  \nA pending product won't show in ads or free listings because it's being reviewed by Google.  \nExpiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
+      "title": "Estado dos produtos",
+      "description": "O status do seu produto lhe permite saber se o seu produto é elegível para aparecer no destino que você optou.  \nUm produto pendente não será mostrado em anúncios ou listas grátis porque está a ser revisto pelo Google.  \nOs produtos pendentes expirarão nos próximos 3 dias e não serão mais elegíveis para aparecer em anúncios ou listagens gratuitas.",
       "alert": "Demora 3-5 dias úteis para analisar os produtos",
       "approvedProducts": "Aprovado",
-      "approvedProductsDescription": "Active products are fully approved and eligible to appear in results.",
+      "approvedProductsDescription": "Produtos ativos são totalmente aprovados e elegíveis para aparecer nos resultados.",
       "pendingProducts": "Pendente",
-      "pendingProductsDescription": "A pending product won't show in ads or free listings because it's being reviewed by Google.",
+      "pendingProductsDescription": "Um produto pendente não será exibido em anúncios ou listagens gratuitas porque está sendo analisado pelo Google.",
       "expiringProducts": "A expirar em",
-      "expiringProductsDescription": "Expiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
+      "expiringProductsDescription": "Os produtos que expiram expiram nos próximos 3 dias, e não serão mais elegíveis para aparecer em anúncios ou anúncios gratuitos.",
       "disapprovedProducts": "Não aprovado",
-      "disapprovedProductsDescription": "Your product is disapproved for a destination and isn't active.",
+      "disapprovedProductsDescription": "Seu produto é desaprovado para um destino e não está ativo.",
       "productsSubmittedToGoogle": "Produtos ativos submetidos ao Google: {0}",
       "approvalStatusList": "Aprovado, Pendente, Não aprovado"
     },
     "overview": {
-      "title": "Active products submitted to Google",
-      "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
+      "title": "Produtos ativos submetidos ao Google",
+      "description": "O status do seu produto lhe permite saber se o seu produto é elegível para aparecer no destino que você optou."
     },
     "approvalTable": {
       "description": "O estado dos produtos que estão sincronizados com o Merchant Center",
@@ -610,21 +611,21 @@
     }
   },
   "syncTimeline": {
-    "title1": "Products Extraction",
-    "subtitle1": "Now or later, depends on your sync settings",
-    "title2": "Products Verification",
-    "subtitle2": "Filtering products with missing information",
-    "title3": "Export to Google",
-    "subtitle3": "Sending filtered products",
-    "title4": "Google Review",
-    "subtitle4": "Compliance verification",
-    "title5": "New Sync",
-    "subtitle5": "If you update your products"
+    "title1": "Extracção de Produtos",
+    "subtitle1": "Agora ou mais tarde, depende das suas definições de sincronização.",
+    "title2": "Verificação de Produtos",
+    "subtitle2": "Produtos de filtragem com informação em falta",
+    "title3": "Exportar para o Google",
+    "subtitle3": "Envio de produtos filtrados",
+    "title4": "Revisão do Google",
+    "subtitle4": "Verificação de conformidade",
+    "title5": "Novo Sync",
+    "subtitle5": "Se você atualizar seus produtos"
   },
   "campaignCard": {
     "title": "Crie a sua campanha Smart Shopping com apenas alguns cliques",
-    "description": "Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it's that easy!",
-    "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Smart Shopping campaigns"
+    "description": "Google A.I. irá exibir anúncios dos produtos pesquisados aos compradores interessados no momento certo, aumentando as suas vendas.\n\nDefina um orçamento diário e lance facilmente a sua campanha de anúncios - só é facturado quando os anúncios são clicados, é assim tão fácil!",
+    "footer": "Teremos de activar a etiqueta de rastreio de remarketing e conversão para que possa realizar campanhas de Smart Shopping"
   },
   "keymetrics": {
     "title": "Principais métricas",
@@ -658,10 +659,10 @@
       "ended": "Terminado",
       "paused": "Pausado",
       "notEligible": "Não Elegíveis",
-      "draft": "Draft",
+      "draft": "Rascunho",
       "pending": "Pendente"
     },
-    "from": "From",
+    "from": "A partir de",
     "fromXToX": "De {startDate} a {endDate}",
     "labelCol": {
       "campaign": "Campanha",
@@ -673,57 +674,57 @@
       "conversion": "Conversão",
       "sales": "Vendas",
       "id": "ID",
-      "products": "Products",
+      "products": "Produtos",
       "click": "Clique",
       "costs": "Custos",
       "averageCostPerClick": "Média CPC",
       "conversions": "Conversões",
       "conversionsRate": "Taxa de conversão",
-      "productFilter": "Filter name",
-      "dimension": "Filter type",
+      "productFilter": "Nome do filtro",
+      "dimension": "Tipo de filtro",
       "duration": "Data de duração",
       "target": "Alvo",
       "actions": "Ações",
       "dailyBudget": "Orçamento diário"
     },
     "tooltipCol": {
-      "status": "A status for your ad campaign that describes whether or not its ads can run at the moment."
+      "status": "Um status para sua campanha publicitária que descreve se seus anúncios podem ou não ser veiculados no momento."
     },
     "campaignsPerformanceTable": {
       "title": "Desempenho da campanha",
-      "subTitle": "Confira o desempenho das suas campanhas",
-      "emptyListText": "You don't have any enabled campaigns"
+      "subTitle": "Confira o bom desempenho de suas campanhas",
+      "emptyListText": "Você não tem nenhuma campanha activada"
     },
     "productsPerformanceTable": {
       "title": "Desempenho do produto para campanhas ativas",
-      "subTitle": "Confira que produto tem o melhor desempenho",
-      "emptyListText": "You don't have any products in active campaigns"
+      "subTitle": "Confira qual produto tem o melhor desempenho",
+      "emptyListText": "Você não tem nenhum produto em campanhas activas"
     },
     "filtersPerformanceTable": {
       "title": "Desempenho geral do filtro (top 10)",
-      "subTitle": "Confira que dimensão tem o melhor desempenho",
-      "emptyListText": "You don't have any products in this campaigns"
+      "subTitle": "Confira qual dimensão tem o melhor desempenho",
+      "emptyListText": "Você não tem nenhuma campanha ativa com filtros"
     }
   },
   "notConfiguredState": {
-    "title": "Nothing configured yet !",
-    "text": "Configure your GMC to start creating campaigns with Google",
-    "cta": "Go to configuration page"
+    "title": "Nada configurado ainda !",
+    "text": "Configure o seu GMC para começar a criar campanhas com o Google",
+    "cta": "Ir para a página de configuração"
   },
   "help": {
     "title": "Ajuda com o Prestashop Google",
     "intro": "O Marketing PrestaShop facilita a ligação da sua loja ao Google e a promoção dos seus produtos a milhões de compradores em diferentes redes como a Google Search, o YouTube ou o Gmail. Crie campanhas de Smart Shopping sem sair do seu painel de controle PrestaShop e dirija mais tráfego.",
     "allowsYouTo": {
       "title": "Este módulo permite-lhe:",
-      "easySync": "Easily sync your product catalog with Google to keep product details such as price and availability automatically updated",
-      "freeListing": "Enable free listings and broaden your reach by showing your products to shoppers browsing on the Shopping tab, for free",
-      "ssc": "Get started with Smart Shopping campaigns, set a daily budget and let Google’s smart technology optimize your campaigns",
-      "reporting": "Analyze your campaign performance without leaving PrestaShop"
+      "easySync": "Sincronize facilmente o seu catálogo de produtos com o Google para manter os detalhes do produto, como preço e disponibilidade, atualizados automaticamente.",
+      "freeListing": "Permita listagens grátis e amplie o seu alcance mostrando os seus produtos aos compradores que navegam no separador Compras, de forma gratuita",
+      "ssc": "Comece com campanhas de Smart Shopping, defina um orçamento diário e deixe a tecnologia inteligente do Google optimizar as suas campanhas",
+      "reporting": "Analise o desempenho da sua campanha sem sair do PrestaShop"
     },
     "help": {
       "needHelp": "Precisa de ajuda? Encontre aqui a documentação deste módulo.",
       "downloadPdf": "Descarregar PDF",
-      "couldntFindAnyAnswer": "Couldn\"t find any answer to your question?",
+      "couldntFindAnyAnswer": "Não encontrou nenhuma resposta para a sua pergunta?",
       "contactUs": "Contacte-nos"
     }
   },
@@ -732,7 +733,7 @@
     "noFaq": "Não existem FAQs disponíveis."
   },
   "glass": {
-    "message": "Can't see Google secured browser?  \nHit Continue to relaunch the window and finish configuration.\n\nYou may need to activate popups in your browser to continue."
+    "message": "Não consegue ver o navegador seguro do Google?  \nPressione Continuar para relançar a janela e terminar a configuração.\n\nVocê pode precisar ativar popups no seu navegador para continuar."
   },
   "cta": {
     "startConfiguring": "Iniciar a configuração",
@@ -748,7 +749,7 @@
     "continue": "Continuar",
     "disabled": "Desativado",
     "enabled": "Ativado",
-    "agree": "I agree",
+    "agree": "concordo",
     "enableFreeListing": "Ativar listagens gratuitas?",
     "connectAccount": "Conectar conta",
     "connectingAccount": "A conectar conta...",
@@ -774,7 +775,7 @@
     "editSettings": "Editar configurações",
     "editRules": "Editar regras",
     "shopMaintenanceBtn": "Ir para definições de manutenção",
-    "editProductAttributes": "Edit attributes",
+    "editProductAttributes": "Editar atributos",
     "forceSync": "Forçar sincronização",
     "createNewGoogleAdsAccount": "Criar uma nova conta no Google Ads",
     "back": "Voltar",
@@ -784,7 +785,7 @@
     "disable": "Desativar",
     "disableProductFeed": "Desativar o feed de produtos",
     "enableFreeListingAndProductFeed": "Ativar listagens gratuitas e feed de produtos",
-    "checkRequirements": "View store requirements",
+    "checkRequirements": "Ver requisitos da loja",
     "storeMeetsRequirements": "A minha loja preenche todos os requisitos",
     "createAccount": "Criar conta",
     "saveChange": "Guardar alteração",
@@ -819,7 +820,7 @@
     "removeFilter": "Remover filtro | Remover filtros",
     "selectAll": "Selecionar tudo",
     "deselectAll": "Desmarcar tudo",
-    "clearAll": "Clear all",
+    "clearAll": "Limpar tudo",
     "signInWithGoogle": "Entre com o Google",
     "viewReporting": "Ver relatórios",
     "pauseCampaign": "Pausar campanha",
@@ -833,13 +834,13 @@
     "noEndDate": "Sem data final",
     "verifyPhoneNumber": "Verificar o número de telefone",
     "refreshInformations": "Atualizar informações",
-    "apply": "Apply",
-    "select": "Select",
-    "editContact": "Edit contact information",
-    "noCarriers": "Take me to Carriers page",
-    "update": "Update",
-    "validateSelection": "Validate Selection",
-    "googleProductStatusDefinitions": "Google product status definitions",
+    "apply": "Candidate-se",
+    "select": "Selecione",
+    "editContact": "Editar informações de contato",
+    "noCarriers": "Leve-me para a página dos transportadores",
+    "update": "Atualizar",
+    "validateSelection": "Validar a seleção",
+    "googleProductStatusDefinitions": "Definições de status de produto do Google",
     "visitThe": "Visit the {0} for more information"
   },
   "badge": {
@@ -868,7 +869,7 @@
     "urlUnverified": "Url não verificada",
     "canceled": "Cancelado",
     "testAccount": "Teste",
-    "loading": "Loading"
+    "loading": "Carregamento"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "Desconectar o seu Merchant Center?",
@@ -876,9 +877,9 @@
     "titleoverwrite": "Sobregravar uma reclamação existente?",
     "textDisconnectGoogleAccount": "Está prestes a desconectar a conta Google. Isto irá remover o acesso às contas Google, Google Merchant Center e Google Ads.",
     "textDisconnectMCA": "Desconectar o seu Merchant Center irá remover o acesso ao seu Google Ads neste módulo e fazer uma pausa em qualquer campanha em curso.",
-    "textoverwrite": "Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  \nIf you are running a different Shopping campaign, we recommend pausing it.",
+    "textoverwrite": "A sobre-escritura de reclamações existentes irá desativar sua conta anterior e pausar as campanhas existentes vinculadas a essa conta - listagens gratuitas e campanhas de compras.  \nSe estiver a executar uma campanha de Compras diferente, recomendamos que a faça uma pausa.",
     "titleDisableFreeListing": "Desativar listagens gratuitas?",
-    "textDisableFreeListing": "By disabling free listings your products will no longer be available for organic listing on Shopping tab.  \n However your product feed will stay available.",
+    "textDisableFreeListing": "Ao desativar as listagens gratuitas, seus produtos não estarão mais disponíveis para listagem orgânica na guia Compras.  \n No entanto, a alimentação do seu produto permanecerá disponível.",
     "titleEnableFreeListing": "Permitir listagens gratuitas?",
     "textEnableFreeListing": "Esta ação também provocará a reativação do feed do produto.",
     "titleCancelWithoutSaving": "Cancelar sem poupar?",
@@ -893,8 +894,8 @@
     "removeTag": "Remover o separador \"Remarketing e conversão\" da minha loja",
     "removeTagExplainations": "A remoção do separador significa que o Google deixará de ser capaz de rastrear as suas campanhas. Nós recomendamos que só remova o separador se planear remover completamente o módulo ou mudar a sua conta. Pode sempre adicioná-lo no código do seu site.",
     "titleActivateTrackingSSC": "Ative o separador de rastreio de remarketing e conversão.",
-    "textActivateTrackingSSC": "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
-    "textConfirmCancel": "If you go back you will lose your selected values"
+    "textActivateTrackingSSC": "Para executar campanhas de Smart Shopping, o Google Ads precisa ser capaz de criar [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] e [converter tag de rastreamento de conversão]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] no seu site.   \n PrestaShop irá automaticamente definir estes trechos de código na sua loja.",
+    "textConfirmCancel": "Se você voltar, perderá os valores selecionados."
   },
   "tooltip": {
     "googleAccountRequired": "Requer a configuração da conta Google",
@@ -908,20 +909,20 @@
     "approvalStatusLang": "espaço reservado",
     "approvalStatusIssues": "Motivo pelo qual o seu produto não é aprovado para o Google",
     "attributeMapping": {
-      "description": "Your product's description. Max 5000 characters.",
+      "description": "A descrição do seu produto. Max 5000 caracteres.",
       "condition": "O estado do seu produto no momento da venda.",
-      "color": "Your product's color(s). Max 100 alphanumeric characters (max 40 characters per color)",
-      "size": "Your product's size",
+      "color": "A(s) cor(es) do seu produto. Máximo 100 caracteres alfanuméricos (máximo 40 caracteres por cor)",
+      "size": "O tamanho do seu produto",
       "ageGroup": "A demografia a que se destina o seu produto (se o produto for dedicado a um grupo etário específico)",
       "gender": "O sexo para o qual o seu produto é destinado",
-      "gtin": "Your product's Global Trade Item Number (GTIN)",
-      "mpn": "Your product's Manufacturer Part Number (mpn)",
-      "brand": "Name of your brand. Max 70 characters",
-      "energyEfficiencyClass": "Your product's energy label.",
-      "maxEnergyEfficiencyClass": "Your product's energy label.",
-      "minEnergyEfficiencyClass": "Your product's energy label.",
-      "material": "Your product's fabric or material",
-      "pattern": "Your product's pattern or graphic print"
+      "gtin": "O número do item de comércio global do seu produto (GTIN)",
+      "mpn": "Número de peça do fabricante do seu produto (mpn)",
+      "brand": "Nome da sua marca. Máximo 70 caracteres",
+      "energyEfficiencyClass": "O rótulo energético do seu produto.",
+      "maxEnergyEfficiencyClass": "O rótulo energético do seu produto.",
+      "minEnergyEfficiencyClass": "O rótulo energético do seu produto.",
+      "material": "O tecido ou material do seu produto",
+      "pattern": "O padrão ou impressão gráfica do seu produto"
     },
     "GMCForm": {
       "businessAddress": "O endereço pré-preenchido é aquele que você digitou no back office",
@@ -940,7 +941,7 @@
     "productFeedConfiguredOnceSuccess": "Você submeteu com sucesso seus dados de produto ao Merchant Center. Uma vez aprovados, estarão disponíveis para anúncios e listagens gratuitas.",
     "attributesMapppingSuccess": "Os atributos do seu produto foram salvos com sucesso. Resumo da revisão e clique em \"Exportar\" para enviá-los ao Google",
     "campaignCreatedSuccess": "Você criou a sua campanha de Smart Shopping com sucesso!",
-    "phoneNumberVerifiedSuccess": "Your phone number has been verified. The Merchant Account is being created"
+    "phoneNumberVerifiedSuccess": "O seu número de telefone foi verificado. A Conta do Comerciante está sendo criada"
   },
   "stepper": {
     "nextStep": "A seguir: {0}",
@@ -948,33 +949,33 @@
   },
   "attributesMapping": {
     "types": {
-      "description": "Description",
+      "description": "Descrição",
       "mpn": "MPN",
-      "brand": "Brand",
-      "color": "Color",
+      "brand": "Marca",
+      "color": "Cor",
       "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
-      "size": "Size",
-      "ageGroup": "Age group",
-      "gender": "Gender",
-      "energyEfficiencyClass": "Energy efficiency class",
-      "minEnergyEfficiencyClass": "Minimum efficiency class",
-      "maxEnergyEfficiencyClass": "Maximum efficiency class",
+      "size": "Tamanho",
+      "ageGroup": "Faixa etária",
+      "gender": "Gênero",
+      "energyEfficiencyClass": "Classe de eficiência energética",
+      "minEnergyEfficiencyClass": "Classe mínima de eficiência",
+      "maxEnergyEfficiencyClass": "Classe de eficiência máxima",
       "material": "Material",
-      "pattern": "Pattern"
+      "pattern": "Padrão"
     },
     "options": {
       "upc": "UPC",
       "isbn": "ISBN",
       "ean13": "EAN",
       "mpn": "MPN",
-      "description": "Description",
-      "shortDescription": "Short Description",
-      "longDescription": "Long description",
-      "notAvailable": "Not available"
+      "description": "Descrição",
+      "shortDescription": "Descrição breve",
+      "longDescription": "Descrição longa",
+      "notAvailable": "Não disponível"
     },
-    "condition": "Condition",
-    "specificTitle": "Specific",
-    "sellRefurbished": "I sell refurbished products",
-    "sellApparel": "I sell apparel and accessories"
+    "condition": "Condição",
+    "specificTitle": "Específico",
+    "sellRefurbished": "Eu vendo produtos remodelados",
+    "sellApparel": "Eu vendo vestuário e acessórios"
   }
 }
