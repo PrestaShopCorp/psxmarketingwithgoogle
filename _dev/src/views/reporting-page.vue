@@ -1,9 +1,11 @@
 <template>
   <div id="reporting-page">
-    <KeyMetricsBlock />
-    <CampaignsPerformanceTable />
-    <ProductsPerformanceTable />
-    <FiltersPerformanceTable />
+    <KeyMetricsBlock :in-need-of-configuration="inNeedOfConfiguration" />
+    <template v-if="!inNeedOfConfiguration">
+      <CampaignsPerformanceTable />
+      <ProductsPerformanceTable />
+      <FiltersPerformanceTable />
+    </template>
   </div>
 </template>
 
