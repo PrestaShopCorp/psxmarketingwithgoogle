@@ -101,7 +101,7 @@ export default {
           this.countriesChosen = country;
           this.$emit('countrySelected', country);
         } else {
-          this.countriesChosen = value;
+          this.countriesChosen = value || '';
           this.$emit('countrySelected', value);
         }
       },
