@@ -525,7 +525,7 @@ export default {
         },
       });
 
-    if (resp.status === 500) {
+    if (resp.status === 500 || resp.status === 502) {
       commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: [], search, error: true});
       return;
     }
