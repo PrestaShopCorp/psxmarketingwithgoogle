@@ -591,7 +591,9 @@
         "description": "Description",
         "barcode": "Barcode/Brand",
         "price": "Price"
-      }
+      },
+      "xHasFailedPreValidation" : "\"{0}\": has failed the pre-validation.",
+      "xHasPassedPreValidation" : "\"{0}\": has passed the pre-validation."
     },
     "approvalTable": {
       "description": "The status of products that are synced with Merchant Center",

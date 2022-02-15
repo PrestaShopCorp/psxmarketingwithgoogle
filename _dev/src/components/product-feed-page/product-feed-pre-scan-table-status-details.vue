@@ -22,11 +22,11 @@
       </ol>
     </b-card-header>
     <b-card-body body-class="p-3 mt-2">
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex flex-wrap flex-md-nowrap justify-content-between align-items-center">
         <i18n
           path="productFeedPage.preScan.description"
           tag="h2"
-          class="font-weight-normal ps_gs-fz-14"
+          class="font-weight-normal ps_gs-fz-14 pr-md-2"
         >
           <span class="font-weight-bold text-lowercase">
             {{
@@ -44,7 +44,7 @@
           menu-class="ps-dropdown"
           :text="langSelected ? langSelected
             : $t('productFeedSettings.shipping.filterTitle')"
-          class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
+          class="mb-2 mt-1 mt-md-0 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
         >
           <b-dropdown-item
             :disabled="!langSelected"
@@ -80,6 +80,9 @@
         variant="light"
         responsive="xl"
       >
+        <template #cell(id)="data">
+          {{ data.value }}
+        </template>
         <template #cell(name)="data">
           <a
             class="external_link-no_icon"
@@ -100,38 +103,23 @@
             {{ data.item.language }}
           </b-badge>
         </template>
-        <template #cell(image)="data">
+        <!-- START > Default template -->
+        <template #cell()="data">
+          <span class="sr-only">
+            {{
+              data.value
+              ? $t('productFeedPage.preScan.xHasFailedPreValidation', [data.field.label])
+              : $t('productFeedPage.preScan.xHasPassedPreValidation', [data.field.label])
+            }}
+          </span>
           <span
             class="material-icons"
-            :class="data.item.image ? 'text-success': 'text-danger'"
+            :class="data.value ? 'text-success': 'text-danger'"
           >
-            {{ data.item.image ? 'done' : 'close' }}
+            {{ data.value ? 'done' : 'close' }}
           </span>
         </template>
-        <template #cell(description)="data">
-          <span
-            class="material-icons"
-            :class="data.item.description ? 'text-success': 'text-danger'"
-          >
-            {{ data.item.description ? 'done' : 'close' }}
-          </span>
-        </template>
-        <template #cell(barcode)="data">
-          <span
-            class="material-icons"
-            :class="data.item.barcode ? 'text-success': 'text-danger'"
-          >
-            {{ data.item.barcode ? 'done' : 'close' }}
-          </span>
-        </template>
-        <template #cell(price)="data">
-          <span
-            class="material-icons"
-            :class="data.item.price ? 'text-success': 'text-danger'"
-          >
-            {{ data.item.price ? 'done' : 'close' }}
-          </span>
-        </template>
+        <!-- END > Default template -->
       </b-table>
       <div class="overflow-auto">
         <b-pagination
