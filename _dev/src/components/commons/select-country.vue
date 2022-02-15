@@ -96,8 +96,14 @@ export default {
           : this.getCountriesFilteredWithList(this.defaultValue);
       },
       set(value) {
-        this.countriesChosen = value;
-        this.$emit('countrySelected', value);
+        if (Array.isArray(value)) {
+          const country = value.length ? [value.pop()] : [];
+          this.countriesChosen = country;
+          this.$emit('countrySelected', country);
+        } else {
+          this.countriesChosen = value;
+          this.$emit('countrySelected', value);
+        }
       },
     },
   },
