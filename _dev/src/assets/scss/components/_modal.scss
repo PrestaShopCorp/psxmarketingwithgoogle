@@ -31,10 +31,10 @@
 
   & + .modal-backdrop {
     background: $overlay-popin;
-
-    #SSCampaignCreationFilterConfirmCancel___BV_modal_backdrop_ {
-      width: auto;
-      height: auto
-    }
   }
+}
+
+#SSCampaignCreationFilterConfirmCancel___BV_modal_backdrop_ {
+  width: auto;
+  height: auto
 }

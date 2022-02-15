@@ -48,7 +48,7 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0"
           variant="outline-secondary"
-          @click="$emit('confirmCancel')"
+          @click="cancel"
         >
           {{ $t("cta.cancel") }}
         </b-button>
@@ -96,6 +96,9 @@ export default {
   methods: {
     nextStep() {
       this.$emit('sendStep', 2);
+    },
+    cancel() {
+      this.$emit('closeModal');
     },
   },
   watch: {

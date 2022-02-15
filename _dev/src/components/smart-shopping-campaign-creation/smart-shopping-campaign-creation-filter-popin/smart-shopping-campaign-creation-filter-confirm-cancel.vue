@@ -22,6 +22,7 @@
 
 <script>
 import PsModal from '../../commons/ps-modal';
+import {checkAndUpdateDimensionStatus, deepCheckDimension} from '../../../utils/SSCFilters';
 
 export default {
   name: 'SSCampaignCreationFilterConfirmCancel',
@@ -29,10 +30,22 @@ export default {
     PsModal,
   },
 
+  props: {
+    stepIs: {
+      type: Number,
+      default: 1,
+    },
+  },
   methods: {
     onAgreed() {
-      this.$emit('confirmation');
-      this.$bvModal.hide('GoogleAdsAccountPopinDisconnect');
+      if (this.stepIs === 1) {
+        this.$emit('confirmation');
+      } else if (this.stepIs === 2) {
+        this.$emit('sendStep', 1);
+        deepCheckDimension(this.$store.state.smartShoppingCampaigns.dimensionChosen, false);
+        checkAndUpdateDimensionStatus(this.$store.state.smartShoppingCampaigns.dimensionChosen);
+      }
+      this.$bvModal.hide('SSCampaignCreationPopin');
     },
   },
 

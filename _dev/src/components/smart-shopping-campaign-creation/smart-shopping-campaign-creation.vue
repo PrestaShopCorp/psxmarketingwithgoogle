@@ -243,42 +243,46 @@
               :extensions="['extended-link', 'no-p-tag']"
             />
           </template>
-          <b-form-row>
-            <b-col
-              cols="12"
-              md="6"
-              class="mb-3 mb-md-0"
+          <div class="d-flex">
+            <b-button
+              data-test-id="campaign-select-filter-button"
+              v-if="!campaignHasNoProductsFilter"
+              :disabled="
+                !productsHaveBeenApprovedByGoogle ||
+                  hasUnhandledFilters ||
+                  errorFetchingFilters
+              "
+              variant="primary"
+              size="sm"
+              class="my-3"
+              @click="openFilterPopin"
             >
-              <b-button
-                data-test-id="campaign-select-filter-button"
-                v-if="!campaignHasNoProductsFilter"
-                :disabled="
-                  !productsHaveBeenApprovedByGoogle ||
-                    hasUnhandledFilters ||
-                    errorFetchingFilters
-                "
-                variant="primary"
-                size="sm"
-                class="my-3"
-                @click="openFilterPopin"
-              >
-                {{ $t("cta.selectFilters") }}
-              </b-button>
-            </b-col>
-
-            <b-col
-              cols="12"
-              md="6"
+              {{ $t("cta.selectFilters") }}
+            </b-button>
+            <div
+              v-if="numberOfFilters && !campaignHasNoProductsFilter "
+              class="align-self-center ml-2"
             >
-              <div v-if="numberOfFilters">
-                Filters with {{ numberOfFilters }} values from
-                {{
-                  this.$store.state.smartShoppingCampaigns.dimensionChosen.name
-                }}
-                (Dimension ≈ {{ totalProducts }} products)
-              </div>
-            </b-col>
-          </b-form-row>
+              {{
+                $tc(
+                  "smartShoppingCampaignCreation.filtersWithxValues",
+                  numberOfFilters,
+                  [numberOfFilters]
+                )
+              }}
+              {{ $t("campaigns.from") }}
+              {{
+                this.$store.state.smartShoppingCampaigns.dimensionChosen.name
+              }}
+              {{
+                $tc(
+                  "smartShoppingCampaignCreation.dimensionNumberOfxProducts",
+                  totalProducts,
+                  [totalProducts]
+                )
+              }}
+            </div>
+          </div>
         </b-form-group>
         <b-form-group
           id="campaign-daily-budget-fieldset"
@@ -562,8 +566,7 @@ export default {
       }
     },
     productsHaveBeenApprovedByGoogle() {
-      // return this.$store.state.productFeed.validationSummary.activeItems > 0;
-      return true;
+      return this.$store.state.productFeed.validationSummary.activeItems > 0;
     },
     errorFetchingFilters() {
       return this.$store.getters[
