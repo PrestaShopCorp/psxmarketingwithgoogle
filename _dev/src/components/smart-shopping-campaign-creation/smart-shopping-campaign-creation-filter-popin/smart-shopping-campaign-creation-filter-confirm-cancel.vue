@@ -5,6 +5,7 @@
     v-bind="$attrs"
     @ok="onAgreed"
     cancel-variant="invisible font-weight-normal"
+    :title="$t('smartShoppingCampaignCreation.popinTitleConfirmCancel')"
   >
     <VueShowdown
       class="my-1"

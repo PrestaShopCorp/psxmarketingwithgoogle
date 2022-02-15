@@ -20,6 +20,7 @@
       v-if="step === 2"
       @sendStep="stepIs($event)"
       @validateCreationFilters="sendFiltersSelected"
+      @confirmCancel="confirmCancel"
       :loader="loader"
     />
     <SmartShoppingCampaignCreationFilterConfirmCancel
@@ -82,14 +83,15 @@ export default {
     stepIs(event) {
       this.step = event;
     },
+    confirmCancel() {
+      this.$bvModal.show(
+        this.$refs.SmartShoppingCampaignCreationFilterConfirmCancel.$refs.modal
+          .id,
+      );
+    },
     sendFiltersSelected() {
       this.$emit('selectFilters', this.filteredDimensions);
       this.$bvModal.hide('SSCampaignCreationPopin');
-    },
-    confirmCancel() {
-      this.$bvModal.show(
-        this.$refs.SmartShoppingCampaignCreationFilterConfirmCancel.$refs.modal.id,
-      );
     },
   },
 };

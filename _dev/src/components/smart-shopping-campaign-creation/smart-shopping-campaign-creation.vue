@@ -220,9 +220,11 @@
             {{ $t("smartShoppingCampaignCreation.inputFiltersAllLabel") }}
           </b-form-radio>
           <b-form-radio
-            :disabled="!productsHaveBeenApprovedByGoogle
-              || hasUnhandledFilters
-              || errorFetchingFilters"
+            :disabled="
+              !productsHaveBeenApprovedByGoogle ||
+                hasUnhandledFilters ||
+                errorFetchingFilters
+            "
             v-model="campaignHasNoProductsFilter"
             name="campaign-product-filter-radios"
             :value="false"
@@ -241,20 +243,42 @@
               :extensions="['extended-link', 'no-p-tag']"
             />
           </template>
+          <b-form-row>
+            <b-col
+              cols="12"
+              md="6"
+              class="mb-3 mb-md-0"
+            >
+              <b-button
+                data-test-id="campaign-select-filter-button"
+                v-if="!campaignHasNoProductsFilter"
+                :disabled="
+                  !productsHaveBeenApprovedByGoogle ||
+                    hasUnhandledFilters ||
+                    errorFetchingFilters
+                "
+                variant="primary"
+                size="sm"
+                class="my-3"
+                @click="openFilterPopin"
+              >
+                {{ $t("cta.selectFilters") }}
+              </b-button>
+            </b-col>
 
-          <b-button
-            data-test-id="campaign-select-filter-button"
-            v-if="!campaignHasNoProductsFilter"
-            :disabled="!productsHaveBeenApprovedByGoogle
-              || hasUnhandledFilters
-              || errorFetchingFilters"
-            variant="primary"
-            size="sm"
-            class="my-3"
-            @click="openFilterPopin"
-          >
-            {{ $t("cta.selectFilters") }}
-          </b-button>
+            <b-col
+              cols="12"
+              md="6"
+            >
+              <div v-if="numberOfFilters">
+                Filters with {{ numberOfFilters }} values from
+                {{
+                  this.$store.state.smartShoppingCampaigns.dimensionChosen.name
+                }}
+                (Dimension ≈ {{ totalProducts }} products)
+              </div>
+            </b-col>
+          </b-form-row>
         </b-form-group>
         <b-form-group
           id="campaign-daily-budget-fieldset"
@@ -390,6 +414,8 @@ import {
   returnChildrenIds,
   returnCountProducts,
   deepCheckDimension,
+  getFilters,
+  filterUncheckedSegments,
 } from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
@@ -425,8 +451,18 @@ export default {
   },
   computed: {
     filtersChosen() {
-      return this.foundSsc?.productFilters
-      ?? this.$store.state.smartShoppingCampaigns.filtersChosen;
+      return (
+        this.foundSsc?.productFilters
+        ?? this.$store.state.smartShoppingCampaigns.filtersChosen
+      );
+    },
+    numberOfFilters() {
+      return getFilters(
+        filterUncheckedSegments(
+          this.$store.state.smartShoppingCampaigns.dimensionChosen,
+        ),
+        [],
+      ).length;
     },
     disableCreateCampaign() {
       if (
@@ -505,8 +541,7 @@ export default {
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
-        targetCountry: this.targetCountry
-          || this.defaultCountry(),
+        targetCountry: this.targetCountry || this.defaultCountry(),
         productFilters: this.finalCampaignFilters,
       };
     },
@@ -527,10 +562,13 @@ export default {
       }
     },
     productsHaveBeenApprovedByGoogle() {
-      return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      // return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      return true;
     },
     errorFetchingFilters() {
-      return this.$store.getters['smartShoppingCampaigns/GET_ERROR_FETCHING_FILTERS_STATUS'];
+      return this.$store.getters[
+        'smartShoppingCampaigns/GET_ERROR_FETCHING_FILTERS_STATUS'
+      ];
     },
     sscList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
@@ -612,7 +650,10 @@ export default {
           values: returnChildrenIds(dimension),
         },
       ];
-      this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', filtersForAPI);
+      this.$store.commit(
+        'smartShoppingCampaigns/SET_FILTERS_CHOSEN',
+        filtersForAPI,
+      );
       if (this.editMode) {
         this.foundSsc.productFilters = filtersForAPI;
       }
@@ -627,9 +668,11 @@ export default {
     },
     setInterfaceForCreation() {
       this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', {});
-      this.$store.state.smartShoppingCampaigns.sscAvailableFilters.forEach((dim) => {
-        deepCheckDimension(dim, false);
-      });
+      this.$store.state.smartShoppingCampaigns.sscAvailableFilters.forEach(
+        (dim) => {
+          deepCheckDimension(dim, false);
+        },
+      );
     },
     setInterfaceForEdition() {
       let {endDate} = this.foundSsc;
@@ -642,7 +685,7 @@ export default {
       this.campaignDurationStartDate = this.foundSsc.startDate;
       this.campaignDurationEndDate = endDate;
       this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
-          && !this.foundSsc.hasUnhandledFilters;
+        && !this.foundSsc.hasUnhandledFilters;
       this.campaignDailyBudget = this.foundSsc.dailyBudget;
       this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
       [this.targetCountry] = this.$options.filters.changeCountriesCodesToNames([
@@ -650,14 +693,20 @@ export default {
       ]);
       this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
       this.debounceName();
-      this.$store.commit('smartShoppingCampaigns/SET_FILTERS_CHOSEN', this.filtersChosen);
+      this.$store.commit(
+        'smartShoppingCampaigns/SET_FILTERS_CHOSEN',
+        this.filtersChosen,
+      );
       if (this.filtersChosen.length) {
         let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
           (dim) => dim.id === this.filtersChosen[0].dimension,
         );
         const filtersToFind = this.filtersChosen[0].values;
         dimensionToEdit = findAndCheckFilter(dimensionToEdit, filtersToFind);
-        this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', dimensionToEdit);
+        this.$store.commit(
+          'smartShoppingCampaigns/SET_DIMENSION_CHOSEN',
+          dimensionToEdit,
+        );
       }
 
       this.loader = false;
