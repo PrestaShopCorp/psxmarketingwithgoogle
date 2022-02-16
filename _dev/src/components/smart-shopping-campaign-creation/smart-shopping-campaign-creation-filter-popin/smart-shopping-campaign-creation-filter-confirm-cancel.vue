@@ -45,7 +45,6 @@ export default {
         deepCheckDimension(this.$store.state.smartShoppingCampaigns.dimensionChosen, false);
         checkAndUpdateDimensionStatus(this.$store.state.smartShoppingCampaigns.dimensionChosen);
       }
-      this.$bvModal.hide('SSCampaignCreationPopin');
     },
   },
 
