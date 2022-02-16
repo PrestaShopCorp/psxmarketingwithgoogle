@@ -23,9 +23,7 @@ const Template = (args, { argTypes }) => ({
     this.$store.state.productFeed = Object.assign({}, productFeed);
   },
   mounted(this: any) {
-    if (args.loading === true) {
-     this.$refs.preScanTable.$data.loading = true;
-    }
+     this.$refs.preScanTable.$data.loading = args.loading;
   }
 });
 
