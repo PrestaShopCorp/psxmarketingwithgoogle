@@ -517,7 +517,10 @@
     "conditions": "Product Condition",
     "conditionsSubTitle": "The condition of your product at time of sale (ex: New, used or refurbished)",
     "popinTitle": "Campaign’s products filters",
+    "popinTitleConfirmCancel": "Go Back",
     "xProducts" : "{0} Products | {0} Product | {0} Products",
+    "filtersWithxValues" : "{0} Values | {0} Value | {0} Values",
+    "dimensionNumberOfxProducts" : "(Dimension ≈ {0} products) | (Dimension ≈ {0} product) | (Dimension ≈ {0} products)",
     "productConditions": {
       "unspecified" : "Unspecified",
       "unknown" : "Unknown",

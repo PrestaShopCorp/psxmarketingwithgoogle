@@ -40,7 +40,10 @@
         <span>
           {{ idAndName(item) }}
         </span>
-        <span class="text-secondary">
+        <span
+          class="text-secondary"
+          v-if="this.$store.state.smartShoppingCampaigns.dimensionChosen.id !== 'products'"
+        >
           {{ $tc(
             'smartShoppingCampaignCreation.xProducts',
             item.numberOfProductsAssociated,

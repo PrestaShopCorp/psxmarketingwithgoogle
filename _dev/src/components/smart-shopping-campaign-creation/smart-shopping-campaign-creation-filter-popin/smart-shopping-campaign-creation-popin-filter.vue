@@ -126,7 +126,7 @@ export default {
       this.$emit('sendStep', 1);
     },
     goBack() {
-      this.$emit('sendStep', 1);
+      this.$emit('confirmCancel');
     },
     removeTag(filter) {
       this.selectCheckbox({item: filter, checked: false});

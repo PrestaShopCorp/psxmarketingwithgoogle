@@ -14,16 +14,19 @@
       :available-dimensions="availableDimensions"
       @dimensionChosen="dimensionHasBeenSelected($event)"
       @sendStep="stepIs($event)"
-      @confirmCancel="confirmCancel"
+      @closeModal="closeModal"
     />
     <SmartShoppingCampaignCreationPopinFilter
       v-if="step === 2"
       @sendStep="stepIs($event)"
       @validateCreationFilters="sendFiltersSelected"
+      @confirmCancel="confirmCancel"
       :loader="loader"
     />
     <SmartShoppingCampaignCreationFilterConfirmCancel
       ref="SmartShoppingCampaignCreationFilterConfirmCancel"
+      :step-is="step"
+      @sendStep="stepIs($event)"
       @confirmation="sendFiltersSelected"
     />
   </ps-modal>
@@ -82,14 +85,17 @@ export default {
     stepIs(event) {
       this.step = event;
     },
-    sendFiltersSelected() {
-      this.$emit('selectFilters', this.filteredDimensions);
-      this.$bvModal.hide('SSCampaignCreationPopin');
-    },
     confirmCancel() {
       this.$bvModal.show(
         this.$refs.SmartShoppingCampaignCreationFilterConfirmCancel.$refs.modal.id,
       );
+    },
+    closeModal() {
+      this.$bvModal.hide('SSCampaignCreationPopin');
+    },
+    sendFiltersSelected() {
+      this.$emit('selectFilters', this.filteredDimensions);
+      this.$bvModal.hide('SSCampaignCreationPopin');
     },
   },
 };

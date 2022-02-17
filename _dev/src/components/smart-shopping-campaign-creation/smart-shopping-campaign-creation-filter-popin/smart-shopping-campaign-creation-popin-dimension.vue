@@ -9,7 +9,7 @@
           {{ $t('smartShoppingCampaignCreation.selectProductsSubtitle') }}
         </p>
         <span
-          v-if="!availableDimensions.length && !errorFetchingFilters"
+          v-if="!availableDimensions"
           class="text-muted"
         >
           <i class="icon-busy icon-busy--dark mr-1" />
@@ -48,7 +48,7 @@
           size="sm"
           class="mx-1 mt-3 mt-md-0"
           variant="outline-secondary"
-          @click="confirmCancel"
+          @click="cancel"
         >
           {{ $t("cta.cancel") }}
         </b-button>
@@ -97,8 +97,8 @@ export default {
     nextStep() {
       this.$emit('sendStep', 2);
     },
-    confirmCancel() {
-      this.$emit('confirmCancel');
+    cancel() {
+      this.$emit('closeModal');
     },
   },
   watch: {
