@@ -517,7 +517,10 @@
     "conditions": "Condição do produto",
     "conditionsSubTitle": "O estado do seu produto no momento da venda (ex: novo, usado ou remodelado)",
     "popinTitle": "Filtros dos produtos da campanha",
+    "popinTitleConfirmCancel": "Go Back",
     "xProducts": "{0} Produtos | {0} Produto | {0} Produtos",
+    "filtersWithxValues": "{0} Values | {0} Value | {0} Values",
+    "dimensionNumberOfxProducts": "(Dimension ≈ {0} products) | (Dimension ≈ {0} product) | (Dimension ≈ {0} products)",
     "productConditions": {
       "unspecified": "Não especificado",
       "unknown": "Desconhecido",
@@ -581,7 +584,24 @@
     },
     "overview": {
       "title": "Produtos ativos submetidos ao Google",
-      "description": "O status do seu produto lhe permite saber se o seu produto é elegível para aparecer no destino que você optou."
+      "description": "O status do seu produto lhe permite saber se o seu produto é elegível para aparecer no destino que você optou.",
+      "alert": {
+        "prescanTitle": "Warning {0} product couldn’t be export to Google | Warning {0} products couldn’t be export to Google",
+        "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
+      }
+    },
+    "preScan": {
+      "description": "{0} with problems that couldn't be synced are listed below.",
+      "fields": {
+        "name": "Name",
+        "language": "Language",
+        "image": "Imagem",
+        "description": "Description",
+        "barcode": "Código de barras / Marca",
+        "price": "Prémio"
+      },
+      "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
+      "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation."
     },
     "approvalTable": {
       "description": "O estado dos produtos que estão sincronizados com o Merchant Center",
@@ -841,7 +861,8 @@
     "update": "Atualizar",
     "validateSelection": "Validar a seleção",
     "googleProductStatusDefinitions": "Definições de status de produto do Google",
-    "visitThe": "Visit the {0} for more information"
+    "visitThe": "Visit the {0} for more information",
+    "investigate": "Investigate"
   },
   "badge": {
     "free": "Grátis",
