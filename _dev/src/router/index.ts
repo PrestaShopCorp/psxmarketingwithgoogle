@@ -78,12 +78,12 @@ const routes: Array<RouteConfig> = [
   // },
   {
     path: '/campaign',
-    name: 'campaign-info',
+    name: 'campaign',
     component: CampaignPage,
     beforeEnter: campaignsAlreadyExist,
   },
   {
-    path: '/campaign-list',
+    path: '/campaign/list',
     name: 'campaign-list',
     component: CampaignPage,
   },

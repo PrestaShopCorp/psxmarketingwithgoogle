@@ -30,7 +30,7 @@
             {{ $t('general.tabs.exportStatus') }}
           </MenuItem>
           <MenuItem
-            :route="{name: 'campaign-info'}"
+            :route="{name: 'campaign'}"
           >
             {{ $t('general.tabs.campaign') }}
           </MenuItem>
