@@ -517,7 +517,10 @@
     "conditions": "Product Toestand",
     "conditionsSubTitle": "De conditie van uw product op het moment van verkoop (ex: nieuw, gebruikt of gereviseerd)",
     "popinTitle": "Campagne's producten filters",
+    "popinTitleConfirmCancel": "Go Back",
     "xProducts": "{0} Producten | {0} Product | {0} Producten",
+    "filtersWithxValues": "{0} Values | {0} Value | {0} Values",
+    "dimensionNumberOfxProducts": "(Dimension ≈ {0} products) | (Dimension ≈ {0} product) | (Dimension ≈ {0} products)",
     "productConditions": {
       "unspecified": "Ongespecificeerd",
       "unknown": "Onbekend",
@@ -581,7 +584,24 @@
     },
     "overview": {
       "title": "Actieve producten ingediend bij Google",
-      "description": "De status van uw product laat u weten of uw product in aanmerking komt om te verschijnen in de bestemming waarvoor u hebt gekozen."
+      "description": "De status van uw product laat u weten of uw product in aanmerking komt om te verschijnen in de bestemming waarvoor u hebt gekozen.",
+      "alert": {
+        "prescanTitle": "Warning {0} product couldn’t be export to Google | Warning {0} products couldn’t be export to Google",
+        "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
+      }
+    },
+    "preScan": {
+      "description": "{0} with problems that couldn't be synced are listed below.",
+      "fields": {
+        "name": "Name",
+        "language": "Language",
+        "image": "Afbeelding",
+        "description": "Description",
+        "barcode": "Streepjescode / Merk",
+        "price": "Prijs"
+      },
+      "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
+      "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation."
     },
     "approvalTable": {
       "description": "De status van producten die gesynchroniseerd zijn met Merchant Center",
@@ -841,7 +861,8 @@
     "update": "Bijwerken",
     "validateSelection": "Selectie bevestigen",
     "googleProductStatusDefinitions": "Google productstatus definities",
-    "visitThe": "Bezoek de {0} voor meer informatie"
+    "visitThe": "Bezoek de {0} voor meer informatie",
+    "investigate": "Investigate"
   },
   "badge": {
     "free": "Gratis",

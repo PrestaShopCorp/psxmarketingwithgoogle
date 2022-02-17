@@ -517,7 +517,10 @@
     "conditions": "Состояние продукта",
     "conditionsSubTitle": "Состояние вашего товара на момент продажи (например: новый, бывший в употреблении или восстановленный)",
     "popinTitle": "Фильтры продуктов кампании",
+    "popinTitleConfirmCancel": "Go Back",
     "xProducts": "{0} Продукты | {0} Продукт | {0} Продукты",
+    "filtersWithxValues": "{0} Values | {0} Value | {0} Values",
+    "dimensionNumberOfxProducts": "(Dimension ≈ {0} products) | (Dimension ≈ {0} product) | (Dimension ≈ {0} products)",
     "productConditions": {
       "unspecified": "Неуказанный",
       "unknown": "Неизвестно",
@@ -581,7 +584,24 @@
     },
     "overview": {
       "title": "Активные продукты, представленные в Google",
-      "description": "Статус вашего продукта позволяет узнать, может ли ваш продукт появиться в выбранном вами направлении."
+      "description": "Статус вашего продукта позволяет узнать, может ли ваш продукт появиться в выбранном вами направлении.",
+      "alert": {
+        "prescanTitle": "Warning {0} product couldn’t be export to Google | Warning {0} products couldn’t be export to Google",
+        "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
+      }
+    },
+    "preScan": {
+      "description": "{0} with problems that couldn't be synced are listed below.",
+      "fields": {
+        "name": "Name",
+        "language": "Language",
+        "image": "Изображение",
+        "description": "Description",
+        "barcode": "Штрих-код/бренд",
+        "price": "Цена"
+      },
+      "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
+      "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation."
     },
     "approvalTable": {
       "description": "Статус продуктов, синхронизированных с Merchant Center",
@@ -841,7 +861,8 @@
     "update": "Обновление",
     "validateSelection": "Проверить правильность выбора",
     "googleProductStatusDefinitions": "Определения статуса продукта Google",
-    "visitThe": "Посетите {0} для получения дополнительной информации"
+    "visitThe": "Посетите {0} для получения дополнительной информации",
+    "investigate": "Investigate"
   },
   "badge": {
     "free": "Бесплатно",
