@@ -1,5 +1,38 @@
 <template>
   <div>
+    <div
+      v-if="nbProductsFailingPrescan > 0"
+      class="pb-2"
+    >
+      <b-alert
+        variant="danger"
+        show
+      >
+        <p class="mb-0">
+          <strong>
+            {{
+              $tc('productFeedPage.overview.alert.prescanTitle',
+              nbProductsFailingPrescan, [nbProductsFailingPrescan])
+            }}
+          </strong><br>
+          <span class="ps_gs-fz-12">
+            {{ $tc('productFeedPage.overview.alert.prescanDescription') }}
+          </span>
+        </p>
+        <div
+          class="d-md-flex text-center align-items-center mt-2"
+        >
+          <b-button
+            size="sm"
+            class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 text-white text-decoration-none"
+            variant="danger"
+            :to="{name: 'product-feed-pre-scan'}"
+          >
+            {{ $t('cta.investigate') }}
+          </b-button>
+        </div>
+      </b-alert>
+    </div>
     <div class="d-flex mb-3">
       <div>
         <h2 class="ps_gs-fz-16 font-weight-600">
@@ -26,6 +59,10 @@ export default {
     },
   },
   computed: {
+    nbProductsFailingPrescan() {
+      // TODO: return nb of products failing prevalidation scan
+      return 0;
+    },
     validationSummary() {
       return this.inNeedOfConfiguration
         ? {
