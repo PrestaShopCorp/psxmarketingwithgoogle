@@ -12,7 +12,7 @@
         </b-card>
       </template>
       <campaign-card
-        v-if="$route.name === 'campaign-info'"
+        v-if="$route.name === 'campaign'"
         @openPopin="onOpenPopinActivateTracking"
       />
       <smart-shopping-campaign-table-list
