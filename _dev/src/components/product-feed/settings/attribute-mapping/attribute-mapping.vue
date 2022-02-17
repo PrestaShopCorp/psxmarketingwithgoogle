@@ -111,6 +111,8 @@ import AttributeField from './attribute-field.vue';
 import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+
 import {
   formatMappingToApi,
 } from '../../../../utils/AttributeMapping';
@@ -182,8 +184,20 @@ export default {
       localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
       if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
+        this.$router.push({
+          name: 'product-feed-settings',
+          params: {
+            step: ProductFeedSettingsPages.SHIPPING_SETTINGS,
+          },
+        });
       } else {
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
+        this.$router.push({
+          name: 'product-feed-settings',
+          params: {
+            step: ProductFeedSettingsPages.TARGET_COUNTRY,
+          },
+        });
       }
       window.scrollTo(0, 0);
     },
@@ -194,6 +208,12 @@ export default {
       });
       localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.SYNC_SCHEDULE,
+        },
+      });
       window.scrollTo(0, 0);
     },
     cancel() {
