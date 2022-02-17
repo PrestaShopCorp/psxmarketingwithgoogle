@@ -583,6 +583,19 @@
       "title" : "Active products submitted to Google",
       "description" : "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into."
     },
+    "preScan": {
+      "description": "{0} with problems that couldn't be synced are listed below.",
+      "fields": {
+        "name": "Name",
+        "language": "Language",
+        "image": "Image",
+        "description": "Description",
+        "barcode": "Barcode/Brand",
+        "price": "Price"
+      },
+      "xHasFailedPreValidation" : "\"{0}\": has failed the pre-validation.",
+      "xHasPassedPreValidation" : "\"{0}\": has passed the pre-validation."
+    },
     "approvalTable": {
       "description": "The status of products that are synced with Merchant Center",
       "filterTitle": "Filter by availability",

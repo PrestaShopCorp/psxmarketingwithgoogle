@@ -426,4 +426,21 @@ export default {
     }
     commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, getSelectedCtg);
   },
+  async [ActionsTypes.GET_PREVALIDATION_PRODUCTS]({rootState}) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/prevalidation-scan`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const json = await response.json();
+
+    return json;
+  },
 };
