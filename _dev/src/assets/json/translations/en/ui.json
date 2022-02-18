@@ -506,7 +506,7 @@
     "remarketingTagLoading": "Checking if you have a remarketing and conversion tracking tags to add to your shop",
     "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
-    "dimensionXFilterSelected": "{0} filter ({1} products)",
+    "dimensionXFilterSelected": "{0} filter",
     "categories": "Category",
     "categoriesSubTitle": "Google-defined product category for your product (ex: Apparel & Accessories > Clothing > Coats & Jackets)",
     "brands": "Brand",

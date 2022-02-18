@@ -105,8 +105,9 @@ export default {
       return this.campaign.productFilters?.length
         // eslint-disable-next-line
         ? this.$i18n.t('smartShoppingCampaignCreation.dimensionXFilterSelected',
-          [this.$i18n.t(`smartShoppingCampaignCreation.${this.campaign.productFilters[0].dimension}`),
-            this.totalProducts])
+          [this.$i18n.t(`smartShoppingCampaignCreation.${this.campaign.productFilters[0].dimension}`)])
+          + ' (' + this.$i18n.tc('smartShoppingCampaignCreation.xProducts', this.totalProducts,
+          [this.totalProducts]) + ')'
         : this.$t('smartShoppingCampaignCreation.inputAllSyncedProducts');
     },
   },
