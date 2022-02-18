@@ -467,7 +467,7 @@
     "inputCountryImutable": "Country can't be changed after creation, if you want to target a different country, you'll need to create a new campaign",
     "inputCountryLabel": "Target country",
     "inputCountryTooltip": "Your campaign’s ads are eligible to show to customers in your targeted geographic locations, or to customers who have selected your targeted language as their browser’s language setting.",
-    "inputFiltersLegend": "Products in campaign",
+    "inputFiltersLegend": "Products filters",
     "inputFiltersAllLabel": "Include all synced products",
     "inputFiltersPartialLabel": "Select products using product partition filters",
     "inputFiltersHelper": "Take some time to [read Google Shopping ads policies]({0})[:target=\"_blank\"] some product are prohibited or restricted.",
@@ -476,14 +476,13 @@
     "inputBudgetFeedback": "Daily campaign budget",
     "inputBudgetTooltip": "Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time.",
     "inputBudgetPlaceholder": "Amount",
-    "inputAllSyncedProducts": "All synced products",
+    "inputAllSyncedProducts": "No filters' selected",
     "formHelperTitle": "Campaign activation",
     "formHelperDescription": "Your campaign will run until you pause it. You can pause your campaign at any time.",
     "errorNoProducts": "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.",
     "errorApi": "We were not able to publish your campaign, please try again",
     "errorFetchingFilters": "We were not able to retrieve all filters from Google. You can't modify them for now.",
     "recapTitle": "Summary of the campaign",
-    "recapFiltersLabel": "Products in Campaign",
     "recapNoFiltersDescription": "All synced products approved by Google",
     "recapFooter": "Check the information of your campaign before validating it. You can always modify some parameters while the campaign is in progress.",
     "toggleCreationRemarketingTag": "Enable remarketing  tags on my site",
@@ -507,7 +506,7 @@
     "remarketingTagLoading": "Checking if you have a remarketing and conversion tracking tags to add to your shop",
     "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
-    "nbProductsSelected": "No product selected | {0} product selected | {0} products selected",
+    "dimensionXFilterSelected": "{0} filter ({1} products)",
     "categories": "Category",
     "categoriesSubTitle": "Google-defined product category for your product (ex: Apparel & Accessories > Clothing > Coats & Jackets)",
     "brands": "Brand",
@@ -519,8 +518,7 @@
     "popinTitle": "Campaign’s products filters",
     "popinTitleConfirmCancel": "Go Back",
     "xProducts" : "{0} Products | {0} Product | {0} Products",
-    "filtersWithxValues" : "{0} Values | {0} Value | {0} Values",
-    "dimensionNumberOfxProducts" : "(Dimension ≈ {0} products) | (Dimension ≈ {0} product) | (Dimension ≈ {0} products)",
+    "filtersWithxValues" : "filters with {0} affected products | filters with {0} affected product | filters with {0} affected products",
     "productConditions": {
       "unspecified" : "Unspecified",
       "unknown" : "Unknown",
@@ -529,6 +527,7 @@
       "used" : "Used"
     }
   },
+  
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance",
     "xCampaign": "No campaigns | {0} campaign | {0} campaigns"
@@ -694,7 +693,7 @@
       "conversion": "Conversion",
       "sales": "Sales",
       "id": "ID",
-      "products": "Products",
+      "products": "Product Filters",
       "click": "Click",
       "costs": "Costs",
       "averageCostPerClick": "Average CPC",
@@ -708,7 +707,8 @@
       "dailyBudget": "Daily budget"
     },
     "tooltipCol": {
-      "status": "A status for your ad campaign that describes whether or not its ads can run at the moment."
+      "status": "A status for your ad campaign that describes whether or not its ads can run at the moment.",
+      "products": "Product filter is what you selected as your campaign filter with the number of affected products."
     },
     "campaignsPerformanceTable": {
       "title": "Campaign performance",

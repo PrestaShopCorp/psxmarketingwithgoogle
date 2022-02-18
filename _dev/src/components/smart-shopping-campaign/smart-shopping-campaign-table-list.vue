@@ -190,7 +190,8 @@ export default {
   },
   methods: {
     hasToolTip(headerType) {
-      return headerType === CampaignSummaryListHeaderType.STATUS;
+      return headerType === CampaignSummaryListHeaderType.STATUS
+       || headerType === CampaignSummaryListHeaderType.PRODUCTS;
     },
     hasInput(headerType) {
       return headerType === CampaignSummaryListHeaderType.CAMPAIGN;

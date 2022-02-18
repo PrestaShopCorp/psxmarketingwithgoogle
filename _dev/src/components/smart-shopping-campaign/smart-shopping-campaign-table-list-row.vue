@@ -70,6 +70,9 @@
 import googleUrl from '@/assets/json/googleUrl.json';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import compareYears from '../../utils/CompareYears';
+import {
+  retrieveProductNumberFromFiltersIds,
+} from '../../utils/SSCFilters';
 
 export default {
   name: 'SmartShoppingCampaignTableListRow',
@@ -93,12 +96,17 @@ export default {
     campaignCountryName() {
       return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];
     },
+    totalProducts() {
+      return retrieveProductNumberFromFiltersIds(
+        this.campaign.productFilters, this.$store.state.smartShoppingCampaigns.sscAvailableFilters,
+      );
+    },
     campaignProducts() {
       return this.campaign.productFilters?.length
         // eslint-disable-next-line
-        ? this.$i18n.tc('smartShoppingCampaignCreation.nbProductsSelected',
-          this.campaign.productFilters[0].values.length,
-          [this.campaign.productFilters[0].values.length])
+        ? this.$i18n.t('smartShoppingCampaignCreation.dimensionXFilterSelected',
+          [this.$i18n.t(`smartShoppingCampaignCreation.${this.campaign.productFilters[0].dimension}`),
+            this.totalProducts])
         : this.$t('smartShoppingCampaignCreation.inputAllSyncedProducts');
     },
   },

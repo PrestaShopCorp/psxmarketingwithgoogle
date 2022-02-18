@@ -260,23 +260,17 @@
               {{ $t("cta.selectFilters") }}
             </b-button>
             <div
-              v-if="numberOfFilters && !campaignHasNoProductsFilter "
-              class="align-self-center ml-2"
+              v-if="totalProducts && !campaignHasNoProductsFilter"
+              class="align-self-center ml-2 font-weight-600"
             >
+              {{
+                $t(
+                  `smartShoppingCampaignCreation.${dimensionName}`
+                )
+              }}
               {{
                 $tc(
                   "smartShoppingCampaignCreation.filtersWithxValues",
-                  numberOfFilters,
-                  [numberOfFilters]
-                )
-              }}
-              {{ $t("campaigns.from") }}
-              {{
-                this.$store.state.smartShoppingCampaigns.dimensionChosen.name
-              }}
-              {{
-                $tc(
-                  "smartShoppingCampaignCreation.dimensionNumberOfxProducts",
                   totalProducts,
                   [totalProducts]
                 )
@@ -418,8 +412,7 @@ import {
   returnChildrenIds,
   returnCountProducts,
   deepCheckDimension,
-  getFilters,
-  filterUncheckedSegments,
+  retrieveProductNumberFromFiltersIds,
 } from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
@@ -455,19 +448,14 @@ export default {
     },
   },
   computed: {
+    dimensionName() {
+      return this.$store.state.smartShoppingCampaigns.dimensionChosen.name;
+    },
     filtersChosen() {
       return (
         this.foundSsc?.productFilters
         ?? this.$store.state.smartShoppingCampaigns.filtersChosen
       );
-    },
-    numberOfFilters() {
-      return getFilters(
-        filterUncheckedSegments(
-          this.$store.state.smartShoppingCampaigns.dimensionChosen,
-        ),
-        [],
-      ).length;
     },
     disableCreateCampaign() {
       if (
@@ -679,41 +667,55 @@ export default {
       );
     },
     setInterfaceForEdition() {
-      let {endDate} = this.foundSsc;
-      const todayYear = new Date().getFullYear();
+      this.$store
+        .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', '')
+        .then(() => {
+          let {endDate} = this.foundSsc;
+          const todayYear = new Date().getFullYear();
 
-      if (new Date(endDate).getFullYear() - 10 > todayYear) {
-        endDate = null;
-      }
-      this.campaignName = this.foundSsc.campaignName;
-      this.campaignDurationStartDate = this.foundSsc.startDate;
-      this.campaignDurationEndDate = endDate;
-      this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
-        && !this.foundSsc.hasUnhandledFilters;
-      this.campaignDailyBudget = this.foundSsc.dailyBudget;
-      this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
-      [this.targetCountry] = this.$options.filters.changeCountriesCodesToNames([
-        this.foundSsc.targetCountry,
-      ]);
-      this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
-      this.debounceName();
-      this.$store.commit(
-        'smartShoppingCampaigns/SET_FILTERS_CHOSEN',
-        this.filtersChosen,
-      );
-      if (this.filtersChosen.length) {
-        let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
-          (dim) => dim.id === this.filtersChosen[0].dimension,
-        );
-        const filtersToFind = this.filtersChosen[0].values;
-        dimensionToEdit = findAndCheckFilter(dimensionToEdit, filtersToFind);
-        this.$store.commit(
-          'smartShoppingCampaigns/SET_DIMENSION_CHOSEN',
-          dimensionToEdit,
-        );
-      }
-
-      this.loader = false;
+          if (new Date(endDate).getFullYear() - 10 > todayYear) {
+            endDate = null;
+          }
+          this.campaignName = this.foundSsc.campaignName;
+          this.campaignDurationStartDate = this.foundSsc.startDate;
+          this.campaignDurationEndDate = endDate;
+          this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
+            && !this.foundSsc.hasUnhandledFilters;
+          this.campaignDailyBudget = this.foundSsc.dailyBudget;
+          this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
+          [this.targetCountry] = this.$options.filters.changeCountriesCodesToNames([
+            this.foundSsc.targetCountry,
+          ]);
+          this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
+          this.debounceName();
+          this.$store.commit(
+            'smartShoppingCampaigns/SET_FILTERS_CHOSEN',
+            this.filtersChosen,
+          );
+          if (
+            this.filtersChosen.length
+            && this.$store.state.smartShoppingCampaigns.sscAvailableFilters.length
+          ) {
+            let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
+              (dim) => dim.id === this.filtersChosen[0].dimension,
+            );
+            dimensionToEdit = findAndCheckFilter(
+              dimensionToEdit,
+              this.filtersChosen[0].values,
+            );
+            this.$store.commit(
+              'smartShoppingCampaigns/SET_DIMENSION_CHOSEN',
+              dimensionToEdit,
+            );
+            this.totalProducts = retrieveProductNumberFromFiltersIds(
+              this.filtersChosen,
+              this.$store.state.smartShoppingCampaigns.sscAvailableFilters,
+            );
+          }
+        })
+        .finally(() => {
+          this.loader = false;
+        });
     },
   },
   watch: {
@@ -733,6 +735,11 @@ export default {
       },
       deep: true,
       immediate: true,
+    },
+    dimensionName(oldVal, newVal) {
+      if (newVal && newVal !== oldVal) {
+        this.totalProducts = 0;
+      }
     },
   },
   mounted() {
