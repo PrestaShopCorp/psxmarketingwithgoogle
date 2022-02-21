@@ -179,8 +179,8 @@
 </template>
 
 <script lang="ts">
-import {PropType} from '@vue/composition-api';
-import DeliveryType from '@/enums/product-feed/delivery-type.ts';
+import Vue, {PropType} from 'vue';
+import DeliveryType from '@/enums/product-feed/delivery-type';
 import {
   validateHandlingTimes, validateTransitTimes,
 } from '@/providers/shipping-settings-provider';
@@ -190,13 +190,13 @@ type State = {
   selectedCarriersForDuplication: CarrierIdentifier[];
 }
 
-export default {
+export default Vue.extend({
   data(): State {
     return {
       selectedCarriersForDuplication: [{
         carrierId: this.carrier.carrierId,
         country: this.carrier.country,
-      }],
+      }] as CarrierIdentifier[],
     };
   },
   props: {
@@ -205,7 +205,7 @@ export default {
       required: true,
     },
     carriersList: {
-      type: Array,
+      type: Array as PropType<DeliveryDetail[]>,
       required: true,
     },
   },
@@ -271,7 +271,7 @@ export default {
       this.carrier.maxTransitTimeInDays = null;
     },
   },
-};
+});
 </script>
 
 <style scoped>

@@ -1,12 +1,15 @@
 import Vue, {VNode} from 'vue';
 
 declare global {
-  // namespace JSX {
-  //   // tslint:disable no-empty-interface
-  //   interface Element extends VNode {}
-  //   // tslint:disable no-empty-interface
-  //   interface ElementClass extends Vue {}
-
+  namespace JSX {
+    // tslint:disable no-empty-interface
+    interface Element extends VNode {}
+    // tslint:disable no-empty-interface
+    interface ElementClass extends Vue {}
+    interface IntrinsicElements {
+      [elem: string]: any;
+    }
+  }
     interface Window {
       psxMtgWithGoogleDefaultShopCountry: Array<string>,
       contextPsAccounts: any;
@@ -30,8 +33,5 @@ declare global {
       psxMktgWithGoogleStoreSettingsUrl: String,
       psxMktgWithGoogleOnProductionEnvironment:boolean,
     }
-  //   interface IntrinsicElements {
-  //     [elem: string]: any;
-  //   }
-  // }
+
 }

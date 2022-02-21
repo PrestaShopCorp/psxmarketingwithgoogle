@@ -24,6 +24,7 @@ module.exports = {
     config.plugins.delete('preload');
     config.plugins.delete('prefetch');
     config.resolve.alias.set('@', path.resolve(__dirname, 'src'));
+    config.resolve.alias.set('vue$', 'vue/dist/vue.esm.js');
     config.module
       .rule('vue')
       .use('vue-loader')

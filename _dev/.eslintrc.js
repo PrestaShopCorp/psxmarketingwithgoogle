@@ -28,7 +28,6 @@ module.exports = {
     '@vue/typescript',
   ],
   parserOptions: {
-    ecmaVersion: 2021,
     parser: '@typescript-eslint/parser',
   },
   rules: {
