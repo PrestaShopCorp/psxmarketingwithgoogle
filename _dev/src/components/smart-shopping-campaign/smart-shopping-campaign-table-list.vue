@@ -296,7 +296,7 @@ export default {
     }
 
     if (this.inNeedOfConfiguration) {
-      this.$emit('loader', false)
+      this.$emit('loader', false);
       return;
     }
     this.fetchCampaigns();

@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import {ProductFeedSettingsSteps} from '@/enums/product-feed/product-feed-settings-pages';
+import ProductFeedSettingsSteps from '@/enums/product-feed/product-feed-settings-steps';
 import Stepper from '../commons/stepper';
 import TargetCountry from './settings/target-countries/target-countries.vue';
 import ShippingSettings from './settings/shipping-settings/shipping-settings.vue';
@@ -85,9 +85,12 @@ export default {
       if (this.$store.state.productFeed.stepper > 0) {
         return this.$store.state.productFeed.stepper;
       }
-      const stepIs = ProductFeedSettingsSteps.indexOf(this.$route.params.step);
+      const indexOfRoute = ProductFeedSettingsSteps.indexOf(this.$route.params.step);
 
-      return stepIs;
+      if (indexOfRoute > 0) {
+        return indexOfRoute;
+      }
+      return 0;
     },
     steps() {
       return [
