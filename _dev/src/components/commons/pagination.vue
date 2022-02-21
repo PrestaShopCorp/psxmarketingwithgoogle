@@ -13,87 +13,44 @@
           variant="invisible"
           class="page-link"
           :aria-label="$t('cta.previous')"
+          @click="goToPage(pageNumber-1)"
         >
           <span class="sr-only">{{ $t('cta.previous') }}</span>
         </b-button>
       </li>
+      <span
+        v-for="(page,index) in totalPages-1"
+        :key="index"
+      >
+        <li
+          class="page-item"
+          :class="{'active': isActive(index)}"
+        >
+          <b-button
+            variant="invisible"
+            class="page-link"
+            :aria-label="$tc('cta.goToPage', 0)"
+          >
+            {{ page }}
+          </b-button>
+        </li>
+      <!-- <li class="page-item disabled">
+        <b-button
+          disabled
+          variant="invisible"
+          class="page-link"
+        >
+          ...
+        </b-button>
+      </li> -->
+      </span>
       <li class="page-item">
         <b-button
           variant="invisible"
           class="page-link"
           :aria-label="$tc('cta.goToPage', 0)"
         >
-          1
-        </b-button>
-      </li>
-      <li class="page-item disabled">
-        <b-button
-          disabled
-          variant="invisible"
-          class="page-link"
-        >
-          ...
-        </b-button>
-      </li>
-      <li class="page-item">
-        <b-button
-          variant="invisible"
-          class="page-link"
-        >
-          5
-        </b-button>
-      </li>
-      <li class="page-item">
-        <b-button
-          variant="invisible"
-          class="page-link"
-        >
-          6
-        </b-button>
-      </li>
-      <li
-        class="page-item active"
-        aria-current="page"
-      >
-        <b-button
-          variant="invisible"
-          class="page-link"
-        >
-          7
-        </b-button>
-      </li>
-      <li class="page-item">
-        <b-button
-          variant="invisible"
-          class="page-link"
-        >
-          8
-        </b-button>
-      </li>
-      <li class="page-item">
-        <b-button
-          variant="invisible"
-          class="page-link"
-        >
-          9
-        </b-button>
-      </li>
-      <li class="page-item disabled">
-        <b-button
-          disabled
-          variant="invisible"
-          class="page-link"
-        >
-          ...
-        </b-button>
-      </li>
-      <li class="page-item">
-        <b-button
-          variant="invisible"
-          class="page-link"
-          :aria-label="$tc('cta.goToPage', 2)"
-        >
-          16
+          {{ totalPages }}
         </b-button>
       </li>
       <li class="page-item next">
@@ -101,6 +58,7 @@
           variant="invisible"
           class="page-link"
           :aria-label="$t('cta.next')"
+          @click="goToPage(pageNumber+1)"
         >
           <span class="sr-only">{{ $t('cta.next') }}</span>
         </b-button>
@@ -111,6 +69,22 @@
 <script>
 export default {
   name: 'Pagination',
-  // TODO Dev the pagination 🤷
+  props: {
+    totalPages: {
+      type: Number,
+      required: true,
+      default: 1,
+    },
+    pageNumber: {
+      type: Number,
+      required: true,
+      default: 1,
+    },
+  },
+  methods: {
+    isActive(index) {
+      return index + 1 === this.pageNumber;
+    },
+  },
 };
 </script>

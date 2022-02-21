@@ -13,7 +13,7 @@
       <b-dropdown-item
         v-for="(option, index) in ['10', '20', '50']"
         :key="index"
-        @click="selectedFilterQuantityToShow = option"
+        @click="onChangeLimit(option)"
       >
         {{ option }}
       </b-dropdown-item>
@@ -24,11 +24,17 @@
 <script>
 export default {
   name: 'ResultNumberSelector',
-  // TODO: handle selector
   data() {
     return {
       selectedFilterQuantityToShow: '10',
     };
+  },
+  methods: {
+    onChangeLimit(limitChosen) {
+      this.selectedFilterQuantityToShow = limitChosen;
+      this.$root.$emit('changeLimit', Number(limitChosen));
+    },
+
   },
 };
 </script>

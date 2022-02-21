@@ -3,8 +3,11 @@
     class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap
     align-items-center bg-white pt-2 px-3 pb-3 pt-md-3"
   >
-    <ResultNumberSelector />
-    <Pagination />
+    <ResultNumberSelector :selected-filter-quantity-to-show="selectedFilterQuantityToShow" />
+    <Pagination
+      :total-pages="totalPages"
+      :page-number="pageNumber"
+    />
     <PageNumberSelector />
   </div>
 </template>
@@ -20,6 +23,23 @@ export default {
     Pagination,
     PageNumberSelector,
     ResultNumberSelector,
+  },
+  props: {
+    totalPages: {
+      type: Number,
+      required: true,
+      default: 1,
+    },
+    pageNumber: {
+      type: Number,
+      required: true,
+      default: 1,
+    },
+    selectedFilterQuantityToShow: {
+      type: Number,
+      required: true,
+      default: 10,
+    },
   },
 };
 </script>

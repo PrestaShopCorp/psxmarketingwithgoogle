@@ -10,5 +10,4 @@ export const campaigns = [
 
 export const campaignsListResponse = {
   campaigns: campaigns,
-  'nextPageToken': "foobar"
 }

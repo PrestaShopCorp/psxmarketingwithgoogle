@@ -94,6 +94,12 @@
         </template>
       </b-tbody>
     </b-table-simple>
+    <TablePageControls
+      @changePage="changePageTo($event)"
+      :total-pages="totalPages"
+      :page-number="activePage"
+      :selected-filter-quantity-to-show="limitCampaignList"
+    />
   </div>
 </template>
 
@@ -104,6 +110,7 @@ import CampaignsPerformanceTableRow from './campaigns-performance-table-row.vue'
 import CampaignPerformanceHeaderType from '@/enums/reporting/CampaignPerformanceHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import KeyMetricsErrorMessage from '../key-metrics/key-metrics-error-message.vue';
+import TablePageControls from '../../../commons/table-page-controls.vue';
 
 export default {
   name: 'CampaignsPerformanceTable',
@@ -112,6 +119,8 @@ export default {
     ReportingTableEmptyMessage,
     CampaignsPerformanceTableRow,
     KeyMetricsErrorMessage,
+    TablePageControls,
+
   },
   data() {
     return {
@@ -119,22 +128,19 @@ export default {
     };
   },
   mounted() {
-    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
-
-    if (tableBody) {
-      tableBody.addEventListener('scroll', this.handleScroll);
-    }
-
+    this.$root.$on('changeLimit', this.changeLimit);
     this.fetchCampaigns();
   },
-  beforeDestroy() {
-    const tableBody = document.getElementsByClassName('table-with-maxheight')[0];
 
-    if (tableBody) {
-      tableBody.removeEventListener('scroll', this.handleScroll);
-    }
-  },
   methods: {
+    async changeLimit(event) {
+      this.$store.commit('smartShoppingCampaigns/SAVE_LIMIT_CAMPAIGN_PERFORMANCE_LIST', event);
+      await this.fetchCampaigns();
+    },
+    async changePageTo(pageNumber) {
+      this.$store.commit('smartShoppingCampaigns/ SAVE_ACTIVE_PAGE_CAMPAIGN_PERFORMANCE_LIST', pageNumber);
+      await this.fetchCampaigns();
+    },
     headerIsNumberType(type) {
       return type === CampaignPerformanceHeaderType.BUDGET
         || type === CampaignPerformanceHeaderType.IMPRESSIONS
@@ -143,9 +149,9 @@ export default {
         || type === CampaignPerformanceHeaderType.CONVERSIONS
         || type === CampaignPerformanceHeaderType.SALES;
     },
-    fetchCampaigns(isNewRequest = true) {
+    fetchCampaigns() {
       this.loading = true;
-      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES', isNewRequest)
+      this.$store.dispatch('smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES')
         .finally(() => {
           this.loading = false;
         });
@@ -172,16 +178,20 @@ export default {
       }
       this.queryOrderDirection = newOrderDirection;
     },
-    async handleScroll() {
-      const body = document.getElementsByClassName('table-with-maxheight')[0];
-      const token = await this.$store.getters['smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN'];
-
-      if (body.scrollTop >= body.scrollHeight - body.clientHeight && token !== null) {
-        await this.fetchCampaigns(false);
-      }
-    },
   },
   computed: {
+    totalPages() {
+      const totalPages = this.$store.getters['smartShoppingCampaigns/GET_TOTAL_CAMPAIGNS_PERFORMANCES']
+      / this.$store.getters['smartShoppingCampaigns/GET_LIMIT_CAMPAIGN_PERFORMANCE_LIST'];
+
+      if (totalPages < 1) {
+        return 1;
+      }
+      return totalPages;
+    },
+    activePage() {
+      return this.$store.getters['smartShoppingCampaigns/GET_ACTIVE_PAGE_CAMPAIGNS_PERFORMANCES_TABLE'];
+    },
     campaignHeaderList() {
       return Object.values(CampaignPerformanceHeaderType);
     },
@@ -199,6 +209,9 @@ export default {
         this.$store.commit('smartShoppingCampaigns/SET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING', orderDirection);
         this.fetchCampaigns();
       },
+    },
+    limitCampaignList() {
+      return this.$store.getters['smartShoppingCampaigns/GET_LIMIT_CAMPAIGN_PERFORMANCE_LIST'];
     },
   },
 };

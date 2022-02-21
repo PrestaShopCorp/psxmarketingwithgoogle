@@ -1,7 +1,7 @@
 export const sscDefault = {
-campaigns: [],
+  campaigns: [],
   tracking: null,
-  tagAlreadyExists: false
+  tagAlreadyExists: false,
 };
 
 
