@@ -476,7 +476,7 @@
     "inputBudgetFeedback": "Daily campaign budget",
     "inputBudgetTooltip": "Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time.",
     "inputBudgetPlaceholder": "Amount",
-    "inputAllSyncedProducts": "No filters' selected",
+    "inputAllSyncedProducts": "No filters selected",
     "formHelperTitle": "Campaign activation",
     "formHelperDescription": "Your campaign will run until you pause it. You can pause your campaign at any time.",
     "errorNoProducts": "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.",
