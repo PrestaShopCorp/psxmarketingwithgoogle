@@ -26,7 +26,7 @@ import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignSt
 export interface State {
   campaigns: CampaignObject[];
   campaignsOrdering: CampaignsOrdering,
-  tokenNextPageCampaignList: null|number,
+  tokenNextPageCampaignList: null|string,
   errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
   tagAlreadyExists: boolean;

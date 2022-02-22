@@ -12,7 +12,7 @@
       variant="primary"
       class="ml-2"
       size="sm"
-      @click="goToPage()"
+      @click="goToPage"
     >
       {{ $t('cta.go') }}
     </b-button>

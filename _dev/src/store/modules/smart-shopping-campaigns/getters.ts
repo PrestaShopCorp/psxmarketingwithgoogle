@@ -82,7 +82,7 @@ export default {
   [GettersTypes.GET_ALL_SSC](state: LocalState): Array<CampaignObject> {
     return state.campaigns;
   },
-  [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): null|number {
+  [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): null|string {
     return state.tokenNextPageCampaignList;
   },
   [GettersTypes.GET_LIMIT_CAMPAIGN_PERFORMANCE_LIST](state: LocalState): null|number {

@@ -260,7 +260,7 @@ export default {
   },
   [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](
     state: LocalState,
-    payload: number,
+    payload: string,
   ) {
     state.tokenNextPageCampaignList = payload;
   },
