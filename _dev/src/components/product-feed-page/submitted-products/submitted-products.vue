@@ -12,7 +12,7 @@
           <strong>
             {{
               $tc('productFeedPage.overview.alert.prescanTitle',
-                  nbProductsFailingPrescan, [nbProductsFailingPrescan])
+              nbProductsFailingPrescan, [nbProductsFailingPrescan])
             }}
           </strong><br>
           <span class="ps_gs-fz-12">
