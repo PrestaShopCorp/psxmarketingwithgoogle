@@ -95,10 +95,9 @@
       </b-tbody>
     </b-table-simple>
     <TablePageControls
-      @changePage="changePageTo($event)"
       :total-pages="totalPages"
-      :page-number="activePage"
-      :selected-filter-quantity-to-show="limitCampaignList"
+      :active-page="activePage"
+      :selected-filter-quantity-to-show="nbCampaignsPerPage"
     />
   </div>
 </template>
@@ -129,6 +128,7 @@ export default {
   },
   mounted() {
     this.$root.$on('changeLimit', this.changeLimit);
+    this.$root.$on('changePage', this.changePageTo);
     this.fetchCampaigns();
   },
 
@@ -138,7 +138,8 @@ export default {
       await this.fetchCampaigns();
     },
     async changePageTo(pageNumber) {
-      this.$store.commit('smartShoppingCampaigns/ SAVE_ACTIVE_PAGE_CAMPAIGN_PERFORMANCE_LIST', pageNumber);
+      console.log(pageNumber);
+      this.$store.commit('smartShoppingCampaigns/SAVE_ACTIVE_PAGE_CAMPAIGN_PERFORMANCE_LIST', pageNumber);
       await this.fetchCampaigns();
     },
     headerIsNumberType(type) {
@@ -187,7 +188,10 @@ export default {
       if (totalPages < 1) {
         return 1;
       }
-      return totalPages;
+      return Math.ceil(totalPages);
+    },
+    nbCampaignsPerPage() {
+      return this.$store.getters['smartShoppingCampaigns/GET_LIMIT_CAMPAIGN_PERFORMANCE_LIST'];
     },
     activePage() {
       return this.$store.getters['smartShoppingCampaigns/GET_ACTIVE_PAGE_CAMPAIGNS_PERFORMANCES_TABLE'];
@@ -196,7 +200,7 @@ export default {
       return Object.values(CampaignPerformanceHeaderType);
     },
     campaignList() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES'];
+      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES_LIST'];
     },
     errorWithApi() {
       return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR'];
@@ -210,9 +214,7 @@ export default {
         this.fetchCampaigns();
       },
     },
-    limitCampaignList() {
-      return this.$store.getters['smartShoppingCampaigns/GET_LIMIT_CAMPAIGN_PERFORMANCE_LIST'];
-    },
+
   },
 };
 </script>

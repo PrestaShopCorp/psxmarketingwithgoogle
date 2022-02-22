@@ -188,7 +188,7 @@ export default {
   ): Kpis[] {
     return state.reporting.results.dailyResultChart.dailyResultList;
   },
-  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
+  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_LIST](
     state: LocalState,
   ): Array<CampaignPerformances> {
     return state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList;

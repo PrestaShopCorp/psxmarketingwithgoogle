@@ -13,13 +13,13 @@
           variant="invisible"
           class="page-link"
           :aria-label="$t('cta.previous')"
-          @click="goToPage(pageNumber-1)"
+          @click="goToPage(activePage-1)"
         >
           <span class="sr-only">{{ $t('cta.previous') }}</span>
         </b-button>
       </li>
       <span
-        v-for="(page,index) in totalPages-1"
+        v-for="(page,index) in totalPages"
         :key="index"
       >
         <li
@@ -27,6 +27,7 @@
           :class="{'active': isActive(index)}"
         >
           <b-button
+            @click="goToPage(page)"
             variant="invisible"
             class="page-link"
             :aria-label="$tc('cta.goToPage', 0)"
@@ -44,21 +45,13 @@
         </b-button>
       </li> -->
       </span>
-      <li class="page-item">
-        <b-button
-          variant="invisible"
-          class="page-link"
-          :aria-label="$tc('cta.goToPage', 0)"
-        >
-          {{ totalPages }}
-        </b-button>
-      </li>
+
       <li class="page-item next">
         <b-button
           variant="invisible"
           class="page-link"
           :aria-label="$t('cta.next')"
-          @click="goToPage(pageNumber+1)"
+          @click="goToPage(activePage+1)"
         >
           <span class="sr-only">{{ $t('cta.next') }}</span>
         </b-button>
@@ -75,7 +68,7 @@ export default {
       required: true,
       default: 1,
     },
-    pageNumber: {
+    activePage: {
       type: Number,
       required: true,
       default: 1,
@@ -83,7 +76,15 @@ export default {
   },
   methods: {
     isActive(index) {
-      return index + 1 === this.pageNumber;
+      console.log('index', index);
+      console.log('activePage', this.activePage);
+      return index + 1 === this.activePage;
+    },
+    goToPage(page) {
+      console.log(page);
+      if (page > 0 && page <= this.totalPages) {
+        this.$root.$emit('changePage', page);
+      }
     },
   },
 };

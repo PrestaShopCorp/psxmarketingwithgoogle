@@ -3,7 +3,6 @@ import CampaignsPerformanceTable from '../src/components/smart-shopping-campaign
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
 import {rest} from 'msw';
 import {campaignsPerformanceListEmpty, campaignsPerformanceList} from '../.storybook/mock/reporting/campaigns-performance.js';
-import {nextPageTokenEmpty, nextPageToken} from '../.storybook/mock/reporting/next-page-token.js';
 
 export default {
   title: 'Reporting/Campaigns Performance',
@@ -28,6 +27,8 @@ Table.args = {
     // fake date that will be intercepted by the storybook middleware to return results
     this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = dateGenerator(6);
     this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.endDate = dateGenerator(0);
+    this.$store.state.smartShoppingCampaigns.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList = 10
+
   },
 }
 
@@ -38,7 +39,7 @@ Table.parameters = {
         return res(
           ctx.json({
             ...campaignsPerformanceList,
-            ...nextPageToken,
+            totalCampaigns : 40,
           })
         );
       }),
@@ -60,7 +61,7 @@ Empty.parameters = {
         return res(
           ctx.json({
             ...campaignsPerformanceListEmpty,
-            ...nextPageTokenEmpty,
+            totalCampaigns : 0,
           })
         );
       }),

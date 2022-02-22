@@ -12,7 +12,7 @@
       variant="primary"
       class="ml-2"
       size="sm"
-      @click="goToPage"
+      @click="goToPage()"
     >
       {{ $t('cta.go') }}
     </b-button>
@@ -29,9 +29,8 @@ export default {
   },
   methods: {
     goToPage() {
-      // TODO: handle go to page
+      this.$root.$emit('changePage', this.nbPageToGo);
     },
   },
-  // TODO Handle se
 };
 </script>
