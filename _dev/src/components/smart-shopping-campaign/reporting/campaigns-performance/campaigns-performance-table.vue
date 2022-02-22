@@ -138,7 +138,6 @@ export default {
       await this.fetchCampaigns();
     },
     async changePageTo(pageNumber) {
-      console.log(pageNumber);
       this.$store.commit('smartShoppingCampaigns/SAVE_ACTIVE_PAGE_CAMPAIGN_PERFORMANCE_LIST', pageNumber);
       await this.fetchCampaigns();
     },

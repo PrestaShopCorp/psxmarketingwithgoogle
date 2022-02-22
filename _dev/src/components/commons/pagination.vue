@@ -76,12 +76,9 @@ export default {
   },
   methods: {
     isActive(index) {
-      console.log('index', index);
-      console.log('activePage', this.activePage);
       return index + 1 === this.activePage;
     },
     goToPage(page) {
-      console.log(page);
       if (page > 0 && page <= this.totalPages) {
         this.$root.$emit('changePage', page);
       }

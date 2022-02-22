@@ -22,7 +22,7 @@
     >
       <b-pagination
         @change="goToPage"
-        v-model="pageChosen"
+        v-model="activePage"
         :total-rows="totalPages"
         :per-page="1"
         first-number
@@ -65,11 +65,6 @@ export default {
       if (page > 0 && page <= this.totalPages) {
         this.$root.$emit('changePage', page);
       }
-    },
-  },
-  computed: {
-    pageChosen() {
-      return this.activePage;
     },
   },
 };

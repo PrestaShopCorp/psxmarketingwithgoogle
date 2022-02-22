@@ -27,7 +27,6 @@ Table.args = {
     // fake date that will be intercepted by the storybook middleware to return results
     this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.startDate = dateGenerator(6);
     this.$store.state.smartShoppingCampaigns.reporting.request.dateRange.endDate = dateGenerator(0);
-    this.$store.state.smartShoppingCampaigns.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList = 10
 
   },
 }
