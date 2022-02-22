@@ -130,18 +130,33 @@ export default {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
+    const deliveryEnabled = productFeedSettings.deliveryDetails.filter((e) => e.enabledCarrier);
+    const shipping = productFeedSettings.shippingSettings;
     commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
       name: 'attributeMapping', data: attributeMapping,
     });
+
+    deliveryEnabled.forEach((delivery, index) => {
+      if ((delivery.minHandlingTimeInDays === null && delivery.maxHandlingTimeInDays === null)
+      || (delivery.minTransitTimeInDays === null && delivery.maxTransitTimeInDays === null)) {
+        deliveryEnabled.splice(index);
+        shipping.forEach((e, i) => {
+          if (e.properties.id_carrier === delivery.carrierId) {
+            shipping.splice(i);
+          }
+        });
+      }
+    });
+
     const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
       targetCountries,
-      shippingSettings: productFeedSettings.shippingSettings,
+      shippingSettings: shipping,
       additionalShippingSettings: {
-        deliveryDetails: productFeedSettings.deliveryDetails.filter((e) => e.enabledCarrier),
+        deliveryDetails: deliveryEnabled,
       },
       attributeMapping,
       selectedProductCategories,
