@@ -3,6 +3,7 @@
     no-body
     class="ps_gs-onboardingcard"
   >
+    {{ filtersChosen }}
     <b-card-header
       header-tag="nav"
       header-class="px-3 py-1"
@@ -260,21 +261,22 @@
               {{ $t("cta.selectFilters") }}
             </b-button>
             <div
-              v-if="totalProducts && !campaignHasNoProductsFilter"
+              v-if="!campaignHasNoProductsFilter"
               class="align-self-center ml-2 font-weight-600"
             >
               {{
-                $t(
-                  `smartShoppingCampaignCreation.${dimensionName}`
-                )
+                $t("smartShoppingCampaignCreation.xDimensionName", [
+                  $t(`smartShoppingCampaignCreation.${dimensionName}`),
+                ])
               }}
-              {{
-                $tc(
-                  "smartShoppingCampaignCreation.filtersWithxValues",
-                  totalProducts,
-                  [totalProducts]
-                )
-              }}
+              <span v-if="totalProducts">
+                {{ $tc(
+                  'smartShoppingCampaignCreation.filtersWithxValues',
+                  this.totalProducts,
+                  [this.totalProducts],
+                ),
+                }}
+              </span>
             </div>
           </div>
         </b-form-group>
@@ -668,7 +670,7 @@ export default {
     },
     setInterfaceForEdition() {
       this.$store
-        .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', '')
+        .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null)
         .then(() => {
           let {endDate} = this.foundSsc;
           const todayYear = new Date().getFullYear();
@@ -744,7 +746,10 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0);
-    if (this.editMode === true && this.foundSsc !== undefined) {
+    if (
+      this.editMode === true
+      && this.foundSsc !== undefined
+    ) {
       this.setInterfaceForEdition();
     } else {
       this.loader = false;

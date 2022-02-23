@@ -517,15 +517,16 @@
     "conditionsSubTitle": "The condition of your product at time of sale (ex: New, used or refurbished)",
     "popinTitle": "Campaign’s products filters",
     "popinTitleConfirmCancel": "Go Back",
-    "xProducts" : "{0} Products | {0} Product | {0} Products",
-    "filtersWithxValues" : "filters with {0} affected products | filters with {0} affected product | filters with {0} affected products",
+    "xProducts" : " ({0} product) | ({0} product) | ({0} products)",
     "productConditions": {
       "unspecified" : "Unspecified",
       "unknown" : "Unknown",
       "new" : "New",
       "refurbished" : "Refurbished",
       "used" : "Used"
-    }
+    },
+    "xDimensionName":"{0} filters",
+    "filtersWithxValues" : "with {0} affected products | with {0} affected product | with {0} affected products"
   },
   
   "smartShoppingCampaignList": {

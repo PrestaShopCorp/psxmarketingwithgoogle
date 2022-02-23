@@ -142,8 +142,6 @@ export default {
         1,
         state.dimensionChosen,
       );
-
-      return;
     }
     if (state.sscAvailableFilters.length) {
       state.sscAvailableFilters = [];
