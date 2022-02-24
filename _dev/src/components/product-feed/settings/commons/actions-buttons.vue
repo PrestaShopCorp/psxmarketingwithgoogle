@@ -49,9 +49,7 @@ export default {
     nextStep: {
       type: Function,
       required: true,
-      default() {
-        return 1;
-      },
+      default: () => {},
     },
     previousStep: {
       type: Function,
