@@ -29,12 +29,18 @@ export default {
   props: {
     title: {
       type: String,
+      default: null,
+      required: false,
     },
     description: {
       type: [String, Number],
+      default: null,
+      required: false,
     },
     icon: {
       type: String,
+      default: null,
+      required: false,
     },
   },
 };

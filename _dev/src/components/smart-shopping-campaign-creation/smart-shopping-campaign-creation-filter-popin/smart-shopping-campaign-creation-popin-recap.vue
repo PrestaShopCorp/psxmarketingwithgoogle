@@ -113,18 +113,22 @@ export default {
     newCampaign: {
       required: true,
       type: Object,
+      default: null,
     },
     filtersExist: {
       required: false,
       type: Boolean,
+      default: false,
     },
     editionMode: {
       required: false,
       type: Boolean,
+      default: false,
     },
     totalProducts: {
       required: false,
       type: Number,
+      default: 0,
     },
   },
 

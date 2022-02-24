@@ -27,9 +27,21 @@
 export default {
   name: 'ProgressRing',
   props: {
-    radius: Number,
-    progress: Number,
-    stroke: Number,
+    radius: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    progress: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    stroke: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
   },
   data() {
     const normalizedRadius = this.radius - this.stroke;

@@ -43,22 +43,28 @@ export default {
       validator(value) {
         return ['success', 'warning', 'danger', 'primary'].indexOf(value) !== -1;
       },
+      default: 'success',
     },
     nbProducts: {
       type: [Number, null],
       default: null,
+      required: false,
     },
     isLoadingInProgress: {
       type: Boolean,
       default: false,
+      required: false,
     },
     isExpired: {
       type: Boolean,
       default: false,
+      required: false,
     },
     size: {
       type: String,
       default: null,
+      required: false,
+
     },
   },
   computed: {

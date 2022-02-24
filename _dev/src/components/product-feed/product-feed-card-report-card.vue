@@ -57,25 +57,38 @@ export default {
       validator(value) {
         return ['success', 'warning'].indexOf(value) !== -1;
       },
+      required: false,
+      default: 'success',
     },
     title: {
       type: String,
+      required: false,
+      default: null,
     },
     description: {
       type: String,
+      required: false,
+      default: null,
     },
     details: {
       type: String,
+      required: false,
+      default: null,
     },
     link: {
       type: String,
+      required: false,
+      default: null,
     },
     linkTo: {
       type: Object,
+      required: false,
+      default: () => null,
     },
     size: {
       type: String,
       required: false,
+      default: null,
     },
   },
   methods: {

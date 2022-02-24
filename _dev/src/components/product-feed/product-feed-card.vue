@@ -259,23 +259,33 @@ export default {
     isEnabled: {
       type: Boolean,
       default: false,
+      required: true,
     },
     loading: {
       type: Boolean,
       default: true,
+      required: true,
     },
     categoriesTotal: {
       type: Number,
+      required: false,
+      default: 0,
     },
     categoriesMapped: {
       type: Number,
       default: 0,
+      required: false,
     },
     syncRules: {
       type: Array,
+      default: () => [],
+      required: false,
     },
     syncRulesDetails: {
       type: Array,
+      default: () => [],
+      required: false,
+
     },
   },
   computed: {

@@ -451,6 +451,7 @@ export default {
     editMode: {
       type: Boolean,
       default: false,
+      required: false,
     },
   },
   computed: {

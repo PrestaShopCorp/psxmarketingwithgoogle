@@ -93,12 +93,18 @@ export default {
   props: {
     hasMapping: {
       type: Boolean,
+      required: false,
+      default: false,
     },
     categoriesMapped: {
       type: Number,
+      required: false,
+      default: 0,
     },
     categoriesTotal: {
       type: Number,
+      required: false,
+      default: 0,
     },
   },
   googleUrl,
