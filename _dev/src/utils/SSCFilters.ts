@@ -145,7 +145,7 @@ export function findAndCheckFilter(
 export function retrieveProductNumberFromFiltersIds(
   productFilters: filtersChosenFromAPI[], dimensions: DimensionChosen[],
 ) {
-  const dimensionChosen = dimension.find(((dim) => dim.name === productFilters[0].dimension));
+  const dimensionChosen = dimensions.find(((dim) => dim.name === productFilters[0].dimension));
 
   if (!dimensionChosen) {
     return 0;
