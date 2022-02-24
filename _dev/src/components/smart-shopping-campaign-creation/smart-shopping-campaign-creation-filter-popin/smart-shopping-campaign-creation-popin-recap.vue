@@ -25,7 +25,7 @@
           >
             <span>
               {{
-                $t("smartShoppingCampaignCreation.inputDurationLabel1")
+                $t('smartShoppingCampaignCreation.inputDurationLabel1')
               }} </span><br>
             <span class="text-secondary">
               {{ newCampaign.startDate | timeConverterToDate }}
@@ -37,7 +37,7 @@
           >
             <span>
               {{
-                $t("smartShoppingCampaignCreation.inputDurationLabel2")
+                $t('smartShoppingCampaignCreation.inputDurationLabel2')
               }} </span><br>
             <span class="text-secondary">
               {{ endDate }}
@@ -46,18 +46,18 @@
         </b-form-row>
       </dd>
       <dt class="font-weight-600">
-        {{ $t("smartShoppingCampaignCreation.inputCountryLabel") }}
+        {{ $t('smartShoppingCampaignCreation.inputCountryLabel') }}
       </dt>
       <dd class="text-secondary mb-3">
         {{ newCampaign.targetCountry }}
       </dd>
       <dt class="font-weight-600">
-        {{ $t("smartShoppingCampaignCreation.inputFiltersLegend") }}
+        {{ $t('smartShoppingCampaignCreation.inputFiltersLegend') }}
       </dt>
       <dd class="text-secondary mb-3">
         <template v-if="filtersExist">
           {{
-            $t("smartShoppingCampaignCreation.xDimensionName", [
+            $t('smartShoppingCampaignCreation.xDimensionName', [
               $t(`smartShoppingCampaignCreation.${dimensionName}`),
             ])
           }}
@@ -71,18 +71,18 @@
           </span>
         </template>
         <template v-else>
-          {{ $t("smartShoppingCampaignCreation.recapNoFiltersDescription") }}
+          {{ $t('smartShoppingCampaignCreation.recapNoFiltersDescription') }}
         </template>
       </dd>
       <dt class="font-weight-600">
-        {{ $t("smartShoppingCampaignCreation.inputBudgetFeedback") }}
+        {{ $t('smartShoppingCampaignCreation.inputBudgetFeedback') }}
       </dt>
       <dd class="text-secondary mb-2">
         {{ newCampaign.dailyBudget }} {{ newCampaign.currencyCode }}
       </dd>
     </dl>
     <p>
-      {{ $t("smartShoppingCampaignCreation.recapFooter") }}
+      {{ $t('smartShoppingCampaignCreation.recapFooter') }}
     </p>
     <template slot="modal-footer">
       <b-button
@@ -90,17 +90,17 @@
         class="text-secondary"
         @click="cancel"
       >
-        {{ $t("cta.cancel") }}
+        {{ $t('cta.cancel') }}
       </b-button>
       <b-button
         variant="primary"
         @click="editionMode ? editCampaign() : ok()"
       >
         <template v-if="!isValidating">
-          {{ $t("cta.validate") }}
+          {{ $t('cta.validate') }}
         </template>
         <template v-else>
-          {{ $t("cta.validating") }}
+          {{ $t('cta.validating') }}
           <span class="ml-1 icon-busy" />
         </template>
       </b-button>
