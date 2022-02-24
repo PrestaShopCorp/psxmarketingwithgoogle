@@ -3,14 +3,18 @@
     aria-label="Table pagination"
     class="ps_gs-table-controls__pagination mx-md-auto"
   >
-    <ul class="pagination mb-0" role="menubar" aria-label="Pagination">
+    <ul
+      class="pagination mb-0"
+      role="menubar"
+      aria-label="Pagination"
+    >
       <li class="page-item previous">
         <b-button
           variant="invisible"
           class="page-link"
           :aria-label="$t('cta.previous')"
         >
-          <span class="sr-only">{{ $t("cta.previous") }}</span>
+          <span class="sr-only">{{ $t('cta.previous') }}</span>
         </b-button>
       </li>
       <li class="page-item">
@@ -23,27 +27,63 @@
         </b-button>
       </li>
       <li class="page-item disabled">
-        <b-button disabled variant="invisible" class="page-link">
+        <b-button
+          disabled
+          variant="invisible"
+          class="page-link"
+        >
           ...
         </b-button>
       </li>
       <li class="page-item">
-        <b-button variant="invisible" class="page-link"> 5 </b-button>
+        <b-button
+          variant="invisible"
+          class="page-link"
+        >
+          5
+        </b-button>
       </li>
       <li class="page-item">
-        <b-button variant="invisible" class="page-link"> 6 </b-button>
+        <b-button
+          variant="invisible"
+          class="page-link"
+        >
+          6
+        </b-button>
       </li>
-      <li class="page-item active" aria-current="page">
-        <b-button variant="invisible" class="page-link"> 7 </b-button>
+      <li
+        class="page-item active"
+        aria-current="page"
+      >
+        <b-button
+          variant="invisible"
+          class="page-link"
+        >
+          7
+        </b-button>
       </li>
       <li class="page-item">
-        <b-button variant="invisible" class="page-link"> 8 </b-button>
+        <b-button
+          variant="invisible"
+          class="page-link"
+        >
+          8
+        </b-button>
       </li>
       <li class="page-item">
-        <b-button variant="invisible" class="page-link"> 9 </b-button>
+        <b-button
+          variant="invisible"
+          class="page-link"
+        >
+          9
+        </b-button>
       </li>
       <li class="page-item disabled">
-        <b-button disabled variant="invisible" class="page-link">
+        <b-button
+          disabled
+          variant="invisible"
+          class="page-link"
+        >
           ...
         </b-button>
       </li>
@@ -62,7 +102,7 @@
           class="page-link"
           :aria-label="$t('cta.next')"
         >
-          <span class="sr-only">{{ $t("cta.next") }}</span>
+          <span class="sr-only">{{ $t('cta.next') }}</span>
         </b-button>
       </li>
     </ul>
@@ -70,7 +110,7 @@
 </template>
 <script>
 export default {
-  name: "Pagination",
+  name: 'Pagination',
   // TODO Dev the pagination 🤷
 };
 </script>
