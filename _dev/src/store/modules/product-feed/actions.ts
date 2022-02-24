@@ -131,7 +131,7 @@ export default {
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
     const deliveryEnabled = productFeedSettings.deliveryDetails.filter((e) => e.enabledCarrier);
-    const shipping = productFeedSettings.shippingSettings;
+    const shipping = {...productFeedSettings.shippingSettings};
     commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
       name: 'attributeMapping', data: attributeMapping,
     });
