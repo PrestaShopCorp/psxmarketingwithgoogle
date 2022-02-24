@@ -56,19 +56,15 @@
       </dt>
       <dd class="text-secondary mb-3">
         <template v-if="filtersExist">
-          {{
-            $t('smartShoppingCampaignCreation.xDimensionName', [
+          {{ $tc(
+            'smartShoppingCampaignCreation.filtersWithxValues',
+            this.totalProducts,
+            [
               $t(`smartShoppingCampaignCreation.${dimensionName}`),
-            ])
+              this.totalProducts,
+            ],
+          ),
           }}
-          <span v-if="totalProducts">
-            {{ $tc(
-              'smartShoppingCampaignCreation.filtersWithxValues',
-              totalProducts,
-              [totalProducts],
-            ),
-            }}
-          </span>
         </template>
         <template v-else>
           {{ $t('smartShoppingCampaignCreation.recapNoFiltersDescription') }}

@@ -525,9 +525,9 @@
       "refurbished" : "Refurbished",
       "used" : "Used"
     },
-    "xDimensionName":"{0} filters",
-    "filtersWithxValues" : "with {0} affected products | with {0} affected product | with {0} affected products"
-  },
+    "dimensionXFilterSelectedWithXProducts" : "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
+    "filtersWithxValues" : "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products"
+   },
   
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance",

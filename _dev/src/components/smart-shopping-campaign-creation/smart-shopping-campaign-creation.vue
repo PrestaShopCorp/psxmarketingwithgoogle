@@ -3,7 +3,6 @@
     no-body
     class="ps_gs-onboardingcard"
   >
-    {{ filtersChosen }}
     <b-card-header
       header-tag="nav"
       header-class="px-3 py-1"
@@ -261,22 +260,18 @@
               {{ $t("cta.selectFilters") }}
             </b-button>
             <div
-              v-if="!campaignHasNoProductsFilter"
+              v-if="!campaignHasNoProductsFilter && filtersChosen.length"
               class="align-self-center ml-2 font-weight-600"
             >
-              {{
-                $t("smartShoppingCampaignCreation.xDimensionName", [
+              {{ $tc(
+                'smartShoppingCampaignCreation.filtersWithxValues',
+                this.totalProducts,
+                [
                   $t(`smartShoppingCampaignCreation.${dimensionName}`),
-                ])
-              }}
-              <span v-if="totalProducts">
-                {{ $tc(
-                  'smartShoppingCampaignCreation.filtersWithxValues',
                   this.totalProducts,
-                  [this.totalProducts],
-                ),
-                }}
-              </span>
+                ],
+              ),
+              }}
             </div>
           </div>
         </b-form-group>
