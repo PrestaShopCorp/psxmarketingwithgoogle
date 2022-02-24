@@ -54,9 +54,7 @@ export default {
     previousStep: {
       type: Function,
       required: false,
-      default() {
-        return 1;
-      },
+      default: () => {},
     },
     disableContinue: {
       type: Boolean,
