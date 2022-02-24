@@ -143,7 +143,7 @@ export function findAndCheckFilter(
 }
 
 export function retrieveProductNumberFromFiltersIds(
-  productFilters :filtersChosenFromAPI[], dimension:DimensionChosen[],
+  productFilters: filtersChosenFromAPI[], dimensions: DimensionChosen[],
 ) {
   const dimensionChosen = dimension.find(((dim) => dim.name === productFilters[0].dimension));
 
