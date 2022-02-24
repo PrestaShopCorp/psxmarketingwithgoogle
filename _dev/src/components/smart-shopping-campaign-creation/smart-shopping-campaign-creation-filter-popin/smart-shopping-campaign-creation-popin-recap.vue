@@ -8,13 +8,13 @@
   >
     <dl class="w-100 d-inline-block">
       <dt class="font-weight-600">
-        {{ $t("smartShoppingCampaignCreation.inputNameLabel") }}
+        {{ $t('smartShoppingCampaignCreation.inputNameLabel') }}
       </dt>
       <dd class="text-secondary mb-3">
         {{ newCampaign.campaignName }}
       </dd>
       <dt class="font-weight-600">
-        {{ $t("smartShoppingCampaignCreation.inputDurationLabel") }}
+        {{ $t('smartShoppingCampaignCreation.inputDurationLabel') }}
       </dt>
       <dd class="mb-3">
         <b-form-row>
