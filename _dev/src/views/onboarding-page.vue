@@ -367,11 +367,11 @@ export default {
   },
   watch: {
     stepsAreCompleted(newVal, oldVal) {
-      console.log(newVal)
-      console.log(oldVal)
+      console.log(newVal);
+      console.log(oldVal);
       if (oldVal === false && newVal === true) {
-          console.log('go')
-        this.segmentCall()
+        console.log('go');
+        this.segmentCall();
       }
     },
     merchantCenterAccountIsChosen(newVal, oldVal) {
