@@ -2,7 +2,7 @@
   <div>
     <section>
       <h3 class="ps_gs-fz-16 font-weight-600 mb-3">
-        {{ $t("productFeedSettings.summary.title1", [nextSyncInHours]) }}
+        {{ $t('productFeedSettings.summary.title1', [nextSyncInHours]) }}
       </h3>
       <b-container
         fluid
@@ -32,7 +32,7 @@
     </section>
     <section>
       <h3 class="ps_gs-fz-16 font-weight-600 mb-3">
-        {{ $t("productFeedSettings.summary.title2") }}
+        {{ $t('productFeedSettings.summary.title2') }}
       </h3>
       <b-container
         fluid
@@ -89,7 +89,7 @@
                       ps_gs-fz-12
                     "
                   >
-                    {{ $t("productFeedSettings.summary.tableHeader1") }}
+                    {{ $t('productFeedSettings.summary.tableHeader1') }}
                   </b-th>
                   <b-th
                     class="
@@ -233,8 +233,7 @@ export default {
   },
   data() {
     return {
-      shippingSettings: this.$store.state.productFeed.settings
-        .autoImportShippingSettings
+      shippingSettings: this.$store.state.productFeed.settings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
         : this.$t('productFeedSettings.shipping.manually'),
       refurbishedInputs: ['condition'],

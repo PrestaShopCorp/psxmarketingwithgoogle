@@ -113,7 +113,7 @@ export default {
     newCampaign: {
       required: true,
       type: Object,
-      default: null,
+      default: () => null,
     },
     filtersExist: {
       required: false,
