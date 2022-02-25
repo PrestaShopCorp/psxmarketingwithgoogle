@@ -38,15 +38,10 @@ export default {
   },
   methods: {
     onAgreed() {
-      if (this.stepIs === 1) {
-        this.$emit('confirmation');
-      } else if (this.stepIs === 2) {
-        this.$emit('sendStep', 1);
-        deepCheckDimension(this.$store.state.smartShoppingCampaigns.dimensionChosen, false);
-        checkAndUpdateDimensionStatus(this.$store.state.smartShoppingCampaigns.dimensionChosen);
-      }
+      this.$emit('sendStep', 1);
+      deepCheckDimension(this.$store.state.smartShoppingCampaigns.dimensionChosen, false);
+      checkAndUpdateDimensionStatus(this.$store.state.smartShoppingCampaigns.dimensionChosen);
     },
   },
-
 };
 </script>

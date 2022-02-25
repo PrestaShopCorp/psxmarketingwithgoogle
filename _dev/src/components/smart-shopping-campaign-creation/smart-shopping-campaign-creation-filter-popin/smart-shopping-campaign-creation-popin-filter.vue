@@ -124,9 +124,11 @@ export default {
     confirmation() {
       this.$emit('validateCreationFilters');
       this.$emit('sendStep', 1);
+      this.searchFilterName = null;
     },
     goBack() {
       this.$emit('confirmCancel');
+      this.searchFilterName = null;
     },
     removeTag(filter) {
       this.selectCheckbox({item: filter, checked: false});

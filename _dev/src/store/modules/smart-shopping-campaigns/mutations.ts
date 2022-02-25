@@ -142,7 +142,6 @@ export default {
         1,
         state.dimensionChosen,
       );
-
       return;
     }
     if (state.sscAvailableFilters.length) {
@@ -160,6 +159,7 @@ export default {
         indeterminate: false,
         children: addPropertiesToDimension(payload.list[dimensionName]),
       };
+
       state.sscAvailableFilters.push(resp);
     });
     const findDimension = state.sscAvailableFilters.findIndex(

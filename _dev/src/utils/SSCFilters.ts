@@ -1,5 +1,9 @@
 import {DimensionChosen} from '@/store/modules/smart-shopping-campaigns/state';
 
+interface filtersChosenFromAPI {
+  dimension: string,
+  values: string[],
+}
 export function addPropertiesToDimension(
   dimension: DimensionChosen[],
 ): DimensionChosen[] {
@@ -136,4 +140,19 @@ export function findAndCheckFilter(
   }
   checkAndUpdateDimensionStatus(dimension);
   return dimension;
+}
+
+// TODO : improve for multiple selected dimensions
+export function retrieveProductNumberFromFiltersIds(
+  productFilters: filtersChosenFromAPI[], dimensions: DimensionChosen[],
+) {
+  if (!productFilters.length) {
+    return 0;
+  }
+  const dimensionChosen = dimensions.find((dim) => dim.name === productFilters[0].dimension);
+
+  if (!dimensionChosen) {
+    return 0;
+  }
+  return returnCountProducts(findAndCheckFilter(dimensionChosen, productFilters[0].values));
 }
