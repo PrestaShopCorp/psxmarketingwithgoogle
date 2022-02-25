@@ -300,6 +300,7 @@ export default {
       return;
     }
     this.fetchCampaigns();
+    this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
   },
   beforeDestroy() {
     const tableBody = document.getElementsByClassName(

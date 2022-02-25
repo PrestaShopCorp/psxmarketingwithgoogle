@@ -28,7 +28,7 @@ import {
   ProductPerformances,
   FiltersPerformances,
   ConversionAction,
-  DimensionChosen,
+  Dimension,
 } from './state';
 import GettersTypes from './getters-types';
 import KpiType from '@/enums/reporting/KpiType';
@@ -146,7 +146,7 @@ export default {
   },
   [GettersTypes.GET_SSC_DIMENSIONS_AND_FILTERS](
     state: LocalState,
-  ): DimensionChosen[] {
+  ): Dimension[] {
     return state.sscAvailableFilters;
   },
   [GettersTypes.GET_ERROR_FETCHING_FILTERS_STATUS](

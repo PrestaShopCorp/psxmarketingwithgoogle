@@ -32,9 +32,9 @@ export interface State {
   tagAlreadyExists: boolean;
   conversionActions: ConversionAction[];
   reporting: Reporting;
-  sscAvailableFilters: DimensionChosen[];
+  sscAvailableFilters: Dimension[];
   errorFetchingFilters: boolean;
-  dimensionChosen: DimensionChosen,
+  dimensionChosen: Dimension,
   filtersChosen: FiltersChosen[];
 }
 
@@ -46,16 +46,14 @@ export interface FiltersChosen {
   dimension?: string,
   values?: Array<string>,
 }
-export interface DimensionChosen {
+export interface Dimension {
   name?: string;
-    // TODO: Remove this in a near future as this will removed from the API
-  localizedName?: string;
   subtitle?: string;
   id?: string;
   checked?: boolean;
   indeterminate?: boolean;
   numberOfProductsAssociated?: number,
-  children?: DimensionChosen[];
+  children?: Dimension[];
 }
 export interface CampaignsOrdering {
   name?: string,

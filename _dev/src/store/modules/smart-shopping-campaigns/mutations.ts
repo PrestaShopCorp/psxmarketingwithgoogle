@@ -34,9 +34,9 @@ import {
   ProductsPerformancesSection,
   ConversionAction,
   CampaignStatusPayload,
-  DimensionChosen,
+  Dimension,
 } from './state';
-import {addPropertiesToDimension} from '@/utils/SSCFilters';
+import {addPropertiesToDimension, findAndCheckFilter} from '@/utils/SSCFilters';
 
 export default {
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](
@@ -130,20 +130,9 @@ export default {
   },
   [MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS](
     state: LocalState,
-    payload: { list: Array<DimensionChosen>; search: string, error: boolean },
+    payload: { list: Dimension[], error: boolean },
   ) {
     state.errorFetchingFilters = payload.error;
-    if (state.filtersChosen.length && state.sscAvailableFilters.length) {
-      const dimensionToUpdate = state.sscAvailableFilters.findIndex(
-        (dim) => dim.id === state.filtersChosen[0].dimension,
-      );
-      state.sscAvailableFilters.splice(
-        dimensionToUpdate,
-        1,
-        state.dimensionChosen,
-      );
-      return;
-    }
     if (state.sscAvailableFilters.length) {
       state.sscAvailableFilters = [];
     }
@@ -152,7 +141,7 @@ export default {
       if (!payload.list[dimensionName].length) {
         return;
       }
-      const resp: DimensionChosen = {
+      const resp: Dimension = {
         id: dimensionName,
         name: dimensionName,
         checked: false,
@@ -162,36 +151,12 @@ export default {
 
       state.sscAvailableFilters.push(resp);
     });
-    const findDimension = state.sscAvailableFilters.findIndex(
-      (el: DimensionChosen) => el?.id === state.dimensionChosen?.id,
-    );
-
-    // If dimension has been chosen by user, we check if there are some filters checked
-    // and we add them to API's response
-    if (findDimension !== -1) {
-      const checkedFilters = state.dimensionChosen.children?.filter(
-        (fil: DimensionChosen) => fil.checked === true,
-      );
-      state.dimensionChosen.children = checkedFilters?.concat(
-        state.sscAvailableFilters[findDimension].children as DimensionChosen[],
-      );
-
-      //  remove duplicate in case API sent all filters and user has some already checked
-      state.dimensionChosen.children = state.dimensionChosen?.children?.reduce(
-        (acc: DimensionChosen[], current) => {
-          const filterExists = acc.find((item) => item.id === current.id);
-
-          if (!filterExists) {
-            return acc.concat([current]);
-          }
-          return acc;
-        },
-        [],
-      );
-    }
   },
-  [MutationsTypes.SET_DIMENSION_CHOSEN](state: LocalState, payload) {
+  [MutationsTypes.SET_DIMENSION_CHOSEN](state: LocalState, payload: Dimension) {
     state.dimensionChosen = payload;
+  },
+  [MutationsTypes.SET_DIMENSION_CHOSEN_CHILDREN](state: LocalState, payload: Dimension[]) {
+    state.dimensionChosen.children = addPropertiesToDimension(payload);
   },
   // result mutations
   [MutationsTypes.SET_REPORTING_KPIS](state: LocalState, payload: Kpis) {
