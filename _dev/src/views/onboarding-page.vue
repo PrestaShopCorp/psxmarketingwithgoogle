@@ -255,13 +255,6 @@ export default {
           this.googleAdsIsLoading = false;
         }));
     },
-    segmentCall() {
-      console.log('click');
-      this.$segment.track('[GGL] PS Account connected', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-    },
   },
   computed: {
     psAccountsContext() {
@@ -346,10 +339,16 @@ export default {
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
-      this.segmentCall();
       this.googleIsLoading = true;
       this.MCAIsLoading = true;
-      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').finally(() => {
+      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').then(() => {
+        if (!this.googleAccountIsOnboarded) {
+          this.$segment.track('[GGL] PS Account connected', {
+            module: 'psxmarketingwithgoogle',
+            params: SegmentGenericParams,
+          });
+        }
+      }).finally(() => {
         this.googleIsLoading = false;
         this.MCAIsLoading = false;
       });
@@ -366,14 +365,6 @@ export default {
     this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
   },
   watch: {
-    stepsAreCompleted(newVal, oldVal) {
-      console.log(newVal);
-      console.log(oldVal);
-      if (oldVal === false && newVal === true) {
-        console.log('go');
-        this.segmentCall();
-      }
-    },
     merchantCenterAccountIsChosen(newVal, oldVal) {
       if (oldVal === false && newVal === true) {
         this.productFeedIsLoading = true;
