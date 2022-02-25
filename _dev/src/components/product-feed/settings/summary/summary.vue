@@ -21,9 +21,11 @@
             class="ps_gs-productfeed-report-card--66"
             icon="event"
             :title="$t('productFeedSettings.summary.date')"
-            :description="selectedSyncScheduleIsDefault ?
-              (nextSyncDate | timeConverterToStringifiedDate)
-              : $t('productFeedSettings.summary.syncScheduledNow')"
+            :description="
+              selectedSyncScheduleIsDefault
+                ? formatNextSyncDate
+                : $t('productFeedSettings.summary.syncScheduledNow')
+            "
           />
         </b-row>
       </b-container>
@@ -45,26 +47,30 @@
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
-            :link-to="{type : 'stepper', name: 1}"
+            :link-to="{ type: 'stepper', name: 1 }"
           />
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
-            :link-to="{type : 'stepper', name: 1}"
+            :link-to="{ type: 'stepper', name: 1 }"
           />
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.summary.dataSyncSetUp')"
-            :description="$t('productFeedSettings.export.summarySyncDailyAt', [formatNextSync])"
+            :description="
+              $t('productFeedSettings.export.summarySyncDailyAt', [
+                formatNextSync,
+              ])
+            "
             size="full"
           />
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.summary.productAttributesMapping')"
             :link="$t('cta.editProductAttributes')"
-            :link-to="{type : 'stepper', name: 3}"
+            :link-to="{ type: 'stepper', name: 3 }"
             size="full"
           >
             <b-table-simple
@@ -75,11 +81,25 @@
             >
               <b-thead>
                 <b-tr>
-                  <b-th class="border-0 font-weight-600 text-decoration-underline ps_gs-fz-12">
+                  <b-th
+                    class="
+                      border-0
+                      font-weight-600
+                      text-decoration-underline
+                      ps_gs-fz-12
+                    "
+                  >
                     {{ $t('productFeedSettings.summary.tableHeader1') }}
                   </b-th>
-                  <b-th class="border-0 font-weight-600 text-decoration-underline ps_gs-fz-12">
-                    {{ $t('productFeedSettings.summary.tableHeader2') }}
+                  <b-th
+                    class="
+                      border-0
+                      font-weight-600
+                      text-decoration-underline
+                      ps_gs-fz-12
+                    "
+                  >
+                    {{ $t("productFeedSettings.summary.tableHeader2") }}
                   </b-th>
                 </b-tr>
               </b-thead>
@@ -95,20 +115,29 @@
               v-if="mandatoryAttributesNotMapped"
               class="d-flex ps_gs-fz-12 ps_gs-table-caption mt-3"
             >
-              <i class="material-icons-round ps_gs-fz-16 text-warning mr-2">warning_amber</i>
+              <i
+                class="material-icons-round ps_gs-fz-16 text-warning mr-2"
+              >warning_amber</i>
               <p>
                 <VueShowdown
-                  :markdown="$tc('productFeedSettings.summary.mandatoryAttributesNotMapped',
-                                 mandatoryAttributesNotMapped,
-                                 [mandatoryAttributesNotMapped])"
+                  :markdown="
+                    $tc(
+                      'productFeedSettings.summary.mandatoryAttributesNotMapped',
+                      mandatoryAttributesNotMapped,
+                      [mandatoryAttributesNotMapped]
+                    )
+                  "
                   :extensions="['no-p-tag']"
                   tag="strong"
                   class="font-weight-600"
                 />
                 <br>
                 <VueShowdown
-                  :markdown="$t('productFeedSettings.summary.noticeToCompleteMapping',
-                                [$options.googleUrl.learnRequirementsProductSpecification])"
+                  :markdown="
+                    $t('productFeedSettings.summary.noticeToCompleteMapping', [
+                      $options.googleUrl.learnRequirementsProductSpecification,
+                    ])
+                  "
                   :extensions="['extended-link', 'no-p-tag']"
                   tag="span"
                 />
@@ -128,12 +157,17 @@
         >
           <VueShowdown
             v-if="selectedSyncScheduleIsDefault"
-            :markdown="$t('productFeedSettings.summary.agreementCheckboxLabel1Default',
-                          {time: formatNextSync})"
+            :markdown="
+              $t('productFeedSettings.summary.agreementCheckboxLabel1Default', {
+                time: formatNextSync,
+              })
+            "
           />
           <VueShowdown
             v-else
-            :markdown="$t('productFeedSettings.summary.agreementCheckboxLabel1Instant')"
+            :markdown="
+              $t('productFeedSettings.summary.agreementCheckboxLabel1Instant')
+            "
           />
         </b-form-checkbox>
         <b-form-checkbox
@@ -141,7 +175,11 @@
           class="ps_gs-checkbox mt-n1"
           v-model="understandTerms"
         >
-          <VueShowdown :markdown="$t('productFeedSettings.summary.agreementCheckboxLabel2')" />
+          <VueShowdown
+            :markdown="
+              $t('productFeedSettings.summary.agreementCheckboxLabel2')
+            "
+          />
         </b-form-checkbox>
       </b-form-group>
     </section>
@@ -153,12 +191,13 @@
       :ok-label="$t('cta.saveAndExport')"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
-    <settings-footer
-      :message="$t('freeListingCard.googleDelay')"
-    />
+    <settings-footer :message="$t('freeListingCard.googleDelay')" />
     <VueShowdown
-      :markdown="$t('productFeedSettings.export.prohibitedContentNotice',
-                    [$options.googleUrl.prohibitedContentGuidelines])"
+      :markdown="
+        $t('productFeedSettings.export.prohibitedContentNotice', [
+          $options.googleUrl.prohibitedContentGuidelines,
+        ])
+      "
       :extensions="['extended-link']"
       class="text-muted ps_gs-fz-12 pt-2 mt-4 mb-n3"
     />
@@ -194,8 +233,7 @@ export default {
   },
   data() {
     return {
-      shippingSettings:
-      this.$store.state.productFeed.settings.autoImportShippingSettings
+      shippingSettings: this.$store.state.productFeed.settings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
         : this.$t('productFeedSettings.shipping.manually'),
       refurbishedInputs: ['condition'],
@@ -216,7 +254,13 @@ export default {
       return dayjs.duration(nextSync.diff(now)).hours();
     },
     nextSyncDate() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt;
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS']
+        .nextJobAt;
+    },
+    formatNextSyncDate() {
+      return this.$options.filters.timeConverterToStringifiedDate(
+        this.nextSyncDate,
+      );
     },
     formatNextSync() {
       return this.$options.filters.timeConverterToHour(this.nextSyncDate);
@@ -247,18 +291,26 @@ export default {
       return getNumberAttrNotMapped;
     },
     getMapping() {
-      return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP']
-        .filter((item) => this.selectedProductCategories.includes(item.category) || item.category === 'commons')
+      return this.$store.getters[
+        'productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP'
+      ]
+        .filter(
+          (item) => this.selectedProductCategories.includes(item.category)
+            || item.category === 'commons',
+        )
         .map((attr) => attr.fields)
         .flat(1)
         .map((attribute) => ({
           ...attribute,
-          recommended: attribute.recommended.map((recommended) => recommended.name.toLowerCase()).join(', '),
+          recommended: attribute.recommended
+            .map((recommended) => recommended.name.toLowerCase())
+            .join(', '),
           mapped: attribute.mapped?.map((mapped) => mapped.name).join(', '),
         }))
         .map((final) => ({
           google: final.name,
-          prestashop: final.mapped !== undefined ? final.mapped : final.recommended,
+          prestashop:
+            final.mapped !== undefined ? final.mapped : final.recommended,
         }));
     },
     attributes() {

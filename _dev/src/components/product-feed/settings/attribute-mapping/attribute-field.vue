@@ -100,10 +100,12 @@ export default {
     field: {
       type: Object,
       required: true,
+      default: () => null,
     },
     category: {
       type: String,
       required: false,
+      default: null,
     },
   },
   computed: {

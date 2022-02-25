@@ -32,9 +32,13 @@ export default {
   props: {
     badges: {
       type: Array,
+      required: false,
+      default: () => [],
     },
     isEnabled: {
       type: Boolean,
+      required: false,
+      default: false,
     },
   },
 };

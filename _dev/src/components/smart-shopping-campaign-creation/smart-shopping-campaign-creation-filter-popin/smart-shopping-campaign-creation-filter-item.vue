@@ -93,7 +93,11 @@ export default {
     };
   },
   props: {
-    item: Object,
+    item: {
+      type: Object,
+      default: () => null,
+      required: false,
+    },
     isOpenByDefault: {
       type: Boolean,
       default: false,
@@ -107,6 +111,7 @@ export default {
     checked: {
       type: Boolean,
       required: false,
+      default: false,
     },
     depth: {
       type: Number,
