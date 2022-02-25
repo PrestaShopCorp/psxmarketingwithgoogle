@@ -467,7 +467,7 @@
     "inputCountryImutable": "Kraj nie może być zmieniony po utworzeniu, jeśli chcesz kierować na inny kraj, musisz stworzyć nową kampanię",
     "inputCountryLabel": "Kraj docelowy",
     "inputCountryTooltip": "Twoje reklamy kwalifikują się do wyświetlania klientom w wybranych lokalizacjach lub klientom, którzy wybrali język Twojego kraju docelowego w ustawieniach swojej wyszukiwarki.",
-    "inputFiltersLegend": "Produkty w kampanii",
+    "inputFiltersLegend": "Products filters",
     "inputFiltersAllLabel": "Uwzględnij wszystkie zsynchronizowane produkty",
     "inputFiltersPartialLabel": "Wybierz produkty za pomocą filtrów produktów",
     "inputFiltersHelper": "Poświęć trochę czasu na [przeczytanie zasad reklam Google Shopping]({0})[:target=\"_blank\"] niektóre produkty są zabronione lub ograniczone.",
@@ -476,14 +476,13 @@
     "inputBudgetFeedback": "Dzienny budżet kampanii",
     "inputBudgetTooltip": "Twój budżet to średnia kwota, którą jesteś w stanie wydać każdego dnia na kampanię. Budżet, który wybierzesz, zależy wyłącznie od Ciebie i możesz go zmienić w dowolnym momencie.",
     "inputBudgetPlaceholder": "Kwota",
-    "inputAllSyncedProducts": "Wszystkie zsynchronizowane produkty",
+    "inputAllSyncedProducts": "No filters selected",
     "formHelperTitle": "Uruchomienie kampanii",
     "formHelperDescription": "Twoja kampania będzie aktywna aż ją wstrzymasz. Możesz wstrzymać swoją kampanię w dowolnym momencie.",
     "errorNoProducts": "Chcesz rozpocząć kampanię, ale Twoje centrum handlowe Google nie zawiera jeszcze żadnych produktów. Twoja kampania rozpocznie się dopiero wtedy, gdy przynajmniej jeden produkt zostanie zatwierdzony przez Google.",
     "errorApi": "Nie udało nam się opublikować Twojej kampanii, spróbuj ponownie",
     "errorFetchingFilters": "Nie byliśmy w stanie pobrać wszystkich filtrów z Google. Na razie nie możesz ich modyfikować.",
     "recapTitle": "Podsumowanie kampanii",
-    "recapFiltersLabel": "Produkty w kampanii",
     "recapNoFiltersDescription": "Wszystkie zsynchronizowane produkty zatwierdzone przez Google",
     "recapFooter": "Sprawdź szczegóły swojej kampanii przed jej zatwierdzeniem. Zawsze możesz zmodyfikować niektóre parametry kampanii po jej uruchomieniu.",
     "toggleCreationRemarketingTag": "Włącz tagi remarketingowe na mojej stronie",
@@ -507,7 +506,7 @@
     "remarketingTagLoading": "Sprawdzamy, czy posiadasz tagi remarketingowe i śledzenia konwersji w celu dodania ich do swojego sklepu",
     "descriptiveMessage": "Wyświetlane są tylko kampanie inteligentnych zakupów powiązane z Twoim kontem Google Merchant Center.  \nJeśli chcesz zobaczyć wszystkie swoje kampanie, [przejdź do swojego konta Google Ads]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Nie wybrano żadnego filtra produktu | wybrano {0} filtr produktu | wybrano {0} filtrów produktu",
-    "nbProductsSelected": "Nie wybrano żadnego produktu | wybrano {0} produkt | wybrano {0} produktów",
+    "dimensionXFilterSelected": "{0} filter",
     "categories": "Kategoria",
     "categoriesSubTitle": "Kategoria produktu zdefiniowana przez Google dla Twojego produktu (np. Odzież",
     "brands": "Marka",
@@ -518,16 +517,16 @@
     "conditionsSubTitle": "Stan produktu w momencie sprzedaży (np.: nowy, używany lub odnowiony)",
     "popinTitle": "Filtry produktów kampanii",
     "popinTitleConfirmCancel": "Go Back",
-    "xProducts": "{0} Produkty | {0} Produkt | {0} Produkty",
-    "filtersWithxValues": "{0} Values | {0} Value | {0} Values",
-    "dimensionNumberOfxProducts": "(Dimension ≈ {0} products) | (Dimension ≈ {0} product) | (Dimension ≈ {0} products)",
+    "xProducts": " ({0} product) | ({0} product) | ({0} products)",
     "productConditions": {
       "unspecified": "Nieokreślony",
       "unknown": "Nieznany",
       "new": "Nowy",
       "refurbished": "Odnowiony",
       "used": "Używane"
-    }
+    },
+    "dimensionXFilterSelectedWithXProducts": "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
+    "filtersWithxValues": "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Wyniki kampanii",
@@ -694,7 +693,7 @@
       "conversion": "Konwersja",
       "sales": "Sprzedaż",
       "id": "ID",
-      "products": "Produkty",
+      "products": "Product Filters",
       "click": "Kliknięcie",
       "costs": "Koszty",
       "averageCostPerClick": "Średnie CPC",
@@ -708,7 +707,8 @@
       "dailyBudget": "Budżet dzienny"
     },
     "tooltipCol": {
-      "status": "Status kampanii reklamowej, który opisuje, czy jej reklamy mogą być w danej chwili uruchamiane, czy nie."
+      "status": "Status kampanii reklamowej, który opisuje, czy jej reklamy mogą być w danej chwili uruchamiane, czy nie.",
+      "products": "Product filter is what you selected as your campaign filter with the number of affected products."
     },
     "campaignsPerformanceTable": {
       "title": "Wyniki kampanii",
