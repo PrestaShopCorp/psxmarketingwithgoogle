@@ -152,13 +152,13 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     nextStep() {
-      this.$segment.track('[GGL] Product feed config - Step 1', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
       this.loading = true;
       localStorage.setItem('productFeed-autoImportShippingSettings', JSON.stringify(this.shippingSettings));
       if (this.shippingSettings) {
+        this.$segment.track('[GGL] Product feed config - Step 1 with Config my shipping settings now', {
+          module: 'psxmarketingwithgoogle',
+          params: SegmentGenericParams,
+        });
         this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
           this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
             name: 'autoImportShippingSettings',
@@ -168,6 +168,10 @@ export default {
           window.scrollTo(0, 0);
         });
       } else {
+        this.$segment.track('[GGL] Product feed config - Step 1 with Config my shipping settings later', {
+          module: 'psxmarketingwithgoogle',
+          params: SegmentGenericParams,
+        });
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'autoImportShippingSettings',
           data: false,
