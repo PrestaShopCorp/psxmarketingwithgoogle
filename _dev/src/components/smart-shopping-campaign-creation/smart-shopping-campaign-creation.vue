@@ -664,6 +664,7 @@ export default {
       );
     },
     setInterfaceForEdition() {
+      // TODO : do not redispatch because sscAvailableFilters are already loaded
       this.$store
         .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null)
         .then(() => {
