@@ -108,8 +108,8 @@
           <span class="sr-only">
             {{
               data.value
-                ? $t('productFeedPage.preScan.xHasFailedPreValidation', [data.field.label])
-                : $t('productFeedPage.preScan.xHasPassedPreValidation', [data.field.label])
+              ? $t('productFeedPage.preScan.xHasFailedPreValidation', [data.field.label])
+              : $t('productFeedPage.preScan.xHasPassedPreValidation', [data.field.label])
             }}
           </span>
           <span
