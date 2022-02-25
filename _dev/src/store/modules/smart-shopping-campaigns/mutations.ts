@@ -142,7 +142,7 @@ export default {
         1,
         state.dimensionChosen,
       );
-      return
+      return;
     }
     if (state.sscAvailableFilters.length) {
       state.sscAvailableFilters = [];
@@ -161,7 +161,6 @@ export default {
       };
 
       state.sscAvailableFilters.push(resp);
-
     });
     const findDimension = state.sscAvailableFilters.findIndex(
       (el: DimensionChosen) => el?.id === state.dimensionChosen?.id,
