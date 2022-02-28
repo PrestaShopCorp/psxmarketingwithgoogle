@@ -467,7 +467,7 @@
     "inputCountryImutable": "Het land kan niet worden gewijzigd na het aanmaken, als u een ander land wilt targeten, moet u een nieuwe campagne aanmaken",
     "inputCountryLabel": "Land van bestemming",
     "inputCountryTooltip": "De advertenties van uw campagne kunnen worden getoond aan klanten in uw geografische doelgebieden, of aan klanten die uw doeltaal hebben geselecteerd als taalinstelling van hun browser.",
-    "inputFiltersLegend": "Producten in campagne",
+    "inputFiltersLegend": "Products filters",
     "inputFiltersAllLabel": "Inclusief alle gesynchroniseerde producten",
     "inputFiltersPartialLabel": "Selecteer producten met behulp van productverdelingsfilters",
     "inputFiltersHelper": "Neem even de tijd om [het beleid van Google Shopping-advertenties te lezen]({0})[:target=\"_blank\"] sommige producten zijn verboden of beperkt.",
@@ -476,14 +476,13 @@
     "inputBudgetFeedback": "Dagelijks campagnebudget",
     "inputBudgetTooltip": "Uw budget is het gemiddelde bedrag dat u per dag aan uw campagne wilt besteden. Het budget dat u kiest, bepaalt u helemaal zelf, en u kunt het op elk moment aanpassen.",
     "inputBudgetPlaceholder": "Bedrag",
-    "inputAllSyncedProducts": "Alle gesynchroniseerde producten",
+    "inputAllSyncedProducts": "No filters selected",
     "formHelperTitle": "Activering van de campagne",
     "formHelperDescription": "Uw campagne blijft lopen tot u hem pauzeert. U kunt uw campagne op elk moment onderbreken.",
     "errorNoProducts": "U wilt een campagne starten, maar uw Google-handelscentrum bevat nog geen producten. Uw campagne wordt pas gestart als ten minste één product door Google is goedgekeurd.",
     "errorApi": "We konden uw campagne niet publiceren, probeer het opnieuw",
     "errorFetchingFilters": "We waren niet in staat om alle filters van Google te halen. U kunt ze voorlopig niet wijzigen.",
     "recapTitle": "Samenvatting van de campagne",
-    "recapFiltersLabel": "Producten in Campagne",
     "recapNoFiltersDescription": "Alle gesynchroniseerde producten goedgekeurd door Google",
     "recapFooter": "Controleer de informatie van uw campagne voordat u hem valideert. U kunt altijd enkele parameters wijzigen terwijl de campagne loopt.",
     "toggleCreationRemarketingTag": "Zet remarketing tags aan op mijn site",
@@ -507,7 +506,7 @@
     "remarketingTagLoading": "Controleren of u remarketing- en conversietracking-tags aan uw winkel kunt toevoegen",
     "descriptiveMessage": "Alleen de smart shopping-campagnes die aan uw Google Merchant Center-account zijn gekoppeld, worden weergegeven.  \nAls u al uw campagnes wilt zien, [ga dan naar uw Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Geen product filter geselecteerd | {0} product filter geselecteerd | {0} product filters geselecteerd",
-    "nbProductsSelected": "Geen product geselecteerd | {0} product geselecteerd | {0} producten geselecteerd",
+    "dimensionXFilterSelected": "{0} filter",
     "categories": "Categorie",
     "categoriesSubTitle": "Door Google gedefinieerde productcategorie voor uw product (bijv. Kleding",
     "brands": "Merk",
@@ -518,16 +517,16 @@
     "conditionsSubTitle": "De conditie van uw product op het moment van verkoop (ex: nieuw, gebruikt of gereviseerd)",
     "popinTitle": "Campagne's producten filters",
     "popinTitleConfirmCancel": "Go Back",
-    "xProducts": "{0} Producten | {0} Product | {0} Producten",
-    "filtersWithxValues": "{0} Values | {0} Value | {0} Values",
-    "dimensionNumberOfxProducts": "(Dimension ≈ {0} products) | (Dimension ≈ {0} product) | (Dimension ≈ {0} products)",
+    "xProducts": " ({0} product) | ({0} product) | ({0} products)",
     "productConditions": {
       "unspecified": "Ongespecificeerd",
       "unknown": "Onbekend",
       "new": "Nieuw",
       "refurbished": "Gerenoveerd",
       "used": "Gebruikt"
-    }
+    },
+    "dimensionXFilterSelectedWithXProducts": "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
+    "filtersWithxValues": "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Prestaties van de campagne",
@@ -694,7 +693,7 @@
       "conversion": "Conversie",
       "sales": "Verkoop",
       "id": "ID",
-      "products": "Producten",
+      "products": "Product Filters",
       "click": "Klik op",
       "costs": "Kosten",
       "averageCostPerClick": "Gemiddelde CPC",
@@ -708,7 +707,8 @@
       "dailyBudget": "Dagelijkse begroting"
     },
     "tooltipCol": {
-      "status": "Een status voor uw advertentiecampagne die beschrijft of de advertenties al dan niet kunnen worden uitgevoerd op dit moment."
+      "status": "Een status voor uw advertentiecampagne die beschrijft of de advertenties al dan niet kunnen worden uitgevoerd op dit moment.",
+      "products": "Product filter is what you selected as your campaign filter with the number of affected products."
     },
     "campaignsPerformanceTable": {
       "title": "Prestaties van de campagne",

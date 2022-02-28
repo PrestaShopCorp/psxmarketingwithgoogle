@@ -467,7 +467,7 @@
     "inputCountryImutable": "Страна не может быть изменена после создания, если вы хотите выбрать другую страну, вам нужно будет создать новую кампанию.",
     "inputCountryLabel": "Целевая страна",
     "inputCountryTooltip": "Объявления вашей кампании могут показываться клиентам в целевых географических регионах или клиентам, которые выбрали целевой язык в качестве языковой настройки браузера.",
-    "inputFiltersLegend": "Продукты в кампании",
+    "inputFiltersLegend": "Products filters",
     "inputFiltersAllLabel": "Включить все синхронизированные продукты",
     "inputFiltersPartialLabel": "Выберите продукты, используя фильтры разделов продуктов",
     "inputFiltersHelper": "Потратьте немного времени, чтобы [прочитать рекламную политику Google Shopping]({0})[:target=\"_blank\"] некоторые товары запрещены или ограничены.",
@@ -476,14 +476,13 @@
     "inputBudgetFeedback": "Ежедневный бюджет кампании",
     "inputBudgetTooltip": "Ваш бюджет - это средняя сумма, которую вам удобно тратить каждый день на свою кампанию. Выбранный вами бюджет зависит только от вас, и вы можете корректировать его в любое время.",
     "inputBudgetPlaceholder": "Сумма",
-    "inputAllSyncedProducts": "Все синхронизированные продукты",
+    "inputAllSyncedProducts": "No filters selected",
     "formHelperTitle": "Активация кампании",
     "formHelperDescription": "Ваша кампания будет работать до тех пор, пока вы не приостановите ее. Вы можете приостановить свою кампанию в любое время.",
     "errorNoProducts": "Вы хотите запустить кампанию, но в вашем торговом центре Google пока нет ни одного продукта. Ваша кампания начнется только тогда, когда хотя бы один продукт будет одобрен Google.",
     "errorApi": "Мы не смогли опубликовать вашу кампанию, пожалуйста, попробуйте еще раз",
     "errorFetchingFilters": "Мы не смогли получить все фильтры из Google. Пока что вы не можете их изменить.",
     "recapTitle": "Краткое описание кампании",
-    "recapFiltersLabel": "Продукты в кампании",
     "recapNoFiltersDescription": "Все синхронизированные продукты одобрены Google",
     "recapFooter": "Проверьте информацию о вашей кампании, прежде чем подтвердить ее. Вы всегда можете изменить некоторые параметры во время проведения кампании.",
     "toggleCreationRemarketingTag": "Включить метки ремаркетинга на моем сайте",
@@ -507,7 +506,7 @@
     "remarketingTagLoading": "Проверка наличия тегов ремаркетинга и отслеживания конверсии для добавления в ваш магазин",
     "descriptiveMessage": "В списке отображаются только кампании умных покупок, связанные с вашим аккаунтом Google Merchant Center.  \nЕсли вы хотите увидеть все свои кампании, [перейдите в свой аккаунт Google Ads]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Фильтр продуктов не выбран | {0} фильтр продуктов выбран | {0} фильтры продуктов выбраны",
-    "nbProductsSelected": "Товар не выбран | {0} товар выбран | {0} товары выбраны",
+    "dimensionXFilterSelected": "{0} filter",
     "categories": "Категория",
     "categoriesSubTitle": "Определенная Google категория продукта для вашего продукта (например: Одежда",
     "brands": "Бренд",
@@ -518,16 +517,16 @@
     "conditionsSubTitle": "Состояние вашего товара на момент продажи (например: новый, бывший в употреблении или восстановленный)",
     "popinTitle": "Фильтры продуктов кампании",
     "popinTitleConfirmCancel": "Go Back",
-    "xProducts": "{0} Продукты | {0} Продукт | {0} Продукты",
-    "filtersWithxValues": "{0} Values | {0} Value | {0} Values",
-    "dimensionNumberOfxProducts": "(Dimension ≈ {0} products) | (Dimension ≈ {0} product) | (Dimension ≈ {0} products)",
+    "xProducts": " ({0} product) | ({0} product) | ({0} products)",
     "productConditions": {
       "unspecified": "Неуказанный",
       "unknown": "Неизвестно",
       "new": "Новый",
       "refurbished": "Восстановленный",
       "used": "Используется"
-    }
+    },
+    "dimensionXFilterSelectedWithXProducts": "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
+    "filtersWithxValues": "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Эффективность кампании",
@@ -694,7 +693,7 @@
       "conversion": "Конверсия",
       "sales": "Продажи",
       "id": "ID",
-      "products": "Продукция",
+      "products": "Product Filters",
       "click": "Нажмите",
       "costs": "Затраты",
       "averageCostPerClick": "Средний CPC",
@@ -708,7 +707,8 @@
       "dailyBudget": "Ежедневный бюджет"
     },
     "tooltipCol": {
-      "status": "Статус рекламной кампании, описывающий, могут ли ее объявления запускаться в данный момент."
+      "status": "Статус рекламной кампании, описывающий, могут ли ее объявления запускаться в данный момент.",
+      "products": "Product filter is what you selected as your campaign filter with the number of affected products."
     },
     "campaignsPerformanceTable": {
       "title": "Эффективность кампании",
