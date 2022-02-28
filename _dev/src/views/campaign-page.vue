@@ -96,8 +96,6 @@ export default {
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE'),
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'),
       ]);
-      // No need to wait for this one to resolve
-      // this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
