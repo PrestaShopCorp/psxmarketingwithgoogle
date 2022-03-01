@@ -85,6 +85,9 @@ export default {
   [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): null|string {
     return state.tokenNextPageCampaignList;
   },
+  [GettersTypes.GET_LIMIT_CAMPAIGN_PERFORMANCE_LIST](state: LocalState): null|number {
+    return state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList;
+  },
 
   // request getters
   [GettersTypes.GET_REPORTING_PERIOD_SELECTED](
@@ -185,15 +188,20 @@ export default {
   ): Kpis[] {
     return state.reporting.results.dailyResultChart.dailyResultList;
   },
-  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
+  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_LIST](
     state: LocalState,
   ): Array<CampaignPerformances> {
     return state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList;
   },
-  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN](
+  [GettersTypes.GET_TOTAL_CAMPAIGNS_PERFORMANCES](
     state: LocalState,
-  ): string|null {
-    return state.reporting.results.campaignsPerformancesSection.nextPageToken;
+  ): number {
+    return state.reporting.results.campaignsPerformancesSection.totalCampaigns;
+  },
+  [GettersTypes.GET_ACTIVE_PAGE_CAMPAIGNS_PERFORMANCES_TABLE](
+    state: LocalState,
+  ): number {
+    return state.reporting.results.campaignsPerformancesSection.activePage;
   },
   [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](
     state: LocalState,

@@ -219,12 +219,6 @@ export default {
       ...payload,
     );
   },
-  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN](
-    state: LocalState,
-    payload: string | null,
-  ) {
-    state.reporting.results.campaignsPerformancesSection.nextPageToken = payload;
-  },
   [MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES](state: LocalState) {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
@@ -269,6 +263,24 @@ export default {
     payload: string,
   ) {
     state.tokenNextPageCampaignList = payload;
+  },
+  [MutationsTypes.SET_TOTAL_CAMPAIGNS_PERFORMANCES_RESULTS](
+    state: LocalState,
+    payload: number,
+  ) {
+    state.reporting.results.campaignsPerformancesSection.totalCampaigns = payload;
+  },
+  [MutationsTypes.SAVE_ACTIVE_PAGE_CAMPAIGN_PERFORMANCE_LIST](
+    state: LocalState,
+    payload: number,
+  ) {
+    state.reporting.results.campaignsPerformancesSection.activePage = payload;
+  },
+  [MutationsTypes.SAVE_LIMIT_CAMPAIGN_PERFORMANCE_LIST](
+    state: LocalState,
+    payload: number,
+  ) {
+    state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList = payload;
   },
   [MutationsTypes.UPDATE_SSC_STATUS](
     state: LocalState,

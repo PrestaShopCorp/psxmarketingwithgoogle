@@ -215,7 +215,7 @@ export default {
   async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
     {dispatch, commit},
   ) {
-    dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES');
+    dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES', {isNewRequest: true});
     dispatch('GET_REPORTING_KPIS');
     dispatch('GET_REPORTING_DAILY_RESULTS');
     dispatch('GET_REPORTING_PRODUCTS_PERFORMANCES');
@@ -314,8 +314,11 @@ export default {
   },
 
   async [ActionsTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
-    {commit, rootState, state}, isNewRequest = true,
+    {commit, rootState, state},
   ) {
+    const limit = state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList;
+    const offset = ((state.reporting.results.campaignsPerformancesSection.activePage - 1)
+    * limit).toString();
     const query = new URLSearchParams({
       startDate: state.reporting.request.dateRange.startDate,
       endDate: state.reporting.request.dateRange.endDate,
@@ -323,6 +326,8 @@ export default {
 
     // add order in array format
     query.append('order[clicks]', state.reporting.request.ordering.campaignsPerformances.clicks);
+    query.append('limit', limit);
+    query.append('offset', offset);
 
     const response = await fetch(
       `${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/campaigns-performances?${query}`, {
@@ -340,10 +345,7 @@ export default {
     }
 
     const result = await response.json();
-
-    if (isNewRequest) {
-      commit('RESET_REPORTING_CAMPAIGNS_PERFORMANCES');
-    }
+    commit(MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES);
     commit(
       MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR,
       false,
@@ -353,17 +355,9 @@ export default {
       result.campaignsPerformanceList,
     );
     commit(
-      MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN,
-      result.nextPageToken,
+      MutationsTypes.SET_TOTAL_CAMPAIGNS_PERFORMANCES_RESULTS,
+      result.totalCampaigns,
     );
-
-    // for testing only
-    if (state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.length > 10) {
-      commit(
-        MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN,
-        null,
-      );
-    }
   },
 
   async [ActionsTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](

@@ -144,7 +144,9 @@ export interface DailyresultChart {
 
 export interface CampaignsPerformancesSection {
   campaignsPerformanceList: Array<CampaignPerformances>;
-  nextPageToken: string|null;
+  limitCampaignPerformanceList: number;
+  activePage: number,
+  totalCampaigns: number,
 }
 
 export interface ProductsPerformancesSection {
@@ -245,7 +247,9 @@ export const state: State = {
       },
       campaignsPerformancesSection: {
         campaignsPerformanceList: [],
-        nextPageToken: null,
+        limitCampaignPerformanceList: 10,
+        activePage: 1,
+        totalCampaigns: 0,
       },
       productsPerformancesSection: {
         productsPerformanceList: [],

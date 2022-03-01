@@ -29,9 +29,8 @@ export default {
   },
   methods: {
     goToPage() {
-      // TODO: handle go to page
+      this.$root.$emit('changePage', this.nbPageToGo);
     },
   },
-  // TODO Handle se
 };
 </script>
