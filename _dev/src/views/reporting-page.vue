@@ -1,9 +1,11 @@
 <template>
   <div id="reporting-page">
-    <KeyMetricsBlock />
-    <CampaignsPerformanceTable />
-    <ProductsPerformanceTable />
-    <FiltersPerformanceTable />
+    <KeyMetricsBlock :in-need-of-configuration="inNeedOfConfiguration" />
+    <template v-if="!inNeedOfConfiguration">
+      <CampaignsPerformanceTable />
+      <ProductsPerformanceTable />
+      <FiltersPerformanceTable />
+    </template>
   </div>
 </template>
 
@@ -24,8 +26,12 @@ export default {
     reportingTabIsActive() {
       return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_TAB_IS_ACTIVE'];
     },
+    inNeedOfConfiguration() {
+      return !this.reportingTabIsActive;
+    },
   },
   methods: {
+
     async getDatas() {
       await this.$store.dispatch('smartShoppingCampaigns/SET_REPORTING_DATES_RANGE');
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
@@ -36,14 +42,9 @@ export default {
     },
   },
   created() {
-    this.getDatas()
-      .then(() => {
-        if (!this.reportingTabIsActive) {
-          this.$router.push({
-            name: 'onboarding',
-          });
-        }
-      });
+    if (!this.inNeedOfConfiguration) {
+      this.getDatas();
+    }
   },
 };
 </script>

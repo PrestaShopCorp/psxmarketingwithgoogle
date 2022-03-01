@@ -37,6 +37,7 @@
   </div>
 </template>
 <script>
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -66,6 +67,12 @@ export default {
   methods: {
     previousStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+      this.$router.push({
+        params: {
+          name: 'product-feed-settings',
+          step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
+        },
+      });
       window.scrollTo(0, 0);
     },
     nextStep() {
@@ -74,6 +81,12 @@ export default {
         params: SegmentGenericParams,
       });
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 5);
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.SUMMARY,
+        },
+      });
       window.scrollTo(0, 0);
     },
     cancel() {

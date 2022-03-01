@@ -47,14 +47,16 @@
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
-            :link-to="{ type: 'stepper', name: 1 }"
+            :link-to="{ name: 'product-feed-settings',
+                        step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
           />
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
-            :link-to="{ type: 'stepper', name: 1 }"
+            :link-to="{ name: 'product-feed-settings',
+                        step: 2,params: ProductFeedSettingsPages.SHIPPING_SETTINGS}"
           />
           <product-feed-card-report-card
             status="success"
@@ -70,7 +72,8 @@
             status="success"
             :title="$t('productFeedSettings.summary.productAttributesMapping')"
             :link="$t('cta.editProductAttributes')"
-            :link-to="{ type: 'stepper', name: 3 }"
+            :link-to="{ name: 'product-feed-settings',
+                        step: 3,params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
             size="full"
           >
             <b-table-simple
@@ -210,6 +213,7 @@ import duration from 'dayjs/plugin/duration';
 
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
@@ -233,7 +237,9 @@ export default {
   },
   data() {
     return {
-      shippingSettings: this.$store.state.productFeed.settings.autoImportShippingSettings
+      ProductFeedSettingsPages,
+      shippingSettings:
+      this.$store.state.productFeed.settings.autoImportShippingSettings
         ? this.$t('productFeedSettings.shipping.automatically')
         : this.$t('productFeedSettings.shipping.manually'),
       refurbishedInputs: ['condition'],
@@ -337,6 +343,12 @@ export default {
     },
     previousStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.SYNC_SCHEDULE,
+        },
+      });
       window.scrollTo(0, 0);
     },
     postDatas() {
@@ -348,6 +360,7 @@ export default {
       this.disabledExportButton = false;
     },
   },
+
   googleUrl,
 };
 </script>

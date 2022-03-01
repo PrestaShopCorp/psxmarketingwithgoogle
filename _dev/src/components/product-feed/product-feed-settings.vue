@@ -36,24 +36,25 @@
         :active-step="activeStep"
       />
       <target-country
-        v-if="activeStep == 1"
+        v-if="$route.params.step === ProductFeedSettingsPages.TARGET_COUNTRY"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
       <shipping-settings
-        v-if="activeStep == 2"
+        v-if="$route.params.step === ProductFeedSettingsPages.SHIPPING_SETTINGS"
         v-bind="$attrs"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
       <attribute-mapping
-        v-if="activeStep == 3"
+        v-if="$route.params.step === ProductFeedSettingsPages.ATTRIBUTE_MAPPING"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
       <sync-schedule
-        v-if="activeStep == 4"
+        v-if="$route.params.step === ProductFeedSettingsPages.SYNC_SCHEDULE"
+        @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
       <Summary
         v-bind="$attrs"
-        v-if="activeStep == 5"
+        v-if="$route.params.step === ProductFeedSettingsPages.SUMMARY"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
     </b-card-body>
@@ -61,6 +62,8 @@
 </template>
 
 <script>
+import ProductFeedSettingsSteps from '@/enums/product-feed/product-feed-settings-steps';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import Stepper from '../commons/stepper';
 import TargetCountry from './settings/target-countries/target-countries.vue';
 import ShippingSettings from './settings/shipping-settings/shipping-settings.vue';
@@ -80,11 +83,20 @@ export default {
   },
   data() {
     return {
+      ProductFeedSettingsPages,
     };
   },
   computed: {
     activeStep() {
-      return this.$store.state.productFeed.stepper;
+      if (this.$store.state.productFeed.stepper > 0) {
+        return this.$store.state.productFeed.stepper;
+      }
+      const indexOfRoute = ProductFeedSettingsSteps.indexOf(this.$route.params.step);
+
+      if (indexOfRoute > 0) {
+        return indexOfRoute;
+      }
+      return 0;
     },
     steps() {
       return [

@@ -127,7 +127,7 @@ export const state: State = {
   isConfigured: false,
   isConfiguredOnce: false,
   totalProducts: 0,
-  stepper: 1,
+  stepper: 0,
   status: {
     success: false,
     jobEndedAt: '',

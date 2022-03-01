@@ -9,6 +9,7 @@ import {cloneStore, filters, localVue} from '@/../tests/init';
 import ProductFeedSettingsSummary from '@/components/product-feed/settings/summary/summary.vue';
 import ProductFeedCardNextSyncCard from '@/components/product-feed/product-feed-card-next-sync-card.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
+
 import {
   Summary,
 } from '@/../stories/product-feed-settings.stories';

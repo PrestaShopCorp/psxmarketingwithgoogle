@@ -167,7 +167,7 @@
             <div class="mt-1">
               <b-button
                 variant="outline-secondary"
-                @click="goToProductFeedSettings(1)"
+                @click="goToProductFeedSettings(ProductFeedSettingsPages.SHIPPING_SETTINGS)"
               >
                 {{ $t("cta.addShippingInfo") }}
               </b-button>
@@ -186,14 +186,16 @@
                 :title="$t('productFeedSettings.shipping.targetCountries')"
                 :description="targetCountries.join(', ')"
                 :link="$t('cta.editCountries')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
+                :link-to="{ name: 'product-feed-settings',
+                            step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
               />
               <product-feed-card-report-card
                 :status="shippingSettingsStatus"
                 :title="$t('productFeedSettings.shipping.shippingSettings')"
                 :description="shippingSettings"
                 :link="$t('cta.editSettings')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
+                :link-to="{ name: 'product-feed-settings',
+                            step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
               />
               <product-feed-card-report-card
                 v-if="isUS"
@@ -201,14 +203,16 @@
                 :title="$t('productFeedSettings.shipping.taxSettings')"
                 :description="taxSettings"
                 :link="$t('cta.editSettings')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
+                :link-to="{ name: 'product-feed-settings',
+                            step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
               />
               <product-feed-card-report-card
                 :status="attributeMappingStatus"
                 :title="$t('productFeedSettings.steps.attributeMapping')"
                 :description="attributeMapping.join(', ')"
                 :link="$t('cta.editProductAttributes')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 3 }"
+                :link-to="{ name: 'product-feed-settings',
+                            step: 3, params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
               />
             </b-row>
           </b-container>
@@ -220,6 +224,7 @@
 
 <script>
 import {VueShowdown} from 'vue-showdown';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
 import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
@@ -236,6 +241,7 @@ export default {
   },
   data() {
     return {
+      ProductFeedSettingsPages,
       steps: [
         {
           title: this.$i18n.t('productFeedSettings.steps.targetCountry'),
@@ -459,17 +465,22 @@ export default {
     startConfiguration() {
       this.$router.push({
         name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.TARGET_COUNTRY,
+        },
       });
       this.$segment.track('[GGL] Start Product feed configuration', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
     },
-    goToProductFeedSettings(step) {
+    goToProductFeedSettings(params) {
       this.$router.push({
         name: 'product-feed-settings',
+        params: {
+          step: params,
+        },
       });
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', step);
     },
     refresh() {
       this.$router.go();

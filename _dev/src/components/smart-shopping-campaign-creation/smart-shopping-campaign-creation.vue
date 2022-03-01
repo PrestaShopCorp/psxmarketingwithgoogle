@@ -742,10 +742,10 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0);
-    if (
-      this.editMode === true
-      && this.foundSsc !== undefined
-    ) {
+    if (this.productsHaveBeenApprovedByGoogle) {
+      this.getDatasFiltersDimensions();
+    }
+    if (this.editMode === true && this.foundSsc !== undefined) {
       this.setInterfaceForEdition();
     } else {
       this.loader = false;
