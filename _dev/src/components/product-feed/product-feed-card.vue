@@ -186,7 +186,7 @@
                 :title="$t('productFeedSettings.shipping.targetCountries')"
                 :description="targetCountries.join(', ')"
                 :link="$t('cta.editCountries')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings',
+                :link-to="{ name: 'product-feed-settings',
                             step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
               />
               <product-feed-card-report-card
@@ -194,7 +194,7 @@
                 :title="$t('productFeedSettings.shipping.shippingSettings')"
                 :description="shippingSettings"
                 :link="$t('cta.editSettings')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings',
+                :link-to="{ name: 'product-feed-settings',
                             step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
               />
               <product-feed-card-report-card
@@ -203,7 +203,7 @@
                 :title="$t('productFeedSettings.shipping.taxSettings')"
                 :description="taxSettings"
                 :link="$t('cta.editSettings')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings',
+                :link-to="{ name: 'product-feed-settings',
                             step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
               />
               <product-feed-card-report-card
@@ -211,7 +211,7 @@
                 :title="$t('productFeedSettings.steps.attributeMapping')"
                 :description="attributeMapping.join(', ')"
                 :link="$t('cta.editProductAttributes')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings',
+                :link-to="{ name: 'product-feed-settings',
                             step: 3, params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
               />
             </b-row>

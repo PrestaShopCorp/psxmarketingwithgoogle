@@ -47,7 +47,7 @@
             :title="$t('productFeedSettings.shipping.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
-            :link-to="{ type: 'routeStep', name: 'product-feed-settings',
+            :link-to="{ name: 'product-feed-settings',
                         step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
           />
           <product-feed-card-report-card
@@ -55,8 +55,8 @@
             :title="$t('productFeedSettings.shipping.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
-            :link-to="{type : 'routeStep', name: 'product-feed-settings',
-                       step: 2,params: ProductFeedSettingsPages.SHIPPING_SETTINGS}"
+            :link-to="{ name: 'product-feed-settings',
+                        step: 2,params: ProductFeedSettingsPages.SHIPPING_SETTINGS}"
           />
           <product-feed-card-report-card
             status="success"
@@ -72,8 +72,8 @@
             status="success"
             :title="$t('productFeedSettings.summary.productAttributesMapping')"
             :link="$t('cta.editProductAttributes')"
-            :link-to="{type : 'routeStep', name: 'product-feed-settings',
-                       step: 3,params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
+            :link-to="{ name: 'product-feed-settings',
+                        step: 3,params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
             size="full"
           >
             <b-table-simple
