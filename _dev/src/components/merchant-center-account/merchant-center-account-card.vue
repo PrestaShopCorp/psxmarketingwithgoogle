@@ -381,7 +381,8 @@
           </div>
         </b-alert>
         <b-alert
-          v-else-if="error === WebsiteClaimErrorReason.OverwriteNeededWithManualAction"
+          v-else-if="error === WebsiteClaimErrorReason.OverwriteNeededWithManualAction
+            && !needToRefresh"
           show
           variant="warning"
           class="mb-0 mt-3"
@@ -401,6 +402,7 @@
           </p>
           <div class="d-md-flex text-center align-items-center mt-2">
             <b-button
+              @click="checkAgainForOverwriteNeededWithManualAction"
               size="sm"
               class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 text-decoration-none"
               variant="outline-secondary"
@@ -408,6 +410,25 @@
               target="_blank"
             >
               {{ $t("cta.addWebsiteAddress") }}
+            </b-button>
+          </div>
+        </b-alert>
+        <b-alert
+          v-else-if="error === WebsiteClaimErrorReason.OverwriteNeededWithManualAction
+            && needToRefresh"
+          show
+          variant="warning"
+          class="mb-0 mt-3"
+        >
+          <p class="mb-0">
+            <strong>{{ $t('mcaCard.refreshAfterAddingWebsiteAddress') }}</strong><br>
+          </p>
+          <div class="d-md-flex text-center align-items-center mt-2">
+            <b-button
+              @click="refresh"
+              variant="outline-secondary"
+            >
+              {{ $t("general.refreshPage") }}
             </b-button>
           </div>
         </b-alert>
@@ -540,6 +561,7 @@ export default {
       selectedMcaIndex: null,
       WebsiteClaimErrorReason,
       displaySiteVerified: false,
+      needToRefresh: false,
     };
   },
   props: {
@@ -724,6 +746,9 @@ export default {
           this.$refs.mcaPopinOverrideClaim.$refs.modal.id,
         );
       }
+    },
+    checkAgainForOverwriteNeededWithManualAction() {
+      this.needToRefresh = true;
     },
     gmcLabel(index) {
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
