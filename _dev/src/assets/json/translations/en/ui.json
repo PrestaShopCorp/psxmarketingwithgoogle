@@ -576,7 +576,7 @@
       "pendingProducts": "Pending",
       "pendingProductsDescription": "A pending product won't show in ads or free listings because it's being reviewed by Google.",
       "expiringProducts": "Expiring",
-      "expiringProductsDescription": "Expiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
+      "expiringProductsDescription": "Expiring products will be removed from GMC in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Not approved",
       "disapprovedProductsDescription": "Your product is disapproved for a destination and isn't active.",
       "productsSubmittedToGoogle": "Active products submitted to Google: {0}",
