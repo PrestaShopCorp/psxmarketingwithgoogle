@@ -249,8 +249,13 @@ export default {
     };
   },
   computed: {
-    disabledExportButton() {
-      return !(this.acceptSyncSchedule && this.understandTerms);
+    disabledExportButton: {
+      get() {
+        return !(this.acceptSyncSchedule && this.understandTerms);
+      },
+      set(value) {
+        return value;
+      },
     },
     nextSyncInHours() {
       // Return how many hours left before next sync
