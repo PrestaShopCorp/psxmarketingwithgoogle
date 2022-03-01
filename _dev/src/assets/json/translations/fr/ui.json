@@ -568,7 +568,7 @@
     },
     "productStatus": {
       "title": "Statut des produits",
-      "description": "Le statut de votre produit vous permet de savoir si votre produit est éligible pour apparaître dans la destination que vous avez opté.  \nUn produit en attente n'apparaîtra pas dans les annonces ou les fiches gratuites car il est en cours d'examen par Google.  \nLes produits en cours d'expiration expireront dans les 3 prochains jours et ne pourront plus apparaître dans les annonces ou les fiches gratuites.",
+      "description": "Le statut de votre produit vous permet de savoir si votre produit est éligible pour apparaître dans la destination que vous avez opté.  \nUn produit en attente n'apparaîtra pas dans les annonces ou les fiches gratuites car il est en cours d'examen par Google.  \nLes produits en cours d'expiration expireront dans les 30 prochains jours et ne pourront plus apparaître dans les annonces ou les fiches gratuites.",
       "alert": "Il faut compter 3 à 5 jours ouvrables à Google pour examiner les produits",
       "approvedProducts": "Approuvé",
       "approvedProductsDescription": "Les produits actifs sont entièrement approuvés et peuvent apparaître dans les résultats.",
