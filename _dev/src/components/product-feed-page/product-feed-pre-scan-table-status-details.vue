@@ -42,27 +42,27 @@
           id="filterByCountryDropdown"
           variant=" "
           menu-class="ps-dropdown"
-          :text="langSelected ? langSelected
-            : $t('productFeedSettings.shipping.filterTitle')"
+          :text="langChosen ? langChosen
+            : $t('productFeedSettings.preScan.selectLanguage')"
           class="mb-2 mt-1 mt-md-0 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
         >
           <b-dropdown-item
-            :disabled="!langSelected"
+            :disabled="!langChosen"
             variant="dark"
             link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
-            @click="langSelected = null"
+            @click="langChosen = null"
           >
             {{ $t('productFeedSettings.shipping.filterTitle') }}
           </b-dropdown-item>
           <b-dropdown-item
-            :disabled="country === langSelected"
-            v-for="(country, index) in countries"
+            :disabled="lang === langChosen"
+            v-for="(lang, index) in countries"
             :key="index"
-            @click="langSelected = country"
+            @click="langChosen = lang"
             variant="dark"
             link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
           >
-            {{ country }}
+            {{lang}}
           </b-dropdown-item>
         </b-dropdown>
       </div>
@@ -70,7 +70,7 @@
         :items="items"
         :fields="fields"
         :filter-function="filterByLang"
-        :filter="langSelected"
+        :filter="langChosen"
         :per-page="perPage"
         :current-page="currentPage"
         :busy="loading"
@@ -81,16 +81,16 @@
         responsive="xl"
       >
         <template #cell(id)="data">
-          {{ data.value }}
+          {{ data.item.productId }}
         </template>
         <template #cell(name)="data">
           <a
             class="external_link-no_icon"
             :href="!isNaN(data.item.id)
-              ? getProductBaseUrl.replace('/1?', `/${data.item.id}?`) : null"
+              ? getProductBaseUrl.replace('/1?', `/${data.item.productId}?`) : null"
             target="_blank"
           >
-            {{ data.item.name }}
+             {{ getProductName(data.item.titleByIsocode) }}
           </a>
         </template>
         <template
@@ -98,28 +98,50 @@
         >
           <b-badge
             variant="primary"
-            class="ps_gs-fz-12 text-capitalize"
+            class="ps_gs-fz-12 text-capitalize mr-1"
+            v-for="(language, index) in getProductLangs(data.item.titleByIsocode)"
+            :key="index"
           >
-            {{ data.item.language }}
+            {{ language.toUpperCase() }}
           </b-badge>
         </template>
-        <!-- START > Default template -->
-        <template #cell()="data">
-          <span class="sr-only">
-            {{
-              data.value
-                ? $t('productFeedPage.preScan.xHasFailedPreValidation', [data.field.label])
-                : $t('productFeedPage.preScan.xHasPassedPreValidation', [data.field.label])
-            }}
-          </span>
+
+        <template #cell(image)="data">
           <span
             class="material-icons"
-            :class="data.value ? 'text-success': 'text-danger'"
+            :class="data.item.isMissingImage ? 'text-danger' : 'text-success'"
           >
-            {{ data.value ? 'done' : 'close' }}
+            {{ data.item.isMissingLink ? 'close' : 'done' }}
           </span>
         </template>
-        <!-- END > Default template -->
+
+        <template #cell(description)="data">
+          <span
+            class="material-icons"
+            :class="data.item.isMissingDescription ? 'text-danger' : 'text-success'"
+          >
+            {{ data.item.isMissingDescription ? 'close' : 'done' }}
+          </span>
+        </template>
+
+        <template #cell(barcode)="data">
+          <span
+            class="material-icons"
+            :class="data.item.isMissingBrandOrBarcode ? 'text-danger' : 'text-success'"
+          >
+            {{ data.item.isMissingBrandOrBarcode ? 'close' : 'done' }}
+          </span>
+        </template>
+
+        <template #cell(price)="data">
+          <span
+            class="material-icons"
+            :class="data.item.isMissingPrice ? 'text-danger' : 'text-success'"
+          >
+            {{ data.item.isMissingPrice ? 'close' : 'done' }}
+          </span>
+        </template>
+
       </b-table>
       <div class="overflow-auto">
         <b-pagination
@@ -141,9 +163,7 @@ export default {
   components: {},
   data() {
     return {
-      // use a method for filtering with the actif lang
-      countries: ['EN', 'FR'],
-      langSelected: null,
+      langChosen: null,
       perPage: 10,
       currentPage: 1,
       loading: false,
@@ -198,10 +218,26 @@ export default {
     rows() {
       return this.items.length;
     },
+    countries() {
+      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
+    },
+    getDefaultLang() {
+      return this.$store.state.app.psxMtgWithGoogleDefaultShopCountry;
+    },
   },
   methods: {
     filterByLang(row, filter) {
-      return row.language === filter;
+      return !!row.titleByIsocode.some((k) => k.isocode.toUpperCase() === filter);
+    },
+    getProductName(products) {
+      const findProductInCurrentLang = products.find((k) => k.isocode.toUpperCase() === this.getDefaultLang);
+      if (findProductInCurrentLang !== undefined) {
+        return findProductInCurrentLang?.title;
+      }
+      return products[0].title;
+    },
+    getProductLangs(products) {
+      return products.map((k) => k.isocode);
     },
     getPreScanProducts() {
       this.loading = true;
