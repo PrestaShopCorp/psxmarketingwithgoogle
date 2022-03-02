@@ -27,7 +27,7 @@
           v-if="!inNeedOfConfiguration"
           path="cta.visitThe"
           tag="div"
-          class="mt-4 ps_gs-fz-13 text-right text-muted"
+          class="mt-4 ps_gs-fz-13 text-left text-muted"
         >
           <b-link
             :to="{ name: 'help' }"
