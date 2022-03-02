@@ -153,6 +153,7 @@
         :label="$t('productFeedSettings.summary.agreementTitle')"
         label-class="h4 font-weight-600 mb-3 d-block p-0 bg-transparent border-0"
       >
+        {{ acceptSyncSchedule }}{{ understandTerms }}
         <b-form-checkbox
           data-test-id="buttonCheckbox"
           class="ps_gs-checkbox"
@@ -249,13 +250,8 @@ export default {
     };
   },
   computed: {
-    disabledExportButton: {
-      get() {
-        return !(this.acceptSyncSchedule && this.understandTerms);
-      },
-      set(value) {
-        return value;
-      },
+    disabledExportButton() {
+      return !(this.acceptSyncSchedule && this.understandTerms);
     },
     nextSyncInHours() {
       // Return how many hours left before next sync
@@ -343,7 +339,6 @@ export default {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      this.disabledExportButton = true;
       this.postDatas();
     },
     previousStep() {
@@ -362,7 +357,6 @@ export default {
         name: 'configuration',
         hash: '#product-feed-card',
       });
-      this.disabledExportButton = false;
     },
   },
 
