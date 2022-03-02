@@ -27,7 +27,6 @@
       ref="SmartShoppingCampaignCreationFilterConfirmCancel"
       :step-is="step"
       @sendStep="stepIs($event)"
-      @updateDimension="sendFiltersSelected"
     />
   </ps-modal>
 </template>
