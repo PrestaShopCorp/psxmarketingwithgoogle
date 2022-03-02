@@ -9,7 +9,7 @@
           {{ $t('smartShoppingCampaignCreation.selectProductsSubtitle') }}
         </p>
         <span
-          v-if="!availableDimensions"
+          v-if="!availableDimensions.length"
           class="text-muted"
         >
           <i class="icon-busy icon-busy--dark mr-1" />
