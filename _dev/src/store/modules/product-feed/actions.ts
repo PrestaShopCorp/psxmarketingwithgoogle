@@ -133,8 +133,8 @@ export default {
     const getShippingSettings = productFeedSettings.shippingSettings;
     const deliveryFiltered = productFeedSettings.deliveryDetails.filter(
       (e) => e.enabledCarrier
-      && ((e.minHandlingTimeInDays !== null && e.maxHandlingTimeInDays === null)
-      || (e.minHandlingTimeInDays !== null && e.maxHandlingTimeInDays !== null)),
+      && ((e.minHandlingTimeInDays !== null && e.maxHandlingTimeInDays !== null)
+      || (e.maxTransitTimeInDays !== null && e.minTransitTimeInDays !== null)),
     );
     const shipping = getShippingSettings.filter(
       (s) => deliveryFiltered.find((d) => s.properties.id_carrier === d.carrierId),
