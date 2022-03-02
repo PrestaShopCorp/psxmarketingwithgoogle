@@ -338,7 +338,6 @@ export default {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      this.disabledExportButton = true;
       this.postDatas();
     },
     previousStep() {
@@ -357,7 +356,6 @@ export default {
         name: 'configuration',
         hash: '#product-feed-card',
       });
-      this.disabledExportButton = false;
     },
   },
 
