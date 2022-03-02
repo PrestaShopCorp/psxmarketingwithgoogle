@@ -44,6 +44,10 @@ export interface ProductFeedValidationSummary {
   pendingItems: number|null;
   disapprovedItems: number|null;
 }
+export interface PrevalidationScanSummary {
+  scannedItems: number|null;
+  invalidItems: number|null;
+}
 export interface ProductInfos {
  id: string;
  name: string;
@@ -108,6 +112,7 @@ export interface State {
   status: ProductFeedStatus;
   settings: ProductFeedSettings;
   validationSummary : ProductFeedValidationSummary;
+  prevalidationScanSummary: PrevalidationScanSummary;
   productsDatas: ProductsDatas;
   attributesToMap: any;
   attributesData: Array<AttributesInfos>;
@@ -155,6 +160,10 @@ export const state: State = {
     expiringItems: null,
     pendingItems: null,
     disapprovedItems: null,
+  },
+  prevalidationScanSummary: {
+    scannedItems: null,
+    invalidItems: null,
   },
   productsDatas: {
     items: [],
