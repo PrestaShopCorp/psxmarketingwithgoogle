@@ -138,7 +138,8 @@
     "selectMethod": "Пожалуйста, выберите желаемый способ связи для подтверждения вашей личности",
     "alertTooManyRequests": "Вы слишком часто запрашивали эту услугу с этим номером телефона. Вам нужно подождать 24 часа, чтобы повторить попытку или изменить номер телефона.",
     "alertSomethingHappened": "Что-то случилось. Это на нашей стороне, пожалуйста, попробуйте еще раз.",
-    "alertCodeExpired": "Срок действия кода истек. Пожалуйста, попросите другой"
+    "alertCodeExpired": "Срок действия кода истек. Пожалуйста, попросите другой",
+    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
   },
   "mcaRequirements": {
     "steps": {
@@ -575,7 +576,7 @@
       "pendingProducts": "В ожидании",
       "pendingProductsDescription": "Продукт, находящийся на рассмотрении, не будет отображаться в объявлениях или бесплатных объявлениях, поскольку он находится на рассмотрении Google.",
       "expiringProducts": "Истекающий",
-      "expiringProductsDescription": "Срок годности продуктов истекает в ближайшие 3 дня, и они больше не могут появляться в объявлениях или бесплатных объявлениях.",
+      "expiringProductsDescription": "Expiring products will be removed from your Google merchant center in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Не утверждено",
       "disapprovedProductsDescription": "Ваш продукт не одобрен для назначения и не активен.",
       "productsSubmittedToGoogle": "Активные продукты, переданные в Google: {0}",
