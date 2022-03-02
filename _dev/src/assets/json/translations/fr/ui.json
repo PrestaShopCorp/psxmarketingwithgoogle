@@ -138,7 +138,8 @@
     "selectMethod": "Veuillez sélectionner la méthode de contact souhaitée pour vérifier votre identité",
     "alertTooManyRequests": "Vous avez demandé ce service trop souvent avec ce numéro de téléphone. Vous devez attendre 24 heures pour réessayer ou changer votre numéro de téléphone.",
     "alertSomethingHappened": "Une chose s'est produite. Veuillez réessayer.",
-    "alertCodeExpired": "Le code a expiré. Veuillez en demander un autre"
+    "alertCodeExpired": "Le code a expiré. Veuillez en demander un autre",
+    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
   },
   "mcaRequirements": {
     "steps": {
@@ -575,7 +576,7 @@
       "pendingProducts": "En attente",
       "pendingProductsDescription": "Un produit en attente n'apparaîtra pas dans les annonces ou les listes gratuites car il est en cours d'examen par Google.",
       "expiringProducts": "En cours d'expiration",
-      "expiringProductsDescription": "Les produits arrivant à expiration expireront dans les 3 prochains jours et ne pourront plus figurer dans les annonces ou les listes gratuites.",
+      "expiringProductsDescription": "Expiring products will be removed from your Google merchant center in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Non approuvé",
       "disapprovedProductsDescription": "Votre produit est désapprouvé pour une destination et n'est pas actif.",
       "productsSubmittedToGoogle": "Produits actifs soumis à Google : {0}",
