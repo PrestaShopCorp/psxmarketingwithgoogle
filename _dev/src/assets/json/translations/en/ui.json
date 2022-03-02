@@ -139,7 +139,7 @@
     "alertTooManyRequests": "You have requested this service too many times with this phone number. You need to wait 24 hours to try again or change your phone number.",
     "alertSomethingHappened": "Something happened. It's on our side please try again.",
     "alertCodeExpired": "The code has expired. Please ask for another one",
-    "refreshAfterAddingWebsiteAddress": "Refresh after adding informations"
+    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
   },
   "mcaRequirements": {
     "steps": {

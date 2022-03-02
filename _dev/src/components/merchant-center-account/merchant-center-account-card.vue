@@ -421,7 +421,7 @@
           class="mb-0 mt-3"
         >
           <p class="mb-0">
-            <strong>{{ $t('mcaCard.refreshAfterAddingWebsiteAddress') }}</strong><br>
+            {{ $t('mcaCard.refreshAfterAddingWebsiteAddress') }}<br>
           </p>
           <div class="d-md-flex text-center align-items-center mt-2">
             <b-button
