@@ -138,7 +138,8 @@
     "selectMethod": "Selecciona el método de contacto deseado para verificar tu identidad",
     "alertTooManyRequests": "Has solicitado este servicio demasiadas veces con este número de teléfono. Tienes que esperar 24 horas para volver a intentarlo o cambiar tu número de teléfono.",
     "alertSomethingHappened": "Something happened. It's on our side, please try again.",
-    "alertCodeExpired": "El código ha caducado. Por favor, pide otro"
+    "alertCodeExpired": "El código ha caducado. Por favor, pide otro",
+    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
   },
   "mcaRequirements": {
     "steps": {
@@ -575,7 +576,7 @@
       "pendingProducts": "Pendiente",
       "pendingProductsDescription": "Un producto pendiente no se mostrará en los anuncios o listados gratuitos porque está siendo revisado por Google.",
       "expiringProducts": "Caducando",
-      "expiringProductsDescription": "Los productos que caduquen caducarán en los próximos 3 días y ya no podrán aparecer en los anuncios ni en los listados gratuitos.",
+      "expiringProductsDescription": "Expiring products will be removed from your Google merchant center in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "No aprobado",
       "disapprovedProductsDescription": "Su producto está desaprobado para un destino y no está activo.",
       "productsSubmittedToGoogle": "Productos activos enviados a Google: {0}",

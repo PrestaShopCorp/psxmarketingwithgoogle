@@ -138,7 +138,8 @@
     "selectMethod": "Wybierz preferowaną metodę kontaktu w celu weryfikacji tożsamości",
     "alertTooManyRequests": "Prosiłeś o tę usługę zbyt wiele w powiązaniu z tym numerem telefonu. Musisz poczekać 24 godziny, aby spróbować ponownie lub musisz zmienić numer telefonu.",
     "alertSomethingHappened": "Coś się stało. To po naszej stronie, proszę spróbować ponownie.",
-    "alertCodeExpired": "Kod wygasł. Poproś o nowy"
+    "alertCodeExpired": "Kod wygasł. Poproś o nowy",
+    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
   },
   "mcaRequirements": {
     "steps": {
@@ -575,7 +576,7 @@
       "pendingProducts": "W toku",
       "pendingProductsDescription": "Oczekujący produkt nie będzie wyświetlany w reklamach lub bezpłatnych listach, ponieważ jest sprawdzany przez Google.",
       "expiringProducts": "Wygasający",
-      "expiringProductsDescription": "Wygasające produkty wygasną w ciągu najbliższych 3 dni i nie będą już kwalifikować się do wyświetlania w ogłoszeniach lub bezpłatnych listach.",
+      "expiringProductsDescription": "Expiring products will be removed from your Google merchant center in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Niezatwierdzony",
       "disapprovedProductsDescription": "Twój produkt nie został zatwierdzony dla miejsca docelowego i nie jest aktywny.",
       "productsSubmittedToGoogle": "Aktywne produkty przesłane do Google: {0}",

@@ -138,7 +138,8 @@
     "selectMethod": "Selecteer de gewenste contactmethode om uw identiteit te verifiëren",
     "alertTooManyRequests": "Je hebt deze dienst al te vaak aangevraagd met dit telefoonnummer. Je moet 24 uur wachten om het opnieuw te proberen of je telefoonnummer te veranderen.",
     "alertSomethingHappened": "Er is iets gebeurd. Het ligt aan onze kant, probeer het nog eens.",
-    "alertCodeExpired": "De code is verlopen. Vraag alstublieft om een andere"
+    "alertCodeExpired": "De code is verlopen. Vraag alstublieft om een andere",
+    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
   },
   "mcaRequirements": {
     "steps": {
@@ -575,7 +576,7 @@
       "pendingProducts": "In afwachting van",
       "pendingProductsDescription": "Een product dat nog in behandeling is, wordt niet getoond in advertenties of gratis vermeldingen omdat het nog wordt beoordeeld door Google.",
       "expiringProducts": "Aflopend",
-      "expiringProductsDescription": "Verlopen producten vervallen in de komende 3 dagen, en zullen niet langer in aanmerking komen om in advertenties of gratis aanbiedingen te verschijnen.",
+      "expiringProductsDescription": "Expiring products will be removed from your Google merchant center in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Niet goedgekeurd",
       "disapprovedProductsDescription": "Uw product is afgekeurd voor een bestemming en is niet actief.",
       "productsSubmittedToGoogle": "Actieve producten ingediend bij Google: {0}",
