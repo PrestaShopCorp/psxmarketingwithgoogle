@@ -26,6 +26,7 @@ import {
   AttributesInfos,
   commonAttributes,
   PrevalidationScanSummary,
+  PreScanReporting,
 } from './state';
 
 type payloadObject = {
@@ -162,5 +163,17 @@ export default {
   },
   [MutationsTypes.SET_PREVALIDATION_SUMMARY](state: LocalState, payload: PrevalidationScanSummary) {
     state.prevalidationScanSummary = payload;
+  },
+  [MutationsTypes.SET_PRESCAN_LIMIT_PAGE](state: LocalState, payload: number) {
+    state.preScanDetail.limit = payload;
+  },
+  [MutationsTypes.SET_PRESCAN_NEXT_PAGE](state: LocalState, payload: number) {
+    state.preScanDetail.currentPage = payload;
+  },
+  [MutationsTypes.SET_PRESCAN_PRODUCTS](state: LocalState, payload: PreScanReporting[]) {
+    state.preScanDetail.products = payload;
+  },
+  [MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT](state: LocalState, payload: number) {
+    state.preScanDetail.total = payload;
   },
 };

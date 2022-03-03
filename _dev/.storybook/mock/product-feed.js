@@ -185,6 +185,12 @@ export const productFeed = {
     {"name":"property","type":"feature"}
   ],
   selectedProductCategories: [],
+  preScanDetail: {
+    products: [],
+    limit: 10,
+    currentPage: 1,
+    total: 0,
+  },
 };
 
 export const productFeedNoCarriers = {
@@ -365,148 +371,496 @@ export const productFeedSyncScheduleNow = {
   requestSynchronizationNow: true,
 }
 
-export const prevalidationScan = [
-  {
-    productId: 1851,
-    attributeId: 444,
-    lastValidationDate: 1646189256515,
-    titleByIsocode: [
-      {
-        title: "GBP Performance Sticker",
-        isocode: "en"
-      },
-      {
-        title: "Décalque GBP Performance",
-        isocode: "fr"
-      }
-    ],
-    isMissingName: false,
-    isMissingLink: false,
-    isMissingImage: false,
-    isMissingPrice: false,
-    isMissingDescription: false,
-    isMissingBrandOrBarcode: true
-  },
-  {
-    productId: 1851,
-    attributeId: 445,
-    lastValidationDate: 1646189256515,
-    titleByIsocode: [
-      {
-        title: "GBP Performance Sticker",
-        isocode: "en"
-      },
-      {
-        title: "Décalque GBP Performance",
-        isocode: "fr"
-      }
-    ],
-    isMissingName: false,
-    isMissingLink: false,
-    isMissingImage: false,
-    isMissingPrice: false,
-    isMissingDescription: false,
-    isMissingBrandOrBarcode: true
-  },
-  {
-    productId: 1851,
-    attributeId: 446,
-    lastValidationDate: 1646189256515,
-    titleByIsocode: [
-      {
-        title: "Décalque GBP Performance",
-        isocode: "fr"
-      },
-      {
-        title: "GBP Performance Sticker",
-        isocode: "en"
-      }
-    ],
-    isMissingName: false,
-    isMissingLink: false,
-    isMissingImage: false,
-    isMissingPrice: false,
-    isMissingDescription: false,
-    isMissingBrandOrBarcode: true
-  },
-  {
-    productId: 1851,
-    attributeId: 447,
-    lastValidationDate: 1646189256515,
-    titleByIsocode: [
-      {
-        title: "Décalque GBP Performance",
-        isocode: "fr"
-      },
-      {
-        title: "GBP Performance Sticker",
-        isocode: "en"
-      }
-    ],
-    isMissingName: false,
-    isMissingLink: false,
-    isMissingImage: false,
-    isMissingPrice: false,
-    isMissingDescription: false,
-    isMissingBrandOrBarcode: true
-  },
-  {
-    productId: 1851,
-    attributeId: 448,
-    lastValidationDate: 1646189256515,
-    titleByIsocode: [
-      {
-        title: "GBP Performance Sticker",
-        isocode: "en"
-      },
-      {
-        title: "Décalque GBP Performance",
-        isocode: "fr"
-      }
-    ],
-    isMissingName: false,
-    isMissingLink: false,
-    isMissingImage: false,
-    isMissingPrice: false,
-    isMissingDescription: false,
-    isMissingBrandOrBarcode: true
-  },
-  {
-    productId: 1851,
-    attributeId: 449,
-    lastValidationDate: 1646189256515,
-    titleByIsocode: [
-      {
-        title: "GBP Performance Sticker",
-        isocode: "en"
-      },
-      {
-        title: "Décalque GBP Performance",
-        isocode: "fr"
-      }
-    ],
-    isMissingName: false,
-    isMissingLink: false,
-    isMissingImage: false,
-    isMissingPrice: false,
-    isMissingDescription: false,
-    isMissingBrandOrBarcode: true
-  },
-  {
-    productId: 1852,
-    attributeId: 450,
-    lastValidationDate: 1646189256515,
-    titleByIsocode: [
-      {
-        title: "GBP Performance Logo T-Shirt",
-        isocode: "en"
-      }
-    ],
-    isMissingName: false,
-    isMissingLink: false,
-    isMissingImage: false,
-    isMissingPrice: false,
-    isMissingDescription: false,
-    isMissingBrandOrBarcode: true
-  },
-];
+export const prevalidationScan = {
+  errors: [
+    {
+      productId: 1851,
+      attributeId: 445,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 446,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        },
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 447,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        },
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 448,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 449,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1852,
+      attributeId: 450,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Logo T-Shirt",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 445,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 446,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        },
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 447,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        },
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 448,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 449,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1852,
+      attributeId: 450,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Logo T-Shirt",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 445,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 446,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        },
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 447,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        },
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 448,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 449,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1852,
+      attributeId: 450,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Logo T-Shirt",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 445,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 446,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        },
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 447,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        },
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 448,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1851,
+      attributeId: 449,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Sticker",
+          isocode: "en"
+        },
+        {
+          title: "Décalque GBP Performance",
+          isocode: "fr"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+    {
+      productId: 1852,
+      attributeId: 450,
+      lastValidationDate: 1646189256515,
+      titleByIsocode: [
+        {
+          title: "GBP Performance Logo T-Shirt",
+          isocode: "en"
+        }
+      ],
+      isMissingName: false,
+      isMissingLink: false,
+      isMissingImage: false,
+      isMissingPrice: false,
+      isMissingDescription: false,
+      isMissingBrandOrBarcode: true
+    },
+  ],
+  totalErrors: 24,
+}

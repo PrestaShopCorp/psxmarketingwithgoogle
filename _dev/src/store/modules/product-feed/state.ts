@@ -118,12 +118,36 @@ export interface State {
   attributesData: Array<AttributesInfos>;
   selectedProductCategories: Array<String>;
   requestSynchronizationNow: boolean;
+  preScanDetail: PreScanDetail;
 }
 
 export enum ProductStatues {
   Disapproved = 'disapproved',
   Pending = 'pending',
   Approved = 'approved',
+}
+
+export interface PreScanProductLang {
+  title: string;
+  isocode: string;
+}
+export interface PreScanReporting {
+  productId: number;
+  attributeId?: number;
+  lastValidationDate: number;
+  titleByIsocode: Array<PreScanProductLang>;
+  isMissingName: Boolean;
+  isMissingLink: Boolean;
+  isMissingImage: Boolean;
+  isMissingPrice: Boolean;
+  isMissingDescription: Boolean;
+  isMissingBrandOrBarcode: Boolean;
+}
+export interface PreScanDetail {
+  products: Array<PreScanReporting>;
+  limit: number;
+  currentPage: number;
+  total: number;
 }
 
 export const state: State = {
@@ -172,4 +196,10 @@ export const state: State = {
   requestSynchronizationNow: false,
   attributesData: [],
   selectedProductCategories: [],
+  preScanDetail: {
+    products: [],
+    limit: 10,
+    currentPage: 1,
+    total: 0,
+  },
 };

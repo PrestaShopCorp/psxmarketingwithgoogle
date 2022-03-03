@@ -23,6 +23,7 @@ import {
   ProductFeedStatus,
   ProductFeedValidationSummary,
   AttributesInfos,
+  PreScanReporting,
 } from './state';
 import GettersTypes from './getters-types';
 import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
@@ -100,4 +101,16 @@ export default {
   [GettersTypes.GET_SYNC_SCHEDULE](state: LocalState) : boolean {
     return state.requestSynchronizationNow;
   },
+  [GettersTypes.GET_PRESCAN_LIMIT_PAGE](state: LocalState): number {
+    return state.preScanDetail.limit;
+  },
+  [GettersTypes.GET_PRESCAN_NEXT_PAGE](state: LocalState): number {
+    return state.preScanDetail.currentPage;
+  },
+  [GettersTypes.GET_PRESCAN_TOTAL_ERROR](state: LocalState): number {
+    return state.preScanDetail.total;
+  },
+  [GettersTypes.GET_PRESCAN_PRODUCTS](state: LocalState): PreScanReporting[] {
+    return state.preScanDetail.products;
+  }
 };

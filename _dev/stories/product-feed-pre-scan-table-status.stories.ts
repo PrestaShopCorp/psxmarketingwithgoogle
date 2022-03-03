@@ -37,7 +37,7 @@ Loading.args = {
 PreScanTableDetail.parameters = {
   msw: {
     handlers: [
-      rest.get('/product-feeds/prevalidation-scan', (req, res, ctx) => {
+      rest.get('/product-feeds/prevalidation-scan/errors', (req, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json(prevalidationScan)

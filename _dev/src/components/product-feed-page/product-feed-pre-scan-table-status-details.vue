@@ -7,7 +7,7 @@
       header-tag="nav"
       header-class="px-3 py-1"
     >
-      <ol class="list-inline mb-0 d-flex align-items-center ps_gs-breadcrumb">
+      <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
           <b-link
             :to="{name: 'product-feed'}"
@@ -22,7 +22,7 @@
       </ol>
     </b-card-header>
     <b-card-body body-class="p-3 mt-2">
-      <div class="d-flex flex-wrap flex-md-nowrap justify-content-between align-items-center">
+      <div class="flex-wrap d-flex flex-md-nowrap justify-content-between align-items-center">
         <i18n
           path="productFeedPage.preScan.description"
           tag="h2"
@@ -44,7 +44,7 @@
           menu-class="ps-dropdown"
           :text="langChosen ? langChosen
             : $t('productFeedSettings.preScan.selectLanguage')"
-          class="mb-2 mt-1 mt-md-0 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
+          class="mt-1 mb-2 mt-md-0 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
         >
           <b-dropdown-item
             :disabled="!langChosen"
@@ -71,11 +71,11 @@
         :fields="fields"
         :filter-function="filterByLang"
         :filter="langChosen"
-        :per-page="perPage"
+        :per-page="limit"
         :current-page="currentPage"
         :busy="loading"
         id="table-products"
-        class="ps_gs-table-products mb-3"
+        class="mb-3 ps_gs-table-products"
         table-class="border-bottom-0"
         variant="light"
         responsive="xl"
@@ -98,7 +98,7 @@
         >
           <b-badge
             variant="primary"
-            class="ps_gs-fz-12 text-capitalize mr-1"
+            class="mr-1 ps_gs-fz-12 text-capitalize"
             v-for="(language, index) in getProductLangs(data.item.titleByIsocode)"
             :key="index"
           >
@@ -144,13 +144,11 @@
 
       </b-table>
       <div class="overflow-auto">
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="rows"
-          :per-page="perPage"
-          aria-controls="table-products"
-          align="center"
-          class="mb-0"
+        <TablePageControls
+          :total-pages="totalPage"
+          :active-page="currentPage"
+          :selected-filter-quantity-to-show="limit"
+          :need-page-selector="false"
         />
       </div>
     </b-card-body>
@@ -158,16 +156,17 @@
 </template>
 
 <script>
+import TablePageControls from '../commons/table-page-controls.vue';
+
 export default {
   name: 'ProductFeedPreScanTableStatusDetails',
-  components: {},
+  components: {
+    TablePageControls
+  },
   data() {
     return {
       langChosen: null,
-      perPage: 10,
-      currentPage: 1,
       loading: false,
-      items: [],
       fields: [
         {
           key: 'id',
@@ -216,7 +215,30 @@ export default {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
     },
     rows() {
-      return this.items.length;
+      return this.$store.getters['productFeed/GET_PRESCAN_PRODUCTS'].length;
+    },
+    items() {
+      return this.$store.getters['productFeed/GET_PRESCAN_PRODUCTS'];
+    },
+    totalPage() {
+      const totalPage = Math.ceil(this.$store.getters['productFeed/GET_PRESCAN_TOTAL_ERROR'] / this.limit);
+      return totalPage < 1 ? 1 : totalPage;
+    },
+    limit: {
+      get() {
+        return this.$store.getters['productFeed/GET_PRESCAN_LIMIT_PAGE'];
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_PRESCAN_LIMIT_PAGE', value);
+      }
+    },
+    currentPage: {
+      get() {
+        return this.$store.getters['productFeed/GET_PRESCAN_NEXT_PAGE'];
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_PRESCAN_NEXT_PAGE', value);
+      }
     },
     countries() {
       return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
@@ -242,18 +264,25 @@ export default {
     getPreScanProducts() {
       this.loading = true;
       this.$store.dispatch('productFeed/GET_PREVALIDATION_PRODUCTS')
-        .then((res) => {
+        .finally(() => {
           this.loading = false;
-          this.items = res;
-        })
-        .catch((error) => {
-          this.loading = false;
-          console.error(error);
         });
+
+    console.log(this.$store.getters['productFeed/GET_PRESCAN_PRODUCTS']);
+    },
+    async limitChanged(newLimit) {
+      this.limit = newLimit;
+      await this.getPreScanProducts();
+    },
+    async pageChanged(newPage) {
+      this.currentPage = newPage;
+      await this.getPreScanProducts();
     },
   },
   mounted() {
     this.getPreScanProducts();
+    this.$root.$on('changeLimit', this.limitChanged);
+    this.$root.$on('changePage', this.pageChanged);
   },
 };
 </script>

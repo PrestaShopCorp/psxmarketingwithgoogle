@@ -29,7 +29,7 @@
         last-number
       />
     </nav>
-    <PageNumberSelector />
+    <PageNumberSelector v-if="needPageSelector" />
   </div>
 </template>
 
@@ -58,6 +58,10 @@ export default {
       type: Number,
       required: true,
       default: 10,
+    },
+    needPageSelector: {
+      type: Boolean,
+      default: true,
     },
   },
   methods: {
