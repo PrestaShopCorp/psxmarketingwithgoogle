@@ -24,6 +24,7 @@ import countriesSelectionOptions from '../../../assets/json/countries.json';
 import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 import {
   Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
+  ShopShippingInterface, validateDeliveryDetail,
 } from '../../../providers/shipping-settings-provider';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
 
@@ -130,16 +131,13 @@ export default {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
-    const getShippingSettings = productFeedSettings.shippingSettings;
-    const deliveryFiltered = productFeedSettings.deliveryDetails.filter(
-      (e) => e.enabledCarrier
-      && ((e.minHandlingTimeInDays !== null && e.maxHandlingTimeInDays !== null)
-      || (e.maxTransitTimeInDays !== null && e.minTransitTimeInDays !== null)),
+    const deliveryFiltered: DeliveryDetail[] = productFeedSettings.deliveryDetails.filter(
+      (e) => e.enabledCarrier && validateDeliveryDetail(e),
     );
-    const shipping = getShippingSettings.filter(
-      (s) => deliveryFiltered.find((d) => s.properties.id_carrier === d.carrierId),
-    );
-
+    const shipping: ShopShippingInterface[] = productFeedSettings.shippingSettings
+      .filter(
+        (s) => deliveryFiltered.find((d) => s.properties.id_reference === d.carrierId),
+      );
     commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
       name: 'attributeMapping', data: attributeMapping,
     });
