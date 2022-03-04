@@ -440,7 +440,6 @@ export default {
       const limit = state.preScanDetail.limit;
       const offset = ((state.preScanDetail.currentPage - 1) * limit).toString();
       const query = `?limit=${limit}&offset=${offset}`;
-
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/prevalidation-scan/errors${query}`, {
         method: 'GET',
         headers: {
