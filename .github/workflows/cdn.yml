@@ -58,6 +58,16 @@ jobs:
         env:
           VUE_APP_CDN_URL: https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.x.x/
 
+      - name: Delete old CDN prerelease
+        continue-on-error: true
+        if: "github.event.release.prerelease"
+        run: |
+          gsutil rm -r gs://psxmarketing-cdn/${MAJOR}.${MINOR}.${PATCH}
+        env:
+          MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
+          MINOR: ${{ steps.get_tag.outputs.MINOR }}
+          PATCH: ${{ steps.get_tag.outputs.PATCH }}
+
       - name: Delete old CDN
         continue-on-error: true
         if: "!github.event.release.prerelease"
