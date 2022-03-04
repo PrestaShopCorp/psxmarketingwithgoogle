@@ -17,9 +17,11 @@ jobs:
   chromatic-deployment:
     # Operating System
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || (contains(github.event.pull_request.labels.*.name, 'waiting for UX') && ${{ github.event.pull_request.head.repo.full_name == 'PrestaShopCorp/psxmarketingwithgoogle' }})
+    if: github.event_name == 'push' || (contains(github.event.pull_request.labels.*.name, 'waiting for UX') && github.event.pull_request.head.repo.full_name == 'PrestaShopCorp/psxmarketingwithgoogle')
     # Job steps
     steps:
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1
         # 👇 Version 2 of the action
       - name: Checkout repository
         uses: actions/checkout@v2
