@@ -11,6 +11,50 @@ export default {
   parameters: {
     msw: {
       handlers: [
+        rest.get("/shopping-campaigns/list",  (req, res, ctx) => {
+          return res(ctx.json({"campaigns":[
+            {
+                "id": "16004060865",
+                "resourceName": "customers/4088436776/campaigns/16004060865",
+                "campaignName": "rgereegr",
+                "startDate": "2022-01-27",
+                "endDate": "2037-12-30",
+                "targetCountry": "FR",
+                "dailyBudget": 3,
+                "status": "ELIGIBLE",
+                "currencyCode": "EUR",
+                "productFilters": [
+                    {
+                        "dimension": "categories",
+                        "values": [
+                            "2169"
+                        ]
+                    }
+                ],
+                "hasUnhandledFilters": false
+            },
+            {
+                "id": "16004011605",
+                "resourceName": "customers/4088436776/campaigns/16004011605",
+                "campaignName": "zret",
+                "startDate": "2022-01-27",
+                "endDate": "2037-12-30",
+                "targetCountry": "FR",
+                "dailyBudget": 1,
+                "status": "ELIGIBLE",
+                "currencyCode": "EUR",
+                "productFilters": [
+                    {
+                        "dimension": "categories",
+                        "values": [
+                            "2169",
+                            "502981"
+                        ]
+                    }
+                ],
+                "hasUnhandledFilters": false
+            }
+        ]}))}),
         rest.get("/shopping-campaigns/dimensions/filters", (req, res, ctx) => {
           return res(ctx.json({
             "categories": [

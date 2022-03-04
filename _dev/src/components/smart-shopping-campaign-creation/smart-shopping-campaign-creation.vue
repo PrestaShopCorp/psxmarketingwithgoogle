@@ -1,400 +1,414 @@
 <template>
-  <b-card
-    no-body
-    class="ps_gs-onboardingcard"
-  >
-    <b-card-header
-      header-tag="nav"
-      header-class="px-3 py-1"
+  <section>
+    <b-skeleton-wrapper
+      :loading="loader"
+      class="mb-3"
     >
-      <ol
-        class="list-inline mb-0 d-sm-flex align-items-center ps_gs-breadcrumb"
+      <template #loading>
+        <b-card>
+          <b-skeleton width="85%" />
+          <b-skeleton width="55%" />
+          <b-skeleton width="70%" />
+        </b-card>
+      </template>
+      <b-card
+        no-body
+        class="ps_gs-onboardingcard"
       >
-        <li class="list-inline-item ps_gs-breadcrumb__item">
-          <router-link
-            class="d-flex align-items-center ps_gs-breadcrumb__link"
-            :to="{ name: 'campaign' }"
+        <b-card-header
+          header-tag="nav"
+          header-class="px-3 py-1"
+        >
+          <ol
+            class="list-inline mb-0 d-sm-flex align-items-center ps_gs-breadcrumb"
           >
-            <img
-              class="ps_gs-breadcrumb__icon"
-              src="@/assets/images/Google-Commercial-icon.svg"
-              width="40"
-              height="40"
-              alt=""
+            <li class="list-inline-item ps_gs-breadcrumb__item">
+              <router-link
+                class="d-flex align-items-center ps_gs-breadcrumb__link"
+                :to="{ name: 'campaign' }"
+              >
+                <img
+                  class="ps_gs-breadcrumb__icon"
+                  src="@/assets/images/Google-Commercial-icon.svg"
+                  width="40"
+                  height="40"
+                  alt=""
+                >
+                {{ $t("smartShoppingCampaignCreation.breadcrumb1") }}
+              </router-link>
+            </li>
+            <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
+              {{ $t("smartShoppingCampaignCreation.breadcrumb2") }}
+            </li>
+          </ol>
+        </b-card-header>
+        <b-card-body body-class="p-3 p-md-4">
+          <b-alert
+            v-if="hasUnhandledFilters"
+            show
+            variant="info"
+            data-test-id="unhandled-filters-alert"
+          >
+            {{ $t("smartShoppingCampaignCreation.alerts.hasUnhandledFilters") }}
+          </b-alert>
+          <b-alert
+            v-if="errorFetchingFilters"
+            variant="info"
+            show
+          >
+            {{ $t("smartShoppingCampaignCreation.errorFetchingFilters") }}
+          </b-alert>
+          <b-form>
+            <b-form-group
+              id="campaign-name-fieldset"
+              :description="$t('smartShoppingCampaignCreation.inputNameHelper')"
+              label-for="campaign-name-input"
+              data-test-id="campaign-name-input"
+              label-class="d-flex align-items-center font-weight-600"
+              :state="campaignNameFeedback"
+              :invalid-feedback="
+                $t('smartShoppingCampaignCreation.inputCampaignNameInvalidFeedback')
+              "
             >
-            {{ $t("smartShoppingCampaignCreation.breadcrumb1") }}
-          </router-link>
-        </li>
-        <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
-          {{ $t("smartShoppingCampaignCreation.breadcrumb2") }}
-        </li>
-      </ol>
-    </b-card-header>
-    <b-card-body body-class="p-3 p-md-4">
-      <b-alert
-        v-if="hasUnhandledFilters"
-        show
-        variant="info"
-        data-test-id="unhandled-filters-alert"
-      >
-        {{ $t("smartShoppingCampaignCreation.alerts.hasUnhandledFilters") }}
-      </b-alert>
-      <b-alert
-        v-if="errorFetchingFilters"
-        variant="info"
-        show
-      >
-        {{ $t("smartShoppingCampaignCreation.errorFetchingFilters") }}
-      </b-alert>
-      <b-form>
-        <b-form-group
-          id="campaign-name-fieldset"
-          :description="$t('smartShoppingCampaignCreation.inputNameHelper')"
-          label-for="campaign-name-input"
-          data-test-id="campaign-name-input"
-          label-class="d-flex align-items-center font-weight-600"
-          :state="campaignNameFeedback"
-          :invalid-feedback="
-            $t('smartShoppingCampaignCreation.inputCampaignNameInvalidFeedback')
-          "
-        >
-          <template #label>
-            {{ $t("smartShoppingCampaignCreation.inputNameLabel") }}
-            <b-button
-              class="ml-1 p-0 d-flex align-items-center"
-              variant="text-primary"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('smartShoppingCampaignCreation.inputNameTooltip')"
-            >
-              <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
-                info_outlined
-              </span>
-            </b-button>
-          </template>
-          <b-form-input
-            id="campaign-name-input"
-            @keyup="debounceName()"
-            v-model="campaignName"
-            :state="campaignNameFeedback"
-            :placeholder="
-              $t('smartShoppingCampaignCreation.inputNamePlaceholder')
-            "
-            class="maxw-sm-420"
-          />
-        </b-form-group>
-        <b-form-group
-          id="campaign-duration-fieldset"
-          class="maxw-sm-420"
-          :description="$t('smartShoppingCampaignCreation.inputDurationHelper')"
-          label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
-        >
-          <template #label>
-            {{ $t("smartShoppingCampaignCreation.inputDurationLabel") }}
-            <b-button
-              class="ml-1 p-0 d-flex align-items-center"
-              variant="text-primary"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('smartShoppingCampaignCreation.inputDurationTooltip')"
-            >
-              <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
-                info_outlined
-              </span>
-            </b-button>
-          </template>
-          <b-form-row>
-            <b-col
-              cols="12"
-              md="6"
-              class="mb-3 mb-md-0"
-            >
-              <label for="campaign-duration-start-date-input">
-                {{ $t("smartShoppingCampaignCreation.inputDurationLabel1") }}
-              </label>
-              <b-form-datepicker
-                id="campaign-duration-start-date-input"
-                ref="campaign-duration-start-date-input"
-                :start-weekday="1"
-                v-model="campaignDurationStartDate"
-                :min="new Date()"
-                :date-format-options="{
-                  year: 'numeric',
-                  month: 'numeric',
-                  day: 'numeric',
-                }"
-                reset-button
-                :label-reset-button="$t('cta.resetDate')"
-                :reset-value="new Date()"
-                reset-button-variant="outline-secondary sm"
-                :hide-header="true"
-                :label-help="
-                  $t('smartShoppingCampaignCreation.inputDatePickerHelper')
+              <template #label>
+                {{ $t("smartShoppingCampaignCreation.inputNameLabel") }}
+                <b-button
+                  class="ml-1 p-0 d-flex align-items-center"
+                  variant="text-primary"
+                  v-b-tooltip:psxMktgWithGoogleApp
+                  :title="$t('smartShoppingCampaignCreation.inputNameTooltip')"
+                >
+                  <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+                    info_outlined
+                  </span>
+                </b-button>
+              </template>
+              <b-form-input
+                id="campaign-name-input"
+                @keyup="debounceName()"
+                v-model="campaignName"
+                :state="campaignNameFeedback"
+                :placeholder="
+                  $t('smartShoppingCampaignCreation.inputNamePlaceholder')
                 "
-                :required="true"
-                class="ps_gs-datepicker"
-                @input="openEndDatepicker"
+                class="maxw-sm-420"
               />
-            </b-col>
-            <b-col
-              cols="12"
-              md="6"
+            </b-form-group>
+            <b-form-group
+              id="campaign-duration-fieldset"
+              class="maxw-sm-420"
+              :description="$t('smartShoppingCampaignCreation.inputDurationHelper')"
+              label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
             >
-              <label for="campaign-duration-end-date-input">
-                {{ $t("smartShoppingCampaignCreation.inputDurationLabel2") }}
-              </label>
-              <b-form-datepicker
-                id="campaign-duration-end-date-input"
-                ref="campaignDurationEndDateInput"
-                :start-weekday="1"
-                v-model="campaignDurationEndDate"
-                :date-format-options="{
-                  year: 'numeric',
-                  month: 'numeric',
-                  day: 'numeric',
-                }"
-                :min="campaignDurationStartDate"
-                reset-button
-                :label-reset-button="$t('cta.resetDate')"
-                reset-button-variant="outline-secondary sm"
-                close-button
-                :label-close-button="$t('cta.noEndDate')"
-                close-button-variant="outline-secondary sm"
-                :hide-header="true"
-                :label-help="
-                  $t('smartShoppingCampaignCreation.inputDatePickerHelper')
-                "
-                :required="false"
-                class="ps_gs-datepicker"
-                menu-class="ps_gs-datepicker-end"
+              <template #label>
+                {{ $t("smartShoppingCampaignCreation.inputDurationLabel") }}
+                <b-button
+                  class="ml-1 p-0 d-flex align-items-center"
+                  variant="text-primary"
+                  v-b-tooltip:psxMktgWithGoogleApp
+                  :title="$t('smartShoppingCampaignCreation.inputDurationTooltip')"
+                >
+                  <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+                    info_outlined
+                  </span>
+                </b-button>
+              </template>
+              <b-form-row>
+                <b-col
+                  cols="12"
+                  md="6"
+                  class="mb-3 mb-md-0"
+                >
+                  <label for="campaign-duration-start-date-input">
+                    {{ $t("smartShoppingCampaignCreation.inputDurationLabel1") }}
+                  </label>
+                  <b-form-datepicker
+                    id="campaign-duration-start-date-input"
+                    ref="campaign-duration-start-date-input"
+                    :start-weekday="1"
+                    v-model="campaignDurationStartDate"
+                    :min="new Date()"
+                    :date-format-options="{
+                      year: 'numeric',
+                      month: 'numeric',
+                      day: 'numeric',
+                    }"
+                    reset-button
+                    :label-reset-button="$t('cta.resetDate')"
+                    :reset-value="new Date()"
+                    reset-button-variant="outline-secondary sm"
+                    :hide-header="true"
+                    :label-help="
+                      $t('smartShoppingCampaignCreation.inputDatePickerHelper')
+                    "
+                    :required="true"
+                    class="ps_gs-datepicker"
+                    @input="openEndDatepicker"
+                  />
+                </b-col>
+                <b-col
+                  cols="12"
+                  md="6"
+                >
+                  <label for="campaign-duration-end-date-input">
+                    {{ $t("smartShoppingCampaignCreation.inputDurationLabel2") }}
+                  </label>
+                  <b-form-datepicker
+                    id="campaign-duration-end-date-input"
+                    ref="campaignDurationEndDateInput"
+                    :start-weekday="1"
+                    v-model="campaignDurationEndDate"
+                    :date-format-options="{
+                      year: 'numeric',
+                      month: 'numeric',
+                      day: 'numeric',
+                    }"
+                    :min="campaignDurationStartDate"
+                    reset-button
+                    :label-reset-button="$t('cta.resetDate')"
+                    reset-button-variant="outline-secondary sm"
+                    close-button
+                    :label-close-button="$t('cta.noEndDate')"
+                    close-button-variant="outline-secondary sm"
+                    :hide-header="true"
+                    :label-help="
+                      $t('smartShoppingCampaignCreation.inputDatePickerHelper')
+                    "
+                    :required="false"
+                    class="ps_gs-datepicker"
+                    menu-class="ps_gs-datepicker-end"
+                  />
+                </b-col>
+              </b-form-row>
+            </b-form-group>
+            <b-form-group
+              id="campaign-target-country-fieldset"
+              label-class="d-flex align-items-center font-weight-600"
+              label-for="campaign-target-country-input"
+              :description="
+                !editMode
+                  ? $t('smartShoppingCampaignCreation.inputCountryHelper')
+                  : $t('smartShoppingCampaignCreation.inputCountryImutable')
+              "
+              class="maxw-sm-420"
+            >
+              <template #label>
+                {{ $t("smartShoppingCampaignCreation.inputCountryLabel") }}
+                <b-button
+                  class="ml-1 p-0 d-flex align-items-center"
+                  variant="text-primary"
+                  v-b-tooltip:psxMktgWithGoogleApp
+                  :title="$t('smartShoppingCampaignCreation.inputCountryTooltip')"
+                >
+                  <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+                    info_outlined
+                  </span>
+                </b-button>
+              </template>
+              <SelectCountry
+                v-if="!editMode"
+                @countrySelected="saveCountrySelected"
+                :default-value="defaultCountry()"
+                :need-filter="false"
+                :is-multiple="false"
+                :dropdown-options="activeCountries"
               />
-            </b-col>
-          </b-form-row>
-        </b-form-group>
-        <b-form-group
-          id="campaign-target-country-fieldset"
-          label-class="d-flex align-items-center font-weight-600"
-          label-for="campaign-target-country-input"
-          :description="
-            !editMode
-              ? $t('smartShoppingCampaignCreation.inputCountryHelper')
-              : $t('smartShoppingCampaignCreation.inputCountryImutable')
-          "
-          class="maxw-sm-420"
-        >
-          <template #label>
-            {{ $t("smartShoppingCampaignCreation.inputCountryLabel") }}
-            <b-button
-              class="ml-1 p-0 d-flex align-items-center"
-              variant="text-primary"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('smartShoppingCampaignCreation.inputCountryTooltip')"
-            >
-              <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
-                info_outlined
+              <span v-else>
+                {{ targetCountry }}
               </span>
-            </b-button>
-          </template>
-          <SelectCountry
-            v-if="!editMode"
-            @countrySelected="saveCountrySelected"
-            :default-value="defaultCountry()"
-            :need-filter="false"
-            :is-multiple="false"
-            :dropdown-options="activeCountries"
-          />
-          <span v-else>
-            {{ targetCountry }}
-          </span>
-        </b-form-group>
-        <b-form-group
-          :label="$t('smartShoppingCampaignCreation.inputFiltersLegend')"
-          id="campaign-products-filter-fieldset"
-          label-class="h4 font-weight-600 border-0 bg-transparent"
-        >
-          <b-form-radio
-            :disabled="hasUnhandledFilters || errorFetchingFilters"
-            v-model="campaignHasNoProductsFilter"
-            name="campaign-product-filter-radios"
-            :value="true"
-            class="mb-1"
-          >
-            {{ $t("smartShoppingCampaignCreation.inputFiltersAllLabel") }}
-          </b-form-radio>
-          <b-form-radio
-            :disabled="
-              !productsHaveBeenApprovedByGoogle ||
-                hasUnhandledFilters ||
-                errorFetchingFilters
-            "
-            v-model="campaignHasNoProductsFilter"
-            name="campaign-product-filter-radios"
-            :value="false"
-          >
-            {{ $t("smartShoppingCampaignCreation.inputFiltersPartialLabel") }}
-          </b-form-radio>
-          <template #description>
-            <VueShowdown
-              tag="p"
-              class="mb-0"
-              :markdown="
-                $t('smartShoppingCampaignCreation.inputFiltersHelper', [
-                  $options.googleUrl.shoppingAdsPolicies,
-                ])
-              "
-              :extensions="['extended-link', 'no-p-tag']"
-            />
-          </template>
-          <div class="d-flex">
-            <b-button
-              data-test-id="campaign-select-filter-button"
-              v-if="!campaignHasNoProductsFilter"
-              :disabled="
-                !productsHaveBeenApprovedByGoogle ||
-                  hasUnhandledFilters ||
-                  errorFetchingFilters
-              "
-              variant="primary"
-              size="sm"
-              class="my-3"
-              @click="openFilterPopin"
+            </b-form-group>
+            <b-form-group
+              :label="$t('smartShoppingCampaignCreation.inputFiltersLegend')"
+              id="campaign-products-filter-fieldset"
+              label-class="h4 font-weight-600 border-0 bg-transparent"
             >
-              {{ $t("cta.selectFilters") }}
-            </b-button>
-            <div
-              v-if="!campaignHasNoProductsFilter && filtersChosen.length"
-              class="align-self-center ml-2 font-weight-600"
-            >
-              {{ $tc(
-                'smartShoppingCampaignCreation.filtersWithxValues',
-                this.totalProducts,
-                [
-                  $t(`smartShoppingCampaignCreation.${dimensionName}`),
-                  this.totalProducts,
-                ],
-              ),
-              }}
-            </div>
-          </div>
-        </b-form-group>
-        <b-form-group
-          id="campaign-daily-budget-fieldset"
-          :description="$t('smartShoppingCampaignCreation.inputBudgetHelper')"
-          label-for="campaign-dailyBudget-input"
-          label-class="d-flex align-items-center font-weight-600"
-          :state="campaignDailyBudgetFeedback"
-          aria-describedby="campaign-daily-budget-fieldset__BV_description_ input-live-feedback"
-          :invalid-feedback="
-            $t('smartShoppingCampaignCreation.inputBudgetInvalidFeedback')
-          "
-        >
-          <template #label>
-            {{ $t("smartShoppingCampaignCreation.inputBudgetFeedback") }}
-            <b-button
-              class="ml-1 p-0 d-flex align-items-center"
-              variant="text-primary"
-              v-b-tooltip:psxMktgWithGoogleApp
-              :title="$t('smartShoppingCampaignCreation.inputBudgetTooltip')"
-            >
-              <i class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
-                info_outlined
-              </i>
-            </b-button>
-          </template>
-          <b-input-group
-            :prepend="budgetCurrencySymbol"
-            :append="currency"
-            class="maxw-sm-420"
-          >
-            <b-form-input
-              data-test-id="campaign-dailyBudget-input"
-              id="campaign-dailyBudget-input"
-              v-model="campaignDailyBudget"
-              :placeholder="
-                $t('smartShoppingCampaignCreation.inputBudgetPlaceholder')
-              "
+              <b-form-radio
+                :disabled="hasUnhandledFilters || errorFetchingFilters"
+                v-model="campaignHasNoProductsFilter"
+                name="campaign-product-filter-radios"
+                :value="true"
+                class="mb-1"
+              >
+                {{ $t("smartShoppingCampaignCreation.inputFiltersAllLabel") }}
+              </b-form-radio>
+              <b-form-radio
+                :disabled="
+                  !productsHaveBeenApprovedByGoogle ||
+                    hasUnhandledFilters ||
+                    errorFetchingFilters
+                "
+                v-model="campaignHasNoProductsFilter"
+                name="campaign-product-filter-radios"
+                :value="false"
+              >
+                {{ $t("smartShoppingCampaignCreation.inputFiltersPartialLabel") }}
+              </b-form-radio>
+              <template #description>
+                <VueShowdown
+                  tag="p"
+                  class="mb-0"
+                  :markdown="
+                    $t('smartShoppingCampaignCreation.inputFiltersHelper', [
+                      $options.googleUrl.shoppingAdsPolicies,
+                    ])
+                  "
+                  :extensions="['extended-link', 'no-p-tag']"
+                />
+              </template>
+              <div class="d-flex">
+                <b-button
+                  data-test-id="campaign-select-filter-button"
+                  v-if="!campaignHasNoProductsFilter"
+                  :disabled="
+                    !productsHaveBeenApprovedByGoogle ||
+                      hasUnhandledFilters ||
+                      errorFetchingFilters
+                  "
+                  variant="primary"
+                  size="sm"
+                  class="my-3"
+                  @click="openFilterPopin"
+                >
+                  {{ $t("cta.selectFilters") }}
+                </b-button>
+                <div
+                  v-if="!campaignHasNoProductsFilter && filtersChosen.length"
+                  class="align-self-center ml-2 font-weight-600"
+                >
+                  {{ $tc(
+                    'smartShoppingCampaignCreation.filtersWithxValues',
+                    this.totalProducts,
+                    [
+                      $t(`smartShoppingCampaignCreation.${dimensionName}`),
+                      this.totalProducts,
+                    ],
+                  ),
+                  }}
+                </div>
+              </div>
+            </b-form-group>
+            <b-form-group
+              id="campaign-daily-budget-fieldset"
+              :description="$t('smartShoppingCampaignCreation.inputBudgetHelper')"
+              label-for="campaign-dailyBudget-input"
+              label-class="d-flex align-items-center font-weight-600"
               :state="campaignDailyBudgetFeedback"
-            />
-          </b-input-group>
-        </b-form-group>
-        <span class="font-weight-600">
-          {{ $t("smartShoppingCampaignCreation.formHelperTitle") }}
-        </span>
-        <p>
-          {{ $t("smartShoppingCampaignCreation.formHelperDescription") }}
-        </p>
-        <b-form-checkbox
-          v-if="editMode === true"
-          switch
-          size="lg"
-          class="ps_gs-switch mb-3"
-          v-model="campaignIsActive"
-        >
-          <span class="ps_gs-fz-14">
-            {{ $t("cta.enabled") }}
-          </span>
-        </b-form-checkbox>
-        <b-alert
-          v-if="!productsHaveBeenApprovedByGoogle"
-          variant="warning"
-          show
-        >
-          {{ $t("smartShoppingCampaignCreation.errorNoProducts") }}
-        </b-alert>
-        <b-alert
-          v-if="displayError"
-          variant="danger"
-          show
-        >
-          {{ $t("smartShoppingCampaignCreation.errorApi") }}
-        </b-alert>
-        <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
-          <b-button
-            @click="cancel"
-            size="sm"
-            class="mx-1 mt-3 mt-md-0"
-            variant="outline-secondary"
-          >
-            {{ $t("cta.cancel") }}
-          </b-button>
-          <b-button
-            v-if="editMode"
-            @click="openPopinRecap"
-            size="sm"
-            :disabled="disableCreateCampaign"
-            class="mx-1 mt-3 mt-md-0 mr-md-0"
-            variant="primary"
-          >
-            {{ $t("cta.editCampaign") }}
-          </b-button>
-          <b-button
-            v-else
-            data-test-id="createCampaignButton"
-            @click="openPopinRecap"
-            size="sm"
-            :disabled="disableCreateCampaign"
-            class="mx-1 mt-3 mt-md-0 mr-md-0"
-            variant="primary"
-          >
-            {{ $t("cta.createCampaign") }}
-          </b-button>
-        </div>
-      </b-form>
-    </b-card-body>
-    <SmartShoppingCampaignCreationPopin
-      ref="SmartShoppingCampaignCreationPopin"
-      @selectFilters="setDimensionFiltered"
-      :loader="loader"
-      :edit-mode="editMode"
-    />
-    <SmartShoppingCampaignCreationPopinRecap
-      ref="SmartShoppingCampaignCreationPopinRecap"
-      :new-campaign="finalCampaign"
-      :total-products="totalProducts"
-      :filters-exist="!campaignHasNoProductsFilter"
-      @openPopinSSCCreated="onCampaignCreated"
-      @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
-      :edition-mode="editMode"
-    />
-  </b-card>
+              aria-describedby="campaign-daily-budget-fieldset__BV_description_ input-live-feedback"
+              :invalid-feedback="
+                $t('smartShoppingCampaignCreation.inputBudgetInvalidFeedback')
+              "
+            >
+              <template #label>
+                {{ $t("smartShoppingCampaignCreation.inputBudgetFeedback") }}
+                <b-button
+                  class="ml-1 p-0 d-flex align-items-center"
+                  variant="text-primary"
+                  v-b-tooltip:psxMktgWithGoogleApp
+                  :title="$t('smartShoppingCampaignCreation.inputBudgetTooltip')"
+                >
+                  <i class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+                    info_outlined
+                  </i>
+                </b-button>
+              </template>
+              <b-input-group
+                :prepend="budgetCurrencySymbol"
+                :append="currency"
+                class="maxw-sm-420"
+              >
+                <b-form-input
+                  data-test-id="campaign-dailyBudget-input"
+                  id="campaign-dailyBudget-input"
+                  v-model="campaignDailyBudget"
+                  :placeholder="
+                    $t('smartShoppingCampaignCreation.inputBudgetPlaceholder')
+                  "
+                  :state="campaignDailyBudgetFeedback"
+                />
+              </b-input-group>
+            </b-form-group>
+            <span class="font-weight-600">
+              {{ $t("smartShoppingCampaignCreation.formHelperTitle") }}
+            </span>
+            <p>
+              {{ $t("smartShoppingCampaignCreation.formHelperDescription") }}
+            </p>
+            <b-form-checkbox
+              v-if="editMode === true"
+              switch
+              size="lg"
+              class="ps_gs-switch mb-3"
+              v-model="campaignIsActive"
+            >
+              <span class="ps_gs-fz-14">
+                {{ $t("cta.enabled") }}
+              </span>
+            </b-form-checkbox>
+            <b-alert
+              v-if="!productsHaveBeenApprovedByGoogle"
+              variant="warning"
+              show
+            >
+              {{ $t("smartShoppingCampaignCreation.errorNoProducts") }}
+            </b-alert>
+            <b-alert
+              v-if="displayError"
+              variant="danger"
+              show
+            >
+              {{ $t("smartShoppingCampaignCreation.errorApi") }}
+            </b-alert>
+            <div class="d-md-flex text-center justify-content-end mt-3 pt-2">
+              <b-button
+                @click="cancel"
+                size="sm"
+                class="mx-1 mt-3 mt-md-0"
+                variant="outline-secondary"
+              >
+                {{ $t("cta.cancel") }}
+              </b-button>
+              <b-button
+                v-if="editMode"
+                @click="openPopinRecap"
+                size="sm"
+                :disabled="disableCreateCampaign"
+                class="mx-1 mt-3 mt-md-0 mr-md-0"
+                variant="primary"
+              >
+                {{ $t("cta.editCampaign") }}
+              </b-button>
+              <b-button
+                v-else
+                data-test-id="createCampaignButton"
+                @click="openPopinRecap"
+                size="sm"
+                :disabled="disableCreateCampaign"
+                class="mx-1 mt-3 mt-md-0 mr-md-0"
+                variant="primary"
+              >
+                {{ $t("cta.createCampaign") }}
+              </b-button>
+            </div>
+          </b-form>
+        </b-card-body>
+        <SmartShoppingCampaignCreationPopin
+          ref="SmartShoppingCampaignCreationPopin"
+          @selectFilters="setDimensionFiltered"
+          :loader="loader"
+          :edit-mode="editMode"
+        />
+        <SmartShoppingCampaignCreationPopinRecap
+          ref="SmartShoppingCampaignCreationPopinRecap"
+          :new-campaign="finalCampaign"
+          :total-products="totalProducts"
+          :filters-exist="!campaignHasNoProductsFilter"
+          @openPopinSSCCreated="onCampaignCreated"
+          @displayErrorApiWhenSavingSSC="onDisplayErrorApi"
+          :edition-mode="editMode"
+        />
+      </b-card>
+    </b-skeleton-wrapper>
+  </section>
 </template>
 
 <script>
@@ -647,13 +661,13 @@ export default {
         this.foundSsc.productFilters = filtersForAPI;
       }
     },
+    getSSCList() {
+      this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+    },
     getDatasFiltersDimensions(search) {
       this.loader = true;
       this.$store
-        .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search)
-        .then(() => {
-          this.loader = false;
-        });
+        .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search);
     },
     setInterfaceForCreation() {
       this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', {});
@@ -745,7 +759,8 @@ export default {
     if (this.productsHaveBeenApprovedByGoogle) {
       this.getDatasFiltersDimensions();
     }
-    if (this.editMode === true && this.foundSsc !== undefined) {
+    if (this.editMode === true) {
+      this.getSSCList();
       this.setInterfaceForEdition();
     } else {
       this.loader = false;
