@@ -85,7 +85,6 @@ export default {
   },
   methods: {
     async getDatas() {
-      this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
       await Promise.allSettled([
         this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT'),
@@ -97,6 +96,8 @@ export default {
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE'),
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'),
       ]);
+      // No need to wait for this one to resolve
+      this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
