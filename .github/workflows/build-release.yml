@@ -2,9 +2,6 @@ name: Build module artifact & deploy
 
 on: [push, pull_request]
 
-env:
-  PS_IMG_VERSION: prestashop/prestashop:1.7-7.4-apache
-
 jobs:
   build:
     name: Build dependencies & create artifact
