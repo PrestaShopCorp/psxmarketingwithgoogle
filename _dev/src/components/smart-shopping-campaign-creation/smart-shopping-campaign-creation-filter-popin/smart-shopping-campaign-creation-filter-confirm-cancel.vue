@@ -22,7 +22,7 @@
 
 <script>
 import PsModal from '../../commons/ps-modal';
-import {checkAndUpdateDimensionStatus, deepCheckDimension} from '../../../utils/SSCFilters';
+import {findAndCheckFilter} from '../../../utils/SSCFilters';
 
 export default {
   name: 'SSCampaignCreationFilterConfirmCancel',
@@ -39,8 +39,11 @@ export default {
   methods: {
     onAgreed() {
       this.$emit('sendStep', 1);
-      deepCheckDimension(this.$store.state.smartShoppingCampaigns.dimensionChosen, false);
-      checkAndUpdateDimensionStatus(this.$store.state.smartShoppingCampaigns.dimensionChosen);
+      //  Reset filters to what it was previously saved (in store or in edition)
+      findAndCheckFilter(
+        this.$store.state.smartShoppingCampaigns.dimensionChosen,
+        this.$store.state.smartShoppingCampaigns.filtersChosen[0].values,
+      );
     },
   },
 };
