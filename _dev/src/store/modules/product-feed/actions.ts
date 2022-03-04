@@ -24,6 +24,7 @@ import countriesSelectionOptions from '../../../assets/json/countries.json';
 import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 import {
   Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
+  ShopShippingInterface, validateDeliveryDetail,
 } from '../../../providers/shipping-settings-provider';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
 
@@ -130,18 +131,26 @@ export default {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
+    const deliveryFiltered: DeliveryDetail[] = productFeedSettings.deliveryDetails.filter(
+      (e) => e.enabledCarrier && validateDeliveryDetail(e),
+    );
+    const shipping: ShopShippingInterface[] = productFeedSettings.shippingSettings
+      .filter(
+        (s) => deliveryFiltered.find((d) => s.properties.id_reference === d.carrierId),
+      );
     commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
       name: 'attributeMapping', data: attributeMapping,
     });
+
     const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
       targetCountries,
-      shippingSettings: productFeedSettings.shippingSettings,
+      shippingSettings: shipping,
       additionalShippingSettings: {
-        deliveryDetails: productFeedSettings.deliveryDetails.filter((e) => e.enabledCarrier),
+        deliveryDetails: deliveryFiltered,
       },
       attributeMapping,
       selectedProductCategories,

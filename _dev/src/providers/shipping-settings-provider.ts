@@ -10,6 +10,8 @@ export type ShopShippingInterface = {
     properties: {
         // eslint-disable-next-line camelcase
         id_carrier: string,
+        // eslint-disable-next-line camelcase
+        id_reference: string,
         name: string,
         active: boolean,
         deleted: boolean,
@@ -57,7 +59,7 @@ export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
         && carrier.properties.active === true
         && carrier.properties.deleted === false,
   ).flatMap((carrier) => carrier.properties.country_ids.split(',').map((country) => ({
-    carrierId: carrier.properties.id_carrier,
+    carrierId: carrier.properties.id_reference,
     country,
     name: carrier.properties.name,
     delay: carrier.properties.delay,
