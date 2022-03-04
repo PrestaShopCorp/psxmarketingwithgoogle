@@ -17,6 +17,7 @@ let payload;
 beforeEach(() => {
   fetchMock.resetMocks();
 
+
   commit = jest.fn();
   dispatch = jest.fn();
   rootState = {
