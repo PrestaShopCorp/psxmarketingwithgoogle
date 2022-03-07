@@ -49,6 +49,7 @@ export default {
   },
   methods: {
     async getDatas() {
+      await this.$store.dispatch('productFeed/GET_PREVALIDATION_SUMMARY');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');

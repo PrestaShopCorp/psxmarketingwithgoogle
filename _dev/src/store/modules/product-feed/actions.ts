@@ -452,4 +452,21 @@ export default {
 
     return json;
   },
+
+  async [ActionsTypes.GET_PREVALIDATION_SUMMARY]({rootState, commit}) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/prevalidation-scan/summary`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
+    const json = await response.json();
+    commit(MutationsTypes.SET_PREVALIDATION_SUMMARY, json);
+  },
 };

@@ -25,6 +25,7 @@ import {
   ProductFeedValidationSummary,
   AttributesInfos,
   commonAttributes,
+  PrevalidationScanSummary,
 } from './state';
 
 type payloadObject = {
@@ -158,5 +159,8 @@ export default {
   },
   [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload: boolean) {
     state.requestSynchronizationNow = payload;
+  },
+  [MutationsTypes.SET_PREVALIDATION_SUMMARY](state: LocalState, payload: PrevalidationScanSummary) {
+    state.prevalidationScanSummary = payload;
   },
 };

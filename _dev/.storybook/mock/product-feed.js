@@ -97,6 +97,10 @@ export const productFeed = {
     pendingItems: null,
     disapprovedItems: null,
   },
+  prevalidationScanSummary: {
+    scannedItems: 13456,
+    invalidItems: 140,
+  },
   productsDatas: {
     items: [
       {

@@ -60,8 +60,7 @@ export default {
   },
   computed: {
     nbProductsFailingPrescan() {
-      // TODO: return nb of products failing prevalidation scan
-      return 0;
+      return this.$store.state.productFeed.prevalidationScanSummary.invalidItems;
     },
     validationSummary() {
       return this.inNeedOfConfiguration
