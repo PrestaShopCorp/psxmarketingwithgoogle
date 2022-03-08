@@ -439,7 +439,11 @@ export default {
     try {
       const limit = state.preScanDetail.limit;
       const offset = ((state.preScanDetail.currentPage - 1) * limit).toString();
-      const query = `?limit=${limit}&offset=${offset}`;
+      const lang = state.preScanDetail.langChosen;
+      let query = `?limit=${limit}&offset=${offset}`;
+      if (lang) {
+        query += `&lang=${lang}`;
+      }
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/prevalidation-scan/errors${query}`, {
         method: 'GET',
         headers: {

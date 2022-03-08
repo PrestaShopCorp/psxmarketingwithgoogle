@@ -190,6 +190,7 @@ export const productFeed = {
     limit: 10,
     currentPage: 1,
     total: 0,
+    langChosen: null,
   },
 };
 
@@ -375,16 +376,16 @@ export const prevalidationScan = {
   errors: [
     {
       productId: 1851,
-      attributeId: 445,
+      attributeId: 0,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -398,14 +399,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 446,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         },
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,
@@ -419,14 +420,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 447,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         },
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,
@@ -440,14 +441,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 448,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -461,14 +462,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 449,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -482,10 +483,10 @@ export const prevalidationScan = {
       productId: 1852,
       attributeId: 450,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Logo T-Shirt",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,
@@ -499,14 +500,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 445,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -520,14 +521,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 446,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         },
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,
@@ -541,14 +542,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 447,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         },
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,
@@ -562,14 +563,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 448,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -583,14 +584,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 449,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -604,10 +605,10 @@ export const prevalidationScan = {
       productId: 1852,
       attributeId: 450,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Logo T-Shirt",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,
@@ -621,14 +622,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 445,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -642,14 +643,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 446,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         },
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,
@@ -663,14 +664,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 447,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         },
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,
@@ -684,14 +685,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 448,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -705,14 +706,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 449,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -726,10 +727,10 @@ export const prevalidationScan = {
       productId: 1852,
       attributeId: 450,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Logo T-Shirt",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,
@@ -743,14 +744,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 445,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -764,14 +765,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 446,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         },
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,
@@ -785,14 +786,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 447,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         },
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,
@@ -806,14 +807,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 448,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -827,14 +828,14 @@ export const prevalidationScan = {
       productId: 1851,
       attributeId: 449,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Sticker",
-          isocode: "en"
+          lang: "en"
         },
         {
           title: "Décalque GBP Performance",
-          isocode: "fr"
+          lang: "fr"
         }
       ],
       isMissingName: false,
@@ -848,10 +849,10 @@ export const prevalidationScan = {
       productId: 1852,
       attributeId: 450,
       lastValidationDate: 1646189256515,
-      titleByIsocode: [
+      titleByLang: [
         {
           title: "GBP Performance Logo T-Shirt",
-          isocode: "en"
+          lang: "en"
         }
       ],
       isMissingName: false,

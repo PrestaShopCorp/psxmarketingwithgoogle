@@ -173,6 +173,9 @@ export default {
   [MutationsTypes.SET_PRESCAN_PRODUCTS](state: LocalState, payload: PreScanReporting[]) {
     state.preScanDetail.products = payload;
   },
+  [MutationsTypes.SET_PRESCAN_LANGUAGE_CHOSEN](state: LocalState, payload: string) {
+    state.preScanDetail.langChosen = payload;
+  },
   [MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT](state: LocalState, payload: number) {
     state.preScanDetail.total = payload;
   },

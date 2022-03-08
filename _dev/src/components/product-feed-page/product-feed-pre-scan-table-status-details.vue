@@ -86,11 +86,12 @@
         <template #cell(name)="data">
           <a
             class="external_link-no_icon"
+            :class="{'m-3' : data.item.attributeId > 0}"
             :href="!isNaN(data.item.id)
               ? getProductBaseUrl.replace('/1?', `/${data.item.productId}?`) : null"
             target="_blank"
           >
-             {{ getProductName(data.item.titleByIsocode) }}
+             {{ getProductName(data.item.titleByLang) }}
           </a>
         </template>
         <template
@@ -99,7 +100,7 @@
           <b-badge
             variant="primary"
             class="mr-1 ps_gs-fz-12 text-capitalize"
-            v-for="(language, index) in getProductLangs(data.item.titleByIsocode)"
+            v-for="(language, index) in getProductLangs(data.item.titleByLang)"
             :key="index"
           >
             {{ language.toUpperCase() }}
@@ -165,7 +166,6 @@ export default {
   },
   data() {
     return {
-      langChosen: null,
       loading: false,
       fields: [
         {
@@ -224,6 +224,15 @@ export default {
       const totalPage = Math.ceil(this.$store.getters['productFeed/GET_PRESCAN_TOTAL_ERROR'] / this.limit);
       return totalPage < 1 ? 1 : totalPage;
     },
+    langChosen: {
+      get() {
+        return this.$store.getters['productFeed/GET_PRESCAN_LANGUAGE_CHOSEN'];
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_PRESCAN_LANGUAGE_CHOSEN', value);
+        this.getPreScanProducts();
+      }
+    },
     limit: {
       get() {
         return this.$store.getters['productFeed/GET_PRESCAN_LIMIT_PAGE'];
@@ -249,17 +258,17 @@ export default {
   },
   methods: {
     filterByLang(row, filter) {
-      return !!row.titleByIsocode.some((k) => k.isocode.toUpperCase() === filter);
+      this.langChosen = filter;
     },
     getProductName(products) {
-      const findProductInCurrentLang = products.find((k) => k.isocode.toUpperCase() === this.getDefaultLang);
+      const findProductInCurrentLang = products.find((k) => k.lang.toUpperCase() === this.getDefaultLang);
       if (findProductInCurrentLang !== undefined) {
         return findProductInCurrentLang?.title;
       }
       return products[0].title;
     },
     getProductLangs(products) {
-      return products.map((k) => k.isocode);
+      return products.map((k) => k.lang);
     },
     getPreScanProducts() {
       this.loading = true;
@@ -267,8 +276,6 @@ export default {
         .finally(() => {
           this.loading = false;
         });
-
-    console.log(this.$store.getters['productFeed/GET_PRESCAN_PRODUCTS']);
     },
     async limitChanged(newLimit) {
       this.limit = newLimit;

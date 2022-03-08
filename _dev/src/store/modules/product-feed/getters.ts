@@ -110,6 +110,9 @@ export default {
   [GettersTypes.GET_PRESCAN_TOTAL_ERROR](state: LocalState): number {
     return state.preScanDetail.total;
   },
+  [GettersTypes.GET_PRESCAN_LANGUAGE_CHOSEN](state: LocalState): string {
+    return state.preScanDetail.langChosen;
+  },
   [GettersTypes.GET_PRESCAN_PRODUCTS](state: LocalState): PreScanReporting[] {
     return state.preScanDetail.products;
   }

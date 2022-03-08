@@ -148,6 +148,7 @@ export interface PreScanDetail {
   limit: number;
   currentPage: number;
   total: number;
+  langChosen: string;
 }
 
 export const state: State = {
@@ -201,5 +202,6 @@ export const state: State = {
     limit: 10,
     currentPage: 1,
     total: 0,
+    langChosen: '',
   },
 };
