@@ -441,6 +441,7 @@ export default {
       const offset = ((state.preScanDetail.currentPage - 1) * limit).toString();
       const lang = state.preScanDetail.langChosen;
       let query = `?limit=${limit}&offset=${offset}`;
+
       if (lang) {
         query += `&lang=${lang}`;
       }

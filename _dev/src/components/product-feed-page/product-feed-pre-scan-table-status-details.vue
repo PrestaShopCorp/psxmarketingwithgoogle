@@ -221,6 +221,7 @@ export default {
     },
     totalPage() {
       const totalPage = Math.ceil(this.$store.getters['productFeed/GET_PRESCAN_TOTAL_ERROR'] / this.limit);
+
       return totalPage < 1 ? 1 : totalPage;
     },
     langChosen: {
@@ -263,6 +264,7 @@ export default {
       const findProductInCurrentLang = products.find(
         (k) => k.lang.toUpperCase() === this.getDefaultLang,
       );
+
       if (findProductInCurrentLang !== undefined) {
         return findProductInCurrentLang?.title;
       }
