@@ -54,6 +54,9 @@ export default {
   [GettersTypes.GET_ACTIVE_COUNTRIES](): string[] {
     return countriesSelectionOptions.map((e) => e.country);
   },
+  [GettersTypes.GET_MODULE_INFOS](state: LocalState) {
+    return state.moduleInfos;
+  },
   [GettersTypes.GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY](state: LocalState) : string[] {
     return countriesSelectionOptions.reduce((ids : string[], obj) => {
       if (obj.currency === state.psxMktgWithGoogleShopCurrency.isoCode) {

@@ -58,6 +58,39 @@
         module-name="psxmarketingwithgoogle"
         :needed-version="this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded"
       />
+      <div class="mb-2"
+        v-if="!moduleStatus.moduleIsEnabled"
+      >
+      <b-alert
+        variant="warning"
+        class="mb-0 mt-3"
+        show
+      >
+        <VueShowdown
+          tag="span"
+          :extensions="['no-p-tag']"
+          class="mt-2"
+          :markdown="$t('general.moduleNeedActivation')"
+        />
+          <b-button
+            size="sm"
+            class="mx-1 mt-3 mt-md-0 md-4 mr-md-1 float-right"
+            variant="primary"
+            target="_blank"
+            @click="activateModule"
+          >
+            <span v-if="loading">
+              <span class="icon-busy icon-busy--dark" />
+            </span>
+            <span
+              v-else
+            >
+              {{ $t('cta.activateModule') }}
+            </span>
+          </b-button>
+      </b-alert>
+      </div>
+
       <router-view />
       <div
         v-if="shopId"
@@ -87,14 +120,20 @@ export default {
     MenuItem,
     AlertModuleUpdate,
   },
-
+  data() {
+    return {
+      loading: null,
+    }
+  },
   computed: {
-
     shopId() {
       return window.shopIdPsAccounts;
     },
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
+    },
+    moduleStatus() {
+      return this.$store.getters['app/GET_MODULE_INFOS'];
     },
   },
   created() {
@@ -128,6 +167,19 @@ export default {
         params: SegmentGenericParams,
       });
     },
+    async activateModule() {
+      this.loading = true;
+      try {
+        await fetch(this.upgradeLink, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        });
+      } catch (err) {
+        console.error(err);
+      } finally {
+        this.loading = false;
+      }
+    }
 
   },
   watch: {

@@ -35,6 +35,7 @@ export interface State {
   psxMktgWithGoogleStoreSettingsUrl: string;
   psxMktgWithGoogleOnProductionEnvironment: boolean;
   debugData: DebugData;
+  moduleInfos: ModuleInfos;
   adBlockerExists: boolean;
   eventbusVersionNeeded: string;
   psxMktgWithGoogleModuleVersionNeeded: string;
@@ -54,6 +55,12 @@ export interface DebugData {
   urlEventBusHealthCheck?: string;
   urlAccountsHealthCheck?: string;
   typesOfSync: string[];
+}
+
+export interface ModuleInfos {
+  moduleIsEnabled: boolean|null;
+  hooks: Boolean[],
+  enableLink: string|null;
 }
 
 export const state: State = {
@@ -81,6 +88,11 @@ export const state: State = {
   psxMktgWithGoogleOnProductionEnvironment: false,
   debugData: {
     typesOfSync: [],
+  },
+  moduleInfos: {
+    hooks: [],
+    moduleIsEnabled: null,
+    enableLink: '',
   },
   adBlockerExists: false,
   psxMktgWithGoogleModuleVersion: '',

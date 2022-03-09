@@ -53,6 +53,21 @@
             {{ psxMktgWithGoogleOnProductionEnvironment?'✅':'❌' }}
             ({{ psxMktgWithGoogleApiUrl }})
           </li>
+          <li>
+            <strong>Module is enabled :</strong>
+            {{ getModuleInfos.moduleIsEnabled ?'✅':'❌' }}
+          </li>
+          <li>
+            <strong>Hook list:</strong>
+            <ul>
+              <li
+                v-for="(type, hookName) in getModuleInfos.hooks"
+                :key="hookName"
+              >
+                {{ hookName }} - {{ type ? '✅':'❌' }}
+              </li>
+            </ul>
+          </li>
         </ul>
       </b-card-body>
     </b-card>
@@ -244,6 +259,9 @@ export default {
     shopId() {
       return window.shopIdPsAccounts || 'none yet';
     },
+    getModuleInfos() {
+      return this.$store.getters['app/GET_MODULE_INFOS'];
+    },
     triggerOfSyncForbidden() {
       return this.sync.requested
         || this.sync.loading
@@ -300,6 +318,7 @@ export default {
     this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
     this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
     this.$store.dispatch('app/REQUEST_DEBUG_DATA');
+    this.$store.dispatch('app/GET_MODULES_VERSIONS', 'psxmarketingwithgoogle');
   },
 };
 </script>

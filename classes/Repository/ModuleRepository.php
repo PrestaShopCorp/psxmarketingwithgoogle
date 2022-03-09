@@ -21,6 +21,7 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
 use Module;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
 class ModuleRepository
@@ -64,13 +65,58 @@ class ModuleRepository
     }
 
     /**
+     * @return string
+     */
+    public function getActiveLink()
+    {
+        $router = SymfonyContainer::getInstance()->get('router');
+
+        return \Tools::getHttpHost(true) . $router->generate('admin_module_manage_action', [
+            'action' => 'enabled',
+            'module_name' => $this->moduleName,
+        ]);
+    }
+
+    /**
      * @return array
      */
     public function getInformationsAboutModule(): array
     {
-        return [
+        $result = [
             'version' => $this->getModuleVersion(),
             'upgradeLink' => $this->getUpgradeLink(),
         ];
+
+        if ($this->moduleName === 'psxmarketingwithgoogle') {
+            $result['isEnabled'] = $this->moduleIsEnabled();
+            $result['hooks'] = $this->getActiveHooks();
+            $result['enableLink'] = $this->getActiveLink();
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return bool
+     */
+    public function moduleIsEnabled(): bool
+    {
+        return Module::isEnabled($this->moduleName);
+    }
+
+    /**
+     * @return array
+     */
+    public function getActiveHooks(): array
+    {
+        $hooks = [];
+        /** @var Module $module */
+        $moduleInstance = Module::getInstanceByName($this->moduleName);
+
+        foreach (Config::HOOK_LIST as $hook) {
+            $hooks[$hook] = \Hook::isHookCallableOn($moduleInstance, $hook);
+        }
+
+        return $hooks;
     }
 }

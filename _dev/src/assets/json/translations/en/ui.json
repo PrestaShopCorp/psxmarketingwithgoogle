@@ -9,6 +9,7 @@
       "help": "Help"
     },
     "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
+    "moduleNeedActivation": "Your module is not active",
     "moduleUpdateNeeded": {
       "ps_eventbus": "The version of the module PrestaShop EventBus running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop EventBus",
       "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"
@@ -529,7 +530,7 @@
     "dimensionXFilterSelectedWithXProducts" : "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
     "filtersWithxValues" : "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products"
    },
-  
+
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance",
     "xCampaign": "No campaigns | {0} campaign | {0} campaigns"
@@ -770,6 +771,7 @@
     "acceptInvitation": "Accept invitation",
     "continue": "Continue",
     "disabled": "Disabled",
+    "activateModule": "Enable module",
     "enabled": "Enabled",
     "agree": "I agree",
     "enableFreeListing": "Enable free listings",

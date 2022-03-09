@@ -34,4 +34,9 @@ export default {
   [MutationsTypes.AD_BLOCKER_EXISTS](state: LocalState) {
     state.adBlockerExists = !state.adBlockerExists;
   },
+  [MutationsTypes.SET_MODULE_DETAILS](state: LocalState, response) {
+    state.moduleInfos.hooks = response?.hooks;
+    state.moduleInfos.moduleIsEnabled = response?.isEnabled;
+    state.moduleInfos.enableLink = response?.enableLink;
+  },
 };
