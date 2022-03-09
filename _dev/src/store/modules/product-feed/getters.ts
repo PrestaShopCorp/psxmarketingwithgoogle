@@ -115,5 +115,5 @@ export default {
   },
   [GettersTypes.GET_PRESCAN_PRODUCTS](state: LocalState): PreScanReporting[] {
     return state.preScanDetail.products;
-  }
+  },
 };

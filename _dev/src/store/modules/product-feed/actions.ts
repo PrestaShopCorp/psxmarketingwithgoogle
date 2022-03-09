@@ -437,7 +437,7 @@ export default {
   },
   async [ActionsTypes.GET_PREVALIDATION_PRODUCTS]({rootState, commit, state}) {
     try {
-      const limit = state.preScanDetail.limit;
+      const {limit} = state.preScanDetail;
       const offset = ((state.preScanDetail.currentPage - 1) * limit).toString();
       const lang = state.preScanDetail.langChosen;
       let query = `?limit=${limit}&offset=${offset}`;

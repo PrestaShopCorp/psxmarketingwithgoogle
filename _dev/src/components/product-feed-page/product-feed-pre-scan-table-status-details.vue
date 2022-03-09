@@ -62,7 +62,7 @@
             variant="dark"
             link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
           >
-            {{lang}}
+            {{ lang }}
           </b-dropdown-item>
         </b-dropdown>
       </div>
@@ -91,7 +91,7 @@
               ? getProductBaseUrl.replace('/1?', `/${data.item.productId}?`) : null"
             target="_blank"
           >
-             {{ getProductName(data.item.titleByLang) }}
+            {{ getProductName(data.item.titleByLang) }}
           </a>
         </template>
         <template
@@ -142,7 +142,6 @@
             {{ data.item.isMissingPrice ? 'close' : 'done' }}
           </span>
         </template>
-
       </b-table>
       <div class="overflow-auto">
         <TablePageControls
@@ -162,7 +161,7 @@ import TablePageControls from '../commons/table-page-controls.vue';
 export default {
   name: 'ProductFeedPreScanTableStatusDetails',
   components: {
-    TablePageControls
+    TablePageControls,
   },
   data() {
     return {
@@ -231,7 +230,7 @@ export default {
       set(value) {
         this.$store.commit('productFeed/SET_PRESCAN_LANGUAGE_CHOSEN', value);
         this.getPreScanProducts();
-      }
+      },
     },
     limit: {
       get() {
@@ -239,7 +238,7 @@ export default {
       },
       set(value) {
         this.$store.commit('productFeed/SET_PRESCAN_LIMIT_PAGE', value);
-      }
+      },
     },
     currentPage: {
       get() {
@@ -247,7 +246,7 @@ export default {
       },
       set(value) {
         this.$store.commit('productFeed/SET_PRESCAN_NEXT_PAGE', value);
-      }
+      },
     },
     countries() {
       return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
@@ -261,7 +260,9 @@ export default {
       this.langChosen = filter;
     },
     getProductName(products) {
-      const findProductInCurrentLang = products.find((k) => k.lang.toUpperCase() === this.getDefaultLang);
+      const findProductInCurrentLang = products.find(
+        (k) => k.lang.toUpperCase() === this.getDefaultLang,
+      );
       if (findProductInCurrentLang !== undefined) {
         return findProductInCurrentLang?.title;
       }
