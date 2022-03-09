@@ -313,7 +313,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_TOTAL_PRODUCTS]({rootState, commit}) {
+  async [ActionsTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC]({rootState, commit}) {
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', Accept: 'application/json'},
@@ -326,7 +326,7 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     const result = await response.json();
-    commit(MutationsTypes.SAVE_TOTAL_PRODUCTS, Number(result.total));
+    commit(MutationsTypes.SAVE_TOTAL_PRODUCTS_READY_TO_SYNC, Number(result.total));
     return result;
   },
   async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({rootState}, nextPage) {

@@ -74,7 +74,7 @@ export default {
   ) {
     state.validationSummary = payload;
   },
-  [MutationsTypes.SAVE_TOTAL_PRODUCTS](state: LocalState, payload: number,
+  [MutationsTypes.SAVE_TOTAL_PRODUCTS_READY_TO_SYNC](state: LocalState, payload: number,
   ) {
     state.totalProducts = payload;
   },

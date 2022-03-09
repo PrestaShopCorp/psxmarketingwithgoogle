@@ -88,7 +88,7 @@ export default {
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
       await Promise.allSettled([
         this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT'),
-        this.$store.dispatch('productFeed/GET_TOTAL_PRODUCTS'),
+        this.$store.dispatch('productFeed/GET_TOTAL_PRODUCTS_READY_TO_SYNC'),
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS'),
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS'),
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY'),
