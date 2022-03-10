@@ -58,6 +58,9 @@
           >
             {{ $t("smartShoppingCampaignCreation.errorFetchingFilters") }}
           </b-alert>
+
+          <BannerAds v-if="isBanner" :is-banner="isBanner" @closeBanner="isBanner =!isBanner"/>
+
           <b-form>
             <b-form-group
               id="campaign-name-fieldset"
@@ -419,12 +422,14 @@ import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-c
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
 import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import BannerAds from '@/components/commons/banner-ads.vue'
 import {
   findAndCheckFilter,
   returnChildrenIds,
   returnCountProducts,
   deepCheckDimension,
   retrieveProductNumberFromFiltersIds,
+  
 } from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
@@ -446,12 +451,15 @@ export default {
       hasUnhandledFilters: false,
       totalProducts: 0,
       searchLoader: false,
+      // TODO : dynamically change isBanner to display or not the ads banner
+      isBanner: true,
     };
   },
   components: {
     SmartShoppingCampaignCreationPopin,
     SmartShoppingCampaignCreationPopinRecap,
     SelectCountry,
+    BannerAds
   },
   props: {
     editMode: {
