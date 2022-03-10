@@ -29,6 +29,8 @@ declare global {
       psxMktgWithGoogleProductDetailUrl: String,
       psxMktgWithGoogleStoreSettingsUrl: String,
       psxMktgWithGoogleOnProductionEnvironment:boolean,
+      psxMktgWithGoogleModuleIsEnabled: boolean,
+      psxMktgWithGoogleEnableLink: String,
     }
   //   interface IntrinsicElements {
   //     [elem: string]: any;

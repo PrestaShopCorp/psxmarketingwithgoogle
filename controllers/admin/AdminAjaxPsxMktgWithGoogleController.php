@@ -149,9 +149,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             case 'getModuleStatus':
                 $this->getModuleStatus($inputs);
                 break;
-            case 'getModuleInfoForDebug':
-                $this->getModuleInfoForDebug();
-                break;
             default:
                 http_response_code(400);
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
@@ -496,15 +493,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $this->ajaxDie(
             json_encode(
                 (new ModuleRepository($inputs['moduleName']))->getInformationsAboutModule()
-            )
-        );
-    }
-
-    private function getModuleInfoForDebug()
-    {
-        $this->ajaxDie(
-            json_encode(
-                (new ModuleRepository($this->module->name))->getModuleDebug()
             )
         );
     }

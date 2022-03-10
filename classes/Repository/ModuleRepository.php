@@ -67,7 +67,7 @@ class ModuleRepository
     /**
      * @return string
      */
-    public function getActiveLink()
+    public function getEnableLink()
     {
         $router = SymfonyContainer::getInstance()->get('router');
 
@@ -85,18 +85,7 @@ class ModuleRepository
         return [
             'version' => $this->getModuleVersion(),
             'upgradeLink' => $this->getUpgradeLink(),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public function getModuleDebug(): array
-    {
-        return [
-            'isEnabled' => $this->moduleIsEnabled(),
             'hooks' => $this->getActiveHooks(),
-            'enableLink' => $this->getActiveLink(),
         ];
     }
 

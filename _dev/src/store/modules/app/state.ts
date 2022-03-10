@@ -35,10 +35,12 @@ export interface State {
   psxMktgWithGoogleStoreSettingsUrl: string;
   psxMktgWithGoogleOnProductionEnvironment: boolean;
   debugData: DebugData;
-  moduleDebug: ModuleDebug;
+  moduleStatus: ModuleStatus;
   adBlockerExists: boolean;
   eventbusVersionNeeded: string;
   psxMktgWithGoogleModuleVersionNeeded: string;
+  psxMktgWithGoogleModuleIsEnabled: boolean;
+  psxMktgWithGoogleEnableLink: string;
 }
 
 export interface ShopCurrency {
@@ -57,10 +59,8 @@ export interface DebugData {
   typesOfSync: string[];
 }
 
-export interface ModuleDebug {
-  isEnabled: boolean|null;
-  hooks: Boolean[],
-  enableLink: string|null;
+export interface ModuleStatus {
+  hooks: Boolean[];
 }
 
 export const state: State = {
@@ -89,13 +89,13 @@ export const state: State = {
   debugData: {
     typesOfSync: [],
   },
-  moduleDebug: {
+  moduleStatus: {
     hooks: [],
-    isEnabled: null,
-    enableLink: '',
   },
   adBlockerExists: false,
   psxMktgWithGoogleModuleVersion: '',
   eventbusVersionNeeded: process.env.VUE_APP_MIN_VERSION_NEEDED_EVENT_BUS || '',
   psxMktgWithGoogleModuleVersionNeeded: process.env.VUE_APP_MIN_VERSION_NEEDED_MKTG_GOOGLE || '',
+  psxMktgWithGoogleModuleIsEnabled: true,
+  psxMktgWithGoogleEnableLink: '',
 };

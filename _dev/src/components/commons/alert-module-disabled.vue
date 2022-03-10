@@ -8,28 +8,32 @@
       class="mb-0 mt-3"
       show
     >
-      <VueShowdown
-        tag="span"
-        :extensions="['no-p-tag']"
-        class="mt-2"
-        :markdown="$t('general.moduleNeedActivation')"
-      />
-      <b-button
-        size="sm"
-        class="mx-1 mt-3 mt-md-0 md-4 mr-md-1 float-right"
-        variant="primary"
-        target="_blank"
-        @click="activateModule"
-      >
-        <span v-if="loading">
-          <span class="icon-busy icon-busy--dark" />
-        </span>
-        <span
-          v-else
-        >
-          {{ $t('cta.activateModule') }}
-        </span>
-      </b-button>
+      <div class="row">
+        <div class="col-8">
+          <VueShowdown
+            tag="p"
+            :extensions="['no-p-tag']"
+            :markdown="$t('general.moduleNeedActivation')"
+          />
+        </div>
+        <div class="col-4 text-right">
+          <b-button
+            size="sm"
+            variant="primary"
+            target="_blank"
+            @click="activateModule"
+          >
+            <span v-if="loading">
+              <span class="icon-busy icon-busy--dark" />
+            </span>
+            <span
+              v-else
+            >
+              {{ $t('cta.activateModule') }}
+            </span>
+          </b-button>
+        </div>
+      </div>
     </b-alert>
   </div>
 </template>
@@ -40,16 +44,11 @@ export default {
   data() {
     return {
       loading: null,
-      isEnabled: null,
-      enableLink: null,
+      isEnabled: this.$store.state.app.psxMktgWithGoogleModuleIsEnabled,
+      enableLink: this.$store.state.app.psxMktgWithGoogleEnableLink,
     };
   },
   methods: {
-    async getModuleInfo() {
-      const res = await this.$store.dispatch('app/GET_MODULE_DEBUG');
-      this.isEnabled = res.isEnabled;
-      this.enableLink = res.enableLink;
-    },
     async activateModule() {
       this.loading = true;
       try {
@@ -64,9 +63,6 @@ export default {
         this.loading = false;
       }
     },
-  },
-  created() {
-    this.getModuleInfo();
   },
 };
 </script>

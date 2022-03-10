@@ -55,7 +55,7 @@
           </li>
           <li>
             <strong>Module is enabled :</strong>
-            {{ getModuleInfos.isEnabled ?'✅':'❌' }}
+            {{ moduleIsEnabled ?'✅':'❌' }}
           </li>
           <li>
             <strong>Hook list:</strong>
@@ -262,6 +262,9 @@ export default {
     getModuleInfos() {
       return this.$store.getters['app/GET_MODULE_INFOS'];
     },
+    moduleIsEnabled() {
+      return this.$store.state.app.psxMktgWithGoogleModuleIsEnabled;
+    },
     triggerOfSyncForbidden() {
       return this.sync.requested
         || this.sync.loading
@@ -318,7 +321,7 @@ export default {
     this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
     this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
     this.$store.dispatch('app/REQUEST_DEBUG_DATA');
-    this.$store.dispatch('app/GET_MODULE_DEBUG');
+    this.$store.dispatch('app/GET_MODULES_VERSIONS', 'psxmarketingwithgoogle');
   },
 };
 </script>
