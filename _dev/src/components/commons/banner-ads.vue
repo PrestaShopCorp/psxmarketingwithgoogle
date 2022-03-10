@@ -11,7 +11,10 @@
     </button>
     <b-card-body>
       <div class="d-flex align-items-center">
-        <img :src="require(`@/assets/images/banner/${pngBanner}`)" alt="" />
+        <img
+          :src="require(`@/assets/images/banner/${pngBanner}`)"
+          alt=""
+        >
         <span>
           <h3 class="font-weight-600">
             {{ $t("banner.titleAdsbanner") }}
@@ -33,7 +36,7 @@
           src="@/assets/images/banner/dots.png"
           alt=""
           height="70"
-        />
+        >
       </div>
     </b-card-body>
   </b-card>
@@ -55,18 +58,18 @@ export default {
   },
   computed: {
     pngBanner() {
-      if (window.i18nSettings.isoCode.toUpperCase() === "PL") {
-        return "ads-poland.png";
+      if (window.i18nSettings.isoCode.toUpperCase() === 'PL') {
+        return 'ads-poland.png';
       }
-      if (window.i18nSettings.isoCode.toUpperCase() === "EN") {
-        return "ads-dollars.png";
+      if (window.i18nSettings.isoCode.toUpperCase() === 'EN') {
+        return 'ads-dollars.png';
       }
-      return "ads-euro.png";
+      return 'ads-euro.png';
     },
   },
   methods: {
     closeBanner() {
-      this.$emit('closeBanner')
+      this.$emit('closeBanner');
     },
   },
 };

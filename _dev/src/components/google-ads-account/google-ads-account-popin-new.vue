@@ -200,7 +200,7 @@
       slot="modal-footer"
       v-else-if="stepActiveData === 3"
     >
-      <BannerAds :is-banner="isBanner"/>
+      <BannerAds :is-banner="isBanner" />
 
       <b-button
         variant="outline-secondary"
@@ -246,14 +246,15 @@ import Stepper from '../commons/stepper';
 import SelectCountry from '../commons/select-country.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import GoogleAccountContext from '../../store/modules/accounts/state';
-import BannerAds from '../commons/banner-ads.vue'
+import BannerAds from '../commons/banner-ads.vue';
+
 export default {
   name: 'GoogleAdsAccountPopinNew',
   components: {
     PsModal,
     Stepper,
     SelectCountry,
-    BannerAds
+    BannerAds,
   },
 
   data() {
