@@ -28,6 +28,14 @@
           $options.googleUrl.learnAboutSmartShoppingCampaigns
         ])"
       />
+      <LandingPageContent
+        :content-image="pngBanner"
+        :content-title="$t('banner.titleAdsbanner')"
+        :content-text="$t('banner.textAdsBanner')"
+        :content-footer="$t('banner.legendNotConfigured', [
+          $options.googleUrl.learnAboutSmartShoppingCampaigns
+        ])"
+      />
       <VueShowdown
         :markdown="$t('landingPage.content.notice')"
         class="text-muted ps_gs-fz-12 mt-2 mt-md-4 pb-1"
@@ -65,6 +73,17 @@ export default {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
+    },
+  },
+  computed: {
+    pngBanner() {
+      if (window.i18nSettings.isoCode.toUpperCase() === 'PL') {
+        return 'banner/ads-poland-big.png';
+      }
+      if (window.i18nSettings.isoCode.toUpperCase() === 'EN') {
+        return 'banner/ads-dollars-big.png';
+      }
+      return 'banner/ads-euro-big.png';
     },
   },
   googleUrl,

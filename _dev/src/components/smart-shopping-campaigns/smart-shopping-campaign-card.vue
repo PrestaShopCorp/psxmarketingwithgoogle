@@ -104,6 +104,13 @@
           v-if="!isEnabled"
           :badges="['productFeed', 'googleAdsAccount']"
         />
+        <hr>
+
+        <BannerAds
+          v-if="isBanner"
+          size="xs"
+          :is-banner="false"
+        />
       </b-card>
     </b-skeleton-wrapper>
   </section>
@@ -112,15 +119,18 @@
 <script>
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import BadgeListRequirements from '../commons/badge-list-requirements';
+import BannerAds from '../commons/banner-ads.vue';
 
 export default {
   name: 'SmartShoppingCampaignCard',
   components: {
     BadgeListRequirements,
+    BannerAds,
   },
   data() {
     return {
       selected: null,
+      isBanner: true,
     };
   },
   props: {

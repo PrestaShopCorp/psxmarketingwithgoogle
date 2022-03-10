@@ -4,7 +4,7 @@ import {productFeedIsConfiguredOnce, productFeedEnabled} from '../.storybook/moc
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {googleAccountNotConnected, googleAccountConnected, googleAccountConnectedOnce} from "../.storybook/mock/google-account";
 import {merchantCenterAccountNotConnected, merchantCenterAccountConnected, merchantCenterAccountConnectedOnce} from "../.storybook/mock/merchant-center-account";
-import {googleAdsAccountChosen} from "../.storybook/mock/google-ads";
+import {googleAdsAccountChosen, adsAccountStatus} from "../.storybook/mock/google-ads";
 import Actions from '../.storybook/mock/actions-accounts';
 
 export default {
@@ -112,6 +112,6 @@ SmartShoppingCampaigns.args = {
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
     this.$store.state.productFeed = Object.assign({}, productFeedIsConfiguredOnce);
-    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.googleAds = Object.assign({}, adsAccountStatus);
   },
 };

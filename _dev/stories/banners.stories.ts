@@ -10,7 +10,7 @@ export default {
     components: {BannerAds},
     template: `
       <div>
-        <BannerAds/>
+        <BannerAds  v-bind="$props" />
       </div>
     `,
     beforeMount: args.beforeMount,

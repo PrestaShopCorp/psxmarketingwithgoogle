@@ -1,5 +1,8 @@
 <template>
-  <b-card class="shadow-sm border-0 mb-3">
+  <b-card
+    class="border-0"
+    :class="{ 'shadow-sm mb-3' : size !== 'xs' }"
+  >
     <button
       v-if="isBanner"
       type="button"
@@ -9,36 +12,36 @@
     >
       <span aria-hidden="true">&times;</span>
     </button>
-    <b-card-body>
-      <div class="d-flex align-items-center">
-        <img
-          :src="require(`@/assets/images/banner/${pngBanner}`)"
-          alt=""
-        >
-        <span>
-          <h3 class="font-weight-600">
-            {{ $t("banner.titleAdsbanner") }}
-          </h3>
+    <div class="d-flex align-items-center">
+      <img
+        :src="require(`@/assets/images/${pngBanner}`)"
+        alt=""
+        :width="size === 'xs' ? 70 : ''"
+      >
+      <span>
+        <h3 class="font-weight-600">
+          {{ $t("banner.titleAdsbanner") }}
+        </h3>
 
-          <p>
-            {{ $t("banner.textAdsBanner") }}
-          </p>
-          <p class="ps_gs-fz-10">
-            {{
-              isConfigured
-                ? $t("banner.legendConfigured")
-                : $t("banner.legendNotConfigured")
-            }}
-          </p>
-        </span>
+        <p>
+          {{ $t("banner.textAdsBanner") }}
+        </p>
+        <p class="ps_gs-fz-10">
+          {{
+            $t("banner.legendConfigured")
 
-        <img
-          src="@/assets/images/banner/dots.png"
-          alt=""
-          height="70"
-        >
-      </div>
-    </b-card-body>
+          }}
+        </p>
+      </span>
+
+      <img
+        v-if="size !== 'xs'"
+        class="align-self-start"
+        src="@/assets/images/banner/dots.png"
+        alt=""
+        height="70"
+      >
+    </div>
   </b-card>
 </template>
 
@@ -50,21 +53,26 @@ export default {
       required: true,
       default: false,
     },
+    size: {
+      type: String,
+      required: false,
+      default: null,
+    },
   },
   data() {
     return {
-      isConfigured: true,
+
     };
   },
   computed: {
     pngBanner() {
       if (window.i18nSettings.isoCode.toUpperCase() === 'PL') {
-        return 'ads-poland.png';
+        return 'banner/ads-poland.png';
       }
       if (window.i18nSettings.isoCode.toUpperCase() === 'EN') {
-        return 'ads-dollars.png';
+        return 'banner/ads-dollars.png';
       }
-      return 'ads-euro.png';
+      return 'banner/ads-euro.png';
     },
   },
   methods: {

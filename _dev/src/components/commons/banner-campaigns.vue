@@ -20,6 +20,7 @@
         </span>
 
         <b-button
+          class="flex-shrink-0"
           :to="{name: 'campaign-creation'}"
           variant="primary"
         >
