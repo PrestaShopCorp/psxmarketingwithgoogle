@@ -273,7 +273,7 @@ export default {
     },
     nextSyncTotalProducts: {
       get() {
-        return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS'];
+        return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS_READY_TO_SYNC'];
       },
     },
     targetCountries() {

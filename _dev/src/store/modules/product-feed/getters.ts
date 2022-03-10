@@ -40,7 +40,7 @@ export default {
   [GettersTypes.GET_PRODUCT_FEED_STATUS](state: LocalState): ProductFeedStatus {
     return state.status;
   },
-  [GettersTypes.GET_TOTAL_PRODUCTS](state: LocalState) :number {
+  [GettersTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC](state: LocalState): number {
     return state.totalProducts;
   },
 
