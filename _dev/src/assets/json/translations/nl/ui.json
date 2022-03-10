@@ -209,7 +209,7 @@
     "title": "Automatisch uw productgegevens synchroniseren met Google",
     "intro": "Stuur uw productgegevens rechtstreeks naar uw Merchant Center en houd ze altijd up-to-date voor gratis vermeldingen en advertenties.",
     "introToConfigure": "Het is belangrijk dat u uw productfeed in het juiste formaat indient, omdat Google dit gebruikt om er zeker van te zijn dat uw producten overeenkomen met de juiste zoekopdrachten.",
-    "nextSync": "Volgende synchronisatie: {0}",
+    "nextSync": "Next synchronization: {0} at {1}",
     "syncFailedAt": "Synchronisatie mislukt {0} bij {1}",
     "syncSuccess": "Producten gesynchroniseerd {1} bij {2} | {0} product gesynchroniseerd {1} bij {2} | {0} producten gesynchroniseerd {1} bij {2}",
     "syncBusy": "Sync vordert...",
