@@ -114,7 +114,7 @@ class ModuleRepository
     public function getActiveHooks(): array
     {
         $hooks = [];
-        /** @var Module $module */
+        /** @var Module $moduleInstance */
         $moduleInstance = Module::getInstanceByName($this->moduleName);
 
         foreach (Config::HOOK_LIST as $hook) {

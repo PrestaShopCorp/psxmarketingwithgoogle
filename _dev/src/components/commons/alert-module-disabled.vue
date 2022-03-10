@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: 'AlertModuleDisable',
+  name: 'AlertModuleDisabled',
   data() {
     return {
       loading: null,
