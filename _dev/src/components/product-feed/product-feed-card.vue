@@ -131,8 +131,8 @@
           >
             <p class="ps_gs-fz-12 text-muted mb-0">
               {{ syncStatus === 'schedule'
-                ? $t("productFeedPage.syncStatus.scheduleOn", [nextSyncTime])
-                : $t("productFeedCard.nextSync", [nextSyncTime])
+                ? $t("productFeedPage.syncStatus.scheduleOn", [nextSyncTime.day, nextSyncTime.time])
+                : $t("productFeedCard.nextSync", [nextSyncTime.day, nextSyncTime.time])
               }}
             </p>
             <b-button
@@ -302,9 +302,14 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
     nextSyncTime() {
-      return this.$options.filters.timeConverterToDate(
-        this.getProductFeedStatus.nextJobAt,
-      );
+      return {
+        day: this.$options.filters.timeConverterToDate(
+          this.getProductFeedStatus.nextJobAt,
+        ),
+        time: this.$options.filters.timeConverterToHour(
+          this.getProductFeedStatus.nextJobAt,
+        ),
+      };
     },
     isUS() {
       return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].includes('US');
