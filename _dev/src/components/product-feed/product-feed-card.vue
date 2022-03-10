@@ -371,7 +371,8 @@ export default {
         time: this.$options.filters.timeConverterToHour(
           this.getProductFeedStatus?.lastUpdatedAt ?? this.getProductFeedStatus?.jobEndedAt,
         ),
-        totalProducts: this.getProductFeedSettings.totalProducts,
+        // ToDo: Make the API return this information
+        totalProducts: 0,
       };
     },
     title() {
