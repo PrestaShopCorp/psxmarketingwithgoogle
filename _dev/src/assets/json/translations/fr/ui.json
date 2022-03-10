@@ -209,7 +209,7 @@
     "title": "Synchronisez automatiquement les données de vos produits avec Google",
     "intro": "Soumettez les données de vos produits directement à votre Merchant Center et maintenez-les toujours à jour pour obtenir des listings et des annonces gratuites.",
     "introToConfigure": "Il est important de soumettre votre flux de produits dans le format correct, car Google utilise ceci pour s'assurer que vos produits correspondent aux bonnes requêtes.",
-    "nextSync": "Prochaine synchronisation : {0}",
+    "nextSync": "Next synchronization: {0} at {1}",
     "syncFailedAt": "Échec de la synchronisation {0} à {1}",
     "syncSuccess": "Produits synchronisés {1} à {2} | {0} Produits synchronisés {1} à {2} | {0} Produits synchronisés {1} à {2}",
     "syncBusy": "Synchronisation en cours...",
