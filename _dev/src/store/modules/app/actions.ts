@@ -130,6 +130,26 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
+      return json;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  },
+  async [ActionsTypes.GET_MODULE_DEBUG]({rootState, commit}) {
+    try {
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        body: JSON.stringify({
+          action: 'getModuleInfoForDebug',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+      const json = await response.json();
       commit(MutationsTypes.SET_MODULE_DETAILS, json);
       return json;
     } catch (error) {

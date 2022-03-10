@@ -58,39 +58,7 @@
         module-name="psxmarketingwithgoogle"
         :needed-version="this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded"
       />
-      <div class="mb-2"
-        v-if="!moduleStatus.moduleIsEnabled"
-      >
-      <b-alert
-        variant="warning"
-        class="mb-0 mt-3"
-        show
-      >
-        <VueShowdown
-          tag="span"
-          :extensions="['no-p-tag']"
-          class="mt-2"
-          :markdown="$t('general.moduleNeedActivation')"
-        />
-          <b-button
-            size="sm"
-            class="mx-1 mt-3 mt-md-0 md-4 mr-md-1 float-right"
-            variant="primary"
-            target="_blank"
-            @click="activateModule"
-          >
-            <span v-if="loading">
-              <span class="icon-busy icon-busy--dark" />
-            </span>
-            <span
-              v-else
-            >
-              {{ $t('cta.activateModule') }}
-            </span>
-          </b-button>
-      </b-alert>
-      </div>
-
+      <AlertModuleDisable />
       <router-view />
       <div
         v-if="shopId"
@@ -107,6 +75,7 @@ import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleUpdate from '@/components/commons/alert-update-module';
+import AlertModuleDisable from '@/components/commons/alert-module-disable';
 
 let resizeEventTimer;
 const root = document.documentElement;
@@ -119,11 +88,7 @@ export default {
     Menu,
     MenuItem,
     AlertModuleUpdate,
-  },
-  data() {
-    return {
-      loading: null,
-    }
+    AlertModuleDisable,
   },
   computed: {
     shopId() {
@@ -131,9 +96,6 @@ export default {
     },
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
-    },
-    moduleStatus() {
-      return this.$store.getters['app/GET_MODULE_INFOS'];
     },
   },
   created() {
@@ -167,20 +129,6 @@ export default {
         params: SegmentGenericParams,
       });
     },
-    async activateModule() {
-      this.loading = true;
-      try {
-        await fetch(this.upgradeLink, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        });
-      } catch (err) {
-        console.error(err);
-      } finally {
-        this.loading = false;
-      }
-    }
-
   },
   watch: {
     $route() {

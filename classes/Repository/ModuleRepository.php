@@ -72,7 +72,7 @@ class ModuleRepository
         $router = SymfonyContainer::getInstance()->get('router');
 
         return \Tools::getHttpHost(true) . $router->generate('admin_module_manage_action', [
-            'action' => 'enabled',
+            'action' => 'enable',
             'module_name' => $this->moduleName,
         ]);
     }
@@ -82,18 +82,22 @@ class ModuleRepository
      */
     public function getInformationsAboutModule(): array
     {
-        $result = [
+        return [
             'version' => $this->getModuleVersion(),
             'upgradeLink' => $this->getUpgradeLink(),
         ];
+    }
 
-        if ($this->moduleName === 'psxmarketingwithgoogle') {
-            $result['isEnabled'] = $this->moduleIsEnabled();
-            $result['hooks'] = $this->getActiveHooks();
-            $result['enableLink'] = $this->getActiveLink();
-        }
-
-        return $result;
+    /**
+     * @return array
+     */
+    public function getModuleDebug(): array
+    {
+        return [
+            'isEnabled' => $this->moduleIsEnabled(),
+            'hooks' => $this->getActiveHooks(),
+            'enableLink' => $this->getActiveLink(),
+        ];
     }
 
     /**

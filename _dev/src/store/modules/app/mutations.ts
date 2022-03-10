@@ -22,6 +22,7 @@ import {
   State as LocalState,
   HelpInformations,
   DebugData,
+  ModuleDebug,
 } from './state';
 
 export default {
@@ -34,9 +35,9 @@ export default {
   [MutationsTypes.AD_BLOCKER_EXISTS](state: LocalState) {
     state.adBlockerExists = !state.adBlockerExists;
   },
-  [MutationsTypes.SET_MODULE_DETAILS](state: LocalState, response) {
-    state.moduleInfos.hooks = response?.hooks;
-    state.moduleInfos.moduleIsEnabled = response?.isEnabled;
-    state.moduleInfos.enableLink = response?.enableLink;
+  [MutationsTypes.SET_MODULE_DETAILS](state: LocalState, response: ModuleDebug) {
+    state.moduleDebug.hooks = response.hooks;
+    state.moduleDebug.isEnabled = response.isEnabled;
+    state.moduleDebug.enableLink = response.enableLink;
   },
 };
