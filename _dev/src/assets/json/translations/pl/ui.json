@@ -209,7 +209,7 @@
     "title": "Automatycznie synchronizuj swoje produkty z Google",
     "intro": "Przesyłaj dane o produkcie bezpośrednio na swoje konto Merchant Center, dzięki czemu informacje wyświetlane w karcie Zakupy i w reklamach będą zawsze aktualne.",
     "introToConfigure": "Ważne jest, aby podać swój kanał produktu w prawidłowym formacie, ponieważ Google używa go, aby upewnić się, że Twoje produkty pasują do właściwych zapytań.",
-    "nextSync": "Następna synchronizacja: {0}",
+    "nextSync": "Next synchronization: {0} at {1}",
     "syncFailedAt": "Synchronizacja nie powiodła się {0} o {1}",
     "syncSuccess": "Produkty zsynchronizowane {1} przy {2} | {0} produkt zsynchronizowany {1} przy {2} | {0} produkty zsynchronizowane {1} przy {2}",
     "syncBusy": "Synchronizacja w toku...",
