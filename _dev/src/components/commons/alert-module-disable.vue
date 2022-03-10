@@ -1,18 +1,19 @@
 <template>
-  <div class="mb-2"
+  <div
+    class="mb-2"
     v-if="isEnabled === false"
   >
-  <b-alert
-    variant="warning"
-    class="mb-0 mt-3"
-    show
-  >
-    <VueShowdown
-      tag="span"
-      :extensions="['no-p-tag']"
-      class="mt-2"
-      :markdown="$t('general.moduleNeedActivation')"
-    />
+    <b-alert
+      variant="warning"
+      class="mb-0 mt-3"
+      show
+    >
+      <VueShowdown
+        tag="span"
+        :extensions="['no-p-tag']"
+        class="mt-2"
+        :markdown="$t('general.moduleNeedActivation')"
+      />
       <b-button
         size="sm"
         class="mx-1 mt-3 mt-md-0 md-4 mr-md-1 float-right"
@@ -29,7 +30,7 @@
           {{ $t('cta.activateModule') }}
         </span>
       </b-button>
-  </b-alert>
+    </b-alert>
   </div>
 </template>
 
