@@ -131,7 +131,7 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(1);
+    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
@@ -214,7 +214,7 @@ describe('product-feed-card.vue', () => {
     });
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(1);
+    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();
