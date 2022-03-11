@@ -107,7 +107,7 @@ class ModuleRepository
         $moduleInstance = Module::getInstanceByName($this->moduleName);
 
         foreach (Config::HOOK_LIST as $hook) {
-            $hooks[$hook] = \Hook::isHookCallableOn($moduleInstance, $hook);
+            $hooks[$hook] = \Hook::isModuleRegisteredOnHook($moduleInstance, $hook, 1);
         }
 
         return $hooks;
