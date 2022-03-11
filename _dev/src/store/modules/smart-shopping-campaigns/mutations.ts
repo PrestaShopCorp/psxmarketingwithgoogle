@@ -36,7 +36,9 @@ import {
   CampaignStatusPayload,
   Dimension,
 } from './state';
-import {addPropertiesToDimension, findAndCheckFilter} from '@/utils/SSCFilters';
+import {
+  addPropertiesToDimension, deepUpdateDimensionVisibilityFromTree,
+} from '@/utils/SSCFilters';
 
 export default {
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](
@@ -156,7 +158,7 @@ export default {
     state.dimensionChosen = payload;
   },
   [MutationsTypes.SET_DIMENSION_CHOSEN_CHILDREN](state: LocalState, payload: Dimension[]) {
-    state.dimensionChosen.children = addPropertiesToDimension(payload);
+    deepUpdateDimensionVisibilityFromTree(state.dimensionChosen, payload);
   },
   // result mutations
   [MutationsTypes.SET_REPORTING_KPIS](state: LocalState, payload: Kpis) {

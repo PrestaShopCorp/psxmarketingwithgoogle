@@ -31,7 +31,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: false,
             },
             {
@@ -40,7 +39,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "8",
-              localizedName: "Arts et loisirs",
               checked: false,
             },
             {
@@ -49,7 +47,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: false,
             },
           ],
@@ -78,7 +75,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: true,
             },
             {
@@ -87,7 +83,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "8",
-              localizedName: "Arts et loisirs",
               checked: true,
             },
             {
@@ -96,7 +91,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -126,7 +120,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: false,
             },
           ],
@@ -141,7 +134,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: false,
             },
             {
@@ -150,7 +142,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -177,7 +168,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -201,7 +191,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: false,
             },
           ],
@@ -217,7 +206,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: false,
             },
             {
@@ -226,7 +214,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -257,7 +244,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: false,
             },
             {
@@ -266,7 +252,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -293,7 +278,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -320,7 +304,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: false,
             },
             {
@@ -329,7 +312,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "8",
-              localizedName: "Arts et loisirs",
               checked: false,
             },
             {
@@ -338,7 +320,6 @@ describe("SSC filters - filterUncheckedSegments()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: false,
             },
           ],
@@ -529,7 +510,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: false,
             },
             {
@@ -538,7 +518,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -569,7 +548,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: false,
             },
             {
@@ -578,7 +556,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -611,7 +588,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: false,
             },
             {
@@ -620,7 +596,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -636,7 +611,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: false,
             },
             {
@@ -645,7 +619,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -671,7 +644,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: false,
             },
             {
@@ -680,7 +652,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -697,7 +668,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               checked: false,
             },
             {
@@ -706,7 +676,6 @@ describe("SSC filters - checkAndUpdateDimensionStatus()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "111",
-              localizedName: "Entreprise et industrie",
               checked: true,
             },
           ],
@@ -734,7 +703,6 @@ describe("SSC filters - addPropertiesToDimension()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "1",
-              localizedName: "Animaux et articles pour animaux de compagnie",
               numberOfProductsAssociated : 1,
               children: [
                 {
@@ -750,7 +718,6 @@ describe("SSC filters - addPropertiesToDimension()", () => {
               level: "LEVEL1",
               status: "ACTIVE",
               id: "8",
-              localizedName: "Arts et loisirs",
               numberOfProductsAssociated : 1,
               children: [
                 {

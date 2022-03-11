@@ -14,6 +14,7 @@ export function addPropertiesToDimension(
         id: oneFilter.id,
         checked: false,
         indeterminate: false,
+        visible: true,
         numberOfProductsAssociated: oneFilter.numberOfProductsAssociated,
         children: addPropertiesToDimension(oneFilter.children),
       };
@@ -22,6 +23,7 @@ export function addPropertiesToDimension(
       name: oneFilter.name,
       id: oneFilter.id,
       checked: false,
+      visible: true,
       numberOfProductsAssociated: oneFilter.numberOfProductsAssociated,
     };
   });
@@ -155,4 +157,35 @@ export function retrieveProductNumberFromFiltersIds(
     return 0;
   }
   return returnCountProducts(findAndCheckFilter(dimensionChosen, productFilters[0].values));
+}
+
+export function deepUpdateDimensionVisibility(dimension: Dimension, newValue: boolean): void {
+  dimension.visible = newValue;
+  // eslint-disable-next-line no-unused-expressions
+  dimension.children?.forEach((child: Dimension) => {
+    deepUpdateDimensionVisibility(child, newValue);
+  });
+}
+
+export function deepUpdateDimensionVisibilityFromTree(dimension: Dimension,
+  filteredTree: Dimension[]) {
+  // eslint-disable-next-line no-unused-expressions
+  dimension.children?.forEach((child) => {
+    child.visible = findDimensionInTree(child, filteredTree);
+    if (child.visible) {
+      deepUpdateDimensionVisibilityFromTree(child, filteredTree);
+    }
+  });
+}
+
+export function findDimensionInTree(dimension: Dimension, tree: Dimension[]): boolean {
+  return tree.some((child: Dimension) => {
+    if (child.id === dimension.id) {
+      return true;
+    }
+    if (child.children?.length) {
+      return findDimensionInTree(dimension, child.children);
+    }
+    return false;
+  });
 }

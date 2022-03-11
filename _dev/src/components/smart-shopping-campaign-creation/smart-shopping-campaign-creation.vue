@@ -666,7 +666,6 @@ export default {
       this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
     },
     getDatasFiltersDimensions(search) {
-      this.loader = true;
       this.$store
         .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search);
     },

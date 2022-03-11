@@ -1,4 +1,5 @@
 import SmartShoppingCampaignCreation from "../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation.vue";
+import SmartShoppingCampaignPopin from "../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin.vue"
 import { initialStateApp } from "../.storybook/mock/state-app";
 import { googleAdsAccountChosen } from "../.storybook/mock/google-ads.js";
 import { campaignWithUnhandledFilters } from "../.storybook/mock/smart-shopping-campaigns";
@@ -7,7 +8,7 @@ import { availableFilters } from "../.storybook/mock/smart-shopping-campaigns.js
 
 export default {
   title: "Smart Shopping Campaign/Creation",
-  component: SmartShoppingCampaignCreation,
+  component: SmartShoppingCampaignCreation,SmartShoppingCampaignPopin,
   parameters: {
     msw: {
       handlers: [
@@ -190,10 +191,11 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { SmartShoppingCampaignCreation },
+  components: { SmartShoppingCampaignCreation, SmartShoppingCampaignPopin },
   template: `
     <div>
       <SmartShoppingCampaignCreation v-bind="$props" ref="sscCreation"/>
+      <SmartShoppingCampaignPopin v-bind="$props" ref="SmartShoppingCampaignCreationPopin"/>
     </div>
   `,
   beforeCreate(this: any) {
@@ -203,6 +205,7 @@ const Template = (args, { argTypes }) => ({
   },
   beforeMount: args.beforeMount,
   mounted: args.mounted,
+  
 });
 
 export const Creation: any = Template.bind({});
@@ -223,7 +226,6 @@ CreationWithoutProducts.args = {
 
 export const FieldsErrorFeedback: any = Template.bind({});
 FieldsErrorFeedback.args = {
-  beforeMount(this: any) {},
   mounted(this: any) {
     // set name
     this.$refs.sscCreation.$data.campaignName = "foobar";
@@ -272,19 +274,30 @@ export const ErrorRetrievingFilters: any = Template.bind({});
 ErrorRetrievingFilters.args = {
   mounted(this: any) {
     this.$store.state.productFeed.validationSummary.activeItems = 2;
+    // Is empty but is filled right away??
+    this.$store.state.smartShoppingCampaigns.sscAvailableFilters = Object.assign([], [])
     this.$store.state.smartShoppingCampaigns.errorFetchingFilters = true
+  },
+};
+ErrorRetrievingFilters.parameters = {
+  msw: {
+    handlers: [
+      rest.get("/shopping-campaigns/list", (req, res, ctx) => {
+        return res(ctx.json({ campaigns: [] }));
+      }),
+    ],
   },
 };
 
 export const PopinFiltersDimensionStep: any = Template.bind({});
 PopinFiltersDimensionStep.args = {
+  visible: true,
+  loader: false,
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
-    
   },
   mounted(this: any) {
     // @ts-ignore
-    this.$refs.sscCreation.openFilterPopin();
     this.$store.state.smartShoppingCampaigns.sscAvailableFilters  = Object.assign([], availableFilters);
     this.$store.state.smartShoppingCampaigns.dimensionChosen  = Object.assign({}, availableFilters[0]);
   },
@@ -292,13 +305,15 @@ PopinFiltersDimensionStep.args = {
 
 export const PopinFiltersFiltersStep: any = Template.bind({});
 PopinFiltersFiltersStep.args = {
+  step: 2,
+  visible: true,
+  loader: false,
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
   },
   mounted(this: any) {
     // @ts-ignore
-    this.$refs.sscCreation.openFilterPopin();
     this.$store.state.smartShoppingCampaigns.dimensionChosen = Object.assign({}, availableFilters[0]);
-    this.$refs.sscCreation.$refs.SmartShoppingCampaignCreationPopin.$data.step = 2;
+    this.$refs.SmartShoppingCampaignCreationPopin.$data.step = 2;
   },
 };

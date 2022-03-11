@@ -25,6 +25,7 @@ import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import {
   CampaignObject, CampaignStatusPayload, ConversionAction, Dimension,
 } from './state';
+import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, rootState}, payload : CampaignObject) {
@@ -504,6 +505,7 @@ export default {
   },
   async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState, state}, search?: string) {
     if (!search && state.sscAvailableFilters.length) {
+      deepUpdateDimensionVisibility(state.dimensionChosen, true);
       return;
     }
 

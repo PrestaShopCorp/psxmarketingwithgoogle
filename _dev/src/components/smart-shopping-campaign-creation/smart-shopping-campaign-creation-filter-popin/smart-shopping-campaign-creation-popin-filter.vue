@@ -26,7 +26,6 @@
         v-for="(child, index) in dimensionChosen.children"
         :key="index"
         :item="child"
-        :selected-filters="false"
       />
     </ul>
     <div
@@ -124,14 +123,19 @@ export default {
     confirmation() {
       this.$emit('validateCreationFilters');
       this.$emit('sendStep', 1);
-      this.searchFilterName = null;
+      this.resetSearch();
     },
     goBack() {
       this.$emit('confirmCancel');
-      this.searchFilterName = null;
+      this.resetSearch();
     },
     removeTag(filter) {
       this.selectCheckbox({item: filter, checked: false});
+    },
+    resetSearch() {
+      this.searchFilterName = null;
+      this.$store
+        .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
     },
   },
   mounted() {

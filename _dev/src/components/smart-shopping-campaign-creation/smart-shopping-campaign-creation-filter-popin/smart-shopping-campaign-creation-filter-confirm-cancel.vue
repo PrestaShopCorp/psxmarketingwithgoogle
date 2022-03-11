@@ -42,7 +42,7 @@ export default {
       //  Reset filters to what it was previously saved (in store or in edition)
       findAndCheckFilter(
         this.$store.state.smartShoppingCampaigns.dimensionChosen,
-        this.$store.state.smartShoppingCampaigns.filtersChosen[0].values,
+        this.$store.getters['smartShoppingCampaigns/GET_CAMPAIGN_FILTER_CHOSEN']?.values || [],
       );
     },
   },
