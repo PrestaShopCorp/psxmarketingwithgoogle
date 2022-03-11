@@ -214,7 +214,7 @@ export default {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
     },
     rows() {
-      return this.$store.getters['productFeed/GET_PRESCAN_PRODUCTS'].length;
+      return this.$store.getters['productFeed/GET_PRESCAN_TOTAL_ERROR'];
     },
     items() {
       return this.$store.getters['productFeed/GET_PRESCAN_PRODUCTS'];
@@ -261,6 +261,9 @@ export default {
       this.langChosen = filter;
     },
     getProductName(products) {
+      if (products.length === 0) {
+        return '';
+      }
       const findProductInCurrentLang = products.find(
         (k) => k.lang.toUpperCase() === this.getDefaultLang,
       );
@@ -280,13 +283,13 @@ export default {
           this.loading = false;
         });
     },
-    async limitChanged(newLimit) {
+    limitChanged(newLimit) {
       this.limit = newLimit;
-      await this.getPreScanProducts();
+      this.getPreScanProducts();
     },
-    async pageChanged(newPage) {
+    pageChanged(newPage) {
       this.currentPage = newPage;
-      await this.getPreScanProducts();
+      this.getPreScanProducts();
     },
   },
   mounted() {

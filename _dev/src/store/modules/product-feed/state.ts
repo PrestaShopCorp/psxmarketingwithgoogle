@@ -135,7 +135,7 @@ export interface PreScanReporting {
   productId: number;
   attributeId?: number;
   lastValidationDate: number;
-  titleByIsocode: Array<PreScanProductLang>;
+  titleByIsocode: PreScanProductLang[];
   isMissingName: Boolean;
   isMissingLink: Boolean;
   isMissingImage: Boolean;
@@ -144,7 +144,7 @@ export interface PreScanReporting {
   isMissingBrandOrBarcode: Boolean;
 }
 export interface PreScanDetail {
-  products: Array<PreScanReporting>;
+  products: PreScanReporting[];
   limit: number;
   currentPage: number;
   total: number;
