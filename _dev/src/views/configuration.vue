@@ -1,6 +1,6 @@
 <template>
   <div id="configuration">
-    <multistore v-if="!psAccountsIsOnboarded && shops.length" />
+    <multistore v-if="!psAccountsContext.isShopContext && shops.length" />
     <onboarding-page v-else />
   </div>
 </template>
@@ -20,6 +20,9 @@ export default defineComponent({
   props: {
   },
   computed: {
+    psAccountsContext() {
+      return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
+    },
     psAccountsIsOnboarded() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
     },
