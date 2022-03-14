@@ -436,7 +436,7 @@ export default {
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
       campaignHasNoProductsFilter: true,
-      campaignDailyBudget: null,
+      campaignDailyBudget: process.env.VUE_APP_SSC_DEFAULT_BUDGET,
       timer: null,
       displayError: false,
       campaignIsActive: true,
