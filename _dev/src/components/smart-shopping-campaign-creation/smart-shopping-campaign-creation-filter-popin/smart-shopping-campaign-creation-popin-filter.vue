@@ -1,6 +1,15 @@
 <template>
   <div>
-    <div class="bg-light px-2 pt-2 pb-1 rounded-top border border-bottom-0 border-450">
+    <div
+      class="
+        bg-light
+        px-2
+        pt-2
+        pb-1
+        rounded-top
+        border border-bottom-0 border-450
+      "
+    >
       <b-form-input
         id="campaign-name-input-filter"
         v-model="searchFilterName"
@@ -11,15 +20,16 @@
       />
     </div>
     <div
-      v-if="loader"
+      v-if="searchLoader"
       class="text-muted rounded-bottom border border-450 p-3 text-center"
     >
       <i class="icon-busy icon-busy--dark mr-1" />
-      {{ $t('badge.loading') }}
+      {{ $t("badge.loading") }}
     </div>
+
     <ul
       class="ps_gs-filters"
-      v-if="dimensionChosen.children && !loader"
+      v-if="dimensionChosen.children && !searchLoader"
     >
       <SmartShoppingCampaignCreationFilterItem
         :is-open-by-default="true"
@@ -27,12 +37,29 @@
         :key="index"
         :item="child"
       />
+      <div
+        v-if="!hasResults.length"
+        class="container text-center"
+      >
+        <b-icon-slash-circle font-scale="2" />
+
+        <div>{{ $t("general.noResultsFoundForX", [searchFilterName]) }}</div>
+      </div>
     </ul>
+
     <div
       class="ps_gs-selected-filters"
-      v-if="!loader"
+      v-if="!searchLoader"
     >
-      <div class="d-flex flex-wrap align-items-center mr-2 ps_gs-selected-filters__badges">
+      <div
+        class="
+          d-flex
+          flex-wrap
+          align-items-center
+          mr-2
+          ps_gs-selected-filters__badges
+        "
+      >
         <b-form-tag
           class="mr-1 mb-1"
           v-for="(filter, index) in filtersChosen"
@@ -46,7 +73,7 @@
         size="sm"
         @click="checkAll(false)"
       >
-        {{ $t('cta.clearAll') }}
+        {{ $t("cta.clearAll") }}
       </b-button>
     </div>
     <div class="d-md-flex text-center justify-content-end mt-3 mb-2">
@@ -72,18 +99,23 @@
 </template>
 
 <script>
+import {BIconSlashCircle} from 'bootstrap-vue';
 import SmartShoppingCampaignCreationFilterItem from './smart-shopping-campaign-creation-filter-item.vue';
 import {
-  filterUncheckedSegments, checkAndUpdateDimensionStatus, deepCheckDimension, getFilters,
+  filterUncheckedSegments,
+  checkAndUpdateDimensionStatus,
+  deepCheckDimension,
+  getFilters,
 } from '../../../utils/SSCFilters';
 
 export default {
   name: 'SmartShoppingCampaignCreationPopinFilter',
   components: {
     SmartShoppingCampaignCreationFilterItem,
+    BIconSlashCircle,
   },
   props: {
-    loader: {
+    searchLoader: {
       type: Boolean,
       required: true,
       default: false,
@@ -103,6 +135,9 @@ export default {
     },
     dimensionChosen() {
       return this.$store.state.smartShoppingCampaigns.dimensionChosen;
+    },
+    hasResults() {
+      return this.dimensionChosen.children.filter((child) => child.visible === true);
     },
   },
   methods: {
@@ -134,13 +169,14 @@ export default {
     },
     resetSearch() {
       this.searchFilterName = null;
-      this.$store
-        .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
+      this.$store.dispatch(
+        'smartShoppingCampaigns/GET_DIMENSIONS_FILTERS',
+        null,
+      );
     },
   },
   mounted() {
     this.$root.$on('filterSelected', this.selectCheckbox);
   },
-
 };
 </script>

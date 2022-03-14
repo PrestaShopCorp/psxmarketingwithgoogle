@@ -395,6 +395,7 @@
           ref="SmartShoppingCampaignCreationPopin"
           @selectFilters="setDimensionFiltered"
           :loader="loader"
+          :search-loader="searchLoader"
           :edit-mode="editMode"
         />
         <SmartShoppingCampaignCreationPopinRecap
@@ -444,6 +445,7 @@ export default {
       loader: true,
       hasUnhandledFilters: false,
       totalProducts: 0,
+      searchLoader: false,
     };
   },
   components: {
@@ -666,8 +668,11 @@ export default {
       this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
     },
     getDatasFiltersDimensions(search) {
+      this.searchLoader = true;
       this.$store
-        .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search);
+        .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search).finally(() => {
+          this.searchLoader = false;
+        });
     },
     setInterfaceForCreation() {
       this.$store.commit('smartShoppingCampaigns/SET_DIMENSION_CHOSEN', {});

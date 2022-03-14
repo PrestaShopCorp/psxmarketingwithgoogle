@@ -32,11 +32,10 @@ export interface State {
   tagAlreadyExists: boolean;
   conversionActions: ConversionAction[];
   reporting: Reporting;
-  // All possible dimensions & filters
-  // (untouched by the popin, but can be filtered by a query search)
+  // All possible dimensions & filters (untouched by the popin, not filtered by any search)
   sscAvailableFilters: Dimension[];
   errorFetchingFilters: boolean;
-  // Dimension selected in the popin (checkme: has all the filters selected too?)
+  // Dimension selected in the popin
   dimensionChosen: Dimension,
   // Selected dimensions and filters formatted for the API (after validation from the popin)
   filtersChosen: FiltersChosen[];

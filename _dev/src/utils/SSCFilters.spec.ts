@@ -756,6 +756,7 @@ describe("SSC filters - addPropertiesToDimension()", () => {
           id: "category",
           checked: false,
           indeterminate: false,
+          visible: true,
           children: [
             {
               name: "Animaux et articles pour animaux de compagnie",
@@ -763,12 +764,14 @@ describe("SSC filters - addPropertiesToDimension()", () => {
               checked: false,
               indeterminate: false,
               numberOfProductsAssociated : 1,
+              visible: true,
               children: [
                 {
                   name: "Animal vivant",
                   id: "1",
                   checked: false,
                   numberOfProductsAssociated : 1,
+                  visible: true,
                 },
               ],
             },
@@ -778,6 +781,7 @@ describe("SSC filters - addPropertiesToDimension()", () => {
               checked: false,
               indeterminate: false,
               numberOfProductsAssociated : 1,
+              visible: true,
               children: [
                 {
                   name: "Peinture",
@@ -785,18 +789,21 @@ describe("SSC filters - addPropertiesToDimension()", () => {
                   checked: false,
                   indeterminate: false,
                   numberOfProductsAssociated : 1,
+                  visible: true,
                   children: [
                     {
                       name: "Huile",
                       id: "1",
                       checked: false,
                       numberOfProductsAssociated : 1,
+                      visible: true,
                     },
                     {
                       name: "Gouache",
                       id: "2",
                       checked: false,
                       numberOfProductsAssociated : 1,
+                      visible: true,
                     },
                   ],
                 },
@@ -805,6 +812,7 @@ describe("SSC filters - addPropertiesToDimension()", () => {
                   id: "2",
                   checked: false,
                   numberOfProductsAssociated : 1,
+                  visible: true,
                 },
               ],
             },
