@@ -200,7 +200,7 @@
       slot="modal-footer"
       v-else-if="stepActiveData === 3"
     >
-      <BannerAds :is-banner="isBanner" />
+      <BannerAds :is-banner="false" />
 
       <b-button
         variant="outline-secondary"
@@ -279,7 +279,6 @@ export default {
         },
       ],
       acceptsGoogleTerms: false,
-      isBanner: false,
     };
   },
   methods: {

@@ -12,11 +12,6 @@ beforeEach(() => {
   windowSpy = jest.spyOn(window, 'window', 'get');
   windowSpy.mockImplementation(() => ({
     // add data needed in window
-    i18nSettings: {
-      languageLocale: 'en', // needed in _dev/src/store/modules/product-feed/actions.ts
-      languageCode: 'en-US', // needed in _dev/src/store/modules/product-feed/actions.ts
-      isoCode: 'en',
-    },
     scrollTo: jest.fn(),
   }));
   VBTooltip = jest.fn();

@@ -91,10 +91,10 @@ export const adsAccountStatus = {
   },
   accountChosen:  {
     ...googleAdsAccountChosen.accountChosen,
-  billingSettings: {
-    isSet: true,
-  }
-},
+    billingSettings: {
+      isSet: true,
+    }
+  },
 }
 
 export default googleAdsNotChosen;

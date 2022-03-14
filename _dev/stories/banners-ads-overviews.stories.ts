@@ -59,7 +59,6 @@ const TemplateAdsConfigurationPage = (args, { argTypes }) => ({
   beforeMount: args.beforeMount,
   user: Object.assign({}, googleAccountConnected),
   beforeCreate(this:any){
-    console.log(this.$store.state.accounts);
     this.$store.state.app = Object.assign({}, initialStateApp);
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);

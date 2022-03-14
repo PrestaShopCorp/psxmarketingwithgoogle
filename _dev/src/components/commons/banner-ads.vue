@@ -24,7 +24,7 @@
         </h3>
 
         <p>
-          {{ $t("banner.textAdsBanner") }}
+          {{ $t("banner.textAdsBanner", [$t("banner.priceAdsBanner")]) }}
         </p>
         <p class="ps_gs-fz-10">
           {{
@@ -66,13 +66,16 @@ export default {
   },
   computed: {
     pngBanner() {
-      if (window.i18nSettings.isoCode.toUpperCase() === 'PL') {
+      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'ZL') {
         return 'banner/ads-poland.png';
       }
-      if (window.i18nSettings.isoCode.toUpperCase() === 'EN') {
+      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'USD') {
         return 'banner/ads-dollars.png';
       }
-      return 'banner/ads-euro.png';
+      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'EUR') {
+        return 'banner/ads-euro.png';
+      }
+      return 'banner/ads-dollars.png';
     },
   },
   methods: {

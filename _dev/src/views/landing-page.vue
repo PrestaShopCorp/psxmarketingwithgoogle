@@ -31,7 +31,7 @@
       <LandingPageContent
         :content-image="pngBanner"
         :content-title="$t('banner.titleAdsbanner')"
-        :content-text="$t('banner.textAdsBanner')"
+        :content-text="$t('banner.textAdsBanner', [$t('banner.priceAdsBanner')])"
         :content-footer="$t('banner.legendNotConfigured', [
           $options.googleUrl.learnAboutSmartShoppingCampaigns
         ])"
@@ -77,13 +77,16 @@ export default {
   },
   computed: {
     pngBanner() {
-      if (window.i18nSettings.isoCode.toUpperCase() === 'PL') {
+      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'ZL') {
         return 'banner/ads-poland-big.png';
       }
-      if (window.i18nSettings.isoCode.toUpperCase() === 'EN') {
+      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'USD') {
         return 'banner/ads-dollars-big.png';
       }
-      return 'banner/ads-euro-big.png';
+      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'EUR') {
+        return 'banner/ads-euro-big.png';
+      }
+      return 'banner/ads-dollars-big.png';
     },
   },
   googleUrl,
