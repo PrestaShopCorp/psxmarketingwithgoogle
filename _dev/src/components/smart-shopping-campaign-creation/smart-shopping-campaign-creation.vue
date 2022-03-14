@@ -518,7 +518,8 @@ export default {
     },
     currency() {
       return (
-        this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
+        this.foundSsc?.currencyCode
+        || this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
           ?.currencyCode || ''
       );
     },
@@ -661,9 +662,6 @@ export default {
         this.foundSsc.productFilters = filtersForAPI;
       }
     },
-    getSSCList() {
-      this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
-    },
     getDatasFiltersDimensions(search) {
       this.loader = true;
       this.$store
@@ -754,13 +752,13 @@ export default {
       }
     },
   },
-  mounted() {
+  async mounted() {
     window.scrollTo(0, 0);
     if (this.productsHaveBeenApprovedByGoogle) {
       this.getDatasFiltersDimensions();
     }
     if (this.editMode === true) {
-      this.getSSCList();
+      await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
       this.setInterfaceForEdition();
     } else {
       this.loader = false;
