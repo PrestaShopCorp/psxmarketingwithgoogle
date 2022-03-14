@@ -39,6 +39,13 @@
             <strong>Prestashop version</strong>: {{ this.$store.state.app.psVersion }}
           </li>
           <li>
+            <strong>Module version</strong>:
+            {{ this.$store.state.app.psxMktgWithGoogleModuleVersion }}
+          </li>
+          <li>
+            <strong>App build version</strong>: {{ appBuildVersion }}
+          </li>
+          <li>
             <strong>Shop ID</strong>: {{ shopId }}
           </li>
           <li>
@@ -213,6 +220,7 @@ export default {
         loading: false,
         error: false,
       },
+      appBuildVersion: process.env.VUE_APP_BUILD_VERSION || 'Not provided',
     };
   },
   components: {

@@ -50,6 +50,7 @@ jobs:
         run: npm run build
         env:
           VUE_APP_CDN_URL: https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}/
+          VUE_APP_BUILD_VERSION: ${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}
 
       - name: Build
         working-directory: _dev
@@ -57,6 +58,7 @@ jobs:
         run: npm run build
         env:
           VUE_APP_CDN_URL: https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.x.x/
+          VUE_APP_BUILD_VERSION: ${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}
 
       - name: Delete old CDN prerelease
         continue-on-error: true
