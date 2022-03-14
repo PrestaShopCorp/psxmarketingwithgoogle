@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import {searchImage} from '@/utils/ImageFromCurrency';
+
 export default {
   data() {
     return {
@@ -40,13 +42,7 @@ export default {
   },
   computed: {
     pngBanner() {
-      if (window.i18nSettings.isoCode.toUpperCase() === 'PL') {
-        return 'ads-poland.png';
-      }
-      if (window.i18nSettings.isoCode.toUpperCase() === 'EN') {
-        return 'ads-dollars.png';
-      }
-      return 'ads-euro.png';
+      return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode, 1);
     },
   },
 };

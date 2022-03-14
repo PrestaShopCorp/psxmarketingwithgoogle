@@ -54,6 +54,7 @@ import LandingPageHeader from '../components/landing-page/landing-page-header';
 import LandingPageContent from '../components/landing-page/landing-page-content';
 import LandingPageFooter from '../components/landing-page/landing-page-footer';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {searchImage} from '@/utils/ImageFromCurrency';
 
 export default {
   name: 'LandingPage',
@@ -77,16 +78,7 @@ export default {
   },
   computed: {
     pngBanner() {
-      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'ZL') {
-        return 'banner/ads-poland-big.png';
-      }
-      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'USD') {
-        return 'banner/ads-dollars-big.png';
-      }
-      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'EUR') {
-        return 'banner/ads-euro-big.png';
-      }
-      return 'banner/ads-dollars-big.png';
+      return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode, 1);
     },
   },
   googleUrl,

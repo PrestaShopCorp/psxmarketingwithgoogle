@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import {searchImage} from '@/utils/ImageFromCurrency';
+
 export default {
   props: {
     isBanner: {
@@ -66,16 +68,7 @@ export default {
   },
   computed: {
     pngBanner() {
-      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'ZL') {
-        return 'banner/ads-poland.png';
-      }
-      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'USD') {
-        return 'banner/ads-dollars.png';
-      }
-      if (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode.toUpperCase() === 'EUR') {
-        return 'banner/ads-euro.png';
-      }
-      return 'banner/ads-dollars.png';
+      return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode, 0);
     },
   },
   methods: {
