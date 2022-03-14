@@ -1,0 +1,51 @@
+.timeline-configured {
+    $iconWidth: rem(20);
+  
+    // Available icons
+    $icons: 'check_circle', 'play_circle';
+    // Available colors
+    $lineColors: ('green': $green);
+  
+    width: 400px;
+    max-width: 100%;
+  
+    &__item {
+      display: flex;
+      align-items: start;
+  
+      &[class*="icon"]::before {
+        font-family: 'Material Icons';
+        font-size: $iconWidth;
+        line-height: 1em;
+        -webkit-font-feature-settings: 'liga';
+        margin-right: rem(10);
+        margin-top: -#{rem(2)};
+        color: $green;
+      }
+  
+      @each $icon in $icons {
+        &[class*="--icon-#{$icon}"]::before {
+          content: $icon;
+        }
+      }
+  
+      &[class*="bg"] {
+        background-repeat: no-repeat;
+        background-position: left 0 top calc(#{$iconWidth} - #{rem(4)});
+      }
+  
+      @each $lineColorName, $lineColorValue in $lineColors {
+        &[class*="--bg-#{$lineColorName}"] {
+          background-image:
+            linear-gradient(to right,
+              transparent calc(#{$iconWidth} / 2 - 0.5px),
+              map-get($lineColors, $lineColorName) calc(#{$iconWidth} / 2 - 0.5px),
+              map-get($lineColors, $lineColorName) calc(#{$iconWidth} / 2 + 0.5px),
+              transparent calc(#{$iconWidth} / 2 + 0.5px));
+        }
+      }
+  
+    
+    }
+  }
+  

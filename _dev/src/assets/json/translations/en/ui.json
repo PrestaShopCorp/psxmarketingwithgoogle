@@ -733,6 +733,17 @@
     "text": "Configure your GMC to start creating campaigns with Google",
     "cta": "Go to configuration page"
   },
+  "configuredState": {
+    "title": "Congratulations, you’re all set !",
+    "text": "You finished all the required steps to get the most out of Marketing with Google",
+    "cta": "Go to campaign creation",
+    "firstStep": "Link your store to a PrestaShop account",
+    "secondStep": "Sign in or create your Google Account",
+    "thirdStep": "Sign in or create your Google Merchant Center account",
+    "fourthStep": "Export and synchronize your product catalog",
+    "fifthStep": "Sign in or create your Google Ads account",
+    "sixthStep": "Next step create your first Smart Shopping Campaign"
+  },
   "help": {
     "title": "Help for PrestaShop Google",
     "intro": "PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across different networks like Google Search, YouTube or Gmail. Create Smart Shopping campaigns without leaving your PrestaShop dashboard and drive more traffic.",
