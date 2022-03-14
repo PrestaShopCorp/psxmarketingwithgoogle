@@ -600,7 +600,7 @@
         "barcode": "Code-barre / Marque",
         "price": "Prix"
       },
-      "xHasFailedPreValidation": "\"{0}\": a échoué à la pré-validation.",
+      "xHasFailedPreValidation": "\"{0}\" : a échoué à la pré-validation.",
       "xHasPassedPreValidation": "\"{0}\" : a passé la pré-validation."
     },
     "approvalTable": {
