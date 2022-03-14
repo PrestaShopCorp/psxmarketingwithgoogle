@@ -1,14 +1,7 @@
 <template>
   <div>
     <div
-      class="
-        bg-light
-        px-2
-        pt-2
-        pb-1
-        rounded-top
-        border border-bottom-0 border-450
-      "
+      class="bg-light px-2 pt-2 pb-1 rounded-top border border-bottom-0 border-450"
     >
       <b-form-input
         id="campaign-name-input-filter"
@@ -24,7 +17,7 @@
       class="text-muted rounded-bottom border border-450 p-3 text-center"
     >
       <i class="icon-busy icon-busy--dark mr-1" />
-      {{ $t("badge.loading") }}
+      {{ $t('badge.loading') }}
     </div>
 
     <ul
@@ -52,13 +45,7 @@
       v-if="!searchLoader"
     >
       <div
-        class="
-          d-flex
-          flex-wrap
-          align-items-center
-          mr-2
-          ps_gs-selected-filters__badges
-        "
+        class="d-flex flex-wrap align-items-center mr-2 ps_gs-selected-filters__badges"
       >
         <b-form-tag
           class="mr-1 mb-1"
@@ -73,7 +60,7 @@
         size="sm"
         @click="checkAll(false)"
       >
-        {{ $t("cta.clearAll") }}
+        {{ $t('cta.clearAll') }}
       </b-button>
     </div>
     <div class="d-md-flex text-center justify-content-end mt-3 mb-2">
@@ -83,7 +70,7 @@
         variant="outline-secondary"
         @click="goBack"
       >
-        {{ $t("cta.back") }}
+        {{ $t('cta.back') }}
       </b-button>
       <b-button
         size="sm"
@@ -92,7 +79,7 @@
         variant="primary"
         @click="confirmation"
       >
-        {{ $t("cta.validateSelection") }}
+        {{ $t('cta.validateSelection') }}
       </b-button>
     </div>
   </div>
