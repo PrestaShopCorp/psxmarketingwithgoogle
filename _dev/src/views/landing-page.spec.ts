@@ -13,7 +13,6 @@ describe('landing-page.vue', () => {
     const wrapper = shallowMount(LandingPage, {
       ...config,
     });
-
     expect(wrapper.find('.ps_gs-landingpage').isVisible()).toBe(true);
   });
 });
