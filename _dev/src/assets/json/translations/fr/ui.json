@@ -209,7 +209,7 @@
     "title": "Synchronisez automatiquement les données de vos produits avec Google",
     "intro": "Soumettez les données de vos produits directement à votre Merchant Center et maintenez-les toujours à jour pour obtenir des listings et des annonces gratuites.",
     "introToConfigure": "Il est important de soumettre votre flux de produits dans le format correct, car Google utilise ceci pour s'assurer que vos produits correspondent aux bonnes requêtes.",
-    "nextSync": "Prochaine synchronisation : {0}",
+    "nextSync": "Prochaine synchronisation : {0} à {1}",
     "syncFailedAt": "Échec de la synchronisation {0} à {1}",
     "syncSuccess": "Produits synchronisés {1} à {2} | {0} Produits synchronisés {1} à {2} | {0} Produits synchronisés {1} à {2}",
     "syncBusy": "Synchronisation en cours...",
@@ -517,8 +517,8 @@
     "conditions": "État du produit",
     "conditionsSubTitle": "L'état de votre produit au moment de la vente (ex : neuf, usagé ou remis à neuf)",
     "popinTitle": "Filtres des produits de la campagne",
-    "popinTitleConfirmCancel": "Go Back",
-    "xProducts": " ({0} product) | ({0} product) | ({0} products)",
+    "popinTitleConfirmCancel": "Revenir en arrière",
+    "xProducts": " ({0} produit) | ({0} produit) | ({0} produits)",
     "productConditions": {
       "unspecified": "Non spécifié",
       "unknown": "Inconnu",
@@ -593,15 +593,15 @@
     "preScan": {
       "description": "{0} with problems that couldn't be synced are listed below.",
       "fields": {
-        "name": "Name",
-        "language": "Language",
+        "name": "Nom",
+        "language": "Langue",
         "image": "Image",
         "description": "Description",
         "barcode": "Code-barre / Marque",
         "price": "Prix"
       },
-      "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
-      "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation."
+      "xHasFailedPreValidation": "\"{0}\" : a échoué à la pré-validation.",
+      "xHasPassedPreValidation": "\"{0}\" : a passé la pré-validation."
     },
     "approvalTable": {
       "description": "Le statut des produits qui sont synchronisés avec Merchant Center",
@@ -694,7 +694,7 @@
       "conversion": "Conversion",
       "sales": "Ventes",
       "id": "ID",
-      "products": "Product Filters",
+      "products": "Filtres de produits",
       "click": "Clic",
       "costs": "Coûts",
       "averageCostPerClick": "CPC moyen",
