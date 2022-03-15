@@ -83,6 +83,11 @@
         <template #cell(id)="data">
           {{ data.item.productId }}
         </template>
+
+        <template #cell(id_attribute)="data">
+          {{ data.item.attributeId || '-' }}
+        </template>
+
         <template #cell(name)="data">
           <a
             class="external_link-no_icon"
@@ -181,6 +186,11 @@ export default {
         {
           key: 'id',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderID'),
+          thClass: 'font-weight-600',
+        },
+        {
+          key: 'id_attribute',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderAttributeID'),
           thClass: 'font-weight-600',
         },
         {
