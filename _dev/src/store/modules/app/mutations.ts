@@ -22,7 +22,6 @@ import {
   State as LocalState,
   HelpInformations,
   DebugData,
-  ModuleStatus,
 } from './state';
 
 export default {
@@ -34,8 +33,5 @@ export default {
   },
   [MutationsTypes.AD_BLOCKER_EXISTS](state: LocalState) {
     state.adBlockerExists = !state.adBlockerExists;
-  },
-  [MutationsTypes.SET_MODULE_DETAILS](state: LocalState, response: ModuleStatus) {
-    state.moduleStatus.hooks = response.hooks;
   },
 };

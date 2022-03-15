@@ -108,6 +108,10 @@ class ModuleRepository
         /** @var Module $moduleInstance */
         $moduleInstance = Module::getInstanceByName($this->moduleName);
 
+        if (empty($moduleInstance)) {
+            return $hooks;
+        }
+
         foreach (Config::HOOK_LIST as $hook) {
             $hooks[$hook] = \Hook::isModuleRegisteredOnHook($moduleInstance, $hook, $context->shop->id);
         }

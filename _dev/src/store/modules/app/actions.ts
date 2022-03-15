@@ -115,7 +115,7 @@ export default {
     }
     return null;
   },
-  async [ActionsTypes.GET_MODULES_VERSIONS]({rootState, commit}, moduleName) {
+  async [ActionsTypes.GET_MODULES_VERSIONS]({rootState}, moduleName) {
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
         method: 'POST',
@@ -130,7 +130,6 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
-      commit(MutationsTypes.SET_MODULE_DETAILS, json);
       return json;
     } catch (error) {
       console.error(error);
