@@ -130,6 +130,7 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
       const json = await response.json();
+
       return json;
     } catch (error) {
       console.error(error);
