@@ -289,6 +289,11 @@
       "addNewCarriers": "Ajouter ou mettre à jour des transporteurs",
       "refreshCarriers": "Rafraîchir si vous avez modifié vos transporteurs"
     },
+    "preScan": {
+      "selectLanguage": "Filter by language",
+      "apiError": "An error occurred while fetching data, please try again later.",
+      "noElement": "You don't have any products."
+    },
     "export": {
       "summarySyncDailyAt": "Synchronisation quotidienne à {0}",
       "synchronizationSchedule": "Export prévu",
