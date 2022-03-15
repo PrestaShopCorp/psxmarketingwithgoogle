@@ -44,6 +44,19 @@ PreScanTableDetailWithAllLangs.parameters = {
   },
 };
 
+export const PreScanApiError:any = Template.bind({});
+PreScanApiError.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/product-feeds/prevalidation-scan/errors', (req, res, ctx) => {
+        return res(
+          ctx.status(400)
+        );
+      }),
+    ],
+  },
+};
+
 export const Loading:any = Template.bind({});
 Loading.args = {
   loading: true,

@@ -142,6 +142,9 @@
           </span>
         </template>
       </b-table>
+      <p class="text-center font-weight-bold text-danger" v-if="apiError === false">
+        {{ $t('productFeedSettings.preScan.apiError') }}
+      </p>
       <div class="overflow-auto">
         <TablePageControls
           :total-pages="totalPage"
@@ -206,6 +209,7 @@ export default {
           thClass: 'font-weight-600',
         },
       ],
+      apiError: false,
     };
   },
   computed: {
@@ -278,6 +282,10 @@ export default {
     getPreScanProducts() {
       this.loading = true;
       this.$store.dispatch('productFeed/GET_PREVALIDATION_PRODUCTS')
+        .catch((error) => {
+          console.log(error);
+          this.apiError = true;
+        })
         .finally(() => {
           this.loading = false;
         });

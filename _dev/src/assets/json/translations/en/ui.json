@@ -290,7 +290,8 @@
       "refreshCarriers": "Refresh if you have edited your carriers"
     },
     "preScan": {
-      "selectLanguage": "Filter by language"
+      "selectLanguage": "Filter by language",
+      "apiError": "An error occurred while fetching data, please try again later."
     },
     "export": {
       "summarySyncDailyAt": "Sync daily at {0}",
