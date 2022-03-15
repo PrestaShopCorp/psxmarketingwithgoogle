@@ -289,6 +289,11 @@
       "addNewCarriers" : "Add or update carriers",
       "refreshCarriers": "Refresh if you have edited your carriers"
     },
+    "preScan": {
+      "selectLanguage": "Filter by language",
+      "apiError": "An error occurred while fetching data, please try again later.",
+      "noElement": "You don't have any products."
+    },
     "export": {
       "summarySyncDailyAt": "Sync daily at {0}",
       "synchronizationSchedule": "Export synchronization schedule",
@@ -529,7 +534,7 @@
     "dimensionXFilterSelectedWithXProducts" : "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
     "filtersWithxValues" : "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products"
    },
-  
+
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance",
     "xCampaign": "No campaigns | {0} campaign | {0} campaigns"

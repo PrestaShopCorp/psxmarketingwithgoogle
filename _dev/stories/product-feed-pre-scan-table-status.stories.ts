@@ -3,6 +3,8 @@ import {initialStateApp} from '../.storybook/mock/state-app';
 import {
   productFeed,
   prevalidationScan,
+  prevalidationScanForFrenchProducts,
+  preScanFilteredInFR,
 } from '../.storybook/mock/product-feed';
 
 import {rest} from 'msw';
@@ -10,34 +12,29 @@ import {rest} from 'msw';
 export default {
   title: 'Product feed page/Table PreScan Status Details',
   component: ProductFeedPreScanTableStatusDetails,
-  argTypes: {
-  },
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ProductFeedPreScanTableStatusDetails },
   template: '<div><ProductFeedPreScanTableStatusDetails v-bind="$props" ref="preScanTable"/></div>',
-  beforeMount(this: any) {
-    this.$store.state.app = Object.assign({}, initialStateApp);
-    this.$store.state.productFeed = Object.assign({}, productFeed);
-  },
+  beforeMount: args.beforeMount,
   mounted(this: any) {
-     this.$refs.preScanTable.$data.loading = args.loading;
+    this.$refs.preScanTable.$data.loading = args.loading;
   }
 });
 
-export const PreScanTableDetail:any = Template.bind({});
-
-export const Loading:any = Template.bind({});
-Loading.args = {
-  loading: true,
+export const PreScanTableDetailWithAllLangs:any = Template.bind({});
+PreScanTableDetailWithAllLangs.args = {
+  beforeMount(this: any) {
+    this.$store.state.productFeed = Object.assign({}, productFeed);
+    this.$store.state.app = Object.assign({}, initialStateApp);
+  },
 }
-
-PreScanTableDetail.parameters = {
+PreScanTableDetailWithAllLangs.parameters = {
   msw: {
     handlers: [
-      rest.get('/product-feeds/prevalidation-scan', (req, res, ctx) => {
+      rest.get('/product-feeds/prevalidation-scan/errors', (req, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json(prevalidationScan)
@@ -46,3 +43,21 @@ PreScanTableDetail.parameters = {
     ],
   },
 };
+
+export const PreScanApiError:any = Template.bind({});
+PreScanApiError.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/product-feeds/prevalidation-scan/errors', (req, res, ctx) => {
+        return res(
+          ctx.status(400)
+        );
+      }),
+    ],
+  },
+};
+
+export const Loading:any = Template.bind({});
+Loading.args = {
+  loading: true,
+}

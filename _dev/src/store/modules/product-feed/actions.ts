@@ -435,8 +435,16 @@ export default {
     }
     commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, getSelectedCtg);
   },
-  async [ActionsTypes.GET_PREVALIDATION_PRODUCTS]({rootState}) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/prevalidation-scan`, {
+  async [ActionsTypes.GET_PREVALIDATION_PRODUCTS]({rootState, commit, state}) {
+    const {limit} = state.preScanDetail;
+    const offset = ((state.preScanDetail.currentPage - 1) * limit).toString();
+    const lang = state.preScanDetail.langChosen;
+    let query = `?limit=${limit}&offset=${offset}`;
+
+    if (lang) {
+      query += `&lang=${lang}`;
+    }
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/prevalidation-scan/errors${query}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -450,7 +458,8 @@ export default {
     }
     const json = await response.json();
 
-    return json;
+    commit(MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT, json.totalErrors);
+    commit(MutationsTypes.SET_PRESCAN_PRODUCTS, json.errors);
   },
 
   async [ActionsTypes.GET_PREVALIDATION_SUMMARY]({rootState, commit}) {

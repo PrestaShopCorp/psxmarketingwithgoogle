@@ -7,7 +7,7 @@
       header-tag="nav"
       header-class="px-3 py-1"
     >
-      <ol class="list-inline mb-0 d-flex align-items-center ps_gs-breadcrumb">
+      <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
           <b-link
             :to="{name: 'product-feed'}"
@@ -22,7 +22,7 @@
       </ol>
     </b-card-header>
     <b-card-body body-class="p-3 mt-2">
-      <div class="d-flex flex-wrap flex-md-nowrap justify-content-between align-items-center">
+      <div class="flex-wrap d-flex flex-md-nowrap justify-content-between align-items-center">
         <i18n
           path="productFeedPage.preScan.description"
           tag="h2"
@@ -42,27 +42,27 @@
           id="filterByCountryDropdown"
           variant=" "
           menu-class="ps-dropdown"
-          :text="langSelected ? langSelected
-            : $t('productFeedSettings.shipping.filterTitle')"
-          class="mb-2 mt-1 mt-md-0 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
+          :text="langChosen ? langChosen
+            : $t('productFeedSettings.preScan.selectLanguage')"
+          class="mt-1 mb-2 mt-md-0 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
         >
           <b-dropdown-item
-            :disabled="!langSelected"
+            :disabled="!langChosen"
             variant="dark"
             link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
-            @click="langSelected = null"
+            @click="langChosen = null"
           >
             {{ $t('productFeedSettings.shipping.filterTitle') }}
           </b-dropdown-item>
           <b-dropdown-item
-            :disabled="country === langSelected"
-            v-for="(country, index) in countries"
+            :disabled="lang === langChosen"
+            v-for="(lang, index) in countries"
             :key="index"
-            @click="langSelected = country"
+            @click="langChosen = lang"
             variant="dark"
             link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
           >
-            {{ country }}
+            {{ lang }}
           </b-dropdown-item>
         </b-dropdown>
       </div>
@@ -70,27 +70,32 @@
         :items="items"
         :fields="fields"
         :filter-function="filterByLang"
-        :filter="langSelected"
-        :per-page="perPage"
+        :filter="langChosen"
+        :per-page="limit"
         :current-page="currentPage"
         :busy="loading"
         id="table-products"
-        class="ps_gs-table-products mb-3"
+        class="mb-3 ps_gs-table-products"
         table-class="border-bottom-0"
         variant="light"
         responsive="xl"
       >
         <template #cell(id)="data">
-          {{ data.value }}
+          {{ data.item.productId }}
         </template>
+
+        <template #cell(id_attribute)="data">
+          {{ data.item.attributeId || '-' }}
+        </template>
+
         <template #cell(name)="data">
           <a
             class="external_link-no_icon"
-            :href="!isNaN(data.item.id)
-              ? getProductBaseUrl.replace('/1?', `/${data.item.id}?`) : null"
+            :href="(!isNaN(data.item.id) && data.item.id)
+              ? getProductBaseUrl.replace('/1?', `/${data.item.productId}?`) : null"
             target="_blank"
           >
-            {{ data.item.name }}
+            {{ getProductName(data.item.titleByLang) }}
           </a>
         </template>
         <template
@@ -98,37 +103,68 @@
         >
           <b-badge
             variant="primary"
-            class="ps_gs-fz-12 text-capitalize"
+            class="mr-1 ps_gs-fz-12 text-capitalize"
+            v-for="(language, index) in getProductLangs(data.item.titleByLang)"
+            :key="index"
           >
-            {{ data.item.language }}
+            {{ language.toUpperCase() }}
           </b-badge>
         </template>
-        <!-- START > Default template -->
-        <template #cell()="data">
-          <span class="sr-only">
-            {{
-              data.value
-                ? $t('productFeedPage.preScan.xHasFailedPreValidation', [data.field.label])
-                : $t('productFeedPage.preScan.xHasPassedPreValidation', [data.field.label])
-            }}
-          </span>
+
+        <template #cell(image)="data">
           <span
             class="material-icons"
-            :class="data.value ? 'text-success': 'text-danger'"
+            :class="data.item.isMissingImage ? 'text-danger' : 'text-success'"
           >
-            {{ data.value ? 'done' : 'close' }}
+            {{ data.item.isMissingLink ? 'close' : 'done' }}
           </span>
         </template>
-        <!-- END > Default template -->
+
+        <template #cell(description)="data">
+          <span
+            class="material-icons"
+            :class="data.item.isMissingDescription ? 'text-danger' : 'text-success'"
+          >
+            {{ data.item.isMissingDescription ? 'close' : 'done' }}
+          </span>
+        </template>
+
+        <template #cell(barcode)="data">
+          <span
+            class="material-icons"
+            :class="data.item.isMissingBrandOrBarcode ? 'text-danger' : 'text-success'"
+          >
+            {{ data.item.isMissingBrandOrBarcode ? 'close' : 'done' }}
+          </span>
+        </template>
+
+        <template #cell(price)="data">
+          <span
+            class="material-icons"
+            :class="data.item.isMissingPrice ? 'text-danger' : 'text-success'"
+          >
+            {{ data.item.isMissingPrice ? 'close' : 'done' }}
+          </span>
+        </template>
       </b-table>
+      <p
+        v-if="apiError"
+        class="text-center font-weight-bold text-danger"
+      >
+        {{ $t('productFeedSettings.preScan.apiError') }}
+      </p>
+      <p
+        v-if="!apiError && items.length === 0"
+        class="text-center"
+      >
+        {{ $t('productFeedSettings.preScan.noElement') }}
+      </p>
       <div class="overflow-auto">
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="rows"
-          :per-page="perPage"
-          aria-controls="table-products"
-          align="center"
-          class="mb-0"
+        <TablePageControls
+          :total-pages="totalPage"
+          :active-page="currentPage"
+          :selected-filter-quantity-to-show="limit"
+          :need-page-selector="false"
         />
       </div>
     </b-card-body>
@@ -136,22 +172,25 @@
 </template>
 
 <script>
+import TablePageControls from '../commons/table-page-controls.vue';
+
 export default {
   name: 'ProductFeedPreScanTableStatusDetails',
-  components: {},
+  components: {
+    TablePageControls,
+  },
   data() {
     return {
-      // use a method for filtering with the actif lang
-      countries: ['EN', 'FR'],
-      langSelected: null,
-      perPage: 10,
-      currentPage: 1,
       loading: false,
-      items: [],
       fields: [
         {
           key: 'id',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderID'),
+          thClass: 'font-weight-600',
+        },
+        {
+          key: 'id_attribute',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderAttributeID'),
           thClass: 'font-weight-600',
         },
         {
@@ -189,6 +228,7 @@ export default {
           thClass: 'font-weight-600',
         },
       ],
+      apiError: false,
     };
   },
   computed: {
@@ -196,28 +236,91 @@ export default {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
     },
     rows() {
-      return this.items.length;
+      return this.$store.getters['productFeed/GET_PRESCAN_TOTAL_ERROR'];
+    },
+    items() {
+      return this.$store.getters['productFeed/GET_PRESCAN_PRODUCTS'];
+    },
+    totalPage() {
+      const totalPage = Math.ceil(this.$store.getters['productFeed/GET_PRESCAN_TOTAL_ERROR'] / this.limit);
+
+      return totalPage < 1 ? 1 : totalPage;
+    },
+    langChosen: {
+      get() {
+        return this.$store.getters['productFeed/GET_PRESCAN_LANGUAGE_CHOSEN'];
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_PRESCAN_LANGUAGE_CHOSEN', value);
+        this.getPreScanProducts();
+      },
+    },
+    limit: {
+      get() {
+        return this.$store.getters['productFeed/GET_PRESCAN_LIMIT_PAGE'];
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_PRESCAN_LIMIT_PAGE', value);
+      },
+    },
+    currentPage: {
+      get() {
+        return this.$store.getters['productFeed/GET_PRESCAN_NEXT_PAGE'];
+      },
+      set(value) {
+        this.$store.commit('productFeed/SET_PRESCAN_NEXT_PAGE', value);
+      },
+    },
+    countries() {
+      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
+    },
+    getDefaultLang() {
+      return this.$store.state.app.psxMtgWithGoogleDefaultShopCountry;
     },
   },
   methods: {
     filterByLang(row, filter) {
-      return row.language === filter;
+      this.langChosen = filter;
+    },
+    getProductName(products) {
+      if (products.length === 0) {
+        return '';
+      }
+      const findProductInCurrentLang = products.find(
+        (k) => k.lang.toUpperCase() === this.getDefaultLang,
+      );
+
+      if (findProductInCurrentLang !== undefined) {
+        return findProductInCurrentLang?.title;
+      }
+      return products[0].title;
+    },
+    getProductLangs(products) {
+      return products.map((k) => k.lang);
     },
     getPreScanProducts() {
       this.loading = true;
       this.$store.dispatch('productFeed/GET_PREVALIDATION_PRODUCTS')
-        .then((res) => {
-          this.loading = false;
-          this.items = res;
+        .catch(() => {
+          this.apiError = true;
         })
-        .catch((error) => {
+        .finally(() => {
           this.loading = false;
-          console.error(error);
         });
+    },
+    limitChanged(newLimit) {
+      this.limit = newLimit;
+      this.getPreScanProducts();
+    },
+    pageChanged(newPage) {
+      this.currentPage = newPage;
+      this.getPreScanProducts();
     },
   },
   mounted() {
     this.getPreScanProducts();
+    this.$root.$on('changeLimit', this.limitChanged);
+    this.$root.$on('changePage', this.pageChanged);
   },
 };
 </script>
