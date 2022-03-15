@@ -289,6 +289,11 @@
       "addNewCarriers": "Vervoerders toevoegen of bijwerken",
       "refreshCarriers": "Vernieuwen als u uw dragers hebt bewerkt"
     },
+    "preScan": {
+      "selectLanguage": "Filter by language",
+      "apiError": "An error occurred while fetching data, please try again later.",
+      "noElement": "You don't have any products."
+    },
     "export": {
       "summarySyncDailyAt": "Synchroniseer dagelijks op {0}",
       "synchronizationSchedule": "Synchronisatieschema exporteren",
