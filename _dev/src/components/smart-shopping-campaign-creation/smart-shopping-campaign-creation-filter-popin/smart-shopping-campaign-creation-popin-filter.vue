@@ -70,7 +70,7 @@
         variant="outline-secondary"
         @click="goBack"
       >
-        {{ $t('cta.back') }}
+        {{ $t("cta.back") }}
       </b-button>
       <b-button
         size="sm"
@@ -79,7 +79,7 @@
         variant="primary"
         @click="confirmation"
       >
-        {{ $t('cta.validateSelection') }}
+        {{ $t("cta.validateSelection") }}
       </b-button>
     </div>
   </div>
