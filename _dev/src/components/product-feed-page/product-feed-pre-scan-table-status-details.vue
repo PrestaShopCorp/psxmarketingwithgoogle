@@ -301,8 +301,7 @@ export default {
     getPreScanProducts() {
       this.loading = true;
       this.$store.dispatch('productFeed/GET_PREVALIDATION_PRODUCTS')
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
           this.apiError = true;
         })
         .finally(() => {
