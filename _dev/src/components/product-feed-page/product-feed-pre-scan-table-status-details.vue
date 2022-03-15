@@ -86,8 +86,7 @@
         <template #cell(name)="data">
           <a
             class="external_link-no_icon"
-            :class="{'m-3' : data.item.attributeId > 0}"
-            :href="!isNaN(data.item.id)
+            :href="(!isNaN(data.item.id) && data.item.id)
               ? getProductBaseUrl.replace('/1?', `/${data.item.productId}?`) : null"
             target="_blank"
           >
