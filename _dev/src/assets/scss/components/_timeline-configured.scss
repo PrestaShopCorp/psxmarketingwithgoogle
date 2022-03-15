@@ -1,51 +1,74 @@
 .timeline-configured {
-    $iconWidth: rem(20);
-  
-    // Available icons
-    $icons: 'check_circle', 'play_circle';
-    // Available colors
-    $lineColors: ('green': $green);
-  
-    width: 400px;
-    max-width: 100%;
-  
-    &__item {
-      display: flex;
-      align-items: start;
-  
-      &[class*="icon"]::before {
-        font-family: 'Material Icons';
-        font-size: $iconWidth;
-        line-height: 1em;
-        -webkit-font-feature-settings: 'liga';
-        margin-right: rem(10);
-        margin-top: -#{rem(2)};
-        color: $green;
-      }
-  
-      @each $icon in $icons {
-        &[class*="--icon-#{$icon}"]::before {
-          content: $icon;
-        }
-      }
-  
-      &[class*="bg"] {
-        background-repeat: no-repeat;
-        background-position: left 0 top calc(#{$iconWidth} - #{rem(4)});
-      }
-  
-      @each $lineColorName, $lineColorValue in $lineColors {
-        &[class*="--bg-#{$lineColorName}"] {
-          background-image:
-            linear-gradient(to right,
-              transparent calc(#{$iconWidth} / 2 - 0.5px),
-              map-get($lineColors, $lineColorName) calc(#{$iconWidth} / 2 - 0.5px),
-              map-get($lineColors, $lineColorName) calc(#{$iconWidth} / 2 + 0.5px),
-              transparent calc(#{$iconWidth} / 2 + 0.5px));
-        }
-      }
-  
+  $iconWidth: rem(20);
+
+  // Available icons
+  $icons: "check_circle", "play_circle";
+  // Available colors
+  $lineColors: (
+    "green": $green,
+  );
+
+  width: 400px;
+  max-width: 100%;
+
+  &__item {
+    display: flex;
+    align-items: start;
     
+    &:not(:last-child) {
+      padding-bottom: 1rem;
     }
+
+    p {
+      margin: 0;
+    }
+
+    &::before {
+      font-family: "Material Icons";
+      font-size: $iconWidth;
+      line-height: 1em;
+      -webkit-font-feature-settings: "liga";
+      margin-right: rem(10);
+      margin-top: -#{rem(2)};
+      color: $green;
+      content: "check_circle";
+    }
+
+    &:last-child::before {
+      font-family: "Material Icons Outlined";
+      content: "play_circle";
+    }
+
+    background-repeat: no-repeat;
+    background-position: left 0 top calc(#{$iconWidth} - #{rem(4)});
+    background-image: linear-gradient(
+      to right,
+      transparent calc(#{$iconWidth} / 2 - 0.5px),
+      $green calc(#{$iconWidth} / 2 - 0.5px),
+      $green calc(#{$iconWidth} / 2 + 0.5px),
+      transparent calc(#{$iconWidth} / 2 + 0.5px)
+    );
+
+    &:last-child {
+      background: none;
+    }
+
+    &:nth-last-child(2) {
+      background-repeat: repeat, no-repeat;
+      background-position: top left, left 0 top calc(#{$iconWidth} - #{rem(4)});
+      background-image: linear-gradient(
+        to bottom,
+        white 50%, transparent 50%
+      ), 
+      linear-gradient(
+        to right,
+        transparent calc(#{$iconWidth} / 2 - 0.5px),
+        $green calc(#{$iconWidth} / 2 - 0.5px),
+        $green calc(#{$iconWidth} / 2 + 0.5px),
+        transparent calc(#{$iconWidth} / 2 + 0.5px)
+      );
+      background-size: auto 4px, auto;
+    }
+
   }
-  
+}

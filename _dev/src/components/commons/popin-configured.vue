@@ -11,27 +11,19 @@
         src="@/assets/images/configured.png"
         alt=""
       >
-      <p>
-        {{ $t("configuredState.text") }}
-      </p>
+
+      <VueShowdown :markdown="$t('configuredState.text')" />
       <template>
         <ul
           class="timeline-configured list-unstyled mb-auto"
-          v-for="(oneStep, index) in steps"
-          :key="index"
         >
-          <li
+          <VueShowdown
+            v-for="(oneStep, index) in steps"
+            :key="index"
+            tag="li"
+            :markdown="oneStep"
             class="timeline-configured__item"
-            :class="{
-              'timeline-configured__item--bg-green': index < steps.length - 1,
-              'timeline-configured__item--icon-check_circle':
-                index < steps.length - 1,
-              'timeline-configured__item--icon-play_circle':
-                index === steps.length - 1,
-            }"
-          >
-            {{ oneStep }}
-          </li>
+          />
         </ul>
       </template>
       <b-button
