@@ -289,6 +289,11 @@
       "addNewCarriers": "Träger hinzufügen oder aktualisieren",
       "refreshCarriers": "Aktualisieren Sie, wenn Sie Ihre Träger bearbeitet haben"
     },
+    "preScan": {
+      "selectLanguage": "Filter by language",
+      "apiError": "An error occurred while fetching data, please try again later.",
+      "noElement": "You don't have any products."
+    },
     "export": {
       "summarySyncDailyAt": "Täglich synchronisieren um {0}",
       "synchronizationSchedule": "Zeitplan für die Synchronisierung exportieren",

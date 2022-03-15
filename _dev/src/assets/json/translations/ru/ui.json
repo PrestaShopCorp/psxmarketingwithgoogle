@@ -289,6 +289,11 @@
       "addNewCarriers": "Добавить или обновить перевозчиков",
       "refreshCarriers": "Обновите, если вы отредактировали своих носителей"
     },
+    "preScan": {
+      "selectLanguage": "Filter by language",
+      "apiError": "An error occurred while fetching data, please try again later.",
+      "noElement": "You don't have any products."
+    },
     "export": {
       "summarySyncDailyAt": "Синхронизация ежедневно в {0}",
       "synchronizationSchedule": "Расписание синхронизации экспорта",
