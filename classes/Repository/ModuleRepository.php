@@ -21,6 +21,7 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
 use Module;
+use Context;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
@@ -102,12 +103,13 @@ class ModuleRepository
      */
     public function getActiveHooks(): array
     {
+        $context = Context::getContext();
         $hooks = [];
         /** @var Module $moduleInstance */
         $moduleInstance = Module::getInstanceByName($this->moduleName);
 
         foreach (Config::HOOK_LIST as $hook) {
-            $hooks[$hook] = \Hook::isModuleRegisteredOnHook($moduleInstance, $hook, 1);
+            $hooks[$hook] = \Hook::isModuleRegisteredOnHook($moduleInstance, $hook, $context->shop->id);
         }
 
         return $hooks;

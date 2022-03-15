@@ -43,7 +43,7 @@ export default {
   name: 'AlertModuleDisabled',
   data() {
     return {
-      loading: null,
+      loading: false,
       isEnabled: this.$store.state.app.psxMktgWithGoogleModuleIsEnabled,
       enableLink: this.$store.state.app.psxMktgWithGoogleEnableLink,
     };

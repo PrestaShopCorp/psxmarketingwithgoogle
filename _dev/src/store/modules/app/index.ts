@@ -38,7 +38,7 @@ const state = Object.assign(
   {psxMktgWithGoogleStoreSettingsUrl} || '',
   {psxMtgWithGoogleDefaultShopCountry} || {},
   {psxMktgWithGoogleEnableLink} || '',
-  {psxMktgWithGoogleModuleIsEnabled} || false,
+  {psxMktgWithGoogleModuleIsEnabled} || true,
   {psxMktgWithGoogleOnProductionEnvironment} || false,
   {psxMktgWithGoogleCarriersUrl} || document.querySelector('#subtab-AdminCarriers a')?.getAttribute('href'),
   {psxMktgWithGoogleAttributesUrl} || document.querySelector('#subtab-AdminParentAttributesGroups a')?.getAttribute('href'),
