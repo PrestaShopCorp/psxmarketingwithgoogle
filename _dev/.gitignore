@@ -4,6 +4,7 @@ node_modules
 config.yml
 
 # local env files
+!.env
 .env.local
 .env.*.local
 
