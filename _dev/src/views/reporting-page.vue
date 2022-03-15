@@ -44,14 +44,12 @@ export default {
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
     },
   },
-  created() {
-    if (!this.inNeedOfConfiguration) {
-      this.getDatas();
-    } else {
-      this.connectAccounts().then(() => {
-        this.getDatas();
-      });
+
+  async created() {
+    if (this.inNeedOfConfiguration) {
+      await this.connectAccounts();
     }
+    this.getDatas();
   },
 };
 </script>
