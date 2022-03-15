@@ -260,9 +260,6 @@ export default {
     shopId() {
       return window.shopIdPsAccounts || 'none yet';
     },
-    getModuleInfos() {
-      return this.$store.getters['app/GET_MODULE_INFOS'];
-    },
     moduleIsEnabled() {
       return this.$store.state.app.psxMktgWithGoogleModuleIsEnabled;
     },
