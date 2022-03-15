@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     pngBanner() {
-      return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode, 1);
+      return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
   },
 };

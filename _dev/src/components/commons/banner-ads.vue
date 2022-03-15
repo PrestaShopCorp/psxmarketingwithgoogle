@@ -15,8 +15,10 @@
     <div class="d-flex align-items-center">
       <img
         :src="require(`@/assets/images/${pngBanner}`)"
-        alt=""
-        :width="size === 'xs' ? 70 : ''"
+        alt="banner-price"
+        :height="size === 'xs' ? 90 : 140"
+        :width="size === 'xs' ? 90 : 140"
+        class="mr-4"
       >
       <span>
         <h3 class="font-weight-600">
@@ -27,10 +29,7 @@
           {{ $t("banner.textAdsBanner", [$t("banner.priceAdsBanner")]) }}
         </p>
         <p class="ps_gs-fz-10">
-          {{
-            $t("banner.legendConfigured")
-
-          }}
+          {{ $t("banner.legendConfigured") }}
         </p>
       </span>
 
@@ -38,7 +37,7 @@
         v-if="size !== 'xs'"
         class="align-self-start"
         src="@/assets/images/banner/dots.png"
-        alt=""
+        alt="img-decoration"
         height="70"
       >
     </div>
@@ -68,7 +67,7 @@ export default {
   },
   computed: {
     pngBanner() {
-      return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode, 0);
+      return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
   },
   methods: {
