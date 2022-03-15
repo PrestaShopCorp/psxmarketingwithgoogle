@@ -291,7 +291,8 @@
     },
     "preScan": {
       "selectLanguage": "Filter by language",
-      "apiError": "An error occurred while fetching data, please try again later."
+      "apiError": "An error occurred while fetching data, please try again later.",
+      "noElement": "You don't have any products."
     },
     "export": {
       "summarySyncDailyAt": "Sync daily at {0}",

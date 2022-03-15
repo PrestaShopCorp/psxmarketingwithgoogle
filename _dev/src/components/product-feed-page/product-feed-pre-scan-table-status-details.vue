@@ -142,8 +142,17 @@
           </span>
         </template>
       </b-table>
-      <p class="text-center font-weight-bold text-danger" v-if="apiError === false">
+      <p
+        v-if="apiError"
+        class="text-center font-weight-bold text-danger"
+      >
         {{ $t('productFeedSettings.preScan.apiError') }}
+      </p>
+      <p
+        v-if="!apiError && items.length === 0"
+        class="text-center"
+      >
+        {{ $t('productFeedSettings.preScan.noElement') }}
       </p>
       <div class="overflow-auto">
         <TablePageControls
