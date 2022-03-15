@@ -20,8 +20,8 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
-use Module;
 use Context;
+use Module;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
