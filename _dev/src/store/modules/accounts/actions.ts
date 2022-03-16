@@ -20,6 +20,7 @@
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
+import ActionsTypesProductFeed from '../product-feed/actions-types';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
@@ -703,5 +704,12 @@ export default {
     } catch (error) {
       console.error(error);
     }
+  },
+
+  async [ActionsTypes.REQUEST_ACCOUNTS_DETAILS]({
+    dispatch,
+  }) {
+    await dispatch(ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS);
+    await dispatch(`productFeed/${ActionsTypesProductFeed.GET_PRODUCT_FEED_SETTINGS}`, null, {root: true});
   },
 };

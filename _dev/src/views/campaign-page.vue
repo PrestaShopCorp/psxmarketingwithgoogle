@@ -97,10 +97,6 @@ export default {
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'),
       ]);
     },
-    async connectAccounts() {
-      await this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
-      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-    },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
         this.$refs.SSCPopinActivateTracking.$refs.modal.id,
@@ -118,7 +114,7 @@ export default {
   },
   async created() {
     if (this.inNeedOfConfiguration) {
-      await this.connectAccounts();
+      await this.$store.dispatch('accounts/REQUEST_ACCOUNTS_DETAILS');
     }
     this.getDatas()
       .then(() => {
