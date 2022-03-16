@@ -31,7 +31,6 @@ export default {
     },
   },
   methods: {
-
     async getDatas() {
       await this.$store.dispatch('smartShoppingCampaigns/SET_REPORTING_DATES_RANGE');
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
@@ -40,11 +39,17 @@ export default {
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
       await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
     },
+    async connectAccounts() {
+      await this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
+      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
+    },
   },
-  created() {
-    if (!this.inNeedOfConfiguration) {
-      this.getDatas();
+
+  async created() {
+    if (this.inNeedOfConfiguration) {
+      await this.connectAccounts();
     }
+    this.getDatas();
   },
 };
 </script>
