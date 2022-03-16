@@ -9,6 +9,7 @@
       "help": "Pomoc"
     },
     "versionDoesNotExist": "Wygląda na to, że wersja modułu nie może zostać pobrana. Jest to po naszej stronie, proszę spróbować ponownie.",
+    "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it’s features until you enable your module.",
     "moduleUpdateNeeded": {
       "ps_eventbus": "Wersja modułu PrestaShop EventBus uruchomiona w tym sklepie jest starsza niż minimalna wymagana.\n\nMożesz używać PrestaShop Marketing with Google, ale niektóre funkcje (np. synchronizacja produktów) nie będą dostępne dopóki nie zaktualizujesz PrestaShop EventBus.",
       "psxmarketingwithgoogle": "Proszę zaktualizować moduł PrestaShop Marketing With Google, aby działał poprawnie."
@@ -24,7 +25,8 @@
     "notAvailable": "Niedostępne",
     "min": "min.",
     "max": "max.",
-    "helpPage": "Strona pomocy"
+    "helpPage": "Strona pomocy",
+    "noResultsFoundForX": " No results found for {0}"
   },
   "landingPage": {
     "header": {
@@ -737,6 +739,17 @@
     "text": "Skonfiguruj swoje GMC, aby rozpocząć tworzenie kampanii w Google",
     "cta": "Przejdź do strony konfiguracji"
   },
+  "configuredState": {
+    "title": "Congratulations, you're all set !",
+    "text": "You finished all the required steps to get the most out of **Marketing with Google**",
+    "cta": "Go to campaign creation",
+    "firstStep": "Link your store to a PrestaShop account",
+    "secondStep": "Sign in or create your Google Account",
+    "thirdStep": "Sign in or create your Google Merchant Center account",
+    "fourthStep": "Export and synchronize your product catalog",
+    "fifthStep": "Sign in or create your Google Ads account",
+    "sixthStep": "**Next step** create your first Smart Shopping Campaign"
+  },
   "help": {
     "title": "Pomoc dla Prestashop Google",
     "intro": "PrestaShop Marketing ułatwia połączenie Twojego sklepu z Google i promowanie Twoich produktów wśród milionów kupujących w różnych sieciach, takich jak Google Search, YouTube czy Gmail. Twórz inteligentne kampanie produktowe i generuj większy ruch na swojej stronie bez opuszczania pulpitu PrestaShop.",
@@ -774,6 +787,7 @@
     "acceptInvitation": "Zaakceptuj zaproszenie",
     "continue": "Kontynuuj",
     "disabled": "Wyłączone",
+    "activateModule": "Enable module",
     "enabled": "Włączone",
     "agree": "Zgadzam się",
     "enableFreeListing": "Włącz wyświetlanie bezpłatnych informacji o produkcie",
