@@ -1,13 +1,6 @@
 .timeline-configured {
   $iconWidth: rem(20);
 
-  // Available icons
-  $icons: "check_circle", "play_circle";
-  // Available colors
-  $lineColors: (
-    "green": $green,
-  );
-
   width: 400px;
   max-width: 100%;
 

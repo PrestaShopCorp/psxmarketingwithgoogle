@@ -7,11 +7,11 @@
       <h3 class="font-weight-600">
         {{ $t("configuredState.title") }}
       </h3>
-      <img
-        src="@/assets/images/configured.png"
-        alt=""
-      >
 
+      <b-img
+        :src="require('@/assets/images/configured.png')"
+        fluid
+      />
       <VueShowdown :markdown="$t('configuredState.text')" />
       <template>
         <ul
