@@ -61,6 +61,7 @@ export default {
       } finally {
         this.isEnabled = true;
         this.loading = false;
+        window.location.reload();
       }
     },
   },

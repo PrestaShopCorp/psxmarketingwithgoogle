@@ -58,7 +58,6 @@
         module-name="psxmarketingwithgoogle"
         :needed-version="this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded"
       />
-      <AlertModuleDisabled />
       <router-view />
       <div
         v-if="shopId"
@@ -75,7 +74,6 @@ import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleUpdate from '@/components/commons/alert-update-module';
-import AlertModuleDisabled from '@/components/commons/alert-module-disabled';
 
 let resizeEventTimer;
 const root = document.documentElement;
@@ -88,7 +86,6 @@ export default {
     Menu,
     MenuItem,
     AlertModuleUpdate,
-    AlertModuleDisabled,
   },
   computed: {
     shopId() {

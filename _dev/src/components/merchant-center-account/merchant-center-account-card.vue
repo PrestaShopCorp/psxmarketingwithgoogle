@@ -527,6 +527,7 @@
           ref="PhoneVerificationPopin"
           @phoneNumberVerified="phoneNumberVerified"
         />
+        <AlertModuleDisabled />
       </b-card>
     </b-skeleton-wrapper>
   </section>
@@ -545,6 +546,7 @@ import BadgeListRequirements from '../commons/badge-list-requirements';
 import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
 import PhoneVerificationPopin from './phone-verification/phone-verification-popin.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import AlertModuleDisabled from '@/components/commons/alert-module-disabled';
 
 export default {
   name: 'MerchantCenterAccountCard',
@@ -555,6 +557,7 @@ export default {
     VueShowdown,
     PhoneVerificationPopin,
     BAlert,
+    AlertModuleDisabled,
   },
   data() {
     return {

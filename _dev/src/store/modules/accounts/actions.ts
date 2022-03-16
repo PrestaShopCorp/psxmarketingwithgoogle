@@ -99,9 +99,13 @@ export default {
       commit,
       dispatch,
       state,
+      rootState,
     },
     correlationId: string,
   ) {
+    if (rootState.app.psxMktgWithGoogleModuleIsEnabled === false) {
+      return;
+    }
     commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCheck);
     let {isVerified, isClaimed} = await dispatch(
       ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
