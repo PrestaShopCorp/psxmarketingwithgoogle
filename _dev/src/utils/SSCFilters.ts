@@ -181,8 +181,7 @@ export function deepUpdateDimensionVisibilityFromTree(dimension: Dimension,
   dimension.visible = findDimensionInTree(dimension, filteredTree);
   // eslint-disable-next-line no-unused-expressions
   dimension.children?.forEach((child) => {
-    child.visible = findDimensionInTree(child, filteredTree);
-    if (child.visible) {
+    if (dimension.visible) {
       deepUpdateDimensionVisibilityFromTree(child, filteredTree);
     } else {
       deepUpdateDimensionVisibility(child, false);
