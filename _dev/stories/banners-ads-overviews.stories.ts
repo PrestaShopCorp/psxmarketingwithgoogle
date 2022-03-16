@@ -53,10 +53,11 @@ const TemplateAdsConfigurationPage = (args, { argTypes }) => ({
   components: { OnboardingPage},
   template: `
   <div>
-  <OnboardingPage v-bind="$props"  />
+  <OnboardingPage v-bind="$props"/>
   </div>
   `,
   beforeMount: args.beforeMount,
+  mounted: args.mounted,
   user: Object.assign({}, googleAccountConnected),
   beforeCreate(this:any){
     this.$store.state.app = Object.assign({}, initialStateApp);
@@ -71,10 +72,11 @@ const TemplateAdsConfigurationPage = (args, { argTypes }) => ({
   }
 });
 
-
 export const BannerOnConfigurationPage:any = TemplateAdsConfigurationPage.bind({});
 BannerOnConfigurationPage.args = {
-  
+  mounted(this: any) {
+  //  TODO add condition to display banner
+    }
 };
 
 const TemplateCampaignsCreation = (args, { argTypes }) => ({
@@ -82,14 +84,19 @@ const TemplateCampaignsCreation = (args, { argTypes }) => ({
   components: { SmartShoppingCampaignCreationPopin},
   template: `
   <div>
-  <SmartShoppingCampaignCreationPopin v-bind="$props"/>
+  <SmartShoppingCampaignCreationPopin v-bind="$props"  ref="bannerAds"/>
   </div>
   `,
   beforeMount: args.beforeMount,
+  mounted: args.mounted,
 });
 export const BannerOnCreationCampaign:any = TemplateCampaignsCreation.bind({});
 BannerOnCreationCampaign.args = {
- 
+  mounted(this: any) {
+  //  TODO add condition to display banner
+  this.$refs.bannerAds.$data.isBanner = true
+  }
+
 };
 
 

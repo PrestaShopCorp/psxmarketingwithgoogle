@@ -104,13 +104,13 @@
           v-if="!isEnabled"
           :badges="['productFeed', 'googleAdsAccount']"
         />
-        <hr>
-
-        <BannerAds
-          v-if="isBanner"
-          size="xs"
-          :is-banner="false"
-        />
+        <span v-if="isBanner">
+          <hr>
+          <BannerAds
+            size="xs"
+            :is-banner="false"
+          />
+        </span>
       </b-card>
     </b-skeleton-wrapper>
   </section>
@@ -130,7 +130,8 @@ export default {
   data() {
     return {
       selected: null,
-      isBanner: true,
+      // TODO : dynamically change isBanner to display or not the ads banner
+      isBanner: false,
     };
   },
   props: {

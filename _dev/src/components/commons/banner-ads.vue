@@ -20,7 +20,7 @@
         :width="size === 'xs' ? 90 : 140"
         class="mr-md-4 mb-3 mb-md-0"
       >
-      <span>
+      <div>
         <h3 class="font-weight-600">
           {{ $t("banner.titleAdsbanner") }}
         </h3>
@@ -31,7 +31,7 @@
         <p class="ps_gs-fz-10">
           {{ $t("banner.legendConfigured") }}
         </p>
-      </span>
+      </div>
 
       <img
         v-if="size !== 'xs'"

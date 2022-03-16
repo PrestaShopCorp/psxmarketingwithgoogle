@@ -456,7 +456,7 @@ export default {
       totalProducts: 0,
       searchLoader: false,
       // TODO : dynamically change isBanner to display or not the ads banner
-      isBanner: true,
+      isBanner: false,
     };
   },
   components: {
