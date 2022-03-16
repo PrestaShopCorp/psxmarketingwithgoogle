@@ -9,7 +9,7 @@
       </h3>
       <img
         src="@/assets/images/configured.png"
-        alt=""
+        alt="img-presentation"
       >
 
       <VueShowdown :markdown="$t('configuredState.text')" />
