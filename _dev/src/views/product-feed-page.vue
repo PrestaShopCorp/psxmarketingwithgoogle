@@ -57,11 +57,16 @@ export default {
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
       await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
     },
+    async connectAccounts() {
+      await this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
+      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
+    },
   },
-  mounted() {
-    if (!this.inNeedOfConfiguration) {
-      this.getDatas();
+  async created() {
+    if (this.inNeedOfConfiguration) {
+      await this.connectAccounts();
     }
+    this.getDatas();
   },
 };
 </script>
