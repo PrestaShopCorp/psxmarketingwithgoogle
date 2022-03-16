@@ -21,7 +21,7 @@
       @sendStep="stepIs($event)"
       @validateCreationFilters="sendFiltersSelected"
       @confirmCancel="confirmCancel"
-      :loader="loader"
+      :search-loader="searchLoader"
     />
     <SmartShoppingCampaignCreationFilterConfirmCancel
       ref="SmartShoppingCampaignCreationFilterConfirmCancel"
@@ -57,6 +57,11 @@ export default {
   },
   props: {
     loader: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    searchLoader: {
       type: Boolean,
       required: true,
       default: false,

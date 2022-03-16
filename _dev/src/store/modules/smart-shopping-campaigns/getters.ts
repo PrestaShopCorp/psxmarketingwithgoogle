@@ -28,7 +28,8 @@ import {
   ProductPerformances,
   FiltersPerformances,
   ConversionAction,
-  DimensionChosen,
+  Dimension,
+  FiltersChosen,
 } from './state';
 import GettersTypes from './getters-types';
 import KpiType from '@/enums/reporting/KpiType';
@@ -88,6 +89,9 @@ export default {
   [GettersTypes.GET_LIMIT_CAMPAIGN_PERFORMANCE_LIST](state: LocalState): null|number {
     return state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList;
   },
+  [GettersTypes.GET_CAMPAIGN_FILTER_CHOSEN](state: LocalState): FiltersChosen|null {
+    return state.filtersChosen?.find((filter) => !!filter) || null;
+  },
 
   // request getters
   [GettersTypes.GET_REPORTING_PERIOD_SELECTED](
@@ -146,7 +150,7 @@ export default {
   },
   [GettersTypes.GET_SSC_DIMENSIONS_AND_FILTERS](
     state: LocalState,
-  ): DimensionChosen[] {
+  ): Dimension[] {
     return state.sscAvailableFilters;
   },
   [GettersTypes.GET_ERROR_FETCHING_FILTERS_STATUS](

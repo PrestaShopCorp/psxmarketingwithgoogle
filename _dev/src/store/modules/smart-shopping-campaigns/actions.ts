@@ -22,7 +22,10 @@ import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import {CampaignObject, CampaignStatusPayload, ConversionAction} from './state';
+import {
+  CampaignObject, CampaignStatusPayload, ConversionAction, Dimension,
+} from './state';
+import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, rootState}, payload : CampaignObject) {
@@ -500,7 +503,12 @@ export default {
     commit(MutationsTypes.UPDATE_SSC, payload);
     return json;
   },
-  async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState}, search) {
+  async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState, state}, search?: string) {
+    if (!search && state.sscAvailableFilters.length) {
+      deepUpdateDimensionVisibility(state.dimensionChosen, true);
+      return;
+    }
+
     const query = new URLSearchParams({
       language_code: window.i18nSettings.isoCode,
       country_code: rootState.app.psxMtgWithGoogleDefaultShopCountry,
@@ -519,14 +527,26 @@ export default {
         },
       });
 
-    if (resp.status === 500 || resp.status === 502) {
-      commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: [], search, error: true});
+    if (resp.status > 299) {
+      commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: [], error: true});
       return;
     }
     if (!resp.ok) {
       throw new HttpClientError(resp.statusText, resp.status);
     }
     const json = await resp.json();
-    commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: json, search, error: false});
+
+    if (!search) {
+      // Basic mutation storing all possible dimensions and filters
+      commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: json, error: false});
+    }
+    if (state.dimensionChosen?.id) {
+      // If we called the API with a search query, we need to update the chosen dimension
+      Object.keys(json).forEach((dimensionName) => {
+        if (dimensionName === state.dimensionChosen.id) {
+          commit(MutationsTypes.SET_DIMENSION_CHOSEN_CHILDREN, json[dimensionName]);
+        }
+      });
+    }
   },
 };

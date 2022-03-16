@@ -32,9 +32,12 @@ export interface State {
   tagAlreadyExists: boolean;
   conversionActions: ConversionAction[];
   reporting: Reporting;
-  sscAvailableFilters: DimensionChosen[];
+  // All possible dimensions & filters (untouched by the popin, not filtered by any search)
+  sscAvailableFilters: Dimension[];
   errorFetchingFilters: boolean;
-  dimensionChosen: DimensionChosen,
+  // Dimension selected in the popin
+  dimensionChosen: Dimension,
+  // Selected dimensions and filters formatted for the API (after validation from the popin)
   filtersChosen: FiltersChosen[];
 }
 
@@ -46,16 +49,18 @@ export interface FiltersChosen {
   dimension?: string,
   values?: Array<string>,
 }
-export interface DimensionChosen {
+export interface Dimension {
+  // Data from API
   name?: string;
-    // TODO: Remove this in a near future as this will removed from the API
-  localizedName?: string;
   subtitle?: string;
   id?: string;
+  numberOfProductsAssociated?: number,
+  children?: Dimension[];
+
+  // Managed by this app
   checked?: boolean;
   indeterminate?: boolean;
-  numberOfProductsAssociated?: number,
-  children?: DimensionChosen[];
+  visible?: boolean;
 }
 export interface CampaignsOrdering {
   name?: string,

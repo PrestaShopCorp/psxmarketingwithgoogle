@@ -1,27 +1,29 @@
-import {DimensionChosen} from '@/store/modules/smart-shopping-campaigns/state';
+import {Dimension} from '@/store/modules/smart-shopping-campaigns/state';
 
 interface filtersChosenFromAPI {
   dimension: string,
   values: string[],
 }
 export function addPropertiesToDimension(
-  dimension: DimensionChosen[],
-): DimensionChosen[] {
+  dimension: Dimension[],
+): Dimension[] {
   const finalDimension = dimension.map((oneFilter) => {
     if (oneFilter.children) {
       return {
-        name: oneFilter.name ?? oneFilter.localizedName,
+        name: oneFilter.name,
         id: oneFilter.id,
         checked: false,
         indeterminate: false,
+        visible: true,
         numberOfProductsAssociated: oneFilter.numberOfProductsAssociated,
         children: addPropertiesToDimension(oneFilter.children),
       };
     }
     return {
-      name: oneFilter.name ?? oneFilter.localizedName,
+      name: oneFilter.name,
       id: oneFilter.id,
       checked: false,
+      visible: true,
       numberOfProductsAssociated: oneFilter.numberOfProductsAssociated,
     };
   });
@@ -29,7 +31,7 @@ export function addPropertiesToDimension(
   return finalDimension;
 }
 
-export function filterUncheckedSegments(source: DimensionChosen) {
+export function filterUncheckedSegments(source: Dimension) {
   const filteredChildren = source.children
     ?.map((child) => {
       if (child.children) {
@@ -48,7 +50,7 @@ export function filterUncheckedSegments(source: DimensionChosen) {
   };
 }
 
-export function returnChildrenIds(source: DimensionChosen) {
+export function returnChildrenIds(source: Dimension) {
   let values: string[] = [];
 
   if (!source.children && source.id) {
@@ -65,7 +67,7 @@ export function returnChildrenIds(source: DimensionChosen) {
   return values;
 }
 
-export function checkAndUpdateDimensionStatus(source: DimensionChosen) {
+export function checkAndUpdateDimensionStatus(source: Dimension) {
   const checkedChildren = source.children?.filter((element) => {
     if (element.children) {
       checkAndUpdateDimensionStatus(element);
@@ -83,7 +85,7 @@ export function checkAndUpdateDimensionStatus(source: DimensionChosen) {
   return source;
 }
 
-export function deepCheckDimension(source: DimensionChosen, checkboxClicked) {
+export function deepCheckDimension(source: Dimension, checkboxClicked) {
   source.checked = checkboxClicked;
   if (source.children) {
     source.children.forEach((child) => {
@@ -102,7 +104,7 @@ export function getFilters(arg, final) {
   return final;
 }
 
-export function returnCountProducts(source: DimensionChosen): number {
+export function returnCountProducts(source: Dimension): number {
   let total = 0;
 
   if (!source.checked && !source.indeterminate) {
@@ -121,8 +123,8 @@ export function returnCountProducts(source: DimensionChosen): number {
 }
 
 export function findAndCheckFilter(
-  dimension: DimensionChosen,
-  filtersList: string[],
+  dimension: Dimension,
+  filtersList: (string)[],
 ) {
   if (dimension.children) {
     dimension.children.forEach((fil) => {
@@ -144,7 +146,7 @@ export function findAndCheckFilter(
 
 // TODO : improve for multiple selected dimensions
 export function retrieveProductNumberFromFiltersIds(
-  productFilters: filtersChosenFromAPI[], dimensions: DimensionChosen[],
+  productFilters: filtersChosenFromAPI[], dimensions: Dimension[],
 ) {
   if (!productFilters.length) {
     return 0;
@@ -155,4 +157,50 @@ export function retrieveProductNumberFromFiltersIds(
     return 0;
   }
   return returnCountProducts(findAndCheckFilter(dimensionChosen, productFilters[0].values));
+}
+
+export function deepUpdateDimensionVisibility(dimension: Dimension, newValue: boolean): void {
+  dimension.visible = newValue;
+  // eslint-disable-next-line no-unused-expressions
+  dimension.children?.forEach((child: Dimension) => {
+    deepUpdateDimensionVisibility(child, newValue);
+  });
+}
+
+/**
+ * Hides all dimensions (visibility=false) that are not present in the tree.
+ *
+ * Todo: improve this method to check the hierarchy as well.
+ * At the moment, as soon we find the ID anywhere, it returns true.
+ *
+ * @param dimension
+ * @param filteredTree
+ */
+export function deepUpdateDimensionVisibilityFromTree(dimension: Dimension,
+  filteredTree: Dimension[]) {
+  dimension.visible = findDimensionInTree(dimension, filteredTree);
+  // eslint-disable-next-line no-unused-expressions
+  dimension.children?.forEach((child) => {
+    if (dimension.visible) {
+      deepUpdateDimensionVisibilityFromTree(child, filteredTree);
+    } else {
+      deepUpdateDimensionVisibility(child, false);
+    }
+  });
+}
+
+/**
+ * Looks for a given dimension (or filter) into a dimension tree.
+ * The tree is the result of a search query, with limited content.
+ */
+export function findDimensionInTree(dimension: Dimension, tree: Dimension[]): boolean {
+  return tree.some((child: Dimension) => {
+    if (child.id === dimension.id) {
+      return true;
+    }
+    if (child.children?.length) {
+      return findDimensionInTree(dimension, child.children);
+    }
+    return false;
+  });
 }
