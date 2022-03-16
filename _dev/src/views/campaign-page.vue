@@ -99,6 +99,10 @@ export default {
       // No need to wait for this one to resolve
       this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
     },
+    async connectAccounts() {
+      await this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
+      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
+    },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
         this.$refs.SSCPopinActivateTracking.$refs.modal.id,
@@ -114,19 +118,21 @@ export default {
       this.loadingCampaignList = event;
     },
   },
-  mounted() {
-    if (!this.inNeedOfConfiguration) {
-      this.getDatas()
-        .then(() => {
-          this.loadingPage = false;
-          if (this.$route.name === 'campaign' && this.SSCExist) {
-            this.$router.push({
-              name: 'campaign-list',
-            });
-          }
-        });
+  async created() {
+    if (this.inNeedOfConfiguration) {
+      await this.connectAccounts();
     }
-    this.loadingPage = false;
+    this.getDatas()
+      .then(() => {
+        this.loadingPage = false;
+        if (this.$route.name === 'campaign' && this.SSCExist) {
+          this.$router.push({
+            name: 'campaign-list',
+          });
+        }
+      }).finally(() => {
+        this.loadingPage = false;
+      });
   },
   watch: {
     $route: {
