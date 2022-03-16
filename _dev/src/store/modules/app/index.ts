@@ -19,6 +19,8 @@ const {
   psxMktgWithGoogleStoreSettingsUrl,
   psxMtgWithGoogleDefaultShopCountry,
   psxMktgWithGoogleOnProductionEnvironment,
+  psxMktgWithGoogleEnableLink,
+  psxMktgWithGoogleModuleIsEnabled,
 }: any = window;
 
 const state = Object.assign(
@@ -35,6 +37,8 @@ const state = Object.assign(
   {psxMktgWithGoogleProductDetailUrl} || '',
   {psxMktgWithGoogleStoreSettingsUrl} || '',
   {psxMtgWithGoogleDefaultShopCountry} || {},
+  {psxMktgWithGoogleEnableLink} || '',
+  {psxMktgWithGoogleModuleIsEnabled} || true,
   {psxMktgWithGoogleOnProductionEnvironment} || false,
   {psxMktgWithGoogleCarriersUrl} || document.querySelector('#subtab-AdminCarriers a')?.getAttribute('href'),
   {psxMktgWithGoogleAttributesUrl} || document.querySelector('#subtab-AdminParentAttributesGroups a')?.getAttribute('href'),

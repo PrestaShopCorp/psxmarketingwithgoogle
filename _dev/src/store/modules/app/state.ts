@@ -38,6 +38,8 @@ export interface State {
   adBlockerExists: boolean;
   eventbusVersionNeeded: string;
   psxMktgWithGoogleModuleVersionNeeded: string;
+  psxMktgWithGoogleModuleIsEnabled: boolean;
+  psxMktgWithGoogleEnableLink: string;
 }
 
 export interface ShopCurrency {
@@ -86,4 +88,6 @@ export const state: State = {
   psxMktgWithGoogleModuleVersion: '',
   eventbusVersionNeeded: process.env.VUE_APP_MIN_VERSION_NEEDED_EVENT_BUS || '',
   psxMktgWithGoogleModuleVersionNeeded: process.env.VUE_APP_MIN_VERSION_NEEDED_MKTG_GOOGLE || '',
+  psxMktgWithGoogleModuleIsEnabled: true,
+  psxMktgWithGoogleEnableLink: '',
 };

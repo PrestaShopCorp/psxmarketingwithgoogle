@@ -87,9 +87,7 @@ export default {
     MenuItem,
     AlertModuleUpdate,
   },
-
   computed: {
-
     shopId() {
       return window.shopIdPsAccounts;
     },
@@ -128,7 +126,6 @@ export default {
         params: SegmentGenericParams,
       });
     },
-
   },
   watch: {
     $route() {
