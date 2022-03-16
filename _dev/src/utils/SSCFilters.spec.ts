@@ -11,7 +11,13 @@ import {
   addPropertiesToDimension,
   getFilters,
   returnCountProducts,
+  deepUpdateDimensionVisibility,
+  findDimensionInTree,
+  deepUpdateDimensionVisibilityFromTree,
 } from "./SSCFilters";
+
+import {availableFilters} from '@/../.storybook/mock/smart-shopping-campaigns.js';
+import { Dimension } from "../store/modules/smart-shopping-campaigns/state";
 
 describe("SSC filters - filterUncheckedSegments()", () => {
   it("returns an empty array when everything is unchecked", () => {
@@ -405,8 +411,7 @@ describe("SSC filters - returnChildrenIds()", () => {
     const result = returnChildrenIds(source);
     
     expect(result).toEqual(["1", "22", "2"])
-
-});
+  });
 });
     
 
@@ -821,6 +826,7 @@ describe("SSC filters - addPropertiesToDimension()", () => {
       ]);
   });
 });
+
 describe("SSC filters - getFilters()", () => {
   it("returns the count of last filter, the one with no children", () => {
     const source =  {
@@ -1027,4 +1033,293 @@ describe("SSC filters - returnCountProducts()", () => {
     const result = returnCountProducts(source);
     expect(result).toEqual(21);
 });
+});
+
+describe("SSC filters - deepUpdateDimensionVisibility()", () => {
+  const source = {
+    visible: true,
+    children: [
+      {
+        visible: false,
+        children: [
+          {
+            visible: false,
+          },
+        ],
+      },
+      {
+        visible: true,
+        children: [
+          {
+            visible: false,
+          },
+        ],
+      },
+      {
+        visible: true,
+        children: [
+          {
+            visible: true,
+          },
+        ],
+      },
+    ],
+  };
+
+  it("updates all filters with the given boolean true", () => {
+    deepUpdateDimensionVisibility(source, true);
+    expect(source).toEqual({
+        visible: true,
+        children: [
+          {
+            visible: true,
+            children: [
+              {
+                visible: true,
+              },
+            ],
+          },
+          {
+            visible: true,
+            children: [
+              {
+                visible: true,
+              },
+            ],
+          },
+          {
+            visible: true,
+            children: [
+              {
+                visible: true,
+              },
+            ],
+          },
+        ],
+      }
+    );
+  });
+
+  it("updates all filters with the given boolean false", () => {
+    deepUpdateDimensionVisibility(source, false);
+    expect(source).toEqual({
+        visible: false,
+        children: [
+          {
+            visible: false,
+            children: [
+              {
+                visible: false,
+              },
+            ],
+          },
+          {
+            visible: false,
+            children: [
+              {
+                visible: false,
+              },
+            ],
+          },
+          {
+            visible: false,
+            children: [
+              {
+                visible: false,
+              },
+            ],
+          },
+        ],
+      }
+    );
+  });
+});
+
+describe("SSC filters - deepUpdateDimensionVisibilityFromTree()", () => {
+  let tree: Dimension;
+  beforeEach(() => {
+    tree = JSON.parse(JSON.stringify(availableFilters[0]));
+  });
+
+  it("hides all filters missing in search results", () => {
+    const searchResults = [{
+      name: "smartShoppingCampaignCreation.categories",
+      id: "categories",
+      checked: false,
+      indeterminate: true,
+      children: [
+        {
+          "id": "5436832322",
+          // [...]
+          "children": [],
+        },
+        {
+          id: "1",
+          // [...]
+          "children": [
+            {
+              id: "a",
+              // [...]
+              "children": [
+                {
+                  id:"abc",
+                  // [...]
+                }
+              ],
+            }
+          ],
+        },
+        {
+          id: "222",
+          // [...]
+        }
+      ],
+    }];
+    deepUpdateDimensionVisibilityFromTree(tree, searchResults);
+    expect(tree).toEqual({
+      name: "smartShoppingCampaignCreation.categories",
+      id: "categories",
+      checked: false,
+      indeterminate: true,
+      visible: true,
+      children: [
+        {
+          status: "ACTIVE",
+          id: "1",
+          name: "Animaux et articles pour animaux de compagnie",
+          checked: false,
+          indeterminate: true,
+          visible: true,
+          children: [
+            {
+              id:"a",
+              name: "Chien",
+              checked: true,
+              indeterminate: false,
+              numberOfProductsAssociated: 12,
+              visible: true,
+              children: [
+                {
+                  id:"ab",
+                  countryCode: "FR",
+                  languageCode: "fr",
+                  name: "Labrador",
+                  checked: true,
+                  numberOfProductsAssociated: 10,
+                  visible: false,
+                },
+                {
+                  id:"abc",
+                  countryCode: "FR",
+                  languageCode: "fr",
+                  name: "Berger Allemand",
+                  checked: true,
+                  numberOfProductsAssociated: 2,
+                  visible: true,
+                },
+              ]
+            },
+            {
+              status: "ACTIVE",
+              id: "b",
+              name: "Chat",
+              checked: true,
+              indeterminate: false,
+              visible: false,
+            },
+          ],
+        },
+        {
+          status: "ACTIVE",
+          id: "8",
+          name: "Arts et loisirs",
+          checked: false,
+          indeterminate: false,
+          visible: false,
+        },
+        {
+          status: "ACTIVE",
+          id: "166",
+          name: "Vêtements et accessoires",
+          checked: true,
+          indeterminate: false,
+          numberOfProductsAssociated: 13,
+          visible: false,
+          children: [
+            {
+              status: "ACTIVE",
+              id: "111",
+              name: "Entreprise et industrie",
+              checked: true,
+              numberOfProductsAssociated: 12,
+              visible: false,
+            },
+            {
+              status: "ACTIVE",
+              id: "141",
+              name: "Appareils photo, caméras et instruments d'optique",
+              checked: true,
+              numberOfProductsAssociated: 1,
+              visible: false,
+            },
+          ]
+        },
+        {
+          status: "ACTIVE",
+          id: "222",
+          name: "Appareils électroniques",
+          checked: false,
+          indeterminate: false,
+          visible: true,
+        },
+        {
+          status: "ACTIVE",
+          id: "412",
+          name: "Alimentation, boissons et tabac",
+          checked: false,
+          indeterminate: false,
+          visible: false,
+        },
+        {
+          status: "ACTIVE",
+          id: "436",
+          name: "Meubles",
+          checked: false,
+          indeterminate: false,
+          visible: false,
+        },
+      ],
+    });
+  });
+});
+
+describe("SSC filters - findDimensionInTree()", () => {
+  const tree = availableFilters;
+
+  it("finds in first level", () => {
+    const dimension = {
+      id: "8",
+      name: "Arts et loisirs",
+      // [...]
+    };
+    expect(findDimensionInTree(dimension, tree[0].children)).toBe(true);
+  });
+
+  it("finds in deep level", () => {
+    const dimension = {
+      id: "141",
+      name: "Appareils photo, caméras et instruments d'optique",
+      // [...]
+    };
+    expect(findDimensionInTree(dimension, tree)).toBe(true);
+  });
+
+  it("fails when it does not exist", () => {
+    const dimension = {
+      id: "🤷‍♂️",
+      name: "One filter that does not exist in the search results",
+      // [...]
+    };
+    expect(findDimensionInTree(dimension, tree)).toBe(false);
+  })
 });

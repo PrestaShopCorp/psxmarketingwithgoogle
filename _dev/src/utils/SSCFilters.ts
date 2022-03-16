@@ -167,17 +167,33 @@ export function deepUpdateDimensionVisibility(dimension: Dimension, newValue: bo
   });
 }
 
+/**
+ * Hides all dimensions (visibility=false) that are not present in the tree.
+ *
+ * Todo: improve this method to check the hierarchy as well.
+ * At the moment, as soon we find the ID anywhere, it returns true.
+ *
+ * @param dimension
+ * @param filteredTree
+ */
 export function deepUpdateDimensionVisibilityFromTree(dimension: Dimension,
   filteredTree: Dimension[]) {
+  dimension.visible = findDimensionInTree(dimension, filteredTree);
   // eslint-disable-next-line no-unused-expressions
   dimension.children?.forEach((child) => {
     child.visible = findDimensionInTree(child, filteredTree);
     if (child.visible) {
       deepUpdateDimensionVisibilityFromTree(child, filteredTree);
+    } else {
+      deepUpdateDimensionVisibility(child, false);
     }
   });
 }
 
+/**
+ * Looks for a given dimension (or filter) into a dimension tree.
+ * The tree is the result of a search query, with limited content.
+ */
 export function findDimensionInTree(dimension: Dimension, tree: Dimension[]): boolean {
   return tree.some((child: Dimension) => {
     if (child.id === dimension.id) {
