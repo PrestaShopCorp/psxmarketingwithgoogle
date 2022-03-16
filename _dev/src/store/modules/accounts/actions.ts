@@ -705,11 +705,7 @@ export default {
   async [ActionsTypes.REQUEST_ACCOUNTS_DETAILS]({
     dispatch,
   }) {
-    try {
-      await dispatch(ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS);
-      await dispatch(`productFeed/${ActionsTypesProductFeed.GET_PRODUCT_FEED_SETTINGS}`, null, {root: true});
-    } catch (error) {
-      console.error(error);
-    }
+    await dispatch(ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS);
+    await dispatch(`productFeed/${ActionsTypesProductFeed.GET_PRODUCT_FEED_SETTINGS}`, null, {root: true});
   },
 };
