@@ -209,7 +209,7 @@
     "title": "Automatische Synchronisierung Ihrer Produktdaten mit Google",
     "intro": "Übermitteln Sie Ihre Produktdaten direkt an Ihr Merchant Center und halten Sie sie immer auf dem neuesten Stand für kostenlose Listings und Anzeigen.",
     "introToConfigure": "Es ist wichtig, dass Sie Ihren Produkt-Feed im richtigen Format übermitteln, da Google dies nutzt, um sicherzustellen, dass Ihre Produkte den richtigen Suchanfragen entsprechen.",
-    "nextSync": "Nächste Synchronisierung: {0} bei {1}",
+    "nextSync": "Nächste Synchronisierung: {0}",
     "syncFailedAt": "Synchronisierung fehlgeschlagen {0} bei {1}",
     "syncSuccess": "Produkte synchronisiert {1} bei {2} | {0} Produkt synchronisiert {1} bei {2} | {0} Produkte synchronisiert {1} bei {2}",
     "syncBusy": "Die Synchronisierung schreitet voran...",
