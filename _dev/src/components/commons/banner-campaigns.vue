@@ -8,7 +8,7 @@
           height="75"
           alt=""
         >
-        <span class="mr-3 ml-3">
+        <div class="mr-3 ml-3">
           <h3 class="font-weight-600">
             {{ $t("banner.titleCampaignsBanner") }}
           </h3>
@@ -16,8 +16,7 @@
           <p>
             {{ $t("banner.textCampaignsBanner") }}
           </p>
-
-        </span>
+        </div>
 
         <b-button
           class="flex-shrink-0"

@@ -12,13 +12,13 @@
     >
       <span aria-hidden="true">&times;</span>
     </button>
-    <div class="d-flex align-items-center">
+    <div class="d-flex flex-column flex-md-row align-items-center">
       <img
         :src="require(`@/assets/images/${pngBanner}`)"
         alt="banner-price"
         :height="size === 'xs' ? 90 : 140"
         :width="size === 'xs' ? 90 : 140"
-        class="mr-4"
+        class="mr-md-4 mb-3 mb-md-0"
       >
       <span>
         <h3 class="font-weight-600">
@@ -35,9 +35,9 @@
 
       <img
         v-if="size !== 'xs'"
-        class="align-self-start"
+        class="align-self-start d-none d-md-block"
         src="@/assets/images/banner/dots.png"
-        alt="img-decoration"
+        alt=""
         height="70"
       >
     </div>
