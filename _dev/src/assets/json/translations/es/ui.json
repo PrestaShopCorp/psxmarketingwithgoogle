@@ -9,6 +9,7 @@
       "help": "Ayuda"
     },
     "versionDoesNotExist": "Parece que no se puede recuperar la versión del módulo. Es por nuestra parte, por favor, inténtelo de nuevo.",
+    "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
     "moduleUpdateNeeded": {
       "ps_eventbus": "La versión del módulo PrestaShop EventBus que se ejecuta en esta tienda es anterior a la mínima requerida .\n\nPuede utilizar PrestaShop Marketing con Google, pero algunas funciones (por ejemplo, la sincronización de productos) no estarán disponibles hasta que actualice PrestaShop EventBus.",
       "psxmarketingwithgoogle": "Por favor, actualice el módulo PrestaShop Marketing With Google para que funcione correctamente"
@@ -24,7 +25,8 @@
     "notAvailable": "No disponible",
     "min": "min.",
     "max": "máximo.",
-    "helpPage": "Página de ayuda"
+    "helpPage": "Página de ayuda",
+    "noResultsFoundForX": " No results found for {0}"
   },
   "landingPage": {
     "header": {
@@ -737,6 +739,17 @@
     "text": "Configura tu GMC para empezar a crear campañas con Google",
     "cta": "Ir a la página de configuración"
   },
+  "configuredState": {
+    "title": "Congratulations, you're all set !",
+    "text": "You finished all the required steps to get the most out of **Marketing with Google**",
+    "cta": "Go to campaign creation",
+    "firstStep": "Link your store to a PrestaShop account",
+    "secondStep": "Sign in or create your Google Account",
+    "thirdStep": "Sign in or create your Google Merchant Center account",
+    "fourthStep": "Export and synchronize your product catalog",
+    "fifthStep": "Sign in or create your Google Ads account",
+    "sixthStep": "**Next step** create your first Smart Shopping Campaign"
+  },
   "help": {
     "title": "Ayuda para PrestaShop Google",
     "intro": "PrestaShop Marketing facilita la conexión de tu tienda con Google y la promoción de tus productos a millones de compradores a través de diferentes redes como la Búsqueda de Google, YouTube o Gmail. Crea campañas de Smart Shopping sin salir de tu panel de control de PrestaShop y consigue más tráfico.",
@@ -774,6 +787,7 @@
     "acceptInvitation": "Aceptar la invitación",
     "continue": "Continuar",
     "disabled": "Desactivado",
+    "activateModule": "Enable module",
     "enabled": "Activado",
     "agree": "Estoy de acuerdo",
     "enableFreeListing": "Activar los listados gratuitos",
