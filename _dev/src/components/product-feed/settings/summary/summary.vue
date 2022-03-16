@@ -61,11 +61,7 @@
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.summary.dataSyncSetUp')"
-            :description="
-              $t('productFeedSettings.export.summarySyncDailyAt', [
-                formatNextSync,
-              ])
-            "
+            :description="formatNextSync"
             size="full"
           />
           <product-feed-card-report-card
@@ -269,7 +265,7 @@ export default {
       );
     },
     formatNextSync() {
-      return this.$options.filters.timeConverterToHour(this.nextSyncDate);
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].syncSchedule;
     },
     nextSyncTotalProducts: {
       get() {
