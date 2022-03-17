@@ -1,44 +1,58 @@
 <template>
-  <b-card
-    class="mb-2 shadow-sm border-0"
-    style="max-width: 40rem"
+  <ps-modal
+    id="PopinModuleConfigured"
+    v-bind="$attrs"
+    hide-footer
+    @close="cancel"
+    ref="modal"
   >
-    <b-card-body align="center">
-      <h3 class="font-weight-600">
-        {{ $t("configuredState.title") }}
-      </h3>
+    <b-card
+      style="max-width: 40rem"
+      class="card border-0"
+    >
+      <b-card-body align="center">
+        <h3 class="font-weight-600 text-align-center">
+          {{ $t("configuredState.title") }}
+        </h3>
 
-      <b-img
-        :src="require('@/assets/images/configured.png')"
-        fluid
-      />
-      <VueShowdown :markdown="$t('configuredState.text')" />
-      <template>
-        <ul
-          class="timeline-configured list-unstyled mb-auto"
+        <b-img
+          :src="require('@/assets/images/configured.png')"
+          fluid
+        />
+        <VueShowdown :markdown="$t('configuredState.text')" />
+        <template>
+          <ul
+            class="timeline-configured list-unstyled mb-auto"
+          >
+            <VueShowdown
+              v-for="(oneStep, index) in steps"
+              :key="index"
+              tag="li"
+              :markdown="oneStep"
+              class="timeline-configured__item"
+            />
+          </ul>
+        </template>
+        <b-button
+          class="mt-4"
+          :to="{ name: 'campaign-creation' }"
+          variant="primary"
         >
-          <VueShowdown
-            v-for="(oneStep, index) in steps"
-            :key="index"
-            tag="li"
-            :markdown="oneStep"
-            class="timeline-configured__item"
-          />
-        </ul>
-      </template>
-      <b-button
-        class="mt-4"
-        :to="{ name: 'campaign-creation' }"
-        variant="primary"
-      >
-        {{ $t("configuredState.cta") }}
-      </b-button>
-    </b-card-body>
-  </b-card>
+          {{ $t("configuredState.cta") }}
+        </b-button>
+      </b-card-body>
+    </b-card>
+  </ps-modal>
 </template>
 
 <script>
+import PsModal from './ps-modal.vue';
+
 export default {
+  name: 'PopinModuleConfigured',
+  components: {
+    PsModal,
+  },
   data() {
     return {
       steps: [
@@ -50,6 +64,11 @@ export default {
         this.$i18n.t('configuredState.sixthStep'),
       ],
     };
+  },
+  methods: {
+    cancel() {
+      this.$refs.modal.hide();
+    },
   },
 };
 </script>
