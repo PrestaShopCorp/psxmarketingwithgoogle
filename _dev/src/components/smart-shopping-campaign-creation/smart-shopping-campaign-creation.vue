@@ -60,6 +60,7 @@
           </b-alert>
 
           <BannerAds
+            version="short"
             v-if="isBanner"
             :is-banner="isBanner"
             @closeBanner="isBanner =!isBanner"
@@ -455,8 +456,7 @@ export default {
       hasUnhandledFilters: false,
       totalProducts: 0,
       searchLoader: false,
-      // TODO : dynamically change isBanner to display or not the ads banner
-      isBanner: false,
+      isBanner: true,
     };
   },
   components: {

@@ -24,12 +24,17 @@
         <h3 class="font-weight-600">
           {{ $t("banner.titleAdsbanner") }}
         </h3>
-
-        <p>
-          {{ $t("banner.textAdsBanner", [$t("banner.priceAdsBanner")]) }}
-        </p>
+        <VueShowdown
+          :markdown="version === 'short'
+            ? $t('banner.textAdsBanner', [$t('banner.priceAdsBanner')])
+            : $t('banner.textAdsBannerLong', [
+              $t('banner.priceAdsBanner'), $options.googleUrl.googleAdsAccount
+            ])"
+          :extensions="['extended-link']"
+        />
         <p class="ps_gs-fz-10">
-          {{ $t("banner.legendConfigured") }}
+          {{ version === 'short' ? $t("banner.legend")
+            : $t("banner.legendLong") }}
         </p>
       </div>
 
@@ -46,6 +51,7 @@
 
 <script>
 import {searchImage} from '@/utils/ImageFromCurrency';
+import googleUrl from '../../assets/json/googleUrl.json';
 
 export default {
   props: {
@@ -55,6 +61,11 @@ export default {
       default: false,
     },
     size: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    version: {
       type: String,
       required: false,
       default: null,
@@ -69,11 +80,14 @@ export default {
     pngBanner() {
       return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
+
   },
   methods: {
     closeBanner() {
       this.$emit('closeBanner');
     },
   },
+  googleUrl,
+
 };
 </script>
