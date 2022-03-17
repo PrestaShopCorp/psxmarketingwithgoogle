@@ -28,6 +28,14 @@
           $options.googleUrl.learnAboutSmartShoppingCampaigns
         ])"
       />
+      <LandingPageContent
+        :content-image="pngBanner"
+        :content-title="$t('banner.titleAdsbanner')"
+        :content-text="$t('banner.textAdsBanner', [$t('banner.priceAdsBanner')])"
+        :content-footer="$t('banner.legendNotConfigured', [
+          $options.googleUrl.learnAboutSmartShoppingCampaigns
+        ])"
+      />
       <VueShowdown
         :markdown="$t('landingPage.content.notice')"
         class="text-muted ps_gs-fz-12 mt-2 mt-md-4 pb-1"
@@ -46,6 +54,7 @@ import LandingPageHeader from '../components/landing-page/landing-page-header';
 import LandingPageContent from '../components/landing-page/landing-page-content';
 import LandingPageFooter from '../components/landing-page/landing-page-footer';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {searchImage} from '@/utils/ImageFromCurrency';
 
 export default {
   name: 'LandingPage',
@@ -65,6 +74,11 @@ export default {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
+    },
+  },
+  computed: {
+    pngBanner() {
+      return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
   },
   googleUrl,
