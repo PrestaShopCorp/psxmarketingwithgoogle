@@ -1018,5 +1018,15 @@
     "specificTitle": "Specifica",
     "sellRefurbished": "Vendo prodotti ricondizionati",
     "sellApparel": "Vendo abbigliamento e accessori"
+  },
+  "banner": {
+    "titleAdsbanner": "Just starting out in Google advertising?",
+    "textAdsBanner": "Get {0} of Google Ads credits* when you spend at least {0} to create your first campaigns.",
+    "priceAdsBanner": "$500",
+    "legendNotConfigured": "*Your voucher will be applied automatically from the moment you start spending! *The amount needs to be spent within 60 days of the first campaign spend and credits will be valid for 60 days once credited. Read T&C",
+    "legendConfigured": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. Read T&C",
+    "ctaCreateFirstCampaign": "Create your first campaign",
+    "titleCampaignsBanner": "Boost your sales with Smart Shopping Campaigns",
+    "textCampaignsBanner": "Your products will be increasingly displayed to the right people at the right time learn more about Smart Shopping Campaigns"
   }
 }
