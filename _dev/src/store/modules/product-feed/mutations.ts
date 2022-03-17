@@ -170,7 +170,7 @@ export default {
   [MutationsTypes.SET_PRESCAN_NEXT_PAGE](state: LocalState, payload: number) {
     state.preScanDetail.currentPage = payload;
   },
-  [MutationsTypes.SET_PRESCAN_PRODUCTS](state: LocalState, payload: PreScanReporting[]) {
+  [MutationsTypes.SET_PRESCAN_PRODUCTS](state: LocalState, payload) {
     state.preScanDetail.products = payload;
   },
   [MutationsTypes.SET_PRESCAN_LANGUAGE_CHOSEN](state: LocalState, payload: string) {
