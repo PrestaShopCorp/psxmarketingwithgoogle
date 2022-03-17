@@ -129,13 +129,13 @@ export enum ProductStatues {
 
 export interface PreScanProductLang {
   title: string;
-  isocode: string;
+  lang: string;
 }
 export interface PreScanReporting {
   productId: number;
   attributeId?: number;
   lastValidationDate: number;
-  titleByIsocode: PreScanProductLang[];
+  titleByLang: PreScanProductLang[];
   isMissingName: Boolean;
   isMissingLink: Boolean;
   isMissingImage: Boolean;
