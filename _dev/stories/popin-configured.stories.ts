@@ -17,7 +17,8 @@ const Template = (args, { argTypes }) => ({
   template: `
   <div>
   <OnboardingPage />
-      <PopinConfigured ref="PopinModuleConfigured"         :visible="visible"
+      <PopinConfigured ref="PopinModuleConfigured"        
+      :visible="visible"
       />
       </div>
   `,
