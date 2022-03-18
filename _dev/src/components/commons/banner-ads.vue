@@ -32,10 +32,13 @@
             ])"
           :extensions="['extended-link']"
         />
-        <p class="ps_gs-fz-10">
-          {{ version === 'short' ? $t("banner.legend")
-            : $t("banner.legendLong") }}
-        </p>
+        <VueShowdown
+          class="ps_gs-fz-10"
+          :markdown="version === 'short'
+            ? $t('banner.legend',[$options.googleUrl.googleAdsTermsAndCondition])
+            : $t('banner.legendLong',[$options.googleUrl.googleAdsTermsAndCondition])"
+          :extensions="['extended-link']"
+        />
       </div>
 
       <img

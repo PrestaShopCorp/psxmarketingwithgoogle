@@ -33,7 +33,7 @@
         :content-title="$t('banner.titleAdsbanner')"
         :content-text="$t('banner.textAdsBanner', [$t('banner.priceAdsBanner')])"
         :content-footer="$t('banner.legendLong', [
-          $options.googleUrl.learnAboutSmartShoppingCampaigns
+          $options.googleUrl.googleAdsTermsAndCondition
         ])"
       />
       <VueShowdown
