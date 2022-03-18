@@ -136,7 +136,7 @@
                   size="sm"
                   variant="primary"
                   :disabled="selectedIndex === null"
-                  class="mt-3 mt-md-0 ml-md-3"
+                  class="mt-3 mt-md-0 ml-md-3 flex-shrink-0"
                   @click="selectGoogleAdsAccount"
                 >
                   <template v-if="!isConnecting">

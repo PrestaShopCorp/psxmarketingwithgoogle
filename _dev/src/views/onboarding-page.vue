@@ -97,6 +97,9 @@
     <SSCPopinActivateTracking
       ref="SSCPopinActivateTracking"
     />
+    <PopinModuleConfigured
+      ref="PopinModuleConfigured"
+    />
     <!-- Toasts -->
     <PsToast
       v-if="googleAccountConnectedOnce
@@ -137,6 +140,7 @@ import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-accou
 import SmartShoppingCampaignCard from '../components/smart-shopping-campaigns/smart-shopping-campaign-card.vue';
 import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
 import PsToast from '../components/commons/ps-toast';
+import PopinModuleConfigured from '../components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
@@ -158,6 +162,7 @@ export default {
     PsToast,
     FreeListingPopinDisable,
     SSCPopinActivateTracking,
+    PopinModuleConfigured,
   },
   data() {
     return {
@@ -187,6 +192,9 @@ export default {
     },
     onGoogleAdsAccountSelected() {
       this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', true);
+      this.$bvModal.show(
+        this.$refs.PopinModuleConfigured.$refs.modal.id,
+      );
     },
     onGoogleAccountConnection() {
       this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
