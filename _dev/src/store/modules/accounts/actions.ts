@@ -104,9 +104,6 @@ export default {
     },
     correlationId: string,
   ) {
-    if (rootState.app.psxMktgWithGoogleModuleIsEnabled === false) {
-      return;
-    }
     commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCheck);
     let {isVerified, isClaimed} = await dispatch(
       ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
@@ -114,6 +111,10 @@ export default {
     );
 
     if (!isVerified || !isClaimed) {
+      if (rootState.app.psxMktgWithGoogleModuleIsEnabled === false) {
+        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+        return;
+      }
       try {
         const result = await dispatch(
           ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS,
