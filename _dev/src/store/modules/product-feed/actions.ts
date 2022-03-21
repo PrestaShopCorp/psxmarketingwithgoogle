@@ -442,7 +442,7 @@ export default {
     let query = `?limit=${limit}&offset=${offset}`;
 
     if (lang) {
-      query += `&lang=${lang}`;
+      query += `&lang=${lang.toLowerCase()}`;
     }
     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/prevalidation-scan/errors${query}`, {
       method: 'GET',
@@ -460,6 +460,8 @@ export default {
 
     commit(MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT, json.totalErrors);
     commit(MutationsTypes.SET_PRESCAN_PRODUCTS, json.errors);
+
+    return json.errors;
   },
 
   async [ActionsTypes.GET_PREVALIDATION_SUMMARY]({rootState, commit}) {

@@ -66,107 +66,131 @@
           </b-dropdown-item>
         </b-dropdown>
       </div>
-      <b-table
-        :items="items"
-        :fields="fields"
-        :filter-function="filterByLang"
-        :filter="langChosen"
-        :per-page="limit"
-        :current-page="currentPage"
-        :busy="loading"
-        id="table-products"
-        class="mb-3 ps_gs-table-products"
-        table-class="border-bottom-0"
+      <b-table-simple
+        id="table-pre-scan"
+        :table-class="{'border-bottom-0': loading}"
         variant="light"
         responsive="xl"
       >
-        <template #cell(id)="data">
-          {{ data.item.productId }}
-        </template>
-
-        <template #cell(id_attribute)="data">
-          {{ data.item.attributeId || '-' }}
-        </template>
-
-        <template #cell(name)="data">
-          <a
-            class="external_link-no_icon"
-            :href="(!isNaN(data.item.id) && data.item.id)
-              ? getProductBaseUrl.replace('/1?', `/${data.item.productId}?`) : null"
-            target="_blank"
+        <b-thead>
+          <b-tr>
+            <b-th
+              v-for="(type, index) in fields"
+              :key="index"
+              class="font-weight-600"
+              tabindex="0"
+              @click="sortBy(type)"
+              :aria-sort="type.sortable ? 'none' : null"
+            >
+              {{ type.label }}
+            </b-th>
+          </b-tr>
+        </b-thead>
+        <b-tbody>
+          <template v-if="apiError">
+            <tr>
+              <td
+                class="text-center"
+                :colspan="fields.length"
+              >
+                {{ $t('productFeedSettings.preScan.apiError') }}
+              </td>
+            </tr>
+          </template>
+          <template v-else-if="fields.length === 0 && loading === false">
+            <tr>
+              <td
+                class="text-center"
+                :colspan="fields.length"
+              >
+                {{ $t('productFeedSettings.preScan.noElement') }}
+              </td>
+            </tr>
+          </template>
+          <template
+            v-else
+            v-for="(product, productIndex) in items"
           >
-            {{ getProductName(data.item.titleByLang) }}
-          </a>
-        </template>
-        <template
-          #cell(language)="data"
-        >
-          <b-badge
-            variant="primary"
-            class="mr-1 ps_gs-fz-12 text-capitalize"
-            v-for="(language, index) in getProductLangs(data.item.titleByLang)"
-            :key="index"
+            <b-tr :key="productIndex">
+              <b-td class="align-top">
+                {{ product.productId }}
+                {{ product.attributeId > 0 ? '&#8209; ' + product.attributeId : '' }}
+              </b-td>
+              <b-td class="align-top b-table-sticky-column">
+                <a
+                  class="external_link-no_icon"
+                  :href="!isNaN(product.productId)
+                    ? getProductBaseUrl.replace('/1?', `/${product.productId}?`) : null"
+                  target="_blank"
+                >
+                  {{ getProductName(product.titleByLang) }}
+                </a>
+              </b-td>
+              <b-td class="align-top">
+                <b-badge
+                  variant="primary"
+                  class="mr-1 ps_gs-fz-12 text-capitalize"
+                  v-for="(language, index) in getProductLangs(product.titleByLang)"
+                  :key="index"
+                >
+                  {{ language.toUpperCase() }}
+                </b-badge>
+              </b-td>
+              <b-td class="align-top">
+                <span
+                  class="material-icons"
+                  :class="product.isMissingImage ? 'text-danger' : 'text-success'"
+                >
+                  {{ product.isMissingImage ? 'close' : 'done' }}
+                </span>
+              </b-td>
+              <b-td class="align-top">
+                <span
+                  class="material-icons"
+                  :class="product.isMissingDescription ? 'text-danger' : 'text-success'"
+                >
+                  {{ product.isMissingDescription ? 'close' : 'done' }}
+                </span>
+              </b-td>
+              <b-td
+                class="align-top"
+              >
+                <span
+                  class="material-icons"
+                  :class="product.isMissingBrandOrBarcode ? 'text-danger' : 'text-success'"
+                >
+                  {{ product.isMissingBrandOrBarcode ? 'close' : 'done' }}
+                </span>
+              </b-td>
+              <b-td class="align-top">
+                <span
+                  class="material-icons"
+                  :class="product.isMissingPrice ? 'text-danger' : 'text-success'"
+                >
+                  {{ product.isMissingPrice ? 'close' : 'done' }}
+                </span>
+              </b-td>
+            </b-tr>
+          </template>
+          <b-tr
+            v-if="loading"
+            class="table-pre-scan-loader-wrapper"
           >
-            {{ language.toUpperCase() }}
-          </b-badge>
-        </template>
-
-        <template #cell(image)="data">
-          <span
-            class="material-icons"
-            :class="data.item.isMissingImage ? 'text-danger' : 'text-success'"
-          >
-            {{ data.item.isMissingLink ? 'close' : 'done' }}
-          </span>
-        </template>
-
-        <template #cell(description)="data">
-          <span
-            class="material-icons"
-            :class="data.item.isMissingDescription ? 'text-danger' : 'text-success'"
-          >
-            {{ data.item.isMissingDescription ? 'close' : 'done' }}
-          </span>
-        </template>
-
-        <template #cell(barcode)="data">
-          <span
-            class="material-icons"
-            :class="data.item.isMissingBrandOrBarcode ? 'text-danger' : 'text-success'"
-          >
-            {{ data.item.isMissingBrandOrBarcode ? 'close' : 'done' }}
-          </span>
-        </template>
-
-        <template #cell(price)="data">
-          <span
-            class="material-icons"
-            :class="data.item.isMissingPrice ? 'text-danger' : 'text-success'"
-          >
-            {{ data.item.isMissingPrice ? 'close' : 'done' }}
-          </span>
-        </template>
-      </b-table>
-      <p
-        v-if="apiError"
-        class="text-center font-weight-bold text-danger"
-      >
-        {{ $t('productFeedSettings.preScan.apiError') }}
-      </p>
-      <p
-        v-if="!apiError && items.length === 0"
-        class="text-center"
-      >
-        {{ $t('productFeedSettings.preScan.noElement') }}
-      </p>
-      <div class="overflow-auto">
-        <TablePageControls
-          :total-pages="totalPage"
-          :active-page="currentPage"
-          :selected-filter-quantity-to-show="limit"
-          :need-page-selector="false"
-        />
-      </div>
+            <b-td
+              colspan="7"
+              class="table-pre-scan-loader"
+            >
+              <i class="ps_gs-table-products__spinner">loading</i>
+            </b-td>
+          </b-tr>
+        </b-tbody>
+      </b-table-simple>
+      <TablePageControls
+        :total-pages="totalPage"
+        :active-page="currentPage"
+        :selected-filter-quantity-to-show="limit"
+        :need-page-selector="false"
+      />
     </b-card-body>
   </b-card>
 </template>
@@ -185,47 +209,48 @@ export default {
       fields: [
         {
           key: 'id',
+          asc: true,
+          sortable: true,
+          baseName: 'productId',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderID'),
-          thClass: 'font-weight-600',
-        },
-        {
-          key: 'id_attribute',
-          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderAttributeID'),
-          thClass: 'font-weight-600',
         },
         {
           key: 'name',
+          sortable: false,
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
-          thClass: 'font-weight-600',
         },
         {
           key: 'language',
+          sortable: false,
           label: this.$i18n.t('productFeedPage.preScan.fields.language'),
-          thClass: 'font-weight-600',
         },
         {
           key: 'image',
           label: this.$i18n.t('productFeedPage.preScan.fields.image'),
+          asc: true,
           sortable: true,
-          thClass: 'font-weight-600',
+          baseName: 'isMissingImage',
         },
         {
           key: 'description',
           label: this.$i18n.t('productFeedPage.preScan.fields.description'),
+          asc: true,
           sortable: true,
-          thClass: 'font-weight-600',
+          baseName: 'isMissingDescription',
         },
         {
           key: 'barcode',
           label: this.$i18n.t('productFeedPage.preScan.fields.barcode'),
+          asc: true,
           sortable: true,
-          thClass: 'font-weight-600',
+          baseName: 'isMissingBrandOrBarcode',
         },
         {
           key: 'price',
           label: this.$i18n.t('productFeedPage.preScan.fields.price'),
+          asc: true,
           sortable: true,
-          thClass: 'font-weight-600',
+          baseName: 'isMissingPrice',
         },
       ],
       apiError: false,
@@ -294,6 +319,13 @@ export default {
         return findProductInCurrentLang?.title;
       }
       return products[0].title;
+    },
+    sortBy(type) {
+      const {baseName} = type;
+      this.items.sort(
+        (a, b) => (type.asc ? a[baseName] - b[baseName] : b[baseName] - a[baseName]),
+      );
+      type.asc = !type.asc;
     },
     getProductLangs(products) {
       return products.map((k) => k.lang);

@@ -10,6 +10,26 @@
   }
 }
 
+.table-pre-scan-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 0;
+  bottom: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  background-color: rgba(255,255,255,0.7);
+  z-index: 11111;
+  border: none;
+}
+
+.table-pre-scan-loader-wrapper {
+  height: rem(80);
+}
+
 .table.b-table[class*="b-table-stacked"] > tbody > tr > :first-child {
   border-top-width: 1px;
 }
