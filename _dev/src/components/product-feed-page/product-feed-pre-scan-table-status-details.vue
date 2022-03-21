@@ -79,8 +79,6 @@
               :key="index"
               class="font-weight-600"
               tabindex="0"
-              @click="sortBy(type)"
-              :aria-sort="type.sortable ? 'none' : null"
             >
               {{ type.label }}
             </b-th>
@@ -210,47 +208,31 @@ export default {
         {
           key: 'id',
           asc: true,
-          sortable: true,
-          baseName: 'productId',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderID'),
         },
         {
           key: 'name',
-          sortable: false,
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
         },
         {
           key: 'language',
-          sortable: false,
           label: this.$i18n.t('productFeedPage.preScan.fields.language'),
         },
         {
           key: 'image',
           label: this.$i18n.t('productFeedPage.preScan.fields.image'),
-          asc: true,
-          sortable: true,
-          baseName: 'isMissingImage',
         },
         {
           key: 'description',
           label: this.$i18n.t('productFeedPage.preScan.fields.description'),
-          asc: true,
-          sortable: true,
-          baseName: 'isMissingDescription',
         },
         {
           key: 'barcode',
           label: this.$i18n.t('productFeedPage.preScan.fields.barcode'),
-          asc: true,
-          sortable: true,
-          baseName: 'isMissingBrandOrBarcode',
         },
         {
           key: 'price',
           label: this.$i18n.t('productFeedPage.preScan.fields.price'),
-          asc: true,
-          sortable: true,
-          baseName: 'isMissingPrice',
         },
       ],
       apiError: false,
@@ -320,13 +302,6 @@ export default {
       }
       return products[0].title;
     },
-    sortBy(type) {
-      const {baseName} = type;
-      this.items.sort(
-        (a, b) => (type.asc ? a[baseName] - b[baseName] : b[baseName] - a[baseName]),
-      );
-      type.asc = !type.asc;
-    },
     getProductLangs(products) {
       return products.map((k) => k.lang);
     },
@@ -342,6 +317,7 @@ export default {
     },
     limitChanged(newLimit) {
       this.limit = newLimit;
+      this.currentPage = 1;
       this.getPreScanProducts();
     },
     pageChanged(newPage) {
