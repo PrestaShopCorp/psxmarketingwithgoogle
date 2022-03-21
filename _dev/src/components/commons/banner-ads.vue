@@ -87,7 +87,6 @@ export default {
     priceForAds() {
       return searchPrice(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
-
   },
   methods: {
     closeBanner() {
