@@ -104,7 +104,7 @@
           v-if="!isEnabled"
           :badges="['productFeed', 'googleAdsAccount']"
         />
-        <span v-if="isBanner">
+        <span v-if="isEnabled">
           <hr>
           <BannerAds
             size="xs"
@@ -130,8 +130,6 @@ export default {
   data() {
     return {
       selected: null,
-      // TODO : dynamically change isBanner to display or not the ads banner
-      isBanner: false,
     };
   },
   props: {

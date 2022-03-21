@@ -1,5 +1,6 @@
 <template>
   <div>
+    <BannerCampaigns />
     <div
       v-if="!inNeedOfConfiguration"
       class="d-flex flex-wrap flex-md-nowrap justify-content-between mb-md-3 rounded-top"
@@ -151,6 +152,7 @@ import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSum
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import googleUrl from '../../assets/json/googleUrl.json';
 import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
+import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
@@ -158,6 +160,7 @@ export default {
     SmartShoppingCampaignTableListRow,
     ReportingTableHeader,
     NotConfiguredCard,
+    BannerCampaigns,
   },
   data() {
     return {

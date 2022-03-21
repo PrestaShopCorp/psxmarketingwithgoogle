@@ -32,8 +32,8 @@
         :content-image="pngBanner"
         :content-title="$t('banner.titleAdsbanner')"
         :content-text="$t('banner.textAdsBanner', [$t('banner.priceAdsBanner')])"
-        :content-footer="$t('banner.legendNotConfigured', [
-          $options.googleUrl.learnAboutSmartShoppingCampaigns
+        :content-footer="$t('banner.legendLong', [
+          $options.googleUrl.googleAdsTermsAndCondition
         ])"
       />
       <VueShowdown
