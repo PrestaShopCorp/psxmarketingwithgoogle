@@ -330,5 +330,9 @@ export default {
     this.$root.$on('changeLimit', this.limitChanged);
     this.$root.$on('changePage', this.pageChanged);
   },
+  beforeDestroy() {
+    window.removeEventListener('changeLimit', this.limitChanged);
+    window.removeEventListener('changePage', this.pageChanged);
+  },
 };
 </script>
