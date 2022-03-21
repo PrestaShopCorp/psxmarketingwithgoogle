@@ -108,7 +108,7 @@
             <b-tr :key="index">
               <b-td class="align-top">
                 {{ product.productId }}
-                {{ product.attributeId > 0 ? '&#8209;' + product.attributeId : '' }}
+                {{ product.attributeId > 0 ? '&#8209; ' + product.attributeId : '' }}
               </b-td>
               <b-td class="align-top b-table-sticky-column">
                 <a
