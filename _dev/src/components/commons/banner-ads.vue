@@ -26,9 +26,9 @@
         </h3>
         <VueShowdown
           :markdown="version === 'short'
-            ? $t('banner.textAdsBanner', [$t('banner.priceAdsBanner')])
+            ? $t('banner.textAdsBanner', [priceForAds])
             : $t('banner.textAdsBannerLong', [
-              $t('banner.priceAdsBanner'), $options.googleUrl.googleAdsAccount
+              priceForAds, $options.googleUrl.googleAdsAccount
             ])"
           :extensions="['extended-link']"
         />
@@ -54,6 +54,7 @@
 
 <script>
 import {searchImage} from '@/utils/ImageFromCurrency';
+import {searchPrice} from '@/utils/PriceFromCurrency';
 import googleUrl from '../../assets/json/googleUrl.json';
 
 export default {
@@ -83,7 +84,9 @@ export default {
     pngBanner() {
       return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
-
+    priceForAds() {
+      return searchPrice(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
+    },
   },
   methods: {
     closeBanner() {

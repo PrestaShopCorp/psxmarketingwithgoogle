@@ -31,7 +31,7 @@
       <LandingPageContent
         :content-image="pngBanner"
         :content-title="$t('banner.titleAdsbanner')"
-        :content-text="$t('banner.textAdsBanner', [$t('banner.priceAdsBanner')])"
+        :content-text="$t('banner.textAdsBanner', [priceForAds])"
         :content-footer="$t('banner.legendLong', [
           $options.googleUrl.googleAdsTermsAndCondition
         ])"
@@ -55,6 +55,7 @@ import LandingPageContent from '../components/landing-page/landing-page-content'
 import LandingPageFooter from '../components/landing-page/landing-page-footer';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {searchImage} from '@/utils/ImageFromCurrency';
+import {searchPrice} from '@/utils/PriceFromCurrency';
 
 export default {
   name: 'LandingPage',
@@ -80,6 +81,10 @@ export default {
     pngBanner() {
       return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
+    priceForAds() {
+      return searchPrice(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
+    },
+
   },
   googleUrl,
 };
