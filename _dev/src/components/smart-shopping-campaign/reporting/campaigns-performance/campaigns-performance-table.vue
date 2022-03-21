@@ -131,7 +131,10 @@ export default {
     this.$root.$on('changePage', this.changePageTo);
     this.fetchCampaigns();
   },
-
+  beforeDestroy() {
+    window.removeEventListener('changeLimit', this.changeLimit);
+    window.removeEventListener('changePage', this.changePageTo);
+  },
   methods: {
     async changeLimit(event) {
       this.$store.commit('smartShoppingCampaigns/SAVE_LIMIT_CAMPAIGN_PERFORMANCE_LIST', event);
