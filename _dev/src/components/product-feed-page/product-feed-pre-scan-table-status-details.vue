@@ -89,23 +89,29 @@
         <b-tbody>
           <template v-if="apiError">
             <tr>
-              <td class="text-center" :colspan="fields.length">
+              <td
+                class="text-center"
+                :colspan="fields.length"
+              >
                 {{ $t('productFeedSettings.preScan.apiError') }}
               </td>
             </tr>
           </template>
           <template v-else-if="fields.length === 0 && loading === false">
             <tr>
-              <td class="text-center" :colspan="fields.length">
+              <td
+                class="text-center"
+                :colspan="fields.length"
+              >
                 {{ $t('productFeedSettings.preScan.noElement') }}
               </td>
             </tr>
           </template>
           <template
             v-else
-            v-for="(product, index) in items"
+            v-for="(product, productIndex) in items"
           >
-            <b-tr :key="index">
+            <b-tr :key="productIndex">
               <b-td class="align-top">
                 {{ product.productId }}
                 {{ product.attributeId > 0 ? '&#8209; ' + product.attributeId : '' }}
