@@ -116,7 +116,7 @@
                 {{ product.productId }}
                 {{ product.attributeId > 0 ? '&#8209; ' + product.attributeId : '' }}
               </b-td>
-              <b-td class="align-top b-table-sticky-column">
+              <b-td class="align-top">
                 <a
                   class="external_link-no_icon"
                   :href="!isNaN(product.productId)
