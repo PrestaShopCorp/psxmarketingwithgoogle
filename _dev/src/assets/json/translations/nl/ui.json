@@ -593,7 +593,7 @@
       "title": "Actieve producten ingediend bij Google",
       "description": "De status van uw product laat u weten of uw product in aanmerking komt om te verschijnen in de bestemming waarvoor u hebt gekozen.",
       "alert": {
-        "prescanTitle": "Warning {0} product couldn’t be export to Google | Warning {0} products couldn’t be export to Google",
+        "prescanTitle": "Warning {0} product couldn’t be exported to Google | Warning {0} products couldn’t be exported to Google",
         "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
       }
     },
