@@ -593,7 +593,7 @@
       "title": "Productos activos enviados a Google",
       "description": "El estado de su producto le permite saber si su producto es elegible para aparecer en el destino al que ha optado.",
       "alert": {
-        "prescanTitle": "Warning {0} product couldn’t be export to Google | Warning {0} products couldn’t be export to Google",
+        "prescanTitle": "Warning {0} product couldn’t be exported to Google | Warning {0} products couldn’t be exported to Google",
         "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
       }
     },
