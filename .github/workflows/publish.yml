@@ -87,7 +87,7 @@ jobs:
           name: ${{ github.event.repository.name }}
 
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0
         with:
           project_id: ${{ secrets.G_PROJECT_INTEGRATION }}
           service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
