@@ -247,9 +247,17 @@ export default {
     },
     items() {
       const products = this.$store.getters['productFeed/GET_PRESCAN_PRODUCTS'];
-      products.map((product) => {
-        product.titleByLang.sort((a,b) => (a.lang > b.lang) ? 1 : ((b.lang > a.lang) ? -1 : 0));
-      })
+      products.map((product) => product.titleByLang.sort(
+        (a, b) => {
+          if (a.lang > b.lang) {
+            return 1;
+          }
+          if (b.lang > a.lang) {
+            return -1;
+          }
+          return 0;
+        },
+      ));
       return products;
     },
     totalPage() {
