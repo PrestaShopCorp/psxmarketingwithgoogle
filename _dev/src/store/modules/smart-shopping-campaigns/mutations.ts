@@ -223,6 +223,7 @@ export default {
     state: LocalState,
     payload: Array<CampaignObject>,
   ) {
+    console.log('payload', payload);
     state.campaigns.push(...payload);
   },
   [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](

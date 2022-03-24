@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BannerCampaigns />
+    <BannerCampaigns v-if="!campaignList.length" />
     <div
       v-if="!inNeedOfConfiguration"
       class="d-flex flex-wrap flex-md-nowrap justify-content-between mb-md-3 rounded-top"
@@ -13,7 +13,7 @@
         flex-md-shrink-0 text-center"
       >
         <b-button
-          v-if="remarketingTag"
+          v-if="remarketingTag && campaignList.length"
           size="sm"
           class="mx-1 mt-3 mt-md-0"
           variant="outline-primary"
@@ -22,6 +22,7 @@
           {{ $t('cta.viewReporting') }}
         </b-button>
         <b-button
+          v-if="campaignList.length"
           size="sm"
           class="mx-1 mt-3 mt-md-0 mr-md-0"
           variant="primary"
