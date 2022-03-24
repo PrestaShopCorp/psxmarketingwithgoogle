@@ -34,7 +34,6 @@ export interface ProductFeedSettings {
   autoImportTaxSettings: boolean;
   autoImportShippingSettings: boolean;
   attributeMapping: object;
-  syncSchedule?: string;
   targetCountries: string[]|null;
 }
 
@@ -163,6 +162,7 @@ export const state: State = {
     jobEndedAt: '',
     nextJobAt: '',
     lastUpdatedAt: '',
+    syncSchedule: '',
   },
   settings: {
     shippingSettings: [],
@@ -178,7 +178,6 @@ export const state: State = {
       customGenderGroupAttribute: '',
       customConditionAttribute: '',
     },
-    syncSchedule: '1 * * * * *',
   },
   validationSummary: {
     activeItems: null,

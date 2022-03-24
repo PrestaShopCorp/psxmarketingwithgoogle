@@ -94,7 +94,6 @@ export default {
       autoImportTaxSettings: false,
       autoImportShippingSettings: true,
       attributeMapping: {},
-      syncSchedule: '1 * * * * *',
       targetCountries: null,
     };
   },

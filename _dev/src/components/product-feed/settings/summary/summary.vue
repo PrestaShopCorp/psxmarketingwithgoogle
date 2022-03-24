@@ -268,7 +268,7 @@ export default {
       return this.$options.filters.timeConverterToHour(this.nextSyncDate);
     },
     getSyncSchedule() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].syncSchedule;
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].syncSchedule;
     },
     nextSyncTotalProducts: {
       get() {
