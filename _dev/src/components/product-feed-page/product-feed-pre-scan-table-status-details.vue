@@ -246,7 +246,19 @@ export default {
       return this.$store.getters['productFeed/GET_PRESCAN_TOTAL_ERROR'];
     },
     items() {
-      return this.$store.getters['productFeed/GET_PRESCAN_PRODUCTS'];
+      const products = this.$store.getters['productFeed/GET_PRESCAN_PRODUCTS'];
+      products.map((product) => product.titleByLang.sort(
+        (a, b) => {
+          if (a.lang > b.lang) {
+            return 1;
+          }
+          if (b.lang > a.lang) {
+            return -1;
+          }
+          return 0;
+        },
+      ));
+      return products;
     },
     totalPage() {
       const totalPage = Math.ceil(this.$store.getters['productFeed/GET_PRESCAN_TOTAL_ERROR'] / this.limit);
