@@ -132,8 +132,8 @@ export default {
     this.fetchCampaigns();
   },
   beforeDestroy() {
-    window.removeEventListener('changeLimit', this.changeLimit);
-    window.removeEventListener('changePage', this.changePageTo);
+    this.$root.$off('changeLimit', this.changeLimit);
+    this.$root.$off('changePage', this.changePageTo);
   },
   methods: {
     async changeLimit(event) {
