@@ -74,8 +74,9 @@ export default {
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
     const params = {
       lang: window.i18nSettings.languageLocale.split('-')[0],
+      timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     };
-    const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings/?lang=${params.lang}`;
+    const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings/?lang=${params.lang}&timezone=${params.timezone}`;
     try {
       const response = await fetch(url, {
         method: 'GET',
@@ -98,9 +99,6 @@ export default {
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
-      });
-      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'syncSchedule', data: json.syncSchedule,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'attributeMapping',
