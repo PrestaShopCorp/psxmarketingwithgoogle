@@ -1,10 +1,10 @@
 <template>
   <div>
-    <BannerCampaigns v-if="!campaignList.length" />
     <div
       v-if="!inNeedOfConfiguration"
       class="d-flex flex-wrap flex-md-nowrap justify-content-between mb-md-3 rounded-top"
     >
+      <BannerCampaigns v-if="!campaignList.length" />
       <h3 class="order-2 order-md-1 ps_gs-fz-20 font-weight-600">
         {{ $t('smartShoppingCampaignList.tableTitle') }}
       </h3>
@@ -14,6 +14,7 @@
       >
         <b-button
           v-if="remarketingTag && campaignList.length"
+          data-test-id="redirect-to-reporting-button"
           size="sm"
           class="mx-1 mt-3 mt-md-0"
           variant="outline-primary"
@@ -23,6 +24,7 @@
         </b-button>
         <b-button
           v-if="campaignList.length"
+          data-test-id="create-campaign-button"
           size="sm"
           class="mx-1 mt-3 mt-md-0 mr-md-0"
           variant="primary"
