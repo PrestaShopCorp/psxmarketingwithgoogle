@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash.clonedeep';
 import {Dimension} from '@/store/modules/smart-shopping-campaigns/state';
 
 interface filtersChosenFromAPI {
@@ -156,7 +157,12 @@ export function retrieveProductNumberFromFiltersIds(
   if (!dimensionChosen) {
     return 0;
   }
-  return returnCountProducts(findAndCheckFilter(dimensionChosen, productFilters[0].values));
+  return returnCountProducts(
+    findAndCheckFilter(
+      cloneDeep(dimensionChosen),
+      productFilters[0].values,
+    ),
+  );
 }
 
 export function deepUpdateDimensionVisibility(dimension: Dimension, newValue: boolean): void {
@@ -174,18 +180,14 @@ export function deepUpdateDimensionVisibility(dimension: Dimension, newValue: bo
  * At the moment, as soon we find the ID anywhere, it returns true.
  *
  * @param dimension
- * @param filteredTree
+ * @param filteredTree Dimension with filters coming from API query with search
  */
 export function deepUpdateDimensionVisibilityFromTree(dimension: Dimension,
   filteredTree: Dimension[]) {
   dimension.visible = findDimensionInTree(dimension, filteredTree);
   // eslint-disable-next-line no-unused-expressions
   dimension.children?.forEach((child) => {
-    if (dimension.visible) {
-      deepUpdateDimensionVisibilityFromTree(child, filteredTree);
-    } else {
-      deepUpdateDimensionVisibility(child, false);
-    }
+    deepUpdateDimensionVisibilityFromTree(child, filteredTree);
   });
 }
 

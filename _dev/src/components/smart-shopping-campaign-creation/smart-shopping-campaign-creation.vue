@@ -676,9 +676,9 @@ export default {
         this.foundSsc.productFilters = filtersForAPI;
       }
     },
-    getDatasFiltersDimensions(search) {
+    async getDatasFiltersDimensions(search) {
       this.searchLoader = true;
-      this.$store
+      await this.$store
         .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search).finally(() => {
           this.searchLoader = false;
         });
@@ -692,56 +692,49 @@ export default {
       );
     },
     setInterfaceForEdition() {
-      // TODO : do not redispatch because sscAvailableFilters are already loaded
-      this.$store
-        .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null)
-        .then(() => {
-          let {endDate} = this.foundSsc;
-          const todayYear = new Date().getFullYear();
+      let {endDate} = this.foundSsc;
+      const todayYear = new Date().getFullYear();
 
-          if (new Date(endDate).getFullYear() - 10 > todayYear) {
-            endDate = null;
-          }
-          this.campaignName = this.foundSsc.campaignName;
-          this.campaignDurationStartDate = this.foundSsc.startDate;
-          this.campaignDurationEndDate = endDate;
-          this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
+      if (new Date(endDate).getFullYear() - 10 > todayYear) {
+        endDate = null;
+      }
+      this.campaignName = this.foundSsc.campaignName;
+      this.campaignDurationStartDate = this.foundSsc.startDate;
+      this.campaignDurationEndDate = endDate;
+      this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
             && !this.foundSsc.hasUnhandledFilters;
-          this.campaignDailyBudget = this.foundSsc.dailyBudget;
-          this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
-          [this.targetCountry] = this.$options.filters.changeCountriesCodesToNames([
-            this.foundSsc.targetCountry,
-          ]);
-          this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
-          this.debounceName();
-          this.$store.commit(
-            'smartShoppingCampaigns/SET_FILTERS_CHOSEN',
-            this.filtersChosen,
-          );
-          if (
-            this.filtersChosen.length
+      this.campaignDailyBudget = this.foundSsc.dailyBudget;
+      this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
+      [this.targetCountry] = this.$options.filters.changeCountriesCodesToNames([
+        this.foundSsc.targetCountry,
+      ]);
+      this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
+      this.debounceName();
+      this.$store.commit(
+        'smartShoppingCampaigns/SET_FILTERS_CHOSEN',
+        this.filtersChosen,
+      );
+      if (
+        this.filtersChosen.length
             && this.$store.state.smartShoppingCampaigns.sscAvailableFilters.length
-          ) {
-            let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
-              (dim) => dim.id === this.filtersChosen[0].dimension,
-            );
-            dimensionToEdit = findAndCheckFilter(
-              dimensionToEdit,
-              this.filtersChosen[0].values,
-            );
-            this.$store.commit(
-              'smartShoppingCampaigns/SET_DIMENSION_CHOSEN',
-              dimensionToEdit,
-            );
-            this.totalProducts = retrieveProductNumberFromFiltersIds(
-              this.filtersChosen,
-              this.$store.state.smartShoppingCampaigns.sscAvailableFilters,
-            );
-          }
-        })
-        .finally(() => {
-          this.loader = false;
-        });
+      ) {
+        let dimensionToEdit = this.$store.state.smartShoppingCampaigns.sscAvailableFilters.find(
+          (dim) => dim.id === this.filtersChosen[0].dimension,
+        );
+        dimensionToEdit = findAndCheckFilter(
+          dimensionToEdit,
+          this.filtersChosen[0].values,
+        );
+        this.$store.commit(
+          'smartShoppingCampaigns/SET_DIMENSION_CHOSEN',
+          dimensionToEdit,
+        );
+        this.totalProducts = retrieveProductNumberFromFiltersIds(
+          this.filtersChosen,
+          this.$store.state.smartShoppingCampaigns.sscAvailableFilters,
+        );
+      }
+      this.loader = false;
     },
   },
   watch: {
@@ -771,7 +764,7 @@ export default {
   async mounted() {
     window.scrollTo(0, 0);
     if (this.productsHaveBeenApprovedByGoogle) {
-      this.getDatasFiltersDimensions();
+      await this.getDatasFiltersDimensions();
     }
     if (this.editMode === true) {
       await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
