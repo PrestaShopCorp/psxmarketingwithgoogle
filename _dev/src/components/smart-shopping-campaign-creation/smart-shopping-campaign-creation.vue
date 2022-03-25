@@ -677,9 +677,9 @@ export default {
         this.foundSsc.productFilters = filtersForAPI;
       }
     },
-    getDatasFiltersDimensions(search) {
+    async getDatasFiltersDimensions(search) {
       this.searchLoader = true;
-      this.$store
+      await this.$store
         .dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', search).finally(() => {
           this.searchLoader = false;
         });
@@ -765,7 +765,7 @@ export default {
   async mounted() {
     window.scrollTo(0, 0);
     if (this.productsHaveBeenApprovedByGoogle) {
-      this.getDatasFiltersDimensions();
+      await this.getDatasFiltersDimensions();
     }
     if (this.editMode === true) {
       await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
