@@ -174,18 +174,14 @@ export function deepUpdateDimensionVisibility(dimension: Dimension, newValue: bo
  * At the moment, as soon we find the ID anywhere, it returns true.
  *
  * @param dimension
- * @param filteredTree
+ * @param filteredTree Dimension with filters coming from API query with search
  */
 export function deepUpdateDimensionVisibilityFromTree(dimension: Dimension,
   filteredTree: Dimension[]) {
   dimension.visible = findDimensionInTree(dimension, filteredTree);
   // eslint-disable-next-line no-unused-expressions
   dimension.children?.forEach((child) => {
-    if (dimension.visible) {
-      deepUpdateDimensionVisibilityFromTree(child, filteredTree);
-    } else {
-      deepUpdateDimensionVisibility(child, false);
-    }
+    deepUpdateDimensionVisibilityFromTree(child, filteredTree);
   });
 }
 

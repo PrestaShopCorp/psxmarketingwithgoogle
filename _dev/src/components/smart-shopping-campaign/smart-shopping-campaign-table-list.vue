@@ -265,9 +265,13 @@ export default {
     },
 
     fetchCampaigns(isNewRequest = true) {
+      console.log('fetcdddh');
       this.$emit('loader', true);
       this.$store
         .dispatch('smartShoppingCampaigns/GET_SSC_LIST', isNewRequest)
+        .then(() => {
+          this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
+        })
         .finally(() => {
           this.$emit('loader', false);
         });
@@ -304,7 +308,6 @@ export default {
       return;
     }
     this.fetchCampaigns();
-    this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
   },
   beforeDestroy() {
     const tableBody = document.getElementsByClassName(
