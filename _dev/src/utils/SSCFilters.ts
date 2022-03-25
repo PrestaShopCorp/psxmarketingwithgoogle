@@ -116,10 +116,10 @@ export function returnCountProducts(source: Dimension): number {
     });
     return total;
   }
-  if (source.numberOfProductsAssociated !== undefined) {
-    return total + Number(source.numberOfProductsAssociated);
+  if (source.numberOfProductsAssociated === undefined) {
+    return total + 1;
   }
-  return total;
+  return total + Number(source.numberOfProductsAssociated);
 }
 
 export function findAndCheckFilter(
