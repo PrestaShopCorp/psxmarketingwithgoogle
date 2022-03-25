@@ -135,7 +135,7 @@ export default {
     payload: { list: Dimension[], error: boolean },
   ) {
     state.errorFetchingFilters = payload.error;
-    if (state.sscAvailableFilters) {
+    if (state.sscAvailableFilters.length) {
       state.sscAvailableFilters = [];
     }
     Object.keys(payload.list).forEach((dimensionName) => {
