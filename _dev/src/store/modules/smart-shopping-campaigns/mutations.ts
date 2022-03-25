@@ -134,11 +134,9 @@ export default {
     state: LocalState,
     payload: { list: Dimension[], error: boolean },
   ) {
-    console.log('hey', state.sscAvailableFilters);
     state.errorFetchingFilters = payload.error;
     if (state.sscAvailableFilters) {
       state.sscAvailableFilters = [];
-      console.log('hey2', state.sscAvailableFilters);
     }
     Object.keys(payload.list).forEach((dimensionName) => {
       // Do not display a dimension with no filter inside
@@ -155,7 +153,6 @@ export default {
 
       state.sscAvailableFilters.push(resp);
     });
-    console.log('hey3', state.sscAvailableFilters);
   },
   [MutationsTypes.SET_DIMENSION_CHOSEN](state: LocalState, payload: Dimension) {
     state.dimensionChosen = payload;

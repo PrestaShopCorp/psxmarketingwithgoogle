@@ -265,7 +265,6 @@ export default {
     },
 
     fetchCampaigns(isNewRequest = true) {
-      console.log('fetcdddh');
       this.$emit('loader', true);
       this.$store
         .dispatch('smartShoppingCampaigns/GET_SSC_LIST', isNewRequest)

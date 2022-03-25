@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash.clonedeep';
 import {Dimension} from '@/store/modules/smart-shopping-campaigns/state';
 
 interface filtersChosenFromAPI {
@@ -156,7 +157,12 @@ export function retrieveProductNumberFromFiltersIds(
   if (!dimensionChosen) {
     return 0;
   }
-  return returnCountProducts(findAndCheckFilter(dimensionChosen, productFilters[0].values));
+  return returnCountProducts(
+    findAndCheckFilter(
+      cloneDeep(dimensionChosen),
+      productFilters[0].values,
+    ),
+  );
 }
 
 export function deepUpdateDimensionVisibility(dimension: Dimension, newValue: boolean): void {
