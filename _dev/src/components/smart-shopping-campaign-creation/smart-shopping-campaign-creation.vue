@@ -582,7 +582,7 @@ export default {
     },
     productsHaveBeenApprovedByGoogle() {
       // return this.$store.state.productFeed.validationSummary.activeItems > 0;
-      return true
+      return true;
     },
     errorFetchingFilters() {
       return this.$store.getters[

@@ -25,10 +25,7 @@
       {{ campaignCountryName }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      <!-- {{ campaignProducts }} -->
-      {{this.campaign.productFilters}}
-      {{totalProducts}}
-      
+      {{ campaignProducts }}
     </b-td>
     <b-td class="ps_gs-fz-12">
       {{ campaign.dailyBudget }} {{ campaign.currencyCode }}

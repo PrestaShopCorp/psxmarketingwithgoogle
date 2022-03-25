@@ -112,17 +112,16 @@ export function returnCountProducts(source: Dimension): number {
   }
   if (source.children) {
     source.children.forEach((child) => {
-      console.log('child', child);
       total += returnCountProducts(child);
     });
     return total;
   }
   if (source.numberOfProductsAssociated !== undefined) {
-    return total += Number(source.numberOfProductsAssociated);
+    return total + Number(source.numberOfProductsAssociated);
   }
-  // if (source.numberOfProductsAssociated == undefined) {
-  //   return total + 1;
-  // }
+  if (source.numberOfProductsAssociated === undefined) {
+    return total + 1;
+  }
   return total;
 }
 
