@@ -581,8 +581,7 @@ export default {
       }
     },
     productsHaveBeenApprovedByGoogle() {
-      // return this.$store.state.productFeed.validationSummary.activeItems > 0;
-      return true;
+      return this.$store.state.productFeed.validationSummary.activeItems > 0;
     },
     errorFetchingFilters() {
       return this.$store.getters[
