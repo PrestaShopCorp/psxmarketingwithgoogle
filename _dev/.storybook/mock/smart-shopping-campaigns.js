@@ -28,6 +28,7 @@ export const availableFilters = [{
       id: "categories",
       checked: false,
       indeterminate: true,
+      visible: true,
       children: [
         {
           status: "ACTIVE",
@@ -35,11 +36,13 @@ export const availableFilters = [{
           name: "Animaux et articles pour animaux de compagnie",
           checked: false,
           indeterminate: true,
+          visible: true,
           children: [
             {
               id:"a",
               name: "Chien",
               checked: true,
+              visible: true,
               indeterminate: false,
               numberOfProductsAssociated: 12,
               children: [
@@ -49,6 +52,7 @@ export const availableFilters = [{
                   languageCode: "fr",
                   name: "Labrador",
                   checked: true,
+                  visible: true,
                   numberOfProductsAssociated: 10,
                 },
                 {
@@ -57,6 +61,7 @@ export const availableFilters = [{
                   languageCode: "fr",
                   name: "Berger Allemand",
                   checked: true,
+                  visible: true,
                   numberOfProductsAssociated: 2,
                 },
               ]
@@ -68,6 +73,7 @@ export const availableFilters = [{
               id: "b",
               name: "Chat",
               checked: true,
+              visible: true,
               indeterminate: false,
             },
           ],
@@ -77,6 +83,7 @@ export const availableFilters = [{
           id: "8",
           name: "Arts et loisirs",
           checked: false,
+          visible: true,
           indeterminate: false,
         },
         {
@@ -85,6 +92,7 @@ export const availableFilters = [{
           name: "Vêtements et accessoires",
           checked: true,
           indeterminate: false,
+          visible: true,
           numberOfProductsAssociated: 13,
           children: [
             {
@@ -92,6 +100,7 @@ export const availableFilters = [{
               id: "111",
               name: "Entreprise et industrie",
               checked: true,
+              visible: true,
               numberOfProductsAssociated: 12,
             },
             {
@@ -99,6 +108,7 @@ export const availableFilters = [{
               id: "141",
               name: "Appareils photo, caméras et instruments d'optique",
               checked: true,
+              visible: true,
               numberOfProductsAssociated: 1,
             },
           ]
@@ -108,6 +118,7 @@ export const availableFilters = [{
           id: "222",
           name: "Appareils électroniques",
           checked: false,
+          visible: true,
           indeterminate: false,
         },
         {
@@ -115,6 +126,7 @@ export const availableFilters = [{
           id: "412",
           name: "Alimentation, boissons et tabac",
           checked: false,
+          visible: true,
           indeterminate: false,
         },
         {
@@ -122,15 +134,17 @@ export const availableFilters = [{
           id: "436",
           name: "Meubles",
           checked: false,
+          visible: true,
           indeterminate: false,
         },
   ],
 },
 {
-  name: "smartShoppingCampaignCreation.brand",
+  name: "Brand",
   id: "brand",
   checked: false,
   indeterminate: true,
+  visible: true,
   children: [
     {
       status: "ACTIVE",
@@ -140,24 +154,28 @@ export const availableFilters = [{
       name: "Animaux et articles pour animaux de compagnie",
       checked: false,
       indeterminate: true,
+      visible: true,
       children: [
         {
           id:"a",
           name: "Chien",
           checked: true,
           indeterminate: false,
+          visible: true,
           numberOfProductsAssociated: 12,
           children: [
             {
               id:"ab",
               name: "Labrador",
               checked: true,
+              visible: true,
               numberOfProductsAssociated: 10,
             },
             {
               id:"abc",
               name: "Berger Allemand",
               checked: true,
+              visible: true,
               numberOfProductsAssociated: 2,
             },
           ]
@@ -169,6 +187,7 @@ export const availableFilters = [{
           id: "b",
           name: "Chat",
           checked: true,
+          visible: true,
           indeterminate: false,
         },
       ],
@@ -180,6 +199,7 @@ export const availableFilters = [{
       languageCode: "fr",
       name: "Arts et loisirs",
       checked: false,
+      visible: true,
       indeterminate: false,
     },
     {
@@ -189,6 +209,7 @@ export const availableFilters = [{
       languageCode: "fr",
       name: "Vêtements et accessoires",
       checked: true,
+      visible: true,
       indeterminate: false,
       numberOfProductsAssociated: 24,
       children: [
@@ -197,6 +218,7 @@ export const availableFilters = [{
           id: "111",
           name: "Entreprise et industrie",
           checked: true,
+          visible: true,
           numberOfProductsAssociated: 12,
         },
         {
@@ -204,6 +226,7 @@ export const availableFilters = [{
           id: "141",
           name: "Appareils photo, caméras et instruments d'optique",
           checked: true,
+          visible: true,
           numberOfProductsAssociated: 12,
         },
       ]
@@ -215,6 +238,7 @@ export const availableFilters = [{
       languageCode: "fr",
       name: "Appareils électroniques",
       checked: false,
+      visible: true,
       indeterminate: false,
     },
     {
@@ -224,6 +248,7 @@ export const availableFilters = [{
       languageCode: "fr",
       name: "Alimentation, boissons et tabac",
       checked: false,
+      visible: true,
       indeterminate: false,
     },
     {
@@ -233,6 +258,7 @@ export const availableFilters = [{
       languageCode: "fr",
       name: "Meubles",
       checked: false,
+      visible: true,
       indeterminate: false,
     },
 ],
