@@ -89,8 +89,11 @@ a.without-hover {
 }
 
 .badge {
-  width: calc(2.5ch + 1rem);
   font-size: rem(12);
+}
+
+.badge-prescan {
+  width: calc(2.5ch + 1rem);
 }
 
 .badge-muted {
