@@ -24,7 +24,7 @@
       expect(result).toEqual('banner/ads-dollars.svg');
     })
     it("returns image in zloty if polish", () => {
-      const source = 'ZL'
+      const source = 'PLN'
       const result = searchImage(source);
       expect(result).toEqual('banner/ads-poland.svg');
     })

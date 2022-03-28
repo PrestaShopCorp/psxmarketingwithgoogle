@@ -24,7 +24,7 @@
       expect(result).toEqual('$500');
     })
     it("returns text in zloty if polish", () => {
-      const source = 'ZL'
+      const source = 'PLN'
       const result = searchPrice(source);
       expect(result).toEqual('1200zł');
     })

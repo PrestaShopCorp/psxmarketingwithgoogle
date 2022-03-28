@@ -110,8 +110,8 @@ const TemplateCampaignsList = (args, { argTypes }) => ({
 
 export const BannerOnCampaignsListPage:any = TemplateCampaignsList.bind({});
 BannerOnCampaignsListPage.args = {
-  beforeCreate() {
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaigns);
+  beforeMount() {
+    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], []);
   },
   loading: false, 
 };

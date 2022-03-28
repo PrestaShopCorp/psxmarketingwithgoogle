@@ -1,5 +1,5 @@
 export function searchPrice(currency : string) {
-  if (currency.toUpperCase() === 'ZL') {
+  if (currency.toUpperCase() === 'PLN') {
     return '1200zł';
   }
   if (currency.toUpperCase() === 'GBP') {
