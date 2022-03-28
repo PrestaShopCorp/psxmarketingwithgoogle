@@ -1,5 +1,5 @@
 export function searchImage(currency : string) {
-  if (currency.toUpperCase() === 'ZL') {
+  if (currency.toUpperCase() === 'PLN') {
     return 'banner/ads-poland.svg';
   }
   if (currency.toUpperCase() === 'GBP') {
