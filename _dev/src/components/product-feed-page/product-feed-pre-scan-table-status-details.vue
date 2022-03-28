@@ -127,7 +127,7 @@
               <b-td class="align-top">
                 <b-badge
                   variant="primary"
-                  class="mr-1 ps_gs-fz-12 text-capitalize"
+                  class="mr-1 ps_gs-fz-12 text-capitalize badge-prescan"
                   v-for="(language, index) in getProductLangs(product.titleByLang)"
                   :key="index"
                 >
