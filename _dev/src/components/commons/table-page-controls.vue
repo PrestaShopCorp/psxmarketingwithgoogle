@@ -27,6 +27,7 @@
         :per-page="1"
         first-number
         last-number
+        class="mb-0"
       />
     </nav>
     <PageNumberSelector v-if="needPageSelector" />
@@ -73,3 +74,4 @@ export default {
   },
 };
 </script>
+
