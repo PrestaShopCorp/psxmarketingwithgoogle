@@ -323,6 +323,8 @@ EditionWithUnhandledFilters.parameters = {
 
 export const ErrorRetrievingFilters: any = Template.bind({});
 ErrorRetrievingFilters.args = {
+  loader: false,
+  searchLoader: false,
   mounted(this: any) {
     this.$store.state.productFeed.validationSummary.activeItems = 2;
     // Is empty but is filled right away??
@@ -344,6 +346,7 @@ export const PopinFiltersDimensionStep: any = Template.bind({});
 PopinFiltersDimensionStep.args = {
   visible: true,
   loader: false,
+  searchLoader: false,
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
   },
