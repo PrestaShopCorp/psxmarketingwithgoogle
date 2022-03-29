@@ -211,6 +211,7 @@ export const productFeedIsReadyForExport = {
     lastUpdatedAt: null,
     nextJobAt: new Date("July 22, 2021 03:24:00"),
     success: false,
+    syncSchedule: "2021-10-06T01:00:00.000Z",
   },
   settings: {
     ...productFeed.settings,

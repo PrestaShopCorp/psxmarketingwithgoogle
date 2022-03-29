@@ -280,7 +280,9 @@
                   {{ $t("cta.selectFilters") }}
                 </b-button>
                 <div
-                  v-if="!campaignHasNoProductsFilter && filtersChosen.length"
+                  v-if="!campaignHasNoProductsFilter
+                    && filtersChosen.length
+                    && !hasUnhandledFilters"
                   class="align-self-center ml-2 font-weight-600"
                 >
                   {{ $tc(

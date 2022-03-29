@@ -266,19 +266,21 @@ export const availableFilters = [{
 
 export const campaignWithUnhandledFilters = {
   campaignName: 'A super name',
-  campaignDurationStartDate: '2021-10-30',
-  campaignDurationEndDate: '2021-12-30',
-  campaignProductsFilter: [],
+  startDate: '2021-10-30',
+  endDate: '2021-12-30',
+  productFilters: [],
   campaignDailyBudget: 7,
-  campaignIsActive: true,
-  campaignId: 'foo',
+  dailyBudget: true,
+  id: 'foo',
   targetCountry: 'France',
   campaignHasNoProductsFilter: false,
   hasUnhandledFilters: true,
 };
+
 export const campaignWithoutUnhandledFilters = {
  ...campaignWithUnhandledFilters,
   hasUnhandledFilters: false,
 };
+
 
 export default sscDefault;

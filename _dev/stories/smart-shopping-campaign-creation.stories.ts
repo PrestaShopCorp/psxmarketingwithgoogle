@@ -2,7 +2,7 @@ import SmartShoppingCampaignCreation from "../src/components/smart-shopping-camp
 import SmartShoppingCampaignPopin from "../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin.vue"
 import { initialStateApp } from "../.storybook/mock/state-app";
 import { googleAdsAccountChosen } from "../.storybook/mock/google-ads.js";
-import { campaignWithUnhandledFilters } from "../.storybook/mock/smart-shopping-campaigns";
+import { campaignWithUnhandledFilters, campaignBasic } from "../.storybook/mock/smart-shopping-campaigns";
 import { rest } from "msw";
 import { availableFilters } from "../.storybook/mock/smart-shopping-campaigns.js";
 
@@ -245,28 +245,79 @@ FieldsErrorFeedback.args = {
 export const Edition: any = Template.bind({});
 Edition.args = {
   editMode: true,
+  loader: false,
+  searchLoader: false,
   mounted(this: any) {
+    this.$router.history.current.params.id = '16004060865'
+    this.$store.state.smartShoppingCampaigns.filtersChosen = [{dimension: 'bla', values: ['1', '2']}]
     this.$store.state.productFeed.validationSummary.activeItems = 2;
-    this.$refs.sscCreation.$data.campaignName = "A super name";
-    this.$refs.sscCreation.$data.campaignDurationStartDate = "2021-10-30";
-    this.$refs.sscCreation.$data.campaignDurationEndDate = "2021-12-30";
-    this.$refs.sscCreation.$data.campaignProductsFilter = [];
-    this.$refs.sscCreation.$data.campaignDailyBudget = 7;
-    this.$refs.sscCreation.$data.campaignIsActive = true;
-    this.$refs.sscCreation.$data.campaignId = "foo";
-    this.$refs.sscCreation.$data.targetCountry = "France"
   },
 };
 
 export const EditionWithUnhandledFilters: any = Template.bind({});
 EditionWithUnhandledFilters.args = {
   editMode: true,
+  loader: false,
+  searchLoader: false,
   mounted(this: any) {
+    this.$store.state.smartShoppingCampaigns.campaigns= Object.assign([], [campaignWithUnhandledFilters]);
+    this.$router.history.current.params.id = '16004060865',
+    this.$store.state.smartShoppingCampaigns.errorFetchingFilters = false;
     this.$store.state.productFeed.validationSummary.activeItems = 2;
     Object.assign(
       this.$refs.sscCreation.$data,
       campaignWithUnhandledFilters
     );
+},
+};
+EditionWithUnhandledFilters.parameters = {
+  msw: {
+    handlers: [
+      rest.get("/shopping-campaigns/list",  (req, res, ctx) => {
+        return res(ctx.json({"campaigns":[
+          {
+              "id": "16004060865",
+              "resourceName": "customers/4088436776/campaigns/16004060865",
+              "campaignName": "rgereegr",
+              "startDate": "2022-01-27",
+              "endDate": "2037-12-30",
+              "targetCountry": "FR",
+              "dailyBudget": 3,
+              "status": "ELIGIBLE",
+              "currencyCode": "EUR",
+              "productFilters": [
+                  {
+                      "dimension": "categories",
+                      "values": [
+                          "2169"
+                      ]
+                  }
+              ],
+              "hasUnhandledFilters": true
+          },
+          {
+              "id": "16004011605",
+              "resourceName": "customers/4088436776/campaigns/16004011605",
+              "campaignName": "zret",
+              "startDate": "2022-01-27",
+              "endDate": "2037-12-30",
+              "targetCountry": "FR",
+              "dailyBudget": 1,
+              "status": "ELIGIBLE",
+              "currencyCode": "EUR",
+              "productFilters": [
+                  {
+                      "dimension": "categories",
+                      "values": [
+                          "2169",
+                          "502981"
+                      ]
+                  }
+              ],
+              "hasUnhandledFilters": false
+          }
+      ]}))}),
+    ],
   },
 };
 
