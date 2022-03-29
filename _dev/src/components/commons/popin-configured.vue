@@ -16,13 +16,16 @@
         </h3>
 
         <b-img
-          :src="require('@/assets/images/configured.png')"
+          :src="require('@/assets/images/configured.svg')"
           fluid
         />
-        <VueShowdown :markdown="$t('configuredState.text')" />
+        <VueShowdown
+          class="mt-4"
+          :markdown="$t('configuredState.text')"
+        />
         <template>
           <ul
-            class="timeline-configured list-unstyled mb-auto"
+            class="timeline-configured list-unstyled mb-auto mt-4"
           >
             <VueShowdown
               v-for="(oneStep, index) in steps"
