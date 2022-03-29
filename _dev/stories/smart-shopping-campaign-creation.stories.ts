@@ -210,6 +210,8 @@ const Template = (args, { argTypes }) => ({
 
 export const Creation: any = Template.bind({});
 Creation.args = {
+  loader: false,
+  searchLoader: false,
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
     this.$store.state.productFeed.validationSummary.activeItems = 2;
@@ -218,6 +220,8 @@ Creation.args = {
 
 export const CreationWithoutProducts: any = Template.bind({});
 CreationWithoutProducts.args = {
+  loader: false,
+  searchLoader: false,
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
     this.$store.state.productFeed.validationSummary.activeItems = 0;
@@ -226,6 +230,8 @@ CreationWithoutProducts.args = {
 
 export const FieldsErrorFeedback: any = Template.bind({});
 FieldsErrorFeedback.args = {
+  loader: false,
+  searchLoader: false,
   mounted(this: any) {
     // set name
     this.$refs.sscCreation.$data.campaignName = "foobar";
@@ -362,6 +368,7 @@ PopinFiltersFiltersStep.args = {
   step: 2,
   visible: true,
   loader: false,
+  searchLoader: false,
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
   },
