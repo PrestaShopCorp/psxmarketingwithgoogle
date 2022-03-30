@@ -2,6 +2,7 @@ import TunnelProductFeed from '../src/views/tunnel-product-feed.vue';
 import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport, productFeedSyncScheduleNow} from '../.storybook/mock/product-feed';
 import {initialStateApp, appMultiCountries} from '../.storybook/mock/state-app';
 import {rest} from 'msw';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 
 export default {
   title: 'Product feed/Settings',
@@ -97,6 +98,7 @@ TargetCountry.args = {
     this.$store.state.productFeed = Object.assign({},productFeed);
     this.$store.state.app = Object.assign({},initialStateApp);
     this.$store.state.productFeed.stepper = 1;
+      this.$router.history.current.params.step = ProductFeedSettingsPages.TARGET_COUNTRY
   },
 };
 
@@ -105,6 +107,7 @@ ShippingSettings.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeed);
     this.$store.state.productFeed.stepper = 2;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
   },
 };
 
@@ -114,6 +117,7 @@ ShippingSettingsNoCarriers.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeedNoCarriers);
     this.$store.state.productFeed.stepper = 2;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
   },
 };
 
@@ -122,6 +126,7 @@ AttributeMapping.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeed);
     this.$store.state.productFeed.stepper = 3;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.ATTRIBUTE_MAPPING
   },
 };
 
@@ -130,6 +135,7 @@ SyncSchedule.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeedSyncScheduleNow);
     this.$store.state.productFeed.stepper = 4;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SYNC_SCHEDULE
   },
 };
 
@@ -138,5 +144,6 @@ Summary.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeedIsReadyForExport);
     this.$store.state.productFeed.stepper = 5;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SUMMARY
   },
 };
