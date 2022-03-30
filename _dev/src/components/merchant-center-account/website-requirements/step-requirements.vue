@@ -22,15 +22,16 @@
       <li
         v-for="requirement in requirements"
         :key="$t(`mcaRequirements.${requirement}.title`)"
-        class="d-flex border-bottom py-3 pl-2 ml-1"
+        class="d-flex py-1 pl-2 ml-n2"
       >
         <component
           :is="newMca ? 'b-form-checkbox' : 'div'"
-          class="ps_gs-checkbox"
+          class="ps_gs-checkbox ml-n2"
           :class="{'d-flex': !newMca}"
           :id="safeString($t(`mcaRequirements.${requirement}.title`))"
           v-model="selectedRequirements"
           :value="newMca ? requirement : null"
+          :indeterminate="true"
           @change="getCurrentCheckbox"
         >
           <i
@@ -39,34 +40,37 @@
           >
             check
           </i>
-          <div >
+          <div class="d-flex align-items-center">
             <span
               class="ps_gs-fz-14 font-weight-normal mb-1"
               v-html="$t(`mcaRequirements.${requirement}.title`)"
             />
-                  <b-button
-        class="p-0"
-        variant="text"
-        v-b-tooltip:psxMktgWithGoogleApp
-        :title="tooltipFormat(requirement)"
-      >
-        <span class="material-icons-round mb-0 ps_gs-fz-16 w-16 text-secondary">
-          info_outlined
-        </span>
-         <!-- <p class="ps_gs-fz-12 text-muted">
-              {{ $t(`mcaRequirements.${requirement}.description`) }}<br>
-              <a
-                v-html="$t(`mcaRequirements.${requirement}.link`)"
-                :href="$options.googleUrl[requirement]"
-                target="_blank"
-              />
-            </p> -->
-      </b-button>
-           
+            <b-button
+              class="ml-1 p-0 d-flex"
+              variant="text"
+              v-b-tooltip:psxMktgWithGoogleApp
+              :title="tooltipFormat(requirement)"
+            >
+              <span class="material-icons-round mb-1 ml-0 ps_gs-fz-12 text-primary">
+                info_outlined
+              </span>
+            </b-button>
           </div>
         </component>
       </li>
     </ul>
+    <b-form-checkbox
+      class="ps_gs-checkbox ps_gs-filters__item-checkbox"
+      :checked="selectAll"
+      @change="selectCheckbox"
+      :indeterminate="selectAllIndeterminate"
+    >
+      <div class="d-flex w-100 justify-content-between pr-3">
+        <span>
+          {{ $t('mcaRequirements.checkAll') }}
+        </span>
+      </div>
+    </b-form-checkbox>
   </form>
 </template>
 
@@ -78,6 +82,8 @@ export default {
   data() {
     return {
       selectedRequirements: [],
+      selectAll: false,
+      selectAllIndeterminate: false,
     };
   },
   props: {
@@ -100,11 +106,37 @@ export default {
       return newStr;
     },
     getCurrentCheckbox() {
+      this.indeterminateOrNot();
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
       this.$emit('stepRequirementsValidation', !(this.selectedRequirements.length === this.requirements.length));
     },
     tooltipFormat(requirement) {
       return this.$t(`mcaRequirements.${requirement}.description`);
+    },
+    selectCheckbox(item) {
+      this.selectAll = item;
+      this.selectAllIndeterminate = false;
+      if (item === true) {
+        this.selectedRequirements = this.requirements;
+      } else {
+        this.selectedRequirements = [];
+      }
+      this.$emit('stepRequirementsValidation', !(this.selectedRequirements.length === this.requirements.length));
+    },
+    indeterminateOrNot() {
+      if (this.selectedRequirements.length === this.requirements.length
+      && this.selectedRequirements.length > 0) {
+        this.selectAllIndeterminate = false;
+        this.selectAll = true;
+      } else
+      if (this.selectedRequirements.length < this.requirements.length
+      && this.selectedRequirements.length > 0) {
+        this.selectAllIndeterminate = true;
+        this.selectAll = false;
+      } else {
+        this.selectAllIndeterminate = false;
+        this.selectAll = false;
+      }
     },
   },
   mounted() {
