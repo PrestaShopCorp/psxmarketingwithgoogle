@@ -70,7 +70,11 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-              {date: this.$options.filters.timeConverterToDate(this.syncInfos.lastUpdatedAt)},
+              {
+                date: this.$options.filters.timeConverterToDate(
+                  this.syncInfos.lastUpdatedAt ?? this.syncInfos.jobEndedAt,
+                ),
+              },
             ),
             icon: 'check_circle',
             lineColor: 'danger',
@@ -81,7 +85,6 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.error',
-              {date: this.$options.filters.timeConverterToDate(this.syncInfos.jobEndedAt)},
             ),
             icon: 'cancel',
           },
