@@ -24,6 +24,12 @@ jobs:
           npm install
           npm run build
 
+      - name: Install dev composer dependencies
+        run: composer install
+
+      - name: Generate index.php
+        run: vendor/bin/autoindex
+
       - name: Install composer dependencies
         run: composer install --no-dev -o
       
