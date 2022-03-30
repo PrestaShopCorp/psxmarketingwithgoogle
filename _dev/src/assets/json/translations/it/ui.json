@@ -598,6 +598,7 @@
       }
     },
     "preScan": {
+      "xProducts": " {0} product | {0} product | {0} products",
       "description": "{0} with problems that couldn't be synced are listed below.",
       "fields": {
         "name": "Name",
