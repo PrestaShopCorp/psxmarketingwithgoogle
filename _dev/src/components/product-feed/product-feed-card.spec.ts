@@ -195,7 +195,7 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.findComponent(Stepper).exists()).toBeTruthy();
     expect(wrapper.findComponent(Stepper).props('activeStep')).toBe(1);
     expect(wrapper.find('b-button').attributes('disabled')).toBe('true');
-    expect(wrapper.find('b-button').text()).toEqual('Export feed');
+    expect(wrapper.find('b-button').text()).toEqual('Start product feed configuration');
     expect(wrapper.findComponent(BAlert).exists()).toBeTruthy();
     expect(wrapper.findComponent(BAlert).find('b-button').text()).toEqual('Refresh page');
   });
