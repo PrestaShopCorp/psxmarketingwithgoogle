@@ -15,6 +15,8 @@
         v-else
         :src="require(`@/assets/images/${contentImage}`)"
         alt=""
+        width="250"
+        height="175"
       >
     </figure>
     <div>
