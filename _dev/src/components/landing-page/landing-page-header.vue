@@ -25,20 +25,22 @@
       <p class="ps_gs-landingpage-header__text w-100">
         {{ $t('landingPage.header.text') }}
       </p>
-      <b-button
-        size="sm"
-        variant="primary"
-        class="my-2"
-        @click="$emit('hideLandingPage')"
-        data-test-id="lp-header-cta"
-      >
-        {{ $t('cta.startConfiguring') }}
-      </b-button>
+      <div class="d-inline-flex flex-column">
+        <b-button
+          size="lg"
+          variant="primary"
+          class="my-2"
+          @click="$emit('hideLandingPage')"
+          data-test-id="lp-header-cta"
+        >
+          {{ $t('cta.startConfiguring') }}
+        </b-button>
 
-      <div class="ps_gs-landingpage-header__benefits text-muted">
-        <VueShowdown
-          :markdown="$t('landingPage.header.reinsurance')"
-        />
+        <div class="ps_gs-landingpage-header__benefits text-muted">
+          <VueShowdown
+            :markdown="$t('landingPage.header.reinsurance')"
+          />
+        </div>
       </div>
     </div>
   </header>

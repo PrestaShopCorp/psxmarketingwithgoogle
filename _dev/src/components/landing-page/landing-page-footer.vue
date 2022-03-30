@@ -6,7 +6,7 @@
           {{ $t("landingPage.footer.text") }}
         </p>
         <b-button
-          size="sm"
+          size="lg"
           variant="primary"
           @click="$emit('hideLandingPage')"
           data-test-id="lp-footer-cta"

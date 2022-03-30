@@ -4,11 +4,17 @@
   >
     <figure class="ps_gs-landingpage-content__figure flex-shrink-0 mr-md-3 mb-md-0">
       <img
+        v-if="!svgImage"
         :src="require(`@/assets/images/${contentImage}`)"
         class="img-fluid d-block mx-auto"
         alt=""
         width="250"
         height="175"
+      >
+      <img
+        v-else
+        :src="require(`@/assets/images/${contentImage}`)"
+        alt=""
       >
     </figure>
     <div>
@@ -54,6 +60,11 @@ export default {
     contentFooter: {
       type: String,
       required: true,
+    },
+    svgImage: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
   },
 };
