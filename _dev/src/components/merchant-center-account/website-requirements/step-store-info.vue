@@ -322,11 +322,11 @@
           name="radio-sub-component"
           v-model="containsAdultContent"
         >
-          <b-form-radio :value="true">
-            {{ $t('cta.yes') }}
-          </b-form-radio>
           <b-form-radio :value="false">
             {{ $t('cta.no') }}
+          </b-form-radio>
+          <b-form-radio :value="true">
+            {{ $t('cta.yes') }}
           </b-form-radio>
         </b-form-radio-group>
       </b-form-group>
@@ -357,7 +357,7 @@ import googleUrl from '@/assets/json/googleUrl.json';
 export default {
   data() {
     return {
-      containsAdultContent: null,
+      containsAdultContent: false,
       acceptsGoogleTerms: false,
       loading: false,
     };
