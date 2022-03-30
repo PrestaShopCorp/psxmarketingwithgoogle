@@ -317,11 +317,6 @@ export default {
       return this.$i18n.t('mcaCard.receiveCall');
     },
   },
-  mounted() {
-    if (!this.phoneNumber) {
-      this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
-    }
-  },
 
   phonesPrefixSelectionOptions,
 };

@@ -677,6 +677,7 @@ export default {
             text: 'pendingCreation',
           };
         case WebsiteClaimErrorReason.PhoneVerificationNeeded:
+          this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
           return {
             color: 'warning',
             text: 'pending',
