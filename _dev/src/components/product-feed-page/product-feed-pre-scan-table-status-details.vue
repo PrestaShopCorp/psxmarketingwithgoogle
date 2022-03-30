@@ -30,7 +30,7 @@
         >
           <span class="font-weight-bold text-lowercase">
             {{
-              $tc('smartShoppingCampaignCreation.xProducts',
+              $tc('productFeedPage.preScan.xProducts',
                   rows,
                   [rows]
               )
