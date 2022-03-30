@@ -39,19 +39,30 @@
           >
             check
           </i>
-          <div>
+          <div >
             <span
               class="ps_gs-fz-14 font-weight-normal mb-1"
               v-html="$t(`mcaRequirements.${requirement}.title`)"
             />
-            <p class="ps_gs-fz-12 text-muted">
+                  <b-button
+        class="p-0"
+        variant="text"
+        v-b-tooltip:psxMktgWithGoogleApp
+        :title="tooltipFormat(requirement)"
+      >
+        <span class="material-icons-round mb-0 ps_gs-fz-16 w-16 text-secondary">
+          info_outlined
+        </span>
+         <!-- <p class="ps_gs-fz-12 text-muted">
               {{ $t(`mcaRequirements.${requirement}.description`) }}<br>
               <a
                 v-html="$t(`mcaRequirements.${requirement}.link`)"
                 :href="$options.googleUrl[requirement]"
                 target="_blank"
               />
-            </p>
+            </p> -->
+      </b-button>
+           
           </div>
         </component>
       </li>
@@ -91,6 +102,9 @@ export default {
     getCurrentCheckbox() {
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
       this.$emit('stepRequirementsValidation', !(this.selectedRequirements.length === this.requirements.length));
+    },
+    tooltipFormat(requirement) {
+      return this.$t(`mcaRequirements.${requirement}.description`);
     },
   },
   mounted() {
