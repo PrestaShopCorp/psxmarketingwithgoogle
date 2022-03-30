@@ -24,11 +24,11 @@ describe('summary', () => {
   };
   const mockRouter = {
     history: {
-      current : {
+      current: {
         params: {
           step: ProductFeedSettingsPages.SUMMARY,
         },
-      }
+      },
     },
     push: jest.fn(),
   };
