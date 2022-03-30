@@ -23,6 +23,7 @@
         class="ps_gs-landingpage-content__muted text-muted"
       >
         <VueShowdown
+          v-if="contentFooter"
           :markdown="contentFooter"
           :extensions="['extended-link']"
         />
@@ -53,7 +54,7 @@ export default {
     },
     contentFooter: {
       type: String,
-      required: true,
+      required: false,
     },
     svgImage: {
       type: Boolean,

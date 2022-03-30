@@ -8,9 +8,6 @@
         content-image="Merchant-Center-img.png"
         :content-title="$t('landingPage.content.content1.title')"
         :content-text="$t('landingPage.content.content1.text')"
-        :content-footer="$t('landingPage.content.content1.footer', [
-          $options.googleUrl.learnAboutFreeListing
-        ])"
       />
       <LandingPageContent
         :svg-image="false"
@@ -27,9 +24,6 @@
         content-image="Google-Commercial-img.png"
         :content-title="$t('landingPage.content.content3.title')"
         :content-text="$t('landingPage.content.content3.text')"
-        :content-footer="$t('landingPage.content.content3.footer', [
-          $options.googleUrl.learnAboutSmartShoppingCampaigns
-        ])"
       />
       <LandingPageContent
         :svg-image="true"
