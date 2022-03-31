@@ -60,6 +60,7 @@
       </li>
     </ul>
     <b-form-checkbox
+      v-if="newMca"
       class="ps_gs-checkbox ps_gs-filters__item-checkbox"
       :checked="selectAll"
       @change="selectCheckbox"
