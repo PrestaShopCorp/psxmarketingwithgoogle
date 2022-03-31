@@ -37,8 +37,7 @@
     "content": {
       "content1": {
         "title": "Synchroniseer uw productcatalogus met Google",
-        "text": "Verbind uw winkel met Google Merchant Center en synchroniseer uw volledige productcatalogus in een paar klikken, productkenmerken zoals prijs en beschikbaarheid worden elke dag automatisch bijgewerkt.",
-        "footer": "[Meer informatie over gratis advertenties]({0})[:target=\"_blank\"]"
+        "text": "Verbind uw winkel met Google Merchant Center en synchroniseer uw volledige productcatalogus in een paar klikken, productkenmerken zoals prijs en beschikbaarheid worden elke dag automatisch bijgewerkt."
       },
       "content2": {
         "title": "Maak gratis vermeldingen voor uw producten mogelijk",
@@ -47,10 +46,8 @@
       },
       "content3": {
         "title": "Creëer en beheer uw Smart Shopping campagnes",
-        "text": "Smart Shopping campagnes zijn Google Ads die gebruikmaken van de slimme technologie van Google voor prijsopgaven en advertentieplaatsing om de conversiewaarde te maximaliseren en uw advertenties strategisch weer te geven aan mensen die zoeken naar producten zoals die van u.  \n \n Stel een dagelijks budget in en laat de slimme technologie van Google uw campagnes optimaliseren over verschillende netwerken zoals Google Zoeken, YouTube of Gmail. U betaalt alleen als mensen klikken.",
-        "footer": "[Meer informatie over Smart Shopping-campagnes]({0})[:target=\"_blank\"]"
-      },
-      "notice": "*afhankelijk van regionale beschikbaarheid   \n**inclusief campagne-optimalisatie om verschillende advertenties van uw producten te tonen aan klanten die ze waarschijnlijk zullen kopen"
+        "text": "Smart Shopping campagnes zijn Google Ads die gebruikmaken van de slimme technologie van Google voor prijsopgaven en advertentieplaatsing om de conversiewaarde te maximaliseren en uw advertenties strategisch weer te geven aan mensen die zoeken naar producten zoals die van u.  \n \n Stel een dagelijks budget in en laat de slimme technologie van Google uw campagnes optimaliseren over verschillende netwerken zoals Google Zoeken, YouTube of Gmail. U betaalt alleen als mensen klikken."
+      }
     },
     "footer": {
       "text": "Zorg dat uw producten gevonden worden op Google met PS Marketing met Google"
