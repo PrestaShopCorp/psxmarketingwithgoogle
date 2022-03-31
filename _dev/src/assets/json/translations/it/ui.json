@@ -37,8 +37,7 @@
     "content": {
       "content1": {
         "title": "Sincronizza il tuo catalogo prodotti con Google",
-        "text": "Collega il tuo negozio a Google Merchant Center e sincronizza tutto il tuo catalogo prodotti in pochi click, gli attributi dei prodotti come il prezzo e la disponibilità saranno automaticamente aggiornati ogni giorno.",
-        "footer": "[Learn more about free listings]({0})[:target=\\\"_blank\\\"]"
+        "text": "Collega il tuo negozio a Google Merchant Center e sincronizza tutto il tuo catalogo prodotti in pochi click, gli attributi dei prodotti come il prezzo e la disponibilità saranno automaticamente aggiornati ogni giorno."
       },
       "content2": {
         "title": "Abilita le schede gratuite per i tuoi prodotti",
@@ -47,10 +46,8 @@
       },
       "content3": {
         "title": "Crea e gestisci Campagne Shopping Intelligenti",
-        "text": "Le Campagne Shopping Intelligenti sono annunci di Google che usano la tecnologia intelligente di Google per determinare le offerte e il posizionamento degli annunci, massimizzando il valore di conversione e mostrando strategicamente i tuoi annunci alle persone che cercano prodotti come i tuoi.  \n \nImposta un budget giornaliero e lascia che la tecnologia intelligente di Google ottimizzi le tue campagne su diverse reti come Ricerca Google, YouTube o Gmail. Pagherai solo quando le persone cliccano sui tuoi annunci.",
-        "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\\\"_blank\\\"]"
-      },
-      "notice": "*depending on regional availability   \n **includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
+        "text": "Le Campagne Shopping Intelligenti sono annunci di Google che usano la tecnologia intelligente di Google per determinare le offerte e il posizionamento degli annunci, massimizzando il valore di conversione e mostrando strategicamente i tuoi annunci alle persone che cercano prodotti come i tuoi.  \n \nImposta un budget giornaliero e lascia che la tecnologia intelligente di Google ottimizzi le tue campagne su diverse reti come Ricerca Google, YouTube o Gmail. Pagherai solo quando le persone cliccano sui tuoi annunci."
+      }
     },
     "footer": {
       "text": "Fai trovare i tuoi prodotti su Google con PS Marketing con Google"

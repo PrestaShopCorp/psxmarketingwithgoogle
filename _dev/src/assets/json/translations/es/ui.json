@@ -37,8 +37,7 @@
     "content": {
       "content1": {
         "title": "Sincroniza tu catálogo de productos con Google",
-        "text": "Conecta tu tienda a Google Merchant Center y sincroniza todo tu catálogo de productos en unos pocos clics, los atributos de los productos como el precio y la disponibilidad se actualizarán automáticamente todos los días.",
-        "footer": "[Learn more about free listings]({0})[:target=\\\"_blank\\\"]"
+        "text": "Conecta tu tienda a Google Merchant Center y sincroniza todo tu catálogo de productos en unos pocos clics, los atributos de los productos como el precio y la disponibilidad se actualizarán automáticamente todos los días."
       },
       "content2": {
         "title": "Activa las fichas órganicas para tus productos",
@@ -47,10 +46,8 @@
       },
       "content3": {
         "title": "Crea y gestiona campañas de Shopping Inteligentes",
-        "text": "Las campañas de Shopping Inteligentes son anuncios de Google que utilizan la tecnología inteligente de Google para la puja y la colocación de anuncios, maximizando el valor de la conversión y mostrando estratégicamente tus anuncios a las personas que buscan productos como el tuyo.  \n \nEstablece un presupuesto diario y deja que la tecnología inteligente de Google optimice tus campañas en diferentes redes como Google Search, YouTube o Gmail. Solo pagas cuando la gente hace clic.",
-        "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\\\"_blank\\\"]"
-      },
-      "notice": "*depending on regional availability   \n **includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
+        "text": "Las campañas de Shopping Inteligentes son anuncios de Google que utilizan la tecnología inteligente de Google para la puja y la colocación de anuncios, maximizando el valor de la conversión y mostrando estratégicamente tus anuncios a las personas que buscan productos como el tuyo.  \n \nEstablece un presupuesto diario y deja que la tecnología inteligente de Google optimice tus campañas en diferentes redes como Google Search, YouTube o Gmail. Solo pagas cuando la gente hace clic."
+      }
     },
     "footer": {
       "text": "Logra que tus productos sean encontrados en Google con PS Marketing with Google"

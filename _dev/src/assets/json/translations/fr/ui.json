@@ -37,8 +37,7 @@
     "content": {
       "content1": {
         "title": "Synchronisez votre catalogue de produits avec Google",
-        "text": "Connectez votre boutique à Google Merchant Center et synchronisez l'ensemble de votre catalogue de produits en quelques clics. Les attributs des produits tels que le prix et la disponibilité seront automatiquement et quotidiennement mis à jour.",
-        "footer": "[En savoir plus sur les fiches gratuites]({0})[:target=\"_blank\"]"
+        "text": "Connectez votre boutique à Google Merchant Center et synchronisez l'ensemble de votre catalogue de produits en quelques clics. Les attributs des produits tels que le prix et la disponibilité seront automatiquement et quotidiennement mis à jour."
       },
       "content2": {
         "title": "Activez les fiches produit pour vos produits",
@@ -47,10 +46,8 @@
       },
       "content3": {
         "title": "Créez et gérez vos campagnes Shopping intelligentes",
-        "text": "Les campagnes Shopping intelligentes sont des annonces Google qui utilisent la technologie intelligente de Google pour les enchères et le placement des annonces afin de maximiser la valeur de conversion et d'afficher stratégiquement vos annonces auprès des personnes qui recherchent des produits comme les vôtres.  \n \nDéfinissez un budget quotidien et laissez la technologie intelligente de Google optimiser vos campagnes sur différents réseaux tels que Google Search, YouTube ou Gmail. Vous ne payez que lorsque les gens cliquent.",
-        "footer": "[En savoir plus sur les campagnes Shopping Intelligentes] ({0})[:target=\"_blank\"]"
-      },
-      "notice": "*selon la disponibilité régionale   \n**inclut l'optimisation de la campagne pour montrer la variété de vos produits aux clients les plus susceptibles de les acheter"
+        "text": "Les campagnes Shopping intelligentes sont des annonces Google qui utilisent la technologie intelligente de Google pour les enchères et le placement des annonces afin de maximiser la valeur de conversion et d'afficher stratégiquement vos annonces auprès des personnes qui recherchent des produits comme les vôtres.  \n \nDéfinissez un budget quotidien et laissez la technologie intelligente de Google optimiser vos campagnes sur différents réseaux tels que Google Search, YouTube ou Gmail. Vous ne payez que lorsque les gens cliquent."
+      }
     },
     "footer": {
       "text": "Améliorez la visibilité de vos produits sur Google avec PS Marketing with Google"

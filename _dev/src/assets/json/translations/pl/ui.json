@@ -37,8 +37,7 @@
     "content": {
       "content1": {
         "title": "Zsynchronizuj swój katalog produktów z Google",
-        "text": "Połącz swój sklep z Google Merchant Center i zsynchronizuj cały swój katalog produktów. Atrybuty produktów, takie jak cena czy dostępność, będą codziennie automatycznie aktualizowane.",
-        "footer": "[Dowiedz się więcej o darmowych ofertach]({0})[:target=\"_blank\"]"
+        "text": "Połącz swój sklep z Google Merchant Center i zsynchronizuj cały swój katalog produktów. Atrybuty produktów, takie jak cena czy dostępność, będą codziennie automatycznie aktualizowane."
       },
       "content2": {
         "title": "Włącz wyświetlanie bezpłatnych informacji o produktach",
@@ -47,10 +46,8 @@
       },
       "content3": {
         "title": "Stwórz inteligentne kampanie produktowe i zarządzaj nimi",
-        "text": "Inteligentne kampanie produktowe to usługa w ramach Google Ads, która wykorzystuje inteligentną technologię Google do umieszczania reklam i określania stawek, tak aby maksymalizować wartość konwersji i pokazywać je osobom szukającym produktow, takich jakie masz w swojej ofercie.  \n \n Ustal dzienny budżet i pozwól inteligentnej technologii Google na zoptymalizowanie Twoich kampanii w różnych sieciach reklamowych, takich jak wyszukiwarka Google, YouTube czy Gmail. Płacisz tylko wtedy, kiedy ludzie klikają.",
-        "footer": "[Dowiedz się więcej o kampaniach Smart Shopping]({0})[:target=\"_blank\"]"
-      },
-      "notice": "*zależnie od dostępności regionalnej   \n**zawiera optymalizację kampanii, aby pokazać różnorodne reklamy Twoich produktów klientom, którzy najprawdopodobniej je kupią"
+        "text": "Inteligentne kampanie produktowe to usługa w ramach Google Ads, która wykorzystuje inteligentną technologię Google do umieszczania reklam i określania stawek, tak aby maksymalizować wartość konwersji i pokazywać je osobom szukającym produktow, takich jakie masz w swojej ofercie.  \n \n Ustal dzienny budżet i pozwól inteligentnej technologii Google na zoptymalizowanie Twoich kampanii w różnych sieciach reklamowych, takich jak wyszukiwarka Google, YouTube czy Gmail. Płacisz tylko wtedy, kiedy ludzie klikają."
+      }
     },
     "footer": {
       "text": "Pozwól, by Twoje produkty zostały znalezione w Google dzięki modułowi PrestaShop Marketing with Google"

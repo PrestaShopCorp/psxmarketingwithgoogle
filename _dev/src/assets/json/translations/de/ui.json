@@ -37,8 +37,7 @@
     "content": {
       "content1": {
         "title": "Synchronisieren Sie Ihren Produktkatalog mit Google",
-        "text": "Verbinden Sie Ihren Shop mit dem Google Merchant Center und synchronisieren Sie Ihren gesamten Produktkatalog mit wenigen Klicks. Produktattribute wie Preis und Verfügbarkeit werden automatisch täglich aktualisiert.",
-        "footer": "[Erfahren Sie mehr über kostenlose Angebote]({0})[:target=\"_blank\"]"
+        "text": "Verbinden Sie Ihren Shop mit dem Google Merchant Center und synchronisieren Sie Ihren gesamten Produktkatalog mit wenigen Klicks. Produktattribute wie Preis und Verfügbarkeit werden automatisch täglich aktualisiert."
       },
       "content2": {
         "title": "Aktivieren Sie kostenlose Inserate für Ihre Produkte",
@@ -47,10 +46,8 @@
       },
       "content3": {
         "title": "Erstellen und verwalten Sie Ihre Smart Shopping-Kampagnen",
-        "text": "Smart Shopping-Kampagnen sind Google-Anzeigen, die intelligente Technologie von Google für die Gebotsabgabe und die Anzeigenplatzierung nutzen, um die Werte der Conversions zu maximieren und Ihre Anzeigen strategisch für Personen anzuzeigen, die nach Produkten wie den Ihren suchen.  \n \n Legen Sie ein tägliches Budget fest und lassen Sie die intelligente Technologie von Google Ihre Kampagnen in verschiedenen Netzwerken wie Google Search, YouTube oder Gmail optimieren. Sie zahlen nur, wenn jemand klickt.",
-        "footer": "[Erfahren Sie mehr über Smart Shopping Kampagnen]({0})[:target=\"_blank\"]"
-      },
-      "notice": "*abhängig von der regionalen Verfügbarkeit   \n**umfasst die Optimierung von Kampagnen, um eine Vielzahl von Anzeigen für Ihre Produkte den Kunden zu zeigen, die sie am ehesten kaufen würden"
+        "text": "Smart Shopping-Kampagnen sind Google-Anzeigen, die intelligente Technologie von Google für die Gebotsabgabe und die Anzeigenplatzierung nutzen, um die Werte der Conversions zu maximieren und Ihre Anzeigen strategisch für Personen anzuzeigen, die nach Produkten wie den Ihren suchen.  \n \n Legen Sie ein tägliches Budget fest und lassen Sie die intelligente Technologie von Google Ihre Kampagnen in verschiedenen Netzwerken wie Google Search, YouTube oder Gmail optimieren. Sie zahlen nur, wenn jemand klickt."
+      }
     },
     "footer": {
       "text": "Finden Sie Ihre Produkte bei Google mit PS Marketing mit Google"
