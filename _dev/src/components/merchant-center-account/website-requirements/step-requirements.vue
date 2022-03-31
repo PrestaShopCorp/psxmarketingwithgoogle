@@ -59,19 +59,6 @@
         </component>
       </li>
     </ul>
-    <b-form-checkbox
-      v-if="newMca"
-      class="ps_gs-checkbox ps_gs-filters__item-checkbox"
-      :checked="selectAll"
-      @change="selectCheckbox"
-      :indeterminate="selectAllIndeterminate"
-    >
-      <div class="d-flex w-100 justify-content-between pr-3">
-        <span>
-          {{ $t('mcaRequirements.checkAll') }}
-        </span>
-      </div>
-    </b-form-checkbox>
   </form>
 </template>
 
@@ -83,8 +70,6 @@ export default {
   data() {
     return {
       selectedRequirements: [],
-      selectAll: false,
-      selectAllIndeterminate: false,
     };
   },
   props: {
@@ -107,37 +92,11 @@ export default {
       return newStr;
     },
     getCurrentCheckbox() {
-      this.indeterminateOrNot();
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
       this.$emit('stepRequirementsValidation', !(this.selectedRequirements.length === this.requirements.length));
     },
     tooltipFormat(requirement) {
       return this.$t(`mcaRequirements.${requirement}.description`);
-    },
-    selectCheckbox(item) {
-      this.selectAll = item;
-      this.selectAllIndeterminate = false;
-      if (item === true) {
-        this.selectedRequirements = this.requirements;
-      } else {
-        this.selectedRequirements = [];
-      }
-      this.$emit('stepRequirementsValidation', !(this.selectedRequirements.length === this.requirements.length));
-    },
-    indeterminateOrNot() {
-      if (this.selectedRequirements.length === this.requirements.length
-      && this.selectedRequirements.length > 0) {
-        this.selectAllIndeterminate = false;
-        this.selectAll = true;
-      } else
-      if (this.selectedRequirements.length < this.requirements.length
-      && this.selectedRequirements.length > 0) {
-        this.selectAllIndeterminate = true;
-        this.selectAll = false;
-      } else {
-        this.selectAllIndeterminate = false;
-        this.selectAll = false;
-      }
     },
   },
   mounted() {

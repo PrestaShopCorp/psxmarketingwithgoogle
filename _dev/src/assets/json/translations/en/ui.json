@@ -205,9 +205,8 @@
     "labelReadAndAgree": "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies]({0})[:target=\"_blank\"], including [Google’s Merchant Center terms of service]({1})[:target=\"_blank\"], [Shopping ads policies]({2})[:target=\"_blank\"], and [Google Ads Terms and Conditions]({3})[:target=\"_blank\"].",
     "alert": "Your store will be reviewed so if one of these requirements is missing, your account will be suspended.",
     "phoneFormat": "Your business phone number isn't a valid format (only accept number) please change it.",
-    "updateData": "If you have made any modification in your backoffice, please refresh your information to see the changes reflected here.",
-    "checkAll": "Check all"
-  },
+    "updateData": "If you have made any modification in your backoffice, please refresh your information to see the changes reflected here."
+   },
   "productFeedCard": {
     "title": "Automatically sync your products data with Google",
     "intro": "Submit your product data directly to your Merchant Center and keep them always up to date for free listings and ads.",
