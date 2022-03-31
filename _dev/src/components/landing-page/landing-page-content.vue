@@ -55,6 +55,7 @@ export default {
     contentFooter: {
       type: String,
       required: false,
+      default: null,
     },
     svgImage: {
       type: Boolean,
