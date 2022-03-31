@@ -22,6 +22,7 @@
           class="flex-shrink-0"
           :to="{name: 'campaign-creation'}"
           variant="primary"
+          @click="segmentEvent"
         >
           {{ $t('banner.ctaCreateFirstCampaign') }}
         </b-button>
@@ -32,6 +33,7 @@
 
 <script>
 import {searchImage} from '@/utils/ImageFromCurrency';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   data() {
@@ -42,6 +44,14 @@ export default {
   computed: {
     pngBanner() {
       return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
+    },
+  },
+  methods: {
+    segmentEvent() {
+      this.$segment.track('[GGL] Click on Create your first campaign - Campaign tab', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
     },
   },
 };
