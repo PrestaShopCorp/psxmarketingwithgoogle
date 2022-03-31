@@ -40,6 +40,7 @@
           class="mt-4"
           :to="{ name: 'campaign-creation' }"
           variant="primary"
+          @click="segmentEvent"
         >
           {{ $t("configuredState.cta") }}
         </b-button>
@@ -50,6 +51,7 @@
 
 <script>
 import PsModal from './ps-modal.vue';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'PopinModuleConfigured',
@@ -71,6 +73,12 @@ export default {
   methods: {
     cancel() {
       this.$refs.modal.hide();
+    },
+    segmentEvent() {
+      this.$segment.track('[GGL] Click on Go to campaign creation - popin', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
     },
   },
 };
