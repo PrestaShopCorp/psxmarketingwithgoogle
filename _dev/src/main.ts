@@ -54,7 +54,7 @@ new Vue({
           ggl_module_version: this.$store.state.app.psxMktgWithGoogleModuleVersion,
           ggl_api_endpoint: this.$store.state.app.psxMktgWithGoogleApiUrl,
           ggl_user_has_enabled_campaign: isActiveCamp,
-          ggl_user_is_connected_gAds: !!this.$store.state.googleAds.accountChosen,
+          ggl_user_has_googleAds_connected: !!this.$store.state.googleAds.accountChosen,
           ggl_user_has_productFeed_exported: this.$store.state.productFeed.isConfigured,
         });
       }
