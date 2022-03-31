@@ -5,7 +5,7 @@
     <figure class="ps_gs-landingpage-content__figure flex-shrink-0 mr-md-3 mb-md-0">
       <img
         :src="require(`@/assets/images/${contentImage}`)"
-        class="img-fluid d-block mx-auto"
+        :class="svgImage ? '' : 'img-fluid d-block mx-auto'"
         alt=""
         width="250"
         height="175"
@@ -23,6 +23,7 @@
         class="ps_gs-landingpage-content__muted text-muted"
       >
         <VueShowdown
+          v-if="contentFooter"
           :markdown="contentFooter"
           :extensions="['extended-link']"
         />
@@ -53,7 +54,12 @@ export default {
     },
     contentFooter: {
       type: String,
+      required: false,
+    },
+    svgImage: {
+      type: Boolean,
       required: true,
+      default: false,
     },
   },
 };

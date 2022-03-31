@@ -37,8 +37,7 @@
     "content": {
       "content1": {
         "title": "Sync your product catalog with Google",
-        "text": "Connect your store to Google Merchant Center and synchroniwe your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday.",
-        "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
+        "text": "Connect your store to Google Merchant Center and synchroniwe your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday."
       },
       "content2": {
         "title": "Enable free listings for your products",
@@ -47,10 +46,8 @@
       },
       "content3": {
         "title": "Create and manage Smart Shopping campaigns",
-        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click.",
-        "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
-      },
-      "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
+        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click."
+      }
     },
     "footer": {
       "text": "Get your products found on Google with PS Marketing with Google"
