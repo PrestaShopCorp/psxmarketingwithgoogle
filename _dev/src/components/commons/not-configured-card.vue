@@ -38,7 +38,7 @@ export default {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED'];
     },
     merchantCenterAccountIsChosen() {
-      return this.$store.state.accounts.googleMerchantAccount.isVerified
+      return this.$store.state.accounts.googleMerchantAccount.isVerified;
     },
     productFeedIsConfigured() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
