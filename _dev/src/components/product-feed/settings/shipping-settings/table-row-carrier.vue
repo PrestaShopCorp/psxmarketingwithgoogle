@@ -124,7 +124,10 @@
         data-test-id="duplicateDetails"
       >
         <template #button-content>
-          <i class="material-icons">control_point_duplicate</i>
+          <i
+            class="material-icons"
+            title="You can copy this carrier"
+          >content_copy</i>
           <span class="sr-only">
             {{ $t('productFeedSettings.shipping.carriersDropdownHiddenLabel') }}
           </span>
