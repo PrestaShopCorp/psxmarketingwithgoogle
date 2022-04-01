@@ -47,14 +47,16 @@ class AttributesRepository
 
         foreach ($customAttributes as $attr) {
             $attributes[] = [
-                'name' => strtolower($attr['name']),
+                // Not the best way in terms of permances, but avoid being responsible of a whole SQL query.
+                'name' => (new \AttributeGroupCore($attr['id_attribute_group']))->name,
                 'type' => 'custom',
             ];
         }
 
         foreach ($features as $feature) {
             $attributes[] = [
-                'name' => strtolower($feature['name']),
+                // Not the best way in terms of permances, but avoid being responsible of a whole SQL query.
+                'name' => (new \FeatureCore($feature['id_feature']))->name,
                 'type' => 'feature',
             ];
         }
