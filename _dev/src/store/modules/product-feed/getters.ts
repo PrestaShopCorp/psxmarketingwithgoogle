@@ -26,6 +26,7 @@ import {
   PreScanReporting,
 } from './state';
 import GettersTypes from './getters-types';
+import {countryIsCompatibleWithGoogle} from '../../../utils/TargetCountryValidator';
 import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 
 export default {
@@ -86,7 +87,7 @@ export default {
       return state.settings.targetCountries;
     }
     if (rootState.app.psxMtgWithGoogleDefaultShopCountry !== null) {
-      return [rootState.app.psxMtgWithGoogleDefaultShopCountry];
+      return countryIsCompatibleWithGoogle(rootState.app.psxMtgWithGoogleDefaultShopCountry);
     }
     return null;
   },
