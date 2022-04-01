@@ -18,6 +18,7 @@
         <Menu>
           <!-- eslint-disable-next-line -->
             <MenuItem
+            v-if="psAccountIsOnboarded"
             @click.native="throwSegmentEvent"
             :route="{name: 'reporting'}"
           >
@@ -25,11 +26,13 @@
           </MenuItem>
 
           <MenuItem
+            v-if="psAccountIsOnboarded"
             :route="{name: 'product-feed'}"
           >
             {{ $t('general.tabs.exportStatus') }}
           </MenuItem>
           <MenuItem
+            v-if="psAccountIsOnboarded"
             :route="{name: 'campaign'}"
           >
             {{ $t('general.tabs.campaign') }}
@@ -93,6 +96,9 @@ export default {
     },
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
+    },
+    psAccountIsOnboarded() {
+      return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
     },
   },
   created() {
