@@ -6,9 +6,9 @@
     />
     <template v-else>
       <PsToast
-        v-if="syncStatus === 'schedule'"
-        variant="schedule"
-        :visible="syncStatus === 'schedule'"
+        v-if="syncStatus === 'schedule' && !inNeedOfConfiguration"
+        variant="warning"
+        :visible="syncStatus === 'schedule' && !inNeedOfConfiguration"
         toaster="b-toaster-top-right"
       >
         <p> {{ $t('productFeedPage.alert.alertSuccess') }}</p>
