@@ -2,13 +2,13 @@
   <div>
     <ps-select
       :deselect-from-dropdown="true"
-      :multiple="isMultiple"
+      :multiple="true"
       :options="dropdownOptions"
       @search="onSearchCountry"
       label="name"
       v-model="countries"
       :placeholder=" $t('productFeedSettings.shipping.placeholderSelect')"
-      class="maxw-sm-500"
+      :class="{'maxw-sm-500': notFullWidth }"
     >
       <template v-slot:option="option">
         <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
@@ -62,12 +62,12 @@ export default {
       type: Array,
       required: true,
     },
-    isMultiple: {
+    needFilter: {
       type: Boolean,
       required: false,
-      default: true,
+      default: false,
     },
-    needFilter: {
+    notFullWidth: {
       type: Boolean,
       required: false,
       default: false,

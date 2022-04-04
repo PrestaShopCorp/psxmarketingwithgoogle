@@ -218,7 +218,6 @@
                 @countrySelected="saveCountrySelected"
                 :default-value="defaultCountry()"
                 :need-filter="false"
-                :is-multiple="false"
                 :dropdown-options="activeCountries"
               />
               <span v-else>
