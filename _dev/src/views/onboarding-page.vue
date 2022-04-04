@@ -95,7 +95,8 @@
       @cancelGoogleAdsCreationNewAccount="onGoogleAdsAccountTogglePopin"
     />
     <SSCPopinActivateTracking
-      ref="SSCPopinActivateTracking"
+      ref="SSCPopinActivateTrackingOnboardingPage"
+      modal-id="SSCPopinActivateTrackingOnboardingPage"
     />
     <PopinModuleConfigured
       ref="PopinModuleConfigured"
@@ -227,7 +228,7 @@ export default {
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
-        this.$refs.SSCPopinActivateTracking.$refs.modal.id,
+        this.$refs.SSCPopinActivateTrackingOnboardingPage.$refs.modal.id,
       );
     },
     toastIsClosed() {

@@ -28,7 +28,8 @@
       />
     </b-skeleton-wrapper>
     <SSCPopinActivateTracking
-      ref="SSCPopinActivateTracking"
+      ref="SSCPopinActivateTrackingCampaignPage"
+      modal-id="SSCPopinActivateTrackingCampaignPage"
     />
     <PsToast
       v-if="campaignCreated"
@@ -99,7 +100,7 @@ export default {
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
-        this.$refs.SSCPopinActivateTracking.$refs.modal.id,
+        this.$refs.SSCPopinActivateTrackingCampaignPage.$refs.modal.id,
       );
     },
     onCampaignHasBeenCreated() {

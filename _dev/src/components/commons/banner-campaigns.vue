@@ -20,9 +20,8 @@
 
         <b-button
           class="flex-shrink-0"
-          :to="{name: 'campaign-creation'}"
           variant="primary"
-          @click="segmentEvent"
+          @click="openPopinActivateTracking"
         >
           {{ $t('banner.ctaCreateFirstCampaign') }}
         </b-button>
@@ -45,13 +44,24 @@ export default {
     pngBanner() {
       return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
+    SSCExist() {
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+    },
   },
   methods: {
-    segmentEvent() {
+    openPopinActivateTracking() {
       this.$segment.track('[GGL] Click on Create your first campaign - Campaign tab', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
+      // Prevent popin for opening if tracking is a campaign exists
+      if (this.SSCExist) {
+        this.$router.push({
+          name: 'campaign-creation',
+        });
+      } else {
+        this.$emit('openPopinRemarketingTag');
+      }
     },
   },
 };
