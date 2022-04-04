@@ -59,7 +59,7 @@ export interface ProductsDatas {
 }
 
 export interface AttributesInfos {
-  name: string;
+  name: string[];
   displayName?: string;
   type: AttributesTypes;
 }
@@ -72,31 +72,31 @@ export enum AttributesTypes {
 
 export const commonAttributes: readonly AttributesInfos[] = [
   {
-    name: 'ean13',
+    name: ['ean13'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'isbn',
+    name: ['isbn'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'upc',
+    name: ['upc'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'mpn',
+    name: ['mpn'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'description',
+    name: ['description'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'shortDescription',
+    name: ['shortDescription'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'manufacturer',
+    name: ['manufacturer'],
     type: AttributesTypes.PRODUCT,
   },
 ];

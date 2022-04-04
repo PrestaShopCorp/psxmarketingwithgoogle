@@ -308,7 +308,7 @@ export default {
         .map((attribute) => ({
           ...attribute,
           recommended: attribute.recommended
-            .map((recommended) => recommended.name.toLowerCase())
+            .map((recommended) => recommended.name)
             .join(', '),
           mapped: attribute.mapped?.map((mapped) => mapped.name).join(', '),
         }))

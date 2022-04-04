@@ -27,7 +27,7 @@
     </template>
 
     <b-dropdown
-      :id="field.label | slugify"
+      :id="field.label"
       :html="`<span class='text-truncate d-inline-block'>
         ${formatToDisplay}</span>`"
       variant=" "
@@ -52,7 +52,7 @@
             :value="option"
           >
             <span
-              class="line-height-15"
+              class="line-height-15 text-truncate"
               :data-test-id="attributesChecked.some(e => e.name === option.name) ?
                 'attribute-is-mapped' : null"
             >
@@ -156,8 +156,9 @@ export default {
       return this.$t(`tooltip.attributeMapping.${name}`);
     },
     displayAttributeOption(option) {
-      return this.$te(`attributesMapping.options.${option.name}`)
-        ? this.$t(`attributesMapping.options.${option.name}`) : option.name;
+      return option.name.map((name) => (this.$te(`attributesMapping.options.${name}`)
+        ? this.$t(`attributesMapping.options.${name}`) : name),
+      ).join(', ');
     },
   },
   googleUrl,
