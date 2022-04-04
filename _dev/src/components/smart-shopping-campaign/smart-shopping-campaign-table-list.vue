@@ -1,13 +1,13 @@
 <template>
   <div>
     <BannerCampaigns v-if="!campaignList.length && !inNeedOfConfiguration" />
+    <h3 class="order-2 order-md-1 ps_gs-fz-20 font-weight-600">
+      {{ $t('smartShoppingCampaignList.tableTitle') }}
+    </h3>
     <div
       v-if="!inNeedOfConfiguration"
       class="d-flex flex-wrap flex-md-nowrap justify-content-between mb-md-3 rounded-top"
     >
-      <h3 class="order-2 order-md-1 ps_gs-fz-20 font-weight-600">
-        {{ $t('smartShoppingCampaignList.tableTitle') }}
-      </h3>
       <div
         class="order-1 order-md-2 ml-auto d-flex-md mr-md-0 mb-2 mt-n3 mt-md-0
         flex-md-shrink-0 text-center"
