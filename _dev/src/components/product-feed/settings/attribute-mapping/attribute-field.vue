@@ -100,10 +100,12 @@ export default {
     field: {
       type: Object,
       required: true,
+      default: () => null,
     },
     category: {
       type: String,
       required: false,
+      default: null,
     },
   },
   computed: {
@@ -124,6 +126,7 @@ export default {
 
     formatToDisplay() {
       const result = this.attributesChecked.map((e) => this.displayAttributeOption(e));
+
       return result.length ? result.join(', ') : this.$t('attributesMapping.options.notAvailable');
     },
   },

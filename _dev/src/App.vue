@@ -17,28 +17,26 @@
       <div class="ps_gs-sticky-head">
         <Menu>
           <!-- eslint-disable-next-line -->
-          <!-- We display the tab if user has remarketing tag in the module OR already set elsewhere -->
-          <template v-if="reportingTabVisible">
             <MenuItem
-              @click.native="throwSegmentEvent"
-              :route="{name: 'reporting'}"
-            >
-              {{ $t('general.tabs.reporting') }}
-            </MenuItem>
-          </template>
-          <template v-if="productFeedIsConfigured">
-            <MenuItem
-              :route="{name: 'product-feed'}"
-            >
-              {{ $t('general.tabs.exportStatus') }}
-            </MenuItem>
-            <MenuItem
-              v-if="googleAdsServing"
-              :route="{name: 'campaign'}"
-            >
-              {{ $t('general.tabs.campaign') }}
-            </MenuItem>
-          </template>
+            v-if="psAccountIsOnboarded"
+            @click.native="throwSegmentEvent"
+            :route="{name: 'reporting'}"
+          >
+            {{ $t('general.tabs.reporting') }}
+          </MenuItem>
+
+          <MenuItem
+            v-if="psAccountIsOnboarded"
+            :route="{name: 'product-feed'}"
+          >
+            {{ $t('general.tabs.exportStatus') }}
+          </MenuItem>
+          <MenuItem
+            v-if="psAccountIsOnboarded"
+            :route="{name: 'campaign'}"
+          >
+            {{ $t('general.tabs.campaign') }}
+          </MenuItem>
           <MenuItem
             :route="{name: 'configuration'}"
           >
@@ -92,25 +90,15 @@ export default {
     MenuItem,
     AlertModuleUpdate,
   },
-
   computed: {
-    productFeedIsConfigured() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
-    },
-    googleAdsServing() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
-    },
-    remarketingTag() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS'];
-    },
-    reportingTabVisible() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_TAB_IS_ACTIVE'];
-    },
     shopId() {
       return window.shopIdPsAccounts;
     },
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
+    },
+    psAccountIsOnboarded() {
+      return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
     },
   },
   created() {
@@ -144,7 +132,6 @@ export default {
         params: SegmentGenericParams,
       });
     },
-
   },
   watch: {
     $route() {

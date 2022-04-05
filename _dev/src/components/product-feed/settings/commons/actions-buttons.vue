@@ -49,11 +49,12 @@ export default {
     nextStep: {
       type: Function,
       required: true,
+      default: () => {},
     },
     previousStep: {
       type: Function,
       required: false,
-      default: null,
+      default: () => {},
     },
     disableContinue: {
       type: Boolean,
@@ -63,6 +64,7 @@ export default {
     disableTooltip: {
       type: String,
       required: false,
+      default: null,
     },
     okLabel: {
       type: String,

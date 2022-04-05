@@ -28,5 +28,19 @@ module.exports = ({ config }) => {
 
     config.resolve.extensions.push(".ts", ".tsx");
 
+    config.module.rules.push({
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              appendTsSuffixTo: [/\.vue$/],
+              transpileOnly: true
+            },
+          }
+        ],
+    });
+
     return config;
 };

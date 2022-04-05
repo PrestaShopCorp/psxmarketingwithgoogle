@@ -39,12 +39,34 @@
             <strong>Prestashop version</strong>: {{ this.$store.state.app.psVersion }}
           </li>
           <li>
+            <strong>Module version</strong>:
+            {{ this.$store.state.app.psxMktgWithGoogleModuleVersion }}
+          </li>
+          <li>
+            <strong>App build version</strong>: {{ appBuildVersion }}
+          </li>
+          <li>
             <strong>Shop ID</strong>: {{ shopId }}
           </li>
           <li>
             <strong>Using the production API:</strong>
             {{ psxMktgWithGoogleOnProductionEnvironment?'✅':'❌' }}
             ({{ psxMktgWithGoogleApiUrl }})
+          </li>
+          <li>
+            <strong>Module is enabled :</strong>
+            {{ moduleIsEnabled ?'✅':'❌' }}
+          </li>
+          <li>
+            <strong>Hook list:</strong>
+            <ul>
+              <li
+                v-for="(type, hookName) in hooks"
+                :key="hookName"
+              >
+                {{ hookName }} - {{ type ? '✅':'❌' }}
+              </li>
+            </ul>
           </li>
         </ul>
       </b-card-body>
@@ -208,11 +230,13 @@ export default {
   name: 'Debug',
   data() {
     return {
+      hooks: [],
       sync: {
         requested: false,
         loading: false,
         error: false,
       },
+      appBuildVersion: process.env.VUE_APP_BUILD_VERSION || 'Not provided',
     };
   },
   components: {
@@ -235,6 +259,9 @@ export default {
     }),
     shopId() {
       return window.shopIdPsAccounts || 'none yet';
+    },
+    moduleIsEnabled() {
+      return this.$store.state.app.psxMktgWithGoogleModuleIsEnabled;
     },
     triggerOfSyncForbidden() {
       return this.sync.requested
@@ -271,6 +298,12 @@ export default {
         this.sync.loading = false;
       }
     },
+    getHooks() {
+      this.$store.dispatch('app/GET_MODULES_VERSIONS', 'psxmarketingwithgoogle')
+        .then((res) => {
+          this.hooks = res.hooks;
+        });
+    },
     async triggerGoogleSync() {
       this.sync.loading = true;
       this.sync.error = false;
@@ -292,6 +325,7 @@ export default {
     this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
     this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
     this.$store.dispatch('app/REQUEST_DEBUG_DATA');
+    this.getHooks();
   },
 };
 </script>

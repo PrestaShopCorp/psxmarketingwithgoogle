@@ -12,11 +12,12 @@ import BadgeListRequirements from '@/components/commons/badge-list-requirements.
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import Stepper from '@/components/commons/stepper.vue';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+
 import {
   productFeed,
   productFeedIsReadyForExport,
   productFeedIsConfigured,
-  productFeedIsConfiguredWithTax,
   productFeedMissingFields,
   productFeedStatusSyncFailed,
   productFeedErrorAPI,
@@ -25,6 +26,9 @@ import {
 describe('product-feed-card.vue', () => {
   const mockRoute = {
     name: 'product-feed-settings',
+    params: {
+      step: ProductFeedSettingsPages.TARGET_COUNTRY,
+    },
   };
   const mockRouter = {
     push: jest.fn(),
@@ -121,16 +125,13 @@ describe('product-feed-card.vue', () => {
         isEnabled: true,
       },
       ...config,
-      mocks: {
-        $router: mockRouter,
-      },
       localVue,
       store: new Vuex.Store(storeConfigured),
     });
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(1);
+    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
@@ -141,9 +142,6 @@ describe('product-feed-card.vue', () => {
         isEnabled: true,
       },
       ...config,
-      mocks: {
-        $router: mockRouter,
-      },
       localVue,
       stubs: {
         VueShowdown: true,
@@ -153,7 +151,7 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('info');
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
-    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(1);
+    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
@@ -164,9 +162,6 @@ describe('product-feed-card.vue', () => {
         isEnabled: true,
       },
       ...config,
-      mocks: {
-        $router: mockRouter,
-      },
       localVue,
       store: new Vuex.Store(storeMissingFields),
       stubs: {
@@ -200,7 +195,7 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.findComponent(Stepper).exists()).toBeTruthy();
     expect(wrapper.findComponent(Stepper).props('activeStep')).toBe(1);
     expect(wrapper.find('b-button').attributes('disabled')).toBe('true');
-    expect(wrapper.find('b-button').text()).toEqual('Export feed');
+    expect(wrapper.find('b-button').text()).toEqual('Start product feed configuration');
     expect(wrapper.findComponent(BAlert).exists()).toBeTruthy();
     expect(wrapper.findComponent(BAlert).find('b-button').text()).toEqual('Refresh page');
   });
@@ -211,9 +206,6 @@ describe('product-feed-card.vue', () => {
         isEnabled: true,
       },
       ...config,
-      mocks: {
-        $router: mockRouter,
-      },
       localVue,
       store: new Vuex.Store(storeSyncFailed),
       stubs: {
@@ -222,7 +214,7 @@ describe('product-feed-card.vue', () => {
     });
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(1);
+    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();

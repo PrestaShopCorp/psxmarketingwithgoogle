@@ -9,6 +9,7 @@
         size="sm"
         v-model="reportingPeriod"
         :options="periods"
+        :disabled="inNeedOfConfiguration"
       />
     </b-form-group>
     <b-dropdown
@@ -24,6 +25,7 @@
         :key="value"
         link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
         @click="reportingPeriod = value"
+        :disabled="inNeedOfConfiguration"
       >
         {{ text }}
       </b-dropdown-item>
@@ -36,6 +38,12 @@ import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 
 export default {
   name: 'KeyMetricsPeriodSelector',
+  props: {
+    inNeedOfConfiguration: {
+      type: Boolean,
+      required: true,
+    },
+  },
   data() {
     return {
       periods: [

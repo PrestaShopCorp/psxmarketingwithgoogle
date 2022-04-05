@@ -12,7 +12,7 @@
         :default-value="countries"
         :dropdown-options="activeCountriesWithCurrency"
         :need-filter="true"
-        :is-multiple="true"
+        :not-full-width="true"
       />
     </b-form-group>
     <b-form-group
@@ -105,6 +105,7 @@
 
 <script>
 import {VueShowdown} from 'vue-showdown';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import SelectCountry from '@/components/commons/select-country.vue';
@@ -152,27 +153,44 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     nextStep() {
-      this.$segment.track('[GGL] Product feed config - Step 1', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
       this.loading = true;
       localStorage.setItem('productFeed-autoImportShippingSettings', JSON.stringify(this.shippingSettings));
       if (this.shippingSettings) {
+        this.$segment.track('[GGL] Product feed config - Step 1 with Config my shipping settings now', {
+          module: 'psxmarketingwithgoogle',
+          params: SegmentGenericParams,
+        });
         this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
           this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
             name: 'autoImportShippingSettings',
             data: true,
           });
           this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
+          this.$router.push({
+            name: 'product-feed-settings',
+            params: {
+              step: ProductFeedSettingsPages.SHIPPING_SETTINGS
+              ,
+            },
+          });
           window.scrollTo(0, 0);
         });
       } else {
+        this.$segment.track('[GGL] Product feed config - Step 1 with Config my shipping settings later', {
+          module: 'psxmarketingwithgoogle',
+          params: SegmentGenericParams,
+        });
         this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
           name: 'autoImportShippingSettings',
           data: false,
         });
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+        this.$router.push({
+          name: 'product-feed-settings',
+          params: {
+            step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
+          },
+        });
         window.scrollTo(0, 0);
       }
     },

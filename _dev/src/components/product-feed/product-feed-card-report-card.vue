@@ -57,39 +57,49 @@ export default {
       validator(value) {
         return ['success', 'warning'].indexOf(value) !== -1;
       },
+      required: false,
+      default: 'success',
     },
     title: {
       type: String,
+      required: false,
+      default: null,
     },
     description: {
       type: String,
+      required: false,
+      default: null,
     },
     details: {
       type: String,
+      required: false,
+      default: null,
     },
     link: {
       type: String,
+      required: false,
+      default: null,
     },
     linkTo: {
       type: Object,
+      required: false,
+      default: () => null,
     },
     size: {
       type: String,
       required: false,
+      default: null,
     },
   },
   methods: {
     goTo(link) {
-      //  Here I added and check a link type because it's not an url or route but a stepper state.
-      //  If one day we need to give a simple url we can add a different type in the condition below
-      if (link.type === 'stepper') {
-        this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', link.name);
-      } else if (link.type === 'routeStep') {
-        this.$router.push({
-          name: link.name,
-        });
-        this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', link.step);
-      }
+      this.$router.push({
+        name: link.name,
+        params: {
+          step: link.params,
+        },
+      });
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', link.step);
     },
   },
 };

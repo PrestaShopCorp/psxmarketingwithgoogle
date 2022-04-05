@@ -22,10 +22,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ProductFeedCard },
   template: '<ProductFeedCard v-bind="$props" />',
-  beforeMount(this: any) {
-    this.$store.dispatch = () => { return Promise.resolve('coucou') };
-    args.beforeMount;
-  },
+  beforeMount: args.beforeMount,
 });
 
 export const Disabled:any = Template.bind({});

@@ -23,8 +23,11 @@ import {
   ProductFeedStatus,
   ProductFeedValidationSummary,
   AttributesInfos,
+  PreScanReporting,
 } from './state';
 import GettersTypes from './getters-types';
+import {filterCountriesCompatible} from '../../../utils/TargetCountryValidator';
+import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -39,7 +42,7 @@ export default {
   [GettersTypes.GET_PRODUCT_FEED_STATUS](state: LocalState): ProductFeedStatus {
     return state.status;
   },
-  [GettersTypes.GET_TOTAL_PRODUCTS](state: LocalState) :number {
+  [GettersTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC](state: LocalState): number {
     return state.totalProducts;
   },
 
@@ -51,11 +54,16 @@ export default {
     if (state.settings.autoImportShippingSettings === undefined) {
       return 'warning';
     }
-    if (state.status.lastUpdatedAt === null) {
+    if (!state.status.success && !state.status.nextJobAt) {
       return 'schedule';
     }
-    if (state.status.success === false) {
+    if (!state.status.success && state.status.jobEndedAt) {
       return 'failed';
+    }
+    if (!state.status.success
+      && state.status.nextJobAt
+      && !state.status.jobEndedAt) {
+      return 'planned';
     }
     return 'success';
   },
@@ -69,26 +77,44 @@ export default {
     state: LocalState,
     getters,
     rootState) : Array<string> | null {
-    const targetCountriesFromLocalStorage = localStorage.getItem('productFeed-targetCountries');
-    if (targetCountriesFromLocalStorage) {
-      state.settings.targetCountries = JSON.parse(targetCountriesFromLocalStorage);
+    const getCountriesFromStorage = getDataFromLocalStorage('productFeed-targetCountries');
+
+    if (getCountriesFromStorage !== null) {
+      state.settings.targetCountries = getCountriesFromStorage;
     }
+
     if (state.settings.targetCountries !== null) {
       return state.settings.targetCountries;
     }
     if (rootState.app.psxMtgWithGoogleDefaultShopCountry !== null) {
-      return [rootState.app.psxMtgWithGoogleDefaultShopCountry];
+      return filterCountriesCompatible(rootState.app.psxMtgWithGoogleDefaultShopCountry);
     }
     return null;
   },
   [GettersTypes.GET_PRODUCT_CATEGORIES_SELECTED](state: LocalState) : Array<String> {
-    const getCategoriesFromLocalStorage = localStorage.getItem('selectedProductCategories');
-    if (getCategoriesFromLocalStorage) {
-      state.selectedProductCategories = JSON.parse(getCategoriesFromLocalStorage);
+    const getCategoriesFromLocalStorage = getDataFromLocalStorage('selectedProductCategories');
+
+    if (getCategoriesFromLocalStorage !== null) {
+      state.selectedProductCategories = getCategoriesFromLocalStorage;
     }
     return state.selectedProductCategories;
   },
   [GettersTypes.GET_SYNC_SCHEDULE](state: LocalState) : boolean {
     return state.requestSynchronizationNow;
+  },
+  [GettersTypes.GET_PRESCAN_LIMIT_PAGE](state: LocalState): number {
+    return state.preScanDetail.limit;
+  },
+  [GettersTypes.GET_PRESCAN_NEXT_PAGE](state: LocalState): number {
+    return state.preScanDetail.currentPage;
+  },
+  [GettersTypes.GET_PRESCAN_TOTAL_ERROR](state: LocalState): number {
+    return state.preScanDetail.total;
+  },
+  [GettersTypes.GET_PRESCAN_LANGUAGE_CHOSEN](state: LocalState): string {
+    return state.preScanDetail.langChosen;
+  },
+  [GettersTypes.GET_PRESCAN_PRODUCTS](state: LocalState): PreScanReporting[] {
+    return state.preScanDetail.products;
   },
 };

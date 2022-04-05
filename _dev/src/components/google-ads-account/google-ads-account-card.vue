@@ -136,7 +136,7 @@
                   size="sm"
                   variant="primary"
                   :disabled="selectedIndex === null"
-                  class="mt-3 mt-md-0 ml-md-3"
+                  class="mt-3 mt-md-0 ml-md-3 flex-shrink-0"
                   @click="selectGoogleAdsAccount"
                 >
                   <template v-if="!isConnecting">
@@ -308,6 +308,7 @@ export default {
       if (this.googleAdsAccountSelectionOptions && this.googleAdsAccountSelectionOptions[index]) {
         const ga = this.googleAdsAccountSelectionOptions[index];
         const name = ga.name || '';
+
         return name ? `${ga.id} - ${name}` : ga.id;
       }
       return null;

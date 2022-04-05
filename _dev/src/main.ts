@@ -13,6 +13,7 @@ import './utils/Filters';
 // import showdown extension
 import '../showdown.js';
 import '@/utils/Sentry';
+import CampaignStatus from '@/enums/reporting/CampaignStatus';
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
@@ -40,6 +41,8 @@ new Vue({
 
       const psAccountContext = this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
       const userId = this.$store.state.accounts.shopIdPsAccounts;
+      const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      const isActiveCamp = campaigns.some((camp) => camp.status === CampaignStatus.ELIGIBLE);
 
       if (userId) {
         // @ts-ignore
@@ -50,6 +53,9 @@ new Vue({
           version_ps: this.$store.state.app.psVersion,
           ggl_module_version: this.$store.state.app.psxMktgWithGoogleModuleVersion,
           ggl_api_endpoint: this.$store.state.app.psxMktgWithGoogleApiUrl,
+          ggl_user_has_enabled_campaign: isActiveCamp,
+          ggl_user_has_googleAds_connected: !!this.$store.state.googleAds.accountChosen,
+          ggl_user_has_productFeed_exported: this.$store.state.productFeed.isConfigured,
         });
       }
     },

@@ -20,6 +20,7 @@
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
+import ActionsTypesProductFeed from '../product-feed/actions-types';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
@@ -46,6 +47,7 @@ export default {
         body: JSON.stringify(webhookUrl),
       });
       const json = await response.json();
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -77,6 +79,7 @@ export default {
         'x-correlation-id': correlationId,
       },
     });
+
     if (!response.ok) {
       commit(
         MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
@@ -97,6 +100,7 @@ export default {
       commit,
       dispatch,
       state,
+      rootState,
     },
     correlationId: string,
   ) {
@@ -107,6 +111,10 @@ export default {
     );
 
     if (!isVerified || !isClaimed) {
+      if (rootState.app.psxMktgWithGoogleModuleIsEnabled === false) {
+        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+        return;
+      }
       try {
         const result = await dispatch(
           ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS,
@@ -158,10 +166,12 @@ export default {
         isGoogleAccountLinked,
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
     const finished = await response.json();
+
     return finished;
   },
 
@@ -178,6 +188,7 @@ export default {
           Authorization: `Bearer ${state.tokenPsAccounts}`,
         },
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -199,6 +210,7 @@ export default {
           Authorization: `Bearer ${state.tokenPsAccounts}`,
         },
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -241,6 +253,7 @@ export default {
           Authorization: `Bearer ${state.tokenPsAccounts}`,
         },
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -250,6 +263,7 @@ export default {
       // Now we have the GMC merchant's list, if he already linked one, then must fill it now
       if (state.googleMerchantAccount.id) {
         const linkedGmc = json.find((gmc) => gmc.id === state.googleMerchantAccount.id);
+
         if (linkedGmc) {
           commit(MutationsTypes.SAVE_GMC, linkedGmc);
           dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
@@ -277,6 +291,7 @@ export default {
         'x-correlation-id': correlationId,
       },
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -306,6 +321,7 @@ export default {
           'x-correlation-id': correlationId,
         },
       });
+
       if (!response.ok) {
         commit(
           MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
@@ -361,6 +377,7 @@ export default {
         ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
         correlationId,
       );
+
       if (!isVerified) {
         throw new Error('Website was not verified by Google');
       }
@@ -382,6 +399,7 @@ export default {
         'x-correlation-id': correlationId,
       },
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -397,6 +415,7 @@ export default {
         websiteVerificationMeta: token,
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -416,6 +435,7 @@ export default {
         'x-correlation-id': correlationId,
       },
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -435,6 +455,7 @@ export default {
         'x-correlation-id': correlationId,
       },
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -459,8 +480,10 @@ export default {
         'x-correlation-id': correlationId,
       },
     });
+
     if (!response.ok) {
       const error = await response.json();
+
       if (error.fromGoogle?.needOverwrite) {
         throw new NeedOverwriteError(error, error.fromGoogle.error.code);
       }
@@ -486,6 +509,7 @@ export default {
         requirements: payload,
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -501,6 +525,7 @@ export default {
           action: 'getWebsiteRequirementStatus',
         }),
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -521,6 +546,7 @@ export default {
           action: 'getShopConfigurationForGMC',
         }),
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
@@ -598,10 +624,12 @@ export default {
           Authorization: `Bearer ${state.tokenPsAccounts}`,
         },
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
       const linkedGmc = await response.json();
+
       if (linkedGmc) {
         commit(MutationsTypes.SAVE_GMC, linkedGmc);
         dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
@@ -630,6 +658,7 @@ export default {
       },
       body: JSON.stringify(payload),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -647,6 +676,7 @@ export default {
       },
       body: JSON.stringify(payload),
     });
+
     if (!response.ok) {
       const json = await response.json();
       throw new HttpClientError(json, response.status);
@@ -668,11 +698,19 @@ export default {
           gmcInformations: gmcInfo,
         }),
       });
+
       if (!response.ok) {
         throw new HttpClientError(response.statusText, response.status);
       }
     } catch (error) {
       console.error(error);
     }
+  },
+
+  async [ActionsTypes.REQUEST_ACCOUNTS_DETAILS]({
+    dispatch,
+  }) {
+    await dispatch(ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS);
+    await dispatch(`productFeed/${ActionsTypesProductFeed.GET_PRODUCT_FEED_SETTINGS}`, null, {root: true});
   },
 };

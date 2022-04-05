@@ -95,7 +95,11 @@
       @cancelGoogleAdsCreationNewAccount="onGoogleAdsAccountTogglePopin"
     />
     <SSCPopinActivateTracking
-      ref="SSCPopinActivateTracking"
+      ref="SSCPopinActivateTrackingOnboardingPage"
+      modal-id="SSCPopinActivateTrackingOnboardingPage"
+    />
+    <PopinModuleConfigured
+      ref="PopinModuleConfigured"
     />
     <!-- Toasts -->
     <PsToast
@@ -137,6 +141,8 @@ import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-accou
 import SmartShoppingCampaignCard from '../components/smart-shopping-campaigns/smart-shopping-campaign-card.vue';
 import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
 import PsToast from '../components/commons/ps-toast';
+import PopinModuleConfigured from '../components/commons/popin-configured.vue';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'OnboardingPage',
@@ -157,6 +163,7 @@ export default {
     PsToast,
     FreeListingPopinDisable,
     SSCPopinActivateTracking,
+    PopinModuleConfigured,
   },
   data() {
     return {
@@ -186,6 +193,9 @@ export default {
     },
     onGoogleAdsAccountSelected() {
       this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', true);
+      this.$bvModal.show(
+        this.$refs.PopinModuleConfigured.$refs.modal.id,
+      );
     },
     onGoogleAccountConnection() {
       this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
@@ -218,7 +228,7 @@ export default {
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
-        this.$refs.SSCPopinActivateTracking.$refs.modal.id,
+        this.$refs.SSCPopinActivateTrackingOnboardingPage.$refs.modal.id,
       );
     },
     toastIsClosed() {
@@ -340,7 +350,14 @@ export default {
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
       this.googleIsLoading = true;
       this.MCAIsLoading = true;
-      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').finally(() => {
+      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').then(() => {
+        if (!this.googleAccountIsOnboarded) {
+          this.$segment.track('[GGL] PS Account connected', {
+            module: 'psxmarketingwithgoogle',
+            params: SegmentGenericParams,
+          });
+        }
+      }).finally(() => {
         this.googleIsLoading = false;
         this.MCAIsLoading = false;
       });

@@ -69,6 +69,10 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
+import compareYears from '../../utils/CompareYears';
+import {
+  retrieveProductNumberFromFiltersIds,
+} from '../../utils/SSCFilters';
 
 export default {
   name: 'SmartShoppingCampaignTableListRow',
@@ -80,33 +84,34 @@ export default {
   },
   computed: {
     campaignDuration() {
-      if (!this.campaign.endDate) {
-        return `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
+      if (this.campaign.endDate) {
+        const isThereAnEndDate = compareYears(this.campaign.endDate);
+
+        return isThereAnEndDate
+          ? `${this.$options.filters.timeConverterToDate(this.campaign.startDate)}-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}`
+          : `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
       }
-      const endDate = new Date(this.campaign.endDate).getFullYear();
-      const todayYear = new Date().getFullYear();
-      if (endDate - 10 > todayYear) {
-        return `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
-      }
-      return `${this.$options.filters.timeConverterToDate(this.campaign.startDate)
-      }-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}`;
+      return `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
     },
     campaignCountryName() {
       return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];
     },
-    // No need for this since we have only one dimension for now
-    // campaignProducts() {
-    //   return this.campaign.productFilters?.length
-    // eslint-disable-next-line
-    //     ? `Selected products(${this.campaign.productFilters.reduce((out, inp) => out + inp.values.length, 0)})`
-    //     : this.$t('smartShoppingCampaignCreation.inputAllSyncedProducts');
-    // },
+    totalProducts() {
+      return retrieveProductNumberFromFiltersIds(
+        this.campaign.productFilters, this.$store.state.smartShoppingCampaigns.sscAvailableFilters,
+      );
+    },
     campaignProducts() {
       return this.campaign.productFilters?.length
         // eslint-disable-next-line
-        ? this.$i18n.tc('smartShoppingCampaignCreation.nbProductsSelected',
-          this.campaign.productFilters[0].values.length,
-          [this.campaign.productFilters[0].values.length])
+         ? this.$i18n.tc(
+          'smartShoppingCampaignCreation.dimensionXFilterSelectedWithXProducts',
+          this.totalProducts,
+          [
+            this.$i18n.t(`smartShoppingCampaignCreation.${this.campaign.productFilters[0].dimension}`),
+            this.totalProducts,
+          ],
+        )
         : this.$t('smartShoppingCampaignCreation.inputAllSyncedProducts');
     },
   },

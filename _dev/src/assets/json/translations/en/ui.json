@@ -9,20 +9,24 @@
       "help": "Help"
     },
     "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
+    "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
     "moduleUpdateNeeded": {
       "ps_eventbus": "The version of the module PrestaShop EventBus running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop EventBus",
       "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"
     },
-  "adblockerActivated": "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",
+    "adblockerActivated": "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",
     "refreshPage": "Refresh page",
     "mandatory": "are mandatory",
     "XIsMandatory": "{0} is mandatory.",
     "unableToFetchData": "We were unable to fetch datas, please try again later",
     "searchByX": "Search by {0}",
+    "search": "Search",
     "legendCreateNewAccount": "You also have the possibility to create a new account within few steps:",
     "notAvailable": "Not available",
     "min": "min.",
-    "max": "max."
+    "max": "max.",
+    "helpPage" : "Help Page",
+    "noResultsFoundForX": " No results found for {0}"
   },
   "landingPage": {
     "header": {
@@ -33,8 +37,7 @@
     "content": {
       "content1": {
         "title": "Sync your product catalog with Google",
-        "text": "Connect your store to Google Merchant Center and synchroniwe your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday.",
-        "footer": "[Learn more about free listings]({0})[:target=\"_blank\"]"
+        "text": "Connect your store to Google Merchant Center and synchroniwe your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday."
       },
       "content2": {
         "title": "Enable free listings for your products",
@@ -43,10 +46,8 @@
       },
       "content3": {
         "title": "Create and manage Smart Shopping campaigns",
-        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click.",
-        "footer": "[Learn more about Smart Shopping campaigns]({0})[:target=\"_blank\"]"
-      },
-      "notice": "*depending on regional availability   \n**includes campaign optimization to show variety of ads of your products to customers most likely to buy them"
+        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click."
+      }
     },
     "footer": {
       "text": "Get your products found on Google with PS Marketing with Google"
@@ -136,7 +137,8 @@
     "selectMethod": "Please select the desired method of contact to verify your identity",
     "alertTooManyRequests": "You have requested this service too many times with this phone number. You need to wait 24 hours to try again or change your phone number.",
     "alertSomethingHappened": "Something happened. It's on our side please try again.",
-    "alertCodeExpired": "The code has expired. Please ask for another one"
+    "alertCodeExpired": "The code has expired. Please ask for another one",
+    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
   },
   "mcaRequirements": {
     "steps": {
@@ -148,33 +150,28 @@
     "legend": "To participate in free listings and advertise on Google you must acknowledge and comply with below requirements:",
     "legend2": "Store's website URL needs to be verified and claimed before you can upload products data.  \n[Learn how to verify and claim your website](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
     "footer": "Read full version of Google store requirements",
-    "shoppingAdsPolicies": {
-      "title": "Comply with Shopping ads policies",
-      "description": "Don’t promote prohibited content or use prohibited practice to advertise. Respect restricted content policy and quality standards for your ads and website.",
-      "link": "Read Shopping ads policies"
-    },
     "accurateContactInformation": {
-      "title": "Provide accurate contact information",
+      "title": "I confim that my contact information are correct and valid",
       "description": "Merchants need to have at least one contact method listed on their website, this can be any type of contact method.",
       "link": "Discover how to add contact information"
     },
     "secureCheckoutProcess": {
-      "title": "Provide secure checkout & collection of personal data",
+      "title": "I confim that I have a clear checkout & data collection",
       "description": "Do not misuse information about user, nor collect it for unclear purposes or without appropriate security measures.",
       "link": "Learn about irresponsible data collection & use"
     },
     "returnPolicy": {
-      "title": "Provide clear return and refund policy",
+      "title": "I confirm that my return & refund policy are setup on my website",
       "description": "Return and refund policy needs to be clear (include requirement and timelines) and easy to access on your website.",
       "link": "Learn how to set up return policies"
     },
     "billingTerms": {
-      "title": "Provide billing terms and conditions",
+      "title": "I confirm that my billing terms and conditions are clear and visible",
       "description": "Website needs to clearly and visibly disclose payment options and all expenses that user will bare, before and after purchase.",
       "link": "Read Merchant Center guidelines"
     },
     "completeCheckoutProcess": {
-      "title": "Provide complete checkout process",
+      "title": "I confirm that I have a complete checkout process",
       "description": "Users need to be able to successully complete purchase process.",
       "link": "Learn about checkout requirements"
     },
@@ -206,7 +203,7 @@
     "title": "Automatically sync your products data with Google",
     "intro": "Submit your product data directly to your Merchant Center and keep them always up to date for free listings and ads.",
     "introToConfigure": "It's important to submit your product feed in the correct format, as Google uses this to make sure your products match the right queries.",
-    "nextSync": "Next synchronization: {0}",
+    "nextSync": "Next synchronization: {0} at {1}",
     "syncFailedAt": "Synchronization failed {0} at {1}",
     "syncSuccess": "Products synced {1} at {2} | {0} product synced {1} at {2} | {0} products synced {1} at {2}",
     "syncBusy": "Sync progressing...",
@@ -285,6 +282,11 @@
       "noCarriersDescription": "Please head to carriers page to add shipping carriers",
       "addNewCarriers" : "Add or update carriers",
       "refreshCarriers": "Refresh if you have edited your carriers"
+    },
+    "preScan": {
+      "selectLanguage": "Filter by language",
+      "apiError": "An error occurred while fetching data, please try again later.",
+      "noElement": "You don't have any products."
     },
     "export": {
       "summarySyncDailyAt": "Sync daily at {0}",
@@ -465,7 +467,7 @@
     "inputCountryImutable": "Country can't be changed after creation, if you want to target a different country, you'll need to create a new campaign",
     "inputCountryLabel": "Target country",
     "inputCountryTooltip": "Your campaign’s ads are eligible to show to customers in your targeted geographic locations, or to customers who have selected your targeted language as their browser’s language setting.",
-    "inputFiltersLegend": "Products in campaign",
+    "inputFiltersLegend": "Products filters",
     "inputFiltersAllLabel": "Include all synced products",
     "inputFiltersPartialLabel": "Select products using product partition filters",
     "inputFiltersHelper": "Take some time to [read Google Shopping ads policies]({0})[:target=\"_blank\"] some product are prohibited or restricted.",
@@ -474,13 +476,13 @@
     "inputBudgetFeedback": "Daily campaign budget",
     "inputBudgetTooltip": "Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time.",
     "inputBudgetPlaceholder": "Amount",
-    "inputAllSyncedProducts": "All synced products",
+    "inputAllSyncedProducts": "No filters selected",
     "formHelperTitle": "Campaign activation",
     "formHelperDescription": "Your campaign will run until you pause it. You can pause your campaign at any time.",
     "errorNoProducts": "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.",
     "errorApi": "We were not able to publish your campaign, please try again",
+    "errorFetchingFilters": "We were not able to retrieve all filters from Google. You can't modify them for now.",
     "recapTitle": "Summary of the campaign",
-    "recapFiltersLabel": "Products in Campaign",
     "recapNoFiltersDescription": "All synced products approved by Google",
     "recapFooter": "Check the information of your campaign before validating it. You can always modify some parameters while the campaign is in progress.",
     "toggleCreationRemarketingTag": "Enable remarketing  tags on my site",
@@ -494,23 +496,39 @@
       "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified."
     },
     "labelSelectedDimension": "Selected dimension value",
-    "labelDimensionValue": "Dimension value",
     "nbDimensionSelected": "No dimension selected | {0} dimension selected | {0} dimensions selected",
     "nbValuesSelected": "No value selected | {0} value selected | {0} values selected",
-    "selectProductsTitle": "Select products",
-    "selectProductsSubtitle": "Select the filters you want to add in your Google Ads campaign",
+    "selectProductsTitle": "Choose a product filter",
+    "selectProductsSubtitle": "Smart Shopping Campaign can only have one dimension with one or multiple values.",
     "remarketingNote": "**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.",
     "toggleNewConversionTag": "Set new conversion tracking tags on my site",
     "toggleNewConversionTag2": "We will create the following conversion tags : Page view, Purchase, Add to basket",
     "remarketingTagLoading": "Checking if you have a remarketing and conversion tracking tags to add to your shop",
     "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
-    "nbProductsSelected": "No product selected | {0} product selected | {0} products selected",
-    "categories": "Categories",
-    "brands": "Brands",
-    "products": "Products",
-    "conditions": "Conditions"
-  },
+    "dimensionXFilterSelected": "{0} filter",
+    "categories": "Category",
+    "categoriesSubTitle": "Google-defined product category for your product (ex: Apparel & Accessories > Clothing > Coats & Jackets)",
+    "brands": "Brand",
+    "brandsSubTitle": "Product’s brand name",
+    "products": "Product ID",
+    "productsSubTitle": "Your product’s unique identifier",
+    "conditions": "Product Condition",
+    "conditionsSubTitle": "The condition of your product at time of sale (ex: New, used or refurbished)",
+    "popinTitle": "Campaign’s products filters",
+    "popinTitleConfirmCancel": "Go Back",
+    "xProducts" : " ({0} product) | ({0} product) | ({0} products)",
+    "productConditions": {
+      "unspecified" : "Unspecified",
+      "unknown" : "Unknown",
+      "new" : "New",
+      "refurbished" : "Refurbished",
+      "used" : "Used"
+    },
+    "dimensionXFilterSelectedWithXProducts" : "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
+    "filtersWithxValues" : "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products"
+   },
+
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance",
     "xCampaign": "No campaigns | {0} campaign | {0} campaigns"
@@ -532,16 +550,59 @@
       "scheduleOn": "Synchronization scheduled on {0}",
       "alert": "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact [customer support](mailto:support-google@prestashop.com)."
     },
+    "syncSummary" : {
+      "syncHistory" : {
+        "title" : {
+          "planned" : "Synchronisation planned",
+          "started" : "Synchronisation started",
+          "failed" : "Synchronisation failed",
+          "completed" : "Synchronisation completed",
+          "next" : "Next synchronisation",
+          "notPlanned" : "No planned synchronisation"
+        },
+        "subtitle" : {
+          "willHappenOnDate" : "Will start on {date}",
+          "happenedOnDate" : "On {date}",
+          "error" : "Due to a technical issue, the sync failed, a new sync planned for tomorrow"
+        }
+      }
+    },
     "productStatus": {
       "title": "Products status",
       "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.  \nA pending product won't show in ads or free listings because it's being reviewed by Google.  \nExpiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "alert": "It takes 3-5 business days to review products",
       "approvedProducts": "Approved",
+      "approvedProductsDescription": "Active products are fully approved and eligible to appear in results.",
       "pendingProducts": "Pending",
+      "pendingProductsDescription": "A pending product won't show in ads or free listings because it's being reviewed by Google.",
       "expiringProducts": "Expiring",
+      "expiringProductsDescription": "Expiring products will be removed from your Google merchant center in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
       "disapprovedProducts": "Not approved",
+      "disapprovedProductsDescription": "Your product is disapproved for a destination and isn't active.",
       "productsSubmittedToGoogle": "Active products submitted to Google: {0}",
       "approvalStatusList": "Approved, Pending, Not approved"
+    },
+    "overview": {
+      "title" : "Active products submitted to Google",
+      "description" : "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.",
+      "alert" : {
+        "prescanTitle": "Warning {0} product couldn’t be exported to Google | Warning {0} products couldn’t be exported to Google",
+        "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
+      }
+    },
+    "preScan": {
+      "xProducts" : " {0} product | {0} product | {0} products",
+      "description": "{0} with problems that couldn't be synced are listed below.",
+      "fields": {
+        "name": "Name",
+        "language": "Language",
+        "image": "Image",
+        "description": "Description",
+        "barcode": "Barcode/Brand",
+        "price": "Price"
+      },
+      "xHasFailedPreValidation" : "\"{0}\": has failed the pre-validation.",
+      "xHasPassedPreValidation" : "\"{0}\": has passed the pre-validation."
     },
     "approvalTable": {
       "description": "The status of products that are synced with Merchant Center",
@@ -569,6 +630,18 @@
       "invalidDatafeedLocation": "Invalid data feed file location",
       "incorrectPrice": "Missing or incorrect prices"
     }
+  },
+  "syncTimeline": {
+    "title1" : "Products Extraction",
+    "subtitle1" : "Now or later, depends on your sync settings",
+    "title2" : "Products Verification",
+    "subtitle2" : "Filtering products with missing information",
+    "title3" : "Export to Google",
+    "subtitle3" : "Sending filtered products",
+    "title4" : "Google Review",
+    "subtitle4" : "Compliance verification",
+    "title5" : "New Sync",
+    "subtitle5" : "If you update your products"
   },
   "campaignCard": {
     "title": "Create your Smart Shopping campaign in a few clicks",
@@ -622,7 +695,7 @@
       "conversion": "Conversion",
       "sales": "Sales",
       "id": "ID",
-      "products": "Products",
+      "products": "Product Filters",
       "click": "Click",
       "costs": "Costs",
       "averageCostPerClick": "Average CPC",
@@ -636,23 +709,46 @@
       "dailyBudget": "Daily budget"
     },
     "tooltipCol": {
-      "status": "A status for your ad campaign that describes whether or not its ads can run at the moment."
+      "status": "A status for your ad campaign that describes whether or not its ads can run at the moment.",
+      "products": "Product filter is what you selected as your campaign filter with the number of affected products."
     },
     "campaignsPerformanceTable": {
       "title": "Campaign performance",
-      "subTitle": "Check out how well your campaigns performs",
-      "emptyListText": "You don't have any enabled campaigns"
+      "subTitle": "Check out how well your campaigns perform",
+      "emptyListText": "You don't have any enabled campaign"
     },
     "productsPerformanceTable": {
       "title": "Product performance for active campaigns",
-      "subTitle": "Check out which product perform the best",
+      "subTitle": "Check out which product performs the best",
       "emptyListText": "You don't have any products in active campaigns"
     },
     "filtersPerformanceTable": {
       "title": "Overall filter performance (top 10)",
-      "subTitle": "Check out which dimension perform the best",
-      "emptyListText": "You don't have any products in this campaigns"
+      "subTitle": "Check out which dimension performs the best",
+      "emptyListText": "You don't have any active campaigns with filters"
     }
+  },
+  "notConfiguredState": {
+    "title": "Finish your configuration",
+    "titleOneLastStep" : "One last step",
+    "textGoogleMissing": "Continue your configuration to start sending product to Google and organizing campaigns.",
+    "textOneMoreThing": "One more thing and you are all set to send your product to Google.",
+    "textBoostYourSales": "If you wanna boost your sales connect and organize campaigns with Google Ads.",
+    "ctaClassic": "Go to configuration page",
+    "ctaLinkMCA": "Link your Google Merchant Center",
+    "ctaExportFeed": "Sync your product with Google",
+    "ctaLinkGoogleAds" : "Connect your Google Ads"
+  },
+  "configuredState": {
+    "title": "Congratulations, you're all set !",
+    "text": "You finished all the required steps to get the most out of **Marketing with Google**",
+    "cta": "Go to campaign creation",
+    "firstStep": "Link your store to a PrestaShop account",
+    "secondStep": "Sign in or create your Google Account",
+    "thirdStep": "Sign in or create your Google Merchant Center account",
+    "fourthStep": "Export and synchronize your product catalog",
+    "fifthStep": "Sign in or create your Google Ads account",
+    "sixthStep": "**Next step** create your first Smart Shopping Campaign"
   },
   "help": {
     "title": "Help for PrestaShop Google",
@@ -691,7 +787,9 @@
     "acceptInvitation": "Accept invitation",
     "continue": "Continue",
     "disabled": "Disabled",
+    "activateModule": "Enable module",
     "enabled": "Enabled",
+    "agree": "I agree",
     "enableFreeListing": "Enable free listings",
     "connectAccount": "Connect account",
     "connectingAccount": "Connecting account...",
@@ -700,7 +798,7 @@
     "learnAboutAccountSuspension": "Learn about account suspension",
     "learnAboutSiteClaiming": "Learn about site claiming",
     "learnMoreAboutSmartShoppingCampaigns": "Learn more about Smart Shopping campaigns",
-    "configureAndExportProductFeed": "Export feed",
+    "configureAndExportProductFeed": "Start product feed configuration",
     "chooseAccount": "Choose your account",
     "supportedCountries": "Supported countries",
     "cancel": "Cancel",
@@ -762,6 +860,7 @@
     "removeFilter": "Remove filter | Remove filters",
     "selectAll": "Select all",
     "deselectAll": "Deselect all",
+    "clearAll": "Clear all",
     "signInWithGoogle": "Sign in with Google",
     "viewReporting": "View reporting",
     "pauseCampaign": "Pause campaign",
@@ -779,7 +878,11 @@
     "select": "Select",
     "editContact": "Edit contact information",
     "noCarriers" : "Take me to Carriers page",
-    "update": "Update"
+    "update": "Update",
+    "validateSelection" : "Validate Selection",
+    "googleProductStatusDefinitions" : "Google product status definitions",
+    "visitThe" : "Visit the {0} for more information",
+    "investigate" : "Investigate"
   },
   "badge": {
     "free": "Free",
@@ -806,7 +909,8 @@
     "urlUnclaimed": "Url unclaimed",
     "urlUnverified": "Url unverified",
     "canceled": "Canceled",
-    "testAccount": "Test"
+    "testAccount": "Test",
+    "loading": "Loading"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "Disconnect your Merchant Center?",
@@ -831,7 +935,8 @@
     "removeTag": "Remove “Remarketing and conversion” tag from my shop",
     "removeTagExplainations": "Removing the tag means that Google will no longer be able to track your campaigns. We recommend that you only remove the tag if you plan to completely remove the module or change your account. You can always add it yourself in the code of your site.",
     "titleActivateTrackingSSC": "Activate remarketing and conversion tracking tag.",
-    "textActivateTrackingSSC": "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop."
+    "textActivateTrackingSSC": "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
+    "textConfirmCancel" : "If you go back you will lose your selected values"
   },
 
   "tooltip" : {
@@ -914,5 +1019,16 @@
     "specificTitle": "Specific",
     "sellRefurbished": "I sell refurbished products",
     "sellApparel": "I sell apparel and accessories"
+  },
+  "banner": {
+    "titleAdsbanner" : "Just starting out in Google advertising?",
+    "textAdsBannerLong" : "Get {0} of Google Ads credits* when you spend at least {0} to create your first campaigns on PrestaShop or directly via your [Google Ads Account]({1})[:target=\\\"_blank\\\"].",
+    "textAdsBanner" : "Get {0} of Google Ads credits* when you spend at least {0} to create your first campaigns.",
+    "legendLong": "*Your voucher will be applied automatically from the moment you start spending! *The amount needs to be spent within 60 days of the first campaign spend and credits will be valid for 60 days once credited. [Read T&C]({0})[:target=\\\"_blank\\\"]",
+    "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
+    "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
+    "ctaCreateFirstCampaign": "Create your first campaign",
+    "titleCampaignsBanner": "Boost your sales with Smart Shopping Campaigns",
+    "textCampaignsBanner":  "Your products will be increasingly displayed to the right people at the right time learn more about Smart Shopping Campaigns"
   }
 }

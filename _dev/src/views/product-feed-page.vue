@@ -1,41 +1,55 @@
 <template>
   <div>
     <product-feed-table-status-details v-if="$route.path === '/product-feed/status'" />
+    <product-feed-pre-scan-table-status-details
+      v-else-if="$route.path === '/product-feed/pre-scan'"
+    />
     <template v-else>
-      <b-alert
-        :show="syncStatus === 'success'"
-        variant="success"
-        class="mb-0 mt-3 mb-3"
+      <PsToast
+        v-if="syncStatus === 'schedule' && !inNeedOfConfiguration"
+        variant="warning"
+        :visible="syncStatus === 'schedule' && !inNeedOfConfiguration"
+        toaster="b-toaster-top-right"
       >
-        {{ $t('productFeedPage.alert.alertSuccess') }}
-      </b-alert>
-      <product-feed-sync-status-card />
-      <product-feed-product-status-card />
+        <p> {{ $t('productFeedPage.alert.alertSuccess') }}</p>
+      </PsToast>
+      <sync-timeline
+        v-if="!inNeedOfConfiguration"
+      />
+      <sync-overview
+        :in-need-of-configuration="inNeedOfConfiguration"
+      />
     </template>
   </div>
 </template>
 
 <script>
-import ProductFeedProductStatusCard from '@/components/product-feed-page/product-feed-product-status-card';
-import ProductFeedSyncStatusCard from '@/components/product-feed-page/product-feed-sync-status-card';
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
+import ProductFeedPreScanTableStatusDetails from '@/components/product-feed-page/product-feed-pre-scan-table-status-details';
+import SyncTimeline from '@/components/sync-timeline/sync-timeline';
+import SyncOverview from '@/components/product-feed-page/sync-overview.vue';
+import PsToast from '../components/commons/ps-toast';
 
 export default {
   components: {
-    ProductFeedSyncStatusCard,
-    ProductFeedProductStatusCard,
     ProductFeedTableStatusDetails,
+    ProductFeedPreScanTableStatusDetails,
+    SyncTimeline,
+    SyncOverview,
+    PsToast,
   },
   computed: {
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
-    productFeedIsConfigured() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
+    inNeedOfConfiguration() {
+      // TODO: check if in need of configuration
+      return !this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
   },
   methods: {
     async getDatas() {
+      await this.$store.dispatch('productFeed/GET_PREVALIDATION_SUMMARY');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
@@ -44,15 +58,11 @@ export default {
       await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
     },
   },
-  mounted() {
-    this.getDatas()
-      .then(() => {
-        if (!this.productFeedIsConfigured) {
-          this.$router.push({
-            name: 'onboarding',
-          });
-        }
-      });
+  async created() {
+    if (this.inNeedOfConfiguration) {
+      await this.$store.dispatch('accounts/REQUEST_ACCOUNTS_DETAILS');
+    }
+    this.getDatas();
   },
 };
 </script>

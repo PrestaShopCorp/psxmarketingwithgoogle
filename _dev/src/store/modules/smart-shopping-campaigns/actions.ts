@@ -22,7 +22,10 @@ import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import {CampaignObject, CampaignStatusPayload, ConversionAction} from './state';
+import {
+  CampaignObject, CampaignStatusPayload, ConversionAction, Dimension,
+} from './state';
+import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, rootState}, payload : CampaignObject) {
@@ -37,6 +40,7 @@ export default {
           },
           body: JSON.stringify(payload),
         });
+
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
@@ -69,10 +73,12 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
+
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
+
       if (json && json.campaignName && payload.id !== json.id) {
         commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
       }
@@ -94,6 +100,7 @@ export default {
         tagSnippet: remarketingSnippet,
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -111,6 +118,7 @@ export default {
         action: 'getRemarketingTagsStatus',
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -124,6 +132,7 @@ export default {
     const regex = new RegExp('AW-[0-9]+');
     const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
     const idTag = regex.exec(remarketingSnippet);
+
     if (!idTag || !idTag.length) {
       return;
     }
@@ -135,6 +144,7 @@ export default {
         tag: idTag[0],
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -152,6 +162,7 @@ export default {
         action: 'getConversionActionLabels',
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -174,6 +185,7 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
+
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
@@ -195,6 +207,7 @@ export default {
         conversionActions,
       }),
     });
+
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
@@ -205,7 +218,7 @@ export default {
   async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
     {dispatch, commit},
   ) {
-    dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES');
+    dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES', {isNewRequest: true});
     dispatch('GET_REPORTING_KPIS');
     dispatch('GET_REPORTING_DAILY_RESULTS');
     dispatch('GET_REPORTING_PRODUCTS_PERFORMANCES');
@@ -298,16 +311,17 @@ export default {
       commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
       throw new HttpClientError(response.statusText, response.status);
     }
-
     const result = await response.json();
-
     commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_DAILY_RESULTS, result);
   },
 
   async [ActionsTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
-    {commit, rootState, state}, isNewRequest = true,
+    {commit, rootState, state},
   ) {
+    const limit = state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList;
+    const offset = ((state.reporting.results.campaignsPerformancesSection.activePage - 1)
+    * limit).toString();
     const query = new URLSearchParams({
       startDate: state.reporting.request.dateRange.startDate,
       endDate: state.reporting.request.dateRange.endDate,
@@ -315,6 +329,8 @@ export default {
 
     // add order in array format
     query.append('order[clicks]', state.reporting.request.ordering.campaignsPerformances.clicks);
+    query.append('limit', limit);
+    query.append('offset', offset);
 
     const response = await fetch(
       `${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/campaigns-performances?${query}`, {
@@ -332,10 +348,7 @@ export default {
     }
 
     const result = await response.json();
-    if (isNewRequest) {
-      commit('RESET_REPORTING_CAMPAIGNS_PERFORMANCES');
-    }
-
+    commit(MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES);
     commit(
       MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR,
       false,
@@ -345,17 +358,9 @@ export default {
       result.campaignsPerformanceList,
     );
     commit(
-      MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN,
-      result.nextPageToken,
+      MutationsTypes.SET_TOTAL_CAMPAIGNS_PERFORMANCES_RESULTS,
+      result.totalCampaigns,
     );
-
-    // for testing only
-    if (state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.length > 10) {
-      commit(
-        MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN,
-        null,
-      );
-    }
   },
 
   async [ActionsTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](
@@ -424,6 +429,7 @@ export default {
   },
   async [ActionsTypes.GET_SSC_LIST]({commit, state, rootState}, isNewRequest = true) {
     const query = new URLSearchParams();
+
     if (state.campaignsOrdering && state.campaignsOrdering.duration) {
       query.append('order[startDate]', state.campaignsOrdering.duration);
     }
@@ -442,10 +448,12 @@ export default {
             Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
+
       if (!resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
+
       if (isNewRequest) {
         commit(MutationsTypes.RESET_SSC_LIST);
       }
@@ -468,6 +476,7 @@ export default {
           status: payload.status,
         }),
       });
+
     if (!resp.ok) {
       throw new HttpClientError(resp.statusText, resp.status);
     }
@@ -486,6 +495,7 @@ export default {
         },
         body: JSON.stringify(payload),
       });
+
     if (!resp.ok) {
       throw new HttpClientError(resp.statusText, resp.status);
     }
@@ -493,8 +503,22 @@ export default {
     commit(MutationsTypes.UPDATE_SSC, payload);
     return json;
   },
-  async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState}) {
-    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/dimensions/filters?language_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}&country_code=${rootState.app.psxMtgWithGoogleDefaultShopCountry}`,
+  async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState, state}, search?: string) {
+    if (!search && state.sscAvailableFilters.length) {
+      deepUpdateDimensionVisibility(state.dimensionChosen, true);
+      return;
+    }
+
+    const query = new URLSearchParams({
+      language_code: window.i18nSettings.isoCode,
+      country_code: rootState.app.psxMtgWithGoogleDefaultShopCountry,
+    });
+
+    if (search) {
+      query.append('search_query', search);
+    }
+
+    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/dimensions/filters?${query}`,
       {
         method: 'GET',
         headers: {
@@ -502,10 +526,27 @@ export default {
           Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
         },
       });
+
+    if (resp.status > 299) {
+      commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: [], error: true});
+      return;
+    }
     if (!resp.ok) {
       throw new HttpClientError(resp.statusText, resp.status);
     }
     const json = await resp.json();
-    return json;
+
+    if (!search) {
+      // Basic mutation storing all possible dimensions and filters
+      commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: json, error: false});
+    }
+    if (state.dimensionChosen?.id) {
+      // If we called the API with a search query, we need to update the chosen dimension
+      Object.keys(json).forEach((dimensionName) => {
+        if (dimensionName === state.dimensionChosen.id) {
+          commit(MutationsTypes.SET_DIMENSION_CHOSEN_CHILDREN, json[dimensionName]);
+        }
+      });
+    }
   },
 };

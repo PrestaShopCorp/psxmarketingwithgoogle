@@ -21,6 +21,7 @@ export const cloneStore = () => {
       smartShoppingCampaigns: cloneDeep(smartShoppingCampaigns),
     },
   };
+
   return store;
 };
 

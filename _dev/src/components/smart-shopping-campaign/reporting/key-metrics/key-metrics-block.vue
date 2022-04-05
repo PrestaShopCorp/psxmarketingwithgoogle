@@ -7,9 +7,13 @@
       <p class="flex-shrink-0 mb-2 ps_gs-onboardingcard__title mb-sm-0">
         {{ $t('keymetrics.title') }}
       </p>
-      <KeyMetricsPeriodSelector />
+      <KeyMetricsPeriodSelector :in-need-of-configuration="inNeedOfConfiguration" />
     </template>
-    <KeyMetricsErrorMessage v-if="errorWithApi" />
+    <NotConfiguredCard
+      v-if="inNeedOfConfiguration"
+      class="mx-auto"
+    />
+    <KeyMetricsErrorMessage v-else-if="errorWithApi && !inNeedOfConfiguration" />
     <div v-else>
       <div class="mt-2 d-flex justify-content-between flex-column flex-sm-row">
         <div class="order-1 mb-2 order-sm-0">
@@ -61,6 +65,7 @@ import KeyMetricsKpiCardGroup from './key-metrics-kpi-card-group.vue';
 import KeyMetricsKpiCard from './key-metrics-kpi-card.vue';
 import KeyMetricsChartWrapper from './key-metrics-chart-wrapper.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
+import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
 
 export default {
   name: 'KeyMetricsBlock',
@@ -70,6 +75,13 @@ export default {
     KeyMetricsKpiCardGroup,
     KeyMetricsKpiCard,
     KeyMetricsChartWrapper,
+    NotConfiguredCard,
+  },
+  props: {
+    inNeedOfConfiguration: {
+      type: Boolean,
+      required: true,
+    },
   },
   computed: {
     reportingKpis() {

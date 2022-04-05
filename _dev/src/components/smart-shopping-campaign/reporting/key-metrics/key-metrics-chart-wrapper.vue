@@ -94,6 +94,7 @@ export default {
 
       const dateMatchExists = this.getLabels.some((date) => {
         const dateFormat = new Date(date);
+
         return dateFormat >= startDate && dateFormat <= endDate;
       });
 

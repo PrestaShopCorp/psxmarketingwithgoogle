@@ -24,7 +24,7 @@ import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 
 export interface State {
-  campaigns: Array<CampaignObject>;
+  campaigns: CampaignObject[];
   campaignsOrdering: CampaignsOrdering,
   tokenNextPageCampaignList: null|string,
   errorCampaignNameExists: null|boolean;
@@ -32,13 +32,36 @@ export interface State {
   tagAlreadyExists: boolean;
   conversionActions: ConversionAction[];
   reporting: Reporting;
+  // All possible dimensions & filters (untouched by the popin, not filtered by any search)
+  sscAvailableFilters: Dimension[];
+  errorFetchingFilters: boolean;
+  // Dimension selected in the popin
+  dimensionChosen: Dimension,
+  // Selected dimensions and filters formatted for the API (after validation from the popin)
+  filtersChosen: FiltersChosen[];
 }
 
 export interface ConversionAction {
   category: string,
   tag: string,
 }
+export interface FiltersChosen {
+  dimension?: string,
+  values?: Array<string>,
+}
+export interface Dimension {
+  // Data from API
+  name?: string;
+  subtitle?: string;
+  id?: string;
+  numberOfProductsAssociated?: number,
+  children?: Dimension[];
 
+  // Managed by this app
+  checked?: boolean;
+  indeterminate?: boolean;
+  visible?: boolean;
+}
 export interface CampaignsOrdering {
   name?: string,
   duration?: QueryOrderDirection,
@@ -46,7 +69,7 @@ export interface CampaignsOrdering {
 
 export interface ProductsFilteredObject {
   dimension: string,
-  values: Array<string>
+  values: string[]
 }
 
 export interface CampaignStatusPayload {
@@ -126,7 +149,9 @@ export interface DailyresultChart {
 
 export interface CampaignsPerformancesSection {
   campaignsPerformanceList: Array<CampaignPerformances>;
-  nextPageToken: string|null;
+  limitCampaignPerformanceList: number;
+  activePage: number,
+  totalCampaigns: number,
 }
 
 export interface ProductsPerformancesSection {
@@ -189,6 +214,10 @@ export const state: State = {
   tracking: true,
   tagAlreadyExists: false,
   conversionActions: [],
+  sscAvailableFilters: [],
+  errorFetchingFilters: false,
+  dimensionChosen: {},
+  filtersChosen: [],
   reporting: {
     request: {
       dateRange: {
@@ -223,7 +252,9 @@ export const state: State = {
       },
       campaignsPerformancesSection: {
         campaignsPerformanceList: [],
-        nextPageToken: null,
+        limitCampaignPerformanceList: 10,
+        activePage: 1,
+        totalCampaigns: 0,
       },
       productsPerformancesSection: {
         productsPerformanceList: [],

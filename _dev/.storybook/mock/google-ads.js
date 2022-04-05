@@ -78,4 +78,23 @@ export const googleAdsAccountChosen = {
   },
 }
 
+export const adsAccountStatus = {
+  ...googleAdsAccountChosen,
+  customer: {
+    id: '415-056-4875',
+    name: 'Tata Corpette',
+    descriptiveName: 'PrestaShop Marketing with Google TEST',
+    isAdmin: true,
+    isTestAccount: false,
+    isAccountSuspended: false,
+    isAccountCancelled: false,
+  },
+  accountChosen:  {
+    ...googleAdsAccountChosen.accountChosen,
+    billingSettings: {
+      isSet: true,
+    }
+  },
+}
+
 export default googleAdsNotChosen;

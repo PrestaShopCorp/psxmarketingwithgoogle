@@ -7,7 +7,7 @@
       header-tag="nav"
       header-class="px-3 py-1"
     >
-      <ol class="list-inline mb-0 d-flex align-items-center ps_gs-breadcrumb">
+      <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
           <a
             href=""
@@ -27,7 +27,7 @@
       </p>
       <b-table-simple
         id="table-products"
-        class="ps_gs-table-products mb-3"
+        class="mb-3 ps_gs-table-products"
         :table-class="{'border-bottom-0': loading}"
         variant="light"
         responsive="xl"
@@ -123,7 +123,7 @@
       <b-table-lite
         stacked="md"
         variant="light"
-        class="ps_gs-table-products mb-3"
+        class="mb-3 ps_gs-table-products"
       >
         <b-thead>
           <b-tr class="ps_gs-fz-12">
@@ -231,8 +231,8 @@
       <!-- OLD TABLE PAGINATION -->
 
       <!-- TO KEEP IF WE SWITCH BACK TO B-TABLE-LITE -->
-      <!-- <div class="ps_gs-table-controls d-flex flex-wrap flex-md-nowrap align-items-center">
-        <span class="ps_gs-table-controls__total-products pl-md-1 mr-2 text-muted">
+      <!-- <div class="flex-wrap ps_gs-table-controls d-flex flex-md-nowrap align-items-center">
+        <span class="mr-2 ps_gs-table-controls__total-products pl-md-1 text-muted">
           {{ totalProducts }} results
         </span>
         <div class="ps_gs-table-controls__products-shown d-flex align-items-center">
@@ -242,7 +242,7 @@
             ref="filterQuantityToShow"
             :text="selectedFilterQuantityToShow"
             variant=" "
-            class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered w-auto ml-2"
+            class="w-auto ml-2 flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
             menu-class="ps-dropdown"
 
             size="sm"
@@ -260,7 +260,7 @@
           aria-label="Table pagination"
           class="ps_gs-table-controls__pagination mx-md-auto"
         >
-          <ul class="pagination mb-0">
+          <ul class="mb-0 pagination">
             <li class="page-item previous">
               <a
                 class="page-link"
@@ -335,7 +335,7 @@
         <div class="ps_gs-table-controls__go-to d-flex align-items-center">
           <span class="flex-shrink-0">Go to page:</span>
           <b-form-input
-            class="ml-sm-2 maxw-sm-72 flex-grow-0"
+            class="flex-grow-0 ml-sm-2 maxw-sm-72"
             type="number"
             size="sm"
           />
@@ -472,6 +472,7 @@ export default {
     },
     getIssues(product) {
       const issues = [];
+
       if (!('issues' in product)) {
         return issues;
       }
@@ -488,6 +489,7 @@ export default {
     },
     handleScroll() {
       const de = document.documentElement;
+
       if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight - 1) {
         this.getItems(this.nextToken);
       }

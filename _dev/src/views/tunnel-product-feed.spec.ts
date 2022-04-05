@@ -18,7 +18,7 @@ describe('tunnel-product-feed.vue', () => {
     actions = {
       GET_PRODUCT_FEED_SETTINGS: jest.fn(),
       GET_PRODUCT_FEED_SYNC_STATUS: jest.fn(),
-      GET_TOTAL_PRODUCTS: jest.fn(),
+      GET_TOTAL_PRODUCTS_READY_TO_SYNC: jest.fn(),
     };
     store = cloneStore();
     store.modules.productFeed.actions = {
@@ -34,6 +34,6 @@ describe('tunnel-product-feed.vue', () => {
     });
     expect(actions.GET_PRODUCT_FEED_SETTINGS).toHaveBeenCalled();
     expect(actions.GET_PRODUCT_FEED_SYNC_STATUS).toHaveBeenCalled();
-    expect(actions.GET_TOTAL_PRODUCTS).toHaveBeenCalled();
+    expect(actions.GET_TOTAL_PRODUCTS_READY_TO_SYNC).toHaveBeenCalled();
   });
 });

@@ -63,6 +63,7 @@
   @import "base/typography";
   @import "base/common";
   @import "base/color";
+  @import "base/border";
 
   // page
   @import "layouts/form";
@@ -79,6 +80,7 @@
   @import "components/glass";
   @import "components/breadcrumb";
   @import "components/stepper";
+  @import "components/sync-timeline";
   @import "components/modal";
   @import "components/filters";
   @import "components/productfeedreportcard";
@@ -89,6 +91,8 @@
   @import "components/product-category-checkbox";
   @import "components/table-carriers";
   @import "components/faq";
+  @import "components/sync-history";
+  @import "components/timeline-configured";
 
   // page
   @import "pages/landingpage";

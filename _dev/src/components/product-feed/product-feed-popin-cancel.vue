@@ -31,7 +31,7 @@ export default {
     onProductFeedCancelConfirmation() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
       this.$router.push({
-        name: 'onboarding',
+        name: 'configuration',
         hash: '#product-feed-card',
       });
     },

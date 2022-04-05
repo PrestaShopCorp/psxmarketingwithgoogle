@@ -28,6 +28,8 @@ import {
   ProductPerformances,
   FiltersPerformances,
   ConversionAction,
+  Dimension,
+  FiltersChosen,
 } from './state';
 import GettersTypes from './getters-types';
 import KpiType from '@/enums/reporting/KpiType';
@@ -83,6 +85,12 @@ export default {
   },
   [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): null|string {
     return state.tokenNextPageCampaignList;
+  },
+  [GettersTypes.GET_LIMIT_CAMPAIGN_PERFORMANCE_LIST](state: LocalState): null|number {
+    return state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList;
+  },
+  [GettersTypes.GET_CAMPAIGN_FILTER_CHOSEN](state: LocalState): FiltersChosen|null {
+    return state.filtersChosen?.find((filter) => !!filter) || null;
   },
 
   // request getters
@@ -140,6 +148,16 @@ export default {
   ): Object {
     return state.reporting.request.ordering.filtersPerformances;
   },
+  [GettersTypes.GET_SSC_DIMENSIONS_AND_FILTERS](
+    state: LocalState,
+  ): Dimension[] {
+    return state.sscAvailableFilters;
+  },
+  [GettersTypes.GET_ERROR_FETCHING_FILTERS_STATUS](
+    state: LocalState,
+  ): boolean {
+    return !state.sscAvailableFilters.length && state.errorFetchingFilters;
+  },
 
   // errors getters
   [GettersTypes.GET_REPORTING_KPIS_ERROR](
@@ -174,15 +192,20 @@ export default {
   ): Kpis[] {
     return state.reporting.results.dailyResultChart.dailyResultList;
   },
-  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
+  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_LIST](
     state: LocalState,
   ): Array<CampaignPerformances> {
     return state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList;
   },
-  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_NEXT_PAGE_TOKEN](
+  [GettersTypes.GET_TOTAL_CAMPAIGNS_PERFORMANCES](
     state: LocalState,
-  ): string|null {
-    return state.reporting.results.campaignsPerformancesSection.nextPageToken;
+  ): number {
+    return state.reporting.results.campaignsPerformancesSection.totalCampaigns;
+  },
+  [GettersTypes.GET_ACTIVE_PAGE_CAMPAIGNS_PERFORMANCES_TABLE](
+    state: LocalState,
+  ): number {
+    return state.reporting.results.campaignsPerformancesSection.activePage;
   },
   [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](
     state: LocalState,

@@ -24,6 +24,12 @@ jobs:
           npm install
           npm run build
 
+      - name: Install dev composer dependencies
+        run: composer install
+
+      - name: Generate index.php
+        run: vendor/bin/autoindex
+
       - name: Install composer dependencies
         run: composer install --no-dev -o
 
@@ -87,7 +93,7 @@ jobs:
           name: ${{ github.event.repository.name }}
 
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0
         with:
           project_id: ${{ secrets.G_PROJECT_INTEGRATION }}
           service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}

@@ -2,40 +2,57 @@ import Vue from 'vue';
 import VueRouter, {RouteConfig} from 'vue-router';
 import Store from '../store';
 import CampaignPage from '../views/campaign-page.vue';
-import Configuration from '../views/configuration.vue';
+import LandingPage from '../views/landing-page.vue';
 import Debug from '../views/debug.vue';
 import Help from '../views/help.vue';
-import OnboardingPage from '../views/onboarding-page.vue';
+import Configuration from '../views/configuration.vue';
 import ProductFeedPage from '../views/product-feed-page.vue';
 import ReportingPage from '../views/reporting-page.vue';
 import TunnelProductFeed from '../views/tunnel-product-feed.vue';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
 Vue.use(VueRouter);
 
 const initialPath = (to, from, next) => {
   if (from.path === '/'
-    && (!Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED']
-      || Store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'].length)
+    && Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'] === false
   ) {
-    next({name: 'configuration'});
+    next({name: 'landing-page'});
   } else {
-    next({name: 'onboarding'});
+    next({name: 'configuration'});
   }
+};
+
+const landingExistsInLocalstorage = (to, from, next) => {
+  if (getDataFromLocalStorage('landingHasBeenSeen')) {
+    next();
+    return;
+  }
+  next({name: 'landing-page'});
+};
+
+const campaignsAlreadyExist = (to, from, next) => {
+  if (!Store.getters['smartShoppingCampaigns/GET_ALL_SSC'].length) {
+    next();
+    return;
+  }
+  next({name: 'campaign-list'});
 };
 
 const routes: Array<RouteConfig> = [
   {
+    path: '/landing-page',
+    name: 'landing-page',
+    component: LandingPage,
+  },
+  {
     path: '/configuration',
     name: 'configuration',
     component: Configuration,
+    beforeEnter: landingExistsInLocalstorage,
   },
   {
-    path: '/configuration/onboarding',
-    name: 'onboarding',
-    component: OnboardingPage,
-  },
-  {
-    path: '/configuration/product-feed-settings',
+    path: '/configuration/product-feed-settings/:step',
     name: 'product-feed-settings',
     component: TunnelProductFeed,
   },
@@ -55,14 +72,15 @@ const routes: Array<RouteConfig> = [
     component: ProductFeedPage,
   },
   {
+    path: '/product-feed/pre-scan',
+    name: 'product-feed-pre-scan',
+    component: ProductFeedPage,
+  },
+  {
     path: '/campaign',
     name: 'campaign',
     component: CampaignPage,
-  },
-  {
-    path: '/campaign/creation',
-    name: 'campaign-creation',
-    component: CampaignPage,
+    beforeEnter: campaignsAlreadyExist,
   },
   {
     path: '/campaign/list',
@@ -70,7 +88,12 @@ const routes: Array<RouteConfig> = [
     component: CampaignPage,
   },
   {
-    path: '/campaign/edit/:id',
+    path: '/campaign-creation',
+    name: 'campaign-creation',
+    component: CampaignPage,
+  },
+  {
+    path: '/campaign-edit/:id',
     name: 'campaign-edition',
     component: CampaignPage,
   },

@@ -20,6 +20,23 @@
     line-height: rem(22.5);
     font-weight: 600;
   }
+
+  &__not-configured {
+    position: absolute;
+    z-index: 1;
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
+    left: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, .8);
+    @supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
+      background-color: transparent;
+      backdrop-filter: blur(8px);
+    }
+  }
 }
 
 .ps_gs-section-title ~ .ps_gs-section-title {

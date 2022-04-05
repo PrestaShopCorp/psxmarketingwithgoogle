@@ -33,6 +33,7 @@ module.exports = {
             preTransformNode(astEl) {
               if (process.env.NODE_ENV === 'production') {
                 const {attrsMap, attrsList} = astEl;
+
                 if (attrsMap['data-test-id']) {
                   delete attrsMap['data-test-id'];
                   const index = attrsList.findIndex((x) => x.name === 'data-test-id');

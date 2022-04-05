@@ -111,6 +111,11 @@ import AttributeField from './attribute-field.vue';
 import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+
+import {
+  formatMappingToApi,
+} from '../../../../utils/AttributeMapping';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
@@ -173,33 +178,26 @@ export default {
             || attr.category === Categories.COMMONS,
         );
     },
-    formatMappingToApi() {
-      return this.attributesToMap
-        .map((attr) => attr.fields)
-        .reduce((acc, cur) => acc.concat(cur), [])
-        .reduce((acc, cur) => {
-          if (cur.mapped !== null) {
-            acc[cur.name] = cur.mapped.map((attr) => ({
-              id: attr.name,
-              type: attr.type,
-            }));
-          } else {
-            acc[cur.name] = cur.recommended.map((attr) => ({
-              id: attr.name,
-              type: attr.type,
-            }));
-          }
-          return acc;
-        }, {});
-    },
   },
   methods: {
     previousStep() {
-      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(this.formatMappingToApi));
+      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
       if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
+        this.$router.push({
+          name: 'product-feed-settings',
+          params: {
+            step: ProductFeedSettingsPages.SHIPPING_SETTINGS,
+          },
+        });
       } else {
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
+        this.$router.push({
+          name: 'product-feed-settings',
+          params: {
+            step: ProductFeedSettingsPages.TARGET_COUNTRY,
+          },
+        });
       }
       window.scrollTo(0, 0);
     },
@@ -208,8 +206,14 @@ export default {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(this.formatMappingToApi));
+      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.SYNC_SCHEDULE,
+        },
+      });
       window.scrollTo(0, 0);
     },
     cancel() {

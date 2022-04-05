@@ -34,7 +34,6 @@ export interface ProductFeedSettings {
   autoImportTaxSettings: boolean;
   autoImportShippingSettings: boolean;
   attributeMapping: object;
-  syncSchedule?: string;
   targetCountries: string[]|null;
 }
 
@@ -43,6 +42,10 @@ export interface ProductFeedValidationSummary {
   expiringItems: number|null;
   pendingItems: number|null;
   disapprovedItems: number|null;
+}
+export interface PrevalidationScanSummary {
+  scannedItems: number|null;
+  invalidItems: number|null;
 }
 export interface ProductInfos {
  id: string;
@@ -108,11 +111,13 @@ export interface State {
   status: ProductFeedStatus;
   settings: ProductFeedSettings;
   validationSummary : ProductFeedValidationSummary;
+  prevalidationScanSummary: PrevalidationScanSummary;
   productsDatas: ProductsDatas;
   attributesToMap: any;
   attributesData: Array<AttributesInfos>;
   selectedProductCategories: Array<String>;
   requestSynchronizationNow: boolean;
+  preScanDetail: PreScanDetail;
 }
 
 export enum ProductStatues {
@@ -121,18 +126,43 @@ export enum ProductStatues {
   Approved = 'approved',
 }
 
+export interface PreScanProductLang {
+  title: string;
+  lang: string;
+}
+export interface PreScanReporting {
+  productId: number;
+  attributeId?: number;
+  lastValidationDate: number;
+  titleByLang: PreScanProductLang[];
+  isMissingName: Boolean;
+  isMissingLink: Boolean;
+  isMissingImage: Boolean;
+  isMissingPrice: Boolean;
+  isMissingDescription: Boolean;
+  isMissingBrandOrBarcode: Boolean;
+}
+export interface PreScanDetail {
+  products: PreScanReporting[];
+  limit: number;
+  currentPage: number;
+  total: number;
+  langChosen: string;
+}
+
 export const state: State = {
   isSyncSummaryLoadingInProgress: false,
   errorAPI: false,
   isConfigured: false,
   isConfiguredOnce: false,
   totalProducts: 0,
-  stepper: 1,
+  stepper: 0,
   status: {
     success: false,
     jobEndedAt: '',
     nextJobAt: '',
     lastUpdatedAt: '',
+    syncSchedule: '',
   },
   settings: {
     shippingSettings: [],
@@ -148,13 +178,16 @@ export const state: State = {
       customGenderGroupAttribute: '',
       customConditionAttribute: '',
     },
-    syncSchedule: '1 * * * * *',
   },
   validationSummary: {
     activeItems: null,
     expiringItems: null,
     pendingItems: null,
     disapprovedItems: null,
+  },
+  prevalidationScanSummary: {
+    scannedItems: null,
+    invalidItems: null,
   },
   productsDatas: {
     items: [],
@@ -163,4 +196,11 @@ export const state: State = {
   requestSynchronizationNow: false,
   attributesData: [],
   selectedProductCategories: [],
+  preScanDetail: {
+    products: [],
+    limit: 10,
+    currentPage: 1,
+    total: 0,
+    langChosen: '',
+  },
 };

@@ -1,6 +1,6 @@
 <template>
   <ps-modal
-    id="SSCPopinActivateTracking"
+    :id="modalId"
     ref="modal"
     :title="$t('modal.titleActivateTrackingSSC')"
     v-bind="$attrs"
@@ -92,6 +92,13 @@ export default {
   name: 'SSCPopinActivateTracking',
   components: {
     PsModal,
+  },
+  props: {
+    modalId: {
+      type: String,
+      required: true,
+      default: null,
+    },
   },
   data() {
     return {

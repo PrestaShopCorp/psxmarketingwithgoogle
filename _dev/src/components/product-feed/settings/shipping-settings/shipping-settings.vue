@@ -53,9 +53,14 @@
             :key="type"
             class="font-weight-600"
           >
-            <div
+            <component
+              :is="hasToolTip(type) ? 'b-button' : 'div'"
+              class="d-flex align-items-start text-wrap"
+              :class="hasToolTip(type) && 'p-0 text-left'"
+              :variant="hasToolTip(type) && 'text'"
+              v-b-tooltip:psxMktgWithGoogleApp="{disabled: !hasToolTip(type)}"
+              :title="hasToolTip(type) && $t(`productFeedSettings.shipping.${type}Tooltip`)"
               v-if="hasHeader(type)"
-              class="flex align-items-center text-wrap"
             >
               <VueShowdown
                 tag="span"
@@ -63,16 +68,14 @@
                 :markdown="$t(`productFeedSettings.shipping.${type}Header`)"
                 :extensions="['no-p-tag']"
               />
-              <b-button
+              <span
                 v-if="hasToolTip(type)"
                 variant="invisible"
-                v-b-tooltip:psxMktgWithGoogleApp
-                :title="$t(`productFeedSettings.shipping.${type}Tooltip`)"
-                class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
+                class="p-1 ml-1 mr-n1 border-0 d-inline-flex align-items-center"
               >
                 <i class="material-icons ps_gs-fz-14 text-secondary">info_outlined</i>
-              </b-button>
-            </div>
+              </span>
+            </component>
           </b-th>
         </b-tr>
       </b-thead>
@@ -156,6 +159,7 @@
 </template>
 
 <script>
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
@@ -214,6 +218,12 @@ export default {
     previousStep() {
       localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.TARGET_COUNTRY,
+        },
+      });
       window.scrollTo(0, 0);
     },
     nextStep() {
@@ -223,6 +233,12 @@ export default {
       });
       localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
+        },
+      });
       window.scrollTo(0, 0);
     },
     cancel() {
@@ -231,6 +247,9 @@ export default {
     refreshComponent() {
       this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
     },
+  },
+  mounted() {
+    this.refreshComponent();
   },
 };
 </script>

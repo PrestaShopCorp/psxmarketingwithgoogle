@@ -66,17 +66,20 @@ export default {
   methods: {
     async checkForInstalledVersion() {
       const res = await this.$store.dispatch('app/GET_MODULES_VERSIONS', this.moduleName);
+
       if (!res.version) {
         return;
       }
       // if module version >= version needed
       if (semver.gte(res.version, this.neededVersion)) {
+        this.errorModule = false;
         return;
       }
       this.upgradeLink = res.upgradeLink;
       this.installedVersion = res.version;
       this.errorModule = true;
     },
+
     async updateModule() {
       this.loading = true;
       try {
@@ -84,7 +87,7 @@ export default {
           method: 'POST',
           headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         });
-        this.checkForInstalledVersion();
+        await this.checkForInstalledVersion();
       } catch (err) {
         console.error(err);
       } finally {

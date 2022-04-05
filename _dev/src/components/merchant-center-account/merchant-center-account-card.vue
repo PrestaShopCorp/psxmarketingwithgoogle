@@ -381,7 +381,8 @@
           </div>
         </b-alert>
         <b-alert
-          v-else-if="error === WebsiteClaimErrorReason.OverwriteNeededWithManualAction"
+          v-else-if="error === WebsiteClaimErrorReason.OverwriteNeededWithManualAction
+            && !needToRefresh"
           show
           variant="warning"
           class="mb-0 mt-3"
@@ -401,6 +402,7 @@
           </p>
           <div class="d-md-flex text-center align-items-center mt-2">
             <b-button
+              @click="checkAgainForOverwriteNeededWithManualAction"
               size="sm"
               class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 text-decoration-none"
               variant="outline-secondary"
@@ -408,6 +410,25 @@
               target="_blank"
             >
               {{ $t("cta.addWebsiteAddress") }}
+            </b-button>
+          </div>
+        </b-alert>
+        <b-alert
+          v-else-if="error === WebsiteClaimErrorReason.OverwriteNeededWithManualAction
+            && needToRefresh"
+          show
+          variant="warning"
+          class="mb-0 mt-3"
+        >
+          <p class="mb-0">
+            {{ $t('mcaCard.refreshAfterAddingWebsiteAddress') }}<br>
+          </p>
+          <div class="d-md-flex text-center align-items-center mt-2">
+            <b-button
+              @click="refresh"
+              variant="outline-secondary"
+            >
+              {{ $t("general.refreshPage") }}
             </b-button>
           </div>
         </b-alert>
@@ -506,6 +527,7 @@
           ref="PhoneVerificationPopin"
           @phoneNumberVerified="phoneNumberVerified"
         />
+        <AlertModuleDisabled />
       </b-card>
     </b-skeleton-wrapper>
   </section>
@@ -524,6 +546,7 @@ import BadgeListRequirements from '../commons/badge-list-requirements';
 import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
 import PhoneVerificationPopin from './phone-verification/phone-verification-popin.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import AlertModuleDisabled from '@/components/commons/alert-module-disabled';
 
 export default {
   name: 'MerchantCenterAccountCard',
@@ -534,12 +557,14 @@ export default {
     VueShowdown,
     PhoneVerificationPopin,
     BAlert,
+    AlertModuleDisabled,
   },
   data() {
     return {
       selectedMcaIndex: null,
       WebsiteClaimErrorReason,
       displaySiteVerified: false,
+      needToRefresh: false,
     };
   },
   props: {
@@ -571,6 +596,7 @@ export default {
         .map((account) => {
           if (account.aggregatorName) {
             const managed = account.subAccountNotManagedByPrestashop ? this.$t('mcaCard.notManaged') : null;
+
             return {...account, aggregatorManagement: managed};
           }
           return account;
@@ -582,6 +608,7 @@ export default {
           .map((account) => ({name: account.aggregatorName, info: account.aggregatorManagement})),
         'name',
       );
+
       return [
         list.filter((gmc) => !gmc.aggregatorName),
         groups.map((mca) => ({mca, gmcs: list.filter((gmc) => gmc.aggregatorName === mca.name)})),
@@ -650,6 +677,7 @@ export default {
             text: 'pendingCreation',
           };
         case WebsiteClaimErrorReason.PhoneVerificationNeeded:
+          this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
           return {
             color: 'warning',
             text: 'pending',
@@ -663,6 +691,7 @@ export default {
     },
     merchantCenterWebsitePageUrl() {
       const {id} = this.$store.state.accounts.googleMerchantAccount;
+
       return {
         website: `https://merchants.google.com/mc/settings/website?a=${id}`,
         businessInfo: `https://merchants.google.com/mc/merchantprofile/businessinfo?a=${id}`,
@@ -722,9 +751,13 @@ export default {
         );
       }
     },
+    checkAgainForOverwriteNeededWithManualAction() {
+      this.needToRefresh = true;
+    },
     gmcLabel(index) {
       if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
         const gmc = this.mcaSelectionOptions[index];
+
         return `${gmc.id} - ${gmc.name}`;
       }
       return null;

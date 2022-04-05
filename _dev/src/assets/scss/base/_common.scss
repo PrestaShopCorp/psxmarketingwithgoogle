@@ -32,6 +32,22 @@ a[target="_blank"].text-muted:not(.external_link-no_icon) {
   color: $grey_muted !important;
 }
 
+.text-muted a.with-hover,
+a.text-muted.with-hover {
+  color: $grey_muted !important;
+
+  &:hover, &:focus {
+    color: $blue !important;
+  }
+}
+
+a.without-hover {
+  &:hover, &:focus {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
 .ps_gs-ps-account-card a[target="_blank"]:after {
   content: none !important;
 }
@@ -74,6 +90,10 @@ a[target="_blank"].text-muted:not(.external_link-no_icon) {
 
 .badge {
   font-size: rem(12);
+}
+
+.badge-prescan {
+  width: calc(2.5ch + 1rem);
 }
 
 .badge-muted {

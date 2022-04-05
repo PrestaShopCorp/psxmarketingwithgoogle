@@ -1,5 +1,4 @@
 enum WebsiteRequirements {
-  SHOPPINGADSPOLICIES = 'shoppingAdsPolicies',
   ACCURATECONTACTINFORMATION = 'accurateContactInformation',
   SECURECHECKOUTPROCESS = 'secureCheckoutProcess',
   RETURNPOLICY = 'returnPolicy',

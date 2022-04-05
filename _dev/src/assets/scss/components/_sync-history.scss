@@ -1,0 +1,68 @@
+.sync-history {
+  $iconWidth: rem(20);
+
+  // Available icons
+  $icons: 'check_circle', 'schedule', 'cancel', 'change_circle', 'info';
+  // Available colors
+  $lineColors: ('danger' : $danger, 'info': $info);
+
+  width: 280px;
+  max-width: 100%;
+
+  &__item {
+    display: flex;
+    align-items: start;
+
+    &:not(:last-child) {
+      padding-bottom: rem(50);
+    }
+
+    &[class*="icon"]::before {
+      font-family: 'Material Icons';
+      font-size: $iconWidth;
+      line-height: 1em;
+      -webkit-font-feature-settings: 'liga';
+      margin-right: rem(10);
+      margin-top: -#{rem(2)};
+      color: $info;
+    }
+
+    @each $icon in $icons {
+      &[class*="--icon-#{$icon}"]::before {
+        content: $icon;
+        @if $icon == 'cancel' {
+          color: $danger;
+        }
+      }
+    }
+
+    &[class*="bg"] {
+      background-repeat: no-repeat;
+      background-position: left 0 top calc(#{$iconWidth} - #{rem(4)});
+    }
+
+    @each $lineColorName, $lineColorValue in $lineColors {
+      &[class*="--bg-#{$lineColorName}"] {
+        background-image:
+          linear-gradient(to right,
+            transparent calc(#{$iconWidth} / 2 - 0.5px),
+            map-get($lineColors, $lineColorName) calc(#{$iconWidth} / 2 - 0.5px),
+            map-get($lineColors, $lineColorName) calc(#{$iconWidth} / 2 + 0.5px),
+            transparent calc(#{$iconWidth} / 2 + 0.5px));
+      }
+    }
+
+    &-title {
+      font-size: rem(14);
+      font-weight: 600;
+      line-height: $iconWidth;
+      margin-bottom: 0;
+      margin-top: -#{rem(4)};
+    }
+
+    &-description {
+      font-size: rem(13);
+      color: $secondary;
+    }
+  }
+}

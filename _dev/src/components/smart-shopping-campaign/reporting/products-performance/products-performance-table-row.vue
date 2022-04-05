@@ -27,7 +27,7 @@
       {{ campaign.averageCostPerClick|formatPrice(currencyCode) }}
     </b-td>
     <b-td class="text-right ps_gs-fz-12">
-      {{ campaign.conversions }}
+      {{ Number(campaign.conversions.toFixed(4).replace(/\.00$/, '')) }}
     </b-td>
     <b-td class="text-right ps_gs-fz-12">
       {{ campaign.conversionsRate }} %

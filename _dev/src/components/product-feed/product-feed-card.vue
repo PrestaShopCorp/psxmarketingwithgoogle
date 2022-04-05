@@ -131,8 +131,8 @@
           >
             <p class="ps_gs-fz-12 text-muted mb-0">
               {{ syncStatus === 'schedule'
-                ? $t("productFeedPage.syncStatus.scheduleOn", [nextSyncTime])
-                : $t("productFeedCard.nextSync", [nextSyncTime])
+                ? $t("productFeedPage.syncStatus.scheduleOn", [nextSyncTime.day, nextSyncTime.time])
+                : $t("productFeedCard.nextSync", [nextSyncTime.day, nextSyncTime.time])
               }}
             </p>
             <b-button
@@ -142,43 +142,7 @@
             >
               {{ $t("cta.trackProductStatus") }}
             </b-button>
-          <!-- Not in free plan -->
-          <!-- <b-button
-          v-if="syncStatus === 'failed'"
-          variant="primary"
-          class="d-block mx-auto my-2 my-sm-0 ml-sm-3 mr-sm-0"
-        >
-          <span class="material-icons">
-            autorenew
-          </span>
-          {{ $t('cta.forceSync') }}
-        </b-button> -->
           </div>
-          <!--  NOT IN BATCH 1 -->
-          <!-- <b-container
-        fluid
-        class="p-0 mb-2"
-      >
-        <b-row
-          no-gutters
-          class="mx-n1"
-        >
-          <product-feed-card-report-products-card
-            status="success"
-            :title="$t('productFeedCard.productsReadyToBeSynced')"
-            :nb-products="nbProductsReadyToSync"
-            :sync-status="syncStatus"
-          />
-          <product-feed-card-report-products-card
-            status="warning"
-            :title="$t('productFeedCard.productsWithProblems')"
-            :nb-products="nbProductsCantSync"
-            :sync-status="syncStatus"
-            :link="$t('cta.reviewProblems')"
-            link-to="#"
-          />
-        </b-row>
-      </b-container> -->
           <div class="d-flex justify-content-between align-items-center mb-3 mt-3 pt-2">
             <h3 class="font-weight-600 ps_gs-fz-14 mb-0">
               {{ $t("productFeedSettings.breadcrumb2") }}
@@ -203,7 +167,7 @@
             <div class="mt-1">
               <b-button
                 variant="outline-secondary"
-                @click="goToProductFeedSettings(1)"
+                @click="goToProductFeedSettings(ProductFeedSettingsPages.SHIPPING_SETTINGS)"
               >
                 {{ $t("cta.addShippingInfo") }}
               </b-button>
@@ -222,14 +186,16 @@
                 :title="$t('productFeedSettings.shipping.targetCountries')"
                 :description="targetCountries.join(', ')"
                 :link="$t('cta.editCountries')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
+                :link-to="{ name: 'product-feed-settings',
+                            step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
               />
               <product-feed-card-report-card
                 :status="shippingSettingsStatus"
                 :title="$t('productFeedSettings.shipping.shippingSettings')"
                 :description="shippingSettings"
                 :link="$t('cta.editSettings')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
+                :link-to="{ name: 'product-feed-settings',
+                            step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
               />
               <product-feed-card-report-card
                 v-if="isUS"
@@ -237,40 +203,17 @@
                 :title="$t('productFeedSettings.shipping.taxSettings')"
                 :description="taxSettings"
                 :link="$t('cta.editSettings')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 1 }"
+                :link-to="{ name: 'product-feed-settings',
+                            step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
               />
-              <!--  NOT IN BATCH 1 -->
-              <!-- <product-feed-card-report-card
-            status="success"
-            :title="$t('productFeedSettings.steps.syncRules')"
-            :description="syncRules.join(', ')"
-            :details="syncRulesDetails.join(', ')"
-            :link="$t('cta.editRules')"
-            link-to="#"
-          />
-           <product-feed-card-report-card
-            status="success"
-            :title="$t('productFeedCard.excludedProducts')"
-            :description="`
-              ${$t('productFeedCard.excludedProducts')} (${excludedProductsDetails.length})
-            `"
-            :details="excludedProductsDetails.join(', ')"
-            :link="$t('cta.editRules')"
-            link-to="#"
-          /> -->
               <product-feed-card-report-card
                 :status="attributeMappingStatus"
                 :title="$t('productFeedSettings.steps.attributeMapping')"
                 :description="attributeMapping.join(', ')"
                 :link="$t('cta.editProductAttributes')"
-                :link-to="{ type: 'routeStep', name: 'product-feed-settings', step: 3 }"
+                :link-to="{ name: 'product-feed-settings',
+                            step: 3, params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
               />
-            <!--  NOT IN BATCH 1 -->
-            <!-- <product-feed-card-report-mapped-categories-card
-            :has-mapping="hasMapping"
-            :categories-mapped="categoriesMapped"
-            :categories-total="categoriesTotal"
-          /> -->
             </b-row>
           </b-container>
         </div>
@@ -281,12 +224,10 @@
 
 <script>
 import {VueShowdown} from 'vue-showdown';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
 import Stepper from '../commons/stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
-//  eslint-disable-next-line
-// import ProductFeedCardReportMappedCategoriesCard from './product-feed-card-report-mapped-categories-card';
-// import ProductFeedCardReportProductsCard from './product-feed-card-report-products-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
@@ -295,14 +236,12 @@ export default {
   components: {
     Stepper,
     ProductFeedCardReportCard,
-    // NOT IN BATCH 1
     BadgeListRequirements,
     VueShowdown,
-    // ProductFeedCardReportMappedCategoriesCard,
-    // ProductFeedCardReportProductsCard,
   },
   data() {
     return {
+      ProductFeedSettingsPages,
       steps: [
         {
           title: this.$i18n.t('productFeedSettings.steps.targetCountry'),
@@ -326,23 +265,33 @@ export default {
     isEnabled: {
       type: Boolean,
       default: false,
+      required: true,
     },
     loading: {
       type: Boolean,
       default: true,
+      required: true,
     },
     categoriesTotal: {
       type: Number,
+      required: false,
+      default: 0,
     },
     categoriesMapped: {
       type: Number,
       default: 0,
+      required: false,
     },
     syncRules: {
       type: Array,
+      default: () => [],
+      required: false,
     },
     syncRulesDetails: {
       type: Array,
+      default: () => [],
+      required: false,
+
     },
   },
   computed: {
@@ -353,9 +302,14 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
     nextSyncTime() {
-      return this.$options.filters.timeConverterToDate(
-        this.getProductFeedStatus.nextJobAt,
-      );
+      return {
+        day: this.$options.filters.timeConverterToDate(
+          this.getProductFeedStatus.nextJobAt,
+        ),
+        time: this.$options.filters.timeConverterToHour(
+          this.getProductFeedStatus.nextJobAt,
+        ),
+      };
     },
     isUS() {
       return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].includes('US');
@@ -422,7 +376,8 @@ export default {
         time: this.$options.filters.timeConverterToHour(
           this.getProductFeedStatus?.lastUpdatedAt ?? this.getProductFeedStatus?.jobEndedAt,
         ),
-        totalProducts: this.getProductFeedSettings.totalProducts,
+        // ToDo: Make the API return this information
+        totalProducts: 0,
       };
     },
     title() {
@@ -516,17 +471,22 @@ export default {
     startConfiguration() {
       this.$router.push({
         name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.TARGET_COUNTRY,
+        },
       });
       this.$segment.track('[GGL] Start Product feed configuration', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
     },
-    goToProductFeedSettings(step) {
+    goToProductFeedSettings(params) {
       this.$router.push({
         name: 'product-feed-settings',
+        params: {
+          step: params,
+        },
       });
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', step);
     },
     refresh() {
       this.$router.go();
