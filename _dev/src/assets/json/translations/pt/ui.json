@@ -150,33 +150,28 @@
     "legend": "Para participar nas listagens gratuitas e anunciar no Google, deve reconhecer e cumprir os requisitos abaixo:",
     "legend2": "O URL do site da loja precisa ser verificado e reclamado antes que você possa carregar os dados dos produtos.  \n[Saiba como verificar e reivindicar o seu site](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Leia a versão completa dos requisitos da loja Google",
-    "shoppingAdsPolicies": {
-      "title": "Cumprir as políticas de anúncios de compras",
-      "description": "Não promova conteúdos proibidos ou utilize práticas proibidas para fazer publicidade. Respeite a política de conteúdo restrito e os padrões de qualidade para os seus anúncios e website.",
-      "link": "Leia as políticas de anúncios de compras"
-    },
     "accurateContactInformation": {
-      "title": "Forneça informações de contacto precisas",
+      "title": "I confim that my contact information are correct and valid",
       "description": "Os comerciantes precisam de ter, pelo menos, um método de contacto enumerado no seu website. Este pode ser qualquer tipo de método de contacto.",
       "link": "Descubra como adicionar informações de contato"
     },
     "secureCheckoutProcess": {
-      "title": "Fornecer checkout e recolha segura de dados pessoais",
+      "title": "I confim that I have a clear checkout & data collection",
       "description": "Não utilize indevidamente informações sobre o utilizador, nem as recolha para fins pouco claros ou sem medidas de segurança adequadas.",
       "link": "Saiba mais sobre a recolha e utilização irresponsável de dados"
     },
     "returnPolicy": {
-      "title": "Forneça uma política clara de devolução e reembolso",
+      "title": "I confirm that my return & refund policy are setup on my website",
       "description": "A política de devolução e reembolso necessita de ser clara (incluir requisitos e prazos) e fácil de aceder no seu site.",
       "link": "Saiba como estabelecer políticas de devolução"
     },
     "billingTerms": {
-      "title": "Forneça os termos e condições de faturação",
+      "title": "I confirm that my billing terms and conditions are clear and visible",
       "description": "O site necessita de divulgar clara e visivelmente as opções de pagamento e todas as despesas que o utilizador terá de suportar, antes e depois da compra.",
       "link": "Leia as diretrizes do Merchant Center"
     },
     "completeCheckoutProcess": {
-      "title": "Forneça um processo completo de checkout",
+      "title": "I confirm that I have a complete checkout process",
       "description": "Os utilizadores precisam de ser capazes de completar com sucesso o processo de compra.",
       "link": "Saiba mais sobre os requisitos de checkout"
     },
