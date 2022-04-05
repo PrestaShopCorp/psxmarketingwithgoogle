@@ -150,33 +150,28 @@
     "legend": "Aby korzystać z wyświetlania bezpłatnych informacji o produkcie i reklamować się w Google, musisz zapoznać się z poniższymi zasadami i przestrzegać ich:",
     "legend2": "Adres URL strony sklepu musi zostać zweryfikowany i zgłoszony, zanim będziesz mógł przesłać dane produktów.  \n[Dowiedz się, jak zweryfikować i zgłosić swoją stronę internetową](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Przeczytaj pełną wersję wymagań Google dotyczących sklepu",
-    "shoppingAdsPolicies": {
-      "title": "Przestrzegaj zasad dotyczących reklam produktowych",
-      "description": "Nie promuj zabronionych treści ani nie stosuj zabronionych praktyk dla celów promocyjnych. Przestrzegaj restrykcyjnej polityki dotyczącej standardów reklam i stron internetowych.",
-      "link": "Zapoznaj się z zasadami dotyczącymi reklam produktowych"
-    },
     "accurateContactInformation": {
-      "title": "Podaj dokładne dane kontaktowe",
+      "title": "I confim that my contact information are correct and valid",
       "description": "Na swojej stronie internetowej Sprzedawcy powinni wskazać co najmniej jedną formę kontaktu. Może to być jakakolwiek forma kontaktu.",
       "link": "Odkryj, jak dodać dane kontaktowe"
     },
     "secureCheckoutProcess": {
-      "title": "Zapewnij bezpieczną metodę finalizacji zakupów i gromadzenia danych osobowych",
+      "title": "I confim that I have a clear checkout & data collection",
       "description": "Nie wykorzystuj i nie gromadź informacji o użytkownikach w niejasnych celach i bez zachowania stosownych środków bezpieczeństwa.",
       "link": "Dowiedz się więcej o nieodpowiedzialnym gromadzeniu i wykorzystywaniu danych"
     },
     "returnPolicy": {
-      "title": "Zapewnij jasne zasady dotyczące zwrotów",
+      "title": "I confirm that my return & refund policy are setup on my website",
       "description": "Polityka zwrotów musi być jasna (powinna uwzględniać wymagania i ramy czasowe) i łatwo dostępna na Twojej stronie internetowej.",
       "link": "Dowiedz się, jak skonfigurować politykę zwrotów"
     },
     "billingTerms": {
-      "title": "Zapewnij warunki i zasady płatności",
+      "title": "I confirm that my billing terms and conditions are clear and visible",
       "description": "Strona internetowa musi jasno i wyraźnie przedstawiać opcje płatności oraz wszystkie koszty, które użytkownik poniesie, przed i po zakupie.",
       "link": "Przeczytaj wytyczne Merchant Center"
     },
     "completeCheckoutProcess": {
-      "title": "Zapewnij pełny proces płatności",
+      "title": "I confirm that I have a complete checkout process",
       "description": "Użytkownicy powinni mieć możliwość pomyślnego sfinalizowania zakupów.",
       "link": "Dowiedz się więcej o wymaganiach dotyczących finalizacji zakupów"
     },

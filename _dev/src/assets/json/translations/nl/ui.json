@@ -150,33 +150,28 @@
     "legend": "Om deel te nemen aan gratis vermeldingen en te adverteren op Google moet u de onderstaande vereisten erkennen en naleven:",
     "legend2": "De URL van de website van de winkel moet worden geverifieerd en geclaimd voordat u productgegevens kunt uploaden.  \n[Leer hoe u uw website kunt verifiëren en claimen](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Lees de volledige versie van Google store vereisten",
-    "shoppingAdsPolicies": {
-      "title": "Voldoen aan het beleid voor winkeladvertenties",
-      "description": "Promoot geen verboden inhoud en maak geen gebruik van verboden praktijken om reclame te maken. Respecteer het beperkte inhoudsbeleid en de kwaliteitsnormen voor uw advertenties en website.",
-      "link": "Lees het beleid van Shopping-advertenties"
-    },
     "accurateContactInformation": {
-      "title": "Verstrek nauwkeurige contactinformatie",
+      "title": "I confim that my contact information are correct and valid",
       "description": "Handelaren moeten ten minste één contactmethode op hun website hebben vermeld, dit kan om het even welk type contactmethode zijn.",
       "link": "Ontdek hoe u contactinformatie kunt toevoegen"
     },
     "secureCheckoutProcess": {
-      "title": "Zorgen voor veilig afrekenen en verzamelen van persoonsgegevens",
+      "title": "I confim that I have a clear checkout & data collection",
       "description": "Informatie over de gebruiker niet misbruiken, noch verzamelen voor onduidelijke doeleinden of zonder passende veiligheidsmaatregelen.",
       "link": "Meer informatie over het onverantwoordelijk verzamelen en gebruiken van gegevens"
     },
     "returnPolicy": {
-      "title": "Een duidelijk retour- en terugbetalingsbeleid",
+      "title": "I confirm that my return & refund policy are setup on my website",
       "description": "Het retour- en terugbetalingsbeleid moet duidelijk zijn (inclusief vereisten en tijdschema's) en gemakkelijk toegankelijk op uw website.",
       "link": "Leer hoe u een retourbeleid opzet"
     },
     "billingTerms": {
-      "title": "Factureringsvoorwaarden verstrekken",
+      "title": "I confirm that my billing terms and conditions are clear and visible",
       "description": "De website moet duidelijk en zichtbaar de betalingsmogelijkheden vermelden en alle kosten die de gebruiker zal dragen, zowel voor als na de aankoop.",
       "link": "Lees de richtlijnen van het Merchant Center"
     },
     "completeCheckoutProcess": {
-      "title": "Zorg voor een volledig afrekenproces",
+      "title": "I confirm that I have a complete checkout process",
       "description": "Gebruikers moeten het aankoopproces succesvol kunnen afronden.",
       "link": "Meer informatie over kassavereisten"
     },

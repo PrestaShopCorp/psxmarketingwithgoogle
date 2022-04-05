@@ -150,33 +150,28 @@
     "legend": "Um an den kostenlosen Einträgen teilzunehmen und auf Google zu werben, müssen Sie die folgenden Anforderungen anerkennen und erfüllen:",
     "legend2": "Die URL der Shop-Website muss überprüft und angegeben werden, bevor Sie Produktdaten hochladen können.  \n[Erfahren Sie, wie Sie Ihre Website verifizieren und beanspruchen können](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Vollständige Version der Google Store-Anforderungen lesen",
-    "shoppingAdsPolicies": {
-      "title": "Befolgen Sie die Richtlinien für Shopping-Anzeigen",
-      "description": "Bewerben Sie keine verbotenen Inhalte oder verwenden Sie keine verbotenen Praktiken, um zu werben. Beachten Sie die eingeschränkten Inhaltsrichtlinien und Qualitätsstandards für Ihre Anzeigen und Ihre Website.",
-      "link": "Richtlinien für Shopping-Anzeigen lesen"
-    },
     "accurateContactInformation": {
-      "title": "Geben Sie genaue Kontaktinformationen an",
+      "title": "I confim that my contact information are correct and valid",
       "description": "Die Händler müssen auf ihrer Website mindestens eine Kontaktmethode angeben, wobei es sich um jede Art von Kontaktmethode handeln kann.",
       "link": "Entdecken Sie, wie Sie Kontaktinformationen hinzufügen können"
     },
     "secureCheckoutProcess": {
-      "title": "Sicheres Bezahlen und Sammeln von persönlichen Daten",
+      "title": "I confim that I have a clear checkout & data collection",
       "description": "Sie dürfen die Informationen über die Nutzer nicht missbrauchen oder zu unklaren Zwecken oder ohne angemessene Sicherheitsmaßnahmen sammeln.",
       "link": "Erfahren Sie mehr über die unverantwortliche Erhebung und Nutzung von Daten"
     },
     "returnPolicy": {
-      "title": "Klare Rückgabe- und Erstattungsbedingungen",
+      "title": "I confirm that my return & refund policy are setup on my website",
       "description": "Die Rückgabe- und Erstattungsrichtlinien müssen klar sein (einschließlich Anforderungen und Fristen) und auf Ihrer Website leicht zugänglich sein.",
       "link": "Erfahren Sie, wie Sie Rückgaberichtlinien einrichten können"
     },
     "billingTerms": {
-      "title": "Bereitstellung von Abrechnungsbestimmungen und -bedingungen",
+      "title": "I confirm that my billing terms and conditions are clear and visible",
       "description": "Die Website muss klar und deutlich auf die Zahlungsmöglichkeiten und alle Kosten hinweisen, die dem Nutzer vor und nach dem Kauf entstehen.",
       "link": "Richtlinien für das Merchant Center lesen"
     },
     "completeCheckoutProcess": {
-      "title": "Vollständigen Checkout-Prozess bereitstellen",
+      "title": "I confirm that I have a complete checkout process",
       "description": "Die Nutzer müssen in der Lage sein, den Kaufvorgang erfolgreich abzuschließen.",
       "link": "Erfahren Sie mehr über die Anforderungen an die Kasse"
     },
