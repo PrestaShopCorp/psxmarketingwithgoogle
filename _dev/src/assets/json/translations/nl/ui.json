@@ -733,9 +733,15 @@
     }
   },
   "notConfiguredState": {
-    "title": "Nog niets geconfigureerd !",
-    "text": "Configureer uw GMC om te beginnen met het maken van campagnes met Google",
-    "cta": "Ga naar de configuratiepagina"
+    "title": "Finish your configuration",
+    "titleOneLastStep": "One last step",
+    "textGoogleMissing": "Continue your configuration to start sending product to Google and organizing campaigns.",
+    "textOneMoreThing": "One more thing and you are all set to send your product to Google.",
+    "textBoostYourSales": "If you wanna boost your sales connect and organize campaigns with Google Ads.",
+    "ctaClassic": "Go to configuration page",
+    "ctaLinkMCA": "Link your Google Merchant Center",
+    "ctaExportFeed": "Sync your product with Google",
+    "ctaLinkGoogleAds": "Connect your Google Ads"
   },
   "configuredState": {
     "title": "Congratulations, you're all set !",
