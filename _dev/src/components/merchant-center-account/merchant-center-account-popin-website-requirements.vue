@@ -7,7 +7,7 @@
     ref="modal"
     footer-class="flex-sm-nowrap"
     footer-border-variant="0"
-    size="xl"
+    size="lg"
   >
     <Stepper
       v-if="newMca"
