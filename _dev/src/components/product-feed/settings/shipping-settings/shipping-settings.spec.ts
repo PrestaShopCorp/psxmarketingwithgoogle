@@ -28,6 +28,7 @@ describe('shipping-settings.vue', () => {
   });
 
   it('is visible', () => {
+    store.modules.productFeed.state.settings.targetCountries = ['XXX'];
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
