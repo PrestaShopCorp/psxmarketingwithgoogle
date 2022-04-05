@@ -1,7 +1,6 @@
 <template>
   <div>
     <b-skeleton-wrapper
-      v-if="$route.name === 'campaign'"
       :loading="loadingPage"
       class="mb-3"
     >
@@ -12,32 +11,32 @@
           <b-skeleton width="70%" />
         </b-card>
       </template>
-      <campaign-card
-        @openPopin="onOpenPopinActivateTracking"
+      <smart-shopping-campaign-table-list
+        :loading="loadingCampaignList"
+        @loader="changeLoadingState($event)"
         :in-need-of-configuration="inNeedOfConfiguration"
       />
     </b-skeleton-wrapper>
     <SSCPopinActivateTracking
-      ref="SSCPopinActivateTrackingCampaignPage"
-      modal-id="SSCPopinActivateTrackingCampaignPage"
+      ref="SSCPopinActivateTrackingList"
+      modal-id="SSCPopinActivateTrackingList"
     />
-    <!-- Need this new router-view since we now have nested children routes -->
-    <router-view />
   </div>
 </template>
 
 <script>
 import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
-import CampaignCard from '../components/smart-shopping-campaigns/campaign-card.vue';
+import SmartShoppingCampaignTableList from '../components/smart-shopping-campaign/smart-shopping-campaign-table-list.vue';
 
 export default {
   components: {
-    CampaignCard,
     SSCPopinActivateTracking,
+    SmartShoppingCampaignTableList,
   },
 
   data() {
     return {
+      loadingCampaignList: true,
       loadingPage: true,
     };
   },
@@ -68,38 +67,26 @@ export default {
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
-        this.$refs.SSCPopinActivateTrackingCampaignPage.$refs.modal.id,
+        this.$refs.SSCPopinActivateTrackingList.$refs.modal.id,
       );
+    },
+    changeLoadingState(event) {
+      this.loadingCampaignList = event;
     },
   },
   async created() {
     if (this.inNeedOfConfiguration) {
       await this.$store.dispatch('accounts/REQUEST_ACCOUNTS_DETAILS');
     }
-    this.getDatas()
-      .then(() => {
-        this.loadingPage = false;
-        if (this.$route.name === 'campaign' && this.SSCExist) {
-          this.$router.push({
-            name: 'campaign-list',
-          });
-        }
-      }).finally(() => {
-        this.loadingPage = false;
-      });
-  },
-  watch: {
-    $route: {
-      handler(route) {
-        if (route.name === 'campaign' && this.SSCExist) {
-          this.$router.push({
-            name: 'campaign-list',
-          });
-        }
-      },
-      deep: true,
-      immediate: true,
-    },
+    // Not dispatch if there already are campaigns in the store
+    if (!this.SSCExist) {
+      this.getDatas()
+        .then(() => {
+          this.loadingPage = false;
+        });
+    } else {
+      this.loadingPage = false;
+    }
   },
 };
 </script>

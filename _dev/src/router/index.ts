@@ -2,6 +2,8 @@ import Vue from 'vue';
 import VueRouter, {RouteConfig} from 'vue-router';
 import Store from '../store';
 import CampaignPage from '../views/campaign-page.vue';
+import CampaignCreation from '../views/campaign-creation.vue';
+import CampaignList from '../views/campaign-list.vue';
 import LandingPage from '../views/landing-page.vue';
 import Debug from '../views/debug.vue';
 import Help from '../views/help.vue';
@@ -29,14 +31,6 @@ const landingExistsInLocalstorage = (to, from, next) => {
     return;
   }
   next({name: 'landing-page'});
-};
-
-const campaignsAlreadyExist = (to, from, next) => {
-  if (!Store.getters['smartShoppingCampaigns/GET_ALL_SSC'].length) {
-    next();
-    return;
-  }
-  next({name: 'campaign-list'});
 };
 
 const routes: Array<RouteConfig> = [
@@ -80,22 +74,24 @@ const routes: Array<RouteConfig> = [
     path: '/campaign',
     name: 'campaign',
     component: CampaignPage,
-    beforeEnter: campaignsAlreadyExist,
-  },
-  {
-    path: '/campaign/list',
-    name: 'campaign-list',
-    component: CampaignPage,
-  },
-  {
-    path: '/campaign-creation',
-    name: 'campaign-creation',
-    component: CampaignPage,
-  },
-  {
-    path: '/campaign-edit/:id',
-    name: 'campaign-edition',
-    component: CampaignPage,
+    // beforeEnter: campaignsAlreadyExist,
+    children: [
+      {
+        path: 'list',
+        name: 'campaign-list',
+        component: CampaignList,
+      },
+      {
+        path: 'creation',
+        name: 'campaign-creation',
+        component: CampaignCreation,
+      },
+      {
+        path: 'edit/:id',
+        name: 'campaign-edition',
+        component: CampaignCreation,
+      },
+    ],
   },
   {
     path: '/reporting',
