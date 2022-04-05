@@ -59,10 +59,10 @@ export default {
   },
   methods: {
     hideLandingPage(where) {
+      localStorage.setItem('landingHasBeenSeen', true);
       this.$router.push({
         name: 'configuration',
       });
-      localStorage.setItem('landingHasBeenSeen', true);
       this.$segment.track(`[GGL] Start Configuration - ${where} clicked`, {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,

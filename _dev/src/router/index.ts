@@ -26,14 +26,15 @@ const initialPath = (to, from, next) => {
 const landingExistsInLocalstorage = (to, from, next) => {
   if (getDataFromLocalStorage('landingHasBeenSeen')) {
     next();
-  } else {
-    next({name: 'landing-page'});
+    return;
   }
+  next({name: 'landing-page'});
 };
 
 const campaignsAlreadyExist = (to, from, next) => {
   if (!Store.getters['smartShoppingCampaigns/GET_ALL_SSC'].length) {
     next();
+    return;
   }
   next({name: 'campaign-list'});
 };
