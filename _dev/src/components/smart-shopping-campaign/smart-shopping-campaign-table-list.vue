@@ -1,6 +1,9 @@
 <template>
   <div>
-    <BannerCampaigns v-if="!campaignList.length && !inNeedOfConfiguration" />
+    <BannerCampaigns
+      v-if="!campaignList.length && !inNeedOfConfiguration"
+      @openPopinRemarketingTag="remarketingTagPopin"
+    />
     <h3 class="order-2 order-md-1 ps_gs-fz-20 font-weight-600">
       {{ $t('smartShoppingCampaignList.tableTitle') }}
     </h3>
@@ -145,6 +148,10 @@
         </b-tbody>
       </b-table-simple>
     </div>
+    <SSCPopinActivateTracking
+      modal-id="SSCPopinActivateTrackingSSCList"
+      ref="SSCPopinActivateTrackingSSCList"
+    />
   </div>
 </template>
 
@@ -156,6 +163,7 @@ import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import googleUrl from '../../assets/json/googleUrl.json';
 import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
+import SSCPopinActivateTracking from '@/components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
@@ -164,6 +172,7 @@ export default {
     ReportingTableHeader,
     NotConfiguredCard,
     BannerCampaigns,
+    SSCPopinActivateTracking,
   },
   data() {
     return {
@@ -293,6 +302,11 @@ export default {
       ) {
         this.fetchCampaigns(false);
       }
+    },
+    remarketingTagPopin() {
+      this.$bvModal.show(
+        this.$refs.SSCPopinActivateTrackingSSCList.$refs.modal.id,
+      );
     },
   },
   mounted() {

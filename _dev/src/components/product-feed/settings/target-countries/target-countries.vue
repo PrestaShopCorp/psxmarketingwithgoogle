@@ -12,7 +12,7 @@
         :default-value="countries"
         :dropdown-options="activeCountriesWithCurrency"
         :need-filter="true"
-        :is-multiple="true"
+        :not-full-width="true"
       />
     </b-form-group>
     <b-form-group

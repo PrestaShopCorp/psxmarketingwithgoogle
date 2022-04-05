@@ -68,7 +68,6 @@
         <SelectCountry
           @countrySelected="saveCountrySelected"
           :default-value="defaultCountry()"
-          :is-multiple="false"
           :need-filter="true"
           :dropdown-options="activeCountriesWithCurrency"
         />
