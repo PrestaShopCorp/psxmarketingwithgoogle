@@ -150,33 +150,28 @@
     "legend": "To participate in free listings and advertise on Google you must acknowledge and comply with below requirements:",
     "legend2": "Store's website URL needs to be verified and claimed before you can upload products data.  \n[Learn how to verify and claim your website](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
     "footer": "Read full version of Google store requirements",
-    "shoppingAdsPolicies": {
-      "title": "Comply with Shopping ads policies",
-      "description": "Don’t promote prohibited content or use prohibited practice to advertise. Respect restricted content policy and quality standards for your ads and website.",
-      "link": "Read Shopping ads policies"
-    },
     "accurateContactInformation": {
-      "title": "Provide accurate contact information",
+      "title": "I confim that my contact information are correct and valid",
       "description": "Merchants need to have at least one contact method listed on their website, this can be any type of contact method.",
       "link": "Discover how to add contact information"
     },
     "secureCheckoutProcess": {
-      "title": "Provide secure checkout & collection of personal data",
+      "title": "I confim that I have a clear checkout & data collection",
       "description": "Do not misuse information about user, nor collect it for unclear purposes or without appropriate security measures.",
       "link": "Learn about irresponsible data collection & use"
     },
     "returnPolicy": {
-      "title": "Provide clear return and refund policy",
+      "title": "I confirm that my return & refund policy are setup on my website",
       "description": "Return and refund policy needs to be clear (include requirement and timelines) and easy to access on your website.",
       "link": "Learn how to set up return policies"
     },
     "billingTerms": {
-      "title": "Provide billing terms and conditions",
+      "title": "I confirm that my billing terms and conditions are clear and visible",
       "description": "Website needs to clearly and visibly disclose payment options and all expenses that user will bare, before and after purchase.",
       "link": "Read Merchant Center guidelines"
     },
     "completeCheckoutProcess": {
-      "title": "Provide complete checkout process",
+      "title": "I confirm that I have a complete checkout process",
       "description": "Users need to be able to successully complete purchase process.",
       "link": "Learn about checkout requirements"
     },
