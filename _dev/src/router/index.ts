@@ -74,7 +74,6 @@ const routes: Array<RouteConfig> = [
     path: '/campaign',
     name: 'campaign',
     component: CampaignPage,
-    // beforeEnter: campaignsAlreadyExist,
     children: [
       {
         path: 'list',
