@@ -13,7 +13,7 @@ export type FieldsContent = {
 }
 
 export type RecommendedFieldType = {
-  name: string;
+  name: string[];
   type: string;
 }
 

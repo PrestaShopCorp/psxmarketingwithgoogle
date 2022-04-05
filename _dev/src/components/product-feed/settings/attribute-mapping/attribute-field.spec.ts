@@ -23,7 +23,7 @@ describe('attribute-field.vue', () => {
         tooltip: true,
         recommended: [
           {
-            name: 'description',
+            name: ['description'],
             type: 'product',
           },
         ],
@@ -61,7 +61,6 @@ describe('attribute-field.vue', () => {
       ...wrapperOptions,
       localVue,
     });
-
     expect(wrapper.find('[data-test-id="attribute-is-mapped"]').text()).toBe('Description');
   });
 
@@ -75,13 +74,13 @@ describe('attribute-field.vue', () => {
           tooltip: true,
           recommended: [
             {
-              name: 'description',
+              name: ['description'],
               type: 'product',
             },
           ],
           mapped: [
             {
-              name: 'shortDescription',
+              name: ['shortDescription'],
               type: 'product',
             },
           ],
@@ -104,17 +103,17 @@ describe('attribute-field.vue', () => {
           tooltip: true,
           recommended: [
             {
-              name: 'description',
+              name: ['description'],
               type: 'product',
             },
           ],
           mapped: [
             {
-              name: 'description',
+              name: ['description'],
               type: 'product',
             },
             {
-              name: 'ean13',
+              name: ['ean13'],
               type: 'product',
             },
           ],

@@ -5,6 +5,7 @@
  */
 
 import {
+  AttributeToMap,
   formatMappingToApi,
   filterMapping,
   AttributeResponseFromAPI,
@@ -12,7 +13,7 @@ import {
 
 describe('AttributeMapping - checking if formatting is ok', () => {
   it('should return an array with description and gtin not empty', () => {
-    const mapping = [
+    const mapping: AttributeToMap[] = [
       {
         "category":"commons",
         "fields":[
@@ -22,13 +23,13 @@ describe('AttributeMapping - checking if formatting is ok', () => {
             "tooltip":true,
             "recommended":[
               {
-                "name":"description",
+                "name":["description"],
                 "type":"product"
               }
             ],
             "mapped":[
               {
-                "name":"description",
+                "name":["description"],
                 "type":"product"
               }
             ],
@@ -43,7 +44,7 @@ describe('AttributeMapping - checking if formatting is ok', () => {
             ],
             "mapped":[
               {
-                "name":"mpn",
+                "name":["mpn"],
                 "type":"product"
               }
             ],
@@ -55,13 +56,13 @@ describe('AttributeMapping - checking if formatting is ok', () => {
             "tooltip":true,
             "recommended":[
               {
-                "name":"mpn",
+                "name":["mpn"],
                 "type":"product"
               }
             ],
             "mapped":[
               {
-                "name":"mpn",
+                "name":["mpn"],
                 "type":"product"
               }
             ],
@@ -73,13 +74,13 @@ describe('AttributeMapping - checking if formatting is ok', () => {
             "tooltip":true,
             "recommended":[
               {
-                "name":"manufacturer",
+                "name":["manufacturer"],
                 "type":"product"
               }
             ],
             "mapped":[
               {
-                "name":"manufacturer",
+                "name":["manufacturer"],
                 "type":"product"
               }
             ],
@@ -108,7 +109,7 @@ describe('AttributeMapping - checking if formatting is ok', () => {
             "tooltip":true,
             "recommended":[
               {
-                "name":"color",
+                "name":["color"],
                 "type":"custom"
               }
             ],
@@ -123,7 +124,7 @@ describe('AttributeMapping - checking if formatting is ok', () => {
             "tooltip":true,
             "recommended":[
               {
-                "name":"gender",
+                "name":["gender"],
                 "type":"custom"
               }
             ],
@@ -138,13 +139,13 @@ describe('AttributeMapping - checking if formatting is ok', () => {
             "tooltip":true,
             "recommended":[
               {
-                "name":"size",
+                "name":["size"],
                 "type":"custom"
               }
             ],
             "mapped":[
               {
-                "name":"size",
+                "name":["size"],
                 "type":"custom"
               }
             ],
@@ -159,31 +160,31 @@ describe('AttributeMapping - checking if formatting is ok', () => {
         "gender": [],
         "brand": [
             {
-                "id": "manufacturer",
+                "id": ["manufacturer"],
                 "type": "product"
             }
         ],
         "size": [
             {
-                "id": "size",
+                "id": ["size"],
                 "type": "custom"
             }
         ],
         "mpn": [
             {
-                "id": "mpn",
+                "id": ["mpn"],
                 "type": "product"
             }
         ],
         "description": [
             {
                 "type": "product",
-                "id": "description"
+                "id": ["description"]
             }
         ],
         "gtin": [
             {
-                "id": "mpn",
+                "id": ["mpn"],
                 "type": "product"
             }
         ],
