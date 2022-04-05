@@ -150,33 +150,28 @@
     "legend": "Pour avoir accès aux fiches gratuites et faire de la publicité sur Google, vous devez accepter et respecter les exigences ci-dessous :",
     "legend2": "L'URL du site web du magasin doit être vérifiée et revendiquée avant de pouvoir télécharger des données de produits.  \n[Apprenez comment vérifier et revendiquer votre site web](https://support.google.com/merchants/answer/176793?hl=fr&ref_topic=3163841)[:target=\"_blank\"].",
     "footer": "Lire la version complète des exigences de la boutique Google",
-    "shoppingAdsPolicies": {
-      "title": "Respecter les politiques relatives aux annonces de shopping",
-      "description": "Ne faites pas la promotion de contenus interdits ou n'utilisez pas des pratiques interdites pour faire de la publicité. Respectez la politique de contenu et les normes de qualité pour vos annonces et votre site Web.",
-      "link": "Lire les politiques des annonces Shopping"
-    },
     "accurateContactInformation": {
-      "title": "Fournir des informations de contact précises",
+      "title": "I confim that my contact information are correct and valid",
       "description": "Les marchands doivent avoir au moins une méthode de contact répertoriée sur leur site Web, ceci peut être n'importe quel type de méthode de contact.",
       "link": "Découvrez comment ajouter des informations de contact"
     },
     "secureCheckoutProcess": {
-      "title": "Assurer la sécurité du paiement et de la collecte des données personnelles",
+      "title": "I confim that I have a clear checkout & data collection",
       "description": "N'utilisez pas à mauvais escient des informations sur l'utilisateur, ne les collectez pas à des fins floues ou sans des mesures de sécurité appropriées.",
       "link": "Apprenez-en plus sur la collecte et l'utilisation irresponsables des données"
     },
     "returnPolicy": {
-      "title": "Ayez une politique claire de retour et de remboursement",
+      "title": "I confirm that my return & refund policy are setup on my website",
       "description": "La politique de retour et de remboursement doit être claire (y compris les exigences et les délais) et facile d'accès sur votre site web.",
       "link": "Apprenez à mettre en place des politiques de retour"
     },
     "billingTerms": {
-      "title": "Fournir les conditions de facturation",
+      "title": "I confirm that my billing terms and conditions are clear and visible",
       "description": "Le site Web doit afficher clairement toutes les options de paiement et toutes les dépenses que l'utilisateur devra engager, avant et après l'achat.",
       "link": "Lire les directives du Merchant Center"
     },
     "completeCheckoutProcess": {
-      "title": "Proposez un processus de paiement complet",
+      "title": "I confirm that I have a complete checkout process",
       "description": "Les utilisateurs doivent être en mesure de mener à bien le processus d'achat.",
       "link": "En savoir plus sur les conditions de paiement"
     },
