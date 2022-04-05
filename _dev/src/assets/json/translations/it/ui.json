@@ -150,33 +150,28 @@
     "legend": "Per partecipare alle inserzioni gratuite e fare pubblicità su Google devi confermare e rispettare i seguenti requisiti:",
     "legend2": "L'URL del sito web del negozio deve essere verificato e rivendicato prima di poter caricare i dati dei prodotti.  \n[Impara come verificare e rivendicare il tuo sito web](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Leggi la versione completa dei requisiti per il negozio Google",
-    "shoppingAdsPolicies": {
-      "title": "Rispetta le politiche degli annunci di Shopping",
-      "description": "Non promuovere contenuti proibiti o usare pratiche proibite per fare pubblicità. Rispetta la politica dei contenuti limitati e gli standard di qualità per i tuoi annunci e il tuo sito web.",
-      "link": "Leggi le politiche degli annunci di Shopping"
-    },
     "accurateContactInformation": {
-      "title": "Fornisci informazioni di contatto accurate",
+      "title": "I confim that my contact information are correct and valid",
       "description": "I commercianti devono avere almeno un metodo di contatto elencato sul loro sito web, questo può essere qualsiasi tipo di metodo di contatto.",
       "link": "Scopri come aggiungere informazioni di contatto"
     },
     "secureCheckoutProcess": {
-      "title": "Fornisci un checkout e una raccolta di dati personali sicuri",
+      "title": "I confim that I have a clear checkout & data collection",
       "description": "Non abusare delle informazioni sull'utente, né raccoglierle per scopi poco chiari o senza adeguate misure di sicurezza.",
       "link": "Impara a riconoscere la raccolta e l'uso irresponsabile di dati"
     },
     "returnPolicy": {
-      "title": "Fornisci una chiara politica di resi e rimborso",
+      "title": "I confirm that my return & refund policy are setup on my website",
       "description": "La politica di resi e rimborso deve essere chiara (includere i requisiti e le scadenze) e di facile accesso sul tuo sito web.",
       "link": "Impara come impostare le politiche di reso"
     },
     "billingTerms": {
-      "title": "Fornisci termini e condizioni di fatturazione",
+      "title": "I confirm that my billing terms and conditions are clear and visible",
       "description": "Il sito web deve divulgare in modo chiaro e visibile le opzioni di pagamento e tutte le spese che l'utente dovrà sostenere, prima e dopo l'acquisto.",
       "link": "Leggi le linee guida del Merchant Center"
     },
     "completeCheckoutProcess": {
-      "title": "Fornisci un processo di checkout completo",
+      "title": "I confirm that I have a complete checkout process",
       "description": "Gli utenti devono essere in grado di completare con successo il processo di acquisto.",
       "link": "Scopri i requisiti per il checkout"
     },
