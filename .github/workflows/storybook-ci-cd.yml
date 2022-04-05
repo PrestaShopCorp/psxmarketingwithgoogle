@@ -7,6 +7,11 @@ on:
     branches:
       - master
 
+env:
+  WORKFLOW: googleshopping-storybook.yml
+  NODE_VERSION: 14
+  PATH: _dev
+
 jobs:
   alpha:
     name: Alpha - Storybook
@@ -25,7 +30,7 @@ jobs:
           repo: PrestaShopCorp/services-deployment
           token: ${{ secrets.ACCESS_TOKEN }}
           ref: 'refs/heads/main'
-          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "14", "path": "_dev", "issue": "${{ github.event.number }}" }'
+          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "path": "${{ env.PATH }}", "issue": "${{ github.event.number }}" }'
 
   stable:
     name: Stable - Storybook
@@ -44,4 +49,4 @@ jobs:
           repo: PrestaShopCorp/services-deployment
           token: ${{ secrets.ACCESS_TOKEN }}
           ref: 'refs/heads/main'
-          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "14", "path": "_dev", "environment": "stable" }'
+          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "path": "${{ env.PATH }}", "environment": "stable" }'
