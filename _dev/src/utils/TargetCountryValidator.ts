@@ -1,6 +1,6 @@
 import availableCountries from '../assets/json/countries.json';
 
-export function filterCountriesCompatible(countries: string | string[]): string[] | [] {
+export function filterCountriesCompatible(countries: string | string[]): string[] {
   if (typeof countries === 'string') {
     const country = availableCountries.find(
       (ctr) => ctr.code === countries,
