@@ -40,14 +40,27 @@
         </div>
       </div>
     </div>
+    <div class="ps_gs-onboardingcard__not-configured">
+      <NotConfiguredCard v-if="inNeedOfConfiguration" />
+    </div>
   </b-card>
 </template>
 
 <script>
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
 
 export default {
   name: 'Campaign',
+  components: {
+    NotConfiguredCard,
+  },
+  props: {
+    inNeedOfConfiguration: {
+      type: Boolean,
+      required: true,
+    },
+  },
   computed: {
     trackingStatus() {
       return this.$store.state.smartShoppingCampaigns.tracking;
