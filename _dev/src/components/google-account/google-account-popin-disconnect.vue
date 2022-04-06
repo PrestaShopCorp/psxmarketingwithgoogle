@@ -21,6 +21,7 @@
 
 <script>
 import PsModal from '../commons/ps-modal';
+import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default {
   name: 'GoogleAccountPopinDisconnect',
@@ -40,6 +41,7 @@ export default {
         () => {
           this.processing = false;
           this.$bvModal.hide('GoogleAccountPopinDisconnect');
+          deleteProductFeedDataFromLocalStorage();
         },
       );
     },
