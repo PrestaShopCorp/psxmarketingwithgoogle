@@ -154,28 +154,29 @@
         {{ $t("googleAdsAccountNew.terms.title") }}
       </h6>
 
-        <b-form-checkbox
-          data-test-id="buttonCheckbox"
-          class="ps_gs-checkbox mt-2"
-          v-model="acceptsGoogleTerms"
-        >
-          <VueShowdown
-            :markdown="
-              $t('googleAdsAccountNew.terms.label', [
-                $options.googleUrl.googleAdsTermsAndCondition,
-              ])
-            "
-            :extensions="['extended-link']"
-          />
-        </b-form-checkbox>
+      <b-form-checkbox
+        data-test-id="buttonCheckbox"
+        class="ps_gs-checkbox mt-2"
+        v-model="acceptsGoogleTerms"
+      >
+        <VueShowdown
+          :markdown="
+            $t('googleAdsAccountNew.terms.label', [
+              $options.googleUrl.googleAdsTermsAndCondition,
+            ])
+          "
+          :extensions="['extended-link']"
+        />
+      </b-form-checkbox>
     </section>
     <template
       slot="modal-footer"
     >
-      <section class="mt-2">
+      <section class="mt-2 ">
         <b-button
           variant="outline-secondary"
           @click="cancel"
+          class="mr-2"
         >
           {{ $t("cta.cancel") }}
         </b-button>
@@ -231,6 +232,7 @@ export default {
   },
   methods: {
     ok() {
+      this.isCreating = true;
       this.$segment.track('[GGL] Create GAds - New Google ads account created', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
