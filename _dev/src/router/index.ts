@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter, {RouteConfig} from 'vue-router';
 import Store from '../store';
 import CampaignPage from '../views/campaign-page.vue';
-import CampaignCreation from '../views/campaign-creation.vue';
+import CampaignForm from '../views/campaign-form.vue';
 import CampaignList from '../views/campaign-list.vue';
 import LandingPage from '../views/landing-page.vue';
 import Debug from '../views/debug.vue';
@@ -83,12 +83,12 @@ const routes: Array<RouteConfig> = [
       {
         path: 'creation',
         name: 'campaign-creation',
-        component: CampaignCreation,
+        component: CampaignForm,
       },
       {
         path: 'edit/:id',
         name: 'campaign-edition',
-        component: CampaignCreation,
+        component: CampaignForm,
       },
     ],
   },
