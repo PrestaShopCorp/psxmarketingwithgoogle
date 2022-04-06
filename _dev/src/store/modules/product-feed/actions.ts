@@ -22,6 +22,7 @@ import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
 import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
+import {deleteDataFromLocalStorage} from '@/utils/LocalStorage';
 import {
   Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
   ShopShippingInterface, validateDeliveryDetail,
@@ -174,10 +175,7 @@ export default {
       const json = await response.json();
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
-      localStorage.removeItem('productFeed-deliveryDetails');
-      localStorage.removeItem('productFeed-attributeMapping');
-      localStorage.removeItem('productFeed-autoImport');
-      localStorage.removeItem('productFeed-targetCountries');
+      deleteDataFromLocalStorage();
     } catch (error) {
       console.error(error);
     }
