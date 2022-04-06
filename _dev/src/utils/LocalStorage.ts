@@ -15,7 +15,7 @@ export function getDataFromLocalStorage(key: string) {
   }
 }
 
-export function deleteDataFromLocalStorage() {
+export function deleteProductFeedDataFromLocalStorage() {
   localStorage.removeItem('productFeed-deliveryDetails');
   localStorage.removeItem('productFeed-attributeMapping');
   localStorage.removeItem('productFeed-targetCountries');

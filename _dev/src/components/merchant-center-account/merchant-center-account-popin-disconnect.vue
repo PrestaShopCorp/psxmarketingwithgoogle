@@ -23,7 +23,7 @@
 
 <script>
 import PsModal from '../commons/ps-modal';
-import {deleteDataFromLocalStorage} from '@/utils/LocalStorage';
+import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default {
   name: 'MerchantCenterAccountPopinDisconnect',
@@ -43,7 +43,7 @@ export default {
         () => {
           this.processing = false;
           this.$bvModal.hide('MerchantCenterAccountPopinDisconnect');
-          deleteDataFromLocalStorage();
+          deleteProductFeedDataFromLocalStorage();
         },
       );
     },
