@@ -11,9 +11,12 @@
       class="card border-0"
     >
       <b-card-body align="center">
-        <h3 class="font-weight-600 text-align-center">
+        <h2
+          class="font-weight-600 text-align-center"
+          style="margin-top: -65px"
+        >
           {{ $t("configuredState.title") }}
-        </h3>
+        </h2>
 
         <b-img
           :src="require('@/assets/images/configured.svg')"
