@@ -27,6 +27,7 @@ import {
   Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
   ShopShippingInterface, validateDeliveryDetail,
 } from '../../../providers/shipping-settings-provider';
+import {filterMapping} from '../../../utils/AttributeMapping';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
@@ -101,10 +102,12 @@ export default {
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
       });
+
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'attributeMapping',
-        data: json.attributeMapping,
+        data: filterMapping(json.attributeMapping),
       });
+
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'deliveryDetails',
         data: json?.additionalShippingSettings?.deliveryDetails || [],

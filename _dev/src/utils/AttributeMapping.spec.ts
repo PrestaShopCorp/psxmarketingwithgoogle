@@ -6,6 +6,8 @@
 
 import {
   formatMappingToApi,
+  filterMapping,
+  AttributeResponseFromAPI,
 } from './AttributeMapping';
 
 describe('AttributeMapping - checking if formatting is ok', () => {
@@ -189,6 +191,82 @@ describe('AttributeMapping - checking if formatting is ok', () => {
     };
 
     const result = formatMappingToApi(mapping);
+
+    expect(result).toEqual(expected);
+  });
+
+  it('should filter each attribute which has elements that do not have ID', () => {
+    const mapping: AttributeResponseFromAPI = {
+      "color": [],
+      "gender": [],
+      "brand": [
+          {
+              "type": "product"
+          },
+          {
+            "id": "branding",
+            "type": "product"
+          }
+      ],
+      "size": [
+          {
+              "type": "custom"
+          }
+      ],
+      "mpn": [
+          {
+              "id": "mpn",
+              "type": "product"
+          }
+      ],
+      "description": [
+          {
+              "type": "product",
+              "id": "description"
+          }
+      ],
+      "gtin": [
+          {
+              "id": "mpn",
+              "type": "product"
+          }
+      ],
+      "ageGroup": []
+    };
+
+    const expected = {
+      "color": [],
+      "gender": [],
+      "brand": [
+          {
+            "id": "branding",
+            "type": "product"
+          }
+      ],
+      "size": [
+      ],
+      "mpn": [
+          {
+              "id": "mpn",
+              "type": "product"
+          }
+      ],
+      "description": [
+          {
+              "type": "product",
+              "id": "description"
+          }
+      ],
+      "gtin": [
+          {
+              "id": "mpn",
+              "type": "product"
+          }
+      ],
+      "ageGroup": []
+    };
+
+    const result = filterMapping(mapping);
 
     expect(result).toEqual(expected);
   });
