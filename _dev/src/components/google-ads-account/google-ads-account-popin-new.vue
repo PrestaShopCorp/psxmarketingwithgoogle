@@ -184,7 +184,7 @@
         <b-button
           variant="primary"
           @click="ok()"
-          data-test-id="buttonContinueStep2"
+          data-test-id="buttonCreate"
           :disabled="fieldsEmpty()"
         >
           <template v-if="!isCreating">
