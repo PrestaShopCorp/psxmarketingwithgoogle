@@ -43,11 +43,12 @@
             </b-th>
           </b-tr>
         </b-thead>
-
         <b-tbody>
           <template v-for="(product, index) in items">
-            <b-tr :key="index">
-              <b-td class="align-top">
+            {{product}}
+            {{index}}
+              <!--  <b-tr :key="index">
+           <b-td class="align-top">
                 {{ product.id }}{{ product.attribute > 0 ? '&#8209;' + product.attribute : '' }}
               </b-td>
               <b-td class="align-top b-table-sticky-column">
@@ -61,9 +62,7 @@
                   {{ product.name }}
                 </a>
               </b-td>
-              <b-td class="align-top">
-                {{ product.statuses.destination }}
-              </b-td>
+         
               <b-td class="align-top">
                 <b-badge
                   :variant="badgeColor(product.statuses.status)"
@@ -103,8 +102,12 @@
                     </a>
                   </li>
                 </ul>
+                <hr/>
               </b-td>
-            </b-tr>
+                   <b-td class="align-top">
+                {{ product.statuses.destination }}
+              </b-td>
+            </b-tr> -->
           </template>
           <b-tr v-if="loading">
             <b-td
@@ -347,7 +350,7 @@
 
 <script>
 import {ProductStatues} from '../../store/modules/product-feed/state';
-
+import {mapItemsSameId} from '@/utils/MapItemsSameId'
 export default {
   name: 'ProductFeedTableStatusDetails',
   components: {},
@@ -355,7 +358,7 @@ export default {
     return {
       loading: false,
       nextToken: null,
-      items: this.$store.state.productFeed.productsDatas.items,
+      items: mapItemsSameId(this.$store.state.productFeed.productsDatas.items),
       ProductStatues,
       selectedFilterQuantityToShow: '100',
       fields: [
@@ -368,10 +371,6 @@ export default {
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
         },
         {
-          key: 'destination',
-          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderDestination'),
-        },
-        {
           key: 'status',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderGoogleValidation'),
         },
@@ -382,6 +381,10 @@ export default {
         {
           key: 'issues',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderIssue'),
+        },
+        {
+          key: 'destination',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderDestination'),
         },
       ],
     };
@@ -419,6 +422,7 @@ export default {
     if (!this.items.length) {
       this.getItems(null);
       window.addEventListener('scroll', this.handleScroll);
+      console.log(mapItemsSameId(this.$store.state.productFeed.productsDatas.items))
     }
   },
   beforeDestroy() {

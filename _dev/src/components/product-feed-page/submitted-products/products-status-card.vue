@@ -21,11 +21,15 @@
         class="font-weight-600 ml-auto text-dark text-nowrap"
         v-if="syncStatus === 'success' || syncStatus === 'planned' || syncStatus === 'failed'"
       >
-        <template
+        <b-button
           v-if="syncStatus === 'success'"
+          variant="invisible"
+          :to="{name: 'product-feed-status'}"
+          class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 mr-2"
         >
           {{ productStatus.numberOfProducts }}
-        </template>
+        </b-button>
+
         <template
           v-else
         >

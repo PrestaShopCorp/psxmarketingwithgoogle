@@ -55,14 +55,6 @@
           />
         </SubmittedProducts>
         <div class="mt-4 text-muted ps_gs-fz-13 d-flex justify-content-between flex-wrap">
-          <b-button
-            v-if="productsSent"
-            variant="invisible"
-            :to="{name: 'product-feed-status'}"
-            class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 mr-2"
-          >
-            {{ $t("cta.viewDetailedStatuses") }}
-          </b-button>
           <a
             :href="$options.googleUrl.learnRequirementsProductSpecification"
             target="_blank"
