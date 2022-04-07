@@ -44,70 +44,85 @@
           </b-tr>
         </b-thead>
         <b-tbody>
-          <template v-for="(product, index) in items">
-            {{product}}
-            {{index}}
-              <!--  <b-tr :key="index">
-           <b-td class="align-top">
-                {{ product.id }}{{ product.attribute > 0 ? '&#8209;' + product.attribute : '' }}
+          <template v-for="(productsById, index) in items">
+            <b-tr :key="index">
+              <b-td class="align-top">
+                {{ productsById[0].id }}
+                {{ productsById[0].attribute > 0 ? '&#8209;' + productsById[0].attribute : '' }}
               </b-td>
               <b-td class="align-top b-table-sticky-column">
                 <a
                   class="external_link-no_icon"
-                  :href="!isNaN(product.id)
-                    ? getProductBaseUrl.replace('/1?', `/${product.id}?`) : null"
+                  :href="!isNaN(productsById[0].id)
+                    ? getProductBaseUrl.replace('/1?', `/${productsById.id}?`) : null"
                   target="_blank"
-                  :title="$t('productFeedPage.approvalTable.editX', [product.name])"
+                  :title="$t('productFeedPage.approvalTable.editX', [productsById[0].name])"
                 >
-                  {{ product.name }}
+                  {{ productsById[0].name }}
                 </a>
               </b-td>
-         
+
               <b-td class="align-top">
                 <b-badge
-                  :variant="badgeColor(product.statuses.status)"
+                  :variant="badgeColor(productsById[0].statuses.status)"
                   class="ps_gs-fz-12 text-capitalize"
                 >
-                  {{ product.statuses.status }}
+                  {{ productsById[0].statuses.status }}
                 </b-badge>
               </b-td>
               <b-td
                 class="align-top"
-                v-for="(country, indexLang) in product.statuses.countries"
+                v-for="(oneProduct, indexLang) in productsById"
                 :key="indexLang"
               >
-                <b-badge
-                  variant="primary"
-                  class="ps_gs-fz-12"
+                <section
+                  v-for="(oneCountry, indexCountry) in oneProduct.statuses.countries"
+                  :key="indexCountry"
                 >
-                  {{ country }}
-                </b-badge>
+                  <b-badge
+                    variant="primary"
+                    class="ps_gs-fz-12"
+                  >
+                    {{ oneCountry }}
+                  </b-badge>
+                </section>
               </b-td>
               <b-td class="align-top">
-                <ul
-                  class="pl-0 mb-0 ml-3"
-                  v-if="product.statuses.status === ProductStatues.Disapproved"
+                <section
+                  v-for="(productIssues, indexIssue) in productsById"
+                  :key="indexIssue"
                 >
-                  <li
-                    v-for="(issue, indexIssues) in getIssues(product)"
-                    :key="indexIssues"
+                  <ul
+                    class="pl-0 mb-0 ml-3"
+                    v-if="productIssues.statuses.status === ProductStatues.Disapproved"
                   >
-                    <a
-                      class="text-decoration-none"
-                      :href="issue.documentation"
-                      :title="issue.detail"
-                      target="_blank"
+                    <li
+                      v-for="(issue, indexIssues) in getIssues(productIssues)"
+                      :key="indexIssues"
                     >
-                      {{ issue.description }}
-                    </a>
-                  </li>
-                </ul>
-                <hr/>
+                      <a
+                        class="text-decoration-none"
+                        :href="issue.documentation"
+                        :title="issue.detail"
+                        target="_blank"
+                      >
+                        {{ issue.description }}
+                      </a>
+                    </li>
+                    <hr v-if="indexIssue +1 < productIssues.issues.length">
+                  </ul>
+                </section>
               </b-td>
-                   <b-td class="align-top">
-                {{ product.statuses.destination }}
+              <b-td>
+                <section
+                  v-for="(oneProduct, indexDesti) in productsById"
+                  :key="indexDesti"
+                >
+                  {{ oneProduct.statuses.destination }}
+                  <hr v-if="indexDesti +1 < productsById.length">
+                </section>
               </b-td>
-            </b-tr> -->
+            </b-tr>
           </template>
           <b-tr v-if="loading">
             <b-td
@@ -350,7 +365,8 @@
 
 <script>
 import {ProductStatues} from '../../store/modules/product-feed/state';
-import {mapItemsSameId} from '@/utils/MapItemsSameId'
+import {mapItemsSameId} from '@/utils/MapItemsSameId';
+
 export default {
   name: 'ProductFeedTableStatusDetails',
   components: {},
@@ -422,7 +438,7 @@ export default {
     if (!this.items.length) {
       this.getItems(null);
       window.addEventListener('scroll', this.handleScroll);
-      console.log(mapItemsSameId(this.$store.state.productFeed.productsDatas.items))
+      console.log(mapItemsSameId(this.$store.state.productFeed.productsDatas.items));
     }
   },
   beforeDestroy() {

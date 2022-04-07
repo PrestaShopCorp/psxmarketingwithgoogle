@@ -1,19 +1,18 @@
-import {ProductInfos} from '@/store/modules/product-feed/state'
+import {ProductInfos} from '@/store/modules/product-feed/state';
 
 export function mapItemsSameId(items : Array<ProductInfos>) {
   const final = items.reduce((product, data) => {
     console.log('1', product[data.id]);
-    console.log('2',data);
-    if (!product[data.id]){
+    console.log('2', data);
+    if (!product[data.id]) {
       product[data.id] = [];
-    } 
+    }
     product[data.id].push(data);
     return product;
   }, []);
 
-  console.log(final)
-return final.filter(n => n)
-
+  console.log(final);
+  return final.filter((n) => n);
 
   // const final = items.reduce(
   //   (results, current) => ({
@@ -29,7 +28,5 @@ return final.filter(n => n)
   //     {}
   //     );
   //     console.log('final', final)
-  
-    }  
-  export default {mapItemsSameId};
-  
+}
+export default {mapItemsSameId};
