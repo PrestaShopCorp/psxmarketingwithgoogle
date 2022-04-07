@@ -34,7 +34,7 @@ export type AttributeResponseFromAPI = {
 }
 
 export type CategoryDetail = {
-  id: string;
+  id?: string;
   type: string;
 }
 
@@ -56,4 +56,14 @@ export function formatMappingToApi(attributes: AttributeToMap[]): AttributeRespo
       }
       return acc;
     }, {});
+}
+
+export function filterMapping(mapping: AttributeResponseFromAPI): AttributeResponseFromAPI {
+  const result = {};
+
+  Object.keys(mapping).forEach((key) => {
+    result[key] = mapping[key].filter((attr) => attr.id);
+  });
+
+  return result;
 }
