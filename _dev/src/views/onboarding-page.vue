@@ -107,7 +107,7 @@
         || merchantCenterAccountConnectedOnce
         || productFeedIsConfiguredOnce
         || freeListingIsActivatedOnce
-        || (googleAdsAccountConnectedOnce && billingSettingsCompleted)
+        || googleAdsConnectedOnceAndBillingOK
         || phoneNumberVerified"
       variant="success"
       @hidden="toastIsClosed"
@@ -115,7 +115,7 @@
         || merchantCenterAccountConnectedOnce
         || productFeedIsConfiguredOnce
         || freeListingIsActivatedOnce
-        || (googleAdsAccountConnectedOnce && billingSettingsCompleted)
+        || googleAdsConnectedOnceAndBillingOK
         || phoneNumberVerified"
       toaster="b-toaster-top-right"
     >
@@ -310,6 +310,9 @@ export default {
     },
     billingSettingsCompleted() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
+    },
+    googleAdsConnectedOnceAndBillingOK() {
+      return this.googleAdsAccountConnectedOnce && this.billingSettingsCompleted;
     },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
