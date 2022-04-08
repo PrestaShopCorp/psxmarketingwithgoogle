@@ -107,7 +107,7 @@
         || merchantCenterAccountConnectedOnce
         || productFeedIsConfiguredOnce
         || freeListingIsActivatedOnce
-        || googleAdsAccountConnectedOnce
+        || (googleAdsAccountConnectedOnce && billingSettingsCompleted)
         || phoneNumberVerified"
       variant="success"
       @hidden="toastIsClosed"
@@ -115,7 +115,7 @@
         || merchantCenterAccountConnectedOnce
         || productFeedIsConfiguredOnce
         || freeListingIsActivatedOnce
-        || googleAdsAccountConnectedOnce
+        || (googleAdsAccountConnectedOnce && billingSettingsCompleted)
         || phoneNumberVerified"
       toaster="b-toaster-top-right"
     >
@@ -193,9 +193,11 @@ export default {
     },
     onGoogleAdsAccountSelected() {
       this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', true);
-      this.$bvModal.show(
-        this.$refs.PopinModuleConfigured.$refs.modal.id,
-      );
+      if (this.billingSettingsCompleted) {
+        this.$bvModal.show(
+          this.$refs.PopinModuleConfigured.$refs.modal.id,
+        );
+      }
     },
     onGoogleAccountConnection() {
       this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
