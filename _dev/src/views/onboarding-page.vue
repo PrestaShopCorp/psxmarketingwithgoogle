@@ -61,7 +61,7 @@
       <GoogleAdsAccountCard
         :is-enabled="stepsAreCompleted.step2"
         :loading="googleAdsIsLoading"
-        @selectGoogleAdsAccount="onGoogleAdsAccountSelected($event)"
+        @selectGoogleAdsAccount="onGoogleAdsAccountSelected()"
         @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
         @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
       />
@@ -70,6 +70,7 @@
         :is-enabled="stepsAreCompleted.step3"
         :loading="SSCIsLoading"
         @openPopin="onOpenPopinActivateTracking"
+        @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
       />
     </template>
     <!-- Modals -->
@@ -179,15 +180,19 @@ export default {
         })
         .finally(() => {
           this.isMcaLinking = false;
+          this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
         });
     },
-    onGoogleAdsAccountSelected() {
-      this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', true);
-      if (this.billingSettingsCompleted) {
+    checkAndOpenPopinConfigrationDone() {
+      if (this.billingSettingsCompleted && this.remarketingTag) {
         this.$bvModal.show(
           this.$refs.PopinModuleConfigured.$refs.modal.id,
         );
       }
+    },
+    onGoogleAdsAccountSelected() {
+      this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', true);
+      this.checkAndOpenPopinConfigrationDone();
     },
     onGoogleAccountConnection() {
       this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
@@ -301,12 +306,18 @@ export default {
     billingSettingsCompleted() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
+    remarketingTag() {
+      return this.$store.getters[
+        'smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS'
+      ];
+    },
     toastIsVisible() {
       return this.googleAccountConnectedOnce
         || this.merchantCenterAccountConnectedOnce
         || this.productFeedIsConfiguredOnce
         || this.freeListingIsActivatedOnce
-        || (this.googleAdsAccountConnectedOnce && this.billingSettingsCompleted)
+        || (this.googleAdsAccountConnectedOnce
+            && this.billingSettingsCompleted && this.remarketingTag)
         || this.phoneNumberVerified;
     },
     showCSSForMCA() {
