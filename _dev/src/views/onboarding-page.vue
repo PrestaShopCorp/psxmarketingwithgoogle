@@ -103,20 +103,10 @@
     />
     <!-- Toasts -->
     <PsToast
-      v-if="googleAccountConnectedOnce
-        || merchantCenterAccountConnectedOnce
-        || productFeedIsConfiguredOnce
-        || freeListingIsActivatedOnce
-        || googleAdsConnectedOnceAndBillingOK
-        || phoneNumberVerified"
+      v-if="toastIsVisible"
       variant="success"
       @hidden="toastIsClosed"
-      :visible="googleAccountConnectedOnce
-        || merchantCenterAccountConnectedOnce
-        || productFeedIsConfiguredOnce
-        || freeListingIsActivatedOnce
-        || googleAdsConnectedOnceAndBillingOK
-        || phoneNumberVerified"
+      :visible="toastIsVisible"
       toaster="b-toaster-top-right"
     >
       <p>{{ insideToast }}</p>
@@ -311,8 +301,13 @@ export default {
     billingSettingsCompleted() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
-    googleAdsConnectedOnceAndBillingOK() {
-      return this.googleAdsAccountConnectedOnce && this.billingSettingsCompleted;
+    toastIsVisible() {
+      return this.googleAccountConnectedOnce
+        || this.merchantCenterAccountConnectedOnce
+        || this.productFeedIsConfiguredOnce
+        || this.freeListingIsActivatedOnce
+        || (this.googleAdsAccountConnectedOnce && this.billingSettingsCompleted)
+        || this.phoneNumberVerified;
     },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
