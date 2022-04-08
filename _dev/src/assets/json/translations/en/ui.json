@@ -623,7 +623,8 @@
       "xResults": "{0} results",
       "perPageLabel": "Show:",
       "goToLabel": "Go to page:",
-      "editX": "Edit {0}"
+      "editX": "Edit {0}",
+      "tooltipDestination": "Your product’s destination are mainly Shopping Ads (Google Shopping) and Enhanced Free Listing (Google Images, Google Shopping, Google Lens, and Google Search)"
     },
     "errorReason": {
       "fieldXMissing": "A required field is missing: {0}",

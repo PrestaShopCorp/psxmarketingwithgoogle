@@ -35,11 +35,22 @@
         <b-thead>
           <b-tr>
             <b-th
-              v-for="(field, index) in fields"
-              :key="index"
-              :class="{'b-table-sticky-column': index === 1}"
+              v-for="(field, indexField) in fields"
+              :key="indexField"
+              :class="{'b-table-sticky-column': indexField === 1}"
             >
               {{ field.label }}
+              <b-button
+                v-if="field.tooltip"
+                variant="invisible"
+                v-b-tooltip:psxMktgWithGoogleApp
+                class="p-0 mt-0 ml-0 border-0 "
+                :title="$t(`productFeedPage.approvalTable.${field.tooltip}`)"
+              >
+                <span class="material-icons-round ps_gs-fz-16 text-primary">
+                  info_outlined
+                </span>
+              </b-button>
             </b-th>
           </b-tr>
         </b-thead>
@@ -91,7 +102,10 @@
                   </section>
                 </section>
               </b-td>
-              <b-td class="align-top">
+              <b-td
+                class="align-top"
+                colspan="2"
+              >
                 <section
                   v-for="(productIssues, indexIssue) in productsById"
                   :key="indexIssue"
@@ -113,17 +127,16 @@
                         {{ issue.description }}
                       </a>
                     </li>
-                    <hr v-if="indexIssue +1 < productIssues.issues.length">
+                    <!-- <hr v-if="indexIssue +1 < productIssues.issues.length"> -->
                   </ul>
                 </section>
-              </b-td>
-              <b-td class="align-top">
+
                 <section
                   v-for="(oneProduct, indexDesti) in productsById"
                   :key="indexDesti"
                 >
                   {{ oneProduct.statuses.destination }}
-                  <hr v-if="indexDesti +1 < productsById.length">
+                  <!-- <hr v-if="indexDesti +1 < productsById.length"> -->
                 </section>
               </b-td>
             </b-tr>
@@ -138,7 +151,6 @@
           </b-tr>
         </b-tbody>
       </b-table-simple>
-
       <!-- OLD TABLE -->
       <!-- TO KEEP IF WE SWITCH BACK TO B-TABLE-LITE -->
       <!--
@@ -389,22 +401,27 @@ export default {
         {
           key: 'name',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
+          tooltip: '',
         },
         {
           key: 'status',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderGoogleValidation'),
+          tooltip: '',
         },
         {
           key: 'lang',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderCountry'),
+          tooltip: '',
         },
         {
           key: 'issues',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderIssue'),
+          tooltip: '',
         },
         {
           key: 'destination',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderDestination'),
+          tooltip: 'tooltipDestination',
         },
       ],
     };
@@ -442,7 +459,6 @@ export default {
     if (!this.items.length) {
       this.getItems(null);
       window.addEventListener('scroll', this.handleScroll);
-      console.log(mapItemsSameId(this.$store.state.productFeed.productsDatas.items));
     }
   },
   beforeDestroy() {

@@ -181,7 +181,7 @@ export const productFeed = {
         attribute: "1",
         issues: [],
         statuses: {
-          destination: "Shopping",
+          destination: "",
           status: "pending",
           countries: ["FR"],
         },
@@ -192,7 +192,7 @@ export const productFeed = {
         attribute: "2",
         issues: [],
         statuses: {
-          destination: "Shopping",
+          destination: "",
           status: "approved",
           countries: ["FR"],
         },
