@@ -220,8 +220,8 @@ export const productFeed = {
       },
       {
         id: "14",
-        name: "super produit",
-        attribute: "21",
+        name: "produit 14",
+        attribute: "214",
         issues: [
           {
             code: "hard_goods_missing_2_out_of_3_identifiers",
@@ -252,6 +252,17 @@ export const productFeed = {
           destination: "Enhanced Free Listings",
           status: "disapproved",
           countries: ["BE"],
+        },
+      },
+      {
+        id: "14",
+        name: "produit 14",
+        attribute: "214",
+        issues: [],
+        statuses: {
+          destination: "Shopping failed",
+          status: "disapproved",
+          countries: ["FR"],
         },
       },
     ],
