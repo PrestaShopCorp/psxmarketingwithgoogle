@@ -155,7 +155,11 @@ export default {
         });
         this.$store.dispatch(
           'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value,
-        );
+        ).then(() => {
+          if (value === true) {
+            this.$emit('remarketingTagHasBeenActivated');
+          }
+        });
       },
     },
     alertTag() {
