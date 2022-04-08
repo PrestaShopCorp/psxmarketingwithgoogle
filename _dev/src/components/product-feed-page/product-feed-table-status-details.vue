@@ -72,19 +72,23 @@
               </b-td>
               <b-td
                 class="align-top"
-                v-for="(oneProduct, indexLang) in productsById"
-                :key="indexLang"
               >
                 <section
-                  v-for="(oneCountry, indexCountry) in oneProduct.statuses.countries"
-                  :key="indexCountry"
+                  v-for="(oneProduct, indexLang) in productsById"
+                  :key="indexLang"
+                  class="d-flex"
                 >
-                  <b-badge
-                    variant="primary"
-                    class="ps_gs-fz-12"
+                  <section
+                    v-for="(oneCountry, indexCountry) in oneProduct.statuses.countries"
+                    :key="indexCountry"
                   >
-                    {{ oneCountry }}
-                  </b-badge>
+                    <b-badge
+                      variant="primary"
+                      class="ps_gs-fz-12  m-1"
+                    >
+                      {{ oneCountry }}
+                    </b-badge>
+                  </section>
                 </section>
               </b-td>
               <b-td class="align-top">
@@ -113,7 +117,7 @@
                   </ul>
                 </section>
               </b-td>
-              <b-td>
+              <b-td class="align-top">
                 <section
                   v-for="(oneProduct, indexDesti) in productsById"
                   :key="indexDesti"

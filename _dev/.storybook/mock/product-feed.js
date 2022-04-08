@@ -179,18 +179,7 @@ export const productFeed = {
         id: "11",
         name: "produit incroyable",
         attribute: "1",
-        issues: [{
-          code: "hard_goods_missing_2_out_of_3_identifiers",
-          servability: "demoted",
-          resolution: "merchant_action",
-          destination: "Shopping",
-          description:
-            "Missing weight",
-          detail: "Provide at least 2 of the missing identifiers",
-          documentation:
-            "https://support.google.com/merchants/answer/6098295",
-          applicableCountries: ["FR"],
-        }],
+        issues: [],
         statuses: {
           destination: "Shopping",
           status: "pending",
@@ -201,17 +190,7 @@ export const productFeed = {
         id: "13",
         name: "produit formidable",
         attribute: "2",
-        issues: [{
-          code: "hard_goods_missing_2_out_of_3_identifiers",
-          servability: "demoted",
-          resolution: "merchant_action",
-          destination: "Shopping",
-          description:
-            "Limited performances",
-          documentation:
-            "https://support.google.com/merchants/answer/6098295",
-          applicableCountries: ["FR"],
-        }],
+        issues: [],
         statuses: {
           destination: "Shopping",
           status: "approved",
