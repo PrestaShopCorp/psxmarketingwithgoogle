@@ -617,9 +617,7 @@ describe('AttributeMapping - checking if formatting is ok', () => {
     ];
 
     const result = parseApiResponse(mapping, productFeed.attributesFromShop, apiResponse);
-    //@ts-ignore
-    const expected = mapping.reduce((acc, curr) => [...acc, ...curr.fields], []);
 
-    expect(result).toEqual(expected);
+    expect(result).toEqual(mapping);
   });
 });

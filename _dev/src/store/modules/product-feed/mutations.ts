@@ -150,10 +150,6 @@ export default {
     if (Object.keys(mappingFromApi).length === 0) {
       return;
     }
-    const attributeToMap = state.attributesToMap.reduce(
-      (acc, curr) => [...acc, ...curr.fields],
-      [],
-    );
 
     const result = parseApiResponse(
       [...state.attributesToMap],
@@ -161,7 +157,7 @@ export default {
       mappingFromApi,
     );
 
-    attributeToMap.splice(0, result.length, ...result);
+    state.attributesToMap.splice(0, result.length, ...result);
   },
   [MutationsTypes.SET_MAPPING_FROM_STORAGE](state: LocalState, payload:AttributeResponseFromAPI[]) {
     if (payload.length) {

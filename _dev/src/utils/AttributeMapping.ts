@@ -69,14 +69,11 @@ function makeMappingRetro(attr:RecommendedFieldType): CategoryDetail {
 }
 
 export function parseApiResponse(
-  attributes,
+  attributes: AttributeToMap[],
   attributesFromShop: AttributesInfos[],
   mappingFromApi: AttributeResponseFromAPI,
-): FieldsContent[] {
-  const attributeToMap = attributes.reduce(
-    (acc, curr) => [...acc, ...curr.fields],
-    [],
-  );
+): AttributeToMap[] {
+  const attributeToMap = attributes.flatMap((attr) => attr.fields);
 
   attributeToMap.forEach((attribute) => {
     if (!attribute.mapped) {
@@ -86,12 +83,13 @@ export function parseApiResponse(
       .filter((a) => oneInOne(mappingFromApi[attribute.name]?.map((e) => e.id) || [], a.name))
       .forEach((e) => {
         if (!deepEqual(attribute.mapped, e)) {
-          attribute.mapped.push(e);
+          // eslint-disable-next-line no-unused-expressions
+          attribute?.mapped?.push(e);
         }
       });
   });
 
-  return attributeToMap;
+  return attributes;
 }
 
 export function filterMapping(mapping: AttributeResponseFromAPI): AttributeResponseFromAPI {

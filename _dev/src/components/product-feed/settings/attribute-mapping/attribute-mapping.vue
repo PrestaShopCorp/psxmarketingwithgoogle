@@ -50,21 +50,21 @@
           class="mt-2"
           v-else
         >
-            <template
-              v-for="group in attributesToMap"
+          <template
+            v-for="group in attributesToMap"
+          >
+            <b-col
+              v-for="field in group.fields"
+              :key="field.label + group.category"
+              :cols="12"
+              :md="6"
             >
-              <b-col
-                v-for="field in group.fields"
-                :key="field.label + group.category"
-                :cols="12"
-                :md="6"
-              >
-                <attribute-field
-                  :field="field"
-                  :category="group.category"
-                />
-              </b-col>
-            </template>
+              <attribute-field
+                :field="field"
+                :category="group.category"
+              />
+            </b-col>
+          </template>
         </b-form-row>
       </section>
       <p class="ps_gs-fz-12 text-primary">
