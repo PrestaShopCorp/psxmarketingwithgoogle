@@ -53,7 +53,7 @@
           >
             <span
               class="line-height-15 text-truncate"
-              :data-test-id="displayDataId(option)"
+              :data-test-id="setDataId(option)"
             >
               {{ displayAttributeOption(option) }}
             </span>
@@ -87,6 +87,7 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
+import {arrayEquals} from '../../../../utils/AttributeMapping';
 
 export default {
   data() {
@@ -159,17 +160,9 @@ export default {
         ? this.$t(`attributesMapping.options.${name}`) : name),
       ).join(', ');
     },
-    displayDataId(option) {
-      this.attributesChecked.some((e) => {
-        option.name.forEach((name) => {
-          if (e.name.includes(name)) {
-            return 'attribute-is-mapped';
-          }
-          // console.log(e.name.includes(name));
-          return null;
-        });
-        return null;
-      });
+    setDataId(option) {
+      return this.attributesChecked.some((e) => arrayEquals(e.name, option.name))
+        ? 'attribute-is-mapped' : null;
     },
   },
   googleUrl,

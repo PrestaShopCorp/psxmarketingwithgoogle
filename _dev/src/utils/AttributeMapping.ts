@@ -45,41 +45,32 @@ export function formatMappingToApi(attributes: AttributeToMap[]): AttributeRespo
     .reduce((acc, cur) => acc.concat(cur), [])
     .reduce((acc, cur) => {
       if (cur.mapped !== null) {
-        acc[cur.name] = cur.mapped.map((attr) => {
-          if (Array.isArray(attr.name)) {
-            return {
-              ids: attr.name,
-              type: attr.type,
-            };
-          }
-          return {
-            id: attr.name,
-            type: attr.type,
-          };
-        });
+        acc[cur.name] = cur.mapped.map((attr) => makeMappingRetro(attr));
       } else {
-        acc[cur.name] = cur.recommended.map((attr) => {
-          if (Array.isArray(attr.name)) {
-            return {
-              ids: attr.name,
-              type: attr.type,
-            };
-          }
-          return {
-            id: attr.name,
-            type: attr.type,
-          };
-        });
+        acc[cur.name] = cur.recommended.map((attr) => makeMappingRetro(attr));
       }
       return acc;
     }, {});
+}
+
+function makeMappingRetro(attr:RecommendedFieldType): CategoryDetail {
+  if (Array.isArray(attr.name)) {
+    return {
+      ids: attr.name,
+      type: attr.type,
+    };
+  }
+  return {
+    id: attr.name,
+    type: attr.type,
+  };
 }
 
 export function filterMapping(mapping: AttributeResponseFromAPI): AttributeResponseFromAPI {
   const result = {};
 
   Object.keys(mapping).forEach((key) => {
-    result[key] = mapping[key].filter((attr) => attr.id);
+    result[key] = mapping[key].filter((attr) => attr.id || attr.ids);
   });
 
   return result;
@@ -89,16 +80,11 @@ export function oneInOne(a: string[], b: string[]): boolean {
   return a.some((item) => b.includes(item));
 }
 
-export function deepEqual(x, y: any) {
-  return x.some((item) => arrayEquals(item.name, y.name));
-  // return (x && y && typeof x === 'object' && typeof y === 'object')
-  //   ? (Object.keys(x).length === Object.keys(y).length)
-  //     && Object.keys(x).reduce(
-  //       (isEqual, key) => isEqual && deepEqual(x[key], y[key]), true,
-  //     ) : (x === y);
+export function deepEqual(x, y): boolean {
+  return x.some((item) => arrayEquals(item?.name, y.name));
 }
 
-export function arrayEquals(a, b) {
+export function arrayEquals(a: string[], b: string[]): boolean {
   return Array.isArray(a)
     && Array.isArray(b)
     && a.length === b.length

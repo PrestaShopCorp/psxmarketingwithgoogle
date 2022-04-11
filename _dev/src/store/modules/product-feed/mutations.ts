@@ -18,10 +18,10 @@
  */
 import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import MutationsTypes from './mutations-types';
-import {AttributeResponseFromAPI,
+import {
+  AttributeResponseFromAPI,
   oneInOne,
   deepEqual,
-  arrayEquals,
 } from '../../../utils/AttributeMapping';
 import {
   State as LocalState,
@@ -146,14 +146,13 @@ export default {
     state: LocalState,
     mappingFromApi: AttributeResponseFromAPI,
   ) {
-    if (mappingFromApi === null) {
+    if (Object.keys(mappingFromApi).length === 0) {
       return;
     }
     const attributeToMap = state.attributesToMap.reduce(
       (acc, curr) => [...acc, ...curr.fields],
       [],
     );
-
     attributeToMap.forEach((attribute) => {
       if (!attribute.mapped) {
         attribute.mapped = [];
@@ -165,6 +164,25 @@ export default {
             attribute.mapped.push(e);
           }
         });
+    });
+  },
+  [MutationsTypes.SET_MAPPING_FROM_STORAGE](state: LocalState, payload:AttributeResponseFromAPI[]) {
+    if (payload.length) {
+      return;
+    }
+
+    Object.keys(payload).forEach((key) => {
+      state.attributesToMap.forEach((attribute) => {
+        const findAttribute = attribute.fields.find((field) => key === field.name);
+        const formatObj = payload[key].map((value) => ({
+          name: value.ids,
+          type: value.type,
+        }));
+
+        if (findAttribute) {
+          findAttribute.mapped = formatObj;
+        }
+      });
     });
   },
   [MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES](state: LocalState, payload) {

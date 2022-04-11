@@ -385,7 +385,7 @@ describe('AttributeMapping - checking if formatting is ok', () => {
       "gender": [],
       "brand": [
           {
-              "type": "product"
+            "type": "product"
           },
           {
             "id": "branding",
