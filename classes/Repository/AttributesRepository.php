@@ -48,7 +48,7 @@ class AttributesRepository
         foreach ($customAttributes as $attr) {
             $attributes[] = [
                 // Not the best way in terms of permances, but avoid being responsible of a whole SQL query.
-                'name' => array_values(array_unique((array)(new \AttributeGroupCore($attr['id_attribute_group']))->name)),
+                'name' => array_values(array_unique((array) (new \AttributeGroupCore($attr['id_attribute_group']))->name)),
                 'type' => 'custom',
             ];
         }
@@ -56,7 +56,7 @@ class AttributesRepository
         foreach ($features as $feature) {
             $attributes[] = [
                 // Not the best way in terms of permances, but avoid being responsible of a whole SQL query.
-                'name' => array_values(array_unique((array)(new \FeatureCore($feature['id_feature']))->name)),
+                'name' => array_values(array_unique((array) (new \FeatureCore($feature['id_feature']))->name)),
                 'type' => 'feature',
             ];
         }
