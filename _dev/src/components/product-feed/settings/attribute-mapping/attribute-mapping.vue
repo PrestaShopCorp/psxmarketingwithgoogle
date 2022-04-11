@@ -38,25 +38,33 @@
         <p>
           {{ $t('productFeedSettings.attributeMapping.description2') }}
         </p>
-        <b-form-row
-          class="mt-2"
+        <div
+          class="mt-3 text-center"
           v-if="loading"
         >
-          <template
-            v-for="group in attributesToMap"
-          >
-            <b-col
-              v-for="field in group.fields"
-              :key="field.label + group.category"
-              :cols="12"
-              :md="6"
+          <div
+            class="spinner"
+          />
+        </div>
+        <b-form-row
+          class="mt-2"
+          v-else
+        >
+            <template
+              v-for="group in attributesToMap"
             >
-              <attribute-field
-                :field="field"
-                :category="group.category"
-              />
-            </b-col>
-          </template>
+              <b-col
+                v-for="field in group.fields"
+                :key="field.label + group.category"
+                :cols="12"
+                :md="6"
+              >
+                <attribute-field
+                  :field="field"
+                  :category="group.category"
+                />
+              </b-col>
+            </template>
         </b-form-row>
       </section>
       <p class="ps_gs-fz-12 text-primary">
@@ -130,7 +138,7 @@ export default {
   },
   data() {
     return {
-      loading: null,
+      loading: false,
     };
   },
   computed: {
