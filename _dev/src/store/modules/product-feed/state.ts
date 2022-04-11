@@ -114,7 +114,7 @@ export interface State {
   prevalidationScanSummary: PrevalidationScanSummary;
   productsDatas: ProductsDatas;
   attributesToMap: any;
-  attributesData: Array<AttributesInfos>;
+  attributesFromShop: Array<AttributesInfos>;
   selectedProductCategories: Array<String>;
   requestSynchronizationNow: boolean;
   preScanDetail: PreScanDetail;
@@ -194,7 +194,7 @@ export const state: State = {
   },
   attributesToMap,
   requestSynchronizationNow: false,
-  attributesData: [],
+  attributesFromShop: [],
   selectedProductCategories: [],
   preScanDetail: {
     products: [],

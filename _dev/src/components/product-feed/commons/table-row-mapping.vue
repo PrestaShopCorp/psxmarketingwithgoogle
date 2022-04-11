@@ -11,14 +11,16 @@
       </span>
     </b-td>
     <b-td class="pb-0 align-top pt-md-0 pb-md-1">
-      <span
-        class="mb-0 text-left"
-        :class="{'text-secondary': attributeNotMapped}"
-      >
-        {{
-          attribute.prestashop || $t('productFeedSettings.attributeMapping.notAvailable')
-        }}
-      </span>
+      <div class="container-mapping-summary">
+        <span
+          class="mb-0 text-left ellipsis-mapping-summary-text"
+          :class="{'text-secondary': attributeNotMapped}"
+        >
+          {{
+            attribute.prestashop || $t('productFeedSettings.attributeMapping.notAvailable')
+          }}
+        </span>
+      </div>
     </b-td>
   </b-tr>
 </template>

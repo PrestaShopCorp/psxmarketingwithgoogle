@@ -8,7 +8,7 @@ import {localVue} from '@/../tests/init';
 import {productFeed} from '@/../.storybook/mock/product-feed.js';
 import AttributeField from '@/components/product-feed/settings/attribute-mapping/attribute-field.vue';
 
-const {attributesData} = productFeed;
+const {attributesFromShop} = productFeed;
 
 describe('attribute-field.vue', () => {
   const wrapperOptions = {
@@ -33,7 +33,7 @@ describe('attribute-field.vue', () => {
     },
     computed: {
       options() {
-        return attributesData;
+        return attributesFromShop;
       },
     },
   };

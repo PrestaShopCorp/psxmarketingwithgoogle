@@ -71,7 +71,7 @@ export default {
     return state.attributesToMap;
   },
   [GettersTypes.GET_SHOP_ATTRIBUTES](state: LocalState) : AttributesInfos[] {
-    return state.attributesData;
+    return state.attributesFromShop;
   },
   [GettersTypes.GET_TARGET_COUNTRIES](
     state: LocalState,

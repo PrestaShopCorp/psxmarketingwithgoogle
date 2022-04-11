@@ -26,6 +26,22 @@
   border: none;
 }
 
+.container-mapping-summary {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 0;
+  display: table;
+}
+
+.ellipsis-mapping-summary-text {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .table-pre-scan-loader-wrapper {
   height: rem(80);
 }

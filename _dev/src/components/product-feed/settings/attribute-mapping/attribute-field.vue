@@ -53,8 +53,7 @@
           >
             <span
               class="line-height-15 text-truncate"
-              :data-test-id="attributesChecked.some(e => e.name === option.name) ?
-                'attribute-is-mapped' : null"
+              :data-test-id="displayDataId(option)"
             >
               {{ displayAttributeOption(option) }}
             </span>
@@ -159,6 +158,18 @@ export default {
       return option.name.map((name) => (this.$te(`attributesMapping.options.${name}`)
         ? this.$t(`attributesMapping.options.${name}`) : name),
       ).join(', ');
+    },
+    displayDataId(option) {
+      this.attributesChecked.some((e) => {
+        option.name.forEach((name) => {
+          if (e.name.includes(name)) {
+            return 'attribute-is-mapped';
+          }
+          // console.log(e.name.includes(name));
+          return null;
+        });
+        return null;
+      });
     },
   },
   googleUrl,

@@ -164,7 +164,7 @@ export const productFeed = {
     ],
   },
   attributesToMap,
-  attributesData: [
+  attributesFromShop: [
     {"name":["ean13"],"type":"product"},
     {"name":["isbn"],"type":"product"},
     {"name":["upc"],"type":"product"},
@@ -184,7 +184,7 @@ export const productFeed = {
     {"name":["composition"],"type":"feature"},
     {"name":["property"],"type":"feature"}
   ],
-  selectedProductCategories: [],
+  selectedProductCategories: ['none'],
   preScanDetail: {
     products: [],
     limit: 10,
