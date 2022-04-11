@@ -38,7 +38,10 @@
         <p>
           {{ $t('productFeedSettings.attributeMapping.description2') }}
         </p>
-        <b-form-row class="mt-2">
+        <b-form-row
+          class="mt-2"
+          v-if="loading"
+        >
           <template
             v-for="group in attributesToMap"
           >
@@ -124,6 +127,11 @@ export default {
     ActionsButtons,
     AttributeField,
     CategoryButton,
+  },
+  data() {
+    return {
+      loading: null,
+    };
   },
   computed: {
     mappingSectionVisible() {
@@ -229,8 +237,11 @@ export default {
     },
   },
   mounted() {
+    this.loading = true;
     this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE').then(() => {
-      this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
+      this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING').finally(() => {
+        this.loading = false;
+      });
     });
   },
   googleUrl,

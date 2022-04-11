@@ -22,6 +22,7 @@ import {
   AttributeResponseFromAPI,
   oneInOne,
   deepEqual,
+  parseApiResponse,
 } from '../../../utils/AttributeMapping';
 import {
   State as LocalState,
@@ -153,18 +154,14 @@ export default {
       (acc, curr) => [...acc, ...curr.fields],
       [],
     );
-    attributeToMap.forEach((attribute) => {
-      if (!attribute.mapped) {
-        attribute.mapped = [];
-      }
-      state.attributesFromShop
-        .filter((a) => oneInOne(mappingFromApi[attribute.name]?.map((e) => e.id) || [], a.name))
-        .forEach((e) => {
-          if (!deepEqual(attribute.mapped, e)) {
-            attribute.mapped.push(e);
-          }
-        });
-    });
+
+    const result = parseApiResponse(
+      [...state.attributesToMap],
+      state.attributesFromShop,
+      mappingFromApi,
+    );
+
+    attributeToMap.splice(0, result.length, ...result);
   },
   [MutationsTypes.SET_MAPPING_FROM_STORAGE](state: LocalState, payload:AttributeResponseFromAPI[]) {
     if (payload.length) {

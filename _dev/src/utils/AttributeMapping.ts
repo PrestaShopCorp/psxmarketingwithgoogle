@@ -1,3 +1,5 @@
+import {AttributesInfos} from '../store/modules/product-feed/state';
+
 export type AttributeToMap = {
   category: string;
   fields: FieldsContent[];
@@ -66,6 +68,32 @@ function makeMappingRetro(attr:RecommendedFieldType): CategoryDetail {
   };
 }
 
+export function parseApiResponse(
+  attributes,
+  attributesFromShop: AttributesInfos[],
+  mappingFromApi: AttributeResponseFromAPI,
+): FieldsContent[] {
+  const attributeToMap = attributes.reduce(
+    (acc, curr) => [...acc, ...curr.fields],
+    [],
+  );
+
+  attributeToMap.forEach((attribute) => {
+    if (!attribute.mapped) {
+      attribute.mapped = [];
+    }
+    attributesFromShop
+      .filter((a) => oneInOne(mappingFromApi[attribute.name]?.map((e) => e.id) || [], a.name))
+      .forEach((e) => {
+        if (!deepEqual(attribute.mapped, e)) {
+          attribute.mapped.push(e);
+        }
+      });
+  });
+
+  return attributeToMap;
+}
+
 export function filterMapping(mapping: AttributeResponseFromAPI): AttributeResponseFromAPI {
   const result = {};
 
@@ -80,8 +108,8 @@ export function oneInOne(a: string[], b: string[]): boolean {
   return a.some((item) => b.includes(item));
 }
 
-export function deepEqual(x, y): boolean {
-  return x.some((item) => arrayEquals(item?.name, y.name));
+export function deepEqual(x, y) : boolean {
+  return x.some((item) => arrayEquals(item.name, y.name));
 }
 
 export function arrayEquals(a: string[], b: string[]): boolean {

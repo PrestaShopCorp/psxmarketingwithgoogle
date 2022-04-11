@@ -169,6 +169,7 @@ export const productFeed = {
     {"name":["isbn"],"type":"product"},
     {"name":["upc"],"type":"product"},
     {"name":["mpn"],"type":"product"},
+    {"name":["manufacturer"],"type":"product"},
     {"name":["description"],"type":"product"},
     {"name":["shortDescription"],"type":"product"},
     {"name":["color"],"type":"custom"},
