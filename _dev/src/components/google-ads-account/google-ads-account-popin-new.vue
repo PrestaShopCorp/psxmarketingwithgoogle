@@ -31,7 +31,7 @@
     <form
       class="mt-4"
     >
-      <section>
+      <div>
         <h6 class="mb-1 ps_gs-fz-16 font-weight-600">
           {{ $t("googleAdsAccountNew.business.title") }}
         </h6>
@@ -39,7 +39,7 @@
           class="pb-2 mb-2"
           :markdown="$t('googleAdsAccountNew.business.description')"
         />
-        <section>
+        <div>
           <label
             class="mb-0 font-weight-600"
             for="name"
@@ -54,9 +54,9 @@
             class="mb-2"
             size="sm"
           />
-        </section>
+        </div>
         <div class="d-flex flex-column flex-md-row">
-          <section class="flex-grow-1 mr-2">
+          <div class="flex-grow-1 mr-2">
             <label
               class="mb-0 font-weight-600"
               for="selectBillingCountry"
@@ -70,9 +70,9 @@
               :dropdown-options="activeCountriesWithCurrency"
               :display-legend="false"
             />
-          </section>
+          </div>
 
-          <section class="flex-grow-1 mr-2">
+          <div class="flex-grow-1 mr-2">
             <label
               class="mb-0 font-weight-600"
               for="selectCurrency"
@@ -107,9 +107,9 @@
                 </span>
               </b-dropdown-item>
             </b-dropdown>
-          </section>
+          </div>
 
-          <section class="flex-grow-1">
+          <div class="flex-grow-1">
             <label
               class="mb-0 font-weight-600"
               for="selectTimezone"
@@ -144,12 +144,12 @@
                 </span>
               </b-dropdown-item>
             </b-dropdown>
-          </section>
+          </div>
         </div>
-      </section>
+      </div>
     </form>
 
-    <section>
+    <div>
       <h6 class="mb-1 ps_gs-fz-16 font-weight-600 mt-4">
         {{ $t("googleAdsAccountNew.terms.title") }}
       </h6>
@@ -168,11 +168,11 @@
           :extensions="['extended-link']"
         />
       </b-form-checkbox>
-    </section>
+    </div>
     <template
       slot="modal-footer"
     >
-      <section class="mt-2 ">
+      <div class="mt-2 ">
         <b-button
           variant="outline-secondary"
           @click="cancel"
@@ -195,7 +195,7 @@
             <span class="ml-1 icon-busy" />
           </template>
         </b-button>
-      </section>
+      </div>
     </template>
   </ps-modal>
 </template>
