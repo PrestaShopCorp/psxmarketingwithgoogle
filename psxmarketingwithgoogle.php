@@ -153,6 +153,11 @@ class PsxMarketingWithGoogle extends Module
 
     public function uninstall()
     {
+        // If PHP is not compliant, we try our best to uninstall the module
+        if (!$this->isPhpVersionCompliant()) {
+            return parent::uninstall();
+        }
+
         // We can't init the Uninstaller in CLI, as it has been declared in the admin container and PrestaShop
         // does not have the _PS_ADMIN_DIR_ in this environment.
         // prestashop/module-lib-service-container:1.3.1 is known as incompatible
