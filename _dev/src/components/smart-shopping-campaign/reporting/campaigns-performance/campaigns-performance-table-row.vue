@@ -5,6 +5,7 @@
     >
       <b-button
         variant="link"
+        @click="goToCampaignPage"
         class="p-0 m-0 font-weight-normal ps_gs-fz-12"
       >
         {{ campaign.name }}
@@ -49,6 +50,16 @@ export default {
   computed: {
     currencyCode() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
+    },
+  },
+  methods: {
+    goToCampaignPage() {
+      this.$router.push({
+        name: 'campaign-edition',
+        params: {
+          id: this.campaign.id,
+        },
+      });
     },
   },
 };
