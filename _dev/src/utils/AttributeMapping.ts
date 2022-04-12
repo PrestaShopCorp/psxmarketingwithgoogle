@@ -47,15 +47,17 @@ export function formatMappingToApi(attributes: AttributeToMap[]): AttributeRespo
     .reduce((acc, cur) => acc.concat(cur), [])
     .reduce((acc, cur) => {
       if (cur.mapped !== null) {
-        acc[cur.name] = cur.mapped.map((attr) => makeMappingRetro(attr));
+        acc[cur.name] = cur.mapped.map((attr) => makeMappingBackwardCompatible(attr));
       } else {
-        acc[cur.name] = cur.recommended.map((attr) => makeMappingRetro(attr));
+        acc[cur.name] = cur.recommended.map((attr) => makeMappingBackwardCompatible(attr));
       }
       return acc;
     }, {});
 }
 
-function makeMappingRetro(attr:RecommendedFieldType): CategoryDetail {
+function makeMappingBackwardCompatible(
+  attr: RecommendedFieldType,
+): CategoryDetail {
   if (Array.isArray(attr.name)) {
     return {
       ids: attr.name,
