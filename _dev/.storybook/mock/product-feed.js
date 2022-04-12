@@ -170,7 +170,7 @@ export const productFeed = {
           },
         ],
         statuses: {
-          destination: "Enhanced Free Listings",
+          destination: "Shopping",
           status: "disapproved",
           countries: ["BE"],
         },
@@ -237,9 +237,78 @@ export const productFeed = {
         id: "14",
         name: "produit 14",
         attribute: "214",
-        issues: [],
+        issues: [ {
+          code: "hard_goods_missing_2_out_of_3_identifiers",
+          servability: "demoted",
+          resolution: "merchant_action",
+          destination: "Shopping",
+          description:
+            "Missing picture ",
+          detail: "Provide at least 2 of the missing identifiers",
+          documentation:
+            "https://support.google.com/merchants/answer/6098295",
+          applicableCountries: ["FR"],
+        }],
         statuses: {
           destination: "Shopping failed",
+          status: "disapproved",
+          countries: ["FR"],
+        },
+      },
+      {
+        id: "15",
+        name: "produit 15",
+        attribute: "215",
+        issues: [
+          {
+            code: "hard_goods_missing_2_out_of_3_identifiers",
+            servability: "demoted",
+            resolution: "merchant_action",
+            destination: "Shopping",
+            description:
+              "Should provide description",
+            detail: "Provide at least 2 of the missing identifiers",
+            documentation:
+              "https://support.google.com/merchants/answer/6098295",
+            applicableCountries: ["FR"],
+          },
+          {
+            code: "policy_enforcement_account_disapproval",
+            servability: "disapproved",
+            resolution: "merchant_action",
+            destination: "Shopping",
+            description: "Suspended account for policy violation",
+            detail:
+              "Remove products that violate our policies, or request a manual review",
+            documentation:
+              "https://support.google.com/merchants/answer/6098295",
+            applicableCountries: ["FR"],
+          },
+        ],
+        statuses: {
+          destination: "Enhanced Free Listings",
+          status: "disapproved",
+          countries: ["BE"],
+        },
+      },
+      {
+        id: "15",
+        name: "produit 15",
+        attribute: "215",
+        issues: [ {
+          code: "hard_goods_missing_2_out_of_3_identifiers",
+          servability: "demoted",
+          resolution: "merchant_action",
+          destination: "Shopping",
+          description:
+            "Should provide description",
+          detail: "Provide at least 2 of the missing identifiers",
+          documentation:
+            "https://support.google.com/merchants/answer/6098295",
+          applicableCountries: ["FR"],
+        }],
+        statuses: {
+          destination: "Enhanced Free Listings",
           status: "disapproved",
           countries: ["FR"],
         },

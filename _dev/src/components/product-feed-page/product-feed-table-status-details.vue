@@ -106,38 +106,39 @@
                 class="align-top"
                 colspan="2"
               >
-                <section
-                  v-for="(productIssues, indexIssue) in productsById"
-                  :key="indexIssue"
-                >
-                  <ul
-                    class="pl-0 mb-0 ml-3"
-                    v-if="productIssues.statuses.status === ProductStatues.Disapproved"
+                <table>
+                  <tr
+                    v-for="(destination, indexDesti) in multipleDestinations(productsById)"
+                    :key="indexDesti"
                   >
-                    <li
-                      v-for="(issue, indexIssues) in getIssues(productIssues)"
-                      :key="indexIssues"
-                    >
-                      <a
-                        class="text-decoration-none"
-                        :href="issue.documentation"
-                        :title="issue.detail"
-                        target="_blank"
+                    <td>
+                      <section
+                        v-for="(productIssues, indexIssue) in removeDuplicatesIssues(productsById)"
+                        :key="indexIssue"
                       >
-                        {{ issue.description }}
-                      </a>
-                    </li>
-                    <!-- <hr v-if="indexIssue +1 < productIssues.issues.length"> -->
-                  </ul>
-                </section>
-
-                <section
-                  v-for="(oneProduct, indexDesti) in productsById"
-                  :key="indexDesti"
-                >
-                  {{ oneProduct.statuses.destination }}
-                  <!-- <hr v-if="indexDesti +1 < productsById.length"> -->
-                </section>
+                        <ul
+                          class="pl-0 mb-0 ml-3"
+                          v-if="productIssues.statuses.status === ProductStatues.Disapproved"
+                        >
+                          <li
+                            v-for="(issue, issues) in getIssues(productIssues)"
+                            :key="issues"
+                          >
+                            <a
+                              class="text-decoration-none"
+                              :href="issue.documentation"
+                              :title="issue.detail"
+                              target="_blank"
+                            >
+                              {{ issue.description }}
+                            </a>
+                          </li>
+                        </ul>
+                      </section>
+                    </td>
+                    <td> {{ destination }} </td>
+                  </tr>
+                </table>
               </b-td>
             </b-tr>
           </template>
@@ -526,6 +527,25 @@ export default {
         }
       });
       return issues;
+    },
+    multipleDestinations(productsById) {
+      let arrayOfDestinations = [];
+      productsById.map((e) => arrayOfDestinations.push(e.statuses.destination));
+      arrayOfDestinations = arrayOfDestinations.filter(
+        (element, index) => arrayOfDestinations.indexOf(element) === index);
+      return arrayOfDestinations;
+    },
+    multipleReasons(productsById) {
+      let arrayOfReasons = [];
+      productsById.map((e) => e.issues.forEach((issue) => {
+        arrayOfReasons.push(issue.description);
+      }));
+      arrayOfReasons = arrayOfReasons.filter(
+        (element, index) => arrayOfReasons.indexOf(element) === index);
+      return arrayOfReasons;
+    },
+    removeDuplicatesIssues(productsById) {
+      return productsById;
     },
     handleScroll() {
       const de = document.documentElement;
