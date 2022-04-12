@@ -18,7 +18,12 @@
  */
 import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import MutationsTypes from './mutations-types';
-import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
+import {
+  AttributeResponseFromAPI,
+  oneInOne,
+  deepEqual,
+  parseApiResponse,
+} from '../../../utils/AttributeMapping';
 import {
   State as LocalState,
   ProductInfos,
@@ -98,30 +103,33 @@ export default {
     };
   },
   [MutationsTypes.SAVE_ATTRIBUTES_SHOP](state: LocalState, payload: AttributesInfos[]) {
-    state.attributesData.push(...payload);
-    state.attributesData.forEach((data, indexToDelete) => {
+    state.attributesFromShop.push(...payload);
+
+    state.attributesFromShop.forEach((data, indexToDelete) => {
       // remove deleted attributes if new call without total refresh
-      const find = payload.findIndex((i) => i.name === data.name);
+      const find = payload.findIndex((i) => JSON.stringify(i.name) === JSON.stringify(data.name));
 
       if (find === -1) {
-        state.attributesData.splice(indexToDelete, 1);
+        state.attributesFromShop.splice(indexToDelete, 1);
       }
     });
-    state.attributesData.push(...commonAttributes);
+
+    state.attributesFromShop.push(...commonAttributes);
     // remove duplicates attributes if new call without total refresh
-    state.attributesData = state.attributesData.reduce((acc: any, current: AttributesInfos) => {
-      const x = acc.find((item) => item.name === current.name);
+    state.attributesFromShop = state.attributesFromShop.reduce((acc: any, cur: AttributesInfos) => {
+      const x = acc.find((item) => JSON.stringify(item.name) === JSON.stringify(cur.name));
 
       if (!x) {
-        return acc.concat([current]);
+        return acc.concat([cur]);
       }
       return acc;
     }, []);
-    const getAttributesNames = state.attributesData.map((attribute) => attribute.name);
+
+    const getAttributesNames = state.attributesFromShop.map((attribute) => attribute.name);
     state.attributesToMap.forEach((category) => {
       category.fields.forEach((field) => {
         field.recommended = field.recommended.filter(
-          (reco) => getAttributesNames.includes(reco.name),
+          (reco) => getAttributesNames.some((attrName) => attrName.includes(reco.name[0])),
         );
       });
     });
@@ -135,20 +143,37 @@ export default {
         }
       });
   },
-  [MutationsTypes.SET_ATTRIBUTES_MAPPED](state: LocalState, payload: AttributeResponseFromAPI[]) {
+  [MutationsTypes.SET_ATTRIBUTES_MAPPED](
+    state: LocalState,
+    mappingFromApi: AttributeResponseFromAPI,
+  ) {
+    if (Object.keys(mappingFromApi).length === 0) {
+      return;
+    }
+
+    const result = parseApiResponse(
+      [...state.attributesToMap],
+      state.attributesFromShop,
+      mappingFromApi,
+    );
+
+    state.attributesToMap.splice(0, result.length, ...result);
+  },
+  [MutationsTypes.SET_MAPPING_FROM_STORAGE](state: LocalState, payload:AttributeResponseFromAPI[]) {
     if (payload.length) {
       return;
     }
+
     Object.keys(payload).forEach((key) => {
       state.attributesToMap.forEach((attribute) => {
-        const findAttr = attribute.fields.find((field) => field.name === key);
-        const changeMappingObj = payload[key].map((value) => ({
-          name: value.id,
+        const findAttribute = attribute.fields.find((field) => key === field.name);
+        const formatObj = payload[key].map((value) => ({
+          name: value.ids,
           type: value.type,
         }));
 
-        if (findAttr) {
-          findAttr.mapped = changeMappingObj;
+        if (findAttribute) {
+          findAttribute.mapped = formatObj;
         }
       });
     });

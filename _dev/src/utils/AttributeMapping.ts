@@ -1,3 +1,5 @@
+import {AttributesInfos} from '../store/modules/product-feed/state';
+
 export type AttributeToMap = {
   category: string;
   fields: FieldsContent[];
@@ -13,7 +15,7 @@ export type FieldsContent = {
 }
 
 export type RecommendedFieldType = {
-  name: string;
+  name: string[]|string;
   type: string;
 }
 
@@ -35,6 +37,7 @@ export type AttributeResponseFromAPI = {
 
 export type CategoryDetail = {
   id?: string;
+  ids?: string[];
   type: string;
 }
 
@@ -44,26 +47,74 @@ export function formatMappingToApi(attributes: AttributeToMap[]): AttributeRespo
     .reduce((acc, cur) => acc.concat(cur), [])
     .reduce((acc, cur) => {
       if (cur.mapped !== null) {
-        acc[cur.name] = cur.mapped.map((attr) => ({
-          id: attr.name,
-          type: attr.type,
-        }));
+        acc[cur.name] = cur.mapped.map((attr) => makeMappingBackwardCompatible(attr));
       } else {
-        acc[cur.name] = cur.recommended.map((attr) => ({
-          id: attr.name,
-          type: attr.type,
-        }));
+        acc[cur.name] = cur.recommended.map((attr) => makeMappingBackwardCompatible(attr));
       }
       return acc;
     }, {});
+}
+
+function makeMappingBackwardCompatible(
+  attr: RecommendedFieldType,
+): CategoryDetail {
+  if (Array.isArray(attr.name)) {
+    return {
+      ids: attr.name,
+      type: attr.type,
+    };
+  }
+  return {
+    id: attr.name,
+    type: attr.type,
+  };
+}
+
+export function parseApiResponse(
+  attributes: AttributeToMap[],
+  attributesFromShop: AttributesInfos[],
+  mappingFromApi: AttributeResponseFromAPI,
+): AttributeToMap[] {
+  const attributeToMap = attributes.flatMap((attr) => attr.fields);
+
+  attributeToMap.forEach((attribute) => {
+    if (!attribute.mapped) {
+      attribute.mapped = [];
+    }
+    attributesFromShop
+      .filter((a) => oneInOne(mappingFromApi[attribute.name]?.map((e) => e.id) || [], a.name))
+      .forEach((e) => {
+        if (!deepEqual(attribute.mapped, e)) {
+          // eslint-disable-next-line no-unused-expressions
+          attribute?.mapped?.push(e);
+        }
+      });
+  });
+
+  return attributes;
 }
 
 export function filterMapping(mapping: AttributeResponseFromAPI): AttributeResponseFromAPI {
   const result = {};
 
   Object.keys(mapping).forEach((key) => {
-    result[key] = mapping[key].filter((attr) => attr.id);
+    result[key] = mapping[key].filter((attr) => attr.id || attr.ids);
   });
 
   return result;
+}
+
+export function oneInOne(a: string[], b: string[]): boolean {
+  return a.some((item) => b.includes(item));
+}
+
+export function deepEqual(x, y) : boolean {
+  return x.some((item) => arrayEquals(item.name, y.name));
+}
+
+export function arrayEquals(a: string[], b: string[]): boolean {
+  return Array.isArray(a)
+    && Array.isArray(b)
+    && a.length === b.length
+    && a.every((val, index) => val === b[index]);
 }

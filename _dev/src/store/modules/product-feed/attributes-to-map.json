@@ -8,7 +8,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "description",
+            "name": ["description"],
             "type": "product"
           }
         ],
@@ -21,7 +21,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "gtin",
+            "name": ["gtin"],
             "type": "product"
           }
         ],
@@ -34,7 +34,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "mpn",
+            "name": ["mpn"],
             "type": "product"
           }
         ],
@@ -47,7 +47,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "manufacturer",
+            "name": ["manufacturer"],
             "type": "product"
           }
         ],
@@ -65,7 +65,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "ageGroup",
+            "name": ["ageGroup"],
             "type": "custom"
           }
         ],
@@ -78,7 +78,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "color",
+            "name": ["color"],
             "type": "custom"
           }
         ],
@@ -91,7 +91,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "gender",
+            "name": ["gender"],
             "type": "custom"
           }
         ],
@@ -104,7 +104,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "size",
+            "name": ["size"],
             "type": "custom"
           }
         ],
@@ -122,7 +122,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "maxEnergyEfficiencyClass",
+            "name": ["maxEnergyEfficiencyClass"],
             "type": "feature"
           }
         ],
@@ -135,7 +135,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "minEnergyEfficiencyClass",
+            "name": ["minEnergyEfficiencyClass"],
             "type": "feature"
           }
         ],
@@ -148,7 +148,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "energyClass",
+            "name": ["energyClass"],
             "type": "feature"
           }
         ],
@@ -166,7 +166,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "material",
+            "name": ["material"],
             "type": "feature"
           }
         ],
@@ -179,7 +179,7 @@
         "tooltip": true,
         "recommended": [
           {
-            "name": "pattern",
+            "name": ["pattern"],
             "type": "feature"
           }
         ],

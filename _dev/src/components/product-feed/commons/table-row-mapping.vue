@@ -1,24 +1,28 @@
 <template>
   <b-tr>
     <b-td class="pb-0 align-top pt-md-0 pb-md-1">
-      <span class="d-flex align-items-center">
-        {{ $t(`productFeedSettings.attributeMapping.${attribute.google}`) }}
-        <span
-          class="material-icons-round ml-auto ps_gs-fz-20 mr-md-2 mb-0 align-middle text-success"
-        >
-          link
+      <div class="container-mapping-summary">
+        <span class="d-flex align-items-center">
+          {{ $t(`productFeedSettings.attributeMapping.${attribute.google}`) }}
+          <span
+            class="material-icons-round ml-auto ps_gs-fz-20 mr-md-2 mb-0 align-middle text-success"
+          >
+            link
+          </span>
         </span>
-      </span>
+      </div>
     </b-td>
     <b-td class="pb-0 align-top pt-md-0 pb-md-1">
-      <span
-        class="mb-0 text-left"
-        :class="{'text-secondary': attributeNotMapped}"
-      >
-        {{
-          attribute.prestashop || $t('productFeedSettings.attributeMapping.notAvailable')
-        }}
-      </span>
+      <div class="container-mapping-summary">
+        <span
+          class="mb-0 text-left ellipsis-mapping-summary-text"
+          :class="{'text-secondary': attributeNotMapped}"
+        >
+          {{
+            attribute.prestashop || $t('productFeedSettings.attributeMapping.notAvailable')
+          }}
+        </span>
+      </div>
     </b-td>
   </b-tr>
 </template>

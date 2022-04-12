@@ -27,7 +27,7 @@
     </template>
 
     <b-dropdown
-      :id="field.label | slugify"
+      :id="field.label"
       :html="`<span class='text-truncate d-inline-block'>
         ${formatToDisplay}</span>`"
       variant=" "
@@ -52,9 +52,8 @@
             :value="option"
           >
             <span
-              class="line-height-15"
-              :data-test-id="attributesChecked.some(e => e.name === option.name) ?
-                'attribute-is-mapped' : null"
+              class="line-height-15 text-truncate"
+              :data-test-id="setDataId(option)"
             >
               {{ displayAttributeOption(option) }}
             </span>
@@ -88,6 +87,7 @@
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
+import {arrayEquals} from '../../../../utils/AttributeMapping';
 
 export default {
   data() {
@@ -156,8 +156,13 @@ export default {
       return this.$t(`tooltip.attributeMapping.${name}`);
     },
     displayAttributeOption(option) {
-      return this.$te(`attributesMapping.options.${option.name}`)
-        ? this.$t(`attributesMapping.options.${option.name}`) : option.name;
+      return option.name.map((name) => (this.$te(`attributesMapping.options.${name}`)
+        ? this.$t(`attributesMapping.options.${name}`) : name),
+      ).join(', ');
+    },
+    setDataId(option) {
+      return this.attributesChecked.some((e) => arrayEquals(e.name, option.name))
+        ? 'attribute-is-mapped' : null;
     },
   },
   googleUrl,

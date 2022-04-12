@@ -59,7 +59,7 @@ export interface ProductsDatas {
 }
 
 export interface AttributesInfos {
-  name: string;
+  name: string[];
   displayName?: string;
   type: AttributesTypes;
 }
@@ -72,31 +72,31 @@ export enum AttributesTypes {
 
 export const commonAttributes: readonly AttributesInfos[] = [
   {
-    name: 'ean13',
+    name: ['ean13'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'isbn',
+    name: ['isbn'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'upc',
+    name: ['upc'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'mpn',
+    name: ['mpn'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'description',
+    name: ['description'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'shortDescription',
+    name: ['shortDescription'],
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: 'manufacturer',
+    name: ['manufacturer'],
     type: AttributesTypes.PRODUCT,
   },
 ];
@@ -114,7 +114,7 @@ export interface State {
   prevalidationScanSummary: PrevalidationScanSummary;
   productsDatas: ProductsDatas;
   attributesToMap: any;
-  attributesData: Array<AttributesInfos>;
+  attributesFromShop: Array<AttributesInfos>;
   selectedProductCategories: Array<String>;
   requestSynchronizationNow: boolean;
   preScanDetail: PreScanDetail;
@@ -194,7 +194,7 @@ export const state: State = {
   },
   attributesToMap,
   requestSynchronizationNow: false,
-  attributesData: [],
+  attributesFromShop: [],
   selectedProductCategories: [],
   preScanDetail: {
     products: [],
