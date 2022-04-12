@@ -3,13 +3,21 @@
     <b-td
       class="b-table-sticky-column text-primary"
     >
-      <b-button
+      <div
+        class="p-0 m-0 font-weight-normal ps_gs-fz-12"
+      >
+        {{ campaign.name }}
+      </div>
+
+      <!--
+      TODO : when API sends back ID of campaign we will be able to make a link
+        <b-button
         variant="link"
         @click="goToCampaignPage"
         class="p-0 m-0 font-weight-normal ps_gs-fz-12"
       >
         {{ campaign.name }}
-      </b-button>
+      </b-button> -->
     </b-td>
     <b-td
       class="ps_gs-fz-12 ps_gs-cell-status"
@@ -53,14 +61,15 @@ export default {
     },
   },
   methods: {
-    goToCampaignPage() {
-      this.$router.push({
-        name: 'campaign-edition',
-        params: {
-          id: this.campaign.id,
-        },
-      });
-    },
+    // TODO : when API sends back ID of campaign we will be able to make a link
+    // goToCampaignPage() {
+    //   this.$router.push({
+    //     name: 'campaign-edition',
+    //     params: {
+    //       id: this.campaign.id,
+    //     },
+    //   });
+    // },
   },
 };
 </script>
