@@ -101,6 +101,7 @@
     />
     <PopinModuleConfigured
       ref="PopinModuleConfigured"
+      @openPopinRemarketingTag="onOpenPopinActivateTracking"
     />
     <!-- Toasts -->
     <PsToast
@@ -184,7 +185,7 @@ export default {
         });
     },
     checkAndOpenPopinConfigrationDone() {
-      if (this.billingSettingsCompleted && this.remarketingTag) {
+      if (this.billingSettingsCompleted) {
         this.$bvModal.show(
           this.$refs.PopinModuleConfigured.$refs.modal.id,
         );
@@ -306,18 +307,13 @@ export default {
     billingSettingsCompleted() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
-    remarketingTag() {
-      return this.$store.getters[
-        'smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS'
-      ];
-    },
     toastIsVisible() {
       return this.googleAccountConnectedOnce
         || this.merchantCenterAccountConnectedOnce
         || this.productFeedIsConfiguredOnce
         || this.freeListingIsActivatedOnce
         || (this.googleAdsAccountConnectedOnce
-            && this.billingSettingsCompleted && this.remarketingTag)
+            && this.billingSettingsCompleted)
         || this.phoneNumberVerified;
     },
     showCSSForMCA() {
