@@ -41,9 +41,8 @@
         </template>
         <b-button
           class="mt-4"
-          :to="{ name: 'campaign-creation' }"
           variant="primary"
-          @click="segmentEvent"
+          @click="openPopinRemarketingTag"
         >
           {{ $t("configuredState.cta") }}
         </b-button>
@@ -73,15 +72,29 @@ export default {
       ],
     };
   },
+  computed: {
+    SSCExist() {
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+    },
+  },
   methods: {
     cancel() {
       this.$refs.modal.hide();
     },
-    segmentEvent() {
+    openPopinRemarketingTag() {
       this.$segment.track('[GGL] Click on Go to campaign creation - popin', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
+      // Prevent popin for opening if tracking is a campaign exists
+      if (this.SSCExist) {
+        this.$router.push({
+          name: 'campaign-creation',
+        });
+      } else {
+        this.$refs.modal.hide();
+        this.$emit('openPopinRemarketingTag');
+      }
     },
   },
 };

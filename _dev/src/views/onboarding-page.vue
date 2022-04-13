@@ -101,6 +101,7 @@
     />
     <PopinModuleConfigured
       ref="PopinModuleConfigured"
+      @openPopinRemarketingTag="onOpenPopinActivateTracking"
     />
     <!-- Toasts -->
     <PsToast
