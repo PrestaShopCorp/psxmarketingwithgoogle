@@ -131,7 +131,7 @@
                   v-for="(language, index) in getProductLangs(product.titleByLang)"
                   :key="index"
                 >
-                  {{ language.toUpperCase() }}
+                  {{ language }}
                 </b-badge>
               </b-td>
               <b-td class="align-top">
@@ -306,7 +306,7 @@ export default {
         return '';
       }
       const findProductInCurrentLang = products.find(
-        (k) => k.lang.toUpperCase() === this.getDefaultLang,
+        (k) => k?.lang?.toUpperCase() === this.getDefaultLang,
       );
 
       if (findProductInCurrentLang !== undefined) {
@@ -315,7 +315,7 @@ export default {
       return products[0].title;
     },
     getProductLangs(products) {
-      return products.map((k) => k.lang);
+      return products.map((k) => k?.lang?.toUpperCase());
     },
     getPreScanProducts() {
       this.loading = true;
