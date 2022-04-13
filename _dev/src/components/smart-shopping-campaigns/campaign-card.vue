@@ -40,8 +40,11 @@
         </div>
       </div>
     </div>
-    <div class="ps_gs-onboardingcard__not-configured">
-      <NotConfiguredCard v-if="inNeedOfConfiguration" />
+    <div
+      v-if="inNeedOfConfiguration"
+      class="ps_gs-onboardingcard__not-configured"
+    >
+      <NotConfiguredCard />
     </div>
   </b-card>
 </template>
