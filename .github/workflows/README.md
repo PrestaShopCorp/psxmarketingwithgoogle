@@ -15,7 +15,7 @@ Production storybook CI/CD will automatically be triggered on push on develop.
 
 Storybook will be available at this following url : [storybook](https://storybook-google.psessentials.net)
 
-![alt text](pics/storybook-ci-cd.png "Storage workflow")
+![alt text](../pics/storybook-ci-cd.png "Storage workflow")
  
 # Storage / CDN
 
@@ -30,4 +30,4 @@ On release, 2 versions (major and minor) will be stored at :
 * https://storage.googleapis.com/psxmarketing-cdn/v1.x.x
 
 
-![alt text](pics/storage-ci-cd.png "Storage workflow")
+![alt text](../pics/storage-ci-cd.png "Storage workflow")
