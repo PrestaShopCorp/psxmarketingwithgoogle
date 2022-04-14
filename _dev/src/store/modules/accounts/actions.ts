@@ -299,7 +299,6 @@ export default {
     commit(MutationsTypes.REMOVE_GMC);
     commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, false);
     commit(`productFeed/${MutationsTypesProductFeed.TOGGLE_CONFIGURATION_FINISHED}`, false, {root: true});
-
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
@@ -307,7 +306,11 @@ export default {
     return true;
   },
 
-  async [ActionsTypes.DISSOCIATE_GMC]({commit, rootState, state}, correlationId: string) {
+  async [ActionsTypes.DISSOCIATE_GMC]({
+    commit,
+    rootState,
+    state,
+  }, correlationId: string) {
     if (state.googleMerchantAccount.id) {
       if (!correlationId) {
         // eslint-disable-next-line no-param-reassign
@@ -332,6 +335,7 @@ export default {
     }
     commit(MutationsTypes.REMOVE_GMC);
     commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, false);
+    commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT}`, '', {root: true});
     commit(`productFeed/${MutationsTypesProductFeed.REMOVE_PRODUCT_FEED}`, null, {root: true});
     commit(`productFeed/${MutationsTypesProductFeed.SET_ACTIVE_CONFIGURATION_STEP}`, 1, {root: true});
     commit(`productFeed/${MutationsTypesProductFeed.TOGGLE_CONFIGURATION_FINISHED}`, false, {root: true});
