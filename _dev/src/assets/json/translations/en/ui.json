@@ -737,7 +737,7 @@
     "ctaClassic": "Go to configuration page",
     "ctaLinkMCA": "Link your Google Merchant Center Account",
     "ctaExportFeed": "Sync your products with Google",
-    "ctaLinkGoogleAds" : "Connect your Google Ads"
+    "ctaLinkGoogleAds" : "Connect your Google Ads Account"
   },
   "configuredState": {
     "title": "Congratulations, you're all set !",
