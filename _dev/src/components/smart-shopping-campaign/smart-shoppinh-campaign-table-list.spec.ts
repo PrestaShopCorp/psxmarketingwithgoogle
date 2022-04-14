@@ -160,7 +160,7 @@ describe('smart-shopping-campaign-table-list.vue - show banner SSC ads if user h
   it('should render the component', () => {
     expect(wrapper.isVisible()).toBe(true);
   });
-  it('should hide banner', () => {
+  it('should show banner', () => {
     expect(wrapper.findComponent(BannerCampaigns).exists()).toBeTruthy();
   });
   it('should display buttons', () => {
