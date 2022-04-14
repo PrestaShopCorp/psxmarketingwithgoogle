@@ -606,7 +606,7 @@
       "xHasPassedPreValidation" : "\"{0}\": has passed the pre-validation."
     },
     "approvalTable": {
-      "description": "The status of your synced products with Google Merchant Center",
+      "description": "The status of products that are synced with Merchant Center",
       "filterTitle": "Filter by availability",
       "filterAllStatus": "All",
       "filterOnlyApproved": "Approved",
@@ -614,17 +614,16 @@
       "filterOnlyNotApproved": "Not approved",
       "tableHeaderID": "ID",
       "tableHeaderAttributeID": "Attribute",
-      "tableHeaderDestination": "Destinations",
+      "tableHeaderDestination": "Destination",
       "tableHeaderName": "Name",
       "tableHeaderGoogleValidation": "Availablity for Google",
       "tableHeaderLanguage": "Language",
-      "tableHeaderCountry": "Countries",
-      "tableHeaderIssue": "Reasons",
+      "tableHeaderCountry": "Country",
+      "tableHeaderIssue": "Reason",
       "xResults": "{0} results",
       "perPageLabel": "Show:",
       "goToLabel": "Go to page:",
-      "editX": "Edit {0}",
-      "tooltipDestination": "Your product’s destination are mainly Shopping Ads (Google Shopping) and Enhanced Free Listing (Google Images, Google Shopping, Google Lens, and Google Search)"
+      "editX": "Edit {0}"
     },
     "errorReason": {
       "fieldXMissing": "A required field is missing: {0}",
