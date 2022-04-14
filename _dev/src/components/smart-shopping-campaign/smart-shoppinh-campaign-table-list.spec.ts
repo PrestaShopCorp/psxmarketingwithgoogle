@@ -118,7 +118,7 @@ describe('smart-shopping-campaign-table-list.vue - hide banner SSC ads if user i
   });
 });
 
-describe('smart-shopping-campaign-table-list.vue - hide banner SSC ads if user has campaigns', () => {
+describe('smart-shopping-campaign-table-list.vue - show banner SSC ads if user has campaigns', () => {
   let store;
   let wrapper;
   const mockRoute = {
@@ -160,8 +160,8 @@ describe('smart-shopping-campaign-table-list.vue - hide banner SSC ads if user h
   it('should render the component', () => {
     expect(wrapper.isVisible()).toBe(true);
   });
-  it('should hide banner', () => {
-    expect(wrapper.findComponent(BannerCampaigns).exists()).toBeFalsy();
+  it('should show banner', () => {
+    expect(wrapper.findComponent(BannerCampaigns).exists()).toBeTruthy();
   });
   it('should display buttons', () => {
     expect(wrapper.find('[data-test-id="redirect-to-reporting-button"]').exists()).toBeTruthy();

@@ -1,7 +1,7 @@
 <template>
   <div>
     <BannerCampaigns
-      v-if="!campaignList.length && !inNeedOfConfiguration"
+      v-if="!inNeedOfConfiguration"
       @openPopinRemarketingTag="remarketingTagPopin"
     />
     <h3 class="order-2 order-md-1 ps_gs-fz-20 font-weight-600">
