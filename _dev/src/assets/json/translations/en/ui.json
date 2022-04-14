@@ -731,13 +731,13 @@
   "notConfiguredState": {
     "title": "Finish your configuration",
     "titleOneLastStep" : "One last step",
-    "textGoogleMissing": "Continue your configuration to start sending product to Google and organizing campaigns.",
-    "textOneMoreThing": "One more thing and you are all set to send your product to Google.",
-    "textBoostYourSales": "If you wanna boost your sales connect and organize campaigns with Google Ads.",
+    "textGoogleMissing": "Continue your configuration to start sending products to Google and creating campaigns.",
+    "textOneMoreThing": "One more thing and you are all set to send your products to Google.",
+    "textBoostYourSales": "If you want to boost your sales; connect and create campaigns with Google Ads.",
     "ctaClassic": "Go to configuration page",
-    "ctaLinkMCA": "Link your Google Merchant Center",
-    "ctaExportFeed": "Sync your product with Google",
-    "ctaLinkGoogleAds" : "Connect your Google Ads"
+    "ctaLinkMCA": "Link your Google Merchant Center Account",
+    "ctaExportFeed": "Sync your products with Google",
+    "ctaLinkGoogleAds" : "Connect your Google Ads Account"
   },
   "configuredState": {
     "title": "Congratulations, you're all set !",
