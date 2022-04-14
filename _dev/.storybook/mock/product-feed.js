@@ -132,6 +132,18 @@ export const productFeed = {
               "https://support.google.com/merchants/answer/6098295",
             applicableCountries: ["FR"],
           },
+          {
+            code: "policy_enforcement_account_disapproval",
+            servability: "disapproved",
+            resolution: "merchant_action",
+            destination: "Shopping",
+            description: "Should provide description",
+            detail:
+              "Remove products that violate our policies, or request a manual review",
+            documentation:
+              "https://support.google.com/merchants/answer/6098295",
+            applicableCountries: ["FR"],
+          },
         ],
         statuses: {
           destination: "Shopping",
@@ -179,9 +191,20 @@ export const productFeed = {
         id: "11",
         name: "produit incroyable",
         attribute: "1",
-        issues: [],
+        issues: [ {
+          code: "hard_goods_missing_2_out_of_3_identifiers",
+          servability: "demoted",
+          resolution: "merchant_action",
+          destination: "Shopping",
+          description:
+            "Should provide description",
+          detail: "Provide at least 2 of the missing identifiers",
+          documentation:
+            "https://support.google.com/merchants/answer/6098295",
+          applicableCountries: ["FR"],
+        },],
         statuses: {
-          destination: "",
+          destination: "Shopping",
           status: "pending",
           countries: ["FR"],
         },
@@ -192,7 +215,7 @@ export const productFeed = {
         attribute: "2",
         issues: [],
         statuses: {
-          destination: "",
+          destination: "Shopping",
           status: "approved",
           countries: ["FR"],
         },
@@ -237,13 +260,77 @@ export const productFeed = {
         id: "14",
         name: "produit 14",
         attribute: "214",
+        issues: [  {
+          code: "policy_enforcement_account_disapproval",
+          servability: "disapproved",
+          resolution: "merchant_action",
+          destination: "Shopping",
+          description: "Missing picture",
+          detail:
+            "Remove products that violate our policies, or request a manual review",
+          documentation:
+            "https://support.google.com/merchants/answer/6098295",
+          applicableCountries: ["FR"],
+        }],
+        statuses: {
+          destination: "Shopping failed",
+          status: "disapproved",
+          countries: ["BE"],
+        },
+      },
+      {
+        id: "14",
+        name: "produit 14",
+        attribute: "214",
         issues: [ {
           code: "hard_goods_missing_2_out_of_3_identifiers",
           servability: "demoted",
           resolution: "merchant_action",
           destination: "Shopping",
-          description:
-            "Missing picture ",
+          description: "Missing picture ",
+          detail: "Provide at least 2 of the missing identifiers",
+          documentation:
+            "https://support.google.com/merchants/answer/6098295",
+          applicableCountries: ["FR"],
+        },
+        {
+          code: "hard_goods_missing_2_out_of_3_identifiers",
+          servability: "demoted",
+          resolution: "merchant_action",
+          destination: "Shopping",
+          description: "Tu me vois ?",
+          detail: "Provide at least 2 of the missing identifiers",
+          documentation:
+            "https://support.google.com/merchants/answer/6098295",
+          applicableCountries: ["FR"],
+        }],
+        statuses: {
+          destination: "Shopping failed",
+          status: "disapproved",
+          countries: ["FR"],
+        },
+      },
+      {
+        id: "14",
+        name: "produit 14",
+        attribute: "214",
+        issues: [ {
+          code: "hard_goods_missing_2_out_of_3_identifiers",
+          servability: "demoted",
+          resolution: "merchant_action",
+          destination: "Shopping",
+          description: "Missing picture ",
+          detail: "Provide at least 2 of the missing identifiers",
+          documentation:
+            "https://support.google.com/merchants/answer/6098295",
+          applicableCountries: ["FR"],
+        },
+        {
+          code: "hard_goods_missing_2_out_of_3_identifiers",
+          servability: "demoted",
+          resolution: "merchant_action",
+          destination: "Shopping",
+          description: "Should provide description",
           detail: "Provide at least 2 of the missing identifiers",
           documentation:
             "https://support.google.com/merchants/answer/6098295",

@@ -606,7 +606,7 @@
       "xHasPassedPreValidation" : "\"{0}\": has passed the pre-validation."
     },
     "approvalTable": {
-      "description": "The status of products that are synced with Merchant Center",
+      "description": "The status of your synced products with Google Merchant Center",
       "filterTitle": "Filter by availability",
       "filterAllStatus": "All",
       "filterOnlyApproved": "Approved",

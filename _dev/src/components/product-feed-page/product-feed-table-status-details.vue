@@ -106,37 +106,56 @@
                 class="align-top"
                 colspan="2"
               >
-                <table>
+                <table v-if="multipleDestinations(productsById).length <= 1">
                   <tr
                     v-for="(destination, indexDesti) in multipleDestinations(productsById)"
                     :key="indexDesti"
                   >
                     <td>
-                      <section
-                        v-for="(productIssues, indexIssue) in removeDuplicatesIssues(productsById)"
+                      <ul
+                        v-for="(issue, indexIssue) in multipleIssues(productsById)"
                         :key="indexIssue"
+                        class="pl-0 mb-0 ml-3"
                       >
-                        <ul
-                          class="pl-0 mb-0 ml-3"
-                          v-if="productIssues.statuses.status === ProductStatues.Disapproved"
-                        >
-                          <li
-                            v-for="(issue, issues) in getIssues(productIssues)"
-                            :key="issues"
+                        <li>
+                          <a
+                            class="text-decoration-none"
+                            :href="issue.documentation"
+                            :title="issue.detail"
+                            target="_blank"
                           >
-                            <a
-                              class="text-decoration-none"
-                              :href="issue.documentation"
-                              :title="issue.detail"
-                              target="_blank"
-                            >
-                              {{ issue.description }}
-                            </a>
-                          </li>
-                        </ul>
-                      </section>
+                            {{ issue.description }}
+                          </a>
+                        </li>
+                      </ul>
                     </td>
                     <td> {{ destination }} </td>
+                  </tr>
+                </table>
+                <table v-else>
+                  <tr
+                    v-for="(desti, indexDesti) in multipleIssues(productsById)"
+                    :key="indexDesti"
+                  >
+                    <td>
+                      <ul
+                        v-for="(issue, indexIssue) in desti.issues"
+                        :key="indexIssue"
+                        class="pl-0 mb-0 ml-3"
+                      >
+                        <li>
+                          <a
+                            class="text-decoration-none"
+                            :href="issue.documentation"
+                            :title="issue.detail"
+                            target="_blank"
+                          >
+                            {{ issue.description }}
+                          </a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td> {{ desti.destination }} </td>
                   </tr>
                 </table>
               </b-td>
@@ -530,23 +549,70 @@ export default {
     },
     multipleDestinations(productsById) {
       let arrayOfDestinations = [];
-      productsById.map((e) => arrayOfDestinations.push(e.statuses.destination));
+      productsById.map((e) => {
+        if (e.statuses.status === ProductStatues.Disapproved) {
+          arrayOfDestinations.push(e.statuses.destination);
+        }
+      });
       arrayOfDestinations = arrayOfDestinations.filter(
         (element, index) => arrayOfDestinations.indexOf(element) === index);
       return arrayOfDestinations;
     },
-    multipleReasons(productsById) {
-      let arrayOfReasons = [];
-      productsById.map((e) => e.issues.forEach((issue) => {
-        arrayOfReasons.push(issue.description);
-      }));
-      arrayOfReasons = arrayOfReasons.filter(
-        (element, index) => arrayOfReasons.indexOf(element) === index);
-      return arrayOfReasons;
+    multipleIssues(productsById) {
+      let arrayOfIssues = [];
+      const destinations = this.multipleDestinations(productsById);
+
+      if (destinations.length <= 1) {
+        productsById.map((e) => {
+          if (e.statuses.status === ProductStatues.Disapproved) {
+            e.issues.forEach((issue) => {
+              arrayOfIssues.push(issue);
+            });
+          }
+        });
+        arrayOfIssues = arrayOfIssues.filter((value, index, self) => index === self.findIndex((issue) => (
+          issue.description === value.description
+        )));
+      } else {
+        productsById = productsById.map((e) => ({
+          destination: e.statuses.destination,
+          issues: e.issues,
+        }));
+        const arr2 = [];
+        productsById.forEach((element) => {
+          const match = arr2.find((r) => r.destination == element.destination);
+
+          if (match) {
+          } else {
+            arr2.push({destination: element.destination, issues: []});
+          }
+        });
+        arr2.map((item) => {
+          productsById.map((e) => {
+            if (e.destination === item.destination) {
+              if (typeof e.issues === 'object') {
+                e.issues.map((z) => {
+                  item.issues.push(z);
+                });
+              } else {
+                item.issues.push(e.issues);
+              }
+            }
+          });
+        });
+        return arr2;
+      }
+      return arrayOfIssues;
     },
-    removeDuplicatesIssues(productsById) {
-      return productsById;
-    },
+    // areSameIssues(productsById) {
+    //   console.log('thi', this.multipleIssues(productsById));
+    //   console.log('teer', this.multipleDestinations(productsById));
+    //   const destinations = this.multipleDestinations(productsById);
+
+    //   if (destinations.length > 1) {
+
+    //   }
+    // },
     handleScroll() {
       const de = document.documentElement;
 
