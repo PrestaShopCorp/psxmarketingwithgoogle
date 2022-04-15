@@ -562,7 +562,7 @@
         "subtitle": {
           "willHappenOnDate": "Vai começar em {date}",
           "happenedOnDate": "Em {date}",
-          "error": "Devido a uma questão técnica, a sincronização falhou, uma nova sincronização planeada para amanhã."
+          "error": "Due to a technical issue, the sync failed. A new one will run in a few hours."
         }
       }
     },
