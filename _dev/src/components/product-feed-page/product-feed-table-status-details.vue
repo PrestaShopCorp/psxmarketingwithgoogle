@@ -129,7 +129,9 @@
                         </li>
                       </ul>
                     </td>
-                    <td> {{ destination }} </td>
+                    <td class="align-top">
+                      {{ destination }}
+                    </td>
                   </tr>
                 </table>
                 <table v-else>
@@ -155,7 +157,9 @@
                         </li>
                       </ul>
                     </td>
-                    <td> {{ desti.destination }} </td>
+                    <td class="align-top">
+                      {{ desti.destination }}
+                    </td>
                   </tr>
                 </table>
               </b-td>
@@ -549,7 +553,7 @@ export default {
     },
     multipleDestinations(productsById) {
       let arrayOfDestinations = [];
-      productsById.map((e) => {
+      productsById.forEach((e) => {
         if (e.statuses.status === ProductStatues.Disapproved) {
           arrayOfDestinations.push(e.statuses.destination);
         }
@@ -563,56 +567,44 @@ export default {
       const destinations = this.multipleDestinations(productsById);
 
       if (destinations.length <= 1) {
-        productsById.map((e) => {
+        productsById.forEach((e) => {
           if (e.statuses.status === ProductStatues.Disapproved) {
             e.issues.forEach((issue) => {
               arrayOfIssues.push(issue);
             });
           }
         });
-        arrayOfIssues = arrayOfIssues.filter((value, index, self) => index === self.findIndex((issue) => (
-          issue.description === value.description
-        )));
-      } else {
-        productsById = productsById.map((e) => ({
-          destination: e.statuses.destination,
-          issues: e.issues,
-        }));
-        const arr2 = [];
-        productsById.forEach((element) => {
-          const match = arr2.find((r) => r.destination == element.destination);
-
-          if (match) {
-          } else {
-            arr2.push({destination: element.destination, issues: []});
-          }
-        });
-        arr2.map((item) => {
-          productsById.map((e) => {
-            if (e.destination === item.destination) {
-              if (typeof e.issues === 'object') {
-                e.issues.map((z) => {
-                  item.issues.push(z);
-                });
-              } else {
-                item.issues.push(e.issues);
-              }
-            }
-          });
-        });
-        return arr2;
+        arrayOfIssues = arrayOfIssues
+          .filter((value, index, self) => index === self
+            .findIndex((issue) => (
+              issue.description === value.description
+            )));
+        return arrayOfIssues;
       }
-      return arrayOfIssues;
+
+      const issuesPerDestinations = [];
+
+      productsById.forEach((product) => {
+        const match = issuesPerDestinations
+          .find((r) => r.destination === product.statuses.destination);
+
+        if (!match) {
+          issuesPerDestinations.push({
+            destination: product.statuses.destination, issues: [...product.issues],
+          });
+          return;
+        }
+        match.issues = match.issues.concat(product.issues);
+      });
+
+      return issuesPerDestinations.map((issuesList) => {
+        issuesList.issues = issuesList.issues
+          .filter((issue, index) => issuesList.issues
+            .findIndex((iss) => iss.code === issue.code) === index);
+            console.log(issuesList)
+        return issuesList;
+      });
     },
-    // areSameIssues(productsById) {
-    //   console.log('thi', this.multipleIssues(productsById));
-    //   console.log('teer', this.multipleDestinations(productsById));
-    //   const destinations = this.multipleDestinations(productsById);
-
-    //   if (destinations.length > 1) {
-
-    //   }
-    // },
     handleScroll() {
       const de = document.documentElement;
 
