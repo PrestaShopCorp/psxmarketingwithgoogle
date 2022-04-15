@@ -601,7 +601,6 @@ export default {
         issuesList.issues = issuesList.issues
           .filter((issue, index) => issuesList.issues
             .findIndex((iss) => iss.code === issue.code) === index);
-            console.log(issuesList)
         return issuesList;
       });
     },
