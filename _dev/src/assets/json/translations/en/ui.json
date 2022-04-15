@@ -563,7 +563,7 @@
         "subtitle" : {
           "willHappenOnDate" : "Will start on {date}",
           "happenedOnDate" : "On {date}",
-          "error" : "Due to a technical issue, the sync failed, a new sync planned for tomorrow"
+          "error" : "Due to a technical issue, the sync failed. A new one will run in a few hours."
         }
       }
     },
