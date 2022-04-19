@@ -425,23 +425,22 @@
     },
     "email": {
       "title": "O seu endereço de e-mail do Google",
-      "description": "Esta informação será usada para criar a sua conta.  \nO endereço de e-mail do Google abaixo é o fornecido durante a ligação da sua conta Google."
+      "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Nome",
+      "name": "Business name",
       "title": "Informações comerciais",
-      "description": "As configurações de fuso horário e de moeda são usadas para determinar como você é faturado.  \n**Você nunca poderá mudar a moeda*** que escolher para a sua conta, portanto escolha-a com cuidado.",
+      "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "País de facturação",
-      "placeholderCountry": "Seleccione o seu país de facturação",
+      "placeholderCountry": "Country",
       "labelTimeZone": "Fuso horário",
-      "placeholderTimeZone": "Selecione o seu fuso horário",
+      "placeholderTimeZone": "Choose time",
       "labelCurrency": "Moeda",
-      "placeholderCurrency": "Seleccione a sua moeda"
+      "placeholderCurrency": "Currency"
     },
     "terms": {
       "title": "Termos de serviço para o Programa Google",
-      "description": "Ao comprar anúncios de compras, concordo em cumprir [termos e condições dos anúncios do Google]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]",
-      "label": "Eu li e aceito estes termos"
+      "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
     }
   },
   "smartShoppingCampaignCard": {
@@ -846,7 +845,6 @@
     "addShippingInfo": "Adicionar informações de envio",
     "createSmartShoppingCampaign": "Crie uma campanha Smart Shopping",
     "addBillingSettings": "Adicionar configurações de faturação",
-    "learnAboutTimeZoneAndCurrency": "Saiba mais sobre configurações de moeda e fuso horário",
     "createCampaign": "Criar campanha",
     "editCampaign": "Atualizar campanha",
     "resetDate": "Data de reinicialização",
