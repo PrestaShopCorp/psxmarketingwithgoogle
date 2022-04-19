@@ -151,12 +151,12 @@
     "legend2": "De URL van de website van de winkel moet worden geverifieerd en geclaimd voordat u productgegevens kunt uploaden.  \n[Leer hoe u uw website kunt verifiëren en claimen](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Lees de volledige versie van Google store vereisten",
     "accurateContactInformation": {
-      "title": "I confim that my contact information are correct and valid",
+      "title": "I confirm that my contact information are correct and valid",
       "description": "Handelaren moeten ten minste één contactmethode op hun website hebben vermeld, dit kan om het even welk type contactmethode zijn.",
       "link": "Ontdek hoe u contactinformatie kunt toevoegen"
     },
     "secureCheckoutProcess": {
-      "title": "I confim that I have a clear checkout & data collection",
+      "title": "I confirm that I have a clear checkout & data collection",
       "description": "Informatie over de gebruiker niet misbruiken, noch verzamelen voor onduidelijke doeleinden of zonder passende veiligheidsmaatregelen.",
       "link": "Meer informatie over het onverantwoordelijk verzamelen en gebruiken van gegevens"
     },

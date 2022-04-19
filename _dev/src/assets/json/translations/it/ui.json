@@ -151,12 +151,12 @@
     "legend2": "L'URL del sito web del negozio deve essere verificato e rivendicato prima di poter caricare i dati dei prodotti.  \n[Impara come verificare e rivendicare il tuo sito web](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Leggi la versione completa dei requisiti per il negozio Google",
     "accurateContactInformation": {
-      "title": "I confim that my contact information are correct and valid",
+      "title": "I confirm that my contact information are correct and valid",
       "description": "I commercianti devono avere almeno un metodo di contatto elencato sul loro sito web, questo può essere qualsiasi tipo di metodo di contatto.",
       "link": "Scopri come aggiungere informazioni di contatto"
     },
     "secureCheckoutProcess": {
-      "title": "I confim that I have a clear checkout & data collection",
+      "title": "I confirm that I have a clear checkout & data collection",
       "description": "Non abusare delle informazioni sull'utente, né raccoglierle per scopi poco chiari o senza adeguate misure di sicurezza.",
       "link": "Impara a riconoscere la raccolta e l'uso irresponsabile di dati"
     },

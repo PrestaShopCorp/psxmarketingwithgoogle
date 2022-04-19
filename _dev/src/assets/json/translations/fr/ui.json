@@ -151,12 +151,12 @@
     "legend2": "L'URL du site web du magasin doit être vérifiée et revendiquée avant de pouvoir télécharger des données de produits.  \n[Apprenez comment vérifier et revendiquer votre site web](https://support.google.com/merchants/answer/176793?hl=fr&ref_topic=3163841)[:target=\"_blank\"].",
     "footer": "Lire la version complète des exigences de la boutique Google",
     "accurateContactInformation": {
-      "title": "I confim that my contact information are correct and valid",
+      "title": "I confirm that my contact information are correct and valid",
       "description": "Les marchands doivent avoir au moins une méthode de contact répertoriée sur leur site Web, ceci peut être n'importe quel type de méthode de contact.",
       "link": "Découvrez comment ajouter des informations de contact"
     },
     "secureCheckoutProcess": {
-      "title": "I confim that I have a clear checkout & data collection",
+      "title": "I confirm that I have a clear checkout & data collection",
       "description": "N'utilisez pas à mauvais escient des informations sur l'utilisateur, ne les collectez pas à des fins floues ou sans des mesures de sécurité appropriées.",
       "link": "Apprenez-en plus sur la collecte et l'utilisation irresponsables des données"
     },

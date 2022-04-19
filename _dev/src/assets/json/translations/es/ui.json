@@ -151,12 +151,12 @@
     "legend2": "La URL del sitio web de la tienda debe ser verificada y reclamada antes de poder cargar los datos de los productos.  \n[Aprende a verificar y reclamar tu sitio web](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Leer la versión completa de los requisitos de la tienda de Google",
     "accurateContactInformation": {
-      "title": "I confim that my contact information are correct and valid",
+      "title": "I confirm that my contact information are correct and valid",
       "description": "Los comerciantes deben tener al menos un método de contacto en su sitio web, que puede ser cualquier tipo de método de contacto.",
       "link": "Descubre cómo añadir información de contacto"
     },
     "secureCheckoutProcess": {
-      "title": "I confim that I have a clear checkout & data collection",
+      "title": "I confirm that I have a clear checkout & data collection",
       "description": "No utilizar indebidamente la información sobre el usuario, ni recogerla con fines poco claros o sin las medidas de seguridad adecuadas.",
       "link": "Aprende sobre la recopilación y el uso irresponsable de datos"
     },

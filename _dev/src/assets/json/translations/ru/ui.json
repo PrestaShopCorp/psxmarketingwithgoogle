@@ -151,12 +151,12 @@
     "legend2": "URL сайта магазина должен быть проверен и заявлен, прежде чем вы сможете загрузить данные о товарах.  \n[Узнайте, как проверить и заявить свой сайт](https://support.google.com/merchants/answer/176793?hl=en)",
     "footer": "Прочитать полную версию требований к магазину Google",
     "accurateContactInformation": {
-      "title": "I confim that my contact information are correct and valid",
+      "title": "I confirm that my contact information are correct and valid",
       "description": "Торговцы должны иметь хотя бы один способ связи, указанный на их сайте, это может быть любой способ связи.",
       "link": "Узнайте, как добавить контактную информацию"
     },
     "secureCheckoutProcess": {
-      "title": "I confim that I have a clear checkout & data collection",
+      "title": "I confirm that I have a clear checkout & data collection",
       "description": "Не злоупотреблять информацией о пользователе, не собирать ее в неясных целях или без соответствующих мер безопасности.",
       "link": "Узнайте о безответственном сборе и использовании данных"
     },
