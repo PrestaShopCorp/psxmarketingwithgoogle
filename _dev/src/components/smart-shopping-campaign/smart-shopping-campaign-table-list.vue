@@ -234,11 +234,6 @@ export default {
     hasSorting(headerType) {
       return headerType === CampaignSummaryListHeaderType.DURATION;
     },
-    // redirectToCreateCampaign() {
-    //   this.$router.push({
-    //     name: 'campaign-creation',
-    //   });
-    // },
     redirectToReporting() {
       this.$router.push({
         name: 'reporting',
