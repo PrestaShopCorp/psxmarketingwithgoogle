@@ -163,7 +163,7 @@ describe('smart-shopping-campaign-table-list.vue - show banner SSC ads if user h
   it('should show banner', () => {
     expect(wrapper.findComponent(BannerCampaigns).exists()).toBeTruthy();
   });
-  it('should display buttons', () => {
+  it('should display only go to reporting button', () => {
     expect(wrapper.find('[data-test-id="redirect-to-reporting-button"]').exists()).toBeTruthy();
     expect(wrapper.find('[data-test-id="create-campaign-button"]').exists()).toBeFalsy();
   });
