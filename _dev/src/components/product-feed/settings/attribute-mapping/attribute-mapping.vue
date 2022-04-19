@@ -3,7 +3,7 @@
     <b-form>
       <section>
         <h3
-          class="ps_gs-fz-20 font-weight-600 mb-2"
+          class="mb-2 ps_gs-fz-20 font-weight-600"
         >
           {{ $t('productFeedSettings.attributeMapping.title1') }}
         </h3>
@@ -14,7 +14,7 @@
           id="categoryProducts"
           v-model="selectedProductCategories"
           name="categoryProducts"
-          class="mb-4 py-2"
+          class="py-2 mb-4"
           plain
         >
           <category-button
@@ -31,14 +31,25 @@
         data-test-id="section-attribute-field"
       >
         <h3
-          class="ps_gs-fz-20 font-weight-600 mb-2"
+          class="mb-2 ps_gs-fz-20 font-weight-600"
         >
           {{ $t('productFeedSettings.attributeMapping.title2') }}
         </h3>
         <p>
           {{ $t('productFeedSettings.attributeMapping.description2') }}
         </p>
-        <b-form-row class="mt-2">
+        <div
+          class="mt-3 text-center"
+          v-if="loading"
+        >
+          <div
+            class="spinner"
+          />
+        </div>
+        <b-form-row
+          class="mt-2"
+          v-else
+        >
           <template
             v-for="group in attributesToMap"
           >
@@ -73,7 +84,7 @@
       class="text-primary"
     >
       <a
-        class="ps_gs-fz-12 mb-0 text-primary"
+        class="mb-0 ps_gs-fz-12 text-primary"
         :href="$store.getters['app/GET_ATTRIBUTES_URL']"
         target="_blank"
       >
@@ -85,8 +96,7 @@
       <b-button
         size="sm"
         variant="link"
-        class="ps_gs-fz-12 font-weight-normal p-0 border-0
-        text-decoration-underline text-wrap text-left"
+        class="p-0 text-left border-0 ps_gs-fz-12 font-weight-normal text-decoration-underline"
         @click="refreshComponent"
       >
         {{ $t('productFeedSettings.attributeMapping.refreshAttributes') }}
@@ -125,6 +135,11 @@ export default {
     ActionsButtons,
     AttributeField,
     CategoryButton,
+  },
+  data() {
+    return {
+      loading: false,
+    };
   },
   computed: {
     mappingSectionVisible() {
@@ -230,7 +245,12 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
+    this.loading = true;
+    this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE').then(() => {
+      this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING').finally(() => {
+        this.loading = false;
+      });
+    });
   },
   googleUrl,
 };

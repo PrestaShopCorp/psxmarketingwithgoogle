@@ -102,12 +102,10 @@ export default {
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
       });
-
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'attributeMapping',
         data: filterMapping(json.attributeMapping),
       });
-
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'deliveryDetails',
         data: json?.additionalShippingSettings?.deliveryDetails || [],
@@ -401,7 +399,7 @@ export default {
     const getMappingFromStorage = getDataFromLocalStorage('productFeed-attributeMapping');
 
     if (getMappingFromStorage !== null) {
-      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, getMappingFromStorage);
+      commit(MutationsTypes.SET_MAPPING_FROM_STORAGE, getMappingFromStorage);
       return;
     }
     try {

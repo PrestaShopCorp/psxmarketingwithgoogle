@@ -8,7 +8,7 @@ import {localVue} from '@/../tests/init';
 import {productFeed} from '@/../.storybook/mock/product-feed.js';
 import AttributeField from '@/components/product-feed/settings/attribute-mapping/attribute-field.vue';
 
-const {attributesData} = productFeed;
+const {attributesFromShop} = productFeed;
 
 describe('attribute-field.vue', () => {
   const wrapperOptions = {
@@ -23,7 +23,7 @@ describe('attribute-field.vue', () => {
         tooltip: true,
         recommended: [
           {
-            name: 'description',
+            name: ['description'],
             type: 'product',
           },
         ],
@@ -33,7 +33,7 @@ describe('attribute-field.vue', () => {
     },
     computed: {
       options() {
-        return attributesData;
+        return attributesFromShop;
       },
     },
   };
@@ -61,7 +61,6 @@ describe('attribute-field.vue', () => {
       ...wrapperOptions,
       localVue,
     });
-
     expect(wrapper.find('[data-test-id="attribute-is-mapped"]').text()).toBe('Description');
   });
 
@@ -75,13 +74,13 @@ describe('attribute-field.vue', () => {
           tooltip: true,
           recommended: [
             {
-              name: 'description',
+              name: ['description'],
               type: 'product',
             },
           ],
           mapped: [
             {
-              name: 'shortDescription',
+              name: ['shortDescription'],
               type: 'product',
             },
           ],
@@ -104,17 +103,17 @@ describe('attribute-field.vue', () => {
           tooltip: true,
           recommended: [
             {
-              name: 'description',
+              name: ['description'],
               type: 'product',
             },
           ],
           mapped: [
             {
-              name: 'description',
+              name: ['description'],
               type: 'product',
             },
             {
-              name: 'ean13',
+              name: ['ean13'],
               type: 'product',
             },
           ],

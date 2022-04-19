@@ -20,6 +20,7 @@
       </template>
     </ps-select>
     <VueShowdown
+      v-if="displayLegend"
       class="text-muted my-1 ps_gs-fz-12"
       :markdown="$t('productFeedSettings.shipping.cantFindCountry', [
         $options.googleUrl.supportedCountries
@@ -27,7 +28,7 @@
       :extensions="['extended-link']"
     />
     <VueShowdown
-      v-if="needFilter"
+      v-if="needFilter && displayLegend"
       class="text-muted my-1 ps_gs-fz-12"
       :markdown="$t('productFeedSettings.shipping.cantSelectCountryWithDifferentCurrency')"
     />
@@ -66,6 +67,11 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+    displayLegend: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
     notFullWidth: {
       type: Boolean,
