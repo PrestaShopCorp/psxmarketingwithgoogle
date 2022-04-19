@@ -5,10 +5,6 @@
       @openPopinRemarketingTag="remarketingTagPopin"
     />
     <div
-      v-if="!inNeedOfConfiguration"
-      class="d-flex flex-wrap flex-md-nowrap justify-content-between mb-md-3 rounded-top"
-    />
-    <div
       class="d-flex justify-content-between align-items-baseline"
     >
       <h3 class="ps_gs-fz-20 font-weight-600">
