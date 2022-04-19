@@ -151,12 +151,12 @@
     "legend2": "Die URL der Shop-Website muss überprüft und angegeben werden, bevor Sie Produktdaten hochladen können.  \n[Erfahren Sie, wie Sie Ihre Website verifizieren und beanspruchen können](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Vollständige Version der Google Store-Anforderungen lesen",
     "accurateContactInformation": {
-      "title": "I confim that my contact information are correct and valid",
+      "title": "I confirm that my contact information are correct and valid",
       "description": "Die Händler müssen auf ihrer Website mindestens eine Kontaktmethode angeben, wobei es sich um jede Art von Kontaktmethode handeln kann.",
       "link": "Entdecken Sie, wie Sie Kontaktinformationen hinzufügen können"
     },
     "secureCheckoutProcess": {
-      "title": "I confim that I have a clear checkout & data collection",
+      "title": "I confirm that I have a clear checkout & data collection",
       "description": "Sie dürfen die Informationen über die Nutzer nicht missbrauchen oder zu unklaren Zwecken oder ohne angemessene Sicherheitsmaßnahmen sammeln.",
       "link": "Erfahren Sie mehr über die unverantwortliche Erhebung und Nutzung von Daten"
     },
