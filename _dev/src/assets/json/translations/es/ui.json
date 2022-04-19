@@ -425,23 +425,22 @@
     },
     "email": {
       "title": "Tu dirección de correo electrónico de Google",
-      "description": "Esta información se utilizará para crear su cuenta.  \nLa dirección de correo electrónico de Google que aparece a continuación es la que se proporcionó durante la conexión de su cuenta de Google."
+      "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Nombre",
+      "name": "Business name",
       "title": "Información comercial",
-      "description": "Both time zone and currency settings are used to determine how you\\'re billed.  \n**You can never change the currency** you choose for your account, so choose it carefully.",
+      "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "País de facturación",
-      "placeholderCountry": "Selecciona tu país de facturación",
+      "placeholderCountry": "Country",
       "labelTimeZone": "Zona horaria",
-      "placeholderTimeZone": "Selecciona tu zona horaria",
+      "placeholderTimeZone": "Choose time",
       "labelCurrency": "Moneda",
-      "placeholderCurrency": "Selecciona tu moneda"
+      "placeholderCurrency": "Currency"
     },
     "terms": {
       "title": "Condiciones de servicio del Programa Google",
-      "description": "By purchasing Shopping ads, I agree to comply with [Google Ads terms and conditions]({0})[:target=\\\"_blank\\\" class=\\\"ps_gs-fz-12 text-muted\\\"]",
-      "label": "He leído y acepto estas condiciones"
+      "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
     }
   },
   "smartShoppingCampaignCard": {
@@ -846,7 +845,6 @@
     "addShippingInfo": "Añadir información de envío",
     "createSmartShoppingCampaign": "Crear una campaña de compra inteligente",
     "addBillingSettings": "Añadir parámetros de facturación",
-    "learnAboutTimeZoneAndCurrency": "Más información sobre la configuración de la moneda y la zona horaria",
     "createCampaign": "Crear campaña",
     "editCampaign": "Campaña de actualización",
     "resetDate": "Fecha de reinicio",
