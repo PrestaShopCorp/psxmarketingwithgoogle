@@ -425,23 +425,22 @@
     },
     "email": {
       "title": "Uw Google e-mail adres",
-      "description": "Deze informatie zal worden gebruikt om uw account aan te maken.  \nOnderstaand Google emailadres is het adres dat is opgegeven tijdens het aanmaken van uw Google account."
+      "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Naam",
+      "name": "Business name",
       "title": "Zakelijke informatie",
-      "description": "Zowel de tijdzone als de munteenheid worden gebruikt om te bepalen hoe u wordt gefactureerd.  \n**U kunt de munteenheid** die u voor uw account kiest nooit wijzigen, dus kies deze zorgvuldig.",
+      "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Land van facturering",
-      "placeholderCountry": "Selecteer uw factureringsland",
+      "placeholderCountry": "Country",
       "labelTimeZone": "Tijdzone",
-      "placeholderTimeZone": "Selecteer uw tijdzone",
+      "placeholderTimeZone": "Choose time",
       "labelCurrency": "Valuta",
-      "placeholderCurrency": "Selecteer uw valuta"
+      "placeholderCurrency": "Currency"
     },
     "terms": {
       "title": "Servicevoorwaarden voor Google Programma",
-      "description": "Door Shopping-advertenties te kopen, ga ik akkoord met de [Google Ads-voorwaarden]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]",
-      "label": "Ik heb deze voorwaarden gelezen en accepteer ze"
+      "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
     }
   },
   "smartShoppingCampaignCard": {
@@ -846,7 +845,6 @@
     "addShippingInfo": "Verzendinfo toevoegen",
     "createSmartShoppingCampaign": "Smart Shopping-campagne opzetten",
     "addBillingSettings": "Factureringsinstellingen toevoegen",
-    "learnAboutTimeZoneAndCurrency": "Meer informatie over valuta- en tijdzone-instellingen",
     "createCampaign": "Campagne maken",
     "editCampaign": "Campagne bijwerken",
     "resetDate": "Ingestelde datum",

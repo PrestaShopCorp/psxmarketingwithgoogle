@@ -425,23 +425,22 @@
     },
     "email": {
       "title": "Votre adresse e-mail Google",
-      "description": "Ces informations seront utilisées pour créer votre compte.  \nL'adresse e-mail de Google ci-dessous est celle fournie lors de la connexion de votre compte Google."
+      "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Nom",
+      "name": "Business name",
       "title": "Informations professionnelles",
-      "description": "Les paramètres de fuseau horaire et de devise sont utilisés pour déterminer comment vous êtes facturé.  \n**Vous ne pouvez jamais changer la devise** que vous choisissez pour votre compte, alors choisissez la avec précaution.",
+      "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Pays de facturation",
-      "placeholderCountry": "Sélectionnez votre pays de facturation",
+      "placeholderCountry": "Country",
       "labelTimeZone": "Fuseau horaire",
-      "placeholderTimeZone": "Sélectionnez votre fuseau horaire",
+      "placeholderTimeZone": "Choose time",
       "labelCurrency": "Devise",
-      "placeholderCurrency": "Sélectionnez votre devise"
+      "placeholderCurrency": "Currency"
     },
     "terms": {
       "title": "Conditions d'utilisation du programme Google",
-      "description": "En faisant des annonces Shopping, j'accepte de me conformer aux [conditions générales de Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]",
-      "label": "J'ai lu et j'accepte ces conditions"
+      "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
     }
   },
   "smartShoppingCampaignCard": {
@@ -846,7 +845,6 @@
     "addShippingInfo": "Ajouter des informations de livraison",
     "createSmartShoppingCampaign": "Créer une campagne Shopping Intelligente",
     "addBillingSettings": "Ajoutez des paramètres de facturation",
-    "learnAboutTimeZoneAndCurrency": "En savoir plus sur les paramètres des devises et des fuseaux horaires",
     "createCampaign": "Créer une campagne",
     "editCampaign": "Mettre à jour la campagne",
     "resetDate": "Date de réinitialisation",

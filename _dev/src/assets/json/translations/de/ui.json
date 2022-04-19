@@ -425,23 +425,22 @@
     },
     "email": {
       "title": "Ihre Google-E-Mail-Adresse",
-      "description": "Diese Informationen werden für die Erstellung Ihres Kontos verwendet.  \nDie unten stehende Google-E-Mail-Adresse ist diejenige, die Sie bei der Verbindung mit Ihrem Google-Konto angegeben haben."
+      "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Name",
+      "name": "Business name",
       "title": "Geschäftliche Informationen",
-      "description": "Sowohl die Zeitzonen- als auch die Währungseinstellungen werden verwendet, um zu bestimmen, wie Sie abgerechnet werden.  \n**Die Währung**, die Sie für Ihr Konto wählen, können Sie nicht mehr ändern, wählen Sie sie also sorgfältig aus.",
+      "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Land der Rechnungsstellung",
-      "placeholderCountry": "Wählen Sie Ihr Rechnungsland",
+      "placeholderCountry": "Country",
       "labelTimeZone": "Zeitzone",
-      "placeholderTimeZone": "Wählen Sie Ihre Zeitzone",
+      "placeholderTimeZone": "Choose time",
       "labelCurrency": "Währung",
-      "placeholderCurrency": "Wählen Sie Ihre Währung"
+      "placeholderCurrency": "Currency"
     },
     "terms": {
       "title": "Nutzungsbedingungen für das Google-Programm",
-      "description": "Mit dem Kauf von Shopping-Anzeigen erkläre ich mich mit den [Google Ads-Bedingungen]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]",
-      "label": "Ich habe diese Bedingungen gelesen und akzeptiere sie"
+      "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
     }
   },
   "smartShoppingCampaignCard": {
@@ -846,7 +845,6 @@
     "addShippingInfo": "Versandinformationen hinzufügen",
     "createSmartShoppingCampaign": "Smart-Shopping-Kampagne erstellen",
     "addBillingSettings": "Einstellungen für die Rechnungsstellung hinzufügen",
-    "learnAboutTimeZoneAndCurrency": "Erfahren Sie mehr über Währungs- und Zeitzoneneinstellungen",
     "createCampaign": "Kampagne erstellen",
     "editCampaign": "Kampagne aktualisieren",
     "resetDate": "Datum zurücksetzen",
