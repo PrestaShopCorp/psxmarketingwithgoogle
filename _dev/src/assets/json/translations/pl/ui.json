@@ -151,12 +151,12 @@
     "legend2": "Adres URL strony sklepu musi zostać zweryfikowany i zgłoszony, zanim będziesz mógł przesłać dane produktów.  \n[Dowiedz się, jak zweryfikować i zgłosić swoją stronę internetową](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Przeczytaj pełną wersję wymagań Google dotyczących sklepu",
     "accurateContactInformation": {
-      "title": "I confim that my contact information are correct and valid",
+      "title": "I confirm that my contact information are correct and valid",
       "description": "Na swojej stronie internetowej Sprzedawcy powinni wskazać co najmniej jedną formę kontaktu. Może to być jakakolwiek forma kontaktu.",
       "link": "Odkryj, jak dodać dane kontaktowe"
     },
     "secureCheckoutProcess": {
-      "title": "I confim that I have a clear checkout & data collection",
+      "title": "I confirm that I have a clear checkout & data collection",
       "description": "Nie wykorzystuj i nie gromadź informacji o użytkownikach w niejasnych celach i bez zachowania stosownych środków bezpieczeństwa.",
       "link": "Dowiedz się więcej o nieodpowiedzialnym gromadzeniu i wykorzystywaniu danych"
     },
