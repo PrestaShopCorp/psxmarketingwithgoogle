@@ -425,23 +425,22 @@
     },
     "email": {
       "title": "Twój adres e-mail w Google",
-      "description": "Te informacje zostaną użyte do utworzenia Twojego konta.  \nPoniższy adres e-mail Google jest adresem podanym podczas łączenia się z kontem Google."
+      "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Nazwa",
+      "name": "Business name",
       "title": "Informacje o firmie",
-      "description": "Zarówno ustawienia strefy czasowej, jak i waluty są używane do określenia sposobu naliczania opłat.  \n**Nigdy nie możesz zmienić waluty**, którą wybrałeś dla swojego konta, więc wybierz ją ostrożnie.",
+      "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Kraj płatności",
-      "placeholderCountry": "Wybierz swój kraj płatności",
+      "placeholderCountry": "Country",
       "labelTimeZone": "Strefa czasowa",
-      "placeholderTimeZone": "Wybierz swoją strefę czasową",
+      "placeholderTimeZone": "Choose time",
       "labelCurrency": "Waluta",
-      "placeholderCurrency": "Wybierz swoją walutę"
+      "placeholderCurrency": "Currency"
     },
     "terms": {
       "title": "Warunki korzystania z programu Google",
-      "description": "Kupując reklamy Zakupy, zgadzam się na przestrzeganie [warunków i zasad Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]",
-      "label": "Zapoznałem się z warunkami i akceptuję je"
+      "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
     }
   },
   "smartShoppingCampaignCard": {
@@ -846,7 +845,6 @@
     "addShippingInfo": "Dodaj informacje o wysyłce",
     "createSmartShoppingCampaign": "Utwórz inteligentną kampanię produktową",
     "addBillingSettings": "Dodaj ustawienia dotyczące rozliczeń",
-    "learnAboutTimeZoneAndCurrency": "Dowiedz się więcej o ustawieniach waluty i strefy czasowej",
     "createCampaign": "Utwórz kampanię",
     "editCampaign": "Aktualizuj kampanię",
     "resetDate": "Resetuj datę",
