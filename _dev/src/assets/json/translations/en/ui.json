@@ -151,12 +151,12 @@
     "legend2": "Store's website URL needs to be verified and claimed before you can upload products data.  \n[Learn how to verify and claim your website](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
     "footer": "Read full version of Google store requirements",
     "accurateContactInformation": {
-      "title": "I confim that my contact information are correct and valid",
+      "title": "I confirm that my contact information are correct and valid",
       "description": "Merchants need to have at least one contact method listed on their website, this can be any type of contact method.",
       "link": "Discover how to add contact information"
     },
     "secureCheckoutProcess": {
-      "title": "I confim that I have a clear checkout & data collection",
+      "title": "I confirm that I have a clear checkout & data collection",
       "description": "Do not misuse information about user, nor collect it for unclear purposes or without appropriate security measures.",
       "link": "Learn about irresponsible data collection & use"
     },
