@@ -4,40 +4,25 @@
       v-if="!inNeedOfConfiguration"
       @openPopinRemarketingTag="remarketingTagPopin"
     />
-    <h3 class="order-2 order-md-1 ps_gs-fz-20 font-weight-600">
-      {{ $t('smartShoppingCampaignList.tableTitle') }}
-    </h3>
     <div
-      v-if="!inNeedOfConfiguration"
-      class="d-flex flex-wrap flex-md-nowrap justify-content-between mb-md-3 rounded-top"
+      class="d-flex justify-content-between align-items-baseline"
     >
-      <div
-        class="order-1 order-md-2 ml-auto d-flex-md mr-md-0 mb-2 mt-n3 mt-md-0
-        flex-md-shrink-0 text-center"
+      <h3 class="ps_gs-fz-20 font-weight-600">
+        {{ $t('smartShoppingCampaignList.tableTitle') }}
+      </h3>
+      <b-button
+        v-if="remarketingTag && campaignList.length && !inNeedOfConfiguration"
+        data-test-id="redirect-to-reporting-button"
+        size="sm"
+        class="mb-2"
+        variant="outline-primary"
+        @click="redirectToReporting"
       >
-        <b-button
-          v-if="remarketingTag && campaignList.length"
-          data-test-id="redirect-to-reporting-button"
-          size="sm"
-          class="mx-1 mt-3 mt-md-0"
-          variant="outline-primary"
-          @click="redirectToReporting"
-        >
-          {{ $t('cta.viewReporting') }}
-        </b-button>
-        <b-button
-          v-if="campaignList.length"
-          data-test-id="create-campaign-button"
-          size="sm"
-          class="mx-1 mt-3 mt-md-0 mr-md-0"
-          variant="primary"
-          @click="redirectToCreateCampaign"
-        >
-          {{ $t('cta.createCampaign') }}
-        </b-button>
-      </div>
+        {{ $t('cta.viewReporting') }}
+      </b-button>
     </div>
     <ReportingTableHeader
+      class="mt-n1"
       v-if="!inNeedOfConfiguration"
       :title="$tc(`smartShoppingCampaignList.xCampaign`,
                   campaignList.length, [campaignList.length])"
@@ -62,7 +47,7 @@
         variant="light"
         responsive="xl"
       >
-        <b-thead>
+        <b-thead :style="inNeedOfConfiguration ? {filter:'blur('+4+'px)'} : '' ">
           <b-tr class="bg-prestashop-bg">
             <b-th
               v-for="(type, index) in campaignHeaderList"
@@ -125,14 +110,19 @@
           </b-tr>
         </b-thead>
         <b-tbody class="bg-white">
-          <template v-if="campaignList.length">
+          <template
+            v-if="campaignList.length && !inNeedOfConfiguration"
+            class=" ps_gs-onboardingcard__not-configured"
+          >
             <SmartShoppingCampaignTableListRow
               v-for="campaign in campaignList"
               :key="campaign.campaignName"
               :campaign="campaign"
             />
           </template>
-          <b-tr v-if="!!inNeedOfConfiguration">
+          <b-tr
+            v-if="inNeedOfConfiguration"
+          >
             <b-td :colspan="campaignHeaderList.length">
               <NotConfiguredCard class="mx-auto" />
             </b-td>
@@ -239,11 +229,6 @@ export default {
     },
     hasSorting(headerType) {
       return headerType === CampaignSummaryListHeaderType.DURATION;
-    },
-    redirectToCreateCampaign() {
-      this.$router.push({
-        name: 'campaign-creation',
-      });
     },
     redirectToReporting() {
       this.$router.push({

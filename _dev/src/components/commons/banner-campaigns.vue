@@ -23,7 +23,7 @@
           variant="primary"
           @click="openPopinActivateTracking"
         >
-          {{ $t('banner.ctaCreateFirstCampaign') }}
+          {{ this.SSCExist ? $t('cta.createCampaign') : $t('banner.ctaCreateFirstCampaign') }}
         </b-button>
       </div>
     </b-card-body>
@@ -47,6 +47,9 @@ export default {
     SSCExist() {
       return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
     },
+    remarketingTagIsSet() {
+      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
+    },
   },
   methods: {
     openPopinActivateTracking() {
@@ -55,7 +58,7 @@ export default {
         params: SegmentGenericParams,
       });
       // Prevent popin for opening if tracking is a campaign exists
-      if (this.SSCExist) {
+      if (this.remarketingTagIsSet) {
         this.$router.push({
           name: 'campaign-creation',
         });

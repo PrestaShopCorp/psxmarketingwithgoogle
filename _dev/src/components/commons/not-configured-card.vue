@@ -18,7 +18,6 @@
         {{ textNotConfigured }}
       </p>
       <b-button
-        class="text-nowrap"
         :to="{name: 'configuration'}"
         variant="primary"
       >
