@@ -82,7 +82,7 @@
                 </b-badge>
               </b-td>
               <b-td
-                class="align-top d-flex"
+                class="align-top d-flex flex-wrap"
               >
                 <section
                   v-for="(oneCountry, indexCountry) in multipleCountries(productsById)"

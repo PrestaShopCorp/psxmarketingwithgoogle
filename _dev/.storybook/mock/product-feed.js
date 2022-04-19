@@ -450,12 +450,12 @@ export const productFeed = {
           detail: "Provide at least 2 of the missing identifiers",
           documentation:
             "https://support.google.com/merchants/answer/6098295",
-          applicableCountries: ["FR"],
+          applicableCountries: ["FR", "BE", "IT", "USA"],
         }],
         statuses: {
           destination: "Shopping",
           status: "disapproved",
-          countries: ["FR"],
+          countries: ["FR", "BE", "IT", "USA"],
         },
       },
     ],
