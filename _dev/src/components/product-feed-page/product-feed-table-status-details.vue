@@ -82,24 +82,18 @@
                 </b-badge>
               </b-td>
               <b-td
-                class="align-top"
+                class="align-top d-flex"
               >
                 <section
-                  v-for="(oneProduct, indexLang) in productsById"
-                  :key="indexLang"
-                  class="d-flex"
+                  v-for="(oneCountry, indexCountry) in multipleCountries(productsById)"
+                  :key="indexCountry"
                 >
-                  <section
-                    v-for="(oneCountry, indexCountry) in oneProduct.statuses.countries"
-                    :key="indexCountry"
+                  <b-badge
+                    variant="primary"
+                    class="ps_gs-fz-12  m-1 "
                   >
-                    <b-badge
-                      variant="primary"
-                      class="ps_gs-fz-12  m-1"
-                    >
-                      {{ oneCountry }}
-                    </b-badge>
-                  </section>
+                    {{ oneCountry }}
+                  </b-badge>
                 </section>
               </b-td>
               <b-td
@@ -550,6 +544,19 @@ export default {
         }
       });
       return issues;
+    },
+    multipleCountries(productsById) {
+      let arrayOfCountries = [];
+      productsById.forEach((e) => {
+        if (e.statuses.countries.length) {
+          e.statuses.countries.forEach((country) => {
+            arrayOfCountries.push(country);
+          });
+        }
+      });
+      arrayOfCountries = arrayOfCountries.filter(
+        (element, index) => arrayOfCountries.indexOf(element) === index);
+      return arrayOfCountries;
     },
     multipleDestinations(productsById) {
       let arrayOfDestinations = [];
