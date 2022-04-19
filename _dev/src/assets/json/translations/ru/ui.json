@@ -425,23 +425,22 @@
     },
     "email": {
       "title": "Ваш адрес электронной почты Google",
-      "description": "Эта информация будет использована для создания вашего аккаунта.  \nУказанный ниже адрес электронной почты Google - это адрес, указанный при подключении аккаунта Google."
+      "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Имя",
+      "name": "Business name",
       "title": "Деловая информация",
-      "description": "Настройки часового пояса и валюты используются для определения того, как вам будет выставлен счет.  \n**Вы никогда не сможете изменить валюту**, выбранную для вашего счета, поэтому выбирайте ее тщательно.",
+      "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Страна выставления счетов",
-      "placeholderCountry": "Выберите страну выставления счетов",
+      "placeholderCountry": "Country",
       "labelTimeZone": "Часовой пояс",
-      "placeholderTimeZone": "Выберите часовой пояс",
+      "placeholderTimeZone": "Choose time",
       "labelCurrency": "Валюта",
-      "placeholderCurrency": "Выберите свою валюту"
+      "placeholderCurrency": "Currency"
     },
     "terms": {
       "title": "Условия обслуживания для программы Google",
-      "description": "Приобретая рекламу \"Покупки\", я соглашаюсь соблюдать [правила и условия Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"].",
-      "label": "Я прочитал и принимаю эти условия"
+      "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
     }
   },
   "smartShoppingCampaignCard": {
@@ -846,7 +845,6 @@
     "addShippingInfo": "Добавить информацию о доставке",
     "createSmartShoppingCampaign": "Создайте кампанию \"Умные покупки",
     "addBillingSettings": "Добавить настройки выставления счетов",
-    "learnAboutTimeZoneAndCurrency": "Узнайте больше о настройках валюты и часового пояса",
     "createCampaign": "Создать кампанию",
     "editCampaign": "Обновление кампании",
     "resetDate": "Дата сброса",
