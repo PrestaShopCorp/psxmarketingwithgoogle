@@ -425,23 +425,22 @@
     },
     "email": {
       "title": "Il tuo indirizzo e-mail di Google",
-      "description": "Queste informazioni saranno utilizzate per creare il tuo account.  \nL'indirizzo email di Google qui sotto è quello fornito durante la connessione al tuo account Google."
+      "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Nome",
+      "name": "Business name",
       "title": "Informazioni sull'azienda",
-      "description": "Both time zone and currency settings are used to determine how you\\'re billed.  \n**You can never change the currency** you choose for your account, so choose it carefully.",
+      "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Paese di fatturazione",
-      "placeholderCountry": "Seleziona il tuo paese di fatturazione",
+      "placeholderCountry": "Country",
       "labelTimeZone": "Fuso orario",
-      "placeholderTimeZone": "Seleziona il tuo fuso orario",
+      "placeholderTimeZone": "Choose time",
       "labelCurrency": "Valuta",
-      "placeholderCurrency": "Seleziona la tua valuta"
+      "placeholderCurrency": "Currency"
     },
     "terms": {
       "title": "Termini di servizio per il programma Google",
-      "description": "By purchasing Shopping ads, I agree to comply with [Google Ads terms and conditions]({0})[:target=\\\"_blank\\\" class=\\\"ps_gs-fz-12 text-muted\\\"]",
-      "label": "Ho letto e accetto questi termini"
+      "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
     }
   },
   "smartShoppingCampaignCard": {
@@ -846,7 +845,6 @@
     "addShippingInfo": "Aggiungi informazioni sulla spedizione",
     "createSmartShoppingCampaign": "Crea una campagna Smart Shopping",
     "addBillingSettings": "Aggiungi le impostazioni di fatturazione",
-    "learnAboutTimeZoneAndCurrency": "Per saperne di più sulle impostazioni della valuta e il fuso orario",
     "createCampaign": "Crea una campagna",
     "editCampaign": "Aggiorna la campagna",
     "resetDate": "Resetta la data",
