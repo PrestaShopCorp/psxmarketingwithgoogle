@@ -72,33 +72,73 @@
                         step: 3,params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
             size="full"
           >
+          <VueShowdown
+            v-if="getNumberOfAttributesMapped"
+            class="ps_gs-fz-12"
+            :markdown="
+              $tc(
+                'productFeedSettings.summary.attributeMapped',
+                getNumberOfAttributesMapped,
+                [getNumberOfAttributesMapped]
+              )
+            "
+            :extensions="['no-p-tag']"
+            />
             <b-table-simple
               stacked="md"
-              class="mx-n1 mt-3 mb-0"
+              class="mt-2 centered-mapping-summary"
               borderless
-              table-class="border-bottom-0 table-firstline-borderless ps_gs-table-attribute-mapping"
+              table-class="border-bottom-0 ps_gs-table-attribute-mapping"
             >
               <b-thead>
                 <b-tr>
                   <b-th
                     class="
-                      border-0
                       font-weight-600
-                      text-decoration-underline
                       ps_gs-fz-12
+                      table-border-bottom
                     "
                   >
-                    {{ $t('productFeedSettings.summary.tableHeader1') }}
+                  <div class="text-center mb-2 float-left">
+                    <div class="d-inline-block align-middle mr-mid-4">
+                      <img
+                        class="rounded-circle mb-1"
+                        src="@/assets/images/google-icon-grey.svg"
+                        width="20"
+                        height="20"
+                      >
+                      <p>
+                        {{ $t('productFeedSettings.summary.tableHeader1') }}
+                      </p>
+                    </div>
+                    <div class="d-inline-block text-right">
+                      <img
+                        src="@/assets/images/compare-arrows.svg"
+                        class="text-right"
+                        width="40"
+                        height="40"
+                      >
+                    </div>
+                  </div>
                   </b-th>
                   <b-th
                     class="
-                      border-0
                       font-weight-600
-                      text-decoration-underline
                       ps_gs-fz-12
+                      table-border-bottom
                     "
                   >
-                    {{ $t("productFeedSettings.summary.tableHeader2") }}
+                  <div class="text-center mb-2 float-right">
+                    <img
+                      src="@/assets/images/table-chart.svg"
+                      class="mb-1"
+                      width="20"
+                      height="20"
+                    >
+                    <p>
+                      {{ $t("productFeedSettings.summary.tableHeader2") }}
+                    </p>
+                  </div>
                   </b-th>
                 </b-tr>
               </b-thead>
@@ -110,15 +150,13 @@
                 />
               </b-tbody>
             </b-table-simple>
-            <caption
+            <b-alert
+              class="mb-0 mt-3"
               v-if="mandatoryAttributesNotMapped"
-              class="d-flex ps_gs-fz-12 ps_gs-table-caption mt-3"
+              variant="warning"
+              show
             >
-              <i
-                class="material-icons-round ps_gs-fz-16 text-warning mr-2"
-              >warning_amber</i>
-              <p>
-                <VueShowdown
+              <VueShowdown
                   :markdown="
                     $tc(
                       'productFeedSettings.summary.mandatoryAttributesNotMapped',
@@ -140,8 +178,7 @@
                   :extensions="['extended-link', 'no-p-tag']"
                   tag="span"
                 />
-              </p>
-            </caption>
+            </b-alert>
           </product-feed-card-report-card>
         </b-row>
       </b-container>
@@ -295,6 +332,17 @@ export default {
 
       return getNumberAttrNotMapped;
     },
+    getNumberOfAttributesMapped() {
+      let mapped = 0;
+
+      this.getMapping.forEach((el) => {
+        if (el.prestashop !== '') {
+          mapped += 1;
+        }
+      });
+
+      return mapped;
+    },
     getMapping() {
       return this.$store.getters[
         'productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP'
@@ -356,6 +404,9 @@ export default {
         hash: '#product-feed-card',
       });
     },
+  },
+  mounted() {
+    this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
   },
 
   googleUrl,
