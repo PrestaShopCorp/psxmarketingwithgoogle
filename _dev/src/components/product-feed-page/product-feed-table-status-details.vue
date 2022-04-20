@@ -105,7 +105,7 @@
                     v-for="(destination, indexDesti) in multipleDestinations(productsById)"
                     :key="indexDesti"
                   >
-                    <td>
+                    <td class="col-md-6">
                       <ul
                         v-for="(issue, indexIssue) in multipleIssues(productsById)"
                         :key="indexIssue"
@@ -128,12 +128,12 @@
                     </td>
                   </tr>
                 </table>
-                <table v-else>
+                <table v-else-if="!issuesAreSame(productsById)">
                   <tr
                     v-for="(desti, indexDesti) in multipleIssues(productsById)"
                     :key="indexDesti"
                   >
-                    <td>
+                    <td class="col-md-6">
                       <ul
                         v-for="(issue, indexIssue) in desti.issues"
                         :key="indexIssue"
@@ -152,6 +152,32 @@
                       </ul>
                     </td>
                     <td class="align-top">
+                      {{ desti.destination }}
+                    </td>
+                  </tr>
+                </table>
+                <table v-else>
+                  <tr
+                    v-for="(desti, indexDesti) in multipleIssues(productsById)"
+                    :key="indexDesti"
+                  >
+                    <ul
+                      v-for="(issue, indexIssue) in desti.issues"
+                      :key="indexIssue"
+                      class="pl-0 mb-0 ml-3"
+                    >
+                      <li>
+                        <a
+                          class="text-decoration-none"
+                          :href="issue.documentation"
+                          :title="issue.detail"
+                          target="_blank"
+                        >
+                          {{ issue.description }}
+                        </a>
+                      </li>
+                    </ul>
+                    <td class="align-top col-md-6">
                       {{ desti.destination }}
                     </td>
                   </tr>
@@ -603,13 +629,26 @@ export default {
         }
         match.issues = match.issues.concat(product.issues);
       });
-
-      return issuesPerDestinations.map((issuesList) => {
-        issuesList.issues = issuesList.issues
-          .filter((issue, index) => issuesList.issues
+      issuesPerDestinations.map((destination) => {
+        destination.issues = destination.issues
+          .filter((issue, index) => destination.issues
             .findIndex((iss) => iss.code === issue.code) === index);
-        return issuesList;
+        return destination;
       });
+      return issuesPerDestinations;
+    },
+    issuesAreSame(productsById) {
+      const issuesPerDestinations = this.multipleIssues(productsById);
+      // Create the 2 temporary arrays of each destination and map to retrieve only issues by code
+      let [source1, source2] = issuesPerDestinations;
+      source1 = source1.issues.map((issue) => Number(issue.code)).sort();
+      source2 = source2.issues.map((issue) => Number(issue.code)).sort();
+
+      // Check if the two temporary arrays are equals and return boolean
+      return Array.isArray(source1)
+              && Array.isArray(source2)
+              && source1.length === source2.length
+              && source1.every((val, index) => val === source2[index]);
     },
     handleScroll() {
       const de = document.documentElement;

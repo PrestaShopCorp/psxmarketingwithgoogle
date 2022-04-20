@@ -455,7 +455,7 @@ export const productFeed = {
         statuses: {
           destination: "Shopping",
           status: "disapproved",
-          countries: ["FR", "BE", "IT", "USA"],
+          countries: ["FR", "BE", "IT", "US"],
         },
       },
     ],
