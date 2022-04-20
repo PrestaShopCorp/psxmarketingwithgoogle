@@ -31,7 +31,13 @@ class TemplateBuffer
 
     public function init()
     {
-        $this->session = new Session();
+        if (class_exists('Symfony\Component\HttpFoundation\Session\Storage\PhpBridgeSessionStorage')) {
+            $this->session = new Session(
+                new \Symfony\Component\HttpFoundation\Session\Storage\PhpBridgeSessionStorage()
+            );
+        } else {
+            $this->session = new Session();
+        }
         $this->session->start();
     }
 
