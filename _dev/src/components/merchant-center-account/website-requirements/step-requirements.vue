@@ -92,8 +92,10 @@ export default {
       return newStr;
     },
     getCurrentCheckbox() {
-      this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
       this.$emit('stepRequirementsValidation', !(this.selectedRequirements.length === this.requirements.length));
+      if (this.selectedRequirements.length === this.requirements.length) {
+        this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', this.selectedRequirements);
+      }
     },
     tooltipFormat(requirement) {
       return this.$t(`mcaRequirements.${requirement}.description`);
