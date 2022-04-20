@@ -11,7 +11,7 @@
       <div class="container-mapping-summary">
         <span
           class="mb-0 text-right ellipsis-mapping-summary-text"
-          :class="{'text-danger': attributeNotMapped}"
+          :class="{'text-danger-light': attributeNotMapped}"
         >
           <i class="material-icons-outlined align-items-with-text" v-if="attributeNotMapped">
           edit
