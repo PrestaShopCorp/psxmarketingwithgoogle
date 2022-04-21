@@ -111,7 +111,7 @@
                         {{ $t('productFeedSettings.summary.tableHeader1') }}
                       </p>
                     </div>
-                    <div class="d-inline-block text-right">
+                    <div class="d-inline-block text-right no-icon-mapping">
                       <img
                         src="@/assets/images/compare-arrows.svg"
                         class="text-right"
