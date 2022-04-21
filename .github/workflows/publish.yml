@@ -9,6 +9,14 @@ jobs:
     name: build dependencies & create artifact
     runs-on: ubuntu-latest
     steps:
+      - name: Get tag
+        id: get_tag
+        run: |
+          echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
+          echo ::set-output name=MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1)
+          echo ::set-output name=MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2)
+          echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
+
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -20,6 +28,8 @@ jobs:
 
       - name: Install & build
         working-directory: _dev
+        env:
+          VUE_APP_BUILD_VERSION: ${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}
         run: |
           npm install
           npm run build
@@ -33,13 +43,6 @@ jobs:
       - name: Install composer dependencies
         run: composer install --no-dev -o
 
-      - name: Get tag
-        id: get_tag
-        run: |
-          echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
-          echo ::set-output name=MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1)
-          echo ::set-output name=MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2)
-          echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
 
       - name: Write .env file with specific CDN URL
         if: "github.event.release.prerelease"
