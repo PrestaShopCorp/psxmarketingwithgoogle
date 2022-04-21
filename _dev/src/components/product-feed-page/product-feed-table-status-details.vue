@@ -659,6 +659,7 @@ export default {
       const issuesPerDestination = this.multipleIssues(productsById);
 
       if (this.issuesAreSame(productsById)) {
+        // There are always going to be 2 destinations
         return [
           {
             issues: issuesPerDestination[0].issues,
