@@ -37,14 +37,15 @@
             <b-th
               v-for="(field, indexField) in fields"
               :key="indexField"
-              :class="{'b-table-sticky-column': indexField === 1}"
+              :class="{'b-table-sticky-column': indexField === 1,
+                       'col-2' : indexField === fields.length-1}"
             >
               {{ field.label }}
               <b-button
                 v-if="field.tooltip"
                 variant="invisible"
                 v-b-tooltip:psxMktgWithGoogleApp
-                class="p-0 mt-0 ml-0 border-0 "
+                class="p-0 mt-0 ml-0 mb-n1 border-0 "
                 :title="$t(`productFeedPage.approvalTable.${field.tooltip}`)"
               >
                 <span class="material-icons-round ps_gs-fz-16 text-primary">
@@ -96,16 +97,13 @@
                   </b-badge>
                 </section>
               </b-td>
-              <b-td
-                class="align-top"
-                colspan="2"
-              >
+              <b-td colspan="2">
                 <table v-if="multipleDestinations(productsById).length <= 1">
                   <tr
                     v-for="(destination, indexDesti) in multipleDestinations(productsById)"
                     :key="indexDesti"
                   >
-                    <td class="col-md-6">
+                    <td class="col-8">
                       <ul
                         v-for="(issue, indexIssue) in multipleIssues(productsById)"
                         :key="indexIssue"
@@ -123,17 +121,50 @@
                         </li>
                       </ul>
                     </td>
-                    <td class="align-top">
+                    <td>
                       {{ destination }}
                     </td>
                   </tr>
                 </table>
-                <table v-else-if="!issuesAreSame(productsById)">
+                <table v-else-if="issuesAreSame(productsById)">
+                  <tr>
+                    <td
+                      rowspan="2"
+                      class="col-8"
+                    >
+                      <ul
+                        v-for="(issue, indexIssue) in productsById[0].issues"
+                        :key="indexIssue"
+                        class="pl-0 mb-0 ml-3"
+                      >
+                        <li>
+                          <a
+                            class="text-decoration-none"
+                            :href="issue.documentation"
+                            :title="issue.detail"
+                            target="_blank"
+                          >
+                            {{ issue.description }}
+                          </a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      {{ multipleDestinations(productsById)[0] }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      {{ multipleDestinations(productsById)[1] }}
+                    </td>
+                  </tr>
+                </table>
+                <table v-else>
                   <tr
                     v-for="(desti, indexDesti) in multipleIssues(productsById)"
                     :key="indexDesti"
                   >
-                    <td class="col-md-6">
+                    <td class="col-8">
                       <ul
                         v-for="(issue, indexIssue) in desti.issues"
                         :key="indexIssue"
@@ -152,32 +183,6 @@
                       </ul>
                     </td>
                     <td class="align-top">
-                      {{ desti.destination }}
-                    </td>
-                  </tr>
-                </table>
-                <table v-else>
-                  <tr
-                    v-for="(desti, indexDesti) in multipleIssues(productsById)"
-                    :key="indexDesti"
-                  >
-                    <ul
-                      v-for="(issue, indexIssue) in desti.issues"
-                      :key="indexIssue"
-                      class="pl-0 mb-0 ml-3"
-                    >
-                      <li>
-                        <a
-                          class="text-decoration-none"
-                          :href="issue.documentation"
-                          :title="issue.detail"
-                          target="_blank"
-                        >
-                          {{ issue.description }}
-                        </a>
-                      </li>
-                    </ul>
-                    <td class="align-top col-md-6">
                       {{ desti.destination }}
                     </td>
                   </tr>
@@ -649,6 +654,20 @@ export default {
               && Array.isArray(source2)
               && source1.length === source2.length
               && source1.every((val, index) => val === source2[index]);
+    },
+    sameIssues(productsById) {
+      const issuesPerDestination = this.multipleIssues(productsById);
+
+      if (this.issuesAreSame(productsById)) {
+        return [
+          {
+            issues: issuesPerDestination[0].issues,
+            destination: issuesPerDestination[0].destination,
+          },
+          {destination: issuesPerDestination[1].destination},
+        ];
+      }
+      return [];
     },
     handleScroll() {
       const de = document.documentElement;
