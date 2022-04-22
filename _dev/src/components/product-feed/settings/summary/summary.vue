@@ -91,7 +91,9 @@
               table-class="border-bottom-0 ps_gs-table-attribute-mapping"
             >
               <b-thead>
-                <b-tr>
+                <b-tr
+                  :style="cssProps"
+                >
                   <b-th
                     class="
                       font-weight-600
@@ -100,25 +102,15 @@
                     "
                   >
                     <div class="text-center mb-2 float-left">
-                      <div class="d-inline-block align-middle mr-mid-4">
-                        <img
-                          class="rounded-circle mb-1"
-                          src="@/assets/images/google-icon-grey.svg"
-                          width="20"
-                          height="20"
-                        >
-                        <p>
-                          {{ $t('productFeedSettings.summary.tableHeader1') }}
-                        </p>
-                      </div>
-                      <div class="d-inline-block text-right no-icon-mapping">
-                        <img
-                          src="@/assets/images/compare-arrows.svg"
-                          class="text-right"
-                          width="40"
-                          height="40"
-                        >
-                      </div>
+                      <img
+                        class="rounded-circle mb-1"
+                        src="@/assets/images/google-icon-grey.svg"
+                        width="20"
+                        height="20"
+                      >
+                      <p>
+                        {{ $t('productFeedSettings.summary.tableHeader1') }}
+                      </p>
                     </div>
                   </b-th>
                   <b-th
@@ -243,7 +235,6 @@
 <script>
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
@@ -254,6 +245,7 @@ import ProductFeedCardReportCard from '../../product-feed-card-report-card';
 import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
 import TableRowMapping from '@/components/product-feed/commons/table-row-mapping';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import compareArrow from '@/assets/images/compare-arrows.svg';
 
 dayjs.extend(duration);
 
@@ -279,6 +271,11 @@ export default {
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
       acceptSyncSchedule: false,
       understandTerms: false,
+      cssProps: {
+        backgroundImage: `url(${compareArrow})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      },
     };
   },
   computed: {

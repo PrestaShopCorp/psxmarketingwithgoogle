@@ -10,11 +10,12 @@
     <b-td class="align-top">
       <div class="container-mapping-summary">
         <span
-          class="mb-0 text-right ellipsis-mapping-summary-text"
+          class="mb-0 text-right ellipsis-mapping-summary-text
+          d-flex align-items-end justify-content-end"
           :class="{'text-danger-light': attributeNotMapped}"
         >
           <i
-            class="material-icons-outlined align-items-with-text"
+            class="material-icons-outlined ps_gs-fz-20"
             v-if="attributeNotMapped"
           >
             edit
