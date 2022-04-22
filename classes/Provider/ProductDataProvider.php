@@ -44,7 +44,6 @@ class ProductDataProvider
             [
                 (int) $product['id_product'],
                 (int) $product['id_product_attribute'],
-                $this->context->language->iso_code,
             ]
         ));
         $productData->setPrice((float) $product['product_price_wt']);
@@ -63,7 +62,6 @@ class ProductDataProvider
             [
                 (int) $product->id,
                 (int) $params['id_product_attribute'],
-                $this->context->language->iso_code,
             ]
         ));
 
