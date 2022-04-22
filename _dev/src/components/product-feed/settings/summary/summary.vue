@@ -72,17 +72,17 @@
                         step: 3,params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
             size="full"
           >
-          <VueShowdown
-            v-if="getNumberOfAttributesMapped"
-            class="ps_gs-fz-12"
-            :markdown="
-              $tc(
-                'productFeedSettings.summary.attributeMapped',
-                getNumberOfAttributesMapped,
-                [getNumberOfAttributesMapped]
-              )
-            "
-            :extensions="['no-p-tag']"
+            <VueShowdown
+              v-if="getNumberOfAttributesMapped"
+              class="ps_gs-fz-12"
+              :markdown="
+                $tc(
+                  'productFeedSettings.summary.attributeMapped',
+                  getNumberOfAttributesMapped,
+                  [getNumberOfAttributesMapped]
+                )
+              "
+              :extensions="['no-p-tag']"
             />
             <b-table-simple
               stacked="md"
@@ -99,27 +99,27 @@
                       table-border-bottom
                     "
                   >
-                  <div class="text-center mb-2 float-left">
-                    <div class="d-inline-block align-middle mr-mid-4">
-                      <img
-                        class="rounded-circle mb-1"
-                        src="@/assets/images/google-icon-grey.svg"
-                        width="20"
-                        height="20"
-                      >
-                      <p>
-                        {{ $t('productFeedSettings.summary.tableHeader1') }}
-                      </p>
+                    <div class="text-center mb-2 float-left">
+                      <div class="d-inline-block align-middle mr-mid-4">
+                        <img
+                          class="rounded-circle mb-1"
+                          src="@/assets/images/google-icon-grey.svg"
+                          width="20"
+                          height="20"
+                        >
+                        <p>
+                          {{ $t('productFeedSettings.summary.tableHeader1') }}
+                        </p>
+                      </div>
+                      <div class="d-inline-block text-right no-icon-mapping">
+                        <img
+                          src="@/assets/images/compare-arrows.svg"
+                          class="text-right"
+                          width="40"
+                          height="40"
+                        >
+                      </div>
                     </div>
-                    <div class="d-inline-block text-right no-icon-mapping">
-                      <img
-                        src="@/assets/images/compare-arrows.svg"
-                        class="text-right"
-                        width="40"
-                        height="40"
-                      >
-                    </div>
-                  </div>
                   </b-th>
                   <b-th
                     class="
@@ -128,17 +128,17 @@
                       table-border-bottom
                     "
                   >
-                  <div class="text-center mb-2 float-right">
-                    <img
-                      src="@/assets/images/table-chart.svg"
-                      class="mb-1"
-                      width="20"
-                      height="20"
-                    >
-                    <p>
-                      {{ $t("productFeedSettings.summary.tableHeader2") }}
-                    </p>
-                  </div>
+                    <div class="text-center mb-2 float-right">
+                      <img
+                        src="@/assets/images/table-chart.svg"
+                        class="mb-1"
+                        width="20"
+                        height="20"
+                      >
+                      <p>
+                        {{ $t("productFeedSettings.summary.tableHeader2") }}
+                      </p>
+                    </div>
                   </b-th>
                 </b-tr>
               </b-thead>
@@ -157,27 +157,27 @@
               show
             >
               <VueShowdown
-                  :markdown="
-                    $tc(
-                      'productFeedSettings.summary.mandatoryAttributesNotMapped',
-                      mandatoryAttributesNotMapped,
-                      [mandatoryAttributesNotMapped]
-                    )
-                  "
-                  :extensions="['no-p-tag']"
-                  tag="strong"
-                  class="font-weight-600"
-                />
-                <br>
-                <VueShowdown
-                  :markdown="
-                    $t('productFeedSettings.summary.noticeToCompleteMapping', [
-                      $options.googleUrl.learnRequirementsProductSpecification,
-                    ])
-                  "
-                  :extensions="['extended-link', 'no-p-tag']"
-                  tag="span"
-                />
+                :markdown="
+                  $tc(
+                    'productFeedSettings.summary.mandatoryAttributesNotMapped',
+                    mandatoryAttributesNotMapped,
+                    [mandatoryAttributesNotMapped]
+                  )
+                "
+                :extensions="['no-p-tag']"
+                tag="strong"
+                class="font-weight-600"
+              />
+              <br>
+              <VueShowdown
+                :markdown="
+                  $t('productFeedSettings.summary.noticeToCompleteMapping', [
+                    $options.googleUrl.learnRequirementsProductSpecification,
+                  ])
+                "
+                :extensions="['extended-link', 'no-p-tag']"
+                tag="span"
+              />
             </b-alert>
           </product-feed-card-report-card>
         </b-row>
