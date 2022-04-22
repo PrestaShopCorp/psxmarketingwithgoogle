@@ -20,9 +20,9 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\DTO\Remarketing;
 
-use JsonSerializable;
+use PrestaShop\Module\PsxMarketingWithGoogle\DTO\ConversionEventData;
 
-class PurchaseEventData implements JsonSerializable
+class PurchaseEventData extends ConversionEventData
 {
     /**
      * @var ProductData[]
@@ -45,25 +45,22 @@ class PurchaseEventData implements JsonSerializable
     protected $awFeedLanguage;
 
     /**
-     * @var string|null
-     */
-    protected $sendTo;
-
-    /**
      * @var float
      */
     protected $discount;
 
     public function jsonSerialize(): array
     {
-        return [
-            'send_to' => $this->sendTo,
-            'items' => $this->items,
-            'discount' => $this->discount,
-            'aw_merchant_id' => $this->awMerchandId,
-            'aw_feed_country' => $this->awFeedCountry,
-            'aw_feed_language' => $this->awFeedLanguage,
-        ];
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'items' => $this->items,
+                'discount' => $this->discount,
+                'aw_merchant_id' => $this->awMerchandId,
+                'aw_feed_country' => $this->awFeedCountry,
+                'aw_feed_language' => $this->awFeedLanguage,
+            ]
+        );
     }
 
     /**
@@ -118,18 +115,6 @@ class PurchaseEventData implements JsonSerializable
     public function setItems(array $items)
     {
         $this->items = $items;
-
-        return $this;
-    }
-
-    /**
-     * @param string|null $sendTo
-     *
-     * @return self
-     */
-    public function setSendTo($sendTo)
-    {
-        $this->sendTo = $sendTo;
 
         return $this;
     }
