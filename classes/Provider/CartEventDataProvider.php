@@ -42,10 +42,11 @@ class CartEventDataProvider
     public function getEventData($sendTo, $data): ConversionEventData
     {
         $product = $data['product'];
+        $idProductAttribute = isset($data['id_product_attribute']) ? $data['id_product_attribute'] : 0;
 
         return (new ConversionEventData())
             ->setSendTo($sendTo)
             ->setCurrency($this->context->currency->iso_code)
-            ->setValue($product->price);
+            ->setValue(\Product::getPriceStatic($product->id, true, $idProductAttribute, 2));
     }
 }
