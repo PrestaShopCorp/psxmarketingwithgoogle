@@ -71,14 +71,21 @@ class PurchaseEventDataProvider
 
     /**
      * Return the items concerned by the transaction
+     *
+     * @see https://support.google.com/google-ads/answer/9028614
      */
     public function getEventData($sendTo, Order $order): PurchaseEventData
     {
         $purchaseData = new PurchaseEventData();
+        // Common details
+        $purchaseData->setSendTo($sendTo);
+        $purchaseData->setCurrency($this->context->currency->iso_code);
+        $purchaseData->setValue((string) $order->total_products_wt);
+        $purchaseData->setTransactionId($order->reference);
 
+        // CwCD Parameters
         $purchaseData->setDiscount((float) $order->total_discounts_tax_incl);
         $purchaseData->setAwMerchandId((int) $this->configurationAdapter->get(Config::REMARKETING_CONVERSION_MERCHANT_GMC_ID));
-        $purchaseData->setSendTo($sendTo);
         $purchaseData->setAwFeedCountry(
             $this->countryRepository->getIsoById(
                 $this->context->country->id
