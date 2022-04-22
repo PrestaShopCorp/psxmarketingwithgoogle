@@ -21,6 +21,7 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Buffer;
 
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
 
 class TemplateBuffer
 {
@@ -29,10 +30,17 @@ class TemplateBuffer
      */
     private $session;
 
-    public function init()
+    public function init($userId)
     {
-        $this->session = new Session();
+        $this->session = new Session(
+            new MockFileSessionStorage(
+                \_PS_CACHE_DIR_ . '/psxmarketingwithgoogle_sessions',
+                'conversionaction'
+            )
+        );
+        $this->session->setId($userId);
         $this->session->start();
+        register_shutdown_function([$this, 'save']);
     }
 
     /**
@@ -60,5 +68,10 @@ class TemplateBuffer
         }
 
         return $data;
+    }
+
+    public function save(): void
+    {
+        $this->session->save();
     }
 }

@@ -76,7 +76,7 @@ class RemarketingHookHandler
             ?: [];
 
         if ($this->active) {
-            $this->templateBuffer->init();
+            $this->templateBuffer->init($context->customer->id_guest);
         }
     }
 
