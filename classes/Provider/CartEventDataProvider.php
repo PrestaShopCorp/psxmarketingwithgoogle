@@ -47,6 +47,6 @@ class CartEventDataProvider
         return (new ConversionEventData())
             ->setSendTo($sendTo)
             ->setCurrency($this->context->currency->iso_code)
-            ->setValue(\Product::getPriceStatic($product->id, true, $idProductAttribute, 2));
+            ->setValue((string) \Product::getPriceStatic($product->id, true, $idProductAttribute, 2));
     }
 }
