@@ -72,33 +72,65 @@
                         step: 3,params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
             size="full"
           >
+            <VueShowdown
+              v-if="getNumberOfAttributesMapped"
+              class="ps_gs-fz-12"
+              :markdown="
+                $tc(
+                  'productFeedSettings.summary.attributeMapped',
+                  getNumberOfAttributesMapped,
+                  [getNumberOfAttributesMapped]
+                )
+              "
+              :extensions="['no-p-tag']"
+            />
             <b-table-simple
               stacked="md"
-              class="mx-n1 mt-3 mb-0"
+              class="mt-2 centered-mapping-summary"
               borderless
-              table-class="border-bottom-0 table-firstline-borderless ps_gs-table-attribute-mapping"
+              table-class="border-bottom-0 ps_gs-table-attribute-mapping"
             >
               <b-thead>
-                <b-tr>
+                <b-tr
+                  :style="cssProps"
+                >
                   <b-th
                     class="
-                      border-0
                       font-weight-600
-                      text-decoration-underline
                       ps_gs-fz-12
+                      table-border-bottom
                     "
                   >
-                    {{ $t('productFeedSettings.summary.tableHeader1') }}
+                    <div class="text-center mb-2 float-left">
+                      <img
+                        class="rounded-circle mb-1"
+                        src="@/assets/images/google-icon-grey.svg"
+                        width="20"
+                        height="20"
+                      >
+                      <p>
+                        {{ $t('productFeedSettings.summary.tableHeader1') }}
+                      </p>
+                    </div>
                   </b-th>
                   <b-th
                     class="
-                      border-0
                       font-weight-600
-                      text-decoration-underline
                       ps_gs-fz-12
+                      table-border-bottom
                     "
                   >
-                    {{ $t("productFeedSettings.summary.tableHeader2") }}
+                    <div class="text-center mb-2 float-right">
+                      <img
+                        src="@/assets/images/table-chart.svg"
+                        class="mb-1"
+                        width="20"
+                        height="20"
+                      >
+                      <p>
+                        {{ $t("productFeedSettings.summary.tableHeader2") }}
+                      </p>
+                    </div>
                   </b-th>
                 </b-tr>
               </b-thead>
@@ -110,38 +142,35 @@
                 />
               </b-tbody>
             </b-table-simple>
-            <caption
+            <b-alert
+              class="mb-0 mt-3"
               v-if="mandatoryAttributesNotMapped"
-              class="d-flex ps_gs-fz-12 ps_gs-table-caption mt-3"
+              variant="warning"
+              show
             >
-              <i
-                class="material-icons-round ps_gs-fz-16 text-warning mr-2"
-              >warning_amber</i>
-              <p>
-                <VueShowdown
-                  :markdown="
-                    $tc(
-                      'productFeedSettings.summary.mandatoryAttributesNotMapped',
-                      mandatoryAttributesNotMapped,
-                      [mandatoryAttributesNotMapped]
-                    )
-                  "
-                  :extensions="['no-p-tag']"
-                  tag="strong"
-                  class="font-weight-600"
-                />
-                <br>
-                <VueShowdown
-                  :markdown="
-                    $t('productFeedSettings.summary.noticeToCompleteMapping', [
-                      $options.googleUrl.learnRequirementsProductSpecification,
-                    ])
-                  "
-                  :extensions="['extended-link', 'no-p-tag']"
-                  tag="span"
-                />
-              </p>
-            </caption>
+              <VueShowdown
+                :markdown="
+                  $tc(
+                    'productFeedSettings.summary.mandatoryAttributesNotMapped',
+                    mandatoryAttributesNotMapped,
+                    [mandatoryAttributesNotMapped]
+                  )
+                "
+                :extensions="['no-p-tag']"
+                tag="strong"
+                class="font-weight-600"
+              />
+              <br>
+              <VueShowdown
+                :markdown="
+                  $t('productFeedSettings.summary.noticeToCompleteMapping', [
+                    $options.googleUrl.learnRequirementsProductSpecification,
+                  ])
+                "
+                :extensions="['extended-link', 'no-p-tag']"
+                tag="span"
+              />
+            </b-alert>
           </product-feed-card-report-card>
         </b-row>
       </b-container>
@@ -206,7 +235,6 @@
 <script>
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
@@ -217,6 +245,7 @@ import ProductFeedCardReportCard from '../../product-feed-card-report-card';
 import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
 import TableRowMapping from '@/components/product-feed/commons/table-row-mapping';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import compareArrow from '@/assets/images/compare-arrows.svg';
 
 dayjs.extend(duration);
 
@@ -242,6 +271,11 @@ export default {
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
       acceptSyncSchedule: false,
       understandTerms: false,
+      cssProps: {
+        backgroundImage: `url(${compareArrow})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      },
     };
   },
   computed: {
@@ -294,6 +328,17 @@ export default {
       });
 
       return getNumberAttrNotMapped;
+    },
+    getNumberOfAttributesMapped() {
+      let mapped = 0;
+
+      this.getMapping.forEach((el) => {
+        if (el.prestashop !== '') {
+          mapped += 1;
+        }
+      });
+
+      return mapped;
     },
     getMapping() {
       return this.$store.getters[
@@ -356,6 +401,9 @@ export default {
         hash: '#product-feed-card',
       });
     },
+  },
+  mounted() {
+    this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
   },
 
   googleUrl,
