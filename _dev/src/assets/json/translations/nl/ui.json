@@ -948,19 +948,10 @@
     "approvalStatusLang": "placeholder",
     "approvalStatusIssues": "Reden waarom uw product niet is goedgekeurd voor Google",
     "attributeMapping": {
-      "description": "De beschrijving van uw product. Max 5000 tekens.",
-      "condition": "De staat van uw product op het moment van verkoop.",
-      "color": "De kleur(en) van uw product. Max 100 alfanumerieke tekens (max 40 tekens per kleur)",
-      "size": "De grootte van uw product",
-      "ageGroup": "De demografische doelgroep van uw product (indien het product bestemd is voor een specifieke leeftijdsgroep)",
-      "gender": "Het geslacht waarvoor uw product bestemd is",
-      "gtin": "Het Global Trade Item Number (GTIN) van uw product",
-      "mpn": "Het onderdeelnummer van de fabrikant (mpn) van uw product",
-      "brand": "Naam van uw merk. Maximaal 70 tekens",
-      "energyEfficiencyClass": "Het energielabel van uw product.",
-      "maxEnergyEfficiencyClass": "Het energielabel van uw product.",
-      "minEnergyEfficiencyClass": "Het energielabel van uw product.",
-      "material": "De stof of het materiaal van uw product",
+      "description": "The description will be cropped automatically if it is longer than 5000",
+      "ageGroup": "The demographic for which your product is targeted.",
+      "gtin": "A code printed on product packaging to aid in indentify a particular item.",
+      "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
       "pattern": "Het patroon of de grafische print van uw product"
     },
     "GMCForm": {
