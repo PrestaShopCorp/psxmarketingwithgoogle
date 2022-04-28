@@ -950,19 +950,10 @@
     "approvalStatusLang" : "placeholder",
     "approvalStatusIssues" : "Reason why your product is not approved for Google",
     "attributeMapping" : {
-      "description" : "Your product's description. Max 5000 characters.",
-      "condition" : "The condition of your product at time of sale.",
-      "color" : "Your product's color(s). Max 100 alphanumeric characters (max 40 characters per color)",
-      "size" : "Your product's size",
-      "ageGroup" : "The demographic for which your product is intended (if product is dedicated to specific age group)",
-      "gender" : "The gender for which your product is intended",
-      "gtin": "Your product's Global Trade Item Number (GTIN)",
-      "mpn": "Your product's Manufacturer Part Number (mpn)",
-      "brand" : "Name of your brand. Max 70 characters",
-      "energyEfficiencyClass": "Your product's energy label.",
-      "maxEnergyEfficiencyClass": "Your product's energy label.",
-      "minEnergyEfficiencyClass":"Your product's energy label.",
-      "material": "Your product's fabric or material",
+      "description" : "The description will be cropped automatically if it is longer than 5000",
+      "ageGroup" : "The demographic for which your product is targeted.",
+      "gtin": "A code printed on product packaging to aid in indentify a particular item.",
+      "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
       "pattern": "Your product's pattern or graphic print"
     },
     "GMCForm" : {

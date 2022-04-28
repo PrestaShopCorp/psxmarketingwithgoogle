@@ -44,7 +44,7 @@
       {
         "label": "Brand",
         "name": "brand",
-        "tooltip": true,
+        "tooltip": false,
         "recommended": [
           {
             "name": ["manufacturer"],
@@ -75,7 +75,7 @@
       {
         "label": "Color",
         "name": "color",
-        "tooltip": true,
+        "tooltip": false,
         "recommended": [
           {
             "name": ["color"],
@@ -88,7 +88,7 @@
       {
         "label": "Gender",
         "name": "gender",
-        "tooltip": true,
+        "tooltip": false,
         "recommended": [
           {
             "name": ["gender"],
@@ -101,7 +101,7 @@
       {
         "label": "Size",
         "name": "size",
-        "tooltip": true,
+        "tooltip": false,
         "recommended": [
           {
             "name": ["size"],
@@ -119,7 +119,7 @@
       {
         "label": "Maximum energy efficient class",
         "name": "maxEnergyEfficiencyClass",
-        "tooltip": true,
+        "tooltip": false,
         "recommended": [
           {
             "name": ["maxEnergyEfficiencyClass"],
@@ -132,7 +132,7 @@
       {
         "label": "Minimum energy efficient class",
         "name": "minEnergyEfficiencyClass",
-        "tooltip": true,
+        "tooltip": false,
         "recommended": [
           {
             "name": ["minEnergyEfficiencyClass"],
@@ -145,7 +145,7 @@
       {
         "label": "Energy class",
         "name": "energyEfficiencyClass",
-        "tooltip": true,
+        "tooltip": false,
         "recommended": [
           {
             "name": ["energyClass"],
@@ -163,7 +163,7 @@
       {
         "label": "Material",
         "name": "material",
-        "tooltip": true,
+        "tooltip": false,
         "recommended": [
           {
             "name": ["material"],
