@@ -948,19 +948,10 @@
     "approvalStatusLang": "marcador de posición",
     "approvalStatusIssues": "Razón por la que tu producto no está aprobado por Google",
     "attributeMapping": {
-      "description": "Todos los detalles de los productos relevantes para tus clientes",
-      "condition": "El estado de tu producto en el momento de la venta.",
-      "color": "El color de tu producto",
-      "size": "El color de tu producto",
-      "ageGroup": "El grupo demográfico al que va dirigido tu producto (si el producto está dedicado a un grupo de edad específico)",
-      "gender": "El género al que está destinado tu producto",
-      "gtin": "El número de artículo comercial global (GTIN) de su producto",
-      "mpn": "Número de pieza del fabricante de su producto (mpn)",
-      "brand": "Nombre de su marca. Máximo 70 caracteres",
-      "energyEfficiencyClass": "La etiqueta energética de tu producto.",
-      "maxEnergyEfficiencyClass": "La etiqueta energética de tu producto.",
-      "minEnergyEfficiencyClass": "La etiqueta energética de tu producto.",
-      "material": "El tejido o material de su producto",
+      "description": "The description will be cropped automatically if it is longer than 5000",
+      "ageGroup": "The demographic for which your product is targeted.",
+      "gtin": "A code printed on product packaging to aid in indentify a particular item.",
+      "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
       "pattern": "El patrón o la impresión gráfica de su producto"
     },
     "GMCForm": {
