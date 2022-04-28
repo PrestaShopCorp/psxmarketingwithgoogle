@@ -148,9 +148,6 @@ export default {
     disableContinue() {
       return this.selectedProductCategories.length === 0;
     },
-    getPropertyFromShop() {
-      return this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
-    },
     selectedProductCategories: {
       get() {
         return this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];

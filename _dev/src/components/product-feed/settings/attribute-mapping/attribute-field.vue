@@ -125,7 +125,10 @@ export default {
     },
 
     formatToDisplay() {
-      const result = this.attributesChecked.map((e) => this.displayAttributeOption(e));
+      const result = this.attributesChecked
+        // Backward compatibility with old local storage data
+        .filter((e) => e.name)
+        .map((e) => this.displayAttributeOption(e));
 
       return result.length ? result.join(', ') : this.$t('attributesMapping.options.notAvailable');
     },
