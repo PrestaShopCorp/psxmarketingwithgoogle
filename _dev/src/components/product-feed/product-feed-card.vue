@@ -361,7 +361,11 @@ export default {
         Object.keys(getMapping).forEach((key) => {
           if (getMapping[key]) {
             getMapping[key].forEach((item) => {
-              arr.push(item.ids);
+              if (item.ids?.length) {
+                arr.push(item.ids);
+              } else {
+                arr.push(item.id);
+              }
             });
           }
         });
