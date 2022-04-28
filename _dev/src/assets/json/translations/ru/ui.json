@@ -948,19 +948,10 @@
     "approvalStatusLang": "заполнитель",
     "approvalStatusIssues": "Причина, по которой ваш продукт не одобрен для Google",
     "attributeMapping": {
-      "description": "Описание вашего продукта. Максимум 5000 символов.",
-      "condition": "Состояние вашего товара на момент продажи.",
-      "color": "Цвет (цвета) вашего продукта. Максимум 100 буквенно-цифровых символов (максимум 40 символов на цвет)",
-      "size": "Размер вашего продукта",
-      "ageGroup": "Демографическая группа, для которой предназначен ваш продукт (если продукт предназначен для определенной возрастной группы)",
-      "gender": "Пол, для которого предназначен ваш продукт",
-      "gtin": "Номер товара в глобальной торговле (GTIN)",
-      "mpn": "Номер детали производителя вашего продукта (mpn)",
-      "brand": "Название вашего бренда. Максимум 70 символов",
-      "energyEfficiencyClass": "Маркировка энергопотребления вашего изделия.",
-      "maxEnergyEfficiencyClass": "Маркировка энергопотребления вашего изделия.",
-      "minEnergyEfficiencyClass": "Маркировка энергопотребления вашего изделия.",
-      "material": "Ткань или материал вашего изделия",
+      "description": "The description will be cropped automatically if it is longer than 5000",
+      "ageGroup": "The demographic for which your product is targeted.",
+      "gtin": "A code printed on product packaging to aid in indentify a particular item.",
+      "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
       "pattern": "Узор или графический принт вашего изделия"
     },
     "GMCForm": {
