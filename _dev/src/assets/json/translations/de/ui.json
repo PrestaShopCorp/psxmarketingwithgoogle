@@ -948,19 +948,10 @@
     "approvalStatusLang": "Platzhalter",
     "approvalStatusIssues": "Grund, warum Ihr Produkt nicht für Google zugelassen ist",
     "attributeMapping": {
-      "description": "Die Beschreibung Ihres Produkts. Maximal 5000 Zeichen.",
-      "condition": "Der Zustand Ihres Produkts zum Zeitpunkt des Verkaufs.",
-      "color": "Die Farbe(n) Ihres Produkts. Maximal 100 alphanumerische Zeichen (maximal 40 Zeichen pro Farbe)",
-      "size": "Die Größe Ihres Produkts",
-      "ageGroup": "Die Bevölkerungsgruppe, für die Ihr Produkt bestimmt ist (wenn das Produkt für eine bestimmte Altersgruppe bestimmt ist)",
-      "gender": "Das Geschlecht, für das Ihr Produkt bestimmt ist",
-      "gtin": "Die Global Trade Item Number (GTIN) Ihres Produkts",
-      "mpn": "Die Teilenummer des Herstellers Ihres Produkts (mpn)",
-      "brand": "Name Ihrer Marke. Maximal 70 Zeichen",
-      "energyEfficiencyClass": "Das Energieetikett Ihres Produkts.",
-      "maxEnergyEfficiencyClass": "Das Energieetikett Ihres Produkts.",
-      "minEnergyEfficiencyClass": "Das Energieetikett Ihres Produkts.",
-      "material": "Der Stoff oder das Material Ihres Produkts",
+      "description": "The description will be cropped automatically if it is longer than 5000",
+      "ageGroup": "The demographic for which your product is targeted.",
+      "gtin": "A code printed on product packaging to aid in indentify a particular item.",
+      "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
       "pattern": "Das Muster oder der grafische Aufdruck Ihres Produkts"
     },
     "GMCForm": {
