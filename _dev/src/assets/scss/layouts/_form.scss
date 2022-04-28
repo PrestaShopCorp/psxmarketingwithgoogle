@@ -303,8 +303,11 @@
 }
 
 .ps_gs-code-input {
-  letter-spacing: 1ch;
-  width: calc(13ch + 4rem);
+  width: calc(2ch + 1rem);
+  height: calc(2ch + 1rem);
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0 3px;
   text-align: center;
 }
 

@@ -11,10 +11,11 @@
       <p class="ps_gs-fz-14">
         {{ $t('mcaCard.needPhoneVerification') }}
       </p>
+      <p class="ps_gs-fz-12 mb-1">
+        {{ $t('mcaCard.phoneNumber') }}
+      </p>
       <b-form-group
-        :label="$t('mcaCard.phoneNumber')"
         label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
-        :description="$t('mcaCard.fillInputs')"
       >
         <div
           class="d-flex maxw-sm-320"
@@ -44,19 +45,21 @@
           />
         </div>
       </b-form-group>
+      <p class="ps_gs-fz-12 mb-1">
+        {{ $t('mcaCard.contactMethod') }}
+      </p>
       <b-form-group
-        :label="$t('mcaCard.contactMethod')"
         label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
-        :description="$t('mcaCard.selectMethod')"
       >
         <b-form-radio-group
           :disabled="showVerificationForm"
           v-model="phoneVerificationMethod"
           :options="contactOptions"
+          stacked
           name="phoneVerificationMethod"
         />
       </b-form-group>
-      <div class="d-flex align-items-center mt-4 mb-3">
+      <div class="d-flex align-items-center mt-2 mb-6">
         <b-button
           @click="requestCodeorCall"
           variant="primary"
@@ -70,39 +73,51 @@
           v-if="askAgainIn60Sec"
           class="ps_gs-fz-12 text-muted"
         >
-
           {{ $t('mcaCard.askAgain60sec') }}
         </span>
       </div>
+      <!-- v-if="showVerificationForm" -->
       <b-form-group
-        v-if="showVerificationForm"
         :disabled="isPhoneValidated"
-        :label="$t('mcaCard.code')"
         label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
         :state="isCodeValid"
         :invalid-feedback="invalidInputFeedback"
       >
-        <p>
-          {{ $t('mcaCard.textMessageHasBeenSent') }} {{ obfuscatedPhoneNumber }}
+        <p class="ps_gs-fz-12 mt-4 mb-1">
+          {{ $t('mcaCard.textMessageHasBeenSent') }}
+        </p>
+        <p class="ps_gs-fz-12 mt-2 mb-1 font-weight-bold">
+          {{ $t('mcaCard.enterCode') }}
         </p>
         <div
           class="d-flex align-items-stretch"
         >
-          <b-form-input
-            v-model="invitationId"
-            size="sm"
-            type="text"
-            maxlength="6"
-            class="ps_gs-code-input"
-            :disabled="isValidationInProgress"
-            aria-describedby="input-code-feedback"
-            :state="isCodeValid"
-          />
+          <div
+            v-for="(input, index) in inputsVerificationCode"
+            :key="index"
+          >
+            {{ inputsVerificationCode[index].inputCode }}
+            <b-form-input
+              :v-model="inputsVerificationCode[getIndex(inputsVerificationCode, index)].inputCode"
+              type="text"
+              max-length="1"
+              min="0"
+              max="9"
+              class="ps_gs-code-input"
+              :disabled="isValidationInProgress"
+              aria-describedby="input-code-feedback"
+              :state="isCodeValid"
+              @keyup="goToNextInput"
+              ref="input"
+              @input="inputHasChanged(index)"
+            />
+          </div>
           <b-button
             variant="primary"
             size="sm"
             class="ml-3"
             @click="sendCode"
+            :disabled="disableSendCodeButton"
           >
             <template v-if="isValidationInProgress">
               {{ $t('mcaCard.validatingCode') }}
@@ -113,9 +128,6 @@
             </template>
           </b-button>
         </div>
-        <template #description>
-          {{ $t('mcaCard.enterCode') }}
-        </template>
       </b-form-group>
       <p
         v-if="isPhoneValidated"
@@ -173,7 +185,27 @@ export default {
       isCodeValid: null,
       phoneVerificationMethod: 'SMS',
       showVerificationForm: false,
-      invitationId: null,
+      disableSendCodeButton: true,
+      indexInputChanged: 0,
+      inputsVerificationCode: [
+        {
+          inputCode: null,
+        },
+        {
+          inputCode: null,
+        },
+        {
+          inputCode: null,
+        },
+        {
+          inputCode: null,
+        },
+        {
+          inputCode: null,
+        },
+        {
+          inputCode: null,
+        }],
       isValidationInProgress: false,
       isPhoneValidated: false,
       phoneNumber: null,
@@ -183,6 +215,9 @@ export default {
     };
   },
   methods: {
+    getIndex(list, id) {
+      return list.findIndex((e) => e.inputCode == id);
+    },
     async requestCodeorCall() {
       this.$segment.track('[GGL] Create GMC - Step 3 Send Code', {
         module: 'psxmarketingwithgoogle',
@@ -201,7 +236,7 @@ export default {
         this.showVerificationForm = true;
         setTimeout(() => {
           this.showVerificationForm = false;
-          this.invitationId = null;
+          this.inputsVerificationCode.forEach((input) => input.inputCode = null);
           this.clearPotentialErrorsOrMessages();
         }, 60000);
       } catch (error) {
@@ -215,6 +250,25 @@ export default {
     getPhoneNumber() {
       this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
     },
+    goToNextInput(key) {
+      if (key.keyCode !== 16 && (key.keyCode < 48 || key.keyCode > 57)) {
+        return false;
+      }
+      // this.inputsVerificationCode[this.indexInputChanged].inputCode = key
+      const indexToGo = this.$refs.input[this.indexInputChanged + 1];
+
+      if ((this.indexInputChanged + 1 < this.inputsVerificationCode.length)
+      // && (this.inputsVerificationCode.forEach((input)=> input.inputCode !== null))
+      ) {
+        this.$nextTick(() => indexToGo.focus());
+      } else {
+        this.disableSendCodeButton = false;
+      }
+    },
+    inputHasChanged(index) {
+      this.indexInputChanged = index;
+    },
+
     async sendCode() {
       this.$segment.track('[GGL] Create GMC - Step 4 Confirm Number', {
         module: 'psxmarketingwithgoogle',
@@ -224,8 +278,13 @@ export default {
       this.isCodeValid = null;
       this.isValidationInProgress = true;
       try {
+        let verificationCode = null;
+        this.inputsVerificationCode.forEach((input) => {
+          verificationCode += input.inputCode;
+        });
+        console.log('ver', verificationCode);
         await this.$store.dispatch('accounts/SEND_VERIFICATION_CODE',
-          {verificationCode: this.invitationId});
+          {verificationCode});
         this.isCodeValid = true;
         this.isPhoneValidated = true;
         this.isValidationInProgress = false;
@@ -239,7 +298,7 @@ export default {
         if (error.code === 400 && error.message.includes('expired')) {
           this.error = this.$i18n.t('mcaCard.alertCodeExpired');
           this.isValidationInProgress = false;
-          this.invitationId = null;
+          this.inputsVerificationCode.forEach((input) => input.inputCode = null);
           this.askAgainIn60Sec = false;
           return;
         }
@@ -271,7 +330,7 @@ export default {
       this.error = null;
       this.isCodeValid = null;
       this.showVerificationForm = false;
-      this.invitationId = null;
+      this.inputsVerificationCode.forEach((input) => input.inputCode = null);
       this.isValidationInProgress = false;
       this.isPhoneValidated = false;
       this.askAgainIn60Sec = false;
