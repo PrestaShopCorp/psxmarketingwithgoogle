@@ -16,9 +16,6 @@ export default {
       default: false,
     },
   },
-  mounted() {
-    console.log('hola');
-  },
   computed: {
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
