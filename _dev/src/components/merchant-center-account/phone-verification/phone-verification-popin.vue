@@ -264,7 +264,7 @@ export default {
         }
       });
       if (key.keyCode !== 16 && (key.keyCode < 48 || key.keyCode > 57)) {
-        return false;
+        return;
       }
 
       const indexToGo = this.$refs.input[this.indexInputChanged + 1];
