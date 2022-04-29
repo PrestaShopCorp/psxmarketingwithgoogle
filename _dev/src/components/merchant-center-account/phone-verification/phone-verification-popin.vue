@@ -148,7 +148,7 @@
         <span> {{ error }}</span>
       </b-alert>
       <b-alert
-        v-if="phoneNumberNotValid"
+        v-if="phoneNumberNotValid && finalPhoneNumber"
         show
         variant="warning"
         class="mb-0 mt-2"
