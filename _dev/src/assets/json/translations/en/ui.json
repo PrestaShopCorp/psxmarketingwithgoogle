@@ -127,7 +127,7 @@
     "askAgain60sec": "You will be able to ask for a new code in 60 seconds",
     "needPhoneVerification": "We need to verify your identity with your phone number",
     "fillInputs": "Please fill in your phone number and select your international prefix",
-    "invalidCode": "Your code is invalid, please check your code or ask for a new one.",
+    "invalidCode": "Code is not valid",
     "code": "Code",
     "contactMethod": "Choose your preferred contact method",
     "dialCode": "Dial code",

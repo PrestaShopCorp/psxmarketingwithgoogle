@@ -309,8 +309,13 @@
   padding-right: 0;
   margin: 0 3px;
   text-align: center;
-}
 
+
+}
+.code-invalid {
+  border: 1px solid #f54c3e;
+  color: #f54c3e;
+}
 /* Chrome, Safari, Edge, Opera */
 input.no-arrows::-webkit-outer-spin-button,
 input.no-arrows::-webkit-inner-spin-button {
