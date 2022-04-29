@@ -76,8 +76,8 @@
           {{ $t('mcaCard.askAgain60sec') }}
         </span>
       </div>
-      <!-- v-if="showVerificationForm" -->
       <b-form-group
+        v-if="showVerificationForm"
         :disabled="isPhoneValidated"
         label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
         :invalid-feedback="invalidInputFeedback"
@@ -114,7 +114,7 @@
             size="sm"
             class="ml-3"
             @click="sendCode"
-            :disabled="disableSendCodeButton"
+            :disabled="!isCompletelyFilled"
           >
             <template v-if="isValidationInProgress">
               {{ $t('mcaCard.validatingCode') }}
@@ -190,7 +190,6 @@ export default {
       isCodeValid: null,
       phoneVerificationMethod: 'SMS',
       showVerificationForm: false,
-      disableSendCodeButton: true,
       indexInputChanged: 0,
       inputsVerificationCode: [null, null, null, null, null, null],
       isValidationInProgress: false,
@@ -238,36 +237,29 @@ export default {
       this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
     },
     resetVerificationCodeInputs() {
-      this.inputsVerificationCode = [null, null, null, null, null, null];
+      this.inputsVerificationCode.forEach((value, index) => {
+        this.inputsVerificationCode[index] = null;
+      });
     },
     goToNextInput(key) {
       if (key.code === 'Backspace') {
-        this.disableSendCodeButton = true;
         this.isCodeValid = null;
       }
-      const isFillCompletely = [];
-      this.inputsVerificationCode.forEach((code) => {
-        if (!code) {
-          this.disableSendCodeButton = true;
-        } else {
-          isFillCompletely.push(code);
-        }
-      });
+
       if (key.code !== 'Shift' && (key.keyCode < 48 || key.keyCode > 57)) {
         return;
       }
 
       const indexToGo = this.$refs.input[this.indexInputChanged + 1];
 
-      if (this.indexInputChanged + 1 < 6 && isFillCompletely.length !== 6) {
+      if (this.indexInputChanged + 1 < 6) {
         this.$nextTick(() => indexToGo.focus());
-      } else if (isFillCompletely.length === 6) {
-        this.disableSendCodeButton = false;
+        this.$nextTick(() => indexToGo.select());
       }
     },
     inputHasChanged(event, index) {
       this.indexInputChanged = index;
-      this.inputsVerificationCode[index] = event;
+      this.inputsVerificationCode.splice(index, 1, parseInt(event, 10));
     },
 
     async sendCode() {
@@ -315,10 +307,10 @@ export default {
     },
 
     ok() {
-      this.resetFields();
       this.$store.dispatch('accounts/SEND_WEBSITE_REQUIREMENTS', []).then(() => {
         this.$bvModal.hide('PhoneVerificationPopin');
         this.$emit('phoneNumberVerified');
+        this.resetFields();
         this.$store.commit('accounts/SAVE_STATUS_OVERRIDE_CLAIMING',
           WebsiteClaimErrorReason.PendingCreation);
         setTimeout(async () => {
@@ -375,9 +367,9 @@ export default {
       }
       return this.$i18n.t('mcaCard.receiveCall');
     },
-    // isCompletelyFilled() {
-    //   return
-    // }
+    isCompletelyFilled() {
+      return this.inputsVerificationCode.every((partialCode) => Number.isInteger(partialCode));
+    },
   },
   phonesPrefixSelectionOptions,
 };
