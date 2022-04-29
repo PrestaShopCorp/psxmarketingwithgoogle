@@ -16,6 +16,9 @@ export default {
       default: false,
     },
   },
+  mounted() {
+    console.log('hola');
+  },
   computed: {
     syncStatus() {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
@@ -56,7 +59,8 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate',
-              {date: this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt)},
+              this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt),
+              this.$options.filters.timeConverterToHour(this.syncInfos.nextJobAt),
             ),
             icon: 'schedule',
           },
@@ -120,8 +124,11 @@ export default {
             'productFeedPage.syncSummary.syncHistory.title.next',
           ),
           description: this.$i18n.t(
-            'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate',
-            {date: this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt)},
+            'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate', [
+              this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt),
+              this.$options.filters.timeConverterToHour(this.syncInfos.nextJobAt),
+            ],
+
           ),
           icon: 'schedule',
         },
