@@ -237,9 +237,7 @@ export default {
       this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
     },
     resetVerificationCodeInputs() {
-      this.inputsVerificationCode.forEach((value, index) => {
-        this.inputsVerificationCode[index] = null;
-      });
+      this.inputsVerificationCode = this.inputsVerificationCode.map(() => null);
     },
     goToNextInput(key) {
       if (key.code === 'Backspace') {
@@ -252,9 +250,12 @@ export default {
 
       const indexToGo = this.$refs.input[this.indexInputChanged + 1];
 
-      if (this.indexInputChanged + 1 < 6) {
+      if (this.indexInputChanged + 1 < this.inputsVerificationCode.length) {
         this.$nextTick(() => indexToGo.focus());
         this.$nextTick(() => indexToGo.select());
+      }
+      if (this.isCompletelyFilled){
+        this.sendCode();
       }
     },
     inputHasChanged(event, index) {
