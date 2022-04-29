@@ -560,7 +560,7 @@
           "notPlanned": "No planned synchronisation"
         },
         "subtitle": {
-          "willHappenOnDate": "Comenzará en {date}",
+          "willHappenOnDate": "Will start on {0} at {1}",
           "happenedOnDate": "En {date}",
           "error": "Due to a technical issue, the sync failed. A new one will run in a few hours."
         }
