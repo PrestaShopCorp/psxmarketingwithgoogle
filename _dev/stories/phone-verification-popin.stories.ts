@@ -19,4 +19,5 @@ const Template = (args, { argTypes }) => ({
 export const PhoneVerification:any = Template.bind({});
 PhoneVerification.args = {
   visible: true,
+  showVerificationForm: true
 };

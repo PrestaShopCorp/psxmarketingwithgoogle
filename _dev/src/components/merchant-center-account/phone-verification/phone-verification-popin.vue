@@ -76,8 +76,8 @@
           {{ $t('mcaCard.askAgain60sec') }}
         </span>
       </div>
+      <!-- v-if="showVerificationForm" -->
       <b-form-group
-        v-if="showVerificationForm"
         :disabled="isPhoneValidated"
         label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
         :invalid-feedback="invalidInputFeedback"
@@ -97,7 +97,7 @@
             :key="index"
           >
             <b-form-input
-              :v-model="inputsVerificationCode[index].invitationId"
+              :v-model="n"
               type="text"
               class="ps_gs-code-input"
               :disabled="isValidationInProgress"
@@ -192,14 +192,7 @@ export default {
       showVerificationForm: false,
       disableSendCodeButton: true,
       indexInputChanged: 0,
-      inputsVerificationCode: [
-        {invitationId: null},
-        {invitationId: null},
-        {invitationId: null},
-        {invitationId: null},
-        {invitationId: null},
-        {invitationId: null},
-      ],
+      inputsVerificationCode: [null, null, null, null, null, null],
       isValidationInProgress: false,
       isPhoneValidated: false,
       phoneNumber: null,
@@ -245,25 +238,22 @@ export default {
       this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
     },
     resetVerificationCodeInputs() {
-      this.inputsVerificationCode = this.inputsVerificationCode
-        .map(() => ({
-          invitationId: null,
-        }));
+      this.inputsVerificationCode = [null, null, null, null, null, null];
     },
     goToNextInput(key) {
-      if (key.keyCode === 8) {
+      if (key.code === 'Backspace') {
         this.disableSendCodeButton = true;
         this.isCodeValid = null;
       }
       const isFillCompletely = [];
       this.inputsVerificationCode.forEach((code) => {
-        if (!code.invitationId) {
+        if (!code) {
           this.disableSendCodeButton = true;
         } else {
-          isFillCompletely.push(code.invitationId);
+          isFillCompletely.push(code);
         }
       });
-      if (key.keyCode !== 16 && (key.keyCode < 48 || key.keyCode > 57)) {
+      if (key.code !== 'Shift' && (key.keyCode < 48 || key.keyCode > 57)) {
         return;
       }
 
@@ -277,7 +267,7 @@ export default {
     },
     inputHasChanged(event, index) {
       this.indexInputChanged = index;
-      this.inputsVerificationCode[index].invitationId = event;
+      this.inputsVerificationCode[index] = event;
     },
 
     async sendCode() {
@@ -291,7 +281,7 @@ export default {
       try {
         let verificationCode = '';
         this.inputsVerificationCode.forEach((input) => {
-          verificationCode += input.invitationId;
+          verificationCode += input;
         });
         await this.$store.dispatch('accounts/SEND_VERIFICATION_CODE',
           {verificationCode});
@@ -340,10 +330,7 @@ export default {
       this.error = null;
       this.isCodeValid = null;
       this.showVerificationForm = false;
-      this.inputsVerificationCode = this.inputsVerificationCode
-        .map(() => ({
-          invitationId: null,
-        }));
+      this.resetVerificationCodeInputs();
       this.isValidationInProgress = false;
       this.isPhoneValidated = false;
       this.askAgainIn60Sec = false;
@@ -388,6 +375,9 @@ export default {
       }
       return this.$i18n.t('mcaCard.receiveCall');
     },
+    // isCompletelyFilled() {
+    //   return
+    // }
   },
   phonesPrefixSelectionOptions,
 };
