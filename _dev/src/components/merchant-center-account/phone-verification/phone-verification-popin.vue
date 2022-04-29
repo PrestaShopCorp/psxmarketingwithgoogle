@@ -230,10 +230,7 @@ export default {
         this.showVerificationForm = true;
         setTimeout(() => {
           this.showVerificationForm = false;
-          this.inputsVerificationCode = this.inputsVerificationCode
-            .map(() => ({
-              invitationId: null,
-            }));
+          this.resetVerificationCodeInputs();
           this.clearPotentialErrorsOrMessages();
         }, 60000);
       } catch (error) {
@@ -246,6 +243,12 @@ export default {
     },
     getPhoneNumber() {
       this.phoneNumber = this.$store.getters['accounts/GET_SHOP_INFORMATIONS'].store.phone;
+    },
+    resetVerificationCodeInputs() {
+      this.inputsVerificationCode = this.inputsVerificationCode
+        .map(() => ({
+          invitationId: null,
+        }));
     },
     goToNextInput(key) {
       if (key.keyCode === 8) {
@@ -305,10 +308,7 @@ export default {
         if (error.code === 400 && error.message.includes('expired')) {
           this.error = this.$i18n.t('mcaCard.alertCodeExpired');
           this.isValidationInProgress = false;
-          this.inputsVerificationCode = this.inputsVerificationCode
-            .map(() => ({
-              invitationId: null,
-            }));
+          this.resetVerificationCodeInputs();
           this.askAgainIn60Sec = false;
           return;
         }
