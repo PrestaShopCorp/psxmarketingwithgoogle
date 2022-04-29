@@ -97,7 +97,7 @@
             :key="index"
           >
             <b-form-input
-              :v-model="n"
+              :value="n"
               type="text"
               class="ps_gs-code-input"
               :disabled="isValidationInProgress"
@@ -146,6 +146,14 @@
         class="mb-0 mt-2"
       >
         <span> {{ error }}</span>
+      </b-alert>
+      <b-alert
+        v-if="phoneNumberNotValid"
+        show
+        variant="warning"
+        class="mb-0 mt-2"
+      >
+        <span> {{ $t('mcaCard.phoneNumberNotValid') }}</span>
       </b-alert>
     </b-form>
 
@@ -243,18 +251,16 @@ export default {
       if (key.code === 'Backspace') {
         this.isCodeValid = null;
       }
-
       if (key.code !== 'Shift' && (key.keyCode < 48 || key.keyCode > 57)) {
         return;
       }
-
       const indexToGo = this.$refs.input[this.indexInputChanged + 1];
 
       if (this.indexInputChanged + 1 < this.inputsVerificationCode.length) {
         this.$nextTick(() => indexToGo.focus());
         this.$nextTick(() => indexToGo.select());
       }
-      if (this.isCompletelyFilled){
+      if (this.isCompletelyFilled) {
         this.sendCode();
       }
     },
@@ -267,7 +273,6 @@ export default {
       this.$segment.track('[GGL] Create GMC - Step 4 Confirm Number', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
-
       });
       this.isCodeValid = null;
       this.isValidationInProgress = true;
