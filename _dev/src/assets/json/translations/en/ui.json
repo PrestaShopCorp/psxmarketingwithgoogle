@@ -952,7 +952,7 @@
     "attributeMapping" : {
       "description" : "The description will be cropped automatically if it is longer than 5000",
       "ageGroup" : "The demographic for which your product is targeted.",
-      "gtin": "A code printed on product packaging to aid in indentify a particular item.",
+      "gtin": "A code printed on product packaging to aid in identify a particular item.",
       "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
       "pattern": "Your product's pattern or graphic print"
     },
