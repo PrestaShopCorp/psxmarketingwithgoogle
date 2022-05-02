@@ -17,6 +17,7 @@
         form-class="dropdown-form-with-checkbox text-dark"
       >
         <b-form-checkbox-group
+          :name="`dropdown-attribute-${field.label}`"
           v-model="attributesChecked"
           @change="getAttribute"
           stacked

@@ -76,7 +76,7 @@
             </div>
           </div>
           <template
-            v-for="(group) in attributesToMap"
+            v-for="group in attributesToMap"
           >
             <div
               v-for="field in group.fields"
@@ -298,7 +298,6 @@ export default {
     this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE').then(() => {
       this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING').finally(() => {
         this.loading = false;
-        console.log(this.attributesToMap);
       });
     });
   },

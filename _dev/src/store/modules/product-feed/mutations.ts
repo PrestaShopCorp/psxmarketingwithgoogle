@@ -150,9 +150,6 @@ export default {
     if (Object.keys(mappingFromApi).length === 0) {
       return;
     }
-    console.log(state.attributesToMap);
-    console.log(state.attributesFromShop);
-    console.log(mappingFromApi);
 
     const result = parseApiResponse(
       [...state.attributesToMap],
