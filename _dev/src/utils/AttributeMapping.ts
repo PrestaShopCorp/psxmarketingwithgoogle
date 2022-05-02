@@ -76,7 +76,7 @@ export function parseApiResponse(
   mappingFromApi: AttributeResponseFromAPI,
 ): AttributeToMap[] {
   const attributeToMap = attributes.flatMap((attr) => attr.fields);
-  
+
   attributeToMap.forEach((attribute) => {
     if (!attribute.mapped) {
       attribute.mapped = [];
