@@ -1,4 +1,4 @@
-$maxWidthsSizing: (80, 140, 160, 250, 272, 320, 420, 500);
+$maxWidthsSizing: (80, 140, 160, 250, 272, 320, 420, 500, 800);
 
 @each $width in $maxWidthsSizing {
   @include media-breakpoint-up(sm) {
