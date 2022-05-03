@@ -69,6 +69,7 @@
               :need-filter="true"
               :dropdown-options="activeCountriesWithCurrency"
               :display-legend="false"
+              :multiple-countries="false"
             />
           </div>
 
