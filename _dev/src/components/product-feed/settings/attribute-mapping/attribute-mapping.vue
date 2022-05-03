@@ -103,7 +103,7 @@
                 </b-button>
               </div>
 
-              <div class="d-flex col-6 text-center">
+              <div class="d-flex col-12 col-md-6 text-center">
                 <attribute-field
                   :field="field"
                   :category="group.category"
