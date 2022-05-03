@@ -53,9 +53,10 @@
           <div
             class="d-flex justify-content-around
           flex-md-row flex-column
-          ps-ps-header-attribute-mapping"
+          ps-ps-header-attribute-mapping
+          mb-2"
           >
-            <div class="text-center mb-2">
+            <div class="text-center mt-4">
               <img
                 class="rounded-circle mb-1"
                 src="@/assets/images/google-icon-grey.svg"
@@ -67,7 +68,7 @@
               </p>
             </div>
             <div />
-            <div class="text-center mb-2">
+            <div class="text-center mt-4">
               <img
                 src="@/assets/images/table-chart.svg"
                 class="mb-1"

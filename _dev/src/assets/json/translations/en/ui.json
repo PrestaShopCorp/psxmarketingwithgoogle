@@ -319,7 +319,7 @@
       "title1": "1. Choose all characteristics that apply to your products",
       "description1": "This will allow you to map mandatory Google product attributes at the next step depending on your catalog.",
       "title2": "2. Map mandatory Google attributes to your custom fields",
-      "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later.",
+      "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later. Keep in mind that Google will favor first filled values.",
       "apparelAndAccessoriesTitle": "I sell Apparel and/or Accessories",
       "apparelAndAccessoriesSubtitle": "i.e clothing, bags, shoes or hats",
       "electronicsTitle": "I sell Home and/or Kitchen appliances",
