@@ -50,7 +50,7 @@
           v-else
           class=" maxw-sm-800"
         >
-          <div class="d-flex justify-content-around ps-ps-header-attribute-mapping">
+          <div class="d-flex justify-content-around flex-md-row flex-column ps-ps-header-attribute-mapping">
             <div class="text-center mb-2">
               <img
                 class="rounded-circle mb-1"
