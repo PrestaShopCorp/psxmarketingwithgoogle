@@ -219,7 +219,6 @@
                 :default-value="defaultCountry()"
                 :need-filter="false"
                 :dropdown-options="activeCountries"
-                :multiple-countries="false"
               />
               <span v-else>
                 {{ targetCountry }}

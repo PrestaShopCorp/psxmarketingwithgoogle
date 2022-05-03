@@ -80,7 +80,7 @@ export default {
     },
     multipleCountries: {
       type: Boolean,
-      required: true,
+      required: false,
       default: false,
     },
   },
