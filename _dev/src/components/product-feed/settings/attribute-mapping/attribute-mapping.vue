@@ -50,7 +50,7 @@
           v-else
           class=" maxw-sm-800"
         >
-          <div class="d-flex justify-content-around">
+          <div class="d-flex justify-content-around ps-ps-header-attribute-mapping">
             <div class="text-center mb-2">
               <img
                 class="rounded-circle mb-1"
@@ -62,7 +62,7 @@
                 {{ $t('productFeedSettings.summary.tableHeader1') }}
               </p>
             </div>
-            <div :style="cssProps" />
+            <div />
             <div class="text-center mb-2">
               <img
                 src="@/assets/images/table-chart.svg"
@@ -81,9 +81,9 @@
             <div
               v-for="field in group.fields"
               :key="field.label + group.category"
-              class="d-flex col-12 "
+              class="row"
             >
-              <div class="d-flex col-6">
+              <div class="d-flex col-12 col-md-6">
                 <span> {{ field.label }}</span>
 
                 <b-button
@@ -164,7 +164,6 @@ import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-import compareArrow from '@/assets/images/compare-arrows.svg';
 
 import {
   formatMappingToApi,
@@ -182,12 +181,7 @@ export default {
   data() {
     return {
       loading: false,
-      cssProps: {
-        backgroundImage: `url(${compareArrow})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        width: `${50}px`,
-      },
+
     };
   },
   computed: {
