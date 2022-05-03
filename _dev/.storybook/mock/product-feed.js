@@ -1,5 +1,4 @@
 import attributesToMap from "@/store/modules/product-feed/attributes-to-map.json";
-
 export const productFeed = {
   isSyncSummaryLoadingInProgress: false,
   errorAPI: false,
@@ -102,363 +101,934 @@ export const productFeed = {
     invalidItems: 140,
   },
   productsDatas: {
-    items: [
+    items:  [
       {
-        id: "12",
-        name: "super produit",
-        attribute: "21",
-        issues: [
-          {
-            code: "4",
-            servability: "demoted",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description:
-              "Limited performance due to missing identifiers [gtin, mpn, brand]",
-            detail: "Provide at least 2 of the missing identifiers",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-          {
-            code: "5",
-            servability: "disapproved",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description: "Suspended account for policy violation",
-            detail:
-              "Remove products that violate our policies, or request a manual review",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-          {
-            code: "3",
-            servability: "disapproved",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description: "Should provide description",
-            detail:
-              "Remove products that violate our policies, or request a manual review",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-        ],
-        statuses: {
-          destination: "Shopping",
-          status: "disapproved",
-          countries: ["FR", "EN"],
-        },
+          "id": "7961",
+          "attribute": "3",
+          "name": "Pikachu",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "BE"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "language_mismatch",
+                  "servability": "unaffected",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Incorrect language",
+                  "detail": "Use a supported language for the country of sale",
+                  "documentation": "https://support.google.com/merchants/answer/6101164",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "hard_goods_missing_2_out_of_3_identifiers",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                  "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                  "documentation": "https://support.google.com/merchants/answer/6098295",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "policy_enforcement_account_disapproval",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Suspended account for policy violation",
+                  "detail": "Remove products that violate our policies, or request a manual review",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "BE"
+                  ]
+              }
+          ]
       },
       {
-        id: "12",
-        name: "super produit",
-        attribute: "21",
-        issues: [
-          {
-            code: "3",
-            servability: "demoted",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description:
-              "Should provide description",
-            detail: "Provide at least 2 of the missing identifiers",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-          {
-            code: "5",
-            servability: "disapproved",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description: "Suspended account for policy violation",
-            detail:
-              "Remove products that violate our policies, or request a manual review",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-        ],
-        statuses: {
-          destination: "Shopping",
-          status: "disapproved",
-          countries: ["BE"],
-        },
+          "id": "7961",
+          "attribute": "4",
+          "name": "Pikachu",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "BE"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "language_mismatch",
+                  "servability": "unaffected",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Incorrect language",
+                  "detail": "Use a supported language for the country of sale",
+                  "documentation": "https://support.google.com/merchants/answer/6101164",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "hard_goods_missing_2_out_of_3_identifiers",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                  "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                  "documentation": "https://support.google.com/merchants/answer/6098295",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "policy_enforcement_account_disapproval",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Suspended account for policy violation",
+                  "detail": "Remove products that violate our policies, or request a manual review",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "BE"
+                  ]
+              }
+          ]
       },
       {
-        id: "11",
-        name: "produit incroyable",
-        attribute: "1",
-        issues: [ {
-          code: "3",
-          servability: "demoted",
-          resolution: "merchant_action",
-          destination: "Shopping",
-          description:
-            "Should provide description",
-          detail: "Provide at least 2 of the missing identifiers",
-          documentation:
-            "https://support.google.com/merchants/answer/6098295",
-          applicableCountries: ["FR"],
-        },],
-        statuses: {
-          destination: "Shopping",
-          status: "pending",
-          countries: ["FR"],
-        },
+          "id": "7946",
+          "attribute": "0",
+          "name": "Chenipan",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "GB"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "media_missing_gtin",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "attributeName": "gtin",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing ISBN or GTIN",
+                  "detail": "Add your product's globally valid ISBN or GTIN",
+                  "documentation": "https://support.google.com/merchants/answer/9542185",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "code": "pending_initial_policy_review_shopping_ads",
+                  "servability": "disapproved",
+                  "resolution": "pending_processing",
+                  "destination": "Shopping",
+                  "description": "Pending initial review",
+                  "detail": "Please wait up to 3 business days for the review to be completed",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "code": "missing_shipping",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "attributeName": "shipping",
+                  "destination": "Shopping",
+                  "description": "Missing value [shipping]",
+                  "detail": "Add shipping costs for your product",
+                  "documentation": "https://support.google.com/merchants/answer/6239383",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              }
+          ]
       },
       {
-        id: "13",
-        name: "produit formidable",
-        attribute: "2",
-        issues: [],
-        statuses: {
-          destination: "Shopping",
-          status: "approved",
-          countries: ["FR"],
-        },
+          "id": "7937",
+          "attribute": "0",
+          "name": "Bulbasaur",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "BE"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "language_mismatch",
+                  "servability": "unaffected",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Incorrect language",
+                  "detail": "Use a supported language for the country of sale",
+                  "documentation": "https://support.google.com/merchants/answer/6101164",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "hard_goods_missing_2_out_of_3_identifiers",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                  "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                  "documentation": "https://support.google.com/merchants/answer/6098295",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "policy_enforcement_account_disapproval",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Suspended account for policy violation",
+                  "detail": "Remove products that violate our policies, or request a manual review",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "BE"
+                  ]
+              }
+          ]
       },
       {
-        id: "14",
-        name: "produit 14",
-        attribute: "214",
-        issues: [
-          {
-            code: "3",
-            servability: "demoted",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description:
-              "Should provide description",
-            detail: "Provide at least 2 of the missing identifiers",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-          {
-            code: "5",
-            servability: "disapproved",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description: "Suspended account for policy violation",
-            detail:
-              "Remove products that violate our policies, or request a manual review",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-        ],
-        statuses: {
-          destination: "Enhanced Free Listings",
-          status: "disapproved",
-          countries: ["BE"],
-        },
+          "id": "7937",
+          "attribute": "0",
+          "name": "Bulbasaur",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "BE"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "language_mismatch",
+                  "servability": "unaffected",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Incorrect language",
+                  "detail": "Use a supported language for the country of sale",
+                  "documentation": "https://support.google.com/merchants/answer/6101164",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "hard_goods_missing_2_out_of_3_identifiers",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                  "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                  "documentation": "https://support.google.com/merchants/answer/6098295",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "policy_enforcement_account_disapproval",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Suspended account for policy violation",
+                  "detail": "Remove products that violate our policies, or request a manual review",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "BE"
+                  ]
+              }
+          ]
       },
       {
-        id: "14",
-        name: "produit 14",
-        attribute: "214",
-        issues: [  {
-          code: "1",
-          servability: "disapproved",
-          resolution: "merchant_action",
-          destination: "Shopping",
-          description: "Missing picture",
-          detail:
-            "Remove products that violate our policies, or request a manual review",
-          documentation:
-            "https://support.google.com/merchants/answer/6098295",
-          applicableCountries: ["FR"],
-        }],
-        statuses: {
-          destination: "Shopping failed",
-          status: "disapproved",
-          countries: ["BE"],
-        },
+          "id": "7945",
+          "attribute": "0",
+          "name": "Blastoise",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "BE"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "language_mismatch",
+                  "servability": "unaffected",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Incorrect language",
+                  "detail": "Use a supported language for the country of sale",
+                  "documentation": "https://support.google.com/merchants/answer/6101164",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "hard_goods_missing_2_out_of_3_identifiers",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                  "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                  "documentation": "https://support.google.com/merchants/answer/6098295",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "policy_enforcement_account_disapproval",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Suspended account for policy violation",
+                  "detail": "Remove products that violate our policies, or request a manual review",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "BE"
+                  ]
+              }
+          ]
       },
       {
-        id: "14",
-        name: "produit 14",
-        attribute: "214",
-        issues: [ {
-          code: "1",
-          servability: "demoted",
-          resolution: "merchant_action",
-          destination: "Shopping",
-          description: "Missing picture",
-          detail: "Provide at least 2 of the missing identifiers",
-          documentation:
-            "https://support.google.com/merchants/answer/6098295",
-          applicableCountries: ["FR"],
-        },
-        {
-          code: "2",
-          servability: "demoted",
-          resolution: "merchant_action",
-          destination: "Shopping",
-          description: "Tu me vois ?",
-          detail: "Provide at least 2 of the missing identifiers",
-          documentation:
-            "https://support.google.com/merchants/answer/6098295",
-          applicableCountries: ["FR"],
-        }],
-        statuses: {
-          destination: "Shopping failed",
-          status: "disapproved",
-          countries: ["FR"],
-        },
+          "id": "7945",
+          "attribute": "0",
+          "name": "Blastoise",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "BE"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "language_mismatch",
+                  "servability": "unaffected",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Incorrect language",
+                  "detail": "Use a supported language for the country of sale",
+                  "documentation": "https://support.google.com/merchants/answer/6101164",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "hard_goods_missing_2_out_of_3_identifiers",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                  "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                  "documentation": "https://support.google.com/merchants/answer/6098295",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "policy_enforcement_account_disapproval",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Suspended account for policy violation",
+                  "detail": "Remove products that violate our policies, or request a manual review",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "BE"
+                  ]
+              }
+          ]
       },
       {
-        id: "14",
-        name: "produit 14",
-        attribute: "214",
-        issues: [ {
-          code: "1",
-          servability: "demoted",
-          resolution: "merchant_action",
-          destination: "Shopping",
-          description: "Missing picture",
-          detail: "Provide at least 2 of the missing identifiers",
-          documentation:
-            "https://support.google.com/merchants/answer/6098295",
-          applicableCountries: ["FR"],
-        },
-        {
-          code: "3",
-          servability: "demoted",
-          resolution: "merchant_action",
-          destination: "Shopping",
-          description: "Should provide description",
-          detail: "Provide at least 2 of the missing identifiers",
-          documentation:
-            "https://support.google.com/merchants/answer/6098295",
-          applicableCountries: ["FR"],
-        }],
-        statuses: {
-          destination: "Shopping failed",
-          status: "disapproved",
-          countries: ["FR"],
-        },
+          "id": "7991",
+          "attribute": "0",
+          "name": "Akwakwak",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "GB"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "media_missing_gtin",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "attributeName": "gtin",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing ISBN or GTIN",
+                  "detail": "Add your product's globally valid ISBN or GTIN",
+                  "documentation": "https://support.google.com/merchants/answer/9542185",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "code": "pending_initial_policy_review_shopping_ads",
+                  "servability": "disapproved",
+                  "resolution": "pending_processing",
+                  "destination": "Shopping",
+                  "description": "Pending initial review",
+                  "detail": "Please wait up to 3 business days for the review to be completed",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "code": "missing_shipping",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "attributeName": "shipping",
+                  "destination": "Shopping",
+                  "description": "Missing value [shipping]",
+                  "detail": "Add shipping costs for your product",
+                  "documentation": "https://support.google.com/merchants/answer/6239383",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              }
+          ]
       },
       {
-        id: "15",
-        name: "produit 15",
-        attribute: "215",
-        issues: [
-          {
-            code: "3",
-            servability: "demoted",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description:
-              "Should provide description",
-            detail: "Provide at least 2 of the missing identifiers",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-          {
-            code: "5",
-            servability: "disapproved",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description: "Suspended account for policy violation",
-            detail:
-              "Remove products that violate our policies, or request a manual review",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-        ],
-        statuses: {
-          destination: "Enhanced Free Listings",
-          status: "disapproved",
-          countries: ["BE"],
-        },
+          "id": "9999",
+          "attribute": "4",
+          "name": "Pikachu (Test)",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "BE"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "language_mismatch",
+                  "servability": "unaffected",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Incorrect language",
+                  "detail": "Use a supported language for the country of sale",
+                  "documentation": "https://support.google.com/merchants/answer/6101164",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "hard_goods_missing_2_out_of_3_identifiers",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                  "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                  "documentation": "https://support.google.com/merchants/answer/6098295",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "policy_enforcement_account_disapproval",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Suspended account for policy violation",
+                  "detail": "Remove products that violate our policies, or request a manual review",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "BE"
+                  ]
+              }
+          ]
       },
       {
-        id: "15",
-        name: "produit 15",
-        attribute: "215",
-        issues: [ {
-          code: "3",
-          servability: "demoted",
-          resolution: "merchant_action",
-          destination: "Shopping",
-          description:
-            "Should provide description",
-          detail: "Provide at least 2 of the missing identifiers",
-          documentation:
-            "https://support.google.com/merchants/answer/6098295",
-          applicableCountries: ["FR"],
-        }],
-        statuses: {
-          destination: "Enhanced Free Listings",
-          status: "disapproved",
-          countries: ["FR"],
-        },
+          "id": "7961",
+          "attribute": "0",
+          "name": "Pikachu",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "BE"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "language_mismatch",
+                  "servability": "unaffected",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Incorrect language",
+                  "detail": "Use a supported language for the country of sale",
+                  "documentation": "https://support.google.com/merchants/answer/6101164",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "hard_goods_missing_2_out_of_3_identifiers",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                  "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                  "documentation": "https://support.google.com/merchants/answer/6098295",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "policy_enforcement_account_disapproval",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Suspended account for policy violation",
+                  "detail": "Remove products that violate our policies, or request a manual review",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "BE"
+                  ]
+              }
+          ]
       },
       {
-        id: "15",
-        name: "produit 15",
-        attribute: "215",
-        issues: [
-          {
-            code: "3",
-            servability: "demoted",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description:
-              "Should provide description",
-            detail: "Provide at least 2 of the missing identifiers",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-          {
-            code: "5",
-            servability: "disapproved",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description: "Suspended account for policy violation",
-            detail:
-              "Remove products that violate our policies, or request a manual review",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-        ],
-        statuses: {
-          destination: "Shopping",
-          status: "disapproved",
-          countries: ["BE"],
-        },
+          "id": "7990",
+          "attribute": "0",
+          "name": "Psykokwak",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "BE"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "hard_goods_missing_2_out_of_3_identifiers",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                  "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                  "documentation": "https://support.google.com/merchants/answer/6098295",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "image_link_broken",
+                  "servability": "unaffected",
+                  "resolution": "merchant_action",
+                  "attributeName": "additional image link",
+                  "destination": "Shopping",
+                  "description": "Invalid image [additional image link]",
+                  "detail": "Ensure the image is accessible and uses an accepted image format (JPEG, PNG, GIF)",
+                  "documentation": "https://support.google.com/merchants/answer/6098289",
+                  "applicableCountries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              },
+              {
+                  "code": "policy_enforcement_account_disapproval",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Suspended account for policy violation",
+                  "detail": "Remove products that violate our policies, or request a manual review",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "BE"
+                  ]
+              }
+          ]
       },
       {
-        id: "15",
-        name: "produit 15",
-        attribute: "215",
-        issues: [ {
-          code: "3",
-          servability: "demoted",
-          resolution: "merchant_action",
-          destination: "Shopping",
-          description:
-            "Should provide description",
-          detail: "Provide at least 2 of the missing identifiers",
-          documentation:
-            "https://support.google.com/merchants/answer/6098295",
-          applicableCountries: ["FR", "BE", "IT", "USA"],
-        }],
-        statuses: {
-          destination: "Shopping",
-          status: "disapproved",
-          countries: ["FR", "BE", "IT", "US"],
-        },
+          "id": "8028",
+          "attribute": "0",
+          "name": "Fantominus",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "GB"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "media_missing_gtin",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "attributeName": "gtin",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing ISBN or GTIN",
+                  "detail": "Add your product's globally valid ISBN or GTIN",
+                  "documentation": "https://support.google.com/merchants/answer/9542185",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "code": "pending_initial_policy_review_shopping_ads",
+                  "servability": "disapproved",
+                  "resolution": "pending_processing",
+                  "destination": "Shopping",
+                  "description": "Pending initial review",
+                  "detail": "Please wait up to 3 business days for the review to be completed",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "code": "missing_shipping",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "attributeName": "shipping",
+                  "destination": "Shopping",
+                  "description": "Missing value [shipping]",
+                  "detail": "Add shipping costs for your product",
+                  "documentation": "https://support.google.com/merchants/answer/6239383",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              }
+          ]
       },
-    ],
+      {
+          "id": "7946",
+          "attribute": "0",
+          "name": "Chenipan",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "BE"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "media_missing_gtin",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "attributeName": "gtin",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing ISBN or GTIN",
+                  "detail": "Add your product's globally valid ISBN or GTIN",
+                  "documentation": "https://support.google.com/merchants/answer/9542185",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "policy_enforcement_account_disapproval",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Suspended account for policy violation",
+                  "detail": "Remove products that violate our policies, or request a manual review",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "BE"
+                  ]
+              }
+          ]
+      },
+      {
+          "id": "7937",
+          "attribute": "0",
+          "name": "Bulbasaur",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "GB"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "hard_goods_missing_2_out_of_3_identifiers",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                  "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                  "documentation": "https://support.google.com/merchants/answer/6098295",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "code": "pending_initial_policy_review_shopping_ads",
+                  "servability": "disapproved",
+                  "resolution": "pending_processing",
+                  "destination": "Shopping",
+                  "description": "Pending initial review",
+                  "detail": "Please wait up to 3 business days for the review to be completed",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              },
+              {
+                  "code": "missing_shipping",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "attributeName": "shipping",
+                  "destination": "Shopping",
+                  "description": "Missing value [shipping]",
+                  "detail": "Add shipping costs for your product",
+                  "documentation": "https://support.google.com/merchants/answer/6239383",
+                  "applicableCountries": [
+                      "GB"
+                  ]
+              }
+          ]
+      },
+      {
+          "id": "7945",
+          "attribute": "0",
+          "name": "Blastoise",
+          "statuses": [
+              {
+                  "destination": "Shopping",
+                  "status": "disapproved",
+                  "countries": [
+                      "BE"
+                  ]
+              },
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR",
+                      "IT",
+                      "BE"
+                  ]
+              }
+          ],
+          "issues": [
+              {
+                  "code": "language_mismatch",
+                  "servability": "unaffected",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Incorrect language",
+                  "detail": "Use a supported language for the country of sale",
+                  "documentation": "https://support.google.com/merchants/answer/6101164",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "hard_goods_missing_2_out_of_3_identifiers",
+                  "servability": "demoted",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                  "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                  "documentation": "https://support.google.com/merchants/answer/6098295",
+                  "applicableCountries": [
+                      "FR",
+                      "IT"
+                  ]
+              },
+              {
+                  "code": "policy_enforcement_account_disapproval",
+                  "servability": "disapproved",
+                  "resolution": "merchant_action",
+                  "destination": "Shopping",
+                  "description": "Suspended account for policy violation",
+                  "detail": "Remove products that violate our policies, or request a manual review",
+                  "documentation": "https://support.google.com/merchants/answer/2948694",
+                  "applicableCountries": [
+                      "BE"
+                  ]
+              }
+          ]
+      }
+  ]
   },
   attributesToMap,
   attributesFromShop: [
@@ -491,7 +1061,6 @@ export const productFeed = {
     langChosen: null,
   },
 };
-
 export const productFeedNoCarriers = {
   ...productFeed,
   settings: {
@@ -499,7 +1068,6 @@ export const productFeedNoCarriers = {
     deliveryDetails: [],
   },
 };
-
 export const productFeedIsReadyForExport = {
   ...productFeed,
   isConfigured: true,

@@ -35,160 +35,25 @@
         <b-thead>
           <b-tr>
             <b-th
-              v-for="(field, indexField) in fields"
-              :key="indexField"
-              :class="{'b-table-sticky-column': indexField === 1,
-                       'col-2' : indexField === fields.length-1}"
+              v-for="(field, index) in fields"
+              :key="index"
+              :class="{'b-table-sticky-column': index === 1}"
             >
               {{ field.label }}
-              <b-button
-                v-if="field.tooltip"
-                variant="invisible"
-                v-b-tooltip:psxMktgWithGoogleApp
-                class="p-0 mt-0 ml-0 mb-n1 border-0 "
-                :title="$t(`productFeedPage.approvalTable.${field.tooltip}`)"
-              >
-                <span class="material-icons-round ps_gs-fz-16 text-primary">
-                  info_outlined
-                </span>
-              </b-button>
             </b-th>
           </b-tr>
         </b-thead>
-        <b-tbody>
-          <template v-for="(productsById, index) in items">
-            <b-tr :key="index">
-              <b-td class="align-top">
-                {{ productsById[0].id }}
-                {{ productsById[0].attribute > 0 ? '&#8209;' + productsById[0].attribute : '' }}
-              </b-td>
-              <b-td class="align-top b-table-sticky-column">
-                <a
-                  class="external_link-no_icon"
-                  :href="!isNaN(productsById[0].id)
-                    ? getProductBaseUrl.replace('/1?', `/${productsById.id}?`) : null"
-                  target="_blank"
-                  :title="$t('productFeedPage.approvalTable.editX', [productsById[0].name])"
-                >
-                  {{ productsById[0].name }}
-                </a>
-              </b-td>
 
-              <b-td class="align-top">
-                <b-badge
-                  :variant="badgeColor(productsById[0].statuses.status)"
-                  class="ps_gs-fz-12 text-capitalize"
-                >
-                  {{ productsById[0].statuses.status }}
-                </b-badge>
-              </b-td>
-              <b-td
-                class="align-top d-flex flex-wrap"
-              >
-                <section
-                  v-for="(oneCountry, indexCountry) in multipleCountries(productsById)"
-                  :key="indexCountry"
-                >
-                  <b-badge
-                    variant="primary"
-                    class="ps_gs-fz-12  m-1 "
-                  >
-                    {{ oneCountry }}
-                  </b-badge>
-                </section>
-              </b-td>
-              <b-td colspan="2">
-                <table v-if="multipleDestinations(productsById).length <= 1">
-                  <tr
-                    v-for="(destination, indexDesti) in multipleDestinations(productsById)"
-                    :key="indexDesti"
-                  >
-                    <td class="col-8">
-                      <ul
-                        v-for="(issue, indexIssue) in multipleIssues(productsById)"
-                        :key="indexIssue"
-                        class="pl-0 mb-0 ml-3"
-                      >
-                        <li>
-                          <a
-                            class="text-decoration-none"
-                            :href="issue.documentation"
-                            :title="issue.detail"
-                            target="_blank"
-                          >
-                            {{ issue.description }}
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                    <td>
-                      {{ destination }}
-                    </td>
-                  </tr>
-                </table>
-                <table v-else-if="issuesAreSame(productsById)">
-                  <tr>
-                    <td
-                      rowspan="2"
-                      class="col-8"
-                    >
-                      <ul
-                        v-for="(issue, indexIssue) in productsById[0].issues"
-                        :key="indexIssue"
-                        class="pl-0 mb-0 ml-3"
-                      >
-                        <li>
-                          <a
-                            class="text-decoration-none"
-                            :href="issue.documentation"
-                            :title="issue.detail"
-                            target="_blank"
-                          >
-                            {{ issue.description }}
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                    <td>
-                      {{ multipleDestinations(productsById)[0] }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      {{ multipleDestinations(productsById)[1] }}
-                    </td>
-                  </tr>
-                </table>
-                <table v-else>
-                  <tr
-                    v-for="(desti, indexDesti) in multipleIssues(productsById)"
-                    :key="indexDesti"
-                  >
-                    <td class="col-8">
-                      <ul
-                        v-for="(issue, indexIssue) in desti.issues"
-                        :key="indexIssue"
-                        class="pl-0 mb-0 ml-3"
-                      >
-                        <li>
-                          <a
-                            class="text-decoration-none"
-                            :href="issue.documentation"
-                            :title="issue.detail"
-                            target="_blank"
-                          >
-                            {{ issue.description }}
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                    <td class="align-top">
-                      {{ desti.destination }}
-                    </td>
-                  </tr>
-                </table>
-              </b-td>
-            </b-tr>
+        <b-tbody>
+          <template v-for="(product, index) in items">
+            <template v-for="(status, indexStatus) in product.statuses">
+              <ProductFeedTableStatusDetailsRow
+                :key="`${index}-${indexStatus}`"
+                :product="product"
+                :status="status"
+                :index-status="indexStatus"
+              />
+            </template>
           </template>
           <b-tr v-if="loading">
             <b-td
@@ -200,247 +65,23 @@
           </b-tr>
         </b-tbody>
       </b-table-simple>
-      <!-- OLD TABLE -->
-      <!-- TO KEEP IF WE SWITCH BACK TO B-TABLE-LITE -->
-      <!--
-      <b-table-lite
-        stacked="md"
-        variant="light"
-        class="mb-3 ps_gs-table-products"
-      >
-        <b-thead>
-          <b-tr class="ps_gs-fz-12">
-            <b-th>
-              <div>ID</div>
-            </b-th>
-            <b-th>
-              <div>Name</div>
-            </b-th>
-            <b-th>
-              <div class="d-flex align-items-center">
-                <span>Google validation</span>
-                <b-button
-                  variant="invisible"
-                  class="p-0 mt-0 ml-1 border-0"
-                  v-b-tooltip:psxMktgWithGoogleApp
-                  :title="'placeholder'"
-                >
-                  <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-                </b-button>
-              </div>
-            </b-th>
-            <b-th>
-              <div class="d-flex align-items-center">
-                <span>Language</span>
-                <b-button
-                  variant="invisible"
-                  class="p-0 mt-0 ml-1 border-0"
-                  v-b-tooltip:psxMktgWithGoogleApp
-                  :title="'placeholder'"
-                >
-                  <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-                </b-button>
-              </div>
-            </b-th>
-            <b-th>
-              <div class="d-flex align-items-center">
-                <span>Issue</span>
-                <b-button
-                  variant="invisible"
-                  class="p-0 mt-0 ml-1 border-0"
-                  v-b-tooltip:psxMktgWithGoogleApp
-                  :title="'placeholder'"
-                >
-                  <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-                </b-button>
-              </div>
-            </b-th>
-          </b-tr>
-        </b-thead>
-        <b-tbody>
-          <b-tr
-            v-for="({
-              id, name, status, issues, _id, lang, variant
-            }) in items"
-            :key="_id"
-          >
-            <b-td class="ps_gs-fz-12">
-              {{ id }}
-            </b-td>
-            <b-td class="ps_gs-fz-12">
-              <a
-                href="#"
-                :title="`Edit ${name}`"
-              >{{ name }}</a>
-              <template
-                v-if="!!variant"
-              >
-                <span
-                  v-for="(attribute, index) in variant.attributes"
-                  :key="index"
-                >
-                  <span
-                    v-for="(value, key, index) in attribute"
-                    :key="index"
-                  >
-                    <br>
-                    {{ key }} - {{ value }}
-                  </span>
-                </span>
-              </template>
-            </b-td>
-            <b-td class="ps_gs-table-products__status">
-              <b-badge
-                :variant="badgeColor(status)"
-                class="ps_gs-fz-12"
-              >
-                {{ status }}
-              </b-badge>
-            </b-td>
-            <b-td>
-              <b-badge
-                variant="primary"
-                class="ps_gs-fz-12"
-              >
-                {{ lang }}
-              </b-badge>
-            </b-td>
-            <b-td class="ps_gs-table-products__issue ps_gs-fz-10">
-              {{ issues.length > 0 ? issues.join(', ') : '' }}
-            </b-td>
-          </b-tr>
-        </b-tbody>
-      </b-table-lite> -->
-      <!-- OLD TABLE PAGINATION -->
-
-      <!-- TO KEEP IF WE SWITCH BACK TO B-TABLE-LITE -->
-      <!-- <div class="flex-wrap ps_gs-table-controls d-flex flex-md-nowrap align-items-center">
-        <span class="mr-2 ps_gs-table-controls__total-products pl-md-1 text-muted">
-          {{ totalProducts }} results
-        </span>
-        <div class="ps_gs-table-controls__products-shown d-flex align-items-center">
-          <span>Show:</span>
-          <b-dropdown
-            id="filterQuantityToShow"
-            ref="filterQuantityToShow"
-            :text="selectedFilterQuantityToShow"
-            variant=" "
-            class="w-auto ml-2 flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
-            menu-class="ps-dropdown"
-
-            size="sm"
-          >
-            <b-dropdown-item
-              v-for="(option, index) in ['10', '20', '50', '100']"
-              :key="index"
-              @click="selectedFilterQuantityToShow = option"
-            >
-              {{ option }}
-            </b-dropdown-item>
-          </b-dropdown>
-        </div>
-        <nav
-          aria-label="Table pagination"
-          class="ps_gs-table-controls__pagination mx-md-auto"
-        >
-          <ul class="mb-0 pagination">
-            <li class="page-item previous">
-              <a
-                class="page-link"
-                href="#"
-                aria-label="Previous"
-              >
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link"
-                href="#"
-              >1</a>
-            </li>
-            <li class="page-item disabled">
-              <a
-                class="page-link"
-                href="#"
-              >...</a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link"
-                href="#"
-              >6</a>
-            </li>
-            <li
-              class="page-item active"
-              aria-current="page"
-            >
-              <a
-                class="page-link"
-                href="#"
-              >7</a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link"
-                href="#"
-              >8</a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link"
-                href="#"
-              >9</a>
-            </li>
-            <li class="page-item disabled">
-              <a
-                class="page-link"
-                href="#"
-              >...</a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link"
-                href="#"
-              >16</a>
-            </li>
-            <li class="page-item next">
-              <a
-                class="page-link"
-                href="#"
-                aria-label="Next"
-              >
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <div class="ps_gs-table-controls__go-to d-flex align-items-center">
-          <span class="flex-shrink-0">Go to page:</span>
-          <b-form-input
-            class="flex-grow-0 ml-sm-2 maxw-sm-72"
-            type="number"
-            size="sm"
-          />
-        </div>
-      </div> -->
     </b-card-body>
   </b-card>
 </template>
 
 <script>
-import {ProductStatues} from '../../store/modules/product-feed/state';
-import {mapItemsSameId} from '@/utils/MapItemsSameId';
+import ProductFeedTableStatusDetailsRow from './product-feed-table-status-details-row.vue';
 
 export default {
   name: 'ProductFeedTableStatusDetails',
-  components: {},
+  components: {
+    ProductFeedTableStatusDetailsRow,
+  },
   data() {
     return {
       loading: false,
       nextToken: null,
-      items: mapItemsSameId(this.$store.state.productFeed.productsDatas.items),
-      ProductStatues,
+      items: this.$store.state.productFeed.productsDatas.items,
       selectedFilterQuantityToShow: '100',
       fields: [
         {
@@ -450,27 +91,24 @@ export default {
         {
           key: 'name',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
-          tooltip: '',
-        },
-        {
-          key: 'status',
-          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderGoogleValidation'),
-          tooltip: '',
         },
         {
           key: 'lang',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderCountry'),
-          tooltip: '',
         },
+
+        {
+          key: 'status',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderGoogleValidation'),
+        },
+
         {
           key: 'issues',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderIssue'),
-          tooltip: '',
         },
         {
           key: 'destination',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderDestination'),
-          tooltip: 'tooltipDestination',
         },
       ],
     };
@@ -527,8 +165,6 @@ export default {
             // so we can keep scrolling and sending another GET with the token
             this.nextToken = res.nextToken;
           }
-          // In any case, we add to our items array the last results the API sent us
-          this.mapResults(res);
         }).catch((error) => {
           console.error(error);
           window.removeEventListener('scroll', this.handleScroll);
@@ -539,137 +175,7 @@ export default {
           }, 500);
         });
     },
-    mapResults(res) {
-      return res.results.map((result) => result.statuses.forEach((status) => {
-        this.$store.commit('productFeed/SAVE_ALL_PRODUCTS', {
-          id: result.id,
-          issues: result.issues || [],
-          attribute: result.attribute,
-          name: result.name,
-          statuses: status,
-        });
-      }));
-    },
-    badgeColor(status) {
-      if (status === ProductStatues.Approved) {
-        return 'success';
-      }
-      if (status === ProductStatues.Pending) {
-        return 'warning';
-      }
-      return 'danger';
-    },
-    getIssues(product) {
-      const issues = [];
 
-      if (!('issues' in product)) {
-        return issues;
-      }
-      product.issues.forEach((el) => {
-        if (el.resolution === 'merchant_action') {
-          issues.push({
-            description: el.description,
-            documentation: el.documentation,
-            detail: el.detail,
-          });
-        }
-      });
-      return issues;
-    },
-    multipleCountries(productsById) {
-      let arrayOfCountries = [];
-      productsById.forEach((e) => {
-        if (e.statuses.countries.length) {
-          e.statuses.countries.forEach((country) => {
-            arrayOfCountries.push(country);
-          });
-        }
-      });
-      arrayOfCountries = arrayOfCountries.filter(
-        (element, index) => arrayOfCountries.indexOf(element) === index);
-      return arrayOfCountries;
-    },
-    multipleDestinations(productsById) {
-      let arrayOfDestinations = [];
-      productsById.forEach((e) => {
-        if (e.statuses.status === ProductStatues.Disapproved) {
-          arrayOfDestinations.push(e.statuses.destination);
-        }
-      });
-      arrayOfDestinations = arrayOfDestinations.filter(
-        (element, index) => arrayOfDestinations.indexOf(element) === index);
-      return arrayOfDestinations;
-    },
-    multipleIssues(productsById) {
-      let arrayOfIssues = [];
-      const destinations = this.multipleDestinations(productsById);
-
-      if (destinations.length <= 1) {
-        productsById.forEach((e) => {
-          if (e.statuses.status === ProductStatues.Disapproved) {
-            e.issues.forEach((issue) => {
-              arrayOfIssues.push(issue);
-            });
-          }
-        });
-        arrayOfIssues = arrayOfIssues
-          .filter((value, index, self) => index === self
-            .findIndex((issue) => (
-              issue.description === value.description
-            )));
-        return arrayOfIssues;
-      }
-
-      const issuesPerDestinations = [];
-
-      productsById.forEach((product) => {
-        const match = issuesPerDestinations
-          .find((r) => r.destination === product.statuses.destination);
-
-        if (!match) {
-          issuesPerDestinations.push({
-            destination: product.statuses.destination, issues: [...product.issues],
-          });
-          return;
-        }
-        match.issues = match.issues.concat(product.issues);
-      });
-      issuesPerDestinations.map((destination) => {
-        destination.issues = destination.issues
-          .filter((issue, index) => destination.issues
-            .findIndex((iss) => iss.code === issue.code) === index);
-        return destination;
-      });
-      return issuesPerDestinations;
-    },
-    issuesAreSame(productsById) {
-      const issuesPerDestinations = this.multipleIssues(productsById);
-      // Create the 2 temporary arrays of each destination and map to retrieve only issues by code
-      let [source1, source2] = issuesPerDestinations;
-      source1 = source1.issues.map((issue) => Number(issue.code)).sort();
-      source2 = source2.issues.map((issue) => Number(issue.code)).sort();
-
-      // Check if the two temporary arrays are equals and return boolean
-      return Array.isArray(source1)
-              && Array.isArray(source2)
-              && source1.length === source2.length
-              && source1.every((val, index) => val === source2[index]);
-    },
-    sameIssues(productsById) {
-      const issuesPerDestination = this.multipleIssues(productsById);
-
-      if (this.issuesAreSame(productsById)) {
-        // There are always going to be 2 destinations
-        return [
-          {
-            issues: issuesPerDestination[0].issues,
-            destination: issuesPerDestination[0].destination,
-          },
-          {destination: issuesPerDestination[1].destination},
-        ];
-      }
-      return [];
-    },
     handleScroll() {
       const de = document.documentElement;
 
@@ -678,6 +184,5 @@ export default {
       }
     },
   },
-
 };
 </script>
