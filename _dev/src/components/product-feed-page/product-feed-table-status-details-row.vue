@@ -22,21 +22,29 @@
         {{ product.name }}
       </a>
     </b-td>
-    <b-td>
+    <b-td
+      class="align-top"
+      :rowspan="product.statuses.length"
+      v-if="!indexStatus"
+    >
       <span
-        v-for="(country, indexLang) in status.countries"
+        v-for="(country, indexLang) in getAllCountries"
         :key="indexLang"
       >
         <b-badge
           variant="primary"
-          class="ps_gs-fz-12"
+          class="ps_gs-fz-12 m-1"
         >
           {{ country }}
         </b-badge>
       </span>
     </b-td>
 
-    <b-td class="align-top">
+    <b-td
+      class="align-top"
+      :rowspan="product.statuses.length"
+      v-if="!indexStatus"
+    >
       <b-badge
         :variant="badgeColor(status.status)"
         class="ps_gs-fz-12 text-capitalize"
@@ -45,7 +53,11 @@
       </b-badge>
     </b-td>
 
-    <b-td class="align-top">
+    <b-td
+      class="align-top"
+      :rowspan="product.statuses.length"
+      v-if="!indexStatus"
+    >
       <ul
         class="pl-0 mb-0 ml-3"
         v-if="status.status === ProductStatues.Disapproved"
@@ -65,10 +77,11 @@
         </li>
       </ul>
     </b-td>
-    <b-td class="align-top">
+    <b-td>
       {{ renameDestination(status.destination) }}
     </b-td>
   </b-tr>
+
   <!-- Needed for the rowspan -->
   <b-tr v-else />
 </template>
@@ -108,6 +121,12 @@ export default {
     },
     getSurfacesAcrossGoogleIssues() {
       return this.product.issues.filter((issue) => issue.resolution === 'merchant_action' && issue.destination === 'SurfacesAcrossGoogle');
+    },
+    getAllCountries() {
+      const countries = [];
+      this.product.statuses.forEach((status) => status.countries
+        .forEach((country) => countries.push(country)));
+      return countries.filter((item, pos) => countries.indexOf(item) === pos);
     },
   },
   methods: {
