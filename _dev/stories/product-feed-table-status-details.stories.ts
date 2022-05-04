@@ -39,7 +39,7 @@ TableStatusDetails.parameters = {
       rest.get('/product-feeds/prevalidation-scan', (req, res, ctx) => {
         return res(
           ctx.status(200),
-          ctx.json({'results' : [
+          ctx.json({'result' : [
             {
               id: 1,
               name: 'Product 1',
@@ -88,6 +88,6 @@ TableStatusDetails.parameters = {
           ]})
         );
       }),
-    ]
+    ],
   },
 };
