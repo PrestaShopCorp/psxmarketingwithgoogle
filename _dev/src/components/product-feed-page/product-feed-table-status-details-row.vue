@@ -117,9 +117,15 @@ export default {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
     },
     getShoppingIssues() {
+      if (!this.product.issues) {
+        return [];
+      }
       return this.product.issues.filter((issue) => issue.resolution === 'merchant_action' && issue.destination === 'Shopping');
     },
     getSurfacesAcrossGoogleIssues() {
+      if (!this.product.issues) {
+        return [];
+      }
       return this.product.issues.filter((issue) => issue.resolution === 'merchant_action' && issue.destination === 'SurfacesAcrossGoogle');
     },
     getAllCountries() {

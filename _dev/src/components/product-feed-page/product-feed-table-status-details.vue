@@ -177,6 +177,7 @@ export default {
     },
     handleScroll() {
       const de = document.documentElement;
+
       if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight - 1) {
         this.getItems(this.nextToken);
       }
