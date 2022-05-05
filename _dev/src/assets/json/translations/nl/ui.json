@@ -320,7 +320,7 @@
       "title1": "1. Kies alle kenmerken die van toepassing zijn op uw producten",
       "description1": "Dit zal u toelaten om verplichte Google product attributen in kaart te brengen bij de volgende stap, afhankelijk van uw catalogus.",
       "title2": "2. Verplichte Google-attributen toewijzen aan uw aangepaste velden",
-      "description2": "Vul alle waarden in om er zeker van te zijn dat uw producten gevalideerd zijn. Als een waarde in uw catalogus ontbreekt, raden wij u aan deze aan te maken en de installatie later te voltooien.",
+      "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later. Keep in mind that Google will favor first filled values.",
       "apparelAndAccessoriesTitle": "Ik verkoop kleding en/of accessoires",
       "apparelAndAccessoriesSubtitle": "d.w.z. kleding, tassen, schoenen of hoeden",
       "electronicsTitle": "Ik verkoop huishoudelijke en/of keukenapparatuur",
@@ -951,7 +951,7 @@
     "attributeMapping": {
       "description": "The description will be cropped automatically if it is longer than 5000",
       "ageGroup": "The demographic for which your product is targeted.",
-      "gtin": "A code printed on product packaging to aid in indentify a particular item.",
+      "gtin": "A code printed on product packaging to aid in identify a particular item.",
       "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
       "pattern": "Het patroon of de grafische print van uw product"
     },
