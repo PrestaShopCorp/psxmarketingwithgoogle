@@ -320,7 +320,7 @@
       "title1": "1. Wybierz wszystkie cechy, które odnoszą się do Twoich produktów",
       "description1": "Pozwoli to na mapowanie obowiązkowych atrybutów produktu Google w następnym kroku w zależności od katalogu.",
       "title2": "2. Mapuj obowiązkowe atrybuty Google do swoich pól niestandardowych",
-      "description2": "Wypełnij wszystkie wartości, aby upewnić się, że Twoje produkty są zatwierdzone. Jeśli brakuje jakiejś wartości w Twoim katalogu, zalecamy utworzenie jej i dokończenie konfiguracji później.",
+      "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later. Keep in mind that Google will favor first filled values.",
       "apparelAndAccessoriesTitle": "Sprzedaję odzież i/lub akcesoria",
       "apparelAndAccessoriesSubtitle": "tj. odzież, torby, buty lub kapelusze",
       "electronicsTitle": "Sprzedaję sprzęt AGD i/lub kuchenny",
@@ -951,7 +951,7 @@
     "attributeMapping": {
       "description": "The description will be cropped automatically if it is longer than 5000",
       "ageGroup": "The demographic for which your product is targeted.",
-      "gtin": "A code printed on product packaging to aid in indentify a particular item.",
+      "gtin": "A code printed on product packaging to aid in identify a particular item.",
       "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
       "pattern": "Wzór lub nadruk graficzny Twojego produktu"
     },
