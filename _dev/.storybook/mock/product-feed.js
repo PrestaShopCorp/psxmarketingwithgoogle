@@ -165,7 +165,7 @@ export const productFeed = {
   },
   attributesToMap,
   attributesFromShop: [
-    {"name":["ean13"],"type":"product"},
+    {"name":["ean"],"type":"product"},
     {"name":["isbn"],"type":"product"},
     {"name":["upc"],"type":"product"},
     {"name":["mpn"],"type":"product"},

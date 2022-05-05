@@ -113,7 +113,7 @@ describe('attribute-field.vue', () => {
               type: 'product',
             },
             {
-              name: ['ean13'],
+              name: ['ean'],
               type: 'product',
             },
           ],
