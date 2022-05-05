@@ -320,7 +320,7 @@
       "title1": "1. Escolha todas as características que se aplicam aos seus produtos",
       "description1": "Isto irá permitir-lhe mapear atributos obrigatórios do produto Google no próximo passo, dependendo do seu catálogo.",
       "title2": "2. Mapa atributos obrigatórios do Google para os seus campos personalizados",
-      "description2": "Preencha todos os valores para garantir que os seus produtos são validados. Se faltar um valor no seu catálogo, recomendamos que o crie e complete a configuração mais tarde.",
+      "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later. Keep in mind that Google will favor first filled values.",
       "apparelAndAccessoriesTitle": "Eu vendo Roupa e/ou Acessórios",
       "apparelAndAccessoriesSubtitle": "ou seja, roupas, bolsas, sapatos ou chapéus",
       "electronicsTitle": "Eu vendo electrodomésticos para casa e/ou cozinha",
@@ -951,7 +951,7 @@
     "attributeMapping": {
       "description": "The description will be cropped automatically if it is longer than 5000",
       "ageGroup": "The demographic for which your product is targeted.",
-      "gtin": "A code printed on product packaging to aid in indentify a particular item.",
+      "gtin": "A code printed on product packaging to aid in identify a particular item.",
       "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
       "pattern": "O padrão ou impressão gráfica do seu produto"
     },
