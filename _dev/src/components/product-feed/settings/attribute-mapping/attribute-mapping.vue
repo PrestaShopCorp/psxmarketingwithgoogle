@@ -46,26 +46,73 @@
             class="spinner"
           />
         </div>
-        <b-form-row
-          class="mt-2"
+        <b-container
           v-else
+          class=" maxw-sm-800"
         >
+          <div
+            class="d-flex justify-content-around
+          flex-md-row flex-column
+          ps-ps-header-attribute-mapping
+          mb-2"
+          >
+            <div class="text-center mt-4">
+              <img
+                class="rounded-circle mb-1"
+                src="@/assets/images/google-icon-grey.svg"
+                width="20"
+                height="20"
+              >
+              <p>
+                {{ $t('productFeedSettings.summary.tableHeader1') }}
+              </p>
+            </div>
+            <div />
+            <div class="text-center mt-4">
+              <img
+                src="@/assets/images/table-chart.svg"
+                class="mb-1"
+                width="20"
+                height="20"
+              >
+              <p>
+                {{ $t("productFeedSettings.summary.tableHeader2") }}
+              </p>
+            </div>
+          </div>
           <template
             v-for="group in attributesToMap"
           >
-            <b-col
+            <div
               v-for="field in group.fields"
               :key="field.label + group.category"
-              :cols="12"
-              :md="6"
+              class="row"
             >
-              <attribute-field
-                :field="field"
-                :category="group.category"
-              />
-            </b-col>
+              <div class="d-flex col-12 col-md-6">
+                <span> {{ field.label }}</span>
+
+                <b-button
+                  v-if="field.tooltip"
+                  class="ml-1 p-0 d-flex"
+                  variant="text"
+                  v-b-tooltip:psxMktgWithGoogleApp
+                  :title="tooltipFormat(field.name)"
+                >
+                  <span class="material-icons-round mb-0 ps_gs-fz-16 w-16 text-secondary">
+                    info_outlined
+                  </span>
+                </b-button>
+              </div>
+
+              <div class="d-flex col-12 col-md-6 text-center">
+                <attribute-field
+                  :field="field"
+                  :category="group.category"
+                />
+              </div>
+            </div>
           </template>
-        </b-form-row>
+        </b-container>
       </section>
       <p class="ps_gs-fz-12 text-primary">
         <a
@@ -139,6 +186,7 @@ export default {
   data() {
     return {
       loading: false,
+
     };
   },
   computed: {
@@ -212,6 +260,9 @@ export default {
         });
       }
       window.scrollTo(0, 0);
+    },
+    tooltipFormat(name) {
+      return this.$t(`tooltip.attributeMapping.${name}`);
     },
     nextStep() {
       this.$segment.track('[GGL] Product feed config - Step 3', {

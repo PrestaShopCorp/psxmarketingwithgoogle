@@ -320,7 +320,7 @@
       "title1": "1. Choose all characteristics that apply to your products",
       "description1": "This will allow you to map mandatory Google product attributes at the next step depending on your catalog.",
       "title2": "2. Map mandatory Google attributes to your custom fields",
-      "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later.",
+      "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later. Keep in mind that Google will favor first filled values.",
       "apparelAndAccessoriesTitle": "I sell Apparel and/or Accessories",
       "apparelAndAccessoriesSubtitle": "i.e clothing, bags, shoes or hats",
       "electronicsTitle": "I sell Home and/or Kitchen appliances",
@@ -953,7 +953,7 @@
     "attributeMapping" : {
       "description" : "The description will be cropped automatically if it is longer than 5000",
       "ageGroup" : "The demographic for which your product is targeted.",
-      "gtin": "A code printed on product packaging to aid in indentify a particular item.",
+      "gtin": "A code printed on product packaging to aid in identify a particular item.",
       "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
       "pattern": "Your product's pattern or graphic print"
     },

@@ -3,35 +3,12 @@
     :label-for="field.label | slugify"
     label-class="d-flex align-items-center"
   >
-    <template #label>
-      <span class="font-weight-600">
-        {{ $t(`attributesMapping.types.${field.name}`) }}
-        <span
-          v-if="field.required"
-          class=""
-        >
-          *
-        </span>
-      </span>
-      <b-button
-        v-if="field.tooltip"
-        class="ml-1 p-0 d-flex"
-        variant="text"
-        v-b-tooltip:psxMktgWithGoogleApp
-        :title="tooltipFormat(field.name)"
-      >
-        <span class="material-icons-round mb-0 ps_gs-fz-16 w-16 text-secondary">
-          info_outlined
-        </span>
-      </b-button>
-    </template>
-
     <b-dropdown
       :id="field.label"
       :html="`<span class='text-truncate d-inline-block'>
         ${formatToDisplay}</span>`"
       variant=" "
-      class="maxw-sm-250 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
+      class="ps-dropdown psxmarketingwithgoogle-dropdown bordered"
       :toggle-class="[{'ps-dropdown__placeholder' : !formatToDisplay}, 'w-100']"
       menu-class="ps-dropdown"
       size="sm"
@@ -154,9 +131,6 @@ export default {
         name: this.field.name,
         elements: this.attributesChecked,
       });
-    },
-    tooltipFormat(name) {
-      return this.$t(`tooltip.attributeMapping.${name}`);
     },
     displayAttributeOption(option) {
       return option.name.map((name) => (this.$te(`attributesMapping.options.${name}`)
