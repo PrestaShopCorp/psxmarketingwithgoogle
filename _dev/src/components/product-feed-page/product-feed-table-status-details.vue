@@ -81,7 +81,6 @@ export default {
     return {
       loading: false,
       nextToken: null,
-      items: this.$store.state.productFeed.productsDatas.items,
       selectedFilterQuantityToShow: '100',
       fields: [
         {
@@ -116,6 +115,11 @@ export default {
   computed: {
     getProductBaseUrl() {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
+    },
+    items() {
+      return this.$store.state.productFeed.productsDatas.items
+        .filter((item) => item.statuses
+          .find((status) => status.status === this.$route.params.status));
     },
   },
   updated() {

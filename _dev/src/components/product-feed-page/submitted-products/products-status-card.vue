@@ -24,7 +24,9 @@
         <b-button
           v-if="syncStatus === 'success'"
           variant="invisible"
-          :to="{name: 'product-feed-status'}"
+          :to="{name: 'product-feed-status', params: {
+            status: productStatus.statusOfProducts
+          }}"
           class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 mr-2"
         >
           {{ productStatus.numberOfProducts }}

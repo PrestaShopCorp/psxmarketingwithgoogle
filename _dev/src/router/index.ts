@@ -61,7 +61,7 @@ const routes: Array<RouteConfig> = [
     component: ProductFeedPage,
   },
   {
-    path: '/product-feed/status',
+    path: '/product-feed/status/:status',
     name: 'product-feed-status',
     component: ProductFeedPage,
   },
