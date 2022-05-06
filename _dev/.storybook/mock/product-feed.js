@@ -171,7 +171,7 @@ export const productFeed = {
     {"name":["mpn"],"type":"product"},
     {"name":["manufacturer"],"type":"product"},
     {"name":["description"],"type":"product"},
-    {"name":["shortDescription"],"type":"product"},
+    {"name":["description_short"],"type":"product"},
     {"name":["color"],"type":"custom"},
     {"name":["dimension"],"type":"custom"},
     {"name":["paper type"],"type":"custom"},

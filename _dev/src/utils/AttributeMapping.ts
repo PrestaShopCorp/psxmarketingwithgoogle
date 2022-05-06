@@ -20,22 +20,22 @@ export type RecommendedFieldType = {
 }
 
 export type AttributeResponseFromAPI = {
-  description?: CategoryDetail[];
-  gtin?: CategoryDetail[];
-  mpn?: CategoryDetail[];
-  brand?: CategoryDetail[];
-  ageGroup?: CategoryDetail[];
-  color?: CategoryDetail[];
-  gender?: CategoryDetail[];
-  size?: CategoryDetail[];
-  maxEnergyEfficiencyClass?: CategoryDetail[];
-  minEnergyEfficiencyClass?: CategoryDetail[];
-  energyEfficiencyClass?: CategoryDetail[];
-  material?: CategoryDetail[];
-  pattern?: CategoryDetail[];
+  description?: MappedAttribute[];
+  gtin?: MappedAttribute[];
+  mpn?: MappedAttribute[];
+  brand?: MappedAttribute[];
+  ageGroup?: MappedAttribute[];
+  color?: MappedAttribute[];
+  gender?: MappedAttribute[];
+  size?: MappedAttribute[];
+  maxEnergyEfficiencyClass?: MappedAttribute[];
+  minEnergyEfficiencyClass?: MappedAttribute[];
+  energyEfficiencyClass?: MappedAttribute[];
+  material?: MappedAttribute[];
+  pattern?: MappedAttribute[];
 }
 
-export type CategoryDetail = {
+export type MappedAttribute = {
   id?: string;
   ids?: string[];
   type: string;
@@ -55,9 +55,19 @@ export function formatMappingToApi(attributes: AttributeToMap[]): AttributeRespo
     }, {});
 }
 
+const fixUnusedAttributeNames = (source: string) => {
+  if (source === 'ean13') {
+    return 'ean';
+  }
+  if (source === 'shortDescription') {
+    return 'description_short';
+  }
+  return source;
+};
+
 function makeMappingBackwardCompatible(
   attr: RecommendedFieldType,
-): CategoryDetail {
+): MappedAttribute {
   if (Array.isArray(attr.name)) {
     return {
       ids: attr.name,
@@ -82,8 +92,9 @@ export function parseApiResponse(
       attribute.mapped = [];
     }
     attributesFromShop
-      .filter((a) => oneInOne(mappingFromApi[attribute.name]?.map((e) => e.id) || [], a.name))
-      .forEach((e) => {
+      .filter((a) => oneInOne(mappingFromApi[attribute.name]?.map(
+        (e) => fixUnusedAttributeNames(e.id)) || [], a.name),
+      ).forEach((e) => {
         if (!deepEqual(attribute.mapped, e)) {
           // eslint-disable-next-line no-unused-expressions
           attribute?.mapped?.push(e);
