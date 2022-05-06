@@ -206,6 +206,7 @@ export default {
       dialCode: this.$store.state.app.psxMtgWithGoogleDefaultShopCountry,
       askAgainIn60Sec: false,
       invalidInputFeedback: this.$i18n.t('mcaCard.invalidCode'),
+      firstTimeValidationAlreadySent: false,
     };
   },
   methods: {
@@ -260,16 +261,22 @@ export default {
         this.$nextTick(() => indexToGo.focus());
         this.$nextTick(() => indexToGo.select());
       }
-      if (this.isCompletelyFilled) {
+      if (this.isCompletelyFilled && !this.firstTimeValidationAlreadySent) {
         this.sendCode();
       }
     },
     inputHasChanged(event, index) {
       this.indexInputChanged = index;
-      this.inputsVerificationCode.splice(index, 1, parseInt(event, 10));
+      let newInputValue = parseInt(event, 10);
+      // parseInt of null return NaN so we need to check otherwise it will display it in input
+      if (Number.isNaN(newInputValue)) {
+        newInputValue = '';
+      }
+      this.inputsVerificationCode.splice(index, 1, newInputValue);
     },
 
     async sendCode() {
+      this.firstTimeValidationAlreadySent = true;
       this.$segment.track('[GGL] Create GMC - Step 4 Confirm Number', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
