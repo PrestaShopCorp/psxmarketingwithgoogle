@@ -268,6 +268,7 @@ export default {
     inputHasChanged(event, index) {
       this.indexInputChanged = index;
       let newInputValue = parseInt(event, 10);
+
       // parseInt of null return NaN so we need to check otherwise it will display it in input
       if (Number.isNaN(newInputValue)) {
         newInputValue = '';
