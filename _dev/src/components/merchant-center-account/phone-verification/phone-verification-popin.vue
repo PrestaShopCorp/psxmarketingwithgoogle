@@ -98,7 +98,7 @@
           >
             <b-form-input
               :value="n"
-              type="text"
+              type="number"
               class="ps_gs-code-input"
               :disabled="isValidationInProgress"
               aria-describedby="input-code-feedback"
@@ -267,13 +267,7 @@ export default {
     },
     inputHasChanged(event, index) {
       this.indexInputChanged = index;
-      let newInputValue = parseInt(event, 10);
-
-      // parseInt of null return NaN so we need to check otherwise it will display it in input
-      if (Number.isNaN(newInputValue)) {
-        newInputValue = '';
-      }
-      this.inputsVerificationCode.splice(index, 1, newInputValue);
+      this.inputsVerificationCode.splice(index, 1, parseInt(event, 10));
     },
 
     async sendCode() {
@@ -388,3 +382,11 @@ export default {
   phonesPrefixSelectionOptions,
 };
 </script>
+<style scoped>
+  input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+  input[type=number].no-arrows {
+    -moz-appearance: textfield;
+  }
+</style>
