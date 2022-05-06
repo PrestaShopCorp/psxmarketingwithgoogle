@@ -72,7 +72,7 @@ export enum AttributesTypes {
 
 export const commonAttributes: readonly AttributesInfos[] = [
   {
-    name: ['ean13'],
+    name: ['ean'],
     type: AttributesTypes.PRODUCT,
   },
   {

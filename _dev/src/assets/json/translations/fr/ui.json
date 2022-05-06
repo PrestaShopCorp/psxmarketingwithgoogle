@@ -344,7 +344,7 @@
       "material": "Matière",
       "pattern": "Motif",
       "gtin": "GTIN",
-      "ean13": "EAN13",
+      "ean": "EAN13",
       "mpn": "MPN",
       "brand": "Marque",
       "notAvailable": "Not filled",
@@ -997,7 +997,7 @@
     "options": {
       "upc": "UPC",
       "isbn": "ISBN",
-      "ean13": "EAN",
+      "ean": "EAN",
       "mpn": "MPN",
       "description": "Description",
       "shortDescription": "Description courte",
