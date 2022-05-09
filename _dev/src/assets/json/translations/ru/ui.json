@@ -337,7 +337,7 @@
       "sellRefurbishedProducts": "Восстановленный",
       "description": "Описание",
       "longDescription": "Длинное описание",
-      "shortDescription": "Краткое описание",
+      "description_short": "Краткое описание",
       "energyEfficiencyClass": "Класс энергоэффективности",
       "maxEnergyEfficiencyClass": "Максимальный класс эффективности",
       "minEnergyEfficiencyClass": "Минимальный класс эффективности",
@@ -1000,7 +1000,7 @@
       "ean": "EAN",
       "mpn": "MPN",
       "description": "Описание",
-      "shortDescription": "Краткое описание",
+      "description_short": "Краткое описание",
       "longDescription": "Длинное описание",
       "notAvailable": "Нет в наличии"
     },

@@ -92,7 +92,7 @@ export const commonAttributes: readonly AttributesInfos[] = [
     type: AttributesTypes.PRODUCT,
   },
   {
-    name: ['shortDescription'],
+    name: ['description_short'],
     type: AttributesTypes.PRODUCT,
   },
   {

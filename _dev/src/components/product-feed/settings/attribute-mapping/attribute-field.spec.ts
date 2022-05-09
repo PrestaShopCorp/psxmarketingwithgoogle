@@ -80,7 +80,7 @@ describe('attribute-field.vue', () => {
           ],
           mapped: [
             {
-              name: ['shortDescription'],
+              name: ['description_short'],
               type: 'product',
             },
           ],

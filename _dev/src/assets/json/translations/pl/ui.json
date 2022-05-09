@@ -337,7 +337,7 @@
       "sellRefurbishedProducts": "Odnowiony",
       "description": "Opis",
       "longDescription": "Długi opis",
-      "shortDescription": "Krótki opis",
+      "description_short": "Krótki opis",
       "energyEfficiencyClass": "Klasa efektywności energetycznej",
       "maxEnergyEfficiencyClass": "Maksymalna klasa efektywności",
       "minEnergyEfficiencyClass": "Minimalna klasa efektywności",
@@ -1000,7 +1000,7 @@
       "ean": "EAN",
       "mpn": "MPN",
       "description": "Opis",
-      "shortDescription": "Krótki opis",
+      "description_short": "Krótki opis",
       "longDescription": "Długi opis",
       "notAvailable": "Niedostępne"
     },
