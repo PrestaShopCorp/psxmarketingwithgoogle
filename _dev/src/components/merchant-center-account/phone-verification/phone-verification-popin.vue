@@ -98,7 +98,7 @@
           >
             <b-form-input
               :value="n"
-              type="text"
+              type="number"
               class="ps_gs-code-input"
               :disabled="isValidationInProgress"
               aria-describedby="input-code-feedback"
@@ -206,6 +206,7 @@ export default {
       dialCode: this.$store.state.app.psxMtgWithGoogleDefaultShopCountry,
       askAgainIn60Sec: false,
       invalidInputFeedback: this.$i18n.t('mcaCard.invalidCode'),
+      firstTimeValidationAlreadySent: false,
     };
   },
   methods: {
@@ -260,7 +261,7 @@ export default {
         this.$nextTick(() => indexToGo.focus());
         this.$nextTick(() => indexToGo.select());
       }
-      if (this.isCompletelyFilled) {
+      if (this.isCompletelyFilled && !this.firstTimeValidationAlreadySent) {
         this.sendCode();
       }
     },
@@ -270,6 +271,7 @@ export default {
     },
 
     async sendCode() {
+      this.firstTimeValidationAlreadySent = true;
       this.$segment.track('[GGL] Create GMC - Step 4 Confirm Number', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
@@ -380,3 +382,11 @@ export default {
   phonesPrefixSelectionOptions,
 };
 </script>
+<style scoped>
+  input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+  input[type=number].no-arrows {
+    -moz-appearance: textfield;
+  }
+</style>

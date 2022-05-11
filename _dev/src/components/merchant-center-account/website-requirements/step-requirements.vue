@@ -22,7 +22,7 @@
       <li
         v-for="requirement in requirements"
         :key="$t(`mcaRequirements.${requirement}.title`)"
-        class="d-flex py-1 pl-2 ml-n2"
+        class="d-flex py-1 pl-2"
       >
         <component
           :is="newMca ? 'b-form-checkbox' : 'div'"
