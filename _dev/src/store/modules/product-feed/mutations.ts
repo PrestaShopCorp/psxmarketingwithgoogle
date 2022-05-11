@@ -37,6 +37,9 @@ import {
 type payloadObject = {
   name: string, data: string
 }
+type payloadAttribute = {
+  prestashop: string, google: string
+}
 
 type payloadArrayShipping = [{
   collection: string,
@@ -202,5 +205,8 @@ export default {
   },
   [MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT](state: LocalState, payload: number) {
     state.preScanDetail.total = payload;
+  },
+  [MutationsTypes.SET_ATTRIBUTE_TO_EDIT](state: LocalState, payload: payloadAttribute) {
+    state.attributeToEdit = payload;
   },
 };

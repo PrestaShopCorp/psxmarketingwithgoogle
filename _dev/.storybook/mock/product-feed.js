@@ -7,6 +7,7 @@ export const productFeed = {
   isConfiguredOnce: false,
   totalProducts: 0,
   stepper: 1,
+  attributeToEdit: null,
   status: {
     success: true,
     jobEndedAt: "",

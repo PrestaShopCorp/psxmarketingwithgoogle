@@ -9,6 +9,7 @@
         ${formatToDisplay}</span>`"
       variant=" "
       class="ps-dropdown psxmarketingwithgoogle-dropdown bordered"
+      :class="{'show' : attributeToEdit && field.label.toUpperCase() === attributeToEdit.toUpperCase()}"
       :toggle-class="[{'ps-dropdown__placeholder' : !formatToDisplay}, 'w-100']"
       menu-class="ps-dropdown"
       size="sm"
@@ -100,7 +101,9 @@ export default {
         this.field.mapped = value;
       },
     },
-
+    attributeToEdit() {
+      return (this.$store.state.productFeed.attributeToEdit && (this.$store.state.productFeed.attributeToEdit.prestashop || this.$store.state.productFeed.attributeToEdit.google));
+    },
     formatToDisplay() {
       const result = this.attributesChecked
         // Backward compatibility with old local storage data
@@ -141,6 +144,12 @@ export default {
       return this.attributesChecked.some((e) => arrayEquals(e.name, option.name))
         ? 'attribute-is-mapped' : null;
     },
+  },
+  mounted() {
+    if (this.$store.state.productFeed.attributeToEdit === null) {
+      return;
+    }
+    window.scrollTo(0, 500);
   },
   googleUrl,
 };
