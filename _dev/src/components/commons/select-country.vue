@@ -60,6 +60,11 @@ export default {
       required: false,
       default: false,
     },
+    multipleCountries: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   methods: {
     onSearchCountry(event) {
@@ -84,7 +89,10 @@ export default {
           : this.getCountriesFilteredWithList(this.defaultValue);
       },
       set(value) {
-        if (Array.isArray(value)) {
+        if (this.multipleCountries) {
+          this.countriesChosen = value;
+          this.$emit('countrySelected', value);
+        } else if (Array.isArray(value)) {
           const country = value.length ? [value.pop()] : [];
           this.countriesChosen = country;
           this.$emit('countrySelected', country);
