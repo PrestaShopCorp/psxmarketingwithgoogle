@@ -14,7 +14,6 @@
 <script>
 import ProductFeedSettings from '../components/product-feed/product-feed-settings';
 import ProductFeedPopinCancel from '../components/product-feed/product-feed-popin-cancel';
-import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default {
   name: 'TunnelProductFeed',
@@ -29,8 +28,6 @@ export default {
   },
   methods: {
     onCancelProductFeedSettingsConfiguration() {
-      this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-     deleteProductFeedDataFromLocalStorage();
       this.$bvModal.show(
         this.$refs.productFeedCancelModal.$refs.modal.id,
       );
