@@ -397,7 +397,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING', false);
+    this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
   },
 
   googleUrl,
