@@ -1,6 +1,7 @@
 <template>
   <div>
     <ps-select
+      data-test-id="ps-select-country"
       :deselect-from-dropdown="true"
       :multiple="true"
       :options="dropdownOptions"
@@ -110,13 +111,10 @@ export default {
         if (this.multipleCountries) {
           this.countriesChosen = value;
           this.$emit('countrySelected', value);
-        } else if (Array.isArray(value)) {
+        } else {
           const country = value.length ? [value.pop()] : [];
           this.countriesChosen = country;
           this.$emit('countrySelected', country);
-        } else {
-          this.countriesChosen = value || '';
-          this.$emit('countrySelected', value);
         }
       },
     },
