@@ -35,6 +35,9 @@ describe('attribute-field.vue', () => {
       options() {
         return attributesFromShop;
       },
+      attributeToEdit() {
+        return null
+      }
     },
   };
 
@@ -89,7 +92,6 @@ describe('attribute-field.vue', () => {
       },
       localVue,
     });
-
     expect(wrapper.find('[data-test-id="attribute-is-mapped"]').text()).toBe('Short Description');
   });
 
