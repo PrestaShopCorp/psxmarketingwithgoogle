@@ -58,6 +58,7 @@ export default {
         params: {
           step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
         },
+        hash: '#attribute-to-map',
       });
     },
   },

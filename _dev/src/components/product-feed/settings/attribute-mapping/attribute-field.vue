@@ -148,12 +148,6 @@ export default {
         ? 'attribute-is-mapped' : null;
     },
   },
-  mounted() {
-    if (this.$store.state.productFeed.attributeToEdit === null) {
-      return;
-    }
-    window.scrollTo(0, 500);
-  },
   googleUrl,
 };
 </script>

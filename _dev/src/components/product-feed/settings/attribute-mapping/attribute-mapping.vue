@@ -104,7 +104,10 @@
                 </b-button>
               </div>
 
-              <div class="d-flex col-12 col-md-6 text-center">
+              <div
+                class="d-flex col-12 col-md-6 text-center"
+                id="attribute-to-map"
+              >
                 <attribute-field
                   :field="field"
                   :category="group.category"
