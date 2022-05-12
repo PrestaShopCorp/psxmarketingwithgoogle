@@ -2,7 +2,7 @@
   <div>
     <ps-select
       :deselect-from-dropdown="true"
-      :multiple="multipleCountries"
+      :multiple="false"
       :options="dropdownOptions"
       @search="onSearchCountry"
       label="name"
