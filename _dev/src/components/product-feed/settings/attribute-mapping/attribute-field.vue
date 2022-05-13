@@ -10,7 +10,7 @@
       variant=" "
       class="ps-dropdown psxmarketingwithgoogle-dropdown bordered"
       :class="{'show' : attributeToEdit
-        && field.label.toUpperCase() === attributeToEdit.toUpperCase()}"
+        && field.name.toUpperCase() === attributeToEdit.toUpperCase()}"
       :toggle-class="[{'ps-dropdown__placeholder' : !formatToDisplay}, 'w-100']"
       menu-class="ps-dropdown"
       size="sm"
@@ -103,9 +103,7 @@ export default {
       },
     },
     attributeToEdit() {
-      return (this.$store.state.productFeed.attributeToEdit
-       && (this.$store.state.productFeed.attributeToEdit.prestashop
-        || this.$store.state.productFeed.attributeToEdit.google));
+      return this.$route.hash.substring(1);
     },
     formatToDisplay() {
       const result = this.attributesChecked

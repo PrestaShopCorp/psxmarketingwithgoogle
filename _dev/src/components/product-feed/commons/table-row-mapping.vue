@@ -49,6 +49,11 @@ export default {
     attributeNotMapped() {
       return this.attribute.prestashop === '';
     },
+    attributeToMap() {
+      return (this.attribute
+       && (this.attribute.prestashop
+        || this.attribute.google));
+    },
   },
   methods: {
     editAttribute() {
@@ -58,7 +63,7 @@ export default {
         params: {
           step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
         },
-        hash: '#attribute-to-map',
+        hash: `#${this.attributeToMap}`,
       });
     },
   },

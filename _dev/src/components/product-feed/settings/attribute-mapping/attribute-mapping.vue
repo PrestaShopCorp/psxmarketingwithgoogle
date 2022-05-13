@@ -106,9 +106,9 @@
 
               <div
                 class="d-flex col-12 col-md-6 text-center"
-                id="attribute-to-map"
               >
                 <attribute-field
+                  :id="field.name"
                   :field="field"
                   :category="group.category"
                 />

@@ -118,7 +118,6 @@ export interface State {
   selectedProductCategories: Array<String>;
   requestSynchronizationNow: boolean;
   preScanDetail: PreScanDetail;
-  attributeToEdit: object|null;
 }
 
 export enum ProductStatues {
@@ -204,5 +203,4 @@ export const state: State = {
     total: 0,
     langChosen: '',
   },
-  attributeToEdit: null,
 };
