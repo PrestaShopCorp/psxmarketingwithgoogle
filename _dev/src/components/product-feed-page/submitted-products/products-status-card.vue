@@ -22,16 +22,22 @@
         v-if="syncStatus === 'success' || syncStatus === 'planned' || syncStatus === 'failed'"
       >
         <b-button
-          v-if="syncStatus === 'success'"
+          v-if="syncStatus === 'success'
+            && productStatus.statusOfProducts === ProductsStatusType.DISAPPROVED "
           variant="invisible"
-          :to="{name: 'product-feed-status', params: {
-            status: productStatus.statusOfProducts
-          }}"
+          :to="{name: 'product-feed-status'}"
           class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 mr-2"
         >
           {{ productStatus.numberOfProducts }}
         </b-button>
 
+        <span
+          v-else-if="syncStatus === 'success'"
+        >
+          <p class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 mr-2">
+            {{ productStatus.numberOfProducts }}
+          </p>
+        </span>
         <template
           v-else
         >
@@ -64,6 +70,11 @@ export default {
         return statusOfProductsValidator && numberOfProductsValidator;
       },
     },
+  },
+  data() {
+    return {
+      ProductsStatusType,
+    };
   },
   computed: {
     card() {
@@ -121,5 +132,6 @@ export default {
       return this.$store.getters['productFeed/GET_SYNC_STATUS'];
     },
   },
+
 };
 </script>

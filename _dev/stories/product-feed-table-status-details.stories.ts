@@ -88,6 +88,84 @@ TableStatusDetails.parameters = {
           ]})
         );
       }),
+      rest.get('/product-feeds/validation/list', (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({'results' : [
+            
+            {
+              "id": "4",
+              "attribute": "0",
+              "name": "Charmander",
+              "statuses": [
+                  {
+                      "destination": "SurfacesAcrossGoogle",
+                      "status": "disapproved",
+                      "countries": [
+                          "FR"
+                      ]
+                  }
+              ]
+          },
+          {
+              "id": "4",
+              "attribute": "18",
+              "name": "Affiche encadrée The adventure begins",
+              "statuses": [
+                  {
+                      "destination": "SurfacesAcrossGoogle",
+                      "status": "disapproved",
+                      "countries": [
+                          "FR"
+                      ]
+                  }
+              ]
+          },
+          {
+              "id": "4",
+              "attribute": "17",
+              "name": "Affiche encadrée The adventure begins",
+              "statuses": [
+                  {
+                      "destination": "SurfacesAcrossGoogle",
+                      "status": "disapproved",
+                      "countries": [
+                          "FR"
+                      ]
+                  }
+              ]
+          },
+          {
+              "id": "7",
+              "attribute": "0",
+              "name": "Squirtle",
+              "statuses": [
+                  {
+                      "destination": "SurfacesAcrossGoogle",
+                      "status": "disapproved",
+                      "countries": [
+                          "FR"
+                      ]
+                  }
+              ]
+          },
+          {
+              "id": "4",
+              "attribute": "16",
+              "name": "Affiche encadrée The adventure begins",
+              "statuses": [
+                  {
+                      "destination": "SurfacesAcrossGoogle",
+                      "status": "disapproved",
+                      "countries": [
+                          "FR"
+                      ]
+                  }
+              ]
+          }
+          ]})
+        );
+      }),
     ],
   },
 };

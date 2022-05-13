@@ -81,7 +81,6 @@
       {{ renameDestination(status.destination) }}
     </b-td>
   </b-tr>
-
   <!-- Needed for the rowspan -->
   <b-tr v-else />
 </template>
@@ -95,7 +94,6 @@ export default {
   data() {
     return {
       ProductStatues,
-
     };
   },
   props: {

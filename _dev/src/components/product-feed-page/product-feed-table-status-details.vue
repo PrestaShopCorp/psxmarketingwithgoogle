@@ -118,8 +118,7 @@ export default {
     },
     items() {
       return this.$store.state.productFeed.productsDatas.items
-        .filter((item) => item.statuses
-          .find((status) => status.status === this.$route.params.status));
+        .filter((item) => item.statuses);
     },
   },
   updated() {
