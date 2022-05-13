@@ -9,7 +9,7 @@
       "help": "Aide"
     },
     "versionDoesNotExist": "Il semble que la version du module ne puisse être récupérée. C'est de notre côté, veuillez réessayer.",
-    "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
+    "moduleNeedActivation": "Le module Marketing with Google est désactivé. Vous ne pourrez utiliser aucune de ses fonctionnalités tant que vous n'aurez pas activé votre module.",
     "moduleUpdateNeeded": {
       "ps_eventbus": "La version du module PrestaShop EventBus en cours d'exécution sur cette boutique est plus ancienne que le minimum requis .\n\nVous pouvez utiliser PrestaShop Marketing with Google, mais certaines fonctionnalités (par exemple, la synchronisation des produits) ne seront pas disponibles tant que vous n'aurez pas mis à niveau PrestaShop EventBus.",
       "psxmarketingwithgoogle": "Veuillez mettre à jour le module PrestaShop Marketing With Google afin de le faire fonctionner correctement."
@@ -26,7 +26,7 @@
     "min": "min.",
     "max": "max.",
     "helpPage": "Page d'aide",
-    "noResultsFoundForX": " No results found for {0}"
+    "noResultsFoundForX": " Aucun résultat trouvé pour {0}"
   },
   "landingPage": {
     "header": {
@@ -121,13 +121,13 @@
     "sendCode": "Envoyer le code",
     "receiveCall": "Recevoir un appel",
     "phoneVerifiedContinue": "Votre numéro de téléphone a été vérifié, vous pouvez continuer la création de votre compte.",
-    "enterCode": "Please enter your verification code",
+    "enterCode": "Veuillez saisir le code de vérification que nous vous avons envoyé par sms",
     "validatingCode": "Valider votre code",
-    "textMessageHasBeenSent": "A text message containing an X-digit code has been sent",
+    "textMessageHasBeenSent": "Un message texte contenant un code à X chiffres vient d'être envoyé à",
     "askAgain60sec": "Vous pourrez demander un nouveau code dans 60 secondes",
-    "needPhoneVerification": "We need to verify your identity with your phone number",
+    "needPhoneVerification": "Nous devons vérifier votre identité à l'aide de votre numéro de téléphone",
     "fillInputs": "Veuillez indiquer votre numéro de téléphone et sélectionner votre préfixe international",
-    "invalidCode": "Code is not valid",
+    "invalidCode": "Code invalide",
     "phoneNumberNotValid": "Your phone number is incorrect, please only put numbers",
     "code": "Code",
     "contactMethod": "Choose your preferred contact method",
@@ -337,7 +337,7 @@
       "sellRefurbishedProducts": "Remis à neuf",
       "description": "Description",
       "longDescription": "Description longue",
-      "description_short": "Description courte",
+      "description_short": "Short description",
       "energyEfficiencyClass": "Classe énergétique",
       "maxEnergyEfficiencyClass": "Classe énergétique maximale",
       "minEnergyEfficiencyClass": "Classe énergétique minimale",
@@ -1000,7 +1000,7 @@
       "ean": "EAN",
       "mpn": "MPN",
       "description": "Description",
-      "description_short": "Description courte",
+      "description_short": "Short Description",
       "longDescription": "Description longue",
       "notAvailable": "N/A"
     },
