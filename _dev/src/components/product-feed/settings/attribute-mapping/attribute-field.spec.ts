@@ -35,9 +35,6 @@ describe('attribute-field.vue', () => {
       options() {
         return attributesFromShop;
       },
-      attributeToEdit() {
-        return null;
-      },
     },
   };
 
