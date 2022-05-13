@@ -109,6 +109,8 @@
               >
                 <attribute-field
                   :id="field.name"
+                  :is-focus="attributeToEdit
+                    && field.name.toUpperCase() === attributeToEdit.toUpperCase()"
                   :field="field"
                   :category="group.category"
                 />
@@ -195,6 +197,9 @@ export default {
   computed: {
     mappingSectionVisible() {
       return this.selectedProductCategories.length;
+    },
+    attributeToEdit() {
+      return this.$route.hash.substring(1);
     },
     disableContinue() {
       return this.selectedProductCategories.length === 0;

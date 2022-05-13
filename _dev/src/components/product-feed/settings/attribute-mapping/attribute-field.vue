@@ -9,11 +9,10 @@
         ${formatToDisplay}</span>`"
       variant=" "
       class="ps-dropdown psxmarketingwithgoogle-dropdown bordered"
-      :class="{'show' : attributeToEdit
-        && field.name.toUpperCase() === attributeToEdit.toUpperCase()}"
       :toggle-class="[{'ps-dropdown__placeholder' : !formatToDisplay}, 'w-100']"
       menu-class="ps-dropdown"
       size="sm"
+      ref="attributeToMap"
     >
       <b-dropdown-form
         form-class="dropdown-form-with-checkbox text-dark"
@@ -86,6 +85,11 @@ export default {
       required: false,
       default: null,
     },
+    isFocus: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   computed: {
     options() {
@@ -101,9 +105,6 @@ export default {
       set(value) {
         this.field.mapped = value;
       },
-    },
-    attributeToEdit() {
-      return this.$route.hash.substring(1);
     },
     formatToDisplay() {
       const result = this.attributesChecked
@@ -145,6 +146,11 @@ export default {
       return this.attributesChecked.some((e) => arrayEquals(e.name, option.name))
         ? 'attribute-is-mapped' : null;
     },
+  },
+  mounted() {
+    if (this.isFocus) {
+      this.$refs.attributeToMap.$refs.toggle.focus();
+    }
   },
   googleUrl,
 };
