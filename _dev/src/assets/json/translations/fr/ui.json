@@ -128,18 +128,18 @@
     "needPhoneVerification": "Nous devons vérifier votre identité à l'aide de votre numéro de téléphone",
     "fillInputs": "Veuillez indiquer votre numéro de téléphone et sélectionner votre préfixe international",
     "invalidCode": "Code invalide",
-    "phoneNumberNotValid": "Your phone number is incorrect, please only put numbers",
+    "phoneNumberNotValid": "Votre numéro de téléphone est incorrect, veuillez ne mettre que des chiffres",
     "code": "Code",
-    "contactMethod": "Choose your preferred contact method",
+    "contactMethod": "Choisissez votre méthode de contact préférée",
     "dialCode": "Composez le code",
-    "phoneNumber": "Enter your phone number",
+    "phoneNumber": "Entrez votre téléphone",
     "textMethod": "Message texte",
     "callMethod": "Appel téléphonique",
     "selectMethod": "Veuillez sélectionner la méthode de contact souhaitée pour vérifier votre identité",
     "alertTooManyRequests": "Vous avez demandé ce service trop souvent avec ce numéro de téléphone. Vous devez attendre 24 heures pour réessayer ou changer votre numéro de téléphone.",
     "alertSomethingHappened": "Une chose s'est produite. Veuillez réessayer.",
     "alertCodeExpired": "Le code a expiré. Veuillez en demander un autre",
-    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
+    "refreshAfterAddingWebsiteAddress": "Si vous avez ajouté une nouvelle information sur Google Merchant Center, veuillez rafraîchir votre page."
   },
   "mcaRequirements": {
     "steps": {
@@ -152,7 +152,7 @@
     "legend2": "L'URL du site web du magasin doit être vérifiée et revendiquée avant de pouvoir télécharger des données de produits.  \n[Apprenez comment vérifier et revendiquer votre site web](https://support.google.com/merchants/answer/176793?hl=fr&ref_topic=3163841)[:target=\"_blank\"].",
     "footer": "Lire la version complète des exigences de la boutique Google",
     "accurateContactInformation": {
-      "title": "I confirm that my contact information are correct and valid",
+      "title": "Je confirme que mes coordonnées sont correctes et valides",
       "description": "Les marchands doivent avoir au moins une méthode de contact répertoriée sur leur site Web, ceci peut être n'importe quel type de méthode de contact.",
       "link": "Découvrez comment ajouter des informations de contact"
     },
