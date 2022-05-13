@@ -57,7 +57,6 @@ export default {
   },
   methods: {
     editAttribute() {
-      this.$store.commit('productFeed/SET_ATTRIBUTE_TO_EDIT', this.attribute);
       this.$router.push({
         name: 'product-feed-settings',
         params: {
