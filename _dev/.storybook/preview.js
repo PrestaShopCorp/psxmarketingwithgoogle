@@ -26,6 +26,7 @@ import Vuex from 'vuex';
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import VueI18n from 'vue-i18n';
 import VueShowdown from 'vue-showdown';
+import VueSegment from '@prestashopcorp/segment-vue';
 
 // import jest
 import { withTests } from '@storybook/addon-jest';
@@ -69,6 +70,11 @@ import '../src/utils/Filters';
  // i18n and store
  Vue.use(VueI18n);
  Vue.use(Vuex);
+ Vue.use(VueSegment, {
+  id: 'dummyID',
+  debug: true,
+  pageCategory: '[GGL]',
+});
 
  addDecorator((story, context) => ({
    template: context.parameters.component === "OnboardingPage" ?

@@ -99,7 +99,7 @@
             <b-form-input
               :value="n"
               type="number"
-              class="ps_gs-code-input"
+              class="ps_gs-code-input no-arrows"
               :disabled="isValidationInProgress"
               aria-describedby="input-code-feedback"
               :class="{'code-invalid' : isCodeValid === false}"
@@ -382,11 +382,3 @@ export default {
   phonesPrefixSelectionOptions,
 };
 </script>
-<style scoped>
-  input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-  }
-  input[type=number].no-arrows {
-    -moz-appearance: textfield;
-  }
-</style>
