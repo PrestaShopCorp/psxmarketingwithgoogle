@@ -103,10 +103,6 @@ export default {
         name: 'autoImportTaxSettings', data: json.autoImportTaxSettings,
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'attributeMapping',
-        data: filterMapping(json.attributeMapping),
-      });
-      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'deliveryDetails',
         data: json?.additionalShippingSettings?.deliveryDetails || [],
       });
@@ -127,7 +123,7 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, rootState, getters, commit,
+    state, rootState, getters, commit, dispatch,
   }) {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
@@ -177,6 +173,7 @@ export default {
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
       deleteProductFeedDataFromLocalStorage();
+      await dispatch(ActionsTypes.REQUEST_ATTRIBUTE_MAPPING);
     } catch (error) {
       console.error(error);
     }

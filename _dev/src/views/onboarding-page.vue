@@ -385,6 +385,7 @@ export default {
       if (oldVal === false && newVal === true) {
         this.productFeedIsLoading = true;
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
+        this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS').finally(() => {
           this.productFeedIsLoading = false;
         });

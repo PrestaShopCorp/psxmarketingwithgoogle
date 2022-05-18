@@ -28,6 +28,7 @@ import {
 import GettersTypes from './getters-types';
 import {filterCountriesCompatible} from '../../../utils/TargetCountryValidator';
 import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
+import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -116,5 +117,8 @@ export default {
   },
   [GettersTypes.GET_PRESCAN_PRODUCTS](state: LocalState): PreScanReporting[] {
     return state.preScanDetail.products;
+  },
+  [GettersTypes.GET_ATTRIBUTE_MAPPING](state: LocalState): AttributeResponseFromAPI {
+    return state.attributeMapping;
   },
 };
