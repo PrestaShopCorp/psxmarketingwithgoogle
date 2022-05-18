@@ -19,6 +19,7 @@
 
 import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
+import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
 
 export interface ProductFeedStatus {
   nextJobAt?: string;
@@ -33,7 +34,6 @@ export interface ProductFeedSettings {
   deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
   autoImportShippingSettings: boolean;
-  attributeMapping: object;
   targetCountries: string[]|null;
 }
 
@@ -118,6 +118,7 @@ export interface State {
   selectedProductCategories: Array<String>;
   requestSynchronizationNow: boolean;
   preScanDetail: PreScanDetail;
+  attributeMapping: AttributeResponseFromAPI;
 }
 
 export enum ProductStatues {
@@ -170,14 +171,6 @@ export const state: State = {
     autoImportTaxSettings: false,
     targetCountries: null,
     autoImportShippingSettings: true,
-    attributeMapping: {
-      exportProductsWithShortDescription: true,
-      customColorAttribute: '',
-      customSizeAttribute: '',
-      customAgeGroupAttribute: '',
-      customGenderGroupAttribute: '',
-      customConditionAttribute: '',
-    },
   },
   validationSummary: {
     activeItems: null,
@@ -203,4 +196,5 @@ export const state: State = {
     total: 0,
     langChosen: '',
   },
+  attributeMapping: {},
 };

@@ -338,8 +338,11 @@ export default {
     targetCountriesStatus() {
       return this.targetCountries.length ? 'success' : 'warning';
     },
+    getAttributeMapping() {
+      return this.$store.getters['productFeed/GET_ATTRIBUTE_MAPPING'];
+    },
     attributeMappingStatus() {
-      return this.getProductFeedSettings.attributeMapping ? 'success' : 'warning';
+      return this.getAttributeMapping ? 'success' : 'warning';
     },
     taxSettings() {
       if (this.getProductFeedSettings.autoImportTaxSettings === undefined) {
@@ -357,16 +360,10 @@ export default {
     attributeMapping: {
       get() {
         const arr = [];
-        const getMapping = this.getProductFeedSettings.attributeMapping;
+        const getMapping = this.getAttributeMapping;
         Object.keys(getMapping).forEach((key) => {
           if (getMapping[key]) {
-            getMapping[key].forEach((item) => {
-              if (item.ids?.length) {
-                arr.push(item.ids);
-              } else {
-                arr.push(item.id);
-              }
-            });
+            getMapping[key].forEach((item) => arr.push(item.id));
           }
         });
         return arr;

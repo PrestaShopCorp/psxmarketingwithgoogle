@@ -98,7 +98,6 @@ export default {
       deliveryDetails: [],
       autoImportTaxSettings: false,
       autoImportShippingSettings: true,
-      attributeMapping: {},
       targetCountries: null,
     };
   },
@@ -150,6 +149,8 @@ export default {
     if (Object.keys(mappingFromApi).length === 0) {
       return;
     }
+
+    state.attributeMapping = mappingFromApi;
 
     const result = parseApiResponse(
       [...state.attributesToMap],
