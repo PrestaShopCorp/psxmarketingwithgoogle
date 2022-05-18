@@ -37,6 +37,9 @@ import {
 type payloadObject = {
   name: string, data: string
 }
+type payloadAttribute = {
+  prestashop: string, google: string
+}
 
 type payloadArrayShipping = [{
   collection: string,

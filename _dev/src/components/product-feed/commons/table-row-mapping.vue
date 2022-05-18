@@ -14,12 +14,18 @@
           d-flex align-items-end justify-content-end"
           :class="{'text-danger-light': attributeNotMapped}"
         >
-          <i
-            class="material-icons-outlined ps_gs-fz-20"
-            v-if="attributeNotMapped"
+          <b-button
+            class="m-n2 pr-2 text-danger-light"
+            variant="link"
+            @click="editAttribute"
           >
-            edit
-          </i>
+            <i
+              class="material-icons-outlined ps_gs-fz-20"
+              v-if="attributeNotMapped"
+            >
+              edit
+            </i>
+          </b-button>
           {{
             attribute.prestashop || $t('productFeedSettings.attributeMapping.notAvailable')
           }}
@@ -30,6 +36,8 @@
 </template>
 
 <script>
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+
 export default {
   props: {
     attribute: {
@@ -40,6 +48,22 @@ export default {
   computed: {
     attributeNotMapped() {
       return this.attribute.prestashop === '';
+    },
+    attributeToMap() {
+      return (this.attribute
+       && (this.attribute.prestashop
+        || this.attribute.google));
+    },
+  },
+  methods: {
+    editAttribute() {
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
+        },
+        hash: `#${this.attributeToMap}`,
+      });
     },
   },
 };

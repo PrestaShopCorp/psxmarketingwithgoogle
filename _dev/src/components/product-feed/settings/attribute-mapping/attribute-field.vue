@@ -12,6 +12,7 @@
       :toggle-class="[{'ps-dropdown__placeholder' : !formatToDisplay}, 'w-100']"
       menu-class="ps-dropdown"
       size="sm"
+      ref="attributeToMap"
     >
       <b-dropdown-form
         form-class="dropdown-form-with-checkbox text-dark"
@@ -84,6 +85,11 @@ export default {
       required: false,
       default: null,
     },
+    isFocus: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   computed: {
     options() {
@@ -100,7 +106,6 @@ export default {
         this.field.mapped = value;
       },
     },
-
     formatToDisplay() {
       const result = this.attributesChecked
         // Backward compatibility with old local storage data
@@ -141,6 +146,11 @@ export default {
       return this.attributesChecked.some((e) => arrayEquals(e.name, option.name))
         ? 'attribute-is-mapped' : null;
     },
+  },
+  mounted() {
+    if (this.isFocus) {
+      this.$refs.attributeToMap.$refs.toggle.focus();
+    }
   },
   googleUrl,
 };

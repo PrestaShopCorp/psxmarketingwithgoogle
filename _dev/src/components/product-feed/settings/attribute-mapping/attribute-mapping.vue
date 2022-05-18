@@ -104,8 +104,13 @@
                 </b-button>
               </div>
 
-              <div class="d-flex col-12 col-md-6 text-center">
+              <div
+                class="d-flex col-12 col-md-6 text-center"
+              >
                 <attribute-field
+                  :id="field.name"
+                  :is-focus="attributeToEdit
+                    && field.name.toUpperCase() === attributeToEdit"
                   :field="field"
                   :category="group.category"
                 />
@@ -192,6 +197,9 @@ export default {
   computed: {
     mappingSectionVisible() {
       return this.selectedProductCategories.length;
+    },
+    attributeToEdit() {
+      return this.$route.hash.substring(1).toUpperCase();
     },
     disableContinue() {
       return this.selectedProductCategories.length === 0;

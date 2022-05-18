@@ -17,6 +17,11 @@ describe('attribute-mapping.vue', () => {
       BFormCheckboxGroup,
       BFormCheckbox,
     },
+    computed: {
+      attributeToEdit() {
+        return null;
+      },
+    },
   };
 
   let actions;
