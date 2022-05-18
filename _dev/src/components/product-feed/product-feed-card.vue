@@ -357,17 +357,15 @@ export default {
       // TODO retrieve tax settings from backend
       return 'success';
     },
-    attributeMapping: {
-      get() {
-        const arr = [];
-        const getMapping = this.getAttributeMapping;
-        Object.keys(getMapping).forEach((key) => {
-          if (getMapping[key]) {
-            getMapping[key].forEach((item) => arr.push(item.id));
-          }
-        });
-        return arr;
-      },
+    attributeMapping() {
+      const arr = [];
+      const getMapping = this.getAttributeMapping;
+      Object.keys(getMapping).forEach((key) => {
+        if (getMapping[key]) {
+          getMapping[key].forEach((item) => arr.push(item.id));
+        }
+      });
+      return arr;
     },
     lastSync() {
       return {
