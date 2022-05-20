@@ -62,7 +62,8 @@
             <b-button
               class="mt-3"
               variant="primary"
-              @click="getDocumentation"
+              target="_blank"
+              :href="$props.informations.doc"
             >
               {{ $t("help.help.downloadPdf") }}
             </b-button>
@@ -149,9 +150,6 @@ import SegmentGenericParams from '@/utils/SegmentGenericParams';
 export default defineComponent({
   props: ['informations', 'loading'],
   methods: {
-    getDocumentation() {
-      window.open(this.$props.informations.doc, '_blank');
-    },
     onQuestionClick(ref) {
       this.$segment.track(`[GGL] Click on the question #${ref}`, {
         module: 'psxmarketingwithgoogle',
