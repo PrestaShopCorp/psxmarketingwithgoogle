@@ -1,5 +1,5 @@
 <template>
-  <b-tr v-if="getIssues(status.destination).length">
+  <b-tr v-if="getIssues(status.destination)">
     <b-td
       class="align-top"
       :rowspan="product.statuses.length"
@@ -24,11 +24,11 @@
     </b-td>
     <b-td
       class="align-top"
-      :rowspan="product.statuses.length"
-      v-if="!indexStatus"
+      :rowspan="countriesAndStatusAreTheSame ? product.statuses.length : 0"
+      v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
       <span
-        v-for="(country, indexLang) in getAllCountries"
+        v-for="(country, indexLang) in status.countries"
         :key="indexLang"
       >
         <b-badge
@@ -42,8 +42,8 @@
 
     <b-td
       class="align-top"
-      :rowspan="product.statuses.length"
-      v-if="!indexStatus"
+      :rowspan="countriesAndStatusAreTheSame ? product.statuses.length : 0"
+      v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
       <b-badge
         :variant="badgeColor(status.status)"
@@ -55,8 +55,6 @@
 
     <b-td
       class="align-top"
-      :rowspan="product.statuses.length"
-      v-if="!indexStatus"
     >
       <ul
         class="pl-0 mb-0 ml-3"
@@ -126,11 +124,11 @@ export default {
       }
       return this.product.issues.filter((issue) => issue.resolution === 'merchant_action' && issue.destination === 'SurfacesAcrossGoogle');
     },
-    getAllCountries() {
-      const countries = [];
-      this.product.statuses.forEach((status) => status.countries
-        .forEach((country) => countries.push(country)));
-      return countries.filter((item, pos) => countries.indexOf(item) === pos);
+    countriesAndStatusAreTheSame() {
+      return this.product.statuses
+        .every((anotherStatus) => anotherStatus.status === this.status.status
+          && JSON.stringify(anotherStatus.countries) === JSON.stringify(this.status.countries),
+        );
     },
   },
   methods: {
@@ -161,7 +159,6 @@ export default {
       }
       return destination;
     },
-
   },
 };
 </script>
