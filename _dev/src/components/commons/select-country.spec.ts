@@ -23,7 +23,7 @@ describe('select countries', () => {
       ...mutations,
     };
   });
-  it('should return a array with countries', async () => {
+  it('should return an array with multiple countries', async () => {
     const wrapper = mount(SelectCountry, {
       ...config,
       store: new Vuex.Store(store),
@@ -47,6 +47,33 @@ describe('select countries', () => {
 
     await options.at(1).trigger('click');
     expect(wrapper.vm.$data.countriesChosen).toEqual(['Austria', 'Belgium']);
+
+  });
+
+  it('should return an array with only one country', async () => {
+    const wrapper = mount(SelectCountry, {
+      ...config,
+      store: new Vuex.Store(store),
+      propsData: {
+        dropdownOptions: countries,
+        multipleCountries: false,
+        defaultValue: ['FR'],
+      },
+      stubs: {
+        VueShowdown: true,
+      },
+    });
+
+    await wrapper.find('[data-test-id="ps-select-country"] [type="search"]').trigger('mousedown');
+    const options = wrapper.findAll('[data-test-id="ps-select-country"] ul li');
+    await options.at(0).trigger('click');
+
+    expect(wrapper.vm.$data.countriesChosen).toEqual(['Austria']);
+    expect(wrapper.emitted('countrySelected')).toBeTruthy();
+    expect(options.at(0).find('div').text()).toBe('Austria');
+
+    await options.at(1).trigger('click');
+    expect(wrapper.vm.$data.countriesChosen).toEqual(['Belgium']);
 
   });
 });
