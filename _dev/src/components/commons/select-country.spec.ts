@@ -5,12 +5,11 @@
 import Vuex from 'vuex';
 import {mount} from '@vue/test-utils';
 import config, {cloneStore} from '@/../tests/init';
-import PsSelect from '@/components/commons/ps-select.vue';
 import VueShowdown from 'vue-showdown';
 import SelectCountry from '@/components/commons/select-country.vue';
 
 describe('select countries', () => {
-  const countries = ["Austria","Belgium","Finland","France","Germany","Greece","Ireland","Italy","Netherlands","Portugal","Slovakia","Spain"];
+  const countries = ['Austria','Belgium','Finland','France','Germany','Greece','Ireland','Italy','Netherlands','Portugal','Slovakia','Spain'];
   let mutations;
   let store;
   beforeEach(() => {
@@ -47,7 +46,6 @@ describe('select countries', () => {
 
     await options.at(1).trigger('click');
     expect(wrapper.vm.$data.countriesChosen).toEqual(['Austria', 'Belgium']);
-
   });
 
   it('should return an array with only one country', async () => {
@@ -74,6 +72,5 @@ describe('select countries', () => {
 
     await options.at(1).trigger('click');
     expect(wrapper.vm.$data.countriesChosen).toEqual(['Belgium']);
-
   });
 });
