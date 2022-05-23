@@ -218,6 +218,7 @@
                 @countrySelected="saveCountrySelected"
                 :default-value="defaultCountry()"
                 :need-filter="false"
+                :multiple="false"
                 :dropdown-options="activeCountries"
               />
               <span v-else>
@@ -638,7 +639,7 @@ export default {
       );
     },
     saveCountrySelected(value) {
-      this.targetCountry = value;
+      this.targetCountry = value.toString();
     },
     openFilterPopin() {
       this.$bvModal.show(
