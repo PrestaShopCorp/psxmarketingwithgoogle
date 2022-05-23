@@ -3,13 +3,26 @@
  */
 
 import Vuex from 'vuex';
+import VueShowdown from 'vue-showdown';
 import {mount} from '@vue/test-utils';
 import config, {cloneStore} from '@/../tests/init';
-import VueShowdown from 'vue-showdown';
 import SelectCountry from '@/components/commons/select-country.vue';
 
 describe('select countries', () => {
-  const countries = ['Austria','Belgium','Finland','France','Germany','Greece','Ireland','Italy','Netherlands','Portugal','Slovakia','Spain'];
+  const countries = [
+    'Austria',
+    'Belgium',
+    'Finland',
+    'France',
+    'Germany',
+    'Greece',
+    'Ireland',
+    'Italy',
+    'Netherlands',
+    'Portugal',
+    'Slovakia',
+    'Spain',
+  ];
   let mutations;
   let store;
   beforeEach(() => {
