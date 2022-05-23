@@ -638,7 +638,7 @@ export default {
       );
     },
     saveCountrySelected(value) {
-      this.targetCountry = value;
+      this.targetCountry = value.toString();
     },
     openFilterPopin() {
       this.$bvModal.show(
