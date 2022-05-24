@@ -102,7 +102,7 @@
     "linkingFailed": "Vous ne pouvez pas vous connecter à votre compte Google pour le moment. Réessayez plus tard.",
     "AccountValidationFailed": "La validation du compte a échoué.",
     "unlinkFailed": "La déconnexion a échoué. Veuillez rafraîchir la page et réessayer.",
-    "tryAgainLater": "Nous ne pouvons pas vérifier ou revendiquer le site actuel. Réessayez plus tard.",
+    "tryAgainLater": "We can’t verify or claim the current site. **We recommend that you ensure that the site is accessible** and try again later.",
     "alertSuspended": "Votre compte a été désactivé.",
     "alertSuspendedDescription": "Pour plus de détails sur les raisons de suspension, veuillez visiter votre [compte Merchant Center]({0})[:target=\"_blank\"]. Une fois résolu, vous devrez demander une nouvelle révision en remplissant [ce formulaire]({1})[:target=\"_blank\"].",
     "notManaged": "Non associé à PrestaShop",
