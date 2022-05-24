@@ -92,10 +92,13 @@ export default {
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
         },
         {
-          key: 'lang',
+          key: 'country',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderCountry'),
         },
-
+        {
+          key: 'lang',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderLanguage'),
+        },
         {
           key: 'status',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderGoogleValidation'),

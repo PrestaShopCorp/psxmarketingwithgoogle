@@ -1,5 +1,5 @@
 <template>
-  <b-tr v-if="getIssues(status.destination)">
+  <b-tr v-if="getIssues(status.destination).length">
     <b-td
       class="align-top"
       :rowspan="product.statuses.length"
@@ -28,14 +28,26 @@
       v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
       <span
-        v-for="(country, indexLang) in status.countries"
-        :key="indexLang"
+        v-for="(country, indexCountry) in status.countries"
+        :key="indexCountry"
       >
         <b-badge
           variant="primary"
           class="ps_gs-fz-12 m-1"
         >
           {{ country }}
+        </b-badge>
+      </span>
+    </b-td>
+    <b-td
+      class="align-top"
+    >
+      <span>
+        <b-badge
+          variant="primary"
+          class="ps_gs-fz-12 m-1"
+        >
+          {{ product.language }}
         </b-badge>
       </span>
     </b-td>

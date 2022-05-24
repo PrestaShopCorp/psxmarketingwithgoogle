@@ -99,6 +99,7 @@ TableStatusDetails.parameters = {
                 id: "7961",
                 attribute: "3",
                 name: "Pikachu",
+                language: 'FR',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -154,6 +155,7 @@ TableStatusDetails.parameters = {
                 id: "7946",
                 attribute: "0",
                 name: "Chenipan",
+                language: 'FR',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -223,6 +225,7 @@ TableStatusDetails.parameters = {
                 id: "7937",
                 attribute: "0",
                 name: "Bulbasaur",
+                language: 'FR',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -277,6 +280,7 @@ TableStatusDetails.parameters = {
                 id: "7937",
                 attribute: "0",
                 name: "Bulbasaur",
+                language: 'EN',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -332,6 +336,7 @@ TableStatusDetails.parameters = {
                 id: "7945",
                 attribute: "0",
                 name: "Blastoise",
+                language: 'FR',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -387,6 +392,7 @@ TableStatusDetails.parameters = {
                 id: "7945",
                 attribute: "0",
                 name: "Blastoise",
+                language: 'EN',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -442,6 +448,7 @@ TableStatusDetails.parameters = {
                 id: "7991",
                 attribute: "0",
                 name: "Akwakwak",
+                language: 'FR',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -509,6 +516,7 @@ TableStatusDetails.parameters = {
                 id: "7961",
                 attribute: "4",
                 name: "Pikachu",
+                language: 'EN',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -564,6 +572,7 @@ TableStatusDetails.parameters = {
                 id: "9999",
                 attribute: "4",
                 name: "Pikachu",
+                language: 'DE',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -619,6 +628,7 @@ TableStatusDetails.parameters = {
                 id: "7961",
                 attribute: "0",
                 name: "Pikachu",
+                language: 'IT',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -674,6 +684,7 @@ TableStatusDetails.parameters = {
                 id: "7990",
                 attribute: "0",
                 name: "Psykokwak",
+                language: 'FR',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -730,6 +741,7 @@ TableStatusDetails.parameters = {
                 id: "8028",
                 attribute: "0",
                 name: "Fantominus",
+                language: 'FR',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -810,6 +822,7 @@ TableStatusDetails.parameters = {
                 id: "7946",
                 attribute: "0",
                 name: "Chenipan",
+                language: 'IT',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -853,6 +866,7 @@ TableStatusDetails.parameters = {
                 id: "7937",
                 attribute: "0",
                 name: "Bulbasaur",
+                language: 'IT',
                 statuses: [
                   {
                     destination: "Shopping",
@@ -909,6 +923,7 @@ TableStatusDetails.parameters = {
                 id: "7945",
                 attribute: "0",
                 name: "Blastoise",
+                language: 'IT',
                 statuses: [
                   {
                     destination: "Shopping",
