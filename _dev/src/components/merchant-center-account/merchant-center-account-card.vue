@@ -458,9 +458,12 @@
         >
           <p class="mb-0">
             <strong>{{ $t('mcaCard.AccountValidationFailed') }}</strong><br>
-            <span class="ps_gs-fz-12">
-              {{ $t('mcaCard.tryAgainLater') }}
-            </span>
+            <VueShowdown
+              tag="p"
+              class="ps_gs-fz-12"
+              :markdown="$t('mcaCard.tryAgainLater')"
+              :extensions="['no-p-tag']"
+            />
           </p>
         </b-alert>
         <b-alert
