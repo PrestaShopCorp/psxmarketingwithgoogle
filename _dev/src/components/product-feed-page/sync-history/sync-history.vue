@@ -85,7 +85,7 @@ export default {
               'productFeedPage.syncSummary.syncHistory.title.failed',
             ),
             description: this.$i18n.t(
-              'productFeedPage.syncSummary.syncHistory.subtitle.error',
+              'productFeedPage.syncSummary.syncHistory.subtitle.error', [this.$options.filters.timeConverterToDate(this.syncInfos.lastUpdatedAt)]
             ),
             icon: 'cancel',
           },

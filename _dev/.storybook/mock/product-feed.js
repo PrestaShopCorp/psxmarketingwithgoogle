@@ -333,7 +333,6 @@ export const productFeedSyncSummaryInProgress = {
 };
 
 export const productFeedStatusSyncScheduled = {
-  ...productFeedIsConfigured,
   status: {
     success: false,
     nextJobAt: new Date("July 22, 2022 03:24:00"),
