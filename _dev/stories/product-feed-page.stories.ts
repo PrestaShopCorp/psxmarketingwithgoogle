@@ -24,11 +24,13 @@ export default {
 const ProductFeed = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ProductFeedPage },
-  template: `<ProductFeedPage/>`,
+  template: `<ProductFeedPage ref="ProductFeedPage"/>`,
   beforeMount: args.beforeMount,
+  mounted: args.mounted,
   beforeCreate(this :any){
     this.$store.state.productFeed.isConfigured = Object.assign({}, true);
-  }
+  },
+ 
 });
 
 export const NeedConfiguration:any = ProductFeed.bind({});
@@ -39,6 +41,14 @@ NeedConfiguration.args = {
 };
 
 export const Planned:any = ProductFeed.bind({});
+Planned.args = {
+  beforeMount() {
+    this.$store.state.productFeed.isConfigured = false;
+  },
+  mounted(this: any) {
+    this.$refs.ProductFeedPage.$data.allDataLoaded = true
+  }
+}
 Planned.parameters = {
   msw: {
     handlers: [
@@ -90,6 +100,15 @@ Planned.parameters = {
 
 
 export const InProgress:any = ProductFeed.bind({});
+InProgress.args = {
+  allDataLoaded : true,
+  beforeMount() {
+    this.$store.state.productFeed.isConfigured = false;
+  },
+  mounted(this: any) {
+    this.$refs.ProductFeedPage.$data.allDataLoaded = true
+  }
+}
 InProgress.parameters = {
   msw: {
     handlers: [

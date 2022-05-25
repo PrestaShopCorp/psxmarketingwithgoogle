@@ -6,7 +6,7 @@
     />
     <template v-else>
       <PsToast
-        v-if="syncStatus === 'schedule' && !inNeedOfConfiguration"
+        v-if="allDataLoaded && syncStatus === 'schedule' && !inNeedOfConfiguration"
         variant="warning"
         :visible="syncStatus === 'schedule' && !inNeedOfConfiguration"
         toaster="b-toaster-top-right"
@@ -31,6 +31,11 @@ import SyncOverview from '@/components/product-feed-page/sync-overview.vue';
 import PsToast from '../components/commons/ps-toast';
 
 export default {
+  data() {
+    return {
+      allDataLoaded: false,
+    };
+  },
   components: {
     ProductFeedTableStatusDetails,
     ProductFeedPreScanTableStatusDetails,
@@ -62,7 +67,9 @@ export default {
     if (this.inNeedOfConfiguration) {
       await this.$store.dispatch('accounts/REQUEST_ACCOUNTS_DETAILS');
     }
-    this.getDatas();
+    this.getDatas().then(() => {
+      this.allDataLoaded = true;
+    });
   },
 };
 </script>
