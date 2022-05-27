@@ -28,6 +28,6 @@ if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
       },
     },
     // @ts-ignore
-    release: `v${appVersion}`,
+    release: appVersion,
   });
 }
