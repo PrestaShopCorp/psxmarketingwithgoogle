@@ -77,9 +77,6 @@ config.mocks.$te = (key) => {
 config.mocks.$segment = {
   track: () => null,
 };
-config.mocks.window = {
-  addEventListener: () => null,
-};
 
 config.mocks.$i18n = {
   t: config.mocks.$t,
