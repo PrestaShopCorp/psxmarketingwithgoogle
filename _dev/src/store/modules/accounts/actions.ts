@@ -310,6 +310,7 @@ export default {
     commit,
     rootState,
     state,
+    dispatch,
   }, correlationId: string) {
     if (state.googleMerchantAccount.id) {
       if (!correlationId) {
@@ -333,6 +334,7 @@ export default {
         throw new HttpClientError(response.statusText, response.status);
       }
     }
+    dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
     commit(MutationsTypes.REMOVE_GMC);
     commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, false);
     commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT}`, '', {root: true});
@@ -389,9 +391,6 @@ export default {
     } catch (error) {
       console.error(`Could not trigger website verification process: ${(<any>error)?.message}`);
       throw error;
-    } finally {
-      // Remove token anyway
-      await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
     }
   },
 
