@@ -55,11 +55,16 @@ export default {
     if (state.settings.autoImportShippingSettings === undefined) {
       return 'warning';
     }
-    if (!state.status.success && state.status.nextJobAt && !state.status.lastUpdatedAt) {
+    if (!state.status.success && !state.status.nextJobAt) {
       return 'schedule';
     }
-    if (!state.status.success && state.status.jobEndedAt && state.status.lastUpdatedAt) {
+    if (!state.status.success && state.status.jobEndedAt) {
       return 'failed';
+    }
+    if (!state.status.success
+      && state.status.nextJobAt
+      && !state.status.jobEndedAt) {
+      return 'planned';
     }
     return 'success';
   },

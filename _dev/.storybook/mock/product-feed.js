@@ -203,8 +203,6 @@ export const productFeedNoCarriers = {
   },
 };
 
-
-
 export const productFeedIsReadyForExport = {
   ...productFeed,
   isConfigured: true,
