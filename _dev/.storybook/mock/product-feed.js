@@ -422,6 +422,25 @@ export const productFeedSyncScheduleNow = {
   ...productFeedIsConfigured,
   requestSynchronizationNow: true,
 }
+export const productFeedWithDisapprovedProductsButNoIssues = {
+  ...productFeed,
+  productsDatas: {
+    items:  [ {
+      "id": "4",
+      "attribute": "0",
+      "name": "Charmander",
+      "statuses": [
+          {
+              "destination": "SurfacesAcrossGoogle",
+              "status": "disapproved",
+              "countries": [
+                  "FR"
+              ]
+          }
+      ]
+  },]
+  },
+}
 
 export const prevalidationScan = {
   errors: [

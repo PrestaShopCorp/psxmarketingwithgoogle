@@ -52,6 +52,7 @@
                 :product="product"
                 :status="status"
                 :index-status="indexStatus"
+                data-test-id="row-product-feed-detail"
               />
             </template>
           </template>
