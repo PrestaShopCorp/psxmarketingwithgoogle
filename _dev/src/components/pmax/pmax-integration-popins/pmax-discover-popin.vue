@@ -5,6 +5,8 @@
     :title="content.title"
     v-bind="$attrs"
   >
+
+    <!-- it's temporary while waiting for the images -->
     <div class="square" style="border:1px solid grey; width:50px;height:50px;">
     </div>
 
