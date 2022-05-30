@@ -1,5 +1,5 @@
 import PmaxDiscoverPopin from '../src/components/pmax/pmax-integration-popins/pmax-discover-popin.vue';
-import { PmaxPopinType } from '../src/enums/pmax/pmax-popin';
+import PmaxPopinType from '../src/enums/pmax/pmax-popin';
 import OnboardingPage from '../src/views/onboarding-page.vue'
 import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {googleAccountConnected} from "../.storybook/mock/google-account";
