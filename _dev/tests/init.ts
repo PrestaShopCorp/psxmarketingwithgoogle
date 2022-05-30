@@ -13,6 +13,7 @@ beforeEach(() => {
   windowSpy.mockImplementation(() => ({
     // add data needed in window
     scrollTo: jest.fn(),
+    addEventListener :jest.fn(),
   }));
   VBTooltip = jest.fn();
   localVue = createLocalVue();

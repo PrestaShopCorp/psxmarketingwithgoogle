@@ -17,7 +17,6 @@ import {
 describe('product-feed-status-details.vue', () => {
   let storeConfigured;
   let storeConfiguredButNoIssued;
-
   beforeEach(() => {
     storeConfigured = cloneStore();
     storeConfigured.modules.productFeed.state = {
@@ -27,6 +26,8 @@ describe('product-feed-status-details.vue', () => {
     storeConfigured.modules.productFeed.state = {
       ...productFeedWithDisapprovedProductsButNoIssues,
     };
+    window.addEventListener = jest.fn();
+    window.removeEventListener = jest.fn();
   });
 
   it('display a suspended destination if there are associated issues', () => {
@@ -41,7 +42,6 @@ describe('product-feed-status-details.vue', () => {
       ...config,
       store: new Vuex.Store(storeConfiguredButNoIssued),
     });
-
     expect(wrapper.find('[data-test-id="row-product-feed-detail"]').exists()).toBeFalsy();
   });
 });
