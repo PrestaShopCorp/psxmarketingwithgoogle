@@ -5,10 +5,11 @@
     :title="content.title"
     v-bind="$attrs"
   >
-
     <!-- it's temporary while waiting for the images -->
-    <div class="square" style="border:1px solid grey; width:50px;height:50px;">
-    </div>
+    <div
+      class="square"
+      style="border:1px solid grey; width:50px;height:50px;"
+    />
 
     <VueShowdown
       class="my-1 mt-4"
@@ -38,11 +39,11 @@
 </template>
 <script>
 import PsModal from '../../commons/ps-modal';
-import { PmaxPopinType } from '../../../enums/pmax/pmax-popin';
+import {PmaxPopinType} from '../../../enums/pmax/pmax-popin';
 import googleUrl from '../../../assets/json/googleUrl.json';
 
 export default {
-name: 'PmaxDiscoverPopin',
+  name: 'PmaxDiscoverPopin',
   components: {
     PsModal,
   },
@@ -73,19 +74,19 @@ name: 'PmaxDiscoverPopin',
       case PmaxPopinType.COMING_SOON:
         this.content.title = this.$t('modal.upgradeSCCToPmaxTitle');
         this.content.body = this.$t('modal.upgradeSCCToPmaxText', [
-          new Date().toLocaleDateString()
+          new Date().toLocaleDateString(),
         ]);
-        this.content.img = ''
+        this.content.img = '';
         break;
       case PmaxPopinType.PMAX_RELEASED:
         this.content.title = this.$t('modal.PMaxLiveTitle');
         this.content.body = this.$t('modal.PMaxLiveText');
-        this.content.img = ''
+        this.content.img = '';
         break;
       case PmaxPopinType.SSC_DEPRECEATED:
         this.content.title = this.$t('modal.PMaxMigrationTitle');
         this.content.body = this.$t('modal.PMaxMigrationText');
-        this.content.img = ''
+        this.content.img = '';
         break;
       default:
         break;
