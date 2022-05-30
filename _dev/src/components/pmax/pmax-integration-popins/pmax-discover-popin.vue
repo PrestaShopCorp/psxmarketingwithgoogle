@@ -39,7 +39,7 @@
 </template>
 <script>
 import PsModal from '../../commons/ps-modal';
-import {PmaxPopinType} from '../../../enums/pmax/pmax-popin';
+import PmaxPopinType from '../../../enums/pmax/pmax-popin';
 import googleUrl from '../../../assets/json/googleUrl.json';
 
 export default {
