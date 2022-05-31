@@ -539,6 +539,10 @@
       "googleIsReviewing": "Ihre Produkte werden gerade geprüft.  \n Es kann 3-5 Tage dauern, bis Ihre Produkte geprüft sind. Nach der Freigabe werden Ihre Produkte für kostenlose Inserate und Anzeigen zur Verfügung stehen.",
       "alertSuccess": "Sie haben sich erfolgreich angemeldet. Sobald Ihre Produkte genehmigt sind, können sie in den Suchergebnissen der Registerkarte Google Shopping erscheinen."
     },
+    "destinations": {
+      "shoppingAds": "Shopping Ads",
+      "enhancedFreeListing": "Enhanced Free Listings"
+    },
     "syncStatus": {
       "title": "Status der Synchronisierung",
       "readyForExport": "Produktzufuhr ist bereit für den Export",
@@ -605,7 +609,7 @@
       "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation."
     },
     "approvalTable": {
-      "description": "Der Status von Produkten, die mit Merchant Center synchronisiert sind",
+      "description": "These are the status of your products that are sent to Google Merchant Center. Some products might appear more than once because of their language variation.",
       "filterTitle": "Nach Verfügbarkeit filtern",
       "filterAllStatus": "Alle",
       "filterOnlyApproved": "Genehmigt",
