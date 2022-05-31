@@ -942,7 +942,8 @@
     "removeTagExplainations": "Removing the tag means that Google will no longer be able to track your campaigns. We recommend that you only remove the tag if you plan to completely remove the module or change your account. You can always add it yourself in the code of your site.",
     "titleActivateTrackingSSC": "Activate remarketing and conversion tracking tag.",
     "textActivateTrackingSSC": "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
-    "textConfirmCancel" : "If you go back you will lose your selected values"
+    "textConfirmCancel" : "If you go back you will lose your selected values",
+    "textPmaxReleased": "Smart Shopping campaigns will be upgraded to Performance Max on {0}. [Learn more]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
 
   "tooltip" : {

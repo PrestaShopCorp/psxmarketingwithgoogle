@@ -69,6 +69,17 @@
         {{ shopId }}
       </div>
     </template>
+    <div id="helper-pmax">
+      <b-alert show>
+        <VueShowdown
+          :markdown="$t('modal.textPmaxReleased', [
+            new Date().toLocaleDateString(),
+            this.$options.googleUrl.findCssPartners
+          ])"
+          :extensions="['extended-link']"
+        />
+      </b-alert>
+    </div>
   </div>
 </template>
 
@@ -77,6 +88,7 @@ import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleUpdate from '@/components/commons/alert-update-module';
+import googleUrl from '@/assets/json/googleUrl.json';
 
 let resizeEventTimer;
 const root = document.documentElement;
@@ -138,5 +150,6 @@ export default {
       this.$root.identifySegment();
     },
   },
+  googleUrl,
 };
 </script>
