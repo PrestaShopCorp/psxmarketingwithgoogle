@@ -1,5 +1,4 @@
 import attributesToMap from "@/store/modules/product-feed/attributes-to-map.json";
-
 export const productFeed = {
   isSyncSummaryLoadingInProgress: false,
   errorAPI: false,
@@ -102,66 +101,118 @@ export const productFeed = {
     invalidItems: 140,
   },
   productsDatas: {
-    items: [
+    items:  [
       {
-        id: "12",
-        name: "super produit",
-        attribute: "21",
-        issues: [
-          {
-            code: "hard_goods_missing_2_out_of_3_identifiers",
-            servability: "demoted",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description:
-              "Limited performance due to missing identifiers [gtin, mpn, brand]",
-            detail: "Provide at least 2 of the missing identifiers",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-          {
-            code: "policy_enforcement_account_disapproval",
-            servability: "disapproved",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description: "Suspended account for policy violation",
-            detail:
-              "Remove products that violate our policies, or request a manual review",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-        ],
-        statuses: {
-          destination: "Shopping",
-          status: "disapproved",
-          countries: ["FR"],
-        },
+          "id": "4",
+          "attribute": "0",
+          "name": "Charmander",
+          "statuses": [
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR"
+                  ]
+              }
+          ]
       },
       {
-        id: "11",
-        name: "produit incroyable",
-        attribute: "1",
-        issues: [],
-        statuses: {
-          destination: "Shopping",
-          status: "pending",
-          countries: ["FR"],
-        },
+          "id": "4",
+          "attribute": "18",
+          "name": "Affiche encadrée The adventure begins",
+          "statuses": [
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR"
+                  ]
+              }
+          ]
       },
       {
-        id: "13",
-        name: "produit formidable",
-        attribute: "2",
-        issues: [],
-        statuses: {
-          destination: "Shopping",
-          status: "approved",
-          countries: ["FR"],
-        },
+          "id": "4",
+          "attribute": "17",
+          "name": "Affiche encadrée The adventure begins",
+          "statuses": [
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR"
+                  ]
+              }
+          ]
       },
-    ],
+      {
+          "id": "7",
+          "attribute": "0",
+          "name": "Squirtle",
+          "statuses": [
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR"
+                  ]
+              }
+          ],
+          "issues": [
+            {
+                "code": "language_mismatch",
+                "servability": "unaffected",
+                "resolution": "merchant_action",
+                "destination": "Shopping",
+                "description": "Incorrect language",
+                "detail": "Use a supported language for the country of sale",
+                "documentation": "https://support.google.com/merchants/answer/6101164",
+                "applicableCountries": [
+                    "FR",
+                    "IT"
+                ]
+            },
+            {
+                "code": "hard_goods_missing_2_out_of_3_identifiers",
+                "servability": "demoted",
+                "resolution": "merchant_action",
+                "destination": "Shopping",
+                "description": "Limited performance due to missing identifiers [gtin, mpn, brand]",
+                "detail": "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
+                "documentation": "https://support.google.com/merchants/answer/6098295",
+                "applicableCountries": [
+                    "FR",
+                    "IT"
+                ]
+            },
+            {
+                "code": "policy_enforcement_account_disapproval",
+                "servability": "disapproved",
+                "resolution": "merchant_action",
+                "destination": "Shopping",
+                "description": "Suspended account for policy violation",
+                "detail": "Remove products that violate our policies, or request a manual review",
+                "documentation": "https://support.google.com/merchants/answer/2948694",
+                "applicableCountries": [
+                    "BE"
+                ]
+            }
+        ]
+      },
+      {
+          "id": "4",
+          "attribute": "16",
+          "name": "Affiche encadrée The adventure begins",
+          "statuses": [
+              {
+                  "destination": "SurfacesAcrossGoogle",
+                  "status": "disapproved",
+                  "countries": [
+                      "FR"
+                  ]
+              }
+          ]
+      }
+  ]
   },
   attributesToMap,
   attributesFromShop: [
@@ -194,7 +245,6 @@ export const productFeed = {
     langChosen: null,
   },
 };
-
 export const productFeedNoCarriers = {
   ...productFeed,
   settings: {
@@ -202,7 +252,6 @@ export const productFeedNoCarriers = {
     deliveryDetails: [],
   },
 };
-
 export const productFeedIsReadyForExport = {
   ...productFeed,
   isConfigured: true,
@@ -371,6 +420,25 @@ export const productFeedIsConfiguredOnce = {
 export const productFeedSyncScheduleNow = {
   ...productFeedIsConfigured,
   requestSynchronizationNow: true,
+}
+export const productFeedWithDisapprovedProductsButNoIssues = {
+  ...productFeed,
+  productsDatas: {
+    items:  [ {
+      "id": "4",
+      "attribute": "0",
+      "name": "Charmander",
+      "statuses": [
+          {
+              "destination": "SurfacesAcrossGoogle",
+              "status": "disapproved",
+              "countries": [
+                  "FR"
+              ]
+          }
+      ]
+  },]
+  },
 }
 
 export const prevalidationScan = {

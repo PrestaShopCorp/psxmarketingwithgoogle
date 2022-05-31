@@ -46,65 +46,15 @@
 
         <b-tbody>
           <template v-for="(product, index) in items">
-            <b-tr :key="index">
-              <b-td class="align-top">
-                {{ product.id }}{{ product.attribute > 0 ? '&#8209;' + product.attribute : '' }}
-              </b-td>
-              <b-td class="align-top b-table-sticky-column">
-                <a
-                  class="external_link-no_icon"
-                  :href="!isNaN(product.id)
-                    ? getProductBaseUrl.replace('/1?', `/${product.id}?`) : null"
-                  target="_blank"
-                  :title="$t('productFeedPage.approvalTable.editX', [product.name])"
-                >
-                  {{ product.name }}
-                </a>
-              </b-td>
-              <b-td class="align-top">
-                {{ product.statuses.destination }}
-              </b-td>
-              <b-td class="align-top">
-                <b-badge
-                  :variant="badgeColor(product.statuses.status)"
-                  class="ps_gs-fz-12 text-capitalize"
-                >
-                  {{ product.statuses.status }}
-                </b-badge>
-              </b-td>
-              <b-td
-                class="align-top"
-                v-for="(country, indexLang) in product.statuses.countries"
-                :key="indexLang"
-              >
-                <b-badge
-                  variant="primary"
-                  class="ps_gs-fz-12"
-                >
-                  {{ country }}
-                </b-badge>
-              </b-td>
-              <b-td class="align-top">
-                <ul
-                  class="pl-0 mb-0 ml-3"
-                  v-if="product.statuses.status === ProductStatues.Disapproved"
-                >
-                  <li
-                    v-for="(issue, indexIssues) in getIssues(product)"
-                    :key="indexIssues"
-                  >
-                    <a
-                      class="text-decoration-none"
-                      :href="issue.documentation"
-                      :title="issue.detail"
-                      target="_blank"
-                    >
-                      {{ issue.description }}
-                    </a>
-                  </li>
-                </ul>
-              </b-td>
-            </b-tr>
+            <template v-for="(status, indexStatus) in product.statuses">
+              <ProductFeedTableStatusDetailsRow
+                :key="`${index}-${indexStatus}`"
+                :product="product"
+                :status="status"
+                :index-status="indexStatus"
+                data-test-id="row-product-feed-detail"
+              />
+            </template>
           </template>
           <b-tr v-if="loading">
             <b-td
@@ -116,247 +66,22 @@
           </b-tr>
         </b-tbody>
       </b-table-simple>
-
-      <!-- OLD TABLE -->
-      <!-- TO KEEP IF WE SWITCH BACK TO B-TABLE-LITE -->
-      <!--
-      <b-table-lite
-        stacked="md"
-        variant="light"
-        class="mb-3 ps_gs-table-products"
-      >
-        <b-thead>
-          <b-tr class="ps_gs-fz-12">
-            <b-th>
-              <div>ID</div>
-            </b-th>
-            <b-th>
-              <div>Name</div>
-            </b-th>
-            <b-th>
-              <div class="d-flex align-items-center">
-                <span>Google validation</span>
-                <b-button
-                  variant="invisible"
-                  class="p-0 mt-0 ml-1 border-0"
-                  v-b-tooltip:psxMktgWithGoogleApp
-                  :title="'placeholder'"
-                >
-                  <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-                </b-button>
-              </div>
-            </b-th>
-            <b-th>
-              <div class="d-flex align-items-center">
-                <span>Language</span>
-                <b-button
-                  variant="invisible"
-                  class="p-0 mt-0 ml-1 border-0"
-                  v-b-tooltip:psxMktgWithGoogleApp
-                  :title="'placeholder'"
-                >
-                  <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-                </b-button>
-              </div>
-            </b-th>
-            <b-th>
-              <div class="d-flex align-items-center">
-                <span>Issue</span>
-                <b-button
-                  variant="invisible"
-                  class="p-0 mt-0 ml-1 border-0"
-                  v-b-tooltip:psxMktgWithGoogleApp
-                  :title="'placeholder'"
-                >
-                  <i class="material-icons ps_gs-fz-14 text-grey_darklight">info_outline</i>
-                </b-button>
-              </div>
-            </b-th>
-          </b-tr>
-        </b-thead>
-        <b-tbody>
-          <b-tr
-            v-for="({
-              id, name, status, issues, _id, lang, variant
-            }) in items"
-            :key="_id"
-          >
-            <b-td class="ps_gs-fz-12">
-              {{ id }}
-            </b-td>
-            <b-td class="ps_gs-fz-12">
-              <a
-                href="#"
-                :title="`Edit ${name}`"
-              >{{ name }}</a>
-              <template
-                v-if="!!variant"
-              >
-                <span
-                  v-for="(attribute, index) in variant.attributes"
-                  :key="index"
-                >
-                  <span
-                    v-for="(value, key, index) in attribute"
-                    :key="index"
-                  >
-                    <br>
-                    {{ key }} - {{ value }}
-                  </span>
-                </span>
-              </template>
-            </b-td>
-            <b-td class="ps_gs-table-products__status">
-              <b-badge
-                :variant="badgeColor(status)"
-                class="ps_gs-fz-12"
-              >
-                {{ status }}
-              </b-badge>
-            </b-td>
-            <b-td>
-              <b-badge
-                variant="primary"
-                class="ps_gs-fz-12"
-              >
-                {{ lang }}
-              </b-badge>
-            </b-td>
-            <b-td class="ps_gs-table-products__issue ps_gs-fz-10">
-              {{ issues.length > 0 ? issues.join(', ') : '' }}
-            </b-td>
-          </b-tr>
-        </b-tbody>
-      </b-table-lite> -->
-      <!-- OLD TABLE PAGINATION -->
-
-      <!-- TO KEEP IF WE SWITCH BACK TO B-TABLE-LITE -->
-      <!-- <div class="flex-wrap ps_gs-table-controls d-flex flex-md-nowrap align-items-center">
-        <span class="mr-2 ps_gs-table-controls__total-products pl-md-1 text-muted">
-          {{ totalProducts }} results
-        </span>
-        <div class="ps_gs-table-controls__products-shown d-flex align-items-center">
-          <span>Show:</span>
-          <b-dropdown
-            id="filterQuantityToShow"
-            ref="filterQuantityToShow"
-            :text="selectedFilterQuantityToShow"
-            variant=" "
-            class="w-auto ml-2 flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
-            menu-class="ps-dropdown"
-
-            size="sm"
-          >
-            <b-dropdown-item
-              v-for="(option, index) in ['10', '20', '50', '100']"
-              :key="index"
-              @click="selectedFilterQuantityToShow = option"
-            >
-              {{ option }}
-            </b-dropdown-item>
-          </b-dropdown>
-        </div>
-        <nav
-          aria-label="Table pagination"
-          class="ps_gs-table-controls__pagination mx-md-auto"
-        >
-          <ul class="mb-0 pagination">
-            <li class="page-item previous">
-              <a
-                class="page-link"
-                href="#"
-                aria-label="Previous"
-              >
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link"
-                href="#"
-              >1</a>
-            </li>
-            <li class="page-item disabled">
-              <a
-                class="page-link"
-                href="#"
-              >...</a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link"
-                href="#"
-              >6</a>
-            </li>
-            <li
-              class="page-item active"
-              aria-current="page"
-            >
-              <a
-                class="page-link"
-                href="#"
-              >7</a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link"
-                href="#"
-              >8</a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link"
-                href="#"
-              >9</a>
-            </li>
-            <li class="page-item disabled">
-              <a
-                class="page-link"
-                href="#"
-              >...</a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link"
-                href="#"
-              >16</a>
-            </li>
-            <li class="page-item next">
-              <a
-                class="page-link"
-                href="#"
-                aria-label="Next"
-              >
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <div class="ps_gs-table-controls__go-to d-flex align-items-center">
-          <span class="flex-shrink-0">Go to page:</span>
-          <b-form-input
-            class="flex-grow-0 ml-sm-2 maxw-sm-72"
-            type="number"
-            size="sm"
-          />
-        </div>
-      </div> -->
     </b-card-body>
   </b-card>
 </template>
 
 <script>
-import {ProductStatues} from '../../store/modules/product-feed/state';
+import ProductFeedTableStatusDetailsRow from './product-feed-table-status-details-row.vue';
 
 export default {
   name: 'ProductFeedTableStatusDetails',
-  components: {},
+  components: {
+    ProductFeedTableStatusDetailsRow,
+  },
   data() {
     return {
       loading: false,
       nextToken: null,
-      items: this.$store.state.productFeed.productsDatas.items,
-      ProductStatues,
       selectedFilterQuantityToShow: '100',
       fields: [
         {
@@ -368,20 +93,25 @@ export default {
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
         },
         {
-          key: 'destination',
-          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderDestination'),
+          key: 'country',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderCountry'),
+        },
+        {
+          key: 'lang',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderLanguage'),
         },
         {
           key: 'status',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderGoogleValidation'),
         },
-        {
-          key: 'lang',
-          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderCountry'),
-        },
+
         {
           key: 'issues',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderIssue'),
+        },
+        {
+          key: 'destination',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderDestination'),
         },
       ],
     };
@@ -389,6 +119,10 @@ export default {
   computed: {
     getProductBaseUrl() {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
+    },
+    items() {
+      return this.$store.state.productFeed.productsDatas.items
+        .filter((item) => item.statuses);
     },
   },
   updated() {
@@ -438,8 +172,6 @@ export default {
             // so we can keep scrolling and sending another GET with the token
             this.nextToken = res.nextToken;
           }
-          // In any case, we add to our items array the last results the API sent us
-          this.mapResults(res);
         }).catch((error) => {
           console.error(error);
           window.removeEventListener('scroll', this.handleScroll);
@@ -450,43 +182,6 @@ export default {
           }, 500);
         });
     },
-    mapResults(res) {
-      return res.results.map((result) => result.statuses.forEach((status) => {
-        this.$store.commit('productFeed/SAVE_ALL_PRODUCTS', {
-          id: result.id,
-          issues: result.issues || [],
-          attribute: result.attribute,
-          name: result.name,
-          statuses: status,
-        });
-      }));
-    },
-    badgeColor(status) {
-      if (status === ProductStatues.Approved) {
-        return 'success';
-      }
-      if (status === ProductStatues.Pending) {
-        return 'warning';
-      }
-      return 'danger';
-    },
-    getIssues(product) {
-      const issues = [];
-
-      if (!('issues' in product)) {
-        return issues;
-      }
-      product.issues.forEach((el) => {
-        if (el.resolution === 'merchant_action') {
-          issues.push({
-            description: el.description,
-            documentation: el.documentation,
-            detail: el.detail,
-          });
-        }
-      });
-      return issues;
-    },
     handleScroll() {
       const de = document.documentElement;
 
@@ -495,6 +190,5 @@ export default {
       }
     },
   },
-
 };
 </script>

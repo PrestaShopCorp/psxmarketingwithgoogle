@@ -324,7 +324,7 @@ export default {
     commit(MutationsTypes.SAVE_TOTAL_PRODUCTS_READY_TO_SYNC, Number(result.total));
     return result;
   },
-  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({rootState}, nextPage) {
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({rootState, commit}, nextPage) {
     const nextToken = nextPage ? `?next_token=${nextPage}` : '';
     const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/validation/list${nextToken}`, {
       method: 'GET',
@@ -339,7 +339,7 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
     const result = await response.json();
-
+    commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
     return result;
   },
   async [ActionsTypes.REQUEST_SYNCHRONISATION]({rootState}, full = false) {

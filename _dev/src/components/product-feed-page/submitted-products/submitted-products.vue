@@ -79,8 +79,8 @@ export default {
     productStatuses() {
       return [
         {
-          statusOfProducts: 'approved',
-          numberOfProducts: this.validationSummary.activeItems,
+          statusOfProducts: 'disapproved',
+          numberOfProducts: this.validationSummary.disapprovedItems,
         },
         {
           statusOfProducts: 'pending',
@@ -91,8 +91,8 @@ export default {
           numberOfProducts: this.validationSummary.expiringItems,
         },
         {
-          statusOfProducts: 'disapproved',
-          numberOfProducts: this.validationSummary.disapprovedItems,
+          statusOfProducts: 'approved',
+          numberOfProducts: this.validationSummary.activeItems,
         },
       ];
     },

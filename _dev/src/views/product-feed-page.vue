@@ -1,6 +1,6 @@
 <template>
   <div>
-    <product-feed-table-status-details v-if="$route.path === '/product-feed/status'" />
+    <product-feed-table-status-details v-if="$route.name === 'product-feed-status'" />
     <product-feed-pre-scan-table-status-details
       v-else-if="$route.path === '/product-feed/pre-scan'"
     />

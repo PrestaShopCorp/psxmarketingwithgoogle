@@ -125,6 +125,7 @@ export enum ProductStatues {
   Disapproved = 'disapproved',
   Pending = 'pending',
   Approved = 'approved',
+  Expiring = 'expiring',
 }
 
 export interface PreScanProductLang {
