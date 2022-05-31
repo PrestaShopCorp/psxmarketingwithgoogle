@@ -20,6 +20,7 @@
       <b-button
         :to="{name: 'configuration'}"
         variant="primary"
+        class="text-wrap"
       >
         {{ ctaNotConfigured }}
       </b-button>
