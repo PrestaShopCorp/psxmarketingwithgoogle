@@ -7,11 +7,10 @@
   >
     <!-- it's temporary while waiting for the images -->
     <div class="d-flex mb-4">
-
       <img
         class="mr-4"
         :src="content.img"
-      />
+      >
 
       <VueShowdown
         :markdown="content.body"
@@ -50,7 +49,7 @@ export default {
   data() {
     return {
       PmaxModalType,
-    }
+    };
   },
   props: {
     type: {
@@ -92,9 +91,9 @@ export default {
             title: '',
             body: '',
             img: '',
-          }
+          };
       }
-    }
+    },
   },
   googleUrl,
 };
