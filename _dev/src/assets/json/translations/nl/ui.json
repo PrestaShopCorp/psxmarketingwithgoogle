@@ -539,6 +539,10 @@
       "googleIsReviewing": "Uw producten worden beoordeeld.  \n Het kan 3-5 dagen duren om uw producten te beoordelen. Zodra uw producten zijn goedgekeurd, zullen ze beschikbaar zijn voor gratis vermeldingen en advertenties.",
       "alertSuccess": "U bent succesvol aangemeld. Zodra uw producten zijn goedgekeurd, kunnen ze verschijnen in de zoekresultaten van het Google Shopping-tabblad."
     },
+    "destinations": {
+      "shoppingAds": "Shopping Ads",
+      "enhancedFreeListing": "Enhanced Free Listings"
+    },
     "syncStatus": {
       "title": "Synchronisatie status",
       "readyForExport": "Product diervoeder is klaar voor uitvoer",
@@ -605,7 +609,7 @@
       "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation."
     },
     "approvalTable": {
-      "description": "De status van producten die gesynchroniseerd zijn met Merchant Center",
+      "description": "These are the status of your products that are sent to Google Merchant Center. Some products might appear more than once because of their language variation.",
       "filterTitle": "Filter op beschikbaarheid",
       "filterAllStatus": "Alle",
       "filterOnlyApproved": "Goedgekeurd",
