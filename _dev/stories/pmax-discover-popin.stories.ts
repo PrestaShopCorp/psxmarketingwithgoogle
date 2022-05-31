@@ -40,5 +40,5 @@ PMAXReleased.args = {
 export const SSCDeprecated:any = Template.bind({});
 SSCDeprecated.args = {
   visible: true,
-  type: PmaxPopinType.SSC_DEPRECEATED,
+  type: PmaxPopinType.SSC_DEPRECATED,
 };
