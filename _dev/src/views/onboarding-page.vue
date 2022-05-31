@@ -103,8 +103,8 @@
       ref="PopinModuleConfigured"
       @openPopinRemarketingTag="onOpenPopinActivateTracking"
     />
-    <PmaxDiscoverPopin
-      ref="PmaxDiscoverPopin"
+    <PmaxDiscoverModal
+      ref="PmaxDiscoverModal"
     />
     <!-- Toasts -->
     <PsToast
@@ -135,7 +135,7 @@ import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/go
 import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
 import SmartShoppingCampaignCard from '../components/smart-shopping-campaigns/smart-shopping-campaign-card.vue';
 import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
-import PmaxDiscoverPopin from '../components/pmax/pmax-integration-popins/pmax-discover-popin.vue';
+import PmaxDiscoverModal from '../components/pmax/pmax-integration-modals/pmax-discover-modal.vue';
 import PsToast from '../components/commons/ps-toast';
 import PopinModuleConfigured from '../components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -159,7 +159,7 @@ export default {
     PsToast,
     FreeListingPopinDisable,
     SSCPopinActivateTracking,
-    PmaxDiscoverPopin,
+    PmaxDiscoverModal,
     PopinModuleConfigured,
   },
   data() {

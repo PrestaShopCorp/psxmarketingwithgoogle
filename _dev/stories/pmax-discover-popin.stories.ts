@@ -1,21 +1,21 @@
-import PmaxDiscoverPopin from '../src/components/pmax/pmax-integration-popins/pmax-discover-popin.vue';
-import PmaxPopinType from '../src/enums/pmax/pmax-popin';
+import PmaxDiscoverModal from '../src/components/pmax/pmax-integration-modals/pmax-discover-modal.vue';
+import PmaxModalType from '../src/enums/pmax/pmax-modal';
 import OnboardingPage from '../src/views/onboarding-page.vue'
 import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {googleAccountConnected} from "../.storybook/mock/google-account";
 
 export default {
   title: 'Performance Max/Popins/Discover',
-  component: PmaxDiscoverPopin, OnboardingPage
+  component: PmaxDiscoverModal, OnboardingPage
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { PmaxDiscoverPopin, OnboardingPage },
+  components: { PmaxDiscoverModal, OnboardingPage },
   template: `
     <div>
       <OnboardingPage />
-      <PmaxDiscoverPopin v-bind="$props" />
+      <PmaxDiscoverModal v-bind="$props" />
     </div>
   `,
   mounted: args.mounted,
@@ -28,17 +28,17 @@ const Template = (args, { argTypes }) => ({
 export const PMAXComingSoon:any = Template.bind({});
 PMAXComingSoon.args = {
   visible: true,
-  type: PmaxPopinType.COMING_SOON,
+  type: PmaxModalType.COMING_SOON,
 };
 
 export const PMAXReleased:any = Template.bind({});
 PMAXReleased.args = {
   visible: true,
-  type: PmaxPopinType.PMAX_RELEASED,
+  type: PmaxModalType.PMAX_RELEASED,
 };
 
 export const SSCDeprecated:any = Template.bind({});
 SSCDeprecated.args = {
   visible: true,
-  type: PmaxPopinType.SSC_DEPRECATED,
+  type: PmaxModalType.SSC_DEPRECATED,
 };
