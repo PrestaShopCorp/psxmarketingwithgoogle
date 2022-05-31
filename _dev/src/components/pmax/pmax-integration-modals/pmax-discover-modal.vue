@@ -6,28 +6,28 @@
     v-bind="$attrs"
   >
     <!-- it's temporary while waiting for the images -->
-    <div
-      class="square"
-      style="border:1px solid grey; width:50px;height:50px;"
-    />
+    <div class="d-flex mb-4">
 
-    <VueShowdown
-      class="my-1 mt-4"
-      :markdown="content.body"
-    />
+      <img
+        class="mr-4"
+        :src="content.img"
+      />
 
-    <div class="mt-4">
-      <span class="material-icons">
-        link
-      </span>
-      <a
-        class="external_link-no_icon text-muted"
-        :href="$options.googleUrl.pmaxReleaseLink"
-        target="_blank"
-      >
-        {{ $t('modal.PmaxTextLink') }}
-      </a>
+      <VueShowdown
+        :markdown="content.body"
+      />
     </div>
+
+    <span class="material-icons">
+      link
+    </span>
+    <a
+      class="external_link-no_icon text-muted"
+      :href="$options.googleUrl.pmaxReleaseLink"
+      target="_blank"
+    >
+      {{ $t('modal.PmaxTextLink') }}
+    </a>
 
     <template slot="modal-cancel">
       {{ $t('cta.cancel') }}
@@ -50,12 +50,7 @@ export default {
   data() {
     return {
       PmaxModalType,
-      content: {
-        title: '',
-        body: '',
-        img: '',
-      },
-    };
+    }
   },
   props: {
     type: {
@@ -69,27 +64,36 @@ export default {
       },
     },
   },
-  mounted() {
-    switch (this.type) {
-      case PmaxModalType.COMING_SOON:
-        this.content.title = this.$t('modal.upgradeSCCToPmaxTitle');
-        this.content.body = this.$t('modal.upgradeSCCToPmaxText', [
-          new Date().toLocaleDateString(),
-        ]);
-        this.content.img = '';
-        break;
-      case PmaxModalType.PMAX_RELEASED:
-        this.content.title = this.$t('modal.PMaxLiveTitle');
-        this.content.body = this.$t('modal.PMaxLiveText');
-        this.content.img = '';
-        break;
-      case PmaxModalType.SSC_DEPRECATED:
-        this.content.title = this.$t('modal.PMaxMigrationTitle');
-        this.content.body = this.$t('modal.PMaxMigrationText');
-        this.content.img = '';
-        break;
-      default:
-        break;
+  computed: {
+    content() {
+      switch (this.type) {
+        case PmaxModalType.COMING_SOON:
+          return {
+            title: this.$t('modal.upgradeSCCToPmaxTitle'),
+            body: this.$t('modal.upgradeSCCToPmaxText', [
+              new Date().toLocaleDateString(),
+            ]),
+            img: '',
+          };
+        case PmaxModalType.PMAX_RELEASED:
+          return {
+            title: this.$t('modal.PMaxLiveTitle'),
+            body: this.$t('modal.PMaxLiveText'),
+            img: '',
+          };
+        case PmaxModalType.SSC_DEPRECATED:
+          return {
+            title: this.$t('modal.PMaxMigrationTitle'),
+            body: this.$t('modal.PMaxMigrationText'),
+            img: '',
+          };
+        default:
+          return {
+            title: '',
+            body: '',
+            img: '',
+          }
+      }
     }
   },
   googleUrl,
