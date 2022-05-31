@@ -87,6 +87,13 @@ Planned.parameters = {
           })
         );
       }),
+      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeed.prevalidationScanSummary
+          })
+        );
+      }),
       rest.get('/shopping-campaigns/list', (req, res, ctx) => {
         return res(
           ctx.json({
@@ -144,6 +151,13 @@ InProgress.parameters = {
         return res(
           ctx.json({
             ...adsAccountStatus,
+          })
+        );
+      }),
+      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeed.prevalidationScanSummary
           })
         );
       }),
@@ -251,6 +265,13 @@ Failed.parameters = {
         return res(
           ctx.json({
             ...adsAccountStatus,
+          })
+        );
+      }),
+      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeed.prevalidationScanSummary
           })
         );
       }),

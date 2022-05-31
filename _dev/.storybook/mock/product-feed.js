@@ -13,6 +13,7 @@ export const productFeed = {
     nextJobAt: "2021-10-06T01:00:00.000Z",
     lastUpdatedAt: "",
   },
+  attributeMapping: {},
   settings: {
     shippingSettings: [],
     targetCountries: ["FR"],
@@ -87,7 +88,6 @@ export const productFeed = {
     autoImportTaxSettings: false,
     targetCountries: ["FR", "EN"],
     autoImportShippingSettings: true,
-    attributeMapping: {},
     syncSchedule: "1 * * * * *",
     requestSynchronizationNow: false,
   },
@@ -214,29 +214,29 @@ export const productFeedIsReadyForExport = {
     success: false,
     syncSchedule: "2021-10-06T01:00:00.000Z",
   },
+  attributeMapping: {
+    "brand": [],
+    "color": [],
+    "mpn": [],
+    "gtin": [
+        {
+            "id": "mpn",
+            "type": "product"
+        }
+    ],
+    "size": [],
+    "gender": [],
+    "description": [
+        {
+            "id": "description",
+            "type": "product"
+        }
+    ],
+    "ageGroup": []
+  },
   settings: {
     ...productFeed.settings,
     targetCountries: ["FR"],
-    attributeMapping: {
-      "brand": [],
-      "color": [],
-      "mpn": [],
-      "gtin": [
-          {
-              "id": "mpn",
-              "type": "product"
-          }
-      ],
-      "size": [],
-      "gender": [],
-      "description": [
-          {
-              "id": "description",
-              "type": "product"
-          }
-      ],
-      "ageGroup": []
-    }
   },
 };
 
@@ -250,29 +250,29 @@ export const productFeedIsConfigured = {
     lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
     success: true,
   },
+  attributeMapping: {
+    "brand": [],
+    "color": [],
+    "mpn": [],
+    "gtin": [
+        {
+            "id": "mpn",
+            "type": "product"
+        }
+    ],
+    "size": [],
+    "gender": [],
+    "description": [
+        {
+            "id": "description",
+            "type": "product"
+        }
+    ],
+    "ageGroup": []
+},
   settings: {
     ...productFeed.settings,
     targetCountries: ["FR"],
-    attributeMapping: {
-      "brand": [],
-      "color": [],
-      "mpn": [],
-      "gtin": [
-          {
-              "id": "mpn",
-              "type": "product"
-          }
-      ],
-      "size": [],
-      "gender": [],
-      "description": [
-          {
-              "id": "description",
-              "type": "product"
-          }
-      ],
-      "ageGroup": []
-  }
   },
 };
 
@@ -333,7 +333,6 @@ export const productFeedSyncSummaryInProgress = {
 };
 
 export const productFeedStatusSyncScheduled = {
-  ...productFeedIsConfigured,
   status: {
     success: false,
     nextJobAt: new Date("July 22, 2022 03:24:00"),
