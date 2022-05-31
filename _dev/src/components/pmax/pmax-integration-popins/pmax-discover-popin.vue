@@ -83,7 +83,7 @@ export default {
         this.content.body = this.$t('modal.PMaxLiveText');
         this.content.img = '';
         break;
-      case PmaxPopinType.SSC_DEPRECEATED:
+      case PmaxPopinType.SSC_DEPRECATED:
         this.content.title = this.$t('modal.PMaxMigrationTitle');
         this.content.body = this.$t('modal.PMaxMigrationText');
         this.content.img = '';
