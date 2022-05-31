@@ -539,6 +539,10 @@
       "googleIsReviewing": "Os seus produtos estão a ser revistos.  \n Pode demorar 3-5 dias para rever os seus produtos. Uma vez aprovados, os seus produtos estarão disponíveis para anúncios e listagens gratuitas.",
       "alertSuccess": "Você foi escolhido com sucesso. Uma vez aprovados, os seus produtos podem aparecer nos resultados de pesquisa do separador Google Shopping."
     },
+    "destinations": {
+      "shoppingAds": "Shopping Ads",
+      "enhancedFreeListing": "Enhanced Free Listings"
+    },
     "syncStatus": {
       "title": "Estado de sincronização",
       "readyForExport": "O feed de produtos está pronto para exportação",
@@ -605,7 +609,7 @@
       "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation."
     },
     "approvalTable": {
-      "description": "O estado dos produtos que estão sincronizados com o Merchant Center",
+      "description": "These are the status of your products that are sent to Google Merchant Center. Some products might appear more than once because of their language variation.",
       "filterTitle": "Filtrar por disponibilidade",
       "filterAllStatus": "Todos",
       "filterOnlyApproved": "Aprovado",
