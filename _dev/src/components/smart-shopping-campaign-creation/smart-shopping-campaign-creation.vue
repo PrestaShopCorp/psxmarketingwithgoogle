@@ -768,7 +768,9 @@ export default {
       await this.getDatasFiltersDimensions();
     }
     if (this.editMode === true) {
-      await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+      if (!this.sscList.length) {
+        await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+      }
       this.setInterfaceForEdition();
     } else {
       this.loader = false;
