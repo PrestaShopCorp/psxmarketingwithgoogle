@@ -33,7 +33,7 @@
       >
         <b-badge
           variant="primary"
-          class="ps_gs-fz-12 m-1"
+          class="ps_gs-fz-12 mb-1 mr-1"
         >
           {{ country }}
         </b-badge>
@@ -45,7 +45,7 @@
       <span>
         <b-badge
           variant="primary"
-          class="ps_gs-fz-12 m-1"
+          class="ps_gs-fz-12"
         >
           {{ product.language }}
         </b-badge>
