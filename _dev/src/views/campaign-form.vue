@@ -54,7 +54,6 @@ export default {
     SSCExist() {
       return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
     },
-
     insideToast() {
       if (this.campaignCreated) {
         return this.$t('toast.campaignCreatedSuccess');
@@ -63,7 +62,6 @@ export default {
     },
   },
   methods: {
-
     onCampaignHasBeenCreated() {
       this.campaignCreated = true;
     },
