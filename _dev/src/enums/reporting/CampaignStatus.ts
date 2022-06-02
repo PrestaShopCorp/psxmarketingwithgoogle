@@ -12,4 +12,9 @@ export enum CampaignStatusToggle {
   PAUSED = 'PAUSED',
 }
 
+export enum CampaignTypes {
+  SMART_SHOPPING = 'SMART_SHOPPING',
+  PERFORMANCE_MAX = 'PERFORMANCE_MAX',
+}
+
 export default CampaignStatus;

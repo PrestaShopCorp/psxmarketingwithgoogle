@@ -1,7 +1,8 @@
 <template>
   <b-tr>
     <b-td
-      class="b-table-sticky-column text-primary pl-2"
+      class="b-table-sticky-column text-primary pl-2
+      d-flex justify-content-between align-items-baseline"
     >
       <b-button
         variant="link"
@@ -11,6 +12,12 @@
       >
         {{ campaign.campaignName }}
       </b-button>
+      <b-badge
+        variant="type"
+        class="ps_gs-fz-12 m-1"
+      >
+        {{ campaignType(campaign) }}
+      </b-badge>
     </b-td>
     <b-td class="ps_gs-fz-12 text-nowrap">
       {{ campaignDuration }}
@@ -68,7 +75,7 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
-import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignStatusToggle, CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import compareYears from '../../utils/CompareYears';
 import {
   retrieveProductNumberFromFiltersIds,
@@ -141,7 +148,12 @@ export default {
       };
       this.$store.dispatch('smartShoppingCampaigns/CHANGE_STATUS_OF_SSC', payload);
     },
-
+    campaignType(campaign) {
+      if (campaign.type === CampaignTypes.SMART_SHOPPING) {
+        return 'SSC';
+      }
+      return 'PMax';
+    },
   },
   googleUrl,
 };
