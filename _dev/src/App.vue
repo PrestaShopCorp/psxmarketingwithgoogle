@@ -69,16 +69,21 @@
         {{ shopId }}
       </div>
     </template>
-    <div id="helper-pmax">
-      <b-alert show>
-        <VueShowdown
-          :markdown="$t('modal.textPmaxReleased', [
-            new Date().toLocaleDateString(),
-            this.$options.googleUrl.findCssPartners
-          ])"
-          :extensions="['extended-link']"
-        />
-      </b-alert>
+    <div
+      id="helper-pmax"
+      class="p-3 d-flex"
+      v-show="displayBanner"
+    >
+      <span class="material-icons d-inline-block align-middle mr-3 msg-icon-custom">
+        chat
+      </span>
+      <VueShowdown
+        :markdown="$t('modal.textPmaxReleased', [
+          new Date().toLocaleDateString(),
+          this.$options.googleUrl.findCssPartners
+        ])"
+        :extensions="['extended-link', 'no-p-tag']"
+      />
     </div>
   </div>
 </template>
@@ -123,6 +128,12 @@ export default {
     window.removeEventListener('resize', this.resizeEventHandler);
   },
   methods: {
+    displayBanner() {
+      // if (this.$route.name === 'campaign') {
+      //   return false;
+      // }
+      return true;
+    },
     resizeEventHandler() {
       clearTimeout(resizeEventTimer);
       resizeEventTimer = setTimeout(() => {

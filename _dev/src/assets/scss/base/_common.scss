@@ -31,9 +31,12 @@ a[target="_blank"]:not(.external_link-no_icon) {
   bottom: 0;
   z-index: 10000;
   max-width: none;
-  margin-top: 40px;
-  position: sticky;
-  padding: 0;
+  position: fixed;
+  min-width: 100%;
+  background: #E3EAFD;
+  .msg-icon-custom {
+    color: #174EEF;
+  }
 }
 
 .text-muted a[target="_blank"]:not(.external_link-no_icon),
