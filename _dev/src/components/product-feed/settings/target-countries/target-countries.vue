@@ -1,12 +1,23 @@
 <template>
   <b-form>
-    <b-form-group
-      :label="$t('productFeedSettings.shipping.targetCountries')"
-      label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
-    >
+    <b-form-group>
+      <label class="h4 font-weight-600 mb-2 d-flex p-0 bg-transparent border-0 d-flex">
+        {{ $t('productFeedSettings.shipping.targetCountries') }}
+        <b-button
+          class="ml-1 p-0  align-items-center "
+          variant="text-primary"
+          v-b-tooltip:psxMktgWithGoogleApp
+          :title="$t('productFeedSettings.inputTargetCountriesTooltip')"
+        >
+          <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+            info_outlined
+          </span>
+        </b-button>
+      </label>
       <label class="mb-2">
         {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
+
       <SelectCountry
         @countrySelected="saveCountrySelected"
         :default-value="countries"

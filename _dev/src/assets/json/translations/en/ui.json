@@ -239,6 +239,7 @@
       "shippingSettingsErrors": "This country is not compatible with your currency",
       "syncSchedule" : "Sync schedule"
     },
+    "inputTargetCountriesTooltip": "Note that you can't select a country with a different currency than your shop’s",
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
     "shipping": {
       "targetCountries": "Target country",
