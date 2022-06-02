@@ -190,8 +190,8 @@ export default {
         this.getItems(this.nextToken);
       }
     },
-    onlyDisapproved(prod) {
-      return prod.filter((sta) => sta.status === ProductsStatusType.DISAPPROVED);
+    onlyDisapproved(product) {
+      return product.filter((stat) => stat.status === ProductsStatusType.DISAPPROVED);
     },
   },
 };
