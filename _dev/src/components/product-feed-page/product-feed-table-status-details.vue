@@ -46,7 +46,7 @@
 
         <b-tbody>
           <template v-for="(product, index) in items">
-            <template v-for="(status, indexStatus) in product.statuses">
+            <template v-for="(status, indexStatus) in onlyDisapproved(product.statuses)">
               <ProductFeedTableStatusDetailsRow
                 :key="`${index}-${indexStatus}`"
                 :product="product"
@@ -72,6 +72,7 @@
 
 <script>
 import ProductFeedTableStatusDetailsRow from './product-feed-table-status-details-row.vue';
+import ProductsStatusType from '@/enums/product-feed/products-status-type';
 
 export default {
   name: 'ProductFeedTableStatusDetails',
@@ -188,6 +189,9 @@ export default {
       if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight - 1) {
         this.getItems(this.nextToken);
       }
+    },
+    onlyDisapproved(prod) {
+      return prod.filter((sta) => sta.status === ProductsStatusType.DISAPPROVED);
     },
   },
 };
