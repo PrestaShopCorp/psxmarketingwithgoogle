@@ -78,6 +78,7 @@ describe('product-feed-card.vue', () => {
       propsData: {
         isEnabled: false,
         badges: [],
+        loading: false,
       },
       ...config,
       store: new Vuex.Store(storeDisabledOrNotConfigured),
@@ -91,6 +92,7 @@ describe('product-feed-card.vue', () => {
     const wrapper = shallowMount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
+        loading: false,
         ...config,
       },
       store: new Vuex.Store(storeDisabledOrNotConfigured),
@@ -110,6 +112,7 @@ describe('product-feed-card.vue', () => {
       ...config,
       propsData: {
         isEnabled: true,
+        loading: false,
       },
       ...localVue,
       store: new Vuex.Store(storeDisabledOrNotConfigured),
@@ -123,6 +126,7 @@ describe('product-feed-card.vue', () => {
     const wrapper = shallowMount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
+        loading: false,
       },
       ...config,
       localVue,
@@ -140,6 +144,7 @@ describe('product-feed-card.vue', () => {
     const wrapper = shallowMount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
+        loading: false,
       },
       ...config,
       localVue,
@@ -160,6 +165,7 @@ describe('product-feed-card.vue', () => {
     const wrapper = mount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
+        loading: false,
       },
       ...config,
       localVue,
@@ -184,6 +190,7 @@ describe('product-feed-card.vue', () => {
     const wrapper = shallowMount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
+        loading: false,
         ...config,
       },
       stubs: {
@@ -204,6 +211,7 @@ describe('product-feed-card.vue', () => {
     const wrapper = mount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
+        loading: false,
       },
       ...config,
       localVue,
