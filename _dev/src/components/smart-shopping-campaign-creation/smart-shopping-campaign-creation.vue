@@ -38,7 +38,7 @@
               </router-link>
             </li>
             <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
-              {{ $t("smartShoppingCampaignCreation.breadcrumb2") }}
+              {{ formTitle }}
             </li>
           </ol>
         </b-card-header>
@@ -597,6 +597,16 @@ export default {
     },
     activeCountries() {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
+    },
+    formTitle() {
+      if (this.editMode) {
+        if (this.foundSsc.type === 'SMART_SHOPPING') {
+          return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb3SSC');
+        }
+        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb3PMax');
+      }
+      // TODO How to retrieve if it's for a news SSC or PMAX ?
+      return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb2SSC');
     },
   },
   methods: {
