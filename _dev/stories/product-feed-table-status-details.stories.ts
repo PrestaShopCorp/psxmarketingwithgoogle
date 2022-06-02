@@ -93,8 +93,7 @@ TableStatusDetails.parameters = {
         return res(
           ctx.status(200),
           ctx.json({
-            // nextToken: "6d5774328a7deb62",
-            nextToken :null,
+            nextToken: "6d5774328a7deb62",
             results: [
                 {
                     "id": "7990",
