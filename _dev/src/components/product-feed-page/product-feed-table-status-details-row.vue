@@ -58,6 +58,7 @@
       v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
       <b-badge
+        data-test-id="statusOfProduct"
         :variant="badgeColor(status.status)"
         class="ps_gs-fz-12 text-capitalize"
       >
