@@ -271,6 +271,7 @@ export const campaignWithUnhandledFilters = {
   productFilters: [],
   campaignDailyBudget: 7,
   dailyBudget: true,
+  type: 'PERFORMANCE_MAX',
   id: 'foo',
   targetCountry: 'France',
   campaignHasNoProductsFilter: false,
