@@ -81,12 +81,12 @@ const routes: Array<RouteConfig> = [
         component: CampaignList,
       },
       {
-        path: 'creation',
+        path: 'creation/:type',
         name: 'campaign-creation',
         component: CampaignForm,
       },
       {
-        path: 'edit/:id',
+        path: 'edit/:id/:type',
         name: 'campaign-edition',
         component: CampaignForm,
       },

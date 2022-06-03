@@ -87,6 +87,7 @@
 import PsModal from '../commons/ps-modal';
 import googleUrl from '@/assets/json/googleUrl.json';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'SSCPopinActivateTracking',
@@ -137,6 +138,7 @@ export default {
       }
       this.$router.push({
         name: 'campaign-creation',
+        type: CampaignTypes.SMART_SHOPPING,
       });
     },
     onShow() {
