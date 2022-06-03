@@ -38,8 +38,7 @@
               </router-link>
             </li>
             <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
-              {{ foundSsc ? $t('smartShoppingCampaignCreation.breadcrumb3SSC')
-                : $t('smartShoppingCampaignCreation.breadcrumb2SSC') }}
+              {{ formTitle }}
             </li>
           </ol>
         </b-card-header>
@@ -428,7 +427,7 @@ import SmartShoppingCampaignCreationPopin from './smart-shopping-campaign-creati
 import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
-import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerAds from '@/components/commons/banner-ads.vue';
 import {
   findAndCheckFilter,
@@ -475,6 +474,21 @@ export default {
     },
   },
   computed: {
+    formTitle() {
+      if (this.foundSsc && this.$route.params.type === CampaignTypes.SMART_SHOPPING_CAMPAIGNS) {
+        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb3SSC');
+      }
+      if (!this.foundSsc && this.$route.params.type === CampaignTypes.SMART_SHOPPING_CAMPAIGNS) {
+        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb2SSC');
+      }
+      if (this.foundSsc && this.$route.params.type === CampaignTypes.PERFORMANCE_MAX) {
+        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb3PMax');
+      }
+      if (!this.foundSsc && this.$route.params.type === CampaignTypes.PERFORMANCE_MAX) {
+        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb2PMax');
+      }
+      return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb2SSC');
+    },
     dimensionName() {
       return this.$store.state.smartShoppingCampaigns.dimensionChosen.name;
     },
