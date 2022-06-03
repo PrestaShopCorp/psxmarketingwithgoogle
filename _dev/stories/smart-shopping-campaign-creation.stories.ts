@@ -5,6 +5,7 @@ import { googleAdsAccountChosen } from "../.storybook/mock/google-ads.js";
 import { campaignWithUnhandledFilters, campaignBasic } from "../.storybook/mock/smart-shopping-campaigns";
 import { rest } from "msw";
 import { availableFilters } from "../.storybook/mock/smart-shopping-campaigns.js";
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   title: "Smart Shopping Campaign/Creation",
@@ -210,13 +211,24 @@ const Template = (args, { argTypes }) => ({
   
 });
 
-export const Creation: any = Template.bind({});
-Creation.args = {
+export const CreationSSC: any = Template.bind({});
+CreationSSC.args = {
   loader: false,
   searchLoader: false,
   beforeMount(this: any) {
     this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
     this.$store.state.productFeed.validationSummary.activeItems = 2;
+    this.$router.history.current.params.type = CampaignTypes.SMART_SHOPPING
+  },
+};
+export const CreationPMax: any = Template.bind({});
+CreationPMax.args = {
+  loader: false,
+  searchLoader: false,
+  beforeMount(this: any) {
+    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+    this.$store.state.productFeed.validationSummary.activeItems = 2;
+    this.$router.history.current.params.type = CampaignTypes.PERFORMANCE_MAX
   },
 };
 export const ErrorAPIWhileCreating: any = Template.bind({});

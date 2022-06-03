@@ -54,6 +54,7 @@
 <script>
 import PsModal from './ps-modal.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'PopinModuleConfigured',
@@ -90,6 +91,9 @@ export default {
       if (this.SSCExist) {
         this.$router.push({
           name: 'campaign-creation',
+          params: {
+            type: CampaignTypes.SMART_SHOPPING,
+          },
         });
       } else {
         this.$refs.modal.hide();

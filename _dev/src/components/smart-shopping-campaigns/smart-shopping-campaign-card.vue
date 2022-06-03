@@ -127,6 +127,7 @@
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import BannerAds from '../commons/banner-ads.vue';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'SmartShoppingCampaignCard',
@@ -213,6 +214,9 @@ export default {
       if (this.SSCExist) {
         this.$router.push({
           name: 'campaign-creation',
+          params: {
+            type: CampaignTypes.SMART_SHOPPING,
+          },
         });
       } else {
         this.$emit('openPopin');

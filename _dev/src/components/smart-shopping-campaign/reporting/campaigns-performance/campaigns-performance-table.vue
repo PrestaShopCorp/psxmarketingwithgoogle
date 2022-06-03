@@ -110,6 +110,7 @@ import CampaignPerformanceHeaderType from '@/enums/reporting/CampaignPerformance
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import KeyMetricsErrorMessage from '../key-metrics/key-metrics-error-message.vue';
 import TablePageControls from '../../../commons/table-page-controls.vue';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'CampaignsPerformanceTable',
@@ -162,6 +163,9 @@ export default {
     createCampaign() {
       this.$router.push({
         name: 'campaign-creation',
+        params: {
+          type: CampaignTypes.SMART_SHOPPING,
+        },
       });
     },
     hasToolTip(headerType) {
