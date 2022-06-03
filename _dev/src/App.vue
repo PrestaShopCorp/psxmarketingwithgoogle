@@ -72,15 +72,14 @@
     <div
       id="helper-pmax"
       class="p-3 d-flex"
-      v-show="displayBanner"
     >
       <span class="material-icons d-inline-block align-middle mr-3 msg-icon-custom">
         chat
       </span>
       <VueShowdown
         :markdown="$t('modal.textPmaxReleased', [
-          new Date().toLocaleDateString(),
-          this.$options.googleUrl.findCssPartners
+          new Date('2022-06-15').toLocaleDateString(),
+          this.$options.googleUrl.bannerPmaxInfo
         ])"
         :extensions="['extended-link', 'no-p-tag']"
       />
@@ -128,12 +127,6 @@ export default {
     window.removeEventListener('resize', this.resizeEventHandler);
   },
   methods: {
-    displayBanner() {
-      // if (this.$route.name === 'campaign') {
-      //   return false;
-      // }
-      return true;
-    },
     resizeEventHandler() {
       clearTimeout(resizeEventTimer);
       resizeEventTimer = setTimeout(() => {
