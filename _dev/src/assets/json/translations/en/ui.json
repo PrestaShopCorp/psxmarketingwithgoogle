@@ -858,6 +858,7 @@
     "addBillingSettings": "Add billing settings",
     "createCampaign": "Create campaign",
     "editCampaign": "Update campaign",
+    "launchCampaign": "Launch campaign",
     "resetDate": "Reset date",
     "validate": "Validate",
     "moreInfosAboutX": "More infos about {0}",
@@ -1027,7 +1028,8 @@
     "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
     "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
     "ctaCreateFirstCampaign": "Create your first campaign",
-    "titleCampaignsBanner": "Boost your sales with Smart Shopping Campaigns",
-    "textCampaignsBanner":  "Your products will be increasingly displayed to the right people at the right time learn more about Smart Shopping Campaigns"
+    "titleCampaignsBanner": "Create and manage Smart Shopping campaigns",
+    "textCampaignsBanner":  "With Performance Max campaigns, you can advertise your products and reach more customers across all Google channels, including YouTube, Maps, Search, Gmail, Display, Discover, and the web - all through one single campaign."
+
   }
 }
