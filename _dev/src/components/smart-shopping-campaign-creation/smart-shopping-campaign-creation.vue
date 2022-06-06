@@ -475,16 +475,16 @@ export default {
   },
   computed: {
     formTitle() {
-      if (this.foundSsc && this.$route.params.type === CampaignTypes.SMART_SHOPPING_CAMPAIGNS) {
+      if (this.foundSsc && this.$route.params.type === this.$options.CampaignTypes.SMART_SHOPPING_CAMPAIGNS) {
         return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb3SSC');
       }
-      if (!this.foundSsc && this.$route.params.type === CampaignTypes.SMART_SHOPPING_CAMPAIGNS) {
+      if (!this.foundSsc && this.$route.params.type === this.$options.CampaignTypes.SMART_SHOPPING_CAMPAIGNS) {
         return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb2SSC');
       }
-      if (this.foundSsc && this.$route.params.type === CampaignTypes.PERFORMANCE_MAX) {
+      if (this.foundSsc && this.$route.params.type === this.$options.CampaignTypes.PERFORMANCE_MAX) {
         return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb3PMax');
       }
-      if (!this.foundSsc && this.$route.params.type === CampaignTypes.PERFORMANCE_MAX) {
+      if (!this.foundSsc && this.$route.params.type === this.$options.CampaignTypes.PERFORMANCE_MAX) {
         return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb2PMax');
       }
       return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb2SSC');
@@ -796,5 +796,6 @@ export default {
   },
   countriesSelectionOptions,
   googleUrl,
+  CampaignTypes,
 };
 </script>
