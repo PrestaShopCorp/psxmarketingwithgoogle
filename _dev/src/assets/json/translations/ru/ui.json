@@ -598,15 +598,17 @@
       "xProducts": " {0} product | {0} product | {0} products",
       "description": "{0} with problems that couldn't be synced are listed below.",
       "fields": {
-        "name": "Name",
+        "name": "Имя",
         "language": "Language",
         "image": "Изображение",
         "description": "Description",
-        "barcode": "Штрих-код/бренд",
+        "barcode": "MPN",
         "price": "Цена"
       },
       "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
-      "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation."
+      "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation.",
+      "labelTooltipDescription": "This attribute matches what you have configued in your product attribute mapping : short description, description...",
+      "labelTooltipBarcode": "This attribute matches what you have configued in your product attribute mapping : barcode, MPN, GTIN, ISBN, UPC..."
     },
     "approvalTable": {
       "description": "These are the status of your products that are sent to Google Merchant Center. Some products might appear more than once because of their language variation.",
@@ -618,7 +620,7 @@
       "tableHeaderID": "ID",
       "tableHeaderAttributeID": "Атрибут",
       "tableHeaderDestination": "Место назначения",
-      "tableHeaderName": "Имя",
+      "tableHeaderName": "Title",
       "tableHeaderGoogleValidation": "Доступность для Google",
       "tableHeaderLanguage": "Язык",
       "tableHeaderCountry": "Страна",
