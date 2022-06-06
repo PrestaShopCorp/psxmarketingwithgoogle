@@ -102,7 +102,14 @@
         </template>
         <BadgeListRequirements
           v-if="!isEnabled"
-          :badges="['productFeed', 'googleAdsAccount']"
+          :badges="['googleAdsAccount']"
+        />
+        <VueShowdown
+          tag="p"
+          :markdown="$t('smartShoppingCampaignCard.footer')"
+          :class="isEnabled ? 'mb-0' : 'mb-1'"
+          class="ps_gs-fz-12 mt-2"
+          :extensions="['no-p-tag']"
         />
         <span v-if="isEnabled">
           <hr>
