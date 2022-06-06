@@ -104,6 +104,8 @@
       @openPopinRemarketingTag="onOpenPopinActivateTracking"
     />
     <PmaxDiscoverModal
+      :visible="!merchantHasAlreadySeenPmaxPopin"
+      :type="PmaxModalType.COMING_SOON"
       ref="PmaxDiscoverModal"
     />
     <!-- Toasts -->
@@ -139,6 +141,8 @@ import PmaxDiscoverModal from '../components/pmax/pmax-integration-modals/pmax-d
 import PsToast from '../components/commons/ps-toast';
 import PopinModuleConfigured from '../components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import PmaxModalType from '../enums/pmax/pmax-modal';
 
 export default {
   name: 'OnboardingPage',
@@ -172,6 +176,7 @@ export default {
       freeListingIsLoading: false,
       SSCIsLoading: false,
       phoneNumberVerified: false,
+      PmaxModalType,
     };
   },
   methods: {
@@ -311,6 +316,9 @@ export default {
     },
     billingSettingsCompleted() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
+    },
+    merchantHasAlreadySeenPmaxPopin() {
+      return getDataFromLocalStorage('merchantHasAlreadySeenPmaxPopin');
     },
     toastIsVisible() {
       return this.googleAccountConnectedOnce

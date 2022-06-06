@@ -4,6 +4,7 @@
     ref="modal"
     :title="content.title"
     v-bind="$attrs"
+    @ok="confirm"
   >
     <!-- it's temporary while waiting for the images -->
     <div class="d-flex mb-4">
@@ -93,6 +94,11 @@ export default {
             img: '',
           };
       }
+    },
+  },
+  methods: {
+    confirm() {
+      localStorage.setItem('merchantHasAlreadySeenPmaxPopin', true);
     },
   },
   googleUrl,
