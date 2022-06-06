@@ -549,9 +549,9 @@ export const productFeedStatusSyncFailed = {
   status: {
     ...productFeedIsConfigured.status,
     success: false,
-    jobEndedAt: new Date("July 12, 2021 03:24:00"),
+    jobEndedAt: new Date("July 22, 2021 03:24:00"),
     lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
-    nextJobAt: new Date("July 12, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2021 03:24:00"),
   },
   validationSummary: {
     activeItems: 0,
