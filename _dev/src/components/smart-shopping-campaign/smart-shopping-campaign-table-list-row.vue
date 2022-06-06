@@ -128,7 +128,6 @@ export default {
         name: 'campaign-edition',
         params: {
           id: this.campaign.id,
-          type: this.campaign.type,
         },
       });
     },
