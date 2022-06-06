@@ -446,8 +446,9 @@
     }
   },
   "smartShoppingCampaignCard": {
-    "title": "Boost your sales with Smart Shopping Campaigns",
-    "intro": "Boost visibility of your products with paid Smart Shopping Campaigns.  \nAds will be increasingly displayed to the right people at the right time."
+    "title": "Boost your sales with Performance Max Campaigns",
+    "intro": "Launch a Performance Max campaign for your products and reach more customers across all Google channels - including YouTube, Maps, Search, Gmail, Display, Discover and the web through one single campaign. Even better, you don’t pay unless your customers click!",
+    "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "All Filters",
