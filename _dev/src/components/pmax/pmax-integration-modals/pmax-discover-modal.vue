@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     confirm() {
-      localStorage.setItem('merchantHasAlreadySeenPmaxPopin', true);
+      localStorage.setItem(`modalPmax-${this.type}`, true);
     },
   },
   googleUrl,

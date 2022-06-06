@@ -318,7 +318,7 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
     merchantHasAlreadySeenPmaxPopin() {
-      return getDataFromLocalStorage('merchantHasAlreadySeenPmaxPopin');
+      return getDataFromLocalStorage(`modalPmax-${PmaxModalType.COMING_SOON}`);
     },
     toastIsVisible() {
       return this.googleAccountConnectedOnce
