@@ -106,7 +106,7 @@
 
 <script>
 import CampaignStatus, {
-  CampaignStatusToggle,
+  CampaignStatusToggle, CampaignTypes,
 } from '@/enums/reporting/CampaignStatus';
 import PsModal from '../../commons/ps-modal';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -181,6 +181,8 @@ export default {
         ])[0],
         // Send default status
         status: CampaignStatus.ELIGIBLE,
+        // TODO send type regarding which form the user is using ($route.params.type)
+        type: CampaignTypes.SMART_SHOPPING,
       };
       this.$store
         .dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign)
