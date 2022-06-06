@@ -70,6 +70,9 @@ describe('smart-shopping-campaign-creation.vue - Campaign edition', () => {
   let wrapper;
   const mockRoute = {
     name: 'campaign-edition',
+    params: {
+      type: 'SMART_SHOPPING_CAMPAIGN',
+    },
   };
   beforeEach(() => {
     store = cloneStore();
@@ -130,6 +133,9 @@ describe('smart-shopping-campaign-creation.vue - Campaign edition - No active pr
   let wrapper;
   const mockRoute = {
     name: 'campaign-edition',
+    params: {
+      type: 'PERFORMANCE_MAX',
+    },
   };
   beforeEach(() => {
     store = cloneStore();
@@ -190,6 +196,9 @@ describe('smart-shopping-campaign-creation.vue - Campaign edition - Unhandled fi
   let wrapper;
   const mockRoute = {
     name: 'campaign-edition',
+    params: {
+      type: 'PERFORMANCE_MAX',
+    },
   };
   beforeEach(() => {
     store = cloneStore();
