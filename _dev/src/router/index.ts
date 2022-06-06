@@ -12,6 +12,7 @@ import ProductFeedPage from '../views/product-feed-page.vue';
 import ReportingPage from '../views/reporting-page.vue';
 import TunnelProductFeed from '../views/tunnel-product-feed.vue';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 Vue.use(VueRouter);
 
@@ -82,11 +83,22 @@ const routes: Array<RouteConfig> = [
       },
       {
         path: 'creation/:type',
-        name: 'campaign-creation',
+        name: 'campaign-creation-typed',
         component: CampaignForm,
       },
       {
-        path: 'edit/:id/:type',
+        path: 'creation',
+        name: 'campaign-creation',
+        redirect: (to) => ({
+          name: 'campaign-creation-typed',
+          params: {
+            // TODO : change here when switching to PMAX
+            type: CampaignTypes.SMART_SHOPPING,
+          },
+        }),
+      },
+      {
+        path: 'edit/:id',
         name: 'campaign-edition',
         component: CampaignForm,
       },

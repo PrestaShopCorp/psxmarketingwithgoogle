@@ -66,7 +66,6 @@ import KeyMetricsKpiCard from './key-metrics-kpi-card.vue';
 import KeyMetricsChartWrapper from './key-metrics-chart-wrapper.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
-import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'KeyMetricsBlock',
@@ -105,7 +104,6 @@ export default {
     redirectToCreateCampaign() {
       this.$router.push({
         name: 'campaign-creation',
-        type: CampaignTypes.SMART_SHOPPING,
       });
     },
   },

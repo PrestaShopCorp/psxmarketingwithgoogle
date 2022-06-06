@@ -52,7 +52,6 @@
 <script>
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
-import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'Campaign',
@@ -82,9 +81,6 @@ export default {
       if (this.SSCExist) {
         this.$router.push({
           name: 'campaign-creation',
-          params: {
-            type: CampaignTypes.SMART_SHOPPING,
-          },
         });
       } else {
         this.$emit('openPopin');
