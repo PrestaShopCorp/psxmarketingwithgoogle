@@ -78,7 +78,7 @@
       </span>
       <VueShowdown
         :markdown="$t('modal.textPmaxReleased', [
-          new Date('2022-06-15').toLocaleDateString(),
+          new Date('2022-06-28').toLocaleDateString(),
           this.$options.googleUrl.bannerPmaxInfo
         ])"
         :extensions="['extended-link', 'no-p-tag']"
