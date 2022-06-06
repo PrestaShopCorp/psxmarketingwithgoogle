@@ -81,15 +81,6 @@
               tabindex="0"
             >
               {{ type.label }}
-              <b-button
-                v-if="hasToolTip(type)"
-                variant="invisible"
-                v-b-tooltip:psxMktgWithGoogleApp
-                :title="$t(`productFeedSettings.preScan.${type.tooltip}`)"
-                class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
-              >
-                <i class="material-icons ps_gs-fz-14 text-secondary">info_outlined</i>
-              </b-button>
             </b-th>
           </b-tr>
         </b-thead>
@@ -234,12 +225,10 @@ export default {
         {
           key: 'description',
           label: this.$i18n.t('productFeedPage.preScan.fields.description'),
-          tooltip: 'labelTooltipDescription',
         },
         {
           key: 'barcode',
           label: this.$i18n.t('productFeedPage.preScan.fields.barcode'),
-          tooltip: 'labelTooltipBarcode',
         },
         {
           key: 'price',
@@ -346,9 +335,6 @@ export default {
     pageChanged(newPage) {
       this.currentPage = newPage;
       this.getPreScanProducts();
-    },
-    hasToolTip(type) {
-      return type.tooltip;
     },
   },
   mounted() {
