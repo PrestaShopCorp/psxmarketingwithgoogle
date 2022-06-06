@@ -21,7 +21,7 @@ import dayjs from 'dayjs';
 import KpiType from '@/enums/reporting/KpiType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignStatusToggle, CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export interface State {
   campaigns: CampaignObject[];
@@ -87,6 +87,7 @@ export interface CampaignObject {
   productFilters?: ProductsFilteredObject[],
   status?: CampaignStatus|CampaignStatusToggle,
   hasUnhandledFilters?: boolean,
+  type: CampaignTypes
 }
 
 export interface Reporting {
