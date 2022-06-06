@@ -50,6 +50,13 @@
             data-test-id="unhandled-filters-alert"
           >
             {{ $t("smartShoppingCampaignCreation.alerts.PMaxExplanation") }}
+
+            <b-link
+              :to="{ name: 'help' }"
+              class="with-hover text-decoration-underline ml-n2"
+            >
+              {{ $t("general.helpPage") }}
+            </b-link>
           </b-alert>
           <b-alert
             v-if="hasUnhandledFilters"
