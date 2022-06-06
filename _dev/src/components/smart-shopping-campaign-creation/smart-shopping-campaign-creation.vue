@@ -475,23 +475,20 @@ export default {
   },
   computed: {
     formTitle() {
-      if (this.foundSsc
-      && this.$route.params.type === this.$options.CampaignTypes.SMART_SHOPPING_CAMPAIGNS) {
-        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb3SSC');
+      // Edition
+      if (this.foundSsc) {
+        if (this.foundScc.type === this.$options.CampaignTypes.PERFORMANCE_MAX) {
+          return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditPMax');
+        }
+        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditSSC');
       }
-      if (!this.foundSsc
-       && this.$route.params.type === this.$options.CampaignTypes.SMART_SHOPPING_CAMPAIGNS) {
-        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb2SSC');
+
+      // Creation
+      if (this.$route.params.type === this.$options.CampaignTypes.SMART_SHOPPING_CAMPAIGNS) {
+        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbCreateSSC');
       }
-      if (this.foundSsc
-      && this.$route.params.type === this.$options.CampaignTypes.PERFORMANCE_MAX) {
-        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb3PMax');
-      }
-      if (!this.foundSsc
-      && this.$route.params.type === this.$options.CampaignTypes.PERFORMANCE_MAX) {
-        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb2PMax');
-      }
-      return this.$i18n.t('smartShoppingCampaignCreation.breadcrumb2SSC');
+
+      return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbCreatePMax');
     },
     dimensionName() {
       return this.$store.state.smartShoppingCampaigns.dimensionChosen.name;
