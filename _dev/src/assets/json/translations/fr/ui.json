@@ -602,11 +602,12 @@
         "language": "Langue",
         "image": "Image",
         "description": "Description",
-        "barcode": "Code-barre / Marque",
+        "barcode": "MPN",
         "price": "Prix"
       },
       "xHasFailedPreValidation": "\"{0}\" : a échoué à la pré-validation.",
-      "xHasPassedPreValidation": "\"{0}\" : a passé la pré-validation."
+      "xHasPassedPreValidation": "\"{0}\" : a passé la pré-validation.",
+      "labelTooltip": "This attribute matches what you have configued in your product attribute mapping : short description, description..."
     },
     "approvalTable": {
       "description": "These are the status of your products that are sent to Google Merchant Center. Some products might appear more than once because of their language variation.",
@@ -618,7 +619,7 @@
       "tableHeaderID": "ID",
       "tableHeaderAttributeID": "Attribut",
       "tableHeaderDestination": "Destination",
-      "tableHeaderName": "Nom",
+      "tableHeaderName": "Title",
       "tableHeaderGoogleValidation": "Disponibilité pour Google",
       "tableHeaderLanguage": "Langue",
       "tableHeaderCountry": "Pays",
