@@ -20,6 +20,9 @@ describe('smart-shopping-campaign-creation.vue - Campaign creation', () => {
   let wrapper;
   const mockRoute = {
     name: 'campaign-creation',
+    params: {
+      type: 'SHOPPING_CAMPAIGN',
+    },
   };
   beforeEach(() => {
     store = cloneStore();
