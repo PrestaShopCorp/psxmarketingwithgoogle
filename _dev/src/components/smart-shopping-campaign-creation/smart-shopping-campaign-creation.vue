@@ -49,14 +49,17 @@
             variant="info"
             data-test-id="unhandled-filters-alert"
           >
-            {{ $t("smartShoppingCampaignCreation.alerts.PMaxExplanation") }}
-
-            <b-link
-              :to="{ name: 'help' }"
-              class="with-hover text-decoration-underline ml-n2"
+            <i18n
+              path="smartShoppingCampaignCreation.alerts.PMaxExplanation"
+              tag="div"
             >
-              {{ $t("general.helpPage") }}
-            </b-link>
+              <b-link
+                :to="{ name: 'help' }"
+                class="with-hover text-decoration-underline"
+              >
+                {{ $t("general.helpPage") }}
+              </b-link>
+            </i18n>
           </b-alert>
           <b-alert
             v-if="hasUnhandledFilters"
