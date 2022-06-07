@@ -484,10 +484,10 @@ export default {
       }
 
       // Creation
-      if (this.$route.params.type === this.$options.CampaignTypes.SMART_SHOPPING_CAMPAIGNS) {
+      if (this.$route.params
+      && this.$route.params.type === this.$options.CampaignTypes.SMART_SHOPPING) {
         return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbCreateSSC');
       }
-
       return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbCreatePMax');
     },
     dimensionName() {
