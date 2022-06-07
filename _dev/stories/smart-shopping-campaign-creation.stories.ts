@@ -24,6 +24,7 @@ export default {
                 "dailyBudget": 3,
                 "status": "ELIGIBLE",
                 "currencyCode": "EUR",
+                "type": "PERFORMANCE_MAX",
                 "productFilters": [
                     {
                         "dimension": "categories",
@@ -44,6 +45,7 @@ export default {
                 "dailyBudget": 1,
                 "status": "ELIGIBLE",
                 "currencyCode": "EUR",
+                "type": "SHOPPING_CAMPAIGN",
                 "productFilters": [
                     {
                         "dimension": "categories",
