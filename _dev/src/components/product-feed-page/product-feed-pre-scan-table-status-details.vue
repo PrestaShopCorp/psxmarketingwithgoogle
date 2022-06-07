@@ -85,7 +85,7 @@
                 v-if="hasToolTip(type)"
                 variant="invisible"
                 v-b-tooltip:psxMktgWithGoogleApp
-                :title="$t(`productFeedSettings.preScan.${type.tooltip}`)"
+                :title="$t(`productFeedPage.preScan.${type.tooltip}`)"
                 class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
               >
                 <i class="material-icons ps_gs-fz-14 text-secondary">info_outlined</i>
