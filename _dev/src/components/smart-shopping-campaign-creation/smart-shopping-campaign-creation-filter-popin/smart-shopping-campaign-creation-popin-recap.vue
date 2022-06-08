@@ -159,6 +159,12 @@ export default {
       }
       return '-';
     },
+    sscList() {
+      return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+    },
+    foundSsc() {
+      return this.sscList.find((el) => el.name === this.newCampaign.name);
+    },
   },
 
   methods: {
@@ -190,6 +196,12 @@ export default {
           if (resp && resp.error) {
             this.isValidating = false;
             this.$emit('displayErrorApiWhenSavingSSC');
+            this.$router.push({
+              name: 'campaign-edition',
+              params: {
+                id: this.foundSsc.id,
+              },
+            });
           } else {
             this.$router.push({
               name: 'campaign-list',
