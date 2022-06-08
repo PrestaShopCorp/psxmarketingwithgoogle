@@ -88,6 +88,8 @@ export default {
               'productFeedPage.syncSummary.syncHistory.subtitle.error', [
                 this.$options.filters.timeConverterToDate(this.syncInfos.lastUpdatedAt
                 ?? this.syncInfos.jobEndedAt),
+                this.$options.filters.timeConverterToHour(this.syncInfos.lastUpdatedAt
+                ?? this.syncInfos.jobEndedAt),
               ],
             ),
             icon: 'cancel',
