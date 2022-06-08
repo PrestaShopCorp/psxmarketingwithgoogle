@@ -181,8 +181,7 @@ export default {
         ])[0],
         // Send default status
         status: CampaignStatus.ELIGIBLE,
-        // TODO send type regarding which form the user is using ($route.params.type)
-        type: CampaignTypes.SMART_SHOPPING,
+        type: CampaignTypes.PERFORMANCE_MAX,
       };
       this.$store
         .dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign)
