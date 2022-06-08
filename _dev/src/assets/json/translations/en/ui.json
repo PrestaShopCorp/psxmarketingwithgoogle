@@ -613,8 +613,8 @@
       },
       "xHasFailedPreValidation" : "\"{0}\": has failed the pre-validation.",
       "xHasPassedPreValidation" : "\"{0}\": has passed the pre-validation.",
-      "labelTooltipDescription": "This attribute matches what you have configued in your product attribute mapping : short description, description...",
-      "labelTooltipBarcode": "This attribute matches what you have configued in your product attribute mapping : barcode, MPN, GTIN, ISBN, UPC..."
+      "labelTooltipDescription": "This attribute matches what you have configured in your product attribute mapping : short description, description...",
+      "labelTooltipBarcode": "This attribute matches what you have configured in your product attribute mapping : barcode, MPN, GTIN, ISBN, UPC..."
     },
     "approvalTable": {
       "description": "These are the status of your products that are sent to Google Merchant Center. Some products might appear more than once because of their language variation.",
