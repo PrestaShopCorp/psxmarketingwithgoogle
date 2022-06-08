@@ -44,6 +44,24 @@
         </b-card-header>
         <b-card-body body-class="p-3 p-md-4">
           <b-alert
+            v-if="$route.params.type === $options.CampaignTypes.PERFORMANCE_MAX"
+            show
+            variant="info"
+            data-test-id="unhandled-filters-alert"
+          >
+            <i18n
+              path="smartShoppingCampaignCreation.alerts.PMaxExplanation"
+              tag="div"
+            >
+              <b-link
+                :to="{ name: 'help' }"
+                class="with-hover text-decoration-underline"
+              >
+                {{ $t("general.helpPage") }}
+              </b-link>
+            </i18n>
+          </b-alert>
+          <b-alert
             v-if="hasUnhandledFilters"
             show
             variant="info"
