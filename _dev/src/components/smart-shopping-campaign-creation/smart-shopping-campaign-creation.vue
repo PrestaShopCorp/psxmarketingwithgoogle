@@ -477,7 +477,7 @@ export default {
     formTitle() {
       // Edition
       if (this.foundSsc) {
-        if (this.foundScc.type === this.$options.CampaignTypes.PERFORMANCE_MAX) {
+        if (this.foundSsc.type === this.$options.CampaignTypes.PERFORMANCE_MAX) {
           return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditPMax');
         }
         return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditSSC');
