@@ -6,22 +6,19 @@
     v-bind="$attrs"
     @ok="confirm"
   >
-
-    <div class="d-flex">
+    <div class="d-flex mb-3">
       <img
         class="mr-4 img-fluid d-block"
-        :src="require(`@/assets/images/${content.img}`)"
+        :src="require(`@/assets/images/pmax-modal/${content.img}`)"
         alt=""
-        width="250"
-        height="175"
+        width="291"
+        height="291"
       >
-
       <div>
         <VueShowdown
-          class="mb-5"
+          class="mb-4 h-75"
           :markdown="content.body"
         />
-
         <span class="material-icons">
           link
         </span>
@@ -32,10 +29,8 @@
         >
           {{ $t('modal.PmaxTextLink') }}
         </a>
-
       </div>
     </div>
-
 
     <template slot="modal-cancel">
       {{ $t('cta.cancel') }}
@@ -81,19 +76,19 @@ export default {
             body: this.$t('modal.upgradeSCCToPmaxText', [
               new Date().toLocaleDateString(),
             ]),
-            img: 'pmax-modal.png',
+            img: 'pmax-modal-coming-soon-en.png',
           };
         case PmaxModalType.PMAX_RELEASED:
           return {
             title: this.$t('modal.PMaxLiveTitle'),
             body: this.$t('modal.PMaxLiveText'),
-            img: 'pmax-modal.png',
+            img: 'pmax-modal-pmax-released-en.png',
           };
         case PmaxModalType.SSC_DEPRECATED:
           return {
             title: this.$t('modal.PMaxMigrationTitle'),
             body: this.$t('modal.PMaxMigrationText'),
-            img: 'pmax-modal.png',
+            img: 'pmax-modal-ssc-deprecated-en.png',
           };
         default:
           return {
