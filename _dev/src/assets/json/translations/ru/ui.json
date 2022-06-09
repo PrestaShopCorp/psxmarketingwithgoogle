@@ -446,13 +446,17 @@
     }
   },
   "smartShoppingCampaignCard": {
-    "title": "Повышайте продажи с помощью умных торговых кампаний",
-    "intro": "Повысьте видимость ваших товаров с помощью платных кампаний Smart Shopping Campaigns.  \nОбъявления будут все чаще показываться нужным людям в нужное время."
+    "title": "Boost your sales with Performance Max Campaigns",
+    "intro": "Launch a Performance Max campaign for your products and reach more customers across all Google channels - including YouTube, Maps, Search, Gmail, Display, Discover and the web through one single campaign. Even better, you don’t pay unless your customers click!",
+    "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "Все фильтры",
     "breadcrumb1": "Кампания",
-    "breadcrumb2": "Создайте кампанию \"Умные покупки",
+    "breadcrumbCreateSSC": "Create Smart Shopping campaign",
+    "breadcrumbEditSSC": "Modify Smart Shopping campaign",
+    "breadcrumbCreatePMax": "Create Performance Max campaign",
+    "breadcrumbEditPMax": "Modify Performance Max campaign",
     "inputNameHelper": "Имя должно быть уникальным и содержать не более 125 символов.",
     "inputNameLabel": "Название кампании",
     "inputNameTooltip": "Выберите название, которое четко описывает тему кампании, чтобы вы могли легко найти ее в своем аккаунте. Название вашей кампании не видно вашим клиентам.",
@@ -494,7 +498,8 @@
       "noTag": "Если не добавить тег автоматически, Google не сможет отправлять результаты кампаний",
       "duplicatedTag": "Похоже, у вас уже есть метка, связанная с вашей учетной записью google, создание новой метки может привести к дублированию событий для ваших кампаний. Мы предлагаем сохранить только ту, которую мы генерируем для вас.",
       "noConversionActions": "Метка отслеживания была включена, но в магазине не установлено действие конверсии. Это можно исправить путем создания новых.",
-      "hasUnhandledFilters": "По крайней мере один фильтр этой кампании не поддерживается данным модулем. Во избежание потерь в существующей конфигурации можно изменить только основные детали кампании."
+      "hasUnhandledFilters": "По крайней мере один фильтр этой кампании не поддерживается данным модулем. Во избежание потерь в существующей конфигурации можно изменить только основные детали кампании.",
+      "PMaxExplanation": "Performance Max is a new goal-based campaign type that allows performance advertisers to access all of their Google Ads inventory from a single campaign. Learn more on our {0}"
     },
     "labelSelectedDimension": "Выбранное значение измерения",
     "nbDimensionSelected": "Размеры не выбраны | {0} размеры выбраны | {0} размеры выбраны",
@@ -827,6 +832,7 @@
     "back": "Назад",
     "saveAndContinue": "Сохранить и продолжить",
     "yes": "Да",
+    "done": "Done",
     "no": "Нет",
     "disable": "Отключить",
     "disableProductFeed": "Отключить подачу продуктов",
@@ -855,6 +861,7 @@
     "addBillingSettings": "Добавить настройки выставления счетов",
     "createCampaign": "Создать кампанию",
     "editCampaign": "Обновление кампании",
+    "launchCampaign": "Launch campaign",
     "resetDate": "Дата сброса",
     "validate": "Проверить",
     "moreInfosAboutX": "Дополнительная информация о {0}",
@@ -887,7 +894,8 @@
     "validateSelection": "Проверить правильность выбора",
     "googleProductStatusDefinitions": "Определения статуса продукта Google",
     "visitThe": "Посетите {0} для получения дополнительной информации",
-    "investigate": "Investigate"
+    "investigate": "Investigate",
+    "createPmax": "Create your first PMax campaign"
   },
   "badge": {
     "free": "Бесплатно",
@@ -941,7 +949,14 @@
     "removeTagExplainations": "Удаление тега означает, что Google больше не сможет отслеживать ваши кампании. Мы рекомендуем удалять тег только в том случае, если вы планируете полностью удалить модуль или изменить учетную запись. Вы всегда можете добавить его самостоятельно в код вашего сайта.",
     "titleActivateTrackingSSC": "Активируйте тег ремаркетинга и отслеживания конверсий.",
     "textActivateTrackingSSC": "Для проведения кампаний \"умных покупок\" Google Ads должен иметь возможность создать [список ремаркетинга]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] и [тег отслеживания конверсий]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] на вашем сайте.   \n PrestaShop автоматически установит эти фрагменты кода в вашем магазине.",
-    "textConfirmCancel": "Если вы вернетесь назад, то потеряете выбранные значения."
+    "textConfirmCancel": "Если вы вернетесь назад, то потеряете выбранные значения.",
+    "upgradeSCCToPmaxTitle": "Campaign's upgrade coming soon",
+    "upgradeSCCToPmaxText": "Smart Shopping campaigns will be upgraded to Performance Max on {0} \n\n What does that mean for you? Two things. Your campaigns will be able to appear in more places across Google. And you'll get the best of Google's automation to help drive the highest conversion and revenue performance possible. ",
+    "PMaxLiveTitle": "Performance Max is here",
+    "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. You now have access to the best of Google Ads automation, inventory, and formats. Your existing Smart Shopping campaigns will stay the same for now, but will be automatically upgraded at a later date.",
+    "PMaxMigrationTitle": "Important News",
+    "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
+    "PmaxTextLink": "Learn more about Performance Max"
   },
   "tooltip": {
     "googleAccountRequired": "Требуется настройка аккаунта Google",
@@ -1023,7 +1038,7 @@
     "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
     "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
     "ctaCreateFirstCampaign": "Create your first campaign",
-    "titleCampaignsBanner": "Boost your sales with Smart Shopping Campaigns",
-    "textCampaignsBanner": "Your products will be increasingly displayed to the right people at the right time learn more about Smart Shopping Campaigns"
+    "titleCampaignsBanner": "Launch a Performance Max campaign and reach a wider audience",
+    "textCampaignsBanner": "With Performance Max campaigns, you can advertise your products and reach more customers across all Google channels, including YouTube, Maps, Search, Gmail, Display, Discover, and the web - all through one single campaign."
   }
 }
