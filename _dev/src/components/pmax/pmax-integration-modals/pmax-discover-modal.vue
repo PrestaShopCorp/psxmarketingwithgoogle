@@ -11,8 +11,6 @@
         class="mr-4 img-fluid d-block"
         :src="require(`@/assets/images/pmax-modal/${content.img}`)"
         alt=""
-        width="291"
-        height="291"
       >
       <div>
         <VueShowdown
@@ -77,19 +75,19 @@ export default {
             body: this.$t('modal.upgradeSCCToPmaxText', [
               new Date().toLocaleDateString(),
             ]),
-            img: 'pmax-modal-coming-soon-en.png',
+            img: 'pmax-modal-coming-soon-en.svg',
           };
         case PmaxModalType.PMAX_RELEASED:
           return {
             title: this.$t('modal.PMaxLiveTitle'),
             body: this.$t('modal.PMaxLiveText'),
-            img: 'pmax-modal-pmax-released-en.png',
+            img: 'pmax-modal-pmax-released-en.svg',
           };
         case PmaxModalType.SSC_DEPRECATED:
           return {
             title: this.$t('modal.PMaxMigrationTitle'),
             body: this.$t('modal.PMaxMigrationText'),
-            img: 'pmax-modal-ssc-deprecated-en.png',
+            img: 'pmax-modal-ssc-deprecated-en.svg',
           };
         default:
           return {
