@@ -275,6 +275,7 @@ export const campaignWithUnhandledFilters = {
   targetCountry: 'France',
   campaignHasNoProductsFilter: false,
   hasUnhandledFilters: true,
+  type: "PERFORMANCE_MAX"
 };
 
 export const campaignWithoutUnhandledFilters = {

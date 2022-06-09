@@ -38,11 +38,29 @@
               </router-link>
             </li>
             <li class="list-inline-item ps_gs-breadcrumb__item ml-4 ml-sm-0">
-              {{ $t("smartShoppingCampaignCreation.breadcrumb2") }}
+              {{ formTitle }}
             </li>
           </ol>
         </b-card-header>
         <b-card-body body-class="p-3 p-md-4">
+          <b-alert
+            v-if="$route.params.type === $options.CampaignTypes.PERFORMANCE_MAX"
+            show
+            variant="info"
+            data-test-id="unhandled-filters-alert"
+          >
+            <i18n
+              path="smartShoppingCampaignCreation.alerts.PMaxExplanation"
+              tag="div"
+            >
+              <b-link
+                :to="{ name: 'help' }"
+                class="with-hover text-decoration-underline"
+              >
+                {{ $t("general.helpPage") }}
+              </b-link>
+            </i18n>
+          </b-alert>
           <b-alert
             v-if="hasUnhandledFilters"
             show
@@ -427,7 +445,7 @@ import SmartShoppingCampaignCreationPopin from './smart-shopping-campaign-creati
 import SmartShoppingCampaignCreationPopinRecap from './smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
 import symbols from '../../assets/json/symbols.json';
-import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerAds from '@/components/commons/banner-ads.vue';
 import {
   findAndCheckFilter,
@@ -474,6 +492,22 @@ export default {
     },
   },
   computed: {
+    formTitle() {
+      // Edition
+      if (this.foundSsc) {
+        if (this.foundSsc.type === this.$options.CampaignTypes.PERFORMANCE_MAX) {
+          return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditPMax');
+        }
+        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditSSC');
+      }
+
+      // Creation
+      if (this.$route.params
+      && this.$route.params.type === this.$options.CampaignTypes.SMART_SHOPPING) {
+        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbCreateSSC');
+      }
+      return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbCreatePMax');
+    },
     dimensionName() {
       return this.$store.state.smartShoppingCampaigns.dimensionChosen.name;
     },
@@ -781,5 +815,6 @@ export default {
   },
   countriesSelectionOptions,
   googleUrl,
+  CampaignTypes,
 };
 </script>

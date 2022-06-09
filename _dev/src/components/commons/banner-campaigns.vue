@@ -23,7 +23,7 @@
           variant="primary"
           @click="openPopinActivateTracking"
         >
-          {{ this.SSCExist ? $t('cta.createCampaign') : $t('banner.ctaCreateFirstCampaign') }}
+          {{ this.SSCExist ? $t('cta.launchCampaign') : $t('banner.ctaCreateFirstCampaign') }}
         </b-button>
       </div>
     </b-card-body>
@@ -33,6 +33,7 @@
 <script>
 import {searchImage} from '@/utils/ImageFromCurrency';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   data() {
@@ -61,6 +62,9 @@ export default {
       if (this.remarketingTagIsSet) {
         this.$router.push({
           name: 'campaign-creation',
+          params: {
+            type: CampaignTypes.PERFORMANCE_MAX,
+          },
         });
       } else {
         this.$emit('openPopinRemarketingTag');

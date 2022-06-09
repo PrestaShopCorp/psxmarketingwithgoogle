@@ -106,7 +106,7 @@
 
 <script>
 import CampaignStatus, {
-  CampaignStatusToggle,
+  CampaignStatusToggle, CampaignTypes,
 } from '@/enums/reporting/CampaignStatus';
 import PsModal from '../../commons/ps-modal';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -181,6 +181,7 @@ export default {
         ])[0],
         // Send default status
         status: CampaignStatus.ELIGIBLE,
+        type: CampaignTypes.PERFORMANCE_MAX,
       };
       this.$store
         .dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign)
