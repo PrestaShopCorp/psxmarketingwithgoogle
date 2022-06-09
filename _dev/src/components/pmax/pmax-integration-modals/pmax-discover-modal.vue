@@ -6,28 +6,36 @@
     v-bind="$attrs"
     @ok="confirm"
   >
-    <!-- it's temporary while waiting for the images -->
-    <div class="d-flex mb-4">
+
+    <div class="d-flex">
       <img
-        class="mr-4"
-        :src="content.img"
+        class="mr-4 img-fluid d-block"
+        :src="require(`@/assets/images/${content.img}`)"
+        alt=""
+        width="250"
+        height="175"
       >
 
-      <VueShowdown
-        :markdown="content.body"
-      />
+      <div>
+        <VueShowdown
+          class="mb-5"
+          :markdown="content.body"
+        />
+
+        <span class="material-icons">
+          link
+        </span>
+        <a
+          class="external_link-no_icon text-muted"
+          :href="$options.googleUrl.pmaxReleaseLink"
+          target="_blank"
+        >
+          {{ $t('modal.PmaxTextLink') }}
+        </a>
+
+      </div>
     </div>
 
-    <span class="material-icons">
-      link
-    </span>
-    <a
-      class="external_link-no_icon text-muted"
-      :href="$options.googleUrl.pmaxReleaseLink"
-      target="_blank"
-    >
-      {{ $t('modal.PmaxTextLink') }}
-    </a>
 
     <template slot="modal-cancel">
       {{ $t('cta.cancel') }}
@@ -73,19 +81,19 @@ export default {
             body: this.$t('modal.upgradeSCCToPmaxText', [
               new Date().toLocaleDateString(),
             ]),
-            img: '',
+            img: 'pmax-modal.png',
           };
         case PmaxModalType.PMAX_RELEASED:
           return {
             title: this.$t('modal.PMaxLiveTitle'),
             body: this.$t('modal.PMaxLiveText'),
-            img: '',
+            img: 'pmax-modal.png',
           };
         case PmaxModalType.SSC_DEPRECATED:
           return {
             title: this.$t('modal.PMaxMigrationTitle'),
             body: this.$t('modal.PMaxMigrationText'),
-            img: '',
+            img: 'pmax-modal.png',
           };
         default:
           return {
