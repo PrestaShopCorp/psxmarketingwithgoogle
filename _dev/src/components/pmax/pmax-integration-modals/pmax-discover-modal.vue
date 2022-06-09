@@ -68,6 +68,7 @@ export default {
     },
   },
   computed: {
+    // use methods for take the right image with lang
     content() {
       switch (this.type) {
         case PmaxModalType.COMING_SOON:
