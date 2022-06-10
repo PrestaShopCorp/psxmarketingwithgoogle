@@ -193,10 +193,10 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { SmartShoppingCampaignCreation, SmartShoppingCampaignPopin },
   template: `
-    <div>
-      <SmartShoppingCampaignCreation v-bind="$props" ref="sscCreation"/>
-      <SmartShoppingCampaignPopin v-bind="$props" ref="SmartShoppingCampaignCreationPopin"/>
-    </div>
+  <div>
+  <SmartShoppingCampaignCreation v-bind="$props" ref="sscCreation"/>
+  <SmartShoppingCampaignPopin v-bind="$props" ref="SmartShoppingCampaignCreationPopin"/>
+  </div>
   `,
   beforeCreate(this: any) {
     this.$store.state.app = Object.assign({}, initialStateApp);
@@ -216,6 +216,20 @@ Creation.args = {
     this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
     this.$store.state.productFeed.validationSummary.activeItems = 2;
   },
+};
+export const ErrorAPIWhileCreating: any = Template.bind({});
+ErrorAPIWhileCreating.args = {
+  loader: false,
+  searchLoader: false,
+  editMode: true,
+  beforeMount(this: any) {
+    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+    this.$store.state.productFeed.validationSummary.activeItems = 2;
+  },
+  mounted(this: any) {
+    this.$router.history.current.params.id = '16004060865'
+    this.$refs.sscCreation.$data.displayError =true;
+  }
 };
 
 export const CreationWithoutProducts: any = Template.bind({});

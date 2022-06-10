@@ -41,7 +41,7 @@ export default {
           body: JSON.stringify(payload),
         });
 
-      if (!resp.ok) {
+      if (resp.ok) {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
