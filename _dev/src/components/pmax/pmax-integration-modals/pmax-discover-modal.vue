@@ -9,8 +9,8 @@
     <div class="d-flex mb-3">
       <img
         class="mr-4 img-fluid d-block"
-        :src="require(`@/assets/images/pmax-modal/${content.img}.svg`)"
-        :alt="content.img"
+        :src="require(`@/assets/images/pmax-modal/${content.img}`)"
+        :alt="content.alt"
       >
       <div>
         <VueShowdown
@@ -75,19 +75,22 @@ export default {
             body: this.$t('modal.upgradeSCCToPmaxText', [
               new Date().toLocaleDateString(),
             ]),
-            img: 'pmax-modal-coming-soon-en',
+            img: 'pmax-modal-coming-soon-en.svg',
+            alt: 'pmax-modal-coming-soon',
           };
         case PmaxModalType.PMAX_RELEASED:
           return {
             title: this.$t('modal.PMaxLiveTitle'),
             body: this.$t('modal.PMaxLiveText'),
-            img: 'pmax-modal-pmax-released-en',
+            img: 'pmax-modal-pmax-released-en.svg',
+            alt: 'pmax-modal-pmax-released',
           };
         case PmaxModalType.SSC_DEPRECATED:
           return {
             title: this.$t('modal.PMaxMigrationTitle'),
             body: this.$t('modal.PMaxMigrationText'),
-            img: 'pmax-modal-ssc-deprecated-en',
+            img: 'pmax-modal-ssc-deprecated-en.svg',
+            alt: 'pmax-modal-ssc-deprecated',
           };
         default:
           return {
