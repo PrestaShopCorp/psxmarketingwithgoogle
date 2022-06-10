@@ -208,7 +208,7 @@ const Template = (args, { argTypes }) => ({
   },
   beforeMount: args.beforeMount,
   mounted: args.mounted,
-  
+
 });
 
 export const CreationSSC: any = Template.bind({});
