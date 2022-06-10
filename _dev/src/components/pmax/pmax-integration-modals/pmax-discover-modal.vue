@@ -10,7 +10,7 @@
       <img
         class="mr-4 img-fluid d-block"
         :src="require(`@/assets/images/pmax-modal/${content.img}`)"
-        alt=""
+        alt="pmax-modal-img"
       >
       <div>
         <VueShowdown
