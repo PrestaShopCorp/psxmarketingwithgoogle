@@ -18,12 +18,12 @@ jobs:
           echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '14'
-          cache: npm
+          #cache: npm
           cache-dependency-path: '_dev/package-lock.json'
 
       - name: Install & build
@@ -131,7 +131,7 @@ jobs:
     if: github.event.release.prerelease == false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download release asset
         uses: dsaltares/fetch-gh-release-asset@0.0.5
@@ -154,7 +154,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.release.prerelease == false
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Sentry Release PHP
         uses: getsentry/action-release@v1
         env:
@@ -169,11 +169,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.release.prerelease == false
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '14'
-          cache: npm
+          #cache: npm
           cache-dependency-path: '_dev/package-lock.json'
 
       - name: Install & build
