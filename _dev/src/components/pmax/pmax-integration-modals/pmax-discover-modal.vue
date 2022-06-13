@@ -6,28 +6,29 @@
     v-bind="$attrs"
     @ok="confirm"
   >
-    <!-- it's temporary while waiting for the images -->
-    <div class="d-flex mb-4">
+    <div class="d-flex mb-3">
       <img
-        class="mr-4"
-        :src="content.img"
+        class="mr-4 img-fluid d-block"
+        :src="require(`@/assets/images/pmax-modal/${content.img}`)"
+        :alt="content.alt"
       >
-
-      <VueShowdown
-        :markdown="content.body"
-      />
+      <div>
+        <VueShowdown
+          class="mb-4 h-75"
+          :markdown="content.body"
+        />
+        <span class="material-icons">
+          link
+        </span>
+        <a
+          class="external_link-no_icon text-muted"
+          :href="$options.googleUrl.pmaxReleaseLink"
+          target="_blank"
+        >
+          {{ $t('modal.PmaxTextLink') }}
+        </a>
+      </div>
     </div>
-
-    <span class="material-icons">
-      link
-    </span>
-    <a
-      class="external_link-no_icon text-muted"
-      :href="$options.googleUrl.pmaxReleaseLink"
-      target="_blank"
-    >
-      {{ $t('modal.PmaxTextLink') }}
-    </a>
 
     <template slot="modal-cancel">
       {{ $t('cta.cancel') }}
@@ -65,6 +66,7 @@ export default {
     },
   },
   computed: {
+    // use methods for take the right image with lang
     content() {
       switch (this.type) {
         case PmaxModalType.COMING_SOON:
@@ -73,19 +75,22 @@ export default {
             body: this.$t('modal.upgradeSCCToPmaxText', [
               new Date().toLocaleDateString(),
             ]),
-            img: '',
+            img: 'pmax-modal-coming-soon-en.svg',
+            alt: 'pmax-modal-coming-soon',
           };
         case PmaxModalType.PMAX_RELEASED:
           return {
             title: this.$t('modal.PMaxLiveTitle'),
             body: this.$t('modal.PMaxLiveText'),
-            img: '',
+            img: 'pmax-modal-pmax-released-en.svg',
+            alt: 'pmax-modal-pmax-released',
           };
         case PmaxModalType.SSC_DEPRECATED:
           return {
             title: this.$t('modal.PMaxMigrationTitle'),
             body: this.$t('modal.PMaxMigrationText'),
-            img: '',
+            img: 'pmax-modal-ssc-deprecated-en.svg',
+            alt: 'pmax-modal-ssc-deprecated',
           };
         default:
           return {
