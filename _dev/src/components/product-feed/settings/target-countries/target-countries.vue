@@ -21,9 +21,10 @@
       <SelectCountry
         @countrySelected="saveCountrySelected"
         :default-value="countries"
-        :dropdown-options="activeCountriesWithCurrency"
+        :dropdown-options="activeCountriesWhereShipppingExist"
         :need-filter="true"
         :not-full-width="true"
+        :loader="loadingCountries"
       />
     </b-form-group>
     <b-form-group
@@ -135,6 +136,7 @@ export default {
       tax: null,
       shippingSettings: JSON.parse(localStorage.getItem('productFeed-autoImportShippingSettings')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
       loading: false,
+      loadingCountries: true,
     };
   },
   computed: {
@@ -155,8 +157,14 @@ export default {
     disableContinue() {
       return this.countries.length < 1 || this.loading;
     },
-    activeCountriesWithCurrency() {
-      return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
+    activeCountriesWhereShipppingExist() {
+      const arrayOfCountries = [];
+      this.$store.state.productFeed.settings.deliveryDetails.forEach((carrier) => {
+        arrayOfCountries.push(carrier.country);
+      });
+      const uniqueCountries = [...new Set(arrayOfCountries)];
+
+      return this.$options.filters.changeCountriesCodesToNames(uniqueCountries);
     },
   },
   methods: {
@@ -212,6 +220,11 @@ export default {
         name: 'targetCountries', data: countryCode,
       });
     },
+  },
+  mounted() {
+    this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
+      this.loadingCountries = false;
+    });
   },
 
 };

@@ -1,6 +1,7 @@
 <template>
   <div>
     <ps-select
+      :loading="loader"
       :deselect-from-dropdown="true"
       :multiple="true"
       :options="dropdownOptions"
@@ -10,6 +11,13 @@
       :placeholder=" $t('productFeedSettings.shipping.placeholderSelect')"
       :class="{'maxw-sm-500': notFullWidth }"
     >
+      <template #spinner="{ loading }">
+        <div
+          v-if="loading"
+        >
+          <i class="ps_gs-table-products__spinner">loading</i>
+        </div>
+      </template>
       <template v-slot:option="option">
         <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
           <span
@@ -19,6 +27,7 @@
         </div>
       </template>
     </ps-select>
+
     <VueShowdown
       v-if="displayLegend"
       class="text-muted my-1 ps_gs-fz-12"
@@ -72,6 +81,11 @@ export default {
       type: Boolean,
       required: false,
       default: true,
+    },
+    loader: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
     notFullWidth: {
       type: Boolean,
