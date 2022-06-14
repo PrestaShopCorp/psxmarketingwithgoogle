@@ -133,7 +133,7 @@
     <actions-buttons
       :next-step="nextStep"
       :disable-continue="disableContinue"
-      :disable-tooltip="$t('productFeedSettings.shipping.disabledButtonTooltip')"
+      :disable-tooltip="$t('productFeedSettings.shipping.disabledButtonTooltipTargetCountries')"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
     <settings-footer />

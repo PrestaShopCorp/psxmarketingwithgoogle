@@ -89,6 +89,7 @@ const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
   components: {TunnelProductFeed},
   template: '<div><TunnelProductFeed v-bind="$props" ref="productFeed" /></div>',
+  mounted: args.mounted,
   beforeMount: args.beforeMount,
 });
 
