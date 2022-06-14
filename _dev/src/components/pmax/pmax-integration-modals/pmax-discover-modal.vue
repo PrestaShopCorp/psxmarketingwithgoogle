@@ -66,30 +66,29 @@ export default {
     },
   },
   computed: {
-    // use methods for take the right image with lang
     content() {
       switch (this.type) {
         case PmaxModalType.COMING_SOON:
           return {
             title: this.$t('modal.upgradeSCCToPmaxTitle'),
             body: this.$t('modal.upgradeSCCToPmaxText', [
-              new Date().toLocaleDateString(),
+              new Date('2022-06-30').toLocaleDateString(),
             ]),
-            img: 'pmax-modal-coming-soon-en.svg',
+            img: this.displayImage(this.type),
             alt: 'pmax-modal-coming-soon',
           };
         case PmaxModalType.PMAX_RELEASED:
           return {
             title: this.$t('modal.PMaxLiveTitle'),
             body: this.$t('modal.PMaxLiveText'),
-            img: 'pmax-modal-pmax-released-en.svg',
+            img: this.displayImage(this.type),
             alt: 'pmax-modal-pmax-released',
           };
         case PmaxModalType.SSC_DEPRECATED:
           return {
             title: this.$t('modal.PMaxMigrationTitle'),
             body: this.$t('modal.PMaxMigrationText'),
-            img: 'pmax-modal-ssc-deprecated-en.svg',
+            img: this.displayImage(this.type),
             alt: 'pmax-modal-ssc-deprecated',
           };
         default:
@@ -104,6 +103,15 @@ export default {
   methods: {
     confirm() {
       localStorage.setItem(`modalPmax-${this.type}`, true);
+    },
+    displayImage(type) {
+      const lang = this.$i18n.locale.toUpperCase();
+      const availableLanguages = ['EN', 'FR', 'DE', 'ES', 'IT', 'NL', 'PT'];
+
+      if (availableLanguages.includes(lang)) {
+        return `pmax-modal-${type}-${lang}.png`;
+      }
+      return `pmax-modal-${type}-EN.png`;
     },
   },
   googleUrl,
