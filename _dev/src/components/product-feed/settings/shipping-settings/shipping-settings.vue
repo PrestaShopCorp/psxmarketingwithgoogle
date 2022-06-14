@@ -194,8 +194,10 @@ export default {
         });
     },
     disableContinue() {
-      const enabledCarriersLength = this.carriers.filter((carrier) => carrier.enabledCarrier).length;
-      const enabledCarriersCompletedLength = this.carriers.filter((carrier) => carrier.enabledCarrier
+      const enabledCarriersLength = this.carriers.filter(
+        (carrier) => carrier.enabledCarrier).length;
+      const enabledCarriersCompletedLength = this.carriers.filter(
+        (carrier) => carrier.enabledCarrier
       && validateHandlingTimes(carrier)
       && validateTransitTimes(carrier)
       && !!carrier.deliveryType).length;
