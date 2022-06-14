@@ -8,7 +8,9 @@
       @search="onSearchCountry"
       label="name"
       v-model="countries"
-      :placeholder=" $t('productFeedSettings.shipping.placeholderSelect')"
+      :placeholder="type === 'targetCountries' && !dropdownOptions.length ?
+        $t('productFeedSettings.shipping.placeholderNoTargetCountries')
+        : $t('productFeedSettings.shipping.placeholderSelect')"
       :class="{'maxw-sm-500': notFullWidth }"
     >
       <template #spinner="{ loading }">
@@ -31,9 +33,7 @@
     <VueShowdown
       v-if="displayLegend"
       class="text-muted my-1 ps_gs-fz-12"
-      :markdown="$t('productFeedSettings.shipping.cantFindCountry', [
-        $options.googleUrl.supportedCountries
-      ])"
+      :markdown="$t('productFeedSettings.shipping.cantFindCountry')"
       :extensions="['extended-link']"
     />
     <VueShowdown
@@ -91,6 +91,11 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+    type: {
+      type: String,
+      required: false,
+      default: null,
     },
   },
   methods: {

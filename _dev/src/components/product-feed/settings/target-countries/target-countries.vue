@@ -23,9 +23,33 @@
         :default-value="countries"
         :dropdown-options="activeCountriesWhereShipppingExist"
         :need-filter="true"
-        :not-full-width="true"
+        :not-full-width="false"
         :loader="loadingCountries"
+        :type="'targetCountries'"
       />
+      <div
+        class="text-primary"
+      >
+        <a
+          class="ps_gs-fz-12 mb-0 text-primary"
+          :href="$store.getters['app/GET_CARRIERS_URL']"
+          target="_blank"
+        >
+          {{ $t('productFeedSettings.shipping.addNewCarriers') }}
+        </a>
+        <span class="ps_gs-fz-12 text-dark">
+          |
+        </span>
+        <b-button
+          variant="link"
+          class="ps_gs-fz-12 font-weight-normal p-0 border-0
+        text-decoration-underline text-wrap text-left"
+          @click="refreshComponent"
+        >
+          {{ $t('general.refreshPage') }}
+          <i class="material-icons ps_gs-fz-12">refresh</i>
+        </b-button>
+      </div>
     </b-form-group>
     <b-form-group
       class="mt-4"
@@ -109,6 +133,7 @@
     <actions-buttons
       :next-step="nextStep"
       :disable-continue="disableContinue"
+      :disable-tooltip="$t('productFeedSettings.shipping.disabledButtonTooltip')"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
     <settings-footer />
@@ -219,6 +244,9 @@ export default {
       this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
         name: 'targetCountries', data: countryCode,
       });
+    },
+    refreshComponent() {
+      this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
     },
   },
   mounted() {

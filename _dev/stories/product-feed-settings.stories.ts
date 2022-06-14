@@ -88,7 +88,7 @@ export default {
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
   components: {TunnelProductFeed},
-  template: '<div><TunnelProductFeed v-bind="$props" /></div>',
+  template: '<div><TunnelProductFeed v-bind="$props" ref="productFeed" /></div>',
   beforeMount: args.beforeMount,
 });
 
@@ -100,6 +100,11 @@ TargetCountry.args = {
     this.$store.state.productFeed.stepper = 1;
       this.$router.history.current.params.step = ProductFeedSettingsPages.TARGET_COUNTRY
   },
+  mounted(this:any) {
+    this.$refs.productFeed.$data.loadingCountries = false;
+    this.$refs.productFeed.$data.loader = false;
+
+  }
 };
 
 export const ShippingSettings:any = Template.bind({});
