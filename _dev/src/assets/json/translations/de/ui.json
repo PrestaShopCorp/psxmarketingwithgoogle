@@ -895,7 +895,8 @@
     "googleProductStatusDefinitions": "Google Produktstatus-Definitionen",
     "visitThe": "Besuchen Sie die Seite {0} für weitere Informationen",
     "investigate": "Investigate",
-    "createPmax": "Create your first PMax campaign"
+    "createPmax": "Create your first PMax campaign",
+    "understand": "Ich verstehe"
   },
   "badge": {
     "free": "Kostenlos",
