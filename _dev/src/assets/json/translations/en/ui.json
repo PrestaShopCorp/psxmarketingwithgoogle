@@ -545,7 +545,10 @@
 
   "smartShoppingCampaignList": {
     "tableTitle": "Campaign performance",
-    "xCampaign": "No campaigns | {0} campaign | {0} campaigns"
+    "xCampaign": "No campaigns | {0} campaign | {0} campaigns",
+    "performanceMax" : "Performance Max",
+    "smartShoppingCampaign": "Smart Shopping Campaign",
+    "campaignType": "Type : {0}"
   },
   "productFeedPage": {
     "breadcrumb": "Product status details",

@@ -2,7 +2,7 @@
   <b-tr>
     <b-td
       class="b-table-sticky-column text-primary pl-2
-      d-flex justify-content-between align-items-baseline"
+      justify-content-between align-items-baseline"
     >
       <b-button
         variant="link"
@@ -12,13 +12,13 @@
       >
         {{ campaign.campaignName }}
       </b-button>
-      <b-badge
+      <!-- <b-badge
         variant="type"
         class="ps_gs-fz-12 m-1"
         v-if="campaignType"
       >
         {{ campaignType }}
-      </b-badge>
+      </b-badge> -->
     </b-td>
     <b-td class="ps_gs-fz-12 text-nowrap">
       {{ campaignDuration }}

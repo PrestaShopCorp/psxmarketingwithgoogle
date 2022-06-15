@@ -804,7 +804,8 @@ export default {
     }
     if (this.editMode === true) {
       if (!this.sscList.length) {
-        await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+        await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST',
+          {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX});
       }
       this.setInterfaceForEdition();
     } else {
