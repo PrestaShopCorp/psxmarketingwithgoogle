@@ -10,16 +10,47 @@
       <h3 class="ps_gs-fz-20 font-weight-600">
         {{ $t('smartShoppingCampaignList.tableTitle') }}
       </h3>
-      <b-button
-        v-if="remarketingTag && campaignList.length && !inNeedOfConfiguration"
-        data-test-id="redirect-to-reporting-button"
-        size="sm"
-        class="mb-2"
-        variant="outline-primary"
-        @click="redirectToReporting"
-      >
-        {{ $t('cta.viewReporting') }}
-      </b-button>
+      <div class="d-flex">
+        <b-button
+          v-if="remarketingTag && campaignList.length && !inNeedOfConfiguration"
+          data-test-id="redirect-to-reporting-button"
+          size="sm"
+          class="mb-2 mr-2"
+          variant="outline-primary"
+          @click="redirectToReporting"
+        >
+          {{ $t('cta.viewReporting') }}
+        </b-button>
+        <b-dropdown
+          id="filterByCampaignTypeDropdown"
+          variant="outline-primary"
+          :text="$t('smartShoppingCampaignList.campaignType',
+                    [typeChosen === this.$options.CampaignTypes.PERFORMANCE_MAX ?
+                      $t('smartShoppingCampaignList.performanceMax')
+                      : $t('smartShoppingCampaignList.smartShoppingCampaign')])"
+          class="mt-1 mb-2 mt-md-0 ps-dropdown bg-transparent
+          psxmarketingwithgoogle-dropdown"
+        >
+          <b-dropdown-form>
+            <b-form-radio
+              v-model="typeChosen"
+              :value="this.$options.CampaignTypes.PERFORMANCE_MAX"
+              name="campaignType"
+            >
+              {{ $t('smartShoppingCampaignList.performanceMax') }}
+            </b-form-radio>
+          </b-dropdown-form>
+          <b-dropdown-form>
+            <b-form-radio
+              v-model="typeChosen"
+              :value="this.$options.CampaignTypes.SMART_SHOPPING"
+              name="campaignType"
+            >
+              {{ $t('smartShoppingCampaignList.smartShoppingCampaign') }}
+            </b-form-radio>
+          </b-dropdown-form>
+        </b-dropdown>
+      </div>
     </div>
     <ReportingTableHeader
       class="mt-n1"
@@ -154,6 +185,7 @@ import googleUrl from '../../assets/json/googleUrl.json';
 import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import SSCPopinActivateTracking from '@/components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
@@ -168,6 +200,7 @@ export default {
     return {
       campaignName: null,
       searchQuery: {},
+      typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX,
     };
   },
   props: {
@@ -263,7 +296,7 @@ export default {
     fetchCampaigns(isNewRequest = true) {
       this.$emit('loader', true);
       this.$store
-        .dispatch('smartShoppingCampaigns/GET_SSC_LIST', isNewRequest)
+        .dispatch('smartShoppingCampaigns/GET_SSC_LIST', {isNewRequest, typeChosen: this.typeChosen})
         .then(() => {
           this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
         })
@@ -318,6 +351,12 @@ export default {
       tableBody.removeEventListener('scroll', this.handleScroll);
     }
   },
+  watch: {
+    typeChosen() {
+      this.fetchCampaigns();
+    },
+  },
   googleUrl,
+  CampaignTypes,
 };
 </script>

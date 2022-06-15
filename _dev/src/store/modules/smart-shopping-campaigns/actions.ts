@@ -26,6 +26,7 @@ import {
   CampaignObject, CampaignStatusPayload, ConversionAction, Dimension,
 } from './state';
 import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   async [ActionsTypes.SAVE_NEW_SSC]({commit, rootState}, payload : CampaignObject) {
@@ -427,7 +428,10 @@ export default {
     commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES,
       result);
   },
-  async [ActionsTypes.GET_SSC_LIST]({commit, state, rootState}, isNewRequest = true) {
+  async [ActionsTypes.GET_SSC_LIST]({commit, state, rootState}, {
+    isNewRequest = true,
+    typeChosen = CampaignTypes,
+  }) {
     const query = new URLSearchParams();
 
     if (state.campaignsOrdering && state.campaignsOrdering.duration) {
@@ -440,7 +444,7 @@ export default {
       query.append('nextPageToken', state.tokenNextPageCampaignList);
     }
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list?${query}`,
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list?${query}&type=${typeChosen}`,
         {
           method: 'GET',
           headers: {
