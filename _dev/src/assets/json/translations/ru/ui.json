@@ -895,7 +895,8 @@
     "googleProductStatusDefinitions": "Определения статуса продукта Google",
     "visitThe": "Посетите {0} для получения дополнительной информации",
     "investigate": "Investigate",
-    "createPmax": "Create your first PMax campaign"
+    "createPmax": "Create your first PMax campaign",
+    "understand": "Я понимаю"
   },
   "badge": {
     "free": "Бесплатно",
