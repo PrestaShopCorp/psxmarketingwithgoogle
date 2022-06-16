@@ -57,7 +57,7 @@
     "sectionTitle": {
       "psAccount": "Conecte a sua conta PrestaShop",
       "freeListing": "Coloque os seus produtos no Google com as listagens gratuitas",
-      "smartShoppingCampaign": "Atinja mais pessoas com campanhas Smart Shopping pagas"
+      "smartShoppingCampaign": "Advertise on Google with Performance Max"
     },
     "productFeedNotice": "Ajude os clientes a encontrar mais facilmente os seus produtos no Google e enumere-os gratuitamente com listagens gratuitas. As listagens gratuitas ajudam a alcançar mais clientes e fazer com que visitem o seu site."
   },
@@ -403,7 +403,7 @@
   },
   "googleAdsAccountCard": {
     "title": "Ligue a sua conta Google Ads",
-    "intro": "Lance uma campanha publicitária para os seus produtos e alcance mais utilizadores através de quatro redes diferentes do Google.",
+    "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Uma vez conectado, você pode precisar configurar suas configurações de faturamento na sua conta do Google Ads.",
     "labelSelect": "Conectar uma conta existente no Google Ads",
     "id": "ID da conta Google Ads",
@@ -448,7 +448,10 @@
   "smartShoppingCampaignCard": {
     "title": "Boost your sales with Performance Max Campaigns",
     "intro": "Launch a Performance Max campaign for your products and reach more customers across all Google channels - including YouTube, Maps, Search, Gmail, Display, Discover and the web through one single campaign. Even better, you don’t pay unless your customers click!",
-    "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
+    "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to.",
+    "titleInfo": "Did you know?",
+    "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
+    "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "Todos os Filtros",
@@ -924,7 +927,8 @@
     "urlUnverified": "Url não verificada",
     "canceled": "Cancelado",
     "testAccount": "Teste",
-    "loading": "Carregamento"
+    "loading": "Carregamento",
+    "new": "New"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "Desconectar o seu Merchant Center?",
