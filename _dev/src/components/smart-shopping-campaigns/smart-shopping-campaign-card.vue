@@ -44,7 +44,8 @@
           />
           <div
             v-if="isEnabled"
-            class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center align-self-end"
+            class="flex-grow-1 d-flex-md flex-md-grow-0
+            flex-shrink-0 text-center align-items-center"
           >
             <b-button
               @click="openPopinActivateTracking"
@@ -53,7 +54,7 @@
               class="mx-1 mt-3 mt-md-0 mr-md-0 ml-md-3"
               data-test-id="btn-create-campaign"
             >
-              {{ $t('cta.createCampaign') }}
+              {{ $t('cta.launchCampaign') }}
             </b-button>
           </div>
         </div>
@@ -104,6 +105,23 @@
           v-if="!isEnabled"
           :badges="['googleAdsAccount']"
         />
+        <div
+          v-if="isEnabled"
+          class="blue-background mt-2"
+        >
+          <div class="d-flex flex-row justify-content-start align-items-flex-start">
+            <i class="material-icons text-primary ps_gs-fz-20 mr-1">book</i>
+            <h2 class="font-weight-600 ">
+              {{ $t('smartShoppingCampaignCard.titleInfo') }}
+            </h2>
+          </div>
+          <p class="ps_gs-fz-14 ">
+            {{ $t('smartShoppingCampaignCard.contentInfo') }}
+          </p>
+          <p class="ps_gs-fz-12 text-muted">
+            {{ $t('smartShoppingCampaignCard.footerInfo') }}
+          </p>
+        </div>
         <VueShowdown
           tag="p"
           :markdown="$t('smartShoppingCampaignCard.footer')"
@@ -221,3 +239,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.blue-background {
+  border: none;
+  background-color: #F7F9FF;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  padding:  0.75rem;
+  padding-top:  1.75rem
+}
+</style>

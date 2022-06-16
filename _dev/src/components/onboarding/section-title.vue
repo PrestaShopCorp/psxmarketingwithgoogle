@@ -16,6 +16,13 @@
       check_circle
     </i>
     {{ stepTitle }}
+    <b-badge
+      v-if="badge"
+      class="mx-3"
+      variant="success"
+    >
+      {{ $t('badge.new') }}
+    </b-badge>
   </h2>
 </template>
 
@@ -36,6 +43,10 @@ export default {
       default: false,
     },
     isDone: {
+      type: Boolean,
+      default: false,
+    },
+    badge: {
       type: Boolean,
       default: false,
     },
