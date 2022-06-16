@@ -1,6 +1,6 @@
 {
-    "name": "prestashop/psxmarketingwithgoogle",
-    "description": "",
+    "name": "prestashopcorp/psxmarketingwithgoogle",
+    "description": "PrestaShop Essentials -  Promote your products on Google",
     "config": {
         "preferred-install": "dist",
         "optimize-autoloader": true,
@@ -42,5 +42,6 @@
         }
     },
     "author": "PrestaShop",
-    "license": "AFL-3.0"
+    "license": "AFL-3.0",
+    "type": "prestashop-module"
 }
