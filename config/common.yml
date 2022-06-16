@@ -12,6 +12,7 @@ imports:
 services:
   psxmarketingwithgoogle:
     class: 'PsxMarketingWithGoogle'
+    public: true
     factory: ['Module', 'getInstanceByName']
     arguments:
       - 'psxmarketingwithgoogle'

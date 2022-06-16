@@ -1,6 +1,7 @@
 services:
   PrestaShop\Module\PsxMarketingWithGoogle\Builder\CarrierBuilder:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Builder\CarrierBuilder
+    public: true
     arguments:
      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\CarrierRepository'
      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository'

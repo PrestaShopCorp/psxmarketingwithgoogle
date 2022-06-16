@@ -1,6 +1,7 @@
 services:
   PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider
+    public: true
     arguments:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Builder\CarrierBuilder'
@@ -8,3 +9,4 @@ services:
 
   PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider
+    public: true

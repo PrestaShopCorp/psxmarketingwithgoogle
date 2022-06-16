@@ -1,5 +1,6 @@
 services:
   PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter
+    public: true
     arguments:
       - '@=service("psxmarketingwithgoogle.shop").id'

@@ -1,6 +1,7 @@
 services:
   PrestaShop\Module\PsxMarketingWithGoogle\Database\Installer:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Database\Installer
+    public: true
     arguments:
       - '@psxmarketingwithgoogle'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment'
@@ -8,6 +9,7 @@ services:
 
   PrestaShop\Module\PsxMarketingWithGoogle\Database\Uninstaller:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Database\Uninstaller
+    public: true
     arguments:
       - '@psxmarketingwithgoogle'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\TabRepository'
