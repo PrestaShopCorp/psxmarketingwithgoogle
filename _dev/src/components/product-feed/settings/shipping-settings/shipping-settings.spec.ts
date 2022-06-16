@@ -194,7 +194,7 @@ describe('shipping-settings.vue', () => {
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
   });
 
-  it('should not allows to "Continue" if no carrier is found', () => {
+  it('should not allow to "Continue" if no carrier is found', () => {
     store.modules.productFeed.state.settings.targetCountries = [];
     store.modules.productFeed.state.settings.deliveryDetails = [];
     const wrapper = shallowMount(ShippingSettings, {
