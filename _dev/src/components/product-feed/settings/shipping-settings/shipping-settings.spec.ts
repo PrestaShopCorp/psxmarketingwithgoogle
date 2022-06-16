@@ -176,7 +176,7 @@ describe('shipping-settings.vue', () => {
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
   });
 
-  it('should not allows to "Continue" if no carrier is enabled', () => {
+  it('should not allow to "Continue" if no carrier is enabled', () => {
     store.modules.productFeed.state.settings.targetCountries = ['FR', 'IT', 'ES', 'DE', 'GB'];
     store.modules.productFeed.state.settings.deliveryDetails[2].enabledCarrier = false;
     store.modules.productFeed.state.settings.deliveryDetails[5].enabledCarrier = false;
