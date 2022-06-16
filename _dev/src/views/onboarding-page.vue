@@ -57,6 +57,7 @@
         :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
         :is-enabled="stepsAreCompleted.step2"
         :is-done="stepsAreCompleted.step3"
+        badge
       />
       <GoogleAdsAccountCard
         :is-enabled="stepsAreCompleted.step2"

@@ -59,7 +59,7 @@
     "sectionTitle": {
       "psAccount": "Connect your PrestaShop account",
       "freeListing": "Get your products on Google with free listings",
-      "smartShoppingCampaign": "Reach more people with paid Smart Shopping campaign"
+      "smartShoppingCampaign": "Advertise on Google with Performance Max"
     },
     "productFeedNotice": "Help customers to find your products more easily on Google and list them for free with free listings. Free listings help reach more customers and get them to visit your site."
   },
@@ -450,7 +450,10 @@
   "smartShoppingCampaignCard": {
     "title": "Boost your sales with Performance Max Campaigns",
     "intro": "Launch a Performance Max campaign for your products and reach more customers across all Google channels - including YouTube, Maps, Search, Gmail, Display, Discover and the web through one single campaign. Even better, you don’t pay unless your customers click!",
-    "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
+    "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to.",
+    "titleInfo": "Did you know ?",
+    "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
+    "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "All Filters",
@@ -927,7 +930,8 @@
     "urlUnverified": "Url unverified",
     "canceled": "Canceled",
     "testAccount": "Test",
-    "loading": "Loading"
+    "loading": "Loading",
+    "new": "New"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "Disconnect your Merchant Center?",
