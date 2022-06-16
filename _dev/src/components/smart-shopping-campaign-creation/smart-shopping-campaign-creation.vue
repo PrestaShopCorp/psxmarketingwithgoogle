@@ -783,7 +783,8 @@ export default {
     },
     $route: {
       handler(route) {
-        if (route.name === 'campaign-creation') {
+        if (route.name === 'campaign-creation'
+        || route.name === 'campaign-creation-typed') {
           this.setInterfaceForCreation();
         }
       },
