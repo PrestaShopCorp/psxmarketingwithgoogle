@@ -92,8 +92,7 @@ const routes: Array<RouteConfig> = [
         redirect: (to) => ({
           name: 'campaign-creation-typed',
           params: {
-            // TODO : change here when switching to PMAX
-            type: CampaignTypes.SMART_SHOPPING,
+            type: CampaignTypes.PERFORMANCE_MAX,
           },
         }),
       },
