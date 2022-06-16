@@ -405,7 +405,7 @@
   },
   "googleAdsAccountCard": {
     "title": "Connect your Google Ads account",
-    "intro": "Launch an advertising campaign for your products and reach more users across four different Google networks.",
+    "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Once connected you may need to configure your billing settings in your Google Ads account.",
     "labelSelect": "Connect an existing Google Ads account",
     "id": "Google Ads account ID",
