@@ -68,7 +68,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       enabledCarrier: false,
     });
 
-    expect(result).toBe(true);
+    expect(result).toBe(false);
   });
 
   it('returns true when delivery details are valid', () => {
