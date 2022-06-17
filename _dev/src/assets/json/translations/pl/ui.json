@@ -57,7 +57,7 @@
     "sectionTitle": {
       "psAccount": "Podłącz swoje konto PrestaShop",
       "freeListing": "Spraw, by Twoje produkty pojawiły się w Google dzięki wyświetlaniu bezpłatnych informacji o produkcie",
-      "smartShoppingCampaign": "Dotrzyj do większej liczby osób dzięki płatnej inteligentnej kampanii produktowej"
+      "smartShoppingCampaign": "Advertise on Google with Performance Max"
     },
     "productFeedNotice": "Pomóż klientom znaleźć Twoje produkty w Google z jeszcze większą łatwością i skorzystaj z możliwości wyświetlania bezpłatnych informacji o produkcie. Wyświetlanie bezpłatnych informacji o produkcie pozwala dotrzeć do większej liczby klientów, którzy odwiedzą Twoją stronę."
   },
@@ -403,7 +403,7 @@
   },
   "googleAdsAccountCard": {
     "title": "Podłącz swoje konto Google Ads",
-    "intro": "Uruchom kampanię reklamową dla swoich Produktów i dotrzyj do większej liczby użytkowników w różnych sieciach Google.",
+    "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Po podłączeniu konta, konieczne może być skonfigurowanie ustawień dotyczących płatności na Twoim koncie Google Ads.",
     "labelSelect": "Podłącz istniejące konto Google Ads",
     "id": "ID konta Google Ads",
@@ -448,7 +448,10 @@
   "smartShoppingCampaignCard": {
     "title": "Boost your sales with Performance Max Campaigns",
     "intro": "Launch a Performance Max campaign for your products and reach more customers across all Google channels - including YouTube, Maps, Search, Gmail, Display, Discover and the web through one single campaign. Even better, you don’t pay unless your customers click!",
-    "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
+    "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to.",
+    "titleInfo": "Did you know?",
+    "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
+    "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "Wszystkie filtry",
@@ -924,7 +927,8 @@
     "urlUnverified": "Url nie jest zweryfikowany",
     "canceled": "Odwołana",
     "testAccount": "Test",
-    "loading": "Ładowanie"
+    "loading": "Ładowanie",
+    "new": "New"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "Odłączyć Twoje konto Merchant Center?",

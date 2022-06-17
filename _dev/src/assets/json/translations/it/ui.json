@@ -57,7 +57,7 @@
     "sectionTitle": {
       "psAccount": "Collega il tuo account PrestaShop",
       "freeListing": "Porta i tuoi prodotti su Google con inserzioni gratuite",
-      "smartShoppingCampaign": "Raggiungi più persone con la campagna a pagamento Smart Shopping"
+      "smartShoppingCampaign": "Advertise on Google with Performance Max"
     },
     "productFeedNotice": "Aiuta i clienti a trovare più facilmente i tuoi prodotti su Google e inseriscili gratuitamente con inserzioni gratuite. Le inserzioni gratuite aiutano a raggiungere più clienti e a fare in modo che visitino il tuo sito."
   },
@@ -403,7 +403,7 @@
   },
   "googleAdsAccountCard": {
     "title": "Collega il tuo account Google Ads",
-    "intro": "Lancia una campagna pubblicitaria per i tuoi prodotti e raggiungi più utenti attraverso quattro diverse reti di Google.",
+    "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Una volta connesso, potrebbe essere necessario configurare le impostazioni di fatturazione nel tuo account Google Ads.",
     "labelSelect": "Collega un account Google Ads esistente",
     "id": "ID account Google Ads",
@@ -448,7 +448,10 @@
   "smartShoppingCampaignCard": {
     "title": "Boost your sales with Performance Max Campaigns",
     "intro": "Launch a Performance Max campaign for your products and reach more customers across all Google channels - including YouTube, Maps, Search, Gmail, Display, Discover and the web through one single campaign. Even better, you don’t pay unless your customers click!",
-    "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
+    "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to.",
+    "titleInfo": "Did you know?",
+    "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
+    "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "Tutti i filtri",
@@ -924,7 +927,8 @@
     "urlUnverified": "Url non verificato",
     "canceled": "Annullato",
     "testAccount": "Test",
-    "loading": "Caricamento"
+    "loading": "Caricamento",
+    "new": "New"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "Disconnetti il tuo Merchant Center?",
@@ -951,14 +955,14 @@
     "titleActivateTrackingSSC": "Abilita il tag di tracciamento del remarketing e delle conversioni",
     "textActivateTrackingSSC": "Per eseguire campagne Smart Shopping, Google Ads deve essere in grado di creare [lista di remarketing]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] e [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] sul tuo sito.   \n PrestaShop imposterà automaticamente questi frammenti di codice sul tuo negozio.",
     "textConfirmCancel": "Se torni indietro perderai i valori selezionati",
-    "upgradeSCCToPmaxTitle": "Campaign's upgrade coming soon",
-    "upgradeSCCToPmaxText": "Smart Shopping campaigns will be upgraded to Performance Max on {0} \n\n What does that mean for you? Two things. Your campaigns will be able to appear in more places across Google. And you'll get the best of Google's automation to help drive the highest conversion and revenue performance possible. ",
+    "upgradeSCCToPmaxTitle": "Aggiornamento della campagna in arrivo",
+    "upgradeSCCToPmaxText": "Le campagne Smart Shopping saranno aggiornate a Performance Max il {0} \n\nCosa significa questo per voi? Due cose. Le vostre campagne potranno apparire in più punti di Google. E avrete a disposizione il meglio dell'automazione di Google per contribuire a ottenere le più alte performance di conversione e di guadagno possibili. ",
     "PMaxLiveTitle": "Performance Max is here",
     "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. You now have access to the best of Google Ads automation, inventory, and formats. Your existing Smart Shopping campaigns will stay the same for now, but will be automatically upgraded at a later date.",
     "PMaxMigrationTitle": "Important News",
     "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
     "PmaxTextLink": "Learn more about Performance Max",
-    "textPmaxReleased": "Smart Shopping campaigns will be upgraded to Performance Max on {0}. [Learn more]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+    "textPmaxReleased": "Le campagne Smart Shopping saranno aggiornate a Performance Max a partire da {0}. [Per saperne di più]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
     "googleAccountRequired": "Richiede la configurazione dell'account Google",
