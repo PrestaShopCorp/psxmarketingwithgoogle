@@ -17,7 +17,6 @@
       <label class="mb-2">
         {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
-
       <SelectCountry
         @countrySelected="saveCountrySelected"
         :default-value="countries"

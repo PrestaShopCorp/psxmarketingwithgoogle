@@ -165,7 +165,7 @@ import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-h
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
-import {validateTransitTimes, validateHandlingTimes} from '@/providers/shipping-settings-provider';
+import {validateDeliveryDetail} from '@/providers/shipping-settings-provider';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
@@ -194,16 +194,18 @@ export default {
         });
     },
     disableContinue() {
-      const enabledCarriersLength = this.carriers.filter(
-        (carrier) => carrier.enabledCarrier).length;
-      const enabledCarriersCompletedLength = this.carriers.filter(
-        (carrier) => carrier.enabledCarrier
-      && validateHandlingTimes(carrier)
-      && validateTransitTimes(carrier)
-      && !!carrier.deliveryType).length;
-
-      if (enabledCarriersCompletedLength === enabledCarriersLength
-      && enabledCarriersCompletedLength > 0) {
+      const enabledCarriers = this.carriers.filter(
+        (carrier) => carrier.enabledCarrier);
+      const enabledCarriersCompleted = [];
+      this.carriers.filter(
+        (carrier) => {
+          if (validateDeliveryDetail(carrier)) {
+            enabledCarriersCompleted.push(carrier);
+          }
+          return enabledCarriersCompleted;
+        });
+      if (enabledCarriersCompleted.length === enabledCarriers.length
+      && enabledCarriersCompleted.length > 0) {
         return false;
       }
       return true;
