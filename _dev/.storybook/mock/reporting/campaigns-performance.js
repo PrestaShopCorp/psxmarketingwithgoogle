@@ -8,6 +8,7 @@ exports.campaignsPerformanceList = {
       "name": "Zboo Qualitern",
       "budget": 52,
       "status": "PENDING",
+      "type": "SMART_SHOPPING",
       "impressions": 2373,
       "clicks": 596,
       "conversions": 22,
@@ -22,6 +23,7 @@ exports.campaignsPerformanceList = {
       "clicks": 289,
       "conversions": 29,
       "adSpend": 160,
+      "type": "SMART_SHOPPING",
       "sales": 30856
     },
     {
@@ -32,6 +34,7 @@ exports.campaignsPerformanceList = {
       "clicks": 2868,
       "conversions": 34,
       "adSpend": 79,
+      "type": "SMART_SHOPPING",
       "sales": 33666
     },
     {
@@ -52,6 +55,7 @@ exports.campaignsPerformanceList = {
       "clicks": 232,
       "conversions": 26,
       "adSpend": 199,
+      "type": "SMART_SHOPPING",
       "sales": 12852
     },
     {
@@ -62,6 +66,7 @@ exports.campaignsPerformanceList = {
       "clicks": 2261,
       "conversions": 39,
       "adSpend": 88,
+      "type": "SMART_SHOPPING",
       "sales": 19823
     },
     {
@@ -72,6 +77,7 @@ exports.campaignsPerformanceList = {
       "clicks": 1376,
       "conversions": 29,
       "adSpend": 298,
+      "type": "SMART_SHOPPING",
       "sales": 3091
     },
     {
@@ -82,6 +88,7 @@ exports.campaignsPerformanceList = {
       "clicks": 2751,
       "conversions": 23,
       "adSpend": 314,
+      "type": "SMART_SHOPPING",
       "sales": 10838
     },
     {
@@ -92,6 +99,7 @@ exports.campaignsPerformanceList = {
       "clicks": 2798,
       "conversions": 38,
       "adSpend": 294,
+      "type": "SMART_SHOPPING",
       "sales": 37133
     },
     {
@@ -102,6 +110,7 @@ exports.campaignsPerformanceList = {
       "clicks": 1143,
       "conversions": 36,
       "adSpend": 29,
+      "type": "PERFORMANCE_MAX",
       "sales": 4179
     },
     {
@@ -112,6 +121,7 @@ exports.campaignsPerformanceList = {
       "clicks": 2887,
       "conversions": 20,
       "adSpend": 396,
+      "type": "PERFORMANCE_MAX",
       "sales": 38545
     },
     {
@@ -122,6 +132,7 @@ exports.campaignsPerformanceList = {
       "clicks": 2720,
       "conversions": 22,
       "adSpend": 210,
+      "type": "PERFORMANCE_MAX",
       "sales": 19643
     },
     {
@@ -132,6 +143,7 @@ exports.campaignsPerformanceList = {
       "clicks": 1319,
       "conversions": 37,
       "adSpend": 33,
+      "type": "PERFORMANCE_MAX",
       "sales": 8435
     },
     {
@@ -142,6 +154,7 @@ exports.campaignsPerformanceList = {
       "clicks": 726,
       "conversions": 36,
       "adSpend": 65,
+      "type": "PERFORMANCE_MAX",
       "sales": 38020
     },
     {
@@ -152,6 +165,7 @@ exports.campaignsPerformanceList = {
       "clicks": 1901,
       "conversions": 33,
       "adSpend": 195,
+      "type": "PERFORMANCE_MAX",
       "sales": 5221
     },
     {
@@ -172,6 +186,7 @@ exports.campaignsPerformanceList = {
       "clicks": 1592,
       "conversions": 31,
       "adSpend": 330,
+      "type": "PERFORMANCE_MAX",
       "sales": 36904
     },
     {
@@ -182,6 +197,7 @@ exports.campaignsPerformanceList = {
       "clicks": 2211,
       "conversions": 31,
       "adSpend": 138,
+      "type": "PERFORMANCE_MAX",
       "sales": 28478
     },
     {
@@ -192,6 +208,7 @@ exports.campaignsPerformanceList = {
       "clicks": 1342,
       "conversions": 27,
       "adSpend": 346,
+      "type": "PERFORMANCE_MAX",
       "sales": 17278
     },
     {
@@ -202,6 +219,7 @@ exports.campaignsPerformanceList = {
       "clicks": 564,
       "conversions": 35,
       "adSpend": 126,
+      "type": "PERFORMANCE_MAX",
       "sales": 39851
     },
     {
@@ -212,6 +230,7 @@ exports.campaignsPerformanceList = {
       "clicks": 2336,
       "conversions": 21,
       "adSpend": 330,
+      "type": "PERFORMANCE_MAX",
       "sales": 4675
     },
     {
@@ -222,6 +241,7 @@ exports.campaignsPerformanceList = {
       "clicks": 2754,
       "conversions": 30,
       "adSpend": 141,
+      "type": "PERFORMANCE_MAX",
       "sales": 18060
     },
     {
