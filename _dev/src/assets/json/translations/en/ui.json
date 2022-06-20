@@ -510,7 +510,7 @@
     "toggleNewConversionTag": "Set new conversion tracking tags on my site",
     "toggleNewConversionTag2": "We will create the following conversion tags : Page view, Purchase, Add to basket",
     "remarketingTagLoading": "Checking if you have a remarketing and conversion tracking tags to add to your shop",
-    "descriptiveMessage": "Only the Performance Max campaigns and Smart Shopping campaigns associated to your Google Merchant Center account are listed. If you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
+    "descriptiveMessage": "Only the Performance Max campaigns and Smart Shopping campaigns associated to your Google Merchant Center account are listed. \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
     "dimensionXFilterSelected": "{0} filter",
     "categories": "Category",
