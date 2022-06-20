@@ -409,7 +409,7 @@
     "id": "Google Ads account-ID",
     "toUseGAdsNeedsAdminAccess": "Om een bestaande Google Ads account te gebruiken, moet u Admin toegang hebben.",
     "alertCantConnect": "Kon uw Google Ads account niet verbinden, het ligt aan onze kant, probeer het nog eens.",
-    "alertBillingSettingsMissing": "Om Smart Shopping-campagnes te starten, moet u uw factureringsinstellingen toevoegen in uw Google Ads-account.",
+    "alertBillingSettingsMissing": "To launch Performance Max campaigns, you need to add your billing settings in your Google Ads account.",
     "alertNeedRefreshAfterBilling": "Zodra u uw factureringsinfo in uw Google Ads account heeft ingevuld, vernieuwt u de pagina om de updates te bekijken.",
     "alertNeedRefreshAfterInvitationLink": "Zodra de uitnodiging is geaccepteerd in uw Google Ads account, vernieuwt u de pagina om updates te bekijken.",
     "alertNeedValidationFromEmail": "Klik hier of controleer uw emails om uw account te valideren.",
@@ -508,12 +508,12 @@
     "nbDimensionSelected": "Geen dimensie geselecteerd | {0} dimensie geselecteerd | {0} dimensies geselecteerd",
     "nbValuesSelected": "Geen waarde geselecteerd | {0} waarde geselecteerd | {0} waarden geselecteerd",
     "selectProductsTitle": "Kies een productfilter",
-    "selectProductsSubtitle": "Smart Shopping Campaign kan slechts één dimensie hebben met één of meerdere waarden.",
+    "selectProductsSubtitle": "The campaign can only have one dimension with one or multiple values.",
     "remarketingNote": "**Let op:** Als u al Google Ads Conversion Actions met transactiespecifieke conversiewaarden op uw site hebt geconfigureerd voor dit Google Ads-account, dan hoeft u geen nieuwe conversietags op uw site in te stellen.",
     "toggleNewConversionTag": "Nieuwe conversie tracking tags instellen op mijn site",
     "toggleNewConversionTag2": "We zullen de volgende conversie tags maken: Pagina bekijken, Kopen, Toevoegen aan mandje",
     "remarketingTagLoading": "Controleren of u remarketing- en conversietracking-tags aan uw winkel kunt toevoegen",
-    "descriptiveMessage": "Alleen de smart shopping-campagnes die aan uw Google Merchant Center-account zijn gekoppeld, worden weergegeven.  \nAls u al uw campagnes wilt zien, [ga dan naar uw Google Ads Account]({0})[:target=\"_blank\"].",
+    "descriptiveMessage": "Only the Performance Max campaigns and Smart Shopping campaigns associated to your Google Merchant Center account are listed. \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Geen product filter geselecteerd | {0} product filter geselecteerd | {0} product filters geselecteerd",
     "dimensionXFilterSelected": "{0} filter",
     "categories": "Categorie",
@@ -658,9 +658,9 @@
     "subtitle5": "Als u uw producten bijwerkt"
   },
   "campaignCard": {
-    "title": "Creëer uw Smart Shopping-campagne in een paar klikken",
+    "title": "Create your Performance Max campaign in a few clicks",
     "description": "Google A.I. toont advertenties van de gezochte producten aan geïnteresseerde shoppers op het juiste moment, waardoor uw omzet stijgt.\n\nStel een dagelijks budget in en start eenvoudig uw advertentiecampagne - u wordt alleen gefactureerd wanneer er op de advertenties wordt geklikt, zo eenvoudig is het!",
-    "footer": "Wij moeten remarketing en conversion tracking tag voor u activeren om Smart Shopping-campagnes te kunnen uitvoeren"
+    "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Peformance Max campaigns"
   },
   "keymetrics": {
     "title": "Belangrijkste gegevens",
@@ -762,7 +762,7 @@
     "thirdStep": "Sign in or create your Google Merchant Center account",
     "fourthStep": "Export and synchronize your product catalog",
     "fifthStep": "Sign in or create your Google Ads account",
-    "sixthStep": "**Next step** create your first Smart Shopping Campaign"
+    "sixthStep": "**Next step** create your first Performance Max Campaign"
   },
   "help": {
     "title": "Hulp voor PrestaShop Google",
@@ -860,7 +860,7 @@
     "transferClaim": "Overdrachtsvordering",
     "goToYourX": "Ga naar je {0}",
     "addShippingInfo": "Verzendinfo toevoegen",
-    "createSmartShoppingCampaign": "Smart Shopping-campagne opzetten",
+    "createSmartShoppingCampaign": "Launch Performance Max campaign",
     "addBillingSettings": "Factureringsinstellingen toevoegen",
     "createCampaign": "Campagne maken",
     "editCampaign": "Campagne bijwerken",
@@ -947,13 +947,13 @@
     "titleOverwriteProductFeed": "Bestaande product feed overschrijven?",
     "textOverwriteProductFeed": "Als u uw bestaande productfeed overschrijft, wordt deze verwijderd. U moet een nieuwe product feed configureren.",
     "titleDisconnectionGoogleAds": "Google Ads account loskoppelen?",
-    "textDisconnectGoogleAds": "Als u de verbinding met uw Google Ads account verbreekt, kunt u geen Smart Shopping-campagnes meer uitvoeren vanuit de module.",
+    "textDisconnectGoogleAds": "Disconnecting from your Google Ads account will remove the ability to run Performance Max campaigns from the module.",
     "pauseCampaigns": "Pauzeer al mijn campagnes",
     "pauseCampaignsExplainations": "Door al uw campagnes te pauzeren, zal de facturatie stoppen. U kunt uw campagnes op elk moment opnieuw starten in uw Google-advertentieaccount.",
     "removeTag": "Verwijder de tag \"Remarketing en conversie\" uit mijn winkel",
     "removeTagExplainations": "Het verwijderen van de tag betekent dat Google niet langer in staat zal zijn om uw campagnes te volgen. Wij raden u aan de tag alleen te verwijderen als u van plan bent de module volledig te verwijderen of uw account te wijzigen. U kunt het altijd zelf toevoegen in de code van uw site.",
     "titleActivateTrackingSSC": "Activeer remarketing en conversie tracking tag.",
-    "textActivateTrackingSSC": "Om Smart Shopping-campagnes te kunnen uitvoeren, moet Google Ads in staat zijn om [remarketinglijst]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] en [conversietracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] op uw site te maken.   \n PrestaShop zal deze code snippets automatisch instellen op uw winkel.",
+    "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
     "textConfirmCancel": "Als u teruggaat zult u uw geselecteerde waarden verliezen",
     "upgradeSCCToPmaxTitle": "Campaign's upgrade coming soon",
     "upgradeSCCToPmaxText": "Smart Shopping campaigns will be upgraded to Performance Max on {0} \n\n What does that mean for you? Two things. Your campaigns will be able to appear in more places across Google. And you'll get the best of Google's automation to help drive the highest conversion and revenue performance possible. ",
@@ -998,7 +998,7 @@
     "MCAConnectedOnceSuccess": "U hebt uw Merchant Center-account aangesloten!",
     "productFeedConfiguredOnceSuccess": "U heeft met succes uw productgegevens ingediend bij Merchant Center. Eenmaal goedgekeurd, zullen ze beschikbaar zijn voor gratis advertenties.",
     "attributesMapppingSuccess": "Uw producteigenschappen zijn succesvol opgeslagen. Bekijk de samenvatting en klik op \"Exporteren\" om ze naar Google te sturen",
-    "campaignCreatedSuccess": "U hebt uw Smart Shopping-campagne met succes aangemaakt!",
+    "campaignCreatedSuccess": "You have created your Performance Max campaign successfully!",
     "phoneNumberVerifiedSuccess": "Uw telefoonnummer is geverifieerd. De Merchant Account wordt aangemaakt"
   },
   "stepper": {
