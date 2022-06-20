@@ -36,12 +36,6 @@
       />
       <hr class="my-4">
       <LandingPageFooter @hideLandingPage="hideLandingPage('footer')" />
-      <!-- <div class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4">
-        <VueShowdown
-          :markdown="$t('landingPage.footer.explanation')"
-          :extensions="['extended-link']"
-        />
-      </div> -->
     </div>
   </b-card>
 </template>
