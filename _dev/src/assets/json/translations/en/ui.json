@@ -409,7 +409,7 @@
     "id": "Google Ads account ID",
     "toUseGAdsNeedsAdminAccess": "To use an existing Google Ads account, you must have Admin access.",
     "alertCantConnect": "Could not connect your Google Ads account, it's on our side, please give it another try.",
-    "alertBillingSettingsMissing": "To launch Smart Shopping campaigns, you need to add your billing settings in your Google Ads account.",
+    "alertBillingSettingsMissing": "To launch Performance Max campaigns, you need to add your billing settings in your Google Ads account.",
     "alertNeedRefreshAfterBilling": "Once filled in your billing info in your Google Ads account, refresh the page to view updates.",
     "alertNeedRefreshAfterInvitationLink": "Once the invitation is accepted in your Google Ads account, refresh the page to view updates.",
     "alertNeedValidationFromEmail": "Please click here or check your emails to validate your account.",
@@ -508,12 +508,12 @@
     "nbDimensionSelected": "No dimension selected | {0} dimension selected | {0} dimensions selected",
     "nbValuesSelected": "No value selected | {0} value selected | {0} values selected",
     "selectProductsTitle": "Choose a product filter",
-    "selectProductsSubtitle": "Smart Shopping Campaign can only have one dimension with one or multiple values.",
+    "selectProductsSubtitle": "The campaign can only have one dimension with one or multiple values.",
     "remarketingNote": "**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.",
     "toggleNewConversionTag": "Set new conversion tracking tags on my site",
     "toggleNewConversionTag2": "We will create the following conversion tags : Page view, Purchase, Add to basket",
     "remarketingTagLoading": "Checking if you have a remarketing and conversion tracking tags to add to your shop",
-    "descriptiveMessage": "Only the smart shopping campaigns associated to your Google Merchant Center account are listed.  \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
+    "descriptiveMessage": "Only the Performance Max campaigns and Smart Shopping campaigns associated to your Google Merchant Center account are listed. \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
     "dimensionXFilterSelected": "{0} filter",
     "categories": "Category",
@@ -659,9 +659,9 @@
     "subtitle5" : "If you update your products"
   },
   "campaignCard": {
-    "title": "Create your Smart Shopping campaign in a few clicks",
+    "title": "Create your Performance Max campaign in a few clicks",
     "description": "Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it's that easy!",
-    "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Smart Shopping campaigns"
+    "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Peformance Max campaigns"
   },
   "keymetrics": {
     "title": "Key metrics",
@@ -763,7 +763,7 @@
     "thirdStep": "Sign in or create your Google Merchant Center account",
     "fourthStep": "Export and synchronize your product catalog",
     "fifthStep": "Sign in or create your Google Ads account",
-    "sixthStep": "**Next step** create your first Smart Shopping Campaign"
+    "sixthStep": "**Next step** create your first Performance Max Campaign"
   },
   "help": {
     "title": "Help for PrestaShop Google",
@@ -861,7 +861,7 @@
     "transferClaim": "Transfer claim",
     "goToYourX": "Go to your {0}",
     "addShippingInfo": "Add shipping info",
-    "createSmartShoppingCampaign": "Create Smart Shopping campaign",
+    "createSmartShoppingCampaign": "Launch Performance Max campaign",
     "addBillingSettings": "Add billing settings",
     "createCampaign": "Create campaign",
     "editCampaign": "Update campaign",
@@ -948,13 +948,13 @@
     "titleOverwriteProductFeed": "Overwrite existing product feed?",
     "textOverwriteProductFeed": "Overwriting your existing product feed will delete it. You will need to configure new product feed.",
     "titleDisconnectionGoogleAds": "Disconnect Google Ads account?",
-    "textDisconnectGoogleAds": "Disconnecting from your Google Ads account will remove the ability to run Smart Shopping campaigns from the module.",
+    "textDisconnectGoogleAds": "Disconnecting from your Google Ads account will remove the ability to run Performance Max campaigns from the module.",
     "pauseCampaigns": "Pause all of my campaigns",
     "pauseCampaignsExplainations": "By pausing all your campaigns, the billing will stop. You can restart your campaigns at any time in your Google ads account.",
     "removeTag": "Remove “Remarketing and conversion” tag from my shop",
     "removeTagExplainations": "Removing the tag means that Google will no longer be able to track your campaigns. We recommend that you only remove the tag if you plan to completely remove the module or change your account. You can always add it yourself in the code of your site.",
     "titleActivateTrackingSSC": "Activate remarketing and conversion tracking tag.",
-    "textActivateTrackingSSC": "In order to run Smart Shopping campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
+    "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
     "textConfirmCancel" : "If you go back you will lose your selected values",
     "upgradeSCCToPmaxTitle": "Campaign's upgrade coming soon",
     "upgradeSCCToPmaxText": "Smart Shopping campaigns will be upgraded to Performance Max on {0} \n\n What does that mean for you? Two things. Your campaigns will be able to appear in more places across Google. And you'll get the best of Google's automation to help drive the highest conversion and revenue performance possible. ",
@@ -1000,7 +1000,7 @@
     "MCAConnectedOnceSuccess" : "You have connected your Merchant Center account!",
     "productFeedConfiguredOnceSuccess" : "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
     "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google",
-    "campaignCreatedSuccess": "You have created your Smart Shopping campaign successfully!",
+    "campaignCreatedSuccess": "You have created your Performance Max campaign successfully!",
     "phoneNumberVerifiedSuccess": "Your phone number has been verified. The Merchant Account is being created"
   },
   "stepper": {
