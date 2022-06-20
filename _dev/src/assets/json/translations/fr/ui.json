@@ -409,7 +409,7 @@
     "id": "ID du compte Google Ads",
     "toUseGAdsNeedsAdminAccess": "Pour utiliser un compte Google Ads existant, vous devez avoir un accès administrateur.",
     "alertCantConnect": "Impossible de connecter votre compte Google Ads, c'est de notre côté, veuillez réessayer.",
-    "alertBillingSettingsMissing": "Pour lancer des campagnes Shopping Intelligentes, vous devez ajouter vos paramètres de facturation dans votre compte Google Ads.",
+    "alertBillingSettingsMissing": "To launch Performance Max campaigns, you need to add your billing settings in your Google Ads account.",
     "alertNeedRefreshAfterBilling": "Une fois que vous avez rempli vos informations de facturation dans votre compte Google Ads, actualisez la page.",
     "alertNeedRefreshAfterInvitationLink": "Une fois l'invitation acceptée dans votre compte Google Ads, actualisez la page.",
     "alertNeedValidationFromEmail": "Veuillez cliquer ici ou vérifier vos emails pour valider votre compte.",
@@ -508,12 +508,12 @@
     "nbDimensionSelected": "Aucune dimension sélectionnée | {0} dimension sélectionnée | {0} dimensions sélectionnées",
     "nbValuesSelected": "Aucune valeur sélectionnée | {0} valeur sélectionnée | {0} valeurs sélectionnées",
     "selectProductsTitle": "Choisissez un filtre de produit",
-    "selectProductsSubtitle": "La campagne d'achats intelligents ne peut avoir qu'une seule dimension avec une ou plusieurs valeurs.",
+    "selectProductsSubtitle": "The campaign can only have one dimension with one or multiple values.",
     "remarketingNote": "**A noter** si vous avez déjà des actions de conversion Google Ads avec des valeurs de conversion spécifiques à une transaction configurées sur votre site pour ce compte Google Ads alors vous n'avez pas besoin de définir de nouvelles balises de conversion sur votre site.",
     "toggleNewConversionTag": "Définir de nouvelles balises de suivi des conversions sur mon site",
     "toggleNewConversionTag2": "Nous allons créer les balises de conversion suivantes : Page vue, Achat, Ajouter au panier",
     "remarketingTagLoading": "Vérifiez si vous avez des balises de remarketing et de suivi des conversions à ajouter à votre boutique",
-    "descriptiveMessage": "Seules les campagnes Shopping Intelligentes associées à votre compte Google Ads sont répertoriées.  \nSi vous voulez voir toutes vos campagnes, [veuillez aller sur votre compte Google Ads]({0})[:target=\"_blank\"].",
+    "descriptiveMessage": "Only the Performance Max campaigns and Smart Shopping campaigns associated to your Google Merchant Center account are listed. \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Aucun filtre sélectionné | {0} filtre sélectionné | {0} filtres sélectionnés",
     "dimensionXFilterSelected": "Filtre {0}",
     "categories": "Сatégorie",
@@ -658,9 +658,9 @@
     "subtitle5": "Si vous mettez à jour vos produits"
   },
   "campaignCard": {
-    "title": "Créez votre campagne Shopping Intelligente en quelques clics",
+    "title": "Create your Performance Max campaign in a few clicks",
     "description": "L'IA de Google affichera les annonces des produits recherchés aux acheteurs intéressés au bon moment, augmentant ainsi vos ventes.\n\nDéfinissez un budget quotidien et lancez facilement votre campagne Shopping - vous n'êtes facturé que lorsque les visiteurs cliquent sur vos annonces, c'est aussi simple que cela !",
-    "footer": "Nous devrons activer les balises de remarketing et de suivi des conversions pour que vous puissiez mener des campagnes Smart Shopping"
+    "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Peformance Max campaigns"
   },
   "keymetrics": {
     "title": "Chiffres clés",
@@ -762,7 +762,7 @@
     "thirdStep": "Connectez-vous ou créez votre compte Google Merchant Center",
     "fourthStep": "Exporter et synchroniser votre catalogue de produits",
     "fifthStep": "Connectez-vous ou créez votre compte Google Ads",
-    "sixthStep": "**Prochaine étape** créez votre première campagne Smart Shopping"
+    "sixthStep": "**Next step** create your first Performance Max Campaign"
   },
   "help": {
     "title": "Aide pour PrestaShop Google",
@@ -860,7 +860,7 @@
     "transferClaim": "Revendiquer",
     "goToYourX": "Allez à votre {0}",
     "addShippingInfo": "Ajouter des informations de livraison",
-    "createSmartShoppingCampaign": "Créer une campagne Shopping Intelligente",
+    "createSmartShoppingCampaign": "Launch Performance Max campaign",
     "addBillingSettings": "Ajoutez des paramètres de facturation",
     "createCampaign": "Créer une campagne",
     "editCampaign": "Mettre à jour la campagne",
@@ -947,13 +947,13 @@
     "titleOverwriteProductFeed": "Écraser le flux de produits existant ?",
     "textOverwriteProductFeed": "Écraser votre flux de produits existant le supprimera. Vous devrez configurer un nouveau flux de produits.",
     "titleDisconnectionGoogleAds": "Déconnecter le compte Google Ads ?",
-    "textDisconnectGoogleAds": "La déconnexion de votre compte Google Ads supprimera la possibilité d'exécuter des campagnes Shopping Intelligentes à partir du module.",
+    "textDisconnectGoogleAds": "Disconnecting from your Google Ads account will remove the ability to run Performance Max campaigns from the module.",
     "pauseCampaigns": "Mettre en pause toutes mes campagnes",
     "pauseCampaignsExplainations": "En mettant en pause toutes vos campagnes, la facturation s'arrêtera. Vous pouvez redémarrer vos campagnes à tout moment dans votre compte Google ads.",
     "removeTag": "Supprimer la balise \"Remarketing et conversion\" de ma boutique",
     "removeTagExplainations": "La suppression de la balise signifie que Google ne sera plus en mesure de suivre vos campagnes. Nous vous recommandons de ne supprimer la balise que si vous envisagez de supprimer complètement le module ou de modifier votre compte. Vous pouvez toujours l'ajouter vous-même dans le code de votre site.",
     "titleActivateTrackingSSC": "Activez la balise de remarketing et de suivi des conversions",
-    "textActivateTrackingSSC": "Afin de lancer des campagnes Smart Shopping, Google Ads doit pouvoir créer une [liste remarketing]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] et [balise de suivi de conversion]({1})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] sur votre site.   \nPrestaShop va automatiquement définir ces extraits de code dans votre boutique.",
+    "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
     "textConfirmCancel": "Si vous revenez en arrière, vous perdrez les valeurs sélectionnées.",
     "upgradeSCCToPmaxTitle": "Nouvelle campagne bientôt disponible",
     "upgradeSCCToPmaxText": "Les campagnes shoppng intelligentes vont évoluer vers Performance Max le {0}\n\n Qu'est ce que cela signifie ? 2 choses. Vos campagnes pourront désomais apparaitre sur l'ensemble des canaux Google. Vous bénéficierez du meilleur de l'automatisation de Google pour vous aider à obtenir les meilleures performances possibles en matière de conversion et de revenus. ",
@@ -998,7 +998,7 @@
     "MCAConnectedOnceSuccess": "Vous avez connecté votre compte Google Merchant Center",
     "productFeedConfiguredOnceSuccess": "Vous avez soumis avec succès vos produits au Merchant Center. Une fois approuvés, ils seront disponibles pour les fiches gratuites et annonces.",
     "attributesMapppingSuccess": "Les attributs produit ont été enregistrés avec succès. Vérifiez le récapitulatif puis cliquez sur \"Exporter\" pour les soumettre à Google.",
-    "campaignCreatedSuccess": "Vous avez créé votre campagne Shopping Intelligente avec succès !",
+    "campaignCreatedSuccess": "You have created your Performance Max campaign successfully!",
     "phoneNumberVerifiedSuccess": "Votre numéro de téléphone a été vérifié. Le compte marchand est en cours de création"
   },
   "stepper": {
