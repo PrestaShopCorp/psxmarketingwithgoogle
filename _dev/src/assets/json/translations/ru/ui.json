@@ -409,7 +409,7 @@
     "id": "Идентификатор аккаунта Google AdsID",
     "toUseGAdsNeedsAdminAccess": "Чтобы использовать существующий аккаунт Google Ads, вы должны иметь доступ администратора.",
     "alertCantConnect": "Не удалось подключить ваш аккаунт Google Ads, это на нашей стороне, пожалуйста, попробуйте еще раз.",
-    "alertBillingSettingsMissing": "Для запуска кампаний Smart Shopping необходимо добавить настройки биллинга в аккаунте Google Ads.",
+    "alertBillingSettingsMissing": "To launch Performance Max campaigns, you need to add your billing settings in your Google Ads account.",
     "alertNeedRefreshAfterBilling": "После заполнения информации для выставления счетов в аккаунте Google Ads обновите страницу для просмотра обновлений.",
     "alertNeedRefreshAfterInvitationLink": "Как только приглашение будет принято в вашем аккаунте Google Ads, обновите страницу для просмотра обновлений.",
     "alertNeedValidationFromEmail": "Пожалуйста, нажмите здесь или проверьте свою электронную почту, чтобы подтвердить учетную запись.",
@@ -508,12 +508,12 @@
     "nbDimensionSelected": "Размеры не выбраны | {0} размеры выбраны | {0} размеры выбраны",
     "nbValuesSelected": "Значение не выбрано | {0} значение выбрано | {0} значения выбраны",
     "selectProductsTitle": "Выберите фильтр продуктов",
-    "selectProductsSubtitle": "Smart Shopping Campaign может иметь только одно измерение с одним или несколькими значениями.",
+    "selectProductsSubtitle": "The campaign can only have one dimension with one or multiple values.",
     "remarketingNote": "**Примечание:** если на вашем сайте уже настроены действия по конверсии Google Ads со значениями конверсии для конкретной сделки для данного аккаунта Google Ads, то вам не нужно устанавливать новые теги конверсии на вашем сайте.",
     "toggleNewConversionTag": "Установите новые теги отслеживания конверсии на моем сайте",
     "toggleNewConversionTag2": "Мы создадим следующие теги преобразования: Просмотр страницы, Покупка, Добавить в корзину",
     "remarketingTagLoading": "Проверка наличия тегов ремаркетинга и отслеживания конверсии для добавления в ваш магазин",
-    "descriptiveMessage": "В списке отображаются только кампании умных покупок, связанные с вашим аккаунтом Google Merchant Center.  \nЕсли вы хотите увидеть все свои кампании, [перейдите в свой аккаунт Google Ads]({0})[:target=\"_blank\"].",
+    "descriptiveMessage": "Only the Performance Max campaigns and Smart Shopping campaigns associated to your Google Merchant Center account are listed. \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Фильтр продуктов не выбран | {0} фильтр продуктов выбран | {0} фильтры продуктов выбраны",
     "dimensionXFilterSelected": "{0} filter",
     "categories": "Категория",
@@ -658,9 +658,9 @@
     "subtitle5": "Если вы обновляете свои продукты"
   },
   "campaignCard": {
-    "title": "Создайте свою кампанию Smart Shopping в несколько кликов",
+    "title": "Create your Performance Max campaign in a few clicks",
     "description": "Google A.I. будет показывать рекламу искомых товаров заинтересованным покупателям в нужное время, увеличивая ваши продажи.\n\nУстановите дневной бюджет и легко запустите свою рекламную кампанию - вы получите счет только тогда, когда на объявления нажмут, это так просто!",
-    "footer": "Нам нужно будет активировать тег ремаркетинга и отслеживания конверсий, чтобы вы могли проводить кампании Smart Shopping"
+    "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Peformance Max campaigns"
   },
   "keymetrics": {
     "title": "Ключевые показатели",
@@ -762,7 +762,7 @@
     "thirdStep": "Sign in or create your Google Merchant Center account",
     "fourthStep": "Export and synchronize your product catalog",
     "fifthStep": "Sign in or create your Google Ads account",
-    "sixthStep": "**Next step** create your first Smart Shopping Campaign"
+    "sixthStep": "**Next step** create your first Performance Max Campaign"
   },
   "help": {
     "title": "Помощь для PrestaShop Google",
@@ -860,7 +860,7 @@
     "transferClaim": "Требование о передаче",
     "goToYourX": "Перейдите к своему {0}",
     "addShippingInfo": "Добавить информацию о доставке",
-    "createSmartShoppingCampaign": "Создайте кампанию \"Умные покупки",
+    "createSmartShoppingCampaign": "Launch Performance Max campaign",
     "addBillingSettings": "Добавить настройки выставления счетов",
     "createCampaign": "Создать кампанию",
     "editCampaign": "Обновление кампании",
@@ -947,13 +947,13 @@
     "titleOverwriteProductFeed": "Переписать существующую ленту продуктов?",
     "textOverwriteProductFeed": "Перезапись существующей ленты товаров приведет к ее удалению. Вам необходимо настроить новую ленту продуктов.",
     "titleDisconnectionGoogleAds": "Отключить аккаунт Google Ads?",
-    "textDisconnectGoogleAds": "Отключение от аккаунта Google Ads лишит модуль возможности запускать кампании Умных покупок\".",
+    "textDisconnectGoogleAds": "Disconnecting from your Google Ads account will remove the ability to run Performance Max campaigns from the module.",
     "pauseCampaigns": "Приостановить все мои кампании",
     "pauseCampaignsExplainations": "Если приостановить все кампании, выставление счетов прекратится. Вы можете перезапустить свои кампании в любое время в своем аккаунте Google ads.",
     "removeTag": "Удалите тег \"Ремаркетинг и конверсия\" из моего магазина",
     "removeTagExplainations": "Удаление тега означает, что Google больше не сможет отслеживать ваши кампании. Мы рекомендуем удалять тег только в том случае, если вы планируете полностью удалить модуль или изменить учетную запись. Вы всегда можете добавить его самостоятельно в код вашего сайта.",
     "titleActivateTrackingSSC": "Активируйте тег ремаркетинга и отслеживания конверсий.",
-    "textActivateTrackingSSC": "Для проведения кампаний \"умных покупок\" Google Ads должен иметь возможность создать [список ремаркетинга]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] и [тег отслеживания конверсий]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] на вашем сайте.   \n PrestaShop автоматически установит эти фрагменты кода в вашем магазине.",
+    "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
     "textConfirmCancel": "Если вы вернетесь назад, то потеряете выбранные значения.",
     "upgradeSCCToPmaxTitle": "Campaign's upgrade coming soon",
     "upgradeSCCToPmaxText": "Smart Shopping campaigns will be upgraded to Performance Max on {0} \n\n What does that mean for you? Two things. Your campaigns will be able to appear in more places across Google. And you'll get the best of Google's automation to help drive the highest conversion and revenue performance possible. ",
@@ -998,7 +998,7 @@
     "MCAConnectedOnceSuccess": "Вы подключили свою учетную запись Merchant Center!",
     "productFeedConfiguredOnceSuccess": "Вы успешно отправили данные о своем продукте в Merchant Center. После утверждения они будут доступны для бесплатных объявлений и листингов.",
     "attributesMapppingSuccess": "Атрибуты вашего продукта успешно сохранены. Просмотрите резюме, затем нажмите \"Экспорт\", чтобы отправить их в Google",
-    "campaignCreatedSuccess": "Вы успешно создали кампанию Smart Shopping!",
+    "campaignCreatedSuccess": "You have created your Performance Max campaign successfully!",
     "phoneNumberVerifiedSuccess": "Ваш номер телефона был проверен. Создается торговый счет"
   },
   "stepper": {
