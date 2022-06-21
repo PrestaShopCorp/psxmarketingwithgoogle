@@ -27,6 +27,18 @@ a[target="_blank"]:not(.external_link-no_icon) {
   }
 }
 
+#helper-pmax {
+  bottom: 0;
+  z-index: 10000;
+  max-width: none;
+  position: fixed;
+  min-width: 100%;
+  background: #E3EAFD;
+  .msg-icon-custom {
+    color: #174EEF;
+  }
+}
+
 .text-muted a[target="_blank"]:not(.external_link-no_icon),
 a[target="_blank"].text-muted:not(.external_link-no_icon) {
   color: $grey_muted !important;

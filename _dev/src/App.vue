@@ -1,3 +1,32 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+
+@PoulainMaxime
+PrestaShopCorp
+/
+psxmarketingwithgoogle
+Public
+Code
+Pull requests
+5
+Actions
+Security
+30
+Insights
+We found potential security vulnerabilities in your dependencies.
+psxmarketingwithgoogle/_dev/src/App.vue
+@elisegriset92
+elisegriset92 add footer when landing page
+Latest commit ed77393 22 hours ago
+ History
+ 6 contributors
+@elisegriset92@fox-john@amaury-hanser@m-Poulain@Quetzacoalt91@PoulainMaxime
+168 lines (164 sloc)  4.68 KB
+
 <template>
   <div id="psxMktgWithGoogleApp">
     <template v-if="adBlockerExist">
@@ -63,12 +92,36 @@
       />
       <router-view />
       <div
+        class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4"
+        v-if="$route.name === 'landing-page'"
+      >
+        <VueShowdown
+          :markdown="$t('landingPage.footer.explanation')"
+          :extensions="['extended-link']"
+        />
+      </div>
+      <div
         v-if="shopId"
         id="helper-shopid"
       >
         {{ shopId }}
       </div>
     </template>
+    <div
+      id="helper-pmax"
+      class="p-3 d-flex"
+    >
+      <span class="material-icons d-inline-block align-middle mr-3 msg-icon-custom">
+        chat
+      </span>
+      <VueShowdown
+        :markdown="$t('modal.textPmaxReleased', [
+          new Date('2022-06-30').toLocaleDateString(),
+          this.$options.googleUrl.pmaxReleaseLink
+        ])"
+        :extensions="['extended-link', 'no-p-tag']"
+      />
+    </div>
   </div>
 </template>
 
@@ -77,6 +130,7 @@ import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleUpdate from '@/components/commons/alert-update-module';
+import googleUrl from '@/assets/json/googleUrl.json';
 
 let resizeEventTimer;
 const root = document.documentElement;
@@ -138,5 +192,6 @@ export default {
       this.$root.identifySegment();
     },
   },
+  googleUrl,
 };
 </script>
