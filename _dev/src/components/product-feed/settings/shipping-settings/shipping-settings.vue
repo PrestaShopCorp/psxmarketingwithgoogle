@@ -196,14 +196,8 @@ export default {
     disableContinue() {
       const enabledCarriers = this.carriers.filter(
         (carrier) => carrier.enabledCarrier);
-      const enabledCarriersCompleted = [];
-      this.carriers.filter(
-        (carrier) => {
-          if (validateDeliveryDetail(carrier)) {
-            enabledCarriersCompleted.push(carrier);
-          }
-          return enabledCarriersCompleted;
-        });
+      const enabledCarriersCompleted = this.carriers.filter(validateDeliveryDetail);
+
       if (enabledCarriersCompleted.length === enabledCarriers.length
       && enabledCarriersCompleted.length > 0) {
         return false;

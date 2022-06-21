@@ -24,7 +24,7 @@
         :need-filter="true"
         :not-full-width="false"
         :loader="loadingCountries"
-        :type="'targetCountries'"
+        type="targetCountries"
       />
       <div
         class="text-primary"
@@ -250,6 +250,9 @@ export default {
   },
   mounted() {
     this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
+      this.loadingCountries = false;
+    }).catch((error) => {
+      console.error(error);
       this.loadingCountries = false;
     });
   },
