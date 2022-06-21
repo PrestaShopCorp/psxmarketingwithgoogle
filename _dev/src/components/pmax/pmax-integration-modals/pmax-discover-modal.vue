@@ -115,7 +115,7 @@ export default {
     },
     displayImage(type) {
       const lang = this.$i18n.locale.toUpperCase();
-      const availableLanguages = ['EN', 'FR', 'DE', 'ES', 'IT', 'NL', 'PT'];
+      const availableLanguages = ['EN', 'FR', 'ES', 'IT', 'PT'];
 
       if (availableLanguages.includes(lang)) {
         return `pmax-modal-${type}-${lang}.png`;
