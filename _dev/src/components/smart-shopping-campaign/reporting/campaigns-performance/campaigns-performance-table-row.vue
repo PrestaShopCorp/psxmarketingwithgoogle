@@ -1,7 +1,8 @@
 <template>
   <b-tr>
     <b-td
-      class="b-table-sticky-column text-primary"
+      class="b-table-sticky-column text-primary
+       d-flex justify-content-between align-items-baseline"
     >
       <b-button
         v-if="campaign.id"
@@ -17,6 +18,12 @@
       >
         {{ campaign.name }}
       </div>
+      <b-badge
+        variant="type"
+        class="ps_gs-fz-12 m-1"
+      >
+        {{ campaignType(campaign) }}
+      </b-badge>
     </b-td>
     <b-td
       class="ps_gs-fz-12 ps_gs-cell-status"
@@ -46,6 +53,8 @@
 </template>
 
 <script>
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+
 export default {
   name: 'CampaignsPerformanceTableRow',
   props: {
@@ -67,6 +76,12 @@ export default {
           id: this.campaign.id,
         },
       });
+    },
+    campaignType(campaign) {
+      if (campaign.type === CampaignTypes.SMART_SHOPPING) {
+        return 'SSC';
+      }
+      return 'PMax';
     },
   },
 };

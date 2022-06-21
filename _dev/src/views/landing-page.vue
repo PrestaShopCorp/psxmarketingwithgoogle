@@ -1,6 +1,9 @@
 <template>
   <div>
-    <b-card no-body class="mb-4">
+    <b-card
+      no-body
+      class="mb-4"
+    >
       <div class="ps_gs-landingpage">
         <LandingPageHeader @hideLandingPage="hideLandingPage('header')" />
         <hr class="my-4">
