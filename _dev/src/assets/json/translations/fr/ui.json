@@ -31,7 +31,7 @@
   "landingPage": {
     "header": {
       "title": "Marketing avec Google",
-      "text": "Vos acheteurs potentiels sont déjà en ligne à la recherche de produits tels que ceux que vous proposez. Touchez-les sur Google avec PrestaShop Marketing en quelques étapes faciles.",
+      "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 3 easy steps.",
       "reinsurance": "- Configuration facile \n- Annulez à tout moment"
     },
     "content": {
@@ -45,12 +45,13 @@
         "footer": "Créez un nouveau compte [Merchant Center]({0})[:target=\"_blank\"] ou liez un compte existant.  \nPour afficher vos produits sur Google, vous devrez répondre aux [exigences d'éligibilité]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Créez et gérez vos campagnes Shopping intelligentes",
-        "text": "Les campagnes Shopping intelligentes sont des annonces Google qui utilisent la technologie intelligente de Google pour les enchères et le placement des annonces afin de maximiser la valeur de conversion et d'afficher stratégiquement vos annonces auprès des personnes qui recherchent des produits comme les vôtres.  \n \nDéfinissez un budget quotidien et laissez la technologie intelligente de Google optimiser vos campagnes sur différents réseaux tels que Google Search, YouTube ou Gmail. Vous ne payez que lorsque les gens cliquent."
+        "title": "Boost your reach and sales with Performance Max",
+        "text": "Want to maximize your campaign performance and find the right customers wherever they are? From one single campaign, Performance Max gathers insights across different Google channels, and optimises your campaign performance by showing where your ads have higher chances of driving conversion."
       }
     },
     "footer": {
-      "text": "Améliorez la visibilité de vos produits sur Google avec PS Marketing with Google"
+      "text": "Améliorez la visibilité de vos produits sur Google avec PS Marketing with Google",
+      "explanation": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
     }
   },
   "onboarding": {
@@ -447,7 +448,8 @@
   },
   "smartShoppingCampaignCard": {
     "title": "Boost your sales with Performance Max Campaigns",
-    "intro": "Launch a Performance Max campaign for your products and reach more customers across all Google channels - including YouTube, Maps, Search, Gmail, Display, Discover and the web through one single campaign. Even better, you don’t pay unless your customers click!",
+    "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
+    "introConnected": "With Performance Max, you can advertise your products and maximize your ads performance across multiple Google channels through one single campaign. Even better, you don’t pay unless your customers click!",
     "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to.",
     "titleInfo": "Did you know?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
@@ -1044,7 +1046,7 @@
     "legend": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser. [Lire les conditions d'utilisation]({0})[:target=\\\"_blank\\\"]",
     "legendWithoutTC": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser.",
     "ctaCreateFirstCampaign": "Créer votre première campagne",
-    "titleCampaignsBanner": "Launch a Performance Max campaign and reach a wider audience",
+    "titleCampaignsBanner": "From June 30th, you can create Performance Max campaigns for your store",
     "textCampaignsBanner": "With Performance Max campaigns, you can advertise your products and reach more customers across all Google channels, including YouTube, Maps, Search, Gmail, Display, Discover, and the web - all through one single campaign."
   }
 }
