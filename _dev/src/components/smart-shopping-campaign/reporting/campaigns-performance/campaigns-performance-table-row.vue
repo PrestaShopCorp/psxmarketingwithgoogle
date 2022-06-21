@@ -78,7 +78,6 @@ export default {
       });
     },
     campaignType(campaign) {
-      console.log(campaign);
       if (campaign.type === CampaignTypes.SMART_SHOPPING) {
         return 'SSC';
       }
