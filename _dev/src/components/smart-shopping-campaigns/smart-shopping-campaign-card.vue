@@ -35,10 +35,11 @@
           </div>
         </div>
 
-        <div class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3">
+        <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
           <VueShowdown
             tag="p"
-            :markdown="$t('smartShoppingCampaignCard.intro')"
+            :markdown="isEnabled ? $t('smartShoppingCampaignCard.introConnected')
+              : $t('smartShoppingCampaignCard.introNotConnected')"
             :class="isEnabled ? 'mb-0' : 'mb-1'"
             :extensions="['no-p-tag']"
           />
@@ -105,23 +106,6 @@
           v-if="!isEnabled"
           :badges="['googleAdsAccount']"
         />
-        <div
-          v-if="isEnabled"
-          class="blue-background mt-2"
-        >
-          <div class="d-flex flex-row justify-content-start align-items-flex-start">
-            <i class="material-icons text-primary ps_gs-fz-20 mr-1">book</i>
-            <h2 class="font-weight-600 ">
-              {{ $t('smartShoppingCampaignCard.titleInfo') }}
-            </h2>
-          </div>
-          <p class="ps_gs-fz-14 ">
-            {{ $t('smartShoppingCampaignCard.contentInfo') }}
-          </p>
-          <p class="ps_gs-fz-12 text-muted">
-            {{ $t('smartShoppingCampaignCard.footerInfo') }}
-          </p>
-        </div>
         <VueShowdown
           tag="p"
           :markdown="$t('smartShoppingCampaignCard.footer')"
@@ -239,14 +223,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.blue-background {
-  border: none;
-  background-color: #F7F9FF;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  padding:  0.75rem;
-  padding-top:  1.75rem
-}
-</style>
