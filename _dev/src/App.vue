@@ -1,32 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
-
-@PoulainMaxime
-PrestaShopCorp
-/
-psxmarketingwithgoogle
-Public
-Code
-Pull requests
-5
-Actions
-Security
-30
-Insights
-We found potential security vulnerabilities in your dependencies.
-psxmarketingwithgoogle/_dev/src/App.vue
-@elisegriset92
-elisegriset92 add footer when landing page
-Latest commit ed77393 22 hours ago
- History
- 6 contributors
-@elisegriset92@fox-john@amaury-hanser@m-Poulain@Quetzacoalt91@PoulainMaxime
-168 lines (164 sloc)  4.68 KB
-
 <template>
   <div id="psxMktgWithGoogleApp">
     <template v-if="adBlockerExist">
