@@ -63,6 +63,15 @@
       />
       <router-view />
       <div
+        class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4"
+        v-if="$route.name === 'landing-page'"
+      >
+        <VueShowdown
+          :markdown="$t('landingPage.footer.explanation')"
+          :extensions="['extended-link']"
+        />
+      </div>
+      <div
         v-if="shopId"
         id="helper-shopid"
       >
