@@ -184,6 +184,12 @@ export default {
           this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
         });
     },
+    async fetchMerchantCampaign() {
+      // it's use just for the enum COMING_SOON we can delete it for PMAX_RELEASED
+      if (this.merchantHasAlreadySeenPmaxPopin) {
+        await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+      }
+    },
     checkAndOpenPopinConfigrationDone() {
       if (this.billingSettingsCompleted) {
         this.$bvModal.show(
@@ -308,12 +314,7 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
     merchantHasAlreadySeenPmaxPopin() {
-      const merchantSeeModal = getDataFromLocalStorage(`modalPmax-${PmaxModalType.COMING_SOON}`);
-
-      if (!merchantSeeModal) {
-        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
-      }
-      return merchantSeeModal;
+      return getDataFromLocalStorage(`modalPmax-${PmaxModalType.COMING_SOON}`);
     },
     toastIsVisible() {
       return this.googleAccountConnectedOnce
@@ -362,6 +363,7 @@ export default {
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty
+    this.fetchMerchantCampaign();
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
       this.googleIsLoading = true;
       this.MCAIsLoading = true;
