@@ -308,12 +308,12 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
     merchantHasAlreadySeenPmaxPopin() {
-      const merchandSeeModal = getDataFromLocalStorage(`modalPmax-${PmaxModalType.COMING_SOON}`);
+      const merchantSeeModal = getDataFromLocalStorage(`modalPmax-${PmaxModalType.COMING_SOON}`);
 
-      if (!merchandSeeModal) {
+      if (!merchantSeeModal) {
         this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
       }
-      return merchandSeeModal;
+      return merchantSeeModal;
     },
     toastIsVisible() {
       return this.googleAccountConnectedOnce
