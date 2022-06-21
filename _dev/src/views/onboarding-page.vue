@@ -186,7 +186,7 @@ export default {
     },
     async fetchMerchantCampaign() {
       // it's use just for the enum COMING_SOON we can delete it for PMAX_RELEASED
-      if (this.merchantHasAlreadySeenPmaxPopin) {
+      if (!this.merchantHasAlreadySeenPmaxPopin) {
         await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
       }
     },
