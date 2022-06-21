@@ -103,6 +103,11 @@
       ref="PopinModuleConfigured"
       @openPopinRemarketingTag="onOpenPopinActivateTracking"
     />
+    <PmaxDiscoverModal
+      :visible="!merchantHasAlreadySeenPmaxPopin"
+      :type="PmaxModalType.COMING_SOON"
+      ref="PmaxDiscoverModal"
+    />
     <!-- Toasts -->
     <PsToast
       v-if="toastIsVisible"
@@ -132,9 +137,12 @@ import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/go
 import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
 import SmartShoppingCampaignCard from '../components/smart-shopping-campaigns/smart-shopping-campaign-card.vue';
 import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
+import PmaxDiscoverModal from '../components/pmax/pmax-integration-modals/pmax-discover-modal.vue';
 import PsToast from '../components/commons/ps-toast';
 import PopinModuleConfigured from '../components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import PmaxModalType from '../enums/pmax/pmax-modal';
 
 export default {
   name: 'OnboardingPage',
@@ -156,6 +164,7 @@ export default {
     FreeListingPopinDisable,
     SSCPopinActivateTracking,
     PopinModuleConfigured,
+    PmaxDiscoverModal,
   },
   data() {
     return {
@@ -167,6 +176,7 @@ export default {
       freeListingIsLoading: false,
       SSCIsLoading: false,
       phoneNumberVerified: false,
+      PmaxModalType,
     };
   },
   methods: {
@@ -183,6 +193,12 @@ export default {
           this.isMcaLinking = false;
           this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
         });
+    },
+    async fetchMerchantCampaign() {
+      // it's use just for the enum COMING_SOON we can delete it for PMAX_RELEASED
+      if (!this.merchantHasAlreadySeenPmaxPopin) {
+        await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+      }
     },
     checkAndOpenPopinConfigrationDone() {
       if (this.billingSettingsCompleted) {
@@ -307,6 +323,9 @@ export default {
     billingSettingsCompleted() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
+    merchantHasAlreadySeenPmaxPopin() {
+      return getDataFromLocalStorage(`modalPmax-${PmaxModalType.COMING_SOON}`);
+    },
     toastIsVisible() {
       return this.googleAccountConnectedOnce
         || this.merchantCenterAccountConnectedOnce
@@ -372,6 +391,7 @@ export default {
     if (this.productFeedIsConfigured) {
       this.triggerLoadOfGoogleAdsAccount();
     }
+    this.fetchMerchantCampaign();
   },
   beforeDestroy() {
     this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
