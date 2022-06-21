@@ -409,7 +409,7 @@
     "id": "ID de la cuenta de Google Ads",
     "toUseGAdsNeedsAdminAccess": "Para utilizar una cuenta de Google Ads existente, debe tener acceso de administrador.",
     "alertCantConnect": "No se ha podido conectar tu cuenta de Google Ads, es por nuestra parte, por favor, inténtalo de nuevo.",
-    "alertBillingSettingsMissing": "Para poner en marcha las campañas de Smart Shopping, debe añadir la configuración de facturación en su cuenta de Google Ads.",
+    "alertBillingSettingsMissing": "To launch Performance Max campaigns, you need to add your billing settings in your Google Ads account.",
     "alertNeedRefreshAfterBilling": "Una vez completada la información de facturación en su cuenta de Google Ads, actualice la página para ver las actualizaciones.",
     "alertNeedRefreshAfterInvitationLink": "Una vez aceptada la invitación en su cuenta de Google Ads, actualice la página para ver las actualizaciones.",
     "alertNeedValidationFromEmail": "Por favor, haz clic aquí o comprueba tus correos electrónicos para validar tu cuenta.",
@@ -508,12 +508,12 @@
     "nbDimensionSelected": "Ninguna dimensión seleccionada | {0} dimensión seleccionada | {0} dimensiones seleccionadas",
     "nbValuesSelected": "Ningún valor seleccionado | {0} valor seleccionado | {0} valores seleccionados",
     "selectProductsTitle": "Elija un filtro de productos",
-    "selectProductsSubtitle": "La campaña de compras inteligente sólo puede tener una dimensión con uno o varios valores.",
+    "selectProductsSubtitle": "The campaign can only have one dimension with one or multiple values.",
     "remarketingNote": "**Tenga en cuenta que si ya tiene configuradas en su sitio acciones de conversión de Google Ads con valores de conversión específicos de la transacción para esta cuenta de Google Ads, no es necesario que configure nuevas etiquetas de conversión en su sitio.",
     "toggleNewConversionTag": "Establecer nuevas etiquetas de seguimiento de la conversión en mi sitio",
     "toggleNewConversionTag2": "Crearemos las siguientes etiquetas de conversión : Vista de página, Compra, Añadir a la cesta",
     "remarketingTagLoading": "Comprobando si tiene etiquetas de remarketing y seguimiento de conversiones para añadir a tu tienda",
-    "descriptiveMessage": "Sólo aparecen las campañas de compras inteligentes asociadas a tu cuenta de Google Merchant Center.  \nSi quiere ver todas sus campañas, [por favor, vaya a su cuenta de Google Ads]({0})[:target=\"_blank\"].",
+    "descriptiveMessage": "Only the Performance Max campaigns and Smart Shopping campaigns associated to your Google Merchant Center account are listed. \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Ningún filtro de producto seleccionado | {0} filtro de producto seleccionado | {0} filtros de producto seleccionados",
     "dimensionXFilterSelected": "{0} filter",
     "categories": "Categoría",
@@ -658,9 +658,9 @@
     "subtitle5": "Si actualiza sus productos"
   },
   "campaignCard": {
-    "title": "Crea tu campaña de Smart Shopping en unos pocos clics",
+    "title": "Create your Performance Max campaign in a few clicks",
     "description": "Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it\\'s that easy!",
-    "footer": "Tendremos que activar las etiquetas de remarketing y de seguimiento de conversiones para que puedas realizar campañas de Smart Shopping"
+    "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Peformance Max campaigns"
   },
   "keymetrics": {
     "title": "Métricas clave",
@@ -762,7 +762,7 @@
     "thirdStep": "Sign in or create your Google Merchant Center account",
     "fourthStep": "Export and synchronize your product catalog",
     "fifthStep": "Sign in or create your Google Ads account",
-    "sixthStep": "**Next step** create your first Smart Shopping Campaign"
+    "sixthStep": "**Next step** create your first Performance Max Campaign"
   },
   "help": {
     "title": "Ayuda para PrestaShop Google",
@@ -860,7 +860,7 @@
     "transferClaim": "Solicitud de transferencia",
     "goToYourX": "Ve a tu {0}",
     "addShippingInfo": "Añadir información de envío",
-    "createSmartShoppingCampaign": "Crear una campaña de compra inteligente",
+    "createSmartShoppingCampaign": "Launch Performance Max campaign",
     "addBillingSettings": "Añadir parámetros de facturación",
     "createCampaign": "Crear campaña",
     "editCampaign": "Campaña de actualización",
@@ -947,13 +947,13 @@
     "titleOverwriteProductFeed": "¿Sobrescribir el feed de productos existente?",
     "textOverwriteProductFeed": "Al sobrescribir el feed de productos existente, este quedará eliminado. Deberás configurar un nuevo feed de productos.",
     "titleDisconnectionGoogleAds": "¿Desconectar la cuenta de Google Ads?",
-    "textDisconnectGoogleAds": "La desconexión de tu cuenta de Google Ads eliminará la posibilidad de ejecutar campañas de Smart Shopping desde el módulo.",
+    "textDisconnectGoogleAds": "Disconnecting from your Google Ads account will remove the ability to run Performance Max campaigns from the module.",
     "pauseCampaigns": "Poner en pausa todas mis campañas",
     "pauseCampaignsExplainations": "Al pausar todas sus campañas, la facturación se detendrá. Puedes reiniciar tus campañas en cualquier momento en tu cuenta de anuncios de Google.",
     "removeTag": "Eliminar la etiqueta &quot;Remarketing y conversión&quot; de mi tienda",
     "removeTagExplainations": "La eliminación de la etiqueta significa que Google ya no podrá realizar el seguimiento de tus campañas. Te recomendamos eliminar la etiqueta solamente si piensas eliminar completamente el módulo o cambiar tu cuenta. Siempre puedes añadirla tú mismo en el código de tu sitio.",
     "titleActivateTrackingSSC": "Habilitar la etiqueta de remarketing y seguimiento de la conversión",
-    "textActivateTrackingSSC": "Para ejecutar campañas de Smart Shopping, Google Ads necesita poder crear [lista de remarketing]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] y [etiqueta de seguimiento de conversiones]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] en su sitio.   \n PrestaShop establecerá automáticamente estos fragmentos de código en su tienda.",
+    "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
     "textConfirmCancel": "Si vuelves atrás perderás los valores seleccionados",
     "upgradeSCCToPmaxTitle": "Actualización de la Campaña próximamente",
     "upgradeSCCToPmaxText": "Las campañas de Smart Shopping se actualizarán a máximo rendimiento en {0} \n\n¿Qué significa esto para usted? Dos cosas. Sus campañas podrán aparecer en más lugares de Google. Y obtendrá lo mejor de la automatización de Google para ayudar a impulsar el mayor rendimiento de conversión e ingresos posible. ",
@@ -998,7 +998,7 @@
     "MCAConnectedOnceSuccess": "¡Has conectado tu cuenta Merchant Center!",
     "productFeedConfiguredOnceSuccess": "Ha enviado correctamente los datos de sus productos a Merchant Center. Una vez aprobados, estarán disponibles para listados y anuncios gratuitos.",
     "attributesMapppingSuccess": "Sus atributos de producto se han guardado correctamente. Revise el resumen y haga clic en \"Exportar\" para enviarlo a Google",
-    "campaignCreatedSuccess": "¡Has creado tu campaña de Smart Shopping con éxito!",
+    "campaignCreatedSuccess": "You have created your Performance Max campaign successfully!",
     "phoneNumberVerifiedSuccess": "Su número de teléfono ha sido verificado. Se está creando la cuenta comercial"
   },
   "stepper": {
