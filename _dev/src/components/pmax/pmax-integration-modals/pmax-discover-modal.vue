@@ -30,8 +30,11 @@
       </div>
     </div>
 
-    <div class="text-muted" v-if="PmaxModalType.COMING_SOON">
-      {{ $t('smartShoppingCampaignCard.footer')}}
+    <div
+      class="text-muted"
+      v-if="PmaxModalType.COMING_SOON"
+    >
+      {{ $t('smartShoppingCampaignCard.footer') }}
     </div>
 
     <template slot="modal-cancel">
