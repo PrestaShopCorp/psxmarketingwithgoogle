@@ -28,7 +28,7 @@
                     [typeChosen === this.$options.CampaignTypes.PERFORMANCE_MAX ?
                       $t('smartShoppingCampaignList.performanceMax')
                       : $t('smartShoppingCampaignList.smartShoppingCampaign')])"
-          class="mt-1 mb-2 mt-md-0 ps-dropdown bg-transparent
+          class="mt-1 mb-2 mt-md-0 bg-transparent
           psxmarketingwithgoogle-dropdown"
         >
           <b-dropdown-form>
