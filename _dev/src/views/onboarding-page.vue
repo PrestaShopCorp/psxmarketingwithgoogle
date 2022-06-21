@@ -363,8 +363,8 @@ export default {
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty
-    this.fetchMerchantCampaign();
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
+      this.fetchMerchantCampaign();
       this.googleIsLoading = true;
       this.MCAIsLoading = true;
       this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').then(() => {
