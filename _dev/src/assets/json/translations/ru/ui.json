@@ -31,7 +31,7 @@
   "landingPage": {
     "header": {
       "title": "Маркетинг с помощью Google",
-      "text": "Показывайте свои товары в Google и привлекайте миллионы покупателей, которые активно ищут то, что вы предлагаете в сети Google.",
+      "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 3 easy steps.",
       "reinsurance": "- Простая настройка \n- Отмена в любое время"
     },
     "content": {
@@ -45,12 +45,13 @@
         "footer": "Создайте новый аккаунт [Merchant Center]({0})[:target=\"_blank\"] или привяжите существующий.  \nДля показа ваших товаров в Google вам необходимо соответствовать [требованиям приемлемости]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Создание и управление кампаниями Smart Shopping",
-        "text": "Кампании Smart Shopping - это рекламные объявления, в которых используется интеллектуальная технология Google для выставления ставок и размещения объявлений с целью максимизации конверсии и стратегического показа ваших объявлений людям, ищущим товары, подобные вашим.  \n \n Установите дневной бюджет и позвольте интеллектуальной технологии Google оптимизировать ваши кампании в различных сетях, таких как Google Search, YouTube или Gmail. Вы платите только тогда, когда люди нажимают."
+        "title": "Boost your reach and sales with Performance Max",
+        "text": "Want to maximize your campaign performance and find the right customers wherever they are? From one single campaign, Performance Max gathers insights across different Google channels, and optimises your campaign performance by showing where your ads have higher chances of driving conversion."
       }
     },
     "footer": {
-      "text": "Найдите свою продукцию в Google с помощью PS Marketing with Google"
+      "text": "Найдите свою продукцию в Google с помощью PS Marketing with Google",
+      "explanation": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
     }
   },
   "onboarding": {
@@ -447,7 +448,8 @@
   },
   "smartShoppingCampaignCard": {
     "title": "Boost your sales with Performance Max Campaigns",
-    "intro": "Launch a Performance Max campaign for your products and reach more customers across all Google channels - including YouTube, Maps, Search, Gmail, Display, Discover and the web through one single campaign. Even better, you don’t pay unless your customers click!",
+    "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
+    "introConnected": "With Performance Max, you can advertise your products and maximize your ads performance across multiple Google channels through one single campaign. Even better, you don’t pay unless your customers click!",
     "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to.",
     "titleInfo": "Did you know?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
@@ -1044,7 +1046,7 @@
     "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
     "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
     "ctaCreateFirstCampaign": "Create your first campaign",
-    "titleCampaignsBanner": "Launch a Performance Max campaign and reach a wider audience",
+    "titleCampaignsBanner": "From June 30th, you can create Performance Max campaigns for your store",
     "textCampaignsBanner": "With Performance Max campaigns, you can advertise your products and reach more customers across all Google channels, including YouTube, Maps, Search, Gmail, Display, Discover, and the web - all through one single campaign."
   }
 }
