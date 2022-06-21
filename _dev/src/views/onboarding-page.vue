@@ -364,7 +364,6 @@ export default {
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty
     if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
-      this.fetchMerchantCampaign();
       this.googleIsLoading = true;
       this.MCAIsLoading = true;
       this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').then(() => {
@@ -382,6 +381,7 @@ export default {
     if (this.productFeedIsConfigured) {
       this.triggerLoadOfGoogleAdsAccount();
     }
+    this.fetchMerchantCampaign();
   },
   beforeDestroy() {
     this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
