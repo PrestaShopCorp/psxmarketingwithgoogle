@@ -307,6 +307,10 @@ export default {
     billingSettingsCompleted() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
+    merchantHasAlreadySeenPmaxPopin() {
+      this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+      return getDataFromLocalStorage(`modalPmax-${PmaxModalType.COMING_SOON}`);
+    },
     toastIsVisible() {
       return this.googleAccountConnectedOnce
         || this.merchantCenterAccountConnectedOnce
