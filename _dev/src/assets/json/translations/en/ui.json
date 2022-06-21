@@ -890,7 +890,9 @@
     "validateSelection" : "Validate Selection",
     "googleProductStatusDefinitions" : "Google product status definitions",
     "visitThe" : "Visit the {0} for more information",
-    "investigate" : "Investigate"
+    "investigate" : "Investigate",
+    "createPmax": "Create your first PMax campaign",
+    "understand": "I understand"
   },
   "badge": {
     "free": "Free",

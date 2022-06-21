@@ -32,9 +32,9 @@
 
     <div
       class="text-muted"
-      v-if="PmaxModalType.COMING_SOON"
+      v-if="this.type === PmaxModalType.COMING_SOON"
     >
-      {{ $t('smartShoppingCampaignCard.footer') }}
+      {{ $t('landingPage.footer.legal') }}
     </div>
 
     <template slot="modal-cancel">
