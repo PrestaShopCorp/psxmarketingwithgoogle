@@ -52,7 +52,7 @@
     },
     "footer": {
       "text": "Pozwól, by Twoje produkty zostały znalezione w Google dzięki modułowi PrestaShop Marketing with Google",
-      "legal": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
+      "legal": "Na terenie Europejskiego Obszaru Gospodarczego, Wielkiej Brytanii i Szwajcarii kampanie Performance Max mogą być stosowane we wszystkich porównywarkach internetowych (CSS), których używasz. Reklamy będą wyświetlane na stronach ogólnych wyników wyszukiwania oraz na wszelkich innych powierzchniach, na które wyraził zgodę CSS."
     }
   },
   "onboarding": {
@@ -954,7 +954,7 @@
     "PMaxMigrationTitle": "Important News",
     "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
     "PmaxTextLink": "Learn more about Performance Max",
-    "textPmaxReleased": "Smart Shopping campaigns will be upgraded to Performance Max on {0}. [Learn more]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+    "textPmaxReleased": "Inteligentne kampanie produktowe zostaną zaktualizowane do wersji Performance Max w dniu {0}. [Dowiedz się więcej]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
     "googleAccountRequired": "Wymaga to konfiguracji konta Google",
