@@ -51,7 +51,7 @@
     },
     "footer": {
       "text": "Faça com que os seus produtos sejam visualizados no Google com o PS Marketing com Google",
-      "explanation": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
+      "explanation": "No Espaço Económico Europeu, no Reino Unido ou na Suíça, as campanhas de máximo desempenho podem ser utilizadas com qualquer Serviço de Comparação de Compras (CSS) com o qual trabalhe. Os anúncios aparecerão nas páginas de resultados de pesquisa geral e em quaisquer outras superfícies em que o CSS tenha optado."
     }
   },
   "onboarding": {
@@ -450,7 +450,7 @@
     "title": "Boost your sales with Performance Max Campaigns",
     "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
     "introConnected": "With Performance Max, you can advertise your products and maximize your ads performance across multiple Google channels through one single campaign. Even better, you don’t pay unless your customers click!",
-    "footer": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to.",
+    "footer": "No Espaço Económico Europeu, no Reino Unido ou na Suíça, as campanhas de máximo desempenho podem ser utilizadas com qualquer Serviço de Comparação de Compras (CSS) com o qual trabalhe. Os anúncios aparecerão nas páginas de resultados de pesquisa geral e em quaisquer outras superfícies em que o CSS tenha optado.",
     "titleInfo": "Did you know?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
     "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
@@ -963,7 +963,7 @@
     "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. You now have access to the best of Google Ads automation, inventory, and formats. Your existing Smart Shopping campaigns will stay the same for now, but will be automatically upgraded at a later date.",
     "PMaxMigrationTitle": "Important News",
     "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
-    "PmaxTextLink": "Learn more about Performance Max",
+    "PmaxTextLink": "Saiba mais sobre as Campanhas de máximo desempenho",
     "textPmaxReleased": "As campanhas de Smart Shopping serão actualizadas para máximo desempenho em {0}. [Saiba mais]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
