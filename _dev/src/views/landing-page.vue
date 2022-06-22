@@ -28,9 +28,6 @@
           content-image="Google-Commercial-img.png"
           :content-title="$t('landingPage.content.content3.title')"
           :content-text="$t('landingPage.content.content3.text')"
-          :content-footer="$t('landingPage.content.content3.footer', [
-            $options.googleUrl.createNewMerchantCenter,
-          ])"
         />
         <LandingPageContent
           :svg-image="true"
