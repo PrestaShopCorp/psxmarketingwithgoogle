@@ -410,7 +410,7 @@
     "id": "ID de la cuenta de Google Ads",
     "toUseGAdsNeedsAdminAccess": "Para utilizar una cuenta de Google Ads existente, debe tener acceso de administrador.",
     "alertCantConnect": "No se ha podido conectar tu cuenta de Google Ads, es por nuestra parte, por favor, inténtalo de nuevo.",
-    "alertBillingSettingsMissing": "To launch Performance Max campaigns, you need to add your billing settings in your Google Ads account.",
+    "alertBillingSettingsMissing": "Para poner en marcha las campañas de Máximo rendimiento, debe añadir la configuración de facturación en su cuenta de Google Ads.",
     "alertNeedRefreshAfterBilling": "Una vez completada la información de facturación en su cuenta de Google Ads, actualice la página para ver las actualizaciones.",
     "alertNeedRefreshAfterInvitationLink": "Una vez aceptada la invitación en su cuenta de Google Ads, actualice la página para ver las actualizaciones.",
     "alertNeedValidationFromEmail": "Por favor, haz clic aquí o comprueba tus correos electrónicos para validar tu cuenta.",
@@ -447,9 +447,9 @@
     }
   },
   "smartShoppingCampaignCard": {
-    "title": "Boost your sales with Performance Max Campaigns",
+    "title": "Aumenta tus ventas con Máximo rendimiento",
     "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
-    "introConnected": "With Performance Max, you can advertise your products and maximize your ads performance across multiple Google channels through one single campaign. Even better, you don’t pay unless your customers click!",
+    "introConnected": "Con las campañas Máximo rendimiento, puedes anunciar tus productos y maximizar el rendimiento de tus anuncios en varios canales de Google mediante una sola campaña. Y lo que es mejor, ¡no pagas salvo que tus clientes hagan clic!",
     "footer": "En el Espacio Económico Europeo, Reino Unido o Suiza, las campañas Máximo rendimiento pueden utilizarse con cualquier servicio de comparación de precios (CSS) con el que trabaje. Los anuncios aparecerán en las páginas de resultados de búsqueda generales y en cualquier otra propiedad en la que el CSS se haya inscrito.",
     "titleInfo": "Did you know?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
@@ -504,10 +504,10 @@
       "duplicatedTag": "Parece que ya tienes una etiqueta vinculada a tu cuenta de google, crear una nueva etiqueta puede duplicar los eventos de tus campañas. Le sugerimos que sólo se quede con la que nosotros generamos para usted.",
       "noConversionActions": "La etiqueta de seguimiento se ha activado, pero no hay ninguna acción de conversión establecida en la tienda. Esto se puede arreglar creando otras nuevas.",
       "hasUnhandledFilters": "Al menos un filtro de esta campaña no es compatible con este módulo. Para evitar cualquier pérdida en su configuración existente, sólo se pueden modificar los detalles básicos de la campaña.",
-      "PMaxExplanationTitle": "Performance Max is a new goal-based campaign.",
-      "PMaxExplanation": "Performance Max is an enhanced campaign type powered by Google's smart technology. It can help you optimize your ads across multiple Google channels and drive better results for your business.",
-      "PMaxExplanationPrecision": "Even better, you won't pay unless customers click.",
-      "PMaxExplanationLink": "Find out more about Performance Max"
+      "PMaxExplanationTitle": "Máximo rendimiento es un tipo de campaña basada en objetivos.",
+      "PMaxExplanation": "Máximo rendimiento es un tipo de campaña mejorada con la tecnología inteligente de Google. Puede ayudarte a optimizar tus anuncios en varios canales de Google y obtener mejores resultados para tu negocio.",
+      "PMaxExplanationPrecision": "Y lo que es mejor, no pagarás salvo que los clientes hagan clic.",
+      "PMaxExplanationLink": "Saber más sobre las campañas Máximo rendimiento"
     },
     "labelSelectedDimension": "Valor de la dimensión seleccionada",
     "nbDimensionSelected": "Ninguna dimensión seleccionada | {0} dimensión seleccionada | {0} dimensiones seleccionadas",
