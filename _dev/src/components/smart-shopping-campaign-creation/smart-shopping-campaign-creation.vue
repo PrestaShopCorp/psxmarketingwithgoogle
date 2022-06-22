@@ -43,28 +43,24 @@
           </ol>
         </b-card-header>
         <b-card-body body-class="p-3 p-md-4">
-          <div
-            class="blue-background mb-3"
+          <b-alert
             v-if="$route.params.type === $options.CampaignTypes.PERFORMANCE_MAX"
+            show
+            variant="info"
+            data-test-id="unhandled-filters-alert"
           >
-            <div class="d-flex flex-row justify-content-start align-items-flex-start">
-              <i class="material-icons ps_gs-fz-20 mr-1 icon-color">info</i>
-              <h3 class="font-weight-600 mb-1">
-                {{ $t('smartShoppingCampaignCreation.alerts.PMaxExplanationTitle') }}
-              </h3>
-            </div>
-            <div class="px-4">
-              <p>{{ $t('smartShoppingCampaignCreation.alerts.PMaxExplanation') }}</p>
-
-              <p>{{ $t('smartShoppingCampaignCreation.alerts.PMaxExplanationPrecision') }}</p>
+            <i18n
+              path="smartShoppingCampaignCreation.alerts.PMaxExplanation"
+              tag="div"
+            >
               <b-link
                 :to="{ name: 'help' }"
                 class="with-hover text-decoration-underline"
               >
-                {{ $t('smartShoppingCampaignCreation.alerts.PMaxExplanationLink') }}
+                {{ $t("general.helpPage") }}
               </b-link>
-            </div>
-          </div>
+            </i18n>
+          </b-alert>
           <b-alert
             v-if="hasUnhandledFilters"
             show
@@ -457,7 +453,6 @@ import {
   returnCountProducts,
   deepCheckDimension,
   retrieveProductNumberFromFiltersIds,
-
 } from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
@@ -504,7 +499,6 @@ export default {
         }
         return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditSSC');
       }
-
       // Creation
       if (this.$route.params
       && this.$route.params.type === this.$options.CampaignTypes.SMART_SHOPPING) {
@@ -698,7 +692,6 @@ export default {
       }
       this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
-
     setDimensionFiltered(dimension) {
       this.totalProducts = returnCountProducts(dimension);
       const filtersForAPI = [
@@ -823,16 +816,3 @@ export default {
   CampaignTypes,
 };
 </script>
-<style scoped>
-.blue-background {
-  border: 1px solid #174EEF;
-  background-color: #E3EAFD;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  padding:  0.75rem;
-}
-
-.icon-color {
-  color: #174EEF
-}
-</style>
