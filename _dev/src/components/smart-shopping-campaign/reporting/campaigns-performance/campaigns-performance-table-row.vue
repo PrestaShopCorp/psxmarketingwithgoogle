@@ -17,6 +17,13 @@
       >
         {{ campaign.name }}
       </div>
+      <b-badge
+        variant="type"
+        class="ps_gs-fz-12 m-1"
+        v-if="campaignType"
+      >
+        {{ campaignType }}
+      </b-badge>
     </b-td>
     <b-td
       class="ps_gs-fz-12 ps_gs-cell-status"
@@ -57,6 +64,15 @@ export default {
   computed: {
     currencyCode() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
+    },
+    campaignType() {
+      if (this.campaign.type === CampaignTypes.SMART_SHOPPING) {
+        return 'SSC';
+      }
+      if (this.campaign.type === CampaignTypes.PERFORMANCE_MAX) {
+        return 'PMax';
+      }
+      return null;
     },
   },
   methods: {
