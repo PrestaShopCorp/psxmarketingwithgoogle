@@ -947,13 +947,13 @@
     "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
     "textConfirmCancel": "Als u teruggaat zult u uw geselecteerde waarden verliezen",
     "upgradeSCCToPmaxTitle": "Campagnes upgrade komt binnenkort",
-    "upgradeSCCToPmaxTextWithoutCampaign": "Starting {0}, you will be able to create Performance Max campaigns for your store. \n\n Performance Max is the next generation of Smart Shopping campaigns. It is an enhanced campaign type powered by Google's smart technology. It works behind the scene to automatically optimise your ads across the shopping journey to drive maximum performance.",
-    "upgradeSCCToPmaxText": "Smart Shopping campaigns will be upgraded to Performance Max on {0}  \n\n You don't need to take any action as your Smart Shopping campaign settings and budget will remain the same. Only your campaign type will be automatically updated to Performance Max. \n\n From the start of July, you will only be able to create Performance Max campaigns.",
+    "upgradeSCCToPmaxTextWithoutCampaign": "Vanaf {0} kunt u Performance Max-campagnes voor uw winkel maken. \n\n Performance Max is de volgende generatie van Smart Shopping-campagnes. Het is een verbeterd campagnetype dat wordt aangedreven door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties automatisch te optimaliseren tijdens het shoppingtraject om maximale prestaties te leveren.",
+    "upgradeSCCToPmaxText": "Smart Shopping-campagnes zullen worden geüpgraded naar maximale prestaties op {0}\n\nU hoeft geen actie te ondernemen aangezien uw Smart Shopping-campagne-instellingen en -budget hetzelfde zullen blijven. Alleen uw campagnetype zal automatisch worden bijgewerkt naar maximale prestaties.\n\nVanaf begin juli kunt u alleen nog Performance Max-campagnes aanmaken.",
     "PMaxLiveTitle": "Performance Max is here",
     "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. You now have access to the best of Google Ads automation, inventory, and formats. Your existing Smart Shopping campaigns will stay the same for now, but will be automatically upgraded at a later date.",
     "PMaxMigrationTitle": "Important News",
     "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
-    "PmaxTextLink": "Learn more about Performance Max",
+    "PmaxTextLink": "Meer informatie over campagnes voor maximale prestaties",
     "textPmaxReleased": "Smart Shopping-campagnes zullen op {0} worden geüpgraded naar maximale prestaties. [Meer informatie]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
