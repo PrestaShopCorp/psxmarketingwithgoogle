@@ -453,7 +453,7 @@ import {
   returnCountProducts,
   deepCheckDimension,
   retrieveProductNumberFromFiltersIds,
-  
+
 } from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
