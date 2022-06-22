@@ -488,7 +488,7 @@
     "inputBudgetPlaceholder": "Amount",
     "inputAllSyncedProducts": "No filters selected",
     "formHelperTitle": "Campaign activation",
-    "formHelperDescription": "Your campaign will run until you pause it. You can pause your campaign at any time.",
+    "formHelperDescription": "Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.",
     "errorNoProducts": "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.",
     "errorApi": "We were not able to publish your campaign, please try again",
     "errorFetchingFilters": "We were not able to retrieve all filters from Google. You can't modify them for now.",
@@ -504,7 +504,10 @@
       "duplicatedTag": "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.",
       "noConversionActions": "The tracking tag has been enabled, but there is no conversion action set on the shop. This can be fixed by creating new ones.",
       "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified.",
-      "PMaxExplanation": "Performance Max is a new goal-based campaign type that allows performance advertisers to access all of their Google Ads inventory from a single campaign. Learn more on our {0}"
+      "PMaxExplanationTitle": "Performance Max is a new goal-based campaign.",
+      "PMaxExplanation": "Performance Max is an enhanced campaign type powered by Google's smart technology. It can help you optimize your ads across multiple Google channels and drive better results for your business.",
+      "PMaxExplanationPrecision": "Even better, you won't pay unless customers click.",
+      "PMaxExplanationLink": "Find out more about Performance Max"
     },
     "labelSelectedDimension": "Selected dimension value",
     "nbDimensionSelected": "No dimension selected | {0} dimension selected | {0} dimensions selected",
