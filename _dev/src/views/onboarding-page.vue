@@ -104,7 +104,7 @@
       @openPopinRemarketingTag="onOpenPopinActivateTracking"
     />
     <PmaxDiscoverModal
-      :visible="!merchantHasAlreadySeenPmaxPopin"
+      :visible="canShowPmaxModal"
       :type="PmaxModalType.COMING_SOON"
       ref="PmaxDiscoverModal"
     />
@@ -177,6 +177,7 @@ export default {
       SSCIsLoading: false,
       phoneNumberVerified: false,
       PmaxModalType,
+      canShowPmaxModal: false,
     };
   },
   methods: {
@@ -194,10 +195,12 @@ export default {
           this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
         });
     },
-    async fetchMerchantCampaign() {
-      // it's use just for the enum COMING_SOON we can delete it for PMAX_RELEASED
+    fetchMerchantCampaign() {
       if (!this.merchantHasAlreadySeenPmaxPopin) {
-        await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST')
+          .finally(() => {
+            this.canShowPmaxModal = true;
+          });
       }
     },
     checkAndOpenPopinConfigrationDone() {
