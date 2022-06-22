@@ -52,7 +52,7 @@
     },
     "footer": {
       "text": "Zorg dat uw producten gevonden worden op Google met PS Marketing met Google",
-      "legal": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
+      "legal": "In de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland kunnen maximale prestaties-campagnes worden gebruikt met elke Comparison Shopping Service (CSS) waarmee u werkt. De advertenties worden getoond op algemene zoekresultatenpagina's en op alle andere oppervlakken waar de CSS zich voor heeft opgegeven."
     }
   },
   "onboarding": {
@@ -954,7 +954,7 @@
     "PMaxMigrationTitle": "Important News",
     "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
     "PmaxTextLink": "Learn more about Performance Max",
-    "textPmaxReleased": "Smart Shopping campaigns will be upgraded to Performance Max on {0}. [Learn more]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+    "textPmaxReleased": "Smart Shopping-campagnes zullen op {0} worden geüpgraded naar maximale prestaties. [Meer informatie]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
     "googleAccountRequired": "Vereist configuratie Google-account",
