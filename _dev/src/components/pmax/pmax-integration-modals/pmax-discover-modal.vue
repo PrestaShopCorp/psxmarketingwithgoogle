@@ -30,12 +30,12 @@
       </div>
     </div>
 
-    <div
-      class="text-muted"
+    <p
+      class="text-muted ps_gs-fz-12"
       v-if="this.type === PmaxModalType.COMING_SOON"
     >
       {{ $t('landingPage.footer.legal') }}
-    </div>
+    </p>
 
     <template slot="modal-cancel">
       {{ $t('cta.close') }}
