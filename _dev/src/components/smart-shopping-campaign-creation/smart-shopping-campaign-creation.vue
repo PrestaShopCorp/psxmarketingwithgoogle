@@ -694,7 +694,7 @@ export default {
       }
       this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
-  
+
     setDimensionFiltered(dimension) {
       this.totalProducts = returnCountProducts(dimension);
       const filtersForAPI = [
