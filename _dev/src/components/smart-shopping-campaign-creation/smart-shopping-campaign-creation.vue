@@ -453,8 +453,8 @@ import {
   returnCountProducts,
   deepCheckDimension,
   retrieveProductNumberFromFiltersIds,
+  
 } from '../../utils/SSCFilters';
-
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
 
@@ -694,7 +694,7 @@ export default {
       }
       this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
-    
+  
     setDimensionFiltered(dimension) {
       this.totalProducts = returnCountProducts(dimension);
       const filtersForAPI = [
