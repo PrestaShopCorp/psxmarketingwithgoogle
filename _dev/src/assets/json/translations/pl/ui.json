@@ -45,12 +45,14 @@
         "footer": "Utwórz nowe [konto Merchant Center]({0})[:target=\"_blank\"] lub połącz istniejące.  \nAby pokazać swoje produkty w Google, musisz spełnić [wymagania dotyczące kwalifikowalności]({1})[:target=\"_blank\"]."
       },
       "content3": {
-        "title": "Stwórz inteligentne kampanie produktowe i zarządzaj nimi",
-        "text": "Inteligentne kampanie produktowe to usługa w ramach Google Ads, która wykorzystuje inteligentną technologię Google do umieszczania reklam i określania stawek, tak aby maksymalizować wartość konwersji i pokazywać je osobom szukającym produktow, takich jakie masz w swojej ofercie.  \n \n Ustal dzienny budżet i pozwól inteligentnej technologii Google na zoptymalizowanie Twoich kampanii w różnych sieciach reklamowych, takich jak wyszukiwarka Google, YouTube czy Gmail. Płacisz tylko wtedy, kiedy ludzie klikają."
+        "title": "Boost your reach and sales with Performance Max",
+        "text": "Inteligentne kampanie produktowe to usługa w ramach Google Ads, która wykorzystuje inteligentną technologię Google do umieszczania reklam i określania stawek, tak aby maksymalizować wartość konwersji i pokazywać je osobom szukającym produktow, takich jakie masz w swojej ofercie.  \n \n Ustal dzienny budżet i pozwól inteligentnej technologii Google na zoptymalizowanie Twoich kampanii w różnych sieciach reklamowych, takich jak wyszukiwarka Google, YouTube czy Gmail. Płacisz tylko wtedy, kiedy ludzie klikają.",
+        "footer": "Based on early testing, advertisers who upgrade Smart Shopping campaigns to Performance Max see an average of 12% increase in conversion value at the same or better return on ad spend(Google Data, Global, Ads, Sep–Oct 2021) \n \n [Learn more about Performance Max]({0})[:target=\"_blank\"]"
       }
     },
     "footer": {
-      "text": "Pozwól, by Twoje produkty zostały znalezione w Google dzięki modułowi PrestaShop Marketing with Google"
+      "text": "Pozwól, by Twoje produkty zostały znalezione w Google dzięki modułowi PrestaShop Marketing with Google",
+      "legal": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
     }
   },
   "onboarding": {
@@ -452,7 +454,7 @@
   "smartShoppingCampaignCreation": {
     "allFilters": "Wszystkie filtry",
     "breadcrumb1": "Kampania",
-    "breadcrumb2": "Utwórz inteligentną kampanię produktową",
+    "breadcrumb2": "Create Smart Shopping campaign",
     "inputNameHelper": "Nazwa musi być unikalna i składać się maksymalnie ze 125 znaków.",
     "inputNameLabel": "Nazwa kampanii",
     "inputNameTooltip": "Wybierz nazwę, która jasno opisuje temat kampanii, tak abyś mógł ją łatwo znaleźć na swoim koncie. Nazwa kampanii nie jest widoczna dla Twoich klientów.",
@@ -851,7 +853,7 @@
     "transferClaim": "Prośba o transfer",
     "goToYourX": "Przejdź do swojego {0}",
     "addShippingInfo": "Dodaj informacje o wysyłce",
-    "createSmartShoppingCampaign": "Utwórz inteligentną kampanię produktową",
+    "createSmartShoppingCampaign": "Create Smart Shopping campaign",
     "addBillingSettings": "Dodaj ustawienia dotyczące rozliczeń",
     "createCampaign": "Utwórz kampanię",
     "editCampaign": "Aktualizuj kampanię",
@@ -887,7 +889,9 @@
     "validateSelection": "Zatwierdzanie wyboru",
     "googleProductStatusDefinitions": "Definicje statusu produktów Google",
     "visitThe": "Odwiedź stronę {0} aby uzyskać więcej informacji.",
-    "investigate": "Investigate"
+    "investigate": "Investigate",
+    "createPmax": "Create your first PMax campaign",
+    "understand": "Rozumiem"
   },
   "badge": {
     "free": "Darmowy",
@@ -940,8 +944,17 @@
     "removeTag": "Usunięcie tagu „Remarketing i konwersja” z mojego sklepu",
     "removeTagExplainations": "Usunięcie tego tagu oznacza, że Google nie będzie już śledzić Twoich kampanii. Rekomendujemy usunięcie tego tagu tylko jeśli planujesz całkowicie usunąć moduł lub zmienić konto. Zawsze możesz dodać go samodzielnie do kodu na swojej stronie.",
     "titleActivateTrackingSSC": "Aktywuj tag remarketingu i śledzenia konwersji.",
-    "textActivateTrackingSSC": "W celu prowadzenia kampanii Smart Shopping, Google Ads musi być w stanie stworzyć [listę remarketingową]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] i [znacznik śledzenia konwersji]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] na Twojej stronie.   \n PrestaShop automatycznie ustawi te snippety kodu na Twoim sklepie.",
-    "textConfirmCancel": "Jeśli się cofniesz, stracisz wybrane wartości."
+    "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
+    "textConfirmCancel": "Jeśli się cofniesz, stracisz wybrane wartości.",
+    "upgradeSCCToPmaxTitle": "Campaign's upgrade coming soon",
+    "upgradeSCCToPmaxTextWithoutCampaign": "Starting {0}, you will be able to create Performance Max campaigns for your store. \n\n Performance Max is the next generation of Smart Shopping campaigns. It is an enhanced campaign type powered by Google's smart technology. It works behind the scene to automatically optimise your ads across the shopping journey to drive maximum performance.",
+    "upgradeSCCToPmaxText": "You Smart Shopping campaigns will be upgraded to Performance Max on {0}  \n\n You don't need to take any action as your Smart Shopping campaign settings and budget will remain the same. Only your campaign type will be automatically updated to Performance Max. \n\n From the start of July, you will only be able to create Performance Max campaigns.",
+    "PMaxLiveTitle": "Performance Max is here",
+    "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. You now have access to the best of Google Ads automation, inventory, and formats. Your existing Smart Shopping campaigns will stay the same for now, but will be automatically upgraded at a later date.",
+    "PMaxMigrationTitle": "Important News",
+    "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
+    "PmaxTextLink": "Learn more about Performance Max",
+    "textPmaxReleased": "Smart Shopping campaigns will be upgraded to Performance Max on {0}. [Learn more]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
     "googleAccountRequired": "Wymaga to konfiguracji konta Google",
