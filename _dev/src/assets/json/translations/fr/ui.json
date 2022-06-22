@@ -51,14 +51,14 @@
     },
     "footer": {
       "text": "Améliorez la visibilité de vos produits sur Google avec PS Marketing with Google",
-      "explanation": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
+      "explanation": "Dans l'Espace économique européen, au Royaume-Uni ou en Suisse, les campagnes Performance Max peuvent être utilisées avec n'importe quel service de comparaison de prix (CSS) avec lequel vous travaillez. Les publicités apparaîtront sur les pages de résultats de recherche généraux et sur toutes les autres propriétés auxquelles le CSS a adhéré."
     }
   },
   "onboarding": {
     "sectionTitle": {
       "psAccount": "Connectez votre compte PrestaShop",
       "freeListing": "Faites apparaître vos produits sur Google grâce à des fiches gratuites",
-      "smartShoppingCampaign": "Advertise on Google with Performance Max"
+      "smartShoppingCampaign": "Faites de la publicité sur Google avec Performance Max"
     },
     "productFeedNotice": "Aidez les clients à trouver vos produits plus facilement sur Google et listez-les gratuitement avec des fiches gratuites. Les fiches gratuites aident à atteindre plus de clients et à les amener à visiter votre site."
   },
