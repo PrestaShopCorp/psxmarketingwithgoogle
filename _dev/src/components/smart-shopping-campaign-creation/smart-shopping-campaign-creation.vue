@@ -454,6 +454,7 @@ import {
   deepCheckDimension,
   retrieveProductNumberFromFiltersIds,
 } from '../../utils/SSCFilters';
+
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
 
@@ -499,6 +500,7 @@ export default {
         }
         return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditSSC');
       }
+
       // Creation
       if (this.$route.params
       && this.$route.params.type === this.$options.CampaignTypes.SMART_SHOPPING) {
@@ -692,6 +694,7 @@ export default {
       }
       this.$refs.campaignDurationEndDateInput.$children[0].show();
     },
+    
     setDimensionFiltered(dimension) {
       this.totalProducts = returnCountProducts(dimension);
       const filtersForAPI = [
