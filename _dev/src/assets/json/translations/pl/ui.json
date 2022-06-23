@@ -45,6 +45,7 @@
         "footer": "Utwórz nowe [konto Merchant Center]({0})[:target=\"_blank\"] lub połącz istniejące.  \nAby pokazać swoje produkty w Google, musisz spełnić [wymagania dotyczące kwalifikowalności]({1})[:target=\"_blank\"]."
       },
       "content3": {
+        "title": "Stwórz inteligentne kampanie produktowe i zarządzaj nimi",
         "text": "Inteligentne kampanie produktowe to usługa w ramach Google Ads, która wykorzystuje inteligentną technologię Google do umieszczania reklam i określania stawek, tak aby maksymalizować wartość konwersji i pokazywać je osobom szukającym produktow, takich jakie masz w swojej ofercie.  \n \n Ustal dzienny budżet i pozwól inteligentnej technologii Google na zoptymalizowanie Twoich kampanii w różnych sieciach reklamowych, takich jak wyszukiwarka Google, YouTube czy Gmail. Płacisz tylko wtedy, kiedy ludzie klikają."
       }
     },
@@ -1034,7 +1035,7 @@
     "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
     "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
     "ctaCreateFirstCampaign": "Create your first campaign",
-    "titleCampaignsBanner": "Boost your sales with Smart Shopping Campaigns",
+    "titleCampaignsBanner": "Zwiększ swoją sprzedaż dzięki inteligentnym kampaniom produktowym",
     "textCampaignsBanner": "Your products will be increasingly displayed to the right people at the right time learn more about Smart Shopping Campaigns"
   }
 }

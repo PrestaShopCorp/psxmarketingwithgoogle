@@ -45,6 +45,7 @@
         "footer": "Crie uma nova conta [Merchant Center]({0})[:target=\"_blank\"] ou crie um link para uma conta existente.  \nPara mostrar seus produtos no Google você precisará cumprir os [requisitos de elegibilidade]({1})[:target=\"_blank\"]"
       },
       "content3": {
+        "title": "Crie e faça a gestão das suas campanhas inteligentes do Shopping",
         "text": "Campanhas inteligentes do Shopping são anúncios do Google que utilizam a tecnologia inteligente do Google para licitação e colocação de anúncios que maximizam o valor de conversão e exibem estrategicamente os seus anúncios para pessoas que procuram produtos como o seu.  \n \n Defina um orçamento diário e deixe que a tecnologia inteligente do Google otimize as suas campanhas em diferentes redes como o Google Search, o YouTube ou o Gmail. Só paga quando as pessoas clicam."
       }
     },
@@ -1034,7 +1035,7 @@
     "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
     "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
     "ctaCreateFirstCampaign": "Create your first campaign",
-    "titleCampaignsBanner": "Boost your sales with Smart Shopping Campaigns",
+    "titleCampaignsBanner": "Impulsione as suas vendas com Campanhas Smart Campaigns",
     "textCampaignsBanner": "Your products will be increasingly displayed to the right people at the right time learn more about Smart Shopping Campaigns"
   }
 }
