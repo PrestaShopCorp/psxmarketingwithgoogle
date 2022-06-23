@@ -78,10 +78,11 @@ export default {
         case PmaxModalType.COMING_SOON:
           return {
             title: this.$t('modal.upgradeSCCToPmaxTitle'),
-            body: this.merchandHasCampaign > 0 ? this.$t('modal.upgradeSCCToPmaxText')
-              : this.$t('modal.upgradeSCCToPmaxTextWithoutCampaign', [
-                new Date('2022-06-30').toLocaleDateString(),
-              ]),
+            body: this.merchandHasCampaign > 0 ? this.$t('modal.upgradeSCCToPmaxText', [
+              new Date('2022-06-30').toLocaleDateString(),
+            ]) : this.$t('modal.upgradeSCCToPmaxTextWithoutCampaign', [
+              new Date('2022-06-30').toLocaleDateString(),
+            ]),
             img: this.displayImage(this.type),
             alt: 'pmax-modal-coming-soon',
           };
