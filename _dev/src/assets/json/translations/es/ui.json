@@ -26,7 +26,7 @@
     "min": "min.",
     "max": "máximo.",
     "helpPage": "Página de ayuda",
-    "noResultsFoundForX": " No results found for {0}"
+    "noResultsFoundForX": " No se han encontrado resultados para \"{0}\""
   },
   "landingPage": {
     "header": {
@@ -45,6 +45,7 @@
         "footer": "Cree una nueva [cuenta de Merchant Center]({0})[:target=\"_blank\"] o vincule una existente.  \nPara mostrar tus productos en Google deberás cumplir los [requisitos de elegibilidad]({1})[:target=\"_blank\"]"
       },
       "content3": {
+        "title": "Crea y gestiona campañas de Shopping Inteligentes",
         "text": "Las campañas de Shopping Inteligentes son anuncios de Google que utilizan la tecnología inteligente de Google para la puja y la colocación de anuncios, maximizando el valor de la conversión y mostrando estratégicamente tus anuncios a las personas que buscan productos como el tuyo.  \n \nEstablece un presupuesto diario y deja que la tecnología inteligente de Google optimice tus campañas en diferentes redes como Google Search, YouTube o Gmail. Solo pagas cuando la gente hace clic."
       }
     },
@@ -102,7 +103,7 @@
     "linkingFailed": "No puedes conectarte a tu cuenta Merchant Center en este momento. Vuelve a intentarlo más tarde.",
     "AccountValidationFailed": "Ha fallado la validación de la cuenta.",
     "unlinkFailed": "Desconexión fallida. Por favor, actualiza la página e inténtalo de nuevo.",
-    "tryAgainLater": "We can’t verify or claim the current site. **We recommend that you ensure that the site is accessible** and try again later.",
+    "tryAgainLater": "No podemos verificar o reclamar el sitio actual. **Recomendamos que se asegure de que el sitio es accesible** e inténtelo de nuevo más tarde.",
     "alertSuspended": "Tu cuenta ha sido suspendida.",
     "alertSuspendedDescription": "Para ver más detalles sobre los motivos de la suspensión, visite su [cuenta de Merchant Center]({0})[:target=\"_blank\"]. Una vez resuelta, deberá solicitar una nueva revisión rellenando [este formulario]({1})[:target=\"_blank\"].",
     "notManaged": "No está asociada a PrestaShop",
@@ -121,18 +122,18 @@
     "sendCode": "Enviar código",
     "receiveCall": "Recibir llamada",
     "phoneVerifiedContinue": "Su número de teléfono ha sido verificado, puede continuar con la creación de su cuenta.",
-    "enterCode": "Please enter your verification code",
+    "enterCode": "Por favor, introduzca un código de validación",
     "validatingCode": "Validación del código",
-    "textMessageHasBeenSent": "A text message containing an X-digit code has been sent",
+    "textMessageHasBeenSent": "Se ha enviado un mensaje de texto con un código de X dígitos",
     "askAgain60sec": "Podrás pedir un nuevo código en 60 segundos",
-    "needPhoneVerification": "We need to verify your identity with your phone number",
+    "needPhoneVerification": "Necesitamos verificar su identidad con su número de teléfono",
     "fillInputs": "Introduce tu número de teléfono y selecciona tu prefijo internacional",
-    "invalidCode": "Code is not valid",
-    "phoneNumberNotValid": "Your phone number is incorrect, please only put numbers",
+    "invalidCode": "El código no es válido",
+    "phoneNumberNotValid": "Su número de teléfono es incorrecto, por favor ponga sólo números",
     "code": "Código",
-    "contactMethod": "Choose your preferred contact method",
+    "contactMethod": "Elija su método de contacto preferido",
     "dialCode": "Marca el código",
-    "phoneNumber": "Enter your phone number",
+    "phoneNumber": "Introduzca su número de teléfono",
     "textMethod": "Mensaje de texto",
     "callMethod": "Llamada telefónica",
     "selectMethod": "Selecciona el método de contacto deseado para verificar tu identidad",
@@ -452,7 +453,7 @@
   "smartShoppingCampaignCreation": {
     "allFilters": "Todos los filtros",
     "breadcrumb1": "Campaña",
-    "breadcrumb2": "Create Smart Shopping campaign",
+    "breadcrumb2": "Crear campaña Smart Shopping",
     "inputNameHelper": "El nombre debe ser único y tener un máximo de 125 caracteres.",
     "inputNameLabel": "Nombre de la campaña",
     "inputNameTooltip": "Elige un nombre que describa claramente el tema de la campaña para que puedas encontrarla fácilmente en tu cuenta. El nombre de tu campaña no es visible para tus clientes.",
@@ -851,7 +852,7 @@
     "transferClaim": "Solicitud de transferencia",
     "goToYourX": "Ve a tu {0}",
     "addShippingInfo": "Añadir información de envío",
-    "createSmartShoppingCampaign": "Create Smart Shopping campaign",
+    "createSmartShoppingCampaign": "Crear campaña Smart Shopping",
     "addBillingSettings": "Añadir parámetros de facturación",
     "createCampaign": "Crear campaña",
     "editCampaign": "Campaña de actualización",
@@ -888,7 +889,7 @@
     "googleProductStatusDefinitions": "Definiciones del estado de los productos de Google",
     "visitThe": "Visite la página {0} para obtener más información",
     "investigate": "Investigate",
-    "createPmax": "Create your first PMax campaign",
+    "createPmax": "Cree su primera campaña Máximo rendimiento",
     "understand": "Comprendo"
   },
   "badge": {
@@ -942,14 +943,14 @@
     "removeTag": "Eliminar la etiqueta &quot;Remarketing y conversión&quot; de mi tienda",
     "removeTagExplainations": "La eliminación de la etiqueta significa que Google ya no podrá realizar el seguimiento de tus campañas. Te recomendamos eliminar la etiqueta solamente si piensas eliminar completamente el módulo o cambiar tu cuenta. Siempre puedes añadirla tú mismo en el código de tu sitio.",
     "titleActivateTrackingSSC": "Habilitar la etiqueta de remarketing y seguimiento de la conversión",
-    "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
+    "textActivateTrackingSSC": "Para ejecutar campañas de Máximo rendimiento, Google Ads necesita poder crear [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] y [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] en su sitio. \n  PrestaShop establecerá automáticamente estos fragmentos de código en su tienda.",
     "textConfirmCancel": "Si vuelves atrás perderás los valores seleccionados",
     "upgradeSCCToPmaxTitle": "Actualización de la Campaña próximamente",
     "upgradeSCCToPmaxTextWithoutCampaign": "A partir de {0}, podrás crear campañas Máximo rendimiento para tu tienda. \n\n Máximo rendimiento es la nueva generación de campañas Smart Shopping. Es un tipo de campaña mejorada proporcionada por la tecnología inteligente de Google. Funciona en segundo plano para optimizar automáticamente tus anuncios a lo largo del proceso de compra con el fin de maximizar el rendimiento.",
-    "upgradeSCCToPmaxText": "Las campañas Smart Shopping se actualizarán a Máximo rendimiento el  {0}  \n\n No necesita realizar ninguna acción ya que la configuración de su campaña de Smart Shopping y el presupuesto seguirán siendo los mismos. Sólo su tipo de campaña se actualizará automáticamente a Máximo rendimiento. \n\n Desde principios de julio, sólo podrá crear campañas Máximo rendimiento.",
-    "PMaxLiveTitle": "Performance Max is here",
-    "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. You now have access to the best of Google Ads automation, inventory, and formats. Your existing Smart Shopping campaigns will stay the same for now, but will be automatically upgraded at a later date.",
-    "PMaxMigrationTitle": "Important News",
+    "upgradeSCCToPmaxText": "Smart Shopping campaigns will be upgraded to Performance Max on {0} \n\n You don't need to take any action as your Smart Shopping campaign settings and budget will remain the same. Only your campaign type will be automatically updated to Performance Max. \n\n From the start of July, you will only be able to create Performance Max campaigns.",
+    "PMaxLiveTitle": "Ha llegado Máximo rendimiento",
+    "PMaxLiveText": "A partir de hoy, puede crear ccampañas Máximo rendimiento, la siguiente generación de campañas Smart Shopping. Ahora tiene acceso a lo mejor de la automatización, el inventario y los formatos de Google Ads. Si tienes campañas Smart Shopping, se actualizarán a Máximo rendimiento próximamente.",
+    "PMaxMigrationTitle": "Noticias importantes",
     "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
     "PmaxTextLink": "Saber más sobre las campañas Máximo rendimiento",
     "textPmaxReleased": "Las campañas Smart Shopping se actualizarán a Máximo rendimiento el {0}. [Más información]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
@@ -1033,8 +1034,8 @@
     "legendLong": "*Your voucher will be applied automatically from the moment you start spending! *The amount needs to be spent within 60 days of the first campaign spend and credits will be valid for 60 days once credited. [Read T&C]({0})[:target=\\\"_blank\\\"]",
     "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
     "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
-    "ctaCreateFirstCampaign": "Create your first campaign",
-    "titleCampaignsBanner": "Boost your sales with Smart Shopping Campaigns",
+    "ctaCreateFirstCampaign": "Cree su primera campaña",
+    "titleCampaignsBanner": "Aumenta tus ventas con campañas de compras inteligentes",
     "textCampaignsBanner": "Your products will be increasingly displayed to the right people at the right time learn more about Smart Shopping Campaigns"
   }
 }
