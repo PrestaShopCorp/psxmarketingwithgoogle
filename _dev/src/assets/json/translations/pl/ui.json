@@ -45,7 +45,8 @@
         "footer": "Utwórz nowe [konto Merchant Center]({0})[:target=\"_blank\"] lub połącz istniejące.  \nAby pokazać swoje produkty w Google, musisz spełnić [wymagania dotyczące kwalifikowalności]({1})[:target=\"_blank\"]."
       },
       "content3": {
-        "text": "Inteligentne kampanie produktowe to usługa w ramach Google Ads, która wykorzystuje inteligentną technologię Google do umieszczania reklam i określania stawek, tak aby maksymalizować wartość konwersji i pokazywać je osobom szukającym produktow, takich jakie masz w swojej ofercie.  \n \n Ustal dzienny budżet i pozwól inteligentnej technologii Google na zoptymalizowanie Twoich kampanii w różnych sieciach reklamowych, takich jak wyszukiwarka Google, YouTube czy Gmail. Płacisz tylko wtedy, kiedy ludzie klikają."
+        "title": "Create and manage Smart Shopping campaigns",
+        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click."
       }
     },
     "footer": {
