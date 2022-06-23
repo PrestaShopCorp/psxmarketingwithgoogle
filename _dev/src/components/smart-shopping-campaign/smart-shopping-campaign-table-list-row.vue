@@ -15,8 +15,9 @@
       <b-badge
         variant="type"
         class="ps_gs-fz-12 m-1"
+        v-if="campaignType"
       >
-        {{ campaignType(campaign) }}
+        {{ campaignType }}
       </b-badge>
     </b-td>
     <b-td class="ps_gs-fz-12 text-nowrap">
@@ -121,6 +122,15 @@ export default {
         )
         : this.$t('smartShoppingCampaignCreation.inputAllSyncedProducts');
     },
+    campaignType() {
+      if (this.campaign.type === CampaignTypes.SMART_SHOPPING) {
+        return 'SSC';
+      }
+      if (this.campaign.type === CampaignTypes.PERFORMANCE_MAX) {
+        return 'PMax';
+      }
+      return null;
+    },
   },
   methods: {
     goToCampaignPage() {
@@ -147,12 +157,6 @@ export default {
         status: CampaignStatusToggle.ENABLED,
       };
       this.$store.dispatch('smartShoppingCampaigns/CHANGE_STATUS_OF_SSC', payload);
-    },
-    campaignType(campaign) {
-      if (campaign.type === CampaignTypes.SMART_SHOPPING) {
-        return 'SSC';
-      }
-      return 'PMax';
     },
   },
   googleUrl,
