@@ -45,7 +45,8 @@
         "footer": "Crea un nuovo [account Merchant Center]({0})[:target=\"_blank\"] o collegane uno esistente.  \nPer mostrare i tuoi prodotti su Google dovrai soddisfare i [requisiti di idoneità]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "text": "Le Campagne Shopping Intelligenti sono annunci di Google che usano la tecnologia intelligente di Google per determinare le offerte e il posizionamento degli annunci, massimizzando il valore di conversione e mostrando strategicamente i tuoi annunci alle persone che cercano prodotti come i tuoi.  \n \nImposta un budget giornaliero e lascia che la tecnologia intelligente di Google ottimizzi le tue campagne su diverse reti come Ricerca Google, YouTube o Gmail. Pagherai solo quando le persone cliccano sui tuoi annunci."
+        "title": "Create and manage Smart Shopping campaigns",
+        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click."
       }
     },
     "footer": {
