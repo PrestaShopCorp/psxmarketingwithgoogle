@@ -45,9 +45,7 @@
         "footer": "Crea un nuovo [account Merchant Center]({0})[:target=\"_blank\"] o collegane uno esistente.  \nPer mostrare i tuoi prodotti su Google dovrai soddisfare i [requisiti di idoneità]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Boost your reach and sales with Performance Max",
-        "text": "Le Campagne Shopping Intelligenti sono annunci di Google che usano la tecnologia intelligente di Google per determinare le offerte e il posizionamento degli annunci, massimizzando il valore di conversione e mostrando strategicamente i tuoi annunci alle persone che cercano prodotti come i tuoi.  \n \nImposta un budget giornaliero e lascia che la tecnologia intelligente di Google ottimizzi le tue campagne su diverse reti come Ricerca Google, YouTube o Gmail. Pagherai solo quando le persone cliccano sui tuoi annunci.",
-        "footer": "Based on early testing, advertisers who upgrade Smart Shopping campaigns to Performance Max see an average of 12% increase in conversion value at the same or better return on ad spend(Google Data, Global, Ads, Sep–Oct 2021) \n \n [Learn more about Performance Max]({0})[:target=\"_blank\"]"
+        "text": "Le Campagne Shopping Intelligenti sono annunci di Google che usano la tecnologia intelligente di Google per determinare le offerte e il posizionamento degli annunci, massimizzando il valore di conversione e mostrando strategicamente i tuoi annunci alle persone che cercano prodotti come i tuoi.  \n \nImposta un budget giornaliero e lascia che la tecnologia intelligente di Google ottimizzi le tue campagne su diverse reti come Ricerca Google, YouTube o Gmail. Pagherai solo quando le persone cliccano sui tuoi annunci."
       }
     },
     "footer": {
