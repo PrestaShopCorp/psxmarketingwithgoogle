@@ -45,6 +45,7 @@
         "footer": "Erstellen Sie ein neues [Merchant Center-Konto]({0})[:target=\"_blank\"] oder verknüpfen Sie ein bestehendes Konto.  \nUm Ihre Produkte bei Google anzuzeigen, müssen Sie die [Teilnahmebedingungen]({1})[:target=\"_blank\"] erfüllen."
       },
       "content3": {
+        "title": "Erstellen und verwalten Sie Ihre Smart Shopping-Kampagnen",
         "text": "Smart Shopping-Kampagnen sind Google-Anzeigen, die intelligente Technologie von Google für die Gebotsabgabe und die Anzeigenplatzierung nutzen, um die Werte der Conversions zu maximieren und Ihre Anzeigen strategisch für Personen anzuzeigen, die nach Produkten wie den Ihren suchen.  \n \n Legen Sie ein tägliches Budget fest und lassen Sie die intelligente Technologie von Google Ihre Kampagnen in verschiedenen Netzwerken wie Google Search, YouTube oder Gmail optimieren. Sie zahlen nur, wenn jemand klickt."
       }
     },
@@ -946,7 +947,7 @@
     "textConfirmCancel": "Wenn Sie zurückgehen, verlieren Sie die ausgewählten Werte.",
     "upgradeSCCToPmaxTitle": "Upgrade der Kampagne kommt bald",
     "upgradeSCCToPmaxTextWithoutCampaign": "Starten Sie {0}, Sie können Maximale Performance Kampagnen für Ihren Shop erstellen. \n\n Performance Max ist die nächste Generation der Smart Shopping Kampagnen. Es ist ein erweiterter Kampagnentyp, angetrieben durch die intelligente Technologie von Google. Es arbeitet hinter der Szene und optimiert automatisch Ihre Anzeigen während der Einkaufsreise um maximale Leistung zu erzielen.",
-    "upgradeSCCToPmaxText": "Smart Shopping Kampagnen werden auf Maximale Performance auf {0}  aktualisiert  \n\n Sie müssen keine Aktion durchführen, da Ihre Smart Shopping Kampagnen Einstellungen und Budget gleich bleiben. Nur Ihr Kampagnentyp wird automatisch auf Maximale Performance aktualisiert. \n\n Ab Anfang Juli können Sie nur Maximale Performance-Kampagnen erstellen.",
+    "upgradeSCCToPmaxText": "Smart Shopping campaigns will be upgraded to Performance Max on {0} \n\n You don't need to take any action as your Smart Shopping campaign settings and budget will remain the same. Only your campaign type will be automatically updated to Performance Max. \n\n From the start of July, you will only be able to create Performance Max campaigns.",
     "PMaxLiveTitle": "Performance Max is here",
     "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. You now have access to the best of Google Ads automation, inventory, and formats. Your existing Smart Shopping campaigns will stay the same for now, but will be automatically upgraded at a later date.",
     "PMaxMigrationTitle": "Important News",
@@ -1034,7 +1035,7 @@
     "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
     "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
     "ctaCreateFirstCampaign": "Create your first campaign",
-    "titleCampaignsBanner": "Boost your sales with Smart Shopping Campaigns",
+    "titleCampaignsBanner": "Steigern Sie Ihren Umsatz mit intelligenten Shopping-Kampagnen",
     "textCampaignsBanner": "Your products will be increasingly displayed to the right people at the right time learn more about Smart Shopping Campaigns"
   }
 }
