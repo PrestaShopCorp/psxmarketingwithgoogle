@@ -45,7 +45,8 @@
         "footer": "Создайте новый аккаунт [Merchant Center]({0})[:target=\"_blank\"] или привяжите существующий.  \nДля показа ваших товаров в Google вам необходимо соответствовать [требованиям приемлемости]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "text": "Кампании Smart Shopping - это рекламные объявления, в которых используется интеллектуальная технология Google для выставления ставок и размещения объявлений с целью максимизации конверсии и стратегического показа ваших объявлений людям, ищущим товары, подобные вашим.  \n \n Установите дневной бюджет и позвольте интеллектуальной технологии Google оптимизировать ваши кампании в различных сетях, таких как Google Search, YouTube или Gmail. Вы платите только тогда, когда люди нажимают."
+        "title": "Create and manage Smart Shopping campaigns",
+        "text": "Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.  \n \n Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click."
       }
     },
     "footer": {
