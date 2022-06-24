@@ -1,5 +1,5 @@
 import SmartShoppingCampaignTableList from '../src/components/smart-shopping-campaign/smart-shopping-campaign-table-list.vue'
-import {campaigns, campaignsEmpty} from '../.storybook/mock/campaigns-list.js';
+import {campaigns, campaignsEmpty, onlySsc, onlyPmax} from '../.storybook/mock/campaigns-list.js';
 import {rest} from 'msw';
 import { CampaignTypes } from '@/enums/reporting/CampaignStatus';
 
@@ -36,17 +36,16 @@ Table.parameters = {
         const type = new URLSearchParams(req.url.search).get('type');
         if (type === CampaignTypes.SMART_SHOPPING) {
           return res(
-            ctx.json(
-              [...campaigns]
-            )
+            ctx.json({
+              campaigns: [...onlySsc]
+            })
           );
         }
         if (type === CampaignTypes.PERFORMANCE_MAX) {
           return res(
-            ctx.json([
-              {"campaignName":"Tartiflette day","startDate":"2021-06-20","endDate":"2021-11-15","targetCountry":"FR","dailyBudget":112,"status":"ELIGIBLE","currencyCode":"EUR","productFilters":[], "type": "PERFORMANCE_MAX"}
-            ]
-            )
+            ctx.json({
+              campaigns: [...onlyPmax]
+            })
           );
         };
       }),
