@@ -103,6 +103,9 @@ export default {
   methods: {
     confirm() {
       localStorage.setItem(`modalPmax-${this.type}`, true);
+      this.$router.push({
+        name: 'campaign-creation',
+      });
     },
     displayImage(type) {
       const lang = this.$i18n.locale.toUpperCase();
