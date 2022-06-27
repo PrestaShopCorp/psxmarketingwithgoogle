@@ -461,7 +461,10 @@ export default {
       if (isNewRequest) {
         commit(MutationsTypes.RESET_CAMPAIGNS_LIST);
       }
-      commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, json.campaigns, typeChosen);
+      commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, {
+        campaigns: json.campaigns,
+        type: typeChosen,
+      });
       commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, json.nextPageToken);
     } catch (error) {
       console.error(error);

@@ -213,7 +213,7 @@ export interface FiltersPerformances {
 export const state: State = {
   campaigns: {
     sscList: [],
-    pMaxList: []
+    pMaxList: [],
   },
   campaignsOrdering: {},
   tokenNextPageCampaignList: null,

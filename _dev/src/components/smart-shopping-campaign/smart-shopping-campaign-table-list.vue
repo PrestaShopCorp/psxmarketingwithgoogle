@@ -218,13 +218,14 @@ export default {
       return Object.values(CampaignSummaryListHeaderType);
     },
     pMaxCampaignsList() {
-      return this.$store.state.campaigns.pMaxList;
+      return this.$store.state.smartShoppingCampaigns.campaigns.pMaxList;
     },
     sscCampaignsList() {
-      return this.$store.state.campaigns.sscList;
+      return this.$store.state.smartShoppingCampaigns.campaigns.sscList;
     },
     campaignList() {
-      const campaigns = this.typeChosen === CampaignTypes.PERFORMANCE_MAX ? this.pMaxCampaignsList : this.sscCampaignsList;
+      const campaigns = this.typeChosen === CampaignTypes.PERFORMANCE_MAX
+        ? this.pMaxCampaignsList : this.sscCampaignsList;
       const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
 
       if (searchQuery) {

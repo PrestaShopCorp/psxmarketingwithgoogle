@@ -2,6 +2,7 @@ import SmartShoppingCampaignTableList from '../src/components/smart-shopping-cam
 import {campaigns, campaignsEmpty, onlySsc, onlyPmax} from '../.storybook/mock/campaigns-list.js';
 import {rest} from 'msw';
 import { CampaignTypes } from '@/enums/reporting/CampaignStatus';
+import { log } from 'console';
 
 export default {
   title: 'Smart Shopping Campaign/Campaigns\'s list',
@@ -23,7 +24,8 @@ const Template = (args, { argTypes }) => ({
 export const Table:any = Template.bind({});
 Table.args = {
   beforeCreate() {
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaigns);
+    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign({}, campaigns);
+    console.log(campaigns);
   },
   loading: false,
   inNeedOfConfiguration: false,
