@@ -10,16 +10,48 @@
       <h3 class="ps_gs-fz-20 font-weight-600">
         {{ $t('smartShoppingCampaignList.tableTitle') }}
       </h3>
-      <b-button
-        v-if="remarketingTag && campaignList.length && !inNeedOfConfiguration"
-        data-test-id="redirect-to-reporting-button"
-        size="sm"
-        class="mb-2"
-        variant="outline-primary"
-        @click="redirectToReporting"
-      >
-        {{ $t('cta.viewReporting') }}
-      </b-button>
+      <div class="d-flex">
+        <b-button
+          v-if="remarketingTag && campaignList.length && !inNeedOfConfiguration"
+          data-test-id="redirect-to-reporting-button"
+          size="sm"
+          class="mb-2 mr-2"
+          variant="outline-primary"
+          @click="redirectToReporting"
+        >
+          {{ $t('cta.viewReporting') }}
+        </b-button>
+        <b-dropdown
+          v-if="pMaxCampaignsList.length > 0 && sscCampaignsList.length > 0"
+          id="filterByCampaignTypeDropdown"
+          variant="outline-primary"
+          :text="$t('smartShoppingCampaignList.campaignType',
+                    [typeChosen === this.$options.CampaignTypes.PERFORMANCE_MAX ?
+                      $t('smartShoppingCampaignList.performanceMax')
+                      : $t('smartShoppingCampaignList.smartShoppingCampaign')])"
+          class="mt-1 mb-2 mt-md-0 bg-transparent
+          psxmarketingwithgoogle-dropdown"
+        >
+          <b-dropdown-form>
+            <b-form-radio
+              v-model="typeChosen"
+              :value="this.$options.CampaignTypes.PERFORMANCE_MAX"
+              name="campaignType"
+            >
+              {{ $t('smartShoppingCampaignList.performanceMax') }}
+            </b-form-radio>
+          </b-dropdown-form>
+          <b-dropdown-form>
+            <b-form-radio
+              v-model="typeChosen"
+              :value="this.$options.CampaignTypes.SMART_SHOPPING"
+              name="campaignType"
+            >
+              {{ $t('smartShoppingCampaignList.smartShoppingCampaign') }}
+            </b-form-radio>
+          </b-dropdown-form>
+        </b-dropdown>
+      </div>
     </div>
     <ReportingTableHeader
       class="mt-n1"
@@ -154,6 +186,7 @@ import googleUrl from '../../assets/json/googleUrl.json';
 import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import SSCPopinActivateTracking from '@/components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   name: 'SmartShoppingCampaignTableList',
@@ -168,6 +201,7 @@ export default {
     return {
       campaignName: null,
       searchQuery: {},
+      typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX,
     };
   },
   props: {
@@ -184,8 +218,15 @@ export default {
     campaignHeaderList() {
       return Object.values(CampaignSummaryListHeaderType);
     },
+    pMaxCampaignsList() {
+      return this.$store.state.smartShoppingCampaigns.campaigns.pMaxList;
+    },
+    sscCampaignsList() {
+      return this.$store.state.smartShoppingCampaigns.campaigns.sscList;
+    },
     campaignList() {
-      const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      const campaigns = this.typeChosen === CampaignTypes.PERFORMANCE_MAX
+        ? this.pMaxCampaignsList : this.sscCampaignsList;
       const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
 
       if (searchQuery) {
@@ -202,7 +243,7 @@ export default {
     queryOrderDirection: {
       get() {
         return this.$store.getters[
-          'smartShoppingCampaigns/GET_SSC_LIST_ORDERING'
+          'smartShoppingCampaigns/GET_CAMPAIGNS_LIST_ORDERING'
         ];
       },
       set(orderDirection) {
@@ -263,7 +304,7 @@ export default {
     fetchCampaigns(isNewRequest = true) {
       this.$emit('loader', true);
       this.$store
-        .dispatch('smartShoppingCampaigns/GET_SSC_LIST', isNewRequest)
+        .dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest, typeChosen: this.typeChosen})
         .then(() => {
           this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
         })
@@ -276,9 +317,12 @@ export default {
         return;
       }
       const body = document.getElementsByClassName('table-with-maxheight')[0];
-      const token = this.$store.getters[
-        'smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'
-      ];
+
+      // ToDo: Temporary use of different tokens for next page (SSC + PMax)
+      const tokensList = this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
+      const token = this.typeChosen === CampaignTypes.SMART_SHOPPING
+        ? tokensList.ssc
+        : tokensList.pmax;
 
       if (
         body.scrollTop >= body.scrollHeight - body.clientHeight
@@ -294,7 +338,7 @@ export default {
       );
     },
   },
-  mounted() {
+  async mounted() {
     const tableBody = document.getElementsByClassName(
       'table-with-maxheight',
     )[0];
@@ -307,7 +351,11 @@ export default {
       this.$emit('loader', false);
       return;
     }
-    this.fetchCampaigns();
+    await this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX});
+    await this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.SMART_SHOPPING});
+    if (this.pMaxCampaignsList.length === 0 && this.sscCampaignsList.length > 0) {
+      this.typeChosen = this.$options.CampaignTypes.SMART_SHOPPING;
+    }
   },
   beforeDestroy() {
     const tableBody = document.getElementsByClassName(
@@ -319,5 +367,6 @@ export default {
     }
   },
   googleUrl,
+  CampaignTypes,
 };
 </script>

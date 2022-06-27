@@ -12,7 +12,7 @@
       class="my-1"
       :markdown="$t('modal.textDisconnectGoogleAds')"
     />
-    <template v-if="SSCExist">
+    <template v-if="accountHasAtLeastOneCampaign">
       <!-- <b-form-checkbox
         v-model="pauseCampaigns"
         switch
@@ -102,8 +102,8 @@ export default {
     },
   },
   computed: {
-    SSCExist() {
-      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+    accountHasAtLeastOneCampaign() {
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
 };

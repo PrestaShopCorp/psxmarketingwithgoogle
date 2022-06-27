@@ -26,9 +26,10 @@ import {
   CampaignObject, CampaignStatusPayload, ConversionAction, Dimension,
 } from './state';
 import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
-  async [ActionsTypes.SAVE_NEW_SSC]({commit, rootState}, payload : CampaignObject) {
+  async [ActionsTypes.SAVE_NEW_CAMPAIGN]({commit, rootState}, payload : CampaignObject) {
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/create`,
         {
@@ -45,7 +46,7 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      commit(MutationsTypes.SAVE_NEW_SSC, payload);
+      commit(MutationsTypes.SAVE_NEW_CAMPAIGN, payload);
       return {
         error: false,
         json,
@@ -427,8 +428,14 @@ export default {
     commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES,
       result);
   },
-  async [ActionsTypes.GET_SSC_LIST]({commit, state, rootState}, isNewRequest = true) {
+  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state, rootState}, {
+    isNewRequest = true,
+    // ToDo: temporary data to remove when PMax is the only kind of campaign we manage
+    typeChosen,
+  }) {
     const query = new URLSearchParams();
+    const nextPageToken = typeChosen === CampaignTypes.PERFORMANCE_MAX
+      ? state.nextPageTokenCampaignList.pmax : state.nextPageTokenCampaignList.scc;
 
     if (state.campaignsOrdering && state.campaignsOrdering.duration) {
       query.append('order[startDate]', state.campaignsOrdering.duration);
@@ -436,11 +443,14 @@ export default {
     if (state.campaignsOrdering && state.campaignsOrdering.name) {
       query.append('filter[campaignName]', state.campaignsOrdering.name);
     }
-    if (!isNewRequest && state.tokenNextPageCampaignList) {
-      query.append('nextPageToken', state.tokenNextPageCampaignList);
+    if (!isNewRequest && !nextPageToken) {
+      return;
+    }
+    if (!isNewRequest && nextPageToken) {
+      query.append('nextPageToken', nextPageToken);
     }
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list?${query}`,
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list?${query}&type=${typeChosen}`,
         {
           method: 'GET',
           headers: {
@@ -455,10 +465,16 @@ export default {
       const json = await resp.json();
 
       if (isNewRequest) {
-        commit(MutationsTypes.RESET_SSC_LIST);
+        commit(MutationsTypes.RESET_CAMPAIGNS_LIST, typeChosen);
       }
-      commit(MutationsTypes.SAVE_SSC_LIST, json.campaigns);
-      commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, json.nextPageToken);
+      commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, {
+        campaigns: json.campaigns,
+        type: typeChosen,
+      });
+      commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, {
+        nextPageToken: json.nextPageToken,
+        type: typeChosen,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -481,10 +497,10 @@ export default {
       throw new HttpClientError(resp.statusText, resp.status);
     }
     const json = await resp.json();
-    commit(MutationsTypes.UPDATE_SSC_STATUS, payload);
+    commit(MutationsTypes.UPDATE_CAMPAIGN_STATUS, payload);
     return json;
   },
-  async [ActionsTypes.UPDATE_SSC]({commit, rootState, state}, payload: CampaignObject) {
+  async [ActionsTypes.UPDATE_CAMPAIGN]({commit, rootState, state}, payload: CampaignObject) {
     const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/${payload.id}`,
       {
         method: 'POST',
@@ -500,7 +516,7 @@ export default {
       throw new HttpClientError(resp.statusText, resp.status);
     }
     const json = await resp.json();
-    commit(MutationsTypes.UPDATE_SSC, payload);
+    commit(MutationsTypes.UPDATE_CAMPAIGN, payload);
     return json;
   },
   async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState, state}, search?: string) {

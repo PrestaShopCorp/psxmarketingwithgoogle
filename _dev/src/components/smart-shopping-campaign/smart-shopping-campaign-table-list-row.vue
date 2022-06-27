@@ -2,7 +2,7 @@
   <b-tr>
     <b-td
       class="b-table-sticky-column text-primary pl-2
-      d-flex justify-content-between align-items-baseline"
+      justify-content-between align-items-baseline"
     >
       <b-button
         variant="link"

@@ -27,6 +27,7 @@
 <script>
 import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
 import SmartShoppingCampaignTableList from '../components/smart-shopping-campaign/smart-shopping-campaign-table-list.vue';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   components: {
@@ -47,8 +48,8 @@ export default {
     googleAdsIsServing() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
-    SSCExist() {
-      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+    accountHasAtLeastOneCampaign() {
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
   methods: {
@@ -60,7 +61,7 @@ export default {
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS'),
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS'),
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY'),
-        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST'),
+        this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX}),
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE'),
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'),
       ]);
@@ -79,7 +80,7 @@ export default {
       await this.$store.dispatch('accounts/REQUEST_ACCOUNTS_DETAILS');
     }
     // Not dispatch if there already are campaigns in the store
-    if (!this.SSCExist) {
+    if (!this.accountHasAtLeastOneCampaign) {
       this.getDatas()
         .then(() => {
           this.loadingPage = false;
@@ -88,5 +89,6 @@ export default {
       this.loadingPage = false;
     }
   },
+  CampaignTypes,
 };
 </script>

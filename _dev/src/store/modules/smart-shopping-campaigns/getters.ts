@@ -80,11 +80,11 @@ export default {
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](state: LocalState): boolean|null {
     return state.errorCampaignNameExists;
   },
-  [GettersTypes.GET_ALL_SSC](state: LocalState): Array<CampaignObject> {
-    return state.campaigns;
+  [GettersTypes.GET_ALL_CAMPAIGNS](state: LocalState): CampaignObject[] {
+    return state.campaigns.sscList.concat(state.campaigns.pMaxList);
   },
-  [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): null|string {
-    return state.tokenNextPageCampaignList;
+  [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): object {
+    return state.nextPageTokenCampaignList;
   },
   [GettersTypes.GET_LIMIT_CAMPAIGN_PERFORMANCE_LIST](state: LocalState): null|number {
     return state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList;
@@ -133,7 +133,7 @@ export default {
   ): Object {
     return state.reporting.request.ordering.campaignsPerformances;
   },
-  [GettersTypes.GET_SSC_LIST_ORDERING](
+  [GettersTypes.GET_CAMPAIGNS_LIST_ORDERING](
     state: LocalState,
   ): OrderByType {
     return state.campaignsOrdering;

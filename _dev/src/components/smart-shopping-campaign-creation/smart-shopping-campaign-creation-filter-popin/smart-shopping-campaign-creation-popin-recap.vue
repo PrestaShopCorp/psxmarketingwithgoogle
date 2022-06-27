@@ -184,7 +184,7 @@ export default {
         type: CampaignTypes.PERFORMANCE_MAX,
       };
       this.$store
-        .dispatch('smartShoppingCampaigns/SAVE_NEW_SSC', finalCampaign)
+        .dispatch('smartShoppingCampaigns/SAVE_NEW_CAMPAIGN', finalCampaign)
         .then((resp) => {
           this.$refs.modal.hide();
           if (resp && resp.error) {
@@ -210,7 +210,7 @@ export default {
         status: CampaignStatusToggle.ENABLED,
       };
       this.$store
-        .dispatch('smartShoppingCampaigns/UPDATE_SSC', payload)
+        .dispatch('smartShoppingCampaigns/UPDATE_CAMPAIGN', payload)
         .then((resp) => {
           this.$refs.modal.hide();
           if (resp && resp.error) {

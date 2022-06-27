@@ -29,6 +29,7 @@ import ProductFeedPreScanTableStatusDetails from '@/components/product-feed-page
 import SyncTimeline from '@/components/sync-timeline/sync-timeline';
 import SyncOverview from '@/components/product-feed-page/sync-overview.vue';
 import PsToast from '../components/commons/ps-toast';
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   data() {
@@ -60,7 +61,7 @@ export default {
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
-      await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST');
+      await this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX});
     },
   },
   async created() {
@@ -71,5 +72,6 @@ export default {
       this.allDataLoaded = true;
     });
   },
+  CampaignTypes,
 };
 </script>

@@ -1,24 +1,27 @@
-export const sscDefault = {
-campaigns: [],
+export const defaultCampaigns = {
+  campaigns: {
+    sscList: [],
+    pMaxList: [],
+  },
   tracking: null,
   tagAlreadyExists: false
 };
 
 
 export const sscTrackingIsTrue = {
-  ...sscDefault,
+  ...defaultCampaigns,
   tracking: true,
 };
 
 
 export const sscTrackingIsFalse = {
-  ...sscDefault,
+  ...defaultCampaigns,
   tracking: false,
 };
 
 
 export const sscTagAlreadyExists = {
-  ...sscDefault,
+  ...defaultCampaigns,
   tracking: true,
   tagAlreadyExists: true,
 };
@@ -284,4 +287,4 @@ export const campaignWithoutUnhandledFilters = {
 };
 
 
-export default sscDefault;
+export default defaultCampaigns;

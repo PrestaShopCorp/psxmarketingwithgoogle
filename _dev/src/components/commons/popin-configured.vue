@@ -73,8 +73,8 @@ export default {
     };
   },
   computed: {
-    SSCExist() {
-      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+    accountHasAtLeastOneCampaign() {
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
   methods: {
@@ -87,7 +87,7 @@ export default {
         params: SegmentGenericParams,
       });
       // Prevent popin for opening if tracking is a campaign exists
-      if (this.SSCExist) {
+      if (this.accountHasAtLeastOneCampaign) {
         this.$router.push({
           name: 'campaign-creation',
         });
