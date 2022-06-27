@@ -12,13 +12,13 @@
       >
         {{ campaign.campaignName }}
       </b-button>
-      <!-- <b-badge
+      <b-badge
         variant="type"
         class="ps_gs-fz-12 m-1"
         v-if="campaignType"
       >
         {{ campaignType }}
-      </b-badge> -->
+      </b-badge>
     </b-td>
     <b-td class="ps_gs-fz-12 text-nowrap">
       {{ campaignDuration }}

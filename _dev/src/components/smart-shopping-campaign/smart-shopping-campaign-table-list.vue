@@ -217,8 +217,14 @@ export default {
     campaignHeaderList() {
       return Object.values(CampaignSummaryListHeaderType);
     },
+    pMaxCampaignsList() {
+      return this.$store.state.campaigns.pMaxList;
+    },
+    sscCampaignsList() {
+      return this.$store.state.campaigns.sscList;
+    },
     campaignList() {
-      const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      const campaigns = this.typeChosen === CampaignTypes.PERFORMANCE_MAX ? this.pMaxCampaignsList : this.sscCampaignsList;
       const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
 
       if (searchQuery) {

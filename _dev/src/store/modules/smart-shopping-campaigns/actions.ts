@@ -29,7 +29,7 @@ import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
-  async [ActionsTypes.SAVE_NEW_SSC]({commit, rootState}, payload : CampaignObject) {
+  async [ActionsTypes.SAVE_NEW_CAMPAIGN]({commit, rootState}, payload : CampaignObject) {
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/create`,
         {
@@ -46,7 +46,7 @@ export default {
         throw new HttpClientError(resp.statusText, resp.status);
       }
       const json = await resp.json();
-      commit(MutationsTypes.SAVE_NEW_SSC, payload);
+      commit(MutationsTypes.SAVE_NEW_CAMPAIGN, payload);
       return {
         error: false,
         json,
@@ -459,9 +459,9 @@ export default {
       const json = await resp.json();
 
       if (isNewRequest) {
-        commit(MutationsTypes.RESET_SSC_LIST);
+        commit(MutationsTypes.RESET_CAMPAIGNS_LIST);
       }
-      commit(MutationsTypes.SAVE_SSC_LIST, json.campaigns);
+      commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, json.campaigns, typeChosen);
       commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, json.nextPageToken);
     } catch (error) {
       console.error(error);
@@ -485,10 +485,10 @@ export default {
       throw new HttpClientError(resp.statusText, resp.status);
     }
     const json = await resp.json();
-    commit(MutationsTypes.UPDATE_SSC_STATUS, payload);
+    commit(MutationsTypes.UPDATE_CAMPAIGN_STATUS, payload);
     return json;
   },
-  async [ActionsTypes.UPDATE_SSC]({commit, rootState, state}, payload: CampaignObject) {
+  async [ActionsTypes.UPDATE_CAMPAIGN]({commit, rootState, state}, payload: CampaignObject) {
     const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/${payload.id}`,
       {
         method: 'POST',
@@ -504,7 +504,7 @@ export default {
       throw new HttpClientError(resp.statusText, resp.status);
     }
     const json = await resp.json();
-    commit(MutationsTypes.UPDATE_SSC, payload);
+    commit(MutationsTypes.UPDATE_CAMPAIGN, payload);
     return json;
   },
   async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState, state}, search?: string) {

@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     SSCExist() {
-      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
   methods: {

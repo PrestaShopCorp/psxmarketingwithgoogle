@@ -49,7 +49,7 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
     SSCExist() {
-      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
   methods: {

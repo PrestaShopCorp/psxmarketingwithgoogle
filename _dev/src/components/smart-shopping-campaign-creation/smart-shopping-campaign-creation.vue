@@ -624,7 +624,7 @@ export default {
       ];
     },
     sscList() {
-      return this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      return this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS'];
     },
     foundSsc() {
       return this.sscList.find((el) => el.id === this.$route.params.id);

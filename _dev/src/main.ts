@@ -41,7 +41,7 @@ new Vue({
 
       const psAccountContext = this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
       const userId = this.$store.state.accounts.shopIdPsAccounts;
-      const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC'];
+      const campaigns = this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS'];
       const isActiveCamp = campaigns.some((camp) => camp.status === CampaignStatus.ELIGIBLE);
 
       if (userId) {

@@ -69,7 +69,7 @@ export default {
       return this.$store.state.smartShoppingCampaigns.tracking;
     },
     SSCExist() {
-      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
   methods: {

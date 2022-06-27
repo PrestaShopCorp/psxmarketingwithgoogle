@@ -198,7 +198,7 @@ export default {
       return this.$i18n.t('smartShoppingCampaignCreation.enableCreationRemarketingTag');
     },
     SSCExist() {
-      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_SSC']?.length;
+      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
     },
     conversionActions() {
       return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'];

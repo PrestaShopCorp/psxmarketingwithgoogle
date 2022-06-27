@@ -80,8 +80,8 @@ export default {
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](state: LocalState): boolean|null {
     return state.errorCampaignNameExists;
   },
-  [GettersTypes.GET_ALL_SSC](state: LocalState): Array<CampaignObject> {
-    return state.campaigns;
+  [GettersTypes.GET_ALL_CAMPAIGNS](state: LocalState): CampaignObject[] {
+    return state.campaigns.sscList.concat(state.campaigns.pMaxList);
   },
   [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): null|string {
     return state.tokenNextPageCampaignList;

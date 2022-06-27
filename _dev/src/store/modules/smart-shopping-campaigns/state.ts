@@ -24,7 +24,10 @@ import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import CampaignStatus, {CampaignStatusToggle, CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export interface State {
-  campaigns: CampaignObject[];
+  campaigns: {
+    sscList: CampaignObject[];
+    pMaxList: CampaignObject[];
+  },
   campaignsOrdering: CampaignsOrdering,
   tokenNextPageCampaignList: null|string,
   errorCampaignNameExists: null|boolean;
@@ -208,7 +211,10 @@ export interface FiltersPerformances {
 }
 
 export const state: State = {
-  campaigns: [],
+  campaigns: {
+    sscList: [],
+    pMaxList: []
+  },
   campaignsOrdering: {},
   tokenNextPageCampaignList: null,
   errorCampaignNameExists: null,

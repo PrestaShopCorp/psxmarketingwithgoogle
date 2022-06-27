@@ -20,7 +20,7 @@
 import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import CampaignStatus, {
-  CampaignStatusToggle,
+  CampaignStatusToggle, CampaignTypes,
 } from '@/enums/reporting/CampaignStatus';
 import MutationsTypes from './mutations-types';
 import {
@@ -189,8 +189,9 @@ export default {
   [MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES](state: LocalState) {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
-  [MutationsTypes.RESET_SSC_LIST](state: LocalState) {
-    state.campaigns = [];
+  [MutationsTypes.RESET_CAMPAIGNS_LIST](state: LocalState) {
+    state.campaigns.sscList = [];
+    state.campaigns.pMaxList = [];
   },
   [MutationsTypes.SET_SSC_LIST_ORDERING](
     state: LocalState,
@@ -210,8 +211,13 @@ export default {
   ) {
     state.reporting.results.filtersPerformancesSection = payload;
   },
-  [MutationsTypes.SAVE_NEW_SSC](state: LocalState, payload: CampaignObject) {
-    state.campaigns.push(payload);
+  [MutationsTypes.SAVE_NEW_CAMPAIGN](state: LocalState, payload: CampaignObject) {
+    if (payload.type === CampaignTypes.SMART_SHOPPING) {
+      state.campaigns.sscList.push(payload);
+    }
+    if (payload.type === CampaignTypes.PERFORMANCE_MAX) {
+      state.campaigns.pMaxList.push(payload);
+    }
   },
   [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](
     state: LocalState,
@@ -219,11 +225,19 @@ export default {
   ) {
     state.errorCampaignNameExists = payload;
   },
-  [MutationsTypes.SAVE_SSC_LIST](
+  [MutationsTypes.SAVE_CAMPAIGNS_TO_LIST](
     state: LocalState,
-    payload: Array<CampaignObject>,
+    payload: {
+      campaigns: CampaignObject[],
+      type: CampaignTypes,
+    },
   ) {
-    state.campaigns.push(...payload);
+    if (payload.type === CampaignTypes.PERFORMANCE_MAX) {
+      state.campaigns.pMaxList.push(...payload.campaigns);
+    }
+    if (payload.type === CampaignTypes.SMART_SHOPPING) {
+      state.campaigns.sscList.push(...payload.campaigns);
+    }
   },
   [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](
     state: LocalState,
@@ -249,27 +263,37 @@ export default {
   ) {
     state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList = payload;
   },
-  [MutationsTypes.UPDATE_SSC_STATUS](
+  [MutationsTypes.UPDATE_CAMPAIGN_STATUS](
     state: LocalState,
     payload: CampaignStatusPayload,
   ) {
-    const getScc = state.campaigns.find((el) => el.id === payload.id);
+    const campaign = state.campaigns.pMaxList.find((el) => el.id === payload.id)
+      || state.campaigns.sscList.find((el) => el.id === payload.id);
 
-    if (getScc !== undefined) {
-      getScc.status = payload.status === CampaignStatusToggle.ENABLED
+    if (campaign !== undefined) {
+      campaign.status = payload.status === CampaignStatusToggle.ENABLED
         ? CampaignStatus.ELIGIBLE
         : CampaignStatus.PAUSED;
     }
   },
-  [MutationsTypes.UPDATE_SSC](state: LocalState, payload: CampaignObject) {
+  [MutationsTypes.UPDATE_CAMPAIGN](state: LocalState, payload: CampaignObject) {
     const requestedStatus = payload.status;
     payload.status = requestedStatus === CampaignStatusToggle.ENABLED
       ? CampaignStatus.ELIGIBLE
       : CampaignStatus.PAUSED;
-    // it's works but there are no id now in SSC object
-    const findCampaign = state.campaigns.findIndex(
-      (el) => el.id === payload.id,
-    );
-    state.campaigns.splice(findCampaign, 1, payload);
+
+    // Temporary duplicated code while PMax and SSC campaigns coexist
+    if (payload.type === CampaignTypes.PERFORMANCE_MAX) {
+      const findCampaign = state.campaigns.pMaxList.findIndex(
+        (el) => el.id === payload.id,
+      );
+      state.campaigns.pMaxList.splice(findCampaign, 1, payload);
+    }
+    if (payload.type === CampaignTypes.SMART_SHOPPING) {
+      const findCampaign = state.campaigns.sscList.findIndex(
+        (el) => el.id === payload.id,
+      );
+      state.campaigns.sscList.splice(findCampaign, 1, payload);
+    }
   },
 };
