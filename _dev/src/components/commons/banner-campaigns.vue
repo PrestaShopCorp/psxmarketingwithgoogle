@@ -23,7 +23,9 @@
           variant="primary"
           @click="openPopinActivateTracking"
         >
-          {{ this.accountHasAtLeastOneCampaign ? $t('cta.launchCampaign') : $t('banner.ctaCreateFirstCampaign') }}
+          {{ this.accountHasAtLeastOneCampaign
+            ? $t('cta.launchCampaign') : $t('banner.ctaCreateFirstCampaign')
+          }}
         </b-button>
       </div>
     </b-card-body>

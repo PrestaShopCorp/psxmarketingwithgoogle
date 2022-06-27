@@ -51,7 +51,6 @@ export default {
     googleAdsIsServing() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
-    },
     insideToast() {
       if (this.campaignCreated) {
         return this.$t('toast.campaignCreatedSuccess');
