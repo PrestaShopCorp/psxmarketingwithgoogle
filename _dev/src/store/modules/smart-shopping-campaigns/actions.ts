@@ -430,12 +430,12 @@ export default {
   },
   async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state, rootState}, {
     isNewRequest = true,
-    // ToDo: temporary data to remove when PMax is only kind of campaign we handle
+    // ToDo: temporary data to remove when PMax is the only kind of campaign we manage
     typeChosen,
   }) {
     const query = new URLSearchParams();
     const nextPageToken = typeChosen === CampaignTypes.PERFORMANCE_MAX
-      ? state.token.pmax : state.token.scc;
+      ? state.nextPageTokenCampaignList.pmax : state.nextPageTokenCampaignList.scc;
 
     if (state.campaignsOrdering && state.campaignsOrdering.duration) {
       query.append('order[startDate]', state.campaignsOrdering.duration);
