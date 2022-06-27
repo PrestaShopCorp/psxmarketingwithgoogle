@@ -55,5 +55,5 @@ module.exports = {
   filenameHashing: false,
   outputDir: '../views/',
   assetsDir: '',
-  publicPath: process.env.VUE_APP_CDN_URL || '../modules/psxmarketingwithgoogle/views/',
+  publicPath: process.env.PSX_MKTG_WITH_GOOGLE_CDN_URL || '../modules/psxmarketingwithgoogle/views/',
 };
