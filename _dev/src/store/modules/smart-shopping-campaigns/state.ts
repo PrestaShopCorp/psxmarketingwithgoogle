@@ -29,7 +29,10 @@ export interface State {
     pMaxList: CampaignObject[];
   },
   campaignsOrdering: CampaignsOrdering,
-  tokenNextPageCampaignList: null|string,
+  nextPageTokenCampaignList: {
+    ssc: null|string;
+    pmax: null|string;
+  },
   errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
   tagAlreadyExists: boolean;
@@ -216,7 +219,10 @@ export const state: State = {
     pMaxList: [],
   },
   campaignsOrdering: {},
-  tokenNextPageCampaignList: null,
+  nextPageTokenCampaignList: {
+    ssc: null,
+    pmax: null,
+  },
   errorCampaignNameExists: null,
   tracking: true,
   tagAlreadyExists: false,

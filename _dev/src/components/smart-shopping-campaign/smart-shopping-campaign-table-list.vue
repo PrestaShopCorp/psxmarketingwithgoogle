@@ -317,9 +317,12 @@ export default {
         return;
       }
       const body = document.getElementsByClassName('table-with-maxheight')[0];
-      const token = this.$store.getters[
-        'smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'
-      ];
+
+      // ToDo: Temporary use of different tokens for next page (SSC + PMax)
+      const tokensList = this.$store.getters['smartShoppingCampaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
+      const token = this.typeChosen === CampaignTypes.SMART_SHOPPING
+        ? tokensList.ssc
+        : tokensList.pmax;
 
       if (
         body.scrollTop >= body.scrollHeight - body.clientHeight
@@ -353,9 +356,6 @@ export default {
     if (this.pMaxCampaignsList.length === 0 && this.sscCampaignsList.length > 0) {
       this.typeChosen = this.$options.CampaignTypes.SMART_SHOPPING;
     }
-    if (this.pMaxCampaignsList.length > 0) {
-      this.typeChosen = this.$options.CampaignTypes.PERFORMANCE_MAX;
-    }
   },
   beforeDestroy() {
     const tableBody = document.getElementsByClassName(
@@ -365,11 +365,6 @@ export default {
     if (tableBody) {
       tableBody.removeEventListener('scroll', this.handleScroll);
     }
-  },
-  watch: {
-    typeChosen() {
-      this.fetchCampaigns();
-    },
   },
   googleUrl,
   CampaignTypes,

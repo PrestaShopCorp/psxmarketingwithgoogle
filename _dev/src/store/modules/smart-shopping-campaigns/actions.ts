@@ -434,6 +434,8 @@ export default {
     typeChosen,
   }) {
     const query = new URLSearchParams();
+    const nextPageToken = typeChosen === CampaignTypes.PERFORMANCE_MAX
+      ? state.token.pmax : state.token.scc;
 
     if (state.campaignsOrdering && state.campaignsOrdering.duration) {
       query.append('order[startDate]', state.campaignsOrdering.duration);
@@ -441,8 +443,11 @@ export default {
     if (state.campaignsOrdering && state.campaignsOrdering.name) {
       query.append('filter[campaignName]', state.campaignsOrdering.name);
     }
-    if (!isNewRequest && state.tokenNextPageCampaignList) {
-      query.append('nextPageToken', state.tokenNextPageCampaignList);
+    if (!isNewRequest && !nextPageToken) {
+      return;
+    }
+    if (!isNewRequest && nextPageToken) {
+      query.append('nextPageToken', nextPageToken);
     }
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list?${query}&type=${typeChosen}`,
@@ -466,7 +471,10 @@ export default {
         campaigns: json.campaigns,
         type: typeChosen,
       });
-      commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, json.nextPageToken);
+      commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, {
+        nextPageToken: json.nextPageToken,
+        type: typeChosen,
+      });
     } catch (error) {
       console.error(error);
     }

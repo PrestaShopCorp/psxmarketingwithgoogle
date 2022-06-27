@@ -83,8 +83,8 @@ export default {
   [GettersTypes.GET_ALL_CAMPAIGNS](state: LocalState): CampaignObject[] {
     return state.campaigns.sscList.concat(state.campaigns.pMaxList);
   },
-  [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): null|string {
-    return state.tokenNextPageCampaignList;
+  [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): object {
+    return state.nextPageTokenCampaignList;
   },
   [GettersTypes.GET_LIMIT_CAMPAIGN_PERFORMANCE_LIST](state: LocalState): null|number {
     return state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList;

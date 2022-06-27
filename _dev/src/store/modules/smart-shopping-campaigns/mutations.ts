@@ -245,9 +245,17 @@ export default {
   },
   [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](
     state: LocalState,
-    payload: string,
+    payload: {
+      nextPageToken: string,
+      type: CampaignTypes,
+    },
   ) {
-    state.tokenNextPageCampaignList = payload;
+    if (payload.type === CampaignTypes.PERFORMANCE_MAX) {
+      state.nextPageTokenCampaignList.pmax = payload.nextPageToken;
+    }
+    if (payload.type === CampaignTypes.SMART_SHOPPING) {
+      state.nextPageTokenCampaignList.ssc = payload.nextPageToken;
+    }
   },
   [MutationsTypes.SET_TOTAL_CAMPAIGNS_PERFORMANCES_RESULTS](
     state: LocalState,
