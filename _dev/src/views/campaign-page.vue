@@ -49,7 +49,7 @@ export default {
     googleAdsIsServing() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
-    SSCExist() {
+    accountHasAtLeastOneCampaign() {
       return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
@@ -80,7 +80,7 @@ export default {
     this.getDatas()
       .then(() => {
         this.loadingPage = false;
-        if (this.$route.name === 'campaign' && this.SSCExist) {
+        if (this.$route.name === 'campaign' && this.accountHasAtLeastOneCampaign) {
           this.$router.push({
             name: 'campaign-list',
           });
@@ -92,7 +92,7 @@ export default {
   watch: {
     $route: {
       handler(route) {
-        if (route.name === 'campaign' && this.SSCExist) {
+        if (route.name === 'campaign' && this.accountHasAtLeastOneCampaign) {
           this.$router.push({
             name: 'campaign-list',
           });

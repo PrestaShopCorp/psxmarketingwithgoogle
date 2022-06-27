@@ -51,7 +51,7 @@ export default {
     googleAdsIsServing() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
-    SSCExist() {
+    accountHasAtLeastOneCampaign() {
       return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
     },
     insideToast() {

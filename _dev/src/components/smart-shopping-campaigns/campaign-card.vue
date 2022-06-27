@@ -68,7 +68,7 @@ export default {
     trackingStatus() {
       return this.$store.state.smartShoppingCampaigns.tracking;
     },
-    SSCExist() {
+    accountHasAtLeastOneCampaign() {
       return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
@@ -78,7 +78,7 @@ export default {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      if (this.SSCExist) {
+      if (this.accountHasAtLeastOneCampaign) {
         this.$router.push({
           name: 'campaign-creation',
         });

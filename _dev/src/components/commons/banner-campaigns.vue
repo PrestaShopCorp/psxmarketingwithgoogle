@@ -23,7 +23,7 @@
           variant="primary"
           @click="openPopinActivateTracking"
         >
-          {{ this.SSCExist ? $t('cta.launchCampaign') : $t('banner.ctaCreateFirstCampaign') }}
+          {{ this.accountHasAtLeastOneCampaign ? $t('cta.launchCampaign') : $t('banner.ctaCreateFirstCampaign') }}
         </b-button>
       </div>
     </b-card-body>
@@ -44,7 +44,7 @@ export default {
     pngBanner() {
       return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
-    SSCExist() {
+    accountHasAtLeastOneCampaign() {
       return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
     },
     remarketingTagIsSet() {
