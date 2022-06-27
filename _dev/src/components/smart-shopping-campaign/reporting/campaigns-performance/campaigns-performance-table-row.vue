@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+
 export default {
   name: 'CampaignsPerformanceTableRow',
   props: {
