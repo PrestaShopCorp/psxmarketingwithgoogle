@@ -428,9 +428,10 @@ export default {
     commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES,
       result);
   },
-  async [ActionsTypes.GET_SSC_LIST]({commit, state, rootState}, {
+  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state, rootState}, {
     isNewRequest = true,
-    typeChosen = CampaignTypes,
+    // ToDo: temporary data to remove when PMax is only kind of campaign we handle
+    typeChosen,
   }) {
     const query = new URLSearchParams();
 
@@ -459,7 +460,7 @@ export default {
       const json = await resp.json();
 
       if (isNewRequest) {
-        commit(MutationsTypes.RESET_CAMPAIGNS_LIST);
+        commit(MutationsTypes.RESET_CAMPAIGNS_LIST, typeChosen);
       }
       commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, {
         campaigns: json.campaigns,

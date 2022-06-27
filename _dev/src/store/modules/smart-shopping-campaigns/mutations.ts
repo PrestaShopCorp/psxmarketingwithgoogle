@@ -189,9 +189,13 @@ export default {
   [MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES](state: LocalState) {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
-  [MutationsTypes.RESET_CAMPAIGNS_LIST](state: LocalState) {
-    state.campaigns.sscList = [];
-    state.campaigns.pMaxList = [];
+  [MutationsTypes.RESET_CAMPAIGNS_LIST](state: LocalState, type: CampaignTypes) {
+    if (type === CampaignTypes.PERFORMANCE_MAX) {
+      state.campaigns.pMaxList = [];
+    }
+    if (type === CampaignTypes.SMART_SHOPPING) {
+      state.campaigns.sscList = [];
+    }
   },
   [MutationsTypes.SET_SSC_LIST_ORDERING](
     state: LocalState,

@@ -133,7 +133,7 @@ export default {
   ): Object {
     return state.reporting.request.ordering.campaignsPerformances;
   },
-  [GettersTypes.GET_SSC_LIST_ORDERING](
+  [GettersTypes.GET_CAMPAIGNS_LIST_ORDERING](
     state: LocalState,
   ): OrderByType {
     return state.campaignsOrdering;

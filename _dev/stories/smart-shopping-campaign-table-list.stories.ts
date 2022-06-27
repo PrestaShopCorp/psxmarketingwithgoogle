@@ -1,8 +1,7 @@
 import SmartShoppingCampaignTableList from '../src/components/smart-shopping-campaign/smart-shopping-campaign-table-list.vue'
-import {campaigns, campaignsEmpty, onlySsc, onlyPmax} from '../.storybook/mock/campaigns-list.js';
+import {campaigns, campaignsEmpty, onlySsc, onlyPmax, campaignWithOnlySsc, campaignWithOnlyPmax} from '../.storybook/mock/campaigns-list.js';
 import {rest} from 'msw';
 import { CampaignTypes } from '@/enums/reporting/CampaignStatus';
-import { log } from 'console';
 
 export default {
   title: 'Smart Shopping Campaign/Campaigns\'s list',
@@ -21,8 +20,8 @@ const Template = (args, { argTypes }) => ({
   beforeCreate: args.beforeCreate,
 });
 
-export const Table:any = Template.bind({});
-Table.args = {
+export const TableWithCampaigns:any = Template.bind({});
+TableWithCampaigns.args = {
   beforeCreate() {
     this.$store.state.smartShoppingCampaigns.campaigns = Object.assign({}, campaigns);
   },
@@ -30,7 +29,7 @@ Table.args = {
   inNeedOfConfiguration: false,
 }
 
-Table.parameters = {
+TableWithCampaigns.parameters = {
   msw: {
     handlers: [
       rest.get('/shopping-campaigns/list', (req, res, ctx) => {
@@ -39,6 +38,72 @@ Table.parameters = {
           return res(
             ctx.json({
               campaigns: [...onlySsc]
+            })
+          );
+        }
+        if (type === CampaignTypes.PERFORMANCE_MAX) {
+          return res(
+            ctx.json({
+              campaigns: [...onlyPmax]
+            })
+          );
+        };
+      }),
+    ],
+  },
+};
+
+export const TableWithOnlySsc:any = Template.bind({});
+TableWithOnlySsc.args = {
+  beforeCreate() {
+    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign({}, campaignWithOnlySsc);
+  },
+  loading: false,
+  inNeedOfConfiguration: false,
+}
+
+TableWithOnlySsc.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => {
+        const type = new URLSearchParams(req.url.search).get('type');
+        if (type === CampaignTypes.SMART_SHOPPING) {
+          return res(
+            ctx.json({
+              campaigns: [...onlySsc]
+            })
+          );
+        }
+        if (type === CampaignTypes.PERFORMANCE_MAX) {
+          return res(
+            ctx.json({
+              campaigns: []
+            })
+          );
+        };
+      }),
+    ],
+  },
+};
+
+export const TableWithOnlyPmax:any = Template.bind({});
+TableWithOnlyPmax.args = {
+  beforeCreate() {
+    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign({}, campaignWithOnlyPmax);
+  },
+  loading: false,
+  inNeedOfConfiguration: false,
+}
+
+TableWithOnlyPmax.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => {
+        const type = new URLSearchParams(req.url.search).get('type');
+        if (type === CampaignTypes.SMART_SHOPPING) {
+          return res(
+            ctx.json({
+              campaigns: []
             })
           );
         }

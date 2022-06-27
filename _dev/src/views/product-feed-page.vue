@@ -61,7 +61,7 @@ export default {
       await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
       await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
-      await this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX});
+      await this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX});
     },
   },
   async created() {

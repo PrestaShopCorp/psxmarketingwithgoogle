@@ -62,7 +62,7 @@ export default {
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS'),
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS'),
         this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY'),
-        this.$store.dispatch('smartShoppingCampaigns/GET_SSC_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX}),
+        this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX}),
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE'),
         this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'),
       ]);

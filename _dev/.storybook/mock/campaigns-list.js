@@ -16,6 +16,16 @@ export const campaigns = {
   pMaxList: onlyPmax,
 };
 
+export const campaignWithOnlySsc = {
+  sscList: onlySsc,
+  pMaxList: [],
+}
+
+export const campaignWithOnlyPmax = {
+  sscList: [],
+  pMaxList: onlyPmax,
+}
+
 export const campaignsListResponse = {
   campaigns: campaigns,
   'nextPageToken': "foobar"

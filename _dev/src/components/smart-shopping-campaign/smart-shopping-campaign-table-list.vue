@@ -22,6 +22,7 @@
           {{ $t('cta.viewReporting') }}
         </b-button>
         <b-dropdown
+          v-if="pMaxCampaignsList.length > 0 && sscCampaignsList.length > 0"
           id="filterByCampaignTypeDropdown"
           variant="outline-primary"
           :text="$t('smartShoppingCampaignList.campaignType',
@@ -242,7 +243,7 @@ export default {
     queryOrderDirection: {
       get() {
         return this.$store.getters[
-          'smartShoppingCampaigns/GET_SSC_LIST_ORDERING'
+          'smartShoppingCampaigns/GET_CAMPAIGNS_LIST_ORDERING'
         ];
       },
       set(orderDirection) {
@@ -303,7 +304,7 @@ export default {
     fetchCampaigns(isNewRequest = true) {
       this.$emit('loader', true);
       this.$store
-        .dispatch('smartShoppingCampaigns/GET_SSC_LIST', {isNewRequest, typeChosen: this.typeChosen})
+        .dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest, typeChosen: this.typeChosen})
         .then(() => {
           this.$store.dispatch('smartShoppingCampaigns/GET_DIMENSIONS_FILTERS', null);
         })
@@ -334,7 +335,7 @@ export default {
       );
     },
   },
-  mounted() {
+  async mounted() {
     const tableBody = document.getElementsByClassName(
       'table-with-maxheight',
     )[0];
@@ -347,7 +348,14 @@ export default {
       this.$emit('loader', false);
       return;
     }
-    this.fetchCampaigns();
+    await this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX});
+    await this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.SMART_SHOPPING});
+    if (this.pMaxCampaignsList.length === 0 && this.sscCampaignsList.length > 0) {
+      this.typeChosen = this.$options.CampaignTypes.SMART_SHOPPING;
+    }
+    if (this.pMaxCampaignsList.length > 0) {
+      this.typeChosen = this.$options.CampaignTypes.PERFORMANCE_MAX;
+    }
   },
   beforeDestroy() {
     const tableBody = document.getElementsByClassName(
