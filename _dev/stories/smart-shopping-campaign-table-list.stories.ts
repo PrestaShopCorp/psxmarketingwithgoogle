@@ -127,7 +127,7 @@ Loading.args = {
 export const Empty:any = Template.bind({});
 Empty.args = {
   beforeCreate() {
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaignsEmpty);
+    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign({}, campaignsEmpty);
   },
   loading: false,
 }

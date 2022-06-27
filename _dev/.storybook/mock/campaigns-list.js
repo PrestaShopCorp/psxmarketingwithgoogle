@@ -1,4 +1,7 @@
-export const campaignsEmpty = [];
+export const campaignsEmpty = {
+  sscList: [],
+  pMaxList: [],
+};
 
 export const onlySsc = [
   {"campaignName":"L'hiver est là","startDate":"2021-09-23","endDate":"2021-12-30","targetCountry":"FR","dailyBudget":7,"status":"ELIGIBLE","currencyCode":"EUR","productFilters":[], "type": "SMART_SHOPPING"},

@@ -10,7 +10,7 @@ import config, {localVue, cloneStore} from '@/../tests/init';
 
 import {initialStateApp} from '../../../.storybook/mock/state-app';
 import {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads.js';
-import {campaignWithUnhandledFilters, availableFilters, sscDefault} from '../../../.storybook/mock/smart-shopping-campaigns';
+import {campaignWithUnhandledFilters, availableFilters, defaultCampaigns} from '../../../.storybook/mock/smart-shopping-campaigns';
 import SmartShoppingCampaignTableList from './smart-shopping-campaign-table-list.vue';
 import BannerCampaigns from '../commons/banner-campaigns.vue';
 
@@ -33,7 +33,6 @@ describe('smart-shopping-campaign-table-list.vue - display banner SSC ads if use
     };
 
     store.modules.smartShoppingCampaigns.state.sscAvailableFilters = availableFilters;
-    store.modules.smartShoppingCampaigns.state.campaigns = sscDefault;
 
     wrapper = shallowMount(SmartShoppingCampaignTableList, {
       propsData: {
@@ -84,7 +83,6 @@ describe('smart-shopping-campaign-table-list.vue - hide banner SSC ads if user i
     };
 
     store.modules.smartShoppingCampaigns.state.sscAvailableFilters = availableFilters;
-    store.modules.smartShoppingCampaigns.state.campaigns = sscDefault;
 
     wrapper = shallowMount(SmartShoppingCampaignTableList, {
       propsData: {
@@ -135,7 +133,7 @@ describe('smart-shopping-campaign-table-list.vue - show banner SSC ads if user h
     };
 
     store.modules.smartShoppingCampaigns.state.sscAvailableFilters = availableFilters;
-    store.modules.smartShoppingCampaigns.state.campaigns = [campaignWithUnhandledFilters];
+    store.modules.smartShoppingCampaigns.state.campaigns.pMaxList = [campaignWithUnhandledFilters];
 
     wrapper = shallowMount(SmartShoppingCampaignTableList, {
       propsData: {
