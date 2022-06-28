@@ -356,6 +356,7 @@ export default {
     if (this.pMaxCampaignsList.length === 0 && this.sscCampaignsList.length > 0) {
       this.typeChosen = this.$options.CampaignTypes.SMART_SHOPPING;
     }
+    this.$emit('loader', false);
   },
   beforeDestroy() {
     const tableBody = document.getElementsByClassName(
