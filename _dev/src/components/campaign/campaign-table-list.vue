@@ -312,9 +312,6 @@ export default {
         });
     },
     handleScroll() {
-      if (this.loading === true) {
-        return;
-      }
       const body = document.getElementsByClassName('table-with-maxheight')[0];
 
       // ToDo: Temporary use of different tokens for next page (SSC + PMax)
