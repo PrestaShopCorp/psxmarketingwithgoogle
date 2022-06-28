@@ -488,7 +488,7 @@
     "inputBudgetPlaceholder": "Сумма",
     "inputAllSyncedProducts": "No filters selected",
     "formHelperTitle": "Активация кампании",
-    "formHelperDescription": "Ваша кампания будет работать до тех пор, пока вы не приостановите ее. Вы можете приостановить свою кампанию в любое время.",
+    "formHelperDescription": "Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.",
     "errorNoProducts": "Вы хотите запустить кампанию, но в вашем торговом центре Google пока нет ни одного продукта. Ваша кампания начнется только тогда, когда хотя бы один продукт будет одобрен Google.",
     "errorApi": "Мы не смогли опубликовать вашу кампанию, пожалуйста, попробуйте еще раз",
     "errorFetchingFilters": "Мы не смогли получить все фильтры из Google. Пока что вы не можете их изменить.",
@@ -504,7 +504,10 @@
       "duplicatedTag": "Похоже, у вас уже есть метка, связанная с вашей учетной записью google, создание новой метки может привести к дублированию событий для ваших кампаний. Мы предлагаем сохранить только ту, которую мы генерируем для вас.",
       "noConversionActions": "Метка отслеживания была включена, но в магазине не установлено действие конверсии. Это можно исправить путем создания новых.",
       "hasUnhandledFilters": "По крайней мере один фильтр этой кампании не поддерживается данным модулем. Во избежание потерь в существующей конфигурации можно изменить только основные детали кампании.",
-      "PMaxExplanation": "Performance Max is a new goal-based campaign type that allows performance advertisers to access all of their Google Ads inventory from a single campaign. Learn more on our {0}"
+      "PMaxExplanationTitle": "Performance Max is a new goal-based campaign.",
+      "PMaxExplanation": "Performance Max is an enhanced campaign type powered by Google's smart technology. It can help you optimize your ads across multiple Google channels and drive better results for your business.",
+      "PMaxExplanationPrecision": "Even better, you won't pay unless customers click.",
+      "PMaxExplanationLink": "Find out more about Performance Max"
     },
     "labelSelectedDimension": "Выбранное значение измерения",
     "nbDimensionSelected": "Размеры не выбраны | {0} размеры выбраны | {0} размеры выбраны",
@@ -541,7 +544,10 @@
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Эффективность кампании",
-    "xCampaign": "Нет кампаний | {0} кампаний | {0} кампаний"
+    "xCampaign": "Нет кампаний | {0} кампаний | {0} кампаний",
+    "performanceMax": "Performance Max",
+    "smartShoppingCampaign": "Smart Shopping Campaign",
+    "campaignType": "Type: {0}"
   },
   "productFeedPage": {
     "breadcrumb": "Сведения о состоянии продукта",
@@ -900,7 +906,7 @@
     "googleProductStatusDefinitions": "Определения статуса продукта Google",
     "visitThe": "Посетите {0} для получения дополнительной информации",
     "investigate": "Investigate",
-    "createPmax": "Create your first PMax campaign",
+    "createPmax": "Create Performance Max campaign now",
     "understand": "Я понимаю"
   },
   "badge": {
@@ -958,13 +964,14 @@
     "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
     "textConfirmCancel": "Если вы вернетесь назад, то потеряете выбранные значения.",
     "upgradeSCCToPmaxTitle": "Campaign's upgrade coming soon",
-    "upgradeSCCToPmaxText": "Smart Shopping campaigns will be upgraded to Performance Max on {0} \n\n What does that mean for you? Two things. Your campaigns will be able to appear in more places across Google. And you'll get the best of Google's automation to help drive the highest conversion and revenue performance possible. ",
+    "upgradeSCCToPmaxTextWithoutCampaign": "Starting {0}, you will be able to create Performance Max campaigns for your store. \n\n Performance Max is the next generation of Smart Shopping campaigns. It is an enhanced campaign type powered by Google's smart technology. It works behind the scene to automatically optimise your ads across the shopping journey to drive maximum performance.",
+    "upgradeSCCToPmaxText": "Smart Shopping campaigns will be upgraded to Performance Max on {0}  \n\n You don't need to take any action as your Smart Shopping campaign settings and budget will remain the same. Only your campaign type will be automatically updated to Performance Max. \n\n From the start of July, you will only be able to create Performance Max campaigns.",
     "PMaxLiveTitle": "Performance Max is here",
-    "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. You now have access to the best of Google Ads automation, inventory, and formats. Your existing Smart Shopping campaigns will stay the same for now, but will be automatically upgraded at a later date.",
+    "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. \n\nPerformance Max is an enhanced campaign type powered by Google's smart technology. It works behind the scenes to automatically optimize your ads across the shopping journey to drive maximum performance. ",
     "PMaxMigrationTitle": "Important News",
     "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
     "PmaxTextLink": "Learn more about Performance Max",
-    "textPmaxReleased": "Smart Shopping campaigns will be upgraded to Performance Max on {0}. [Learn more]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+    "textPmaxReleased": "From today, you can create Performance Max campaigns, the next generation of Smart shopping. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
     "googleAccountRequired": "Требуется настройка аккаунта Google",
