@@ -56,7 +56,16 @@
           md="6"
           class="text-center"
         >
-          <div class="bg-light p-4">
+          <div>
+            <iframe
+              allowfullscreen=""
+              frameborder="0"
+              :src="getVideoUrl()"
+              width="420"
+              height="236"
+            ></iframe>
+          </div>
+          <div class="bg-light p-4 mt-1">
             <strong class="text-muted font-weight-600">{{ $t("help.help.needHelp") }}</strong>
             <br>
             <b-button
@@ -155,6 +164,18 @@ export default defineComponent({
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
+    },
+    getVideoUrl() {
+      const lang = this.$i18n.locale.toLowerCase();
+      const urls = {
+        en: 'https://www.youtube.com/embed/IisQqfY0qEQ',
+        fr: 'https://www.youtube.com/embed/EUuS76xuEG4',
+        pl: 'https://www.youtube.com/embed/9KRpXpxnr1g',
+        it: 'https://www.youtube.com/embed/YNhhoWCCOOg',
+        es: 'https://www.youtube.com/embed/gAhpzv2O9h0',
+      };
+
+      return urls[lang] || urls.en;
     },
   },
 });
