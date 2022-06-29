@@ -22,7 +22,7 @@
           {{ $t('cta.viewReporting') }}
         </b-button>
         <b-dropdown
-          v-if="pMaxCampaignsList.length > 0 && sscCampaignsList.length > 0"
+          :disabled="pMaxCampaignsList.length === 0 || sscCampaignsList.length === 0"
           id="filterByCampaignTypeDropdown"
           variant="outline-primary"
           :text="$t('smartShoppingCampaignList.campaignType',
