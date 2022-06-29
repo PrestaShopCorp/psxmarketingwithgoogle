@@ -46,7 +46,7 @@
       },
       "content3": {
         "title": "Aumenta tu alcance y tus ventas con Máximo rendimiento",
-        "text": "¿Quiere maximizar el rendimiento de tu campaña y encontrar a los clientes adecuados allí donde estén? Con una sola campaña, Máximo rendimiento recopila datos de los diferentes canales de Google y optimiza el rendimiento de tu campaña mostrándose dónde tus anuncios tienen más posibilidades de materializarse en conversión."
+        "text": "Want to maximize your campaign performance and find the right customers wherever they are?  From one single campaign, Performance Max collects data across different Google channels, and optimises your campaign performance by showing where your ads have higher chances of driving conversion."
       }
     },
     "footer": {
@@ -58,7 +58,7 @@
     "sectionTitle": {
       "psAccount": "Conecta tu cuenta PrestaShop",
       "freeListing": "Logra que tus productos aparezcan en Google con listados gratuitos",
-      "smartShoppingCampaign": "Anunciarse en Google con Máximo rendimiento"
+      "smartShoppingCampaign": "Launch a Performance Max campaign and reach a wider audience"
     },
     "productFeedNotice": "Ayuda a los clientes a encontrar tus productos más fácilmente en Google y anúncialos gratuitamente con listados gratuitos. Los listados gratuitos te ayudan a llegar a más clientes y lograr que visiten tu sitio."
   },
@@ -774,12 +774,12 @@
   },
   "help": {
     "title": "Ayuda para PrestaShop Google",
-    "intro": "PrestaShop Marketing facilita la conexión de tu tienda con Google y la promoción de tus productos a millones de compradores a través de diferentes redes como la Búsqueda de Google, YouTube o Gmail. Crea campañas de Smart Shopping sin salir de tu panel de control de PrestaShop y consigue más tráfico.",
+    "intro": "PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across multiple Google channels. Create Performance Max campaigns without leaving your PrestaShop dashboard and drive more traffic.",
     "allowsYouTo": {
       "title": "Este módulo te permite:",
       "easySync": "Sincroniza fácilmente tu catálogo de productos con Google para mantener actualizados automáticamente los detalles del producto, como el precio y la disponibilidad",
       "freeListing": "Habilite listados gratuitos y amplíe su alcance mostrando sus productos a los compradores que navegan en la pestaña de Compras, de forma gratuita",
-      "campaigns": "Comienza con las campañas de Smart Shopping, establece un presupuesto diario y deja que la tecnología inteligente de Google optimice tus campañas",
+      "campaigns": "Get started with Performance Max campaigns, set a daily budget and let Google’s machine learning optimize your campaigns",
       "reporting": "Analice el rendimiento de su campaña sin salir de PrestaShop"
     },
     "help": {
@@ -971,7 +971,7 @@
     "PMaxMigrationTitle": "Noticias importantes",
     "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
     "PmaxTextLink": "Saber más sobre las campañas Máximo rendimiento",
-    "textPmaxReleased": "From today, you can create Performance Max campaigns, the next generation of Smart shopping. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+    "textPmaxReleased": "Today, you can start creating Performance Max campaigns, the next generation of Smart Shopping campaigns. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
     "googleAccountRequired": "Requiere la configuración de la cuenta de Google",
@@ -1054,6 +1054,6 @@
     "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
     "ctaCreateFirstCampaign": "Cree su primera campaña",
     "titleCampaignsBanner": "A partir del 30 de junio, puedes crear campañas Performance Max para tu tienda",
-    "textCampaignsBanner": "With Performance Max campaigns, you can advertise your products and reach more customers across all Google channels, including YouTube, Maps, Search, Gmail, Display, Discover, and the web - all through one single campaign."
+    "textCampaignsBanner": "Performance Max is the next generation of Smart Shopping campaigns. It is an enhanced campaign type powered by Google's smart technology. It works behind the scene to automatically optimise your ads across the shopping journey to drive maximum performance."
   }
 }
