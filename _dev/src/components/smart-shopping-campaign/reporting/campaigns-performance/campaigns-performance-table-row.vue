@@ -11,12 +11,12 @@
       >
         {{ campaign.name }}
       </b-button>
-      <div
+      <span
         v-else
         class="p-0 m-0 font-weight-normal ps_gs-fz-12"
       >
         {{ campaign.name }}
-      </div>
+      </span>
       <b-badge
         variant="type"
         class="ps_gs-fz-12 m-1"
