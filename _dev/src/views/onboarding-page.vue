@@ -105,7 +105,7 @@
       @openPopinRemarketingTag="onOpenPopinActivateTracking"
     />
     <PmaxDiscoverModal
-      :visible="!merchantHasAlreadySeenPmaxPopin"
+      :visible="googleAdsAccountIsChosen && !merchantHasAlreadySeenPmaxPopin"
       :type="PmaxModalType.PMAX_RELEASED"
       ref="PmaxDiscoverModal"
     />
