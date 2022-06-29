@@ -26,7 +26,7 @@
     "min": "min.",
     "max": "max.",
     "helpPage": "Hilfe-Seite",
-    "noResultsFoundForX": " No results found for {0}"
+    "noResultsFoundForX": "Keine Ergebnisse für {0} gefunden"
   },
   "landingPage": {
     "header": {
@@ -288,7 +288,7 @@
     "preScan": {
       "selectLanguage": "Filter by language",
       "apiError": "An error occurred while fetching data, please try again later.",
-      "noElement": "You don't have any products."
+      "noElement": "Du hast keine Produkte."
     },
     "export": {
       "summarySyncDailyAt": "Täglich synchronisieren um {0}",
@@ -338,7 +338,7 @@
       "sellRefurbishedProducts": "Überholte",
       "description": "Beschreibung",
       "longDescription": "Lange Beschreibung",
-      "description_short": "Short description",
+      "description_short": "Kurze Beschreibung",
       "energyEfficiencyClass": "Energie-Effizienzklasse",
       "maxEnergyEfficiencyClass": "Maximale Effizienzklasse",
       "minEnergyEfficiencyClass": "Minimale Effizienzklasse",
@@ -435,11 +435,11 @@
       "title": "Geschäftliche Informationen",
       "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Land der Rechnungsstellung",
-      "placeholderCountry": "Country",
+      "placeholderCountry": "Land",
       "labelTimeZone": "Zeitzone",
       "placeholderTimeZone": "Choose time",
       "labelCurrency": "Währung",
-      "placeholderCurrency": "Currency"
+      "placeholderCurrency": "Währung"
     },
     "terms": {
       "title": "Nutzungsbedingungen für das Google-Programm",
@@ -451,16 +451,16 @@
     "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
     "introConnected": "With Performance Max, you can advertise your products and maximize your ads performance across multiple Google channels through one single campaign. Even better, you don’t pay unless your customers click!",
     "footer": "Im Europäischen Wirtschaftsraum, im Vereinigten Königreich oder in der Schweiz können maximale Performance-Kampagnen mit jedem Comparison Shopping Service (CSS), mit dem Sie arbeiten, genutzt werden. Die Anzeigen werden auf allgemeinen Suchergebnisseiten und auf allen anderen Oberflächen angezeigt, für die sich der CSS entschieden hat.",
-    "titleInfo": "Did you know?",
+    "titleInfo": "Wusstest du schon?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
     "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "Alle Filter",
     "breadcrumb1": "Kampagne",
-    "breadcrumbCreateSSC": "Create Smart Shopping campaign",
+    "breadcrumbCreateSSC": "Smart-Shopping-Kampagne erstellen",
     "breadcrumbEditSSC": "Modify Smart Shopping campaign",
-    "breadcrumbCreatePMax": "Create Performance Max campaign",
+    "breadcrumbCreatePMax": "Maximale Performance-Kampagne erstellen",
     "breadcrumbEditPMax": "Modify Performance Max campaign",
     "inputNameHelper": "Der Name muss eindeutig sein und darf maximal 125 Zeichen lang sein.",
     "inputNameLabel": "Name der Kampagne",
@@ -477,7 +477,7 @@
     "inputCountryImutable": "Das Land kann nach der Erstellung nicht mehr geändert werden. Wenn Sie ein anderes Land anvisieren möchten, müssen Sie eine neue Kampagne erstellen.",
     "inputCountryLabel": "Zielland",
     "inputCountryTooltip": "Die Anzeigen Ihrer Kampagne können bei Kunden in den von Ihnen ausgewählten geografischen Gebieten oder bei Kunden, die Ihre Zielsprache als Browser-Spracheinstellung gewählt haben, geschaltet werden.",
-    "inputFiltersLegend": "Products filters",
+    "inputFiltersLegend": "Produktfilter",
     "inputFiltersAllLabel": "Alle synchronisierten Produkte einbeziehen",
     "inputFiltersPartialLabel": "Produkte mit Hilfe von Produktpartitionsfiltern auswählen",
     "inputFiltersHelper": "Nehmen Sie sich etwas Zeit, um [die Richtlinien für Google Shopping-Anzeigen zu lesen]({0})[:target=\"_blank\"] einige Produkte sind verboten oder eingeschränkt.",

@@ -26,7 +26,7 @@
     "min": "min.",
     "max": "maximaal.",
     "helpPage": "Help pagina",
-    "noResultsFoundForX": " No results found for {0}"
+    "noResultsFoundForX": "Geen resultaten gevonden voor {0}"
   },
   "landingPage": {
     "header": {
@@ -133,7 +133,7 @@
     "code": "Code",
     "contactMethod": "Choose your preferred contact method",
     "dialCode": "Kies code",
-    "phoneNumber": "Enter your phone number",
+    "phoneNumber": "Vul het telefoonnummer in",
     "textMethod": "Tekstbericht",
     "callMethod": "Telefoongesprek",
     "selectMethod": "Selecteer de gewenste contactmethode om uw identiteit te verifiëren",
@@ -287,7 +287,7 @@
     },
     "preScan": {
       "selectLanguage": "Filter by language",
-      "apiError": "An error occurred while fetching data, please try again later.",
+      "apiError": "Er ging iets mis tijdens het ophalen van data., probeer het later nog eens.",
       "noElement": "You don't have any products."
     },
     "export": {
@@ -338,7 +338,7 @@
       "sellRefurbishedProducts": "Gerenoveerd",
       "description": "Beschrijving",
       "longDescription": "Lange beschrijving",
-      "description_short": "Short description",
+      "description_short": "Korte beschrijving",
       "energyEfficiencyClass": "Energie-efficiëntieklasse",
       "maxEnergyEfficiencyClass": "Maximale efficiëntieklasse",
       "minEnergyEfficiencyClass": "Minimale efficiëntie klasse",
@@ -435,11 +435,11 @@
       "title": "Zakelijke informatie",
       "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Land van facturering",
-      "placeholderCountry": "Country",
+      "placeholderCountry": "Land",
       "labelTimeZone": "Tijdzone",
-      "placeholderTimeZone": "Choose time",
+      "placeholderTimeZone": "Kies de tijd",
       "labelCurrency": "Valuta",
-      "placeholderCurrency": "Currency"
+      "placeholderCurrency": "Valuta"
     },
     "terms": {
       "title": "Servicevoorwaarden voor Google Programma",
@@ -458,7 +458,7 @@
   "smartShoppingCampaignCreation": {
     "allFilters": "Alle filters",
     "breadcrumb1": "Campagne",
-    "breadcrumbCreateSSC": "Create Smart Shopping campaign",
+    "breadcrumbCreateSSC": "Smart Shopping-campagne opzetten",
     "breadcrumbEditSSC": "Modify Smart Shopping campaign",
     "breadcrumbCreatePMax": "Create Performance Max campaign",
     "breadcrumbEditPMax": "Modify Performance Max campaign",

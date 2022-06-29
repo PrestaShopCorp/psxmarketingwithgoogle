@@ -26,7 +26,7 @@
     "min": "min.",
     "max": "max.",
     "helpPage": "Strona pomocy",
-    "noResultsFoundForX": " No results found for {0}"
+    "noResultsFoundForX": "Nie znaleziono wyników dla {0}"
   },
   "landingPage": {
     "header": {
@@ -338,7 +338,7 @@
       "sellRefurbishedProducts": "Odnowiony",
       "description": "Opis",
       "longDescription": "Długi opis",
-      "description_short": "Short description",
+      "description_short": "Krótki opis",
       "energyEfficiencyClass": "Klasa efektywności energetycznej",
       "maxEnergyEfficiencyClass": "Maksymalna klasa efektywności",
       "minEnergyEfficiencyClass": "Minimalna klasa efektywności",
@@ -435,11 +435,11 @@
       "title": "Informacje o firmie",
       "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Kraj płatności",
-      "placeholderCountry": "Country",
+      "placeholderCountry": "Kraj",
       "labelTimeZone": "Strefa czasowa",
       "placeholderTimeZone": "Choose time",
       "labelCurrency": "Waluta",
-      "placeholderCurrency": "Currency"
+      "placeholderCurrency": "Waluta"
     },
     "terms": {
       "title": "Warunki korzystania z programu Google",
@@ -458,9 +458,9 @@
   "smartShoppingCampaignCreation": {
     "allFilters": "Wszystkie filtry",
     "breadcrumb1": "Kampania",
-    "breadcrumbCreateSSC": "Create Smart Shopping campaign",
+    "breadcrumbCreateSSC": "Utwórz inteligentną kampanię produktową",
     "breadcrumbEditSSC": "Modify Smart Shopping campaign",
-    "breadcrumbCreatePMax": "Create Performance Max campaign",
+    "breadcrumbCreatePMax": "Utwórz kampanię Performance Max",
     "breadcrumbEditPMax": "Modify Performance Max campaign",
     "inputNameHelper": "Nazwa musi być unikalna i składać się maksymalnie ze 125 znaków.",
     "inputNameLabel": "Nazwa kampanii",

@@ -451,7 +451,7 @@
     "introNotConnected": "Connectez ou créez votre compte Google Ads et lancez une campagne Performance Max pour vos produits. Optimisez les performances de votre campagne sur plusieurs canaux Google grâce à une seule campagne. Affichez vos annonces là où elles ont le plus de chances de générer des conversions. Mieux encore, vous ne payez que si vos clients cliquent.",
     "introConnected": "Avec les campagnes Performance Max, vous pouvez faire la publicité et maximiser la performance de vos annonces sur plusieurs canaux Google à travers une seule campagne. Mieux encore, vous ne payez que si vos clients cliquent !",
     "footer": "Dans l'Espace économique européen, au Royaume-Uni ou en Suisse, les campagnes Performance Max peuvent être utilisées avec n'importe quel service de comparaison de prix (CSS) avec lequel vous travaillez. Les publicités apparaîtront sur les pages de résultats de recherche généraux et sur toutes les autres propriétés auxquelles le CSS a adhéré.",
-    "titleInfo": "Did you know?",
+    "titleInfo": "Le saviez-vous ?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
     "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
   },
@@ -488,7 +488,7 @@
     "inputBudgetPlaceholder": "Montant",
     "inputAllSyncedProducts": "Aucun filtre sélectionné",
     "formHelperTitle": "Activation de la campagne",
-    "formHelperDescription": "Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.",
+    "formHelperDescription": "Votre campagne se poursuivra jusqu'à ce que vous la mettiez en pause ou dès que la date de fin sera atteinte. Vous pouvez interrompre votre campagne à tout moment.",
     "errorNoProducts": "Vous voulez lancer une campagne, mais votre Google Merchant Center ne contient pas encore de produits. Votre campagne ne démarrera que lorsqu'au moins un produit a été approuvé par Google.",
     "errorApi": "Nous n'avons pas pu publier votre campagne, veuillez réessayer",
     "errorFetchingFilters": "Nous n'avons pas été en mesure de récupérer tous les filtres de Google. Vous ne pouvez pas les modifier pour le moment.",
@@ -906,7 +906,7 @@
     "googleProductStatusDefinitions": "Définitions du statut des produits sur Google",
     "visitThe": "Visitez la page {0} pour plus d'informations.",
     "investigate": "Enquêter",
-    "createPmax": "Create Performance Max campaign now",
+    "createPmax": "Créer une campagne Performance Max maintenant",
     "understand": "Je comprends"
   },
   "badge": {
