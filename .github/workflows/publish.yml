@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-          #cache: npm
+          cache: npm
           cache-dependency-path: '_dev/package-lock.json'
 
       - name: Install & build
@@ -173,7 +173,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-          #cache: npm
+          cache: npm
           cache-dependency-path: '_dev/package-lock.json'
 
       - name: Install & build
