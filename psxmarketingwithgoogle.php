@@ -81,7 +81,7 @@ class PsxMarketingWithGoogle extends Module
         parent::__construct();
 
         $this->displayName = $this->l('Marketing with Google');
-        $this->description = $this->l('PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across different networks like Google Search, YouTube or Gmail. Create Smart Shopping campaigns without leaving your PrestaShop dashboard and drive more traffic.');
+        $this->description = $this->l('PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across multiple Google channels. Create Performance Max campaigns without leaving your PrestaShop dashboard and drive more traffic.');
         $this->psVersionIs17 = (bool) version_compare(_PS_VERSION_, '1.7', '>=');
         $this->css_path = $this->_path . 'views/css/';
         $this->js_path = $this->_path . 'views/js/';

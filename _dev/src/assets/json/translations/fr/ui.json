@@ -779,7 +779,7 @@
       "title": "Ce module vous permet de :",
       "easySync": "Synchronisez facilement votre catalogue de produits avec Google et garder automatiquement à jour les informations produit telles que le prix et le stock",
       "freeListing": "Activez les fiches gratuites et élargissez votre portée en affichant vos produits aux clients en naviguant sur l'onglet Shopping, gratuitement",
-      "ssc": "Lancez des campagnes Shopping Intelligentes, définissez un budget quotidien et laissez la technologie intelligente de Google optimiser vos campagnes",
+      "campaigns": "Lancez des campagnes Shopping Intelligentes, définissez un budget quotidien et laissez la technologie intelligente de Google optimiser vos campagnes",
       "reporting": "Analysez les performances de vos campagnes sans quitter PrestaShop"
     },
     "help": {

@@ -45,7 +45,7 @@
               <ul class="mt-3">
                 <li>{{ $t("help.allowsYouTo.easySync") }}</li>
                 <li>{{ $t("help.allowsYouTo.freeListing") }}</li>
-                <li>{{ $t("help.allowsYouTo.ssc") }}</li>
+                <li>{{ $t("help.allowsYouTo.campaigns") }}</li>
                 <li>{{ $t("help.allowsYouTo.reporting") }}</li>
               </ul>
             </div>
