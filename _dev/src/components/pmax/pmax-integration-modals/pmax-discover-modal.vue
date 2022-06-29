@@ -31,7 +31,7 @@
     </div>
 
     <template slot="modal-cancel">
-      {{ $t('cta.cancel') }}
+      {{ $t('cta.close') }}
     </template>
     <template slot="modal-ok">
       {{ this.type === PmaxModalType.PMAX_RELEASED ? $t('cta.createPmax') : $t('cta.understand') }}
