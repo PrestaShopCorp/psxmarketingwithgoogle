@@ -26,7 +26,7 @@
     "min": "min.",
     "max": "mas.",
     "helpPage": "Pagina di aiuto",
-    "noResultsFoundForX": " No results found for {0}"
+    "noResultsFoundForX": "Nessun risultato trovato per {0}"
   },
   "landingPage": {
     "header": {
@@ -338,7 +338,7 @@
       "sellRefurbishedProducts": "Ricondizionato",
       "description": "Descrizione",
       "longDescription": "Descrizione lunga",
-      "description_short": "Short description",
+      "description_short": "Descrizione breve",
       "energyEfficiencyClass": "Classe di efficienza energetica",
       "maxEnergyEfficiencyClass": "Classe di efficienza massima",
       "minEnergyEfficiencyClass": "Classe di efficienza minima",
@@ -410,7 +410,7 @@
     "id": "ID account Google Ads",
     "toUseGAdsNeedsAdminAccess": "Per utilizzare un account Google Ads esistente, devi avere l'accesso Admin.",
     "alertCantConnect": "Impossibile collegare il tuo account Google Ads, è da parte nostra, per favore prova di nuovo.",
-    "alertBillingSettingsMissing": "To launch Performance Max campaigns, you need to add your billing settings in your Google Ads account.",
+    "alertBillingSettingsMissing": "Per lanciare campagne Performance Max, devi aggiungere le impostazioni di fatturazione nel tuo account Google Ads.",
     "alertNeedRefreshAfterBilling": "Una volta compilati i tuoi dati di fatturazione nel tuo account Google Ads, aggiorna la pagina per visualizzare gli aggiornamenti.",
     "alertNeedRefreshAfterInvitationLink": "Una volta che l'invito è accettato nel tuo account Google Ads, aggiorna la pagina per visualizzare gli aggiornamenti.",
     "alertNeedValidationFromEmail": "Per favore, clicca qui o controlla le tue e-mail per convalidare il tuo account.",
@@ -435,11 +435,11 @@
       "title": "Informazioni sull'azienda",
       "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Paese di fatturazione",
-      "placeholderCountry": "Country",
+      "placeholderCountry": "Nazione",
       "labelTimeZone": "Fuso orario",
       "placeholderTimeZone": "Choose time",
       "labelCurrency": "Valuta",
-      "placeholderCurrency": "Currency"
+      "placeholderCurrency": "Valuta"
     },
     "terms": {
       "title": "Termini di servizio per il programma Google",
@@ -458,9 +458,9 @@
   "smartShoppingCampaignCreation": {
     "allFilters": "Tutti i filtri",
     "breadcrumb1": "Campagna pubblicitaria",
-    "breadcrumbCreateSSC": "Create Smart Shopping campaign",
+    "breadcrumbCreateSSC": "Crea una campagna Smart Shopping",
     "breadcrumbEditSSC": "Modify Smart Shopping campaign",
-    "breadcrumbCreatePMax": "Create Performance Max campaign",
+    "breadcrumbCreatePMax": "Crea la campagna Performance Max",
     "breadcrumbEditPMax": "Modify Performance Max campaign",
     "inputNameHelper": "Il nome deve essere unico e di 125 caratteri al massimo.",
     "inputNameLabel": "Nome della campagna",
