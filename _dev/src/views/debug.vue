@@ -39,11 +39,11 @@
             <strong>Prestashop version</strong>: {{ this.$store.state.app.psVersion }}
           </li>
           <li>
-            <strong>Module version</strong>:
+            <strong>PHP Module version</strong>:
             {{ this.$store.state.app.psxMktgWithGoogleModuleVersion }}
           </li>
           <li>
-            <strong>App build version</strong>: {{ appBuildVersion }}
+            <strong>Vue.js app build version</strong>: {{ appBuildVersion }}
           </li>
           <li>
             <strong>Shop ID</strong>: {{ shopId }}
@@ -93,15 +93,6 @@
               target="_blank"
             >
               {{ GET_DEBUG_DATA.urlEventBusHealthCheck }}
-            </a>
-          </li>
-          <li>
-            <strong>Link to PS Accounts Health Check:</strong>
-            <a
-              :href="GET_DEBUG_DATA.urlAccountsHealthCheck"
-              target="_blank"
-            >
-              {{ GET_DEBUG_DATA.urlAccountsHealthCheck }}
             </a>
           </li>
           <li>

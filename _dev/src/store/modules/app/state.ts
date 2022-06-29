@@ -54,7 +54,6 @@ export interface HelpInformations {
 
 export interface DebugData {
   urlEventBusHealthCheck?: string;
-  urlAccountsHealthCheck?: string;
   typesOfSync: string[];
 }
 
