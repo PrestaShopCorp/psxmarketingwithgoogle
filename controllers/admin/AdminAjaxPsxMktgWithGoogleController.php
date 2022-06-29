@@ -463,10 +463,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 'ps_eventbus',
                 'apiHealthCheck'
             ),
-            'urlAccountsHealthCheck' => $this->context->link->getModuleLink(
-                'ps_accounts',
-                'apiHealthCheck'
-            ),
             'typesOfSync' => $typesOfSync,
         ]));
     }
