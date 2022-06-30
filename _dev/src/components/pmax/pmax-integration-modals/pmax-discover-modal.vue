@@ -6,12 +6,15 @@
     v-bind="$attrs"
     @ok="confirm"
   >
-    <div class="d-flex mb-3">
-      <img
-        class="mr-4 img-fluid d-block"
-        :src="require(`@/assets/images/pmax-modal/${content.img}`)"
-        :alt="content.alt"
-      >
+    <div class="d-flex mb-3 flex-column flex-md-row align-items-center">
+      <figure class="flex-shrink-0 mr-md-3 mb-md-0">
+        <img
+          class="mr-md-4 img-fluid d-block"
+          :src="require(`@/assets/images/pmax-modal/${content.img}`)"
+          :alt="content.alt"
+          height="256"
+        >
+      </figure>
       <div>
         <VueShowdown
           class="mb-4 h-75"
