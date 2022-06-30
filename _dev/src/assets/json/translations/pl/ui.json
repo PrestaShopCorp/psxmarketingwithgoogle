@@ -773,7 +773,6 @@
     "sixthStep": "**Next step** create your first Performance Max Campaign"
   },
   "help": {
-    "title": "Pomoc dla Prestashop Google",
     "intro": "PrestaShop Marketing ułatwia połączenie Twojego sklepu z Google i promowanie Twoich produktów wśród milionów kupujących korzystających z licznych kanałów Google. Twórz kampanie Performance Max bez opuszczania panelu zarządzania PrestaShop i zwiększaj ruch w Twoim sklepie.",
     "allowsYouTo": {
       "title": "Ten moduł pozwala na:",
@@ -906,7 +905,7 @@
     "googleProductStatusDefinitions": "Definicje statusu produktów Google",
     "visitThe": "Odwiedź stronę {0} aby uzyskać więcej informacji.",
     "investigate": "Investigate",
-    "createPmax": "Create Performance Max campaign now",
+    "createPmax": "Create Performance Max campaign",
     "understand": "Rozumiem"
   },
   "badge": {
