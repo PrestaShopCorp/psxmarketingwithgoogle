@@ -23,8 +23,7 @@
   >
     <template #header>
       <div class="d-flex align-items-center ps_gs-breadcrumb__item">
-        <i class="material-icons mr-2 font-weight-normal">help_outline</i>
-        <span>{{ $t("help.title") }}</span>
+        <span>{{ $t("general.tabs.help") }}</span>
       </div>
     </template>
 

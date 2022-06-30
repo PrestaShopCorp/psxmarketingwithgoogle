@@ -774,7 +774,6 @@
     "sixthStep": "**Next step** create your first Performance Max Campaign"
   },
   "help": {
-    "title": "Help for PrestaShop Google",
     "intro": "PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across multiple Google channels. Create Performance Max campaigns without leaving your PrestaShop dashboard and drive more traffic.",
     "allowsYouTo": {
       "title": "This module allows you to:",
@@ -907,7 +906,7 @@
     "googleProductStatusDefinitions" : "Google product status definitions",
     "visitThe" : "Visit the {0} for more information",
     "investigate" : "Investigate",
-    "createPmax": "Create Performance Max campaign now",
+    "createPmax": "Create Performance Max campaign",
     "understand": "I understand"
   },
   "badge": {
