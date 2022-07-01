@@ -105,6 +105,7 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
 };
 
 export interface State {
+  warmedUp: boolean,
   contextPsAccounts: PrestaShopAccountsContext|any;
   shopIdPsAccounts: string;
   tokenPsAccounts: string;
@@ -128,6 +129,7 @@ export enum WebsiteClaimErrorReason {
 }
 
 export const state: State = {
+  warmedUp: false,
   contextPsAccounts: {},
   shopIdPsAccounts: '',
   tokenPsAccounts: '',

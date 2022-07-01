@@ -102,6 +102,7 @@ export const commonAttributes: readonly AttributesInfos[] = [
 ];
 
 export interface State {
+  warmedUp: boolean,
   isSyncSummaryLoadingInProgress: boolean;
   errorAPI: boolean;
   isConfigured: boolean;
@@ -153,6 +154,7 @@ export interface PreScanDetail {
 }
 
 export const state: State = {
+  warmedUp: false,
   isSyncSummaryLoadingInProgress: false,
   errorAPI: false,
   isConfigured: false,

@@ -18,6 +18,7 @@
  */
 
 export interface State {
+  warmedUp: boolean,
   status: null|GoogleAdsErrorReason,
   accountChosen: null|AccountInformations,
   list: Array<AccountInformations>|null,
@@ -55,6 +56,7 @@ export interface AccountInformations {
 }
 
 export const state: State = {
+  warmedUp: false,
   status: null,
   accountChosen: null,
   list: null,

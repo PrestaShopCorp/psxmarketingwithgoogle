@@ -62,7 +62,7 @@
               :src="getVideoUrl()"
               width="420"
               height="236"
-            ></iframe>
+            />
           </div>
           <div class="bg-light p-4 mt-1">
             <strong class="text-muted font-weight-600">{{ $t("help.help.needHelp") }}</strong>

@@ -17,18 +17,17 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import MutationsTypes from './mutations-types';
-import MutationsAppTypes from '../app/mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
 import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 import {
-  Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
+  CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
   ShopShippingInterface, validateDeliveryDetail,
 } from '../../../providers/shipping-settings-provider';
-import {filterMapping} from '../../../utils/AttributeMapping';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
+import {runIf} from '../../../utils/Promise';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
@@ -41,6 +40,37 @@ const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map
 });
 
 export default {
+  async [ActionsTypes.WARMUP_STORE](
+    {dispatch, state, getters},
+  ) {
+    if (state.warmedUp) {
+      return;
+    }
+    state.warmedUp = true;
+
+    await Promise.allSettled([
+      runIf(
+        !getters.GET_TOTAL_PRODUCTS_READY_TO_SYNC,
+        dispatch(ActionsTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC),
+      ),
+      runIf(
+        state.prevalidationScanSummary.scannedItems === null,
+        dispatch(ActionsTypes.GET_PREVALIDATION_SUMMARY),
+      ),
+      runIf(
+        !getters.GET_PRODUCT_FEED_STATUS.syncSchedule?.length,
+        dispatch(ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS),
+      ),
+      runIf(
+        getters.GET_PRODUCT_FEED_SETTINGS.targetCountries === null,
+        dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS),
+      ),
+      runIf(
+        getters.GET_PRODUCT_FEED_VALIDATION_SUMMARY.activeItems === null,
+        dispatch(ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY),
+      ),
+    ]);
+  },
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootState}) {
     const params = {
       lang: window.i18nSettings.languageLocale.split('-')[0],

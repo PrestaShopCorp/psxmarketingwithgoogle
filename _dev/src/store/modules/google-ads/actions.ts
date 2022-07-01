@@ -19,8 +19,25 @@
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
+import {runIf} from '../../../utils/Promise';
 
 export default {
+  async [ActionsTypes.WARMUP_STORE](
+    {dispatch, state, getters},
+  ) {
+    if (state.warmedUp) {
+      return;
+    }
+    state.warmedUp = true;
+
+    await runIf(
+      getters.GET_GOOGLE_ADS_LIST_OPTIONS === null,
+      dispatch(ActionsTypes.GET_GOOGLE_ADS_LIST),
+    ).then(() => runIf(
+      getters.GET_GOOGLE_ADS_ACCOUNT_CHOSEN === null,
+      dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT),
+    ));
+  },
   async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit, rootState}) {
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/list`,

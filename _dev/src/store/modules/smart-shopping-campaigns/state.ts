@@ -24,6 +24,7 @@ import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import CampaignStatus, {CampaignStatusToggle, CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export interface State {
+  warmedUp: boolean,
   campaigns: {
     sscList: CampaignObject[];
     pMaxList: CampaignObject[];
@@ -214,6 +215,7 @@ export interface FiltersPerformances {
 }
 
 export const state: State = {
+  warmedUp: false,
   campaigns: {
     sscList: [],
     pMaxList: [],
