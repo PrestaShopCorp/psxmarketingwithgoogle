@@ -145,7 +145,6 @@ describe('shipping-settings.vue', () => {
     store.modules.productFeed.state.settings.targetCountries = ['FR'];
     // Based on data in _dev/.storybook/mock/product-feed.js
     // TODO: Mocking the method validateDeliveryDetail() would be safer
-    store.modules.productFeed.state.settings.deliveryDetails[3].enabledCarrier = true;
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
@@ -177,9 +176,10 @@ describe('shipping-settings.vue', () => {
     expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
   });
 
-  it('allows to "Continue" if no carrier is enabled', () => {
+  it('should not allow to "Continue" if no carrier is enabled', () => {
     store.modules.productFeed.state.settings.targetCountries = ['FR', 'IT', 'ES', 'DE', 'GB'];
-
+    store.modules.productFeed.state.settings.deliveryDetails[2].enabledCarrier = false;
+    store.modules.productFeed.state.settings.deliveryDetails[5].enabledCarrier = false;
     const wrapper = shallowMount(ShippingSettings, {
       localVue,
       store: new Vuex.Store(store),
@@ -191,10 +191,10 @@ describe('shipping-settings.vue', () => {
     });
     // No disabled attribute = enabled
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(5);
-    expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
+    expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
   });
 
-  it('allows to "Continue" if no carrier is found', () => {
+  it('should not allow to "Continue" if no carrier is found', () => {
     store.modules.productFeed.state.settings.targetCountries = [];
     store.modules.productFeed.state.settings.deliveryDetails = [];
     const wrapper = shallowMount(ShippingSettings, {
@@ -208,6 +208,6 @@ describe('shipping-settings.vue', () => {
     });
     // No disabled attribute = enabled
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
-    expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
+    expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
   });
 });

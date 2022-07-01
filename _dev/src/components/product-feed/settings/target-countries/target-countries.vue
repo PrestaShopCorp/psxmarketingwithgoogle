@@ -1,19 +1,54 @@
 <template>
   <b-form>
-    <b-form-group
-      :label="$t('productFeedSettings.shipping.targetCountries')"
-      label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
-    >
+    <b-form-group>
+      <label class="h4 font-weight-600 mb-2 d-flex p-0 bg-transparent border-0 d-flex">
+        {{ $t('productFeedSettings.shipping.targetCountries') }}
+        <b-button
+          class="ml-1 p-0  align-items-center "
+          variant="text-primary"
+          v-b-tooltip:psxMktgWithGoogleApp
+          :title="$t('productFeedSettings.inputTargetCountriesTooltip')"
+        >
+          <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+            info_outlined
+          </span>
+        </b-button>
+      </label>
       <label class="mb-2">
         {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
       </label>
       <SelectCountry
         @countrySelected="saveCountrySelected"
         :default-value="countries"
-        :dropdown-options="activeCountriesWithCurrency"
+        :dropdown-options="activeCountriesWhereShipppingExist"
         :need-filter="true"
-        :not-full-width="true"
+        :not-full-width="false"
+        :loader="loadingCountries"
+        type="targetCountries"
       />
+      <div
+        class="text-primary"
+      >
+        <a
+          class="ps_gs-fz-12 mb-0 text-primary"
+          :href="$store.getters['app/GET_CARRIERS_URL']"
+          target="_blank"
+        >
+          {{ $t('productFeedSettings.shipping.addNewCarriers') }}
+        </a>
+        <span class="ps_gs-fz-12 text-dark">
+          |
+        </span>
+        <b-button
+          variant="link"
+          class="ps_gs-fz-12 font-weight-normal p-0 border-0
+        text-decoration-underline text-wrap text-left"
+          @click="refreshComponent"
+        >
+          {{ $t('general.refreshPage') }}
+          <i class="material-icons ps_gs-fz-12">refresh</i>
+        </b-button>
+      </div>
     </b-form-group>
     <b-form-group
       class="mt-4"
@@ -97,6 +132,7 @@
     <actions-buttons
       :next-step="nextStep"
       :disable-continue="disableContinue"
+      :disable-tooltip="$t('productFeedSettings.shipping.disabledButtonTooltipTargetCountries')"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
     <settings-footer />
@@ -124,6 +160,7 @@ export default {
       tax: null,
       shippingSettings: JSON.parse(localStorage.getItem('productFeed-autoImportShippingSettings')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
       loading: false,
+      loadingCountries: true,
     };
   },
   computed: {
@@ -144,8 +181,14 @@ export default {
     disableContinue() {
       return this.countries.length < 1 || this.loading;
     },
-    activeCountriesWithCurrency() {
-      return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
+    activeCountriesWhereShipppingExist() {
+      const arrayOfCountries = [];
+      this.$store.state.productFeed.settings.deliveryDetails.forEach((carrier) => {
+        arrayOfCountries.push(carrier.country);
+      });
+      const uniqueCountries = [...new Set(arrayOfCountries)];
+
+      return this.$options.filters.changeCountriesCodesToNames(uniqueCountries);
     },
   },
   methods: {
@@ -201,6 +244,17 @@ export default {
         name: 'targetCountries', data: countryCode,
       });
     },
+    refreshComponent() {
+      this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
+    },
+  },
+  mounted() {
+    this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
+      this.loadingCountries = false;
+    }).catch((error) => {
+      console.error(error);
+      this.loadingCountries = false;
+    });
   },
 
 };
