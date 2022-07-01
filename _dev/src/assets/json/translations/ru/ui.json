@@ -240,14 +240,18 @@
       "shippingSettingsErrors": "Эта страна не совместима с вашей валютой",
       "syncSchedule": "Расписание синхронизации"
     },
+    "inputTargetCountriesTooltip": "Note that you can't select a country with a different currency than your shop's",
     "noticeDataStored": "Настройки сохраняются на каждом шаге и будут переданы только на последнем шаге.",
     "shipping": {
       "targetCountries": "Целевая страна",
       "filterTitle": "Фильтр по странам",
       "ifMultipleCountries": "Если вы нацелены на несколько стран, цена каждого продукта будет автоматически конвертироваться в нужную валюту в Google. Однако в вашем магазине должны быть настроены ставки доставки и налогов для каждой выбранной страны. Пожалуйста, соблюдайте [правила покупок в конкретной стране]({0})[:target=\"_blank\"] и [местные правила]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "Моя продукция доступна в",
-      "placeholderSelect": "Выберите страны, в которых доступны ваши продукты",
-      "cantFindCountry": "Не можете найти страну? Перечислены только поддерживаемые страны. [См. список поддерживаемых стран]({0})[:target=\"_blank\"]",
+      "productAvailaibleIn": "Where I want my products to be available",
+      "placeholderSelect": "Choose a country from the list",
+      "placeholderNoTargetCountries": "We cannot find any target countries from your carriers",
+      "disabledButtonTooltipTargetCountries": "You can only proceed if you configure your target countries",
+      "disabledButtonTooltipShippingCarriers": "You cannot proceed unless you activate at least one carrier for a target country",
+      "cantFindCountry": "Your target countries are where your carriers ship your products",
       "shippingSettingsErrors": "Эта страна не совместима с вашей валютой",
       "shippingSettings": "Настройки доставки",
       "shippingSettingsTitle": "Настройки доставки продуктов",
@@ -905,7 +909,7 @@
     "googleProductStatusDefinitions": "Определения статуса продукта Google",
     "visitThe": "Посетите {0} для получения дополнительной информации",
     "investigate": "Investigate",
-    "createPmax": "Create Performance Max campaign now",
+    "createPmax": "Create Performance Max campaign",
     "understand": "Я понимаю"
   },
   "badge": {
