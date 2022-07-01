@@ -25,6 +25,7 @@ import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 import {
   Carrier, CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
+  mergeShippingDetailsSourcesForProductFeedConfiguration,
   ShopShippingInterface, validateDeliveryDetail,
 } from '../../../providers/shipping-settings-provider';
 import {filterMapping} from '../../../utils/AttributeMapping';
@@ -201,14 +202,6 @@ export default {
     await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
     await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
 
-    const deliveryDetailsStructure = {
-      deliveryType: undefined,
-      minHandlingTimeInDays: undefined,
-      maxHandlingTimeInDays: undefined,
-      minTransitTimeInDays: undefined,
-      maxTransitTimeInDays: undefined,
-    };
-
     // Load existing carriers on PrestaShop
     const enabledCarriersFromShop = getEnabledCarriers(
       state.settings.shippingSettings,
@@ -216,42 +209,12 @@ export default {
     // Load previous configuration temporarly saved on localStorage
     const deliveryFromStorage = getDataFromLocalStorage('productFeed-deliveryDetails') ?? [];
 
-    // Carriers will be all enabled by default if nothing has been configured yet
-    const enableCarriersByDefault = !deliveryFromStorage.length
-      && !state.settings.deliveryDetails.length;
+    const carriersList: DeliveryDetail[] = mergeShippingDetailsSourcesForProductFeedConfiguration(
+      enabledCarriersFromShop,
+      state.settings.deliveryDetails,
+      deliveryFromStorage,
+    );
 
-    // Build carriers list based from PHP data, and on previous configuration in localStorage + API
-    const carriersList: DeliveryDetail[] = enabledCarriersFromShop.map((carrierFromShop) => {
-      const deliveryDetailsSavedInLocalStorage = deliveryFromStorage.find((c : DeliveryDetail) => (
-        (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
-      ));
-
-      if (deliveryDetailsSavedInLocalStorage) {
-        return {
-          ...deliveryDetailsStructure,
-          ...deliveryDetailsSavedInLocalStorage,
-        };
-      }
-
-      const deliveryDetailsSavedOnAPI = state.settings.deliveryDetails.find(
-        (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === carrierFromShop.carrierId
-                && carrierFromShop.country === deliveryDetail.country);
-
-      if (deliveryDetailsSavedOnAPI) {
-        return {
-          ...deliveryDetailsStructure,
-          enabledCarrier: true,
-          ...carrierFromShop,
-          ...deliveryDetailsSavedOnAPI,
-        };
-      }
-
-      return {
-        ...deliveryDetailsStructure,
-        enabledCarrier: enableCarriersByDefault,
-        ...carrierFromShop,
-      };
-    });
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 

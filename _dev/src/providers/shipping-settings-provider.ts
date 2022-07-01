@@ -54,6 +54,12 @@ export type DeliveryDetail = {
   enabledCarrier?: boolean;
 }
 
+/**
+ * Filters on active carriers, then clone them as many time as they have assigned countries
+ *
+ * @param source ShopShippingInterface[] 
+ * @returns Carrier[]
+ */
 export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
   return source.filter((carrier) => carrier.collection === ShopShippingCollectionType.CARRIERS
         && carrier.properties.active === true
@@ -63,8 +69,64 @@ export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
     country,
     name: carrier.properties.name,
     delay: carrier.properties.delay,
-  })),
-  );
+  })));
+}
+
+/**
+ * 
+ * @param carriersFromShop DeliveryDetail[]
+ * @param carriersFromApi DeliveryDetail[]
+ * @param carriersFromLocalStorage DeliveryDetail[]
+ * @returns DeliveryDetail[]
+ */
+export function mergeShippingDetailsSourcesForProductFeedConfiguration(
+  carriersFromShop: DeliveryDetail[],
+  carriersFromApi: DeliveryDetail[],
+  carriersFromLocalStorage: DeliveryDetail[] = [],
+): DeliveryDetail[] {
+  const deliveryDetailsStructure = {
+    deliveryType: undefined,
+    minHandlingTimeInDays: undefined,
+    maxHandlingTimeInDays: undefined,
+    minTransitTimeInDays: undefined,
+    maxTransitTimeInDays: undefined,
+  };
+
+  // Carriers will be all enabled by default if nothing has been configured yet
+  const enableCarriersByDefault = !carriersFromLocalStorage.length
+    && !carriersFromApi.length;
+
+  return carriersFromShop.map((carrierFromShop) => {
+    const deliveryDetailsSavedInLocalStorage = carriersFromLocalStorage.find((c : DeliveryDetail) => (
+      (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
+    ));
+
+    if (deliveryDetailsSavedInLocalStorage) {
+      return {
+        ...deliveryDetailsStructure,
+        ...deliveryDetailsSavedInLocalStorage,
+      };
+    }
+
+    const deliveryDetailsSavedOnAPI = carriersFromApi.find(
+      (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === carrierFromShop.carrierId
+              && carrierFromShop.country === deliveryDetail.country);
+
+    if (deliveryDetailsSavedOnAPI) {
+      return {
+        ...deliveryDetailsStructure,
+        enabledCarrier: true,
+        ...carrierFromShop,
+        ...deliveryDetailsSavedOnAPI,
+      };
+    }
+
+    return {
+      ...deliveryDetailsStructure,
+      enabledCarrier: enableCarriersByDefault,
+      ...carrierFromShop,
+    };
+  });
 }
 
 export function validateDeliveryDetail(delivery: DeliveryDetail): boolean {
