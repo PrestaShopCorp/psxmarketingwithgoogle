@@ -165,7 +165,7 @@
 
 <script lang="ts">
 import {PropType} from '@vue/composition-api';
-import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
+import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
@@ -196,6 +196,9 @@ export default {
     carriers() {
       return this.$store.state.productFeed.settings.deliveryDetails
         .filter((carrier) => {
+          if (carrier.collection === 'carriers' && !carrier.country) {
+            return true;
+          }
           if (this.countryChosen) {
             return this.countryChosen === carrier.country;
           }
