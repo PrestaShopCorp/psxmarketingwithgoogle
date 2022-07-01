@@ -494,8 +494,8 @@ export default {
   computed: {
     formTitle() {
       // Edition
-      if (this.foundSsc) {
-        if (this.foundSsc.type === this.$options.CampaignTypes.PERFORMANCE_MAX) {
+      if (this.campaignToEditFromList) {
+        if (this.campaignToEditFromList.type === this.$options.CampaignTypes.PERFORMANCE_MAX) {
           return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditPMax');
         }
         return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditSSC');
@@ -513,7 +513,7 @@ export default {
     },
     filtersChosen() {
       return (
-        this.foundSsc?.productFilters
+        this.campaignToEditFromList?.productFilters
         ?? this.$store.state.smartShoppingCampaigns.filtersChosen
       );
     },
@@ -567,7 +567,7 @@ export default {
     },
     currency() {
       return (
-        this.foundSsc?.currencyCode
+        this.campaignToEditFromList?.currencyCode
         || this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
           ?.currencyCode || ''
       );
@@ -589,7 +589,7 @@ export default {
     },
     finalCampaign() {
       return {
-        id: this.foundSsc?.id ?? 0,
+        id: this.campaignToEditFromList?.id ?? 0,
         campaignName: this.campaignName,
         dailyBudget: Number(this.campaignDailyBudget),
         currencyCode: this.currency,
@@ -623,11 +623,11 @@ export default {
         'smartShoppingCampaigns/GET_ERROR_FETCHING_FILTERS_STATUS'
       ];
     },
-    sscList() {
+    campaignsList() {
       return this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS'];
     },
-    foundSsc() {
-      return this.sscList.find((el) => el.id === this.$route.params.id);
+    campaignToEditFromList() {
+      return this.campaignsList.find((el) => el.id === this.$route.params.id);
     },
     activeCountries() {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
@@ -708,7 +708,7 @@ export default {
         filtersForAPI,
       );
       if (this.editMode) {
-        this.foundSsc.productFilters = filtersForAPI;
+        this.campaignToEditFromList.productFilters = filtersForAPI;
       }
     },
     async getDatasFiltersDimensions(search) {
@@ -727,23 +727,23 @@ export default {
       );
     },
     setInterfaceForEdition() {
-      let {endDate} = this.foundSsc;
+      let {endDate} = this.campaignToEditFromList;
       const todayYear = new Date().getFullYear();
 
       if (new Date(endDate).getFullYear() - 10 > todayYear) {
         endDate = null;
       }
-      this.campaignName = this.foundSsc.campaignName;
-      this.campaignDurationStartDate = this.foundSsc.startDate;
+      this.campaignName = this.campaignToEditFromList.campaignName;
+      this.campaignDurationStartDate = this.campaignToEditFromList.startDate;
       this.campaignDurationEndDate = endDate;
-      this.campaignHasNoProductsFilter = !this.foundSsc.productFilters.length
-            && !this.foundSsc.hasUnhandledFilters;
-      this.campaignDailyBudget = this.foundSsc.dailyBudget;
-      this.campaignIsActive = this.foundSsc.status === CampaignStatus.ELIGIBLE;
+      this.campaignHasNoProductsFilter = !this.campaignToEditFromList.productFilters.length
+            && !this.campaignToEditFromList.hasUnhandledFilters;
+      this.campaignDailyBudget = this.campaignToEditFromList.dailyBudget;
+      this.campaignIsActive = this.campaignToEditFromList.status === CampaignStatus.ELIGIBLE;
       [this.targetCountry] = this.$options.filters.changeCountriesCodesToNames([
-        this.foundSsc.targetCountry,
+        this.campaignToEditFromList.targetCountry,
       ]);
-      this.hasUnhandledFilters = this.foundSsc.hasUnhandledFilters;
+      this.hasUnhandledFilters = this.campaignToEditFromList.hasUnhandledFilters;
       this.debounceName();
       this.$store.commit(
         'smartShoppingCampaigns/SET_FILTERS_CHOSEN',
@@ -803,9 +803,15 @@ export default {
       await this.getDatasFiltersDimensions();
     }
     if (this.editMode === true) {
-      if (!this.sscList.length) {
+      if (!this.campaignsList.length) {
         await this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST',
           {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX});
+      }
+      if (!this.campaignToEditFromList) {
+        this.$router.push({
+          name: 'campaign',
+        });
+        return;
       }
       this.setInterfaceForEdition();
     } else {
