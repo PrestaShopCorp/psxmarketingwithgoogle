@@ -240,14 +240,18 @@
       "shippingSettingsErrors": "Dit land is niet compatibel met uw munteenheid",
       "syncSchedule": "Synchronisatie schema"
     },
+    "inputTargetCountriesTooltip": "Note that you can't select a country with a different currency than your shop's",
     "noticeDataStored": "Instellingen worden bij elke stap opgeslagen en pas bij de laatste stap ingediend.",
     "shipping": {
       "targetCountries": "Land van bestemming",
       "filterTitle": "Filter op land",
       "ifMultipleCountries": "Als u zich op meerdere landen richt, wordt elke productprijs in Google automatisch omgerekend naar de juiste valuta. Uw winkel moet echter wel verzend- en belastingtarieven hebben geconfigureerd voor elk geselecteerd land. Respecteer [landspecifiek winkelbeleid]({0})[:target=\"_blank\"] en [lokale regelgeving]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "Mijn producten zijn verkrijgbaar in",
-      "placeholderSelect": "Selecteer de landen waar uw producten beschikbaar zijn",
-      "cantFindCountry": "Kun je geen land vinden? Alleen ondersteunde landen zijn vermeld. [Zie lijst van ondersteunde landen]({0})[:target=\"_blank\"]",
+      "productAvailaibleIn": "Where I want my products to be available",
+      "placeholderSelect": "Choose a country from the list",
+      "placeholderNoTargetCountries": "We cannot find any target countries from your carriers",
+      "disabledButtonTooltipTargetCountries": "You can only proceed if you configure your target countries",
+      "disabledButtonTooltipShippingCarriers": "You cannot proceed unless you activate at least one carrier for a target country",
+      "cantFindCountry": "Your target countries are where your carriers ship your products",
       "shippingSettingsErrors": "Dit land is niet compatibel met uw munteenheid",
       "shippingSettings": "Verzendingsinstellingen",
       "shippingSettingsTitle": "Verzendingsinstellingen voor producten",
@@ -905,7 +909,7 @@
     "googleProductStatusDefinitions": "Google productstatus definities",
     "visitThe": "Bezoek de {0} voor meer informatie",
     "investigate": "Investigate",
-    "createPmax": "Create Performance Max campaign now",
+    "createPmax": "Create Performance Max campaign",
     "understand": "Ik begrijp het."
   },
   "badge": {
