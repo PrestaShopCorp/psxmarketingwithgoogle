@@ -492,7 +492,7 @@
     "inputBudgetPlaceholder": "Betrag",
     "inputAllSyncedProducts": "No filters selected",
     "formHelperTitle": "Aktivierung der Kampagne",
-    "formHelperDescription": "Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.",
+    "formHelperDescription": "Ihre Kampagne läuft so lange, bis Sie sie pausieren oder bis das Enddatum erreicht ist. Sie können sie jederzeit unterbrechen.",
     "errorNoProducts": "Sie möchten eine Kampagne starten, aber Ihr Google Merchant Center enthält noch keine Produkte. Ihre Kampagne wird erst gestartet, wenn mindestens ein Produkt von Google genehmigt wurde.",
     "errorApi": "Wir konnten Ihre Kampagne nicht veröffentlichen, bitte versuchen Sie es erneut.",
     "errorFetchingFilters": "Es ist uns nicht gelungen, alle Filter von Google abzurufen. Sie können sie im Moment nicht ändern.",
