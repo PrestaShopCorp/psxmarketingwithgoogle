@@ -1,7 +1,7 @@
 import CampaignPageNotConfigured from '../src/views/not-configured/campaign-page.vue';
 
 export default {
-  title: 'Not Configured Pages/Campaign Page',
+  title: 'Not Configured Pages/Campaign Page Without account',
   component: CampaignPageNotConfigured,
   parameters: {
     jest: ['stepper.spec.ts'],

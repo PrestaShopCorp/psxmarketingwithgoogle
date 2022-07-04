@@ -100,8 +100,8 @@ GoogleAds.args = {
   },
 };
 
-export const SmartShoppingCampaigns:any = TemplatePsAccount.bind({});
-SmartShoppingCampaigns.args = {
+export const campaigns:any = TemplatePsAccount.bind({});
+campaigns.args = {
   beforeMount(this: any) {
     this.$store.state.app = Object.assign(
       {},

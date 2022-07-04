@@ -7,7 +7,7 @@ import accounts from './modules/accounts';
 import productFeed from './modules/product-feed';
 import freeListing from './modules/free-listing';
 import googleAds from './modules/google-ads';
-import smartShoppingCampaigns from './modules/smart-shopping-campaigns';
+import campaigns from './modules/campaigns';
 
 Vue.use(Vuex);
 
@@ -22,7 +22,7 @@ const plugins = [
       removeItem: (key: string) => ls.remove(key),
     },
     paths: [
-      'smartShoppingCampaigns.reporting.request',
+      'campaigns.reporting.request',
     ],
   }),
 ];
@@ -34,7 +34,7 @@ export default new Vuex.Store({
     productFeed,
     freeListing,
     googleAds,
-    smartShoppingCampaigns,
+    campaigns,
   },
   plugins,
 });

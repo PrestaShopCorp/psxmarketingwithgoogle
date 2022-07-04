@@ -1,16 +1,16 @@
-import SmartShoppingCampaign from '../src/components/smart-shopping-campaigns/smart-shopping-campaign-card.vue'
+import Campaign from '../src/components/campaigns/campaign-card.vue'
 import {campaigns} from '../.storybook/mock/campaigns-list.js';
-import {sscTrackingIsTrue, sscTrackingIsFalse} from '../.storybook/mock/smart-shopping-campaigns';
+import {conversionTrackingIsTrue, conversionTrackingIsFalse} from '../.storybook/mock/campaigns';
 
 export default {
-  title: 'Smart Shopping Campaign/Card',
-  component: SmartShoppingCampaign,
+  title: 'Campaign/Card',
+  component: Campaign,
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { SmartShoppingCampaign },
-  template: '<SmartShoppingCampaign v-bind="$props" />',
+  components: { Campaign },
+  template: '<Campaign v-bind="$props" />',
   beforeMount: args.beforeMount || (() => {}),
 });
 
@@ -31,8 +31,8 @@ EnabledWithRemarketingSwitchOff.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsFalse);
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaigns);
+    this.$store.state.campaigns = Object.assign({}, conversionTrackingIsFalse);
+    this.$store.state.campaigns.campaigns = Object.assign([], campaigns);
   },
 };
 
@@ -41,9 +41,9 @@ EnabledWithRemarketingSwitchOn.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsTrue);
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaigns);
-    this.$store.state.smartShoppingCampaigns.conversionActions = [{}];
+    this.$store.state.campaigns = Object.assign({}, conversionTrackingIsTrue);
+    this.$store.state.campaigns.campaigns = Object.assign([], campaigns);
+    this.$store.state.campaigns.conversionActions = [{}];
   },
 };
 
@@ -52,8 +52,8 @@ AlertAboutMissingConversionActions.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsTrue);
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaigns);
-    this.$store.state.smartShoppingCampaigns.conversionActions = [];
+    this.$store.state.campaigns = Object.assign({}, conversionTrackingIsTrue);
+    this.$store.state.campaigns.campaigns = Object.assign([], campaigns);
+    this.$store.state.campaigns.conversionActions = [];
   },
 };

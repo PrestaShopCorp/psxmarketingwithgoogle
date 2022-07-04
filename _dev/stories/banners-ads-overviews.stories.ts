@@ -1,5 +1,5 @@
 import {googleAccountConnected} from '../.storybook/mock/google-account';
-import {sscTrackingIsTrue} from '../.storybook/mock/smart-shopping-campaigns';
+import {conversionTrackingIsTrue} from '../.storybook/mock/campaigns';
 import {campaigns} from '../.storybook/mock/campaigns-list.js';
 import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {initialStateApp} from "../.storybook/mock/state-app";
@@ -8,10 +8,10 @@ import {googleAdsAccountChosen, adsAccountStatus} from '../.storybook/mock/googl
 import {productFeedIsConfigured} from '../.storybook/mock/product-feed';
 import BannerAds from '../src/components/commons/banner-ads.vue'
 import BannerCampaigns from '../src/components/commons/banner-campaigns.vue'
-import SmartShoppingCampaignCreationPopin from '../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation.vue'
+import CampaignCreationPopin from '../src/components/campaign-creation/campaign-creation.vue'
 import GoogleAdsAccountPopinNew from '../src/components/google-ads-account/google-ads-account-popin-new.vue'
 import OnboardingPage from '../src/views/onboarding-page.vue'
-import SmartShoppingCampaignsList from '../src/components/smart-shopping-campaign/smart-shopping-campaign-table-list.vue'
+import campaignsList from '../src/components/campaign/campaign-table-list.vue'
 export default {
   title: 'Basic Components/Banners/Overviews',
   component: GoogleAdsAccountPopinNew,BannerAds,
@@ -65,9 +65,9 @@ const TemplateAdsConfigurationPage = (args, { argTypes }) => ({
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
     this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
-    this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsTrue);
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], campaigns);
-    this.$store.state.smartShoppingCampaigns.conversionActions = [{}];
+    this.$store.state.campaigns = Object.assign({}, conversionTrackingIsTrue);
+    this.$store.state.campaigns.campaigns = Object.assign([], campaigns);
+    this.$store.state.campaigns.conversionActions = [{}];
     this.$store.state.googleAds = Object.assign({}, adsAccountStatus);
   }
 });
@@ -79,10 +79,10 @@ BannerOnConfigurationPage.args = {
 
 const TemplateCampaignsCreation = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { SmartShoppingCampaignCreationPopin},
+  components: { CampaignCreationPopin},
   template: `
   <div>
-  <SmartShoppingCampaignCreationPopin v-bind="$props"  ref="bannerAds"/>
+  <CampaignCreationPopin v-bind="$props"  ref="bannerAds"/>
   </div>
   `,
   beforeMount: args.beforeMount,
@@ -99,10 +99,10 @@ BannerOnCreationCampaign.args = {
 
 const TemplateCampaignsList = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { SmartShoppingCampaignsList, BannerCampaigns},
+  components: { campaignsList, BannerCampaigns},
   template: `
   <div>
-  <SmartShoppingCampaignsList v-bind="$props"/>
+  <campaignsList v-bind="$props"/>
   </div>
   `,
   beforeMount: args.beforeMount,
@@ -111,7 +111,7 @@ const TemplateCampaignsList = (args, { argTypes }) => ({
 export const BannerOnCampaignsListPage:any = TemplateCampaignsList.bind({});
 BannerOnCampaignsListPage.args = {
   beforeMount() {
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign([], []);
+    this.$store.state.campaigns.campaigns = Object.assign([], []);
   },
   loading: false, 
 };

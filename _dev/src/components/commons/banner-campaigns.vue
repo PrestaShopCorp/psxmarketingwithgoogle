@@ -47,10 +47,10 @@ export default {
       return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
     accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
+      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
     },
     remarketingTagIsSet() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
+      return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
   },
   methods: {

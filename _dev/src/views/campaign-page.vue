@@ -12,7 +12,7 @@
           <b-skeleton width="70%" />
         </b-card>
       </template>
-      <campaign-card
+      <campaign-card-get-started
         @openPopin="onOpenPopinActivateTracking"
         :in-need-of-configuration="inNeedOfConfiguration"
       />
@@ -27,13 +27,13 @@
 </template>
 
 <script>
-import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
-import CampaignCard from '../components/smart-shopping-campaigns/campaign-card.vue';
+import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
+import CampaignCardGetStarted from '../components/campaigns/campaign-card-get-started.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
   components: {
-    CampaignCard,
+    CampaignCardGetStarted,
     SSCPopinActivateTracking,
   },
 
@@ -50,12 +50,12 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
     accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
+      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
   methods: {
     async getDatas() {
-      await this.$store.dispatch('smartShoppingCampaigns/WARMUP_STORE');
+      await this.$store.dispatch('campaigns/WARMUP_STORE');
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(

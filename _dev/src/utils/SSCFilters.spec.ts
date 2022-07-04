@@ -16,8 +16,8 @@ import {
   deepUpdateDimensionVisibilityFromTree,
 } from "./SSCFilters";
 
-import {availableFilters} from '@/../.storybook/mock/smart-shopping-campaigns.js';
-import { Dimension } from "../store/modules/smart-shopping-campaigns/state";
+import {availableFilters} from '@/../.storybook/mock/campaigns.js';
+import { Dimension } from "../store/modules/campaigns/state";
 
 describe("SSC filters - filterUncheckedSegments()", () => {
   it("returns an empty array when everything is unchecked", () => {

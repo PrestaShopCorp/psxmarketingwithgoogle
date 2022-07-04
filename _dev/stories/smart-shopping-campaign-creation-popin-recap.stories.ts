@@ -1,15 +1,15 @@
-import SmartShoppingCampaignCreationPopinRecap from '../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin-recap.vue'
+import CampaignCreationPopinRecap from '../src/components/campaign-creation/campaign-creation-filter-popin/campaign-creation-popin-recap.vue'
 
 export default {
-  title: 'Smart Shopping Campaign/Popins/Recap',
-  component: SmartShoppingCampaignCreationPopinRecap,
+  title: 'Campaign/Popins/Recap',
+  component: CampaignCreationPopinRecap,
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { SmartShoppingCampaignCreationPopinRecap },
+  components: { CampaignCreationPopinRecap },
   template: `
-    <SmartShoppingCampaignCreationPopinRecap v-bind="$props" />
+    <CampaignCreationPopinRecap v-bind="$props" />
   `,
 });
 

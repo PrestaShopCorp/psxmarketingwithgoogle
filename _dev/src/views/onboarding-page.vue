@@ -66,7 +66,7 @@
         @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
         @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
       />
-      <SmartShoppingCampaignCard
+      <CampaignCard
         v-if="stepsAreCompleted.step2"
         :is-enabled="stepsAreCompleted.step3"
         :loading="SSCIsLoading"
@@ -136,8 +136,8 @@ import GoogleAccountPopinDisconnect from '../components/google-account/google-ac
 import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/google-ads-account-popin-disconnect.vue';
 import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
-import SmartShoppingCampaignCard from '../components/smart-shopping-campaigns/smart-shopping-campaign-card.vue';
-import SSCPopinActivateTracking from '../components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue';
+import CampaignCard from '../components/campaigns/campaign-card.vue';
+import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
 import PmaxDiscoverModal from '../components/pmax/pmax-integration-modals/pmax-discover-modal.vue';
 import PsToast from '../components/commons/ps-toast';
 import PopinModuleConfigured from '../components/commons/popin-configured.vue';
@@ -157,7 +157,7 @@ export default {
     MerchantCenterAccountCard,
     ProductFeedCard,
     FreeListingCard,
-    SmartShoppingCampaignCard,
+    CampaignCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
     GoogleAdsAccountPopinDisconnect,
@@ -416,11 +416,11 @@ export default {
     googleAdsAccountIsChosen(newVal, oldVal) {
       if (oldVal === null && newVal === true) {
         this.SSCIsLoading = true;
-        this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX}).finally(() => {
+        this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX}).finally(() => {
           this.SSCIsLoading = false;
         });
-        this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
-        this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
+        this.$store.dispatch('campaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
+        this.$store.dispatch('campaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
       }
     },
 
