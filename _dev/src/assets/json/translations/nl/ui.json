@@ -435,7 +435,7 @@
       "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Business name",
+      "name": "Bedrijfsnaam",
       "title": "Zakelijke informatie",
       "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Land van facturering",
@@ -455,7 +455,7 @@
     "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
     "introConnected": "With Performance Max, you can advertise your products and maximize your ads performance across multiple Google channels through one single campaign. Even better, you don’t pay unless your customers click!",
     "footer": "In de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland kunnen maximale prestaties-campagnes worden gebruikt met elke Comparison Shopping Service (CSS) waarmee u werkt. De advertenties worden getoond op algemene zoekresultatenpagina's en op alle andere oppervlakken waar de CSS zich voor heeft opgegeven.",
-    "titleInfo": "Did you know?",
+    "titleInfo": "Wist je dat?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
     "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
   },
@@ -464,7 +464,7 @@
     "breadcrumb1": "Campagne",
     "breadcrumbCreateSSC": "Smart Shopping-campagne opzetten",
     "breadcrumbEditSSC": "Modify Smart Shopping campaign",
-    "breadcrumbCreatePMax": "Create Performance Max campaign",
+    "breadcrumbCreatePMax": "Maximale prestaties-campagne aanmaken",
     "breadcrumbEditPMax": "Modify Performance Max campaign",
     "inputNameHelper": "De naam moet uniek zijn en mag maximaal 125 karakters lang zijn.",
     "inputNameLabel": "Naam van de campagne",
@@ -492,7 +492,7 @@
     "inputBudgetPlaceholder": "Bedrag",
     "inputAllSyncedProducts": "No filters selected",
     "formHelperTitle": "Activering van de campagne",
-    "formHelperDescription": "Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.",
+    "formHelperDescription": "Uw campagne blijft lopen totdat u deze pauzeert of zodra de einddatum is bereikt. Je kunt het op elk moment pauzeren.",
     "errorNoProducts": "U wilt een campagne starten, maar uw Google-handelscentrum bevat nog geen producten. Uw campagne wordt pas gestart als ten minste één product door Google is goedgekeurd.",
     "errorApi": "We konden uw campagne niet publiceren, probeer het opnieuw",
     "errorFetchingFilters": "We waren niet in staat om alle filters van Google te halen. U kunt ze voorlopig niet wijzigen.",
@@ -763,10 +763,10 @@
     "ctaClassic": "Go to configuration page",
     "ctaLinkMCA": "Link your Google Merchant Center Account",
     "ctaExportFeed": "Sync your products with Google",
-    "ctaLinkGoogleAds": "Connect your Google Ads Account"
+    "ctaLinkGoogleAds": "Sluit uw Google Ads account aan"
   },
   "configuredState": {
-    "title": "Congratulations, you're all set !",
+    "title": "Gefeliciteerd! Je bent er helemaal klaar voor !",
     "text": "You finished all the required steps to get the most out of **Marketing with Google**",
     "cta": "Go to campaign creation",
     "firstStep": "Link your store to a PrestaShop account",
