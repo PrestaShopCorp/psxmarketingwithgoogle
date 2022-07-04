@@ -240,14 +240,18 @@
       "shippingSettingsErrors": "Dit land is niet compatibel met uw munteenheid",
       "syncSchedule": "Synchronisatie schema"
     },
+    "inputTargetCountriesTooltip": "Note that you can't select a country with a different currency than your shop's",
     "noticeDataStored": "Instellingen worden bij elke stap opgeslagen en pas bij de laatste stap ingediend.",
     "shipping": {
       "targetCountries": "Land van bestemming",
       "filterTitle": "Filter op land",
       "ifMultipleCountries": "Als u zich op meerdere landen richt, wordt elke productprijs in Google automatisch omgerekend naar de juiste valuta. Uw winkel moet echter wel verzend- en belastingtarieven hebben geconfigureerd voor elk geselecteerd land. Respecteer [landspecifiek winkelbeleid]({0})[:target=\"_blank\"] en [lokale regelgeving]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "Mijn producten zijn verkrijgbaar in",
-      "placeholderSelect": "Selecteer de landen waar uw producten beschikbaar zijn",
-      "cantFindCountry": "Kun je geen land vinden? Alleen ondersteunde landen zijn vermeld. [Zie lijst van ondersteunde landen]({0})[:target=\"_blank\"]",
+      "productAvailaibleIn": "Where I want my products to be available",
+      "placeholderSelect": "Choose a country from the list",
+      "placeholderNoTargetCountries": "We cannot find any target countries from your carriers",
+      "disabledButtonTooltipTargetCountries": "You can only proceed if you configure your target countries",
+      "disabledButtonTooltipShippingCarriers": "You cannot proceed unless you activate at least one carrier for a target country",
+      "cantFindCountry": "Your target countries are where your carriers ship your products",
       "shippingSettingsErrors": "Dit land is niet compatibel met uw munteenheid",
       "shippingSettings": "Verzendingsinstellingen",
       "shippingSettingsTitle": "Verzendingsinstellingen voor producten",
@@ -431,7 +435,7 @@
       "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Business name",
+      "name": "Bedrijfsnaam",
       "title": "Zakelijke informatie",
       "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
       "labelCountry": "Land van facturering",
@@ -451,7 +455,7 @@
     "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
     "introConnected": "With Performance Max, you can advertise your products and maximize your ads performance across multiple Google channels through one single campaign. Even better, you don’t pay unless your customers click!",
     "footer": "In de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland kunnen maximale prestaties-campagnes worden gebruikt met elke Comparison Shopping Service (CSS) waarmee u werkt. De advertenties worden getoond op algemene zoekresultatenpagina's en op alle andere oppervlakken waar de CSS zich voor heeft opgegeven.",
-    "titleInfo": "Did you know?",
+    "titleInfo": "Wist je dat?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
     "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
   },
@@ -460,7 +464,7 @@
     "breadcrumb1": "Campagne",
     "breadcrumbCreateSSC": "Smart Shopping-campagne opzetten",
     "breadcrumbEditSSC": "Modify Smart Shopping campaign",
-    "breadcrumbCreatePMax": "Create Performance Max campaign",
+    "breadcrumbCreatePMax": "Maximale prestaties-campagne aanmaken",
     "breadcrumbEditPMax": "Modify Performance Max campaign",
     "inputNameHelper": "De naam moet uniek zijn en mag maximaal 125 karakters lang zijn.",
     "inputNameLabel": "Naam van de campagne",
@@ -488,7 +492,7 @@
     "inputBudgetPlaceholder": "Bedrag",
     "inputAllSyncedProducts": "No filters selected",
     "formHelperTitle": "Activering van de campagne",
-    "formHelperDescription": "Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.",
+    "formHelperDescription": "Uw campagne blijft lopen totdat u deze pauzeert of zodra de einddatum is bereikt. Je kunt het op elk moment pauzeren.",
     "errorNoProducts": "U wilt een campagne starten, maar uw Google-handelscentrum bevat nog geen producten. Uw campagne wordt pas gestart als ten minste één product door Google is goedgekeurd.",
     "errorApi": "We konden uw campagne niet publiceren, probeer het opnieuw",
     "errorFetchingFilters": "We waren niet in staat om alle filters van Google te halen. U kunt ze voorlopig niet wijzigen.",
@@ -759,10 +763,10 @@
     "ctaClassic": "Go to configuration page",
     "ctaLinkMCA": "Link your Google Merchant Center Account",
     "ctaExportFeed": "Sync your products with Google",
-    "ctaLinkGoogleAds": "Connect your Google Ads Account"
+    "ctaLinkGoogleAds": "Sluit uw Google Ads account aan"
   },
   "configuredState": {
-    "title": "Congratulations, you're all set !",
+    "title": "Gefeliciteerd! Je bent er helemaal klaar voor !",
     "text": "You finished all the required steps to get the most out of **Marketing with Google**",
     "cta": "Go to campaign creation",
     "firstStep": "Link your store to a PrestaShop account",
