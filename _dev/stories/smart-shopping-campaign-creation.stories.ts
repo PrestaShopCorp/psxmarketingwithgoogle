@@ -1,15 +1,15 @@
-import SmartShoppingCampaignCreation from "../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation.vue";
-import SmartShoppingCampaignPopin from "../src/components/smart-shopping-campaign-creation/smart-shopping-campaign-creation-filter-popin/smart-shopping-campaign-creation-popin.vue"
+import CampaignCreation from "../src/components/campaign-creation/campaign-creation.vue";
+import CampaignPopin from "../src/components/campaign-creation/campaign-creation-filter-popin/campaign-creation-popin.vue"
 import { initialStateApp } from "../.storybook/mock/state-app";
 import { googleAdsAccountChosen } from "../.storybook/mock/google-ads.js";
-import { campaignWithUnhandledFilters, campaignBasic } from "../.storybook/mock/smart-shopping-campaigns";
+import { campaignWithUnhandledFilters, campaignBasic } from "../.storybook/mock/campaigns";
 import { rest } from "msw";
-import { availableFilters } from "../.storybook/mock/smart-shopping-campaigns.js";
+import { availableFilters } from "../.storybook/mock/campaigns.js";
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
-  title: "Smart Shopping Campaign/Creation",
-  component: SmartShoppingCampaignCreation,SmartShoppingCampaignPopin,
+  title: "Campaign/Creation",
+  component: CampaignCreation,CampaignPopin,
   parameters: {
     msw: {
       handlers: [
@@ -194,11 +194,11 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { SmartShoppingCampaignCreation, SmartShoppingCampaignPopin },
+  components: { CampaignCreation, CampaignPopin },
   template: `
   <div>
-  <SmartShoppingCampaignCreation v-bind="$props" ref="sscCreation"/>
-  <SmartShoppingCampaignPopin v-bind="$props" ref="SmartShoppingCampaignCreationPopin"/>
+  <CampaignCreation v-bind="$props" ref="sscCreation"/>
+  <CampaignPopin v-bind="$props" ref="CampaignCreationPopin"/>
   </div>
   `,
   beforeCreate(this: any) {
@@ -216,7 +216,7 @@ CreationSSC.args = {
   loader: false,
   searchLoader: false,
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+    this.$store.state.campaigns.errorCampaignNameExists = null;
     this.$store.state.productFeed.validationSummary.activeItems = 2;
     this.$router.history.current.params.type = CampaignTypes.SMART_SHOPPING
   },
@@ -226,7 +226,7 @@ CreationPMax.args = {
   loader: false,
   searchLoader: false,
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+    this.$store.state.campaigns.errorCampaignNameExists = null;
     this.$store.state.productFeed.validationSummary.activeItems = 2;
     this.$router.history.current.params.type = CampaignTypes.PERFORMANCE_MAX
   },
@@ -237,7 +237,7 @@ ErrorAPIWhileCreating.args = {
   searchLoader: false,
   editMode: true,
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+    this.$store.state.campaigns.errorCampaignNameExists = null;
     this.$store.state.productFeed.validationSummary.activeItems = 2;
   },
   mounted(this: any) {
@@ -251,7 +251,7 @@ CreationWithoutProducts.args = {
   loader: false,
   searchLoader: false,
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+    this.$store.state.campaigns.errorCampaignNameExists = null;
     this.$store.state.productFeed.validationSummary.activeItems = 0;
   },
 };
@@ -269,7 +269,7 @@ FieldsErrorFeedback.args = {
     const $ = this;
     setTimeout(function () {
       $.$store.commit(
-        "smartShoppingCampaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS",
+        "campaigns/SET_ERROR_CAMPAIGN_NAME_EXISTS",
         true
       );
     }, 300);
@@ -283,7 +283,7 @@ Edition.args = {
   searchLoader: false,
   mounted(this: any) {
     this.$router.history.current.params.id = '16004060865'
-    this.$store.state.smartShoppingCampaigns.filtersChosen = [{dimension: 'bla', values: ['1', '2']}]
+    this.$store.state.campaigns.filtersChosen = [{dimension: 'bla', values: ['1', '2']}]
     this.$store.state.productFeed.validationSummary.activeItems = 2;
   },
 };
@@ -294,9 +294,9 @@ EditionWithUnhandledFilters.args = {
   loader: false,
   searchLoader: false,
   mounted(this: any) {
-    this.$store.state.smartShoppingCampaigns.campaigns= Object.assign([], [campaignWithUnhandledFilters]);
+    this.$store.state.campaigns.campaigns= Object.assign([], [campaignWithUnhandledFilters]);
     this.$router.history.current.params.id = '16004060865',
-    this.$store.state.smartShoppingCampaigns.errorFetchingFilters = false;
+    this.$store.state.campaigns.errorFetchingFilters = false;
     this.$store.state.productFeed.validationSummary.activeItems = 2;
     Object.assign(
       this.$refs.sscCreation.$data,
@@ -365,8 +365,8 @@ ErrorRetrievingFilters.args = {
   mounted(this: any) {
     this.$store.state.productFeed.validationSummary.activeItems = 2;
     // Is empty but is filled right away??
-    this.$store.state.smartShoppingCampaigns.sscAvailableFilters = Object.assign([], [])
-    this.$store.state.smartShoppingCampaigns.errorFetchingFilters = true
+    this.$store.state.campaigns.sscAvailableFilters = Object.assign([], [])
+    this.$store.state.campaigns.errorFetchingFilters = true
   },
 };
 ErrorRetrievingFilters.parameters = {
@@ -385,12 +385,12 @@ PopinFiltersDimensionStep.args = {
   loader: false,
   searchLoader: false,
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+    this.$store.state.campaigns.errorCampaignNameExists = null;
   },
   mounted(this: any) {
     // @ts-ignore
-    this.$store.state.smartShoppingCampaigns.sscAvailableFilters  = Object.assign([], availableFilters);
-    this.$store.state.smartShoppingCampaigns.dimensionChosen  = Object.assign({}, availableFilters[0]);
+    this.$store.state.campaigns.sscAvailableFilters  = Object.assign([], availableFilters);
+    this.$store.state.campaigns.dimensionChosen  = Object.assign({}, availableFilters[0]);
   },
 };
 
@@ -401,11 +401,11 @@ PopinFiltersFiltersStep.args = {
   loader: false,
   searchLoader: false,
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns.errorCampaignNameExists = null;
+    this.$store.state.campaigns.errorCampaignNameExists = null;
   },
   mounted(this: any) {
     // @ts-ignore
-    this.$store.state.smartShoppingCampaigns.dimensionChosen = Object.assign({}, availableFilters[0]);
-    this.$refs.SmartShoppingCampaignCreationPopin.$data.step = 2;
+    this.$store.state.campaigns.dimensionChosen = Object.assign({}, availableFilters[0]);
+    this.$refs.CampaignCreationPopin.$data.step = 2;
   },
 };

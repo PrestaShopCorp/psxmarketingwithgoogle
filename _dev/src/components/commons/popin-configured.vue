@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
+      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
   methods: {

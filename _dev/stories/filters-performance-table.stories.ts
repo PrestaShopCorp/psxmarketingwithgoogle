@@ -1,4 +1,4 @@
-import FiltersPerformanceTable from '../src/components/smart-shopping-campaign/reporting/filters-performance/filters-performance-table.vue'
+import FiltersPerformanceTable from '../src/components/campaign/reporting/filters-performance/filters-performance-table.vue'
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
 import {rest} from 'msw';
 import {productsPartitionsPerformanceListEmpty, productsPartitionsPerformanceList} from '../.storybook/mock/reporting/products-partitions-performance.js';

@@ -79,7 +79,7 @@
 
 <script>
 import NotConfiguredCard from '@/components/commons/not-configured-card';
-import ReportingTableHeader from '@/components/smart-shopping-campaign/reporting/commons/reporting-table-header.vue';
+import ReportingTableHeader from '@/components/campaign/reporting/commons/reporting-table-header.vue';
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
 
 export default {

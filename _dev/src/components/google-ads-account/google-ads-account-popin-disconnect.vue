@@ -97,13 +97,13 @@ export default {
       this.$store.dispatch(
         // Here the toggle is true when we want to delete the remarketing tag
         // Which is why we have to send the contrary to 'save status remarketing tracking tag'
-        'smartShoppingCampaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', !this.removeTag,
+        'campaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', !this.removeTag,
       );
     },
   },
   computed: {
     accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['smartShoppingCampaigns/GET_ALL_CAMPAIGNS']?.length;
+      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
 };

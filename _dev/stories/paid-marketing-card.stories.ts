@@ -1,7 +1,7 @@
-import CampaignCard from '../src/components/smart-shopping-campaigns/campaign-card.vue'
+import CampaignCard from '../src/components/campaigns/campaign-card-get-started.vue'
 
 export default {
-  title: 'Campaign/Card',
+  title: 'Not Configured Pages/Campaign Page Without campaigns',
   component: CampaignCard,
 };
 

@@ -1,5 +1,5 @@
 import cloneDeep from 'lodash.clonedeep';
-import {Dimension} from '@/store/modules/smart-shopping-campaigns/state';
+import {Dimension} from '@/store/modules/campaigns/state';
 
 interface filtersChosenFromAPI {
   dimension: string,

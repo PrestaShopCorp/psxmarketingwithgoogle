@@ -1,8 +1,8 @@
-import SSCPopinActivateTracking from '../src/components/smart-shopping-campaigns/ssc-popin-activate-tracking.vue'
+import SSCPopinActivateTracking from '../src/components/campaigns/ssc-popin-activate-tracking.vue'
 import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
-import {sscTrackingIsTrue, sscTrackingIsFalse, sscTagAlreadyExists} from '../.storybook/mock/smart-shopping-campaigns';
+import {conversionTrackingIsTrue, conversionTrackingIsFalse, conversionTagAlreadyExists} from '../.storybook/mock/campaigns';
 export default {
-  title: 'Smart Shopping Campaign/Popins/Tracking',
+  title: 'Campaign/Popins/Tracking',
     component: SSCPopinActivateTracking,
 };
 
@@ -31,7 +31,7 @@ Loading.args = {
     }, 500);
   },
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsTrue);
+    this.$store.state.campaigns = Object.assign({}, conversionTrackingIsTrue);
   },
 };
 
@@ -42,7 +42,7 @@ TrackingTrue.args = {
     this.$refs.SSCPopinActivateTracking.$data.isLoading = false;
   },
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsTrue);
+    this.$store.state.campaigns = Object.assign({}, conversionTrackingIsTrue);
   },
 };
 
@@ -53,7 +53,7 @@ TrackingFalse.args = {
     this.$refs.SSCPopinActivateTracking.$data.isLoading = false;
   },
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTrackingIsFalse);
+    this.$store.state.campaigns = Object.assign({}, conversionTrackingIsFalse);
   },
 };
 
@@ -64,7 +64,7 @@ TrackingAlreadyExists.args = {
     this.$refs.SSCPopinActivateTracking.$data.isLoading = false;
   },
   beforeMount(this: any) {
-    this.$store.state.smartShoppingCampaigns = Object.assign({}, sscTagAlreadyExists);
+    this.$store.state.campaigns = Object.assign({}, conversionTagAlreadyExists);
   },
 };
 

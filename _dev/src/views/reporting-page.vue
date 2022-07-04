@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import CampaignsPerformanceTable from '../components/smart-shopping-campaign/reporting/campaigns-performance/campaigns-performance-table.vue';
-import KeyMetricsBlock from '../components/smart-shopping-campaign/reporting/key-metrics/key-metrics-block.vue';
-import ProductsPerformanceTable from '../components/smart-shopping-campaign/reporting/products-performance/products-performance-table.vue';
-import FiltersPerformanceTable from '../components/smart-shopping-campaign/reporting/filters-performance/filters-performance-table.vue';
+import CampaignsPerformanceTable from '../components/campaign/reporting/campaigns-performance/campaigns-performance-table.vue';
+import KeyMetricsBlock from '../components/campaign/reporting/key-metrics/key-metrics-block.vue';
+import ProductsPerformanceTable from '../components/campaign/reporting/products-performance/products-performance-table.vue';
+import FiltersPerformanceTable from '../components/campaign/reporting/filters-performance/filters-performance-table.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     reportingTabIsActive() {
-      return this.$store.getters['smartShoppingCampaigns/GET_REPORTING_TAB_IS_ACTIVE'];
+      return this.$store.getters['campaigns/GET_REPORTING_TAB_IS_ACTIVE'];
     },
     inNeedOfConfiguration() {
       return !this.reportingTabIsActive;
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     async getDatas() {
-      await this.$store.dispatch('smartShoppingCampaigns/WARMUP_STORE');
+      await this.$store.dispatch('campaigns/WARMUP_STORE');
     },
   },
 

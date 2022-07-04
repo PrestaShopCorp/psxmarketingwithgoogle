@@ -214,7 +214,7 @@
 
 <script>
 import {mapGetters, mapState} from 'vuex';
-import GettersTypes from '@/store/modules/smart-shopping-campaigns/getters-types.ts';
+import GettersTypes from '@/store/modules/campaigns/getters-types.ts';
 import GettersTypesApp from '@/store/modules/app/getters-types.ts';
 
 export default {
@@ -235,7 +235,7 @@ export default {
   props: {
   },
   computed: {
-    ...mapGetters('smartShoppingCampaigns', [
+    ...mapGetters('campaigns', [
       GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET,
       GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
       GettersTypes.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS,
@@ -313,8 +313,8 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
-    this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
+    this.$store.dispatch('campaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
+    this.$store.dispatch('campaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
     this.$store.dispatch('app/REQUEST_DEBUG_DATA');
     this.getHooks();
   },

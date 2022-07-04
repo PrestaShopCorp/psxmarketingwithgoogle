@@ -11,7 +11,7 @@
           <b-skeleton width="70%" />
         </b-card>
       </template>
-      <smart-shopping-campaign-creation
+      <campaign-creation
         :edit-mode="$route.name === 'campaign-edition' ? true : false"
         @campaignCreated="onCampaignHasBeenCreated"
       />
@@ -29,12 +29,12 @@
 </template>
 
 <script>
-import SmartShoppingCampaignCreation from '../components/smart-shopping-campaign-creation/smart-shopping-campaign-creation.vue';
+import CampaignCreation from '../components/campaign-creation/campaign-creation.vue';
 import PsToast from '../components/commons/ps-toast';
 
 export default {
   components: {
-    SmartShoppingCampaignCreation,
+    CampaignCreation,
     PsToast,
   },
 

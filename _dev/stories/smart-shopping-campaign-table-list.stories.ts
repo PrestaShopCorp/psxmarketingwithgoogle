@@ -1,19 +1,19 @@
-import SmartShoppingCampaignTableList from '../src/components/smart-shopping-campaign/smart-shopping-campaign-table-list.vue'
+import CampaignTableList from '../src/components/campaign/campaign-table-list.vue'
 import {campaigns, campaignsEmpty, onlySsc, onlyPmax, campaignWithOnlySsc, campaignWithOnlyPmax} from '../.storybook/mock/campaigns-list.js';
 import {rest} from 'msw';
 import { CampaignTypes } from '@/enums/reporting/CampaignStatus';
 
 export default {
-  title: 'Smart Shopping Campaign/Campaigns\'s list',
-  component: SmartShoppingCampaignTableList,
+  title: 'Campaign/Campaigns\'s list',
+  component: CampaignTableList,
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { SmartShoppingCampaignTableList },
+  components: { CampaignTableList },
   template: `
     <div>
-      <SmartShoppingCampaignTableList ref="SmartShoppingCampaignTableList" v-bind="$props" />
+      <CampaignTableList ref="CampaignTableList" v-bind="$props" />
     </div>
   `,
   mounted: args.mounted,
@@ -23,7 +23,7 @@ const Template = (args, { argTypes }) => ({
 export const TableWithCampaigns:any = Template.bind({});
 TableWithCampaigns.args = {
   beforeCreate() {
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign({}, campaigns);
+    this.$store.state.campaigns.campaigns = Object.assign({}, campaigns);
   },
   loading: false,
   inNeedOfConfiguration: false,
@@ -56,7 +56,7 @@ TableWithCampaigns.parameters = {
 export const TableWithOnlySsc:any = Template.bind({});
 TableWithOnlySsc.args = {
   beforeCreate() {
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign({}, campaignWithOnlySsc);
+    this.$store.state.campaigns.campaigns = Object.assign({}, campaignWithOnlySsc);
   },
   loading: false,
   inNeedOfConfiguration: false,
@@ -89,7 +89,7 @@ TableWithOnlySsc.parameters = {
 export const TableWithOnlyPmax:any = Template.bind({});
 TableWithOnlyPmax.args = {
   beforeCreate() {
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign({}, campaignWithOnlyPmax);
+    this.$store.state.campaigns.campaigns = Object.assign({}, campaignWithOnlyPmax);
   },
   loading: false,
   inNeedOfConfiguration: false,
@@ -127,7 +127,7 @@ Loading.args = {
 export const Empty:any = Template.bind({});
 Empty.args = {
   beforeCreate() {
-    this.$store.state.smartShoppingCampaigns.campaigns = Object.assign({}, campaignsEmpty);
+    this.$store.state.campaigns.campaigns = Object.assign({}, campaignsEmpty);
   },
   loading: false,
 }
