@@ -55,18 +55,12 @@ export default {
   },
   methods: {
     async getDatas() {
-      await this.$store.dispatch('productFeed/GET_PREVALIDATION_SUMMARY');
-      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
-      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-      await this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY');
-      await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
-      await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
-      await this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX});
+      await this.$store.dispatch('productFeed/WARMUP_STORE');
     },
   },
   async created() {
     if (this.inNeedOfConfiguration) {
-      await this.$store.dispatch('accounts/REQUEST_ACCOUNTS_DETAILS');
+      await this.$store.dispatch('accounts/WARMUP_STORE');
     }
     this.getDatas().then(() => {
       this.allDataLoaded = true;

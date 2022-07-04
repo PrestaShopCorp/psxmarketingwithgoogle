@@ -68,7 +68,7 @@ export default {
   },
   async created() {
     if (this.inNeedOfConfiguration) {
-      await this.$store.dispatch('accounts/REQUEST_ACCOUNTS_DETAILS');
+      await this.$store.dispatch('accounts/WARMUP_STORE');
     }
     this.loadingPage = false;
   },

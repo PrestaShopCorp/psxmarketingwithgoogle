@@ -20,7 +20,6 @@
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
-import ActionsTypesProductFeed from '../product-feed/actions-types';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
@@ -28,6 +27,16 @@ import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 import CannotOverwriteError from '../../../utils/CannotOverwriteError';
 
 export default {
+  async [ActionsTypes.WARMUP_STORE](
+    {dispatch, state, getters},
+  ) {
+    if (state.warmedUp) {
+      return;
+    }
+    state.warmedUp = true;
+
+    await dispatch(ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS);
+  },
   async [ActionsTypes.TRIGGER_ONBOARD_TO_GOOGLE_ACCOUNT](
     {
       commit,
@@ -91,7 +100,7 @@ export default {
       id: selectedAccount.id,
     });
 
-    const json = await response.json();
+    await response.json();
     commit(MutationsTypes.SAVE_GMC, selectedAccount);
   },
 
@@ -708,12 +717,5 @@ export default {
     } catch (error) {
       console.error(error);
     }
-  },
-
-  async [ActionsTypes.REQUEST_ACCOUNTS_DETAILS]({
-    dispatch,
-  }) {
-    await dispatch(ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS);
-    await dispatch(`productFeed/${ActionsTypesProductFeed.GET_PRODUCT_FEED_SETTINGS}`, null, {root: true});
   },
 };

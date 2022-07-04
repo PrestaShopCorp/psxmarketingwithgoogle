@@ -379,6 +379,8 @@ export default {
             params: SegmentGenericParams,
           });
         }
+        this.$store.dispatch('googleAds/WARMUP_STORE');
+        this.$store.dispatch('productFeed/WARMUP_STORE');
       }).finally(() => {
         this.googleIsLoading = false;
         this.MCAIsLoading = false;

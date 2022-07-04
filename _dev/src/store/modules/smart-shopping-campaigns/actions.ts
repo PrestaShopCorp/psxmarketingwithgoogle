@@ -27,8 +27,44 @@ import {
 } from './state';
 import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import {runIf} from '../../../utils/Promise';
 
 export default {
+  async [ActionsTypes.WARMUP_STORE](
+    {dispatch, state, getters},
+  ) {
+    if (state.warmedUp) {
+      return;
+    }
+    state.warmedUp = true;
+
+    await Promise.allSettled([
+      dispatch('googleAds/WARMUP_STORE', null, {root: true}),
+      dispatch('productFeed/WARMUP_STORE', null, {root: true}),
+      runIf(
+        !getters.GET_ALL_CAMPAIGNS?.length,
+        dispatch(ActionsTypes.GET_CAMPAIGNS_LIST, {
+          isNewRequest: true,
+          typeChosen: CampaignTypes.PERFORMANCE_MAX,
+        }),
+      ),
+      runIf(
+        !getters.GET_ALL_CAMPAIGNS?.length,
+        dispatch(ActionsTypes.GET_CAMPAIGNS_LIST, {
+          isNewRequest: true,
+          typeChosen: CampaignTypes.SMART_SHOPPING,
+        }),
+      ),
+      runIf(
+        state.tracking === null,
+        dispatch(ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_MODULE),
+      ),
+      runIf(
+        !getters.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED.length,
+        dispatch(ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED),
+      ),
+    ]);
+  },
   async [ActionsTypes.SAVE_NEW_CAMPAIGN]({commit, rootState}, payload : CampaignObject) {
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/create`,
@@ -105,12 +141,12 @@ export default {
     if (!response.ok) {
       throw new HttpClientError(response.statusText, response.status);
     }
-    const result = await response.json();
+    await response.json();
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, payload);
   },
 
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_MODULE](
-    {commit, dispatch, rootState}, payload: boolean,
+    {commit, rootState},
   ) {
     const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
       method: 'POST',
@@ -128,7 +164,7 @@ export default {
   },
 
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
-    {commit, rootState}, payload: boolean,
+    {commit, rootState},
   ) {
     const regex = new RegExp('AW-[0-9]+');
     const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;

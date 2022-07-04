@@ -54,18 +54,7 @@ export default {
   },
   methods: {
     async getDatas() {
-      await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST');
-      await Promise.allSettled([
-        this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT'),
-        this.$store.dispatch('productFeed/GET_TOTAL_PRODUCTS_READY_TO_SYNC'),
-        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS'),
-        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS'),
-        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_SUMMARY'),
-        this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX}),
-        this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.SMART_SHOPPING}),
-        this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE'),
-        this.$store.dispatch('smartShoppingCampaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'),
-      ]);
+      await this.$store.dispatch('smartShoppingCampaigns/WARMUP_STORE');
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
@@ -78,7 +67,7 @@ export default {
   },
   async created() {
     if (this.inNeedOfConfiguration) {
-      await this.$store.dispatch('accounts/REQUEST_ACCOUNTS_DETAILS');
+      await this.$store.dispatch('accounts/WARMUP_STORE');
     }
     // Not dispatch if there already are campaigns in the store
     if (!this.accountHasAtLeastOneCampaign) {

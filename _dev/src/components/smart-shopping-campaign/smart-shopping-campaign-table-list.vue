@@ -350,8 +350,6 @@ export default {
       this.$emit('loader', false);
       return;
     }
-    await this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX});
-    await this.$store.dispatch('smartShoppingCampaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true, typeChosen: this.$options.CampaignTypes.SMART_SHOPPING});
     if (this.pMaxCampaignsList.length === 0 && this.sscCampaignsList.length > 0) {
       this.typeChosen = this.$options.CampaignTypes.SMART_SHOPPING;
     }
