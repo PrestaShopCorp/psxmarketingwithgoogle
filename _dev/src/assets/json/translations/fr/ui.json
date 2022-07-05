@@ -240,13 +240,13 @@
       "shippingSettingsErrors": "Ce pays n'est pas compatible avec votre devise",
       "syncSchedule": "Calendrier de synchronisation"
     },
-    "inputTargetCountriesTooltip": "Note that you can't select a country with a different currency than your shop's",
+    "inputTargetCountriesTooltip": "Notez que vous ne pouvez pas sélectionner un pays dont la devise est différente de celle de votre boutique",
     "noticeDataStored": "Les paramètres sont enregistrés à chaque étape mais ne seront soumis qu'à l'étape finale.",
     "shipping": {
       "targetCountries": "Pays cible",
       "filterTitle": "Filtrer par pays",
       "ifMultipleCountries": "Si vous ciblez plusieurs pays, le prix de chaque produit sera automatiquement converti dans la devise correcte de Google. Cependant, votre boutique doit avoir configuré les frais de port et de taxe pour chaque pays sélectionné. Veuillez respecter [les politiques d'achat propres à chaque pays]({0})[:target=\"_blank\"] et [la réglementation locale]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "Where I want my products to be available",
+      "productAvailaibleIn": "Pays où je souhaite que mes produits soient visibles",
       "placeholderSelect": "Choisissez un pays dans la liste",
       "placeholderNoTargetCountries": "Nous ne trouvons aucun pays cible parmi vos transporteurs",
       "disabledButtonTooltipTargetCountries": "Vous ne pouvez continuer que si vous configurez vos pays cibles",
@@ -550,7 +550,7 @@
     "tableTitle": "Performance de la campagne",
     "xCampaign": "Aucune campagne | {0} campagne | {0} campagnes",
     "performanceMax": "Performance Max",
-    "smartShoppingCampaign": "Smart Shopping Campaign",
+    "smartShoppingCampaign": "Campagne shopping intelligente",
     "campaignType": "Type : {0}"
   },
   "productFeedPage": {
