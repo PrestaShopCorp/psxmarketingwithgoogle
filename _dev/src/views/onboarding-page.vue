@@ -6,10 +6,8 @@
       :is-enabled="true"
       :is-done="stepsAreCompleted.step1"
     />
-    <ps-accounts
-      class="ps_gs-ps-account-card"
-      :context="psAccountsContext"
-    />
+    <prestashop-accounts>
+    </prestashop-accounts>
     <template v-if="psAccountsContext.isShopContext">
       <section-title
         :step-number="2"
@@ -123,7 +121,6 @@
 </template>
 
 <script>
-import {PsAccounts} from 'prestashop_accounts_vue_components';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
@@ -149,7 +146,6 @@ import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 export default {
   name: 'OnboardingPage',
   components: {
-    PsAccounts,
     SectionTitle,
     GoogleAccountCard,
     GoogleAdsAccountCard,
@@ -389,6 +385,7 @@ export default {
     if (this.productFeedIsConfigured) {
       this.triggerLoadOfGoogleAdsAccount();
     }
+    window.psaccountsVue.init();
   },
   beforeDestroy() {
     this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);

@@ -33,7 +33,6 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.uniqby": "^4.7.0",
     "prestakit": "^1.2.3",
-    "prestashop_accounts_vue_components": "^3.0.3",
     "secure-ls": "^1.2.6",
     "semver": "^7.3.5",
     "showdown": "^1.9.1",
