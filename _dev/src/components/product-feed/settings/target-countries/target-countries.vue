@@ -146,7 +146,6 @@ import SettingsFooter from '@/components/product-feed/settings/commons/settings-
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import SelectCountry from '@/components/commons/select-country.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import availableCountries from '../../../../assets/json/countries.json';
 
 export default {
   name: 'ProductFeedSettingsShipping',
@@ -172,6 +171,9 @@ export default {
     },
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
+    },
+    availableCountries() {
+      return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
     },
     isUS() {
       return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].includes('US');
@@ -253,7 +255,6 @@ export default {
     refreshComponent() {
       this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
     },
-    availableCountries,
   },
   mounted() {
     this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
