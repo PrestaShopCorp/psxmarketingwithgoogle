@@ -45,7 +45,7 @@
         "footer": "Crie uma nova conta [Merchant Center]({0})[:target=\"_blank\"] ou crie um link para uma conta existente.  \nPara mostrar seus produtos no Google você precisará cumprir os [requisitos de elegibilidade]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Boost your reach and sales with Performance Max",
+        "title": "Aumente o seu alcance e vendas com o máximo desempenho",
         "text": "Deseja maximizar o desempenho da sua campanha e encontrar os clientes certos onde quer que estejam? A partir de uma única campanha, Máximo desempenho recolhe dados através de diferentes canais Google, e optimiza o desempenho da sua campanha ao mostrar onde os seus anúncios têm maiores hipóteses de conversão de condução."
       }
     },
@@ -414,7 +414,7 @@
     "id": "ID da conta Google Ads",
     "toUseGAdsNeedsAdminAccess": "Para usar uma conta existente no Google Ads, você precisa ter acesso administrativo.",
     "alertCantConnect": "Não conseguiu conectar sua conta no Google Ads, ela está do nosso lado, por favor, tente novamente.",
-    "alertBillingSettingsMissing": "To launch Performance Max campaigns, you need to add your billing settings in your Google Ads account.",
+    "alertBillingSettingsMissing": "Para lançar campanhas de Máximo desempenho, precisa de adicionar as suas definições de facturação na sua conta Google Ads.",
     "alertNeedRefreshAfterBilling": "Depois de preencher as suas informações de faturamento na sua conta do Google Ads, atualize a página para ver as atualizações.",
     "alertNeedRefreshAfterInvitationLink": "Assim que o convite for aceite na sua conta do Google Ads, actualize a página para ver as actualizações.",
     "alertNeedValidationFromEmail": "Por favor clique aqui ou verifique os seus e-mails para validar a sua conta.",
@@ -453,7 +453,7 @@
   "smartShoppingCampaignCard": {
     "title": "Boost your sales with Performance Max Campaigns",
     "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
-    "introConnected": "With Performance Max, you can advertise your products and maximize your ads performance across multiple Google channels through one single campaign. Even better, you don’t pay unless your customers click!",
+    "introConnected": "Com as campanhas de Máximo desempenho, pode anunciar os seus produtos e maximizar o desempenho dos seus anúncios em vários canais Google através de uma única campanha. Melhor ainda, não paga a menos que os seus clientes cliquem!",
     "footer": "No Espaço Económico Europeu, no Reino Unido ou na Suíça, as campanhas de máximo desempenho podem ser utilizadas com qualquer Serviço de Comparação de Compras (CSS) com o qual trabalhe. Os anúncios aparecerão nas páginas de resultados de pesquisa geral e em quaisquer outras superfícies em que o CSS tenha optado.",
     "titleInfo": "Did you know?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
@@ -465,7 +465,7 @@
     "breadcrumbCreateSSC": "Crie uma campanha Smart Shopping",
     "breadcrumbEditSSC": "Modify Smart Shopping campaign",
     "breadcrumbCreatePMax": "Campanha Criar Máximo desempenho",
-    "breadcrumbEditPMax": "Modify Performance Max campaign",
+    "breadcrumbEditPMax": "Modificar a campanha Máximo desempenho",
     "inputNameHelper": "O nome deve ser único e ter, no máximo, 125 caracteres.",
     "inputNameLabel": "Nome da campanha",
     "inputNameTooltip": "Escolha um nome que descreva claramente o tema da campanha para que você possa encontrá-lo facilmente na sua conta. O nome da sua campanha não é visível para os seus clientes.",
