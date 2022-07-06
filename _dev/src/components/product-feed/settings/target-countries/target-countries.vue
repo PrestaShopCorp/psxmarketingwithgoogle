@@ -188,7 +188,7 @@ export default {
       const arrayOfCountries = [];
 
       this.$store.state.productFeed.settings.deliveryDetails.forEach((carrier) => {
-        availableCountries.forEach((country) => {
+        this.availableCountries.forEach((country) => {
           if (country.code === carrier.country) {
             arrayOfCountries.push(carrier.country);
           }
