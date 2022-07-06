@@ -146,6 +146,7 @@ import SettingsFooter from '@/components/product-feed/settings/commons/settings-
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import SelectCountry from '@/components/commons/select-country.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import availableCountries from '../../../../assets/json/countries.json';
 
 export default {
   name: 'ProductFeedSettingsShipping',
@@ -183,8 +184,13 @@ export default {
     },
     activeCountriesWhereShipppingExist() {
       const arrayOfCountries = [];
+
       this.$store.state.productFeed.settings.deliveryDetails.forEach((carrier) => {
-        arrayOfCountries.push(carrier.country);
+        availableCountries.forEach((country) => {
+          if (country.code === carrier.country) {
+            arrayOfCountries.push(carrier.country);
+          }
+        });
       });
       const uniqueCountries = [...new Set(arrayOfCountries)];
 
@@ -247,6 +253,7 @@ export default {
     refreshComponent() {
       this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
     },
+    availableCountries,
   },
   mounted() {
     this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
