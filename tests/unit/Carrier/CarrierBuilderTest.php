@@ -3,6 +3,7 @@
 namespace Carrier;
 
 use Carrier;
+use PHPUnit\Framework\MockObject\MockObject;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Builder\CarrierBuilder;
 use PrestaShop\Module\PsxMarketingWithGoogle\DTO\CarrierDetail;
@@ -12,8 +13,9 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Repository\StateRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\TaxRepository;
 use RangePrice;
 use RangeWeight;
+use PHPUnit\Framework\TestCase;
 
-class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
+class CarrierBuilderTest extends TestCase
 {
     /**
      * @dataProvider buildCarrierDataProvider
@@ -488,9 +490,9 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
      * @param $mockedDeliveryBy
      * @param $mockedCarrierRange
      *
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return MockObject
      */
-    private function createCarrierRepositoryMock($mockedDeliveryBy, $mockedCarrierRange): \PHPUnit_Framework_MockObject_MockObject
+    private function createCarrierRepositoryMock($mockedDeliveryBy, $mockedCarrierRange): MockObject
     {
         $carrierRepo = $this->getMockBuilder(CarrierRepository::class)
             ->disableOriginalConstructor()
@@ -504,9 +506,9 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
     /**
      * @param $mockedCountryIsoCode
      *
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return MockObject
      */
-    private function createCountryRepositoryMock($mockedCountryIsoCode): \PHPUnit_Framework_MockObject_MockObject
+    private function createCountryRepositoryMock($mockedCountryIsoCode): MockObject
     {
         $countryRepo = $this->getMockBuilder(CountryRepository::class)
             ->disableOriginalConstructor()
@@ -519,9 +521,9 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
     /**
      * @param $mockedStateIsoCode
      *
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return MockObject
      */
-    private function createStateRepositoryMock($mockedStateIsoCode): \PHPUnit_Framework_MockObject_MockObject
+    private function createStateRepositoryMock($mockedStateIsoCode): MockObject
     {
         $stateRepo = $this->getMockBuilder(StateRepository::class)
             ->disableOriginalConstructor()
@@ -534,9 +536,9 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
     /**
      * @param $mockedCarrierTaxesByZone
      *
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return MockObject
      */
-    private function createTaxRepositoryMock($mockedCarrierTaxesByZone): \PHPUnit_Framework_MockObject_MockObject
+    private function createTaxRepositoryMock($mockedCarrierTaxesByZone): MockObject
     {
         $taxRepository = $this->getMockBuilder(TaxRepository::class)
             ->disableOriginalConstructor()
@@ -550,9 +552,9 @@ class CarrierBuilderTest extends \PHPUnit_Framework_TestCase
      * @param float $freeShippintAtPrice
      * @param float $freeShippingAtWeight
      *
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return MockObject
      */
-    private function createConfigurationAdapterMock(float $freeShippintAtPrice, float $freeShippingAtWeight): \PHPUnit_Framework_MockObject_MockObject
+    private function createConfigurationAdapterMock(float $freeShippintAtPrice, float $freeShippingAtWeight): MockObject
     {
         $configurationAdapter = $this->getMockBuilder(ConfigurationAdapter::class)
             ->disableOriginalConstructor()
