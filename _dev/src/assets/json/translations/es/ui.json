@@ -549,7 +549,7 @@
   "smartShoppingCampaignList": {
     "tableTitle": "Rendimiento de la campaña",
     "xCampaign": "No hay campañas | {0} campaña | {0} campañas",
-    "performanceMax": "Performance Max",
+    "performanceMax": "Máximo rendimiento",
     "smartShoppingCampaign": "Smart Shopping Campaign",
     "campaignType": "Type: {0}"
   },
