@@ -511,7 +511,7 @@
       "PMaxExplanationTitle": "Máximo desempenho é uma nova campanha baseada em objectivos.",
       "PMaxExplanation": "Máximo desempenho é um tipo de campanha melhorada alimentada pela tecnologia inteligente do Google. Pode ajudá-lo a optimizar os seus anúncios em vários canais Google e a obter melhores resultados para o seu negócio.",
       "PMaxExplanationPrecision": "Even better, you won't pay unless customers click.",
-      "PMaxExplanationLink": "Find out more about Performance Max"
+      "PMaxExplanationLink": "Saiba mais sobre o Máximo desempenho"
     },
     "labelSelectedDimension": "Valor de dimensão selecionado",
     "nbDimensionSelected": "Nenhuma dimensão selecionada | {0} dimensão selecionada | {0} dimensões selecionadas",
@@ -549,7 +549,7 @@
   "smartShoppingCampaignList": {
     "tableTitle": "Desempenho da campanha",
     "xCampaign": "Sem campanhas | {0} campanha | {0} campanhas",
-    "performanceMax": "Performance Max",
+    "performanceMax": "Máximo desempenho",
     "smartShoppingCampaign": "Smart Shopping Campaign",
     "campaignType": "Type: {0}"
   },
