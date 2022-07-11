@@ -3,6 +3,9 @@ name: CDN Publish
 on:
   release:
     types: [prereleased, released]
+  push:
+    branches:
+      - master
 
 env:
   WORKFLOW: googleshopping-storage.yml
@@ -19,7 +22,8 @@ jobs:
         id: get_tag
         run: echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
 
-      - name: Trigger storage
+      - name: Trigger storage production
+        if: github.ref != 'refs/heads/master'
         uses: aurelien-baudet/workflow-dispatch@v2
         with:
           workflow: ${{ env.WORKFLOW }}
@@ -27,3 +31,13 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           ref: 'refs/heads/main'
           inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "${{ env.NODE_VERSION }}", "vuejsPath": "${{ env.VUE_PATH }}", "vuejsBuildPath": "${{ env.BUILD_PATH }}", "isRelease": "${{ !github.event.release.prerelease && true || false }}" }'
+
+      - name: Trigger storage preproduction
+        if: github.ref == 'refs/heads/master'
+        uses: aurelien-baudet/workflow-dispatch@v2
+        with:
+          workflow: ${{ env.WORKFLOW }}
+          repo: PrestaShopCorp/services-deployment
+          token: ${{ secrets.ACCESS_TOKEN }}
+          ref: 'refs/heads/main'
+          inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "${{ env.NODE_VERSION }}", "vuejsPath": "${{ env.VUE_PATH }}", "vuejsBuildPath": "${{ env.BUILD_PATH }}", "isRelease": "${{ !github.event.release.prerelease && true || false }}", "environment": "preproduction" }'
