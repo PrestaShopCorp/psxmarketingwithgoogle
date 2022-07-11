@@ -43,11 +43,9 @@ jobs:
       - name: Install composer dependencies
         run: composer install --no-dev -o
 
-
       - name: Write .env file with specific CDN URL
         if: "github.event.release.prerelease"
         run: echo 'PSX_MKTG_WITH_GOOGLE_CDN_URL=https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}/js/' >> .env
-
 
       - name: Clean-up project
         uses: PrestaShopCorp/github-action-clean-before-deploy@v1.0
@@ -76,6 +74,36 @@ jobs:
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip ${{ github.event.repository.name }} -x '*.git*'
 
       - name: Publish the production zip
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
+          asset_name: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
+          asset_content_type: application/zip
+
+  upload_release_asset_preproduction:
+    name: Upload the preproduction zip asset to the release
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ github.event.repository.name }}
+
+      - name: Write .env file for preproduction
+        run: |
+          echo PSX_MKTG_WITH_GOOGLE_CDN_URL=https://storage.googleapis.com/psxmarketing-preproduction-cdn/latest/js/ > .env
+          echo PSX_MKTG_WITH_GOOGLE_API_URL=googleshopping-api.preproduction-essentials.prestashop.net >> .env
+
+      - name: Prepare the preproduction zip
+        run: |
+          cd ${{ github.event.repository.name }}
+          zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip ${{ github.event.repository.name }} -x '*.git*'
+
+      - name: Publish the preproduction zip
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
