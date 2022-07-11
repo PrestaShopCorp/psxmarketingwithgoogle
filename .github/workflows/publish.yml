@@ -109,8 +109,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
-          asset_name: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
+          asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip
+          asset_name: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip
           asset_content_type: application/zip
 
   upload_release_asset_integration:
