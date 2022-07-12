@@ -31,7 +31,7 @@ use Tab;
 
 class Installer
 {
-    const CLASS_NAME = 'Installer';
+    public const CLASS_NAME = 'Installer';
 
     private $module;
 

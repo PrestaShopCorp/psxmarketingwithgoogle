@@ -4,6 +4,7 @@ namespace Carrier;
 
 use Carrier;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Builder\CarrierBuilder;
 use PrestaShop\Module\PsxMarketingWithGoogle\DTO\CarrierDetail;
@@ -13,7 +14,6 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Repository\StateRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\TaxRepository;
 use RangePrice;
 use RangeWeight;
-use PHPUnit\Framework\TestCase;
 
 class CarrierBuilderTest extends TestCase
 {

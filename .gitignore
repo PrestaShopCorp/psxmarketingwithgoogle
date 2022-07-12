@@ -20,6 +20,7 @@ views/js/chunk-vendors.js
 .idea/
 
 .php_cs.cache
+.php-cs-fixer.cache
 .env
 .env.integ
 

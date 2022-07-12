@@ -24,9 +24,9 @@ use JsonSerializable;
 
 class CarrierDetail implements JsonSerializable
 {
-    const RANGE_BY_WEIGHT = 0;
+    public const RANGE_BY_WEIGHT = 0;
 
-    const RANGE_BY_PRICE = 1;
+    public const RANGE_BY_PRICE = 1;
 
     /**
      * @var string
