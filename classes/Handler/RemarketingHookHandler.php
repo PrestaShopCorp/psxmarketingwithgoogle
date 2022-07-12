@@ -141,7 +141,7 @@ class RemarketingHookHandler
         }
 
         // Return the existing content in case we have a display hook
-        if (strpos($hookName, 'Display') === 4 && !$this->context->controller->ajax) {
+        if (strpos($hookName, 'Display') === 4 && !$this->isCurrentRequestAnAjax()) {
             return $this->templateBuffer->flush();
         }
 
@@ -155,5 +155,29 @@ class RemarketingHookHandler
         }
 
         return null;
+    }
+
+    /**
+     * @return bool
+     */
+    private function isCurrentRequestAnAjax()
+    {
+        /*
+         * An ajax property is available in controllers
+         * when the whole page template should not be generated.
+         */
+        if ($this->context->controller->ajax) {
+            return true;
+        }
+
+        /*
+         * In case the ajax property is not properly set, there is
+         * another check available.
+         */
+        if ($this->context->controller->isXmlHttpRequest()) {
+            return true;
+        }
+
+        return false;
     }
 }
