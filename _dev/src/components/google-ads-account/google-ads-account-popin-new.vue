@@ -314,7 +314,7 @@ export default {
         .sort();
     },
     activeCountriesWithCurrency() {
-      return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
+      return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'].map((country) => country.country);
     },
   },
   mounted() {
