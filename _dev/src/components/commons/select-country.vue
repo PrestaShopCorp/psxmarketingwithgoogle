@@ -112,7 +112,6 @@ export default {
       return str.replace(regex, '<strong>$1</strong>');
     },
     getCountriesFilteredWithList(arg) {
-      console.log(this.dropdownOptions);
       return this.dropdownOptions.filter((c) => arg.includes(c));
     },
   },
