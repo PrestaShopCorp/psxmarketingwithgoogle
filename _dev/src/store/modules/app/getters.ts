@@ -59,15 +59,9 @@ export default {
   [GettersTypes.GET_ACTIVE_COUNTRIES](): string[] {
     return countriesSelectionOptions.map((e) => e.country);
   },
-  [GettersTypes.GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY](state: LocalState) {
-    return countriesSelectionOptions.reduce((ids: CountryDetail[], obj) => {
-      if (obj.currency === state.psxMktgWithGoogleShopCurrency.isoCode) {
-        ids.push({
-          country: obj.country,
-          code: obj.code,
-        });
-      }
-      return ids;
-    }, []);
+  [GettersTypes.GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY](state: LocalState): CountryDetail[] {
+    return countriesSelectionOptions.filter(
+      (country) => country.currency === state.psxMktgWithGoogleShopCurrency.isoCode,
+    );
   },
 };
