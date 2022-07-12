@@ -45,6 +45,10 @@ export interface State {
 export interface ShopCurrency {
   isoCode: string;
 }
+export interface CountryDetail {
+  country: string;
+  code: string;
+}
 
 export interface HelpInformations {
   faq: object;

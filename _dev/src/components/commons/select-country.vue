@@ -71,6 +71,9 @@ export default {
     dropdownOptions: {
       type: Array,
       required: true,
+      default() {
+        return [];
+      },
     },
     needFilter: {
       type: Boolean,
@@ -109,6 +112,7 @@ export default {
       return str.replace(regex, '<strong>$1</strong>');
     },
     getCountriesFilteredWithList(arg) {
+      console.log(this.dropdownOptions);
       return this.dropdownOptions.filter((c) => arg.includes(c));
     },
   },

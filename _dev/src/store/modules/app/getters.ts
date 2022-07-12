@@ -17,7 +17,12 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import GettersTypes from './getters-types';
-import {State as LocalState, HelpInformations, DebugData} from './state';
+import {
+  State as LocalState,
+  HelpInformations,
+  DebugData,
+  CountryDetail,
+} from './state';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
 
 export default {
@@ -54,10 +59,13 @@ export default {
   [GettersTypes.GET_ACTIVE_COUNTRIES](): string[] {
     return countriesSelectionOptions.map((e) => e.country);
   },
-  [GettersTypes.GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY](state: LocalState) : string[] {
-    return countriesSelectionOptions.reduce((ids : string[], obj) => {
+  [GettersTypes.GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY](state: LocalState) {
+    return countriesSelectionOptions.reduce((ids: CountryDetail[], obj) => {
       if (obj.currency === state.psxMktgWithGoogleShopCurrency.isoCode) {
-        ids.push(obj.country);
+        ids.push({
+          country: obj.country,
+          code: obj.code,
+        });
       }
       return ids;
     }, []);
