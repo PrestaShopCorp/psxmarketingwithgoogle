@@ -45,7 +45,7 @@
         "footer": "Crea un nuovo [account Merchant Center]({0})[:target=\"_blank\"] o collegane uno esistente.  \nPer mostrare i tuoi prodotti su Google dovrai soddisfare i [requisiti di idoneità]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Boost your reach and sales with Performance Max",
+        "title": "Aumentate la vostra portata e le vostre vendite con Performance Max",
         "text": "Volete massimizzare le prestazioni delle vostre campagne e trovare i clienti giusti ovunque si trovino? Da un'unica campagna, Performance Max raccoglie dati su diversi canali di Google e ottimizza le prestazioni della vostra campagna mostrando dove i vostri annunci hanno maggiori possibilità di generare conversioni."
       }
     },
@@ -451,9 +451,9 @@
     }
   },
   "smartShoppingCampaignCard": {
-    "title": "Boost your sales with Performance Max Campaigns",
+    "title": "Aumentate le vostre vendite con Performance Max",
     "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
-    "introConnected": "With Performance Max, you can advertise your products and maximize your ads performance across multiple Google channels through one single campaign. Even better, you don’t pay unless your customers click!",
+    "introConnected": "Con Performance Max, puoi pubblicizzare i tuoi prodotti e massimizzare il rendimento dei tuoi annunci su più canali Google attraverso un'unica campagna. Ancora meglio, non paghi a meno che i tuoi clienti non facciano clic!",
     "footer": "Nello Spazio Economico Europeo, nel Regno Unito o in Svizzera, le campagne Performance Max possono essere utilizzate con qualsiasi Servizio di Comparison Shopping (CSS) con cui lavorate. Gli annunci verranno visualizzati sulle pagine dei risultati di ricerca generali e su qualsiasi altra superficie per la quale il CSS abbia optato.",
     "titleInfo": "Did you know?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
@@ -463,9 +463,9 @@
     "allFilters": "Tutti i filtri",
     "breadcrumb1": "Campagna pubblicitaria",
     "breadcrumbCreateSSC": "Crea una campagna Smart Shopping",
-    "breadcrumbEditSSC": "Modify Smart Shopping campaign",
+    "breadcrumbEditSSC": "Modifica campagna Smart Shopping",
     "breadcrumbCreatePMax": "Crea la campagna Performance Max",
-    "breadcrumbEditPMax": "Modify Performance Max campaign",
+    "breadcrumbEditPMax": "Modifica campagna Performance Max",
     "inputNameHelper": "Il nome deve essere unico e di 125 caratteri al massimo.",
     "inputNameLabel": "Nome della campagna",
     "inputNameTooltip": "Scegli un nome che descriva chiaramente il tema della campagna in modo da poterlo trovare facilmente nel tuo account. Il nome della tua campagna non è visibile ai tuoi clienti.",
@@ -509,9 +509,9 @@
       "noConversionActions": "Il tag di tracciamento è stato abilitato, ma non c'è nessuna azione di conversione impostata sul negozio. Questo può essere risolto creandone di nuovi.",
       "hasUnhandledFilters": "Almeno un filtro di questa campagna non è supportato da questo modulo. Per evitare qualsiasi perdita sulla tua configurazione esistente, solo i dettagli di base della campagna possono essere modificati.",
       "PMaxExplanationTitle": "Performance Max is a new goal-based campaign.",
-      "PMaxExplanation": "Performance Max is an enhanced campaign type powered by Google's smart technology. It can help you optimize your ads across multiple Google channels and drive better results for your business.",
+      "PMaxExplanation": "Performance Max è un tipo di campagna potenziata grazie alla tecnologia intelligente di Google. Può aiutartu a ottimizzare i tuoi annunci su più canali Google e a ottenere risultati migliori per la tua attività.",
       "PMaxExplanationPrecision": "Even better, you won't pay unless customers click.",
-      "PMaxExplanationLink": "Find out more about Performance Max"
+      "PMaxExplanationLink": "Per saperne di più su Performance Max"
     },
     "labelSelectedDimension": "Valore della dimensione selezionata",
     "nbDimensionSelected": "Nessuna dimensione selezionata | {0} dimensione selezionata | {0} dimensioni selezionate",
@@ -522,7 +522,7 @@
     "toggleNewConversionTag": "Imposta nuovi tag di tracciamento delle conversioni sul sito",
     "toggleNewConversionTag2": "Creeremo i seguenti tag di conversione: Visualizzazione della pagina, Acquisto, Aggiungi al carrello",
     "remarketingTagLoading": "Stiamo controllando se hai tag di tracciamento del remarketing e delle conversioni da aggiungere al tuo negozio",
-    "descriptiveMessage": "Only the Performance Max campaigns and Smart Shopping campaigns associated to your Google Merchant Center account are listed. \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
+    "descriptiveMessage": "Sono elencate solo le campagne Performance Max e Smart Shopping associate al tuo account Google Merchant Center. \nSe vuoi vedere tutte le vostre campagne, [accedi al tuo account Google Ads]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Nessun filtro prodotto selezionato | {0} filtro prodotto selezionato | {0} filtri prodotti selezionati",
     "dimensionXFilterSelected": "{0} filter",
     "categories": "Categoria",
@@ -670,7 +670,7 @@
     "subtitle5": "Se aggiornate i vostri prodotti"
   },
   "campaignCard": {
-    "title": "Create your Performance Max campaign in a few clicks",
+    "title": "Crea la tua campagna Performance Max in pochi clic",
     "description": "Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it\\'s that easy!",
     "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Peformance Max campaigns"
   },
@@ -774,7 +774,7 @@
     "thirdStep": "Sign in or create your Google Merchant Center account",
     "fourthStep": "Export and synchronize your product catalog",
     "fifthStep": "Sign in or create your Google Ads account",
-    "sixthStep": "**Next step** create your first Performance Max Campaign"
+    "sixthStep": "**Passo successivo** creare la tua prima campagna Performance Max"
   },
   "help": {
     "intro": "PrestaShop Marketing semplifica la connessione del tuo negozio con Google e la promozione dei tuoi prodotti a milioni di acquirenti attraverso più canali Google. Crea campagne Performance Max senza lasciare la dashboard di PrestaShop e aumenta il traffico.",
@@ -782,7 +782,7 @@
       "title": "Questo modulo ti permette di:",
       "easySync": "Sincronizza facilmente il tuo catalogo prodotti con Google per mantenere automaticamente aggiornati i dettagli dei prodotti come il prezzo e la disponibilità",
       "freeListing": "Abilita le inserzioni gratuite e amplia la tua portata mostrando i tuoi prodotti agli acquirenti che navigano sulla scheda Shopping, gratuitamente",
-      "campaigns": "Get started with Performance Max campaigns, set a daily budget and let Google’s machine learning optimize your campaigns",
+      "campaigns": "Inizia con le campagne Performance Max, imposta un budget giornaliero e lascia che l'apprendimento automatico di Google ottimizzi le campagne",
       "reporting": "Analizza le prestazioni della tua campagna senza lasciare PrestaShop"
     },
     "help": {
@@ -871,11 +871,11 @@
     "transferClaim": "Richiesta di trasferimento",
     "goToYourX": "Vai al tuo {0}",
     "addShippingInfo": "Aggiungi informazioni sulla spedizione",
-    "createSmartShoppingCampaign": "Launch Performance Max campaign",
+    "createSmartShoppingCampaign": "Lanciare la campagna Performance Max",
     "addBillingSettings": "Aggiungi le impostazioni di fatturazione",
     "createCampaign": "Crea una campagna",
     "editCampaign": "Aggiorna la campagna",
-    "launchCampaign": "Launch campaign",
+    "launchCampaign": "Lanciare la campagna",
     "resetDate": "Resetta la data",
     "validate": "Convalida",
     "moreInfosAboutX": "Altre informazioni su {0}",
@@ -958,19 +958,19 @@
     "titleOverwriteProductFeed": "Sovrascrivi il feed dei prodotti esistente?",
     "textOverwriteProductFeed": "Sovrascrivendo il tuo feed di prodotti esistente lo cancellerai. Dovrai configurare un nuovo feed di prodotti.",
     "titleDisconnectionGoogleAds": "Disconnetti l'account Google Ads?",
-    "textDisconnectGoogleAds": "Disconnecting from your Google Ads account will remove the ability to run Performance Max campaigns from the module.",
+    "textDisconnectGoogleAds": "La disconnessione dall'account Google Ads eliminerà la possibilità di eseguire campagne Performance Max dal modulo.",
     "pauseCampaigns": "Metti in pausa tutte le mie campagne",
     "pauseCampaignsExplainations": "Mettendo in pausa tutte le tue campagne, la fatturazione si fermerà. Puoi riavviare le tue campagne in qualsiasi momento nel tuo account Google ads.",
     "removeTag": "Rimuovi il tag &quot;Remarketing e conversioni&quot; dal negozio",
     "removeTagExplainations": "Rimuovere il tag significa che Google non sarà più in grado di tracciare le tue campagne. Ti consigliamo di rimuovere il tag solo se hai intenzione di rimuovere completamente il modulo o di cambiare il tuo account. Puoi sempre aggiungerlo tu stesso nel codice del tuo sito.",
     "titleActivateTrackingSSC": "Abilita il tag di tracciamento del remarketing e delle conversioni",
-    "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
+    "textActivateTrackingSSC": "Per poter eseguire campagne Performance Max, Google Ads deve essere in grado di creare [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] e [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] sul tuo sito. \n  PrestaShop imposterà automaticamente questi snippet di codice sul tuo negozio.",
     "textConfirmCancel": "Se torni indietro perderai i valori selezionati",
     "upgradeSCCToPmaxTitle": "Upgrade della campagna in arrivo",
     "upgradeSCCToPmaxTextWithoutCampaign": "A partire da {0}, potrete creare campagne Performance Max per il vostro negozio. \n\n Performance Max è la nuova generazione di campagne Smart Shopping. Si tratta di un tipo di campagna potenziata grazie alla tecnologia intelligente di Google. Funziona dietro le quinte per ottimizzare automaticamente i vostri annunci lungo tutto il percorso dello shopping per ottenere il massimo rendimento.",
     "upgradeSCCToPmaxText": "Le campagne Smart Shopping saranno aggiornate a Performance Max il {0}  \n\n Non è necessario intraprendere alcuna azione poiché le impostazioni e il budget della campagna Smart Shopping rimarranno invariati. Solo il tipo di campagna verrà automaticamente aggiornato a Performance Max. \n\n Dall'inizio di luglio, sarà possibile creare solo campagne Performance Max.",
-    "PMaxLiveTitle": "Performance Max is here",
-    "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. \n\nPerformance Max is an enhanced campaign type powered by Google's smart technology. It works behind the scenes to automatically optimize your ads across the shopping journey to drive maximum performance. ",
+    "PMaxLiveTitle": "Performance Max è qui",
+    "PMaxLiveText": "A partire da oggi, puoi creare campagne Performance Max, la prossima generazione di campagne Shopping intelligenti.\n\nPerformance Max è un tipo di campagna potenziata grazie alla tecnologia intelligente di Google. Funziona dietro le quinte per ottimizzare automaticamente i vostri annunci lungo tutto il percorso dello shopping per ottenere il massimo rendimento. ",
     "PMaxMigrationTitle": "Important News",
     "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
     "PmaxTextLink": "Scopri di più sulle campagne Performance Max",
@@ -1010,7 +1010,7 @@
     "MCAConnectedOnceSuccess": "Hai collegato il tuo account Merchant Center!",
     "productFeedConfiguredOnceSuccess": "Hai presentato con successo i dati dei tuoi prodotti al Merchant Center. Una volta approvati, saranno disponibili per inserzioni e annunci gratuiti.",
     "attributesMapppingSuccess": "Gli attributi del tuo prodotto sono stati salvati con successo. Rivedi il riepilogo e poi clicca su \"Esporta\" per inviarli a Google",
-    "campaignCreatedSuccess": "You have created your Performance Max campaign successfully!",
+    "campaignCreatedSuccess": "Hai creato la vostra campagna Performance Max con successo!",
     "phoneNumberVerifiedSuccess": "Il tuo numero di telefono è stato verificato. Il conto commerciante è stato creato"
   },
   "stepper": {
@@ -1056,7 +1056,7 @@
     "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
     "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
     "ctaCreateFirstCampaign": "Create your first campaign",
-    "titleCampaignsBanner": "From June 30th, you can create Performance Max campaigns for your store",
-    "textCampaignsBanner": "Performance Max is the next generation of Smart Shopping campaigns. It is an enhanced campaign type powered by Google's smart technology. It works behind the scene to automatically optimise your ads across the shopping journey to drive maximum performance."
+    "titleCampaignsBanner": "Dal 30 giugno è possibile creare campagne Performance Max per il proprio negozio",
+    "textCampaignsBanner": "Performance Max è la nuova generazione di campagne Smart Shopping. Si tratta di un tipo di campagna potenziata grazie alla tecnologia intelligente di Google. Lavora dietro le quinte per ottimizzare automaticamente i vostri annunci lungo tutto il percorso dello shopping per ottenere il massimo rendimento."
   }
 }
