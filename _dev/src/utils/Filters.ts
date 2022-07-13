@@ -62,9 +62,10 @@ Vue.filter(
   }));
 
 Vue.filter(
-  'formatPrice', (value: number, currencyCode) => {
-    if (!currencyCode) {
-      return '--';
+  'formatPrice', (value: number, currencyCode?: string) => {
+    if (!currencyCode?.length) {
+      console.warn('No currency code provided when formating price');
+      return value;
     }
     return Intl.NumberFormat(window.i18nSettings.languageCode, {
       style: 'currency',
