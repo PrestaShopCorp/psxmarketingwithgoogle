@@ -73,7 +73,7 @@ export default {
   },
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootState}) {
     const params = {
-      lang: window.i18nSettings.languageLocale.split('-')[0],
+      lang: window.i18nSettings.isoCode,
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     };
     const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/status/?lang=${params.lang}&timezone=${params.timezone}`;
@@ -105,7 +105,7 @@ export default {
 
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
     const params = {
-      lang: window.i18nSettings.languageLocale.split('-')[0],
+      lang: window.i18nSettings.isoCode,
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     };
     const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings/?lang=${params.lang}&timezone=${params.timezone}`;

@@ -74,7 +74,7 @@
         {{ $t('smartShoppingCampaignCreation.inputBudgetFeedback') }}
       </dt>
       <dd class="text-secondary mb-2">
-        {{ newCampaign.dailyBudget }} {{ newCampaign.currencyCode }}
+        {{ newCampaign.dailyBudget|formatPrice(newCampaign.currencyCode) }}
       </dd>
     </dl>
     <p>
