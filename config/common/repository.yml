@@ -40,10 +40,6 @@ services:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository
     public: true
 
-  PrestaShop\Module\PsxMarketingWithGoogle\Repository\ShopRepository:
-    class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\ShopRepository
-    public: true
-
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\StateRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\StateRepository
     public: true

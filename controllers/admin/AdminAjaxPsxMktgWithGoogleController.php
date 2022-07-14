@@ -113,9 +113,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             case 'setWebsiteRequirementStatus':
                 $this->setWebsiteRequirementStatus($inputs);
                 break;
-            case 'toggleGoogleAccountIsRegistered':
-                $this->toggleGoogleAccountIsRegistered($inputs);
-                break;
             case 'retrieveFaq':
                 $this->retrieveFaq();
                 break;
@@ -235,28 +232,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         }
 
         $this->ajaxDie(json_encode($data));
-    }
-
-    /**
-     * Registering the GOOGLE ACCOUNT link in the shop database allows us to know if there
-     * will be a conflict with another shop using the same domain name.
-     */
-    private function toggleGoogleAccountIsRegistered(array $inputs)
-    {
-        if (!isset($inputs['isGoogleAccountLinked'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
-                'success' => false,
-                'message' => 'Missing isGoogleAccountLinked key',
-            ]));
-        }
-
-        if ((bool) $inputs['isGoogleAccountLinked']) {
-            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_ACCOUNT_IS_LINKED, true);
-        } else {
-            $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_ACCOUNT_IS_LINKED);
-        }
-        $this->ajaxDie(json_encode(['success' => true]));
     }
 
     private function getCarrierValues()
