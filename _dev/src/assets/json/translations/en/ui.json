@@ -877,7 +877,7 @@
     "createCampaign": "Create campaign",
     "editCampaign": "Update campaign",
     "launchCampaign": "Launch campaign",
-    "resetDate": "Reset date",
+    "resetDate": "Set today's date",
     "validate": "Validate",
     "moreInfosAboutX": "More infos about {0}",
     "seeOnGoogleAds": "See on Google Ads",
