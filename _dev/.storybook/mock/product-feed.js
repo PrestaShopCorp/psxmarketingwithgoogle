@@ -536,47 +536,6 @@ export const productFeedIsConfiguredWithTax = {
   },
 };
 
-export const productFeedConfiguredWithShippingUs = {
-  ...productFeedIsConfigured,
-  settings: {
-    deliveryDetails: [
-      {
-        carrierId: "11",
-        country: "US",
-        name: "My carrier",
-        delay: "Delivery next day!",
-        deliveryType: undefined,
-      },
-      {
-        enabledCarrier: true,
-        carrierId: "13",
-        country: "US",
-        name: "Carrier with fixed price",
-        delay: "Maybe 1 day, maybe never",
-        deliveryType: "delivery",
-        maxTransitTimeInDays: 60,
-        minHandlingTimeInDays: 0,
-        minTransitTimeInDays: 1,
-        maxHandlingTimeInDays: 3,
-      },
-      {
-        carrierId: "13",
-        country: "US",
-        name: "Carrier with fixed price",
-        delay: "Maybe 1 day, maybe never",
-        deliveryType: undefined,
-      },
-      {
-        carrierId: "14",
-        country: "US",
-        name: "Carrier #2 with fixed price",
-        delay: "Maybe 1 day, maybe never",
-        deliveryType: undefined,
-      }
-    ]
-  }
-}
-
 export const productFeedMissingFields = {
   ...productFeedIsConfigured,
   settings: {
