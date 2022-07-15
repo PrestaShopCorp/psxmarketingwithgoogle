@@ -19,9 +19,9 @@ jobs:
         id: get_tag
         run: |
           echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
-          echo ::set-output name=MAJOR::$(echo ${{ inputs.version }} | cut -d / -f 3 | cut -d '.' -f 1)
-          echo ::set-output name=MINOR::$(echo ${{ inputs.version }} | cut -d / -f 3 | cut -d '.' -f 2)
-          echo ::set-output name=PATCH::$(echo ${{ inputs.version }} | cut -d / -f 3 | cut -d '.' -f 3)
+          echo ::set-output name=MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1)
+          echo ::set-output name=MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2)
+          echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
 
       - name: Get assets URL
         id: get_assets_url
