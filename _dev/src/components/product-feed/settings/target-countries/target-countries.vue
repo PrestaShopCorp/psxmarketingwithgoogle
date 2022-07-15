@@ -20,7 +20,7 @@
       <SelectCountry
         @countrySelected="saveCountrySelected"
         :default-value="countries"
-        :dropdown-options="getCountriesWithShipping"
+        :dropdown-options="activeCountriesWhereShipppingExist"
         :need-filter="true"
         :not-full-width="false"
         :loader="loadingCountries"
@@ -146,7 +146,6 @@ import SettingsFooter from '@/components/product-feed/settings/commons/settings-
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import SelectCountry from '@/components/commons/select-country.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import {activeCountriesWhereShipppingExist} from '../../../../utils/TargetCountryValidator';
 
 export default {
   name: 'ProductFeedSettingsShipping',
@@ -173,14 +172,8 @@ export default {
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
-    availableCountries() {
-      return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
-    },
     isUS() {
       return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].includes('US');
-    },
-    deliveryDetails() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'].deliveryDetails;
     },
     taxSettingsWithMerchantId() {
       return `https://merchants.google.com/mc/tax/settings?a=${this.$store.state.accounts.googleMerchantAccount.id}`;
@@ -188,11 +181,14 @@ export default {
     disableContinue() {
       return this.countries.length < 1 || this.loading;
     },
-    getCountriesWithShipping() {
-      return activeCountriesWhereShipppingExist(
-        this.deliveryDetails,
-        this.availableCountries,
-      );
+    activeCountriesWhereShipppingExist() {
+      const arrayOfCountries = [];
+      this.$store.state.productFeed.settings.deliveryDetails.forEach((carrier) => {
+        arrayOfCountries.push(carrier.country);
+      });
+      const uniqueCountries = [...new Set(arrayOfCountries)];
+
+      return this.$options.filters.changeCountriesCodesToNames(uniqueCountries);
     },
   },
   methods: {

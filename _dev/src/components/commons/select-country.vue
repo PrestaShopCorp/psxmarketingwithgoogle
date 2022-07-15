@@ -71,9 +71,6 @@ export default {
     dropdownOptions: {
       type: Array,
       required: true,
-      default() {
-        return [];
-      },
     },
     needFilter: {
       type: Boolean,
