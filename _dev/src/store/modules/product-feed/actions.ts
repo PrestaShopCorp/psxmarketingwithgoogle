@@ -18,7 +18,8 @@
  */
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '@/utils/HttpClientError';
+import HttpClientError from '@/api/HttpClientError';
+import countriesSelectionOptions from '../../../assets/json/countries.json';
 import {getDataFromLocalStorage, deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 import {
   CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
@@ -277,19 +278,8 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_SHOP_SHIPPING_SETTINGS]({rootState, commit}) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'getCarrierValues',
-      }),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    const result = await response.json();
+  async [ActionsTypes.GET_SHOP_SHIPPING_SETTINGS]({commit}) {
+    const result = await fetchShop('getCarrierValues');
     commit(MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS, result);
     return result;
   },
@@ -381,18 +371,7 @@ export default {
   },
 
   async [ActionsTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC]({rootState, commit}) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'getProductsReadyToSync',
-      }),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    const result = await response.json();
+    const result = await fetchShop('getProductsReadyToSync');
     commit(MutationsTypes.SAVE_TOTAL_PRODUCTS_READY_TO_SYNC, Number(result.total));
     return result;
   },
@@ -447,20 +426,8 @@ export default {
       throw new HttpClientError(response.statusText, response.status);
     }
   },
-  async [ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE]({rootState, commit}) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'getShopAttributes',
-      }),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-
-    const json = await response.json();
+  async [ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE]({commit}) {
+    const json = await fetchShop('getShopAttributes');
     commit(MutationsTypes.SAVE_ATTRIBUTES_SHOP, json);
     return json;
   },
