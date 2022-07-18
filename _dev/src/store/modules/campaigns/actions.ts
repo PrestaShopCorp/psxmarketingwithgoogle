@@ -20,14 +20,15 @@
 import dayjs, {ManipulateType} from 'dayjs';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '@/utils/HttpClientError';
+import HttpClientError from '@/api/HttpClientError';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import {
-  CampaignObject, CampaignStatusPayload, ConversionAction, Dimension,
+  CampaignObject, CampaignStatusPayload, ConversionAction,
 } from './state';
 import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import {runIf} from '../../../utils/Promise';
+import {fetchShop} from '@/api/shopClient';
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
@@ -128,38 +129,17 @@ export default {
     {commit, rootState}, payload: boolean,
   ) {
     const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'toggleRemarketingTags',
-        isRemarketingEnabled: payload,
-        tagSnippet: remarketingSnippet,
-      }),
+    await fetchShop('toggleRemarketingTags', {
+      isRemarketingEnabled: payload,
+      tagSnippet: remarketingSnippet,
     });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    await response.json();
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, payload);
   },
 
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_MODULE](
-    {commit, rootState},
+    {commit},
   ) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'getRemarketingTagsStatus',
-      }),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    const result = await response.json();
+    const result = await fetchShop('getRemarketingTagsStatus');
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.remarketingTagsStatus);
   },
 
@@ -173,37 +153,15 @@ export default {
     if (!idTag || !idTag.length) {
       return;
     }
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'checkRemarketingTagExists',
-        tag: idTag[0],
-      }),
-    });
 
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    const result = await response.json();
+    const result = await fetchShop('checkRemarketingTagExists', {tag: idTag[0]});
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG_ALREADY_EXIST,
       result.tagAlreadyExists);
   },
   async [ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
-    {commit, dispatch, rootState}, payload: boolean,
+    {commit},
   ) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'getConversionActionLabels',
-      }),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    const result = await response.json();
+    const result = await fetchShop('getConversionActionLabels');
     commit(
       MutationsTypes.SET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
       result.conversionActionLabels,
@@ -234,21 +192,9 @@ export default {
   },
 
   async [ActionsTypes.SAVE_REMARKETING_CONVERSION_ACTION_ON_SHOP](
-    {dispatch, rootState}, conversionActions: ConversionAction[],
+    {dispatch}, conversionActions: ConversionAction[],
   ) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'setConversionActionLabel',
-        conversionActions,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    await response.json();
+    await fetchShop('setConversionActionLabel', {conversionActions});
     dispatch(ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED);
   },
 

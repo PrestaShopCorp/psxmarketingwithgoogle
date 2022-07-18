@@ -19,52 +19,24 @@
 
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '../../../utils/HttpClientError';
+import {fetchShop} from '@/api/shopClient';
 
 export default {
-  async [ActionsTypes.REQUEST_DOC_AND_FAQ](
-    {
-      commit,
-      rootState,
-    },
-  ) {
+  async [ActionsTypes.REQUEST_DOC_AND_FAQ]({commit}) {
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify({
-          action: 'retrieveFaq',
-        }),
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      commit(MutationsTypes.SAVE_DOC_AND_FAQ, await response.json());
+      commit(MutationsTypes.SAVE_DOC_AND_FAQ, 
+        await fetchShop('retrieveFaq'),
+      );
     } catch (error) {
       console.error(error);
     }
   },
 
-  async [ActionsTypes.REQUEST_DEBUG_DATA](
-    {
-      commit,
-      rootState,
-    },
-  ) {
+  async [ActionsTypes.REQUEST_DEBUG_DATA]({commit}) {
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify({
-          action: 'getDebugData',
-        }),
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      commit(MutationsTypes.SAVE_DEBUG_DATA, await response.json());
+      commit(MutationsTypes.SAVE_DEBUG_DATA,
+        await fetchShop('getDebugData')
+      );
     } catch (error) {
       console.error(error);
     }
@@ -77,7 +49,7 @@ export default {
     },
   ) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/check-adblocker`,
+      await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/check-adblocker`,
         {
           method: 'GET',
           headers: {
@@ -115,23 +87,9 @@ export default {
     }
     return null;
   },
-  async [ActionsTypes.GET_MODULES_VERSIONS]({rootState}, moduleName) {
+  async [ActionsTypes.GET_MODULES_VERSIONS]({}, moduleName: string) {
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify({
-          action: 'getModuleStatus',
-          moduleName,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      const json = await response.json();
-
-      return json;
+      return await fetchShop('getModuleStatus', {moduleName});
     } catch (error) {
       console.error(error);
       return error;
