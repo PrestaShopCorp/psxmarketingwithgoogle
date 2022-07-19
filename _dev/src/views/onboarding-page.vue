@@ -106,7 +106,7 @@
     />
     <PmaxDiscoverModal
       :visible="googleAdsAccountIsChosen && !merchantHasAlreadySeenPmaxPopin"
-      :type="PmaxModalType.PMAX_RELEASED"
+      :type="PmaxModalType.SSC_DEPRECATED"
       ref="PmaxDiscoverModal"
     />
     <!-- Toasts -->
@@ -320,7 +320,7 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
     merchantHasAlreadySeenPmaxPopin() {
-      return getDataFromLocalStorage(`modalPmax-${PmaxModalType.PMAX_RELEASED}`);
+      return getDataFromLocalStorage(`modalPmax-${PmaxModalType.SSC_DEPRECATED}`);
     },
     toastIsVisible() {
       return this.googleAccountConnectedOnce
