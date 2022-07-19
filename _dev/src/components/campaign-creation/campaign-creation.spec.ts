@@ -5,7 +5,7 @@ import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import cloneDeep from 'lodash.clonedeep';
-import {mount, shallowMount} from '@vue/test-utils';
+import {MountOptions, shallowMount} from '@vue/test-utils';
 import config, {localVue, cloneStore} from '@/../tests/init';
 
 import {initialStateApp} from '../../../.storybook/mock/state-app';
@@ -14,41 +14,48 @@ import {campaignWithUnhandledFilters, campaignWithoutUnhandledFilters, available
 import CampaignCreation from './campaign-creation.vue';
 
 const VBTooltip = jest.fn();
+const buildWrapper = (
+  options: MountOptions<any> = {},
+) => {
+  const store = cloneStore();
+
+  store.modules.productFeed.state.app = {
+    ...cloneDeep(initialStateApp),
+  };
+  store.modules.productFeed.state.googleAds = {
+    ...cloneDeep(googleAdsAccountChosen),
+  };
+
+  store.modules.campaigns.state.sscAvailableFilters = availableFilters;
+  store.modules.campaigns.state.errorCampaignNameExists = false;
+
+  return shallowMount(CampaignCreation, {
+    localVue,
+    store: new Vuex.Store(store),
+    directives: {
+      'b-tooltip': VBTooltip,
+    },
+    ...config,
+    stubs: {
+      VueShowdown: true,
+    },
+    mocks: {
+      $route: {
+        name: 'campaign-edition',
+        params: {
+          type: 'PERFORMANCE_MAX',
+        },
+      },
+    },
+    ...options,
+  });
+};
 
 describe('campaign-creation.vue - Campaign creation', () => {
-  let store;
   let wrapper;
-  const mockRoute = {
-    name: 'campaign-creation',
-    params: {
-      type: 'SHOPPING_CAMPAIGN',
-    },
-  };
+
   beforeEach(() => {
-    store = cloneStore();
-
-    store.modules.productFeed.state.app = {
-      ...cloneDeep(initialStateApp),
-    };
-    store.modules.productFeed.state.googleAds = {
-      ...cloneDeep(googleAdsAccountChosen),
-    };
-
-    store.modules.campaigns.state.sscAvailableFilters = availableFilters;
-
-    wrapper = shallowMount(CampaignCreation, {
-      localVue,
-      store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
-      ...config,
-      stubs: {
-        VueShowdown: true,
-      },
-      mocks: {
-        $route: mockRoute,
-      },
+    wrapper = buildWrapper({
       data() {
         return campaignWithoutUnhandledFilters;
       },
@@ -66,38 +73,17 @@ describe('campaign-creation.vue - Campaign creation', () => {
 });
 
 describe('campaign-creation.vue - Campaign edition', () => {
-  let store;
   let wrapper;
-  const mockRoute = {
-    name: 'campaign-edition',
-    params: {
-      type: 'SMART_SHOPPING_CAMPAIGN',
-    },
-  };
+
   beforeEach(() => {
-    store = cloneStore();
-
-    store.modules.productFeed.state.app = {
-      ...cloneDeep(initialStateApp),
-    };
-    store.modules.productFeed.state.googleAds = {
-      ...cloneDeep(googleAdsAccountChosen),
-    };
-
-    store.modules.campaigns.state.sscAvailableFilters = availableFilters;
-
-    wrapper = shallowMount(CampaignCreation, {
-      localVue,
-      store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
-      ...config,
-      stubs: {
-        VueShowdown: true,
-      },
+    wrapper = buildWrapper({
       mocks: {
-        $route: mockRoute,
+        $route: {
+          name: 'campaign-edition',
+          params: {
+            type: 'SMART_SHOPPING_CAMPAIGN',
+          },
+        },
       },
       data() {
         return campaignWithoutUnhandledFilters;
@@ -129,39 +115,10 @@ describe('campaign-creation.vue - Campaign edition', () => {
 });
 
 describe('campaign-creation.vue - Campaign edition - No active products', () => {
-  let store;
   let wrapper;
-  const mockRoute = {
-    name: 'campaign-edition',
-    params: {
-      type: 'PERFORMANCE_MAX',
-    },
-  };
+
   beforeEach(() => {
-    store = cloneStore();
-
-    store.modules.productFeed.state.app = {
-      ...cloneDeep(initialStateApp),
-    };
-    store.modules.productFeed.state.googleAds = {
-      ...cloneDeep(googleAdsAccountChosen),
-    };
-
-    store.modules.campaigns.state.sscAvailableFilters = availableFilters;
-
-    wrapper = shallowMount(CampaignCreation, {
-      localVue,
-      store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
-      ...config,
-      stubs: {
-        VueShowdown: true,
-      },
-      mocks: {
-        $route: mockRoute,
-      },
+    wrapper = buildWrapper({
       data() {
         return campaignWithoutUnhandledFilters;
       },
@@ -192,37 +149,10 @@ describe('campaign-creation.vue - Campaign edition - No active products', () => 
 });
 
 describe('campaign-creation.vue - Campaign edition - Unhandled filters', () => {
-  let store;
   let wrapper;
-  const mockRoute = {
-    name: 'campaign-edition',
-    params: {
-      type: 'PERFORMANCE_MAX',
-    },
-  };
+
   beforeEach(() => {
-    store = cloneStore();
-
-    store.modules.productFeed.state.app = {
-      ...cloneDeep(initialStateApp),
-    };
-    store.modules.productFeed.state.googleAds = {
-      ...cloneDeep(googleAdsAccountChosen),
-    };
-
-    wrapper = shallowMount(CampaignCreation, {
-      localVue,
-      store: new Vuex.Store(store),
-      directives: {
-        'b-tooltip': VBTooltip,
-      },
-      ...config,
-      stubs: {
-        VueShowdown: true,
-      },
-      mocks: {
-        $route: mockRoute,
-      },
+    wrapper = buildWrapper({
       data() {
         return campaignWithUnhandledFilters;
       },
@@ -260,5 +190,50 @@ describe('campaign-creation.vue - Campaign edition - Unhandled filters', () => {
   it('shows & disables the button "Select filters"', () => {
     expect(wrapper.find('#campaign-products-filter-fieldset b-button').isVisible()).toBe(true);
     expect(wrapper.find('#campaign-products-filter-fieldset b-button').attributes('disabled')).toBeTruthy();
+  });
+});
+
+describe('campaign-creation.vue - Campaign edition - End date validation', () => {
+  it('allows to continue when end date is not set', () => {
+    const wrapper = buildWrapper({
+      data() {
+        return {
+          ...campaignWithUnhandledFilters,
+          campaignDurationStartDate: 'Fri Oct 01 2021 01:00:00 GMT+0100 (heure d’été britannique)',
+          campaignDurationEndDate: null,
+        };
+      },
+    });
+    expect(wrapper.vm.campaignEndDateFeedback).toBe(null);
+    expect(wrapper.find('[data-test-id="createCampaignButton"]').attributes('disabled')).toBeFalsy();
+  });
+
+  it('allows to continue when end date is acceptable', () => {
+    const wrapper = buildWrapper({
+      data() {
+        return {
+          ...campaignWithUnhandledFilters,
+          campaignDurationStartDate: 'Fri Oct 01 2021 01:00:00 GMT+0100 (heure d’été britannique)',
+          // Year 3999 to make sure it always in the future
+          campaignDurationEndDate: 'Fri Oct 11 3999 01:00:00 GMT+0100 (heure d’été britannique)',
+        };
+      },
+    });
+    expect(wrapper.vm.campaignEndDateFeedback).toBe(null);
+    expect(wrapper.find('[data-test-id="createCampaignButton"]').attributes('disabled')).toBeFalsy();
+  });
+
+  it('warns merchant & prevents sending the form when end date does not match requierements', () => {
+    const wrapper = buildWrapper({
+      data() {
+        return {
+          ...campaignWithUnhandledFilters,
+          campaignDurationStartDate: 'Fri Oct 01 2021 01:00:00 GMT+0100 (heure d’été britannique)',
+          campaignDurationEndDate: 'Fri Oct 11 2021 01:00:00 GMT+0100 (heure d’été britannique)',
+        };
+      },
+    });
+    expect(wrapper.vm.campaignEndDateFeedback).toBe(false);
+    expect(wrapper.find('[data-test-id="createCampaignButton"]').attributes('disabled')).toBeTruthy();
   });
 });

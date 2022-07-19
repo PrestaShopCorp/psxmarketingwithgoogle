@@ -240,18 +240,14 @@
       "shippingSettingsErrors": "Ce pays n'est pas compatible avec votre devise",
       "syncSchedule": "Calendrier de synchronisation"
     },
-    "inputTargetCountriesTooltip": "Notez que vous ne pouvez pas sélectionner un pays dont la devise est différente de celle de votre boutique",
     "noticeDataStored": "Les paramètres sont enregistrés à chaque étape mais ne seront soumis qu'à l'étape finale.",
     "shipping": {
       "targetCountries": "Pays cible",
       "filterTitle": "Filtrer par pays",
       "ifMultipleCountries": "Si vous ciblez plusieurs pays, le prix de chaque produit sera automatiquement converti dans la devise correcte de Google. Cependant, votre boutique doit avoir configuré les frais de port et de taxe pour chaque pays sélectionné. Veuillez respecter [les politiques d'achat propres à chaque pays]({0})[:target=\"_blank\"] et [la réglementation locale]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "Pays où je souhaite que mes produits soient visibles",
-      "placeholderSelect": "Choisissez un pays dans la liste",
-      "placeholderNoTargetCountries": "Nous ne trouvons aucun pays cible parmi vos transporteurs",
-      "disabledButtonTooltipTargetCountries": "Vous ne pouvez continuer que si vous configurez vos pays cibles",
-      "disabledButtonTooltipShippingCarriers": "Vous ne pouvez pas continuer si vous n'avez pas paramétrer au moins un transporteur pour un pays cible",
-      "cantFindCountry": "Les pays cibles disponibles sont ceux où vos transporteurs expédient vos produits",
+      "productAvailaibleIn": "My products are available in",
+      "placeholderSelect": "Select the countries where your products are available",
+      "cantFindCountry": "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "Ce pays n'est pas compatible avec votre devise",
       "shippingSettings": "Paramètres d'expédition",
       "shippingSettingsTitle": "Paramètres de livraison des produits",
@@ -909,7 +905,7 @@
     "googleProductStatusDefinitions": "Définitions du statut des produits sur Google",
     "visitThe": "Visitez la page {0} pour plus d'informations.",
     "investigate": "Enquêter",
-    "createPmax": "Créez une campagne Performance Max",
+    "createPmax": "Create Performance Max campaign",
     "understand": "Je comprends"
   },
   "badge": {

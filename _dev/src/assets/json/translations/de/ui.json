@@ -240,18 +240,14 @@
       "shippingSettingsErrors": "Dieses Land ist nicht mit Ihrer Währung kompatibel",
       "syncSchedule": "Zeitplan für die Synchronisierung"
     },
-    "inputTargetCountriesTooltip": "Note that you can't select a country with a different currency than your shop's",
     "noticeDataStored": "Die Einstellungen werden bei jedem Schritt gespeichert, erst beim letzten Schritt werden sie übermittelt.",
     "shipping": {
       "targetCountries": "Zielland",
       "filterTitle": "Nach Land filtern",
       "ifMultipleCountries": "Wenn Sie mehrere Länder anvisieren, wird jeder Produktpreis in Google automatisch in die richtige Währung umgerechnet. Allerdings muss Ihr Shop die Versand- und Steuersätze für jedes ausgewählte Land konfiguriert haben. Bitte beachten Sie [länderspezifische Einkaufsrichtlinien]({0})[:target=\"_blank\"] und [lokale Vorschriften]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "Where I want my products to be available",
-      "placeholderSelect": "Choose a country from the list",
-      "placeholderNoTargetCountries": "We cannot find any target countries from your carriers",
-      "disabledButtonTooltipTargetCountries": "You can only proceed if you configure your target countries",
-      "disabledButtonTooltipShippingCarriers": "You cannot proceed unless you activate at least one carrier for a target country",
-      "cantFindCountry": "Your target countries are where your carriers ship your products",
+      "productAvailaibleIn": "My products are available in",
+      "placeholderSelect": "Select the countries where your products are available",
+      "cantFindCountry": "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "Dieses Land ist nicht mit Ihrer Währung kompatibel",
       "shippingSettings": "Einstellungen für den Versand",
       "shippingSettingsTitle": "Versandeinstellungen für Produkte",
@@ -909,7 +905,7 @@
     "googleProductStatusDefinitions": "Google Produktstatus-Definitionen",
     "visitThe": "Besuchen Sie die Seite {0} für weitere Informationen",
     "investigate": "Investigate",
-    "createPmax": "Create Performance Max campaign now",
+    "createPmax": "Create Performance Max campaign",
     "understand": "Ich verstehe"
   },
   "badge": {
