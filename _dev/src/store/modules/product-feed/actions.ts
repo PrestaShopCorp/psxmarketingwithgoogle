@@ -19,6 +19,7 @@
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '@/api/HttpClientError';
+import {fetchShop} from '@/api/shopClient';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
 import {getDataFromLocalStorage, deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 import {
