@@ -971,7 +971,7 @@
     "PMaxMigrationTitle": "Important News",
     "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
     "PmaxTextLink": "Learn more about Performance Max",
-    "textPmaxReleased": "Today, you can start creating Performance Max campaigns, the next generation of Smart Shopping campaigns. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+    "textPmaxReleased": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max Campaigns now. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
 
   "tooltip" : {
