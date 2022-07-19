@@ -42,6 +42,7 @@ export interface State {
   psxMktgWithGoogleModuleVersionNeeded: string;
   psxMktgWithGoogleModuleIsEnabled: boolean;
   psxMktgWithGoogleEnableLink: string;
+  backOfficeUserIsLoggedIn: boolean;
 }
 
 export interface ShopCurrency {
@@ -93,4 +94,5 @@ export const state: State = {
   psxMktgWithGoogleModuleVersionNeeded: process.env.VUE_APP_MIN_VERSION_NEEDED_MKTG_GOOGLE || '',
   psxMktgWithGoogleModuleIsEnabled: true,
   psxMktgWithGoogleEnableLink: '',
+  backOfficeUserIsLoggedIn: true,
 };

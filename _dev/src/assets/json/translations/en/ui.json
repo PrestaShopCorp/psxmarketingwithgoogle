@@ -27,7 +27,11 @@
     "max": "Max",
     "helpPage" : "Help Page",
     "noResultsFoundForX": " No results found for {0}",
-    "days": "Days"
+    "days": "Days",
+    "disconnectedBoUser": {
+      "title": "You are disconnected from your Back-Office",
+      "description": "Some actions can't be made properly with the shop because you're not logged in anymore. Please refresh the page to reauthenticate yourself."
+    }
   },
   "landingPage": {
     "header": {

@@ -53,6 +53,21 @@
           class="ps_gs-toaster-top-right"
         />
       </div>
+      <div
+        class="mb-2"
+        v-if="!backOfficeUserIsLoggedIn"
+      >
+        <b-alert
+          show
+          variant="warning"
+          class="mb-0 mt-3"
+        >
+          <p class="mb-0">
+            <strong>{{ $t('general.disconnectedBoUser.title') }}</strong><br>
+            <span class="ps_gs-fz-12">{{ $t('general.disconnectedBoUser.description') }}</span>
+          </p>
+        </b-alert>
+      </div>
       <AlertModuleUpdate
         module-name="ps_eventbus"
         :needed-version="this.$store.state.app.eventbusVersionNeeded"
@@ -96,6 +111,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -116,6 +132,7 @@ export default {
     AlertModuleUpdate,
   },
   computed: {
+    ...mapState('app', ['backOfficeUserIsLoggedIn']),
     shopId() {
       return window.shopIdPsAccounts;
     },
@@ -130,7 +147,12 @@ export default {
     this.$root.identifySegment();
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
     this.setCustomProperties();
-    initShopClient({shopUrl: this.$store.state.app.psxMktgWithGoogleAdminAjaxUrl});
+    initShopClient({
+      shopUrl: this.$store.state.app.psxMktgWithGoogleAdminAjaxUrl,
+      onShopSessionLoggedOut: () => {
+        this.$store.commit('app/SAVE_USER_IS_LOGGED_OUT');
+      }
+    });
     window.addEventListener('resize', this.resizeEventHandler);
   },
   destroyed() {
