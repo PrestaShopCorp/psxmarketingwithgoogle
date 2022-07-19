@@ -29,7 +29,9 @@ export const fetchShop = async (action: string, params?: { [key: string]: unknow
   });
 
   if (response.redirected && response.url.indexOf('AdminLogin') !== -1) {
-    options.onShopSessionLoggedOut && options?.onShopSessionLoggedOut();
+    if (options.onShopSessionLoggedOut) {
+      options.onShopSessionLoggedOut();
+    }
     throw new HttpClientError('Unauthorized', 401);
   }
 

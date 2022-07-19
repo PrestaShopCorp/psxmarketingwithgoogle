@@ -24,7 +24,7 @@ import {fetchShop} from '@/api/shopClient';
 export default {
   async [ActionsTypes.REQUEST_DOC_AND_FAQ]({commit}) {
     try {
-      commit(MutationsTypes.SAVE_DOC_AND_FAQ, 
+      commit(MutationsTypes.SAVE_DOC_AND_FAQ,
         await fetchShop('retrieveFaq'),
       );
     } catch (error) {
@@ -35,7 +35,7 @@ export default {
   async [ActionsTypes.REQUEST_DEBUG_DATA]({commit}) {
     try {
       commit(MutationsTypes.SAVE_DEBUG_DATA,
-        await fetchShop('getDebugData')
+        await fetchShop('getDebugData'),
       );
     } catch (error) {
       console.error(error);
@@ -87,9 +87,10 @@ export default {
     }
     return null;
   },
+  // eslint-disable-next-line no-empty-pattern
   async [ActionsTypes.GET_MODULES_VERSIONS]({}, moduleName: string) {
     try {
-      return await fetchShop('getModuleStatus', {moduleName});
+      return fetchShop('getModuleStatus', {moduleName});
     } catch (error) {
       console.error(error);
       return error;

@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {mapState} from 'vuex';
 import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -151,7 +151,7 @@ export default {
       shopUrl: this.$store.state.app.psxMktgWithGoogleAdminAjaxUrl,
       onShopSessionLoggedOut: () => {
         this.$store.commit('app/SAVE_USER_IS_LOGGED_OUT');
-      }
+      },
     });
     window.addEventListener('resize', this.resizeEventHandler);
   },

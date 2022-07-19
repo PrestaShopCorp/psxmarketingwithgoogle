@@ -165,10 +165,9 @@ export default {
     }
   },
 
-  async [ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED]({
-    rootState,
-  }, isGoogleAccountLinked: boolean) {
-    return await fetchShop('toggleGoogleAccountIsRegistered', {isGoogleAccountLinked});
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED]({}, isGoogleAccountLinked: boolean) {
+    return fetchShop('toggleGoogleAccountIsRegistered', {isGoogleAccountLinked});
   },
 
   async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}) {
@@ -405,8 +404,9 @@ export default {
     return response.json();
   },
 
+  // eslint-disable-next-line no-empty-pattern
   async [ActionsTypes.SAVE_WEBSITE_VERIFICATION_META]({}, token: string|false) {
-    return await fetchShop('setWebsiteVerificationMeta', {websiteVerificationMeta: token});
+    return fetchShop('setWebsiteVerificationMeta', {websiteVerificationMeta: token});
   },
 
   async [ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE](
@@ -484,11 +484,9 @@ export default {
     return response.json();
   },
 
-  async [ActionsTypes.SEND_WEBSITE_REQUIREMENTS](
-    {},
-    payload: Array<String>,
-  ) {
-    return await fetchShop('setWebsiteRequirementStatus', {requirements: payload});
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.SEND_WEBSITE_REQUIREMENTS]({}, payload: string[]) {
+    return fetchShop('setWebsiteRequirementStatus', {requirements: payload});
   },
 
   async [ActionsTypes.REQUEST_WEBSITE_REQUIREMENTS]({commit}) {
@@ -640,7 +638,7 @@ export default {
     rootState,
   }, gmcInfo) {
     try {
-      await fetchShop('setGMCInformations', {gmcInformations: gmcInfo})
+      await fetchShop('setGMCInformations', {gmcInformations: gmcInfo});
     } catch (error) {
       console.error(error);
     }
