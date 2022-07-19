@@ -93,10 +93,19 @@ jobs:
         with:
           name: ${{ github.event.repository.name }}
 
-      - name: Write .env file for preproduction
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: ${{ secrets.G_PROJECT_PREPRODUCTION }}
+          service_account_key: ${{ secrets.G_CREDENTIAL_PREPRODUCTION }}
+          export_default_credentials: true
+
+      - name: Copy env files
         run: |
-          echo PSX_MKTG_WITH_GOOGLE_CDN_URL=https://storage.googleapis.com/psxmarketing-preproduction-cdn/latest/js/ > .env
-          echo PSX_MKTG_WITH_GOOGLE_API_URL=googleshopping-api.preproduction-essentials.prestashop.net >> .env
+          gcloud components install beta
+          gcloud beta secrets versions access latest --secret="google-shopping-module" >> psxmarketingwithgoogle/psxmarketingwithgoogle/.env
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_PREPRODUCTION }}
 
       - name: Prepare the preproduction zip
         run: |
