@@ -1,4 +1,4 @@
-name: CDN Publish Preproduction
+name: CDN Publish
 
 on:
   release:
@@ -33,7 +33,7 @@ jobs:
           fi
         env:
           MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
-          MINOR: ${{ steps.aget_tag.outputs.MINOR }}
+          MINOR: ${{ steps.get_tag.outputs.MINOR }}
           PATCH: ${{ steps.get_tag.outputs.PATCH }}
 
 
