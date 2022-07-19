@@ -36,7 +36,7 @@
       {{ campaignProducts }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.dailyBudget }} {{ campaign.currencyCode }}
+      {{ campaign.dailyBudget|formatPrice(campaign.currencyCode || currencyCode) }}
     </b-td>
     <td class="ps_gs-fz-12 text-center">
       <b-dropdown
@@ -130,6 +130,9 @@ export default {
         return 'PMax';
       }
       return null;
+    },
+    currencyCode() {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
     },
   },
   methods: {

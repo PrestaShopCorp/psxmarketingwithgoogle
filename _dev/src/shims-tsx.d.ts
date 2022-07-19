@@ -11,7 +11,10 @@ declare global {
       psxMtgWithGoogleDefaultShopCountry: Array<string>,
       contextPsAccounts: any;
       translations: any;
-      i18nSettings: any;
+      i18nSettings: {
+        isoCode: string,
+        languageLocale: string,
+      };
       psxMktgWithGoogleApiUrl: String;
       psxMktgWithGoogleAdminUrl: String;
       psxMktgWithGoogleShopUrl: String;
