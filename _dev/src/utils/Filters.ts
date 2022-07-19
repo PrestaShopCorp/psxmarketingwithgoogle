@@ -4,7 +4,6 @@ import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
 import utc from 'dayjs/plugin/utc';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import store from '@/store';
 import countriesSelectionOptions from '../assets/json/countries.json';
 
 dayjs.extend(utc);
@@ -62,11 +61,13 @@ Vue.filter(
   }));
 
 Vue.filter(
-  'formatPrice', (value: number, currencyCode) => {
-    if (!currencyCode) {
-      return '--';
+  'formatPrice', (value: number, currencyCode?: string) => {
+    if (!currencyCode?.length) {
+      console.warn('No currency code provided when formating price');
+      return value;
     }
-    return Intl.NumberFormat(window.i18nSettings.languageCode, {
+
+    return Intl.NumberFormat(window.i18nSettings.languageLocale, {
       style: 'currency',
       currency: currencyCode,
     }).format(value);

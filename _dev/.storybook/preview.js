@@ -136,8 +136,7 @@ import '../src/utils/Filters';
    },
    beforeCreate() {
      window.i18nSettings = {
-       languageLocale: 'en', // needed in _dev/src/store/modules/product-feed/actions.ts
-       languageCode: 'en-US', // needed in _dev/src/store/modules/product-feed/actions.ts
+       languageLocale: 'en-us', // needed in _dev/src/store/modules/product-feed/actions.ts
        isoCode: 'en',
      }
 
