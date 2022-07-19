@@ -45,7 +45,7 @@
         "footer": "Maak een nieuw [Merchant Center-account]({0})[:target=\"_blank\"] of koppel een bestaand account.  \nOm uw producten op Google te tonen, moet u voldoen aan de [geschiktheidsvereisten]({1})[:target=\"_blank\"]"
       },
       "content3": {
-        "title": "Boost your reach and sales with Performance Max",
+        "title": "Verhoog uw bereik en verkoop met Maximale prestaties",
         "text": "Wilt u de prestaties van uw campagne maximaliseren en de juiste klanten vinden, waar ze zich ook bevinden? Maximale prestaties verzamelt vanuit één campagne gegevens over verschillende Google-kanalen en optimaliseert uw campagneprestaties door te laten zien waar uw advertenties meer kans hebben om conversie te genereren."
       }
     },
@@ -414,7 +414,7 @@
     "id": "Google Ads account-ID",
     "toUseGAdsNeedsAdminAccess": "Om een bestaande Google Ads account te gebruiken, moet u Admin toegang hebben.",
     "alertCantConnect": "Kon uw Google Ads account niet verbinden, het ligt aan onze kant, probeer het nog eens.",
-    "alertBillingSettingsMissing": "To launch Performance Max campaigns, you need to add your billing settings in your Google Ads account.",
+    "alertBillingSettingsMissing": "Om Maximale prestaties-campagnes te starten, moet u uw facturatie-instellingen toevoegen in uw Google Ads-account.",
     "alertNeedRefreshAfterBilling": "Zodra u uw factureringsinfo in uw Google Ads account heeft ingevuld, vernieuwt u de pagina om de updates te bekijken.",
     "alertNeedRefreshAfterInvitationLink": "Zodra de uitnodiging is geaccepteerd in uw Google Ads account, vernieuwt u de pagina om updates te bekijken.",
     "alertNeedValidationFromEmail": "Klik hier of controleer uw emails om uw account te valideren.",
@@ -451,9 +451,9 @@
     }
   },
   "smartShoppingCampaignCard": {
-    "title": "Boost your sales with Performance Max Campaigns",
+    "title": "Verhoog uw verkoop met Maximale prestaties-campagnes",
     "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
-    "introConnected": "With Performance Max, you can advertise your products and maximize your ads performance across multiple Google channels through one single campaign. Even better, you don’t pay unless your customers click!",
+    "introConnected": "Met Maximale prestaties-campagnes kunt u uw producten adverteren en de prestaties van uw advertenties maximaliseren op meerdere Google-kanalen via één enkele campagne. Nog beter, u betaalt niet tenzij uw klanten klikken!",
     "footer": "In de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland kunnen maximale prestaties-campagnes worden gebruikt met elke Comparison Shopping Service (CSS) waarmee u werkt. De advertenties worden getoond op algemene zoekresultatenpagina's en op alle andere oppervlakken waar de CSS zich voor heeft opgegeven.",
     "titleInfo": "Wist je dat?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
@@ -463,9 +463,9 @@
     "allFilters": "Alle filters",
     "breadcrumb1": "Campagne",
     "breadcrumbCreateSSC": "Smart Shopping-campagne opzetten",
-    "breadcrumbEditSSC": "Modify Smart Shopping campaign",
+    "breadcrumbEditSSC": "Wijzig Smart Shopping-campagne",
     "breadcrumbCreatePMax": "Maximale prestaties-campagne aanmaken",
-    "breadcrumbEditPMax": "Modify Performance Max campaign",
+    "breadcrumbEditPMax": "Wijzig maximale prestaties-campagne",
     "inputNameHelper": "De naam moet uniek zijn en mag maximaal 125 karakters lang zijn.",
     "inputNameLabel": "Naam van de campagne",
     "inputNameTooltip": "Kies een naam die het thema van de campagne duidelijk omschrijft, zodat u deze gemakkelijk kunt terugvinden in uw account. De naam van uw campagne is niet zichtbaar voor uw klanten.",
@@ -509,9 +509,9 @@
       "noConversionActions": "De tracking tag is ingeschakeld, maar er is geen conversie actie ingesteld op de winkel. Dit kan worden verholpen door nieuwe te maken.",
       "hasUnhandledFilters": "Tenminste één filter van deze campagne wordt niet ondersteund door deze module. Om verlies op uw bestaande configuratie te voorkomen, kunnen alleen de basisdetails van de campagne worden gewijzigd.",
       "PMaxExplanationTitle": "Performance Max is a new goal-based campaign.",
-      "PMaxExplanation": "Performance Max is an enhanced campaign type powered by Google's smart technology. It can help you optimize your ads across multiple Google channels and drive better results for your business.",
+      "PMaxExplanation": "Maximale prestaties is een verbeterd campagnetype dat wordt aangestuurd door de slimme technologie van Google. Het kan u helpen uw advertenties over meerdere Google-kanalen te optimaliseren en betere resultaten voor uw bedrijf te behalen.",
       "PMaxExplanationPrecision": "Even better, you won't pay unless customers click.",
-      "PMaxExplanationLink": "Find out more about Performance Max"
+      "PMaxExplanationLink": "Kom meer te weten over Maximale prestaties"
     },
     "labelSelectedDimension": "Geselecteerde dimensie waarde",
     "nbDimensionSelected": "Geen dimensie geselecteerd | {0} dimensie geselecteerd | {0} dimensies geselecteerd",
@@ -549,7 +549,7 @@
   "smartShoppingCampaignList": {
     "tableTitle": "Prestaties van de campagne",
     "xCampaign": "Geen campagnes | {0} campagne | {0} campagnes",
-    "performanceMax": "Performance Max",
+    "performanceMax": "Maximale prestaties",
     "smartShoppingCampaign": "Smart Shopping Campaign",
     "campaignType": "Type: {0}"
   },
@@ -670,7 +670,7 @@
     "subtitle5": "Als u uw producten bijwerkt"
   },
   "campaignCard": {
-    "title": "Create your Performance Max campaign in a few clicks",
+    "title": "Maak uw Maximale prestaties-campagne in een paar klikken",
     "description": "Google A.I. toont advertenties van de gezochte producten aan geïnteresseerde shoppers op het juiste moment, waardoor uw omzet stijgt.\n\nStel een dagelijks budget in en start eenvoudig uw advertentiecampagne - u wordt alleen gefactureerd wanneer er op de advertenties wordt geklikt, zo eenvoudig is het!",
     "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Peformance Max campaigns"
   },
@@ -774,7 +774,7 @@
     "thirdStep": "Sign in or create your Google Merchant Center account",
     "fourthStep": "Export and synchronize your product catalog",
     "fifthStep": "Sign in or create your Google Ads account",
-    "sixthStep": "**Next step** create your first Performance Max Campaign"
+    "sixthStep": "**Volgende stap** maak uw eerste Maximale prestaties Campagne"
   },
   "help": {
     "intro": "PrestaShop Marketing maakt het gemakkelijk om uw winkel te verbinden met Google en uw producten te promoten om miljoenen shoppers cross meerdere Google-kanalen. Maak Performance Max campagnes zonder het verlaten van uw PrestaShop dashboard en rijden meer verkeer.",
@@ -871,11 +871,11 @@
     "transferClaim": "Overdrachtsvordering",
     "goToYourX": "Ga naar je {0}",
     "addShippingInfo": "Verzendinfo toevoegen",
-    "createSmartShoppingCampaign": "Launch Performance Max campaign",
+    "createSmartShoppingCampaign": "Start Maximale prestaties-campagn",
     "addBillingSettings": "Factureringsinstellingen toevoegen",
     "createCampaign": "Campagne maken",
     "editCampaign": "Campagne bijwerken",
-    "launchCampaign": "Launch campaign",
+    "launchCampaign": "Start campagne",
     "resetDate": "Ingestelde datum",
     "validate": "Valideren",
     "moreInfosAboutX": "Meer informatie over {0}",
@@ -909,7 +909,7 @@
     "googleProductStatusDefinitions": "Google productstatus definities",
     "visitThe": "Bezoek de {0} voor meer informatie",
     "investigate": "Investigate",
-    "createPmax": "Create Performance Max campaign now",
+    "createPmax": "Maximale prestaties-campagne aanmaken",
     "understand": "Ik begrijp het."
   },
   "badge": {
@@ -958,19 +958,19 @@
     "titleOverwriteProductFeed": "Bestaande product feed overschrijven?",
     "textOverwriteProductFeed": "Als u uw bestaande productfeed overschrijft, wordt deze verwijderd. U moet een nieuwe product feed configureren.",
     "titleDisconnectionGoogleAds": "Google Ads account loskoppelen?",
-    "textDisconnectGoogleAds": "Disconnecting from your Google Ads account will remove the ability to run Performance Max campaigns from the module.",
+    "textDisconnectGoogleAds": "Als u de verbinding met uw Google Ads-account verbreekt, kunt u geen Maximale prestaties-campagnes meer uitvoeren vanuit de module.",
     "pauseCampaigns": "Pauzeer al mijn campagnes",
     "pauseCampaignsExplainations": "Door al uw campagnes te pauzeren, zal de facturatie stoppen. U kunt uw campagnes op elk moment opnieuw starten in uw Google-advertentieaccount.",
     "removeTag": "Verwijder de tag \"Remarketing en conversie\" uit mijn winkel",
     "removeTagExplainations": "Het verwijderen van de tag betekent dat Google niet langer in staat zal zijn om uw campagnes te volgen. Wij raden u aan de tag alleen te verwijderen als u van plan bent de module volledig te verwijderen of uw account te wijzigen. U kunt het altijd zelf toevoegen in de code van uw site.",
     "titleActivateTrackingSSC": "Activeer remarketing en conversie tracking tag.",
-    "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
+    "textActivateTrackingSSC": "Om Maximale prestaties-campagnes te kunnen uitvoeren, moet Google Ads in staat zijn om [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] en [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] op uw site aan te maken. \n  PrestaShop zal deze code snippets automatisch instellen op uw winkel.",
     "textConfirmCancel": "Als u teruggaat zult u uw geselecteerde waarden verliezen",
     "upgradeSCCToPmaxTitle": "Campagnes upgrade komt binnenkort",
     "upgradeSCCToPmaxTextWithoutCampaign": "Vanaf {0} kunt u Performance Max-campagnes voor uw winkel maken. \n\n Performance Max is de volgende generatie van Smart Shopping-campagnes. Het is een verbeterd campagnetype dat wordt aangedreven door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties automatisch te optimaliseren tijdens het shoppingtraject om maximale prestaties te leveren.",
     "upgradeSCCToPmaxText": "Smart Shopping-campagnes zullen worden geüpgraded naar maximale prestaties op {0}\n\nU hoeft geen actie te ondernemen aangezien uw Smart Shopping-campagne-instellingen en -budget hetzelfde zullen blijven. Alleen uw campagnetype zal automatisch worden bijgewerkt naar maximale prestaties.\n\nVanaf begin juli kunt u alleen nog Performance Max-campagnes aanmaken.",
-    "PMaxLiveTitle": "Performance Max is here",
-    "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. \n\nPerformance Max is an enhanced campaign type powered by Google's smart technology. It works behind the scenes to automatically optimize your ads across the shopping journey to drive maximum performance. ",
+    "PMaxLiveTitle": "Maximale prestaties is hier",
+    "PMaxLiveText": "Vanaf vandaag kunt u Maximale prestaties-campagnes maken, de volgende generatie van Smart Shopping-campagnes.\n\nMaximale prestaties is een verbeterd campagnetype dat wordt aangestuurd door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties tijdens het shoppingtraject automatisch te optimaliseren voor maximale prestaties. ",
     "PMaxMigrationTitle": "Important News",
     "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
     "PmaxTextLink": "Meer informatie over campagnes voor maximale prestaties",
@@ -1010,7 +1010,7 @@
     "MCAConnectedOnceSuccess": "U hebt uw Merchant Center-account aangesloten!",
     "productFeedConfiguredOnceSuccess": "U heeft met succes uw productgegevens ingediend bij Merchant Center. Eenmaal goedgekeurd, zullen ze beschikbaar zijn voor gratis advertenties.",
     "attributesMapppingSuccess": "Uw producteigenschappen zijn succesvol opgeslagen. Bekijk de samenvatting en klik op \"Exporteren\" om ze naar Google te sturen",
-    "campaignCreatedSuccess": "You have created your Performance Max campaign successfully!",
+    "campaignCreatedSuccess": "U hebt uw Maximale prestaties-campagne met succes aangemaakt!",
     "phoneNumberVerifiedSuccess": "Uw telefoonnummer is geverifieerd. De Merchant Account wordt aangemaakt"
   },
   "stepper": {
@@ -1056,7 +1056,7 @@
     "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
     "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
     "ctaCreateFirstCampaign": "Create your first campaign",
-    "titleCampaignsBanner": "From June 30th, you can create Performance Max campaigns for your store",
-    "textCampaignsBanner": "Performance Max is the next generation of Smart Shopping campaigns. It is an enhanced campaign type powered by Google's smart technology. It works behind the scene to automatically optimise your ads across the shopping journey to drive maximum performance."
+    "titleCampaignsBanner": "Vanaf 30 juni kunt u Maximale prestaties-campagnes voor uw winkel maken",
+    "textCampaignsBanner": "Maximale prestaties is de volgende generatie van Smart Shopping-campagnes. Het is een verbeterd campagnetype dat wordt aangestuurd door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties tijdens het shoppingtraject automatisch te optimaliseren voor maximale prestaties."
   }
 }

@@ -152,7 +152,6 @@
       :next-step="nextStep"
       :previous-step="previousStep"
       :disable-continue="disableContinue"
-      :disable-tooltip="$t('productFeedSettings.shipping.disabledButtonTooltipShippingCarriers')"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
     <settings-footer />
@@ -194,15 +193,7 @@ export default {
         });
     },
     disableContinue() {
-      const enabledCarriers = this.carriers.filter(
-        (carrier) => carrier.enabledCarrier);
-      const enabledCarriersCompleted = this.carriers.filter(validateDeliveryDetail);
-
-      if (enabledCarriersCompleted.length === enabledCarriers.length
-      && enabledCarriersCompleted.length > 0) {
-        return false;
-      }
-      return true;
+      return !this.carriers.every(validateDeliveryDetail);
     },
   },
   methods: {

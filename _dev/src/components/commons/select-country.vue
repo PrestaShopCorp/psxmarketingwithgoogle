@@ -1,25 +1,15 @@
 <template>
   <div>
     <ps-select
-      :loading="loader"
       :deselect-from-dropdown="true"
       :multiple="true"
       :options="dropdownOptions"
       @search="onSearchCountry"
       label="name"
       v-model="countries"
-      :placeholder="type === 'targetCountries' && !dropdownOptions.length ?
-        $t('productFeedSettings.shipping.placeholderNoTargetCountries')
-        : $t('productFeedSettings.shipping.placeholderSelect')"
+      :placeholder=" $t('productFeedSettings.shipping.placeholderSelect')"
       :class="{'maxw-sm-500': notFullWidth }"
     >
-      <template #spinner="{ loading }">
-        <div
-          v-if="loading"
-        >
-          <i class="ps_gs-table-products__spinner">loading</i>
-        </div>
-      </template>
       <template v-slot:option="option">
         <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
           <span
@@ -29,11 +19,12 @@
         </div>
       </template>
     </ps-select>
-
     <VueShowdown
       v-if="displayLegend"
       class="text-muted my-1 ps_gs-fz-12"
-      :markdown="$t('productFeedSettings.shipping.cantFindCountry')"
+      :markdown="$t('productFeedSettings.shipping.cantFindCountry', [
+        $options.googleUrl.supportedCountries
+      ])"
       :extensions="['extended-link']"
     />
     <VueShowdown
@@ -82,20 +73,10 @@ export default {
       required: false,
       default: true,
     },
-    loader: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
     notFullWidth: {
       type: Boolean,
       required: false,
       default: false,
-    },
-    type: {
-      type: String,
-      required: false,
-      default: null,
     },
   },
   methods: {

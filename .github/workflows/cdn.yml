@@ -20,7 +20,25 @@ jobs:
     steps:
       - name: Get tag
         id: get_tag
-        run: echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
+        run: |
+          echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
+          echo ::set-output name=MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1)
+          echo ::set-output name=MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2)
+          echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
+
+      - name: Get assets URL
+        id: get_assets_url
+        run: |
+          if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
+            echo ::set-output name=URL::https://storage.googleapis.com/psxmarketing-cdn/${MAJOR}.${MINOR}.${PATCH}/
+          else
+            echo ::set-output name=URL::https://storage.googleapis.com/psxmarketing-cdn/${MAJOR}.x.x/
+          fi
+        env:
+          MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
+          MINOR: ${{ steps.get_tag.outputs.MINOR }}
+          PATCH: ${{ steps.get_tag.outputs.PATCH }}
+
 
       - name: Trigger storage production
         if: github.ref != 'refs/heads/master'
@@ -30,7 +48,7 @@ jobs:
           repo: PrestaShopCorp/services-deployment
           token: ${{ secrets.ACCESS_TOKEN }}
           ref: 'refs/heads/main'
-          inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "${{ env.NODE_VERSION }}", "vuejsPath": "${{ env.VUE_PATH }}", "vuejsBuildPath": "${{ env.BUILD_PATH }}", "isRelease": "${{ !github.event.release.prerelease && true || false }}" }'
+          inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "${{ env.NODE_VERSION }}", "vuejsPath": "${{ env.VUE_PATH }}", "vuejsBuildPath": "${{ env.BUILD_PATH }}", "isRelease": "${{ !github.event.release.prerelease && true || false }}" }, "assetsUrl": "${{ steps.get_assets_url.outputs.URL }}" }'
 
       - name: Trigger storage preproduction
         if: github.ref == 'refs/heads/master'
@@ -40,4 +58,4 @@ jobs:
           repo: PrestaShopCorp/services-deployment
           token: ${{ secrets.ACCESS_TOKEN }}
           ref: 'refs/heads/main'
-          inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "${{ env.NODE_VERSION }}", "vuejsPath": "${{ env.VUE_PATH }}", "vuejsBuildPath": "${{ env.BUILD_PATH }}", "isRelease": "${{ !github.event.release.prerelease && true || false }}", "environment": "preproduction" }'
+          inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "${{ env.NODE_VERSION }}", "vuejsPath": "${{ env.VUE_PATH }}", "vuejsBuildPath": "${{ env.BUILD_PATH }}", "isRelease": "${{ !github.event.release.prerelease && true || false }}", "environment": "preproduction", "assetsUrl": "${{ steps.get_assets_url.outputs.URL }}" } }'

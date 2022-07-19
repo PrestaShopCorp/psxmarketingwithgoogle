@@ -69,7 +69,7 @@ export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
 
 export function validateDeliveryDetail(delivery: DeliveryDetail): boolean {
   if (!delivery.enabledCarrier) {
-    return false;
+    return true;
   }
 
   return delivery.enabledCarrier
