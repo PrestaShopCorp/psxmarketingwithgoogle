@@ -1,8 +1,9 @@
-name: CDN Publish
+name: CDN Publish Preproduction
 
 on:
-  release:
-    types: [prereleased, released]
+  push:
+    branches:
+      - master
 
 env:
   WORKFLOW: googleshopping-storage.yml
@@ -26,22 +27,18 @@ jobs:
       - name: Get assets URL
         id: get_assets_url
         run: |
-          if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
-            echo ::set-output name=URL::https://storage.googleapis.com/psxmarketing-cdn/${MAJOR}.${MINOR}.${PATCH}/
-          else
-            echo ::set-output name=URL::https://storage.googleapis.com/psxmarketing-cdn/${MAJOR}.x.x/
-          fi
+          echo ::set-output name=URL::https://storage.googleapis.com/psxmarketing-preproduction-cdn/latest/
         env:
           MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
           MINOR: ${{ steps.get_tag.outputs.MINOR }}
           PATCH: ${{ steps.get_tag.outputs.PATCH }}
 
-
-      - name: Trigger storage production
+      - name: Trigger storage preproduction
         uses: aurelien-baudet/workflow-dispatch@v2
         with:
           workflow: ${{ env.WORKFLOW }}
           repo: PrestaShopCorp/services-deployment
           token: ${{ secrets.ACCESS_TOKEN }}
           ref: 'refs/heads/main'
-          inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "${{ env.NODE_VERSION }}", "vuejsPath": "${{ env.VUE_PATH }}", "vuejsBuildPath": "${{ env.BUILD_PATH }}", "isRelease": "${{ !github.event.release.prerelease && true || false }}" , "assetsUrl": "${{ steps.get_assets_url.outputs.URL }}" }'
+          inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "${{ env.NODE_VERSION }}", "vuejsPath": "${{ env.VUE_PATH }}", "vuejsBuildPath": "${{ env.BUILD_PATH }}", "isRelease": "false", "environment": "preproduction", "assetsUrl": "${{ steps.get_assets_url.outputs.URL }}" }'
+
