@@ -189,18 +189,16 @@
                       month: 'numeric',
                       day: 'numeric',
                     }"
-                    :min="campaignDurationStartDate"
+                    :min="minimunEndDate"
                     reset-button
-                    :label-reset-button="$t('cta.resetDate')"
+                    :label-reset-button="$t('cta.noEndDate')"
                     reset-button-variant="outline-secondary sm"
-                    close-button
-                    :label-close-button="$t('cta.noEndDate')"
-                    close-button-variant="outline-secondary sm"
                     :hide-header="true"
                     :label-help="
                       $t('smartShoppingCampaignCreation.inputDatePickerHelper')
                     "
                     :required="false"
+                    :state="campaignEndDateFeedback"
                     class="ps_gs-datepicker"
                     menu-class="ps_gs-datepicker-end"
                   />
@@ -524,10 +522,14 @@ export default {
         && this.campaignDurationStartDate
         && (this.targetCountry || this.defaultCountry())
         && this.campaignDailyBudget
+        && this.campaignEndDateFeedback !== false
       ) {
         return false;
       }
       return true;
+    },
+    minimunEndDate() {
+      return new Date(Math.max(new Date(this.campaignDurationStartDate), new Date()));
     },
     campaignNameFeedback() {
       if (
@@ -545,6 +547,17 @@ export default {
         return true;
       }
       return false;
+    },
+    campaignEndDateFeedback() {
+      if (this.campaignDurationEndDate
+        && new Date(this.campaignDurationEndDate) < this.minimunEndDate
+      ) {
+        // Show as NOK
+        return false;
+      }
+
+      // No feedback to display, either OK or NOK
+      return null;
     },
     campaignDailyBudgetFeedback() {
       const regex = /^[0-9]+([.][0-9]{0,2})?$/g;

@@ -14,6 +14,7 @@ beforeEach(() => {
     // add data needed in window
     scrollTo: jest.fn(),
     addEventListener: jest.fn(),
+    i18nSettings: {isoCode: 'fr', languageLocale: 'fr'},
   }));
   VBTooltip = jest.fn();
   localVue = createLocalVue();

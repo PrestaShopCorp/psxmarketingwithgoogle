@@ -240,18 +240,14 @@
       "shippingSettingsErrors": "Este país não é compatível com a sua moeda",
       "syncSchedule": "Horário de sincronização"
     },
-    "inputTargetCountriesTooltip": "Note that you can't select a country with a different currency than your shop's",
     "noticeDataStored": "As configurações são guardadas em cada etapa, e serão submetidas apenas na etapa final.",
     "shipping": {
       "targetCountries": "País de destino",
       "filterTitle": "Filtrar por país",
       "ifMultipleCountries": "Se visar vários países, o preço de cada produto será automaticamente convertido para a moeda correta no Google. No entanto, a sua loja deve ter configuradas as taxas de envio e impostos para cada país selecionado. Por favor respeite [políticas de compras específicas do país]({0})[:target=\"_blank\"] e [regulamento local]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "Where I want my products to be available",
-      "placeholderSelect": "Choose a country from the list",
-      "placeholderNoTargetCountries": "We cannot find any target countries from your carriers",
-      "disabledButtonTooltipTargetCountries": "You can only proceed if you configure your target countries",
-      "disabledButtonTooltipShippingCarriers": "You cannot proceed unless you activate at least one carrier for a target country",
-      "cantFindCountry": "Your target countries are where your carriers ship your products",
+      "productAvailaibleIn": "My products are available in",
+      "placeholderSelect": "Select the countries where your products are available",
+      "cantFindCountry": "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "Este país não é compatível com a sua moeda",
       "shippingSettings": "Configurações de envio",
       "shippingSettingsTitle": "Configurações de envio de produtos",
@@ -909,7 +905,7 @@
     "googleProductStatusDefinitions": "Definições de status de produto do Google",
     "visitThe": "Visit the {0} for more information",
     "investigate": "Investigate",
-    "createPmax": "Create Performance Max campaign now",
+    "createPmax": "Create Performance Max campaign",
     "understand": "eu entendo."
   },
   "badge": {
