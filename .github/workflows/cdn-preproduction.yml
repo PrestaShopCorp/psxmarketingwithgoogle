@@ -1,8 +1,6 @@
 name: CDN Publish Preproduction
 
 on:
-  release:
-    types: [prereleased, released]
   push:
     branches:
       - master
@@ -29,11 +27,7 @@ jobs:
       - name: Get assets URL
         id: get_assets_url
         run: |
-          if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
-            echo ::set-output name=URL::https://storage.googleapis.com/psxmarketing-cdn/${MAJOR}.${MINOR}.${PATCH}/
-          else
-            echo ::set-output name=URL::https://storage.googleapis.com/psxmarketing-cdn/${MAJOR}.x.x/
-          fi
+          echo ::set-output name=URL::https://storage.googleapis.com/psxmarketing-preproduction-cdn/latest/
         env:
           MAJOR: ${{ steps.get_tag.outputs.MAJOR }}
           MINOR: ${{ steps.get_tag.outputs.MINOR }}
