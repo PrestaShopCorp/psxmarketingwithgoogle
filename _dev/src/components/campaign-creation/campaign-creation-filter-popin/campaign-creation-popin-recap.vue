@@ -191,6 +191,10 @@ export default {
             this.isValidating = false;
             this.$emit('displayErrorApiWhenSavingSSC');
           } else {
+            this.$store.dispatch(
+              'campaigns/GET_CAMPAIGNS_LIST',
+              {isNewRequest: true, typeChosen: CampaignTypes.PERFORMANCE_MAX},
+            );
             this.$router.push({
               name: 'campaign-list',
             });
@@ -217,6 +221,14 @@ export default {
             this.isValidating = false;
             this.$emit('displayErrorApiWhenSavingSSC');
           } else {
+            this.$store.dispatch(
+              'campaigns/GET_CAMPAIGNS_LIST',
+              {isNewRequest: true, typeChosen: CampaignTypes.PERFORMANCE_MAX},
+            );
+            this.$store.dispatch(
+              'campaigns/GET_CAMPAIGNS_LIST',
+              {isNewRequest: true, typeChosen: CampaignTypes.SMART_SHOPPING},
+            );
             this.$router.push({
               name: 'campaign-list',
             });
