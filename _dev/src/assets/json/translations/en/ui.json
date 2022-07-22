@@ -472,6 +472,7 @@
     "inputDurationTooltip": "Ad campaigns have no end date by default, so that the ads are able to run indefinitely. You can always add an end date to create a shorter campaign.",
     "inputDurationLabel1": "Start date",
     "inputDurationLabel2": "End date (optional)",
+    "inputDurationInvalidFeedback": "The end date must be set in the future.",
     "inputDatePickerHelper": "Use cursor keys to navigate calendar dates",
     "inputCountryHelper": "To target multiple countries you have to create multiple campaigns.",
     "inputCountryImutable": "Country can't be changed after creation, if you want to target a different country, you'll need to create a new campaign",
