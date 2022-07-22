@@ -33,6 +33,16 @@
       </div>
     </div>
 
+    <div
+      class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4"
+      v-show="this.type === PmaxModalType.SSC_DEPRECATED"
+    >
+      <VueShowdown
+        :markdown="$t('landingPage.footer.explanation')"
+        :extensions="['extended-link']"
+      />
+    </div>
+
     <template slot="modal-cancel">
       {{ $t('cta.close') }}
     </template>
@@ -106,9 +116,6 @@ export default {
   methods: {
     confirm() {
       localStorage.setItem(`modalPmax-${this.type}`, true);
-      this.$router.push({
-        name: 'campaign-creation',
-      });
     },
     displayImage(type) {
       const lang = this.$i18n.locale.toUpperCase();
