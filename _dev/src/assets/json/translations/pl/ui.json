@@ -970,7 +970,7 @@
     "PMaxMigrationTitle": "Important News",
     "PMaxMigrationText": "Twoje Inteligentne kampanie produktowe będą się teraz automatycznie aktualizować do kampanii Performance Max.\n\n- Ustawienia kampanii i budżet pozostają bez zmian;\n\n- Funkcjonalności są takie same jak w inteligentnych kampaniach produktowych;\n\n- Od tego momentu możesz tworzyć tylko kampanie Performance Max.",
     "PmaxTextLink": "Dowiedz się więcej o Performance Max",
-    "textPmaxReleased": "As suas campanhas de Compras Inteligentes começarão agora automaticamente a actualizar para as Campanhas de máximo desempenho mais. [Dowiedz się więcej]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+    "textPmaxReleased": "Twoje Inteligentne kampanie produktowe zaczną się teraz automatycznie przekształcać w kampanie Performance Max. Dowiedz się więcej. [Dowiedz się więcej]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
     "googleAccountRequired": "Wymaga to konfiguracji konta Google",

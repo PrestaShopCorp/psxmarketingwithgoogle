@@ -970,7 +970,7 @@
     "PMaxMigrationTitle": "Important News",
     "PMaxMigrationText": "As suas campanhas de Compras Inteligentes começarão agora automaticamente a actualizar para as campanhas Máximo desempenho.\n\n- As definições e orçamento da sua campanha permanecem os mesmos. \n\n- A funcionalidade está em paridade com as campanhas de Smart Shopping.\n\n- A partir deste ponto, só pode criar campanhas Máximo desempenho.",
     "PmaxTextLink": "Saiba mais sobre as Campanhas de máximo desempenho",
-    "textPmaxReleased": "Hoje, pode começar a criar campanhas de máximo desempenho, a próxima geração de Compras Inteligentes. [Saiba mais]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+    "textPmaxReleased": "As suas campanhas de Compras Inteligentes começarão agora automaticamente a actualizar para as Campanhas de máximo desempenho mais. [Saiba mais]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
     "googleAccountRequired": "Requer a configuração da conta Google",
