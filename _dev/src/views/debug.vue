@@ -33,32 +33,40 @@
       >
         <ul class="mb-0">
           <li>
-            <strong>Shop url:</strong> {{ this.$store.state.app.psxMktgWithGoogleShopUrl }}
+            <strong>Shop url</strong>: {{ this.$store.state.app.psxMktgWithGoogleShopUrl }}
           </li>
           <li>
-            <strong>Prestashop version</strong>: {{ this.$store.state.app.psVersion }}
-          </li>
-          <li>
-            <strong>PHP Module version</strong>:
-            {{ this.$store.state.app.psxMktgWithGoogleModuleVersion }}
-          </li>
-          <li>
-            <strong>Vue.js app build version</strong>: {{ appBuildVersion }}
+            <strong>Versions</strong>:
+            <ul>
+              <li>
+                <strong>Prestashop</strong>: {{ this.$store.state.app.psVersion }}
+              </li>
+              <li>
+                <strong>PHP Engine</strong>: {{ this.$store.state.app.phpVersion }}
+              </li>
+              <li>
+                <strong>Module (PHP)</strong>:
+                {{ this.$store.state.app.psxMktgWithGoogleModuleVersion }}
+              </li>
+              <li>
+                <strong>Interface (Vue.js)</strong>: {{ appBuildVersion }}
+              </li>
+            </ul>
           </li>
           <li>
             <strong>Shop ID</strong>: {{ shopId }}
           </li>
           <li>
-            <strong>Using the production API:</strong>
+            <strong>Using the production API</strong>:
             {{ psxMktgWithGoogleOnProductionEnvironment?'✅':'❌' }}
             ({{ psxMktgWithGoogleApiUrl }})
           </li>
           <li>
-            <strong>Module is enabled :</strong>
+            <strong>Module is enabled</strong>:
             {{ moduleIsEnabled ?'✅':'❌' }}
           </li>
           <li>
-            <strong>Hook list:</strong>
+            <strong>Hook list</strong>:
             <ul>
               <li
                 v-for="(type, hookName) in hooks"

@@ -124,6 +124,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'shopIdPsAccounts' => $shopIdPsAccounts,
             'tokenPsAccounts' => $tokenPsAccounts,
             'psVersion' => _PS_VERSION_,
+            'phpVersion' => phpversion(),
             'psxMktgWithGoogleModuleVersion' => $this->module->version,
             'psxMktgWithGoogleOnProductionEnvironment' => $this->env->get('PSX_MKTG_WITH_GOOGLE_API_URL') === Config::PSX_MKTG_WITH_GOOGLE_API_URL,
             'psxMktgWithGoogleSegmentId' => $this->env->get('PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY'),
