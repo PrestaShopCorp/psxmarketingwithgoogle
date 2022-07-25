@@ -968,9 +968,9 @@
     "PMaxLiveTitle": "Performance Max jest tutaj",
     "PMaxLiveText": "Od dzisiaj możesz tworzyć kampanie Performance Max, czyli nową generację Inteligentnych kampanii produktowych.\n\nPerformance Max to ulepszony typ kampanii zasilany inteligentną technologią Google. Działa ona za kulisami, aby automatycznie optymalizować reklamy w całej podróży zakupowej w celu uzyskania maksymalnej wydajności. ",
     "PMaxMigrationTitle": "Important News",
-    "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
+    "PMaxMigrationText": "Twoje Inteligentne kampanie produktowe będą się teraz automatycznie aktualizować do kampanii Performance Max.\n\n- Ustawienia kampanii i budżet pozostają bez zmian;\n\n- Funkcjonalności są takie same jak w inteligentnych kampaniach produktowych;\n\n- Od tego momentu możesz tworzyć tylko kampanie Performance Max.",
     "PmaxTextLink": "Dowiedz się więcej o Performance Max",
-    "textPmaxReleased": "Już dziś możesz zacząć tworzyć kampanie Performance Max, nową generację Inteligentnych kampanii produktowych. [Dowiedz się więcej]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+    "textPmaxReleased": "Twoje Inteligentne kampanie produktowe zaczną się teraz automatycznie przekształcać w kampanie Performance Max. Dowiedz się więcej. [Dowiedz się więcej]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
     "googleAccountRequired": "Wymaga to konfiguracji konta Google",

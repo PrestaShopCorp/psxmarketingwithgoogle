@@ -968,9 +968,9 @@
     "PMaxLiveTitle": "Maximale prestaties is hier",
     "PMaxLiveText": "Vanaf vandaag kunt u Maximale prestaties-campagnes maken, de volgende generatie van Smart Shopping-campagnes.\n\nMaximale prestaties is een verbeterd campagnetype dat wordt aangestuurd door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties tijdens het shoppingtraject automatisch te optimaliseren voor maximale prestaties. ",
     "PMaxMigrationTitle": "Important News",
-    "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
+    "PMaxMigrationText": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. \n\n- Uw campagne-instellingen en budget blijven hetzelfde. \n\n- De functionaliteit is gelijk aan die van Smart Shopping-campagnes.\n\n- Vanaf dit moment kunt u alleen nog Maximale prestaties-campagnes aanmaken.",
     "PmaxTextLink": "Meer informatie over campagnes voor maximale prestaties",
-    "textPmaxReleased": "U kunt vandaag nog beginnen met het opzetten van Maximale prestaties-campagnes, de volgende generatie van Smart Shopping. [Meer informatie]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+    "textPmaxReleased": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. [Leer meer]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
   "tooltip": {
     "googleAccountRequired": "Vereist configuratie Google-account",
