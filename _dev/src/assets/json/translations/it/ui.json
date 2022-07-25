@@ -968,7 +968,7 @@
     "PMaxLiveTitle": "Performance Max è qui",
     "PMaxLiveText": "A partire da oggi, puoi creare campagne Performance Max, la prossima generazione di campagne Shopping intelligenti.\n\nPerformance Max è un tipo di campagna potenziata grazie alla tecnologia intelligente di Google. Funziona dietro le quinte per ottimizzare automaticamente i vostri annunci lungo tutto il percorso dello shopping per ottenere il massimo rendimento. ",
     "PMaxMigrationTitle": "Important News",
-    "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
+    "PMaxMigrationText": "Le vostre campagne Smart Shopping inizieranno ora ad aggiornarsi automaticamente in campagne Performance Max.\n\n- Le impostazioni della campagna e il budget rimangono invariati. \n\n- Le funzionalità sono uguali a quelle delle campagne Smart Shopping.\n\n- Da questo momento in poi è possibile creare solo campagne Performance Max.",
     "PmaxTextLink": "Scopri di più sulle campagne Performance Max",
     "textPmaxReleased": "Le vostre campagne Smart Shopping inizieranno a passare automaticamente alle Campagne Performance Max. [Per saperne di più]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
