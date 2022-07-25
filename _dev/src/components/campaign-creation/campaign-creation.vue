@@ -202,6 +202,12 @@
                     class="ps_gs-datepicker"
                     menu-class="ps_gs-datepicker-end"
                   />
+                  <b-form-invalid-feedback
+                    id="campaign-duration-end-date-input-feedback"
+                    :class="{'d-block': campaignEndDateFeedback === false}"
+                  >
+                    {{ $t('smartShoppingCampaignCreation.inputDurationInvalidFeedback') }}
+                  </b-form-invalid-feedback>
                 </b-col>
               </b-form-row>
             </b-form-group>
