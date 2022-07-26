@@ -472,6 +472,7 @@
     "inputDurationTooltip": "Ad campaigns have no end date by default, so that the ads are able to run indefinitely. You can always add an end date to create a shorter campaign.",
     "inputDurationLabel1": "Start date",
     "inputDurationLabel2": "End date (optional)",
+    "inputDurationInvalidFeedback": "The end date must be set in the future.",
     "inputDatePickerHelper": "Use cursor keys to navigate calendar dates",
     "inputCountryHelper": "To target multiple countries you have to create multiple campaigns.",
     "inputCountryImutable": "Country can't be changed after creation, if you want to target a different country, you'll need to create a new campaign",
@@ -873,7 +874,7 @@
     "createCampaign": "Create campaign",
     "editCampaign": "Update campaign",
     "launchCampaign": "Launch campaign",
-    "resetDate": "Reset date",
+    "resetDate": "Set today's date",
     "validate": "Validate",
     "moreInfosAboutX": "More infos about {0}",
     "seeOnGoogleAds": "See on Google Ads",
@@ -969,9 +970,9 @@
     "PMaxLiveTitle": "Performance Max is here",
     "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. \n\nPerformance Max is an enhanced campaign type powered by Google's smart technology. It works behind the scenes to automatically optimize your ads across the shopping journey to drive maximum performance. ",
     "PMaxMigrationTitle": "Important News",
-    "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
+    "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now.\n\n- Your campaign settings and budget remain the same. \n\n- The functionality is at parity to Smart Shopping campaigns. \n\n- From this point on you can only create Performance Max campaigns.",
     "PmaxTextLink": "Learn more about Performance Max",
-    "textPmaxReleased": "Today, you can start creating Performance Max campaigns, the next generation of Smart Shopping campaigns. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+    "textPmaxReleased": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max Campaigns now. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
 
   "tooltip" : {
