@@ -472,6 +472,7 @@
     "inputDurationTooltip": "Рекламные кампании по умолчанию не имеют даты окончания, поэтому объявления могут работать неограниченное время. Вы всегда можете добавить дату окончания, чтобы создать более короткую кампанию.",
     "inputDurationLabel1": "Дата начала",
     "inputDurationLabel2": "Дата окончания (необязательно)",
+    "inputDurationInvalidFeedback": "The end date must be set in the future.",
     "inputDatePickerHelper": "Используйте клавиши курсора для перемещения по датам календаря",
     "inputCountryHelper": "Чтобы нацелиться на несколько стран, необходимо создать несколько кампаний.",
     "inputCountryImutable": "Страна не может быть изменена после создания, если вы хотите выбрать другую страну, вам нужно будет создать новую кампанию.",
@@ -968,7 +969,7 @@
     "PMaxLiveTitle": "Performance Max is here",
     "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. \n\nPerformance Max is an enhanced campaign type powered by Google's smart technology. It works behind the scenes to automatically optimize your ads across the shopping journey to drive maximum performance. ",
     "PMaxMigrationTitle": "Important News",
-    "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now. \n\n You'll no longer be able to create Smart Shopping campaigns, but you're now able to create new campaigns with the next generation of Smart Shopping campaigns: Performance Max.",
+    "PMaxMigrationText": "Теперь ваши кампании Smart Shopping начнут автоматически обновляться до кампаний Performance Max.\n\n- Настройки кампании и бюджет остаются прежними. \n\n- Функциональные возможности соответствуют кампаниям Smart Shopping. \n\n- С этого момента вы можете создавать только кампании Performance Max.",
     "PmaxTextLink": "Learn more about Performance Max",
     "textPmaxReleased": "Today, you can start creating Performance Max campaigns, the next generation of Smart Shopping campaigns. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
   },
