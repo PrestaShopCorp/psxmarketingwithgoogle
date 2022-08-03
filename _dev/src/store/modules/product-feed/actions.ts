@@ -260,6 +260,7 @@ export default {
         return {
           ...deliveryDetailsStructure,
           ...deliveryDetailsSavedInLocalStorage,
+          ...carrierFromShop,
         };
       }
 
@@ -271,8 +272,8 @@ export default {
         return {
           ...deliveryDetailsStructure,
           enabledCarrier: true,
-          ...carrierFromShop,
           ...deliveryDetailsSavedOnAPI,
+          ...carrierFromShop,
         };
       }
 
