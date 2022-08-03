@@ -245,9 +245,9 @@
       "targetCountries": "Land van bestemming",
       "filterTitle": "Filter op land",
       "ifMultipleCountries": "Als u zich op meerdere landen richt, wordt elke productprijs in Google automatisch omgerekend naar de juiste valuta. Uw winkel moet echter wel verzend- en belastingtarieven hebben geconfigureerd voor elk geselecteerd land. Respecteer [landspecifiek winkelbeleid]({0})[:target=\"_blank\"] en [lokale regelgeving]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "My products are available in",
-      "placeholderSelect": "Select the countries where your products are available",
-      "cantFindCountry": "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
+      "productAvailaibleIn": "Mijn producten zijn verkrijgbaar in",
+      "placeholderSelect": "Selecteer de landen waar uw producten beschikbaar zijn",
+      "cantFindCountry": "Kun je geen land vinden? Alleen ondersteunde landen zijn vermeld. [Zie lijst van ondersteunde landen]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "Dit land is niet compatibel met uw munteenheid",
       "shippingSettings": "Verzendingsinstellingen",
       "shippingSettingsTitle": "Verzendingsinstellingen voor producten",
@@ -472,6 +472,7 @@
     "inputDurationTooltip": "Advertentiecampagnes hebben standaard geen einddatum, zodat de advertenties voor onbepaalde tijd kunnen lopen. U kunt altijd een einddatum toevoegen om een kortere campagne te maken.",
     "inputDurationLabel1": "Begindatum",
     "inputDurationLabel2": "Einddatum (facultatief)",
+    "inputDurationInvalidFeedback": "The end date must be set in the future.",
     "inputDatePickerHelper": "Gebruik de cursortoetsen om door de kalenderdata te navigeren",
     "inputCountryHelper": "Om meerdere landen te targeten, moet u meerdere campagnes aanmaken.",
     "inputCountryImutable": "Het land kan niet worden gewijzigd na het aanmaken, als u een ander land wilt targeten, moet u een nieuwe campagne aanmaken",
@@ -615,9 +616,9 @@
       "description": "{0} with problems that couldn't be synced are listed below.",
       "fields": {
         "name": "Naam",
-        "language": "Language",
+        "language": "Taal",
         "image": "Afbeelding",
-        "description": "Description",
+        "description": "Beschrijving",
         "barcode": "MPN",
         "price": "Prijs"
       },
@@ -842,7 +843,7 @@
     "back": "Terug naar",
     "saveAndContinue": "Opslaan en doorgaan",
     "yes": "Ja",
-    "done": "Done",
+    "done": "Klaar",
     "no": "Geen",
     "disable": "Uitschakelen",
     "disableProductFeed": "Producttoevoer uitschakelen",
@@ -905,8 +906,8 @@
     "googleProductStatusDefinitions": "Google productstatus definities",
     "visitThe": "Bezoek de {0} voor meer informatie",
     "investigate": "Investigate",
-    "createPmax": "Create Performance Max campaign",
-    "understand": "Ik begrijp het"
+    "createPmax": "Maximale prestaties-campagne aanmaken",
+    "understand": "Ik begrijp het."
   },
   "badge": {
     "free": "Gratis",
