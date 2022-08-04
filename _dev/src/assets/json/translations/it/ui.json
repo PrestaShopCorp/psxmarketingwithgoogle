@@ -246,7 +246,7 @@
       "filterTitle": "Filtrare per paese",
       "ifMultipleCountries": "Se ti rivolgi a più paesi, ogni prezzo del prodotto sarà automaticamente convertito nella valuta corretta in Google. Tuttavia il tuo negozio deve avere configurato le tariffe di spedizione e le tasse per ogni paese selezionato. Si prega di rispettare [le politiche di acquisto specifiche del paese]({0})[:target=\"_blank\"] e [la regolamentazione locale]({1})[:target=\"_blank\"]",
       "productAvailaibleIn": "My products are available in",
-      "placeholderSelect": "Select the countries where your products are available",
+      "placeholderSelect": "Seleziona i paesi in cui i tuoi prodotti sono disponibili",
       "cantFindCountry": "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "Questo paese non è compatibile con la tua valuta",
       "shippingSettings": "Impostazioni di spedizione",
@@ -448,7 +448,7 @@
   },
   "smartShoppingCampaignCard": {
     "title": "Aumentate le vostre vendite con Performance Max",
-    "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
+    "introNotConnected": "Collegate o create il vostro account Google Ads e lanciate una campagna Performance Max per i vostri prodotti. Massimizzate le prestazioni della vostra campagna su più canali Google attraverso un'unica campagna. Mostrate i vostri annunci dove hanno maggiori possibilità di conversione. Inoltre, non pagherete se i vostri clienti non faranno clic.",
     "introConnected": "Con Performance Max, puoi pubblicizzare i tuoi prodotti e massimizzare il rendimento dei tuoi annunci su più canali Google attraverso un'unica campagna. Ancora meglio, non paghi a meno che i tuoi clienti non facciano clic!",
     "footer": "Nello Spazio Economico Europeo, nel Regno Unito o in Svizzera, le campagne Performance Max possono essere utilizzate con qualsiasi Servizio di Comparison Shopping (CSS) con cui lavorate. Gli annunci verranno visualizzati sulle pagine dei risultati di ricerca generali e su qualsiasi altra superficie per la quale il CSS abbia optato.",
     "titleInfo": "Did you know?",
@@ -472,6 +472,7 @@
     "inputDurationTooltip": "Le campagne pubblicitarie non hanno una data di fine per impostazione predefinita, in modo che gli annunci siano in grado di funzionare a tempo indeterminato. Puoi sempre aggiungere una data di fine per creare una campagna più breve.",
     "inputDurationLabel1": "Data di inizio",
     "inputDurationLabel2": "Data di fine (opzionale)",
+    "inputDurationInvalidFeedback": "The end date must be set in the future.",
     "inputDatePickerHelper": "Usa i tasti del cursore per navigare tra le date del calendario",
     "inputCountryHelper": "Per mirare a più paesi devi creare più campagne.",
     "inputCountryImutable": "Il paese non può essere cambiato dopo la creazione, se vuoi mirare ad un paese diverso, dovrai creare una nuova campagna",
@@ -488,7 +489,7 @@
     "inputBudgetPlaceholder": "Importo",
     "inputAllSyncedProducts": "No filters selected",
     "formHelperTitle": "Attivazione della campagna",
-    "formHelperDescription": "Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.",
+    "formHelperDescription": "La tua campagna sarà attiva fino a quando non la metterai in pausa o non appena si arriverà alla data finale. Puoi metterla in pausa in qualsiasi momento.",
     "errorNoProducts": "Vuoi lanciare una campagna, ma il tuo merchant center di Google non contiene ancora nessun prodotto. La tua campagna inizierà solo quando almeno un prodotto sarà stato approvato da Google.",
     "errorApi": "We were not able to publish your campaign, please try again.",
     "errorFetchingFilters": "Non siamo stati in grado di recuperare tutti i filtri da Google. Non puoi modificarli per ora.",
@@ -504,7 +505,7 @@
       "duplicatedTag": "Sembra che tu abbia già un tag collegato al tuo account google, la creazione di un nuovo tag può duplicare gli eventi per le tue campagne. Ti suggeriamo di tenere solo quello che generiamo per te.",
       "noConversionActions": "Il tag di tracciamento è stato abilitato, ma non c'è nessuna azione di conversione impostata sul negozio. Questo può essere risolto creandone di nuovi.",
       "hasUnhandledFilters": "Almeno un filtro di questa campagna non è supportato da questo modulo. Per evitare qualsiasi perdita sulla tua configurazione esistente, solo i dettagli di base della campagna possono essere modificati.",
-      "PMaxExplanationTitle": "Performance Max is a new goal-based campaign.",
+      "PMaxExplanationTitle": "Performance Max è una nuova campagna basata su obiettivi.",
       "PMaxExplanation": "Performance Max è un tipo di campagna potenziata grazie alla tecnologia intelligente di Google. Può aiutartu a ottimizzare i tuoi annunci su più canali Google e a ottenere risultati migliori per la tua attività.",
       "PMaxExplanationPrecision": "Even better, you won't pay unless customers click.",
       "PMaxExplanationLink": "Per saperne di più su Performance Max"
@@ -615,9 +616,9 @@
       "description": "{0} with problems that couldn't be synced are listed below.",
       "fields": {
         "name": "Nome",
-        "language": "Language",
+        "language": "Lingua",
         "image": "Immagine",
-        "description": "Description",
+        "description": "Descrizione",
         "barcode": "MPN",
         "price": "Premio"
       },
@@ -808,7 +809,7 @@
     "acceptInvitation": "Accetta l'invito",
     "continue": "Continua",
     "disabled": "Disabilitato",
-    "activateModule": "Enable module",
+    "activateModule": "Attiva modulo",
     "enabled": "Abilitato",
     "agree": "Sono d'accordo",
     "enableFreeListing": "Abilita le inserzioni gratuite",
@@ -842,7 +843,7 @@
     "back": "Indietro",
     "saveAndContinue": "Salva e continua",
     "yes": "Sì",
-    "done": "Done",
+    "done": "Fatto",
     "no": "No",
     "disable": "Disattiva",
     "disableProductFeed": "Disattiva il feed dei prodotti",
@@ -905,7 +906,7 @@
     "googleProductStatusDefinitions": "Definizioni dello stato del prodotto di Google",
     "visitThe": "Visita il {0} per maggiori informazioni",
     "investigate": "Investigate",
-    "createPmax": "Create Performance Max campaign",
+    "createPmax": "Crea la campagna Performance Max",
     "understand": "Capisco che"
   },
   "badge": {
@@ -935,7 +936,7 @@
     "canceled": "Annullato",
     "testAccount": "Test",
     "loading": "Caricamento",
-    "new": "New"
+    "new": "Nuovo"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "Disconnetti il tuo Merchant Center?",
