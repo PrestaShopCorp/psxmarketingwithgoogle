@@ -3,7 +3,6 @@ imports:
   - { resource: common/buffer.yml }
   - { resource: common/config.yml }
   - { resource: common/context.yml }
-  - { resource: common/factory.yml }
   - { resource: common/handler.yml }
   - { resource: common/provider.yml }
   - { resource: common/repository.yml }
@@ -12,6 +11,7 @@ imports:
 services:
   psxmarketingwithgoogle:
     class: 'PsxMarketingWithGoogle'
+    public: true
     factory: ['Module', 'getInstanceByName']
     arguments:
       - 'psxmarketingwithgoogle'

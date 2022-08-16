@@ -24,7 +24,7 @@ use Exception;
 
 class MktgWithGoogleInstallerException extends Exception
 {
-    const MKTG_WITH_GOOGLE_INSTALL_EXCEPTION = 1;
+    public const MKTG_WITH_GOOGLE_INSTALL_EXCEPTION = 1;
 
-    const MKTG_WITH_GOOGLE_UNINSTALL_EXCEPTION = 2;
+    public const MKTG_WITH_GOOGLE_UNINSTALL_EXCEPTION = 2;
 }

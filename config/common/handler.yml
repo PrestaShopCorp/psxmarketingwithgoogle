@@ -1,9 +1,11 @@
 services:
   PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler
+    public: true
 
   PrestaShop\Module\PsxMarketingWithGoogle\Handler\RemarketingHookHandler:
       class: PrestaShop\Module\PsxMarketingWithGoogle\Handler\RemarketingHookHandler
+      public: true
       arguments:
         - '@PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter'
         - '@PrestaShop\Module\PsxMarketingWithGoogle\Buffer\TemplateBuffer'

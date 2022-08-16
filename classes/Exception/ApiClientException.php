@@ -24,11 +24,11 @@ use Exception;
 
 class ApiClientException extends Exception
 {
-    const REQUEST_EXCEPTION = 501;
+    public const REQUEST_EXCEPTION = 501;
 
-    const GET_EXCEPTION = 502;
+    public const GET_EXCEPTION = 502;
 
-    const POST_EXCEPTION = 503;
+    public const POST_EXCEPTION = 503;
 
-    const DELETE_EXCEPTION = 504;
+    public const DELETE_EXCEPTION = 504;
 }

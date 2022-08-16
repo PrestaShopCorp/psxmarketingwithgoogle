@@ -1,5 +1,0 @@
-services:
-  PrestaShop\Module\PsxMarketingWithGoogle\Factory\ApiClientFactory:
-    class: PrestaShop\Module\PsxMarketingWithGoogle\Factory\ApiClientFactory
-    arguments:
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Config\Env'

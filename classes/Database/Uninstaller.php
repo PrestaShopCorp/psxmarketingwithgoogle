@@ -29,7 +29,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment;
 
 class Uninstaller
 {
-    const CLASS_NAME = 'Uninstaller';
+    public const CLASS_NAME = 'Uninstaller';
 
     /**
      * @var array

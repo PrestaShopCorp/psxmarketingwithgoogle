@@ -1,6 +1,7 @@
 services:
   PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider
+    public: true
     arguments:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider'
       - '@psxmarketingwithgoogle.context'
@@ -10,20 +11,24 @@ services:
 
   PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider
+    public: true
     arguments:
       - '@psxmarketingwithgoogle.context'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider:
     class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\ProductDataProvider'
+    public: true
     arguments:
       - '@psxmarketingwithgoogle.context'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Provider\ConversionEventDataProvider:
     class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\ConversionEventDataProvider'
+    public: true
     arguments:
       - '@psxmarketingwithgoogle.context'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Provider\PageViewEventDataProvider:
     class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\PageViewEventDataProvider'
+    public: true
     arguments:
       - '@psxmarketingwithgoogle.context'
