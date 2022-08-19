@@ -38,7 +38,7 @@
         v-if="$route.params.step === ProductFeedSettingsPages.SHIPPING_SETUP"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
-      <shipping-settings
+      <delivery-time-and-rates
         v-if="$route.params.step === ProductFeedSettingsPages.SHIPPING_SETTINGS"
         v-bind="$attrs"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
@@ -65,7 +65,7 @@ import ProductFeedSettingsSteps from '@/enums/product-feed/product-feed-settings
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper';
 import ShippingSetup from './settings/shipping-setup/shipping-setup.vue';
-import ShippingSettings from './settings/shipping-settings/shipping-settings.vue';
+import DeliveryTimeAndRates from './settings/delivery-time-and-rates/delivery-time-and-rates.vue';
 import AttributeMapping from './settings/attribute-mapping/attribute-mapping.vue';
 import SyncSchedule from './settings/sync-schedule/sync-schedule.vue';
 import Summary from './settings/summary/summary';
@@ -75,7 +75,7 @@ export default {
   components: {
     ProductFeedStepper,
     ShippingSetup,
-    ShippingSettings,
+    DeliveryTimeAndRates,
     AttributeMapping,
     SyncSchedule,
     Summary,

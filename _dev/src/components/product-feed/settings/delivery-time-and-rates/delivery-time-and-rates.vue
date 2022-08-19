@@ -1,0 +1,114 @@
+<template>
+  <div>
+    <p class="h3 mb-2 font-weight-600">
+      {{ $t('productFeedSettings.deliveryTimeAndRates.title') }}
+    </p>
+    <target-countries/>
+    <shipping-settings/>
+    <actions-buttons
+      :next-step="nextStep"
+      :previous-step="previousStep"
+      :disable-continue="disableContinue"
+      @cancelProductFeedSettingsConfiguration="cancel()"
+    />
+  </div>
+</template>
+
+<script>
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
+import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
+import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
+import TableRowCarrier from './table-row-carrier.vue';
+import {validateDeliveryDetail} from '@/providers/shipping-settings-provider';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import TargetCountries from '@/components/product-feed/settings/delivery-time-and-rates/target-countries.vue';
+import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/shipping-settings.vue';
+
+export default {
+  components: {
+    SettingsFooter,
+    TableRowCarrier,
+    ActionsButtons,
+    TargetCountries,
+    ShippingSettings,
+  },
+  data() {
+    return {
+      countries: this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
+      countryChosen: null,
+    };
+  },
+  computed: {
+    shippingSettingsHeaderList() {
+      return Object.values(ShippingSettingsHeaderType);
+    },
+    carriers() {
+      return this.$store.state.productFeed.settings.deliveryDetails
+        .filter((carrier) => {
+          if (this.countryChosen) {
+            return this.countryChosen === carrier.country;
+          }
+          return this.countries.includes(carrier.country);
+        });
+    },
+    disableContinue() {
+      return !this.carriers.every(validateDeliveryDetail);
+    },
+  },
+  methods: {
+    hasToolTip(headerType) {
+      if (
+        headerType === ShippingSettingsHeaderType.SHIP_TO_CUSTOMER
+        || headerType === ShippingSettingsHeaderType.TRANSIT_TIME
+      ) {
+        return true;
+      }
+      return false;
+    },
+    hasHeader(headerType) {
+      if (
+        headerType === ShippingSettingsHeaderType.ACTION
+      ) {
+        return false;
+      }
+      return true;
+    },
+    previousStep() {
+      localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.SHIPPING_SETUP,
+        },
+      });
+      window.scrollTo(0, 0);
+    },
+    nextStep() {
+      this.$segment.track('[GGL] Product feed config - Step 2', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
+      localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
+        },
+      });
+      window.scrollTo(0, 0);
+    },
+    cancel() {
+      this.$emit('cancelProductFeedSettingsConfiguration');
+    },
+    refreshComponent() {
+      this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
+    },
+  },
+  mounted() {
+    this.refreshComponent();
+  },
+};
+</script>

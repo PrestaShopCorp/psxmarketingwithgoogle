@@ -26,7 +26,8 @@
     "min": "min.",
     "max": "max.",
     "helpPage" : "Help Page",
-    "noResultsFoundForX": " No results found for {0}"
+    "noResultsFoundForX": " No results found for {0}",
+    "days": "Days"
   },
   "landingPage": {
     "header": {
@@ -241,11 +242,11 @@
       "syncSchedule" : "Sync schedule"
     },
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
+    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
     "shippingSetup": {
       "title": "Shipping setup",
       "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
       "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
-      "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
       "estimateOption": {
         "title": "I can estimate shipping rates & times",
         "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office."
@@ -255,13 +256,13 @@
         "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country."
       }
     },
-    "shipping": {
+    "deliveryTimeAndRates": {
+      "title": "Delivery time & rates",
+      "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
       "targetCountries": "Target country",
       "filterTitle": "Filter by country",
       "ifMultipleCountries": "If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target=\"_blank\"] and [local regulation]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "My products are available in",
       "placeholderSelect": "Select the countries where your products are available",
-      "cantFindCountry": "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "This country is not compatible with your currency",
       "shippingSettings": "Shipping settings",
       "shippingSettingsTitle": "Products shipping settings",
@@ -278,18 +279,16 @@
       "manualImportTax": "Manually set up tax settings in Google Merchant Center",
       "appliedOnlyForUsa": "(applied only for the USA)",
       "alertTaxes": "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.",
-      "cantSelectCountryWithDifferentCurrency": "You can't select country with currency that differs from your main shop.",
       "carrierDescriptionHeader": "Carrier  \n description",
-      "enableHeader": "Enable  \n or disable",
+      "enableHeader": "Enable /  \n disable",
       "shipToCustomerHeader": "Doorstep  \n delivery",
-      "handlingTimeHeader": "Handling  \n time",
-      "transitTimeHeader": "Transit  \n time",
-      "countryHeader": "Target  \n country",
+      "transitTimeHeader": "Delivery time",
+      "countryHeader": "Country",
       "shipToCustomerTooltip": "Select if this carrier delivers to a customer’s address or not (service point, in store pickup). Google only allows enabling carriers who ship to an address.",
       "handlingTimeTooltip": "Enter how long it takes you to prepare an order until it’s picked up by the carrier in working days.",
       "transitTimeTooltip": "Enter how long it takes for your order to be shipped to the customer once it leaves your facility.",
-      "shippingInformationTitle": "Carriers & shipping information",
-      "shippingInformationIntro": "Enter shipping information for your carriers list. They have to ship to an address to be synchronized in Google Shopping.",
+      "shippingInformationTitle": "Shipping rates & transit time",
+      "shippingInformationIntro": "You can enable and configure the carriers you want to be displayed on Google Shopping.",
       "shippingTableNotice": "Make sure your store message matches your Google shopping delivery time information.",
       "shippingSwitchCarrier": "Switch to enable / desable carrier",
       "carriersDropdownHeader": "Copy shipping information to",

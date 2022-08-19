@@ -1,12 +1,15 @@
 <template>
   <b-form>
     <b-form-group
-      :label="$t('productFeedSettings.shipping.targetCountries')"
+      :label="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
       label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
       <label class="mb-2">
-        {{ $t('productFeedSettings.shipping.productAvailaibleIn') }}
+        {{ $t('productFeedSettings.deliveryTimeAndRates.productAvailaibleIn') }}
       </label>
+      <p class="mb-2 ps_gs-fz-12 font-italic text-muted">
+        {{ $t('productFeedSettings.submissionExplanation') }}
+      </p>
       <SelectCountry
         @countrySelected="saveCountrySelected"
         :default-value="countries"
@@ -15,63 +18,17 @@
         :not-full-width="true"
       />
     </b-form-group>
-    <b-form-group
-      class="mt-4"
-      :label="$t('productFeedSettings.shipping.shippingSettingsTitle')"
-      label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
-    >
-      <b-form-radio
-        data-test-id="radioButton"
-        v-model="shippingSettings"
-        name="shippingSettingsRadio"
-        :value="true"
-        class="mb-2"
-      >
-        <div>
-          <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.shipping.shippingLabel1') }}
-          </span>
-          <VueShowdown
-            class="text-muted ps_gs-fz-12 mb-0"
-            :markdown="$t('productFeedSettings.shipping.shippingDescription1')"
-          />
-        </div>
-      </b-form-radio>
-      <b-form-radio
-        v-model="shippingSettings"
-        name="shippingSettingsRadio"
-        :value="false"
-        class="mb-2"
-      >
-        <div>
-          <span class="font-weight-normal mb-1">
-            {{ $t('productFeedSettings.shipping.shippingLabel2') }}
-          </span>
-          <VueShowdown
-            class="text-muted ps_gs-fz-12 mb-0"
-            :markdown="$t('productFeedSettings.shipping.shippingDescription2')"
-          />
-        </div>
-      </b-form-radio>
-      <div
-        class="d-flex align-items-center"
-      >
-        <i class="material-icons-round ps_gs-fz-14 text-secondary mr-2">warning_amber</i>
-        <p class="ps_gs-fz-12 mb-0">
-          {{ $t('productFeedSettings.shipping.noticeSetupShipping') }}
-        </p>
-      </div>
-    </b-form-group>
+
     <div
       v-if="isUS"
       class="pb-2"
     >
       <div class="d-flex flex-wrap align-items-center mb-3">
         <span class="h4 mb-0 font-weight-600 mr-1">
-          {{ $t('productFeedSettings.shipping.taxSettings') }}
+          {{ $t('productFeedSettings.deliveryTimeAndRates.taxSettings') }}
         </span>
         <span class="text-muted ps_gs-fz-12">
-          {{ $t('productFeedSettings.shipping.appliedOnlyForUsa') }}
+          {{ $t('productFeedSettings.deliveryTimeAndRates.appliedOnlyForUsa') }}
         </span>
       </div>
       <b-alert
@@ -80,7 +37,7 @@
         class="mb-0"
       >
         <p>
-          {{ $t('productFeedSettings.shipping.alertTaxes') }}
+          {{ $t('productFeedSettings.deliveryTimeAndRates.alertTaxes') }}
         </p>
         <div>
           <b-button
@@ -94,12 +51,6 @@
         </div>
       </b-alert>
     </div>
-    <actions-buttons
-      :next-step="nextStep"
-      :disable-continue="disableContinue"
-      @cancelProductFeedSettingsConfiguration="cancel()"
-    />
-    <settings-footer />
   </b-form>
 </template>
 

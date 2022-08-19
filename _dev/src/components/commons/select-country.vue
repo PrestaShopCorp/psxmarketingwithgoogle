@@ -7,7 +7,7 @@
       @search="onSearchCountry"
       label="name"
       v-model="countries"
-      :placeholder=" $t('productFeedSettings.shipping.placeholderSelect')"
+      :placeholder=" $t('productFeedSettings.deliveryTimeAndRates.placeholderSelect')"
       :class="{'maxw-sm-500': notFullWidth }"
     >
       <template v-slot:option="option">
@@ -19,19 +19,6 @@
         </div>
       </template>
     </ps-select>
-    <VueShowdown
-      v-if="displayLegend"
-      class="text-muted my-1 ps_gs-fz-12"
-      :markdown="$t('productFeedSettings.shipping.cantFindCountry', [
-        $options.googleUrl.supportedCountries
-      ])"
-      :extensions="['extended-link']"
-    />
-    <VueShowdown
-      v-if="needFilter && displayLegend"
-      class="text-muted my-1 ps_gs-fz-12"
-      :markdown="$t('productFeedSettings.shipping.cantSelectCountryWithDifferentCurrency')"
-    />
   </div>
 </template>
 
@@ -67,11 +54,6 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-    },
-    displayLegend: {
-      type: Boolean,
-      required: false,
-      default: true,
     },
     notFullWidth: {
       type: Boolean,

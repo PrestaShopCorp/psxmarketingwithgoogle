@@ -11,7 +11,7 @@
         {{ $t('productFeedSettings.shippingSetup.stepExplanation') }}
       </p>
       <p class="mb-2 ps_gs-fz-12 font-italic text-muted">
-        {{ $t('productFeedSettings.shippingSetup.submissionExplanation') }}
+        {{ $t('productFeedSettings.submissionExplanation') }}
       </p>
       <div
         class="p-3 mb-2 border rounded"

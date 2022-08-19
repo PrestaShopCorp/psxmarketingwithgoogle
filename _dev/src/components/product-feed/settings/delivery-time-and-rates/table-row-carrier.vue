@@ -9,7 +9,7 @@
         size="sm"
         class="ps_gs-switch mb-0"
         v-model="carrier.enabledCarrier"
-        :aria-label="$t('productFeedSettings.shipping.shippingSwitchCarrier')"
+        :aria-label="$t('productFeedSettings.deliveryTimeAndRates.shippingSwitchCarrier')"
       />
     </td>
     <td class="py-3">
@@ -27,7 +27,7 @@
         {{ carrier.delay }}
       </p>
     </td>
-    <td>
+    <!--<td>
       <b-dropdown
         :ref="`dropdownCarriers${carrier.carrierId}-${carrier.country}`"
         :text="deliveryTypeMessage || $t('cta.select')"
@@ -62,33 +62,7 @@
           </span>
         </b-dropdown-item-button>
       </b-dropdown>
-    </td>
-    <td class="py-3">
-      <div class="ps_gs-carrier__input-number-wrapper">
-        <b-form-input
-          type="number"
-          class="ps_gs-carrier__input-number no-arrows"
-          size="sm"
-          v-model.number="carrier.minHandlingTimeInDays"
-          min="0"
-          max="250"
-          :disabled="disableInputNumber"
-          :state="timeStateHandling"
-          :placeholder="$t('general.min')"
-        />
-        <b-form-input
-          type="number"
-          class="ps_gs-carrier__input-number no-arrows"
-          size="sm"
-          min="0"
-          max="250"
-          v-model.number="carrier.maxHandlingTimeInDays"
-          :disabled="disableInputNumber"
-          :state="timeStateHandling"
-          :placeholder="$t('general.max')"
-        />
-      </div>
-    </td>
+    </td>-->
     <td class="py-3">
       <div class="ps_gs-carrier__input-number-wrapper">
         <b-form-input
@@ -101,15 +75,20 @@
           :state="timeStateDelivery"
           :placeholder="$t('general.min')"
         />
-        <b-form-input
-          type="number"
-          class="ps_gs-carrier__input-number no-arrows"
-          size="sm"
-          v-model.number="carrier.maxTransitTimeInDays"
-          :disabled="disableInputNumber"
-          :state="timeStateDelivery"
-          :placeholder="$t('general.max')"
-        />
+        <b-input-group
+          :append="$t('general.days')"
+          class="ps_gs-carrier__input-number-group"
+        >
+          <b-form-input
+            type="number"
+            class="ps_gs-carrier__input-number no-arrows"
+            size="sm"
+            v-model.number="carrier.maxTransitTimeInDays"
+            :disabled="disableInputNumber"
+            :state="timeStateDelivery"
+            :placeholder="$t('general.max')"
+          />
+        </b-input-group>
       </div>
     </td>
     <td class="py-3">
@@ -129,13 +108,13 @@
             title="You can copy this carrier"
           >content_copy</i>
           <span class="sr-only">
-            {{ $t('productFeedSettings.shipping.carriersDropdownHiddenLabel') }}
+            {{ $t('productFeedSettings.deliveryTimeAndRates.carriersDropdownHiddenLabel') }}
           </span>
         </template>
         <b-dropdown-header
           class="ps_gs-carrier-dropdown__header"
         >
-          {{ $t('productFeedSettings.shipping.carriersDropdownHeader') }}
+          {{ $t('productFeedSettings.deliveryTimeAndRates.carriersDropdownHeader') }}
         </b-dropdown-header>
         <b-dropdown-form
           form-class="dropdown-form-with-checkbox text-dark px-3"
@@ -183,7 +162,7 @@
 
 <script lang="ts">
 import {PropType} from '@vue/composition-api';
-import DeliveryType from '@/enums/product-feed/delivery-type.ts';
+import DeliveryType from '@/enums/product-feed/delivery-type';
 import {
   validateHandlingTimes, validateTransitTimes,
 } from '@/providers/shipping-settings-provider';

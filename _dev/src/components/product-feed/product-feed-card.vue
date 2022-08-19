@@ -179,7 +179,7 @@
             >
               <product-feed-card-report-card
                 :status="targetCountriesStatus"
-                :title="$t('productFeedSettings.shipping.targetCountries')"
+                :title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
                 :description="targetCountries.join(', ')"
                 :link="$t('cta.editCountries')"
                 :link-to="{ name: 'product-feed-settings',
@@ -187,7 +187,7 @@
               />
               <product-feed-card-report-card
                 :status="shippingSettingsStatus"
-                :title="$t('productFeedSettings.shipping.shippingSettings')"
+                :title="$t('productFeedSettings.deliveryTimeAndRates.shippingSettings')"
                 :description="shippingSettings"
                 :link="$t('cta.editSettings')"
                 :link-to="{ name: 'product-feed-settings',
@@ -196,7 +196,7 @@
               <product-feed-card-report-card
                 v-if="isUS"
                 :status="taxSettingsStatus"
-                :title="$t('productFeedSettings.shipping.taxSettings')"
+                :title="$t('productFeedSettings.deliveryTimeAndRates.taxSettings')"
                 :description="taxSettings"
                 :link="$t('cta.editSettings')"
                 :link-to="{ name: 'product-feed-settings',
@@ -306,8 +306,8 @@ export default {
         return this.$t('productFeedCard.missingInformation');
       }
       return this.getProductFeedSettings.autoImportShippingSettings
-        ? this.$t('productFeedSettings.shipping.automatically')
-        : this.$t('productFeedSettings.shipping.manually');
+        ? this.$t('productFeedSettings.deliveryTimeAndRates.automatically')
+        : this.$t('productFeedSettings.deliveryTimeAndRates.manually');
     },
     shippingSettingsStatus() {
       return this.getProductFeedSettings.autoImportShippingSettings !== undefined
@@ -328,8 +328,8 @@ export default {
         return this.$t('productFeedCard.missingInformation');
       }
       return this.getProductFeedSettings.autoImportTaxSettings
-        ? this.$t('productFeedSettings.shipping.automatically')
-        : this.$t('productFeedSettings.shipping.manually');
+        ? this.$t('productFeedSettings.deliveryTimeAndRates.automatically')
+        : this.$t('productFeedSettings.deliveryTimeAndRates.manually');
     },
     taxSettingsStatus() {
       // TODO BATCH 2
