@@ -11,7 +11,7 @@ import config, {localVue, cloneStore, filters} from '@/../tests/init';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
-import Stepper from '@/components/commons/stepper.vue';
+import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 
 import {
@@ -27,7 +27,7 @@ describe('product-feed-card.vue', () => {
   const mockRoute = {
     name: 'product-feed-settings',
     params: {
-      step: ProductFeedSettingsPages.TARGET_COUNTRY,
+      step: ProductFeedSettingsPages.SHIPPING_SETUP,
     },
   };
   const mockRouter = {
@@ -97,8 +97,8 @@ describe('product-feed-card.vue', () => {
       },
       store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
-    expect(wrapper.findComponent(Stepper).exists()).toBeTruthy();
-    expect(wrapper.findComponent(Stepper).props('activeStep')).toBe(1);
+    expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeTruthy();
+    expect(wrapper.findComponent(ProductFeedStepper).props('activeStep')).toBe(1);
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
     expect(wrapper.find('b-button').exists()).toBeTruthy();
   });
@@ -199,8 +199,8 @@ describe('product-feed-card.vue', () => {
       },
       store: new Vuex.Store(storeApiError),
     });
-    expect(wrapper.findComponent(Stepper).exists()).toBeTruthy();
-    expect(wrapper.findComponent(Stepper).props('activeStep')).toBe(1);
+    expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeTruthy();
+    expect(wrapper.findComponent(ProductFeedStepper).props('activeStep')).toBe(1);
     expect(wrapper.find('b-button').attributes('disabled')).toBe('true');
     expect(wrapper.find('b-button').text()).toEqual('Start product feed configuration');
     expect(wrapper.findComponent(BAlert).exists()).toBeTruthy();

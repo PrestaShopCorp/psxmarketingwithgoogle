@@ -56,11 +56,7 @@
               {{ $t("cta.learnAboutProductConfiguration") }}
             </a>
           </p>
-          <stepper
-            class="mt-2"
-            :steps="steps"
-            :active-step="1"
-          />
+          <product-feed-stepper />
           <div
             class="d-flex justify-content-center justify-content-md-end mt-n1"
             v-if="isEnabled"
@@ -187,7 +183,7 @@
                 :description="targetCountries.join(', ')"
                 :link="$t('cta.editCountries')"
                 :link-to="{ name: 'product-feed-settings',
-                            step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
+                            step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
               />
               <product-feed-card-report-card
                 :status="shippingSettingsStatus"
@@ -204,7 +200,7 @@
                 :description="taxSettings"
                 :link="$t('cta.editSettings')"
                 :link-to="{ name: 'product-feed-settings',
-                            step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
+                            step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
               />
               <product-feed-card-report-card
                 :status="attributeMappingStatus"
@@ -226,7 +222,7 @@
 import {VueShowdown} from 'vue-showdown';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
-import Stepper from '../commons/stepper';
+import ProductFeedStepper from '@/components/product-feed/product-feed-stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -234,7 +230,7 @@ import SegmentGenericParams from '@/utils/SegmentGenericParams';
 export default {
   name: 'ProductFeedCard',
   components: {
-    Stepper,
+    ProductFeedStepper,
     ProductFeedCardReportCard,
     BadgeListRequirements,
     VueShowdown,
@@ -242,23 +238,6 @@ export default {
   data() {
     return {
       ProductFeedSettingsPages,
-      steps: [
-        {
-          title: this.$i18n.t('productFeedSettings.steps.targetCountry'),
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.syncSchedule'),
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.summary'),
-        },
-      ],
     };
   },
   props: {
@@ -471,7 +450,7 @@ export default {
       this.$router.push({
         name: 'product-feed-settings',
         params: {
-          step: ProductFeedSettingsPages.TARGET_COUNTRY,
+          step: ProductFeedSettingsPages.SHIPPING_SETUP,
         },
       });
       this.$segment.track('[GGL] Start Product feed configuration', {

@@ -221,7 +221,7 @@ export default {
       this.$router.push({
         name: 'product-feed-settings',
         params: {
-          step: ProductFeedSettingsPages.TARGET_COUNTRY,
+          step: ProductFeedSettingsPages.SHIPPING_SETUP,
         },
       });
       window.scrollTo(0, 0);

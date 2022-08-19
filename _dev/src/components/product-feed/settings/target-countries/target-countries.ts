@@ -11,7 +11,7 @@ import ProductFeedSettingsShipping from './target-countries.vue';
 import Stepper from '@/components/commons/stepper.vue';
 import PsSelect from '@/components/commons/ps-select.vue';
 import {
-  TargetCountry,
+  SettingsSetup,
 } from '@/../stories/product-feed-settings.stories';
 import countriesSelectionOptions from '@/assets/json/countries.json';
 
@@ -33,8 +33,8 @@ describe('product-feed-settings-shipping.vue', () => {
 
   it('shows button continue and triggers next step on click', async () => {
     const wrapper = shallowMount(ProductFeedSettingsShipping, {
-      propsData: TargetCountry.args,
-      beforeMount: TargetCountry.args.beforeMount,
+      propsData: SettingsSetup.args,
+      beforeMount: SettingsSetup.args.beforeMount,
       localVue,
       store: new Vuex.Store(mockStore),
     });
@@ -48,8 +48,8 @@ describe('product-feed-settings-shipping.vue', () => {
 
   it('shows button cancel and triggers previous step on click', async () => {
     const wrapper = shallowMount(ProductFeedSettingsShipping, {
-      propsData: TargetCountry.args,
-      beforeMount: TargetCountry.args.beforeMount,
+      propsData: SettingsSetup.args,
+      beforeMount: SettingsSetup.args.beforeMount,
       localVue,
       store: new Vuex.Store(cloneStore()),
     });
@@ -63,8 +63,8 @@ describe('product-feed-settings-shipping.vue', () => {
   it('shows input target countries', () => {
     const wrapper = mount(ProductFeedSettingsShipping, {
       store: new Vuex.Store(cloneStore()),
-      propsData: TargetCountry.args,
-      beforeMount: TargetCountry.args.beforeMount,
+      propsData: SettingsSetup.args,
+      beforeMount: SettingsSetup.args.beforeMount,
       localVue,
       stubs: {
         VueShowdown: true,
@@ -77,8 +77,8 @@ describe('product-feed-settings-shipping.vue', () => {
 
   it('shows button radio with auto and manually import settings with prefill', () => {
     const wrapper = shallowMount(ProductFeedSettingsShipping, {
-      propsData: TargetCountry.args,
-      beforeMount: TargetCountry.args.beforeMount,
+      propsData: SettingsSetup.args,
+      beforeMount: SettingsSetup.args.beforeMount,
       localVue,
       store: new Vuex.Store(cloneStore()),
     });

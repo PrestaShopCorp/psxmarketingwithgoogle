@@ -49,17 +49,16 @@ export default {
     nextStep: {
       type: Function,
       required: true,
-      default: () => {},
     },
     previousStep: {
       type: Function,
       required: false,
-      default: () => {},
+      default: null,
     },
     disableContinue: {
       type: Boolean,
       required: false,
-      default: true,
+      default: false,
     },
     disableTooltip: {
       type: String,
