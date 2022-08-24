@@ -231,8 +231,8 @@
     "breadcrumb1": "Product feed",
     "breadcrumb2": "Product feed settings",
     "steps": {
-      "targetCountry": "Target country",
-      "shippingSettings": "Shipping settings",
+      "shippingSetup": "Shipping setup",
+      "deliveryTimesAndRates": "Delivery time & rates",
       "attributeMapping": "Attribute mapping",
       "categoryMapping": "Category mapping",
       "summary": "Summary",
@@ -241,6 +241,20 @@
       "syncSchedule" : "Sync schedule"
     },
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
+    "shippingSetup": {
+      "title": "Shipping setup",
+      "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
+      "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
+      "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
+      "estimateOption": {
+        "title": "I can estimate shipping rates & times",
+        "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office."
+      },
+      "importOption": {
+        "title": "I’d like to import my shipping setup from PrestaShop back office",
+        "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country."
+      }
+    },
     "shipping": {
       "targetCountries": "Target country",
       "filterTitle": "Filter by country",

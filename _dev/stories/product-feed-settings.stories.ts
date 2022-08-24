@@ -92,13 +92,13 @@ const Template = (args, {argTypes}) => ({
   beforeMount: args.beforeMount,
 });
 
-export const TargetCountry:any = Template.bind({});
-TargetCountry.args = {
+export const SettingsSetup:any = Template.bind({});
+SettingsSetup.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeed);
     this.$store.state.app = Object.assign({},initialStateApp);
     this.$store.state.productFeed.stepper = 1;
-      this.$router.history.current.params.step = ProductFeedSettingsPages.TARGET_COUNTRY
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETUP
   },
 };
 

@@ -48,7 +48,7 @@
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
             :link-to="{ name: 'product-feed-settings',
-                        step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
+                        step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
           />
           <product-feed-card-report-card
             status="success"

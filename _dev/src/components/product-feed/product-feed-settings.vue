@@ -31,12 +31,11 @@
     <b-card-body
       body-class="p-3 p-md-4"
     >
-      <stepper
-        :steps="steps"
+      <product-feed-stepper
         :active-step="activeStep"
       />
-      <target-country
-        v-if="$route.params.step === ProductFeedSettingsPages.TARGET_COUNTRY"
+      <shipping-setup
+        v-if="$route.params.step === ProductFeedSettingsPages.SHIPPING_SETUP"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
       <shipping-settings
@@ -64,8 +63,8 @@
 <script>
 import ProductFeedSettingsSteps from '@/enums/product-feed/product-feed-settings-steps';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-import Stepper from '../commons/stepper';
-import TargetCountry from './settings/target-countries/target-countries.vue';
+import ProductFeedStepper from '@/components/product-feed/product-feed-stepper';
+import ShippingSetup from './settings/shipping-setup/shipping-setup.vue';
 import ShippingSettings from './settings/shipping-settings/shipping-settings.vue';
 import AttributeMapping from './settings/attribute-mapping/attribute-mapping.vue';
 import SyncSchedule from './settings/sync-schedule/sync-schedule.vue';
@@ -74,8 +73,8 @@ import Summary from './settings/summary/summary';
 export default {
   name: 'ProductFeedSettings',
   components: {
-    Stepper,
-    TargetCountry,
+    ProductFeedStepper,
+    ShippingSetup,
     ShippingSettings,
     AttributeMapping,
     SyncSchedule,
@@ -97,26 +96,6 @@ export default {
         return indexOfRoute;
       }
       return 0;
-    },
-    steps() {
-      return [
-        {
-          title: this.$i18n.t('productFeedSettings.steps.targetCountry'),
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
-          notClickable: !this.$store.state.productFeed.settings.autoImportShippingSettings,
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.syncSchedule'),
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.summary'),
-        },
-      ];
     },
   },
   mounted() {
