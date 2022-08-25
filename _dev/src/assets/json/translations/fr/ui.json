@@ -583,7 +583,7 @@
         },
         "subtitle": {
           "willHappenOnDate": "Commencera le {0} à {1}",
-          "happenedOnDate": "On {date}",
+          "happenedOnDate": "Le {date}",
           "error": "En raison d'un problème technique, la synchronisation a échoué le {0} à {1}. Une nouvelle synchronisation sera effectuée dans quelques heures."
         }
       }
