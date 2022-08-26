@@ -3,8 +3,8 @@
     <p class="h3 mb-2 font-weight-600">
       {{ $t('productFeedSettings.deliveryTimeAndRates.title') }}
     </p>
-    <target-countries/>
-    <shipping-settings/>
+    <target-countries />
+    <shipping-settings />
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
@@ -17,9 +17,7 @@
 <script>
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
-import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
-import TableRowCarrier from './table-row-carrier.vue';
 import {validateDeliveryDetail} from '@/providers/shipping-settings-provider';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import TargetCountries from '@/components/product-feed/settings/delivery-time-and-rates/target-countries.vue';
@@ -27,8 +25,6 @@ import ShippingSettings from '@/components/product-feed/settings/delivery-time-a
 
 export default {
   components: {
-    SettingsFooter,
-    TableRowCarrier,
     ActionsButtons,
     TargetCountries,
     ShippingSettings,

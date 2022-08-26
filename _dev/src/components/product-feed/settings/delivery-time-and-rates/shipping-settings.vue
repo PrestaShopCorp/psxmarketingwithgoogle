@@ -59,7 +59,8 @@
               :class="hasToolTip(type) && 'p-0 text-left'"
               :variant="hasToolTip(type) && 'text'"
               v-b-tooltip:psxMktgWithGoogleApp="{disabled: !hasToolTip(type)}"
-              :title="hasToolTip(type) && $t(`productFeedSettings.deliveryTimeAndRates.${type}Tooltip`)"
+              :title="hasToolTip(type)
+                && $t(`productFeedSettings.deliveryTimeAndRates.${type}Tooltip`)"
               v-if="hasHeader(type)"
             >
               <VueShowdown
@@ -152,13 +153,11 @@
 </template>
 
 <script>
-import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
 import {validateDeliveryDetail} from '@/providers/shipping-settings-provider';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   components: {

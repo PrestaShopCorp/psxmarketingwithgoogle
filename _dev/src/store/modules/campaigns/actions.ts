@@ -17,7 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import dayjs from 'dayjs';
+import dayjs, {ManipulateType} from 'dayjs';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '@/utils/HttpClientError';
@@ -266,7 +266,7 @@ export default {
     {commit, state},
   ) {
     const {periodSelected} = state.reporting.request.dateRange;
-    const substractType = {type: 'day', value: 0};
+    const substractType: {type: ManipulateType, value: number} = {type: 'day', value: 0};
 
     switch (periodSelected) {
       case ReportingPeriod.YESTERDAY:
