@@ -102,8 +102,17 @@ SettingsSetup.args = {
   },
 };
 
-export const ShippingSettings:any = Template.bind({});
-ShippingSettings.args = {
+export const EstimateDeliveryTimeAndRates:any = Template.bind({});
+EstimateDeliveryTimeAndRates.args = {
+  beforeMount(this: any) {
+    this.$store.state.productFeed = Object.assign({},productFeed);
+    this.$store.state.productFeed.stepper = 2;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
+  },
+};
+
+export const ImportDeliveryTimeAndRates:any = Template.bind({});
+ImportDeliveryTimeAndRates.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeed);
     this.$store.state.productFeed.stepper = 2;
@@ -112,8 +121,8 @@ ShippingSettings.args = {
 };
 
 
-export const ShippingSettingsNoCarriers:any = Template.bind({});
-ShippingSettingsNoCarriers.args = {
+export const ImportDeliveryTimeAndRatesNoCarriers:any = Template.bind({});
+ImportDeliveryTimeAndRatesNoCarriers.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeedNoCarriers);
     this.$store.state.productFeed.stepper = 2;

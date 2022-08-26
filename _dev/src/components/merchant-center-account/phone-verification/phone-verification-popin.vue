@@ -21,7 +21,7 @@
           class="d-flex maxw-sm-320"
         >
           <ps-select
-            :placeholder="$t('productFeedSettings.shipping.placeholderSelect')"
+            :placeholder="$t('productFeedSettings.deliveryTimeAndRates.placeholderSelect')"
             :options="$options.phonesPrefixSelectionOptions"
             :deselect-from-dropdown="true"
             :clearable="false"

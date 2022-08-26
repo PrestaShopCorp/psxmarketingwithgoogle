@@ -52,7 +52,7 @@
             link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
             @click="langChosen = null"
           >
-            {{ $t('productFeedSettings.shipping.filterTitle') }}
+            {{ $t('productFeedSettings.deliveryTimeAndRates.filterTitle') }}
           </b-dropdown-item>
           <b-dropdown-item
             :disabled="lang === langChosen"

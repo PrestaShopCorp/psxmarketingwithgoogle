@@ -44,7 +44,7 @@
         >
           <product-feed-card-report-card
             status="success"
-            :title="$t('productFeedSettings.shipping.targetCountries')"
+            :title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
             :description="targetCountries.join(', ')"
             :link="$t('cta.editCountries')"
             :link-to="{ name: 'product-feed-settings',
@@ -52,7 +52,7 @@
           />
           <product-feed-card-report-card
             status="success"
-            :title="$t('productFeedSettings.shipping.shippingSettings')"
+            :title="$t('productFeedSettings.deliveryTimeAndRates.shippingSettings')"
             :description="shippingSettings"
             :link="$t('cta.editSettings')"
             :link-to="{ name: 'product-feed-settings',
@@ -264,8 +264,8 @@ export default {
       ProductFeedSettingsPages,
       shippingSettings:
       this.$store.state.productFeed.settings.autoImportShippingSettings
-        ? this.$t('productFeedSettings.shipping.automatically')
-        : this.$t('productFeedSettings.shipping.manually'),
+        ? this.$t('productFeedSettings.deliveryTimeAndRates.automatically')
+        : this.$t('productFeedSettings.deliveryTimeAndRates.manually'),
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
       acceptSyncSchedule: false,
