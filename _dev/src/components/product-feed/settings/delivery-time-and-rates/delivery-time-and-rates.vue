@@ -19,7 +19,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import CreateCustomCarrier from '@/components/product-feed/settings/delivery-time-and-rates/create-custom-carrier.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
@@ -28,21 +31,26 @@ import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import TargetCountries from '@/components/product-feed/settings/delivery-time-and-rates/target-countries.vue';
 import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/import-method/shipping-settings.vue';
 
-export default {
+export default Vue.extend({
   components: {
     ActionsButtons,
     TargetCountries,
     ShippingSettings,
+    CreateCustomCarrier,
   },
   data() {
     return {
       countries: this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
       countryChosen: null,
+      ShippingSetupOption,
     };
   },
   computed: {
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
+    },
+    getShippingValueSetup(): string|null {
+      return getDataFromLocalStorage('productFeed-shippingSetup');
     },
     carriers() {
       return this.$store.state.productFeed.settings.deliveryDetails
@@ -118,5 +126,5 @@ export default {
   mounted() {
     this.refreshComponent();
   },
-};
+});
 </script>
