@@ -26,15 +26,16 @@
                 </b-button>
               </div>
               <div class="mb-4">
-                <input
+                <b-form-input
                   type="text"
                   class="form-control"
                   style="max-width: 200px;"
                   id="carrierName"
-                  v-model="carrierName"
+                  v-model="carrier.carrierName"
+                  :state="validateCarrierName"
                   placeholder="Description"
                   max="90"
-                >
+                />
               </div>
             </div>
 
@@ -51,7 +52,7 @@
                   class="form-check-input"
                   name="offersChoice"
                   type="radio"
-                  v-model="offerChosen"
+                  v-model="carrier.offerChosen"
                   :id="`${offer.name}${index}`"
                   :value="offer.value"
                   :checked="offer.checked"
@@ -85,6 +86,8 @@
                     type="number"
                     class="ps_gs-carrier__input-number no-arrows"
                     size="sm"
+                    :state="validateTimeDelivery"
+                    v-model.number="carrier.minDeliveryTime"
                     min="0"
                     :placeholder="$t('general.min')"
                   />
@@ -95,15 +98,17 @@
                     <b-form-input
                       type="number"
                       style="max-width: 50px;"
+                      v-model.number="carrier.maxDeliveryTime"
                       class="ps_gs-carrier__input-number no-arrows"
                       size="sm"
+                      :state="validateTimeDelivery"
                       :placeholder="$t('general.max')"
                     />
                   </b-input-group>
                 </div>
               </b-col>
             </b-row>
-            <shipping-rate :offer-chosen="offerChosen" />
+            <shipping-rate :offer-chosen="carrier.offerChosen" />
           </b-col>
         </b-row>
       </b-container>
@@ -113,6 +118,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import {OfferType} from '@/enums/product-feed/offer';
+import {validateDeliveryTime, validateCarrierName} from '@/providers/shipping-rate-provider';
 import ShippingRate from '@/components/product-feed/settings/delivery-time-and-rates/shipping-rate.vue';
 
 export default Vue.extend({
@@ -122,8 +128,12 @@ export default Vue.extend({
   },
   data() {
     return {
-      carrierName: '',
-      offerChosen: '',
+      carrier: {
+        carrierName: '',
+        offerChosen: '' as OfferType,
+        maxDeliveryTime: 0,
+        minDeliveryTime: 0,
+      },
       offers: [
         {
           name: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.freeShippingRateForAllProducts'),
@@ -144,6 +154,12 @@ export default Vue.extend({
     };
   },
   computed: {
+    validateTimeDelivery(): boolean|null {
+      return validateDeliveryTime(this.carrier) ? null : false;
+    },
+    validateCarrierName(): boolean|null {
+      return validateCarrierName(this.carrier) ? null : false;
+    },
   },
   methods: {
   },

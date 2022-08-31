@@ -27,7 +27,8 @@
               type="number"
               class="ps_gs-carrier__input-number no-arrows"
               size="sm"
-              :placeholder="$t('general.max')"
+              v-model.number="flateRate.shippingRateAmount"
+              :state="validateAmountRate(flateRate.shippingRateAmount)"
             />
           </b-input-group>
         </div>
@@ -66,7 +67,8 @@
               type="number"
               class="ps_gs-carrier__input-number no-arrows"
               size="sm"
-              :placeholder="$t('general.max')"
+              v-model.number="shippingOver.shippingRateAmount"
+              :state="validateAmountRate(shippingOver.shippingRateAmount)"
             />
           </b-input-group>
         </b-col>
@@ -101,7 +103,8 @@
               type="number"
               class="ps_gs-carrier__input-number no-arrows"
               size="sm"
-              :placeholder="$t('general.max')"
+              :state="validateAmountRate(shippingOver.freeShippingOverAmount)"
+              v-model.number="shippingOver.freeShippingOverAmount"
             />
           </b-input-group>
         </b-col>
@@ -121,12 +124,24 @@ export default Vue.extend({
   data() {
     return {
       OfferType,
+      shippingOver: {
+        shippingRateAmount: 0,
+        freeShippingOverAmount: 0,
+      },
+      flateRate: {
+        shippingRateAmount: 0,
+      },
     };
   },
   props: {
     offerChosen: {
       type: String as PropType<OfferType>,
       required: true,
+    },
+  },
+  methods: {
+    validateAmountRate(amount: number): boolean|null {
+      return Number.isInteger(amount) && amount >= 0 ? null : false;
     },
   },
   computed: {
