@@ -130,3 +130,8 @@ a.without-hover {
 .ps_gs-fz-14[class^="material-icons"] {
   width: rem(14);
 }
+
+.collapsed > .when-open,
+.not-collapsed > .when-closed {
+  display: none;
+}

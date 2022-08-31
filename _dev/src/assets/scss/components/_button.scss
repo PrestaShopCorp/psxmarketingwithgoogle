@@ -86,6 +86,12 @@
   }
 }
 
+.btn.btn-without-hover:not(.disabled) {
+  &:hover {
+    color: inherit!important;
+  }
+}
+
 
 .btn-max-width {
   max-width: 12ch;

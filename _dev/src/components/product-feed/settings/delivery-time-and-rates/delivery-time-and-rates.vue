@@ -10,6 +10,7 @@
     <shipping-settings
       :countries="countries"
     />
+
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
@@ -36,18 +37,26 @@ export default Vue.extend({
     ActionsButtons,
     TargetCountries,
     ShippingSettings,
-    CreateCustomCarrier,
   },
   data() {
     return {
-      countries: this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
       countryChosen: null,
+      rateChosen: null,
       ShippingSetupOption,
     };
   },
   computed: {
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
+    },
+    countries(): string[] {
+      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
+    },
+    hasMultipleCountries(): boolean {
+      return this.countries.length > 1;
+    },
+    convertToCountryName(): string[] {
+      return this.$options.filters.changeCountriesCodesToNames(this.countries);
     },
     getShippingValueSetup(): string|null {
       return getDataFromLocalStorage('productFeed-shippingSetup');
@@ -82,6 +91,9 @@ export default Vue.extend({
         return false;
       }
       return true;
+    },
+    getRate(value) {
+      this.rateChosen = value;
     },
     previousStep() {
       localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));

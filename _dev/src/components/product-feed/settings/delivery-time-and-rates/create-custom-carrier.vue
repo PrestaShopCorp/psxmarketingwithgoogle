@@ -94,6 +94,7 @@
                   >
                     <b-form-input
                       type="number"
+                      style="max-width: 50px;"
                       class="ps_gs-carrier__input-number no-arrows"
                       size="sm"
                       :placeholder="$t('general.max')"

@@ -260,6 +260,13 @@
       "title": "Delivery time & rates",
       "rateAndDelivery": "Rate & delivery timeline",
       "deliveryInfo": "Enter the minimum and maximum days required for delivery",
+      "customRate": {
+        "title": "Choose a flat or custom rate for your target countries",
+        "rateTitle": "Same rates for target countries",
+        "rateDesc": "I can estimate the same shipping rate and delivery time for all countries",
+        "customTitle": "Custom rates by country",
+        "customDesc": "I'd like to set different rates and times for each country"
+      },
       "estimateStep": {
         "carrierName": "Carrier name",
         "storeOffersTitle": "My store offers",
