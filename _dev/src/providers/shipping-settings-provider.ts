@@ -1,4 +1,4 @@
-import DeliveryType from "../enums/product-feed/delivery-type"
+import DeliveryType from '../enums/product-feed/delivery-type';
 
 export enum ShopShippingCollectionType {
     CARRIERS = 'carriers',
@@ -54,7 +54,7 @@ export type DeliveryDetail = {
 /**
  * Filters on active carriers, then clone them as many time as they have assigned countries
  *
- * @param source ShopShippingInterface[] 
+ * @param source ShopShippingInterface[]
  * @returns Carrier[]
  */
 export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
@@ -70,7 +70,7 @@ export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
 }
 
 /**
- * 
+ *
  * @param carriersFromShop DeliveryDetail[]
  * @param carriersFromApi DeliveryDetail[]
  * @param carriersFromLocalStorage DeliveryDetail[]
@@ -94,9 +94,11 @@ export function mergeShippingDetailsSourcesForProductFeedConfiguration(
     && !carriersFromApi.length;
 
   return carriersFromShop.map((carrierFromShop) => {
-    const deliveryDetailsSavedInLocalStorage = carriersFromLocalStorage.find((c : DeliveryDetail) => (
-      (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
-    ));
+    const deliveryDetailsSavedInLocalStorage = carriersFromLocalStorage.find(
+      (c : DeliveryDetail) => (
+        (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
+      ),
+    );
 
     if (deliveryDetailsSavedInLocalStorage) {
       return {

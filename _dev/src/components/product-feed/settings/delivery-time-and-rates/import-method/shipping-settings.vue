@@ -196,9 +196,6 @@ export default {
     carriers() {
       return this.$store.state.productFeed.settings.deliveryDetails
         .filter((carrier) => {
-          if (carrier.collection === 'carriers' && !carrier.country) {
-            return true;
-          }
           if (this.countryChosen) {
             return this.countryChosen === carrier.country;
           }
