@@ -56,8 +56,8 @@ export default Vue.extend({
     convertToCountryName(): string[] {
       return this.$options.filters.changeCountriesCodesToNames(this.countries);
     },
-    getShippingValueSetup(): string|null {
-      return getDataFromLocalStorage('productFeed-shippingSetup');
+    getShippingValueSetup(): ShippingSetupOption|null {
+      return this.$store.getters['productFeed/GET_SHIPPING_SETUP'];
     },
     carriers() {
       return this.$store.state.productFeed.settings.deliveryDetails

@@ -121,4 +121,14 @@ export default {
   [GettersTypes.GET_ATTRIBUTE_MAPPING](state: LocalState): AttributeResponseFromAPI {
     return state.attributeMapping;
   },
+  [GettersTypes.GET_SHIPPING_SETUP](state: LocalState) {
+    const setupSelected = getDataFromLocalStorage('productFeed-shippingSetup');
+
+    if (setupSelected !== null) {
+      state.settings.shippingSetup = setupSelected;
+    }
+
+    return state.settings.shippingSetup;
+  },
+
 };

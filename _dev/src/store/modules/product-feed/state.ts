@@ -20,6 +20,7 @@
 import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
 import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 
 export interface ProductFeedStatus {
   nextJobAt?: string;
@@ -30,6 +31,7 @@ export interface ProductFeedStatus {
 }
 
 export interface ProductFeedSettings {
+  shippingSetup: ShippingSetupOption|null;
   shippingSettings: object[];
   deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
@@ -169,6 +171,7 @@ export const state: State = {
     syncSchedule: '',
   },
   settings: {
+    shippingSetup: null,
     shippingSettings: [],
     deliveryDetails: [],
     autoImportTaxSettings: false,

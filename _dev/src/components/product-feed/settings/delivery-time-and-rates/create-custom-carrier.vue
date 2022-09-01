@@ -235,7 +235,7 @@
 import Vue, {PropType} from 'vue';
 import {OfferType} from '@/enums/product-feed/offer';
 import symbols from '@/assets/json/symbols.json';
-import {validateDeliveryTime, CustomCarrier} from '@/providers/shipping-rate-provider';
+import {validateDeliveryTime, CustomCarrier, validateOfferChoice} from '@/providers/shipping-rate-provider';
 
 export default Vue.extend({
   name: 'ProductFeedSettingsShipping',
@@ -287,7 +287,11 @@ export default Vue.extend({
       return false;
     },
     validateRadio(): boolean|null {
-      return this.carrier.offerChosen ? null : false;
+      if (this.carrier.offerChosen) {
+        return null;
+      }
+
+      return validateOfferChoice(this.carrier.offerChosen);
     },
     budgetCurrencySymbol() {
       const currentCurrency = this.$store.getters['app/GET_CURRENT_CURRENCY'];

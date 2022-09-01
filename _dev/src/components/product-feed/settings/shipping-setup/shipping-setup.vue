@@ -105,7 +105,7 @@ export default Vue.extend({
     },
     nextStep(): void {
       this.loading = true;
-      localStorage.setItem('productFeed-shippingSetup', JSON.stringify(this.chosenShippingSetup));
+      this.$store.commit('productFeed/SET_SHIPPING_SETUP_SELECTED', this.chosenShippingSetup);
       this.$segment.track('[GGL] Product feed config - Step 1 with Config my shipping settings now', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,

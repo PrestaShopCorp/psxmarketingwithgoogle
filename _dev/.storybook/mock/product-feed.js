@@ -15,6 +15,7 @@ export const productFeed = {
   attributeMapping: {},
   settings: {
     shippingSettings: [],
+    shippingSetup: null,
     targetCountries: ["FR"],
     deliveryDetails: [
       {
