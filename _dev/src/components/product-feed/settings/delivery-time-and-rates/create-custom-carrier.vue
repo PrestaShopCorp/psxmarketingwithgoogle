@@ -1,7 +1,13 @@
 <template>
   <div>
-    <p class="h3 mb-2 font-weight-600">
+    <p class="h3 mr-2 mb-2 font-weight-600 d-inline-block">
       {{ $t('productFeedSettings.deliveryTimeAndRates.rateAndDelivery') }}
+    </p>
+    <p
+      v-if="validationError"
+      class="text-danger ps-gs_fz-14 d-inline-block"
+    >
+      {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
     </p>
     <b-card class="mb-2">
       <b-container>
@@ -48,21 +54,16 @@
                 v-for="(offer, index) in offers"
                 :key="index"
               >
-                <input
+                <b-form-radio
+                  :state="validateRadio"
                   class="form-check-input"
                   name="offersChoice"
-                  type="radio"
                   v-model="carrier.offerChosen"
-                  :id="`${offer.name}${index}`"
+                  :id="`${offer.text}${index}`"
                   :value="offer.value"
-                  :checked="offer.checked"
                 >
-                <label
-                  class="form-check-label"
-                  :for="`${offer.name}${index}`"
-                >
-                  {{ offer.name }}
-                </label>
+                  <span style="color: black;">{{ offer.text }}</span>
+                </b-form-radio>
               </div>
             </div>
           </b-col>
@@ -108,7 +109,122 @@
                 </div>
               </b-col>
             </b-row>
-            <shipping-rate :offer-chosen="carrier.offerChosen" />
+            <!-- eslint-disable max-len -->
+            <b-card
+              class="offer-rates row"
+              v-if="carrier.offerChosen === OfferType.FLAT_SHIPPING_RATE
+                || carrier.offerChosen === OfferType.FREE_SHIPPING_OVER_AMOUNT"
+            >
+              <b-row v-if="carrier.offerChosen === OfferType.FLAT_SHIPPING_RATE">
+                <b-col>
+                  <div
+                    class="font-weight-600 mb-1"
+                  >
+                    {{
+                      $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rate')
+                    }}
+                  </div>
+                  <p style="font-size:11px;">
+                    {{
+                      $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rateDesc')
+                    }}
+                  </p>
+                </b-col>
+                <b-col>
+                  <div>
+                    <b-input-group
+                      :append="budgetCurrencySymbol"
+                      class="ps_gs-carrier__input-number-group"
+                    >
+                      <b-form-input
+                        type="number"
+                        class="ps_gs-carrier__input-number no-arrows"
+                        size="sm"
+                        v-model.number="carrier[carrier.offerChosen].shippingRateAmount"
+                        :state="validateAmountRate(carrier[carrier.offerChosen].shippingRateAmount)"
+                      />
+                    </b-input-group>
+                  </div>
+                </b-col>
+              </b-row>
+              <div v-else>
+                <b-row>
+                  <b-col class="align-self-center">
+                    <div class="mb-1">
+                      <span
+                        class="font-weight-600"
+                      >
+                        {{
+                          $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.overAmount')
+                        }}
+                      </span>
+                      <b-button
+                        class="p-0 ml-1"
+                        variant="text"
+                        v-b-tooltip:psxMktgWithGoogleApp
+                        :title="''"
+                      >
+                        <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
+                          info_outlined
+                        </span>
+                      </b-button>
+                    </div>
+                  </b-col>
+                  <b-col class="col-auto mb-2">
+                    <b-input-group
+                      :append="budgetCurrencySymbol"
+                      class="ps_gs-carrier__input-number-group"
+                    >
+                      <b-form-input
+                        style="max-width: 90px;"
+                        type="number"
+                        class="ps_gs-carrier__input-number no-arrows"
+                        size="sm"
+                        v-model.number="carrier[carrier.offerChosen].shippingRateAmount"
+                        :state="validateAmountRate(carrier[carrier.offerChosen].shippingRateAmount)"
+                      />
+                    </b-input-group>
+                  </b-col>
+                </b-row>
+                <b-row>
+                  <b-col class="align-self-center">
+                    <div class="mb-1">
+                      <span
+                        class="font-weight-600"
+                      >
+                        {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rate') }}
+                      </span>
+                      <b-button
+                        class="p-0 ml-1"
+                        variant="text"
+                        v-b-tooltip:psxMktgWithGoogleApp
+                        :title="''"
+                      >
+                        <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
+                          info_outlined
+                        </span>
+                      </b-button>
+                    </div>
+                  </b-col>
+                  <b-col class="col-auto">
+                    <b-input-group
+                      :append="budgetCurrencySymbol"
+                      class="ps_gs-carrier__input-number-group"
+                    >
+                      <b-form-input
+                        style="max-width: 90px;"
+                        type="number"
+                        class="ps_gs-carrier__input-number no-arrows"
+                        size="sm"
+                        :state="validateAmountRate(carrier[carrier.offerChosen].freeShippingAmount)"
+                        v-model.number="carrier[carrier.offerChosen].freeShippingAmount"
+                      />
+                    </b-input-group>
+                  </b-col>
+                </b-row>
+              </div>
+            </b-card>
+            <!-- eslint-enable max-len -->
           </b-col>
         </b-row>
       </b-container>
@@ -116,39 +232,40 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue, {PropType} from 'vue';
 import {OfferType} from '@/enums/product-feed/offer';
-import {validateDeliveryTime, validateCarrierName} from '@/providers/shipping-rate-provider';
-import ShippingRate from '@/components/product-feed/settings/delivery-time-and-rates/shipping-rate.vue';
+import symbols from '@/assets/json/symbols.json';
+import {validateDeliveryTime, CustomCarrier} from '@/providers/shipping-rate-provider';
 
 export default Vue.extend({
   name: 'ProductFeedSettingsShipping',
   components: {
-    ShippingRate,
+  },
+  props: {
+    carrier: {
+      type: Object as PropType<CustomCarrier>,
+      required: true,
+    },
+    validationError: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
-      carrier: {
-        carrierName: '',
-        offerChosen: '' as OfferType,
-        maxDeliveryTime: 0,
-        minDeliveryTime: 0,
-      },
+      OfferType,
       offers: [
         {
-          name: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.freeShippingRateForAllProducts'),
+          text: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.freeShippingRateForAllProducts'),
           value: OfferType.FLAT_SHIPPING_RATE,
-          checked: false,
         },
         {
-          name: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.freeShippingForAllProducts'),
+          text: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.freeShippingForAllProducts'),
           value: OfferType.FREE_SHIPPING,
-          checked: false,
         },
         {
-          name: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.freeShippingOverAmount'),
+          text: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.freeShippingOverAmount'),
           value: OfferType.FREE_SHIPPING_OVER_AMOUNT,
-          checked: false,
         },
       ],
     };
@@ -158,10 +275,43 @@ export default Vue.extend({
       return validateDeliveryTime(this.carrier) ? null : false;
     },
     validateCarrierName(): boolean|null {
-      return validateCarrierName(this.carrier) ? null : false;
+      if (!this.carrier.carrierName?.length) {
+        return null;
+      }
+      if (this.carrier.carrierName.length <= 90
+        && this.carrier.carrierName.length > 0
+      ) {
+        return true;
+      }
+
+      return false;
+    },
+    validateRadio(): boolean|null {
+      return this.carrier.offerChosen ? null : false;
+    },
+    budgetCurrencySymbol() {
+      const currentCurrency = this.$store.getters['app/GET_CURRENT_CURRENCY'];
+      const countrySelected = this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
+      try {
+        const displayAmount = 0;
+        const country = countrySelected[0];
+        const currencyFormatted = displayAmount.toLocaleString(country, {
+          style: 'currency',
+          currency: currentCurrency,
+        });
+
+        return currencyFormatted.replace(/[ .,0]*/, '');
+      } catch (error) {
+        const currency = symbols.find((c) => c.currency === currentCurrency);
+
+        return currency ? currency.symbol : '';
+      }
     },
   },
   methods: {
+    validateAmountRate(amount: number): boolean|null {
+      return Number.isInteger(amount) && amount >= 0 ? null : false;
+    },
   },
 });
 </script>

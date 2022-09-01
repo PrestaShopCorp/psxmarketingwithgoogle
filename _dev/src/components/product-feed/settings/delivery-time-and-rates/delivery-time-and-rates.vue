@@ -14,7 +14,6 @@
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
-      :disable-continue="disableContinue"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
   </div>
@@ -23,11 +22,9 @@
 <script lang="ts">
 import Vue from 'vue';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
-import CreateCustomCarrier from '@/components/product-feed/settings/delivery-time-and-rates/create-custom-carrier.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
-import {validateDeliveryDetail} from '@/providers/shipping-settings-provider';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import TargetCountries from '@/components/product-feed/settings/delivery-time-and-rates/target-countries.vue';
 import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/import-method/shipping-settings.vue';
@@ -42,6 +39,7 @@ export default Vue.extend({
     return {
       countryChosen: null,
       rateChosen: null,
+      validationError: false,
       ShippingSetupOption,
     };
   },
@@ -70,9 +68,6 @@ export default Vue.extend({
           return this.countries.includes(carrier.country);
         });
     },
-    disableContinue() {
-      return !this.carriers.every(validateDeliveryDetail);
-    },
   },
   methods: {
     hasToolTip(headerType) {
@@ -96,7 +91,11 @@ export default Vue.extend({
       this.rateChosen = value;
     },
     previousStep() {
-      localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
+      if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
+        localStorage.setItem('productFeed-customCarrier', JSON.stringify(this.customCarrier));
+      } else {
+        localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
+      }
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
       this.$router.push({
         name: 'product-feed-settings',
@@ -113,6 +112,18 @@ export default Vue.extend({
       });
     },
     nextStep() {
+      if (validateCarrier(this.customCarrier) === false) {
+        this.validationError = true;
+        return;
+      }
+      this.validationError = false;
+
+      if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
+        localStorage.setItem('productFeed-customCarrier', JSON.stringify(this.customCarrier));
+      } else {
+        localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
+      }
+
       this.$segment.track('[GGL] Product feed config - Step 2', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
