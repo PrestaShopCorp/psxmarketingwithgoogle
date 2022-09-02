@@ -289,14 +289,15 @@
       "transitTimeTooltip": "Enter how long it takes for your order to be shipped to the customer once it leaves your facility.",
       "shippingInformationTitle": "Shipping rates & transit time",
       "shippingInformationIntro": "You can enable and configure the carriers you want to be displayed on Google Shopping.",
-      "shippingTableNotice": "Make sure your store message matches your Google shopping delivery time information.",
+      "shippingTableNotice": "Google cannot support carrier with pick up in store delivery type, please make sure you disable them or switch to another method.",
       "shippingSwitchCarrier": "Switch to enable / desable carrier",
       "carriersDropdownHeader": "Copy shipping information to",
       "carriersDropdownHiddenLabel": "Copy information of the carrier to other carriers",
       "noCarriersTitle": "You don’t have any shipping carriers",
       "noCarriersDescription": "Please head to carriers page to add shipping carriers",
       "addNewCarriers" : "Add or update carriers",
-      "refreshCarriers": "Refresh if you have edited your carriers"
+      "refreshCarriers": "Refresh if you have edited your carriers",
+      "switchToFlatRate": "Switch to estimation shipping’s set-up"
     },
     "preScan": {
       "selectLanguage": "Filter by language",

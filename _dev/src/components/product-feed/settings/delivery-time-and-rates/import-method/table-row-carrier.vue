@@ -27,42 +27,6 @@
         {{ carrier.delay }}
       </p>
     </td>
-    <!--<td>
-      <b-dropdown
-        :ref="`dropdownCarriers${carrier.carrierId}-${carrier.country}`"
-        :text="deliveryTypeMessage || $t('cta.select')"
-        variant="text"
-        class="maxw-sm-160 ps-dropdown ps_gs-carrier__dropdown-delivery-type
-        psxmarketingwithgoogle-dropdown bordered"
-        :class="{'is-invalid' : deliveryTypeMessage === null}"
-        :toggle-class="{'ps-dropdown__placeholder' : deliveryTypeMessage === null}"
-        menu-class="ps-dropdown"
-        size="sm"
-        :disabled="!carrier.enabledCarrier"
-        data-test-id="deliveryType"
-      >
-        <b-dropdown-item-button
-          button-class="rounded-0 text-dark"
-          @click="deliveryType = 'delivery'"
-        >
-          <span
-            class="px-2"
-          >
-            {{ $t('cta.yes') }}
-          </span>
-        </b-dropdown-item-button>
-        <b-dropdown-item-button
-          button-class="rounded-0 text-dark"
-          @click="selectPickupType"
-        >
-          <span
-            class="px-2"
-          >
-            {{ $t('cta.no') }}
-          </span>
-        </b-dropdown-item-button>
-      </b-dropdown>
-    </td>-->
     <td class="py-3">
       <div class="ps_gs-carrier__input-number-wrapper">
         <b-form-input
@@ -101,6 +65,7 @@
         :disabled="!carrier.enabledCarrier"
         @show="updateListState"
         data-test-id="duplicateDetails"
+        :ref="`dropdownCarriers${carrier.carrierId}-${carrier.country}`"
       >
         <template #button-content>
           <i
@@ -162,7 +127,6 @@
 
 <script lang="ts">
 import {PropType} from '@vue/composition-api';
-import DeliveryType from '@/enums/product-feed/delivery-type';
 import {
   validateHandlingTimes, validateTransitTimes,
 } from '@/providers/shipping-settings-provider';
@@ -192,24 +156,6 @@ export default {
     },
   },
   computed: {
-    deliveryType: {
-      get(): DeliveryType|null {
-        return this.carrier.deliveryType || null;
-      },
-      set(value: DeliveryType) {
-        this.carrier.deliveryType = value;
-      },
-    },
-    deliveryTypeMessage(): string|null {
-      switch (this.deliveryType) {
-        case DeliveryType.DELIVERY:
-          return this.$i18n.t('cta.yes');
-        case DeliveryType.PICKUP:
-          return this.$i18n.t('cta.no');
-        default:
-          return null;
-      }
-    },
     timeStateHandling(): boolean|null {
       return validateHandlingTimes(this.carrier) ? null : false;
     },
@@ -217,7 +163,7 @@ export default {
       return validateTransitTimes(this.carrier) ? null : false;
     },
     disableInputNumber(): boolean {
-      return !this.carrier.enabledCarrier || this.carrier.deliveryType !== DeliveryType.DELIVERY;
+      return !this.carrier.enabledCarrier;
     },
   },
   methods: {
@@ -234,7 +180,7 @@ export default {
           destinationCarriers: this.selectedCarriersForDuplication,
         },
       );
-      this.$refs[`dropdownCarriers${this.carrier.carrierId}-${this.carrier.country}`].showMenu();
+      this.$refs[`dropdownCarriers${this.carrier.carrierId}-${this.carrier.country}`].hide();
     },
     updateListState() {
       // Find carrier in list and check it is still enabled
@@ -244,13 +190,6 @@ export default {
             && selectedCarrier.country === carrier.country,
           ).enabledCarrier,
         );
-    },
-    selectPickupType() {
-      this.deliveryType = 'pickup';
-      this.carrier.minHandlingTimeInDays = null;
-      this.carrier.maxHandlingTimeInDays = null;
-      this.carrier.minTransitTimeInDays = null;
-      this.carrier.maxTransitTimeInDays = null;
     },
   },
 };
