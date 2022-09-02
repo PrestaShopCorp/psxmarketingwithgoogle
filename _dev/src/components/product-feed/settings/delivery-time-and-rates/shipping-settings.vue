@@ -120,14 +120,13 @@
       </b-tbody>
     </b-table-simple>
     <!-- END > TABLE -->
-    <p class="text-muted">
-      <i class="material-icons-round ps_gs-fz-14 d-inline-block align-middle mr-2">warning_amber</i>
+    <p class="text-muted text-center">
       <span class="ps_gs-fz-12 align-middle">
         {{ $t('productFeedSettings.deliveryTimeAndRates.shippingTableNotice') }}
       </span>
     </p>
     <div
-      class="text-primary"
+      class="text-primary text-center pb-3"
     >
       <a
         class="ps_gs-fz-12 mb-0 text-primary"
@@ -147,6 +146,18 @@
       >
         {{ $t('productFeedSettings.deliveryTimeAndRates.refreshCarriers') }}
         <i class="material-icons ps_gs-fz-12">refresh</i>
+      </b-button>
+      <span class="ps_gs-fz-12 text-dark">
+        |
+      </span>
+      <b-button
+        variant="link"
+        class="ps_gs-fz-12 font-weight-normal p-0 border-0
+        text-decoration-underline text-wrap text-left"
+        @click="switchToFlatRate"
+      >
+        {{ $t('productFeedSettings.deliveryTimeAndRates.switchToFlatRate') }}
+        <i class="material-icons ps_gs-fz-12">call_missed_outgoing</i>
       </b-button>
     </div>
   </div>
@@ -208,6 +219,10 @@ export default {
     },
     refreshComponent() {
       this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
+    },
+    switchToFlatRate() {
+      // ToDo: Implement switch to Method 1
+      console.warn('ToDo');
     },
   },
   mounted() {
