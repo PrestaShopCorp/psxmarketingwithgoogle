@@ -3,13 +3,19 @@
     <p class="h3 mb-2 font-weight-600">
       {{ $t('productFeedSettings.deliveryTimeAndRates.title') }}
     </p>
-<<<<<<< HEAD
     <target-countries
       @countrySelected="countries = $event"
       :countries="countries"
     />
     <shipping-settings
+      v-if="getShippingValueSetup === ShippingSetupOption.IMPORT"
       :countries="countries"
+    />
+
+    <custom-carrier-form
+      v-else-if="countries.length > 0"
+      :carrier="customCarrier"
+      :validation-error="validationError"
     />
 
     <actions-buttons
@@ -29,27 +35,45 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import TargetCountries from '@/components/product-feed/settings/delivery-time-and-rates/target-countries.vue';
 import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/import-method/shipping-settings.vue';
+import {RateType} from '@/enums/product-feed/rate';
+import {OfferType} from '@/enums/product-feed/offer';
+import {validateCarrier} from '@/providers/shipping-rate-provider';
+import CustomCarrierForm from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-carrier-form.vue';
 
 export default Vue.extend({
   components: {
     ActionsButtons,
     TargetCountries,
     ShippingSettings,
+    CustomCarrierForm,
   },
   data() {
     return {
+      countries: this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
       countryChosen: null,
       rateChosen: null,
       validationError: false,
       ShippingSetupOption,
+      RateType,
+      OfferType,
+      customCarrier: {
+        carrierName: '',
+        offerChosen: '' as OfferType,
+        maxDeliveryTime: 0,
+        minDeliveryTime: 0,
+        [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
+          shippingRateAmount: 0,
+          freeShippingAmount: 0,
+        },
+        [OfferType.FLAT_SHIPPING_RATE]: {
+          shippingRateAmount: 0,
+        },
+      },
     };
   },
   computed: {
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
-    },
-    countries(): string[] {
-      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
     },
     hasMultipleCountries(): boolean {
       return this.countries.length > 1;
