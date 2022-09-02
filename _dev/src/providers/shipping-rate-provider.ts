@@ -34,7 +34,7 @@ export function validateCarrier(carrier: CustomCarrier): boolean {
 }
 
 export function validateCarrierName(carrier: CustomCarrier): boolean {
-  if (carrier.carrierName.length > 90 && carrier.carrierName.length <= 0) {
+  if (carrier.carrierName.length > 90 || carrier.carrierName.length <= 0) {
     return false;
   }
   if (carrier.carrierName === '') {

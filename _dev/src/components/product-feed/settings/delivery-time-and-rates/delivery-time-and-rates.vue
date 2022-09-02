@@ -53,9 +53,6 @@ export default Vue.extend({
     hasMultipleCountries(): boolean {
       return this.countries.length > 1;
     },
-    countriesNames(): string[] {
-      return this.$options.filters.changeCountriesCodesToNames(this.countries);
-    },
     getShippingValueSetup(): ShippingSetupOption|null {
       return this.$store.getters['productFeed/GET_SHIPPING_SETUP'];
     },
@@ -89,6 +86,7 @@ export default Vue.extend({
     },
     getRate(value) {
       this.rateChosen = value;
+      console.log(this.rateChosen);
     },
     previousStep() {
       if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {

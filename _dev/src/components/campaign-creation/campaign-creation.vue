@@ -343,7 +343,7 @@
                 </b-button>
               </template>
               <b-input-group
-                :prepend="$options.filters.budgetCurrencySymbol()"
+                :prepend="getSymbol"
                 :append="currency"
                 class="maxw-sm-420"
               >

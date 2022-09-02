@@ -131,7 +131,7 @@
                 <b-col>
                   <div>
                     <b-input-group
-                      :append="$options.filters.budgetCurrencySymbol()"
+                      :append="getSymbol"
                       class="ps_gs-carrier__input-number-group"
                     >
                       <b-form-input
@@ -170,7 +170,7 @@
                   </b-col>
                   <b-col class="col-auto mb-2">
                     <b-input-group
-                      :append="$options.filters.budgetCurrencySymbol()"
+                      :append="getSymbol"
                       class="ps_gs-carrier__input-number-group"
                     >
                       <b-form-input
@@ -205,7 +205,7 @@
                   </b-col>
                   <b-col class="col-auto">
                     <b-input-group
-                      :append="$options.filters.budgetCurrencySymbol()"
+                      :append="getSymbol"
                       class="ps_gs-carrier__input-number-group"
                     >
                       <b-form-input
@@ -238,7 +238,7 @@ import {
 } from '@/providers/shipping-rate-provider';
 
 export default Vue.extend({
-  name: 'ProductFeedSettingsShipping',
+  name: 'CustomCarrierForm',
   components: {
   },
   props: {
@@ -286,6 +286,9 @@ export default Vue.extend({
       }
 
       return validateOfferChoice(this.carrier.offerChosen);
+    },
+    getSymbol() {
+      return this.$store.getters['app/GET_SYMBOL_OF_CURRENT_CURRENCY'];
     },
   },
   methods: {
