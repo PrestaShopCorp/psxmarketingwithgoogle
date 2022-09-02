@@ -28,6 +28,7 @@ import {
 } from '../../../providers/shipping-settings-provider';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import {runIf} from '../../../utils/Promise';
+import DeliveryType from '../../../enums/product-feed/delivery-type';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
@@ -232,7 +233,7 @@ export default {
     await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
 
     const deliveryDetailsStructure = {
-      deliveryType: undefined,
+      deliveryType: DeliveryType.DELIVERY,
       minHandlingTimeInDays: undefined,
       maxHandlingTimeInDays: undefined,
       minTransitTimeInDays: undefined,
