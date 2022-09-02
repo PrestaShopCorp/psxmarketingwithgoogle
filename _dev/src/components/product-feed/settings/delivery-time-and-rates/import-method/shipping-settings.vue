@@ -163,7 +163,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {PropType} from '@vue/composition-api';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
@@ -176,9 +177,15 @@ export default {
     TableRowCarrier,
     ActionsButtons,
   },
+  props: {
+    // Countries iso codes
+    countries: {
+      type: Array as PropType<string[]>,
+      required: true,
+    },
+  },
   data() {
     return {
-      countries: this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
       countryChosen: null,
     };
   },

@@ -3,8 +3,13 @@
     <p class="h3 mb-2 font-weight-600">
       {{ $t('productFeedSettings.deliveryTimeAndRates.title') }}
     </p>
-    <target-countries />
-    <shipping-settings />
+    <target-countries
+      @countrySelected="countries = $event"
+      :countries="countries"
+    />
+    <shipping-settings
+      :countries="countries"
+    />
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
@@ -81,11 +86,18 @@ export default {
       });
       window.scrollTo(0, 0);
     },
+    saveSelectedCountries() {
+      localStorage.setItem('productFeed-targetCountries', JSON.stringify(this.countries));
+      this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
+        name: 'targetCountries', data: this.countries,
+      });
+    },
     nextStep() {
       this.$segment.track('[GGL] Product feed config - Step 2', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
+      this.saveSelectedCountries();
       localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       this.$router.push({
