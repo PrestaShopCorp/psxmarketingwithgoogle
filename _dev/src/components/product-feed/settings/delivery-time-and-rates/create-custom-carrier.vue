@@ -34,8 +34,7 @@
               <div class="mb-4">
                 <b-form-input
                   type="text"
-                  class="form-control"
-                  style="max-width: 200px;"
+                  class="form-control ps_gs-mw-200"
                   id="carrierName"
                   v-model="carrier.carrierName"
                   :state="validateCarrierName"
@@ -62,7 +61,7 @@
                   :id="`${offer.text}${index}`"
                   :value="offer.value"
                 >
-                  <span style="color: black;">{{ offer.text }}</span>
+                  <span class="text-black">{{ offer.text }}</span>
                 </b-form-radio>
               </div>
             </div>
@@ -76,7 +75,7 @@
                   >
                     {{ $t('productFeedSettings.deliveryTimeAndRates.transitTimeHeader') }}
                   </div>
-                  <p style="font-size:11px;">
+                  <p class="ps_gs-fz-10">
                     {{ $t('productFeedSettings.deliveryTimeAndRates.deliveryInfo') }}
                   </p>
                 </div>
@@ -98,9 +97,8 @@
                   >
                     <b-form-input
                       type="number"
-                      style="max-width: 50px;"
                       v-model.number="carrier.maxDeliveryTime"
-                      class="ps_gs-carrier__input-number no-arrows"
+                      class="ps_gs-carrier__input-number no-arrows min-input-custom"
                       size="sm"
                       :state="validateTimeDelivery"
                       :placeholder="$t('general.max')"
@@ -124,7 +122,7 @@
                       $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rate')
                     }}
                   </div>
-                  <p style="font-size:11px;">
+                  <p class="ps_gs-fz-10">
                     {{
                       $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rateDesc')
                     }}
@@ -176,9 +174,8 @@
                       class="ps_gs-carrier__input-number-group"
                     >
                       <b-form-input
-                        style="max-width: 90px;"
                         type="number"
-                        class="ps_gs-carrier__input-number no-arrows"
+                        class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
                         size="sm"
                         v-model.number="carrier[carrier.offerChosen].shippingRateAmount"
                         :state="validateAmountRate(carrier[carrier.offerChosen].shippingRateAmount)"
@@ -212,9 +209,8 @@
                       class="ps_gs-carrier__input-number-group"
                     >
                       <b-form-input
-                        style="max-width: 90px;"
                         type="number"
-                        class="ps_gs-carrier__input-number no-arrows"
+                        class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
                         size="sm"
                         :state="validateAmountRate(carrier[carrier.offerChosen].freeShippingAmount)"
                         v-model.number="carrier[carrier.offerChosen].freeShippingAmount"
