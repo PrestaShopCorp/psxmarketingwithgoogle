@@ -11,8 +11,8 @@
         {{ $t('productFeedSettings.submissionExplanation') }}
       </p>
       <SelectCountry
-        @countrySelected="saveCountrySelected"
-        :default-value="countries"
+        @countrySelected="countrySelected"
+        :default-value="countriesNames"
         :dropdown-options="activeCountriesWithCurrency"
         :need-filter="true"
         :not-full-width="true"
@@ -54,15 +54,21 @@
   </b-form>
 </template>
 
-<script>
-import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+<script lang="ts">
+import {PropType} from '@vue/composition-api';
 import SelectCountry from '@/components/commons/select-country.vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'ProductFeedSettingsShipping',
   components: {
     SelectCountry,
+  },
+  props: {
+    // Countries iso codes
+    countries: {
+      type: Array as PropType<string[]>,
+      required: true,
+    },
   },
   data() {
     return {
@@ -72,9 +78,9 @@ export default {
     };
   },
   computed: {
-    countries() {
+    countriesNames() {
       return this.$options.filters.changeCountriesCodesToNames(
-        this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
+        this.countries,
       );
     },
     currency() {
@@ -94,59 +100,12 @@ export default {
     },
   },
   methods: {
-    cancel() {
-      this.$emit('cancelProductFeedSettingsConfiguration');
-    },
-    nextStep() {
-      this.loading = true;
-      localStorage.setItem('productFeed-autoImportShippingSettings', JSON.stringify(this.shippingSettings));
-      if (this.shippingSettings) {
-        this.$segment.track('[GGL] Product feed config - Step 1 with Config my shipping settings now', {
-          module: 'psxmarketingwithgoogle',
-          params: SegmentGenericParams,
-        });
-        this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
-          this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-            name: 'autoImportShippingSettings',
-            data: true,
-          });
-          this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
-          this.$router.push({
-            name: 'product-feed-settings',
-            params: {
-              step: ProductFeedSettingsPages.SHIPPING_SETTINGS
-              ,
-            },
-          });
-          window.scrollTo(0, 0);
-        });
-      } else {
-        this.$segment.track('[GGL] Product feed config - Step 1 with Config my shipping settings later', {
-          module: 'psxmarketingwithgoogle',
-          params: SegmentGenericParams,
-        });
-        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-          name: 'autoImportShippingSettings',
-          data: false,
-        });
-        this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
-        this.$router.push({
-          name: 'product-feed-settings',
-          params: {
-            step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
-          },
-        });
-        window.scrollTo(0, 0);
-      }
-    },
-    saveCountrySelected(value) {
-      const countryCode = this.$options.filters.changeCountriesNamesToCodes(value);
-      localStorage.setItem('productFeed-targetCountries', JSON.stringify(countryCode));
-      this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-        name: 'targetCountries', data: countryCode,
-      });
+    countrySelected(newValue) {
+      this.$emit(
+        'countrySelected',
+        this.$options.filters.changeCountriesNamesToCodes(newValue),
+      );
     },
   },
-
 };
 </script>
