@@ -272,7 +272,7 @@
         "carrierName": "Carrier name",
         "storeOffersTitle": "My store offers",
         "storeOffers": {
-          "freeShippingRateForAllProducts": "Flat shipping rate for all products",
+          "flatShippingRateForAllProducts": "Flat shipping rate for all products",
           "freeShippingForAllProducts": "Free shipping for all products",
           "freeShippingOverAmount": "Free shipping over a set amount"
         },

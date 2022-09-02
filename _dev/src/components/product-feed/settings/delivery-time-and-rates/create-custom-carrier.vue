@@ -256,7 +256,7 @@ export default Vue.extend({
       OfferType,
       offers: [
         {
-          text: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.freeShippingRateForAllProducts'),
+          text: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.flatShippingRateForAllProducts'),
           value: OfferType.FLAT_SHIPPING_RATE,
         },
         {
