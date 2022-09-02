@@ -101,6 +101,7 @@
         :disabled="!carrier.enabledCarrier"
         @show="updateListState"
         data-test-id="duplicateDetails"
+        :ref="`dropdownCarriers${carrier.carrierId}-${carrier.country}`"
       >
         <template #button-content>
           <i
@@ -234,7 +235,7 @@ export default {
           destinationCarriers: this.selectedCarriersForDuplication,
         },
       );
-      this.$refs[`dropdownCarriers${this.carrier.carrierId}-${this.carrier.country}`].showMenu();
+      this.$refs[`dropdownCarriers${this.carrier.carrierId}-${this.carrier.country}`].hide();
     },
     updateListState() {
       // Find carrier in list and check it is still enabled
