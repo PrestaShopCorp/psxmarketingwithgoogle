@@ -258,6 +258,30 @@
     },
     "deliveryTimeAndRates": {
       "title": "Delivery time & rates",
+      "rateAndDelivery": "Rate & delivery timeline",
+      "deliveryInfo": "Enter the minimum and maximum days required for delivery",
+      "customRate": {
+        "title": "Choose a flat or custom rate for your target countries",
+        "rateTitle": "Same rates for target countries",
+        "rateDesc": "I can estimate the same shipping rate and delivery time for all countries",
+        "customTitle": "Custom rates by country",
+        "customDesc": "I'd like to set different rates and times for each country"
+      },
+      "estimateStep": {
+        "error": "Fill in the required information",
+        "carrierName": "Carrier name",
+        "storeOffersTitle": "My store offers",
+        "storeOffers": {
+          "flatShippingRateForAllProducts": "Flat shipping rate for all products",
+          "freeShippingForAllProducts": "Free shipping for all products",
+          "freeShippingOverAmount": "Free shipping over a set amount"
+        },
+        "shippingRate": {
+          "rate": "Shipping rate",
+          "rateDesc": "Enter the shipping rate for all target countries",
+          "overAmount": "Free shipping applies over"
+        }
+      },
       "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
       "targetCountries": "Target country",
       "filterTitle": "Filter by country",

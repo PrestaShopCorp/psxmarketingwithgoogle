@@ -19,6 +19,7 @@
 import GettersTypes from './getters-types';
 import {State as LocalState, HelpInformations, DebugData} from './state';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
+import symbols from '@/assets/json/symbols.json';
 
 export default {
   [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
@@ -61,5 +62,23 @@ export default {
       }
       return ids;
     }, []);
+  },
+  [GettersTypes.GET_SYMBOL_OF_CURRENT_CURRENCY](state: LocalState, getters) {
+    const currentCurrency = state.psxMktgWithGoogleShopCurrency.isoCode;
+    const countrySelected = getters['productFeed/GET_TARGET_COUNTRIES'];
+    try {
+      const displayAmount = 0;
+      const country = countrySelected[0];
+      const currencyFormatted = displayAmount.toLocaleString(country, {
+        style: 'currency',
+        currency: currentCurrency,
+      });
+
+      return currencyFormatted.replace(/[ .,0]*/, '');
+    } catch (error) {
+      const currency = symbols.find((c) => c.currency === currentCurrency);
+
+      return currency ? currency.symbol : '';
+    }
   },
 };

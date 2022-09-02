@@ -3,6 +3,7 @@ import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport, product
 import {initialStateApp, appMultiCountries} from '../.storybook/mock/state-app';
 import {rest} from 'msw';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import { ShippingSetupOption } from '@/enums/product-feed/shipping';
 
 export default {
   title: 'Product feed/Settings',
@@ -107,6 +108,7 @@ EstimateDeliveryTimeAndRates.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeed);
     this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.ESTIMATE;
     this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
   },
 };
@@ -114,8 +116,9 @@ EstimateDeliveryTimeAndRates.args = {
 export const ImportDeliveryTimeAndRates:any = Template.bind({});
 ImportDeliveryTimeAndRates.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({},productFeed);
+    this.$store.state.productFeed = Object.assign({}, productFeed);
     this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
     this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
   },
 };

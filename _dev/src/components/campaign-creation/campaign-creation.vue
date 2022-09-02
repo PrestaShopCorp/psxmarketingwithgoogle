@@ -343,7 +343,7 @@
                 </b-button>
               </template>
               <b-input-group
-                :prepend="budgetCurrencySymbol"
+                :prepend="getSymbol"
                 :append="currency"
                 class="maxw-sm-420"
               >
@@ -448,7 +448,6 @@ import countriesSelectionOptions from '@/assets/json/countries.json';
 import CampaignCreationPopin from './campaign-creation-filter-popin/campaign-creation-popin.vue';
 import CampaignCreationPopinRecap from './campaign-creation-filter-popin/campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
-import symbols from '../../assets/json/symbols.json';
 import CampaignStatus, {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerAds from '@/components/commons/banner-ads.vue';
 import {
@@ -617,22 +616,6 @@ export default {
         targetCountry: this.targetCountry || this.defaultCountry(),
         productFilters: this.finalCampaignFilters,
       };
-    },
-    budgetCurrencySymbol() {
-      try {
-        const displayAmount = 0;
-        const country = this.defaultCountry();
-        const currencyFormatted = displayAmount.toLocaleString(country, {
-          style: 'currency',
-          currency: this.currency,
-        });
-
-        return currencyFormatted.replace(/[ .,0]*/, '');
-      } catch (error) {
-        const currency = symbols.find((c) => c.currency === this.currency);
-
-        return currency ? currency.symbol : '';
-      }
     },
     productsHaveBeenApprovedByGoogle() {
       return this.$store.state.productFeed.validationSummary.activeItems > 0;
