@@ -87,7 +87,6 @@ export default Vue.extend({
     },
     getRate(value) {
       this.rateChosen = value;
-      console.log(this.rateChosen);
     },
     previousStep() {
       if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
