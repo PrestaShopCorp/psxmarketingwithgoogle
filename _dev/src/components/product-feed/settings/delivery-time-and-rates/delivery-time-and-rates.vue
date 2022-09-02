@@ -21,7 +21,7 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import {validateDeliveryDetail} from '@/providers/shipping-settings-provider';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import TargetCountries from '@/components/product-feed/settings/delivery-time-and-rates/target-countries.vue';
-import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/shipping-settings.vue';
+import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/import-method/shipping-settings.vue';
 
 export default {
   components: {
