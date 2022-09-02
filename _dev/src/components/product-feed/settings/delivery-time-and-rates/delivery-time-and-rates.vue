@@ -113,11 +113,6 @@ export default Vue.extend({
       this.rateChosen = value;
     },
     previousStep() {
-      if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
-        localStorage.setItem('productFeed-customCarrier', JSON.stringify(this.customCarrier));
-      } else {
-        localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
-      }
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
       this.$router.push({
         name: 'product-feed-settings',
