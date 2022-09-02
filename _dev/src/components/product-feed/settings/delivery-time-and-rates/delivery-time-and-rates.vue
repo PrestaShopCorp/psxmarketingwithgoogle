@@ -53,7 +53,7 @@ export default Vue.extend({
     hasMultipleCountries(): boolean {
       return this.countries.length > 1;
     },
-    convertToCountryName(): string[] {
+    countriesNames(): string[] {
       return this.$options.filters.changeCountriesCodesToNames(this.countries);
     },
     getShippingValueSetup(): ShippingSetupOption|null {

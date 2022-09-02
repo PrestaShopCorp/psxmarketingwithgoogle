@@ -1,10 +1,12 @@
 import Vue from 'vue';
 
 import dayjs from 'dayjs';
+import Store from '@/store/index';
 import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
 import utc from 'dayjs/plugin/utc';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import countriesSelectionOptions from '../assets/json/countries.json';
+import symbols from '@/assets/json/symbols.json';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -83,6 +85,27 @@ Vue.filter(
 
     return country;
   }));
+
+Vue.filter(
+  'budgetCurrencySymbol', () => {
+    const currentCurrency = Store.getters['app/GET_CURRENT_CURRENCY'];
+    const countrySelected = Store.getters['productFeed/GET_TARGET_COUNTRIES'];
+    try {
+      const displayAmount = 0;
+      const country = countrySelected[0];
+      const currencyFormatted = displayAmount.toLocaleString(country, {
+        style: 'currency',
+        currency: currentCurrency,
+      });
+
+      return currencyFormatted.replace(/[ .,0]*/, '');
+    } catch (error) {
+      const currency = symbols.find((c) => c.currency === currentCurrency);
+
+      return currency ? currency.symbol : '';
+    }
+  }
+)
 
 Vue.filter(
   'slugify', (...args: (string | number)[]): string => {

@@ -131,7 +131,7 @@
                 <b-col>
                   <div>
                     <b-input-group
-                      :append="budgetCurrencySymbol"
+                      :append="$options.filters.budgetCurrencySymbol()"
                       class="ps_gs-carrier__input-number-group"
                     >
                       <b-form-input
@@ -170,7 +170,7 @@
                   </b-col>
                   <b-col class="col-auto mb-2">
                     <b-input-group
-                      :append="budgetCurrencySymbol"
+                      :append="$options.filters.budgetCurrencySymbol()"
                       class="ps_gs-carrier__input-number-group"
                     >
                       <b-form-input
@@ -205,7 +205,7 @@
                   </b-col>
                   <b-col class="col-auto">
                     <b-input-group
-                      :append="budgetCurrencySymbol"
+                      :append="$options.filters.budgetCurrencySymbol()"
                       class="ps_gs-carrier__input-number-group"
                     >
                       <b-form-input
@@ -230,8 +230,12 @@
 <script lang="ts">
 import Vue, {PropType} from 'vue';
 import {OfferType} from '@/enums/product-feed/offer';
-import symbols from '@/assets/json/symbols.json';
-import {validateDeliveryTime, CustomCarrier, validateOfferChoice} from '@/providers/shipping-rate-provider';
+import {
+  validateDeliveryTime,
+  CustomCarrier,
+  validateOfferChoice,
+  validateCarrierName,
+} from '@/providers/shipping-rate-provider';
 
 export default Vue.extend({
   name: 'ProductFeedSettingsShipping',
@@ -274,13 +278,7 @@ export default Vue.extend({
       if (!this.carrier.carrierName?.length) {
         return null;
       }
-      if (this.carrier.carrierName.length <= 90
-        && this.carrier.carrierName.length > 0
-      ) {
-        return true;
-      }
-
-      return false;
+      return validateCarrierName(this.carrier);
     },
     validateRadio(): boolean|null {
       if (this.carrier.offerChosen) {
@@ -288,24 +286,6 @@ export default Vue.extend({
       }
 
       return validateOfferChoice(this.carrier.offerChosen);
-    },
-    budgetCurrencySymbol() {
-      const currentCurrency = this.$store.getters['app/GET_CURRENT_CURRENCY'];
-      const countrySelected = this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
-      try {
-        const displayAmount = 0;
-        const country = countrySelected[0];
-        const currencyFormatted = displayAmount.toLocaleString(country, {
-          style: 'currency',
-          currency: currentCurrency,
-        });
-
-        return currencyFormatted.replace(/[ .,0]*/, '');
-      } catch (error) {
-        const currency = symbols.find((c) => c.currency === currentCurrency);
-
-        return currency ? currency.symbol : '';
-      }
     },
   },
   methods: {
