@@ -3,6 +3,7 @@
     <p class="h3 mb-2 font-weight-600">
       {{ $t('productFeedSettings.deliveryTimeAndRates.title') }}
     </p>
+<<<<<<< HEAD
     <target-countries
       @countrySelected="countries = $event"
       :countries="countries"
