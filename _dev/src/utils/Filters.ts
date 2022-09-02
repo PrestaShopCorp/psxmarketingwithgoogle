@@ -1,10 +1,10 @@
 import Vue from 'vue';
 
 import dayjs from 'dayjs';
-import Store from '@/store/index';
 import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
 import utc from 'dayjs/plugin/utc';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import Store from '@/store/index';
 import countriesSelectionOptions from '../assets/json/countries.json';
 import symbols from '@/assets/json/symbols.json';
 
@@ -104,8 +104,8 @@ Vue.filter(
 
       return currency ? currency.symbol : '';
     }
-  }
-)
+  },
+);
 
 Vue.filter(
   'slugify', (...args: (string | number)[]): string => {
