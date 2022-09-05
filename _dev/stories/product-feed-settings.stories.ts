@@ -132,31 +132,34 @@ ImportDeliveryTimeAndRatesNoCarriers.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeedNoCarriers);
     this.$store.state.productFeed.stepper = 2;
-    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS;
   },
 };
 
-export const ShippingSettingsWithSpanishShippingModules:any = Template.bind({});
-ShippingSettingsWithSpanishShippingModules.args = {
+export const ImportDeliveryTimeAndRatesWithSpanishShippingModules:any = Template.bind({});
+ImportDeliveryTimeAndRatesWithSpanishShippingModules.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeed);
     this.$store.state.productFeed.settings.targetCountries = ['ES', 'PT'];
     this.$store.state.productFeed.settings.shippingSettings = shippingPhpExportWithIssues;
     this.$store.state.productFeed.settings.deliveryDetails = Object.assign([], mergeShippingDetailsSourcesForProductFeedConfiguration(getEnabledCarriers(shippingPhpExportWithIssues), []));
     this.$store.state.productFeed.stepper = 2;
-    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS;
   },
 };
 
-export const ShippingSettingsWithManyCarriers:any = Template.bind({});
-ShippingSettingsWithManyCarriers.args = {
+export const ImportDeliveryTimeAndRatesWithManyCarriers:any = Template.bind({});
+ImportDeliveryTimeAndRatesWithManyCarriers.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeed);
     this.$store.state.productFeed.settings.targetCountries = ['SE'];
     this.$store.state.productFeed.settings.shippingSettings = shippingPhpExportWithIssues;
     this.$store.state.productFeed.settings.deliveryDetails = Object.assign([], mergeShippingDetailsSourcesForProductFeedConfiguration(getEnabledCarriers(shippingPhpExportHeavy), []));
     this.$store.state.productFeed.stepper = 2;
-    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS;
   },
 };
 
