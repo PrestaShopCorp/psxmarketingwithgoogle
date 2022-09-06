@@ -1,3 +1,5 @@
+import DeliveryType from '../enums/product-feed/delivery-type';
+
 export enum ShopShippingCollectionType {
     CARRIERS = 'carriers',
     CARRIER_DETAILS = 'carrier_details',
@@ -33,11 +35,6 @@ export type Carrier = {
     delay: string,
 }
 
-export enum ShipmentType {
-  DELIVERY = 'delivery',
-  PICKUP = 'pickup',
-}
-
 /* Object expected on the API */
 export type DeliveryDetail = {
   country: string;
@@ -46,7 +43,7 @@ export type DeliveryDetail = {
   maxHandlingTimeInDays?: number;
   minTransitTimeInDays?: number;
   maxTransitTimeInDays?: number;
-  deliveryType?: ShipmentType;
+  deliveryType?: DeliveryType;
 
   // Data that can be set by the interface but unused on the API side
   name?: string;
@@ -54,6 +51,12 @@ export type DeliveryDetail = {
   enabledCarrier?: boolean;
 }
 
+/**
+ * Filters on active carriers, then clone them as many time as they have assigned countries
+ *
+ * @param source ShopShippingInterface[]
+ * @returns Carrier[]
+ */
 export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
   return source.filter((carrier) => carrier.collection === ShopShippingCollectionType.CARRIERS
         && carrier.properties.active === true
@@ -63,8 +66,67 @@ export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
     country,
     name: carrier.properties.name,
     delay: carrier.properties.delay,
-  })),
-  );
+  })));
+}
+
+/**
+ *
+ * @param carriersFromShop DeliveryDetail[]
+ * @param carriersFromApi DeliveryDetail[]
+ * @param carriersFromLocalStorage DeliveryDetail[]
+ * @returns DeliveryDetail[]
+ */
+export function mergeShippingDetailsSourcesForProductFeedConfiguration(
+  carriersFromShop: DeliveryDetail[],
+  carriersFromApi: DeliveryDetail[],
+  carriersFromLocalStorage: DeliveryDetail[] = [],
+): DeliveryDetail[] {
+  const deliveryDetailsStructure: Partial<DeliveryDetail> = {
+    deliveryType: DeliveryType.DELIVERY,
+    minHandlingTimeInDays: 0,
+    maxHandlingTimeInDays: 0,
+    minTransitTimeInDays: undefined,
+    maxTransitTimeInDays: undefined,
+  };
+
+  // Carriers will be all enabled by default if nothing has been configured yet
+  const enableCarriersByDefault = !carriersFromLocalStorage.length
+    && !carriersFromApi.length;
+
+  return carriersFromShop.map((carrierFromShop) => {
+    const deliveryDetailsSavedInLocalStorage = carriersFromLocalStorage.find(
+      (c : DeliveryDetail) => (
+        (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
+      ),
+    );
+
+    if (deliveryDetailsSavedInLocalStorage) {
+      return {
+        ...deliveryDetailsStructure,
+        ...deliveryDetailsSavedInLocalStorage,
+        ...carrierFromShop,
+      };
+    }
+
+    const deliveryDetailsSavedOnAPI = carriersFromApi.find(
+      (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === carrierFromShop.carrierId
+              && carrierFromShop.country === deliveryDetail.country);
+
+    if (deliveryDetailsSavedOnAPI) {
+      return {
+        ...deliveryDetailsStructure,
+        enabledCarrier: true,
+        ...deliveryDetailsSavedOnAPI,
+        ...carrierFromShop,
+      };
+    }
+
+    return {
+      ...deliveryDetailsStructure,
+      enabledCarrier: enableCarriersByDefault,
+      ...carrierFromShop,
+    };
+  });
 }
 
 export function validateDeliveryDetail(delivery: DeliveryDetail): boolean {
@@ -83,7 +145,7 @@ export function validateHandlingTimes(delivery: DeliveryDetail): boolean {
     return true;
   }
 
-  if (delivery.deliveryType !== ShipmentType.DELIVERY) {
+  if (delivery.deliveryType !== DeliveryType.DELIVERY) {
     return true;
   }
 
@@ -99,7 +161,7 @@ export function validateTransitTimes(delivery: DeliveryDetail): boolean {
     return true;
   }
 
-  if (delivery.deliveryType !== ShipmentType.DELIVERY) {
+  if (delivery.deliveryType !== DeliveryType.DELIVERY) {
     return true;
   }
 

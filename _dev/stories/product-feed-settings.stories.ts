@@ -1,9 +1,12 @@
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue';
 import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport, productFeedSyncScheduleNow} from '../.storybook/mock/product-feed';
+import {shippingPhpExportWithIssues} from '../.storybook/mock/shipping-settings';
+import {shippingPhpExportHeavy} from '../.storybook/mock/shipping-settings-heavy';
 import {initialStateApp, appMultiCountries} from '../.storybook/mock/state-app';
 import {rest} from 'msw';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import { ShippingSetupOption } from '@/enums/product-feed/shipping';
+import { getEnabledCarriers, mergeShippingDetailsSourcesForProductFeedConfiguration } from '../src/providers/shipping-settings-provider';
 
 export default {
   title: 'Product feed/Settings',
@@ -129,7 +132,34 @@ ImportDeliveryTimeAndRatesNoCarriers.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({},productFeedNoCarriers);
     this.$store.state.productFeed.stepper = 2;
-    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS;
+  },
+};
+
+export const ImportDeliveryTimeAndRatesWithSpanishShippingModules:any = Template.bind({});
+ImportDeliveryTimeAndRatesWithSpanishShippingModules.args = {
+  beforeMount(this: any) {
+    this.$store.state.productFeed = Object.assign({},productFeed);
+    this.$store.state.productFeed.settings.targetCountries = ['ES', 'PT'];
+    this.$store.state.productFeed.settings.shippingSettings = shippingPhpExportWithIssues;
+    this.$store.state.productFeed.settings.deliveryDetails = Object.assign([], mergeShippingDetailsSourcesForProductFeedConfiguration(getEnabledCarriers(shippingPhpExportWithIssues), []));
+    this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS;
+  },
+};
+
+export const ImportDeliveryTimeAndRatesWithManyCarriers:any = Template.bind({});
+ImportDeliveryTimeAndRatesWithManyCarriers.args = {
+  beforeMount(this: any) {
+    this.$store.state.productFeed = Object.assign({},productFeed);
+    this.$store.state.productFeed.settings.targetCountries = ['SE'];
+    this.$store.state.productFeed.settings.shippingSettings = shippingPhpExportWithIssues;
+    this.$store.state.productFeed.settings.deliveryDetails = Object.assign([], mergeShippingDetailsSourcesForProductFeedConfiguration(getEnabledCarriers(shippingPhpExportHeavy), []));
+    this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS;
   },
 };
 

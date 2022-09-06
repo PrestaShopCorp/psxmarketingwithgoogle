@@ -1,6 +1,7 @@
 import {shippingPhpExport} from '../../.storybook/mock/shipping-settings';
+import DeliveryType from '../enums/product-feed/delivery-type';
 import {
-  getEnabledCarriers, Carrier, validateDeliveryDetail, ShipmentType,
+  getEnabledCarriers, Carrier, validateDeliveryDetail,
 } from './shipping-settings-provider';
 
 describe('Shipping Settings Provider - getEnabledCarriers()', () => {
@@ -79,7 +80,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       maxHandlingTimeInDays: 2,
       minTransitTimeInDays: 3,
       maxTransitTimeInDays: 4,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -94,7 +95,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       maxHandlingTimeInDays: 2,
       minTransitTimeInDays: 3,
       maxTransitTimeInDays: 4,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -109,7 +110,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       minHandlingTimeInDays: 1,
       minTransitTimeInDays: 3,
       maxTransitTimeInDays: 4,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -124,7 +125,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       minHandlingTimeInDays: 1,
       maxHandlingTimeInDays: 2,
       maxTransitTimeInDays: 4,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -139,7 +140,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       minHandlingTimeInDays: 1,
       maxHandlingTimeInDays: 2,
       minTransitTimeInDays: 3,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -170,7 +171,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       maxHandlingTimeInDays: 2,
       minTransitTimeInDays: 3,
       maxTransitTimeInDays: 4,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -186,7 +187,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       maxHandlingTimeInDays: -2,
       minTransitTimeInDays: 3,
       maxTransitTimeInDays: 4,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -202,7 +203,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       maxHandlingTimeInDays: 2,
       minTransitTimeInDays: -3,
       maxTransitTimeInDays: 4,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -218,7 +219,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       maxHandlingTimeInDays: 2,
       minTransitTimeInDays: 3,
       maxTransitTimeInDays: -4,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -234,7 +235,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       maxHandlingTimeInDays: 0,
       minTransitTimeInDays: 3,
       maxTransitTimeInDays: 3,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -250,7 +251,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       maxHandlingTimeInDays: 0,
       minTransitTimeInDays: 0,
       maxTransitTimeInDays: 0,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -266,7 +267,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       maxHandlingTimeInDays: 0,
       minTransitTimeInDays: 3,
       maxTransitTimeInDays: 0,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
@@ -282,7 +283,7 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
       maxHandlingTimeInDays: 0.3,
       minTransitTimeInDays: 3.9,
       maxTransitTimeInDays: 6.444441,
-      deliveryType: ShipmentType.DELIVERY,
+      deliveryType: DeliveryType.DELIVERY,
       name: 'Carrier',
       enabledCarrier: true,
     });
