@@ -6,6 +6,7 @@
     <target-countries
       @countrySelected="countries = $event"
       :countries="countries"
+      :shipping-setup-option="getShippingValueSetup"
     />
     <shipping-settings
       v-if="getShippingValueSetup === ShippingSetupOption.IMPORT"
@@ -30,7 +31,7 @@
 import Vue from 'vue';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
+import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import TargetCountries from '@/components/product-feed/settings/delivery-time-and-rates/target-countries.vue';

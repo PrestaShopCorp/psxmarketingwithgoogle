@@ -13,7 +13,7 @@
       <SelectCountry
         @countrySelected="countrySelected"
         :default-value="countriesNames"
-        :dropdown-options="activeCountriesWithCurrency"
+        :dropdown-options="selectableCountriesList"
         :need-filter="true"
         :not-full-width="true"
       />
@@ -57,6 +57,8 @@
 <script lang="ts">
 import {PropType} from '@vue/composition-api';
 import SelectCountry from '@/components/commons/select-country.vue';
+import {DeliveryDetail} from '@/providers/shipping-settings-provider';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 
 export default {
   name: 'ProductFeedSettingsShipping',
@@ -68,6 +70,11 @@ export default {
     countries: {
       type: Array as PropType<string[]>,
       required: true,
+    },
+    shippingSetupOption: {
+      type: String as PropType<ShippingSetupOption>,
+      required: false,
+      default: null,
     },
   },
   data() {
@@ -87,16 +94,40 @@ export default {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
     isUS() {
-      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].includes('US');
+      return this.countries.includes('US');
     },
     taxSettingsWithMerchantId() {
       return `https://merchants.google.com/mc/tax/settings?a=${this.$store.state.accounts.googleMerchantAccount.id}`;
     },
-    disableContinue() {
-      return this.countries.length < 1 || this.loading;
+    selectableCountriesList() {
+      if (this.shippingSetupOption === ShippingSetupOption.ESTIMATE) {
+        return this.activeCountriesWithCurrency;
+      }
+
+      if (this.shippingSetupOption === ShippingSetupOption.IMPORT) {
+        return this.activeCountriesWhereShipppingExist;
+      }
+      return this.activeCountriesWithCurrency;
     },
-    activeCountriesWithCurrency() {
+    activeCountriesWithCurrency(): string[] {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
+    },
+    activeCountriesWhereShipppingExist(): string[] {
+      const arrayOfCountries: string[] = [];
+      this.$store.state.productFeed.settings.deliveryDetails.forEach((carrier: DeliveryDetail) => {
+        if (!carrier.country.length) {
+          return;
+        }
+        arrayOfCountries.push(carrier.country);
+      });
+      const uniqueCountries = [...new Set(arrayOfCountries)];
+      const uniqueCountriesNames = this.$options.filters.changeCountriesCodesToNames(
+        uniqueCountries,
+      );
+
+      return uniqueCountriesNames.filter(
+        (countryName) => this.activeCountriesWithCurrency.indexOf(countryName) !== -1,
+      );
     },
   },
   methods: {
