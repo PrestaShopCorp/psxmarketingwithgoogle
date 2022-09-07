@@ -34,6 +34,7 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model.number="carrier.minTransitTimeInDays"
+          @input="$emit('dataUpdated')"
 
           :disabled="disableInputNumber"
           :state="timeStateDelivery"
@@ -48,6 +49,7 @@
             class="ps_gs-carrier__input-number no-arrows"
             size="sm"
             v-model.number="carrier.maxTransitTimeInDays"
+            @input="$emit('dataUpdated')"
             :disabled="disableInputNumber"
             :state="timeStateDelivery"
             :placeholder="$t('general.max')"
@@ -127,10 +129,7 @@
 
 <script lang="ts">
 import {PropType} from '@vue/composition-api';
-import {
-  validateHandlingTimes, validateTransitTimes,
-} from '@/providers/shipping-settings-provider';
-import {CarrierIdentifier, DeliveryDetail} from '../../../../providers/shipping-settings-provider';
+import {validateTransitTimes, CarrierIdentifier, DeliveryDetail} from '@/providers/shipping-settings-provider';
 
 type State = {
   selectedCarriersForDuplication: CarrierIdentifier[];
@@ -154,12 +153,16 @@ export default {
       type: Array,
       required: true,
     },
+    displayValidationErrors: {
+      type: Boolean,
+      required: true,
+    },
   },
   computed: {
-    timeStateHandling(): boolean|null {
-      return validateHandlingTimes(this.carrier) ? null : false;
-    },
     timeStateDelivery(): boolean|null {
+      if (!this.displayValidationErrors) {
+        return null;
+      }
       return validateTransitTimes(this.carrier) ? null : false;
     },
     disableInputNumber(): boolean {

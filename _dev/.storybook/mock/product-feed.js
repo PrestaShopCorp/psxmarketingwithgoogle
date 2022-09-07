@@ -86,7 +86,6 @@ export const productFeed = {
       },
     ],
     autoImportTaxSettings: false,
-    targetCountries: ["FR", "EN"],
     autoImportShippingSettings: true,
     syncSchedule: "1 * * * * *",
     requestSynchronizationNow: false,
