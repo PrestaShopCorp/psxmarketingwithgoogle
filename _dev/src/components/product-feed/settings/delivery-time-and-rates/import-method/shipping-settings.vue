@@ -116,6 +116,8 @@
           :key="index"
           :carrier="carrier"
           :carriers-list="carriers"
+          :display-validation-errors="displayValidationErrors"
+          @dataUpdated="$emit('dataUpdated', carriers)"
         />
       </b-tbody>
     </b-table-simple>
@@ -160,6 +162,13 @@
         <i class="material-icons ps_gs-fz-12">call_missed_outgoing</i>
       </b-button>
     </div>
+    <p
+      v-if="!enabledCarriers.length && displayValidationErrors"
+      class="text-danger text-small ps_gs-fz-12 d-md-flex justify-content-end"
+    >
+      <!-- eslint-disable-next-line max-len -->
+      {{ $t('productFeedSettings.deliveryTimeAndRates.importOption.validationErrors.needAtLeastOneCarrier') }}
+    </p>
   </div>
 </template>
 
@@ -169,7 +178,7 @@ import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-h
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
-import {validateDeliveryDetail} from '@/providers/shipping-settings-provider';
+import {DeliveryDetail} from '../../../../../providers/shipping-settings-provider';
 
 export default {
   components: {
@@ -183,6 +192,14 @@ export default {
       type: Array as PropType<string[]>,
       required: true,
     },
+    carriers: {
+      type: Array as PropType<DeliveryDetail[]>,
+      required: true,
+    },
+    displayValidationErrors: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
@@ -193,17 +210,17 @@ export default {
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
     },
-    carriers() {
-      return this.$store.state.productFeed.settings.deliveryDetails
-        .filter((carrier) => {
-          if (this.countryChosen) {
-            return this.countryChosen === carrier.country;
-          }
-          return this.countries.includes(carrier.country);
-        });
+    visibleCarriers() {
+      if (!this.countryChosen) {
+        return this.carriers;
+      }
+      return this.carriers
+        .filter((carrier) => this.countryChosen === carrier.country);
     },
-    disableContinue() {
-      return !this.carriers.every(validateDeliveryDetail);
+    enabledCarriers() {
+      return this.carriers.filter(
+        (e: DeliveryDetail) => e.enabledCarrier,
+      );
     },
   },
   methods: {
@@ -224,16 +241,18 @@ export default {
       }
       return true;
     },
-    refreshComponent() {
-      this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
-    },
     switchToFlatRate() {
       // ToDo: Implement switch to Method 1
       console.warn('ToDo');
     },
   },
-  mounted() {
-    this.refreshComponent();
+  watch: {
+    carriers: {
+      handler(carriers) {
+        this.$emit('dataUpdated', carriers);
+      },
+      immediate: true,
+    },
   },
 };
 </script>

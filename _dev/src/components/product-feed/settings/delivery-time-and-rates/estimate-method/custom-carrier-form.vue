@@ -4,7 +4,7 @@
       {{ $t('productFeedSettings.deliveryTimeAndRates.rateAndDelivery') }}
     </p>
     <p
-      v-if="validationError"
+      v-if="validateCarrier === false"
       class="text-danger ps-gs_fz-14 d-inline-block"
     >
       {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
@@ -37,6 +37,7 @@
                   class="form-control ps_gs-mw-200"
                   id="carrierName"
                   v-model="carrier.carrierName"
+                  @input="$emit('dataUpdated')"
                   :state="validateCarrierName"
                   placeholder="Description"
                   max="90"
@@ -58,6 +59,7 @@
                   class="form-check-input"
                   name="offersChoice"
                   v-model="carrier.offerChosen"
+                  @input="$emit('dataUpdated')"
                   :id="`${offer.text}${index}`"
                   :value="offer.value"
                 >
@@ -88,6 +90,7 @@
                     size="sm"
                     :state="validateTimeDelivery"
                     v-model.number="carrier.minDeliveryTime"
+                    @input="$emit('dataUpdated')"
                     min="0"
                     :placeholder="$t('general.min')"
                   />
@@ -98,6 +101,7 @@
                     <b-form-input
                       type="number"
                       v-model.number="carrier.maxDeliveryTime"
+                      @input="$emit('dataUpdated')"
                       class="ps_gs-carrier__input-number no-arrows min-input-custom"
                       size="sm"
                       :state="validateTimeDelivery"
@@ -139,6 +143,7 @@
                         class="ps_gs-carrier__input-number no-arrows"
                         size="sm"
                         v-model.number="carrier[carrier.offerChosen].shippingRateAmount"
+                        @input="$emit('dataUpdated')"
                         :state="validateAmountRate(carrier[carrier.offerChosen].shippingRateAmount)"
                       />
                     </b-input-group>
@@ -178,6 +183,7 @@
                         class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
                         size="sm"
                         v-model.number="carrier[carrier.offerChosen].shippingRateAmount"
+                        @input="$emit('dataUpdated')"
                         :state="validateAmountRate(carrier[carrier.offerChosen].shippingRateAmount)"
                       />
                     </b-input-group>
@@ -214,6 +220,7 @@
                         size="sm"
                         :state="validateAmountRate(carrier[carrier.offerChosen].freeShippingAmount)"
                         v-model.number="carrier[carrier.offerChosen].freeShippingAmount"
+                        @input="$emit('dataUpdated')"
                       />
                     </b-input-group>
                   </b-col>
@@ -235,6 +242,7 @@ import {
   CustomCarrier,
   validateOfferChoice,
   validateCarrierName,
+  validateCarrier,
 } from '@/providers/shipping-rate-provider';
 
 export default Vue.extend({
@@ -246,7 +254,7 @@ export default Vue.extend({
       type: Object as PropType<CustomCarrier>,
       required: true,
     },
-    validationError: {
+    displayValidationErrors: {
       type: Boolean,
       required: true,
     },
@@ -271,16 +279,31 @@ export default Vue.extend({
     };
   },
   computed: {
+    validateCarrier(): boolean|null {
+      if (!this.displayValidationErrors) {
+        return null;
+      }
+      return validateCarrier(this.carrier);
+    },
     validateTimeDelivery(): boolean|null {
+      if (!this.displayValidationErrors) {
+        return null;
+      }
       return validateDeliveryTime(this.carrier) ? null : false;
     },
     validateCarrierName(): boolean|null {
+      if (!this.displayValidationErrors) {
+        return null;
+      }
       if (!this.carrier.carrierName?.length) {
         return null;
       }
       return validateCarrierName(this.carrier);
     },
     validateRadio(): boolean|null {
+      if (!this.displayValidationErrors) {
+        return null;
+      }
       if (this.carrier.offerChosen) {
         return null;
       }

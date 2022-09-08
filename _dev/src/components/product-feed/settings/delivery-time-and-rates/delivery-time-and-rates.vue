@@ -4,19 +4,23 @@
       {{ $t('productFeedSettings.deliveryTimeAndRates.title') }}
     </p>
     <target-countries
-      @countrySelected="countries = $event"
+      @countrySelected="countries = $event;dataUpdated()"
       :countries="countries"
       :shipping-setup-option="getShippingValueSetup"
     />
     <shipping-settings
       v-if="getShippingValueSetup === ShippingSetupOption.IMPORT"
       :countries="countries"
+      :carriers="carriersToConfigure"
+      :display-validation-errors="displayValidationErrors"
+      @dataUpdated="carriers = $event;dataUpdated()"
     />
 
     <custom-carrier-form
-      v-else-if="countries.length > 0"
+      v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE && countries.length > 0"
       :carrier="customCarrier"
-      :validation-error="validationError"
+      :display-validation-errors="displayValidationErrors"
+      @dataUpdated="dataUpdated"
     />
 
     <actions-buttons
@@ -39,6 +43,7 @@ import ShippingSettings from '@/components/product-feed/settings/delivery-time-a
 import {RateType} from '@/enums/product-feed/rate';
 import {OfferType} from '@/enums/product-feed/offer';
 import {validateCarrier} from '@/providers/shipping-rate-provider';
+import {DeliveryDetail, validateDeliveryDetail} from '@/providers/shipping-settings-provider';
 import CustomCarrierForm from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-carrier-form.vue';
 
 export default Vue.extend({
@@ -51,12 +56,11 @@ export default Vue.extend({
   data() {
     return {
       countries: this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
-      countryChosen: null,
-      rateChosen: null,
-      validationError: false,
+      displayValidationErrors: false,
       ShippingSetupOption,
       RateType,
       OfferType,
+      // Estimate Option data
       customCarrier: {
         carrierName: '',
         offerChosen: '' as OfferType,
@@ -70,6 +74,8 @@ export default Vue.extend({
           shippingRateAmount: 0,
         },
       },
+      // Import Option data
+      carriers: [],
     };
   },
   computed: {
@@ -82,38 +88,20 @@ export default Vue.extend({
     getShippingValueSetup(): ShippingSetupOption|null {
       return this.$store.getters['productFeed/GET_SHIPPING_SETUP'];
     },
-    carriers() {
-      return this.$store.state.productFeed.settings.deliveryDetails
-        .filter((carrier) => {
-          if (this.countryChosen) {
-            return this.countryChosen === carrier.country;
-          }
-          return this.countries.includes(carrier.country);
-        });
+    carriersToConfigure() {
+      const carriers = this.$store.state.productFeed.settings.deliveryDetails
+        .filter(
+          (carrier: DeliveryDetail) => this.countries.includes(carrier.country),
+        );
+
+      return carriers;
     },
   },
   methods: {
-    hasToolTip(headerType) {
-      if (
-        headerType === ShippingSettingsHeaderType.SHIP_TO_CUSTOMER
-        || headerType === ShippingSettingsHeaderType.TRANSIT_TIME
-      ) {
-        return true;
-      }
-      return false;
+    dataUpdated(): void {
+      this.displayValidationErrors = false;
     },
-    hasHeader(headerType) {
-      if (
-        headerType === ShippingSettingsHeaderType.ACTION
-      ) {
-        return false;
-      }
-      return true;
-    },
-    getRate(value) {
-      this.rateChosen = value;
-    },
-    previousStep() {
+    previousStep(): void {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
       this.$router.push({
         name: 'product-feed-settings',
@@ -123,31 +111,71 @@ export default Vue.extend({
       });
       window.scrollTo(0, 0);
     },
-    saveSelectedCountries() {
+    validateForm(): boolean {
+      this.displayValidationErrors = true;
+
+      // Validation - Target countries
+      if (!this.countries.length) {
+        return false;
+      }
+
+      // Validation - Estimate option
+      if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
+        if (validateCarrier(this.customCarrier) === false) {
+          return false;
+        }
+        return true;
+      }
+
+      // Validation - Import option
+      if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
+        const enabledDeliveryDetails: DeliveryDetail[] = this.carriers.filter(
+          (e: DeliveryDetail) => e.enabledCarrier,
+        );
+
+        // No carrier enabled
+        if (!enabledDeliveryDetails.length) {
+          return false;
+        }
+
+        // At least one carrier is not configured properly
+        if (!enabledDeliveryDetails.every(validateDeliveryDetail)) {
+          return false;
+        }
+
+        // Each target country has at least one carrier
+        return this.countries.every((country: string) => enabledDeliveryDetails.find(
+          (deliveryDetail: DeliveryDetail) => deliveryDetail.country === country,
+        ));
+      }
+
+      return false;
+    },
+    saveSelectedCountries(): void {
       localStorage.setItem('productFeed-targetCountries', JSON.stringify(this.countries));
       this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
         name: 'targetCountries', data: this.countries,
       });
     },
-    nextStep() {
-      if (validateCarrier(this.customCarrier) === false) {
-        this.validationError = true;
-        return;
-      }
-      this.validationError = false;
-
-      if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
+    saveCarriersDetails(): void {
+      if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
         localStorage.setItem('productFeed-customCarrier', JSON.stringify(this.customCarrier));
-      } else {
+      } else if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
         localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       }
+    },
+    nextStep(): void {
+      if (this.validateForm() === false) {
+        return;
+      }
+
+      this.saveSelectedCountries();
+      this.saveCarriersDetails();
 
       this.$segment.track('[GGL] Product feed config - Step 2', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      this.saveSelectedCountries();
-      localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       this.$router.push({
         name: 'product-feed-settings',
@@ -157,10 +185,10 @@ export default Vue.extend({
       });
       window.scrollTo(0, 0);
     },
-    cancel() {
+    cancel(): void {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
-    refreshComponent() {
+    refreshComponent(): void {
       this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
     },
   },

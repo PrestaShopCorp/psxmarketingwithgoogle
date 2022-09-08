@@ -282,6 +282,11 @@
           "overAmount": "Free shipping applies over"
         }
       },
+      "importOption": {
+        "validationErrors": {
+          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue"
+        }
+      },
       "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
       "targetCountries": "Target country",
       "filterTitle": "Filter by country",

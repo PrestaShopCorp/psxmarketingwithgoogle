@@ -135,25 +135,8 @@ export function validateDeliveryDetail(delivery: DeliveryDetail): boolean {
   }
 
   return delivery.enabledCarrier
-      && validateHandlingTimes(delivery)
       && validateTransitTimes(delivery)
       && !!delivery.deliveryType;
-}
-
-export function validateHandlingTimes(delivery: DeliveryDetail): boolean {
-  if (!delivery.enabledCarrier) {
-    return true;
-  }
-
-  if (delivery.deliveryType !== DeliveryType.DELIVERY) {
-    return true;
-  }
-
-  return Number.isInteger(delivery.minHandlingTimeInDays)
-    && Number.isInteger(delivery.maxHandlingTimeInDays)
-    && Number(delivery.minHandlingTimeInDays) <= Number(delivery.maxHandlingTimeInDays)
-    && Number(delivery.minHandlingTimeInDays) >= 0
-    && Number(delivery.maxHandlingTimeInDays) >= 0;
 }
 
 export function validateTransitTimes(delivery: DeliveryDetail): boolean {
