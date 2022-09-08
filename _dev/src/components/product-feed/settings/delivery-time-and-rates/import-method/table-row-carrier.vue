@@ -9,6 +9,7 @@
         size="sm"
         class="ps_gs-switch mb-0"
         v-model="carrier.enabledCarrier"
+        @input="$emit('dataUpdated')"
         :aria-label="$t('productFeedSettings.deliveryTimeAndRates.shippingSwitchCarrier')"
       />
     </td>

@@ -17,7 +17,7 @@
     />
 
     <custom-carrier-form
-      v-else-if="countries.length > 0"
+      v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE && countries.length > 0"
       :carrier="customCarrier"
       :display-validation-errors="displayValidationErrors"
       @dataUpdated="dataUpdated"
@@ -133,11 +133,20 @@ export default Vue.extend({
           (e: DeliveryDetail) => e.enabledCarrier,
         );
 
+        // No carrier enabled
         if (!enabledDeliveryDetails.length) {
           return false;
         }
 
-        return enabledDeliveryDetails.every(validateDeliveryDetail);
+        // At least one carrier is not configured properly
+        if (!enabledDeliveryDetails.every(validateDeliveryDetail)) {
+          return false;
+        }
+
+        // Each target country has at least one carrier
+        return this.countries.every((country: string) => enabledDeliveryDetails.find(
+          (deliveryDetail: DeliveryDetail) => deliveryDetail.country === country,
+        ));
       }
 
       return false;

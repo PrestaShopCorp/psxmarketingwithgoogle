@@ -241,16 +241,18 @@ export default {
       }
       return true;
     },
-    refreshComponent() {
-      this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
-    },
     switchToFlatRate() {
       // ToDo: Implement switch to Method 1
       console.warn('ToDo');
     },
   },
-  mounted() {
-    this.refreshComponent();
+  watch: {
+    carriers: {
+      handler(carriers) {
+        this.$emit('dataUpdated', carriers);
+      },
+      immediate: true,
+    },
   },
 };
 </script>
