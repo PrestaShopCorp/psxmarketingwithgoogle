@@ -227,6 +227,7 @@ import ProductFeedStepper from '@/components/product-feed/product-feed-stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 
 export default defineComponent({
   name: 'ProductFeedCard',
@@ -303,17 +304,25 @@ export default defineComponent({
       );
     },
     shippingSettings() {
-      if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {
-        return this.$t('productFeedCard.missingInformation');
+      if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
+        return this.$t('productFeedSettings.deliveryTimeAndRates.manually');
       }
-      return this.getProductFeedSettings.autoImportShippingSettings
-        ? this.$t('productFeedSettings.deliveryTimeAndRates.automatically')
-        : this.$t('productFeedSettings.deliveryTimeAndRates.manually');
+
+      // ToDo: Update wording
+      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.IMPORT) {
+        return this.$t('productFeedSettings.deliveryTimeAndRates.automatically');
+      }
+      // ToDo: Update wording
+      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.ESTIMATE) {
+        return this.$t('productFeedSettings.deliveryTimeAndRates.automatically');
+      }
+
+      return this.$t('productFeedCard.missingInformation');
     },
     shippingSettingsStatus() {
-      return this.getProductFeedSettings.autoImportShippingSettings !== undefined
-        ? 'success'
-        : 'warning';
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']
+        ? 'warning'
+        : 'success';
     },
     targetCountriesStatus() {
       return this.targetCountries.length ? 'success' : 'warning';
@@ -412,7 +421,7 @@ export default defineComponent({
       && this.getProductFeedStatus.lastUpdatedAt) {
         return 'Failed';
       }
-      if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {
+      if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
         return 'ShippingSettingsMissing';
       }
       if (

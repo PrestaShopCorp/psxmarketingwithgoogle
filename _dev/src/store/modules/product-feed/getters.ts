@@ -52,7 +52,7 @@ export default {
     return state.validationSummary;
   },
   [GettersTypes.GET_SYNC_STATUS](state: LocalState) : string {
-    if (state.settings.autoImportShippingSettings === undefined) {
+    if (!state.settings.shippingSetup) {
       return 'warning';
     }
     if (!state.status.success && !state.status.nextJobAt) {
@@ -130,5 +130,11 @@ export default {
 
     return state.settings.shippingSetup;
   },
-
+  [GettersTypes.GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION](state: LocalState): boolean {
+    // Merchants used to be able to choose to configure their carriers later on GMC.
+    // With the new shipping settings, we require merchants to redo their product feed
+    // when they didn't configure any carrier.
+    return state.settings.shippingSetup === null
+      && state.settings.autoImportShippingSettings === false;
+  },
 };

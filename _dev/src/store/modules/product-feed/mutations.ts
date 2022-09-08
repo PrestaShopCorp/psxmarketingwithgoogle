@@ -101,7 +101,7 @@ export default {
       shippingSettings: [],
       deliveryDetails: [],
       autoImportTaxSettings: false,
-      autoImportShippingSettings: true,
+      autoImportShippingSettings: undefined,
       targetCountries: null,
     };
   },

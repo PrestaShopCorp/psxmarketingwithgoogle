@@ -77,21 +77,11 @@ export default {
       default: null,
     },
   },
-  data() {
-    return {
-      tax: null,
-      shippingSettings: JSON.parse(localStorage.getItem('productFeed-autoImportShippingSettings')) ?? this.$store.state.productFeed.settings.autoImportShippingSettings,
-      loading: false,
-    };
-  },
   computed: {
     countriesNames() {
       return this.$options.filters.changeCountriesCodesToNames(
         this.countries,
       );
-    },
-    currency() {
-      return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
     isUS() {
       return this.countries.includes('US');
