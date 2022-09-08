@@ -30,6 +30,7 @@ import {
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import {runIf} from '../../../utils/Promise';
 import DeliveryType from '../../../enums/product-feed/delivery-type';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
@@ -239,6 +240,17 @@ export default {
     );
     // Load previous configuration temporarly saved on localStorage
     const deliveryFromStorage = getDataFromLocalStorage('productFeed-deliveryDetails') ?? [];
+
+    if (state.settings.shippingSetup === ShippingSetupOption.ESTIMATE) {
+      const getEstimateCarriers = getDataFromLocalStorage('productFeed-customCarriers');
+
+      if (getEstimateCarriers !== null) {
+        commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+          name: 'estimateCarriers',
+          data: getEstimateCarriers,
+        });
+      }
+    }
 
     const carriersList: DeliveryDetail[] = mergeShippingDetailsSourcesForProductFeedConfiguration(
       enabledCarriersFromShop,
