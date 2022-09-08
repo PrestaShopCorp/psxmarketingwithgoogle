@@ -14,6 +14,7 @@
       :carriers="carriersToConfigure"
       :display-validation-errors="displayValidationErrors"
       @dataUpdated="carriers = $event;dataUpdated()"
+      @refresh="refreshComponent"
     />
 
     <custom-carrier-form

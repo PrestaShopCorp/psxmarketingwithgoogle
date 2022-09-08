@@ -144,7 +144,7 @@
         variant="link"
         class="ps_gs-fz-12 font-weight-normal p-0 border-0
         text-decoration-underline text-wrap text-left"
-        @click="refreshComponent"
+        @click="$emit('refresh')"
       >
         {{ $t('productFeedSettings.deliveryTimeAndRates.refreshCarriers') }}
         <i class="material-icons ps_gs-fz-12">refresh</i>
