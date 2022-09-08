@@ -5,7 +5,7 @@ import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import {shallowMount, mount} from '@vue/test-utils';
-import BootstrapVue, {BAlert} from 'bootstrap-vue';
+import {BAlert} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
 import config, {localVue, cloneStore, filters} from '@/../tests/init';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';

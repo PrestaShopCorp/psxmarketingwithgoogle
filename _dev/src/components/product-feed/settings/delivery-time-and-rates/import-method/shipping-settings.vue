@@ -179,6 +179,7 @@ import SettingsFooter from '@/components/product-feed/settings/commons/settings-
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
 import {DeliveryDetail} from '../../../../../providers/shipping-settings-provider';
+import {ShippingSetupOption} from '../../../../../enums/product-feed/shipping';
 
 export default {
   components: {
@@ -242,8 +243,7 @@ export default {
       return true;
     },
     switchToFlatRate() {
-      // ToDo: Implement switch to Method 1
-      console.warn('ToDo');
+      this.$store.commit('productFeed/SET_SHIPPING_SETUP_SELECTED', ShippingSetupOption.ESTIMATE);
     },
   },
   watch: {
