@@ -218,7 +218,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import {VueShowdown} from 'vue-showdown';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
@@ -226,8 +226,9 @@ import ProductFeedStepper from '@/components/product-feed/product-feed-stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'ProductFeedCard',
   components: {
     ProductFeedStepper,
@@ -476,5 +477,5 @@ export default {
     },
   },
   googleUrl,
-};
+});
 </script>
