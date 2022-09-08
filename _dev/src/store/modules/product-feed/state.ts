@@ -35,7 +35,8 @@ export interface ProductFeedSettings {
   shippingSettings: object[];
   deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
-  autoImportShippingSettings: boolean;
+  // Deprecated: Kept for backward compatibility with old product feed.
+  autoImportShippingSettings?: boolean;
   targetCountries: string[]|null;
 }
 
@@ -176,7 +177,6 @@ export const state: State = {
     deliveryDetails: [],
     autoImportTaxSettings: false,
     targetCountries: null,
-    autoImportShippingSettings: true,
   },
   validationSummary: {
     activeItems: null,

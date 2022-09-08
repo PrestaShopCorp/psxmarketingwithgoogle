@@ -489,6 +489,7 @@ export const productFeedIsReadyForExport = {
   settings: {
     ...productFeed.settings,
     targetCountries: ["FR"],
+    shippingSetup: 'import'
   },
 };
 
@@ -525,6 +526,7 @@ export const productFeedIsConfigured = {
   settings: {
     ...productFeed.settings,
     targetCountries: ["FR"],
+    shippingSetup: 'import'
   },
 };
 
@@ -540,7 +542,7 @@ export const productFeedMissingFields = {
   ...productFeedIsConfigured,
   settings: {
     ...productFeedIsConfigured.settings,
-    autoImportShippingSettings: undefined,
+    shippingSetup: null,
   },
 };
 

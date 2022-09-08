@@ -53,7 +53,7 @@
           <product-feed-card-report-card
             status="success"
             :title="$t('productFeedSettings.deliveryTimeAndRates.shippingSettings')"
-            :description="shippingSettings"
+            :description="shippingSettingsDescription"
             :link="$t('cta.editSettings')"
             :link-to="{ name: 'product-feed-settings',
                         step: 2,params: ProductFeedSettingsPages.SHIPPING_SETTINGS}"
@@ -232,11 +232,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
+import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
@@ -245,10 +246,11 @@ import ProductFeedCardReportCard from '../../product-feed-card-report-card';
 import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
 import TableRowMapping from '@/components/product-feed/commons/table-row-mapping';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 
 dayjs.extend(duration);
 
-export default {
+export default defineComponent({
   name: 'ProductFeedSettingsSummary',
   components: {
     SettingsFooter,
@@ -262,10 +264,6 @@ export default {
   data() {
     return {
       ProductFeedSettingsPages,
-      shippingSettings:
-      this.$store.state.productFeed.settings.autoImportShippingSettings
-        ? this.$t('productFeedSettings.deliveryTimeAndRates.automatically')
-        : this.$t('productFeedSettings.deliveryTimeAndRates.manually'),
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
       acceptSyncSchedule: false,
@@ -273,6 +271,18 @@ export default {
     };
   },
   computed: {
+    shippingSettingsDescription() {
+      // ToDo: Update wording
+      if (this.$store.state.productFeed.settings.shippingSetup === ShippingSetupOption.IMPORT) {
+        return this.$t('productFeedSettings.deliveryTimeAndRates.automatically');
+      }
+      // ToDo: Update wording
+      if (this.$store.state.productFeed.settings.shippingSetup === ShippingSetupOption.ESTIMATE) {
+        return this.$t('productFeedSettings.deliveryTimeAndRates.automatically');
+      }
+
+      return this.$t('productFeedCard.missingInformation');
+    },
     disabledExportButton() {
       return !(this.acceptSyncSchedule && this.understandTerms);
     },
@@ -401,5 +411,5 @@ export default {
   },
 
   googleUrl,
-};
+});
 </script>

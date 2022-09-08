@@ -85,7 +85,7 @@ export default Vue.extend({
   methods: {
     getInitialValueOfShippingSetup(): ShippingSetupOption|null {
       // Handle potential value from store.
-      const initialValue = getDataFromLocalStorage('productFeed-autoImportShippingSettings');
+      const initialValue = getDataFromLocalStorage('productFeed-shippingSetup') ?? !!this.$store.state.productFeed.settings.shippingSetup;
 
       if (initialValue) {
         return initialValue;
@@ -111,10 +111,6 @@ export default Vue.extend({
         params: SegmentGenericParams,
       });
       this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
-        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-          name: 'autoImportShippingSettings',
-          data: true,
-        });
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
         this.$router.push({
           name: 'product-feed-settings',

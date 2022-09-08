@@ -175,7 +175,7 @@ export default {
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
-      autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
+      shippingSetup: productFeedSettings.shippingSetup,
       targetCountries,
       shippingSettings: shipping,
       additionalShippingSettings: {
