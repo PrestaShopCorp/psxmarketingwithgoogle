@@ -61,8 +61,6 @@ export default Vue.extend({
       ShippingSetupOption,
       RateType,
       OfferType,
-      // Estimate Option data
-      customCarrier: this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS'],
       // Import Option data
       carriers: [],
     };
@@ -76,6 +74,10 @@ export default Vue.extend({
     },
     getShippingValueSetup(): ShippingSetupOption|null {
       return this.$store.getters['productFeed/GET_SHIPPING_SETUP'];
+    },
+    // Estimate Option data
+    customCarrier() {
+      return this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS'];
     },
     carriersToConfigure() {
       const carriers = this.$store.state.productFeed.settings.deliveryDetails
