@@ -64,8 +64,8 @@ Failed.args = {
   loading: false,
 };
 
-export const SettingMissing:any = Template.bind({});
-SettingMissing.args = {
+export const MissingShippingSettings:any = Template.bind({});
+MissingShippingSettings.args = {
   beforeMount: function(this: any) {
     this.$store.state.productFeed = Object.assign({}, productFeedMissingFields);
   },

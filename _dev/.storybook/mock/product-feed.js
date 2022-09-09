@@ -101,7 +101,6 @@ export const productFeed = {
       },
     ],
     autoImportTaxSettings: false,
-    autoImportShippingSettings: true,
     syncSchedule: "1 * * * * *",
     requestSynchronizationNow: false,
   },
@@ -558,6 +557,7 @@ export const productFeedMissingFields = {
   settings: {
     ...productFeedIsConfigured.settings,
     shippingSetup: null,
+    autoImportShippingSettings: false,
   },
 };
 

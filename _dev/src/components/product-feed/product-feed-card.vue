@@ -122,7 +122,6 @@
             <span>{{ title.message }}</span>
           </h3>
           <div
-            v-if="syncStatus !== 'warning'"
             class="d-sm-flex align-items-end mb-1"
           >
             <p class="ps_gs-fz-12 text-muted mb-0">
@@ -148,26 +147,9 @@
             variant="warning"
             :show="!!alert && alert === 'ShippingSettingsMissing'"
           >
-            <p class="mb-2">
-              <VueShowdown
-                tag="strong"
-                class="font-weight-600"
-                :markdown="$t('productFeedCard.alertShippingSettingsMissing')"
-                :extensions="['extended-link', 'no-p-tag']"
-              />
-              <br>
-              <span class="ps_gs-fz-12">
-                {{ $t("productFeedCard.alertShippingSettingsMissingDescription") }}
-              </span>
+            <p>
+              {{ $t("productFeedCard.alertShippingSettingsMissingDescription") }}
             </p>
-            <div class="mt-1">
-              <b-button
-                variant="outline-secondary"
-                @click="goToProductFeedSettings(ProductFeedSettingsPages.SHIPPING_SETTINGS)"
-              >
-                {{ $t("cta.addShippingInfo") }}
-              </b-button>
-            </div>
           </b-alert>
           <b-container
             fluid
@@ -384,14 +366,6 @@ export default defineComponent({
             this.lastSync.day,
             this.lastSync.time,
           ]),
-        };
-      }
-      if (this.syncStatus === 'warning') {
-        return {
-          icon: 'warning',
-          color: 'warning',
-          materialClass: 'material-icons-round',
-          message: this.$i18n.t('productFeedCard.syncCantPerform'),
         };
       }
       return {
