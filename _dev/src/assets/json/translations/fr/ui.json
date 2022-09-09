@@ -557,7 +557,7 @@
       "alertSuccess": "L'export de votre catalogue est lancé ! Une fois que vos produits sont approuvés, ils apparaîtront dans les résultats de recherche de l'onglet Google Shopping."
     },
     "destinations": {
-      "shoppingAds": "Shopping Ads",
+      "shoppingAds": "Annonces shopping",
       "enhancedFreeListing": "Activer les fiches gratuites"
     },
     "syncStatus": {
