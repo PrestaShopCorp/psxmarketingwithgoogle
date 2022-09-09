@@ -472,7 +472,7 @@
     "inputDurationTooltip": "Les campagnes publicitaires n'ont pas de date de fin par défaut, de sorte que les publicités puissent s'exécuter indéfiniment. Vous pouvez toujours ajouter une date de fin pour créer une campagne plus courte.",
     "inputDurationLabel1": "Date de début",
     "inputDurationLabel2": "Date de fin (facultatif)",
-    "inputDurationInvalidFeedback": "The end date must be set in the future.",
+    "inputDurationInvalidFeedback": "La date de fin doit être definie dans le futur.",
     "inputDatePickerHelper": "Utilisez les touches du curseur pour naviguer dans les dates du calendrier",
     "inputCountryHelper": "Pour cibler plusieurs pays, vous devez créer plusieurs campagnes.",
     "inputCountryImutable": "Le pays ne peut pas être changé après la création, si vous voulez cibler un autre pays, vous devrez créer une nouvelle campagne",
