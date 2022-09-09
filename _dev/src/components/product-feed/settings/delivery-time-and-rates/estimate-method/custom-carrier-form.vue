@@ -90,7 +90,7 @@
                     size="sm"
                     :state="validateTimeDelivery"
                     v-model.number="customCarrier.minDeliveryTime"
-                    @input="$emit('dataUpdated')"
+                    @input="$emit('dataUpdated', customCarrier)"
                     min="0"
                     :placeholder="$t('general.min')"
                   />

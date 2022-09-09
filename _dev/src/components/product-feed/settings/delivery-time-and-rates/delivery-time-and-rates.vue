@@ -19,7 +19,7 @@
 
     <custom-carrier-form
       v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE && countries.length > 0"
-      :custom-carrier="estimateCarriers"
+      :custom-carrier="customCarrier"
       :display-validation-errors="displayValidationErrors"
       @dataUpdated="customCarrier = $event;dataUpdated()"
     />
@@ -62,7 +62,7 @@ export default Vue.extend({
       RateType,
       OfferType,
       // Estimate Option data
-      customCarrier: {},
+      customCarrier: this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS'],
       // Import Option data
       carriers: [],
     };
@@ -76,9 +76,6 @@ export default Vue.extend({
     },
     getShippingValueSetup(): ShippingSetupOption|null {
       return this.$store.getters['productFeed/GET_SHIPPING_SETUP'];
-    },
-    estimateCarriers() {
-      return this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS'];
     },
     carriersToConfigure() {
       const carriers = this.$store.state.productFeed.settings.deliveryDetails
