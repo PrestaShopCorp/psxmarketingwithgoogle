@@ -19,9 +19,9 @@
 
     <custom-carrier-form
       v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE && countries.length > 0"
-      :carrier="customCarrier"
+      :custom-carrier="customCarrier"
       :display-validation-errors="displayValidationErrors"
-      @dataUpdated="dataUpdated"
+      @dataUpdated="customCarrier = $event;dataUpdated()"
     />
 
     <actions-buttons
@@ -43,7 +43,7 @@ import TargetCountries from '@/components/product-feed/settings/delivery-time-an
 import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/import-method/shipping-settings.vue';
 import {RateType} from '@/enums/product-feed/rate';
 import {OfferType} from '@/enums/product-feed/offer';
-import {validateCarrier} from '@/providers/shipping-rate-provider';
+import {CustomCarrier, validateCarrier} from '@/providers/shipping-rate-provider';
 import {DeliveryDetail, validateDeliveryDetail} from '@/providers/shipping-settings-provider';
 import CustomCarrierForm from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-carrier-form.vue';
 
@@ -61,20 +61,6 @@ export default Vue.extend({
       ShippingSetupOption,
       RateType,
       OfferType,
-      // Estimate Option data
-      customCarrier: {
-        carrierName: '',
-        offerChosen: '' as OfferType,
-        maxDeliveryTime: 0,
-        minDeliveryTime: 0,
-        [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
-          shippingRateAmount: 0,
-          freeShippingAmount: 0,
-        },
-        [OfferType.FLAT_SHIPPING_RATE]: {
-          shippingRateAmount: 0,
-        },
-      },
       // Import Option data
       carriers: [],
     };
@@ -88,6 +74,10 @@ export default Vue.extend({
     },
     getShippingValueSetup(): ShippingSetupOption|null {
       return this.$store.getters['productFeed/GET_SHIPPING_SETUP'];
+    },
+    // Estimate Option data
+    customCarrier(): CustomCarrier {
+      return this.$store.getters['productFeed/GET_ESTIMATE_CARRIER'];
     },
     carriersToConfigure() {
       const carriers = this.$store.state.productFeed.settings.deliveryDetails
@@ -160,7 +150,7 @@ export default Vue.extend({
     },
     saveCarriersDetails(): void {
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
-        localStorage.setItem('productFeed-customCarrier', JSON.stringify(this.customCarrier));
+        localStorage.setItem('productFeed-customCarriers', JSON.stringify(this.customCarrier));
       } else if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
         localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       }

@@ -36,8 +36,8 @@
                   type="text"
                   class="form-control ps_gs-mw-200"
                   id="carrierName"
-                  v-model="carrier.carrierName"
-                  @input="$emit('dataUpdated')"
+                  v-model="customCarrier.carrierName"
+                  @input="$emit('dataUpdated', customCarrier)"
                   :state="validateCarrierName"
                   placeholder="Description"
                   max="90"
@@ -58,8 +58,8 @@
                   :state="validateRadio"
                   class="form-check-input"
                   name="offersChoice"
-                  v-model="carrier.offerChosen"
-                  @input="$emit('dataUpdated')"
+                  v-model="customCarrier.offerChosen"
+                  @input="$emit('dataUpdated', customCarrier)"
                   :id="`${offer.text}${index}`"
                   :value="offer.value"
                 >
@@ -89,8 +89,8 @@
                     class="ps_gs-carrier__input-number no-arrows"
                     size="sm"
                     :state="validateTimeDelivery"
-                    v-model.number="carrier.minDeliveryTime"
-                    @input="$emit('dataUpdated')"
+                    v-model.number="customCarrier.minDeliveryTime"
+                    @input="$emit('dataUpdated', customCarrier)"
                     min="0"
                     :placeholder="$t('general.min')"
                   />
@@ -100,8 +100,8 @@
                   >
                     <b-form-input
                       type="number"
-                      v-model.number="carrier.maxDeliveryTime"
-                      @input="$emit('dataUpdated')"
+                      v-model.number="customCarrier.maxDeliveryTime"
+                      @input="$emit('dataUpdated', customCarrier)"
                       class="ps_gs-carrier__input-number no-arrows min-input-custom"
                       size="sm"
                       :state="validateTimeDelivery"
@@ -114,10 +114,10 @@
             <!-- eslint-disable max-len -->
             <b-card
               class="offer-rates row"
-              v-if="carrier.offerChosen === OfferType.FLAT_SHIPPING_RATE
-                || carrier.offerChosen === OfferType.FREE_SHIPPING_OVER_AMOUNT"
+              v-if="customCarrier.offerChosen === OfferType.FLAT_SHIPPING_RATE
+                || customCarrier.offerChosen === OfferType.FREE_SHIPPING_OVER_AMOUNT"
             >
-              <b-row v-if="carrier.offerChosen === OfferType.FLAT_SHIPPING_RATE">
+              <b-row v-if="customCarrier.offerChosen === OfferType.FLAT_SHIPPING_RATE">
                 <b-col>
                   <div
                     class="font-weight-600 mb-1"
@@ -142,9 +142,9 @@
                         type="number"
                         class="ps_gs-carrier__input-number no-arrows"
                         size="sm"
-                        v-model.number="carrier[carrier.offerChosen].shippingRateAmount"
-                        @input="$emit('dataUpdated')"
-                        :state="validateAmountRate(carrier[carrier.offerChosen].shippingRateAmount)"
+                        v-model.number="customCarrier[customCarrier.offerChosen].shippingRateAmount"
+                        @input="$emit('dataUpdated', customCarrier)"
+                        :state="validateAmountRate(customCarrier[customCarrier.offerChosen].shippingRateAmount)"
                       />
                     </b-input-group>
                   </div>
@@ -182,9 +182,9 @@
                         type="number"
                         class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
                         size="sm"
-                        v-model.number="carrier[carrier.offerChosen].shippingRateAmount"
-                        @input="$emit('dataUpdated')"
-                        :state="validateAmountRate(carrier[carrier.offerChosen].shippingRateAmount)"
+                        v-model.number="customCarrier[customCarrier.offerChosen].shippingRateAmount"
+                        @input="$emit('dataUpdated', customCarrier)"
+                        :state="validateAmountRate(customCarrier[customCarrier.offerChosen].shippingRateAmount)"
                       />
                     </b-input-group>
                   </b-col>
@@ -218,9 +218,9 @@
                         type="number"
                         class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
                         size="sm"
-                        :state="validateAmountRate(carrier[carrier.offerChosen].freeShippingAmount)"
-                        v-model.number="carrier[carrier.offerChosen].freeShippingAmount"
-                        @input="$emit('dataUpdated')"
+                        :state="validateAmountRate(customCarrier[customCarrier.offerChosen].freeShippingAmount)"
+                        v-model.number="customCarrier[customCarrier.offerChosen].freeShippingAmount"
+                        @input="$emit('dataUpdated', customCarrier)"
                       />
                     </b-input-group>
                   </b-col>
@@ -250,7 +250,7 @@ export default Vue.extend({
   components: {
   },
   props: {
-    carrier: {
+    customCarrier: {
       type: Object as PropType<CustomCarrier>,
       required: true,
     },
@@ -283,32 +283,29 @@ export default Vue.extend({
       if (!this.displayValidationErrors) {
         return null;
       }
-      return validateCarrier(this.carrier);
+      return validateCarrier(this.customCarrier);
     },
     validateTimeDelivery(): boolean|null {
       if (!this.displayValidationErrors) {
         return null;
       }
-      return validateDeliveryTime(this.carrier) ? null : false;
+      return validateDeliveryTime(this.customCarrier) ? null : false;
     },
     validateCarrierName(): boolean|null {
       if (!this.displayValidationErrors) {
         return null;
       }
-      if (!this.carrier.carrierName?.length) {
-        return null;
-      }
-      return validateCarrierName(this.carrier);
+      return validateCarrierName(this.customCarrier);
     },
     validateRadio(): boolean|null {
       if (!this.displayValidationErrors) {
         return null;
       }
-      if (this.carrier.offerChosen) {
+      if (this.customCarrier.offerChosen) {
         return null;
       }
 
-      return validateOfferChoice(this.carrier.offerChosen);
+      return validateOfferChoice(this.customCarrier.offerChosen);
     },
     getSymbol() {
       return this.$store.getters['app/GET_SYMBOL_OF_CURRENT_CURRENCY'];
@@ -319,5 +316,13 @@ export default Vue.extend({
       return Number.isInteger(amount) && amount >= 0 ? null : false;
     },
   },
+  // watch: {
+  //   customCarrier: {
+  //     handler(customCarrier) {
+  //       this.$emit('dataUpdated', customCarrier);
+  //     },
+  //     immediate: true,
+  //   },
+  // },
 });
 </script>

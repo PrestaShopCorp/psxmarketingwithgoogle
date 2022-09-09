@@ -33,6 +33,7 @@ import {
   PrevalidationScanSummary,
   PreScanReporting,
 } from './state';
+import {CustomCarrier} from '@/providers/shipping-rate-provider';
 
 type payloadObject = {
   name: string, data: string
@@ -98,6 +99,7 @@ export default {
   ) {
     state.settings = {
       shippingSetup: null,
+      estimateCarrier: {} as CustomCarrier,
       shippingSettings: [],
       deliveryDetails: [],
       autoImportTaxSettings: false,

@@ -1,4 +1,6 @@
 import attributesToMap from "@/store/modules/product-feed/attributes-to-map.json";
+import {OfferType} from '../../src/enums/product-feed/offer';
+
 export const productFeed = {
   isSyncSummaryLoadingInProgress: false,
   errorAPI: false,
@@ -16,6 +18,19 @@ export const productFeed = {
   settings: {
     shippingSettings: [],
     shippingSetup: null,
+    estimateCarrier: {
+      carrierName: '',
+      offerChosen: '',
+      maxDeliveryTime: 0,
+      minDeliveryTime: 0,
+      [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
+        shippingRateAmount: 0,
+        freeShippingAmount: 0,
+      },
+      [OfferType.FLAT_SHIPPING_RATE]: {
+        shippingRateAmount: 0,
+      },
+    },
     targetCountries: ["FR"],
     deliveryDetails: [
       {

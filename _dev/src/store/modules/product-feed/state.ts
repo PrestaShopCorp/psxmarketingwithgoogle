@@ -21,6 +21,8 @@ import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
 import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import {CustomCarrier} from '@/providers/shipping-rate-provider';
+import {OfferType} from '@/enums/product-feed/offer';
 
 export interface ProductFeedStatus {
   nextJobAt?: string;
@@ -32,6 +34,7 @@ export interface ProductFeedStatus {
 
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
+  estimateCarrier: CustomCarrier;
   shippingSettings: object[];
   deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
@@ -173,6 +176,19 @@ export const state: State = {
   },
   settings: {
     shippingSetup: null,
+    estimateCarrier: {
+      carrierName: '',
+      offerChosen: '' as OfferType,
+      maxDeliveryTime: 0,
+      minDeliveryTime: 0,
+      [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
+        shippingRateAmount: 0,
+        freeShippingAmount: 0,
+      },
+      [OfferType.FLAT_SHIPPING_RATE]: {
+        shippingRateAmount: 0,
+      },
+    },
     shippingSettings: [],
     deliveryDetails: [],
     autoImportTaxSettings: false,
