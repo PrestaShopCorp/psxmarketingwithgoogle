@@ -12,7 +12,7 @@ import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {OfferType} from '@/enums/product-feed/offer';
 
-describe('shipping-settings.vue', () => {
+describe.skip('shipping-settings.vue', () => {
   let store;
 
   beforeEach(() => {
