@@ -43,7 +43,7 @@ import TargetCountries from '@/components/product-feed/settings/delivery-time-an
 import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/import-method/shipping-settings.vue';
 import {RateType} from '@/enums/product-feed/rate';
 import {OfferType} from '@/enums/product-feed/offer';
-import {validateCarrier} from '@/providers/shipping-rate-provider';
+import {CustomCarrier, validateCarrier} from '@/providers/shipping-rate-provider';
 import {DeliveryDetail, validateDeliveryDetail} from '@/providers/shipping-settings-provider';
 import CustomCarrierForm from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-carrier-form.vue';
 
@@ -76,8 +76,8 @@ export default Vue.extend({
       return this.$store.getters['productFeed/GET_SHIPPING_SETUP'];
     },
     // Estimate Option data
-    customCarrier() {
-      return this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS'];
+    customCarrier(): CustomCarrier {
+      return this.$store.getters['productFeed/GET_ESTIMATE_CARRIER'];
     },
     carriersToConfigure() {
       const carriers = this.$store.state.productFeed.settings.deliveryDetails

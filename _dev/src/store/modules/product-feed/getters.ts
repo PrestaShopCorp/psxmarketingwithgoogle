@@ -138,8 +138,8 @@ export default {
     return state.settings.shippingSetup === null
       && state.settings.autoImportShippingSettings === false;
   },
-  [GettersTypes.GET_ESTIMATE_CARRIERS](state: LocalState): CustomCarrier|object {
-    return state.settings.estimateCarriers;
+  [GettersTypes.GET_ESTIMATE_CARRIER](state: LocalState): CustomCarrier {
+    return state.settings.estimateCarrier;
   },
 
 };

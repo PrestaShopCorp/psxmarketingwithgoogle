@@ -242,12 +242,12 @@ export default {
     const deliveryFromStorage = getDataFromLocalStorage('productFeed-deliveryDetails') ?? [];
 
     if (state.settings.shippingSetup === ShippingSetupOption.ESTIMATE) {
-      const getEstimateCarriers = getDataFromLocalStorage('productFeed-customCarriers');
+      const getEstimateCarrier = getDataFromLocalStorage('productFeed-customCarrier');
 
-      if (getEstimateCarriers !== null) {
+      if (getEstimateCarrier !== null) {
         commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-          name: 'estimateCarriers',
-          data: getEstimateCarriers,
+          name: 'estimateCarrier',
+          data: getEstimateCarrier,
         });
       }
     }

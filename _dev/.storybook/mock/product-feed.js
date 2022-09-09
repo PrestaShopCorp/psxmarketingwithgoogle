@@ -18,7 +18,7 @@ export const productFeed = {
   settings: {
     shippingSettings: [],
     shippingSetup: null,
-    estimateCarriers: {
+    estimateCarrier: {
       carrierName: '',
       offerChosen: '',
       maxDeliveryTime: 0,

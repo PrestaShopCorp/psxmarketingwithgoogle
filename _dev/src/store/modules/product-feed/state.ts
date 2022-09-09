@@ -34,7 +34,7 @@ export interface ProductFeedStatus {
 
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
-  estimateCarriers: CustomCarrier;
+  estimateCarrier: CustomCarrier;
   shippingSettings: object[];
   deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
@@ -176,7 +176,7 @@ export const state: State = {
   },
   settings: {
     shippingSetup: null,
-    estimateCarriers: {
+    estimateCarrier: {
       carrierName: '',
       offerChosen: '' as OfferType,
       maxDeliveryTime: 0,
