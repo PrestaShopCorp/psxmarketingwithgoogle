@@ -176,14 +176,13 @@ describe('product-feed-card.vue', () => {
     });
 
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
-    expect(filters.timeConverterToDate).not.toHaveBeenCalled();
-    expect(filters.timeConverterToHour).not.toHaveBeenCalled();
+    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
+    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('warning');
-    expect(wrapper.find('b-button').text()).toEqual('Add shipping info');
-    expect(wrapper.find('p').text()).toBe('To successfully sync your product data, add shipping info.');
+    expect(wrapper.find('b-alert p').text()).toBe('We have made some changes on product feed configuration, we recommend you re-configure your shipping setup with the option that suits your workflow.');
   });
 
   it('shows error when api error', () => {

@@ -52,8 +52,8 @@ export default {
   ProductFeedValidationSummary {
     return state.validationSummary;
   },
-  [GettersTypes.GET_SYNC_STATUS](state: LocalState) : string {
-    if (!state.settings.shippingSetup) {
+  [GettersTypes.GET_SYNC_STATUS](state: LocalState, getters) : string {
+    if (getters.GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION) {
       return 'warning';
     }
     if (!state.status.success && !state.status.nextJobAt) {
