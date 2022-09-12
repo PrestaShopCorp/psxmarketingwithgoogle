@@ -10,7 +10,6 @@
             class="p-3 border rounded"
           >
             <b-form-radio
-              @change="rateSelected"
               data-test-id="radioButton"
               v-model="rateTypeChosen"
               name="customRateRadio"
@@ -33,7 +32,6 @@
             class="p-3 border rounded"
           >
             <b-form-radio
-              @change="rateSelected"
               v-model="rateTypeChosen"
               name="customRateRadio"
               :value="RateType.RATE_PER_COUNTRY"
@@ -62,7 +60,6 @@ import {RateType} from '@/enums/product-feed/rate';
 export default Vue.extend({
   data() {
     return {
-      rateTypeChosen: '',
       RateType,
     };
   },
@@ -73,10 +70,13 @@ export default Vue.extend({
     },
   },
   computed: {
-  },
-  methods: {
-    rateSelected(): void {
-      this.$emit('rateTypeChosen', this.rateTypeChosen);
+    rateTypeChosen: {
+      get(): RateType {
+        return this.$store.getters['productFeed/GET_RATE_CHOSEN'];
+      },
+      set(value: RateType) {
+        this.$store.state.productFeed.settings.rate = value;
+      },
     },
   },
 });

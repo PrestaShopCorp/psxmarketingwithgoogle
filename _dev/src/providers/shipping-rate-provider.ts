@@ -11,6 +11,7 @@ export type flatShippingRate = {
 }
 
 export type CustomCarrier = {
+  country?: string,
   carrierName: string;
   offer: OfferType|null;
   rate: RateType|null;
@@ -88,9 +89,34 @@ export function validateOfferChoice(offer: OfferType|null): boolean {
   return false;
 }
 
-export function generateCustomCarrier(): CustomCarrier {
+export function createCustomCarriersTemplate(rate: RateType, countries: string[]): CustomCarrier[] {
+  const template: CustomCarrier[] = [];
+
+  if (rate === RateType.RATE_PER_COUNTRY) {
+    for (let i = 0; i < countries.length; i += 1) {
+      template.push({
+        ...basicTemplate(),
+        country: countries[i],
+      });
+    }
+
+    return template;
+  }
+
+  if (rate === RateType.RATE_ALL_COUNTRIES) {
+    template.push({
+      ...basicTemplate(),
+      country: countries.toString(),
+    });
+  }
+
+  return template;
+}
+
+export function basicTemplate(): CustomCarrier {
   return {
     carrierName: '',
+    offer: null,
     countries: [],
     currency: '',
     rate: RateType.RATE_ALL_COUNTRIES,
