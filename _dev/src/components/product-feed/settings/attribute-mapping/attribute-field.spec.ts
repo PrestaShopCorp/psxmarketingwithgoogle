@@ -5,7 +5,7 @@
 import {shallowMount} from '@vue/test-utils';
 import {BDropdown, BFormCheckbox} from 'bootstrap-vue';
 import {localVue} from '@/../tests/init';
-import {productFeed} from '@/../.storybook/mock/product-feed.js';
+import {productFeed} from '@/../.storybook/mock/product-feed';
 import AttributeField from '@/components/product-feed/settings/attribute-mapping/attribute-field.vue';
 
 const {attributesFromShop} = productFeed;

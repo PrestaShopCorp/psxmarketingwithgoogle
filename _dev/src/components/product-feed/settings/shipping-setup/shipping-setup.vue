@@ -18,7 +18,6 @@
         :class="[{'selected':chosenShippingSetup === ShippingSetupOption.ESTIMATE}]"
       >
         <b-form-radio
-          data-test-id="radioButton"
           v-model="chosenShippingSetup"
           name="shippingSettingsRadio"
           :value="ShippingSetupOption.ESTIMATE"
@@ -64,6 +63,7 @@
 
 <script lang="ts">
 import {VueShowdown} from 'vue-showdown';
+import {BFormRadio, BFormGroup} from 'bootstrap-vue';
 import Vue from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
@@ -76,6 +76,8 @@ export default Vue.extend({
   components: {
     ActionsButtons,
     VueShowdown,
+    BFormRadio,
+    BFormGroup,
   },
   data() {
     return {
@@ -88,7 +90,7 @@ export default Vue.extend({
   methods: {
     getInitialValueOfShippingSetup(): ShippingSetupOption|null {
       // Handle potential value from store.
-      const initialValue = getDataFromLocalStorage('productFeed-shippingSetup') ?? !!this.$store.state.productFeed.settings.shippingSetup;
+      const initialValue = getDataFromLocalStorage('productFeed-shippingSetup') ?? this.$store.state.productFeed.settings.shippingSetup;
 
       if (initialValue) {
         return initialValue;

@@ -5,6 +5,7 @@
       size="sm"
       class="mx-1 mt-3 mt-md-0"
       variant="outline-secondary"
+      data-test-id="cancelButton"
     >
       {{ $t('cta.cancel') }}
     </b-button>
@@ -14,6 +15,7 @@
       size="sm"
       class="mx-1 mt-3 mt-md-0"
       variant="outline-secondary"
+      data-test-id="previousButton"
     >
       {{ $t('cta.previous') }}
     </b-button>

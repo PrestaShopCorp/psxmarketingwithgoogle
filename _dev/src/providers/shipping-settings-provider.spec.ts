@@ -1,5 +1,5 @@
 import {shippingPhpExport} from '../../.storybook/mock/shipping-settings';
-import DeliveryType from '../enums/product-feed/delivery-type';
+import DeliveryType from '@/enums/product-feed/delivery-type';
 import {
   getEnabledCarriers, Carrier, validateDeliveryDetail,
 } from './shipping-settings-provider';
