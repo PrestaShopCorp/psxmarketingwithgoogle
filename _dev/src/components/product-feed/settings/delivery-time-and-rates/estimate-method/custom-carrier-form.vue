@@ -60,10 +60,9 @@
                   name="offersChoice"
                   v-model="customCarrier.offer"
                   @input="$emit('dataUpdated', customCarrier)"
-                  :id="`${offer.text}${index}`"
                   :value="offer.value"
                 >
-                  <span class="text-black">{{ offer.text }}</span>
+                  <span class="text-black">{{ offer.text }} - {{customCarrier.offer}}</span>
                 </b-form-radio>
               </div>
             </div>
