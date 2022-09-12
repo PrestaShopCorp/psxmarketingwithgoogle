@@ -16,8 +16,9 @@ export type CustomCarrier = {
   rate: RateType|null;
   countries: string[];
   currency: string;
-  maxDeliveryTime: number|null;
-  minDeliveryTime: number|null;
+  maxDeliveryTime: number;
+  minDeliveryTime: number;
+  validationError?: boolean;
   freeShippingOverAmount: freeShippingOverAmount;
   flatShippingRate: flatShippingRate;
 }
