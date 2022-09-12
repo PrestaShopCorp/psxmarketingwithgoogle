@@ -160,17 +160,20 @@
               class="mx-n1"
             >
               <product-feed-card-report-card
-                :status="targetCountriesStatus"
-                :title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
-                :description="targetCountries.join(', ')"
-                :link="$t('cta.editCountries')"
+                :status="shippingSetupStatus"
+                :title="$t('productFeedSettings.deliveryTimeAndRates.shippingSettings')"
+                :description="shippingSetupDescription"
+                :link="$t('cta.editSettings')"
                 :link-to="{ name: 'product-feed-settings',
                             step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
               />
               <product-feed-card-report-card
-                :status="shippingSettingsStatus"
-                :title="$t('productFeedSettings.deliveryTimeAndRates.shippingSettings')"
-                :description="shippingSettings"
+                :status="targetCountriesStatus"
+                :title="$t('productFeedSettings.deliveryTimeAndRates.title')"
+                :sub-title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
+                :description="targetCountries.join(', ')"
+                :sub-title2="$t('productFeedSettings.deliveryTimeAndRates.title')"
+                :description2="deliveryTimeAndRatesDescription"
                 :link="$t('cta.editSettings')"
                 :link-to="{ name: 'product-feed-settings',
                             step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
@@ -285,26 +288,41 @@ export default defineComponent({
         this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
       );
     },
-    shippingSettings() {
+    shippingSetupDescription() {
       if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
-        return this.$t('productFeedSettings.deliveryTimeAndRates.manually');
+        return this.$t('productFeedSettings.shippingSetup.laterOption.summary');
       }
 
-      // ToDo: Update wording
       if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.IMPORT) {
-        return this.$t('productFeedSettings.deliveryTimeAndRates.automatically');
+        return this.$t('productFeedSettings.shippingSetup.estimateOption.summary');
       }
-      // ToDo: Update wording
       if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.ESTIMATE) {
-        return this.$t('productFeedSettings.deliveryTimeAndRates.automatically');
+        return this.$t('productFeedSettings.shippingSetup.importOption.summary');
       }
 
       return this.$t('productFeedCard.missingInformation');
     },
-    shippingSettingsStatus() {
+    shippingSetupStatus() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']
         ? 'warning'
         : 'success';
+    },
+    deliveryTimeAndRatesDescription() {
+      if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
+        return '--';
+      }
+
+      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.IMPORT) {
+        return this.$t('productFeedSettings.deliveryTimeAndRates.importOption.summary');
+      }
+      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.ESTIMATE) {
+        if (this.targetCountries.length === 1) {
+          return this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.singleCountry');
+        }
+        return this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.multiCountriesFlatRateForAll');
+      }
+
+      return this.$t('productFeedCard.missingInformation');
     },
     targetCountriesStatus() {
       return this.targetCountries.length ? 'success' : 'warning';
