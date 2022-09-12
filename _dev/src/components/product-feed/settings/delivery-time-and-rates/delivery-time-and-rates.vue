@@ -1,5 +1,12 @@
 <template>
   <div>
+    <p class="h3 mb-2 font-weight-600">
+      {{ $t('productFeedSettings.deliveryTimeAndRates.title') }}
+    </p>
+    <custom-rate
+      :is-multiple-countries="2"
+      @rateTypeChosen="updateRate($event)"
+    />
     <target-countries
       @countrySelected="countries = $event;dataUpdated()"
       :countries="selectedCountries"
@@ -13,13 +20,21 @@
       @dataUpdated="carriers = $event;dataUpdated()"
       @refresh="refreshComponent"
     />
-
+<!--
     <custom-carrier-form
       v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE
-        && selectedCountries.length > 0"
+        && selectedCountries.length > 0
+        && rate === RateType.SAME_FOR_ALL"
       :custom-carrier="customCarrier"
       :display-validation-errors="displayValidationErrors"
-      @dataUpdated="customCarrier = $event;dataUpdated()"
+    /> -->
+
+    <countries-form-list
+      v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE  && selectedCountries.length > 0"
+      :rateChosen="rate"
+      :countries="['FR', 'IT']"
+      :validation-error="displayValidationErrors"
+      @dataUpdated="carriersCustom = $event;dataUpdated()"
     />
 
     <actions-buttons
@@ -44,6 +59,8 @@ import {OfferType} from '@/enums/product-feed/offer';
 import {CustomCarrier, validateCarrier} from '@/providers/shipping-rate-provider';
 import {DeliveryDetail, validateDeliveryDetail} from '@/providers/shipping-settings-provider';
 import CustomCarrierForm from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-carrier-form.vue';
+import CustomRate from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-rate.vue';
+import CountriesFormList from './estimate-method/countries-form-list.vue';
 
 export default Vue.extend({
   components: {
@@ -51,6 +68,8 @@ export default Vue.extend({
     TargetCountries,
     ShippingSettings,
     CustomCarrierForm,
+    CustomRate,
+    CountriesFormList,
   },
   data() {
     return {
@@ -59,6 +78,8 @@ export default Vue.extend({
       ShippingSetupOption,
       RateType,
       OfferType,
+      rate: '',
+      carriersCustom: [],
       // Import Option data
       carriers: [],
     };
@@ -101,6 +122,10 @@ export default Vue.extend({
     dataUpdated(): void {
       this.displayValidationErrors = false;
     },
+    updateRate(event) {
+      this.rate = event;
+      this.dataUpdated();
+    },
     previousStep(): void {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
       this.$router.push({
@@ -121,7 +146,7 @@ export default Vue.extend({
 
       // Validation - Estimate option
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
-        if (validateCarrier(this.customCarrier as CustomCarrier) === false) {
+        if (validateCarrier(this.carriersCustom) === false) {
           return false;
         }
         return true;

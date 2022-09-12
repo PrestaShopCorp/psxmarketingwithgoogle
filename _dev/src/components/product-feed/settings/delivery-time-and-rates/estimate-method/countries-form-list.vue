@@ -42,8 +42,9 @@
       >
         <b-card-body>
           <custom-carrier-form
-            :carrier="carrier"
-            :validation-error="validationError"
+            :custom-carrier="carriers[0]"
+            :display-validation-errors="validationError"
+            @dataUpdated="$emit('dataUpdated', carriers[0])"
           />
         </b-card-body>
       </b-collapse>
@@ -68,7 +69,7 @@
           class="d-flex btn-without-hover"
           variant="invisible"
         >
-          <span>{{ country }}</span>
+          <span>{{ carrier.country }}</span>
           <i
             aria-hidden="true"
             class="material-icons ps_gs-fz-20 ml-auto when-closed"
@@ -89,8 +90,9 @@
       >
         <b-card-body>
           <custom-carrier-form
-            :carrier="carrier"
-            :validation-error="validationError"
+            :custom-carrier="carrier"
+            :display-validation-errors="validationError"
+            @dataUpdated="$emit('dataUpdated', carriers)"
           />
         </b-card-body>
       </b-collapse>
@@ -101,7 +103,8 @@
 import Vue, {PropType} from 'vue';
 import CustomCarrierForm from './custom-carrier-form.vue';
 import {RateType} from '@/enums/product-feed/rate';
-import {CustomCarrier} from '@/providers/shipping-rate-provider';
+// import {CustomCarrier} from '@/providers/shipping-rate-provider';
+import {OfferType} from '@/enums/product-feed/offer';
 
 export default Vue.extend({
   name: 'CountriesFormList',
@@ -117,10 +120,6 @@ export default Vue.extend({
       type: Array,
       required: true,
     },
-    carrier: {
-      type: Object as PropType<CustomCarrier>,
-      required: true,
-    },
     validationError: {
       type: Boolean,
       required: true,
@@ -134,6 +133,49 @@ export default Vue.extend({
   computed: {
     countriesNames(): string[] {
       return this.$options.filters.changeCountriesCodesToNames(this.countries);
+    },
+    carriers() {
+      const carriers = [];
+
+      if (this.rateChosen === RateType.CUSTOM_RATE) {
+        for (let i = 0; i < this.countries.length; i += 1) {
+          const obj = {
+            country: this.countries[i],
+            carrierName: '',
+            offerChosen: null,
+            isValid: true,
+            maxDeliveryTime: 0,
+            minDeliveryTime: 0,
+            [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
+              shippingRateAmount: 0,
+              freeShippingAmount: 0,
+            },
+            [OfferType.FLAT_SHIPPING_RATE]: {
+              shippingRateAmount: 0,
+            },
+          };
+          carriers.push(obj);
+        }
+
+        return carriers;
+      }
+
+      carriers.push({
+        country: this.countries[0],
+        carrierName: '',
+        isValid: true,
+        offerChosen: null,
+        maxDeliveryTime: 0,
+        minDeliveryTime: 0,
+        [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
+          shippingRateAmount: 0,
+          freeShippingAmount: 0,
+        },
+        [OfferType.FLAT_SHIPPING_RATE]: {
+          shippingRateAmount: 0,
+        },
+      });
+      return carriers;
     },
   },
   methods: {

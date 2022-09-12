@@ -37,7 +37,7 @@
                   class="form-control ps_gs-mw-200"
                   id="carrierName"
                   v-model="customCarrier.carrierName"
-                  @input="$emit('dataUpdated', customCarrier)"
+                  @input="$emit('dataUpdated')"
                   :state="validateCarrierName"
                   :placeholder="$t('productFeedSettings.attributeMapping.description')"
                   maxlength="90"
@@ -90,7 +90,7 @@
                     size="sm"
                     :state="validateTimeDelivery"
                     v-model.number="customCarrier.minDeliveryTime"
-                    @input="$emit('dataUpdated', customCarrier)"
+                    @input="$emit('dataUpdated')"
                     min="0"
                     :placeholder="$t('general.min')"
                   />
@@ -101,7 +101,7 @@
                     <b-form-input
                       type="number"
                       v-model.number="customCarrier.maxDeliveryTime"
-                      @input="$emit('dataUpdated', customCarrier)"
+                      @input="$emit('dataUpdated')"
                       class="ps_gs-carrier__input-number no-arrows min-input-custom"
                       size="sm"
                       :state="validateTimeDelivery"
