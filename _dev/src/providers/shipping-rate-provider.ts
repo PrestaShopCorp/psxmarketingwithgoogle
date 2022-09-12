@@ -11,7 +11,7 @@ export type flatShippingRate = {
 
 export type CustomCarrier = {
   carrierName: string;
-  offerChosen: OfferType;
+  offerChosen: OfferType|null;
   maxDeliveryTime: number;
   minDeliveryTime: number;
   freeShippingOverAmount: freeShippingOverAmount;
@@ -69,7 +69,11 @@ export function validateOffers(carrier: CustomCarrier): boolean {
   return true;
 }
 
-export function validateOfferChoice(offerChosen: OfferType): boolean {
+export function validateOfferChoice(offerChosen: OfferType|null): boolean {
+  if (!offerChosen) {
+    return false;
+  }
+
   const values = Object.values(OfferType);
 
   if (values.includes(offerChosen as OfferType)) {

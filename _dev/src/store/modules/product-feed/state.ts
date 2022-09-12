@@ -17,6 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
 import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
@@ -57,11 +58,12 @@ export interface ProductInfos {
  id: string;
  name: string;
  attribute: string;
- issues? : Array<object>;
+ language: string;
+ issues? : contentApi.Schema$ProductStatusItemLevelIssue[];
  statuses? : Array<object>;
 }
 export interface ProductsDatas {
-  items: Array<ProductInfos>;
+  items: ProductInfos[];
 }
 
 export interface AttributesInfos {
@@ -178,7 +180,7 @@ export const state: State = {
     shippingSetup: null,
     estimateCarrier: {
       carrierName: '',
-      offerChosen: '' as OfferType,
+      offerChosen: null,
       maxDeliveryTime: 0,
       minDeliveryTime: 0,
       [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {

@@ -14,13 +14,13 @@
         {{ $t('productFeedSettings.submissionExplanation') }}
       </p>
       <div
-        class="p-3 mb-2 border rounded"
+        class="p-3 mb-2 border rounded ps_gs-shipping-setup-option"
+        :class="[{'selected':chosenShippingSetup === ShippingSetupOption.ESTIMATE}]"
       >
         <b-form-radio
-          data-test-id="radioButton"
           v-model="chosenShippingSetup"
           name="shippingSettingsRadio"
-          value="estimate"
+          :value="ShippingSetupOption.ESTIMATE"
         >
           <div>
             <span class="font-weight-600 mb-2">
@@ -34,12 +34,13 @@
         </b-form-radio>
       </div>
       <div
-        class="p-3 border rounded"
+        class="p-3 mb-2 border rounded ps_gs-shipping-setup-option"
+        :class="[{'selected':chosenShippingSetup === ShippingSetupOption.IMPORT}]"
       >
         <b-form-radio
           v-model="chosenShippingSetup"
           name="shippingSettingsRadio"
-          value="import"
+          :value="ShippingSetupOption.IMPORT"
         >
           <div>
             <span class="font-weight-600 mb-2">
@@ -62,6 +63,7 @@
 
 <script lang="ts">
 import {VueShowdown} from 'vue-showdown';
+import {BFormRadio, BFormGroup} from 'bootstrap-vue';
 import Vue from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
@@ -74,18 +76,21 @@ export default Vue.extend({
   components: {
     ActionsButtons,
     VueShowdown,
+    BFormRadio,
+    BFormGroup,
   },
   data() {
     return {
       tax: null,
       chosenShippingSetup: this.getInitialValueOfShippingSetup(),
       loading: false,
+      ShippingSetupOption,
     };
   },
   methods: {
     getInitialValueOfShippingSetup(): ShippingSetupOption|null {
       // Handle potential value from store.
-      const initialValue = getDataFromLocalStorage('productFeed-shippingSetup') ?? !!this.$store.state.productFeed.settings.shippingSetup;
+      const initialValue = getDataFromLocalStorage('productFeed-shippingSetup') ?? this.$store.state.productFeed.settings.shippingSetup;
 
       if (initialValue) {
         return initialValue;
