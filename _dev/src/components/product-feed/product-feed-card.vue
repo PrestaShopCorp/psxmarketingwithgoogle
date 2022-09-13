@@ -159,42 +159,48 @@
               no-gutters
               class="mx-n1"
             >
-              <product-feed-card-report-card
-                :status="shippingSetupStatus"
-                :title="$t('productFeedSettings.deliveryTimeAndRates.shippingSettings')"
-                :description="shippingSetupDescription"
-                :link="$t('cta.editSettings')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
-              />
-              <product-feed-card-report-card
-                :status="targetCountriesStatus"
-                :title="$t('productFeedSettings.deliveryTimeAndRates.title')"
-                :sub-title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
-                :description="targetCountries.join(', ')"
-                :sub-title2="$t('productFeedSettings.deliveryTimeAndRates.title')"
-                :description2="deliveryTimeAndRatesDescription"
-                :link="$t('cta.editSettings')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
-              />
-              <product-feed-card-report-card
-                v-if="isUS"
-                :status="taxSettingsStatus"
-                :title="$t('productFeedSettings.deliveryTimeAndRates.taxSettings')"
-                :description="taxSettings"
-                :link="$t('cta.editSettings')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
-              />
-              <product-feed-card-report-card
-                :status="attributeMappingStatus"
-                :title="$t('productFeedSettings.steps.attributeMapping')"
-                :description="attributeMapping.join(', ')"
-                :link="$t('cta.editProductAttributes')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 3, params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
-              />
+              <b-col>
+                <product-feed-card-report-card
+                  :status="shippingSetupStatus"
+                  :title="$t('productFeedSettings.deliveryTimeAndRates.shippingSettings')"
+                  :description="shippingSetupDescription"
+                  :link="$t('cta.editSettings')"
+                  :link-to="{ name: 'product-feed-settings',
+                              step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
+                />
+                <product-feed-card-report-card
+                  v-if="isUS"
+                  :status="taxSettingsStatus"
+                  :title="$t('productFeedSettings.deliveryTimeAndRates.taxSettings')"
+                  :description="taxSettings"
+                  :link="$t('cta.editSettings')"
+                  :link-to="{ name: 'product-feed-settings',
+                              step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
+                />
+                <product-feed-card-report-card
+                  :status="attributeMappingStatus"
+                  :title="$t('productFeedSettings.steps.attributeMapping')"
+                  :description="attributeMapping.join(', ')"
+                  :link="$t('cta.editProductAttributes')"
+                  :link-to="{ name: 'product-feed-settings',
+                              step: 3, params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
+                />
+              </b-col>
+              <b-col
+                class="d-flex flex-row-column"
+              >
+                <product-feed-card-report-card
+                  :status="targetCountriesStatus"
+                  :title="$t('productFeedSettings.deliveryTimeAndRates.title')"
+                  :sub-title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
+                  :description="targetCountries.join(', ')"
+                  :sub-title2="$t('productFeedSettings.deliveryTimeAndRates.title')"
+                  :description2="deliveryTimeAndRatesDescription"
+                  :link="$t('cta.editSettings')"
+                  :link-to="{ name: 'product-feed-settings',
+                              step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
+                />
+              </b-col>
             </b-row>
           </b-container>
         </div>

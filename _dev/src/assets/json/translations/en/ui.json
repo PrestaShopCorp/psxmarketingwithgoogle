@@ -306,6 +306,7 @@
       "shippingSettingsTitle": "Products shipping settings",
       "shippingLabel1": "Setup my shipping settings now (recommended)",
       "shippingDescription1": "PrestaShop will import your carriers list from your store settings and allow you to provide additional information.",
+      "manually": "Manually",
       "shippingLabel2": "Skip and setup later in Google Merchant Center",
       "shippingDescription2": "You will have to enter your product shipping information yourself in Google Merchant center. ",
       "noticeSetupShipping": "Your products won’t sync until you setup your products shipping information.",
