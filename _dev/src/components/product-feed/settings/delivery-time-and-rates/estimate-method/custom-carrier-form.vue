@@ -3,12 +3,6 @@
     <p class="h3 mr-2 mb-2 font-weight-600 d-inline-block">
       {{ $t('productFeedSettings.steps.deliveryTimesAndRates') }}
     </p>
-    <p
-      v-if="validateCarrier === false"
-      class="text-danger ps-gs_fz-14 d-inline-block"
-    >
-      {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
-    </p>
     <b-card class="mb-2">
       <b-container>
         <b-row>
@@ -62,7 +56,7 @@
                   @input="$emit('dataUpdated', customCarrier)"
                   :value="offer.value"
                 >
-                  <span class="text-black">{{ offer.text }} - {{customCarrier.offer}}</span>
+                  <span class="text-black">{{ offer.text }}</span>
                 </b-form-radio>
               </div>
             </div>
@@ -247,7 +241,6 @@ import {
   CustomCarrier,
   validateOfferChoice,
   validateCarrierName,
-  validateCarrier,
 } from '@/providers/shipping-rate-provider';
 
 export default Vue.extend({
@@ -284,12 +277,6 @@ export default Vue.extend({
     };
   },
   computed: {
-    validateCarrier(): boolean|null {
-      if (!this.displayValidationErrors) {
-        return null;
-      }
-      return validateCarrier(this.customCarrier);
-    },
     validateTimeDelivery(): boolean|null {
       if (!this.displayValidationErrors) {
         return null;

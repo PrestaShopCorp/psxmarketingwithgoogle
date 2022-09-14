@@ -17,11 +17,17 @@
           class="d-flex btn-without-hover"
           variant="invisible"
         >
-          <span>
+          <span class="mr-2">
             {{
               countriesNames.length > 1 ?
                 countriesNames.toString() : countriesNames[0]
             }}
+          </span>
+          <span
+            v-if="validateCarrier(carriers[0]) === false"
+            class="text-danger spans-gs_fz-14 d-inline-block"
+          >
+            {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
           </span>
           <i
             aria-hidden="true"
@@ -70,6 +76,12 @@
           variant="invisible"
         >
           <span>{{ $options.filters.changeCountriesCodesToNames([carrier.country])[0] }}</span>
+          <span
+            v-if="validateCarrier(carrier) === false"
+            class="text-danger spans-gs_fz-14 d-inline-block"
+          >
+            {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
+          </span>
           <i
             aria-hidden="true"
             class="material-icons ps_gs-fz-20 ml-auto when-closed"
@@ -103,7 +115,7 @@
 import Vue, {PropType} from 'vue';
 import CustomCarrierForm from './custom-carrier-form.vue';
 import {RateType} from '@/enums/product-feed/rate';
-import {CustomCarrier} from '@/providers/shipping-rate-provider';
+import {CustomCarrier, validateCarrier} from '@/providers/shipping-rate-provider';
 
 export default Vue.extend({
   name: 'CountriesFormList',
@@ -139,6 +151,12 @@ export default Vue.extend({
     },
   },
   methods: {
+    validateCarrier(carrier): boolean|null {
+      if (!this.validationError) {
+        return null;
+      }
+      return validateCarrier(carrier);
+    },
   },
 });
 </script>

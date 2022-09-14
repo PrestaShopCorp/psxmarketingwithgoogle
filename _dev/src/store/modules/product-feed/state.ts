@@ -44,7 +44,6 @@ export interface ProductFeedSettings {
   autoImportShippingSettings?: boolean;
   targetCountries: string[]|null;
 }
-
 export interface ProductFeedValidationSummary {
   activeItems: number|null;
   expiringItems: number|null;

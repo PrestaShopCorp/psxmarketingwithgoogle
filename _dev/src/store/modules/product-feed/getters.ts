@@ -168,14 +168,4 @@ export default {
   [GettersTypes.GET_ESTIMATE_CARRIERS](state: LocalState): CustomCarrier[] {
     return state.settings.estimateCarriers;
   },
-  [GettersTypes.GET_RATE_CHOSEN](state: LocalState): RateType|string {
-    const rateSelected = getDataFromLocalStorage('productFeed-rateChosen');
-
-    if (rateSelected !== null) {
-      state.settings.rate = rateSelected;
-    }
-
-    return state.settings.rate;
-  },
-
 };

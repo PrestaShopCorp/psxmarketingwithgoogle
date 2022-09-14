@@ -89,13 +89,16 @@ export function validateOfferChoice(offer: OfferType|null): boolean {
   return false;
 }
 
-export function createCustomCarriersTemplate(rate: RateType, countries: string[]): CustomCarrier[] {
+export function createCustomCarriersTemplate(
+  rate: RateType,
+  countries: string[],
+): CustomCarrier[] {
   const template: CustomCarrier[] = [];
 
   if (rate === RateType.RATE_PER_COUNTRY) {
     for (let i = 0; i < countries.length; i += 1) {
       template.push({
-        ...basicTemplate(),
+        ...basicTemplate(rate),
         country: countries[i],
       });
     }
@@ -105,21 +108,20 @@ export function createCustomCarriersTemplate(rate: RateType, countries: string[]
 
   if (rate === RateType.RATE_ALL_COUNTRIES) {
     template.push({
-      ...basicTemplate(),
+      ...basicTemplate(rate),
       country: countries.toString(),
     });
   }
-
   return template;
 }
 
-export function basicTemplate(): CustomCarrier {
+export function basicTemplate(rate: RateType): CustomCarrier {
   return {
     carrierName: '',
     offer: null,
     countries: [],
     currency: '',
-    rate: RateType.RATE_ALL_COUNTRIES,
+    rate,
     offer: null,
     maxDeliveryTime: null,
     minDeliveryTime: null,
