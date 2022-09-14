@@ -92,7 +92,7 @@ export default {
     state.settings = {
       shippingSetup: null,
       rate: '',
-      estimateCarriers: [] as CustomCarrier[],
+      estimateCarriers: [],
       shippingSettings: [],
       deliveryDetails: [],
       autoImportTaxSettings: false,

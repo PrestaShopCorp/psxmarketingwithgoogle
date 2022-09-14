@@ -11,7 +11,7 @@
           >
             <b-form-radio
               data-test-id="radioButton"
-              v-model="rateTypeChosen"
+              v-model="rateSelected"
               name="customRateRadio"
               :value="RateType.RATE_ALL_COUNTRIES"
             >
@@ -32,7 +32,7 @@
             class="p-3 border rounded"
           >
             <b-form-radio
-              v-model="rateTypeChosen"
+              v-model="rateSelected"
               name="customRateRadio"
               :value="RateType.RATE_PER_COUNTRY"
               :disabled="isMultipleCountries <= 1"
@@ -54,7 +54,7 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue, {PropType} from 'vue';
 import {RateType} from '@/enums/product-feed/rate';
 
 export default Vue.extend({
@@ -68,14 +68,18 @@ export default Vue.extend({
       type: Number,
       required: true,
     },
+    rateTypeChosen: {
+      type: String as PropType<RateType>,
+      required: true,
+    },
   },
   computed: {
-    rateTypeChosen: {
-      get(): RateType {
-        return this.$store.getters['productFeed/GET_RATE_CHOSEN'];
+    rateSelected: {
+      get() {
+        return this.$props.rateTypeChosen;
       },
-      set(value: RateType) {
-        this.$store.state.productFeed.settings.rate = value;
+      set(value) {
+        this.$emit('rateUpdated', value);
       },
     },
   },
