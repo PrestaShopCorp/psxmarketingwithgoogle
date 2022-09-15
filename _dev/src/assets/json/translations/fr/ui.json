@@ -26,7 +26,8 @@
     "min": "min.",
     "max": "max.",
     "helpPage": "Page d'aide",
-    "noResultsFoundForX": " Aucun résultat trouvé pour {0}"
+    "noResultsFoundForX": " Aucun résultat trouvé pour {0}",
+    "days": "Days"
   },
   "landingPage": {
     "header": {
@@ -209,7 +210,6 @@
     "syncFailedAt": "Échec de la synchronisation {0} à {1}",
     "syncSuccess": "Produits synchronisés {1} à {2} | {0} Produits synchronisés {1} à {2} | {0} Produits synchronisés {1} à {2}",
     "syncBusy": "Synchronisation en cours...",
-    "syncCantPerform": "Impossible d'effectuer la synchronisation",
     "mappedCategories": "{0}/{1} catégories mappées",
     "alertFeedSettingSubmissionSuccess": "Vous avez soumis vos produits avec succès au Merchant Center.  \n Une fois approuvés, ils seront disponibles pour les fiches gratuites et publicités.",
     "alertFailed": "La synchronisation produit a échoué. Vérifiez les raisons possibles dans [Merchant Center]({0})[:target=\"_blank\"] ou contactez le [service client](mailto:support-google@prestashop.com).",
@@ -231,8 +231,8 @@
     "breadcrumb1": "Flux produit",
     "breadcrumb2": "Paramètres du flux produit",
     "steps": {
-      "targetCountry": "Pays cible",
-      "shippingSettings": "Ciblage et expédition",
+      "shippingSetup": "Shipping setup",
+      "deliveryTimesAndRates": "Delivery time & rates",
       "attributeMapping": "Cartographie des attributs",
       "categoryMapping": "Mapping des catégories",
       "summary": "Résumé",
@@ -241,15 +241,58 @@
       "syncSchedule": "Calendrier de synchronisation"
     },
     "noticeDataStored": "Les paramètres sont enregistrés à chaque étape mais ne seront soumis qu'à l'étape finale.",
-    "shipping": {
+    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
+    "shippingSetup": {
+      "title": "Shipping setup",
+      "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
+      "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
+      "estimateOption": {
+        "title": "I can estimate shipping rates & times",
+        "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office."
+      },
+      "importOption": {
+        "title": "I’d like to import my shipping setup from PrestaShop back office",
+        "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country."
+      }
+    },
+    "deliveryTimeAndRates": {
+      "title": "Delivery time & rates",
+      "rateAndDelivery": "Rate & delivery timeline",
+      "deliveryInfo": "Enter the minimum and maximum days required for delivery",
+      "customRate": {
+        "title": "Choose a flat or custom rate for your target countries",
+        "rateTitle": "Same rates for target countries",
+        "rateDesc": "I can estimate the same shipping rate and delivery time for all countries",
+        "customTitle": "Custom rates by country",
+        "customDesc": "I'd like to set different rates and times for each country"
+      },
+      "estimateStep": {
+        "error": "Fill in the required information",
+        "carrierName": "Carrier name",
+        "storeOffersTitle": "My store offers",
+        "storeOffers": {
+          "flatShippingRateForAllProducts": "Flat shipping rate for all products",
+          "freeShippingForAllProducts": "Free shipping for all products",
+          "freeShippingOverAmount": "Free shipping over a set amount"
+        },
+        "shippingRate": {
+          "rate": "Shipping rate",
+          "rateDesc": "Enter the shipping rate for all target countries",
+          "overAmount": "Free shipping applies over"
+        }
+      },
+      "importOption": {
+        "validationErrors": {
+          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue"
+        }
+      },
+      "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
       "targetCountries": "Pays cible",
       "filterTitle": "Filtrer par pays",
       "ifMultipleCountries": "Si vous ciblez plusieurs pays, le prix de chaque produit sera automatiquement converti dans la devise correcte de Google. Cependant, votre boutique doit avoir configuré les frais de port et de taxe pour chaque pays sélectionné. Veuillez respecter [les politiques d'achat propres à chaque pays]({0})[:target=\"_blank\"] et [la réglementation locale]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "Mes produits sont disponibles en",
       "placeholderSelect": "Sélectionnez les pays où vos produits sont disponibles",
-      "cantFindCountry": "Vous ne trouvez pas un pays? Seuls les pays supportés sont listés. [Voir la liste des pays pris en charge]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "Ce pays n'est pas compatible avec votre devise",
-      "shippingSettings": "Paramètres d'expédition",
+      "shippingSettings": "Ciblage et expédition",
       "shippingSettingsTitle": "Paramètres de livraison des produits",
       "shippingLabel1": "Configurer mes paramètres de livraison maintenant (recommandé)",
       "shippingDescription1": "PrestaShop importera votre liste de transporteurs à partir des paramètres de votre boutique et vous permettra de fournir des informations supplémentaires.",
@@ -264,26 +307,25 @@
       "manualImportTax": "Configurer manuellement les paramètres fiscaux dans le Merchant Center Google",
       "appliedOnlyForUsa": "(s'applique uniquement aux USA)",
       "alertTaxes": "Vous devez soumettre les taxes que vous percevez, afin que les utilisateurs comprennent le prix exact qu'ils devront payer pour vos produits.",
-      "cantSelectCountryWithDifferentCurrency": "Vous ne pouvez pas sélectionner un pays dont la devise est différente de celle de votre boutique principale.",
       "carrierDescriptionHeader": "Description du transporteur",
-      "enableHeader": "Activer  \n ou désactiver",
+      "enableHeader": "Enable /  \n disable",
       "shipToCustomerHeader": "Livraison à la porte  ",
-      "handlingTimeHeader": "Temps de traitement",
-      "transitTimeHeader": "Délai d'acheminement",
-      "countryHeader": "Pays cible",
+      "transitTimeHeader": "Delivery time",
+      "countryHeader": "Pays",
       "shipToCustomerTooltip": "Sélectionnez si ce transporteur livre à l'adresse d'un client ou non (point relais, retrait en magasin). Google autorise uniquement les transporteurs qui livrent à l'adresse d'un client.",
       "handlingTimeTooltip": "Entrez le temps qu'il vous faut pour préparer une commande jusqu'à ce qu'elle soit prise en charge par le transporteur en jours ouvrés.",
       "transitTimeTooltip": "Entrez le temps qu'il faut pour que votre commande soit expédiée au client une fois qu'il quitte votre entrepôt.",
-      "shippingInformationTitle": "Informations sur les transporteurs et l'expédition",
-      "shippingInformationIntro": "Entrez les informations d'expédition de votre liste de transporteurs. Ils doivent expédier à l'adresse d'un client pour être synchronisés dans Google Shopping.",
-      "shippingTableNotice": "Assurez-vous que les informations de livraison de votre boutique correspondent aux informations de livraison de votre boutique Google.",
+      "shippingInformationTitle": "Shipping rates & transit time",
+      "shippingInformationIntro": "You can enable and configure the carriers you want to be displayed on Google Shopping.",
+      "shippingTableNotice": "Google cannot support carrier with pick up in store delivery type, please make sure you disable them or switch to another method.",
       "shippingSwitchCarrier": "Cliquer pour activer / désactiver le transporteur",
       "carriersDropdownHeader": "Copier les informations d'expédition dans",
       "carriersDropdownHiddenLabel": "Copier l'information du transporteur vers d'autres transporteurs",
       "noCarriersTitle": "Vous n'avez aucun transporteur de livraison",
       "noCarriersDescription": "Veuillez vous rendre à la page des transporteurs pour ajouter des transporteurs",
       "addNewCarriers": "Ajouter ou mettre à jour des transporteurs",
-      "refreshCarriers": "Rafraîchir si vous avez modifié vos transporteurs"
+      "refreshCarriers": "Rafraîchir si vous avez modifié vos transporteurs",
+      "switchToFlatRate": "Switch to estimation shipping’s set-up"
     },
     "preScan": {
       "selectLanguage": "Filtrer par langue",
@@ -472,7 +514,7 @@
     "inputDurationTooltip": "Les campagnes publicitaires n'ont pas de date de fin par défaut, de sorte que les publicités puissent s'exécuter indéfiniment. Vous pouvez toujours ajouter une date de fin pour créer une campagne plus courte.",
     "inputDurationLabel1": "Date de début",
     "inputDurationLabel2": "Date de fin (facultatif)",
-    "inputDurationInvalidFeedback": "The end date must be set in the future.",
+    "inputDurationInvalidFeedback": "La date de fin doit être definie dans le futur.",
     "inputDatePickerHelper": "Utilisez les touches du curseur pour naviguer dans les dates du calendrier",
     "inputCountryHelper": "Pour cibler plusieurs pays, vous devez créer plusieurs campagnes.",
     "inputCountryImutable": "Le pays ne peut pas être changé après la création, si vous voulez cibler un autre pays, vous devrez créer une nouvelle campagne",
@@ -557,7 +599,7 @@
       "alertSuccess": "L'export de votre catalogue est lancé ! Une fois que vos produits sont approuvés, ils apparaîtront dans les résultats de recherche de l'onglet Google Shopping."
     },
     "destinations": {
-      "shoppingAds": "Shopping Ads",
+      "shoppingAds": "Annonces shopping",
       "enhancedFreeListing": "Activer les fiches gratuites"
     },
     "syncStatus": {
@@ -583,7 +625,7 @@
         },
         "subtitle": {
           "willHappenOnDate": "Commencera le {0} à {1}",
-          "happenedOnDate": "On {date}",
+          "happenedOnDate": "Le {date}",
           "error": "En raison d'un problème technique, la synchronisation a échoué le {0} à {1}. Une nouvelle synchronisation sera effectuée dans quelques heures."
         }
       }
@@ -867,7 +909,6 @@
     "addWebsiteAddress": "Ajouter l'adresse du site web",
     "transferClaim": "Revendiquer",
     "goToYourX": "Allez à votre {0}",
-    "addShippingInfo": "Ajouter des informations de livraison",
     "createSmartShoppingCampaign": "Lancer une campagne Performance Max",
     "addBillingSettings": "Ajoutez des paramètres de facturation",
     "createCampaign": "Créer une campagne",
@@ -887,7 +928,7 @@
     "signInWithGoogle": "Connectez-vous avec Google",
     "viewReporting": "Afficher le rapport",
     "pauseCampaign": "Mettre la campagne en pause",
-    "resumeCampaign": "Revenir à la campagne",
+    "resumeCampaign": "Relancer la campagne",
     "modifyTheCampaign": "Modifier la campagne",
     "openActionsMenu": "Ouvrir le menu d'actions pour la campagne {0}",
     "viewInGoogleAds": "Voir dans votre compte Google Ads",
