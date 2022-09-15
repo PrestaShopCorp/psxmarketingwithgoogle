@@ -27,7 +27,7 @@
     "max": "max.",
     "helpPage": "Page d'aide",
     "noResultsFoundForX": " Aucun résultat trouvé pour {0}",
-    "days": "Days"
+    "days": "Jours"
   },
   "landingPage": {
     "header": {
@@ -231,8 +231,8 @@
     "breadcrumb1": "Flux produit",
     "breadcrumb2": "Paramètres du flux produit",
     "steps": {
-      "shippingSetup": "Shipping setup",
-      "deliveryTimesAndRates": "Delivery time & rates",
+      "shippingSetup": "Configuration de l'expédition",
+      "deliveryTimesAndRates": "Delai et tarifs de livraison",
       "attributeMapping": "Cartographie des attributs",
       "categoryMapping": "Mapping des catégories",
       "summary": "Résumé",
@@ -241,18 +241,18 @@
       "syncSchedule": "Calendrier de synchronisation"
     },
     "noticeDataStored": "Les paramètres sont enregistrés à chaque étape mais ne seront soumis qu'à l'étape finale.",
-    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
+    "submissionExplanation": "Veuillez noter que les données seront stockées à chaque étape mais ne seront envoyées qu'à l'étape finale",
     "shippingSetup": {
-      "title": "Shipping setup",
-      "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
-      "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
+      "title": "Configuration de l'expédition",
+      "mandatoryStep": "Pour que vos produits soient affichés par Google Merchant Centre, la configuration de l'expédition est une étape obligatoire.",
+      "stepExplanation": "Cela peut aider les clients qui consultent vos produits sur Google à voir vos tarifs et délais de livraison.",
       "estimateOption": {
-        "title": "I can estimate shipping rates & times",
-        "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office."
+        "title": "Je peux estimer les tarifs et les délais d'expédition",
+        "description": "Vous pouvez facilement définir un taux d'expédition fixe et des délais de livraison. Vous n'aurez pas à importer ou à mettre à jour vos informations d'expédition depuis le back-office de Prestashop."
       },
       "importOption": {
-        "title": "I’d like to import my shipping setup from PrestaShop back office",
-        "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country."
+        "title": "Je voudrais importer ma configuration d'expédition depuis le back-office de PrestaShop",
+        "description": "Prestashop va importer les paramètres d'expédition que vous avez déjà configurés dans votre back-office. Vous pouvez choisir le ou les transporteurs que vous souhaitez utiliser par pays cible."
       }
     },
     "deliveryTimeAndRates": {
