@@ -4,7 +4,7 @@
     class="ps_gs-productfeed-report-card"
     :class="size && `ps_gs-productfeed-report-card--${size}`"
   >
-    <div class="px-3 py-2">
+    <div class="py-2">
       <div class="d-flex justify-content-between font-weight-600 ps_gs-fz-13 mb-1">
         <div class="d-flex align-items-center">
           <i

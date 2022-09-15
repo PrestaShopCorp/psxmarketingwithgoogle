@@ -38,140 +38,124 @@
         fluid
         class="p-0 mb-3"
       >
+        <product-feed-summary-cards
+          :display-attribute-mapping-simple-card="false"
+          display-sync-card
+        />
         <b-row
           no-gutters
           class="mx-n1"
         >
-          <product-feed-card-report-card
-            status="success"
-            :title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
-            :description="targetCountries.join(', ')"
-            :link="$t('cta.editCountries')"
-            :link-to="{ name: 'product-feed-settings',
-                        step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
-          />
-          <product-feed-card-report-card
-            status="success"
-            :title="$t('productFeedSettings.deliveryTimeAndRates.shippingSettings')"
-            :description="shippingSettingsDescription"
-            :link="$t('cta.editSettings')"
-            :link-to="{ name: 'product-feed-settings',
-                        step: 2,params: ProductFeedSettingsPages.SHIPPING_SETTINGS}"
-          />
-          <product-feed-card-report-card
-            status="success"
-            :title="$t('productFeedSettings.summary.dataSyncSetUp')"
-            :description="getSyncSchedule"
-            size="full"
-          />
-          <product-feed-card-report-card
-            status="success"
-            :title="$t('productFeedSettings.summary.productAttributesMapping')"
-            :link="$t('cta.editProductAttributes')"
-            :link-to="{ name: 'product-feed-settings',
-                        step: 3,params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
-            size="full"
-          >
-            <VueShowdown
-              v-if="getNumberOfAttributesMapped"
-              class="ps_gs-fz-12"
-              :markdown="
-                $tc(
-                  'productFeedSettings.summary.attributeMapped',
-                  getNumberOfAttributesMapped,
-                  [getNumberOfAttributesMapped]
-                )
-              "
-              :extensions="['no-p-tag']"
-            />
-            <b-table-simple
-              stacked="md"
-              class="mt-2 centered-mapping-summary"
-              borderless
-              table-class="border-bottom-0 ps_gs-table-attribute-mapping"
-            >
-              <b-thead>
-                <b-tr
-                  class="ps-ps-header-attribute-mapping"
-                >
-                  <b-th
-                    class="
-                      font-weight-600
-                      ps_gs-fz-12
-                      table-border-bottom
-                    "
-                  >
-                    <div class="text-center mb-2 float-left">
-                      <img
-                        class="rounded-circle mb-1"
-                        src="@/assets/images/google-icon-grey.svg"
-                        width="20"
-                        height="20"
-                      >
-                      <p>
-                        {{ $t('productFeedSettings.summary.tableHeader1') }}
-                      </p>
-                    </div>
-                  </b-th>
-                  <b-th
-                    class="
-                      font-weight-600
-                      ps_gs-fz-12
-                      table-border-bottom
-                    "
-                  >
-                    <div class="text-center mb-2 float-right">
-                      <img
-                        src="@/assets/images/table-chart.svg"
-                        class="mb-1"
-                        width="20"
-                        height="20"
-                      >
-                      <p>
-                        {{ $t("productFeedSettings.summary.tableHeader2") }}
-                      </p>
-                    </div>
-                  </b-th>
-                </b-tr>
-              </b-thead>
-              <b-tbody>
-                <TableRowMapping
-                  v-for="attribute in attributes"
-                  :key="attribute.google"
-                  :attribute="attribute"
-                />
-              </b-tbody>
-            </b-table-simple>
-            <b-alert
-              class="mb-0 mt-3"
-              v-if="mandatoryAttributesNotMapped"
-              variant="warning"
-              show
+          <b-col>
+            <product-feed-card-report-card
+              status="success"
+              :title="$t('productFeedSettings.summary.productAttributesMapping')"
+              :link="$t('cta.editProductAttributes')"
+              :link-to="{ name: 'product-feed-settings',
+                          step: 3,params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
+              size="full"
             >
               <VueShowdown
+                v-if="getNumberOfAttributesMapped"
+                class="ps_gs-fz-12"
                 :markdown="
                   $tc(
-                    'productFeedSettings.summary.mandatoryAttributesNotMapped',
-                    mandatoryAttributesNotMapped,
-                    [mandatoryAttributesNotMapped]
+                    'productFeedSettings.summary.attributeMapped',
+                    getNumberOfAttributesMapped,
+                    [getNumberOfAttributesMapped]
                   )
                 "
                 :extensions="['no-p-tag']"
-                tag="strong"
-                class="font-weight-600"
               />
-              <br>
-              <VueShowdown
-                :markdown="
-                  $t('productFeedSettings.summary.noticeToCompleteMapping', [
-                    $options.googleUrl.learnRequirementsProductSpecification,
-                  ])
-                "
-                :extensions="['extended-link', 'no-p-tag']"
-                tag="span"
-              />
-            </b-alert>
-          </product-feed-card-report-card>
+              <b-table-simple
+                stacked="md"
+                class="mt-2 centered-mapping-summary"
+                borderless
+                table-class="border-bottom-0 ps_gs-table-attribute-mapping"
+              >
+                <b-thead>
+                  <b-tr
+                    class="ps-ps-header-attribute-mapping"
+                  >
+                    <b-th
+                      class="
+                        font-weight-600
+                        ps_gs-fz-12
+                        table-border-bottom
+                      "
+                    >
+                      <div class="text-center mb-2 float-left">
+                        <img
+                          class="rounded-circle mb-1"
+                          src="@/assets/images/google-icon-grey.svg"
+                          width="20"
+                          height="20"
+                        >
+                        <p>
+                          {{ $t('productFeedSettings.summary.tableHeader1') }}
+                        </p>
+                      </div>
+                    </b-th>
+                    <b-th
+                      class="
+                        font-weight-600
+                        ps_gs-fz-12
+                        table-border-bottom
+                      "
+                    >
+                      <div class="text-center mb-2 float-right">
+                        <img
+                          src="@/assets/images/table-chart.svg"
+                          class="mb-1"
+                          width="20"
+                          height="20"
+                        >
+                        <p>
+                          {{ $t("productFeedSettings.summary.tableHeader2") }}
+                        </p>
+                      </div>
+                    </b-th>
+                  </b-tr>
+                </b-thead>
+                <b-tbody>
+                  <TableRowMapping
+                    v-for="attribute in attributes"
+                    :key="attribute.google"
+                    :attribute="attribute"
+                  />
+                </b-tbody>
+              </b-table-simple>
+              <b-alert
+                class="mb-0 mt-3"
+                v-if="mandatoryAttributesNotMapped"
+                variant="warning"
+                show
+              >
+                <VueShowdown
+                  :markdown="
+                    $tc(
+                      'productFeedSettings.summary.mandatoryAttributesNotMapped',
+                      mandatoryAttributesNotMapped,
+                      [mandatoryAttributesNotMapped]
+                    )
+                  "
+                  :extensions="['no-p-tag']"
+                  tag="strong"
+                  class="font-weight-600"
+                />
+                <br>
+                <VueShowdown
+                  :markdown="
+                    $t('productFeedSettings.summary.noticeToCompleteMapping', [
+                      $options.googleUrl.learnRequirementsProductSpecification,
+                    ])
+                  "
+                  :extensions="['extended-link', 'no-p-tag']"
+                  tag="span"
+                />
+              </b-alert>
+            </product-feed-card-report-card>
+          </b-col>
         </b-row>
       </b-container>
       <b-form-group
@@ -246,7 +230,7 @@ import ProductFeedCardReportCard from '../../product-feed-card-report-card';
 import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
 import TableRowMapping from '@/components/product-feed/commons/table-row-mapping';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
 
 dayjs.extend(duration);
 
@@ -260,6 +244,7 @@ export default defineComponent({
     BTableSimple,
     VueShowdown,
     TableRowMapping,
+    ProductFeedSummaryCards,
   },
   data() {
     return {
@@ -271,18 +256,6 @@ export default defineComponent({
     };
   },
   computed: {
-    shippingSettingsDescription() {
-      // ToDo: Update wording
-      if (this.$store.state.productFeed.settings.shippingSetup === ShippingSetupOption.IMPORT) {
-        return this.$t('productFeedSettings.deliveryTimeAndRates.automatically');
-      }
-      // ToDo: Update wording
-      if (this.$store.state.productFeed.settings.shippingSetup === ShippingSetupOption.ESTIMATE) {
-        return this.$t('productFeedSettings.deliveryTimeAndRates.automatically');
-      }
-
-      return this.$t('productFeedCard.missingInformation');
-    },
     disabledExportButton() {
       return !(this.acceptSyncSchedule && this.understandTerms);
     },
@@ -305,19 +278,10 @@ export default defineComponent({
     formatNextSync() {
       return this.$options.filters.timeConverterToHour(this.nextSyncDate);
     },
-    getSyncSchedule() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].syncSchedule;
-    },
     nextSyncTotalProducts: {
       get() {
         return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS_READY_TO_SYNC'];
       },
-    },
-    targetCountries() {
-      // change country code into name with the json list
-      return this.$options.filters.changeCountriesCodesToNames(
-        this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
-      );
     },
     selectedProductCategories() {
       return this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];
