@@ -1,4 +1,5 @@
 import Vue, {VNode} from 'vue';
+import {ShopCurrency} from './store/modules/app/state';
 
 declare global {
   // namespace JSX {
@@ -25,7 +26,7 @@ declare global {
       psxMktgWithGoogleSegmentId: String,
       psxMktgWithGoogleAdminAjaxUrl: String,
       isCountryMemberOfEuropeanUnion: boolean,
-      psxMktgWithGoogleShopCurrency: any,
+      psxMktgWithGoogleShopCurrency: ShopCurrency,
       psxMktgWithGoogleMaintenanceSettingsUrl: String,
       psxMktgWithGoogleCarriersUrl?: String,
       psxMktgWithGoogleAttributesUrl?: String,

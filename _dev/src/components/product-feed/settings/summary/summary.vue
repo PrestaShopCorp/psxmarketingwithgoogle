@@ -242,9 +242,9 @@ import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings
 import googleUrl from '@/assets/json/googleUrl.json';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
-import ProductFeedCardReportCard from '../../product-feed-card-report-card';
-import ProductFeedCardNextSyncCard from '../../product-feed-card-next-sync-card';
-import TableRowMapping from '@/components/product-feed/commons/table-row-mapping';
+import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
+import ProductFeedCardNextSyncCard from '@/components/product-feed/product-feed-card-next-sync-card.vue';
+import TableRowMapping from '@/components/product-feed/commons/table-row-mapping.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 
