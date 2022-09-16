@@ -4,8 +4,7 @@ import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
 import utc from 'dayjs/plugin/utc';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import countriesSelectionOptions from '../assets/json/countries.json';
-import {changeCountriesCodesToNames, changeCountriesNamesToCodes} from './Countries';
+import {changeCountriesCodesToNames} from './Countries';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -64,8 +63,6 @@ Vue.filter(
       currency: currencyCode,
     }).format(value);
   });
-
-Vue.filter('changeCountriesNamesToCodes', changeCountriesNamesToCodes);
 
 Vue.filter(
   'slugify', (...args: (string | number)[]): string => {

@@ -59,7 +59,7 @@ import {PropType} from '@vue/composition-api';
 import SelectCountry from '@/components/commons/select-country.vue';
 import {DeliveryDetail} from '@/providers/shipping-settings-provider';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
-import {changeCountriesCodesToNames, changeCountriesNamesToCodes} from '../../../../utils/Countries';
+import {changeCountriesCodesToNames, changeCountriesNamesToCodes} from '@/utils/Countries';
 
 export default {
   name: 'ProductFeedSettingsShipping',

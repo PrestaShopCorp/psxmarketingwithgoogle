@@ -19,10 +19,10 @@ const buildWrapper = (
 ) => {
   const store = cloneStore();
 
-  store.modules.productFeed.state.app = {
+  store.modules.app.state = {
     ...cloneDeep(initialStateApp),
   };
-  store.modules.productFeed.state.googleAds = {
+  store.modules.googleAds.state = {
     ...cloneDeep(googleAdsAccountChosen),
   };
 

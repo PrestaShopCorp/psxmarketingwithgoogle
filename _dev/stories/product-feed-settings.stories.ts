@@ -3,7 +3,7 @@ import TunnelProductFeed from '../src/views/tunnel-product-feed.vue';
 import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport, productFeedSyncScheduleNow} from '../.storybook/mock/product-feed';
 import {shippingPhpExportWithIssues} from '../.storybook/mock/shipping-settings';
 import {shippingPhpExportHeavy} from '../.storybook/mock/shipping-settings-heavy';
-import {initialStateApp, appMultiCountries} from '../.storybook/mock/state-app';
+import {initialStateApp} from '../.storybook/mock/state-app';
 import {rest} from 'msw';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import { ShippingSetupOption } from '@/enums/product-feed/shipping';

@@ -1,6 +1,7 @@
 import {config, createLocalVue} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {messages} from '@/lib/translations';
+import {changeCountriesCodesToNames} from '@/utils/Countries';
 
 let windowSpy;
 let localVue; // eslint-disable-line
@@ -23,7 +24,7 @@ beforeEach(() => {
   filters = {
     timeConverterToDate: jest.fn(),
     timeConverterToHour: jest.fn(),
-    changeCountriesCodesToNames: jest.fn().mockImplementation(() => []),
+    changeCountriesCodesToNames: jest.fn().mockImplementation(changeCountriesCodesToNames),
     timeConverterToStringifiedDate: jest.fn().mockImplementation(() => ''),
     slugify: jest.fn().mockImplementation(() => 'foo'),
   };
