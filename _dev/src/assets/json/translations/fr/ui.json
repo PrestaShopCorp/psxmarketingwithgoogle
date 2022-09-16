@@ -248,7 +248,7 @@
       "stepExplanation": "Cela peut aider les clients qui consultent vos produits sur Google à voir vos tarifs et délais de livraison.",
       "estimateOption": {
         "title": "Je peux estimer les tarifs et les délais d'expédition",
-        "description": "Vous pouvez facilement définir un taux d'expédition fixe et des délais de livraison. Vous n'aurez pas à importer ou à mettre à jour vos informations d'expédition depuis le back-office de Prestashop."
+        "description": "Vous pouvez facilement définir un tarif d'expédition fixe et des délais de livraison. Vous n'aurez pas à importer ou à mettre à jour vos informations d'expédition depuis le back-office de Prestashop."
       },
       "importOption": {
         "title": "Je voudrais importer ma configuration d'expédition depuis le back-office de PrestaShop",
@@ -256,34 +256,34 @@
       }
     },
     "deliveryTimeAndRates": {
-      "title": "Delivery time & rates",
-      "rateAndDelivery": "Rate & delivery timeline",
-      "deliveryInfo": "Enter the minimum and maximum days required for delivery",
+      "title": "Delai et tarifs de livraison",
+      "rateAndDelivery": "Tarif et délai de livraison",
+      "deliveryInfo": "Indiquez le nombre de jour minimum et maximum requis pour la livraison",
       "customRate": {
-        "title": "Choose a flat or custom rate for your target countries",
-        "rateTitle": "Same rates for target countries",
-        "rateDesc": "I can estimate the same shipping rate and delivery time for all countries",
-        "customTitle": "Custom rates by country",
-        "customDesc": "I'd like to set different rates and times for each country"
+        "title": "Choisissez un tarif fixe ou personnalisé pour vos pays cibles",
+        "rateTitle": "Tarif identique pour tous les pays cibles",
+        "rateDesc": "Je peux estimer un tarif d'expédition et un délai de livraison uniques pour tous les pays",
+        "customTitle": "Tarifs personnalisés par pays",
+        "customDesc": "Je voudrais définir des tarifs et des horaires spécifiques pour chaque pays"
       },
       "estimateStep": {
-        "error": "Fill in the required information",
-        "carrierName": "Carrier name",
-        "storeOffersTitle": "My store offers",
+        "error": "Veuillez remplir les informations requises",
+        "carrierName": "Nom du transporteur",
+        "storeOffersTitle": "Ma boutique propose",
         "storeOffers": {
-          "flatShippingRateForAllProducts": "Flat shipping rate for all products",
-          "freeShippingForAllProducts": "Free shipping for all products",
-          "freeShippingOverAmount": "Free shipping over a set amount"
+          "flatShippingRateForAllProducts": "Tarif d'expédition fixe pour tous les produits",
+          "freeShippingForAllProducts": "Livraison gratuite pour tous les produits",
+          "freeShippingOverAmount": "Livraison gratuite à partir d'un certain montant"
         },
         "shippingRate": {
-          "rate": "Shipping rate",
-          "rateDesc": "Enter the shipping rate for all target countries",
-          "overAmount": "Free shipping applies over"
+          "rate": "Frais de livraison",
+          "rateDesc": "Renseignez le tarif de livraison pour tous les pays cibles",
+          "overAmount": "La livraison gratuite s'applique à partir de"
         }
       },
       "importOption": {
         "validationErrors": {
-          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue"
+          "needAtLeastOneCarrier": "Vous devez activer au moins un transporteur pour continuer"
         }
       },
       "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
