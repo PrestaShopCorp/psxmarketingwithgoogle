@@ -139,6 +139,14 @@ export default {
         name: 'deliveryDetails',
         data: json?.additionalShippingSettings?.deliveryDetails || [],
       });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'shippingSetup',
+        data: json?.shippingSetup || '',
+      });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'estimateCarrier',
+        data: json?.estimateCarriers[0] || {},
+      });
 
       if (json.selectedProductCategories) {
         commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, json.selectedProductCategories);
@@ -161,6 +169,7 @@ export default {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
+    const estimateCarriers = getDataFromLocalStorage('productFeed-estimateCarriers') || [];
     const deliveryFiltered: DeliveryDetail[] = productFeedSettings.deliveryDetails.filter(
       (e) => e.enabledCarrier && validateDeliveryDetail(e),
     );
@@ -182,6 +191,7 @@ export default {
       additionalShippingSettings: {
         deliveryDetails: deliveryFiltered,
       },
+      estimateCarriers,
       attributeMapping,
       selectedProductCategories,
       requestSynchronizationNow,
@@ -242,12 +252,12 @@ export default {
     const deliveryFromStorage = getDataFromLocalStorage('productFeed-deliveryDetails') ?? [];
 
     if (state.settings.shippingSetup === ShippingSetupOption.ESTIMATE) {
-      const getEstimateCarrier = getDataFromLocalStorage('productFeed-customCarrier');
+      const getEstimateCarrier = getDataFromLocalStorage('productFeed-estimateCarriers');
 
       if (getEstimateCarrier !== null) {
         commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
           name: 'estimateCarrier',
-          data: getEstimateCarrier,
+          data: getEstimateCarrier[0],
         });
       }
     }

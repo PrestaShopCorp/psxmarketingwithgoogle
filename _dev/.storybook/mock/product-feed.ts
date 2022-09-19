@@ -24,15 +24,17 @@ export const productFeed: State = {
     shippingSetup: null,
     estimateCarrier: {
       carrierName: "",
-      offerChosen: null,
+      offer: null,
       maxDeliveryTime: 0,
       minDeliveryTime: 0,
+      countries: [],
+      currency: '',
       [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
-        shippingRateAmount: 0,
-        freeShippingAmount: 0,
+        shippingCost: 0,
+        orderPrice: 0,
       },
       [OfferType.FLAT_SHIPPING_RATE]: {
-        shippingRateAmount: 0,
+        shippingCost: 0,
       },
     },
     targetCountries: ["FR"],

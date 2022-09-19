@@ -26,15 +26,17 @@ describe.skip('shipping-settings.vue', () => {
   it('is visible', () => {
     const carrier: CustomCarrier = {
       carrierName: '',
-      offerChosen: OfferType.FREE_SHIPPING,
+      offer: OfferType.FREE_SHIPPING,
+      countries: [],
+      currency: '',
       maxDeliveryTime: 0,
       minDeliveryTime: 0,
       freeShippingOverAmount: {
-        shippingRateAmount: 0,
-        freeShippingAmount: 0,
+        shippingCost: 0,
+        orderPrice: 0,
       },
       flatShippingRate: {
-        shippingRateAmount: 0,
+        shippingCost: 0,
       },
     };
     store.modules.productFeed.state.settings.targetCountries = ['XXX'];

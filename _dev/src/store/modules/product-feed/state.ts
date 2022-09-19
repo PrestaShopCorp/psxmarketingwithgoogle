@@ -180,15 +180,17 @@ export const state: State = {
     shippingSetup: null,
     estimateCarrier: {
       carrierName: '',
-      offerChosen: null,
+      countries: [],
+      currency: '',
+      offer: null,
       maxDeliveryTime: 0,
       minDeliveryTime: 0,
       [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
-        shippingRateAmount: 0,
-        freeShippingAmount: 0,
+        shippingCost: 0,
+        orderPrice: 0,
       },
       [OfferType.FLAT_SHIPPING_RATE]: {
-        shippingRateAmount: 0,
+        shippingCost: 0,
       },
     },
     shippingSettings: [],

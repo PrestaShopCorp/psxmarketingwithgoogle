@@ -1,17 +1,19 @@
 import {OfferType} from '@/enums/product-feed/offer';
 
 export type freeShippingOverAmount = {
-  shippingRateAmount: number;
-  freeShippingAmount: number;
+  shippingCost: number;
+  orderPrice: number;
 }
 
 export type flatShippingRate = {
-  shippingRateAmount: number;
+  shippingCost: number;
 }
 
 export type CustomCarrier = {
   carrierName: string;
-  offerChosen: OfferType|null;
+  offer: OfferType|null;
+  countries: string[];
+  currency: string;
   maxDeliveryTime: number;
   minDeliveryTime: number;
   freeShippingOverAmount: freeShippingOverAmount;
@@ -21,12 +23,12 @@ export type CustomCarrier = {
 export function validateCarrier(carrier: CustomCarrier): boolean {
   if (!validateCarrierName(carrier)
     || !validateDeliveryTime(carrier)
-    || !validateOfferChoice(carrier.offerChosen)
+    || !validateOfferChoice(carrier.offer)
   ) {
     return false;
   }
 
-  if (carrier.offerChosen !== OfferType.FREE_SHIPPING) {
+  if (carrier.offer !== OfferType.FREE_SHIPPING) {
     return validateOffers(carrier);
   }
 
@@ -54,29 +56,29 @@ export function validateDeliveryTime(carrier: CustomCarrier): boolean {
 }
 
 export function validateOffers(carrier: CustomCarrier): boolean {
-  if (carrier.offerChosen === OfferType.FLAT_SHIPPING_RATE) {
-    return Number.isInteger(carrier.flatShippingRate.shippingRateAmount)
-      && Number(carrier.flatShippingRate.shippingRateAmount) >= 0;
+  if (carrier.offer === OfferType.FLAT_SHIPPING_RATE) {
+    return Number.isInteger(carrier.flatShippingRate.shippingCost)
+      && Number(carrier.flatShippingRate.shippingCost) >= 0;
   }
 
-  if (carrier.offerChosen === OfferType.FREE_SHIPPING_OVER_AMOUNT) {
-    return Number.isInteger(carrier.freeShippingOverAmount.freeShippingAmount)
-      && Number.isInteger(carrier.freeShippingOverAmount.shippingRateAmount)
-      && Number(carrier.freeShippingOverAmount.freeShippingAmount) >= 0
-      && Number(carrier.freeShippingOverAmount.shippingRateAmount) >= 0;
+  if (carrier.offer === OfferType.FREE_SHIPPING_OVER_AMOUNT) {
+    return Number.isInteger(carrier.freeShippingOverAmount.orderPrice)
+      && Number.isInteger(carrier.freeShippingOverAmount.shippingCost)
+      && Number(carrier.freeShippingOverAmount.orderPrice) >= 0
+      && Number(carrier.freeShippingOverAmount.shippingCost) >= 0;
   }
 
   return true;
 }
 
-export function validateOfferChoice(offerChosen: OfferType|null): boolean {
-  if (!offerChosen) {
+export function validateOfferChoice(offer: OfferType|null): boolean {
+  if (!offer) {
     return false;
   }
 
   const values = Object.values(OfferType);
 
-  if (values.includes(offerChosen as OfferType)) {
+  if (values.includes(offer as OfferType)) {
     return true;
   }
 

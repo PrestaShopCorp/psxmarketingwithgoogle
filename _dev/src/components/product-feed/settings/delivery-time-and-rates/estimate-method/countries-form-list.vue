@@ -4,7 +4,7 @@
     <b-card
       no-body
       class="mb-1"
-      v-if="rateChosen === RateType.SAME_FOR_ALL"
+      v-if="rateChosen === RateType.RATE_ALL_COUNTRIES"
     >
       <b-card-header
         header-tag="header"
@@ -49,11 +49,11 @@
       </b-collapse>
     </b-card>
 
-    <!-- CASE FOR CUSTOM_RATE -->
+    <!-- CASE FOR RATE_PER_COUNTRY -->
     <b-card
       no-body
       class="mb-1"
-      v-else-if="rateChosen === RateType.CUSTOM_RATE"
+      v-else-if="rateChosen === RateType.RATE_PER_COUNTRY"
       v-for="(country, index) in countriesNames"
       :key="index"
     >
