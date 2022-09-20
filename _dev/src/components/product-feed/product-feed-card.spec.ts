@@ -13,6 +13,7 @@ import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import productFeedSummaryCards from './summary/product-feed-summary-cards.vue';
 
 import {
   productFeed,
@@ -103,7 +104,7 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.find('b-button').exists()).toBeTruthy();
   });
 
-  it('shows button and triggers configration on click', async () => {
+  it('shows button and triggers configuration on click', async () => {
     const wrapper = shallowMount(ProductFeedCard, {
       mocks: {
         $route: mockRoute,
@@ -114,7 +115,6 @@ describe('product-feed-card.vue', () => {
         isEnabled: true,
         loading: false,
       },
-      ...localVue,
       store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
     await wrapper.find('b-button').trigger('click');
@@ -133,10 +133,9 @@ describe('product-feed-card.vue', () => {
       store: new Vuex.Store(storeConfigured),
     });
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
-    expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
+    expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
     expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
 
@@ -155,9 +154,8 @@ describe('product-feed-card.vue', () => {
     });
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('info');
-    expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
+    expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
 
@@ -175,7 +173,7 @@ describe('product-feed-card.vue', () => {
       },
     });
 
-    expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
+    expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
     expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);

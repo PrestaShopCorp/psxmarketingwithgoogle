@@ -155,44 +155,7 @@
             fluid
             class="p-0 mb-0 mt-n1"
           >
-            <b-row
-              no-gutters
-              class="mx-n1"
-            >
-              <product-feed-card-report-card
-                :status="targetCountriesStatus"
-                :title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
-                :description="targetCountries.join(', ')"
-                :link="$t('cta.editCountries')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
-              />
-              <product-feed-card-report-card
-                :status="shippingSettingsStatus"
-                :title="$t('productFeedSettings.deliveryTimeAndRates.shippingSettings')"
-                :description="shippingSettings"
-                :link="$t('cta.editSettings')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
-              />
-              <product-feed-card-report-card
-                v-if="isUS"
-                :status="taxSettingsStatus"
-                :title="$t('productFeedSettings.deliveryTimeAndRates.taxSettings')"
-                :description="taxSettings"
-                :link="$t('cta.editSettings')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
-              />
-              <product-feed-card-report-card
-                :status="attributeMappingStatus"
-                :title="$t('productFeedSettings.steps.attributeMapping')"
-                :description="attributeMapping.join(', ')"
-                :link="$t('cta.editProductAttributes')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 3, params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
-              />
-            </b-row>
+            <product-feed-summary-cards />
           </b-container>
         </div>
       </b-card>
@@ -209,7 +172,7 @@ import ProductFeedStepper from '@/components/product-feed/product-feed-stepper';
 import ProductFeedCardReportCard from './product-feed-card-report-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
 
 export default defineComponent({
   name: 'ProductFeedCard',
@@ -218,6 +181,7 @@ export default defineComponent({
     ProductFeedCardReportCard,
     BadgeListRequirements,
     VueShowdown,
+    ProductFeedSummaryCards,
   },
   data() {
     return {
@@ -235,32 +199,8 @@ export default defineComponent({
       default: true,
       required: true,
     },
-    categoriesTotal: {
-      type: Number,
-      required: false,
-      default: 0,
-    },
-    categoriesMapped: {
-      type: Number,
-      default: 0,
-      required: false,
-    },
-    syncRules: {
-      type: Array,
-      default: () => [],
-      required: false,
-    },
-    syncRulesDetails: {
-      type: Array,
-      default: () => [],
-      required: false,
-
-    },
   },
   computed: {
-    getProductFeedSettings() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'];
-    },
     getProductFeedStatus() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
@@ -274,69 +214,8 @@ export default defineComponent({
         ),
       };
     },
-    isUS() {
-      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].includes('US');
-    },
     toConfigure() {
       return !this.$store.state.productFeed.isConfigured;
-    },
-    targetCountries() {
-      return this.$options.filters.changeCountriesCodesToNames(
-        this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
-      );
-    },
-    shippingSettings() {
-      if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
-        return this.$t('productFeedSettings.deliveryTimeAndRates.manually');
-      }
-
-      // ToDo: Update wording
-      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.IMPORT) {
-        return this.$t('productFeedSettings.deliveryTimeAndRates.automatically');
-      }
-      // ToDo: Update wording
-      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.ESTIMATE) {
-        return this.$t('productFeedSettings.deliveryTimeAndRates.automatically');
-      }
-
-      return this.$t('productFeedCard.missingInformation');
-    },
-    shippingSettingsStatus() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']
-        ? 'warning'
-        : 'success';
-    },
-    targetCountriesStatus() {
-      return this.targetCountries.length ? 'success' : 'warning';
-    },
-    getAttributeMapping() {
-      return this.$store.getters['productFeed/GET_ATTRIBUTE_MAPPING'];
-    },
-    attributeMappingStatus() {
-      return this.getAttributeMapping ? 'success' : 'warning';
-    },
-    taxSettings() {
-      if (this.getProductFeedSettings.autoImportTaxSettings === undefined) {
-        return this.$t('productFeedCard.missingInformation');
-      }
-      return this.getProductFeedSettings.autoImportTaxSettings
-        ? this.$t('productFeedSettings.deliveryTimeAndRates.automatically')
-        : this.$t('productFeedSettings.deliveryTimeAndRates.manually');
-    },
-    taxSettingsStatus() {
-      // TODO BATCH 2
-      // TODO retrieve tax settings from backend
-      return 'success';
-    },
-    attributeMapping() {
-      const arr = [];
-      const getMapping = this.getAttributeMapping;
-      Object.keys(getMapping).forEach((key) => {
-        if (getMapping[key]) {
-          getMapping[key].forEach((item) => arr.push(item.id));
-        }
-      });
-      return arr;
     },
     lastSync() {
       return {
@@ -387,9 +266,6 @@ export default defineComponent({
       }
       return null;
     },
-    hasMapping() {
-      return this.categoriesMapped > 0;
-    },
     alert() {
       if (this.getProductFeedStatus.success === false && this.getProductFeedStatus.jobEndedAt
       && this.getProductFeedStatus.lastUpdatedAt) {
@@ -416,18 +292,6 @@ export default defineComponent({
     isErrorApi() {
       return this.$store.state.productFeed.errorAPI;
     },
-    allValidationSummary() {
-      return this.$store.state.productFeed.validationSummary;
-    },
-    nbProductsCantSync() {
-      return this.allValidationSummary.disapprovedItems;
-    },
-    nbProductsReadyToSync() {
-      return this.allValidationSummary.activeItems;
-    },
-    excludedProductsDetails() {
-      return this.allValidationSummary.disapprovedItems;
-    },
   },
   methods: {
     startConfiguration() {
@@ -442,16 +306,8 @@ export default defineComponent({
         params: SegmentGenericParams,
       });
     },
-    goToProductFeedSettings(params) {
-      this.$router.push({
-        name: 'product-feed-settings',
-        params: {
-          step: params,
-        },
-      });
-    },
     refresh() {
-      this.$router.go();
+      this.$router.go(0);
     },
     goToProductFeed() {
       this.$router.push({

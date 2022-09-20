@@ -520,7 +520,7 @@ export const productFeedIsConfiguredWithTax = {
   ...productFeedIsConfigured,
   settings: {
     ...productFeedIsConfigured.settings,
-    targetCountries: ["FR"],
+    targetCountries: ["US"],
   },
 };
 

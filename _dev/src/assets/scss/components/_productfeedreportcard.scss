@@ -13,17 +13,8 @@
   flex-basis: 100%;
 
   @include media-breakpoint-up(sm) {
-    flex: 0 0 calc(50% - 4px - 4px);
-    max-width: calc(50% - 4px - 4px);
-
-    &.ps_gs-productfeed-report-card--full {
-      flex: 1 1 100%;
-      max-width: 100%;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
+    flex: 0 0 calc(100% - 4px - 4px);
+    max-width: calc(100% - 4px - 4px);
 
     &.ps_gs-productfeed-report-card--33 {
       flex: 0 0 calc(33.33333% - 4px - 4px);

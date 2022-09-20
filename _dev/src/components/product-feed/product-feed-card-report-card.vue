@@ -4,8 +4,8 @@
     class="ps_gs-productfeed-report-card"
     :class="size && `ps_gs-productfeed-report-card--${size}`"
   >
-    <div class="px-3 py-2">
-      <div class="d-flex justify-content-between font-weight-600 ps_gs-fz-13">
+    <div class="py-2">
+      <div class="d-flex justify-content-between font-weight-600 ps_gs-fz-13 mb-1">
         <div class="d-flex align-items-center">
           <i
             v-if="status === 'success'"
@@ -31,17 +31,28 @@
         </b-link>
       </div>
       <p
+        v-if="subTitle"
+        class="mb-0 ps_gs-fz-12"
+      >
+        <b>{{ subTitle }}</b>
+      </p>
+      <p
         v-if="description"
         class="mb-0 ps_gs-fz-12"
-        :class="{'text-muted': status === 'warning'}"
       >
         {{ description }}
       </p>
       <p
-        v-if="details"
-        class="ps_gs-productfeed-report-card__details text-muted mb-0 ps_gs-fz-12"
+        v-if="subTitle2"
+        class="mt-2 mb-0 ps_gs-fz-12"
       >
-        {{ details }}
+        <b>{{ subTitle2 }}</b>
+      </p>
+      <p
+        v-if="description2"
+        class="mb-0 ps_gs-fz-12"
+      >
+        {{ description2 }}
       </p>
       <slot />
     </div>
@@ -65,7 +76,22 @@ export default {
       required: false,
       default: null,
     },
+    subTitle: {
+      type: String,
+      required: false,
+      default: null,
+    },
     description: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    subTitle2: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    description2: {
       type: String,
       required: false,
       default: null,
