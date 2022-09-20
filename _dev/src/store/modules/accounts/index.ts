@@ -9,12 +9,12 @@ const {
   tokenPsAccounts,
 }: any = window;
 
-const state = Object.assign(
-  initialState,
-  {contextPsAccounts} || {},
-  {shopIdPsAccounts} || '',
-  {tokenPsAccounts} || '',
-);
+const state = {
+  ...initialState,
+  contextPsAccounts: contextPsAccounts || {},
+  shopIdPsAccounts: shopIdPsAccounts || '',
+  tokenPsAccounts: tokenPsAccounts || '',
+};
 
 export default {
   namespaced: true,
