@@ -14,7 +14,7 @@
               data-test-id="radioButton"
               v-model="rateTypeChosen"
               name="customRateRadio"
-              :value="RateType.SAME_FOR_ALL"
+              :value="RateType.RATE_ALL_COUNTRIES"
             >
               <div>
                 <span class="font-weight-600 mb-2">
@@ -36,7 +36,7 @@
               @change="rateSelected"
               v-model="rateTypeChosen"
               name="customRateRadio"
-              :value="RateType.CUSTOM_RATE"
+              :value="RateType.RATE_PER_COUNTRY"
               :disabled="isMultipleCountries <= 1"
             >
               <div>

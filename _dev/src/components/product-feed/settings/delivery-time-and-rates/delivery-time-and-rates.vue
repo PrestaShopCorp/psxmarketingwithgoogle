@@ -76,8 +76,13 @@ export default Vue.extend({
       return this.$store.getters['productFeed/GET_SHIPPING_SETUP'];
     },
     // Estimate Option data
-    customCarrier(): CustomCarrier {
-      return this.$store.getters['productFeed/GET_ESTIMATE_CARRIER'];
+    customCarrier: {
+      get(): CustomCarrier {
+        return this.$store.getters['productFeed/GET_ESTIMATE_CARRIER'];
+      },
+      set(value) {
+        this.$store.state.productFeed.settings.estimateCarrier = value;
+      },
     },
     carriersToConfigure() {
       const carriers = this.$store.state.productFeed.settings.deliveryDetails
@@ -86,6 +91,9 @@ export default Vue.extend({
         );
 
       return carriers;
+    },
+    getCurrency() {
+      return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
   },
   methods: {
@@ -112,7 +120,7 @@ export default Vue.extend({
 
       // Validation - Estimate option
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
-        if (validateCarrier(this.customCarrier) === false) {
+        if (validateCarrier(this.customCarrier as CustomCarrier) === false) {
           return false;
         }
         return true;
@@ -150,7 +158,9 @@ export default Vue.extend({
     },
     saveCarriersDetails(): void {
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
-        localStorage.setItem('productFeed-customCarriers', JSON.stringify(this.customCarrier));
+        (this.customCarrier as CustomCarrier).currency = this.getCurrency;
+        (this.customCarrier as CustomCarrier).countries = this.countries;
+        localStorage.setItem('productFeed-estimateCarriers', JSON.stringify([this.customCarrier]));
       } else if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
         localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       }

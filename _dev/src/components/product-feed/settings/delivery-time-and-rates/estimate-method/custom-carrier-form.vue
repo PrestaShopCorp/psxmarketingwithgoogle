@@ -58,7 +58,7 @@
                   :state="validateRadio"
                   class="form-check-input"
                   name="offersChoice"
-                  v-model="customCarrier.offerChosen"
+                  v-model="customCarrier.offer"
                   @input="$emit('dataUpdated', customCarrier)"
                   :id="`${offer.text}${index}`"
                   :value="offer.value"
@@ -114,10 +114,10 @@
             <!-- eslint-disable max-len -->
             <b-card
               class="offer-rates row"
-              v-if="customCarrier.offerChosen === OfferType.FLAT_SHIPPING_RATE
-                || customCarrier.offerChosen === OfferType.FREE_SHIPPING_OVER_AMOUNT"
+              v-if="customCarrier.offer === OfferType.FLAT_SHIPPING_RATE
+                || customCarrier.offer === OfferType.FREE_SHIPPING_OVER_AMOUNT"
             >
-              <b-row v-if="customCarrier.offerChosen === OfferType.FLAT_SHIPPING_RATE">
+              <b-row v-if="customCarrier.offer === OfferType.FLAT_SHIPPING_RATE">
                 <b-col>
                   <div
                     class="font-weight-600 mb-1"
@@ -142,9 +142,9 @@
                         type="number"
                         class="ps_gs-carrier__input-number no-arrows"
                         size="sm"
-                        v-model.number="customCarrier[customCarrier.offerChosen].shippingRateAmount"
+                        v-model.number="customCarrier[customCarrier.offer].shippingCost"
                         @input="$emit('dataUpdated', customCarrier)"
-                        :state="validateAmountRate(customCarrier[customCarrier.offerChosen].shippingRateAmount)"
+                        :state="validateAmountRate(customCarrier[customCarrier.offer].shippingCost)"
                       />
                     </b-input-group>
                   </div>
@@ -182,9 +182,9 @@
                         type="number"
                         class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
                         size="sm"
-                        v-model.number="customCarrier[customCarrier.offerChosen].shippingRateAmount"
+                        v-model.number="customCarrier[customCarrier.offer].orderPrice"
                         @input="$emit('dataUpdated', customCarrier)"
-                        :state="validateAmountRate(customCarrier[customCarrier.offerChosen].shippingRateAmount)"
+                        :state="validateAmountRate(customCarrier[customCarrier.offer].orderPrice)"
                       />
                     </b-input-group>
                   </b-col>
@@ -218,8 +218,8 @@
                         type="number"
                         class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
                         size="sm"
-                        :state="validateAmountRate(customCarrier[customCarrier.offerChosen].freeShippingAmount)"
-                        v-model.number="customCarrier[customCarrier.offerChosen].freeShippingAmount"
+                        :state="validateAmountRate(customCarrier[customCarrier.offer].shippingCost)"
+                        v-model.number="customCarrier[customCarrier.offer].shippingCost"
                         @input="$emit('dataUpdated', customCarrier)"
                       />
                     </b-input-group>
@@ -301,11 +301,11 @@ export default Vue.extend({
       if (!this.displayValidationErrors) {
         return null;
       }
-      if (this.customCarrier.offerChosen) {
+      if (this.customCarrier.offer) {
         return null;
       }
 
-      return validateOfferChoice(this.customCarrier.offerChosen);
+      return validateOfferChoice(this.customCarrier.offer);
     },
     getSymbol() {
       return this.$store.getters['app/GET_SYMBOL_OF_CURRENT_CURRENCY'];
@@ -316,13 +316,5 @@ export default Vue.extend({
       return Number.isInteger(amount) && amount >= 0 ? null : false;
     },
   },
-  // watch: {
-  //   customCarrier: {
-  //     handler(customCarrier) {
-  //       this.$emit('dataUpdated', customCarrier);
-  //     },
-  //     immediate: true,
-  //   },
-  // },
 });
 </script>

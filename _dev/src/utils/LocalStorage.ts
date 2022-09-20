@@ -21,6 +21,7 @@ export function deleteProductFeedDataFromLocalStorage() {
   localStorage.removeItem('productFeed-targetCountries');
   localStorage.removeItem('productFeed-autoImportShippingSettings');
   localStorage.removeItem('productFeed-shippingSetup');
+  localStorage.removeItem('productFeed-estimateCarriers');
   localStorage.removeItem('selectedProductCategories');
 }
 
