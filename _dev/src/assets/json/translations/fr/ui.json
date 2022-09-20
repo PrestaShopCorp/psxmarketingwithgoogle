@@ -248,11 +248,16 @@
       "stepExplanation": "Cela peut aider les clients qui consultent vos produits sur Google à voir vos tarifs et délais de livraison.",
       "estimateOption": {
         "title": "Je peux estimer les tarifs et les délais d'expédition",
-        "description": "Vous pouvez facilement définir un tarif d'expédition fixe et des délais de livraison. Vous n'aurez pas à importer ou à mettre à jour vos informations d'expédition depuis le back-office de Prestashop."
+        "description": "Vous pouvez facilement définir un tarif d'expédition fixe et des délais de livraison. Vous n'aurez pas à importer ou à mettre à jour vos informations d'expédition depuis le back-office de Prestashop.",
+        "summary": "Estimated method"
       },
       "importOption": {
         "title": "Je voudrais importer ma configuration d'expédition depuis le back-office de PrestaShop",
-        "description": "Prestashop va importer les paramètres d'expédition que vous avez déjà configurés dans votre back-office. Vous pouvez choisir le ou les transporteurs que vous souhaitez utiliser par pays cible."
+        "description": "Prestashop va importer les paramètres d'expédition que vous avez déjà configurés dans votre back-office. Vous pouvez choisir le ou les transporteurs que vous souhaitez utiliser par pays cible.",
+        "summary": "Imported from backoffice"
+      },
+      "laterOption": {
+        "summary": "Setup later"
       }
     },
     "deliveryTimeAndRates": {
@@ -279,12 +284,17 @@
           "rate": "Frais de livraison",
           "rateDesc": "Renseignez le tarif de livraison pour tous les pays cibles",
           "overAmount": "La livraison gratuite s'applique à partir de"
+        },
+        "summary": {
+          "singleCountry": "Flat rate",
+          "multiCountriesFlatRateForAll": "Flat rate for all target countries"
         }
       },
       "importOption": {
         "validationErrors": {
           "needAtLeastOneCarrier": "Vous devez activer au moins un transporteur pour continuer"
-        }
+        },
+        "summary": "Configured carriers from backoffice"
       },
       "productAvailaibleIn": "Vous pouvez sélectionner les pays où vous souhaitez que vos produits soient affichés. La liste déroulante des pays ci-dessous correspond aux pays et à la devise que vous avez configurés sur votre boutique PrestaShop.",
       "targetCountries": "Pays cible",
@@ -296,7 +306,6 @@
       "shippingSettingsTitle": "Paramètres de livraison des produits",
       "shippingLabel1": "Configurer mes paramètres de livraison maintenant (recommandé)",
       "shippingDescription1": "PrestaShop importera votre liste de transporteurs à partir des paramètres de votre boutique et vous permettra de fournir des informations supplémentaires.",
-      "automatically": "Automatiquement",
       "manually": "Manuellement",
       "shippingLabel2": "Ignorer et configurer plus tard dans Google Merchant Center",
       "shippingDescription2": "Vous devrez entrer vous-même vos informations de livraison dans votre Merchant Center. ",
@@ -875,7 +884,6 @@
     "trackProductStatus": "Suivre le statut d'approbation des produits",
     "whyDidntWork": "Découvrez pourquoi ça n'a pas fonctionné",
     "aboutProductCategory": "Liste des catégories de produits Google",
-    "editCountries": "Editer le pays",
     "editSettings": "Modifier les paramètres",
     "editRules": "Règles d'édition",
     "shopMaintenanceBtn": "Allez dans les paramètres de maintenance",
