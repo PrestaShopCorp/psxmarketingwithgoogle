@@ -248,11 +248,16 @@
       "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
       "estimateOption": {
         "title": "I can estimate shipping rates & times",
-        "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office."
+        "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office.",
+        "summary": "Estimated method"
       },
       "importOption": {
         "title": "I’d like to import my shipping setup from PrestaShop back office",
-        "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country."
+        "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country.",
+        "summary": "Imported from backoffice"
+      },
+      "laterOption": {
+        "summary": "Setup later"
       }
     },
     "deliveryTimeAndRates": {
@@ -279,12 +284,17 @@
           "rate": "Shipping rate",
           "rateDesc": "Enter the shipping rate for all target countries",
           "overAmount": "Free shipping applies over"
+        },
+        "summary": {
+          "singleCountry": "Flat rate",
+          "multiCountriesFlatRateForAll": "Flat rate for all target countries"
         }
       },
       "importOption": {
         "validationErrors": {
           "needAtLeastOneCarrier": "You need to enable at least one carrier to continue"
-        }
+        },
+        "summary": "Configured carriers from backoffice"
       },
       "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
       "targetCountries": "Zielland",
@@ -296,7 +306,6 @@
       "shippingSettingsTitle": "Versandeinstellungen für Produkte",
       "shippingLabel1": "Meine Versandeinstellungen jetzt einrichten (empfohlen)",
       "shippingDescription1": "PrestaShop importiert Ihre Trägerliste aus Ihren Shop-Einstellungen und ermöglicht es Ihnen, zusätzliche Informationen anzugeben.",
-      "automatically": "Automatisch",
       "manually": "Manuell",
       "shippingLabel2": "Überspringen und später im Google Merchant Center einrichten",
       "shippingDescription2": "Sie müssen Ihre Produktversandinformationen selbst im Google Merchant Center eingeben. ",
@@ -875,7 +884,6 @@
     "trackProductStatus": "Status der Produktgenehmigung verfolgen",
     "whyDidntWork": "Prüfen Sie, warum es nicht funktioniert hat",
     "aboutProductCategory": "Liste der Google-Produktkategorien",
-    "editCountries": "Land bearbeiten",
     "editSettings": "Einstellungen bearbeiten",
     "editRules": "Regeln bearbeiten",
     "shopMaintenanceBtn": "Gehen Sie zu den Wartungseinstellungen",
