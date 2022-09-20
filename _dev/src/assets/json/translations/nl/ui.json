@@ -26,7 +26,8 @@
     "min": "min.",
     "max": "maximaal.",
     "helpPage": "Help pagina",
-    "noResultsFoundForX": "Geen resultaten gevonden voor {0}"
+    "noResultsFoundForX": "Geen resultaten gevonden voor {0}",
+    "days": "Days"
   },
   "landingPage": {
     "header": {
@@ -209,7 +210,6 @@
     "syncFailedAt": "Synchronisatie mislukt {0} bij {1}",
     "syncSuccess": "Producten gesynchroniseerd {1} bij {2} | {0} product gesynchroniseerd {1} bij {2} | {0} producten gesynchroniseerd {1} bij {2}",
     "syncBusy": "Sync vordert...",
-    "syncCantPerform": "Synchronisatie kan niet worden uitgevoerd",
     "mappedCategories": "{0}/{1} gemapte categorieën",
     "alertFeedSettingSubmissionSuccess": "U heeft met succes uw productgegevens ingediend bij Merchant Center.  \n Eenmaal goedgekeurd, zullen ze beschikbaar zijn voor gratis listings en advertenties.",
     "alertFailed": "Product sync was niet succesvol. Controleer mogelijke redenen in [Merchant Center]({0})[:target=\"_blank\"] of neem contact op met [klantenservice](mailto:support-google@prestashop.com).",
@@ -231,8 +231,8 @@
     "breadcrumb1": "Product voer",
     "breadcrumb2": "Instellingen productaanvoer",
     "steps": {
-      "targetCountry": "Land van bestemming",
-      "shippingSettings": "Verzendingsinstellingen",
+      "shippingSetup": "Shipping setup",
+      "deliveryTimesAndRates": "Delivery time & rates",
       "attributeMapping": "Attribuut in kaart brengen",
       "categoryMapping": "Categorie in kaart brengen",
       "summary": "Samenvatting",
@@ -241,13 +241,56 @@
       "syncSchedule": "Synchronisatie schema"
     },
     "noticeDataStored": "Instellingen worden bij elke stap opgeslagen en pas bij de laatste stap ingediend.",
-    "shipping": {
+    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
+    "shippingSetup": {
+      "title": "Shipping setup",
+      "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
+      "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
+      "estimateOption": {
+        "title": "I can estimate shipping rates & times",
+        "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office."
+      },
+      "importOption": {
+        "title": "I’d like to import my shipping setup from PrestaShop back office",
+        "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country."
+      }
+    },
+    "deliveryTimeAndRates": {
+      "title": "Delivery time & rates",
+      "rateAndDelivery": "Rate & delivery timeline",
+      "deliveryInfo": "Enter the minimum and maximum days required for delivery",
+      "customRate": {
+        "title": "Choose a flat or custom rate for your target countries",
+        "rateTitle": "Same rates for target countries",
+        "rateDesc": "I can estimate the same shipping rate and delivery time for all countries",
+        "customTitle": "Custom rates by country",
+        "customDesc": "I'd like to set different rates and times for each country"
+      },
+      "estimateStep": {
+        "error": "Fill in the required information",
+        "carrierName": "Carrier name",
+        "storeOffersTitle": "My store offers",
+        "storeOffers": {
+          "flatShippingRateForAllProducts": "Flat shipping rate for all products",
+          "freeShippingForAllProducts": "Free shipping for all products",
+          "freeShippingOverAmount": "Free shipping over a set amount"
+        },
+        "shippingRate": {
+          "rate": "Shipping rate",
+          "rateDesc": "Enter the shipping rate for all target countries",
+          "overAmount": "Free shipping applies over"
+        }
+      },
+      "importOption": {
+        "validationErrors": {
+          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue"
+        }
+      },
+      "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
       "targetCountries": "Land van bestemming",
       "filterTitle": "Filter op land",
       "ifMultipleCountries": "Als u zich op meerdere landen richt, wordt elke productprijs in Google automatisch omgerekend naar de juiste valuta. Uw winkel moet echter wel verzend- en belastingtarieven hebben geconfigureerd voor elk geselecteerd land. Respecteer [landspecifiek winkelbeleid]({0})[:target=\"_blank\"] en [lokale regelgeving]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "Mijn producten zijn verkrijgbaar in",
       "placeholderSelect": "Selecteer de landen waar uw producten beschikbaar zijn",
-      "cantFindCountry": "Kun je geen land vinden? Alleen ondersteunde landen zijn vermeld. [Zie lijst van ondersteunde landen]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "Dit land is niet compatibel met uw munteenheid",
       "shippingSettings": "Verzendingsinstellingen",
       "shippingSettingsTitle": "Verzendingsinstellingen voor producten",
@@ -264,26 +307,25 @@
       "manualImportTax": "Handmatig instellen van belastinginstellingen in Google Merchant Center",
       "appliedOnlyForUsa": "(alleen van toepassing voor de VS)",
       "alertTaxes": "U moet de belastingen opgeven die u int, zodat de gebruikers de exacte prijs begrijpen die zij voor uw producten moeten betalen.",
-      "cantSelectCountryWithDifferentCurrency": "U kunt geen land kiezen met een valuta die verschilt van uw hoofdwinkel.",
       "carrierDescriptionHeader": "Drager  \n beschrijving",
-      "enableHeader": "Activeer  \n of schakel uit",
+      "enableHeader": "Enable /  \n disable",
       "shipToCustomerHeader": "Levering aan huis  \n",
-      "handlingTimeHeader": "Afhandeling  \n tijd",
-      "transitTimeHeader": "Transit  \n tijd",
-      "countryHeader": "Doel  \n land",
+      "transitTimeHeader": "Delivery time",
+      "countryHeader": "Land",
       "shipToCustomerTooltip": "Selecteer of deze vervoerder op het adres van een klant levert of niet (servicepunt, afhalen in de winkel). Google staat alleen vervoerders toe die op een adres leveren.",
       "handlingTimeTooltip": "Geef in werkdagen aan hoeveel tijd u nodig hebt om een bestelling voor te bereiden tot het moment waarop de vervoerder de bestelling ophaalt.",
       "transitTimeTooltip": "Voer in hoe lang het duurt voordat uw bestelling naar de klant wordt verzonden zodra deze uw vestiging heeft verlaten.",
-      "shippingInformationTitle": "Vervoerders",
-      "shippingInformationIntro": "Voer verzendgegevens in voor uw lijst met vervoerders. Ze moeten naar een adres verzenden om gesynchroniseerd te worden in Google Shopping.",
-      "shippingTableNotice": "Zorg ervoor dat uw winkelbericht overeenkomt met uw Google shopping-levertijdinformatie.",
+      "shippingInformationTitle": "Shipping rates & transit time",
+      "shippingInformationIntro": "You can enable and configure the carriers you want to be displayed on Google Shopping.",
+      "shippingTableNotice": "Google cannot support carrier with pick up in store delivery type, please make sure you disable them or switch to another method.",
       "shippingSwitchCarrier": "Schakelaar om drager te activeren/desactiveren",
       "carriersDropdownHeader": "Kopieer verzendinformatie naar",
       "carriersDropdownHiddenLabel": "Kopieer informatie van de vervoerder naar andere vervoerders",
       "noCarriersTitle": "Je hebt geen vervoerders",
       "noCarriersDescription": "Ga naar de vervoerders pagina om vervoerders toe te voegen",
       "addNewCarriers": "Vervoerders toevoegen of bijwerken",
-      "refreshCarriers": "Vernieuwen als u uw dragers hebt bewerkt"
+      "refreshCarriers": "Vernieuwen als u uw dragers hebt bewerkt",
+      "switchToFlatRate": "Switch to estimation shipping’s set-up"
     },
     "preScan": {
       "selectLanguage": "Filter by language",
@@ -867,7 +909,6 @@
     "addWebsiteAddress": "Website adres toevoegen",
     "transferClaim": "Overdrachtsvordering",
     "goToYourX": "Ga naar je {0}",
-    "addShippingInfo": "Verzendinfo toevoegen",
     "createSmartShoppingCampaign": "Start Maximale prestaties-campagn",
     "addBillingSettings": "Factureringsinstellingen toevoegen",
     "createCampaign": "Campagne maken",
