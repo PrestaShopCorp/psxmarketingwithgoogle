@@ -145,7 +145,7 @@ export default {
       });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'estimateCarrier',
-        data: json?.estimateCarriers[0] || {},
+        data: json?.estimateCarriers?.[0] || {},
       });
 
       if (json.selectedProductCategories) {
