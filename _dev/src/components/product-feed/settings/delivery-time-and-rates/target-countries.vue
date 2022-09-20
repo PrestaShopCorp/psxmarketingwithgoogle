@@ -45,6 +45,7 @@
             :href="taxSettingsWithMerchantId"
             variant="secondary"
             class="mt-2"
+            data-test-id="configureTax"
           >
             {{ $t('cta.setupTax') }}
           </b-button>
