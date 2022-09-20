@@ -59,6 +59,7 @@ import {PropType} from '@vue/composition-api';
 import SelectCountry from '@/components/commons/select-country.vue';
 import {DeliveryDetail} from '@/providers/shipping-settings-provider';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import {changeCountriesCodesToNames, changeCountriesNamesToCodes} from '@/utils/Countries';
 
 export default {
   name: 'ProductFeedSettingsShipping',
@@ -79,9 +80,7 @@ export default {
   },
   computed: {
     countriesNames() {
-      return this.$options.filters.changeCountriesCodesToNames(
-        this.countries,
-      );
+      return changeCountriesCodesToNames(this.countries);
     },
     isUS() {
       return this.countries.includes('US');
@@ -111,7 +110,7 @@ export default {
         arrayOfCountries.push(carrier.country);
       });
       const uniqueCountries = [...new Set(arrayOfCountries)];
-      const uniqueCountriesNames = this.$options.filters.changeCountriesCodesToNames(
+      const uniqueCountriesNames = changeCountriesCodesToNames(
         uniqueCountries,
       );
 
@@ -122,11 +121,19 @@ export default {
   },
   methods: {
     countrySelected(newValue) {
-      this.$emit(
-        'countrySelected',
-        this.$options.filters.changeCountriesNamesToCodes(newValue),
-      );
+      this.$emit('countrySelected', changeCountriesNamesToCodes(newValue));
     },
+  },
+  created() {
+    // By loading an existing configuration, we may have some selected that are
+    // not anymore in the list of possible values. At the creation, we remove them.
+    const validCountries = this.countriesNames.filter(
+      (country: string) => this.selectableCountriesList.includes(country),
+    );
+
+    if (validCountries.length !== this.countries.length) {
+      this.countrySelected(validCountries);
+    }
   },
 };
 </script>

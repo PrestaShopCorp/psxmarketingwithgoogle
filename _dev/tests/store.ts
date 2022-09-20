@@ -13,12 +13,12 @@ Vue.use(Vuex);
 export const cloneStore = () => {
   const store = {
     modules: {
-      app: cloneDeep(app),
-      accounts: cloneDeep(accounts),
-      productFeed: cloneDeep(productFeed),
-      freeListing: cloneDeep(freeListing),
-      googleAds: cloneDeep(googleAds),
-      campaigns: cloneDeep(campaigns),
+      app: (cloneDeep(app) as typeof app),
+      accounts: (cloneDeep(accounts) as typeof accounts),
+      productFeed: (cloneDeep(productFeed) as typeof productFeed),
+      freeListing: (cloneDeep(freeListing) as typeof freeListing),
+      googleAds: (cloneDeep(googleAds) as typeof googleAds),
+      campaigns: (cloneDeep(campaigns) as typeof campaigns),
     },
   };
 

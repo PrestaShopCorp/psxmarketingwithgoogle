@@ -1,10 +1,10 @@
-export const initialStateApp = {
+import {State} from "@/store/modules/app/state";
+
+export const initialStateApp: Partial<State> = {
   psxMktgWithGoogleApiUrl: '',
   psxMktgWithGoogleShopUrl: 'https://my-shop.com',
   psxMktgWithGoogleAdminUrl: 'https://my-shop.com/admin-dev',
   psxMktgWithGoogleAdminAjaxUrl: '/',
-  shopIdPsAccounts: '',
-  tokenPsAccounts: '',
   psxMtgWithGoogleDefaultShopCountry: 'FR',
   isCountryMemberOfEuropeanUnion: false,
   psxMktgWithGoogleShopCurrency: {
