@@ -19,12 +19,8 @@ const buildWrapper = (
 ) => {
   const store = cloneStore();
 
-  store.modules.app.state = {
-    ...cloneDeep(initialStateApp),
-  };
-  store.modules.googleAds.state = {
-    ...cloneDeep(googleAdsAccountChosen),
-  };
+  store.modules.app.state = cloneDeep(initialStateApp);
+  store.modules.googleAds.state = cloneDeep(googleAdsAccountChosen);
 
   store.modules.campaigns.state.sscAvailableFilters = availableFilters;
   store.modules.campaigns.state.errorCampaignNameExists = false;

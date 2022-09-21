@@ -20,7 +20,7 @@
     </b-form-group>
 
     <div
-      v-if="isUS"
+      v-if="isUS && shippingSetupOption"
       class="pb-2"
     >
       <div class="d-flex flex-wrap align-items-center mb-3">
@@ -45,6 +45,7 @@
             :href="taxSettingsWithMerchantId"
             variant="secondary"
             class="mt-2"
+            data-test-id="configureTax"
           >
             {{ $t('cta.setupTax') }}
           </b-button>
@@ -96,7 +97,7 @@ export default {
       if (this.shippingSetupOption === ShippingSetupOption.IMPORT) {
         return this.activeCountriesWhereShipppingExist;
       }
-      return this.activeCountriesWithCurrency;
+      return this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
     },
     activeCountriesWithCurrency(): string[] {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
