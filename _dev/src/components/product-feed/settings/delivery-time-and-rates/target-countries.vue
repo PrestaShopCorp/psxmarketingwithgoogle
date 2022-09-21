@@ -97,7 +97,7 @@ export default {
       if (this.shippingSetupOption === ShippingSetupOption.IMPORT) {
         return this.activeCountriesWhereShipppingExist;
       }
-      return this.activeCountriesWithCurrency;
+      return this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
     },
     activeCountriesWithCurrency(): string[] {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
