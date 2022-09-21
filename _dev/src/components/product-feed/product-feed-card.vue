@@ -206,10 +206,8 @@ export default defineComponent({
     getProductFeedStatus() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
-    getActiveStep() {
-      const step = this.$store.getters['productFeed/GET_STEP'];
-
-      return step > 0 ? step : 1;
+    getActiveStep(): number {
+      return this.$store.getters['productFeed/GET_STEP'];
     },
     nextSyncTime() {
       return {
@@ -305,7 +303,7 @@ export default defineComponent({
       let step = ProductFeedSettingsPages.SHIPPING_SETUP;
 
       if (this.toConfigure) {
-        step = Object.values(ProductFeedSettingsPages)[this.$store.getters['productFeed/GET_STEP'] - 1];
+        step = Object.values(ProductFeedSettingsPages)[this.getActiveStep - 1];
       }
       this.$router.push({
         name: 'product-feed-settings',
