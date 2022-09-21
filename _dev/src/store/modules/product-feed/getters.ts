@@ -30,6 +30,7 @@ import {filterCountriesCompatible} from '../../../utils/TargetCountryValidator';
 import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -102,6 +103,12 @@ export default {
     return state.selectedProductCategories;
   },
   [GettersTypes.GET_SYNC_SCHEDULE](state: LocalState) : boolean {
+    const requestSyncNow = getDataFromLocalStorage('productFeed-requestSynchronizationNow');
+
+    if (requestSyncNow !== null) {
+      state.requestSynchronizationNow = requestSyncNow;
+    }
+
     return state.requestSynchronizationNow;
   },
   [GettersTypes.GET_PRESCAN_LIMIT_PAGE](state: LocalState): number {
@@ -132,10 +139,21 @@ export default {
     return state.settings.shippingSetup;
   },
   [GettersTypes.GET_STEP](state:LocalState) {
-    const step = getDataFromLocalStorage('productFeed-stepNumber');
+    if (state.isConfigured) {
+      return state.stepper;
+    }
 
-    if (step !== null && state.isConfigured === false) {
-      state.stepper = step;
+    if (getDataFromLocalStorage('productFeed-shippingSetup') !== null) {
+      state.stepper = 2;
+    }
+    if (getDataFromLocalStorage('productFeed-targetCountries') !== null) {
+      state.stepper = 3;
+    }
+    if (getDataFromLocalStorage('productFeed-attributeMapping') !== null) {
+      state.stepper = 4;
+    }
+    if (getDataFromLocalStorage('productFeed-requestSynchronizationNow') !== null) {
+      state.stepper = 5;
     }
 
     return state.stepper;

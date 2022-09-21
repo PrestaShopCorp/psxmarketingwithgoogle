@@ -68,9 +68,6 @@ export default {
     state.isConfiguredOnce = payload;
   },
   [MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP](state: LocalState, payload: number) {
-    if (state.isConfigured === false) {
-      localStorage.setItem('productFeed-stepNumber', `${payload}`);
-    }
     state.stepper = payload;
   },
 
@@ -193,6 +190,7 @@ export default {
     state.selectedProductCategories = payload;
   },
   [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload: boolean) {
+    localStorage.setItem('productFeed-requestSynchronizationNow', `${payload}`);
     state.requestSynchronizationNow = payload;
   },
   [MutationsTypes.SET_PREVALIDATION_SUMMARY](state: LocalState, payload: PrevalidationScanSummary) {

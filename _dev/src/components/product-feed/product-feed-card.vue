@@ -300,11 +300,8 @@ export default defineComponent({
   },
   methods: {
     startConfiguration() {
-      let step = ProductFeedSettingsPages.SHIPPING_SETUP;
+      const step = Object.values(ProductFeedSettingsPages)[this.getActiveStep - 1];
 
-      if (this.toConfigure) {
-        step = Object.values(ProductFeedSettingsPages)[this.getActiveStep - 1];
-      }
       this.$router.push({
         name: 'product-feed-settings',
         params: {

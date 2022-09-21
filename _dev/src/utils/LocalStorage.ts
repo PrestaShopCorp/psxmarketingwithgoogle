@@ -22,7 +22,7 @@ export function deleteProductFeedDataFromLocalStorage() {
   localStorage.removeItem('productFeed-autoImportShippingSettings');
   localStorage.removeItem('productFeed-shippingSetup');
   localStorage.removeItem('productFeed-estimateCarriers');
-  localStorage.removeItem('productFeed-stepNumber');
+  localStorage.removeItem('productFeed-requestSynchronizationNow');
   localStorage.removeItem('selectedProductCategories');
 }
 
