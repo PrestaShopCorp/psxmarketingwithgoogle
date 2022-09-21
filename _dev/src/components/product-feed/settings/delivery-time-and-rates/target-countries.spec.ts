@@ -5,6 +5,7 @@ import {mount, MountOptions} from '@vue/test-utils';
 import Vuex from 'vuex';
 import config, {localVue, cloneStore} from '@/../tests/init';
 import TargetCountries from '@/components/product-feed/settings/delivery-time-and-rates/target-countries.vue';
+import { ShippingSetupOption } from '../../../../enums/product-feed/shipping';
 
 const buildWrapper = (
   options: MountOptions<any> = {},
@@ -45,38 +46,57 @@ describe('target-countries.vue', () => {
 describe('target-countries.vue / Estimating carriers', () => {
   it.todo('allows all countries related to the currency');
 
-  it('should display the Tax panel only when US is selected', async () => {
+  it('should display the Tax panel only when US is selected', () => testCheckingTaxPanelIsVisible(ShippingSetupOption.ESTIMATE));
+});
+
+describe('target-countries.vue / Importing carriers', () => {
+  it.todo('shows only countries that are related to a carrier on the shop');
+
+  it('should display the Tax panel only when US is selected', () => testCheckingTaxPanelIsVisible(ShippingSetupOption.IMPORT));
+});
+
+describe('target-countries.vue / Campaign form', () => {
+  it.todo('shows all countries');
+  it('never displays the Tax panel', () => {
     const store = cloneStore();
     store.modules.app.state.psxMktgWithGoogleShopCurrency.isoCode = 'USD';
 
     const wrapper = buildWrapper({
       propsData: {
-        countries: [],
+        countries: ['US'],
+        shippingSetupOption: null,
       },
       store: new Vuex.Store(store),
     });
-    await wrapper.vm.$nextTick();
 
-    // Without value, should not be visible
     expect(wrapper.find('[data-test-id="configureTax"]').exists()).toBeFalsy();
-
-    // With any other country, should not be visible
-    wrapper.setProps({countries: ['EC']});
-    await wrapper.vm.$nextTick();
-    expect(wrapper.find('[data-test-id="configureTax"]').exists()).toBeFalsy();
-
-    // After selecting US, should be visible
-    wrapper.setProps({countries: ['US']});
-    await wrapper.vm.$nextTick();
-    expect(wrapper.find('[data-test-id="configureTax"]').exists()).toBeTruthy();
   });
 });
 
-describe('target-countries.vue / Importing carriers', () => {
-  it.todo('shows only countries that are related to a carrier on the shop');
-});
 
-describe('target-countries.vue / Campaign form', () => {
-  it.todo('shows all countries');
-  it.todo('never displays the Tax alert');
-});
+const testCheckingTaxPanelIsVisible = async (method: ShippingSetupOption) => {
+  const store = cloneStore();
+  store.modules.app.state.psxMktgWithGoogleShopCurrency.isoCode = 'USD';
+
+  const wrapper = buildWrapper({
+    propsData: {
+      countries: [],
+      shippingSetupOption: method
+    },
+    store: new Vuex.Store(store),
+  });
+  await wrapper.vm.$nextTick();
+
+  // Without value, should not be visible
+  expect(wrapper.find('[data-test-id="configureTax"]').exists()).toBeFalsy();
+
+  // With any other country, should not be visible
+  wrapper.setProps({countries: ['EC']});
+  await wrapper.vm.$nextTick();
+  expect(wrapper.find('[data-test-id="configureTax"]').exists()).toBeFalsy();
+
+  // After selecting US, should be visible
+  wrapper.setProps({countries: ['US']});
+  await wrapper.vm.$nextTick();
+  expect(wrapper.find('[data-test-id="configureTax"]').exists()).toBeTruthy();
+};

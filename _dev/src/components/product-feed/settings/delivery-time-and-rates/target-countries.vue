@@ -20,7 +20,7 @@
     </b-form-group>
 
     <div
-      v-if="isUS"
+      v-if="isUS && shippingSetupOption"
       class="pb-2"
     >
       <div class="d-flex flex-wrap align-items-center mb-3">
