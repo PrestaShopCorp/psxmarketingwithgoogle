@@ -131,6 +131,15 @@ export default {
 
     return state.settings.shippingSetup;
   },
+  [GettersTypes.GET_STEP](state:LocalState) {
+    const step = getDataFromLocalStorage('productFeed-stepNumber');
+
+    if (step !== null && state.isConfigured === false) {
+      state.stepper = step;
+    }
+
+    return state.stepper;
+  },
   [GettersTypes.GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION](state: LocalState): boolean {
     // Merchants used to be able to choose to configure their carriers later on GMC.
     // With the new shipping settings, we require merchants to redo their product feed

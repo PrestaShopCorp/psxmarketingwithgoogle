@@ -68,7 +68,9 @@ export default {
     state.isConfiguredOnce = payload;
   },
   [MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP](state: LocalState, payload: number) {
-    localStorage.setItem('productFeed-stepNumber', `${payload}`);
+    if (state.isConfigured === false) {
+      localStorage.setItem('productFeed-stepNumber', `${payload}`);
+    }
     state.stepper = payload;
   },
 

@@ -8,7 +8,6 @@
 
 <script>
 import Stepper from '../commons/stepper';
-import {getDataFromLocalStorage} from '../../utils/LocalStorage';
 
 export default {
   name: 'ProductFeedStepper',
@@ -19,14 +18,7 @@ export default {
     activeStep: {
       type: Number,
       required: false,
-      default: (() => {
-        const step = getDataFromLocalStorage('productFeed-stepNumber');
-
-        if (step !== null) {
-          return step;
-        }
-        return 1;
-      }),
+      default: 1,
     },
   },
   computed: {
