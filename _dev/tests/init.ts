@@ -9,7 +9,7 @@ const defaultLocale = 'en';
 let filters; // eslint-disable-line
 let VBTooltip;
 
-beforeEach(() => {
+beforeAll(() => {
   windowSpy = jest.spyOn(window, 'window', 'get');
   windowSpy.mockImplementation(() => ({
     // add data needed in window
@@ -17,10 +17,12 @@ beforeEach(() => {
     addEventListener: jest.fn(),
     i18nSettings: {isoCode: 'fr', languageLocale: 'fr'},
   }));
-  VBTooltip = jest.fn();
   localVue = createLocalVue();
   localVue.use(Vuex);
+});
 
+beforeEach(() => {
+  VBTooltip = jest.fn();
   filters = {
     timeConverterToDate: jest.fn(),
     timeConverterToHour: jest.fn(),
