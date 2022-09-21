@@ -173,6 +173,7 @@ import ProductFeedCardReportCard from './product-feed-card-report-card';
 import BadgeListRequirements from '../commons/badge-list-requirements';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default defineComponent({
   name: 'ProductFeedCard',
@@ -295,6 +296,18 @@ export default defineComponent({
   },
   methods: {
     startConfiguration() {
+      const actualStep = getDataFromLocalStorage('productFeed-stepNumber');
+
+      if (actualStep !== null) {
+        const stepIndex = Object.values(ProductFeedSettingsPages)[actualStep - 1];
+        this.$router.push({
+          name: 'product-feed-settings',
+          params: {
+            step: stepIndex,
+          },
+        });
+        return;
+      }
       this.$router.push({
         name: 'product-feed-settings',
         params: {
