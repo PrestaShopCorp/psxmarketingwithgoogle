@@ -2,6 +2,7 @@ import {config, createLocalVue} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {messages} from '@/lib/translations';
 import {changeCountriesCodesToNames} from '@/utils/Countries';
+import {BootstrapVue} from 'bootstrap-vue';
 
 let windowSpy;
 let localVue; // eslint-disable-line
@@ -19,6 +20,7 @@ beforeAll(() => {
   }));
   localVue = createLocalVue();
   localVue.use(Vuex);
+  localVue.use(BootstrapVue);
 });
 
 beforeEach(() => {
@@ -40,6 +42,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  jest.resetAllMocks();
   windowSpy.mockRestore();
 });
 
