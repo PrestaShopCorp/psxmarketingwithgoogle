@@ -57,7 +57,7 @@
             </a>
           </p>
           <product-feed-stepper
-            :activeStep="getActiveStep"
+            :active-step="getActiveStep"
           />
           <div
             class="d-flex justify-content-center justify-content-md-end mt-n1"

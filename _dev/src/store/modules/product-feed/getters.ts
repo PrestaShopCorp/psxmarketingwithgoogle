@@ -138,7 +138,7 @@ export default {
 
     return state.settings.shippingSetup;
   },
-  [GettersTypes.GET_STEP](state:LocalState) {
+  [GettersTypes.GET_STEP](state: LocalState): number {
     if (state.isConfigured) {
       return state.stepper;
     }
