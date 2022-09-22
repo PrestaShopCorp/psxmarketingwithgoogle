@@ -139,7 +139,19 @@ export const ImportDeliveryTimeAndRates:any = Template.bind({});
 ImportDeliveryTimeAndRates.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
-    this.$store.state.productFeed = cloneDeep( productFeed);
+    this.$store.state.productFeed = cloneDeep(productFeed);
+    this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
+  },
+};
+
+export const ImportDeliveryTimeAndRatesSeveralCountries:any = Template.bind({});
+ImportDeliveryTimeAndRatesSeveralCountries.args = {
+  beforeMount(this: any) {
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeed);
+    this.$store.state.productFeed.settings.targetCountries = ['FR', 'IT'];
     this.$store.state.productFeed.stepper = 2;
     this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
     this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
