@@ -20,7 +20,6 @@ describe('delivery-time-and-rates.vue', () => {
     const buildWrapper = (
       options: MountOptions<any> = {},
     ) => {
-      const VBTooltip = jest.fn();
       const store = cloneStore();
       store.modules.productFeed.state = cloneDeep(productFeed);
       store.modules.productFeed.state.stepper = 2;
@@ -29,13 +28,7 @@ describe('delivery-time-and-rates.vue', () => {
       return mount(CustomCarrierForm, {
         localVue,
         store: new Vuex.Store(store),
-        directives: {
-          'b-tooltip': VBTooltip,
-        },
         ...config,
-        stubs: {
-          VueShowdown: true,
-        },
         ...options,
       });
     };
@@ -43,7 +36,7 @@ describe('delivery-time-and-rates.vue', () => {
       it.todo('case for multiple target countries');
       it('is visible', () => {
         const store = cloneStore();
-        const carrier: CustomCarrier = {...productFeed.settings.estimateCarrier}
+        const carrier: CustomCarrier = {...productFeed.settings.estimateCarrier};
 
         const wrapper = buildWrapper({
           propsData: {
@@ -65,7 +58,7 @@ describe('delivery-time-and-rates.vue', () => {
           offer: OfferType.FREE_SHIPPING,
           minDeliveryTime: 1,
           maxDeliveryTime: 2,
-        }
+        };
 
         const wrapper = buildWrapper({
           propsData: {
@@ -86,7 +79,7 @@ describe('delivery-time-and-rates.vue', () => {
           minDeliveryTime: 1,
           maxDeliveryTime: 2,
           offer: OfferType.FLAT_SHIPPING_RATE,
-        }
+        };
 
         const wrapper = buildWrapper({
           propsData: {
@@ -111,7 +104,7 @@ describe('delivery-time-and-rates.vue', () => {
           minDeliveryTime: 1,
           maxDeliveryTime: 2,
           offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
-        }
+        };
 
         const wrapper = buildWrapper({
           propsData: {
@@ -134,7 +127,7 @@ describe('delivery-time-and-rates.vue', () => {
     describe('errors cases', () => {
       it('should throw an error if carrierName is not filled', () => {
         const store = cloneStore();
-        const carrier: CustomCarrier = {...productFeed.settings.estimateCarrier}
+        const carrier: CustomCarrier = {...productFeed.settings.estimateCarrier};
 
         const wrapper = buildWrapper({
           propsData: {
@@ -149,7 +142,7 @@ describe('delivery-time-and-rates.vue', () => {
 
       it('should throw an error if offer is not selected', () => {
         const store = cloneStore();
-        const carrier: CustomCarrier = {...productFeed.settings.estimateCarrier}
+        const carrier: CustomCarrier = {...productFeed.settings.estimateCarrier};
 
         const wrapper = buildWrapper({
           propsData: {
@@ -166,8 +159,8 @@ describe('delivery-time-and-rates.vue', () => {
         const store = cloneStore();
         const carrier: CustomCarrier = {
           ...productFeed.settings.estimateCarrier,
-          minDeliveryTime: -50
-        }
+          minDeliveryTime: -50,
+        };
 
         const wrapper = buildWrapper({
           propsData: {
@@ -184,8 +177,8 @@ describe('delivery-time-and-rates.vue', () => {
         const store = cloneStore();
         const carrier: CustomCarrier = {
           ...productFeed.settings.estimateCarrier,
-          minDeliveryTime: -50
-        }
+          minDeliveryTime: -50,
+        };
 
         const wrapper = buildWrapper({
           propsData: {
@@ -204,7 +197,7 @@ describe('delivery-time-and-rates.vue', () => {
           ...productFeed.settings.estimateCarrier,
           minDeliveryTime: -50,
           carrierName: '',
-        }
+        };
 
         const wrapper = buildWrapper({
           propsData: {
