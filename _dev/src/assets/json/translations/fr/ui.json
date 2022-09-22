@@ -249,7 +249,7 @@
       "estimateOption": {
         "title": "Je peux estimer les tarifs et les délais d'expédition",
         "description": "Vous pouvez facilement définir un tarif d'expédition fixe et des délais de livraison. Vous n'aurez pas à importer ou à mettre à jour vos informations d'expédition depuis le back-office de Prestashop.",
-        "summary": "Méthode estimative"
+        "summary": "Estimé"
       },
       "importOption": {
         "title": "Je voudrais importer ma configuration d'expédition depuis le back-office de PrestaShop",
@@ -302,7 +302,7 @@
       "ifMultipleCountries": "Si vous ciblez plusieurs pays, le prix de chaque produit sera automatiquement converti dans la devise correcte de Google. Cependant, votre boutique doit avoir configuré les frais de port et de taxe pour chaque pays sélectionné. Veuillez respecter [les politiques d'achat propres à chaque pays]({0})[:target=\"_blank\"] et [la réglementation locale]({1})[:target=\"_blank\"]",
       "placeholderSelect": "Sélectionnez les pays où vos produits sont disponibles",
       "shippingSettingsErrors": "Ce pays n'est pas compatible avec votre devise",
-      "shippingSettings": "Ciblage et expédition",
+      "shippingSettings": "Paramètres d'expédition",
       "shippingSettingsTitle": "Paramètres de livraison des produits",
       "shippingLabel1": "Configurer mes paramètres de livraison maintenant (recommandé)",
       "shippingDescription1": "PrestaShop importera votre liste de transporteurs à partir des paramètres de votre boutique et vous permettra de fournir des informations supplémentaires.",
