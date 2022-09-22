@@ -1,6 +1,8 @@
-export const shippingPhpExportHeavy = [
+import {ShopShippingCollectionType, ShopShippingInterface} from '@/providers/shipping-settings-provider';
+
+export const shippingPhpExportHeavy: ShopShippingInterface[] = [
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "1",
     properties: {
       id_carrier: "1",
@@ -31,7 +33,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_taxes",
+    collection: ShopShippingCollectionType.CARRIER_TAXES,
     id: 1,
     properties: {
       id_reference: "1",
@@ -42,7 +44,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "2",
     properties: {
       id_carrier: "6",
@@ -73,7 +75,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "2-1-0-6",
     properties: {
       id_reference: "2",
@@ -87,7 +89,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_taxes",
+    collection: ShopShippingCollectionType.CARRIER_TAXES,
     id: 2,
     properties: {
       id_reference: "2",
@@ -98,7 +100,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "3",
     properties: {
       id_carrier: "3",
@@ -129,7 +131,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "3-1-1-2",
     properties: {
       id_reference: "3",
@@ -143,7 +145,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "3-1-1-3",
     properties: {
       id_reference: "3",
@@ -157,7 +159,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "3-1-1-4",
     properties: {
       id_reference: "3",
@@ -171,7 +173,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_taxes",
+    collection: ShopShippingCollectionType.CARRIER_TAXES,
     id: 3,
     properties: {
       id_reference: "3",
@@ -182,7 +184,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "4",
     properties: {
       id_carrier: "4",
@@ -213,7 +215,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "4-1-0-2",
     properties: {
       id_reference: "4",
@@ -227,7 +229,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "4-1-0-3",
     properties: {
       id_reference: "4",
@@ -241,7 +243,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "4-1-0-4",
     properties: {
       id_reference: "4",
@@ -255,7 +257,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_taxes",
+    collection: ShopShippingCollectionType.CARRIER_TAXES,
     id: 4,
     properties: {
       id_reference: "4",
@@ -266,7 +268,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "7",
     properties: {
       id_carrier: "7",
@@ -297,7 +299,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "7-1-0-7",
     properties: {
       id_reference: "7",
@@ -311,7 +313,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "8",
     properties: {
       id_carrier: "8",
@@ -342,7 +344,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "8-1-0-8",
     properties: {
       id_reference: "8",
@@ -356,7 +358,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "9",
     properties: {
       id_carrier: "9",
@@ -387,7 +389,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "9-1-0-9",
     properties: {
       id_reference: "9",
@@ -401,7 +403,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "10",
     properties: {
       id_carrier: "10",
@@ -432,7 +434,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "10-1-0-10",
     properties: {
       id_reference: "10",
@@ -446,7 +448,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "11",
     properties: {
       id_carrier: "11",
@@ -477,7 +479,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "11-1-0-11",
     properties: {
       id_reference: "11",
@@ -491,7 +493,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "12",
     properties: {
       id_carrier: "12",
@@ -522,7 +524,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "12-1-0-12",
     properties: {
       id_reference: "12",
@@ -536,7 +538,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "13",
     properties: {
       id_carrier: "13",
@@ -567,7 +569,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "13-1-0-13",
     properties: {
       id_reference: "13",
@@ -581,7 +583,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "14",
     properties: {
       id_carrier: "14",
@@ -612,7 +614,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "14-1-0-14",
     properties: {
       id_reference: "14",
@@ -626,7 +628,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "15",
     properties: {
       id_carrier: "15",
@@ -657,7 +659,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "15-1-0-15",
     properties: {
       id_reference: "15",
@@ -671,7 +673,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "16",
     properties: {
       id_carrier: "16",
@@ -702,7 +704,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "16-1-0-16",
     properties: {
       id_reference: "16",
@@ -716,7 +718,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "17",
     properties: {
       id_carrier: "17",
@@ -747,7 +749,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "17-1-0-17",
     properties: {
       id_reference: "17",
@@ -761,7 +763,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "18",
     properties: {
       id_carrier: "18",
@@ -792,7 +794,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "18-1-0-18",
     properties: {
       id_reference: "18",
@@ -806,7 +808,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "19",
     properties: {
       id_carrier: "19",
@@ -837,7 +839,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "19-1-0-19",
     properties: {
       id_reference: "19",
@@ -851,7 +853,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "20",
     properties: {
       id_carrier: "20",
@@ -882,7 +884,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "20-1-0-20",
     properties: {
       id_reference: "20",
@@ -896,7 +898,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "21",
     properties: {
       id_carrier: "21",
@@ -927,7 +929,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "21-1-0-21",
     properties: {
       id_reference: "21",
@@ -941,7 +943,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "22",
     properties: {
       id_carrier: "22",
@@ -972,7 +974,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "22-1-0-22",
     properties: {
       id_reference: "22",
@@ -986,7 +988,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "23",
     properties: {
       id_carrier: "23",
@@ -1017,7 +1019,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "23-1-0-23",
     properties: {
       id_reference: "23",
@@ -1031,7 +1033,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "24",
     properties: {
       id_carrier: "24",
@@ -1062,7 +1064,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "24-1-0-24",
     properties: {
       id_reference: "24",
@@ -1076,7 +1078,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "25",
     properties: {
       id_carrier: "25",
@@ -1107,7 +1109,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "25-1-0-25",
     properties: {
       id_reference: "25",
@@ -1121,7 +1123,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "26",
     properties: {
       id_carrier: "26",
@@ -1152,7 +1154,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "26-1-0-26",
     properties: {
       id_reference: "26",
@@ -1166,7 +1168,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "27",
     properties: {
       id_carrier: "27",
@@ -1197,7 +1199,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "27-1-0-27",
     properties: {
       id_reference: "27",
@@ -1211,7 +1213,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "28",
     properties: {
       id_carrier: "28",
@@ -1242,7 +1244,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "28-1-0-28",
     properties: {
       id_reference: "28",
@@ -1256,7 +1258,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "29",
     properties: {
       id_carrier: "29",
@@ -1287,7 +1289,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "29-1-0-29",
     properties: {
       id_reference: "29",
@@ -1301,7 +1303,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "30",
     properties: {
       id_carrier: "30",
@@ -1332,7 +1334,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "30-1-0-30",
     properties: {
       id_reference: "30",
@@ -1346,7 +1348,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "31",
     properties: {
       id_carrier: "31",
@@ -1377,7 +1379,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "31-1-0-31",
     properties: {
       id_reference: "31",
@@ -1391,7 +1393,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "32",
     properties: {
       id_carrier: "32",
@@ -1422,7 +1424,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "32-1-0-32",
     properties: {
       id_reference: "32",
@@ -1436,7 +1438,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "33",
     properties: {
       id_carrier: "33",
@@ -1467,7 +1469,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "33-1-0-33",
     properties: {
       id_reference: "33",
@@ -1481,7 +1483,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "34",
     properties: {
       id_carrier: "34",
@@ -1512,7 +1514,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "34-1-0-34",
     properties: {
       id_reference: "34",
@@ -1526,7 +1528,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "35",
     properties: {
       id_carrier: "35",
@@ -1557,7 +1559,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "35-1-0-35",
     properties: {
       id_reference: "35",
@@ -1571,7 +1573,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "36",
     properties: {
       id_carrier: "36",
@@ -1602,7 +1604,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "36-1-0-36",
     properties: {
       id_reference: "36",
@@ -1616,7 +1618,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "37",
     properties: {
       id_carrier: "37",
@@ -1647,7 +1649,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "37-1-0-37",
     properties: {
       id_reference: "37",
@@ -1661,7 +1663,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "38",
     properties: {
       id_carrier: "38",
@@ -1692,7 +1694,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "38-1-0-38",
     properties: {
       id_reference: "38",
@@ -1706,7 +1708,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "39",
     properties: {
       id_carrier: "39",
@@ -1737,7 +1739,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "39-1-0-39",
     properties: {
       id_reference: "39",
@@ -1751,7 +1753,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "40",
     properties: {
       id_carrier: "40",
@@ -1782,7 +1784,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "40-1-0-40",
     properties: {
       id_reference: "40",
@@ -1796,7 +1798,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "41",
     properties: {
       id_carrier: "41",
@@ -1827,7 +1829,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "41-1-0-41",
     properties: {
       id_reference: "41",
@@ -1841,7 +1843,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "42",
     properties: {
       id_carrier: "42",
@@ -1872,7 +1874,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "42-1-0-42",
     properties: {
       id_reference: "42",
@@ -1886,7 +1888,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "43",
     properties: {
       id_carrier: "43",
@@ -1917,7 +1919,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "43-1-0-43",
     properties: {
       id_reference: "43",
@@ -1931,7 +1933,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "44",
     properties: {
       id_carrier: "44",
@@ -1962,7 +1964,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "44-1-0-44",
     properties: {
       id_reference: "44",
@@ -1976,7 +1978,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "45",
     properties: {
       id_carrier: "45",
@@ -2007,7 +2009,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "45-1-0-45",
     properties: {
       id_reference: "45",
@@ -2021,7 +2023,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "46",
     properties: {
       id_carrier: "46",
@@ -2052,7 +2054,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "46-1-0-46",
     properties: {
       id_reference: "46",
@@ -2066,7 +2068,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "47",
     properties: {
       id_carrier: "47",
@@ -2097,7 +2099,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "47-1-0-47",
     properties: {
       id_reference: "47",
@@ -2111,7 +2113,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "48",
     properties: {
       id_carrier: "48",
@@ -2142,7 +2144,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "48-1-0-48",
     properties: {
       id_reference: "48",
@@ -2156,7 +2158,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "49",
     properties: {
       id_carrier: "49",
@@ -2187,7 +2189,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "49-1-0-49",
     properties: {
       id_reference: "49",
@@ -2201,7 +2203,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "50",
     properties: {
       id_carrier: "50",
@@ -2232,7 +2234,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "50-1-0-50",
     properties: {
       id_reference: "50",
@@ -2246,7 +2248,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "51",
     properties: {
       id_carrier: "51",
@@ -2277,7 +2279,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "51-1-0-51",
     properties: {
       id_reference: "51",
@@ -2291,7 +2293,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "52",
     properties: {
       id_carrier: "52",
@@ -2322,7 +2324,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "52-1-0-52",
     properties: {
       id_reference: "52",
@@ -2336,7 +2338,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "53",
     properties: {
       id_carrier: "53",
@@ -2367,7 +2369,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "53-1-0-53",
     properties: {
       id_reference: "53",
@@ -2381,7 +2383,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "54",
     properties: {
       id_carrier: "54",
@@ -2412,7 +2414,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "54-1-0-54",
     properties: {
       id_reference: "54",
@@ -2426,7 +2428,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "55",
     properties: {
       id_carrier: "55",
@@ -2457,7 +2459,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "55-1-0-55",
     properties: {
       id_reference: "55",
@@ -2471,7 +2473,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "56",
     properties: {
       id_carrier: "56",
@@ -2502,7 +2504,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "56-1-0-56",
     properties: {
       id_reference: "56",
@@ -2516,7 +2518,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "57",
     properties: {
       id_carrier: "57",
@@ -2547,7 +2549,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "57-1-0-57",
     properties: {
       id_reference: "57",
@@ -2561,7 +2563,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "58",
     properties: {
       id_carrier: "58",
@@ -2592,7 +2594,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "58-1-0-58",
     properties: {
       id_reference: "58",
@@ -2606,7 +2608,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "59",
     properties: {
       id_carrier: "59",
@@ -2637,7 +2639,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "59-1-0-59",
     properties: {
       id_reference: "59",
@@ -2651,7 +2653,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "60",
     properties: {
       id_carrier: "60",
@@ -2682,7 +2684,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "60-1-0-60",
     properties: {
       id_reference: "60",
@@ -2696,7 +2698,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "61",
     properties: {
       id_carrier: "61",
@@ -2727,7 +2729,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "61-1-0-61",
     properties: {
       id_reference: "61",
@@ -2741,7 +2743,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "62",
     properties: {
       id_carrier: "62",
@@ -2772,7 +2774,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "62-1-0-62",
     properties: {
       id_reference: "62",
@@ -2786,7 +2788,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "63",
     properties: {
       id_carrier: "63",
@@ -2817,7 +2819,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "63-1-0-63",
     properties: {
       id_reference: "63",
@@ -2831,7 +2833,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "64",
     properties: {
       id_carrier: "64",
@@ -2862,7 +2864,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "64-1-0-64",
     properties: {
       id_reference: "64",
@@ -2876,7 +2878,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "65",
     properties: {
       id_carrier: "65",
@@ -2907,7 +2909,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "65-1-0-65",
     properties: {
       id_reference: "65",
@@ -2921,7 +2923,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "66",
     properties: {
       id_carrier: "66",
@@ -2952,7 +2954,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "66-1-0-66",
     properties: {
       id_reference: "66",
@@ -2966,7 +2968,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "67",
     properties: {
       id_carrier: "67",
@@ -2997,7 +2999,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "67-1-0-67",
     properties: {
       id_reference: "67",
@@ -3011,7 +3013,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "68",
     properties: {
       id_carrier: "68",
@@ -3042,7 +3044,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "68-1-0-68",
     properties: {
       id_reference: "68",
@@ -3056,7 +3058,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "69",
     properties: {
       id_carrier: "69",
@@ -3087,7 +3089,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "69-1-0-69",
     properties: {
       id_reference: "69",
@@ -3101,7 +3103,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "70",
     properties: {
       id_carrier: "70",
@@ -3132,7 +3134,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "70-1-0-70",
     properties: {
       id_reference: "70",
@@ -3146,7 +3148,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "71",
     properties: {
       id_carrier: "71",
@@ -3177,7 +3179,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "71-1-0-71",
     properties: {
       id_reference: "71",
@@ -3191,7 +3193,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "72",
     properties: {
       id_carrier: "72",
@@ -3222,7 +3224,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "72-1-0-72",
     properties: {
       id_reference: "72",
@@ -3236,7 +3238,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "73",
     properties: {
       id_carrier: "73",
@@ -3267,7 +3269,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "73-1-0-73",
     properties: {
       id_reference: "73",
@@ -3281,7 +3283,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "74",
     properties: {
       id_carrier: "74",
@@ -3312,7 +3314,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "74-1-0-74",
     properties: {
       id_reference: "74",
@@ -3326,7 +3328,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "75",
     properties: {
       id_carrier: "75",
@@ -3357,7 +3359,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "75-1-0-75",
     properties: {
       id_reference: "75",
@@ -3371,7 +3373,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "76",
     properties: {
       id_carrier: "76",
@@ -3402,7 +3404,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "76-1-0-76",
     properties: {
       id_reference: "76",
@@ -3416,7 +3418,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "77",
     properties: {
       id_carrier: "77",
@@ -3447,7 +3449,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "77-1-0-77",
     properties: {
       id_reference: "77",
@@ -3461,7 +3463,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "78",
     properties: {
       id_carrier: "78",
@@ -3492,7 +3494,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "78-1-0-78",
     properties: {
       id_reference: "78",
@@ -3506,7 +3508,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "79",
     properties: {
       id_carrier: "79",
@@ -3537,7 +3539,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "79-1-0-79",
     properties: {
       id_reference: "79",
@@ -3551,7 +3553,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "80",
     properties: {
       id_carrier: "80",
@@ -3582,7 +3584,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "80-1-0-80",
     properties: {
       id_reference: "80",
@@ -3596,7 +3598,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "81",
     properties: {
       id_carrier: "81",
@@ -3627,7 +3629,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "81-1-0-81",
     properties: {
       id_reference: "81",
@@ -3641,7 +3643,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "82",
     properties: {
       id_carrier: "82",
@@ -3672,7 +3674,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "82-1-0-82",
     properties: {
       id_reference: "82",
@@ -3686,7 +3688,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "83",
     properties: {
       id_carrier: "83",
@@ -3717,7 +3719,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "83-1-0-83",
     properties: {
       id_reference: "83",
@@ -3731,7 +3733,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "84",
     properties: {
       id_carrier: "84",
@@ -3762,7 +3764,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "84-1-0-84",
     properties: {
       id_reference: "84",
@@ -3776,7 +3778,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "85",
     properties: {
       id_carrier: "85",
@@ -3807,7 +3809,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "85-1-0-85",
     properties: {
       id_reference: "85",
@@ -3821,7 +3823,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "86",
     properties: {
       id_carrier: "86",
@@ -3852,7 +3854,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "86-1-0-86",
     properties: {
       id_reference: "86",
@@ -3866,7 +3868,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "87",
     properties: {
       id_carrier: "87",
@@ -3897,7 +3899,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "87-1-0-87",
     properties: {
       id_reference: "87",
@@ -3911,7 +3913,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "88",
     properties: {
       id_carrier: "88",
@@ -3942,7 +3944,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "88-1-0-88",
     properties: {
       id_reference: "88",
@@ -3956,7 +3958,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "89",
     properties: {
       id_carrier: "89",
@@ -3987,7 +3989,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "89-1-0-89",
     properties: {
       id_reference: "89",
@@ -4001,7 +4003,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "90",
     properties: {
       id_carrier: "90",
@@ -4032,7 +4034,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "90-1-0-90",
     properties: {
       id_reference: "90",
@@ -4046,7 +4048,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "91",
     properties: {
       id_carrier: "91",
@@ -4077,7 +4079,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "91-1-0-91",
     properties: {
       id_reference: "91",
@@ -4091,7 +4093,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "92",
     properties: {
       id_carrier: "92",
@@ -4122,7 +4124,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "92-1-0-92",
     properties: {
       id_reference: "92",
@@ -4136,7 +4138,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "93",
     properties: {
       id_carrier: "93",
@@ -4167,7 +4169,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "93-1-0-93",
     properties: {
       id_reference: "93",
@@ -4181,7 +4183,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "94",
     properties: {
       id_carrier: "94",
@@ -4212,7 +4214,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "94-1-0-94",
     properties: {
       id_reference: "94",
@@ -4226,7 +4228,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "95",
     properties: {
       id_carrier: "95",
@@ -4257,7 +4259,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "95-1-0-95",
     properties: {
       id_reference: "95",
@@ -4271,7 +4273,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "96",
     properties: {
       id_carrier: "96",
@@ -4302,7 +4304,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "96-1-0-96",
     properties: {
       id_reference: "96",
@@ -4316,7 +4318,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "97",
     properties: {
       id_carrier: "97",
@@ -4347,7 +4349,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "97-1-0-97",
     properties: {
       id_reference: "97",
@@ -4361,7 +4363,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "98",
     properties: {
       id_carrier: "98",
@@ -4392,7 +4394,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "98-1-0-98",
     properties: {
       id_reference: "98",
@@ -4406,7 +4408,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "99",
     properties: {
       id_carrier: "99",
@@ -4437,7 +4439,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "99-1-0-99",
     properties: {
       id_reference: "99",
@@ -4451,7 +4453,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "100",
     properties: {
       id_carrier: "100",
@@ -4482,7 +4484,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "100-1-0-100",
     properties: {
       id_reference: "100",
@@ -4496,7 +4498,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "101",
     properties: {
       id_carrier: "101",
@@ -4527,7 +4529,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "101-1-0-101",
     properties: {
       id_reference: "101",
@@ -4541,7 +4543,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "102",
     properties: {
       id_carrier: "102",
@@ -4572,7 +4574,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "102-1-0-102",
     properties: {
       id_reference: "102",
@@ -4586,7 +4588,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "103",
     properties: {
       id_carrier: "103",
@@ -4617,7 +4619,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "103-1-0-103",
     properties: {
       id_reference: "103",
@@ -4631,7 +4633,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "104",
     properties: {
       id_carrier: "104",
@@ -4662,7 +4664,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "104-1-0-104",
     properties: {
       id_reference: "104",
@@ -4676,7 +4678,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "105",
     properties: {
       id_carrier: "105",
@@ -4707,7 +4709,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "105-1-0-105",
     properties: {
       id_reference: "105",
@@ -4721,7 +4723,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "106",
     properties: {
       id_carrier: "106",
@@ -4752,7 +4754,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "106-1-0-106",
     properties: {
       id_reference: "106",
@@ -4766,7 +4768,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "107",
     properties: {
       id_carrier: "107",
@@ -4797,7 +4799,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "107-1-0-107",
     properties: {
       id_reference: "107",
@@ -4811,7 +4813,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "108",
     properties: {
       id_carrier: "108",
@@ -4842,7 +4844,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "108-1-0-108",
     properties: {
       id_reference: "108",
@@ -4856,7 +4858,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "109",
     properties: {
       id_carrier: "109",
@@ -4887,7 +4889,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "109-1-0-109",
     properties: {
       id_reference: "109",
@@ -4901,7 +4903,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "110",
     properties: {
       id_carrier: "110",
@@ -4932,7 +4934,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "110-1-0-110",
     properties: {
       id_reference: "110",
@@ -4946,7 +4948,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "111",
     properties: {
       id_carrier: "111",
@@ -4977,7 +4979,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "111-1-0-111",
     properties: {
       id_reference: "111",
@@ -4991,7 +4993,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "112",
     properties: {
       id_carrier: "112",
@@ -5022,7 +5024,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "112-1-0-112",
     properties: {
       id_reference: "112",
@@ -5036,7 +5038,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "113",
     properties: {
       id_carrier: "113",
@@ -5067,7 +5069,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "113-1-0-113",
     properties: {
       id_reference: "113",
@@ -5081,7 +5083,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "114",
     properties: {
       id_carrier: "114",
@@ -5112,7 +5114,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "114-1-0-114",
     properties: {
       id_reference: "114",
@@ -5126,7 +5128,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "115",
     properties: {
       id_carrier: "115",
@@ -5157,7 +5159,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "115-1-0-115",
     properties: {
       id_reference: "115",
@@ -5171,7 +5173,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "116",
     properties: {
       id_carrier: "116",
@@ -5202,7 +5204,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "116-1-0-116",
     properties: {
       id_reference: "116",
@@ -5216,7 +5218,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "117",
     properties: {
       id_carrier: "117",
@@ -5247,7 +5249,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "117-1-0-117",
     properties: {
       id_reference: "117",
@@ -5261,7 +5263,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "118",
     properties: {
       id_carrier: "118",
@@ -5292,7 +5294,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "118-1-0-118",
     properties: {
       id_reference: "118",
@@ -5306,7 +5308,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "119",
     properties: {
       id_carrier: "119",
@@ -5337,7 +5339,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "119-1-0-119",
     properties: {
       id_reference: "119",
@@ -5351,7 +5353,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "120",
     properties: {
       id_carrier: "120",
@@ -5382,7 +5384,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "120-1-0-120",
     properties: {
       id_reference: "120",
@@ -5396,7 +5398,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "121",
     properties: {
       id_carrier: "121",
@@ -5427,7 +5429,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "121-1-0-121",
     properties: {
       id_reference: "121",
@@ -5441,7 +5443,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "122",
     properties: {
       id_carrier: "122",
@@ -5472,7 +5474,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "122-1-0-122",
     properties: {
       id_reference: "122",
@@ -5486,7 +5488,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "123",
     properties: {
       id_carrier: "123",
@@ -5517,7 +5519,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "123-1-0-123",
     properties: {
       id_reference: "123",
@@ -5531,7 +5533,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "124",
     properties: {
       id_carrier: "124",
@@ -5562,7 +5564,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "124-1-0-124",
     properties: {
       id_reference: "124",
@@ -5576,7 +5578,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "125",
     properties: {
       id_carrier: "125",
@@ -5607,7 +5609,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "125-1-0-125",
     properties: {
       id_reference: "125",
@@ -5621,7 +5623,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "126",
     properties: {
       id_carrier: "126",
@@ -5652,7 +5654,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "126-1-0-126",
     properties: {
       id_reference: "126",
@@ -5666,7 +5668,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "127",
     properties: {
       id_carrier: "127",
@@ -5697,7 +5699,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "127-1-0-127",
     properties: {
       id_reference: "127",
@@ -5711,7 +5713,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "128",
     properties: {
       id_carrier: "128",
@@ -5742,7 +5744,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "128-1-0-128",
     properties: {
       id_reference: "128",
@@ -5756,7 +5758,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "129",
     properties: {
       id_carrier: "129",
@@ -5787,7 +5789,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "129-1-0-129",
     properties: {
       id_reference: "129",
@@ -5801,7 +5803,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "130",
     properties: {
       id_carrier: "130",
@@ -5832,7 +5834,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "130-1-0-130",
     properties: {
       id_reference: "130",
@@ -5846,7 +5848,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "131",
     properties: {
       id_carrier: "131",
@@ -5877,7 +5879,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "131-1-0-131",
     properties: {
       id_reference: "131",
@@ -5891,7 +5893,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "132",
     properties: {
       id_carrier: "132",
@@ -5922,7 +5924,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "132-1-0-132",
     properties: {
       id_reference: "132",
@@ -5936,7 +5938,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "133",
     properties: {
       id_carrier: "133",
@@ -5967,7 +5969,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "133-1-0-133",
     properties: {
       id_reference: "133",
@@ -5981,7 +5983,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "134",
     properties: {
       id_carrier: "134",
@@ -6012,7 +6014,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "134-1-0-134",
     properties: {
       id_reference: "134",
@@ -6026,7 +6028,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "135",
     properties: {
       id_carrier: "135",
@@ -6057,7 +6059,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "135-1-0-135",
     properties: {
       id_reference: "135",
@@ -6071,7 +6073,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "136",
     properties: {
       id_carrier: "136",
@@ -6102,7 +6104,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "136-1-0-136",
     properties: {
       id_reference: "136",
@@ -6116,7 +6118,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "137",
     properties: {
       id_carrier: "137",
@@ -6147,7 +6149,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "137-1-0-137",
     properties: {
       id_reference: "137",
@@ -6161,7 +6163,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "138",
     properties: {
       id_carrier: "138",
@@ -6192,7 +6194,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "138-1-0-138",
     properties: {
       id_reference: "138",
@@ -6206,7 +6208,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "139",
     properties: {
       id_carrier: "139",
@@ -6237,7 +6239,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "139-1-0-139",
     properties: {
       id_reference: "139",
@@ -6251,7 +6253,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "140",
     properties: {
       id_carrier: "140",
@@ -6282,7 +6284,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "140-1-0-140",
     properties: {
       id_reference: "140",
@@ -6296,7 +6298,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "141",
     properties: {
       id_carrier: "141",
@@ -6327,7 +6329,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "141-1-0-141",
     properties: {
       id_reference: "141",
@@ -6341,7 +6343,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "142",
     properties: {
       id_carrier: "142",
@@ -6372,7 +6374,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "142-1-0-142",
     properties: {
       id_reference: "142",
@@ -6386,7 +6388,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "143",
     properties: {
       id_carrier: "143",
@@ -6417,7 +6419,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "143-1-0-143",
     properties: {
       id_reference: "143",
@@ -6431,7 +6433,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "144",
     properties: {
       id_carrier: "144",
@@ -6462,7 +6464,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "144-1-0-144",
     properties: {
       id_reference: "144",
@@ -6476,7 +6478,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "145",
     properties: {
       id_carrier: "145",
@@ -6507,7 +6509,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "145-1-0-145",
     properties: {
       id_reference: "145",
@@ -6521,7 +6523,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "146",
     properties: {
       id_carrier: "146",
@@ -6552,7 +6554,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "146-1-0-146",
     properties: {
       id_reference: "146",
@@ -6566,7 +6568,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "147",
     properties: {
       id_carrier: "147",
@@ -6597,7 +6599,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "147-1-0-147",
     properties: {
       id_reference: "147",
@@ -6611,7 +6613,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "148",
     properties: {
       id_carrier: "148",
@@ -6642,7 +6644,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "148-1-0-148",
     properties: {
       id_reference: "148",
@@ -6656,7 +6658,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "149",
     properties: {
       id_carrier: "149",
@@ -6687,7 +6689,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "149-1-0-149",
     properties: {
       id_reference: "149",
@@ -6701,7 +6703,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "150",
     properties: {
       id_carrier: "150",
@@ -6732,7 +6734,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "150-1-0-150",
     properties: {
       id_reference: "150",
@@ -6746,7 +6748,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "151",
     properties: {
       id_carrier: "151",
@@ -6777,7 +6779,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "151-1-0-151",
     properties: {
       id_reference: "151",
@@ -6791,7 +6793,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "152",
     properties: {
       id_carrier: "152",
@@ -6822,7 +6824,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "152-1-0-152",
     properties: {
       id_reference: "152",
@@ -6836,7 +6838,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "153",
     properties: {
       id_carrier: "153",
@@ -6867,7 +6869,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "153-1-0-153",
     properties: {
       id_reference: "153",
@@ -6881,7 +6883,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "154",
     properties: {
       id_carrier: "154",
@@ -6912,7 +6914,7 @@ export const shippingPhpExportHeavy = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "154-1-0-154",
     properties: {
       id_reference: "154",

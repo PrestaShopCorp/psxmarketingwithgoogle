@@ -94,7 +94,7 @@ export default {
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
   components: {TunnelProductFeed},
-  template: '<div><TunnelProductFeed v-bind="$props" /></div>',
+  template: '<div><TunnelProductFeed v-bind="$props" v-if="!hide"/></div>',
   beforeMount: args.beforeMount,
   beforeCreate() {
     deleteProductFeedDataFromLocalStorage();
@@ -170,7 +170,10 @@ ImportDeliveryTimeAndRatesNoCarriers.args = {
   },
 };
 
-export const ImportDeliveryTimeAndRatesWithManyCarriers:any = Template.bind({});
+export const ImportDeliveryTimeAndRatesWithManyCarriers:any = Template.bind({
+  // Modify this to display the story
+  hide: true,
+});
 ImportDeliveryTimeAndRatesWithManyCarriers.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);

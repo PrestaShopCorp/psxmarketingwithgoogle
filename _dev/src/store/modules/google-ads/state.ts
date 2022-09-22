@@ -42,6 +42,8 @@ export interface AccountInformations {
   name?: string,
   isAdmin?: boolean,
   isTestAccount?: boolean,
+  isAccountCancelled?: boolean,
+  isAccountSuspended?: boolean,
   billingSettings?: {
     isSet: boolean,
     link?: string,

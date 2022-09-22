@@ -1,11 +1,12 @@
 import CampaignCreation from "../src/components/campaign-creation/campaign-creation.vue";
 import CampaignPopin from "../src/components/campaign-creation/campaign-creation-filter-popin/campaign-creation-popin.vue"
 import { initialStateApp } from "../.storybook/mock/state-app";
-import { googleAdsAccountChosen } from "../.storybook/mock/google-ads.js";
-import { campaignWithUnhandledFilters, campaignBasic } from "../.storybook/mock/campaigns";
+import { googleAdsAccountChosen } from "../.storybook/mock/google-ads";
+import { campaignWithUnhandledFilters } from "../.storybook/mock/campaigns";
 import { rest } from "msw";
-import { availableFilters } from "../.storybook/mock/campaigns.js";
+import { availableFilters } from "../.storybook/mock/campaigns";
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   title: "Campaign/Creation",
@@ -294,14 +295,11 @@ EditionWithUnhandledFilters.args = {
   loader: false,
   searchLoader: false,
   mounted(this: any) {
-    this.$store.state.campaigns.campaigns= Object.assign([], [campaignWithUnhandledFilters]);
+    this.$store.state.campaigns.campaigns.sscList = [cloneDeep(campaignWithUnhandledFilters)];
     this.$router.history.current.params.id = '16004060865',
     this.$store.state.campaigns.errorFetchingFilters = false;
     this.$store.state.productFeed.validationSummary.activeItems = 2;
-    Object.assign(
-      this.$refs.sscCreation.$data,
-      campaignWithUnhandledFilters
-    );
+    this.$refs.sscCreation.$data = cloneDeep(campaignWithUnhandledFilters);
 },
 };
 EditionWithUnhandledFilters.parameters = {
@@ -365,7 +363,7 @@ ErrorRetrievingFilters.args = {
   mounted(this: any) {
     this.$store.state.productFeed.validationSummary.activeItems = 2;
     // Is empty but is filled right away??
-    this.$store.state.campaigns.sscAvailableFilters = Object.assign([], [])
+    this.$store.state.campaigns.sscAvailableFilters = [];
     this.$store.state.campaigns.errorFetchingFilters = true
   },
 };
@@ -389,8 +387,8 @@ PopinFiltersDimensionStep.args = {
   },
   mounted(this: any) {
     // @ts-ignore
-    this.$store.state.campaigns.sscAvailableFilters  = Object.assign([], availableFilters);
-    this.$store.state.campaigns.dimensionChosen  = Object.assign({}, availableFilters[0]);
+    this.$store.state.campaigns.sscAvailableFilters = cloneDeep(availableFilters);
+    this.$store.state.campaigns.dimensionChosen = cloneDeep(availableFilters[0]);
   },
 };
 
@@ -405,7 +403,7 @@ PopinFiltersFiltersStep.args = {
   },
   mounted(this: any) {
     // @ts-ignore
-    this.$store.state.campaigns.dimensionChosen = Object.assign({}, availableFilters[0]);
+    this.$store.state.campaigns.dimensionChosen = cloneDeep(availableFilters[0]);
     this.$refs.CampaignCreationPopin.$data.step = 2;
   },
 };

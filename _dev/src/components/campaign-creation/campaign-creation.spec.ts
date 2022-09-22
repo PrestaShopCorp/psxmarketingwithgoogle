@@ -6,10 +6,11 @@ import Vuex from 'vuex';
 // Import this file first to init mock on window
 import cloneDeep from 'lodash.clonedeep';
 import {MountOptions, shallowMount} from '@vue/test-utils';
-import config, {localVue, cloneStore} from '@/../tests/init';
+import {BButton} from 'bootstrap-vue';
+import config, {localVue, cloneStore, addBootstrapToVue} from '@/../tests/init';
 
 import {initialStateApp} from '../../../.storybook/mock/state-app';
-import {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads.js';
+import {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads';
 import {campaignWithUnhandledFilters, campaignWithoutUnhandledFilters, availableFilters} from '../../../.storybook/mock/campaigns';
 import CampaignCreation from './campaign-creation.vue';
 
@@ -82,7 +83,10 @@ describe('campaign-creation.vue - Campaign edition', () => {
         },
       },
       data() {
-        return campaignWithoutUnhandledFilters;
+        return {
+          ...campaignWithoutUnhandledFilters,
+          campaignHasNoProductsFilter: false,
+        };
       },
       computed: {
         filtersChosen() {
@@ -116,7 +120,10 @@ describe('campaign-creation.vue - Campaign edition - No active products', () => 
   beforeEach(() => {
     wrapper = buildWrapper({
       data() {
-        return campaignWithoutUnhandledFilters;
+        return {
+          ...campaignWithoutUnhandledFilters,
+          campaignHasNoProductsFilter: false,
+        };
       },
       computed: {
         filtersChosen() {
@@ -150,7 +157,10 @@ describe('campaign-creation.vue - Campaign edition - Unhandled filters', () => {
   beforeEach(() => {
     wrapper = buildWrapper({
       data() {
-        return campaignWithUnhandledFilters;
+        return {
+          ...campaignWithUnhandledFilters,
+          campaignHasNoProductsFilter: false,
+        };
       },
       computed: {
         filtersChosen() {

@@ -1,6 +1,6 @@
 import {googleAccountConnected} from '../.storybook/mock/google-account';
 import {conversionTrackingIsTrue} from '../.storybook/mock/campaigns';
-import {campaigns} from '../.storybook/mock/campaigns-list.js';
+import {campaigns} from '../.storybook/mock/campaigns-list';
 import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {initialStateApp} from "../.storybook/mock/state-app";
 import {merchantCenterAccountConnected} from "../.storybook/mock/merchant-center-account";
@@ -12,6 +12,7 @@ import CampaignCreationPopin from '../src/components/campaign-creation/campaign-
 import GoogleAdsAccountPopinNew from '../src/components/google-ads-account/google-ads-account-popin-new.vue'
 import OnboardingPage from '../src/views/onboarding-page.vue'
 import campaignsList from '../src/components/campaign/campaign-table-list.vue'
+import cloneDeep from 'lodash.clonedeep';
 export default {
   title: 'Basic Components/Banners/Overviews',
   component: GoogleAdsAccountPopinNew,BannerAds,
@@ -36,14 +37,14 @@ export const BannerOnPopinNewAdsAccount:any = TemplateAdsPopinNewGoogleAdsAccoun
 BannerOnPopinNewAdsAccount.args = {
   visible: true,
   stepActive: 3,
-  user: Object.assign({}, googleAccountConnected),
+  user: cloneDeep(googleAccountConnected),
   beforeMount(this:any){
-    this.$store.state.app = Object.assign({}, initialStateApp);
-    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
-    this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
-    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
-    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
-    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
+    this.$store.state.accounts.googleAccount = cloneDeep(googleAccountConnected);
+    this.$store.state.accounts.googleMerchantAccount = cloneDeep(merchantCenterAccountConnected);
+    this.$store.state.productFeed = cloneDeep(productFeedIsConfigured);
+    this.$store.state.googleAds = cloneDeep(googleAdsAccountChosen);
   }
  
 };
@@ -58,17 +59,17 @@ const TemplateAdsConfigurationPage = (args, { argTypes }) => ({
   `,
   beforeMount: args.beforeMount,
   mounted: args.mounted,
-  user: Object.assign({}, googleAccountConnected),
+  user: cloneDeep(googleAccountConnected),
   beforeCreate(this:any){
-    this.$store.state.app = Object.assign({}, initialStateApp);
-    this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
-    this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
-    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
-    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
-    this.$store.state.campaigns = Object.assign({}, conversionTrackingIsTrue);
-    this.$store.state.campaigns.campaigns = Object.assign([], campaigns);
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
+    this.$store.state.accounts.googleAccount = cloneDeep(googleAccountConnected);
+    this.$store.state.accounts.googleMerchantAccount = cloneDeep(merchantCenterAccountConnected);
+    this.$store.state.productFeed = cloneDeep(productFeedIsConfigured);
+    this.$store.state.campaigns = cloneDeep(conversionTrackingIsTrue);
+    this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
     this.$store.state.campaigns.conversionActions = [{}];
-    this.$store.state.googleAds = Object.assign({}, adsAccountStatus);
+    this.$store.state.googleAds = cloneDeep(adsAccountStatus);
   }
 });
 
@@ -111,7 +112,7 @@ const TemplateCampaignsList = (args, { argTypes }) => ({
 export const BannerOnCampaignsListPage:any = TemplateCampaignsList.bind({});
 BannerOnCampaignsListPage.args = {
   beforeMount() {
-    this.$store.state.campaigns.campaigns = Object.assign([], []);
+    this.$store.state.campaigns.campaigns.pMaxList = [];
   },
   loading: false, 
 };

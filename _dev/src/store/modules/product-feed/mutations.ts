@@ -16,12 +16,10 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
+import {DeliveryDetail, ShopShippingInterface} from '@/providers/shipping-settings-provider';
 import MutationsTypes from './mutations-types';
 import {
   AttributeResponseFromAPI,
-  oneInOne,
-  deepEqual,
   parseApiResponse,
 } from '../../../utils/AttributeMapping';
 import {
@@ -41,12 +39,6 @@ type payloadObject = {
 type payloadAttribute = {
   prestashop: string, google: string
 }
-
-type payloadArrayShipping = [{
-  collection: string,
-  id: string,
-  properties: object
-}]
 
 export default {
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
@@ -72,7 +64,7 @@ export default {
   },
 
   [MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS](state: LocalState, payload:
-    payloadArrayShipping,
+    ShopShippingInterface[],
   ) {
     state.settings.shippingSettings = payload;
   },

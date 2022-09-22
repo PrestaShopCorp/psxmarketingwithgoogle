@@ -1,5 +1,5 @@
 import CampaignTableList from '../src/components/campaign/campaign-table-list.vue'
-import {campaigns, campaignsEmpty, onlySsc, onlyPmax, campaignWithOnlySsc, campaignWithOnlyPmax} from '../.storybook/mock/campaigns-list.js';
+import {campaigns, campaignsEmpty, onlySsc, onlyPmax, campaignWithOnlySsc, campaignWithOnlyPmax} from '../.storybook/mock/campaigns-list';
 import {rest} from 'msw';
 import { CampaignTypes } from '@/enums/reporting/CampaignStatus';
 

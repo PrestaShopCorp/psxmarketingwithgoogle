@@ -1,4 +1,6 @@
-export const contextPsAccountsNotConnected = {
+import {PrestaShopAccountsContext} from "@/store/modules/accounts/state";
+
+export const contextPsAccountsNotConnected: PrestaShopAccountsContext = {
   currentContext: {
     type: 1,
     id: 1

@@ -16,7 +16,7 @@ import {
   deepUpdateDimensionVisibilityFromTree,
 } from "./SSCFilters";
 
-import {availableFilters} from '@/../.storybook/mock/campaigns.js';
+import {availableFilters} from '@/../.storybook/mock/campaigns';
 import { Dimension } from "../store/modules/campaigns/state";
 
 describe("SSC filters - filterUncheckedSegments()", () => {
@@ -1302,7 +1302,7 @@ describe("SSC filters - findDimensionInTree()", () => {
       name: "Arts et loisirs",
       // [...]
     };
-    expect(findDimensionInTree(dimension, tree[0].children)).toBe(true);
+    expect(findDimensionInTree(dimension, tree[0].children as Dimension[])).toBe(true);
   });
 
   it("finds in deep level", () => {

@@ -1,6 +1,7 @@
 import Campaign from '../src/components/campaigns/campaign-card.vue'
-import {campaigns} from '../.storybook/mock/campaigns-list.js';
+import {campaigns} from '../.storybook/mock/campaigns-list';
 import {conversionTrackingIsTrue, conversionTrackingIsFalse} from '../.storybook/mock/campaigns';
+import cloneDeep from 'lodash.clonedeep';
 
 export default {
   title: 'Campaign/Card',
@@ -31,8 +32,8 @@ EnabledWithRemarketingSwitchOff.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
-    this.$store.state.campaigns = Object.assign({}, conversionTrackingIsFalse);
-    this.$store.state.campaigns.campaigns = Object.assign([], campaigns);
+    this.$store.state.campaigns = cloneDeep(conversionTrackingIsFalse);
+    this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
   },
 };
 
@@ -41,8 +42,8 @@ EnabledWithRemarketingSwitchOn.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
-    this.$store.state.campaigns = Object.assign({}, conversionTrackingIsTrue);
-    this.$store.state.campaigns.campaigns = Object.assign([], campaigns);
+    this.$store.state.campaigns = cloneDeep(conversionTrackingIsTrue);
+    this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
     this.$store.state.campaigns.conversionActions = [{}];
   },
 };
@@ -52,8 +53,8 @@ AlertAboutMissingConversionActions.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
-    this.$store.state.campaigns = Object.assign({}, conversionTrackingIsTrue);
-    this.$store.state.campaigns.campaigns = Object.assign([], campaigns);
+    this.$store.state.campaigns = cloneDeep(conversionTrackingIsTrue);
+    this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
     this.$store.state.campaigns.conversionActions = [];
   },
 };

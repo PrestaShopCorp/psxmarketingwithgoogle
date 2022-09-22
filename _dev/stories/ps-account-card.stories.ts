@@ -3,7 +3,7 @@ import {
   contextPsAccountsNotConnected,
   contextPsAccountsConnected,
   contextPsAccountsConnectedAndValidated,
-} from '../.storybook/mock/ps-accounts.js';
+} from '../.storybook/mock/ps-accounts';
 
 export default {
   title: 'PS Account/Card',

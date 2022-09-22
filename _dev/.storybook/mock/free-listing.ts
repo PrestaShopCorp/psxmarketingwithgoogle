@@ -1,9 +1,7 @@
-export const freeListing = {
-  isActivatedOnce: false,
-  validationList: {},
-  summaryValidationList: [],
-  status: false,
-  errorAPI: false,
+import { State, state } from "@/store/modules/product-feed/state";
+
+export const freeListing: State = {
+  ...state,
 };
 
 export const freeListingEnabled = {
