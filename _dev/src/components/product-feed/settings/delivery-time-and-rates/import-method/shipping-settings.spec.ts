@@ -8,7 +8,6 @@ import config, {localVue, filters} from '@/../tests/init';
 import ShippingSettings from './shipping-settings.vue';
 import TableRowCarrier from './table-row-carrier.vue';
 import {productFeed} from '@/../.storybook/mock/product-feed';
-import tableRowCarrierVue from './table-row-carrier.vue';
 
 describe('shipping-settings.vue', () => {
   const buildWrapper = (
@@ -17,9 +16,9 @@ describe('shipping-settings.vue', () => {
     mocks: {
       $store: {
         getters: {
-          'app/GET_CARRIERS_URL': '/'
-        }
-      }
+          'app/GET_CARRIERS_URL': '/',
+        },
+      },
     },
     localVue,
     ...config,
@@ -129,8 +128,6 @@ describe('shipping-settings.vue', () => {
     });
   });
 
-
-
   it('forwards carriers updates to the parent', async () => {
     const carriers = productFeed.settings.deliveryDetails.filter((carrier) => carrier.country === 'IT');
     const wrapper = buildWrapper({
@@ -146,7 +143,7 @@ describe('shipping-settings.vue', () => {
     // There is a watcher with `immediate: true` -> event will be triggered
     expect((emittedEvents as any[]).length).toBe(1);
 
-    wrapper.findAllComponents(tableRowCarrierVue).at(0).vm.$emit('dataUpdated', carriers);
+    wrapper.findAllComponents(TableRowCarrier).at(0).vm.$emit('dataUpdated', carriers);
     await wrapper.vm.$nextTick();
 
     expect((emittedEvents as any[]).length).toBe(2);
@@ -194,9 +191,7 @@ describe('shipping-settings.vue', () => {
     });
 
     it('displays only carriers related to the filtered country', async () => {
-      const carriers = productFeed.settings.deliveryDetails.filter((carrier) => {
-        return carrier.country === 'IT' || carrier.country === 'FR';
-      });
+      const carriers = productFeed.settings.deliveryDetails.filter((carrier) => carrier.country === 'IT' || carrier.country === 'FR');
       const wrapper = buildWrapper({
         propsData: {
           countries: ['IT', 'FR'],
@@ -205,16 +200,15 @@ describe('shipping-settings.vue', () => {
         },
       });
 
-      expect(wrapper.findAllComponents(tableRowCarrierVue).length).toBe(7);
+      expect(wrapper.findAllComponents(TableRowCarrier).length).toBe(7);
 
       wrapper.vm.countryChosen = 'FR';
       await wrapper.vm.$nextTick();
-      expect(wrapper.findAllComponents(tableRowCarrierVue).length).toBe(3);
+      expect(wrapper.findAllComponents(TableRowCarrier).length).toBe(3);
 
       wrapper.vm.countryChosen = 'IT';
       await wrapper.vm.$nextTick();
-      expect(wrapper.findAllComponents(tableRowCarrierVue).length).toBe(4);
-
+      expect(wrapper.findAllComponents(TableRowCarrier).length).toBe(4);
     });
   });
 });

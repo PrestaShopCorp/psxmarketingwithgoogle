@@ -1,9 +1,9 @@
 import {config, createLocalVue} from '@vue/test-utils';
 import Vuex from 'vuex';
-import {messages} from '@/lib/translations';
-import {changeCountriesCodesToNames} from '@/utils/Countries';
 import {BootstrapVue} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
+import {messages} from '@/lib/translations';
+import {changeCountriesCodesToNames} from '@/utils/Countries';
 import '../showdown.js';
 
 let windowSpy;
@@ -103,8 +103,8 @@ export {localVue, filters};
 
 export const addShowdownToVue = () => {
   localVue.use(VueShowdown);
-}
+};
 
 export const addBootstrapToVue = () => {
   localVue.use(BootstrapVue);
-}
+};

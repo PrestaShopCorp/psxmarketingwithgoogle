@@ -1,15 +1,15 @@
 /**
  * @jest-environment jsdom
  */
-import config, {localVue, cloneStore} from '@/../tests/init';
-import { mount, MountOptions } from "@vue/test-utils";
-import DeliveryTimeAndRatesVue from "./delivery-time-and-rates.vue";
+import {mount, MountOptions} from '@vue/test-utils';
 import Vuex from 'vuex';
+import cloneDeep from 'lodash.clonedeep';
+import config, {localVue, cloneStore} from '@/../tests/init';
+import DeliveryTimeAndRatesVue from './delivery-time-and-rates.vue';
 import countriesFormListVue from './estimate-method/countries-form-list.vue';
-import { ShippingSetupOption } from '../../../../enums/product-feed/shipping';
+import {ShippingSetupOption} from '../../../../enums/product-feed/shipping';
 import shippingSettingsVue from './import-method/shipping-settings.vue';
-import { cloneDeep } from 'lodash';
-import { productFeed } from '../../../../../.storybook/mock/product-feed';
+import {productFeed} from '../../../../../.storybook/mock/product-feed';
 import DeliveryType from '../../../../enums/product-feed/delivery-type';
 
 describe('delivery-time-and-rates.vue', () => {
@@ -38,9 +38,9 @@ describe('delivery-time-and-rates.vue', () => {
       store = cloneStore();
       store.modules.productFeed.state = cloneDeep(productFeed);
       store.modules.productFeed.state.settings.shippingSetup = ShippingSetupOption.IMPORT;
-      store.modules.productFeed.actions.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS = jest.fn().mockImplementation(() => {});
+      store.modules.productFeed.actions.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS = jest
+        .fn().mockImplementation(() => {});
       store.modules.productFeed.getters.GET_TARGET_COUNTRIES = jest.fn().mockImplementation(() => ['FR']);
-      
     });
 
     it('should display import method interface', () => {
@@ -55,18 +55,18 @@ describe('delivery-time-and-rates.vue', () => {
 
       expect(wrapper.vm.carriersToConfigure).toEqual([
         {
-          carrierId: "9",
-          country: "FR",
-          name: "PrestaShop",
-          delay: "Pick up in-store",
+          carrierId: '9',
+          country: 'FR',
+          name: 'PrestaShop',
+          delay: 'Pick up in-store',
           deliveryType: undefined,
         },
         {
           enabledCarrier: true,
-          carrierId: "11",
-          country: "FR",
-          name: "My carrier",
-          delay: "Delivery next day!",
+          carrierId: '11',
+          country: 'FR',
+          name: 'My carrier',
+          delay: 'Delivery next day!',
           deliveryType: DeliveryType.DELIVERY,
           maxTransitTimeInDays: 3,
           maxHandlingTimeInDays: 3,
@@ -75,10 +75,10 @@ describe('delivery-time-and-rates.vue', () => {
         },
         {
           enabledCarrier: true,
-          carrierId: "13",
-          country: "FR",
-          name: "Carrier with fixed price",
-          delay: "Maybe 1 day, maybe never",
+          carrierId: '13',
+          country: 'FR',
+          name: 'Carrier with fixed price',
+          delay: 'Maybe 1 day, maybe never',
           deliveryType: DeliveryType.DELIVERY,
           maxTransitTimeInDays: 60,
           minHandlingTimeInDays: 0,

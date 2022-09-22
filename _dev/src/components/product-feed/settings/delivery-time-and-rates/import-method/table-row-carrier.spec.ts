@@ -10,12 +10,10 @@ import tableRowCarrierVue from './table-row-carrier.vue';
 describe('table-row-carrier.vue', () => {
   const buildWrapper = (
     options: MountOptions<any> = {},
-  ) => {
-    return mount(tableRowCarrierVue, {
-      ...config,
-      ...options,
-    });
-  };
+  ) => mount(tableRowCarrierVue, {
+    ...config,
+    ...options,
+  });
 
   it('is visible', () => {
     const wrapper = buildWrapper({
