@@ -4,7 +4,7 @@ import {BootstrapVue} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
 import {messages} from '@/lib/translations';
 import {changeCountriesCodesToNames} from '@/utils/Countries';
-import '../showdown.js';
+import {BootstrapVue} from 'bootstrap-vue';
 
 let windowSpy;
 let localVue; // eslint-disable-line
@@ -22,6 +22,7 @@ beforeAll(() => {
   }));
   localVue = createLocalVue();
   localVue.use(Vuex);
+  localVue.use(BootstrapVue);
 });
 
 beforeEach(() => {

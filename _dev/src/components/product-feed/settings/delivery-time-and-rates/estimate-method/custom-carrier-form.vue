@@ -151,7 +151,7 @@
                 </b-col>
               </b-row>
               <div v-else>
-                <b-row>
+                <b-row class="freeShippingOverAmount">
                   <b-col class="align-self-center">
                     <div class="mb-1">
                       <span
@@ -189,7 +189,7 @@
                     </b-input-group>
                   </b-col>
                 </b-row>
-                <b-row>
+                <b-row class="freeShippingOverAmount">
                   <b-col class="align-self-center">
                     <div class="mb-1">
                       <span
