@@ -110,10 +110,10 @@ export default defineComponent({
       }
 
       if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.IMPORT) {
-        return this.$t('productFeedSettings.shippingSetup.estimateOption.summary');
+        return this.$t('productFeedSettings.shippingSetup.importOption.summary');
       }
       if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.ESTIMATE) {
-        return this.$t('productFeedSettings.shippingSetup.importOption.summary');
+        return this.$t('productFeedSettings.shippingSetup.estimateOption.summary');
       }
 
       return this.$t('productFeedCard.missingInformation');
@@ -133,9 +133,9 @@ export default defineComponent({
       }
       if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.ESTIMATE) {
         if (this.targetCountries.length === 1) {
-          return this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.singleCountry');
+          return this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.summary.singleCountry');
         }
-        return this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.multiCountriesFlatRateForAll');
+        return this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.summary.multiCountriesFlatRateForAll');
       }
 
       return this.$t('productFeedCard.missingInformation');
