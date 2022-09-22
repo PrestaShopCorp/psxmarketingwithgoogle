@@ -232,7 +232,7 @@
     "breadcrumb2": "Paramètres du flux produit",
     "steps": {
       "targetCountry": "Pays cible",
-      "shippingSettings": "Ciblage et expédition",
+      "shippingSettings": "Paramètres d'expédition",
       "attributeMapping": "Cartographie des attributs",
       "categoryMapping": "Mapping des catégories",
       "summary": "Résumé",
