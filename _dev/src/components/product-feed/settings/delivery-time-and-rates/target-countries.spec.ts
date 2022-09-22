@@ -12,9 +12,6 @@ import {productFeed} from '@/../.storybook/mock/product-feed';
 const buildWrapper = (
   options: MountOptions<any> = {},
 ) => mount(TargetCountries, {
-  propsData: {
-    countries: ['FR', 'US', 'LEULEU'],
-  },
   ...config,
   localVue,
   ...options,
