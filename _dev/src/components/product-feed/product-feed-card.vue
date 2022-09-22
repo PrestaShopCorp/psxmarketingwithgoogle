@@ -56,7 +56,9 @@
               {{ $t("cta.learnAboutProductConfiguration") }}
             </a>
           </p>
-          <product-feed-stepper />
+          <product-feed-stepper
+            :active-step="getActiveStep"
+          />
           <div
             class="d-flex justify-content-center justify-content-md-end mt-n1"
             v-if="isEnabled"
@@ -204,6 +206,9 @@ export default defineComponent({
     getProductFeedStatus() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
     },
+    getActiveStep(): number {
+      return this.$store.getters['productFeed/GET_STEP'];
+    },
     nextSyncTime() {
       return {
         day: this.$options.filters.timeConverterToDate(
@@ -295,10 +300,12 @@ export default defineComponent({
   },
   methods: {
     startConfiguration() {
+      const step = Object.values(ProductFeedSettingsPages)[this.getActiveStep - 1];
+
       this.$router.push({
         name: 'product-feed-settings',
         params: {
-          step: ProductFeedSettingsPages.SHIPPING_SETUP,
+          step,
         },
       });
       this.$segment.track('[GGL] Start Product feed configuration', {
