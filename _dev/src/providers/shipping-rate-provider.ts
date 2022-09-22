@@ -84,3 +84,21 @@ export function validateOfferChoice(offer: OfferType|null): boolean {
 
   return false;
 }
+
+export function generateCustomCarrier(): CustomCarrier {
+  return {
+    carrierName: '',
+    countries: [],
+    currency: '',
+    offer: null,
+    maxDeliveryTime: 0,
+    minDeliveryTime: 0,
+    [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
+      shippingCost: 0,
+      orderPrice: 0,
+    },
+    [OfferType.FLAT_SHIPPING_RATE]: {
+      shippingCost: 0,
+    },
+  };
+}
