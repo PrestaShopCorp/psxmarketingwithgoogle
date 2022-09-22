@@ -249,15 +249,15 @@
       "estimateOption": {
         "title": "Je peux estimer les tarifs et les délais d'expédition",
         "description": "Vous pouvez facilement définir un tarif d'expédition fixe et des délais de livraison. Vous n'aurez pas à importer ou à mettre à jour vos informations d'expédition depuis le back-office de Prestashop.",
-        "summary": "Estimated method"
+        "summary": "Méthode estimative"
       },
       "importOption": {
         "title": "Je voudrais importer ma configuration d'expédition depuis le back-office de PrestaShop",
         "description": "Prestashop va importer les paramètres d'expédition que vous avez déjà configurés dans votre back-office. Vous pouvez choisir le ou les transporteurs que vous souhaitez utiliser par pays cible.",
-        "summary": "Imported from backoffice"
+        "summary": "Importé depuis le backoffice"
       },
       "laterOption": {
-        "summary": "Setup later"
+        "summary": "Configurer plus tard"
       }
     },
     "deliveryTimeAndRates": {
@@ -286,15 +286,15 @@
           "overAmount": "La livraison gratuite s'applique à partir de"
         },
         "summary": {
-          "singleCountry": "Flat rate",
-          "multiCountriesFlatRateForAll": "Flat rate for all target countries"
+          "singleCountry": "Tarif fixe",
+          "multiCountriesFlatRateForAll": "Tarif fixe pour tous les pays"
         }
       },
       "importOption": {
         "validationErrors": {
           "needAtLeastOneCarrier": "Vous devez activer au moins un transporteur pour continuer"
         },
-        "summary": "Configured carriers from backoffice"
+        "summary": "Transporteurs configurés depuis le back-office"
       },
       "productAvailaibleIn": "Vous pouvez sélectionner les pays où vous souhaitez que vos produits soient affichés. La liste déroulante des pays ci-dessous correspond aux pays et à la devise que vous avez configurés sur votre boutique PrestaShop.",
       "targetCountries": "Pays cible",
