@@ -495,6 +495,9 @@ export default {
     },
   },
   computed: {
+    getSymbol() {
+      return this.$store.getters['app/GET_SYMBOL_OF_CURRENT_CURRENCY'];
+    },
     formTitle() {
       // Edition
       if (this.campaignToEditFromList) {

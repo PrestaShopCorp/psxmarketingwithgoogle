@@ -1,40 +1,36 @@
 /**
  * @jest-environment jsdom
  */
-import Vuex from 'vuex';
 
-// Import this file first to init mock on window
-import cloneDeep from 'lodash.clonedeep';
-import {shallowMount} from '@vue/test-utils';
-import config, {localVue, cloneStore, filters} from '@/../tests/init';
+import {mount, MountOptions} from '@vue/test-utils';
+import config, {localVue, filters} from '@/../tests/init';
 
 import ShippingSettings from './shipping-settings.vue';
-import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
 import {productFeed} from '@/../.storybook/mock/product-feed';
 
-describe.skip('shipping-settings.vue', () => {
-  let store;
-
-  beforeEach(() => {
-    store = cloneStore();
-    store.modules.productFeed.state = {
-      ...store.modules.productFeed.state,
-      stepper: 2,
-    };
-    store.modules.productFeed.state.settings.deliveryDetails = [
-      ...cloneDeep(productFeed.settings.deliveryDetails),
-    ];
+describe('shipping-settings.vue', () => {
+  const buildWrapper = (
+    options: MountOptions<any> = {},
+  ) => mount(ShippingSettings, {
+    mocks: {
+      $store: {
+        getters: {
+          'app/GET_CARRIERS_URL': '/',
+        },
+      },
+    },
+    localVue,
+    ...config,
+    ...options,
   });
 
   it('is visible', () => {
-    store.modules.productFeed.state.settings.targetCountries = ['XXX'];
-    const wrapper = shallowMount(ShippingSettings, {
-      localVue,
-      store: new Vuex.Store(store),
-      ...config,
-      stubs: {
-        VueShowdown: true,
+    const wrapper = buildWrapper({
+      propsData: {
+        countries: ['FR'],
+        carriers: [],
+        displayValidationErrors: false,
       },
     });
     expect(wrapper.isVisible()).toBe(true);
@@ -43,13 +39,11 @@ describe.skip('shipping-settings.vue', () => {
   });
 
   it('shows a default message when there are no carriers', () => {
-    store.modules.productFeed.state.settings.targetCountries = ['XXX'];
-    const wrapper = shallowMount(ShippingSettings, {
-      localVue,
-      store: new Vuex.Store(store),
-      ...config,
-      stubs: {
-        VueShowdown: true,
+    const wrapper = buildWrapper({
+      propsData: {
+        countries: ['FR'],
+        carriers: [],
+        displayValidationErrors: false,
       },
     });
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
@@ -58,14 +52,11 @@ describe.skip('shipping-settings.vue', () => {
   });
 
   it('shows the table with carriers filtered by target countries (FR)', () => {
-    store.modules.productFeed.state.settings.targetCountries = ['FR'];
-
-    const wrapper = shallowMount(ShippingSettings, {
-      localVue,
-      store: new Vuex.Store(store),
-      ...config,
-      stubs: {
-        VueShowdown: true,
+    const wrapper = buildWrapper({
+      propsData: {
+        countries: ['FR'],
+        carriers: productFeed.settings.deliveryDetails.filter((carrier) => carrier.country === 'FR'),
+        displayValidationErrors: false,
       },
     });
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(3);
@@ -102,14 +93,11 @@ describe.skip('shipping-settings.vue', () => {
   });
 
   it('shows the table with carriers filtered by target countries (IT)', () => {
-    store.modules.productFeed.state.settings.targetCountries = ['IT'];
-    const wrapper = shallowMount(ShippingSettings, {
-      localVue,
-      store: new Vuex.Store(store),
-
-      ...config,
-      stubs: {
-        VueShowdown: true,
+    const wrapper = buildWrapper({
+      propsData: {
+        countries: ['IT'],
+        carriers: productFeed.settings.deliveryDetails.filter((carrier) => carrier.country === 'IT'),
+        displayValidationErrors: false,
       },
     });
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
@@ -140,74 +128,87 @@ describe.skip('shipping-settings.vue', () => {
     });
   });
 
-  it('enables the button "Continue" if all carriers are valid', () => {
-    // Select French carriers and one valid carrier
-    store.modules.productFeed.state.settings.targetCountries = ['FR'];
-    // Based on data in _dev/.storybook/mock/product-feed.js
-    // TODO: Mocking the method validateDeliveryDetail() would be safer
-    store.modules.productFeed.state.settings.deliveryDetails[3].enabledCarrier = true;
-    const wrapper = shallowMount(ShippingSettings, {
-      localVue,
-      store: new Vuex.Store(store),
-      ...config,
-      stubs: {
-        ActionsButtons,
-        VueShowdown: true,
+  it('forwards carriers updates to the parent', async () => {
+    const carriers = productFeed.settings.deliveryDetails.filter((carrier) => carrier.country === 'IT');
+    const wrapper = buildWrapper({
+      propsData: {
+        countries: ['IT'],
+        carriers,
+        displayValidationErrors: false,
       },
     });
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
-    expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
+
+    const emittedEvents = wrapper.emitted('dataUpdated');
+    expect(emittedEvents).toBeTruthy();
+    // There is a watcher with `immediate: true` -> event will be triggered
+    expect((emittedEvents as any[]).length).toBe(1);
+
+    wrapper.findAllComponents(TableRowCarrier).at(0).vm.$emit('dataUpdated', carriers);
+    await wrapper.vm.$nextTick();
+
+    expect((emittedEvents as any[]).length).toBe(2);
+    expect((emittedEvents as any[])[1]).toEqual([carriers]);
   });
 
-  it('disables the button "Continue" if one carrier in invalid', () => {
-    // Select French carriers and one invalid carrier
-    store.modules.productFeed.state.settings.targetCountries = ['FR'];
-    // Based on data in _dev/.storybook/mock/product-feed.js
-    // TODO: Mocking the method validateDeliveryDetail() would be safer
-    store.modules.productFeed.state.settings.deliveryDetails[0].enabledCarrier = true;
-    const wrapper = shallowMount(ShippingSettings, {
-      localVue,
-      store: new Vuex.Store(store),
-      ...config,
-      stubs: {
-        ActionsButtons,
-        VueShowdown: true,
-      },
+  describe('Error management', () => {
+    it('displays an error on validation when no carrier is enabled', () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          countries: ['FR', 'IT'],
+          carriers: [],
+          displayValidationErrors: true,
+        },
+      });
+
+      expect(wrapper.find('.text-danger').exists()).toBeTruthy();
+      expect(wrapper.findAll('.text-danger').length).toBe(1);
     });
-    expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeTruthy();
   });
 
-  it('allows to "Continue" if no carrier is enabled', () => {
-    store.modules.productFeed.state.settings.targetCountries = ['FR', 'IT', 'ES', 'DE', 'GB'];
+  describe('Country selector', () => {
+    it('is visible when several countries are chosen', () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          countries: ['FR', 'IT'],
+          carriers: [],
+          displayValidationErrors: false,
+        },
+      });
 
-    const wrapper = shallowMount(ShippingSettings, {
-      localVue,
-      store: new Vuex.Store(store),
-      ...config,
-      stubs: {
-        ActionsButtons,
-        VueShowdown: true,
-      },
+      expect(wrapper.find('#filterByCountryDropdown').exists()).toBeTruthy();
     });
-    // No disabled attribute = enabled
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(5);
-    expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
-  });
 
-  it('allows to "Continue" if no carrier is found', () => {
-    store.modules.productFeed.state.settings.targetCountries = [];
-    store.modules.productFeed.state.settings.deliveryDetails = [];
-    const wrapper = shallowMount(ShippingSettings, {
-      localVue,
-      store: new Vuex.Store(store),
-      ...config,
-      stubs: {
-        ActionsButtons,
-        VueShowdown: true,
-      },
+    it('is hidden when only one country is chosen', () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          countries: ['FR'],
+          carriers: [],
+          displayValidationErrors: false,
+        },
+      });
+
+      expect(wrapper.find('#filterByCountryDropdown').exists()).toBeFalsy();
     });
-    // No disabled attribute = enabled
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
-    expect(wrapper.find('[data-test-id="continueButton"]').attributes('disabled')).toBeFalsy();
+
+    it('displays only carriers related to the filtered country', async () => {
+      const carriers = productFeed.settings.deliveryDetails.filter((carrier) => carrier.country === 'IT' || carrier.country === 'FR');
+      const wrapper = buildWrapper({
+        propsData: {
+          countries: ['IT', 'FR'],
+          carriers,
+          displayValidationErrors: false,
+        },
+      });
+
+      expect(wrapper.findAllComponents(TableRowCarrier).length).toBe(7);
+
+      wrapper.vm.countryChosen = 'FR';
+      await wrapper.vm.$nextTick();
+      expect(wrapper.findAllComponents(TableRowCarrier).length).toBe(3);
+
+      wrapper.vm.countryChosen = 'IT';
+      await wrapper.vm.$nextTick();
+      expect(wrapper.findAllComponents(TableRowCarrier).length).toBe(4);
+    });
   });
 });

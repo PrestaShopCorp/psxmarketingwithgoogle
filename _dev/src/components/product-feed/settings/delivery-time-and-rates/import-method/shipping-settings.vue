@@ -112,7 +112,7 @@
         </b-tr>
         <table-row-carrier
           v-else
-          v-for="(carrier, index) in carriers"
+          v-for="(carrier, index) in visibleCarriers"
           :key="index"
           :carrier="carrier"
           :carriers-list="carriers"
