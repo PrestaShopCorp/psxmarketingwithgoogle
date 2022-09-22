@@ -189,8 +189,7 @@ export default {
     localStorage.setItem('selectedProductCategories', JSON.stringify(payload));
     state.selectedProductCategories = payload;
   },
-  [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload) {
-    localStorage.setItem('productFeed-requestSynchronizationNow', payload);
+  [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload: boolean) {
     state.requestSynchronizationNow = payload;
   },
   [MutationsTypes.SET_PREVALIDATION_SUMMARY](state: LocalState, payload: PrevalidationScanSummary) {
