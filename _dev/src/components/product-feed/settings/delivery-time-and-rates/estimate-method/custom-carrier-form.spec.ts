@@ -38,6 +38,7 @@ const buildWrapper = (
 
 describe('custom-carrier-form.vue.vue', () => {
   describe('validate cases', () => {
+    it.todo('case for multiple target countries');
     it('is visible', () => {
       const store = cloneStore();
       const carrier: CustomCarrier = {...productFeed.settings.estimateCarrier}
@@ -123,8 +124,8 @@ describe('custom-carrier-form.vue.vue', () => {
       await wrapper.vm.$nextTick();
 
       const inputs = wrapper.findAll('#customCarrierForm .offer-rates .freeShippingOverAmount');
-      expect(inputs.at(0)).toBeTruthy();
-      expect(inputs.at(1)).toBeTruthy();
+      expect(inputs).toHaveLength(2);
+      expect(radios).toHaveLength(3);
     });
   });
 
