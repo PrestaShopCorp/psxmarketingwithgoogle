@@ -167,11 +167,11 @@ export default defineComponent({
     getVideoUrl() {
       const lang = this.$i18n.locale.toLowerCase();
       const urls = {
-        en: 'https://www.youtube.com/embed/IisQqfY0qEQ',
-        fr: 'https://www.youtube.com/embed/EUuS76xuEG4',
-        pl: 'https://www.youtube.com/embed/9KRpXpxnr1g',
-        it: 'https://www.youtube.com/embed/YNhhoWCCOOg',
-        es: 'https://www.youtube.com/embed/gAhpzv2O9h0',
+        en: 'https://www.youtube.com/embed/KVurUMjy2oM',
+        fr: 'https://www.youtube.com/embed/qzGYpPRB3Ww',
+        pl: 'https://www.youtube.com/embed/AmC7ml9B4RU',
+        it: 'https://www.youtube.com/embed/4MYbgOrPnKk',
+        es: 'https://www.youtube.com/embed/7MI0tVRpKB0',
       };
 
       return urls[lang] || urls.en;

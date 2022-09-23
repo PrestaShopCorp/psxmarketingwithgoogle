@@ -71,7 +71,7 @@ class PsxMarketingWithGoogle extends Module
     {
         $this->name = 'psxmarketingwithgoogle';
         $this->tab = 'advertising_marketing';
-        $this->version = '1.26.0';
+        $this->version = '1.27.1';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
         $this->module_key = '16b273e77e02c0cc36cd006463951593';
