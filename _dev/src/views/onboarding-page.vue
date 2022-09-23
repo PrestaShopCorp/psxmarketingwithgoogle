@@ -104,11 +104,6 @@
       ref="PopinModuleConfigured"
       @openPopinRemarketingTag="onOpenPopinActivateTracking"
     />
-    <PmaxDiscoverModal
-      :visible="googleAdsAccountIsChosen && !merchantHasAlreadySeenPmaxPopin"
-      :type="PmaxModalType.SSC_DEPRECATED"
-      ref="PmaxDiscoverModal"
-    />
     <!-- Toasts -->
     <PsToast
       v-if="toastIsVisible"
@@ -138,12 +133,9 @@ import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/go
 import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
 import CampaignCard from '../components/campaigns/campaign-card.vue';
 import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
-import PmaxDiscoverModal from '../components/pmax/pmax-integration-modals/pmax-discover-modal.vue';
 import PsToast from '../components/commons/ps-toast';
 import PopinModuleConfigured from '../components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import {getDataFromLocalStorage} from '@/utils/LocalStorage';
-import PmaxModalType from '../enums/pmax/pmax-modal';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 export default {
@@ -165,7 +157,6 @@ export default {
     PsToast,
     FreeListingPopinDisable,
     SSCPopinActivateTracking,
-    PmaxDiscoverModal,
     PopinModuleConfigured,
   },
   data() {
@@ -178,7 +169,6 @@ export default {
       freeListingIsLoading: false,
       SSCIsLoading: false,
       phoneNumberVerified: false,
-      PmaxModalType,
     };
   },
   methods: {
@@ -318,9 +308,6 @@ export default {
     },
     billingSettingsCompleted() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
-    },
-    merchantHasAlreadySeenPmaxPopin() {
-      return getDataFromLocalStorage(`modalPmax-${PmaxModalType.SSC_DEPRECATED}`);
     },
     toastIsVisible() {
       return this.googleAccountConnectedOnce
