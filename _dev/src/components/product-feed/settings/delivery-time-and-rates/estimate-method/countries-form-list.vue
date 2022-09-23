@@ -61,7 +61,7 @@
       no-body
       class="mb-1"
       v-else-if="rateChosen === RateType.RATE_PER_COUNTRY"
-      v-for="(country, index) in countriesNames"
+      v-for="(carrier, index) in carriers"
       :key="index"
     >
       <b-card-header
@@ -75,7 +75,7 @@
           class="d-flex btn-without-hover"
           variant="invisible"
         >
-          <span>{{ $options.filters.changeCountriesCodesToNames([carrier.country])[0] }}</span>
+          <span>{{ $options.filters.changeCountriesCodesToNames(carrier.countries)[0] }}</span>
           <span
             v-if="validateCarrier(carrier) === false"
             class="text-danger spans-gs_fz-14 d-inline-block"
