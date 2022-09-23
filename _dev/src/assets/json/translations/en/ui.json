@@ -332,6 +332,8 @@
       "carriersDropdownHiddenLabel": "Copy information of the carrier to other carriers",
       "noCarriersTitle": "You don’t have any shipping carriers",
       "noCarriersDescription": "Please head to carriers page to add shipping carriers",
+      "countryNeededTitle": "Select your target country",
+      "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
       "addNewCarriers" : "Add or update carriers",
       "refreshCarriers": "Refresh if you have edited your carriers",
       "switchToFlatRate": "Switch to estimation shipping’s set-up"
@@ -950,7 +952,6 @@
     "apply": "Apply",
     "select": "Select",
     "editContact": "Edit contact information",
-    "noCarriers" : "Take me to Carriers page",
     "update": "Update",
     "validateSelection" : "Validate Selection",
     "googleProductStatusDefinitions" : "Google product status definitions",
