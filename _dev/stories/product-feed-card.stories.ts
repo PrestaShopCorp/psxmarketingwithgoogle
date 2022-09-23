@@ -8,7 +8,7 @@ import {
   productFeedStatusSyncFailed,
   productFeedErrorAPI,
 } from '../.storybook/mock/product-feed';
-import {initialStateApp} from '../.storybook/mock/state-app';
+import cloneDeep from 'lodash.clonedeep';
 
 export default {
   title: 'Product feed/Card',
@@ -28,7 +28,7 @@ const Template = (args, { argTypes }) => ({
 export const Disabled:any = Template.bind({});
 Disabled.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeed);
+    this.$store.state.productFeed = cloneDeep(productFeed);
   },
   isEnabled: false,
   loading: false,
@@ -38,7 +38,7 @@ Disabled.args = {
 export const NotConfigured:any = Template.bind({});
 NotConfigured.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeed);
+    this.$store.state.productFeed = cloneDeep(productFeed);
   },
   isEnabled: true,
   loading: false,
@@ -49,7 +49,7 @@ NotConfigured.args = {
 export const ReadyForExport:any = Template.bind({});
 ReadyForExport.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeedIsReadyForExport);
+    this.$store.state.productFeed = cloneDeep(productFeedIsReadyForExport);
   },
   isEnabled: true,
   loading: false,
@@ -58,7 +58,7 @@ ReadyForExport.args = {
 export const Failed:any = Template.bind({});
 Failed.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncFailed);
+    this.$store.state.productFeed = cloneDeep(productFeedStatusSyncFailed);
   },
   isEnabled: true,
   loading: false,
@@ -67,7 +67,7 @@ Failed.args = {
 export const MissingShippingSettings:any = Template.bind({});
 MissingShippingSettings.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeedMissingFields);
+    this.$store.state.productFeed = cloneDeep(productFeedMissingFields);
   },
   isEnabled: true,
   loading: false,
@@ -76,7 +76,7 @@ MissingShippingSettings.args = {
 export const OverwriteNeeded:any = Template.bind({});
 OverwriteNeeded.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeed);
+    this.$store.state.productFeed = cloneDeep(productFeed);
   },
   isEnabled: true,
   loading: false,
@@ -97,7 +97,7 @@ OverwriteNeeded.decorators = [() => ({
 export const ConfiguredNoTax:any = Template.bind({});
 ConfiguredNoTax.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
+    this.$store.state.productFeed = cloneDeep(productFeedIsConfigured);
   },
   isEnabled: true,
   loading: false,
@@ -107,7 +107,22 @@ ConfiguredNoTax.args = {
 export const ConfiguredTax:any = Template.bind({});
 ConfiguredTax.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeedIsConfiguredWithTax);
+    this.$store.state.productFeed = cloneDeep(productFeedIsConfiguredWithTax);
+  },
+  isEnabled: true,
+  loading: false,
+};
+
+/**
+ * Shipping have been reworked on Sept 2022. This story checks the behavior of the summary
+ * when old data is loaded from the API.
+ */
+export const ConfiguredWithOldShippingSettings:any = Template.bind({});
+ConfiguredWithOldShippingSettings.args = {
+  beforeMount: function(this: any) {
+    this.$store.state.productFeed = cloneDeep(productFeedIsConfigured);
+    this.$store.state.productFeed.settings.shippingSetup = null;
+    this.$store.state.productFeed.settings.autoImportShippingSettings = true;
   },
   isEnabled: true,
   loading: false,
@@ -116,7 +131,7 @@ ConfiguredTax.args = {
 export const ApiError:any = Template.bind({});
 ApiError.args = {
   beforeMount: function(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeedErrorAPI);
+    this.$store.state.productFeed = cloneDeep(productFeedErrorAPI);
   },
   isEnabled: true,
   loading: false,
