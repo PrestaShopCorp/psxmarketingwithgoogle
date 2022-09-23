@@ -1,11 +1,7 @@
 import getters from './getters';
 import mutations from './mutations';
 import actions from './actions';
-import {state as initialState} from './state';
-
-const state = Object.assign(
-  initialState,
-);
+import {state} from './state';
 
 export default {
   namespaced: true,

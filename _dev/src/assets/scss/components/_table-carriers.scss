@@ -22,6 +22,10 @@
     }
   }
 
+  &__input-number, &__input-number-group > #{$root}__input-number {
+    width: calc(6ch + 1rem);
+  }
+  
   &__input-number {
     width: calc(6ch + 1rem);
     padding-left: 0.25rem;
@@ -31,7 +35,8 @@
       color: $gray-450;
     }
 
-    & + #{$root}__input-number {
+    & + #{$root}__input-number-group {
+      width: unset;
       order: 3;
     }
 

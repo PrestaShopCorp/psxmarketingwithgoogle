@@ -2,11 +2,11 @@
   <div>
     <h3
       class="ps_gs-fz-20 font-weight-600 mb-2"
-      v-html="$t('productFeedSettings.shipping.shippingInformationTitle')"
+      v-html="$t('productFeedSettings.deliveryTimeAndRates.shippingInformationTitle')"
     />
     <div class="d-flex  align-items-center pr-3">
       <p>
-        {{ $t('productFeedSettings.shipping.shippingInformationIntro') }}
+        {{ $t('productFeedSettings.deliveryTimeAndRates.shippingInformationIntro') }}
       </p>
       <b-dropdown
         v-if="countries.length > 1"
@@ -14,7 +14,7 @@
         variant=" "
         menu-class="ps-dropdown"
         :text="countryChosen ? $options.filters.changeCountriesCodesToNames([countryChosen])[0]
-          : $t('productFeedSettings.shipping.filterTitle')"
+          : $t('productFeedSettings.deliveryTimeAndRates.filterTitle')"
         class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
       >
         <b-dropdown-item
@@ -23,7 +23,7 @@
           link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
           @click="countryChosen = null"
         >
-          {{ $t('productFeedSettings.shipping.filterTitle') }}
+          {{ $t('productFeedSettings.deliveryTimeAndRates.filterTitle') }}
         </b-dropdown-item>
         <b-dropdown-item
           :disabled="country === countryChosen"
@@ -59,13 +59,14 @@
               :class="hasToolTip(type) && 'p-0 text-left'"
               :variant="hasToolTip(type) && 'text'"
               v-b-tooltip:psxMktgWithGoogleApp="{disabled: !hasToolTip(type)}"
-              :title="hasToolTip(type) && $t(`productFeedSettings.shipping.${type}Tooltip`)"
+              :title="hasToolTip(type)
+                && $t(`productFeedSettings.deliveryTimeAndRates.${type}Tooltip`)"
               v-if="hasHeader(type)"
             >
               <VueShowdown
                 tag="span"
                 class="text-wrap"
-                :markdown="$t(`productFeedSettings.shipping.${type}Header`)"
+                :markdown="$t(`productFeedSettings.deliveryTimeAndRates.${type}Header`)"
                 :extensions="['no-p-tag']"
               />
               <span
@@ -93,10 +94,10 @@
             <h4
               class="font-weight-normal mb-1 mt-5"
             >
-              {{ $t('productFeedSettings.shipping.noCarriersTitle') }}
+              {{ $t('productFeedSettings.deliveryTimeAndRates.noCarriersTitle') }}
             </h4>
             <p class="text-secondary mb-1">
-              {{ $t('productFeedSettings.shipping.noCarriersDescription') }}
+              {{ $t('productFeedSettings.deliveryTimeAndRates.noCarriersDescription') }}
             </p>
             <b-button
               variant="outline-secondary"
@@ -111,29 +112,30 @@
         </b-tr>
         <table-row-carrier
           v-else
-          v-for="(carrier, index) in carriers"
+          v-for="(carrier, index) in visibleCarriers"
           :key="index"
           :carrier="carrier"
           :carriers-list="carriers"
+          :display-validation-errors="displayValidationErrors"
+          @dataUpdated="$emit('dataUpdated', carriers)"
         />
       </b-tbody>
     </b-table-simple>
     <!-- END > TABLE -->
-    <p class="text-muted">
-      <i class="material-icons-round ps_gs-fz-14 d-inline-block align-middle mr-2">warning_amber</i>
+    <p class="text-muted text-center">
       <span class="ps_gs-fz-12 align-middle">
-        {{ $t('productFeedSettings.shipping.shippingTableNotice') }}
+        {{ $t('productFeedSettings.deliveryTimeAndRates.shippingTableNotice') }}
       </span>
     </p>
     <div
-      class="text-primary"
+      class="text-primary text-center pb-3"
     >
       <a
         class="ps_gs-fz-12 mb-0 text-primary"
         :href="$store.getters['app/GET_CARRIERS_URL']"
         target="_blank"
       >
-        {{ $t('productFeedSettings.shipping.addNewCarriers') }}
+        {{ $t('productFeedSettings.deliveryTimeAndRates.addNewCarriers') }}
       </a>
       <span class="ps_gs-fz-12 text-dark">
         |
@@ -142,30 +144,42 @@
         variant="link"
         class="ps_gs-fz-12 font-weight-normal p-0 border-0
         text-decoration-underline text-wrap text-left"
-        @click="refreshComponent"
+        @click="$emit('refresh')"
       >
-        {{ $t('productFeedSettings.shipping.refreshCarriers') }}
+        {{ $t('productFeedSettings.deliveryTimeAndRates.refreshCarriers') }}
         <i class="material-icons ps_gs-fz-12">refresh</i>
       </b-button>
+      <span class="ps_gs-fz-12 text-dark">
+        |
+      </span>
+      <b-button
+        variant="link"
+        class="ps_gs-fz-12 font-weight-normal p-0 border-0
+        text-decoration-underline text-wrap text-left"
+        @click="switchToFlatRate"
+      >
+        {{ $t('productFeedSettings.deliveryTimeAndRates.switchToFlatRate') }}
+        <i class="material-icons ps_gs-fz-12">call_missed_outgoing</i>
+      </b-button>
     </div>
-    <actions-buttons
-      :next-step="nextStep"
-      :previous-step="previousStep"
-      :disable-continue="disableContinue"
-      @cancelProductFeedSettingsConfiguration="cancel()"
-    />
-    <settings-footer />
+    <p
+      v-if="!enabledCarriers.length && displayValidationErrors"
+      class="text-danger text-small ps_gs-fz-12 d-md-flex justify-content-end"
+    >
+      <!-- eslint-disable-next-line max-len -->
+      {{ $t('productFeedSettings.deliveryTimeAndRates.importOption.validationErrors.needAtLeastOneCarrier') }}
+    </p>
   </div>
 </template>
 
-<script>
-import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type.ts';
+<script lang="ts">
+import {PropType} from '@vue/composition-api';
+import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
-import {validateDeliveryDetail} from '@/providers/shipping-settings-provider';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {DeliveryDetail} from '../../../../../providers/shipping-settings-provider';
+import {ShippingSetupOption} from '../../../../../enums/product-feed/shipping';
 
 export default {
   components: {
@@ -173,9 +187,23 @@ export default {
     TableRowCarrier,
     ActionsButtons,
   },
+  props: {
+    // Countries iso codes
+    countries: {
+      type: Array as PropType<string[]>,
+      required: true,
+    },
+    carriers: {
+      type: Array as PropType<DeliveryDetail[]>,
+      required: true,
+    },
+    displayValidationErrors: {
+      type: Boolean,
+      required: true,
+    },
+  },
   data() {
     return {
-      countries: this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
       countryChosen: null,
     };
   },
@@ -183,24 +211,23 @@ export default {
     shippingSettingsHeaderList() {
       return Object.values(ShippingSettingsHeaderType);
     },
-    carriers() {
-      return this.$store.state.productFeed.settings.deliveryDetails
-        .filter((carrier) => {
-          if (this.countryChosen) {
-            return this.countryChosen === carrier.country;
-          }
-          return this.countries.includes(carrier.country);
-        });
+    visibleCarriers() {
+      if (!this.countryChosen) {
+        return this.carriers;
+      }
+      return this.carriers
+        .filter((carrier) => this.countryChosen === carrier.country);
     },
-    disableContinue() {
-      return !this.carriers.every(validateDeliveryDetail);
+    enabledCarriers() {
+      return this.carriers.filter(
+        (e: DeliveryDetail) => e.enabledCarrier,
+      );
     },
   },
   methods: {
     hasToolTip(headerType) {
       if (
         headerType === ShippingSettingsHeaderType.SHIP_TO_CUSTOMER
-        || headerType === ShippingSettingsHeaderType.HANDLING_TIME
         || headerType === ShippingSettingsHeaderType.TRANSIT_TIME
       ) {
         return true;
@@ -215,41 +242,17 @@ export default {
       }
       return true;
     },
-    previousStep() {
-      localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
-      this.$router.push({
-        name: 'product-feed-settings',
-        params: {
-          step: ProductFeedSettingsPages.TARGET_COUNTRY,
-        },
-      });
-      window.scrollTo(0, 0);
-    },
-    nextStep() {
-      this.$segment.track('[GGL] Product feed config - Step 2', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-      localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
-      this.$router.push({
-        name: 'product-feed-settings',
-        params: {
-          step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
-        },
-      });
-      window.scrollTo(0, 0);
-    },
-    cancel() {
-      this.$emit('cancelProductFeedSettingsConfiguration');
-    },
-    refreshComponent() {
-      this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
+    switchToFlatRate() {
+      this.$store.commit('productFeed/SET_SHIPPING_SETUP_SELECTED', ShippingSetupOption.ESTIMATE);
     },
   },
-  mounted() {
-    this.refreshComponent();
+  watch: {
+    carriers: {
+      handler(carriers) {
+        this.$emit('dataUpdated', carriers);
+      },
+      immediate: true,
+    },
   },
 };
 </script>

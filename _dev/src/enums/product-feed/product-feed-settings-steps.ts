@@ -2,7 +2,7 @@ import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings
 
 const ProductFeedSettingsSteps = [
   null,
-  ProductFeedSettingsPages.TARGET_COUNTRY,
+  ProductFeedSettingsPages.SHIPPING_SETUP,
   ProductFeedSettingsPages.SHIPPING_SETTINGS,
   ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
   ProductFeedSettingsPages.SYNC_SCHEDULE,

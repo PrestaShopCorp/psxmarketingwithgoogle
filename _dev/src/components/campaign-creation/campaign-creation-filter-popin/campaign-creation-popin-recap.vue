@@ -104,15 +104,17 @@
   </ps-modal>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
 import CampaignStatus, {
   CampaignStatusToggle, CampaignTypes,
 } from '@/enums/reporting/CampaignStatus';
-import PsModal from '../../commons/ps-modal';
+import PsModal from '@/components/commons/ps-modal.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import compareYears from '../../../utils/CompareYears';
+import compareYears from '@/utils/CompareYears';
+import {changeCountryNameToCode} from '@/utils/Countries';
 
-export default {
+export default defineComponent({
   name: 'SSCCreationPopinRecap',
   components: {
     PsModal,
@@ -176,9 +178,7 @@ export default {
       const finalCampaign = {
         ...this.newCampaign,
         // API wants country code not name so we have to filter it
-        targetCountry: this.$options.filters.changeCountriesNamesToCodes([
-          this.newCampaign.targetCountry,
-        ])[0],
+        targetCountry: changeCountryNameToCode(this.newCampaign.targetCountry),
         // Send default status
         status: CampaignStatus.ELIGIBLE,
         type: CampaignTypes.PERFORMANCE_MAX,
@@ -208,9 +208,9 @@ export default {
       const payload = {
         ...this.newCampaign,
         // API wants country code not name so we have to filter it
-        targetCountry: this.$options.filters.changeCountriesNamesToCodes([
+        targetCountry: changeCountryNameToCode(
           this.newCampaign.targetCountry,
-        ])[0],
+        ),
         status: CampaignStatusToggle.ENABLED,
       };
       this.$store
@@ -237,5 +237,5 @@ export default {
         });
     },
   },
-};
+});
 </script>

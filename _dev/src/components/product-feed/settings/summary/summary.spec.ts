@@ -14,6 +14,7 @@ import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings
 import {
   Summary,
 } from '@/../stories/product-feed-settings.stories';
+import productFeedSummaryCards from '../../summary/product-feed-summary-cards.vue';
 
 describe('summary', () => {
   const mockRoute = {
@@ -44,7 +45,7 @@ describe('summary', () => {
       store: new Vuex.Store(cloneStore()),
     });
 
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
+    expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
     expect(wrapper.findComponent(ProductFeedCardNextSyncCard).exists()).toBeTruthy();
   });
   it('shows button cancel and triggers previous step on click', async () => {

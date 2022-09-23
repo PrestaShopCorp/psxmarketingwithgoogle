@@ -1,6 +1,10 @@
 import {config, createLocalVue} from '@vue/test-utils';
 import Vuex from 'vuex';
+import {BootstrapVue} from 'bootstrap-vue';
+import VueShowdown from 'vue-showdown';
 import {messages} from '@/lib/translations';
+import {changeCountriesCodesToNames} from '@/utils/Countries';
+import '../showdown.js';
 
 let windowSpy;
 let localVue; // eslint-disable-line
@@ -8,7 +12,7 @@ const defaultLocale = 'en';
 let filters; // eslint-disable-line
 let VBTooltip;
 
-beforeEach(() => {
+beforeAll(() => {
   windowSpy = jest.spyOn(window, 'window', 'get');
   windowSpy.mockImplementation(() => ({
     // add data needed in window
@@ -16,14 +20,16 @@ beforeEach(() => {
     addEventListener: jest.fn(),
     i18nSettings: {isoCode: 'fr', languageLocale: 'fr'},
   }));
-  VBTooltip = jest.fn();
   localVue = createLocalVue();
   localVue.use(Vuex);
+});
 
+beforeEach(() => {
+  VBTooltip = jest.fn();
   filters = {
     timeConverterToDate: jest.fn(),
     timeConverterToHour: jest.fn(),
-    changeCountriesCodesToNames: jest.fn().mockImplementation(() => []),
+    changeCountriesCodesToNames: jest.fn().mockImplementation(changeCountriesCodesToNames),
     timeConverterToStringifiedDate: jest.fn().mockImplementation(() => ''),
     slugify: jest.fn().mockImplementation(() => 'foo'),
   };
@@ -37,6 +43,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  jest.resetAllMocks();
   windowSpy.mockRestore();
 });
 
@@ -93,3 +100,11 @@ export default {config};
 export {cloneStore} from './store';
 
 export {localVue, filters};
+
+export const addShowdownToVue = () => {
+  localVue.use(VueShowdown);
+};
+
+export const addBootstrapToVue = () => {
+  localVue.use(BootstrapVue);
+};

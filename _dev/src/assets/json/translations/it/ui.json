@@ -26,7 +26,8 @@
     "min": "min.",
     "max": "mas.",
     "helpPage": "Pagina di aiuto",
-    "noResultsFoundForX": "Nessun risultato trovato per {0}"
+    "noResultsFoundForX": "Nessun risultato trovato per {0}",
+    "days": "Days"
   },
   "landingPage": {
     "header": {
@@ -209,7 +210,6 @@
     "syncFailedAt": "Sincronizzazione fallita {0} a {1}",
     "syncSuccess": "Prodotti sincronizzati {1} a {2} | {0} prodotto sincronizzato {1} a {2} | {0} prodotti sincronizzati {1} a {2}",
     "syncBusy": "Sincronizzazione in corso...",
-    "syncCantPerform": "La sincronizzazione non può eseguire",
     "mappedCategories": "{0}/{1} categorie mappate",
     "alertFeedSettingSubmissionSuccess": "Hai inviato con successo i dati dei tuoi prodotti al Merchant Center.  \n Una volta approvati, saranno disponibili per inserzioni e annunci gratuiti.",
     "alertFailed": "La sincronizzazione dei prodotti non è riuscita. Controlla le possibili ragioni in [Merchant Center]({0})[:target=\"_blank\"] o contatta il [supporto clienti](mailto:support-google@prestashop.com).",
@@ -231,8 +231,8 @@
     "breadcrumb1": "Feed del prodotto",
     "breadcrumb2": "Impostazioni del feed di prodotto",
     "steps": {
-      "targetCountry": "Paese di destinazione",
-      "shippingSettings": "Impostazioni di spedizione",
+      "shippingSetup": "Shipping setup",
+      "deliveryTimesAndRates": "Delivery time & rates",
       "attributeMapping": "Mappatura degli attributi",
       "categoryMapping": "Mappatura della categoria",
       "summary": "Sommario",
@@ -241,19 +241,71 @@
       "syncSchedule": "Programma di sincronizzazione"
     },
     "noticeDataStored": "Le impostazioni sono salvate ad ogni passo, saranno inviate solo al passo finale.",
-    "shipping": {
+    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
+    "shippingSetup": {
+      "title": "Shipping setup",
+      "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
+      "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
+      "estimateOption": {
+        "title": "I can estimate shipping rates & times",
+        "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office.",
+        "summary": "Estimated method"
+      },
+      "importOption": {
+        "title": "I’d like to import my shipping setup from PrestaShop back office",
+        "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country.",
+        "summary": "Imported from backoffice"
+      },
+      "laterOption": {
+        "summary": "Setup later"
+      }
+    },
+    "deliveryTimeAndRates": {
+      "title": "Delivery time & rates",
+      "rateAndDelivery": "Rate & delivery timeline",
+      "deliveryInfo": "Enter the minimum and maximum days required for delivery",
+      "customRate": {
+        "title": "Choose a flat or custom rate for your target countries",
+        "rateTitle": "Same rates for target countries",
+        "rateDesc": "I can estimate the same shipping rate and delivery time for all countries",
+        "customTitle": "Custom rates by country",
+        "customDesc": "I'd like to set different rates and times for each country"
+      },
+      "estimateStep": {
+        "error": "Fill in the required information",
+        "carrierName": "Carrier name",
+        "storeOffersTitle": "My store offers",
+        "storeOffers": {
+          "flatShippingRateForAllProducts": "Flat shipping rate for all products",
+          "freeShippingForAllProducts": "Free shipping for all products",
+          "freeShippingOverAmount": "Free shipping over a set amount"
+        },
+        "shippingRate": {
+          "rate": "Shipping rate",
+          "rateDesc": "Enter the shipping rate for all target countries",
+          "overAmount": "Free shipping applies over"
+        },
+        "summary": {
+          "singleCountry": "Flat rate",
+          "multiCountriesFlatRateForAll": "Flat rate for all target countries"
+        }
+      },
+      "importOption": {
+        "validationErrors": {
+          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue"
+        },
+        "summary": "Configured carriers from backoffice"
+      },
+      "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
       "targetCountries": "Paese di destinazione",
       "filterTitle": "Filtrare per paese",
       "ifMultipleCountries": "Se ti rivolgi a più paesi, ogni prezzo del prodotto sarà automaticamente convertito nella valuta corretta in Google. Tuttavia il tuo negozio deve avere configurato le tariffe di spedizione e le tasse per ogni paese selezionato. Si prega di rispettare [le politiche di acquisto specifiche del paese]({0})[:target=\"_blank\"] e [la regolamentazione locale]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "My products are available in",
       "placeholderSelect": "Seleziona i paesi in cui i tuoi prodotti sono disponibili",
-      "cantFindCountry": "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "Questo paese non è compatibile con la tua valuta",
       "shippingSettings": "Impostazioni di spedizione",
       "shippingSettingsTitle": "Impostazioni di spedizione dei prodotti",
       "shippingLabel1": "Impostare ora le mie impostazioni di spedizione (consigliato)",
       "shippingDescription1": "PrestaShop importerà la tua lista di portatori dalle impostazioni del tuo negozio e ti permetterà di fornire informazioni supplementari.",
-      "automatically": "Automaticamente",
       "manually": "Manualmente",
       "shippingLabel2": "Salta e imposta più tardi in Google Merchant Center",
       "shippingDescription2": "Dovrai inserire tu stesso le informazioni di spedizione del tuo prodotto in Google Merchant center. ",
@@ -264,26 +316,25 @@
       "manualImportTax": "Imposta manualmente le impostazioni delle imposte in Google Merchant Center",
       "appliedOnlyForUsa": "(si applica solo per gli USA)",
       "alertTaxes": "Dovete presentare le tasse che raccogliete, in modo che gli utenti capiscano il prezzo esatto che dovranno pagare per i vostri prodotti.",
-      "cantSelectCountryWithDifferentCurrency": "Non puoi selezionare un paese con una valuta diversa da quella del tuo negozio principale.",
       "carrierDescriptionHeader": "Vettore  \n descrizione",
-      "enableHeader": "Abilita  \n o disabilita",
+      "enableHeader": "Enable /  \n disable",
       "shipToCustomerHeader": "Consegna a domicilio  \n",
-      "handlingTimeHeader": "Manipolazione di  \n tempo",
-      "transitTimeHeader": "Transito  \n tempo",
-      "countryHeader": "Obiettivo  \n paese",
+      "transitTimeHeader": "Delivery time",
+      "countryHeader": "Nazione",
       "shipToCustomerTooltip": "Seleziona se questo trasportatore consegna all'indirizzo del cliente o no (punto di servizio, ritiro in negozio). Google permette di abilitare solo i trasportatori che spediscono ad un indirizzo.",
       "handlingTimeTooltip": "Inserisci il tempo necessario per preparare un ordine fino al suo ritiro da parte del trasportatore in giorni lavorativi.",
       "transitTimeTooltip": "Inserisci il tempo necessario affinché l'ordine venga spedito al cliente una volta che lascia la tua struttura.",
-      "shippingInformationTitle": "Vettori",
-      "shippingInformationIntro": "Inserisci le informazioni di spedizione per la tua lista di corrieri. Devono spedire ad un indirizzo per essere sincronizzati in Google Shopping.",
-      "shippingTableNotice": "Assicurati che il messaggio del tuo negozio corrisponda alle informazioni sui tempi di consegna di Google shopping.",
+      "shippingInformationTitle": "Shipping rates & transit time",
+      "shippingInformationIntro": "You can enable and configure the carriers you want to be displayed on Google Shopping.",
+      "shippingTableNotice": "Google cannot support carrier with pick up in store delivery type, please make sure you disable them or switch to another method.",
       "shippingSwitchCarrier": "Interruttore per abilitare/desiderare il vettore",
       "carriersDropdownHeader": "Copia le informazioni di spedizione a",
       "carriersDropdownHiddenLabel": "Copiare le informazioni del vettore ad altri vettori",
       "noCarriersTitle": "Non hai nessun vettore di spedizione",
       "noCarriersDescription": "Vai alla pagina dei vettori per aggiungere i vettori di spedizione",
       "addNewCarriers": "Aggiungere o aggiornare i vettori",
-      "refreshCarriers": "Aggiorna se hai modificato i tuoi vettori"
+      "refreshCarriers": "Aggiorna se hai modificato i tuoi vettori",
+      "switchToFlatRate": "Switch to estimation shipping’s set-up"
     },
     "preScan": {
       "selectLanguage": "Filter by language",
@@ -833,7 +884,6 @@
     "trackProductStatus": "Traccia lo stato di approvazione del prodotto",
     "whyDidntWork": "Guarda perché non ha funzionato",
     "aboutProductCategory": "Elenco delle categorie di prodotti Google",
-    "editCountries": "Modifica il paese",
     "editSettings": "Modifica le impostazioni",
     "editRules": "Modifica le regole",
     "shopMaintenanceBtn": "Vai alle impostazioni di manutenzione",
@@ -867,7 +917,6 @@
     "addWebsiteAddress": "Aggiungi l'indirizzo del sito web",
     "transferClaim": "Richiesta di trasferimento",
     "goToYourX": "Vai al tuo {0}",
-    "addShippingInfo": "Aggiungi informazioni sulla spedizione",
     "createSmartShoppingCampaign": "Lanciare la campagna Performance Max",
     "addBillingSettings": "Aggiungi le impostazioni di fatturazione",
     "createCampaign": "Crea una campagna",

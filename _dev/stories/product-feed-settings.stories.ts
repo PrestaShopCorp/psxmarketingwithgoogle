@@ -1,8 +1,14 @@
+import cloneDeep from 'lodash.clonedeep';
 import TunnelProductFeed from '../src/views/tunnel-product-feed.vue';
 import {productFeed, productFeedNoCarriers ,productFeedIsReadyForExport, productFeedSyncScheduleNow} from '../.storybook/mock/product-feed';
-import {initialStateApp, appMultiCountries} from '../.storybook/mock/state-app';
+import {shippingPhpExportWithIssues} from '../.storybook/mock/shipping-settings';
+import {shippingPhpExportHeavy} from '../.storybook/mock/shipping-settings-heavy';
+import {initialStateApp} from '../.storybook/mock/state-app';
 import {rest} from 'msw';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import { ShippingSetupOption } from '@/enums/product-feed/shipping';
+import { getEnabledCarriers, mergeShippingDetailsSourcesForProductFeedConfiguration } from '../src/providers/shipping-settings-provider';
+import { deleteProductFeedDataFromLocalStorage } from '../src/utils/LocalStorage';
 
 export default {
   title: 'Product feed/Settings',
@@ -90,41 +96,99 @@ const Template = (args, {argTypes}) => ({
   components: {TunnelProductFeed},
   template: '<div><TunnelProductFeed v-bind="$props" /></div>',
   beforeMount: args.beforeMount,
+  beforeCreate() {
+    deleteProductFeedDataFromLocalStorage();
+  }
 });
 
-export const TargetCountry:any = Template.bind({});
-TargetCountry.args = {
+export const SettingsSetup:any = Template.bind({});
+SettingsSetup.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({},productFeed);
-    this.$store.state.app = Object.assign({},initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeed);
+    this.$store.state.app = cloneDeep(initialStateApp);
     this.$store.state.productFeed.stepper = 1;
-      this.$router.history.current.params.step = ProductFeedSettingsPages.TARGET_COUNTRY
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETUP
   },
 };
 
-export const ShippingSettings:any = Template.bind({});
-ShippingSettings.args = {
+export const EstimateDeliveryTimeAndRates:any = Template.bind({});
+EstimateDeliveryTimeAndRates.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({},productFeed);
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeed);
     this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.ESTIMATE;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
+  },
+};
+
+export const EstimateDeliveryTimeAndRatesWithUS:any = Template.bind({});
+EstimateDeliveryTimeAndRatesWithUS.args = {
+  beforeMount(this: any) {
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode = 'USD',
+    this.$store.state.productFeed = cloneDeep(productFeed);
+    this.$store.state.productFeed.settings.targetCountries = ['US'];
+    this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.ESTIMATE;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS;
+  },
+};
+
+export const ImportDeliveryTimeAndRates:any = Template.bind({});
+ImportDeliveryTimeAndRates.args = {
+  beforeMount(this: any) {
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeed);
+    this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
+  },
+};
+
+export const ImportDeliveryTimeAndRatesSeveralCountries:any = Template.bind({});
+ImportDeliveryTimeAndRatesSeveralCountries.args = {
+  beforeMount(this: any) {
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeed);
+    this.$store.state.productFeed.settings.targetCountries = ['FR', 'IT'];
+    this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
     this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
   },
 };
 
 
-export const ShippingSettingsNoCarriers:any = Template.bind({});
-ShippingSettingsNoCarriers.args = {
+export const ImportDeliveryTimeAndRatesNoCarriers:any = Template.bind({});
+ImportDeliveryTimeAndRatesNoCarriers.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({},productFeedNoCarriers);
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeedNoCarriers);
     this.$store.state.productFeed.stepper = 2;
-    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS;
+  },
+};
+
+export const ImportDeliveryTimeAndRatesWithManyCarriers:any = Template.bind({});
+ImportDeliveryTimeAndRatesWithManyCarriers.args = {
+  beforeMount(this: any) {
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeed);
+    this.$store.state.productFeed.settings.targetCountries = ['SE'];
+    this.$store.state.productFeed.settings.shippingSettings = shippingPhpExportWithIssues;
+    this.$store.state.productFeed.settings.deliveryDetails = Object.assign([], mergeShippingDetailsSourcesForProductFeedConfiguration(getEnabledCarriers(shippingPhpExportHeavy), []));
+    this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup = ShippingSetupOption.IMPORT;
+    this.$router.history.current.params.step = ProductFeedSettingsPages.SHIPPING_SETTINGS;
   },
 };
 
 export const AttributeMapping:any = Template.bind({});
 AttributeMapping.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({},productFeed);
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeed);
     this.$store.state.productFeed.stepper = 3;
     this.$router.history.current.params.step = ProductFeedSettingsPages.ATTRIBUTE_MAPPING
   },
@@ -133,7 +197,8 @@ AttributeMapping.args = {
 export const SyncSchedule:any = Template.bind({});
 SyncSchedule.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({},productFeedSyncScheduleNow);
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeedSyncScheduleNow);
     this.$store.state.productFeed.stepper = 4;
     this.$router.history.current.params.step = ProductFeedSettingsPages.SYNC_SCHEDULE
   },
@@ -142,7 +207,8 @@ SyncSchedule.args = {
 export const Summary:any = Template.bind({});
 Summary.args = {
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({},productFeedIsReadyForExport);
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeedIsReadyForExport);
     this.$store.state.productFeed.stepper = 5;
     this.$router.history.current.params.step = ProductFeedSettingsPages.SUMMARY
   },

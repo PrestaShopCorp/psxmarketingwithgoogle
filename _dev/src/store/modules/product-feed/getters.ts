@@ -29,6 +29,8 @@ import GettersTypes from './getters-types';
 import {filterCountriesCompatible} from '../../../utils/TargetCountryValidator';
 import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
+import {CustomCarrier} from '@/providers/shipping-rate-provider';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -51,8 +53,8 @@ export default {
   ProductFeedValidationSummary {
     return state.validationSummary;
   },
-  [GettersTypes.GET_SYNC_STATUS](state: LocalState) : string {
-    if (state.settings.autoImportShippingSettings === undefined) {
+  [GettersTypes.GET_SYNC_STATUS](state: LocalState, getters) : string {
+    if (getters.GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION) {
       return 'warning';
     }
     if (!state.status.success && !state.status.nextJobAt) {
@@ -101,6 +103,12 @@ export default {
     return state.selectedProductCategories;
   },
   [GettersTypes.GET_SYNC_SCHEDULE](state: LocalState) : boolean {
+    const requestSyncNow = getDataFromLocalStorage('productFeed-requestSynchronizationNow');
+
+    if (requestSyncNow !== null) {
+      state.requestSynchronizationNow = requestSyncNow;
+    }
+
     return state.requestSynchronizationNow;
   },
   [GettersTypes.GET_PRESCAN_LIMIT_PAGE](state: LocalState): number {
@@ -121,4 +129,44 @@ export default {
   [GettersTypes.GET_ATTRIBUTE_MAPPING](state: LocalState): AttributeResponseFromAPI {
     return state.attributeMapping;
   },
+  [GettersTypes.GET_SHIPPING_SETUP](state: LocalState) {
+    const setupSelected = getDataFromLocalStorage('productFeed-shippingSetup');
+
+    if (setupSelected !== null) {
+      state.settings.shippingSetup = setupSelected;
+    }
+
+    return state.settings.shippingSetup;
+  },
+  [GettersTypes.GET_STEP](state: LocalState): number {
+    if (state.isConfigured) {
+      return state.stepper;
+    }
+
+    if (getDataFromLocalStorage('productFeed-shippingSetup') !== null) {
+      state.stepper = 2;
+    }
+    if (getDataFromLocalStorage('productFeed-targetCountries') !== null) {
+      state.stepper = 3;
+    }
+    if (getDataFromLocalStorage('productFeed-attributeMapping') !== null) {
+      state.stepper = 4;
+    }
+    if (getDataFromLocalStorage('productFeed-requestSynchronizationNow') !== null) {
+      state.stepper = 5;
+    }
+
+    return state.stepper;
+  },
+  [GettersTypes.GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION](state: LocalState): boolean {
+    // Merchants used to be able to choose to configure their carriers later on GMC.
+    // With the new shipping settings, we require merchants to redo their product feed
+    // when they didn't configure any carrier.
+    return state.settings.shippingSetup === null
+      && state.settings.autoImportShippingSettings === false;
+  },
+  [GettersTypes.GET_ESTIMATE_CARRIER](state: LocalState): CustomCarrier {
+    return state.settings.estimateCarrier;
+  },
+
 };

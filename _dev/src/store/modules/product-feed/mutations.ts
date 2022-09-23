@@ -33,6 +33,7 @@ import {
   PrevalidationScanSummary,
   PreScanReporting,
 } from './state';
+import {CustomCarrier} from '@/providers/shipping-rate-provider';
 
 type payloadObject = {
   name: string, data: string
@@ -97,10 +98,12 @@ export default {
   [MutationsTypes.REMOVE_PRODUCT_FEED](state: LocalState,
   ) {
     state.settings = {
+      shippingSetup: null,
+      estimateCarrier: {} as CustomCarrier,
       shippingSettings: [],
       deliveryDetails: [],
       autoImportTaxSettings: false,
-      autoImportShippingSettings: true,
+      autoImportShippingSettings: undefined,
       targetCountries: null,
     };
   },
@@ -206,5 +209,9 @@ export default {
   },
   [MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT](state: LocalState, payload: number) {
     state.preScanDetail.total = payload;
+  },
+  [MutationsTypes.SET_SHIPPING_SETUP_SELECTED](state: LocalState, payload) {
+    localStorage.setItem('productFeed-shippingSetup', JSON.stringify(payload));
+    state.settings.shippingSetup = payload;
   },
 };

@@ -5,6 +5,7 @@
       size="sm"
       class="mx-1 mt-3 mt-md-0"
       variant="outline-secondary"
+      data-test-id="cancelButton"
     >
       {{ $t('cta.cancel') }}
     </b-button>
@@ -14,6 +15,7 @@
       size="sm"
       class="mx-1 mt-3 mt-md-0"
       variant="outline-secondary"
+      data-test-id="previousButton"
     >
       {{ $t('cta.previous') }}
     </b-button>
@@ -49,17 +51,16 @@ export default {
     nextStep: {
       type: Function,
       required: true,
-      default: () => {},
     },
     previousStep: {
       type: Function,
       required: false,
-      default: () => {},
+      default: null,
     },
     disableContinue: {
       type: Boolean,
       required: false,
-      default: true,
+      default: false,
     },
     disableTooltip: {
       type: String,

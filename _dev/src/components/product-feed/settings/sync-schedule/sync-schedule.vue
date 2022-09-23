@@ -76,6 +76,7 @@ export default {
       window.scrollTo(0, 0);
     },
     nextStep() {
+      localStorage.setItem('productFeed-requestSynchronizationNow', this.selectedSyncSchedule);
       this.$segment.track('[GGL] Product feed config - Step 4', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,

@@ -130,3 +130,18 @@ a.without-hover {
 .ps_gs-fz-14[class^="material-icons"] {
   width: rem(14);
 }
+
+.collapsed > .when-open,
+.not-collapsed > .when-closed {
+  display: none;
+}
+
+.ps_gs-mw-200 {
+  max-width: 200px;
+}
+.ps_gs-mw-90 {
+  max-width: 90px;
+}
+.min-input-custom {
+  max-width: 50px;
+}

@@ -9,7 +9,8 @@
         size="sm"
         class="ps_gs-switch mb-0"
         v-model="carrier.enabledCarrier"
-        :aria-label="$t('productFeedSettings.shipping.shippingSwitchCarrier')"
+        @input="$emit('dataUpdated')"
+        :aria-label="$t('productFeedSettings.deliveryTimeAndRates.shippingSwitchCarrier')"
       />
     </td>
     <td class="py-3">
@@ -27,68 +28,6 @@
         {{ carrier.delay }}
       </p>
     </td>
-    <td>
-      <b-dropdown
-        :ref="`dropdownCarriers${carrier.carrierId}-${carrier.country}`"
-        :text="deliveryTypeMessage || $t('cta.select')"
-        variant="text"
-        class="maxw-sm-160 ps-dropdown ps_gs-carrier__dropdown-delivery-type
-        psxmarketingwithgoogle-dropdown bordered"
-        :class="{'is-invalid' : deliveryTypeMessage === null}"
-        :toggle-class="{'ps-dropdown__placeholder' : deliveryTypeMessage === null}"
-        menu-class="ps-dropdown"
-        size="sm"
-        :disabled="!carrier.enabledCarrier"
-        data-test-id="deliveryType"
-      >
-        <b-dropdown-item-button
-          button-class="rounded-0 text-dark"
-          @click="deliveryType = 'delivery'"
-        >
-          <span
-            class="px-2"
-          >
-            {{ $t('cta.yes') }}
-          </span>
-        </b-dropdown-item-button>
-        <b-dropdown-item-button
-          button-class="rounded-0 text-dark"
-          @click="selectPickupType"
-        >
-          <span
-            class="px-2"
-          >
-            {{ $t('cta.no') }}
-          </span>
-        </b-dropdown-item-button>
-      </b-dropdown>
-    </td>
-    <td class="py-3">
-      <div class="ps_gs-carrier__input-number-wrapper">
-        <b-form-input
-          type="number"
-          class="ps_gs-carrier__input-number no-arrows"
-          size="sm"
-          v-model.number="carrier.minHandlingTimeInDays"
-          min="0"
-          max="250"
-          :disabled="disableInputNumber"
-          :state="timeStateHandling"
-          :placeholder="$t('general.min')"
-        />
-        <b-form-input
-          type="number"
-          class="ps_gs-carrier__input-number no-arrows"
-          size="sm"
-          min="0"
-          max="250"
-          v-model.number="carrier.maxHandlingTimeInDays"
-          :disabled="disableInputNumber"
-          :state="timeStateHandling"
-          :placeholder="$t('general.max')"
-        />
-      </div>
-    </td>
     <td class="py-3">
       <div class="ps_gs-carrier__input-number-wrapper">
         <b-form-input
@@ -96,20 +35,27 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model.number="carrier.minTransitTimeInDays"
+          @input="$emit('dataUpdated')"
 
           :disabled="disableInputNumber"
           :state="timeStateDelivery"
           :placeholder="$t('general.min')"
         />
-        <b-form-input
-          type="number"
-          class="ps_gs-carrier__input-number no-arrows"
-          size="sm"
-          v-model.number="carrier.maxTransitTimeInDays"
-          :disabled="disableInputNumber"
-          :state="timeStateDelivery"
-          :placeholder="$t('general.max')"
-        />
+        <b-input-group
+          :append="$t('general.days')"
+          class="ps_gs-carrier__input-number-group"
+        >
+          <b-form-input
+            type="number"
+            class="ps_gs-carrier__input-number no-arrows"
+            size="sm"
+            v-model.number="carrier.maxTransitTimeInDays"
+            @input="$emit('dataUpdated')"
+            :disabled="disableInputNumber"
+            :state="timeStateDelivery"
+            :placeholder="$t('general.max')"
+          />
+        </b-input-group>
       </div>
     </td>
     <td class="py-3">
@@ -122,6 +68,7 @@
         :disabled="!carrier.enabledCarrier"
         @show="updateListState"
         data-test-id="duplicateDetails"
+        :ref="`dropdownCarriers${carrier.carrierId}-${carrier.country}`"
       >
         <template #button-content>
           <i
@@ -129,13 +76,13 @@
             title="You can copy this carrier"
           >content_copy</i>
           <span class="sr-only">
-            {{ $t('productFeedSettings.shipping.carriersDropdownHiddenLabel') }}
+            {{ $t('productFeedSettings.deliveryTimeAndRates.carriersDropdownHiddenLabel') }}
           </span>
         </template>
         <b-dropdown-header
           class="ps_gs-carrier-dropdown__header"
         >
-          {{ $t('productFeedSettings.shipping.carriersDropdownHeader') }}
+          {{ $t('productFeedSettings.deliveryTimeAndRates.carriersDropdownHeader') }}
         </b-dropdown-header>
         <b-dropdown-form
           form-class="dropdown-form-with-checkbox text-dark px-3"
@@ -183,11 +130,7 @@
 
 <script lang="ts">
 import {PropType} from '@vue/composition-api';
-import DeliveryType from '@/enums/product-feed/delivery-type.ts';
-import {
-  validateHandlingTimes, validateTransitTimes,
-} from '@/providers/shipping-settings-provider';
-import {CarrierIdentifier, DeliveryDetail} from '../../../../providers/shipping-settings-provider';
+import {validateTransitTimes, CarrierIdentifier, DeliveryDetail} from '@/providers/shipping-settings-provider';
 
 type State = {
   selectedCarriersForDuplication: CarrierIdentifier[];
@@ -211,34 +154,20 @@ export default {
       type: Array,
       required: true,
     },
+    displayValidationErrors: {
+      type: Boolean,
+      required: true,
+    },
   },
   computed: {
-    deliveryType: {
-      get(): DeliveryType|null {
-        return this.carrier.deliveryType || null;
-      },
-      set(value: DeliveryType) {
-        this.carrier.deliveryType = value;
-      },
-    },
-    deliveryTypeMessage(): string|null {
-      switch (this.deliveryType) {
-        case DeliveryType.DELIVERY:
-          return this.$i18n.t('cta.yes');
-        case DeliveryType.PICKUP:
-          return this.$i18n.t('cta.no');
-        default:
-          return null;
-      }
-    },
-    timeStateHandling(): boolean|null {
-      return validateHandlingTimes(this.carrier) ? null : false;
-    },
     timeStateDelivery(): boolean|null {
+      if (!this.displayValidationErrors) {
+        return null;
+      }
       return validateTransitTimes(this.carrier) ? null : false;
     },
     disableInputNumber(): boolean {
-      return !this.carrier.enabledCarrier || this.carrier.deliveryType !== DeliveryType.DELIVERY;
+      return !this.carrier.enabledCarrier;
     },
   },
   methods: {
@@ -255,7 +184,7 @@ export default {
           destinationCarriers: this.selectedCarriersForDuplication,
         },
       );
-      this.$refs[`dropdownCarriers${this.carrier.carrierId}-${this.carrier.country}`].showMenu();
+      this.$refs[`dropdownCarriers${this.carrier.carrierId}-${this.carrier.country}`].hide();
     },
     updateListState() {
       // Find carrier in list and check it is still enabled
@@ -265,13 +194,6 @@ export default {
             && selectedCarrier.country === carrier.country,
           ).enabledCarrier,
         );
-    },
-    selectPickupType() {
-      this.deliveryType = 'pickup';
-      this.carrier.minHandlingTimeInDays = null;
-      this.carrier.maxHandlingTimeInDays = null;
-      this.carrier.minTransitTimeInDays = null;
-      this.carrier.maxTransitTimeInDays = null;
     },
   },
 };

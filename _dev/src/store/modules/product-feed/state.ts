@@ -17,9 +17,13 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
 import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import {CustomCarrier} from '@/providers/shipping-rate-provider';
+import {OfferType} from '@/enums/product-feed/offer';
 
 export interface ProductFeedStatus {
   nextJobAt?: string;
@@ -30,10 +34,13 @@ export interface ProductFeedStatus {
 }
 
 export interface ProductFeedSettings {
+  shippingSetup: ShippingSetupOption|null;
+  estimateCarrier: CustomCarrier;
   shippingSettings: object[];
   deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
-  autoImportShippingSettings: boolean;
+  // Deprecated: Kept for backward compatibility with old product feed.
+  autoImportShippingSettings?: boolean;
   targetCountries: string[]|null;
 }
 
@@ -51,11 +58,12 @@ export interface ProductInfos {
  id: string;
  name: string;
  attribute: string;
- issues? : Array<object>;
+ language: string;
+ issues? : contentApi.Schema$ProductStatusItemLevelIssue[];
  statuses? : Array<object>;
 }
 export interface ProductsDatas {
-  items: Array<ProductInfos>;
+  items: ProductInfos[];
 }
 
 export interface AttributesInfos {
@@ -160,7 +168,7 @@ export const state: State = {
   isConfigured: false,
   isConfiguredOnce: false,
   totalProducts: 0,
-  stepper: 0,
+  stepper: 1,
   status: {
     success: false,
     jobEndedAt: '',
@@ -169,11 +177,26 @@ export const state: State = {
     syncSchedule: '',
   },
   settings: {
+    shippingSetup: null,
+    estimateCarrier: {
+      carrierName: '',
+      countries: [],
+      currency: '',
+      offer: null,
+      maxDeliveryTime: 0,
+      minDeliveryTime: 0,
+      [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
+        shippingCost: 0,
+        orderPrice: 0,
+      },
+      [OfferType.FLAT_SHIPPING_RATE]: {
+        shippingCost: 0,
+      },
+    },
     shippingSettings: [],
     deliveryDetails: [],
     autoImportTaxSettings: false,
     targetCountries: null,
-    autoImportShippingSettings: true,
   },
   validationSummary: {
     activeItems: null,

@@ -250,20 +250,23 @@ export default {
   methods: {
     previousStep() {
       localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
-      if (this.$store.state.productFeed.settings.autoImportShippingSettings) {
+      // Merchants used to be able to configure their carriers later on GMC.
+      // For backward compatibility, we need to send them back to the first step
+      // if they haven't swtiched on the new version yet.
+      if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
+        this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
+        this.$router.push({
+          name: 'product-feed-settings',
+          params: {
+            step: ProductFeedSettingsPages.SHIPPING_SETUP,
+          },
+        });
+      } else {
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
         this.$router.push({
           name: 'product-feed-settings',
           params: {
             step: ProductFeedSettingsPages.SHIPPING_SETTINGS,
-          },
-        });
-      } else {
-        this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
-        this.$router.push({
-          name: 'product-feed-settings',
-          params: {
-            step: ProductFeedSettingsPages.TARGET_COUNTRY,
           },
         });
       }

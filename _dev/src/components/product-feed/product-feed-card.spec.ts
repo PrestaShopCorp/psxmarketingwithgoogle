@@ -5,14 +5,15 @@ import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import {shallowMount, mount} from '@vue/test-utils';
-import BootstrapVue, {BAlert} from 'bootstrap-vue';
+import {BAlert} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
 import config, {localVue, cloneStore, filters} from '@/../tests/init';
 import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
-import Stepper from '@/components/commons/stepper.vue';
+import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import productFeedSummaryCards from './summary/product-feed-summary-cards.vue';
 
 import {
   productFeed,
@@ -27,7 +28,7 @@ describe('product-feed-card.vue', () => {
   const mockRoute = {
     name: 'product-feed-settings',
     params: {
-      step: ProductFeedSettingsPages.TARGET_COUNTRY,
+      step: ProductFeedSettingsPages.SHIPPING_SETUP,
     },
   };
   const mockRouter = {
@@ -97,13 +98,13 @@ describe('product-feed-card.vue', () => {
       },
       store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
-    expect(wrapper.findComponent(Stepper).exists()).toBeTruthy();
-    expect(wrapper.findComponent(Stepper).props('activeStep')).toBe(1);
+    expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeTruthy();
+    expect(wrapper.findComponent(ProductFeedStepper).props('activeStep')).toBe(1);
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
     expect(wrapper.find('b-button').exists()).toBeTruthy();
   });
 
-  it('shows button and triggers configration on click', async () => {
+  it('shows button and triggers configuration on click', async () => {
     const wrapper = shallowMount(ProductFeedCard, {
       mocks: {
         $route: mockRoute,
@@ -114,7 +115,6 @@ describe('product-feed-card.vue', () => {
         isEnabled: true,
         loading: false,
       },
-      ...localVue,
       store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
     await wrapper.find('b-button').trigger('click');
@@ -133,10 +133,9 @@ describe('product-feed-card.vue', () => {
       store: new Vuex.Store(storeConfigured),
     });
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
-    expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
+    expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
     expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
 
@@ -155,9 +154,8 @@ describe('product-feed-card.vue', () => {
     });
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('info');
-    expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
+    expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
     expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
 
@@ -175,15 +173,14 @@ describe('product-feed-card.vue', () => {
       },
     });
 
-    expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
-    expect(filters.timeConverterToDate).not.toHaveBeenCalled();
-    expect(filters.timeConverterToHour).not.toHaveBeenCalled();
+    expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
+    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
+    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('warning');
-    expect(wrapper.find('b-button').text()).toEqual('Add shipping info');
-    expect(wrapper.find('p').text()).toBe('To successfully sync your product data, add shipping info.');
+    expect(wrapper.find('b-alert p').text()).toBe('We have made some changes on product feed configuration, we recommend you re-configure your shipping setup with the option that suits your workflow.');
   });
 
   it('shows error when api error', () => {
@@ -199,8 +196,8 @@ describe('product-feed-card.vue', () => {
       },
       store: new Vuex.Store(storeApiError),
     });
-    expect(wrapper.findComponent(Stepper).exists()).toBeTruthy();
-    expect(wrapper.findComponent(Stepper).props('activeStep')).toBe(1);
+    expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeTruthy();
+    expect(wrapper.findComponent(ProductFeedStepper).props('activeStep')).toBe(1);
     expect(wrapper.find('b-button').attributes('disabled')).toBe('true');
     expect(wrapper.find('b-button').text()).toEqual('Start product feed configuration');
     expect(wrapper.findComponent(BAlert).exists()).toBeTruthy();

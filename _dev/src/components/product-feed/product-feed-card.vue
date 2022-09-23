@@ -56,10 +56,8 @@
               {{ $t("cta.learnAboutProductConfiguration") }}
             </a>
           </p>
-          <stepper
-            class="mt-2"
-            :steps="steps"
-            :active-step="1"
+          <product-feed-stepper
+            :active-step="getActiveStep"
           />
           <div
             class="d-flex justify-content-center justify-content-md-end mt-n1"
@@ -126,7 +124,6 @@
             <span>{{ title.message }}</span>
           </h3>
           <div
-            v-if="syncStatus !== 'warning'"
             class="d-sm-flex align-items-end mb-1"
           >
             <p class="ps_gs-fz-12 text-muted mb-0">
@@ -152,69 +149,15 @@
             variant="warning"
             :show="!!alert && alert === 'ShippingSettingsMissing'"
           >
-            <p class="mb-2">
-              <VueShowdown
-                tag="strong"
-                class="font-weight-600"
-                :markdown="$t('productFeedCard.alertShippingSettingsMissing')"
-                :extensions="['extended-link', 'no-p-tag']"
-              />
-              <br>
-              <span class="ps_gs-fz-12">
-                {{ $t("productFeedCard.alertShippingSettingsMissingDescription") }}
-              </span>
+            <p>
+              {{ $t("productFeedCard.alertShippingSettingsMissingDescription") }}
             </p>
-            <div class="mt-1">
-              <b-button
-                variant="outline-secondary"
-                @click="goToProductFeedSettings(ProductFeedSettingsPages.SHIPPING_SETTINGS)"
-              >
-                {{ $t("cta.addShippingInfo") }}
-              </b-button>
-            </div>
           </b-alert>
           <b-container
             fluid
             class="p-0 mb-0 mt-n1"
           >
-            <b-row
-              no-gutters
-              class="mx-n1"
-            >
-              <product-feed-card-report-card
-                :status="targetCountriesStatus"
-                :title="$t('productFeedSettings.shipping.targetCountries')"
-                :description="targetCountries.join(', ')"
-                :link="$t('cta.editCountries')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
-              />
-              <product-feed-card-report-card
-                :status="shippingSettingsStatus"
-                :title="$t('productFeedSettings.shipping.shippingSettings')"
-                :description="shippingSettings"
-                :link="$t('cta.editSettings')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
-              />
-              <product-feed-card-report-card
-                v-if="isUS"
-                :status="taxSettingsStatus"
-                :title="$t('productFeedSettings.shipping.taxSettings')"
-                :description="taxSettings"
-                :link="$t('cta.editSettings')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 1, params: ProductFeedSettingsPages.TARGET_COUNTRY }"
-              />
-              <product-feed-card-report-card
-                :status="attributeMappingStatus"
-                :title="$t('productFeedSettings.steps.attributeMapping')"
-                :description="attributeMapping.join(', ')"
-                :link="$t('cta.editProductAttributes')"
-                :link-to="{ name: 'product-feed-settings',
-                            step: 3, params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
-              />
-            </b-row>
+            <product-feed-summary-cards />
           </b-container>
         </div>
       </b-card>
@@ -222,43 +165,29 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import {VueShowdown} from 'vue-showdown';
+import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
-import Stepper from '../commons/stepper';
-import ProductFeedCardReportCard from './product-feed-card-report-card';
-import BadgeListRequirements from '../commons/badge-list-requirements';
+import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
+import ProductFeedCardReportCard from './product-feed-card-report-card.vue';
+import BadgeListRequirements from '../commons/badge-list-requirements.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
 
-export default {
+export default defineComponent({
   name: 'ProductFeedCard',
   components: {
-    Stepper,
+    ProductFeedStepper,
     ProductFeedCardReportCard,
     BadgeListRequirements,
     VueShowdown,
+    ProductFeedSummaryCards,
   },
   data() {
     return {
       ProductFeedSettingsPages,
-      steps: [
-        {
-          title: this.$i18n.t('productFeedSettings.steps.targetCountry'),
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.shippingSettings'),
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.syncSchedule'),
-        },
-        {
-          title: this.$i18n.t('productFeedSettings.steps.summary'),
-        },
-      ],
     };
   },
   props: {
@@ -272,34 +201,13 @@ export default {
       default: true,
       required: true,
     },
-    categoriesTotal: {
-      type: Number,
-      required: false,
-      default: 0,
-    },
-    categoriesMapped: {
-      type: Number,
-      default: 0,
-      required: false,
-    },
-    syncRules: {
-      type: Array,
-      default: () => [],
-      required: false,
-    },
-    syncRulesDetails: {
-      type: Array,
-      default: () => [],
-      required: false,
-
-    },
   },
   computed: {
-    getProductFeedSettings() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'];
-    },
     getProductFeedStatus() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
+    },
+    getActiveStep(): number {
+      return this.$store.getters['productFeed/GET_STEP'];
     },
     nextSyncTime() {
       return {
@@ -311,61 +219,8 @@ export default {
         ),
       };
     },
-    isUS() {
-      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].includes('US');
-    },
     toConfigure() {
       return !this.$store.state.productFeed.isConfigured;
-    },
-    targetCountries() {
-      return this.$options.filters.changeCountriesCodesToNames(
-        this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
-      );
-    },
-    shippingSettings() {
-      if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {
-        return this.$t('productFeedCard.missingInformation');
-      }
-      return this.getProductFeedSettings.autoImportShippingSettings
-        ? this.$t('productFeedSettings.shipping.automatically')
-        : this.$t('productFeedSettings.shipping.manually');
-    },
-    shippingSettingsStatus() {
-      return this.getProductFeedSettings.autoImportShippingSettings !== undefined
-        ? 'success'
-        : 'warning';
-    },
-    targetCountriesStatus() {
-      return this.targetCountries.length ? 'success' : 'warning';
-    },
-    getAttributeMapping() {
-      return this.$store.getters['productFeed/GET_ATTRIBUTE_MAPPING'];
-    },
-    attributeMappingStatus() {
-      return this.getAttributeMapping ? 'success' : 'warning';
-    },
-    taxSettings() {
-      if (this.getProductFeedSettings.autoImportTaxSettings === undefined) {
-        return this.$t('productFeedCard.missingInformation');
-      }
-      return this.getProductFeedSettings.autoImportTaxSettings
-        ? this.$t('productFeedSettings.shipping.automatically')
-        : this.$t('productFeedSettings.shipping.manually');
-    },
-    taxSettingsStatus() {
-      // TODO BATCH 2
-      // TODO retrieve tax settings from backend
-      return 'success';
-    },
-    attributeMapping() {
-      const arr = [];
-      const getMapping = this.getAttributeMapping;
-      Object.keys(getMapping).forEach((key) => {
-        if (getMapping[key]) {
-          getMapping[key].forEach((item) => arr.push(item.id));
-        }
-      });
-      return arr;
     },
     lastSync() {
       return {
@@ -397,14 +252,6 @@ export default {
           ]),
         };
       }
-      if (this.syncStatus === 'warning') {
-        return {
-          icon: 'warning',
-          color: 'warning',
-          materialClass: 'material-icons-round',
-          message: this.$i18n.t('productFeedCard.syncCantPerform'),
-        };
-      }
       return {
         icon: 'check_circle',
         color: 'success',
@@ -424,15 +271,12 @@ export default {
       }
       return null;
     },
-    hasMapping() {
-      return this.categoriesMapped > 0;
-    },
     alert() {
       if (this.getProductFeedStatus.success === false && this.getProductFeedStatus.jobEndedAt
       && this.getProductFeedStatus.lastUpdatedAt) {
         return 'Failed';
       }
-      if (this.getProductFeedSettings.autoImportShippingSettings === undefined) {
+      if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
         return 'ShippingSettingsMissing';
       }
       if (
@@ -453,25 +297,15 @@ export default {
     isErrorApi() {
       return this.$store.state.productFeed.errorAPI;
     },
-    allValidationSummary() {
-      return this.$store.state.productFeed.validationSummary;
-    },
-    nbProductsCantSync() {
-      return this.allValidationSummary.disapprovedItems;
-    },
-    nbProductsReadyToSync() {
-      return this.allValidationSummary.activeItems;
-    },
-    excludedProductsDetails() {
-      return this.allValidationSummary.disapprovedItems;
-    },
   },
   methods: {
     startConfiguration() {
+      const step = Object.values(ProductFeedSettingsPages)[this.getActiveStep - 1];
+
       this.$router.push({
         name: 'product-feed-settings',
         params: {
-          step: ProductFeedSettingsPages.TARGET_COUNTRY,
+          step,
         },
       });
       this.$segment.track('[GGL] Start Product feed configuration', {
@@ -479,16 +313,8 @@ export default {
         params: SegmentGenericParams,
       });
     },
-    goToProductFeedSettings(params) {
-      this.$router.push({
-        name: 'product-feed-settings',
-        params: {
-          step: params,
-        },
-      });
-    },
     refresh() {
-      this.$router.go();
+      this.$router.go(0);
     },
     goToProductFeed() {
       this.$router.push({
@@ -497,5 +323,5 @@ export default {
     },
   },
   googleUrl,
-};
+});
 </script>

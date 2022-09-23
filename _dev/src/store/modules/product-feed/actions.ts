@@ -24,10 +24,14 @@ import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 import {
   CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
+  mergeShippingDetailsSourcesForProductFeedConfiguration,
   ShopShippingInterface, validateDeliveryDetail,
 } from '../../../providers/shipping-settings-provider';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import {runIf} from '../../../utils/Promise';
+import DeliveryType from '../../../enums/product-feed/delivery-type';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import {generateCustomCarrier} from '@/providers/shipping-rate-provider';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
@@ -136,6 +140,15 @@ export default {
         name: 'deliveryDetails',
         data: json?.additionalShippingSettings?.deliveryDetails || [],
       });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'shippingSetup',
+        data: json?.shippingSetup || null,
+      });
+
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'estimateCarrier',
+        data: json?.estimateCarriers?.[0] || generateCustomCarrier(),
+      });
 
       if (json.selectedProductCategories) {
         commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, json.selectedProductCategories);
@@ -158,6 +171,7 @@ export default {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
+    const estimateCarriers = getDataFromLocalStorage('productFeed-estimateCarriers') || [];
     const deliveryFiltered: DeliveryDetail[] = productFeedSettings.deliveryDetails.filter(
       (e) => e.enabledCarrier && validateDeliveryDetail(e),
     );
@@ -173,12 +187,13 @@ export default {
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
     const newSettings = {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
-      autoImportShippingSettings: productFeedSettings.autoImportShippingSettings,
+      shippingSetup: productFeedSettings.shippingSetup,
       targetCountries,
       shippingSettings: shipping,
       additionalShippingSettings: {
         deliveryDetails: deliveryFiltered,
       },
+      estimateCarriers,
       attributeMapping,
       selectedProductCategories,
       requestSynchronizationNow,
@@ -231,14 +246,6 @@ export default {
     await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
     await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
 
-    const deliveryDetailsStructure = {
-      deliveryType: undefined,
-      minHandlingTimeInDays: undefined,
-      maxHandlingTimeInDays: undefined,
-      minTransitTimeInDays: undefined,
-      maxTransitTimeInDays: undefined,
-    };
-
     // Load existing carriers on PrestaShop
     const enabledCarriersFromShop = getEnabledCarriers(
       state.settings.shippingSettings,
@@ -246,43 +253,23 @@ export default {
     // Load previous configuration temporarly saved on localStorage
     const deliveryFromStorage = getDataFromLocalStorage('productFeed-deliveryDetails') ?? [];
 
-    // Carriers will be all enabled by default if nothing has been configured yet
-    const enableCarriersByDefault = !deliveryFromStorage.length
-      && !state.settings.deliveryDetails.length;
+    if (state.settings.shippingSetup === ShippingSetupOption.ESTIMATE) {
+      const getEstimateCarrier = getDataFromLocalStorage('productFeed-estimateCarriers');
 
-    // Build carriers list based from PHP data, and on previous configuration in localStorage + API
-    const carriersList: DeliveryDetail[] = enabledCarriersFromShop.map((carrierFromShop) => {
-      const deliveryDetailsSavedInLocalStorage = deliveryFromStorage.find((c : DeliveryDetail) => (
-        (c.carrierId === carrierFromShop.carrierId) && (c.country === carrierFromShop.country)
-      ));
-
-      if (deliveryDetailsSavedInLocalStorage) {
-        return {
-          ...deliveryDetailsStructure,
-          ...deliveryDetailsSavedInLocalStorage,
-          ...carrierFromShop,
-        };
+      if (getEstimateCarrier !== null) {
+        commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+          name: 'estimateCarrier',
+          data: getEstimateCarrier[0],
+        });
       }
+    }
 
-      const deliveryDetailsSavedOnAPI = state.settings.deliveryDetails.find(
-        (deliveryDetail: DeliveryDetail) => deliveryDetail.carrierId === carrierFromShop.carrierId
-                && carrierFromShop.country === deliveryDetail.country);
+    const carriersList: DeliveryDetail[] = mergeShippingDetailsSourcesForProductFeedConfiguration(
+      enabledCarriersFromShop,
+      state.settings.deliveryDetails,
+      deliveryFromStorage,
+    );
 
-      if (deliveryDetailsSavedOnAPI) {
-        return {
-          ...deliveryDetailsStructure,
-          enabledCarrier: true,
-          ...deliveryDetailsSavedOnAPI,
-          ...carrierFromShop,
-        };
-      }
-
-      return {
-        ...deliveryDetailsStructure,
-        enabledCarrier: enableCarriersByDefault,
-        ...carrierFromShop,
-      };
-    });
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 

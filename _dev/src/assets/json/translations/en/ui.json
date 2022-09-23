@@ -26,7 +26,8 @@
     "min": "min.",
     "max": "max.",
     "helpPage" : "Help Page",
-    "noResultsFoundForX": " No results found for {0}"
+    "noResultsFoundForX": " No results found for {0}",
+    "days": "Days"
   },
   "landingPage": {
     "header": {
@@ -209,12 +210,11 @@
     "syncFailedAt": "Synchronization failed {0} at {1}",
     "syncSuccess": "Products synced {1} at {2} | {0} product synced {1} at {2} | {0} products synced {1} at {2}",
     "syncBusy": "Sync progressing...",
-    "syncCantPerform": "Synchronization can't perform",
     "mappedCategories": "{0}/{1} mapped categories",
     "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.",
     "alertFailed": "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact [customer support](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Your shipping information is missing.",
-    "alertShippingSettingsMissingDescription": "To successfully sync your product data, add shipping info.",
+    "alertShippingSettingsMissingDescription": "We have made some changes on product feed configuration, we recommend you re-configure your shipping setup with the option that suits your workflow.",
     "alertProductFeedDeactivated": "If the product sync is deactivated, there will be no new products pushed into the GMC. The account itself will continue to exist and the products will expire after 30 days. This stops the catalog items to show on both Free Listings and the ad campaigns.",
     "alertProductFeedExists": "**A product feed already exists**  \n<small>Your product feed already exists. You need to overwrite it to sync your PrestaShop product feed. </small>",
     "googleTaxonomyAssociation": "Google Product taxonomy association",
@@ -231,8 +231,8 @@
     "breadcrumb1": "Product feed",
     "breadcrumb2": "Product feed settings",
     "steps": {
-      "targetCountry": "Target country",
-      "shippingSettings": "Shipping settings",
+      "shippingSetup": "Shipping setup",
+      "deliveryTimesAndRates": "Delivery time & rates",
       "attributeMapping": "Attribute mapping",
       "categoryMapping": "Category mapping",
       "summary": "Summary",
@@ -241,19 +241,71 @@
       "syncSchedule" : "Sync schedule"
     },
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
-    "shipping": {
+    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
+    "shippingSetup": {
+      "title": "Shipping setup",
+      "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
+      "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
+      "estimateOption": {
+        "title": "I can estimate shipping rates & times",
+        "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office.",
+        "summary": "Estimated method"
+      },
+      "importOption": {
+        "title": "I’d like to import my shipping setup from PrestaShop back office",
+        "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country.",
+        "summary": "Imported from backoffice"
+      },
+      "laterOption": {
+        "summary": "Setup later"
+      }
+    },
+    "deliveryTimeAndRates": {
+      "title": "Delivery time & rates",
+      "rateAndDelivery": "Rate & delivery timeline",
+      "deliveryInfo": "Enter the minimum and maximum days required for delivery",
+      "customRate": {
+        "title": "Choose a flat or custom rate for your target countries",
+        "rateTitle": "Same rates for target countries",
+        "rateDesc": "I can estimate the same shipping rate and delivery time for all countries",
+        "customTitle": "Custom rates by country",
+        "customDesc": "I'd like to set different rates and times for each country"
+      },
+      "estimateStep": {
+        "error": "Fill in the required information",
+        "carrierName": "Carrier name",
+        "storeOffersTitle": "My store offers",
+        "storeOffers": {
+          "flatShippingRateForAllProducts": "Flat shipping rate for all products",
+          "freeShippingForAllProducts": "Free shipping for all products",
+          "freeShippingOverAmount": "Free shipping over a set amount"
+        },
+        "shippingRate": {
+          "rate": "Shipping rate",
+          "rateDesc": "Enter the shipping rate for all target countries",
+          "overAmount": "Free shipping applies over"
+        },
+        "summary": {
+          "singleCountry": "Flat rate",
+          "multiCountriesFlatRateForAll": "Flat rate for all target countries"
+        }
+      },
+      "importOption": {
+        "validationErrors": {
+          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue"
+        },
+        "summary": "Configured carriers from backoffice"
+      },
+      "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
       "targetCountries": "Target country",
       "filterTitle": "Filter by country",
       "ifMultipleCountries": "If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target=\"_blank\"] and [local regulation]({1})[:target=\"_blank\"]",
-      "productAvailaibleIn": "My products are available in",
       "placeholderSelect": "Select the countries where your products are available",
-      "cantFindCountry": "Can’t find a country? Only supported countries are listed. [See list of supported countries]({0})[:target=\"_blank\"]",
       "shippingSettingsErrors": "This country is not compatible with your currency",
       "shippingSettings": "Shipping settings",
       "shippingSettingsTitle": "Products shipping settings",
       "shippingLabel1": "Setup my shipping settings now (recommended)",
       "shippingDescription1": "PrestaShop will import your carriers list from your store settings and allow you to provide additional information.",
-      "automatically": "Automatically",
       "manually": "Manually",
       "shippingLabel2": "Skip and setup later in Google Merchant Center",
       "shippingDescription2": "You will have to enter your product shipping information yourself in Google Merchant center. ",
@@ -264,26 +316,25 @@
       "manualImportTax": "Manually set up tax settings in Google Merchant Center",
       "appliedOnlyForUsa": "(applied only for the USA)",
       "alertTaxes": "You must submit the taxes that you collect, so that users understand the exact price that they’ll have to pay for your products.",
-      "cantSelectCountryWithDifferentCurrency": "You can't select country with currency that differs from your main shop.",
       "carrierDescriptionHeader": "Carrier  \n description",
-      "enableHeader": "Enable  \n or disable",
+      "enableHeader": "Enable /  \n disable",
       "shipToCustomerHeader": "Doorstep  \n delivery",
-      "handlingTimeHeader": "Handling  \n time",
-      "transitTimeHeader": "Transit  \n time",
-      "countryHeader": "Target  \n country",
+      "transitTimeHeader": "Delivery time",
+      "countryHeader": "Country",
       "shipToCustomerTooltip": "Select if this carrier delivers to a customer’s address or not (service point, in store pickup). Google only allows enabling carriers who ship to an address.",
       "handlingTimeTooltip": "Enter how long it takes you to prepare an order until it’s picked up by the carrier in working days.",
       "transitTimeTooltip": "Enter how long it takes for your order to be shipped to the customer once it leaves your facility.",
-      "shippingInformationTitle": "Carriers & shipping information",
-      "shippingInformationIntro": "Enter shipping information for your carriers list. They have to ship to an address to be synchronized in Google Shopping.",
-      "shippingTableNotice": "Make sure your store message matches your Google shopping delivery time information.",
+      "shippingInformationTitle": "Shipping rates & transit time",
+      "shippingInformationIntro": "You can enable and configure the carriers you want to be displayed on Google Shopping.",
+      "shippingTableNotice": "Google cannot support carrier with pick up in store delivery type, please make sure you disable them or switch to another method.",
       "shippingSwitchCarrier": "Switch to enable / desable carrier",
       "carriersDropdownHeader": "Copy shipping information to",
       "carriersDropdownHiddenLabel": "Copy information of the carrier to other carriers",
       "noCarriersTitle": "You don’t have any shipping carriers",
       "noCarriersDescription": "Please head to carriers page to add shipping carriers",
       "addNewCarriers" : "Add or update carriers",
-      "refreshCarriers": "Refresh if you have edited your carriers"
+      "refreshCarriers": "Refresh if you have edited your carriers",
+      "switchToFlatRate": "Switch to estimation shipping’s set-up"
     },
     "preScan": {
       "selectLanguage": "Filter by language",
@@ -834,7 +885,6 @@
     "trackProductStatus": "Track Product approval status",
     "whyDidntWork": "Check out why it didn’t work",
     "aboutProductCategory": "List of Google product categories",
-    "editCountries": "Edit country",
     "editSettings": "Edit settings",
     "editRules": "Edit rules",
     "shopMaintenanceBtn": "Go to maintenance settings",
@@ -868,7 +918,6 @@
     "addWebsiteAddress": "Add website address",
     "transferClaim": "Transfer claim",
     "goToYourX": "Go to your {0}",
-    "addShippingInfo": "Add shipping info",
     "createSmartShoppingCampaign": "Launch Performance Max campaign",
     "addBillingSettings": "Add billing settings",
     "createCampaign": "Create campaign",

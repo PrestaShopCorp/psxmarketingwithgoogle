@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
 import utc from 'dayjs/plugin/utc';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import countriesSelectionOptions from '../assets/json/countries.json';
+import {changeCountriesCodesToNames} from './Countries';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -49,16 +49,7 @@ Vue.filter(
     return '-';
   });
 
-Vue.filter(
-  'changeCountriesCodesToNames', (countries : Array<string>) => countries.map((country) => {
-    for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
-      if (country === countriesSelectionOptions[i].code) {
-        return countriesSelectionOptions[i].country;
-      }
-    }
-
-    return country;
-  }));
+Vue.filter('changeCountriesCodesToNames', changeCountriesCodesToNames);
 
 Vue.filter(
   'formatPrice', (value: number, currencyCode?: string) => {
@@ -72,17 +63,6 @@ Vue.filter(
       currency: currencyCode,
     }).format(value);
   });
-
-Vue.filter(
-  'changeCountriesNamesToCodes', (countries : Array<string>) => countries.map((country) => {
-    for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
-      if (country === countriesSelectionOptions[i].country) {
-        return countriesSelectionOptions[i].code;
-      }
-    }
-
-    return country;
-  }));
 
 Vue.filter(
   'slugify', (...args: (string | number)[]): string => {
