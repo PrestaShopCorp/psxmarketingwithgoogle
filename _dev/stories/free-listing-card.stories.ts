@@ -2,6 +2,7 @@ import FreeListingCard from '../src/components/free-listing/free-listing-card.vu
 import FreeListingPopinDisable from '../src/components/free-listing/free-listing-popin-disable.vue'
 import {productFeedIsConfigured} from '../.storybook/mock/product-feed';
 import {freeListingEnabled, freeListingDisabled, freeListingErrorAPI} from '../.storybook/mock/free-listing';
+import cloneDeep from 'lodash.clonedeep';
 
 export default {
   title: 'Free listing/Card',
@@ -37,7 +38,7 @@ Disabled.args = {
   isEnabled: false,
   loading: false,
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
+    this.$store.state.productFeed = cloneDeep(productFeedIsConfigured);
   },
 }
 
@@ -46,8 +47,8 @@ Enabled.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
-    this.$store.state.freeListing = Object.assign({}, freeListingEnabled);
+    this.$store.state.productFeed = cloneDeep(productFeedIsConfigured);
+    this.$store.state.freeListing = cloneDeep(freeListingEnabled);
   },
 }
 
@@ -56,8 +57,8 @@ AlertEnableFreeListing.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured)
-    this.$store.state.freeListing = Object.assign({}, freeListingDisabled);
+    this.$store.state.productFeed = cloneDeep(productFeedIsConfigured)
+    this.$store.state.freeListing = cloneDeep(freeListingDisabled);
   },
 }
 
@@ -66,8 +67,8 @@ AlertCantEnableFreeListing.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
-    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
-    this.$store.state.freeListing = Object.assign({}, freeListingErrorAPI);
+    this.$store.state.productFeed = cloneDeep(productFeedIsConfigured);
+    this.$store.state.freeListing = cloneDeep(freeListingErrorAPI);
   },
 }
 

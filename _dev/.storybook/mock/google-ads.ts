@@ -1,4 +1,7 @@
-export const googleAdsNotChosen = {
+import {AccountInformations, State, state} from '@/store/modules/google-ads/state';
+
+export const googleAdsNotChosen: State = {
+  ...state,
   status: null,
   accountChosen: null,
   list: [
@@ -37,7 +40,7 @@ export const googleAdsNotChosen = {
   ],
 };
 
-export const googleAdsAccountChosenisTestAccount = {
+export const googleAdsAccountChosenisTestAccount: State = {
   ...googleAdsNotChosen,
   accountChosen:  {
     id: '415-056-4875',
@@ -54,10 +57,9 @@ export const googleAdsAccountChosenisTestAccount = {
       name: 'France'
     },
     currencyCode: 'EUR',
-    timeZone:  'USA',
   },
 }
-export const googleAdsAccountChosen = {
+export const googleAdsAccountChosen: State = {
   ...googleAdsNotChosen,
   accountChosen:  {
     id: '415-056-4875',
@@ -74,24 +76,15 @@ export const googleAdsAccountChosen = {
       name: 'France'
     },
     currencyCode: 'EUR',
-    timeZone:  'USA',
   },
 }
 
-export const adsAccountStatus = {
+export const adsAccountStatus: State = {
   ...googleAdsAccountChosen,
-  customer: {
-    id: '415-056-4875',
-    name: 'Tata Corpette',
-    descriptiveName: 'PrestaShop Marketing with Google TEST',
-    isAdmin: true,
-    isTestAccount: false,
-    isAccountSuspended: false,
-    isAccountCancelled: false,
-  },
   accountChosen:  {
-    ...googleAdsAccountChosen.accountChosen,
+    ...(googleAdsAccountChosen.accountChosen as AccountInformations),
     billingSettings: {
+      ...googleAdsAccountChosen.accountChosen?.billingSettings,
       isSet: true,
     }
   },

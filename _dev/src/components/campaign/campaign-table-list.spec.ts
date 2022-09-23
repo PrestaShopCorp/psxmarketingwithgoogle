@@ -9,8 +9,8 @@ import {mount, shallowMount} from '@vue/test-utils';
 import config, {localVue, cloneStore} from '@/../tests/init';
 
 import {initialStateApp} from '../../../.storybook/mock/state-app';
-import {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads.js';
-import {campaignWithUnhandledFilters, availableFilters, defaultCampaigns} from '../../../.storybook/mock/campaigns';
+import {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads';
+import {campaignWithUnhandledFilters, availableFilters} from '../../../.storybook/mock/campaigns';
 import CampaignTableList from './campaign-table-list.vue';
 import BannerCampaigns from '../commons/banner-campaigns.vue';
 

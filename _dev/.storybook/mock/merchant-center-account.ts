@@ -1,34 +1,7 @@
-export const merchantCenterAccountNotConnected = {
-  websiteVerificationStatus: null,
-  isClaimed: false,
-  isVerified: false,
-  isSuspended: {
-      status: false,
-  },
-  isEnhancedFreeListingCompliant: {
-      status: true,
-  },
-  connectedOnce: false,
-  id: null,
-  claimError: null,
-  users: [],
-  websiteRequirements: [],
-  shopInfo: {
-    shop: {
-      name: "",
-      url: ""
-    },
-    store:{
-      country: {
-        iso_code: "",
-        name: "",
-      },
-      locality: "",
-      phone: "",
-      postalCode: "",
-      streetAddress: "",
-    }
-  }
+import {MerchantCenterAccountContext, state} from '@/store/modules/accounts/state';
+
+export const merchantCenterAccountNotConnected: MerchantCenterAccountContext = {
+  ...state.googleMerchantAccount,
 };
 
 export const merchantCenterAccountConnected = {

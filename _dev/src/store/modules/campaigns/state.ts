@@ -25,10 +25,7 @@ import CampaignStatus, {CampaignStatusToggle, CampaignTypes} from '@/enums/repor
 
 export interface State {
   warmedUp: boolean,
-  campaigns: {
-    sscList: CampaignObject[];
-    pMaxList: CampaignObject[];
-  },
+  campaigns: CampaignsLists,
   campaignsOrdering: CampaignsOrdering,
   nextPageTokenCampaignList: {
     ssc: null|string;
@@ -48,6 +45,11 @@ export interface State {
   filtersChosen: FiltersChosen[];
 }
 
+export interface CampaignsLists {
+  sscList: CampaignObject[];
+  pMaxList: CampaignObject[];
+}
+
 export interface ConversionAction {
   category: string,
   tag: string,
@@ -63,6 +65,9 @@ export interface Dimension {
   id?: string;
   numberOfProductsAssociated?: number,
   children?: Dimension[];
+  status?: string,
+  countryCode?: string,
+  languageCode?: string,
 
   // Managed by this app
   checked?: boolean;

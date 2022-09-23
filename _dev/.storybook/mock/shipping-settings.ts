@@ -1,6 +1,8 @@
-export const shippingPhpExport = [
+import {ShopShippingInterface, ShopShippingCollectionType} from '@/providers/shipping-settings-provider';
+
+export const shippingPhpExport: ShopShippingInterface[] = [
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "1",
     properties: {
       id_carrier: "1",
@@ -31,7 +33,7 @@ export const shippingPhpExport = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "2",
     properties: {
       id_carrier: "3",
@@ -62,7 +64,7 @@ export const shippingPhpExport = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "2-1-1-1",
     properties: {
       id_reference: "2",
@@ -76,7 +78,7 @@ export const shippingPhpExport = [
     },
   },
   {
-    collection: "carrier_taxes",
+    collection: ShopShippingCollectionType.CARRIER_TAXES,
     id: "2-1",
     properties: {
       id_reference: "2",
@@ -87,16 +89,18 @@ export const shippingPhpExport = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "7",
     properties: {
       id_carrier: "8",
       id_reference: "7",
       name: "test carrier",
-      carrier_taxes_rates_group_id: "1",
-      url: "",
       active: true,
       deleted: false,
+      delay: "delivery in 5 days",
+      country_ids: "FR,IT,US",
+      carrier_taxes_rates_group_id: "1",
+      url: "",
       shipping_handling: 2,
       free_shipping_starts_at_price: 0,
       free_shipping_starts_at_weight: 0,
@@ -111,14 +115,12 @@ export const shippingPhpExport = [
       max_depth: 0,
       max_weight: 0,
       grade: 5,
-      delay: "delivery in 5 days",
       currency: "EUR",
       weight_unit: "kg",
-      country_ids: "FR,IT,US",
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "7-1-1-4",
     properties: {
       id_reference: "7",
@@ -132,7 +134,7 @@ export const shippingPhpExport = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "7-1-1-5",
     properties: {
       id_reference: "7",
@@ -146,7 +148,7 @@ export const shippingPhpExport = [
     },
   },
   {
-    collection: "carrier_taxes",
+    collection: ShopShippingCollectionType.CARRIER_TAXES,
     id: "7-1",
     properties: {
       id_reference: "7",
@@ -157,7 +159,7 @@ export const shippingPhpExport = [
     },
   },
   {
-    collection: "carrier_taxes",
+    collection: ShopShippingCollectionType.CARRIER_TAXES,
     id: "7-1",
     properties: {
       id_reference: "7",
@@ -168,7 +170,7 @@ export const shippingPhpExport = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "9",
     properties: {
       id_carrier: "11",
@@ -199,7 +201,7 @@ export const shippingPhpExport = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "12",
     properties: {
       id_carrier: "12",
@@ -235,9 +237,9 @@ export const shippingPhpExport = [
  * This version contains some issues for merchants in Spain, where the carrier is not assigned to
  * a core country but custom zones created by the module.
  */
-export const shippingPhpExportWithIssues = [
+export const shippingPhpExportWithIssues: ShopShippingInterface[] = [
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "258",
     properties: {
       id_carrier: "281",
@@ -268,7 +270,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "258-13-1-461",
     properties: {
       id_reference: "258",
@@ -283,7 +285,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "258-13-1-462",
     properties: {
       id_reference: "258",
@@ -298,7 +300,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "258-13-1-463",
     properties: {
       id_reference: "258",
@@ -313,7 +315,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "271",
     properties: {
       id_carrier: "279",
@@ -344,7 +346,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "271-13-1-455",
     properties: {
       id_reference: "271",
@@ -359,7 +361,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "271-13-1-456",
     properties: {
       id_reference: "271",
@@ -374,7 +376,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "271-13-1-457",
     properties: {
       id_reference: "271",
@@ -389,7 +391,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "119",
     properties: {
       id_carrier: "255",
@@ -420,7 +422,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "234",
     properties: {
       id_carrier: "268",
@@ -451,7 +453,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "236",
     properties: {
       id_carrier: "264",
@@ -482,7 +484,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "239",
     properties: {
       id_carrier: "244",
@@ -513,7 +515,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "191",
     properties: {
       id_carrier: "285",
@@ -544,7 +546,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "203",
     properties: {
       id_carrier: "221",
@@ -575,7 +577,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "203-7-1-340",
     properties: {
       id_reference: "203",
@@ -589,7 +591,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "219",
     properties: {
       id_carrier: "270",
@@ -620,7 +622,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "219-1-1-438",
     properties: {
       id_reference: "219",
@@ -635,7 +637,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carrier_details",
+    collection: ShopShippingCollectionType.CARRIER_DETAILS,
     id: "219-13-1-438",
     properties: {
       id_reference: "219",
@@ -650,7 +652,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "196",
     properties: {
       id_carrier: "213",
@@ -681,7 +683,7 @@ export const shippingPhpExportWithIssues = [
     },
   },
   {
-    collection: "carriers",
+    collection: ShopShippingCollectionType.CARRIERS,
     id: "150",
     properties: {
       id_carrier: "150",

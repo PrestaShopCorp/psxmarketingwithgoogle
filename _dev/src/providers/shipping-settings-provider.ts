@@ -8,19 +8,85 @@ export enum ShopShippingCollectionType {
 
 export type ShopShippingInterface = {
     collection: ShopShippingCollectionType,
-    id: string,
-    properties: {
-        // eslint-disable-next-line camelcase
-        id_carrier: string,
-        // eslint-disable-next-line camelcase
-        id_reference: string,
-        name: string,
-        active: boolean,
-        deleted: boolean,
-        delay: string,
-        // eslint-disable-next-line camelcase
-        country_ids: string, // i.e "FR,IT,US"
-    }
+    id: string|number,
+    properties: (ShopShippingCarrierPropertiesInterface
+      |ShopShippingCarrierDetailPropertiesInterface
+      |ShopShippingCarrierTaxPropertiesInterface),
+}
+
+export type ShopShippingCarrierPropertiesInterface = {
+  // eslint-disable-next-line camelcase
+  id_carrier: string,
+  // eslint-disable-next-line camelcase
+  id_reference: string,
+  name: string,
+  active: boolean,
+  deleted: boolean,
+  delay: string,
+  // eslint-disable-next-line camelcase
+  country_ids: string, // i.e "FR,IT,US"
+  // eslint-disable-next-line camelcase
+  carrier_taxes_rates_group_id?: string,
+  url?: string,
+  // eslint-disable-next-line camelcase
+  shipping_handling?: number,
+  // eslint-disable-next-line camelcase
+  free_shipping_starts_at_price?: number,
+  // eslint-disable-next-line camelcase
+  free_shipping_starts_at_weight?: number,
+  // eslint-disable-next-line camelcase
+  disable_carrier_when_out_of_range?: boolean,
+  // eslint-disable-next-line camelcase
+  is_module?: boolean,
+  // eslint-disable-next-line camelcase
+  is_free?: boolean,
+  // eslint-disable-next-line camelcase
+  shipping_external?: boolean,
+  // eslint-disable-next-line camelcase
+  need_range?: boolean,
+  // eslint-disable-next-line camelcase
+  external_module_name?: string,
+  // eslint-disable-next-line camelcase
+  max_width?: number,
+  // eslint-disable-next-line camelcase
+  max_height?: number,
+  // eslint-disable-next-line camelcase
+  max_depth?: number,
+  // eslint-disable-next-line camelcase
+  max_weight?: number,
+  grade?: number,
+  currency?: string,
+  // eslint-disable-next-line camelcase
+  weight_unit?: string,
+}
+
+export type ShopShippingCarrierDetailPropertiesInterface = {
+  // eslint-disable-next-line camelcase
+  id_reference: string,
+  // eslint-disable-next-line camelcase
+  id_carrier_detail: string,
+  // eslint-disable-next-line camelcase
+  shipping_method: string,
+  delimiter1: number,
+  delimiter2: number,
+  // eslint-disable-next-line camelcase
+  country_ids: string,
+  // eslint-disable-next-line camelcase
+  state_ids: string,
+  price: number,
+}
+
+export type ShopShippingCarrierTaxPropertiesInterface = {
+  // eslint-disable-next-line camelcase
+  id_reference: string,
+  // eslint-disable-next-line camelcase
+  id_carrier_tax: string,
+  // eslint-disable-next-line camelcase
+  country_id: string,
+  // eslint-disable-next-line camelcase
+  state_ids: string,
+  // eslint-disable-next-line camelcase
+  tax_rate: number,
 }
 
 export type CarrierIdentifier = {
@@ -53,20 +119,21 @@ export type DeliveryDetail = {
 
 /**
  * Filters on active carriers, then clone them as many time as they have assigned countries
- *
- * @param source ShopShippingInterface[]
- * @returns Carrier[]
  */
 export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
   return source.filter((carrier) => carrier.collection === ShopShippingCollectionType.CARRIERS
-        && carrier.properties.active === true
-        && carrier.properties.deleted === false,
-  ).flatMap((carrier) => carrier.properties.country_ids.split(',').map((country) => ({
-    carrierId: carrier.properties.id_reference,
-    country,
-    name: carrier.properties.name,
-    delay: carrier.properties.delay,
-  })));
+        && (carrier.properties as ShopShippingCarrierPropertiesInterface).active === true
+        && (carrier.properties as ShopShippingCarrierPropertiesInterface).deleted === false,
+  ).flatMap((carrier) => {
+    const properties = carrier.properties as ShopShippingCarrierPropertiesInterface;
+
+    return properties.country_ids.split(',').map((country) => ({
+      carrierId: properties.id_reference,
+      country,
+      name: properties.name,
+      delay: properties.delay,
+    }));
+  });
 }
 
 /**

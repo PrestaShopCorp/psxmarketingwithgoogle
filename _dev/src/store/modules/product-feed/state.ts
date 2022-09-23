@@ -18,7 +18,7 @@
  */
 
 import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
-import {DeliveryDetail} from '../../../providers/shipping-settings-provider';
+import {DeliveryDetail, ShopShippingInterface} from '@/providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
 import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
@@ -36,7 +36,7 @@ export interface ProductFeedStatus {
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
   estimateCarrier: CustomCarrier;
-  shippingSettings: object[];
+  shippingSettings: ShopShippingInterface[];
   deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
   // Deprecated: Kept for backward compatibility with old product feed.
