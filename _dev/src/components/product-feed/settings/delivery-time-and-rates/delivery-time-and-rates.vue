@@ -59,7 +59,7 @@ import TargetCountries from '@/components/product-feed/settings/delivery-time-an
 import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/import-method/shipping-settings.vue';
 import {RateType} from '@/enums/product-feed/rate';
 import {OfferType} from '@/enums/product-feed/offer';
-import {validateCarrier, createCustomCarriersTemplate} from '@/providers/shipping-rate-provider';
+import {validateCarrier, createCustomCarriersTemplate, CustomCarrier} from '@/providers/shipping-rate-provider';
 import {DeliveryDetail, validateDeliveryDetail} from '@/providers/shipping-settings-provider';
 import CustomRate from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-rate.vue';
 import CountriesFormList from './estimate-method/countries-form-list.vue';
@@ -104,11 +104,19 @@ export default Vue.extend({
 
       return carriers;
     },
+    getCurrency(): string {
+      return this.$store.getters['app/GET_CURRENT_CURRENCY'];
+    },
     estimateCarriersToConfigure() {
       const carriersFromStore = this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS']?.filter((carrier) => carrier.rate === this.rateChosen);
+      // const carriersFromStore = this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS'];
 
       if (carriersFromStore.length === 0) {
-        return createCustomCarriersTemplate(this.rateChosen, this.selectedCountries);
+        return createCustomCarriersTemplate(
+          this.rateChosen,
+          this.selectedCountries,
+          this.getCurrency,
+        );
       }
 
       return carriersFromStore;
@@ -188,7 +196,10 @@ export default Vue.extend({
     },
     saveCarriersDetails(): void {
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
-        localStorage.setItem('productFeed-customCarriers', JSON.stringify(this.estimateCarriers));
+        this.estimateCarriers.forEach((c: CustomCarrier) => {
+          c.rate = this.rateChosen;
+        });
+        localStorage.setItem('productFeed-estimateCarriers', JSON.stringify(this.estimateCarriers));
         localStorage.setItem('productFeed-rateChosen', JSON.stringify(this.rateChosen));
       } else if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
         localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
@@ -225,6 +236,9 @@ export default Vue.extend({
   mounted() {
     if (!this.$store.state.productFeed.settings.deliveryDetails.length) {
       this.refreshComponent();
+    }
+    if (this.countries.length === 1) {
+      this.rateChosen = RateType.RATE_ALL_COUNTRIES;
     }
   },
 });
