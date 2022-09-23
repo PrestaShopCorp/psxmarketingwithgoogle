@@ -64,14 +64,14 @@
 <script lang="ts">
 import {VueShowdown} from 'vue-showdown';
 import {BFormRadio, BFormGroup} from 'bootstrap-vue';
-import Vue from 'vue';
+import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'ShippingSetup',
   components: {
     ActionsButtons,
@@ -105,10 +105,16 @@ export default Vue.extend({
       }
       return null;
     },
+    validateStep(): boolean {
+      return this.chosenShippingSetup !== null;
+    },
     cancel(): void {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     nextStep(): void {
+      if (this.validateStep() === false) {
+        return;
+      }
       this.loading = true;
       this.$store.commit('productFeed/SET_SHIPPING_SETUP_SELECTED', this.chosenShippingSetup);
       this.$segment.track('[GGL] Product feed config - Step 1 with Config my shipping settings now', {
