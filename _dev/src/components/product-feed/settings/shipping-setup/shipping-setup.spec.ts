@@ -3,10 +3,9 @@
  */
 import Vuex from 'vuex';
 
-// Import this file first to init mock on window
-import {mount} from '@vue/test-utils';
+import {mount, Wrapper} from '@vue/test-utils';
 import {BFormRadio} from 'bootstrap-vue';
-import config, {cloneStore} from '@/../tests/init';
+import {addBootstrapToVue, cloneStore, localVue} from '@/../tests/init';
 import ShippingSetup from './shipping-setup.vue';
 import {
   productFeed,
@@ -28,15 +27,17 @@ describe('shipping-setup.vue', () => {
     };
     return storeDisabledOrNotConfigured;
   };
-  const getWrapper = (settings: Partial<ProductFeedSettings> = {}) => mount(ShippingSetup, {
-    propsData: {
-      isEnabled: false,
-      badges: [],
-      loading: false,
-    },
-    ...config,
-    store: new Vuex.Store(getStore(settings)),
-  });
+  const getWrapper = (settings: Partial<ProductFeedSettings> = {}): Wrapper<any, Element> => mount(
+    ShippingSetup,
+    {
+      localVue,
+      propsData: {
+        isEnabled: false,
+        badges: [],
+        loading: false,
+      },
+      store: new Vuex.Store(getStore(settings)),
+    });
 
   it('displays unselected options by default', () => {
     const wrapper = getWrapper();
@@ -70,5 +71,14 @@ describe('shipping-setup.vue', () => {
     expect(wrapper.find('[data-test-id="previousButton"]').exists()).toBe(false);
     expect(wrapper.find('[data-test-id="continueButton"]').exists()).toBe(true);
     expect(wrapper.find('[data-test-id="cancelButton"]').exists()).toBe(true);
+  });
+
+  it('checks one option is selected before allowing to continue', () => {
+    const wrapper = getWrapper();
+
+    expect(wrapper.vm.validateStep()).toBe(false);
+
+    wrapper.setData({chosenShippingSetup: ShippingSetupOption.ESTIMATE});
+    expect(wrapper.vm.validateStep()).toBe(true);
   });
 });
