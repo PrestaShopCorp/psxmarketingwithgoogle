@@ -21,7 +21,7 @@
                   {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.carrierName') }}
                 </span>
                 <b-button
-                  class="p-0 ml-1"
+                  class="p-0 ml-1 align-text-top"
                   variant="text"
                   v-b-tooltip:psxMktgWithGoogleApp
                   :title="''"
