@@ -5,12 +5,12 @@
     </p>
     <target-countries
       @countrySelected="countries = $event;dataUpdated()"
-      :countries="countries"
+      :countries="selectedCountries"
       :shipping-setup-option="getShippingValueSetup"
     />
     <shipping-settings
       v-if="getShippingValueSetup === ShippingSetupOption.IMPORT"
-      :countries="countries"
+      :countries="selectedCountries"
       :carriers="carriersToConfigure"
       :display-validation-errors="displayValidationErrors"
       @dataUpdated="carriers = $event;dataUpdated()"
@@ -18,7 +18,8 @@
     />
 
     <custom-carrier-form
-      v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE && countries.length > 0"
+      v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE
+        && selectedCountries.length > 0"
       :custom-carrier="customCarrier"
       :display-validation-errors="displayValidationErrors"
       @dataUpdated="customCarrier = $event;dataUpdated()"
@@ -56,7 +57,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      countries: this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
+      countries: null,
       displayValidationErrors: false,
       ShippingSetupOption,
       RateType,
@@ -70,7 +71,7 @@ export default Vue.extend({
       return Object.values(ShippingSettingsHeaderType);
     },
     hasMultipleCountries(): boolean {
-      return this.countries.length > 1;
+      return this.selectedCountries.length > 1;
     },
     getShippingValueSetup(): ShippingSetupOption|null {
       return this.$store.getters['productFeed/GET_SHIPPING_SETUP'];
@@ -87,13 +88,16 @@ export default Vue.extend({
     carriersToConfigure() {
       const carriers = this.$store.state.productFeed.settings.deliveryDetails
         .filter(
-          (carrier: DeliveryDetail) => this.countries.includes(carrier.country),
+          (carrier: DeliveryDetail) => this.selectedCountries.includes(carrier.country),
         );
 
       return carriers;
     },
     getCurrency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
+    },
+    selectedCountries(): string[] {
+      return this.countries || this.$store.getters['productFeed/GET_TARGET_COUNTRIES'] || [];
     },
   },
   methods: {
@@ -114,7 +118,7 @@ export default Vue.extend({
       this.displayValidationErrors = true;
 
       // Validation - Target countries
-      if (!this.countries.length) {
+      if (!this.selectedCountries.length) {
         return false;
       }
 
@@ -143,7 +147,7 @@ export default Vue.extend({
         }
 
         // Each target country has at least one carrier
-        return this.countries.every((country: string) => enabledDeliveryDetails.find(
+        return this.selectedCountries.every((country: string) => enabledDeliveryDetails.find(
           (deliveryDetail: DeliveryDetail) => deliveryDetail.country === country,
         ));
       }
