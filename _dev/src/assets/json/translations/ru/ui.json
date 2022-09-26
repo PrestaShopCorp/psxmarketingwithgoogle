@@ -214,7 +214,7 @@
     "alertFeedSettingSubmissionSuccess": "Вы успешно отправили данные о своих товарах в Merchant Center.  \n После одобрения они будут доступны для бесплатных объявлений и листингов.",
     "alertFailed": "Синхронизация продукта не была успешной. Проверьте возможные причины в [Merchant Center]({0})[:target=\"_blank\"] или обратитесь в [службу поддержки](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Ваша информация о доставке отсутствует.",
-    "alertShippingSettingsMissingDescription": "Чтобы успешно синхронизировать данные о товаре, добавьте информацию о доставке.",
+    "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
     "alertProductFeedDeactivated": "Если синхронизация продуктов деактивирована, новые продукты не будут загружаться в GMC. Сам аккаунт будет продолжать существовать, а срок действия продуктов истечет через 30 дней. Это останавливает показ элементов каталога как в Бесплатных объявлениях, так и в рекламных кампаниях.",
     "alertProductFeedExists": "**Фид товара уже существует**  \n<small>Ваш фид товара уже существует. Вам нужно перезаписать его, чтобы синхронизировать ваш фид товаров PrestaShop. </small>",
     "googleTaxonomyAssociation": "Ассоциация с таксономией Google Product",
@@ -244,7 +244,7 @@
     "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
     "shippingSetup": {
       "title": "Shipping setup",
-      "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
+      "mandatoryStep": "For your products to be shown by Google Merchant Center, shipping is a mandatory step.",
       "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
       "estimateOption": {
         "title": "I can estimate shipping rates & times",
@@ -332,6 +332,8 @@
       "carriersDropdownHiddenLabel": "Копировать информацию перевозчика другим перевозчикам",
       "noCarriersTitle": "У вас нет перевозчиков",
       "noCarriersDescription": "Пожалуйста, перейдите на страницу перевозчиков, чтобы добавить перевозчиков.",
+      "countryNeededTitle": "Select your target country",
+      "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
       "addNewCarriers": "Добавить или обновить перевозчиков",
       "refreshCarriers": "Обновите, если вы отредактировали своих носителей",
       "switchToFlatRate": "Switch to estimation shipping’s set-up"
@@ -949,7 +951,6 @@
     "apply": "Применить",
     "select": "Выберите",
     "editContact": "Редактирование контактной информации",
-    "noCarriers": "Переведите меня на страницу перевозчиков",
     "update": "Обновление",
     "validateSelection": "Проверить правильность выбора",
     "googleProductStatusDefinitions": "Определения статуса продукта Google",
