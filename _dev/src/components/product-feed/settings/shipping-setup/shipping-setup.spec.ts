@@ -89,7 +89,7 @@ describe('shipping-setup.vue', () => {
     wrapper.vm.validateStep();
     expect(wrapper.vm.displayValidationErrors).toBeTruthy();
 
-    wrapper.findComponent(BFormRadio).trigger('click');
+    wrapper.setData({chosenShippingSetup: ShippingSetupOption.ESTIMATE});
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.displayValidationErrors).toBeFalsy();
   });
