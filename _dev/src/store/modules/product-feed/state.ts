@@ -24,6 +24,7 @@ import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {OfferType} from '@/enums/product-feed/offer';
+import {RateType} from '@/enums/product-feed/rate';
 
 export interface ProductFeedStatus {
   nextJobAt?: string;
@@ -182,6 +183,7 @@ export const state: State = {
       carrierName: '',
       countries: [],
       currency: '',
+      rate: RateType.RATE_ALL_COUNTRIES,
       offer: null,
       maxDeliveryTime: null,
       minDeliveryTime: null,

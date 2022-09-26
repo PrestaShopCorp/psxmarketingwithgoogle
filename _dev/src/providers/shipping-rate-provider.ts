@@ -1,4 +1,5 @@
 import {OfferType} from '@/enums/product-feed/offer';
+import {RateType} from '@/enums/product-feed/rate';
 
 export type freeShippingOverAmount = {
   shippingCost: number|null;
@@ -12,6 +13,7 @@ export type flatShippingRate = {
 export type CustomCarrier = {
   carrierName: string;
   offer: OfferType|null;
+  rate: RateType;
   countries: string[];
   currency: string;
   maxDeliveryTime: number|null;
@@ -90,6 +92,7 @@ export function generateCustomCarrier(): CustomCarrier {
     carrierName: '',
     countries: [],
     currency: '',
+    rate: RateType.RATE_ALL_COUNTRIES,
     offer: null,
     maxDeliveryTime: null,
     minDeliveryTime: null,
