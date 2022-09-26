@@ -84,7 +84,7 @@
         class="bg-white"
       >
         <b-tr
-          v-if="!carriers.length"
+          v-if="!countries.length"
           data-test-id="no-carriers"
         >
           <b-td
@@ -94,20 +94,11 @@
             <h4
               class="font-weight-normal mb-1 mt-5"
             >
-              {{ $t('productFeedSettings.deliveryTimeAndRates.noCarriersTitle') }}
+              {{ $t('productFeedSettings.deliveryTimeAndRates.countryNeededTitle') }}
             </h4>
             <p class="text-secondary mb-1">
-              {{ $t('productFeedSettings.deliveryTimeAndRates.noCarriersDescription') }}
+              {{ $t('productFeedSettings.deliveryTimeAndRates.countryNeededDescription') }}
             </p>
-            <b-button
-              variant="outline-secondary"
-              :href="$store.getters['app/GET_CARRIERS_URL']"
-              class="mb-5"
-              target="_blank"
-              size="sm"
-            >
-              {{ $t('cta.noCarriers') }}
-            </b-button>
           </b-td>
         </b-tr>
         <table-row-carrier

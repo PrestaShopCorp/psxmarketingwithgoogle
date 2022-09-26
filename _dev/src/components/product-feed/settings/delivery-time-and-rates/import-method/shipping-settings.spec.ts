@@ -38,10 +38,10 @@ describe('shipping-settings.vue', () => {
     expect(wrapper.find('#table-carriers').isVisible()).toBe(true);
   });
 
-  it('shows a default message when there are no carriers', () => {
+  it('shows a default message when there are no selected countries', () => {
     const wrapper = buildWrapper({
       propsData: {
-        countries: ['FR'],
+        countries: [],
         carriers: [],
         displayValidationErrors: false,
       },
