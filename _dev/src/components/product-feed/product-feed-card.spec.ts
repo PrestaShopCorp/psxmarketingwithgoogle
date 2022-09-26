@@ -180,7 +180,7 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('warning');
-    expect(wrapper.find('b-alert p').text()).toBe('We have made some changes on product feed configuration, we recommend you re-configure your shipping setup with the option that suits your workflow.');
+    expect(wrapper.find('b-alert p').text()).toBe('In order to successfully synchronize your product feed, please add shipping information.');
   });
 
   it('shows error when api error', () => {
