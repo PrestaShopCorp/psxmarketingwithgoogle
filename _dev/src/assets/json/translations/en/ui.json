@@ -264,6 +264,11 @@
       }
     },
     "deliveryTimeAndRates": {
+      "tooltips": {
+        "carrierName": "The carrier name will help you identify the carriers when it is created with the estimation method. It is limited to 90 characters",
+        "freeShippingOverAmount": "Enter the value of minimum spend required for free shipping",
+        "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
+      },
       "title": "Delivery time & rates",
       "rateAndDelivery": "Rate & delivery timeline",
       "deliveryInfo": "Enter the minimum and maximum days required for delivery",

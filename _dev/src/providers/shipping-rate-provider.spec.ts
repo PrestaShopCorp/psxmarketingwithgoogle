@@ -1,4 +1,5 @@
 import {OfferType} from '@/enums/product-feed/offer';
+import {RateType} from '@/enums/product-feed/rate';
 import {
   validateCarrier,
   validateDeliveryTime,
@@ -10,6 +11,7 @@ import {
 const carrier: CustomCarrier = {
   carrierName: '',
   countries: [],
+  rate: RateType.RATE_ALL_COUNTRIES,
   currency: '',
   offer: OfferType.FREE_SHIPPING,
   maxDeliveryTime: 0,
@@ -43,6 +45,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
     const mock = {
       carrierName: '',
       offer: OfferType.FREE_SHIPPING,
+      rate: RateType.RATE_ALL_COUNTRIES,
       countries: [],
       currency: '',
       minDeliveryTime: 10,
@@ -63,6 +66,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
     const mock = {
       carrierName: '',
       offer: OfferType.FREE_SHIPPING,
+      rate: RateType.RATE_ALL_COUNTRIES,
       countries: [],
       currency: '',
       minDeliveryTime: -42,
@@ -83,6 +87,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
     const mock = {
       carrierName: '',
       offer: OfferType.FLAT_SHIPPING_RATE,
+      rate: RateType.RATE_ALL_COUNTRIES,
       minDeliveryTime: 0,
       maxDeliveryTime: 0,
       countries: [],
@@ -102,6 +107,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
   it('should fails when selected FREE_SHIPPING_OVER_AMOUNT and amount is wrong', () => {
     const mock = {
       carrierName: '',
+      rate: RateType.RATE_ALL_COUNTRIES,
       offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
       minDeliveryTime: 0,
       maxDeliveryTime: 0,
@@ -122,6 +128,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
   it('should fails if carrier is not filled corretly', () => {
     const mock = {
       carrierName: 'DLH',
+      rate: RateType.RATE_ALL_COUNTRIES,
       offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
       minDeliveryTime: 5,
       maxDeliveryTime: 7,

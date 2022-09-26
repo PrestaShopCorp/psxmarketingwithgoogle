@@ -20,6 +20,7 @@ const buildWrapper = (
 describe('target-countries.vue', () => {
   it('removes countries from the selection if they are not part of the options', async () => {
     const store = cloneStore();
+    store.modules.app.state.psxMktgWithGoogleActiveCountries = ['FR', 'US'];
     store.modules.app.state.psxMktgWithGoogleShopCurrency.isoCode = 'EUR';
 
     const wrapper = buildWrapper({
@@ -43,6 +44,21 @@ describe('target-countries.vue / Estimating carriers', () => {
   it('allows to select any countries related to the currency (EUR)', () => {
     const store = cloneStore();
     store.modules.app.state.psxMktgWithGoogleShopCurrency.isoCode = 'EUR';
+    store.modules.app.state.psxMktgWithGoogleActiveCountries = [
+      'AT',
+      'BE',
+      'FI',
+      'FR',
+      'ES',
+      'DE',
+      'GR',
+      'IE',
+      'IT',
+      'NL',
+      'PT',
+      'SK',
+      'ES',
+    ];
 
     const wrapper = buildWrapper({
       propsData: {
@@ -72,6 +88,13 @@ describe('target-countries.vue / Estimating carriers', () => {
   it('allows to select any countries related to the currency (USD)', () => {
     const store = cloneStore();
     store.modules.app.state.psxMktgWithGoogleShopCurrency.isoCode = 'USD';
+    store.modules.app.state.psxMktgWithGoogleActiveCountries = [
+      'EC',
+      'SV',
+      'PR',
+      'US',
+      'ZW',
+    ];
 
     const wrapper = buildWrapper({
       propsData: {
@@ -94,6 +117,9 @@ describe('target-countries.vue / Estimating carriers', () => {
   it('allows to select any countries related to the currency (SEK)', () => {
     const store = cloneStore();
     store.modules.app.state.psxMktgWithGoogleShopCurrency.isoCode = 'SEK';
+    store.modules.app.state.psxMktgWithGoogleActiveCountries = [
+      'SE',
+    ];
 
     const wrapper = buildWrapper({
       propsData: {
@@ -117,6 +143,10 @@ describe('target-countries.vue / Importing carriers', () => {
     const store = cloneStore();
     store.modules.app.state.psxMktgWithGoogleShopCurrency.isoCode = 'EUR';
     store.modules.productFeed.state = cloneDeep(productFeed);
+    store.modules.app.state.psxMktgWithGoogleActiveCountries = [
+      'FR',
+      'IT',
+    ];
 
     const wrapper = buildWrapper({
       propsData: {
@@ -263,6 +293,10 @@ describe('target-countries.vue / Campaign form', () => {
 const testCheckingTaxPanelIsVisible = async (method: ShippingSetupOption) => {
   const store = cloneStore();
   store.modules.app.state.psxMktgWithGoogleShopCurrency.isoCode = 'USD';
+  store.modules.app.state.psxMktgWithGoogleActiveCountries = [
+    'EC',
+    'US',
+  ];
 
   const wrapper = buildWrapper({
     propsData: {

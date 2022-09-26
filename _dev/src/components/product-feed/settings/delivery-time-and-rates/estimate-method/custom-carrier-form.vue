@@ -21,10 +21,10 @@
                   {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.carrierName') }}
                 </span>
                 <b-button
-                  class="p-0 ml-1"
+                  class="p-0 ml-1 align-text-top"
                   variant="text"
                   v-b-tooltip:psxMktgWithGoogleApp
-                  :title="''"
+                  :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.carrierName')"
                 >
                   <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
                     info_outlined
@@ -39,8 +39,8 @@
                   v-model="customCarrier.carrierName"
                   @input="$emit('dataUpdated', customCarrier)"
                   :state="validateCarrierName"
-                  placeholder="Description"
-                  max="90"
+                  :placeholder="$t('productFeedSettings.attributeMapping.description')"
+                  maxlength="90"
                 />
               </div>
             </div>
@@ -69,7 +69,7 @@
             </div>
           </b-col>
           <b-col>
-            <b-row>
+            <b-row class="mb-4">
               <b-col>
                 <div class="deliveryTime">
                   <div
@@ -96,7 +96,7 @@
                   />
                   <b-input-group
                     :append="$t('general.days')"
-                    class="ps_gs-carrier__input-number-group"
+                    class="ps_gs-carrier__input-number-group flex-nowrap"
                   >
                     <b-form-input
                       type="number"
@@ -142,6 +142,8 @@
                         type="number"
                         class="ps_gs-carrier__input-number no-arrows"
                         size="sm"
+                        step="0.01"
+                        placeholder="5.99"
                         v-model.number="customCarrier[customCarrier.offer].shippingCost"
                         @input="$emit('dataUpdated', customCarrier)"
                         :state="validateAmountRate(customCarrier[customCarrier.offer].shippingCost)"
@@ -153,7 +155,7 @@
               <div v-else>
                 <b-row class="freeShippingOverAmount">
                   <b-col class="align-self-center">
-                    <div class="mb-1">
+                    <div class="mb-1 w-75">
                       <span
                         class="font-weight-600"
                       >
@@ -162,10 +164,10 @@
                         }}
                       </span>
                       <b-button
-                        class="p-0 ml-1"
+                        class="p-0 ml-1 align-text-top"
                         variant="text"
                         v-b-tooltip:psxMktgWithGoogleApp
-                        :title="''"
+                        :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.freeShippingOverAmount')"
                       >
                         <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
                           info_outlined
@@ -182,6 +184,8 @@
                         type="number"
                         class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
                         size="sm"
+                        step="0.01"
+                        placeholder="42.99"
                         v-model.number="customCarrier[customCarrier.offer].orderPrice"
                         @input="$emit('dataUpdated', customCarrier)"
                         :state="validateAmountRate(customCarrier[customCarrier.offer].orderPrice)"
@@ -198,10 +202,10 @@
                         {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rate') }}
                       </span>
                       <b-button
-                        class="p-0 ml-1"
+                        class="p-0 ml-1 align-text-top"
                         variant="text"
                         v-b-tooltip:psxMktgWithGoogleApp
-                        :title="''"
+                        :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.shippingRate')"
                       >
                         <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
                           info_outlined
@@ -218,6 +222,8 @@
                         type="number"
                         class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
                         size="sm"
+                        step="0.01"
+                        placeholder="5.99"
                         :state="validateAmountRate(customCarrier[customCarrier.offer].shippingCost)"
                         v-model.number="customCarrier[customCarrier.offer].shippingCost"
                         @input="$emit('dataUpdated', customCarrier)"
@@ -312,8 +318,14 @@ export default Vue.extend({
     },
   },
   methods: {
-    validateAmountRate(amount: number): boolean|null {
-      return Number.isInteger(amount) && amount >= 0 ? null : false;
+    validateAmountRate(amount: number|null): boolean|null {
+      if (!this.displayValidationErrors) {
+        return null;
+      }
+      if (amount === null) {
+        return false;
+      }
+      return !Number.isNaN(amount) && amount > 0 ? null : false;
     },
   },
 });

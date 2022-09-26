@@ -24,6 +24,7 @@ export const productFeed: State = {
     shippingSetup: null,
     estimateCarrier: {
       carrierName: "",
+      rate: null,
       offer: null,
       maxDeliveryTime: 0,
       minDeliveryTime: 0,

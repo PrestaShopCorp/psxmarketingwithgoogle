@@ -1,21 +1,23 @@
 import {OfferType} from '@/enums/product-feed/offer';
+import {RateType} from '@/enums/product-feed/rate';
 
 export type freeShippingOverAmount = {
-  shippingCost: number;
-  orderPrice: number;
+  shippingCost: number|null;
+  orderPrice: number|null;
 }
 
 export type flatShippingRate = {
-  shippingCost: number;
+  shippingCost: number|null;
 }
 
 export type CustomCarrier = {
   carrierName: string;
   offer: OfferType|null;
+  rate: RateType|null;
   countries: string[];
   currency: string;
-  maxDeliveryTime: number;
-  minDeliveryTime: number;
+  maxDeliveryTime: number|null;
+  minDeliveryTime: number|null;
   freeShippingOverAmount: freeShippingOverAmount;
   flatShippingRate: flatShippingRate;
 }
@@ -57,15 +59,15 @@ export function validateDeliveryTime(carrier: CustomCarrier): boolean {
 
 export function validateOffers(carrier: CustomCarrier): boolean {
   if (carrier.offer === OfferType.FLAT_SHIPPING_RATE) {
-    return Number.isInteger(carrier.flatShippingRate.shippingCost)
-      && Number(carrier.flatShippingRate.shippingCost) >= 0;
+    return !Number.isNaN(carrier.flatShippingRate.shippingCost)
+      && Number(carrier.flatShippingRate.shippingCost) > 0;
   }
 
   if (carrier.offer === OfferType.FREE_SHIPPING_OVER_AMOUNT) {
-    return Number.isInteger(carrier.freeShippingOverAmount.orderPrice)
-      && Number.isInteger(carrier.freeShippingOverAmount.shippingCost)
-      && Number(carrier.freeShippingOverAmount.orderPrice) >= 0
-      && Number(carrier.freeShippingOverAmount.shippingCost) >= 0;
+    return !Number.isNaN(carrier.freeShippingOverAmount.orderPrice)
+      && !Number.isNaN(carrier.freeShippingOverAmount.shippingCost)
+      && Number(carrier.freeShippingOverAmount.orderPrice) > 0
+      && Number(carrier.freeShippingOverAmount.shippingCost) > 0;
   }
 
   return true;
@@ -90,15 +92,16 @@ export function generateCustomCarrier(): CustomCarrier {
     carrierName: '',
     countries: [],
     currency: '',
+    rate: RateType.RATE_ALL_COUNTRIES,
     offer: null,
-    maxDeliveryTime: 0,
-    minDeliveryTime: 0,
+    maxDeliveryTime: null,
+    minDeliveryTime: null,
     [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
-      shippingCost: 0,
-      orderPrice: 0,
+      shippingCost: null,
+      orderPrice: null,
     },
     [OfferType.FLAT_SHIPPING_RATE]: {
-      shippingCost: 0,
+      shippingCost: null,
     },
   };
 }
