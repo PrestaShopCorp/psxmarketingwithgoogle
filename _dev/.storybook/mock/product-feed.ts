@@ -2,7 +2,6 @@ import attributesToMap from "@/store/modules/product-feed/attributes-to-map.json
 import { OfferType } from "@/enums/product-feed/offer";
 import { State, AttributesTypes } from "@/store/modules/product-feed/state";
 import DeliveryType from '@/enums/product-feed/delivery-type';
-import {RateType} from "@/enums/product-feed/rate";
 
 export const productFeed: State = {
   isSyncSummaryLoadingInProgress: false,
@@ -25,7 +24,7 @@ export const productFeed: State = {
     shippingSetup: null,
     estimateCarrier: {
       carrierName: "",
-      rate: RateType.RATE_ALL_COUNTRIES,
+      rate: null,
       offer: null,
       maxDeliveryTime: 0,
       minDeliveryTime: 0,
