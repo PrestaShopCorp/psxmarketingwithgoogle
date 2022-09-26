@@ -54,6 +54,13 @@
         </b-form-radio>
       </div>
     </b-form-group>
+    <p
+      v-if="displayValidationErrors && !stepIsValid"
+      class="text-danger text-small ps_gs-fz-12 d-md-flex justify-content-end"
+    >
+      <!-- eslint-disable-next-line max-len -->
+      {{ $t('productFeedSettings.shippingSetup.validationErrors.needOptionToBeChosen') }}
+    </p>
     <actions-buttons
       :next-step="nextStep"
       @cancelProductFeedSettingsConfiguration="cancel()"
@@ -84,8 +91,14 @@ export default defineComponent({
       tax: null,
       chosenShippingSetup: this.getInitialValueOfShippingSetup(),
       loading: false,
+      displayValidationErrors: false,
       ShippingSetupOption,
     };
+  },
+  computed: {
+    stepIsValid() {
+      return this.chosenShippingSetup !== null;
+    },
   },
   methods: {
     getInitialValueOfShippingSetup(): ShippingSetupOption|null {
@@ -106,7 +119,9 @@ export default defineComponent({
       return null;
     },
     validateStep(): boolean {
-      return this.chosenShippingSetup !== null;
+      this.displayValidationErrors = true;
+
+      return this.stepIsValid;
     },
     cancel(): void {
       this.$emit('cancelProductFeedSettingsConfiguration');
@@ -126,12 +141,16 @@ export default defineComponent({
         this.$router.push({
           name: 'product-feed-settings',
           params: {
-            step: ProductFeedSettingsPages.SHIPPING_SETTINGS
-            ,
+            step: ProductFeedSettingsPages.SHIPPING_SETTINGS,
           },
         });
         window.scrollTo(0, 0);
       });
+    },
+  },
+  watch: {
+    chosenShippingSetup() {
+      this.displayValidationErrors = false;
     },
   },
 

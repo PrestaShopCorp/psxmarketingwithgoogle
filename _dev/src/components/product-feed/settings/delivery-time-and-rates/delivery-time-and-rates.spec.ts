@@ -283,14 +283,14 @@ describe('delivery-time-and-rates.vue', () => {
       ]);
     });
 
-    it('disables the button "Continue" if no carrier is found', () => {
+    it('forbids to continue if no carrier is found', () => {
       const wrapper = buildWrapper();
       wrapper.setData({countries: ['LEULEU']});
 
       expect(wrapper.vm.validateForm()).toBeFalsy();
     });
 
-    it('disables the button "Continue" if no carrier is enabled', () => {
+    it('forbids to continue if no carrier is enabled', () => {
       const wrapper = buildWrapper();
 
       store.modules.productFeed.state.settings.deliveryDetails.map((c) => {
@@ -300,14 +300,14 @@ describe('delivery-time-and-rates.vue', () => {
       expect(wrapper.vm.validateForm()).toBeFalsy();
     });
 
-    it('disables the button "Continue" if one carrier in invalid', () => {
+    it('forbids to continue if one carrier in invalid', () => {
       const wrapper = buildWrapper();
 
       store.modules.productFeed.state.settings.deliveryDetails[2].minTransitTimeInDays = -1;
       expect(wrapper.vm.validateForm()).toBeFalsy();
     });
 
-    it('enables the button "Continue" if all carriers are valid', () => {
+    it('allows to continue if all carriers are valid', () => {
       const wrapper = buildWrapper();
 
       expect(wrapper.vm.validateForm()).toBeTruthy();
