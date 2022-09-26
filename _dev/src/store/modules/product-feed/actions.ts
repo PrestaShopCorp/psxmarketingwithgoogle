@@ -243,8 +243,10 @@ export default {
 
   async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
     // TODO: These call may be already done, so we might remove them
-    await dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS);
-    await dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS);
+    await Promise.allSettled([
+      dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS),
+      dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS),
+    ]);
 
     // Load existing carriers on PrestaShop
     const enabledCarriersFromShop = getEnabledCarriers(
