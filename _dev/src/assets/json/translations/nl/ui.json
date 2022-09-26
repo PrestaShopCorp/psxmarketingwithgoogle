@@ -214,7 +214,7 @@
     "alertFeedSettingSubmissionSuccess": "U heeft met succes uw productgegevens ingediend bij Merchant Center.  \n Eenmaal goedgekeurd, zullen ze beschikbaar zijn voor gratis listings en advertenties.",
     "alertFailed": "Product sync was niet succesvol. Controleer mogelijke redenen in [Merchant Center]({0})[:target=\"_blank\"] of neem contact op met [klantenservice](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Uw verzendgegevens ontbreken.",
-    "alertShippingSettingsMissingDescription": "Om uw productgegevens succesvol te synchroniseren, voeg verzendinformatie toe.",
+    "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
     "alertProductFeedDeactivated": "Als de productsynchronisatie is gedeactiveerd, zullen er geen nieuwe producten naar de GMC worden gepushed. De rekening zelf blijft bestaan en de producten vervallen na 30 dagen. Hierdoor worden de catalogusitems niet meer getoond op zowel de Vrije Advertenties als de advertentiecampagnes.",
     "alertProductFeedExists": "**Er bestaat al een productfeed**  \n<small>Uw productfeed bestaat al. U moet het overschrijven om uw PrestaShop-productfeed te synchroniseren. </small>",
     "googleTaxonomyAssociation": "Google Product taxonomie associatie",
@@ -244,7 +244,7 @@
     "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
     "shippingSetup": {
       "title": "Shipping setup",
-      "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
+      "mandatoryStep": "For your products to be shown by Google Merchant Center, shipping is a mandatory step.",
       "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
       "estimateOption": {
         "title": "I can estimate shipping rates & times",
@@ -332,6 +332,8 @@
       "carriersDropdownHiddenLabel": "Kopieer informatie van de vervoerder naar andere vervoerders",
       "noCarriersTitle": "Je hebt geen vervoerders",
       "noCarriersDescription": "Ga naar de vervoerders pagina om vervoerders toe te voegen",
+      "countryNeededTitle": "Select your target country",
+      "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
       "addNewCarriers": "Vervoerders toevoegen of bijwerken",
       "refreshCarriers": "Vernieuwen als u uw dragers hebt bewerkt",
       "switchToFlatRate": "Switch to estimation shipping’s set-up"
@@ -949,7 +951,6 @@
     "apply": "Solliciteer",
     "select": "Selecteer",
     "editContact": "Contactgegevens bewerken",
-    "noCarriers": "Breng me naar Carriers pagina",
     "update": "Bijwerken",
     "validateSelection": "Selectie bevestigen",
     "googleProductStatusDefinitions": "Google productstatus definities",
