@@ -34,9 +34,7 @@ export default {
     },
   },
   beforeCreate() {
-    this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-    this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS');
-    this.$store.dispatch('productFeed/GET_TOTAL_PRODUCTS_READY_TO_SYNC');
+    this.$store.dispatch('productFeed/WARMUP_STORE');
   },
 
 };
