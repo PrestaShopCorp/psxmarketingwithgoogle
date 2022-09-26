@@ -214,7 +214,7 @@
     "alertFeedSettingSubmissionSuccess": "Hai inviato con successo i dati dei tuoi prodotti al Merchant Center.  \n Una volta approvati, saranno disponibili per inserzioni e annunci gratuiti.",
     "alertFailed": "La sincronizzazione dei prodotti non è riuscita. Controlla le possibili ragioni in [Merchant Center]({0})[:target=\"_blank\"] o contatta il [supporto clienti](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. [Add shipping settings]({0})[:target=\\\"_blank\\\"]",
-    "alertShippingSettingsMissingDescription": "Per sincronizzare con successo i dati dei tuoi prodotti, aggiungi le informazioni di spedizione.",
+    "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
     "alertProductFeedDeactivated": "Se la sincronizzazione dei prodotti è disattivata, non ci saranno nuovi prodotti spinti nel GMC. L'account stesso continuerà ad esistere e i prodotti scadranno dopo 30 giorni. Questo impedisce agli articoli del catalogo di essere visualizzati sia nelle inserzioni gratuite che nelle campagne pubblicitarie.",
     "alertProductFeedExists": "**A product feed already exists**  \n  <small>Your product feed already exists. You need to overwrite it to sync your PrestaShop product feed.</small>",
     "googleTaxonomyAssociation": "Associazione della tassonomia dei prodotti di Google",
@@ -244,7 +244,7 @@
     "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
     "shippingSetup": {
       "title": "Shipping setup",
-      "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
+      "mandatoryStep": "For your products to be shown by Google Merchant Center, shipping is a mandatory step.",
       "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
       "estimateOption": {
         "title": "I can estimate shipping rates & times",
@@ -332,6 +332,8 @@
       "carriersDropdownHiddenLabel": "Copiare le informazioni del vettore ad altri vettori",
       "noCarriersTitle": "Non hai nessun vettore di spedizione",
       "noCarriersDescription": "Vai alla pagina dei vettori per aggiungere i vettori di spedizione",
+      "countryNeededTitle": "Select your target country",
+      "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
       "addNewCarriers": "Aggiungere o aggiornare i vettori",
       "refreshCarriers": "Aggiorna se hai modificato i tuoi vettori",
       "switchToFlatRate": "Switch to estimation shipping’s set-up"
@@ -949,7 +951,6 @@
     "apply": "Applica",
     "select": "Seleziona",
     "editContact": "Modifica le informazioni di contatto",
-    "noCarriers": "Portami alla pagina dei vettori",
     "update": "Aggiornare",
     "validateSelection": "Convalidare la selezione",
     "googleProductStatusDefinitions": "Definizioni dello stato del prodotto di Google",

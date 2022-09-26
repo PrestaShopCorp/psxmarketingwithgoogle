@@ -214,7 +214,7 @@
     "alertFeedSettingSubmissionSuccess": "Vous avez soumis vos produits avec succès au Merchant Center.  \n Une fois approuvés, ils seront disponibles pour les fiches gratuites et publicités.",
     "alertFailed": "La synchronisation produit a échoué. Vérifiez les raisons possibles dans [Merchant Center]({0})[:target=\"_blank\"] ou contactez le [service client](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Vos informations de livraison sont manquantes.",
-    "alertShippingSettingsMissingDescription": "Pour synchroniser avec succès les données de vos produits, ajoutez des informations d'expédition.",
+    "alertShippingSettingsMissingDescription": "Pour synchroniser avec succès les données de vos produits, veuillez ajouter des informations d'expédition.",
     "alertProductFeedDeactivated": "Si la synchronisation produit est désactivée, il n'y aura pas de nouveaux produits poussés dans le GMC. Le compte lui-même continuera d'exister et les produits expireront dans 30 jours. Ceci arrête la diffusion des produits à la fois sur les fiches gratuites et sur les campagnes publicitaires.",
     "alertProductFeedExists": "**Un flux produits existe déjà**  \n<small>Votre flux de produits existe déjà. Vous devez l'écraser pour synchroniser votre flux de produits PrestaShop. </small>",
     "googleTaxonomyAssociation": "Association à la taxonomie de produits Google",
@@ -232,7 +232,7 @@
     "breadcrumb2": "Paramètres du flux produit",
     "steps": {
       "shippingSetup": "Configuration de l'expédition",
-      "deliveryTimesAndRates": "Delai et tarifs de livraison",
+      "deliveryTimesAndRates": "Délai et tarifs de livraison",
       "attributeMapping": "Cartographie des attributs",
       "categoryMapping": "Mapping des catégories",
       "summary": "Résumé",
@@ -244,7 +244,7 @@
     "submissionExplanation": "Veuillez noter que les données seront stockées à chaque étape mais ne seront envoyées qu'à l'étape finale",
     "shippingSetup": {
       "title": "Configuration de l'expédition",
-      "mandatoryStep": "Pour que vos produits soient affichés par Google Merchant Centre, la configuration de l'expédition est une étape obligatoire.",
+      "mandatoryStep": "Pour que vos produits soient affichés par Google Merchant Center, la configuration des paramètres de livraison est une étape obligatoire.",
       "stepExplanation": "Cela peut aider les clients qui consultent vos produits sur Google à voir vos tarifs et délais de livraison.",
       "estimateOption": {
         "title": "Je peux estimer les tarifs et les délais d'expédition",
@@ -261,7 +261,7 @@
       }
     },
     "deliveryTimeAndRates": {
-      "title": "Delai et tarifs de livraison",
+      "title": "Délai et tarifs de livraison",
       "rateAndDelivery": "Tarif et délai de livraison",
       "deliveryInfo": "Indiquez le nombre de jour minimum et maximum requis pour la livraison",
       "customRate": {
@@ -269,7 +269,7 @@
         "rateTitle": "Tarif identique pour tous les pays cibles",
         "rateDesc": "Je peux estimer un tarif d'expédition et un délai de livraison uniques pour tous les pays",
         "customTitle": "Tarifs personnalisés par pays",
-        "customDesc": "Je voudrais définir des tarifs et des horaires spécifiques pour chaque pays"
+        "customDesc": "Je voudrais définir des tarifs et des délais spécifiques pour chaque pays"
       },
       "estimateStep": {
         "error": "Veuillez remplir les informations requises",
@@ -332,6 +332,8 @@
       "carriersDropdownHiddenLabel": "Copier l'information du transporteur vers d'autres transporteurs",
       "noCarriersTitle": "Vous n'avez aucun transporteur de livraison",
       "noCarriersDescription": "Veuillez vous rendre à la page des transporteurs pour ajouter des transporteurs",
+      "countryNeededTitle": "Sélectionnez votre pays cible",
+      "countryNeededDescription": "Veuillez sélectionner les pays cibles afin d'afficher les paramètres d'expédition correspondants dans le tableau",
       "addNewCarriers": "Ajouter ou mettre à jour des transporteurs",
       "refreshCarriers": "Rafraîchir si vous avez modifié vos transporteurs",
       "switchToFlatRate": "Basculez vers la configuration estimative des modes d'expédition"
@@ -949,7 +951,6 @@
     "apply": "Appliquer",
     "select": "Sélectionner",
     "editContact": "Modifier les informations de contact",
-    "noCarriers": "Aller à la page Transporteurs",
     "update": "Mettre à jour",
     "validateSelection": "Valider la sélection",
     "googleProductStatusDefinitions": "Définitions du statut des produits sur Google",

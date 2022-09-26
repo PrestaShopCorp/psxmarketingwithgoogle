@@ -214,7 +214,7 @@
     "alertFeedSettingSubmissionSuccess": "Você submeteu com sucesso seus dados de produto ao Merchant Center.  \n Uma vez aprovados, eles estarão disponíveis para anúncios e listagens gratuitas.",
     "alertFailed": "A sincronização de produtos não foi bem sucedida. Verifique as possíveis razões no [Merchant Center]({0})[:target=\"_blank\"] ou contacte [apoio ao cliente](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "A sua informação de envio está em falta.",
-    "alertShippingSettingsMissingDescription": "Para sincronizar com sucesso os dados do seu produto, adicione as informações de envio.",
+    "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
     "alertProductFeedDeactivated": "Se a sincronização do produto estiver desativada, não haverá novos produtos empurrados para o GMC. A conta em si continuará a existir e os produtos expirarão após 30 dias. Isto impede que os itens do catálogo sejam apresentados tanto nas listagens gratuitas como nas campanhas publicitárias.",
     "alertProductFeedExists": "**Já existe uma alimentação de produto**  \n<small>A alimentação do seu produto já existe. Você precisa sobrescrevê-lo para sincronizar a alimentação do seu produto PrestaShop. </small>",
     "googleTaxonomyAssociation": "Associação de taxonomia de produtos Google",
@@ -244,7 +244,7 @@
     "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
     "shippingSetup": {
       "title": "Shipping setup",
-      "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
+      "mandatoryStep": "For your products to be shown by Google Merchant Center, shipping is a mandatory step.",
       "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
       "estimateOption": {
         "title": "I can estimate shipping rates & times",
@@ -332,6 +332,8 @@
       "carriersDropdownHiddenLabel": "Copiar informações da transportadora para outras transportadoras",
       "noCarriersTitle": "Você não tem nenhum transportador",
       "noCarriersDescription": "Dirija-se à página das transportadoras para adicionar transportadoras",
+      "countryNeededTitle": "Select your target country",
+      "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
       "addNewCarriers": "Adicionar ou atualizar portadores",
       "refreshCarriers": "Atualize se você editou seus portadores",
       "switchToFlatRate": "Switch to estimation shipping’s set-up"
@@ -949,7 +951,6 @@
     "apply": "Candidate-se",
     "select": "Selecione",
     "editContact": "Editar informações de contato",
-    "noCarriers": "Leve-me para a página dos transportadores",
     "update": "Atualizar",
     "validateSelection": "Validar a seleção",
     "googleProductStatusDefinitions": "Definições de status de produto do Google",
