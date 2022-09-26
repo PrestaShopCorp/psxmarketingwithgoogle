@@ -77,8 +77,20 @@ describe('shipping-setup.vue', () => {
     const wrapper = getWrapper();
 
     expect(wrapper.vm.validateStep()).toBe(false);
+    expect(wrapper.vm.displayValidationErrors).toBeTruthy();
 
     wrapper.setData({chosenShippingSetup: ShippingSetupOption.ESTIMATE});
     expect(wrapper.vm.validateStep()).toBe(true);
+  });
+
+  it('hides the error message when we click on one option', async () => {
+    const wrapper = getWrapper();
+
+    wrapper.vm.validateStep();
+    expect(wrapper.vm.displayValidationErrors).toBeTruthy();
+
+    wrapper.findComponent(BFormRadio).trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.displayValidationErrors).toBeFalsy();
   });
 });
