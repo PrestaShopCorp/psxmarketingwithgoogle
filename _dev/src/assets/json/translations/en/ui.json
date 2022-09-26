@@ -258,6 +258,9 @@
       },
       "laterOption": {
         "summary": "Setup later"
+      },
+      "validationErrors": {
+        "needOptionToBeChosen": "You need to select one option to continue"
       }
     },
     "deliveryTimeAndRates": {
