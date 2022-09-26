@@ -93,7 +93,7 @@ describe('target-countries.vue / Estimating carriers', () => {
       'SV',
       'PR',
       'US',
-      'ZW'
+      'ZW',
     ];
 
     const wrapper = buildWrapper({
@@ -118,7 +118,7 @@ describe('target-countries.vue / Estimating carriers', () => {
     const store = cloneStore();
     store.modules.app.state.psxMktgWithGoogleShopCurrency.isoCode = 'SEK';
     store.modules.app.state.psxMktgWithGoogleActiveCountries = [
-      'SE'
+      'SE',
     ];
 
     const wrapper = buildWrapper({
@@ -145,7 +145,7 @@ describe('target-countries.vue / Importing carriers', () => {
     store.modules.productFeed.state = cloneDeep(productFeed);
     store.modules.app.state.psxMktgWithGoogleActiveCountries = [
       'FR',
-      'IT'
+      'IT',
     ];
 
     const wrapper = buildWrapper({
@@ -295,7 +295,7 @@ const testCheckingTaxPanelIsVisible = async (method: ShippingSetupOption) => {
   store.modules.app.state.psxMktgWithGoogleShopCurrency.isoCode = 'USD';
   store.modules.app.state.psxMktgWithGoogleActiveCountries = [
     'EC',
-    'US'
+    'US',
   ];
 
   const wrapper = buildWrapper({
