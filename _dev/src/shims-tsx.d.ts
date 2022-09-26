@@ -10,6 +10,7 @@ declare global {
 
     interface Window {
       psxMtgWithGoogleDefaultShopCountry: Array<string>,
+      psxMktgWithGoogleActiveCountries: String[],
       contextPsAccounts: any;
       translations: any;
       i18nSettings: {
