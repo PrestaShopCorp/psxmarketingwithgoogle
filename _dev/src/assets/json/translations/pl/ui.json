@@ -214,7 +214,7 @@
     "alertFeedSettingSubmissionSuccess": "Pomyślnie przesłałeś swoje dane produktu do Merchant Center.  \n Po zatwierdzeniu, będą one dostępne dla darmowych aukcji i ogłoszeń.",
     "alertFailed": "Synchronizacja danych o produkcie nie powiodła się. Sprawdź możliwe przyczyny w [Merchant Center]({0})[:target=\"_blank\"] lub skontaktuj się z [działem obsługi klienta](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Brakuje informacji o wysyłce.",
-    "alertShippingSettingsMissingDescription": "Dodaj informacje o wysyłce, aby pomyślnie zsynchronizować dane o produkcie.",
+    "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
     "alertProductFeedDeactivated": "Jeśli synchronizacja danych o produkcie będzie wyłączona, nowe produkty nie zostaną przesłane do Google Merchant Center. Konto nadal będzie istniało, a produkty wygasną po 30 dniach. Spowoduje to zatrzymanie wyświetlania bezpłatnych informacji o Twoich produktach i kampanii produktowych.",
     "alertProductFeedExists": "**A product feed already exists**  \n<small>Twój product feed już istnieje. Musisz go nadpisać, aby zsynchronizować swój kanał produktowy PrestaShop. </small>",
     "googleTaxonomyAssociation": "Skojarzenie taksonomii Produktu Google",
@@ -244,7 +244,7 @@
     "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
     "shippingSetup": {
       "title": "Shipping setup",
-      "mandatoryStep": "For your products to be shown by Google Merchant Centre, shipping is a mandatory step.",
+      "mandatoryStep": "For your products to be shown by Google Merchant Center, shipping is a mandatory step.",
       "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
       "estimateOption": {
         "title": "I can estimate shipping rates & times",
@@ -332,6 +332,8 @@
       "carriersDropdownHiddenLabel": "Kopiowanie informacji o przewoźniku do innych przewoźników",
       "noCarriersTitle": "Nie masz żadnych przewoźników",
       "noCarriersDescription": "Proszę przejść do strony przewoźników, aby dodać przewoźników",
+      "countryNeededTitle": "Select your target country",
+      "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
       "addNewCarriers": "Dodaj lub zaktualizuj przewoźników",
       "refreshCarriers": "Odśwież, jeśli edytowałeś swoje nośniki",
       "switchToFlatRate": "Switch to estimation shipping’s set-up"
@@ -949,7 +951,6 @@
     "apply": "Aplikuj",
     "select": "Wybierz",
     "editContact": "Edytuj informacje kontaktowe",
-    "noCarriers": "Zabierz mnie na stronę przewoźników",
     "update": "Aktualizacja",
     "validateSelection": "Zatwierdzanie wyboru",
     "googleProductStatusDefinitions": "Definicje statusu produktów Google",
