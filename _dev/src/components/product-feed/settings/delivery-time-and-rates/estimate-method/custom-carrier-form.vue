@@ -24,7 +24,7 @@
                   class="p-0 ml-1 align-text-top"
                   variant="text"
                   v-b-tooltip:psxMktgWithGoogleApp
-                  :title="''"
+                  :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.carrierName')"
                 >
                   <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
                     info_outlined
@@ -167,7 +167,7 @@
                         class="p-0 ml-1 align-text-top"
                         variant="text"
                         v-b-tooltip:psxMktgWithGoogleApp
-                        :title="''"
+                        :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.freeShippingOverAmount')"
                       >
                         <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
                           info_outlined
@@ -205,7 +205,7 @@
                         class="p-0 ml-1 align-text-top"
                         variant="text"
                         v-b-tooltip:psxMktgWithGoogleApp
-                        :title="''"
+                        :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.shippingRate')"
                       >
                         <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
                           info_outlined

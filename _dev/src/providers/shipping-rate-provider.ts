@@ -13,7 +13,7 @@ export type flatShippingRate = {
 export type CustomCarrier = {
   carrierName: string;
   offer: OfferType|null;
-  rate: RateType;
+  rate: RateType|null;
   countries: string[];
   currency: string;
   maxDeliveryTime: number|null;
