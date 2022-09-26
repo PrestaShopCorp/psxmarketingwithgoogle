@@ -156,6 +156,17 @@ export function mergeShippingDetailsSourcesForProductFeedConfiguration(
     maxTransitTimeInDays: undefined,
   };
 
+  /**
+   * Temporary method for backward compatibility with data created before october 2022
+   * Fix data from API with data we do not care about anymore
+   */
+  const deliveryUpdateForNewShippingSettings = (country: DeliveryDetail) => ({
+    enabledCarrier: (country.deliveryType === DeliveryType.DELIVERY),
+    deliveryType: DeliveryType.DELIVERY,
+    minHandlingTimeInDays: 0,
+    maxHandlingTimeInDays: 0,
+  });
+
   // Carriers will be all enabled by default if nothing has been configured yet
   const enableCarriersByDefault = !carriersFromLocalStorage.length
     && !carriersFromApi.length;
@@ -172,6 +183,7 @@ export function mergeShippingDetailsSourcesForProductFeedConfiguration(
         ...deliveryDetailsStructure,
         ...deliveryDetailsSavedInLocalStorage,
         ...carrierFromShop,
+        ...deliveryUpdateForNewShippingSettings(deliveryDetailsSavedInLocalStorage),
       };
     }
 
@@ -182,9 +194,9 @@ export function mergeShippingDetailsSourcesForProductFeedConfiguration(
     if (deliveryDetailsSavedOnAPI) {
       return {
         ...deliveryDetailsStructure,
-        enabledCarrier: true,
         ...deliveryDetailsSavedOnAPI,
         ...carrierFromShop,
+        ...deliveryUpdateForNewShippingSettings(deliveryDetailsSavedOnAPI),
       };
     }
 
