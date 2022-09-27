@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3
-      class="ps_gs-fz-20 font-weight-600 mb-2"
+      class="title-size-h3 font-weight-600 mb-2"
       v-html="$t('productFeedSettings.deliveryTimeAndRates.shippingInformationTitle')"
     />
     <div class="d-flex  align-items-center pr-3">

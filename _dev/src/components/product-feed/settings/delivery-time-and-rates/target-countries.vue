@@ -2,7 +2,7 @@
   <b-form>
     <b-form-group
       :label="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
-      label-class="h4 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
+      label-class="title-size-h3 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
     >
       <label class="mb-2">
         {{ $t('productFeedSettings.deliveryTimeAndRates.productAvailaibleIn') }}
