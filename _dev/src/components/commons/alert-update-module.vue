@@ -14,6 +14,7 @@
       />
       <div
         class="d-md-flex text-center align-items-center mt-2"
+        v-if="upgradeLink"
       >
         <b-button
           size="sm"
@@ -67,16 +68,31 @@ export default {
     async checkForInstalledVersion() {
       const res = await this.$store.dispatch('app/GET_MODULES_VERSIONS', this.moduleName);
 
-      if (!res.version) {
+      let version = null;
+
+      if (res.version) {
+        version = res.version;
+      }
+      // Before v1.11.0, there is no such route, but we can try to get
+      // the version in psxMktgWithGoogleModuleVersion instead for the Google module
+      if (!version
+        && this.moduleName === 'psxmarketingwithgoogle'
+        && this.$store.state.app.psxMktgWithGoogleModuleVersion
+      ) {
+        version = this.$store.state.app.psxMktgWithGoogleModuleVersion;
+      }
+
+      if (!version) {
         return;
       }
+
       // if module version >= version needed
-      if (semver.gte(res.version, this.neededVersion)) {
+      if (semver.gte(version, this.neededVersion)) {
         this.errorModule = false;
         return;
       }
-      this.upgradeLink = res.upgradeLink;
-      this.installedVersion = res.version;
+      this.upgradeLink = res?.upgradeLink;
+      this.installedVersion = version;
       this.errorModule = true;
     },
 
