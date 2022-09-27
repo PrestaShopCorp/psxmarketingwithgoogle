@@ -155,15 +155,15 @@ export default Vue.extend({
       return false;
     },
     saveSelectedCountries(): void {
-      localStorage.setItem('productFeed-targetCountries', JSON.stringify(this.countries));
+      localStorage.setItem('productFeed-targetCountries', JSON.stringify(this.selectedCountries));
       this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-        name: 'targetCountries', data: this.countries,
+        name: 'targetCountries', data: this.selectedCountries,
       });
     },
     saveCarriersDetails(): void {
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
         (this.customCarrier as CustomCarrier).currency = this.getCurrency;
-        (this.customCarrier as CustomCarrier).countries = this.countries;
+        (this.customCarrier as CustomCarrier).countries = this.selectedCountries;
         localStorage.setItem('productFeed-estimateCarriers', JSON.stringify([this.customCarrier]));
       } else if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
         localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
