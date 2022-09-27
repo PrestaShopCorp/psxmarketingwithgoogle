@@ -105,12 +105,7 @@ export function generateCustomCarrier(): CustomCarrier {
     },
   };
 }
-/**
- * Useful to format for API
- *
- * @param customerCarrier CustomCarrier[]
- * @returns
- */
+
 export function toApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
   const toApiFormat = [...customerCarrier];
 
@@ -128,12 +123,7 @@ export function toApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
 
   return toApiFormat;
 }
-/**
- * Useful to format data from API
- *
- * @param customerCarrier CustomCarrier
- * @returns
- */
+
 export function fromApi(customerCarrier: CustomCarrier): CustomCarrier {
   if (customerCarrier === undefined || Object.keys(customerCarrier).length === 0) {
     return generateCustomCarrier();
