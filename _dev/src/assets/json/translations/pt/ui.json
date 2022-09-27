@@ -23,8 +23,8 @@
     "search": "Pesquisa",
     "legendCreateNewAccount": "Também tem possibilidade de criar uma nova conta em poucos passos:",
     "notAvailable": "Não disponível",
-    "min": "Min.",
-    "max": "máximo.",
+    "min": "Min",
+    "max": "Max",
     "helpPage": "Página de Ajuda",
     "noResultsFoundForX": "Sem resultados para {0}",
     "days": "Days"
