@@ -258,9 +258,17 @@
       },
       "laterOption": {
         "summary": "Configurer plus tard"
+      },
+      "validationErrors": {
+        "needOptionToBeChosen": "You need to select one option to continue"
       }
     },
     "deliveryTimeAndRates": {
+      "tooltips": {
+        "carrierName": "The carrier name will help you identify the carriers when it is created with the estimation method. It is limited to 90 characters",
+        "freeShippingOverAmount": "Enter the value of minimum spend required for free shipping",
+        "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
+      },
       "title": "Délai et tarifs de livraison",
       "rateAndDelivery": "Tarif et délai de livraison",
       "deliveryInfo": "Indiquez le nombre de jour minimum et maximum requis pour la livraison",
@@ -874,6 +882,7 @@
     "learnAboutSiteClaiming": "En savoir plus sur la validation du site web",
     "learnMoreAboutSmartShoppingCampaigns": "En savoir plus sur les campagnes Smart Shopping",
     "configureAndExportProductFeed": "Démarrer la configuration du flux de produits",
+    "continueProductFeed": "Continue product feed configuration",
     "chooseAccount": "Choisissez votre compte",
     "supportedCountries": "Pays pris en charge",
     "cancel": "Annuler",
