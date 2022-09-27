@@ -20,6 +20,7 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Buffer;
 
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
 
@@ -29,6 +30,8 @@ class TemplateBuffer
      * @var Session
      */
     private $session;
+
+    const DEBUG = true;
 
     public function init($userId)
     {
@@ -52,6 +55,7 @@ class TemplateBuffer
      */
     public function add($data)
     {
+        $this->debug('Adding to the buffer: ' . $data);
         $this->session->getFlashBag()->add('gtag_events', $data);
     }
 
@@ -62,8 +66,13 @@ class TemplateBuffer
      */
     public function flush(): string
     {
-        $data = '';
-        foreach ($this->session->getFlashBag()->get('gtag_events', []) as $message) {
+        $events = $this->session->getFlashBag()->get('gtag_events', []);
+        $this->debug('Flushing ' . count($events) .' events');
+
+        /* @phpstan-ignore-next-line */
+        $data = self::DEBUG ? '<!-- ID: ' . $this->session->getId() . ' -->': '';
+        foreach ($events as $message) {
+            $this->debug('- Event flushed: ' . $message);
             $data .= $message;
         }
 
@@ -72,6 +81,22 @@ class TemplateBuffer
 
     public function save(): void
     {
+        $this->debug('Buffer saved');
         $this->session->save();
+    }
+
+    private function debug(string $data): void
+    {
+        /* @phpstan-ignore-next-line */
+        if (!self::DEBUG) {
+            return;
+        }
+
+        $id = $this->session->getId();
+
+        (new Filesystem)->appendToFile(
+            \_PS_CACHE_DIR_ . "/psxmarketingwithgoogle_debug/$id.txt",
+            date(DATE_ATOM) .' - ' . $data . "\n"
+        );
     }
 }
