@@ -35,10 +35,20 @@ Disabled.args = {
   badges: [],
 };
 
-export const NotConfigured:any = Template.bind({});
-NotConfigured.args = {
+export const NotConfiguredAndCanStart:any = Template.bind({});
+NotConfiguredAndCanStart.args = {
   beforeMount: function(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeed);
+  },
+  isEnabled: true,
+  loading: false,
+};
+
+export const NotConfiguredAndCanContinue:any = Template.bind({});
+NotConfiguredAndCanContinue.args = {
+  beforeMount: function(this: any) {
+    this.$store.state.productFeed = cloneDeep(productFeed);
+    this.$store.state.productFeed.stepper = 3;
   },
   isEnabled: true,
   loading: false,
