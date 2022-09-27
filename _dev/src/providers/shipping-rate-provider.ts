@@ -105,3 +105,52 @@ export function generateCustomCarrier(): CustomCarrier {
     },
   };
 }
+/**
+ * Useful to format for API
+ *
+ * @param customerCarrier CustomCarrier[]
+ * @returns
+ */
+export function toApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
+  const toApiFormat = [...customerCarrier];
+
+  toApiFormat.forEach((carrier) => {
+    if (carrier.flatShippingRate.shippingCost === null) {
+      carrier.flatShippingRate.shippingCost = 0;
+    }
+    if (carrier.freeShippingOverAmount.orderPrice === null) {
+      carrier.freeShippingOverAmount.orderPrice = 0;
+    }
+    if (carrier.freeShippingOverAmount.shippingCost === null) {
+      carrier.freeShippingOverAmount.shippingCost = 0;
+    }
+  });
+
+  return toApiFormat;
+}
+/**
+ * Useful to format data from API
+ *
+ * @param customerCarrier CustomCarrier
+ * @returns
+ */
+export function fromApi(customerCarrier: CustomCarrier): CustomCarrier {
+  if (customerCarrier === undefined || Object.keys(customerCarrier).length === 0) {
+    return generateCustomCarrier();
+  }
+  const fromApiFormat = {...customerCarrier};
+
+  if (fromApiFormat.flatShippingRate.shippingCost === 0) {
+    fromApiFormat.flatShippingRate.shippingCost = null;
+  }
+
+  if (fromApiFormat.freeShippingOverAmount.orderPrice === 0) {
+    fromApiFormat.freeShippingOverAmount.orderPrice = null;
+  }
+
+  if (fromApiFormat.freeShippingOverAmount.shippingCost === 0) {
+    fromApiFormat.freeShippingOverAmount.shippingCost = null;
+  }
+
+  return fromApiFormat;
+}

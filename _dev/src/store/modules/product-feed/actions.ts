@@ -31,7 +31,7 @@ import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import {runIf} from '../../../utils/Promise';
 import DeliveryType from '../../../enums/product-feed/delivery-type';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
-import {generateCustomCarrier} from '@/providers/shipping-rate-provider';
+import {fromApi, generateCustomCarrier, toApi} from '@/providers/shipping-rate-provider';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
@@ -147,7 +147,7 @@ export default {
 
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'estimateCarrier',
-        data: json?.estimateCarriers?.[0] || generateCustomCarrier(),
+        data: fromApi(json?.estimateCarriers?.[0]),
       });
 
       if (json.selectedProductCategories) {
@@ -171,7 +171,7 @@ export default {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
-    const estimateCarriers = getDataFromLocalStorage('productFeed-estimateCarriers') || [];
+    const estimateCarriers = toApi(getDataFromLocalStorage('productFeed-estimateCarriers')) || [];
     const deliveryFiltered: DeliveryDetail[] = productFeedSettings.deliveryDetails.filter(
       (e) => e.enabledCarrier && validateDeliveryDetail(e),
     );
