@@ -1,7 +1,7 @@
 <template>
   <div id="customCarrierForm">
     <p class="h3 mr-2 mb-2 font-weight-600 d-inline-block">
-      {{ $t('productFeedSettings.deliveryTimeAndRates.rateAndDelivery') }}
+      {{ $t('productFeedSettings.steps.deliveryTimesAndRates') }}
     </p>
     <p
       v-if="validateCarrier === false"

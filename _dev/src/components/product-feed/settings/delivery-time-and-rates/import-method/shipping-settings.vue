@@ -2,7 +2,7 @@
   <div>
     <h3
       class="title-size-h3 font-weight-600 mb-2"
-      v-html="$t('productFeedSettings.deliveryTimeAndRates.shippingInformationTitle')"
+      v-html="$t('productFeedSettings.steps.deliveryTimesAndRates')"
     />
     <div class="d-flex  align-items-center pr-3">
       <p>
