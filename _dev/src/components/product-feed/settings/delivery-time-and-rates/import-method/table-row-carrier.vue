@@ -43,7 +43,7 @@
         />
         <b-input-group
           :append="$t('general.days')"
-          class="ps_gs-carrier__input-number-group"
+          class="ps_gs-carrier__input-number-group flex-nowrap"
         >
           <b-form-input
             type="number"
