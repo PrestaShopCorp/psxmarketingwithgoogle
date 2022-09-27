@@ -31,7 +31,7 @@ import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import {runIf} from '../../../utils/Promise';
 import DeliveryType from '../../../enums/product-feed/delivery-type';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
-import {fromApi, generateCustomCarrier, toApi} from '@/providers/shipping-rate-provider';
+import {fromApi, toApi} from '@/providers/shipping-rate-provider';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {

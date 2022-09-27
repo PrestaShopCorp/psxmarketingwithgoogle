@@ -6,6 +6,8 @@ import {
   validateOffers,
   validateCarrierName,
   CustomCarrier,
+  toApi,
+  fromApi,
 } from './shipping-rate-provider';
 
 const carrier: CustomCarrier = {
@@ -144,5 +146,182 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
     };
 
     expect(validateCarrier(mock)).toBe(false);
+  });
+
+  it('should transform corretly data for API', () => {
+    const validCarrierFromView: CustomCarrier[] = [
+      {
+        carrierName: 'DLH',
+        rate: RateType.RATE_ALL_COUNTRIES,
+        offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
+        minDeliveryTime: 5,
+        maxDeliveryTime: 7,
+        countries: [],
+        currency: '',
+        freeShippingOverAmount: {
+          shippingCost: null,
+          orderPrice: null,
+        },
+        flatShippingRate: {
+          shippingCost: null,
+        },
+      }
+    ];
+    const transform = toApi(validCarrierFromView);
+
+    expect(transform).toEqual([
+      {
+        carrierName: 'DLH',
+        rate: RateType.RATE_ALL_COUNTRIES,
+        offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
+        minDeliveryTime: 5,
+        maxDeliveryTime: 7,
+        countries: [],
+        currency: '',
+        freeShippingOverAmount: {
+          shippingCost: 0,
+          orderPrice: 0,
+        },
+        flatShippingRate: {
+          shippingCost: 0,
+        },
+      }
+    ])
+  });
+
+  it('should transform nothing if shippingCost or orderPrice isnt null', () => {
+    const validCarrierFromView: CustomCarrier[] = [
+      {
+        carrierName: 'DLH',
+        rate: RateType.RATE_ALL_COUNTRIES,
+        offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
+        minDeliveryTime: 5,
+        maxDeliveryTime: 7,
+        countries: [],
+        currency: '',
+        freeShippingOverAmount: {
+          shippingCost: 2.99,
+          orderPrice: 42.99,
+        },
+        flatShippingRate: {
+          shippingCost: 0,
+        },
+      }
+    ];
+    const transform = toApi(validCarrierFromView);
+
+    expect(transform).toEqual([
+      {
+        carrierName: 'DLH',
+        rate: RateType.RATE_ALL_COUNTRIES,
+        offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
+        minDeliveryTime: 5,
+        maxDeliveryTime: 7,
+        countries: [],
+        currency: '',
+        freeShippingOverAmount: {
+          shippingCost: 2.99,
+          orderPrice: 42.99,
+        },
+        flatShippingRate: {
+          shippingCost: 0,
+        },
+      }
+    ])
+  });
+
+  it('should transform API response to valid format on view', () => {
+    const validCarrierFromAPI: CustomCarrier = {
+      carrierName: 'DLH',
+      rate: RateType.RATE_ALL_COUNTRIES,
+      offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
+      minDeliveryTime: 5,
+      maxDeliveryTime: 7,
+      countries: [],
+      currency: '',
+      freeShippingOverAmount: {
+        shippingCost: 0,
+        orderPrice: 0,
+      },
+      flatShippingRate: {
+        shippingCost: 0,
+      },
+    };
+    const transform = fromApi(validCarrierFromAPI);
+
+    expect(transform).toEqual({
+      carrierName: 'DLH',
+      rate: RateType.RATE_ALL_COUNTRIES,
+      offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
+      minDeliveryTime: 5,
+      maxDeliveryTime: 7,
+      countries: [],
+      currency: '',
+      freeShippingOverAmount: {
+        shippingCost: null,
+        orderPrice: null,
+      },
+      flatShippingRate: {
+        shippingCost: null,
+      },
+    });
+  });
+
+  it('should transform API response to valid format on view', () => {
+    const validCarrierFromAPI: CustomCarrier = {
+      carrierName: 'DLH',
+      rate: RateType.RATE_ALL_COUNTRIES,
+      offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
+      minDeliveryTime: 5,
+      maxDeliveryTime: 7,
+      countries: [],
+      currency: '',
+      freeShippingOverAmount: {
+        shippingCost: 42.99,
+        orderPrice: 2.99,
+      },
+      flatShippingRate: {
+        shippingCost: 9,
+      },
+    };
+    const transform = fromApi(validCarrierFromAPI);
+
+    expect(transform).toEqual({
+      carrierName: 'DLH',
+      rate: RateType.RATE_ALL_COUNTRIES,
+      offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
+      minDeliveryTime: 5,
+      maxDeliveryTime: 7,
+      countries: [],
+      currency: '',
+      freeShippingOverAmount: {
+        shippingCost: 42.99,
+        orderPrice: 2.99,
+      },
+      flatShippingRate: {
+        shippingCost: 9,
+      },
+    });
+  });
+
+  it('should create a new template when api send empty array for estimateCarriers', () => {
+    const transform = fromApi({} as CustomCarrier);
+
+    expect(transform).toEqual({
+      carrierName: '',
+      rate: RateType.RATE_ALL_COUNTRIES,
+      offer: null,
+      minDeliveryTime: null,
+      maxDeliveryTime: null,
+      countries: [],
+      currency: '',
+      freeShippingOverAmount: {
+        shippingCost: null,
+        orderPrice: null,
+      },
+      flatShippingRate: {
+        shippingCost: null,
+      },
+    });
   });
 });
