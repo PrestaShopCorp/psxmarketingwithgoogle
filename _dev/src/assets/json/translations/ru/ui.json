@@ -23,8 +23,8 @@
     "search": "Поиск",
     "legendCreateNewAccount": "У вас также есть возможность создать новую учетную запись в несколько шагов:",
     "notAvailable": "Нет в наличии",
-    "min": "мин.",
-    "max": "макс.",
+    "min": "Min",
+    "max": "Max",
     "helpPage": "Страница помощи",
     "noResultsFoundForX": " No results found for {0}",
     "days": "Days"
