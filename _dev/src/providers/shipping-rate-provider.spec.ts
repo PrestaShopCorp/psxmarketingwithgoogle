@@ -230,6 +230,12 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
     ])
   });
 
+  it('should return an empty array if estimateCarriers is empty', () => {
+    const transform = toApi([]);
+
+    expect(transform).toEqual([])
+  });
+
   it('should transform API response to valid format on view', () => {
     const validCarrierFromAPI: CustomCarrier = {
       carrierName: 'DLH',

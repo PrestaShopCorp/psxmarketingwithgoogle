@@ -171,7 +171,7 @@ export default {
     const productFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
-    const estimateCarriers = toApi(getDataFromLocalStorage('productFeed-estimateCarriers')) || [];
+    const estimateCarriers = toApi(getDataFromLocalStorage('productFeed-estimateCarriers'));
     const deliveryFiltered: DeliveryDetail[] = productFeedSettings.deliveryDetails.filter(
       (e) => e.enabledCarrier && validateDeliveryDetail(e),
     );

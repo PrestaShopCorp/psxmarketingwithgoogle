@@ -107,6 +107,9 @@ export function generateCustomCarrier(): CustomCarrier {
 }
 
 export function toApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
+  if (customerCarrier === null || customerCarrier.length === 0) {
+    return [];
+  }
   const toApiFormat = [...customerCarrier];
 
   toApiFormat.forEach((carrier) => {
