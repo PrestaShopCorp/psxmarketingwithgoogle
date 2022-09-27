@@ -165,7 +165,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
         flatShippingRate: {
           shippingCost: null,
         },
-      }
+      },
     ];
     const transform = toApi(validCarrierFromView);
 
@@ -185,8 +185,8 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
         flatShippingRate: {
           shippingCost: 0,
         },
-      }
-    ])
+      },
+    ]);
   });
 
   it('should transform nothing if shippingCost or orderPrice isnt null', () => {
@@ -206,7 +206,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
         flatShippingRate: {
           shippingCost: 0,
         },
-      }
+      },
     ];
     const transform = toApi(validCarrierFromView);
 
@@ -226,14 +226,14 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
         flatShippingRate: {
           shippingCost: 0,
         },
-      }
-    ])
+      },
+    ]);
   });
 
   it('should return an empty array if estimateCarriers is empty', () => {
     const transform = toApi([]);
 
-    expect(transform).toEqual([])
+    expect(transform).toEqual([]);
   });
 
   it('should transform API response to valid format on view', () => {
