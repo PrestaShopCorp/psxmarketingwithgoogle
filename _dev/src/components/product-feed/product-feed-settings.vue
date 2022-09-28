@@ -86,11 +86,8 @@ export default {
     };
   },
   computed: {
-    getActiveStep() {
-      return this.$store.getters['productFeed/GET_STEP'];
-    },
     activeStep() {
-      if (this.getActiveStep > 0) {
+      if (this.$store.state.productFeed.stepper > 0) {
         return this.$store.state.productFeed.stepper;
       }
       const indexOfRoute = ProductFeedSettingsSteps.indexOf(this.$route.params.step);
