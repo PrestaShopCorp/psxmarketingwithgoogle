@@ -30,6 +30,9 @@ class TemplateBuffer
      */
     private $session;
 
+    /**
+     * @param string $userId
+     */
     public function init($userId)
     {
         $this->session = new Session(
