@@ -69,8 +69,7 @@
               @click="startConfiguration"
               :disabled="isErrorApi"
             >
-              {{ getActiveStep > 1 ?
-                $t("cta.continueProductFeed") : $t("cta.configureAndExportProductFeed") }}
+              {{ $t("cta.configureAndExportProductFeed") }}
             </b-button>
           </div>
         </div>
