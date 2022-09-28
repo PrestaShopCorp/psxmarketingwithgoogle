@@ -121,8 +121,12 @@ export default {
     },
   },
   methods: {
-    countrySelected(newValue) {
-      this.$emit('countrySelected', changeCountriesNamesToCodes(newValue));
+    countrySelected(newValue: string[]|null) {
+      if (newValue) {
+        this.$emit('countrySelected', changeCountriesNamesToCodes(newValue));
+        return;
+      }
+      this.$emit('countrySelected', null);
     },
   },
   watch: {
@@ -131,12 +135,12 @@ export default {
         // By loading an existing configuration, we may have some selected that are
         // not anymore in the list of possible values.
         // When this happens, we remove them and notify the parent.
-        const validCountries = this.countriesNames.filter(
+        const validCountries: string[] = this.countriesNames.filter(
           (country: string) => this.selectableCountriesList.includes(country),
         );
 
         if (validCountries.length !== newListOfCountries.length) {
-          this.countrySelected(validCountries);
+          this.countrySelected(validCountries.length ? validCountries : null);
         }
       },
       immediate: true,
