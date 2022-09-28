@@ -160,8 +160,8 @@ export function mergeShippingDetailsSourcesForProductFeedConfiguration(
    * Temporary method for backward compatibility with data created before october 2022
    * Fix data from API with data we do not care about anymore
    */
-  const deliveryUpdateForNewShippingSettings = (country: DeliveryDetail) => ({
-    enabledCarrier: (country.deliveryType === DeliveryType.DELIVERY),
+  const deliveryUpdateForNewShippingSettings = (carrier: DeliveryDetail) => ({
+    enabledCarrier: (carrier.enabledCarrier && carrier.deliveryType === DeliveryType.DELIVERY),
     deliveryType: DeliveryType.DELIVERY,
     minHandlingTimeInDays: 0,
     maxHandlingTimeInDays: 0,
