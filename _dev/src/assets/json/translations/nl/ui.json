@@ -23,8 +23,8 @@
     "search": "Zoeken op",
     "legendCreateNewAccount": "U hebt ook de mogelijkheid om in enkele stappen een nieuwe account aan te maken:",
     "notAvailable": "Niet beschikbaar",
-    "min": "min.",
-    "max": "maximaal.",
+    "min": "Min",
+    "max": "Max",
     "helpPage": "Help pagina",
     "noResultsFoundForX": "Geen resultaten gevonden voor {0}",
     "days": "Days"

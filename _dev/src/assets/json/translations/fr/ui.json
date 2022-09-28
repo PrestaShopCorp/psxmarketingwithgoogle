@@ -23,8 +23,8 @@
     "search": "Recherche",
     "legendCreateNewAccount": "Vous avez également la possibilité de créer un nouveau compte en quelques étapes :",
     "notAvailable": "Non disponible",
-    "min": "min.",
-    "max": "max.",
+    "min": "Min",
+    "max": "Max",
     "helpPage": "Page d'aide",
     "noResultsFoundForX": " Aucun résultat trouvé pour {0}",
     "days": "Jours"
@@ -260,14 +260,14 @@
         "summary": "Configurer plus tard"
       },
       "validationErrors": {
-        "needOptionToBeChosen": "You need to select one option to continue"
+        "needOptionToBeChosen": "Vous devez sélectionner une option pour continuer"
       }
     },
     "deliveryTimeAndRates": {
       "tooltips": {
-        "carrierName": "The carrier name will help you identify the carriers when it is created with the estimation method. It is limited to 90 characters",
-        "freeShippingOverAmount": "Enter the value of minimum spend required for free shipping",
-        "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
+        "carrierName": "Le nom du transporteur vous aidera à identifier les transporteurs dès lors qu'ils sont créés avec la méthode d'estimation. Il est limité à 90 caractères",
+        "freeShippingOverAmount": "Renseignez le montant minimal d'achat requis pour la livraison gratuite",
+        "shippingRate": "Renseignez le tarif de livraison qui s'applique en dessous du montant minimum d'achat requis pour la livraison gratuite"
       },
       "title": "Délai et tarifs de livraison",
       "rateAndDelivery": "Tarif et délai de livraison",
@@ -882,7 +882,7 @@
     "learnAboutSiteClaiming": "En savoir plus sur la validation du site web",
     "learnMoreAboutSmartShoppingCampaigns": "En savoir plus sur les campagnes Smart Shopping",
     "configureAndExportProductFeed": "Démarrer la configuration du flux de produits",
-    "continueProductFeed": "Continue product feed configuration",
+    "continueProductFeed": "Continuer la configuration du flux de produits",
     "chooseAccount": "Choisissez votre compte",
     "supportedCountries": "Pays pris en charge",
     "cancel": "Annuler",
