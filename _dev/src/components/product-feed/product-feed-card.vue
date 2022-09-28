@@ -309,6 +309,7 @@ export default defineComponent({
           step,
         },
       });
+      this.$store.commit('productFeed/SET_IS_IN_ON_FUNNEL', true);
       this.$segment.track('[GGL] Start Product feed configuration', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,

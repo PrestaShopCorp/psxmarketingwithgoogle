@@ -127,6 +127,7 @@ export interface State {
   attributesFromShop: Array<AttributesInfos>;
   selectedProductCategories: Array<String>;
   requestSynchronizationNow: boolean;
+  isOnFunnel: boolean;
   preScanDetail: PreScanDetail;
   attributeMapping: AttributeResponseFromAPI;
 }
@@ -169,6 +170,7 @@ export const state: State = {
   isConfigured: false,
   isConfiguredOnce: false,
   totalProducts: 0,
+  isOnFunnel: false,
   stepper: 1,
   status: {
     success: false,

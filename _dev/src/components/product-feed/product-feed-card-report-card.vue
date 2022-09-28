@@ -125,6 +125,7 @@ export default {
           step: link.params,
         },
       });
+      this.$store.commit('productFeed/SET_IS_IN_ON_FUNNEL', true);
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', link.step);
     },
   },

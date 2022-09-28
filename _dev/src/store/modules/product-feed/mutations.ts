@@ -206,4 +206,7 @@ export default {
     localStorage.setItem('productFeed-shippingSetup', JSON.stringify(payload));
     state.settings.shippingSetup = payload;
   },
+  [MutationsTypes.SET_IS_IN_ON_FUNNEL](state: LocalState, payload: boolean) {
+    state.isOnFunnel = payload;
+  },
 };

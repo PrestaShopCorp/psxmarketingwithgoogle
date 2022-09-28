@@ -130,6 +130,10 @@ export default {
     return state.attributeMapping;
   },
   [GettersTypes.GET_SHIPPING_SETUP](state: LocalState) {
+    if (state.isOnFunnel === false) {
+      return state.settings.shippingSetup;
+    }
+
     const setupSelected = getDataFromLocalStorage('productFeed-shippingSetup');
 
     if (setupSelected !== null) {
