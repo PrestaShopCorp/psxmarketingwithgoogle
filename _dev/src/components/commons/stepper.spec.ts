@@ -95,22 +95,6 @@ describe('stepper.vue', () => {
     expect(wrapper.findAll('li').at(2).classes()).toContain('active');
   });
 
-  it('test mutation commited when we click on a previous step on product-feed-settings route', async () => {
-    const wrapper = shallowMount(Stepper, {
-      mocks: {
-        $route: productFeedSettingsRoute,
-        $router: mockRouter,
-      },
-      propsData,
-      ...config,
-      store: new Vuex.Store(store),
-    });
-
-    // Check if the mutation SET_ACTIVE_CONFIGURATION_STEP has been called
-    await wrapper.findAll('a').at(0).trigger('click');
-    expect(mutations.SET_ACTIVE_CONFIGURATION_STEP).toHaveBeenCalledWith(state, 1);
-  });
-
   it('test event emited when we click on a previous step on any other page', async () => {
     const wrapper = shallowMount(Stepper, {
       mocks: {

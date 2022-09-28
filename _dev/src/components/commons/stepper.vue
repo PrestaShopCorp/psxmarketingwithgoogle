@@ -57,7 +57,6 @@ import {
   BIconCheck,
   BIconSlash,
 } from 'bootstrap-vue';
-import ProductFeedSettingsSteps from '@/enums/product-feed/product-feed-settings-steps';
 import ProgressRing from '../commons/progress-ring';
 
 export default {
@@ -110,20 +109,8 @@ export default {
         return this.activeStep;
       },
       set(value) {
-        // might need refacto to be of general used instead of depending on the route ?
         if (this.mutableActiveStep >= value) {
-          if (this.$route.name === 'product-feed-settings') {
-            this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', value);
-            this.$router.push({
-              name: 'product-feed-settings',
-              params: {
-                step: ProductFeedSettingsSteps[value] || null,
-
-              },
-            });
-          } else {
-            this.$emit('changeStep', value);
-          }
+          this.$emit('changeStep', value);
         }
       },
     },

@@ -3,10 +3,12 @@
     class="mt-2"
     :steps="steps"
     :active-step="activeStep"
+    @changeStep="stepToChange($event)"
   />
 </template>
 
 <script>
+import ProductFeedSettingsSteps from '@/enums/product-feed/product-feed-settings-steps';
 import Stepper from '../commons/stepper';
 
 export default {
@@ -42,5 +44,17 @@ export default {
       ];
     },
   },
+  methods: {
+    stepToChange(value) {
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', value);
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsSteps[value] || null,
+        },
+      });
+    },
+  },
+
 };
 </script>
