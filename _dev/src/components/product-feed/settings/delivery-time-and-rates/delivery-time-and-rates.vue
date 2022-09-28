@@ -195,7 +195,9 @@ export default Vue.extend({
     },
   },
   mounted() {
-    this.refreshComponent();
+    if (!this.$store.state.productFeed.settings.deliveryDetails.length) {
+      this.refreshComponent();
+    }
   },
 });
 </script>

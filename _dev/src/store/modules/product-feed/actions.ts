@@ -29,7 +29,6 @@ import {
 } from '../../../providers/shipping-settings-provider';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import {runIf} from '../../../utils/Promise';
-import DeliveryType from '../../../enums/product-feed/delivery-type';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
 
