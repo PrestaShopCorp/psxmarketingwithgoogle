@@ -76,7 +76,7 @@ class RemarketingHookHandler
             ?: [];
 
         if ($this->active) {
-            $this->templateBuffer->init($context->customer->id_guest);
+            $this->templateBuffer->init($this->findIdentifierFromContext($context));
         }
     }
 
@@ -179,5 +179,20 @@ class RemarketingHookHandler
         }
 
         return false;
+    }
+
+    /**
+     * @return string
+     */
+    private function findIdentifierFromContext(Context $context)
+    {
+        if (!empty($context->customer->id_guest)) {
+            return 'guest_' . $context->customer->id_guest;
+        }
+        if (!empty($context->cart->id)) {
+            return 'cart_' . $context->cart->id;
+        }
+
+        return '';
     }
 }
