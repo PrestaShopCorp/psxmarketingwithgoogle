@@ -9,6 +9,7 @@ export const productFeed: State = {
   isConfigured: false,
   isConfiguredOnce: false,
   totalProducts: 0,
+  isOnFunnel: false,
   stepper: 1,
   requestSynchronizationNow: false,
   warmedUp: true,
