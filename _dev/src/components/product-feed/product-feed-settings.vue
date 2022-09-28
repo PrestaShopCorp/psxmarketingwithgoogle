@@ -32,7 +32,7 @@
       body-class="p-3 p-md-4"
     >
       <product-feed-stepper
-        :active-step="activeStep"
+        :active-step="getActiveStep"
       />
       <shipping-setup
         v-if="$route.params.step === ProductFeedSettingsPages.SHIPPING_SETUP"
@@ -86,10 +86,7 @@ export default {
     };
   },
   computed: {
-    activeStep() {
-      if (this.$store.state.productFeed.stepper > 0) {
-        return this.$store.state.productFeed.stepper;
-      }
+    getActiveStep() {
       const indexOfRoute = ProductFeedSettingsSteps.indexOf(this.$route.params.step);
 
       if (indexOfRoute > 0) {
