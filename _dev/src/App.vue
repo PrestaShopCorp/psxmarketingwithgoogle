@@ -14,7 +14,7 @@
       </b-card>
     </template>
     <template v-else>
-      <div class="ps_gs-sticky-head">
+      <div id="head_tabs" class="ps_gs-sticky-head page-head-tabs">
         <Menu>
           <!-- eslint-disable-next-line -->
             <MenuItem
