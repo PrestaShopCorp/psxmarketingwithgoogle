@@ -231,8 +231,8 @@
     "breadcrumb1": "Plik danych",
     "breadcrumb2": "Ustawienia pliku danych",
     "steps": {
-      "shippingSetup": "Shipping setup",
-      "deliveryTimesAndRates": "Delivery time & rates",
+      "shippingSetup": "Konfiguracja wysyłki",
+      "deliveryTimesAndRates": "Czas i koszt dostawy",
       "attributeMapping": "Odwzorowanie atrybutów",
       "categoryMapping": "Mapowanie kategorii",
       "summary": "Podsumowanie",
@@ -241,23 +241,23 @@
       "syncSchedule": "Harmonogram synchronizacji"
     },
     "noticeDataStored": "Ustawienia są zapisywane na każdym etapie i zostaną przesłane dopiero w ostatnim kroku.",
-    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
+    "submissionExplanation": "Dane będą przechowywane na każdym z kolejnych etapów, ale zostaną przesłane dopiero na ostatnim z nich",
     "shippingSetup": {
-      "title": "Shipping setup",
-      "mandatoryStep": "For your products to be shown by Google Merchant Center, shipping is a mandatory step.",
-      "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
+      "title": "Konfiguracja wysyłki",
+      "mandatoryStep": "Aby Twoje produkty były widoczne w Google Merchant Centre, wysyłka jest obowiązkowym krokiem.",
+      "stepExplanation": "Pomoże to klientom, którzy przeglądają Twoje produkty w Google, zobaczyć koszt i czas dostawy.",
       "estimateOption": {
-        "title": "I can estimate shipping rates & times",
-        "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office.",
-        "summary": "Estimated method"
+        "title": "Mogę oszacować koszty i czas wysyłki",
+        "description": "Możesz łatwo ustawić stałą stawkę wysyłki i czas dostawy. Nie będziesz musiał(-a) importować ani aktualizować informacji o wysyłce z poziomu back office PrestaShop.",
+        "summary": "Szacunkowo"
       },
       "importOption": {
-        "title": "I’d like to import my shipping setup from PrestaShop back office",
-        "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country.",
-        "summary": "Imported from backoffice"
+        "title": "Chcę zaimportować moje ustawienia wysyłki z back office PrestaShop",
+        "description": "PrestaShop zaimportuje ustawienia wysyłki, które są już skonfigurowane w Twoim back office. Możesz wybrać przewoźnika, z którego usług chcesz korzystać w każdym kraju docelowym.",
+        "summary": "Zaimportowano z back office"
       },
       "laterOption": {
-        "summary": "Setup later"
+        "summary": "Skonfiguruj później"
       },
       "validationErrors": {
         "needOptionToBeChosen": "You need to select one option to continue"
@@ -269,42 +269,42 @@
         "freeShippingOverAmount": "Enter the value of minimum spend required for free shipping",
         "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
       },
-      "title": "Delivery time & rates",
-      "rateAndDelivery": "Rate & delivery timeline",
-      "deliveryInfo": "Enter the minimum and maximum days required for delivery",
+      "title": "Czas i koszt dostawy",
+      "rateAndDelivery": "Koszt i czas dostawy",
+      "deliveryInfo": "Wprowadź minimalną i maksymalną liczbę dni potrzebnych na dostawę",
       "customRate": {
-        "title": "Choose a flat or custom rate for your target countries",
-        "rateTitle": "Same rates for target countries",
-        "rateDesc": "I can estimate the same shipping rate and delivery time for all countries",
-        "customTitle": "Custom rates by country",
-        "customDesc": "I'd like to set different rates and times for each country"
+        "title": "Wybierz stałą lub niestandardową stawkę dla krajów docelowych",
+        "rateTitle": "Takie same stawki dla krajów docelowych",
+        "rateDesc": "Mogę oszacować tę samą stawkę za wysyłkę i czas dostawy dla wszystkich krajów",
+        "customTitle": "Niestandardowe stawki dla poszczególnych krajów",
+        "customDesc": "Chcę ustawić różne stawki i czas dla każdego kraju"
       },
       "estimateStep": {
-        "error": "Fill in the required information",
-        "carrierName": "Carrier name",
-        "storeOffersTitle": "My store offers",
+        "error": "Wypełnij wymagane informacje",
+        "carrierName": "Nazwa przewoźnika",
+        "storeOffersTitle": "Mój sklep oferuje",
         "storeOffers": {
-          "flatShippingRateForAllProducts": "Flat shipping rate for all products",
-          "freeShippingForAllProducts": "Free shipping for all products",
-          "freeShippingOverAmount": "Free shipping over a set amount"
+          "flatShippingRateForAllProducts": "Stałą stawkę wysyłki dla wszystkich produktów",
+          "freeShippingForAllProducts": "Bezpłatną wysyłkę wszystkich produktów",
+          "freeShippingOverAmount": "Bezpłatną wysyłkę powyżej określonej kwoty"
         },
         "shippingRate": {
-          "rate": "Shipping rate",
-          "rateDesc": "Enter the shipping rate for all target countries",
-          "overAmount": "Free shipping applies over"
+          "rate": "Koszt wysyłki",
+          "rateDesc": "Wprowadź stawkę wysyłki dla wszystkich krajów docelowych",
+          "overAmount": "Darmowa wysyłka obowiązuje powyżej"
         },
         "summary": {
-          "singleCountry": "Flat rate",
-          "multiCountriesFlatRateForAll": "Flat rate for all target countries"
+          "singleCountry": "Stała stawka",
+          "multiCountriesFlatRateForAll": "Stała stawka dla wszystkich krajów docelowych"
         }
       },
       "importOption": {
         "validationErrors": {
-          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue"
+          "needAtLeastOneCarrier": "Aby kontynuować, musisz wybrać przynajmniej jednego przewoźnika"
         },
-        "summary": "Configured carriers from backoffice"
+        "summary": "Przewoźnicy skonfigurowani z back office"
       },
-      "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
+      "productAvailaibleIn": "Możesz wybrać kraje, w których chcesz, aby Twoje produkty były wyświetlane. Poniższa rozwijana lista krajów odpowiada krajom i walucie, które zostały skonfigurowane w Twoim sklepie PrestaShop.",
       "targetCountries": "Kraj docelowy",
       "filterTitle": "Filtrowanie według kraju",
       "ifMultipleCountries": "Jeśli interesuje Cię sprzedaż w wielu krajach, cena każdego produktu będzie automatycznie przekonwertowana do właściwej waluty w Google. Twój sklep musi jednak mieć skonfigurowane informacje o wysyłce i podatkach dla każdego kraju. Przestrzegaj [zasad zakupów obowiązujących w danym kraju]({0})[:target=\"_blank\"] i [lokalnych przepisów]({1})[:target=\"_blank\"]",
@@ -325,16 +325,16 @@
       "appliedOnlyForUsa": "(dotyczy tylko USA)",
       "alertTaxes": "Musisz wprowadzić stawkę podatku, którą należy uwzględnić przy zakupie Twoich produktów, aby Twoi klienci znali dokładną ich cenę.",
       "carrierDescriptionHeader": "Nośnik  \n opis",
-      "enableHeader": "Enable /  \n disable",
+      "enableHeader": "Włącz / wyłącz",
       "shipToCustomerHeader": "Dostawa do domu  \n",
-      "transitTimeHeader": "Delivery time",
+      "transitTimeHeader": "Czas dostawy",
       "countryHeader": "Kraj",
       "shipToCustomerTooltip": "Wybierz, czy ten przewoźnik dostarcza przesyłki na adres klienta, czy nie (punkt serwisowy, odbiór w sklepie). Google zezwala na włączenie tylko tych przewoźników, którzy wysyłają pod dany adres.",
       "handlingTimeTooltip": "Wpisz w dniach roboczych, ile czasu zajmuje Ci przygotowanie zamówienia do momentu odebrania go przez przewoźnika.",
       "transitTimeTooltip": "Wprowadź, ile czasu zajmuje wysłanie zamówienia do klienta, gdy opuści ono Twój zakład.",
-      "shippingInformationTitle": "Shipping rates & transit time",
-      "shippingInformationIntro": "You can enable and configure the carriers you want to be displayed on Google Shopping.",
-      "shippingTableNotice": "Google cannot support carrier with pick up in store delivery type, please make sure you disable them or switch to another method.",
+      "shippingInformationTitle": "Koszty wysyłki i czas dostawy",
+      "shippingInformationIntro": "Możesz włączyć i skonfigurować przewoźników, którzy mają być wyświetlani w Google Shopping.",
+      "shippingTableNotice": "Google nie wspiera przewoźników, którzy oferują jedynie dostawę w sklepie. Upewnij się, że są oni wyłączeni lub użyj innej metody, aby skonfigurować sposoby dostawy.",
       "shippingSwitchCarrier": "Przełącznik do aktywacji / pożądanego nośnika",
       "carriersDropdownHeader": "Skopiuj informacje o wysyłce na adres",
       "carriersDropdownHiddenLabel": "Kopiowanie informacji o przewoźniku do innych przewoźników",
@@ -344,7 +344,7 @@
       "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
       "addNewCarriers": "Dodaj lub zaktualizuj przewoźników",
       "refreshCarriers": "Odśwież, jeśli edytowałeś swoje nośniki",
-      "switchToFlatRate": "Switch to estimation shipping’s set-up"
+      "switchToFlatRate": "Przejdź do konfiguracji szacunkowego trybu wysyłki"
     },
     "preScan": {
       "selectLanguage": "Filter by language",
