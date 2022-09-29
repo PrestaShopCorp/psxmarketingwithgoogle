@@ -22,7 +22,7 @@
       @dataUpdated="carriers = $event;dataUpdated()"
       @refresh="refreshComponent"
     />
-<!--
+    <!--
     <custom-carrier-form
       v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE
         && selectedCountries.length > 0
@@ -32,10 +32,11 @@
     /> -->
 
     <countries-form-list
-      v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE  && selectedCountries.length > 0"
-      :rateChosen="rateChosen"
+      v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE
+        && selectedCountries.length > 0"
+      :rate-chosen="rateChosen"
       :carriers="estimateCarriersToConfigure"
-      :countries="countries"
+      :countries="selectedCountries"
       :validation-error="displayValidationErrors"
       @dataUpdated="estimateCarriers = $event;dataUpdated()"
     />

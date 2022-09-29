@@ -16,8 +16,8 @@ export type CustomCarrier = {
   rate: RateType|null;
   countries: string[];
   currency: string;
-  maxDeliveryTime: number;
-  minDeliveryTime: number;
+  maxDeliveryTime: number|null;
+  minDeliveryTime: number|null;
   validationError?: boolean;
   freeShippingOverAmount: freeShippingOverAmount;
   flatShippingRate: flatShippingRate;
@@ -131,7 +131,6 @@ export function basicTemplate(
     countries: [],
     currency,
     rate,
-    offer: null,
     maxDeliveryTime: null,
     minDeliveryTime: null,
     [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
@@ -165,23 +164,25 @@ export function toApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
   return toApiFormat;
 }
 
-export function fromApi(customerCarrier: CustomCarrier): CustomCarrier {
-  if (customerCarrier === undefined || Object.keys(customerCarrier).length === 0) {
-    return generateCustomCarrier();
+export function fromApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
+  if (customerCarrier === null || customerCarrier.length === 0) {
+    return [];
   }
-  const fromApiFormat = {...customerCarrier};
+  const fromApiFormat = [...customerCarrier];
 
-  if (fromApiFormat.flatShippingRate.shippingCost === 0) {
-    fromApiFormat.flatShippingRate.shippingCost = null;
-  }
+  fromApiFormat.forEach((carrier: CustomCarrier) => {
+    if (carrier.flatShippingRate.shippingCost === 0) {
+      carrier.flatShippingRate.shippingCost = null;
+    }
 
-  if (fromApiFormat.freeShippingOverAmount.orderPrice === 0) {
-    fromApiFormat.freeShippingOverAmount.orderPrice = null;
-  }
+    if (carrier.freeShippingOverAmount.orderPrice === 0) {
+      carrier.freeShippingOverAmount.orderPrice = null;
+    }
 
-  if (fromApiFormat.freeShippingOverAmount.shippingCost === 0) {
-    fromApiFormat.freeShippingOverAmount.shippingCost = null;
-  }
+    if (carrier.freeShippingOverAmount.shippingCost === 0) {
+      carrier.freeShippingOverAmount.shippingCost = null;
+    }
+  });
 
   return fromApiFormat;
 }
