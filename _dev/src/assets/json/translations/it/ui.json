@@ -674,7 +674,7 @@
     },
     "preScan": {
       "xProducts": " {0} prodotto | {0} prodotto | {0} prodotti",
-      "description": "{0} with problems that couldn't be synced are listed below.",
+      "description": "{0} con problemi che non è stato possibile sincronizzare sono indicati qui di seguito.",
       "fields": {
         "name": "Nome",
         "language": "Lingua",
@@ -683,8 +683,8 @@
         "barcode": "MPN",
         "price": "Premio"
       },
-      "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
-      "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation.",
+      "xHasFailedPreValidation": "{0}: preconvalida fallita.",
+      "xHasPassedPreValidation": "{0}: preconvalida accettata.",
       "labelTooltipDescription": "This attribute matches what you have configured in your product attribute mapping : short description, description...",
       "labelTooltipBarcode": "This attribute matches what you have configured in your product attribute mapping : barcode, MPN, GTIN, ISBN, UPC..."
     },
