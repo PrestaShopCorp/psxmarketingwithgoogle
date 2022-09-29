@@ -9,7 +9,7 @@
       "help": "Assistenza"
     },
     "versionDoesNotExist": "Sembra che la versione del modulo non possa essere recuperata. È dalla nostra parte, per favore riprova.",
-    "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
+    "moduleNeedActivation": "Il modulo Marketing with Google è disabilitato. Non potrai utilizzare nessuna delle sue funzionalità finché non si abiliterà il modulo.",
     "moduleUpdateNeeded": {
       "ps_eventbus": "La versione del modulo PrestaShop EventBus in esecuzione su questo negozio è più vecchia del minimo richiesto.\n\nÈ possibile utilizzare PrestaShop Marketing con Google, ma alcune caratteristiche (ad esempio la sincronizzazione dei prodotti) non sarà disponibile fino a quando si aggiorna PrestaShop EventBus",
       "psxmarketingwithgoogle": "Si prega di aggiornare il modulo PrestaShop Marketing With Google per farlo funzionare correttamente"
@@ -27,12 +27,12 @@
     "max": "Max",
     "helpPage": "Pagina di aiuto",
     "noResultsFoundForX": "Nessun risultato trovato per {0}",
-    "days": "Days"
+    "days": "Giorni"
   },
   "landingPage": {
     "header": {
       "title": "Marketing con Google",
-      "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 3 easy steps.",
+      "text": "Con Prestashop Marketing, puoi raggiungere i potenziali acquirenti che cercano online prodotti come quelli che offri! Utilizza questo modulo per raggiungerli su Google in 3 semplici passi.",
       "reinsurance": "- Impostazione facile \n- Annulla in qualsiasi momento"
     },
     "content": {
@@ -104,7 +104,7 @@
     "linkingFailed": "In questo momento non puoi connetterti al tuo account Merchant Center. Riprova più tardi.",
     "AccountValidationFailed": "Convalida dell'account non riuscita",
     "unlinkFailed": "Disconnessione fallita. Riavvia la pagina e riprova.",
-    "tryAgainLater": "We can’t verify or claim the current site. **We recommend that you ensure that the site is accessible** and try again later.",
+    "tryAgainLater": "Non possiamo verificare o rivendicare il sito attuale. **Si consiglia di verificare che il sito sia accessibile** e di riprovare più tardi.",
     "alertSuspended": "Il tuo account è stato sospeso.",
     "alertSuspendedDescription": "Per vedere maggiori dettagli sui motivi della sospensione, visita il tuo [account Merchant Center]({0})[:target=\"_blank\"]. Una volta risolto, dovrai richiedere una nuova revisione compilando [questo modulo]({1})[:target=\"_blank\"].",
     "notManaged": "Non associato a PrestaShop",
@@ -123,25 +123,25 @@
     "sendCode": "Invia il codice",
     "receiveCall": "Ricevi una chiamata",
     "phoneVerifiedContinue": "Il tuo numero di telefono è stato verificato, puoi continuare a creare il tuo account.",
-    "enterCode": "Please enter your verification code",
+    "enterCode": "Inserire il codice di verifica che abbiamo inviato per sms",
     "validatingCode": "Convalida il tuo codice",
-    "textMessageHasBeenSent": "A text message containing an X-digit code has been sent",
+    "textMessageHasBeenSent": "Abbiamo inviato un messaggio di testo contenente un codice di X cifre a",
     "askAgain60sec": "Potrai chiedere un nuovo codice fra 60 secondi",
-    "needPhoneVerification": "We need to verify your identity with your phone number",
+    "needPhoneVerification": "Dobbiamo verificare la tua identità con il tuo numero di telefono",
     "fillInputs": "Inserisci il tuo numero di telefono e seleziona il tuo prefisso internazionale",
-    "invalidCode": "Code is not valid",
-    "phoneNumberNotValid": "Your phone number is incorrect, please only put numbers",
+    "invalidCode": "Il codice non è valido",
+    "phoneNumberNotValid": "Il numero di telefono non è corretto, si prega di inserire solo numeri",
     "code": "Codice",
-    "contactMethod": "Choose your preferred contact method",
+    "contactMethod": "Scegli la modalità di contatto che preferisci",
     "dialCode": "Componi il codice",
-    "phoneNumber": "Enter your phone number",
+    "phoneNumber": "Inserisci il tuo numero di telefono",
     "textMethod": "Messaggio di testo",
     "callMethod": "Telefonata",
     "selectMethod": "Seleziona il metodo di contatto desiderato per verificare la tua identità",
     "alertTooManyRequests": "Hai richiesto questo servizio troppe volte con questo numero di telefono. Devi aspettare 24 ore per riprovare o cambiare il tuo numero di telefono.",
     "alertSomethingHappened": "Something happened. It's on our side, please try again.",
     "alertCodeExpired": "Il codice è scaduto. Si prega di chiederne un altro",
-    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
+    "refreshAfterAddingWebsiteAddress": "Se hai aggiunto nuove informazioni a Google Merchant Center, aggiorna la pagina."
   },
   "mcaRequirements": {
     "steps": {
@@ -154,27 +154,27 @@
     "legend2": "L'URL del sito web del negozio deve essere verificato e rivendicato prima di poter caricare i dati dei prodotti.  \n[Impara come verificare e rivendicare il tuo sito web](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Leggi la versione completa dei requisiti per il negozio Google",
     "accurateContactInformation": {
-      "title": "I confirm that my contact information are correct and valid",
+      "title": "Confermo che i miei dati sono corretti e validi",
       "description": "I commercianti devono avere almeno un metodo di contatto elencato sul loro sito web, questo può essere qualsiasi tipo di metodo di contatto.",
       "link": "Scopri come aggiungere informazioni di contatto"
     },
     "secureCheckoutProcess": {
-      "title": "I confirm that I have a clear checkout & data collection",
+      "title": "Confermo di avere un chiaro processo di ordinazione e di raccolta dei dati",
       "description": "Non abusare delle informazioni sull'utente, né raccoglierle per scopi poco chiari o senza adeguate misure di sicurezza.",
       "link": "Impara a riconoscere la raccolta e l'uso irresponsabile di dati"
     },
     "returnPolicy": {
-      "title": "I confirm that my return & refund policy are setup on my website",
+      "title": "Confermo che la mia politica di restituzione e rimborso è stata configurata sul mio sito web",
       "description": "La politica di resi e rimborso deve essere chiara (includere i requisiti e le scadenze) e di facile accesso sul tuo sito web.",
       "link": "Impara come impostare le politiche di reso"
     },
     "billingTerms": {
-      "title": "I confirm that my billing terms and conditions are clear and visible",
+      "title": "Confermo che le condizioni di fatturazione sono chiare e visibili",
       "description": "Il sito web deve divulgare in modo chiaro e visibile le opzioni di pagamento e tutte le spese che l'utente dovrà sostenere, prima e dopo l'acquisto.",
       "link": "Leggi le linee guida del Merchant Center"
     },
     "completeCheckoutProcess": {
-      "title": "I confirm that I have a complete checkout process",
+      "title": "Confermo di disporre di un processo di pagamento completo",
       "description": "Gli utenti devono essere in grado di completare con successo il processo di acquisto.",
       "link": "Scopri i requisiti per il checkout"
     },
@@ -294,15 +294,15 @@
           "overAmount": "La spedizione gratuita si applica a partire da"
         },
         "summary": {
-          "singleCountry": "Flat rate",
-          "multiCountriesFlatRateForAll": "Flat rate for all target countries"
+          "singleCountry": "Tariffa fissa",
+          "multiCountriesFlatRateForAll": "Tariffa fissa per tutti i Paesi target"
         }
       },
       "importOption": {
         "validationErrors": {
           "needAtLeastOneCarrier": "Per continuare devi abilitare almeno un vettore"
         },
-        "summary": "Configured carriers from backoffice"
+        "summary": "Vettori configurati dal back office"
       },
       "productAvailaibleIn": "È possibile selezionare i Paesi nei quali desideri che i tuoi prodotti siano visualizzati. Il menu a tendina dei Paesi qui di seguito corrisponde ai Paesi e alle valute che hai configurato sul tuo negozio PrestaShop.",
       "targetCountries": "Paese di destinazione",
@@ -347,9 +347,9 @@
       "switchToFlatRate": "Passa alla configurazione stimata della modalità di spedizione"
     },
     "preScan": {
-      "selectLanguage": "Filter by language",
-      "apiError": "An error occurred while fetching data, please try again later.",
-      "noElement": "You don't have any products."
+      "selectLanguage": "Filtra per lingua",
+      "apiError": "Si è verificato un errore durante il recupero dei dati. Riprova più tardi.",
+      "noElement": "Non hai ancora alcun prodotto."
     },
     "export": {
       "summarySyncDailyAt": "Sincronizzazione giornaliera alle {0}",
@@ -382,7 +382,7 @@
       "title1": "1. Scegli tutte le caratteristiche che si applicano ai tuoi prodotti",
       "description1": "Questo ti permetterà di mappare gli attributi obbligatori del prodotto di Google al passo successivo, a seconda del tuo catalogo.",
       "title2": "2. Mappate gli attributi obbligatori di Google ai vostri campi personalizzati",
-      "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later. Keep in mind that Google will favor first filled values.",
+      "description2": "Compila tutti i valori per assicurarti che i prodotti siano convalidati. Se nel catalogo manca un valore, si consiglia di crearlo e di completare la configurazione in un secondo momento. Tieni presente che Google privilegerà i valori selezionati per primi.",
       "apparelAndAccessoriesTitle": "Vendo abbigliamento e/o accessori",
       "apparelAndAccessoriesSubtitle": "cioè abbigliamento, borse, scarpe o cappelli",
       "electronicsTitle": "Vendo elettrodomestici e/o cucina",
@@ -409,7 +409,7 @@
       "ean": "EAN13",
       "mpn": "MPN",
       "brand": "Marchio",
-      "notAvailable": "Not filled",
+      "notAvailable": "Non compilato",
       "specificTitle": "Specifica",
       "sellRefurbished": "Vendo prodotti ricondizionati",
       "sellApparel": "Vendo abbigliamento e accessori",
@@ -442,9 +442,9 @@
       "youSell": "**Vendi** {0}",
       "dataSyncSetUp": "Configurazione della sincronizzazione del feed",
       "productAttributesMapping": "Category & product attribute mapping",
-      "attributeMapped": "One category have been mapped | {0} categories have been mapped",
-      "mandatoryAttributesNotMapped": "One Google attributes haven't been mapped to your custom fields | {0} Google attributes haven't been mapped to your custom fields.",
-      "noticeToCompleteMapping": "We recommend mapping all your data otherwise your products might be rejected by Google.",
+      "attributeMapped": "Una categoria è stata mappata | {0} categorie sono state mappate",
+      "mandatoryAttributesNotMapped": "Un attributo di Google non è stato mappato nei campi personalizzati | {0} Gli attributi di Google non sono stati mappati nei campi personalizzati.",
+      "noticeToCompleteMapping": "Ti consigliamo di mappare tutti i tuoi dati, altrimenti i prodotti potrebbero essere rifiutati da Google.",
       "agreementTitle": "Comprendo e accetto le seguenti condizioni*",
       "agreementCheckboxLabel1Instant": "La sincronizzazione del mio feed di prodotti verrà eseguita dopo aver cliccato su salva ed esporta (potrebbe richiedere da 1 a 4 ore)",
       "agreementCheckboxLabel1Default": "La sincronizzazione del mio feed di prodotti richiederà del tempo a {time} (potrebbe richiedere da 1 a 4 ore)",
@@ -465,7 +465,7 @@
   },
   "googleAdsAccountCard": {
     "title": "Collega il tuo account Google Ads",
-    "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
+    "intro": "Crea campagne pubblicitarie per i tuoi prodotti: trova il pubblico giusto al momento giusto.",
     "text": "Una volta connesso, potrebbe essere necessario configurare le impostazioni di fatturazione nel tuo account Google Ads.",
     "labelSelect": "Collega un account Google Ads esistente",
     "id": "ID account Google Ads",
@@ -489,22 +489,22 @@
     },
     "email": {
       "title": "Il tuo indirizzo e-mail di Google",
-      "description": "The email address below is the one provided during your Google account connection"
+      "description": "L'indirizzo e-mail indicato di seguito è quello fornito al momento dell'accesso all'account Google"
     },
     "business": {
-      "name": "Business name",
+      "name": "Nome della società",
       "title": "Informazioni sull'azienda",
-      "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
+      "description": "La valuta scelta per il tuo conto non può essere modificata, quindi sceglila con cura.",
       "labelCountry": "Paese di fatturazione",
       "placeholderCountry": "Nazione",
       "labelTimeZone": "Fuso orario",
-      "placeholderTimeZone": "Choose time",
+      "placeholderTimeZone": "Scegli un fuso orario",
       "labelCurrency": "Valuta",
       "placeholderCurrency": "Valuta"
     },
     "terms": {
       "title": "Termini di servizio per il programma Google",
-      "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
+      "label": "Ho letto e accetto i [termini e condizioni di Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
     }
   },
   "smartShoppingCampaignCard": {
@@ -512,7 +512,7 @@
     "introNotConnected": "Collegate o create il vostro account Google Ads e lanciate una campagna Performance Max per i vostri prodotti. Massimizzate le prestazioni della vostra campagna su più canali Google attraverso un'unica campagna. Mostrate i vostri annunci dove hanno maggiori possibilità di conversione. Inoltre, non pagherete se i vostri clienti non faranno clic.",
     "introConnected": "Con Performance Max, puoi pubblicizzare i tuoi prodotti e massimizzare il rendimento dei tuoi annunci su più canali Google attraverso un'unica campagna. Ancora meglio, non paghi a meno che i tuoi clienti non facciano clic!",
     "footer": "Nello Spazio Economico Europeo, nel Regno Unito o in Svizzera, le campagne Performance Max possono essere utilizzate con qualsiasi Servizio di Comparison Shopping (CSS) con cui lavorate. Gli annunci verranno visualizzati sulle pagine dei risultati di ricerca generali e su qualsiasi altra superficie per la quale il CSS abbia optato.",
-    "titleInfo": "Did you know?",
+    "titleInfo": "Lo sapevi?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
     "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
   },
@@ -533,7 +533,7 @@
     "inputDurationTooltip": "Le campagne pubblicitarie non hanno una data di fine per impostazione predefinita, in modo che gli annunci siano in grado di funzionare a tempo indeterminato. Puoi sempre aggiungere una data di fine per creare una campagna più breve.",
     "inputDurationLabel1": "Data di inizio",
     "inputDurationLabel2": "Data di fine (opzionale)",
-    "inputDurationInvalidFeedback": "The end date must be set in the future.",
+    "inputDurationInvalidFeedback": "La data di fine deve essere impostata nel futuro.",
     "inputDatePickerHelper": "Usa i tasti del cursore per navigare tra le date del calendario",
     "inputCountryHelper": "Per mirare a più paesi devi creare più campagne.",
     "inputCountryImutable": "Il paese non può essere cambiato dopo la creazione, se vuoi mirare ad un paese diverso, dovrai creare una nuova campagna",
@@ -548,7 +548,7 @@
     "inputBudgetFeedback": "Budget giornaliero della campagna",
     "inputBudgetTooltip": "Il tuo budget è l'importo medio che puoi spendere ogni giorno per la tua campagna. Il budget che scegliete dipende interamente da voi e potete modificarlo in qualsiasi momento.",
     "inputBudgetPlaceholder": "Importo",
-    "inputAllSyncedProducts": "No filters selected",
+    "inputAllSyncedProducts": "Nessun filtro selezionato",
     "formHelperTitle": "Attivazione della campagna",
     "formHelperDescription": "La tua campagna sarà attiva fino a quando non la metterai in pausa o non appena si arriverà alla data finale. Puoi metterla in pausa in qualsiasi momento.",
     "errorNoProducts": "Vuoi lanciare una campagna, ma il tuo merchant center di Google non contiene ancora nessun prodotto. La tua campagna inizierà solo quando almeno un prodotto sarà stato approvato da Google.",
@@ -568,21 +568,21 @@
       "hasUnhandledFilters": "Almeno un filtro di questa campagna non è supportato da questo modulo. Per evitare qualsiasi perdita sulla tua configurazione esistente, solo i dettagli di base della campagna possono essere modificati.",
       "PMaxExplanationTitle": "Performance Max è una nuova campagna basata su obiettivi.",
       "PMaxExplanation": "Performance Max è un tipo di campagna potenziata grazie alla tecnologia intelligente di Google. Può aiutartu a ottimizzare i tuoi annunci su più canali Google e a ottenere risultati migliori per la tua attività.",
-      "PMaxExplanationPrecision": "Even better, you won't pay unless customers click.",
+      "PMaxExplanationPrecision": "Ancora meglio, si paga solo se i clienti fanno clic.",
       "PMaxExplanationLink": "Per saperne di più su Performance Max"
     },
     "labelSelectedDimension": "Valore della dimensione selezionata",
     "nbDimensionSelected": "Nessuna dimensione selezionata | {0} dimensione selezionata | {0} dimensioni selezionate",
     "nbValuesSelected": "Nessun valore selezionato | {0} valore selezionato | {0} valori selezionati",
     "selectProductsTitle": "Scegliere un filtro di prodotto",
-    "selectProductsSubtitle": "The campaign can only have one dimension with one or multiple values.",
+    "selectProductsSubtitle": "La campagna può avere solo una dimensione con uno o più valori.",
     "remarketingNote": "**Nota bene:** se hai già configurato sul tuo sito le azioni di conversione di Google Ads con valori di conversione specifici per le transazioni per questo account Google Ads, allora non hai bisogno di impostare nuovi tag di conversione sul tuo sito.",
     "toggleNewConversionTag": "Imposta nuovi tag di tracciamento delle conversioni sul sito",
     "toggleNewConversionTag2": "Creeremo i seguenti tag di conversione: Visualizzazione della pagina, Acquisto, Aggiungi al carrello",
     "remarketingTagLoading": "Stiamo controllando se hai tag di tracciamento del remarketing e delle conversioni da aggiungere al tuo negozio",
     "descriptiveMessage": "Sono elencate solo le campagne Performance Max e Smart Shopping associate al tuo account Google Merchant Center. \nSe vuoi vedere tutte le vostre campagne, [accedi al tuo account Google Ads]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Nessun filtro prodotto selezionato | {0} filtro prodotto selezionato | {0} filtri prodotti selezionati",
-    "dimensionXFilterSelected": "{0} filter",
+    "dimensionXFilterSelected": "Filtro {0}",
     "categories": "Categoria",
     "categoriesSubTitle": "Categoria di prodotto definita da Google per il tuo prodotto (es: Abbigliamento",
     "brands": "Marchio",
@@ -592,8 +592,8 @@
     "conditions": "Condizioni del prodotto",
     "conditionsSubTitle": "La condizione del tuo prodotto al momento della vendita (es: Nuovo, usato o rinnovato)",
     "popinTitle": "Filtri dei prodotti della campagna",
-    "popinTitleConfirmCancel": "Go Back",
-    "xProducts": " ({0} product) | ({0} product) | ({0} products)",
+    "popinTitleConfirmCancel": "Torna indietro",
+    "xProducts": " ({0} prodotto) | ({0} prodotto) | ({0} prodotti)",
     "productConditions": {
       "unspecified": "Non specificato",
       "unknown": "Sconosciuto",
@@ -601,15 +601,15 @@
       "refurbished": "Ricondizionato",
       "used": "Usato"
     },
-    "dimensionXFilterSelectedWithXProducts": "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
-    "filtersWithxValues": "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products"
+    "dimensionXFilterSelectedWithXProducts": "Filtro {0} | Filtro {0} ({1} prodotto) | Filtro {0} ({1} prodotti)",
+    "filtersWithxValues": "{0} filtri | {0} filtri con {1} prodotto interessato | {0} filtri con {1} prodotto interessato"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Performance della campagna",
     "xCampaign": "Nessuna campagna | {0} campagna | {0} campagne",
     "performanceMax": "Performance Max",
-    "smartShoppingCampaign": "Smart Shopping Campaign",
-    "campaignType": "Type: {0}"
+    "smartShoppingCampaign": "Campagne di shopping intelligenti",
+    "campaignType": "Tipo: {0}"
   },
   "productFeedPage": {
     "breadcrumb": "Dettagli sullo stato del prodotto",
@@ -618,8 +618,8 @@
       "alertSuccess": "Avete optato con successo. Una volta che i tuoi prodotti sono approvati, possono apparire nei risultati di ricerca della scheda Google Shopping."
     },
     "destinations": {
-      "shoppingAds": "Shopping Ads",
-      "enhancedFreeListing": "Enhanced Free Listings"
+      "shoppingAds": "Annunci di shopping",
+      "enhancedFreeListing": "Attivare le inserzioni gratuite"
     },
     "syncStatus": {
       "title": "Stato delle sincronizzazioni",
@@ -640,12 +640,12 @@
           "failed": "Sincronizzazione fallita",
           "completed": "Sincronizzazione completata",
           "next": "Prossima sincronizzazione",
-          "notPlanned": "No planned synchronisation"
+          "notPlanned": "Nessuna sincronizzazione prevista"
         },
         "subtitle": {
-          "willHappenOnDate": "Will start on {0} at {1}",
+          "willHappenOnDate": "Inizierà da {0} alle {1}",
           "happenedOnDate": "Su {date}",
-          "error": "Due to a technical issue, the sync failed on {0} at {1}. A new one will run in a few hours."
+          "error": "A causa di un problema tecnico, la sincronizzazione non è riuscita il {0} alle {1}. Una nuova sincronizzazione verrà eseguita tra qualche ora."
         }
       }
     },
@@ -658,7 +658,7 @@
       "pendingProducts": "In attesa",
       "pendingProductsDescription": "Un prodotto in sospeso non verrà mostrato negli annunci o nelle inserzioni gratuite perché è in fase di revisione da parte di Google.",
       "expiringProducts": "In scadenza",
-      "expiringProductsDescription": "Expiring products will be removed from your Google merchant center in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
+      "expiringProductsDescription": "I prodotti scaduti saranno rimossi dal tuo Google Merchant Center entro i prossimi tre giorni e non appariranno più negli annunci o nelle inserzioni gratuite.",
       "disapprovedProducts": "Non approvato",
       "disapprovedProductsDescription": "Il tuo prodotto è disapprovato per una destinazione e non è attivo.",
       "productsSubmittedToGoogle": "Prodotti attivi inviati a Google: {0}",
@@ -668,12 +668,12 @@
       "title": "Prodotti attivi presentati a Google",
       "description": "Lo stato del tuo prodotto ti permette di sapere se il tuo prodotto è idoneo ad apparire nella destinazione che hai scelto.",
       "alert": {
-        "prescanTitle": "Warning {0} product couldn’t be exported to Google | Warning {0} products couldn’t be exported to Google",
-        "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
+        "prescanTitle": "Non è stato possibile esportare il prodotto in Google con l'avviso {0} | Non è stato possibile esportare il prodotto in Google con l'avviso {0}",
+        "prescanDescription": "Alcuni dei tuoi prodotti non hanno superato il nostro controllo; assicurati che i tuoi prodotti abbiano le informazioni richieste per essere elencati su Google Shopping."
       }
     },
     "preScan": {
-      "xProducts": " {0} product | {0} product | {0} products",
+      "xProducts": " {0} prodotto | {0} prodotto | {0} prodotti",
       "description": "{0} with problems that couldn't be synced are listed below.",
       "fields": {
         "name": "Nome",
@@ -779,7 +779,7 @@
       "conversion": "Conversione",
       "sales": "Vendite",
       "id": "ID",
-      "products": "Product Filters",
+      "products": "Filtri prodotto",
       "click": "Clic",
       "costs": "Costi",
       "averageCostPerClick": "CPC medio",
