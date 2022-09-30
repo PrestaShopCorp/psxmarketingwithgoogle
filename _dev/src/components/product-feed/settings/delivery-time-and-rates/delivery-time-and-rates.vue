@@ -3,17 +3,20 @@
     <p class="h3 mb-2 font-weight-600">
       {{ $t('productFeedSettings.deliveryTimeAndRates.title') }}
     </p>
+
     <custom-rate
       v-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE"
       :is-multiple-countries="selectedCountries.length"
       :rate-type-chosen="rateChosen"
       @rateUpdated="rateSelected($event)"
     />
+
     <target-countries
       @countrySelected="countries = $event;dataUpdated()"
       :countries="selectedCountries"
       :shipping-setup-option="getShippingValueSetup"
     />
+
     <shipping-settings
       v-if="getShippingValueSetup === ShippingSetupOption.IMPORT"
       :countries="selectedCountries"
@@ -22,14 +25,6 @@
       @dataUpdated="carriers = $event;dataUpdated()"
       @refresh="refreshComponent"
     />
-    <!--
-    <custom-carrier-form
-      v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE
-        && selectedCountries.length > 0
-        && rate === RateType.SAME_FOR_ALL"
-      :custom-carrier="customCarrier"
-      :display-validation-errors="displayValidationErrors"
-    /> -->
 
     <countries-form-list
       v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE
@@ -110,7 +105,6 @@ export default Vue.extend({
     },
     estimateCarriersToConfigure() {
       const carriersFromStore = this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS']?.filter((carrier) => carrier.rate === this.rateChosen);
-      // const carriersFromStore = this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS'];
 
       if (carriersFromStore.length === 0) {
         return createCustomCarriersTemplate(
@@ -238,7 +232,7 @@ export default Vue.extend({
     if (!this.$store.state.productFeed.settings.deliveryDetails.length) {
       this.refreshComponent();
     }
-    if (this.countries.length === 1) {
+    if (this.selectedCountries.length === 1) {
       this.rateChosen = RateType.RATE_ALL_COUNTRIES;
     }
   },

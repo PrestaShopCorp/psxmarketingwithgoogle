@@ -1,7 +1,8 @@
 <template>
   <!-- CASE FOR RATE_FOR_ALL_COUNTRIES -->
-  <div>
+  <div class="estimateMultiCountries">
     <b-card
+      id="for_all_countries"
       no-body
       class="mb-1"
       v-if="rateChosen === RateType.RATE_ALL_COUNTRIES"
@@ -42,6 +43,7 @@
         </b-button>
       </b-card-header>
       <b-collapse
+        visible
         id="withAllCountries"
         accordion="customCarrierAccordion"
         role="tabpanel"
@@ -59,6 +61,7 @@
     <!-- CASE FOR RATE_PER_COUNTRY -->
     <b-card
       no-body
+      id="card_per_country"
       class="mb-1"
       v-else-if="rateChosen === RateType.RATE_PER_COUNTRY"
       v-for="(carrier, index) in carriers"
@@ -71,7 +74,7 @@
       >
         <b-button
           block
-          v-b-toggle="`withAllCountries-${index}`"
+          v-b-toggle="`${carrier.rate}-${index}`"
           class="d-flex btn-without-hover"
           variant="invisible"
         >
@@ -96,7 +99,7 @@
       </b-card-header>
       <b-collapse
         visible
-        :id="`withAllCountries-${index}`"
+        :id="`${carrier.rate}-${index}`"
         :accordion="`customCarrierAccordion-${index}`"
         role="tabpanel"
       >
@@ -156,6 +159,14 @@ export default Vue.extend({
         return null;
       }
       return validateCarrier(carrier);
+    },
+  },
+  watch: {
+    carriers: {
+      handler(carriers) {
+        this.$emit('dataUpdated', carriers);
+      },
+      immediate: true,
     },
   },
 });

@@ -237,7 +237,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
   });
 
   it('should transform API response to valid format on view', () => {
-    const validCarrierFromAPI: CustomCarrier = {
+    const validCarrierFromAPI: CustomCarrier[] = [{
       carrierName: 'DLH',
       rate: RateType.RATE_ALL_COUNTRIES,
       offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
@@ -252,10 +252,10 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
       flatShippingRate: {
         shippingCost: 0,
       },
-    };
+    }];
     const transform = fromApi(validCarrierFromAPI);
 
-    expect(transform).toEqual({
+    expect(transform).toEqual([{
       carrierName: 'DLH',
       rate: RateType.RATE_ALL_COUNTRIES,
       offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
@@ -270,11 +270,11 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
       flatShippingRate: {
         shippingCost: null,
       },
-    });
+    }]);
   });
 
   it('should transform API response to valid format on view', () => {
-    const validCarrierFromAPI: CustomCarrier = {
+    const validCarrierFromAPI: CustomCarrier[] = [{
       carrierName: 'DLH',
       rate: RateType.RATE_ALL_COUNTRIES,
       offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
@@ -289,10 +289,10 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
       flatShippingRate: {
         shippingCost: 9,
       },
-    };
+    }];
     const transform = fromApi(validCarrierFromAPI);
 
-    expect(transform).toEqual({
+    expect(transform).toEqual([{
       carrierName: 'DLH',
       rate: RateType.RATE_ALL_COUNTRIES,
       offer: OfferType.FREE_SHIPPING_OVER_AMOUNT,
@@ -307,27 +307,12 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
       flatShippingRate: {
         shippingCost: 9,
       },
-    });
+    }]);
   });
 
   it('should create a new template when api send empty array for estimateCarriers', () => {
-    const transform = fromApi({} as CustomCarrier);
+    const transform = fromApi([]);
 
-    expect(transform).toEqual({
-      carrierName: '',
-      rate: RateType.RATE_ALL_COUNTRIES,
-      offer: null,
-      minDeliveryTime: null,
-      maxDeliveryTime: null,
-      countries: [],
-      currency: '',
-      freeShippingOverAmount: {
-        shippingCost: null,
-        orderPrice: null,
-      },
-      flatShippingRate: {
-        shippingCost: null,
-      },
-    });
+    expect(transform).toEqual([]);
   });
 });
