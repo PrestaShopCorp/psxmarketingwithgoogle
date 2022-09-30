@@ -78,20 +78,6 @@
         {{ shopId }}
       </div>
     </template>
-    <div
-      id="helper-pmax"
-      class="p-3 d-flex"
-    >
-      <span class="material-icons d-inline-block align-middle mr-3 msg-icon-custom">
-        chat
-      </span>
-      <VueShowdown
-        :markdown="$t('modal.textPmaxReleased', [
-          this.$options.googleUrl.pmaxReleaseLink
-        ])"
-        :extensions="['extended-link', 'no-p-tag']"
-      />
-    </div>
   </div>
 </template>
 
