@@ -73,8 +73,16 @@ jobs:
 
   phpunit:
     name: PHPUnit
+    strategy:
+      matrix:
+        version: [7.2, 7.4, 8.1]
     runs-on: ubuntu-latest
     steps:
+      - name: Setup PHP with tools
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.version }}
+
       - name: Checkout
         uses: actions/checkout@v3
 
