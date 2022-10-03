@@ -9,7 +9,7 @@
       "help": "Ayuda"
     },
     "versionDoesNotExist": "Parece que no se puede recuperar la versión del módulo. Es por nuestra parte, por favor, inténtelo de nuevo.",
-    "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
+    "moduleNeedActivation": "Marketing with Google está deshabilitado, no podrás utilizar ninguna de sus funcionalidades hasta que habilites tu módulo.",
     "moduleUpdateNeeded": {
       "ps_eventbus": "La versión del módulo PrestaShop EventBus que se ejecuta en esta tienda es anterior a la mínima requerida .\n\nPuede utilizar PrestaShop Marketing con Google, pero algunas funciones (por ejemplo, la sincronización de productos) no estarán disponibles hasta que actualice PrestaShop EventBus.",
       "psxmarketingwithgoogle": "Por favor, actualice el módulo PrestaShop Marketing With Google para que funcione correctamente"
@@ -141,7 +141,7 @@
     "alertTooManyRequests": "Has solicitado este servicio demasiadas veces con este número de teléfono. Tienes que esperar 24 horas para volver a intentarlo o cambiar tu número de teléfono.",
     "alertSomethingHappened": "Something happened. It's on our side, please try again.",
     "alertCodeExpired": "El código ha caducado. Por favor, pide otro",
-    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
+    "refreshAfterAddingWebsiteAddress": "Si has añadido información nueva en Google Merchant Center, actualiza tu página."
   },
   "mcaRequirements": {
     "steps": {
@@ -154,27 +154,27 @@
     "legend2": "La URL del sitio web de la tienda debe ser verificada y reclamada antes de poder cargar los datos de los productos.  \n[Aprende a verificar y reclamar tu sitio web](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Leer la versión completa de los requisitos de la tienda de Google",
     "accurateContactInformation": {
-      "title": "I confirm that my contact information are correct and valid",
+      "title": "Confirmo que mis datos de contacto son correctos y válidos",
       "description": "Los comerciantes deben tener al menos un método de contacto en su sitio web, que puede ser cualquier tipo de método de contacto.",
       "link": "Descubre cómo añadir información de contacto"
     },
     "secureCheckoutProcess": {
-      "title": "I confirm that I have a clear checkout & data collection",
+      "title": "Confirmo que tengo un proceso claro de recogida de datos y checkout",
       "description": "No utilizar indebidamente la información sobre el usuario, ni recogerla con fines poco claros o sin las medidas de seguridad adecuadas.",
       "link": "Aprende sobre la recopilación y el uso irresponsable de datos"
     },
     "returnPolicy": {
-      "title": "I confirm that my return & refund policy are setup on my website",
+      "title": "Confirmo que mi política de devoluciones y reembolsos está configurada en mi sitio web",
       "description": "La política de devoluciones y reembolsos debe ser clara (incluir requisitos y plazos) y de fácil acceso en tu sitio web.",
       "link": "Aprende a configurar las políticas de devolución"
     },
     "billingTerms": {
-      "title": "I confirm that my billing terms and conditions are clear and visible",
+      "title": "Confirmo que mis condiciones de facturación son claras y visibles",
       "description": "El sitio web debe revelar de forma clara y visible las opciones de pago y todos los gastos que soportará el usuario, antes y después de la compra.",
       "link": "Lee las directrices de Merchant Center"
     },
     "completeCheckoutProcess": {
-      "title": "I confirm that I have a complete checkout process",
+      "title": "Confirmo que dispongo de un proceso de checkout completo",
       "description": "Los usuarios deben ser capaces de completar con éxito el proceso de compra.",
       "link": "Aprende sobre los requisitos de pago"
     },
@@ -249,15 +249,15 @@
       "estimateOption": {
         "title": "Puedo estimar tarifas y tiempos de envío",
         "description": "Puedes definir fácilmente una tarifa fija de envío y plazos de entrega. No se te pedirá que importes o actualices la información de envío desde el back office de PrestaShop.",
-        "summary": "Estimated method"
+        "summary": "Previsión"
       },
       "importOption": {
         "title": "Me gustaría importar mi configuración de envío desde el back office de PrestaShop",
         "description": "PrestaShop importará los ajustes de envío que ya están configurados en tu back office. Puedes elegir qué transportista quieres utilizar por país de destino.",
-        "summary": "Imported from backoffice"
+        "summary": "Importado desde el back office"
       },
       "laterOption": {
-        "summary": "Setup later"
+        "summary": "Configurar más tarde"
       },
       "validationErrors": {
         "needOptionToBeChosen": "You need to select one option to continue"
@@ -290,21 +290,21 @@
         },
         "shippingRate": {
           "rate": "Gastos de envío",
-          "rateDesc": "Enter the shipping rate for all target countries",
-          "overAmount": "Free shipping applies over"
+          "rateDesc": "Introduce la tarifa de envío para todos los países objetivo",
+          "overAmount": "La entrega gratuita se aplica a partir de"
         },
         "summary": {
-          "singleCountry": "Flat rate",
-          "multiCountriesFlatRateForAll": "Flat rate for all target countries"
+          "singleCountry": "Tarifa fija",
+          "multiCountriesFlatRateForAll": "Tarifa fija para todos los países objetivo"
         }
       },
       "importOption": {
         "validationErrors": {
-          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue"
+          "needAtLeastOneCarrier": "Debes habilitar, al menos, un transportista para continuar"
         },
-        "summary": "Configured carriers from backoffice"
+        "summary": "Transportistas configurados desde el back office"
       },
-      "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
+      "productAvailaibleIn": "Puedes seleccionar los países donde se mostrarán los productos. El menú desplegable se corresponde con los países y monedas que has configurado en PrestaShop.",
       "targetCountries": "País objetivo",
       "filterTitle": "Filtrar por país",
       "ifMultipleCountries": "Si se dirige a varios países, el precio de cada producto se convertirá automáticamente a la moneda correcta en Google. Sin embargo, su tienda debe haber configurado las tasas de envío y de impuestos para cada país seleccionado. Respeta las [políticas de compra específicas de cada país]({0})[:target=\"_blank\"] y la [normativa local]({1})[:target=\"_blank\"].",
@@ -325,16 +325,16 @@
       "appliedOnlyForUsa": "(se aplica sólo a los Estados Unidos)",
       "alertTaxes": "Debe presentar los impuestos que cobra, para que los usuarios entiendan el precio exacto que tendrán que pagar por sus productos.",
       "carrierDescriptionHeader": "Portador  \n descripción",
-      "enableHeader": "Enable /  \n disable",
+      "enableHeader": "Activar / desactivar",
       "shipToCustomerHeader": "Entrega a domicilio  \n",
-      "transitTimeHeader": "Delivery time",
+      "transitTimeHeader": "Plazo de entrega",
       "countryHeader": "País",
       "shipToCustomerTooltip": "Seleccione si este transportista entrega en la dirección del cliente o no (punto de servicio, recogida en tienda). Google solo permite habilitar a los transportistas que envían a una dirección.",
       "handlingTimeTooltip": "Introduzca el tiempo que tarda en preparar un pedido hasta que lo recoge el transportista en días laborables.",
       "transitTimeTooltip": "Introduzca el tiempo que tarda su pedido en ser enviado al cliente una vez que sale de sus instalaciones.",
-      "shippingInformationTitle": "Shipping rates & transit time",
-      "shippingInformationIntro": "You can enable and configure the carriers you want to be displayed on Google Shopping.",
-      "shippingTableNotice": "Google cannot support carrier with pick up in store delivery type, please make sure you disable them or switch to another method.",
+      "shippingInformationTitle": "Gastos de envío y plazo de entrega",
+      "shippingInformationIntro": "Puede habilitar y configurar los transportistas que quieres que se muestren en Google Shopping.",
+      "shippingTableNotice": "Google no tiene en consideración la entrega con recogida en tienda, deshabilítala o cambia a otro método.",
       "shippingSwitchCarrier": "Interruptor para habilitar/deshabilitar la portadora",
       "carriersDropdownHeader": "Copie la información de envío a",
       "carriersDropdownHiddenLabel": "Copiar información del transportista a otros transportistas",
@@ -344,10 +344,10 @@
       "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
       "addNewCarriers": "Añadir o actualizar transportistas",
       "refreshCarriers": "Actualiza si has editado tus portadores",
-      "switchToFlatRate": "Switch to estimation shipping’s set-up"
+      "switchToFlatRate": "Cambia a la configuración sobre la previsión del método de envío"
     },
     "preScan": {
-      "selectLanguage": "Filter by language",
+      "selectLanguage": "Filtrar por idioma",
       "apiError": "An error occurred while fetching data, please try again later.",
       "noElement": "You don't have any products."
     },
