@@ -231,8 +231,8 @@
     "breadcrumb1": "Feed de productos",
     "breadcrumb2": "Configuración del feed de productos",
     "steps": {
-      "shippingSetup": "Shipping setup",
-      "deliveryTimesAndRates": "Delivery time & rates",
+      "shippingSetup": "Configuración del envío",
+      "deliveryTimesAndRates": "Plazo de entrega y tarifas de envío",
       "attributeMapping": "Asignación de atributos",
       "categoryMapping": "Mapa de la categoría",
       "summary": "Resumen",
@@ -241,19 +241,19 @@
       "syncSchedule": "Programa de sincronización"
     },
     "noticeDataStored": "Los ajustes se guardan en cada paso, se presentarán sólo en el paso final.",
-    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
+    "submissionExplanation": "Ten en cuenta que los datos se almacenarán en cada paso pero no se enviarán hasta la etapa final",
     "shippingSetup": {
-      "title": "Shipping setup",
-      "mandatoryStep": "For your products to be shown by Google Merchant Center, shipping is a mandatory step.",
-      "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
+      "title": "Configuración del envío",
+      "mandatoryStep": "Para que tus productos se muestren por Google Merchant Centre, la configuración del envío es un paso obligatorio.",
+      "stepExplanation": "Esto ayuda a que los clientes que buscan tus productos en Google vean tus tarifas y plazo de entrega.",
       "estimateOption": {
-        "title": "I can estimate shipping rates & times",
-        "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office.",
+        "title": "Puedo estimar tarifas y tiempos de envío",
+        "description": "Puedes definir fácilmente una tarifa fija de envío y plazos de entrega. No se te pedirá que importes o actualices la información de envío desde el back office de PrestaShop.",
         "summary": "Estimated method"
       },
       "importOption": {
-        "title": "I’d like to import my shipping setup from PrestaShop back office",
-        "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country.",
+        "title": "Me gustaría importar mi configuración de envío desde el back office de PrestaShop",
+        "description": "PrestaShop importará los ajustes de envío que ya están configurados en tu back office. Puedes elegir qué transportista quieres utilizar por país de destino.",
         "summary": "Imported from backoffice"
       },
       "laterOption": {
@@ -269,27 +269,27 @@
         "freeShippingOverAmount": "Enter the value of minimum spend required for free shipping",
         "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
       },
-      "title": "Delivery time & rates",
-      "rateAndDelivery": "Rate & delivery timeline",
-      "deliveryInfo": "Enter the minimum and maximum days required for delivery",
+      "title": "Plazo de entrega y tarifas de envío",
+      "rateAndDelivery": "Tarifas de envío y plazo de entrega",
+      "deliveryInfo": "Indica el número mínimo y máximo de días requeridos para la entrega",
       "customRate": {
-        "title": "Choose a flat or custom rate for your target countries",
-        "rateTitle": "Same rates for target countries",
-        "rateDesc": "I can estimate the same shipping rate and delivery time for all countries",
-        "customTitle": "Custom rates by country",
-        "customDesc": "I'd like to set different rates and times for each country"
+        "title": "Elije una tarifa fija o personalizada para tus países objetivo",
+        "rateTitle": "Misma tarifa para todos los países objetivo",
+        "rateDesc": "Puedo calcular la misma tarifa y plazo de entrega para todos los países",
+        "customTitle": "Tarifas personalizadas por país",
+        "customDesc": "Me gustaría establecer diferentes tarifas y horarios para cada país"
       },
       "estimateStep": {
-        "error": "Fill in the required information",
-        "carrierName": "Carrier name",
-        "storeOffersTitle": "My store offers",
+        "error": "Rellena la información solicitada",
+        "carrierName": "Nombre del transportista",
+        "storeOffersTitle": "Mi tienda ofrece",
         "storeOffers": {
-          "flatShippingRateForAllProducts": "Flat shipping rate for all products",
-          "freeShippingForAllProducts": "Free shipping for all products",
-          "freeShippingOverAmount": "Free shipping over a set amount"
+          "flatShippingRateForAllProducts": "Tarifa de envío fija para todos los productos",
+          "freeShippingForAllProducts": "Envío gratuito para todos los productos",
+          "freeShippingOverAmount": "Envío gratuito a partir de un determinado importe"
         },
         "shippingRate": {
-          "rate": "Shipping rate",
+          "rate": "Gastos de envío",
           "rateDesc": "Enter the shipping rate for all target countries",
           "overAmount": "Free shipping applies over"
         },
