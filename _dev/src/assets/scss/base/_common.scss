@@ -105,6 +105,10 @@ a.without-hover {
   color: $grey_muted;
 }
 
+.vs__dropdown-toggle {
+  cursor: pointer!important;
+}
+
 .table-borderless {
   border: none;
 }
