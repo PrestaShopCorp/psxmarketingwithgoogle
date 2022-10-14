@@ -10,10 +10,9 @@
         />
       </div>
       <div class="col">
-        <ps-accounts
+        <prestashop-accounts
           class="ps_gs-ps-account-card"
-          :context="psAccountsContext"
-        />
+        ></prestashop-accounts>
       </div>
     </div>
 
@@ -138,7 +137,7 @@
 </template>
 
 <script>
-import {PsAccounts} from 'prestashop_accounts_vue_components';
+import psAccountsVue from 'prestashop_accounts_vue_components';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
@@ -158,7 +157,6 @@ import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 export default {
   name: 'OnboardingPage',
   components: {
-    PsAccounts,
     SectionTitle,
     GoogleAccountCard,
     GoogleAdsAccountCard,
@@ -360,6 +358,8 @@ export default {
     },
   },
   mounted() {
+    psAccountsVue.init();
+
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty

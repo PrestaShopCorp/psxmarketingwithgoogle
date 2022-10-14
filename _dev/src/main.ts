@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import {BootstrapVue} from 'bootstrap-vue';
 import VueCollapse from 'vue2-collapse';
-import psAccountsVueComponents from 'prestashop_accounts_vue_components';
-import VueSegment from '@prestashopcorp/segment-vue';
 import VueShowdown from 'vue-showdown';
 import router from './router';
 import store from './store';
@@ -14,11 +12,12 @@ import './utils/Filters';
 import '../showdown.js';
 import '@/utils/Sentry';
 import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import VueSegment from '@/lib/segment';
 
 Vue.config.productionTip = false;
+Vue.config.ignoredElements = ['prestashop-accounts'];
 Vue.use(BootstrapVue);
 Vue.use(VueCollapse);
-Vue.use(psAccountsVueComponents, {locale: i18n.locale});
 Vue.use(VueShowdown);
 Vue.use(VueSegment, {
   // @ts-ignore
