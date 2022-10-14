@@ -218,6 +218,7 @@ export default {
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
       deleteProductFeedDataFromLocalStorage();
       await dispatch(ActionsTypes.REQUEST_ATTRIBUTE_MAPPING);
+      await dispatch(ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS);
     } catch (error) {
       console.error(error);
     }
