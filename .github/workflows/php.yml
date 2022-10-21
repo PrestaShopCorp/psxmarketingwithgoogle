@@ -38,8 +38,8 @@ jobs:
 
       - run: composer install
 
-      - name: Run PHPUnit
-        run: vendor/bin/php-cs-fixer fix --config .php_cs.dist.php
+      - name: Run PHP-CS-Fixer
+        run: vendor/bin/php-cs-fixer fix --dry-run
 
   phpstan:
     name: PHPStan
