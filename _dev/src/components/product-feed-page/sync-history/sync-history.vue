@@ -55,10 +55,10 @@ export default {
               'productFeedPage.syncSummary.syncHistory.title.planned',
             ),
             description: this.$i18n.t(
-              'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate',
-              this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt),
-              this.$options.filters.timeConverterToHour(this.syncInfos.nextJobAt),
-            ),
+              'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate', [
+                this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt),
+                this.$options.filters.timeConverterToHour(this.syncInfos.nextJobAt),
+              ]),
             icon: 'schedule',
           },
         ];
