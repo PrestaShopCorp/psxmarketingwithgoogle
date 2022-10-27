@@ -366,7 +366,7 @@
       "allCategories": "Toutes les catégories",
       "labelSelectBrand": "Sélectionner une marque",
       "placeholderSelectBrand": "Rechercher une marque",
-      "prohibitedContentNotice": "Veuillez consulter les [lignes directrices pour le contenu interdit] ({0})[:target=\"_blank\"] pour vous assurer que les produits de votre flux ne violent pas ces politiques.",
+      "prohibitedContentNotice": "Veuillez consulter les [directives relatives au contenu interdit]({0})[:target=\"_blank\"] pour vous assurer que les produits figurant dans votre flux ne violent pas ces politiques.",
       "frequency": {
         "daily": "Quotidiennement"
       },
