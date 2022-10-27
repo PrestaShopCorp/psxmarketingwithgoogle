@@ -141,3 +141,24 @@ a.without-hover {
 .min-input-custom {
   max-width: 50px;
 }
+
+.circle-stepper-current {
+  border-radius: 50%;
+  min-width: 30px;
+  min-width: 30px;
+  background:  #D4E9D9;
+  color: #21834D;
+  line-height: 30px;
+  font-size: 17px;
+  text-align: center;
+  box-sizing: inherit!important;
+  &.circle-disabled {
+    background:  #D8D8D8;
+    color: #717171;
+  }
+}
+
+.step-done-icons {
+  font-size: 30px!important;
+  font-weight: 900!important;
+}
