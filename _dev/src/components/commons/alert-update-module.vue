@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-2">
+  <div class="mb-2 no-max-width">
     <b-alert
       v-if="errorModule"
       variant="warning"

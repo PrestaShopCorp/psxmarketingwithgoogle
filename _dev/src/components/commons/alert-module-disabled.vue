@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mb-2"
+    class="mb-2 no-max-width"
     v-if="isEnabled === false"
   >
     <b-alert
