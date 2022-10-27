@@ -5,8 +5,8 @@
   >
     <div
       v-if="!this.isDone"
-      class="circle-stepper-current mr-3 ml-2 d-inline-block"
-      :class="{ 'circle-disabled' : !isEnabled }"
+      class="circle mr-3 ml-2 d-inline-block"
+      :class="!isEnabled ? 'bg-circle-disabled' : 'bg-circle-active'"
     >
       {{ stepNumber }}
     </div>

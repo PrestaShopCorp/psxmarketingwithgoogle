@@ -7,6 +7,16 @@
   color: $purple;
 }
 
+.bg-circle-disabled {
+  background: $bg-grey_light;
+  color: $grey_dark_number;
+}
+
+.bg-circle-active {
+  background: $bg-green_light;
+  color: $green_dark_number;
+}
+
 // Background color
 .bg-violet_extralight {
   background-color: $violet_extralight;
