@@ -40,9 +40,10 @@ describe('Testing differents case for the sectionTitle components', () => {
       store: new Vuex.Store(store),
     });
 
-    expect(wrapper.find('.ps_gs-section-title .circle-stepper-current').text()).toBe('1');
+    expect(wrapper.find('.ps_gs-section-title .circle').text()).toBe('1');
+    expect(wrapper.find('.ps_gs-section-title .circle').classes()).toContain('bg-circle-active');
+    expect(wrapper.find('.circle').classes()).not.toContain('bg-circle-disabled');
     expect(wrapper.find('.material-icons').exists()).toBeFalsy();
-    expect(wrapper.find('.circle-stepper-current').classes()).not.toContain('circle-disabled');
   });
 
   it('should display a checkmark when merchant finished the first step', () => {
@@ -57,7 +58,7 @@ describe('Testing differents case for the sectionTitle components', () => {
       store: new Vuex.Store(store),
     });
 
-    expect(wrapper.find('.ps_gs-section-title .circle-stepper-current').exists()).toBeFalsy();
+    expect(wrapper.find('.ps_gs-section-title .circle').exists()).toBeFalsy();
     expect(wrapper.find('.material-icons').exists()).toBeTruthy();
   });
 
@@ -73,7 +74,7 @@ describe('Testing differents case for the sectionTitle components', () => {
       store: new Vuex.Store(store),
     });
 
-    expect(wrapper.find('.ps_gs-section-title .circle-stepper-current').classes()).toContain('circle-disabled');
+    expect(wrapper.find('.ps_gs-section-title .circle').classes()).toContain('bg-circle-disabled');
     expect(wrapper.find('.material-icons').exists()).toBeFalsy();
   });
 
@@ -97,23 +98,24 @@ describe('Testing differents case for the sectionTitle components', () => {
         stepNumber: 3,
         isEnabled: false,
         isDone: false,
-      }
-    ]
-    const wrapper: any  = [];
-    for (let i = 0; i < steps.length; i++) {
+      },
+    ];
+    const wrapper: any = [];
+
+    for (let i = 0; i < steps.length; i += 1) {
       wrapper.push(buildWrapper({
         propsData: steps[i],
         store: new Vuex.Store(store),
       }));
     }
 
-    expect(wrapper[0].find('.ps_gs-section-title .circle-stepper-current').exists()).toBeFalsy();
+    expect(wrapper[0].find('.ps_gs-section-title .circle').exists()).toBeFalsy();
     expect(wrapper[0].find('.material-icons').exists()).toBeTruthy();
 
     expect(wrapper[1].find('.material-icons').exists()).toBeFalsy();
-    expect(wrapper[1].find('.circle-stepper-current').classes()).not.toContain('circle-disabled');
+    expect(wrapper[1].find('.circle').classes()).not.toContain('bg-circle-disabled');
 
-    expect(wrapper[2].find('.ps_gs-section-title .circle-stepper-current').classes()).toContain('circle-disabled');
+    expect(wrapper[2].find('.ps_gs-section-title .circle').classes()).toContain('bg-circle-disabled');
     expect(wrapper[2].find('.material-icons').exists()).toBeFalsy();
   });
-})
+});

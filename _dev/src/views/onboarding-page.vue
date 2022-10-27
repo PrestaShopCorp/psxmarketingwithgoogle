@@ -17,7 +17,10 @@
       </div>
     </div>
 
-    <div class="row  mb-4" v-if="psAccountsContext.isShopContext">
+    <div
+      class="row  mb-4"
+      v-if="psAccountsContext.isShopContext"
+    >
       <div class="col">
         <section-title
           :step-number="2"
