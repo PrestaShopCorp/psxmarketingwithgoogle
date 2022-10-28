@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mb-2"
+    class="mb-2 two-panel-max-width"
     v-if="isEnabled === false"
   >
     <b-alert

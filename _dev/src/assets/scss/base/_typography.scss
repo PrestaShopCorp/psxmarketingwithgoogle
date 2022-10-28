@@ -3,6 +3,10 @@
   line-height: 1.4em;
 }
 
+#configuration {
+  max-width: inherit;
+}
+
 .ps_gs-section-title {
   display: flex;
   align-items: center;
@@ -17,6 +21,11 @@
   &__step {
     width: rem(24);
   }
+}
+
+.stepper-onboarding-subtitle {
+  padding-left: 3.4rem!important;
+  width: 90%;
 }
 
 .ps_gs-fz-24 {

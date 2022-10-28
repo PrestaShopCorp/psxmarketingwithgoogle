@@ -141,3 +141,22 @@ a.without-hover {
 .min-input-custom {
   max-width: 50px;
 }
+
+.circle {
+  border-radius: 50%;
+  min-width: 30px;
+  min-width: 30px;
+  line-height: 30px;
+  font-size: 17px;
+  text-align: center;
+  box-sizing: inherit!important;
+}
+
+.two-panel-max-width {
+  max-width: 1240px;
+}
+
+.step-done-icons {
+  font-size: 30px!important;
+  font-weight: 900!important;
+}
