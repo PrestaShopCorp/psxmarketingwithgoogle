@@ -20,24 +20,25 @@
           class="d-flex align-items-center"
         >
           <img
-            class="mr-3 rounded-circle"
+            class="mr-2 rounded-circle"
             :src="
               isEnabled
                 ? require('@/assets/images/google-icon.svg')
                 : require('@/assets/images/google-icon-grey.svg')
             "
-            width="40"
-            height="40"
+            width="32"
+            height="32"
           >
           <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
             {{ $t('googleAccountCard.title') }}
           </b-card-text>
-          <i
+          <b-badge
             v-if="user && user.details.email"
-            class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
+            class="mx-3"
+            variant="success"
           >
-            check_circle
-          </i>
+            Connected
+          </b-badge>
         </div>
         <div
           class="d-flex flex-wrap flex-md-nowrap
@@ -53,13 +54,6 @@
             v-else
             class="d-flex align-items-center pt-3 pr-3 pb-3"
           >
-            <img
-              class="mr-3 rounded-circle"
-              :src="user.details.picture"
-              width="38"
-              height="38"
-              alt=""
-            >
             <a
               :href="$options.googleUrl.manageGoogleAccount"
               :title="$t('cta.goToYourX', [$t('badge.googleAccount')])"

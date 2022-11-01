@@ -20,14 +20,14 @@
         <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
           <div class="d-flex align-items-center">
             <img
-              class="mr-3"
+              class="mr-2"
               :src="
                 isEnabled
                   ? require('@/assets/images/product-feed-icon.png')
                   : require('@/assets/images/product-feed-icon-grey.png')
               "
-              width="40"
-              height="40"
+              width="32"
+              height="32"
               alt=""
             >
             <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
