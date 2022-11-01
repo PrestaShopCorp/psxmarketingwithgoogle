@@ -1,40 +1,64 @@
-.ps_gs-onboardingcard {
-  border: none;
-  margin-bottom: rem(16);
+section {
+  .ps_gs-onboardingcard {
+    border: none;
 
-  &--disabled {
-    color: $grey_muted;
+    &--disabled {
+      color: $grey_muted;
+    }
+
+    &--disabled-grey {
+      background-color: $bg-grey_disabled;
+      color: $grey_muted;
+    }
+
+    &--muted {
+      background-color: $bg-grey_disabled;
+    }
+
+    &__title {
+      font-size: rem(16);
+      line-height: rem(22.5);
+      font-weight: 600;
+    }
+
+    &__not-configured {
+      position: absolute;
+      z-index: 1;
+      top: 4px;
+      right: 4px;
+      bottom: 4px;
+      left: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, .8);
+      @supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
+        background-color: transparent;
+        backdrop-filter: blur(8px);
+      }
+    }
   }
 
-  &--disabled-grey {
-    background-color: $bg-grey_disabled;
-    color: $grey_muted;
+  &:not(:last-child) {
+    .ps_gs-onboardingcard {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      padding-bottom: 0 !important;
+
+      &::after {
+        content: '';
+        border-top: 2px solid $background-color;
+        display: block;
+        margin-top: 1rem;
+      }
+    }
   }
 
-  &--muted {
-    background-color: $bg-grey_disabled;
-  }
-
-  &__title {
-    font-size: rem(16);
-    line-height: rem(22.5);
-    font-weight: 600;
-  }
-
-  &__not-configured {
-    position: absolute;
-    z-index: 1;
-    top: 4px;
-    right: 4px;
-    bottom: 4px;
-    left: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, .8);
-    @supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
-      background-color: transparent;
-      backdrop-filter: blur(8px);
+  &:not(:first-child) {
+    .ps_gs-onboardingcard {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
     }
   }
 }

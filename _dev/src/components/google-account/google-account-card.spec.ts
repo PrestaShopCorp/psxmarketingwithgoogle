@@ -33,7 +33,7 @@ describe('google-account-card.vue', () => {
       },
     });
 
-    expect(wrapper.find('.ps_gs-onboardingcard--disabled-grey').exists()).toBeTruthy();
+    expect(wrapper.find('.ps_gs-onboardingcard--disabled').exists()).toBeTruthy();
   });
 
   it('card isn\'t greyed when enabled', () => {
