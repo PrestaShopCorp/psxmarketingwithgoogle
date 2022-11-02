@@ -21,7 +21,9 @@
     "unableToFetchData": "We were unable to fetch datas, please try again later",
     "searchByX": "Search by {0}",
     "search": "Search",
-    "legendCreateNewAccount": "You also have the possibility to create a new account within few steps:",
+    "createAccount": "create your account",
+    "today": "today",
+    "legendCreateNewAccount": "If you don't have an account, you can",
     "notAvailable": "Not available",
     "min": "Min",
     "max": "Max",
@@ -471,10 +473,10 @@
     "alertCountryNotEligible": "The target country you have selected is not eligible for free listings and ads."
   },
   "googleAdsAccountCard": {
-    "title": "Connect your Google Ads account",
+    "title": "Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Once connected you may need to configure your billing settings in your Google Ads account.",
-    "labelSelect": "Connect an existing Google Ads account",
+    "labelSelect": "You can connect an existing Google Ads account, or create a new one in a few easy steps.",
     "id": "Google Ads account ID",
     "toUseGAdsNeedsAdminAccess": "To use an existing Google Ads account, you must have Admin access.",
     "alertCantConnect": "Could not connect your Google Ads account, it's on our side, please give it another try.",

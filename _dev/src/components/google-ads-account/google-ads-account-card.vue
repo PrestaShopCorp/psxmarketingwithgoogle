@@ -50,21 +50,57 @@
             <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
               {{ $t('googleAdsAccountCard.title') }}
             </b-card-text>
-            <i
-              v-if="googleAdsAccountConfigured && !error"
-              class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
+            <div v-if="googleAdsAccountConfigured && !error">
+              <b-badge
+                  v-if="gAdsAccountStatusBadge !== null"
+                  :variant="gAdsAccountStatusBadge.color"
+                  class="mx-3"
+                >
+                  {{ $t(`badge.${gAdsAccountStatusBadge.text}`) }}
+                </b-badge>
+                <b-badge
+                  v-if="testAccountBadge !== null"
+                  :variant="testAccountBadge.color"
+                  class="mx-1"
+                >
+                  {{ $t(`badge.${testAccountBadge.text}`) }}
+                </b-badge>
+              </div>
+            <b-dropdown
+              :disabled="!googleAdsAccountConfigured"
+              no-caret
+              right
+              variant="outline-primary"
+              class="ml-auto"
+              menu-class="ps-dropdown__menu-small rounded"
+              toggle-class="px-1"
+              boundary="window"
             >
-              check_circle
-            </i>
+              <template #button-content>
+                <i class="material-icons">
+                  more_horiz
+                </i>
+                <span class="sr-only">
+                  selector google ads actions
+                </span>
+              </template>
+              <b-dropdown-item
+                :disabled="accountAwaitsValidation()"
+                @click="disconnectGoogleAdsAccount()"
+              >
+                {{ $t('cta.disconnect') }}
+              </b-dropdown-item>
+            </b-dropdown>
           </div>
-          <div v-if="isEnabled && !googleAdsAccountConfigured">
+
+          <div class="base-ads-card-text " v-if="isEnabled && !googleAdsAccountConfigured">
             <b-form class="mt-3 mb-2">
-              <legend
-                class="mb-1 h4 font-weight-600 border-0 bg-transparent"
+              <p
+                class="mb-2 w-75 ps_gs-fz-14"
               >
                 {{ $t('googleAdsAccountCard.labelSelect') }}
-              </legend>
-              <div class="d-md-flex text-center">
+              </p>
+              <div class="d-md-flex text-center mb-2 w-90">
                 <b-dropdown
                   :disabled="error === GoogleAdsErrorReason.CantConnect"
                   id="googleAdsAccountSelection"
@@ -74,7 +110,6 @@
                   class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
                   :toggle-class="{'ps-dropdown__placeholder' : selectedIndex === null}"
                   menu-class="ps-dropdown"
-
                   size="sm"
                 >
                   <!-- START > SPINNER -->
@@ -140,7 +175,7 @@
                   @click="selectGoogleAdsAccount"
                 >
                   <template v-if="!isConnecting">
-                    {{ $t('cta.connectAccount') }}
+                    {{ $t('cta.connect') }}
                   </template>
                   <template v-else>
                     {{ $t('cta.connecting') }}
@@ -148,57 +183,29 @@
                   </template>
                 </b-button>
               </div>
-              <VueShowdown
-                class="text-muted ps_gs-fz-12 mt-3 mt-md-0"
-                :markdown="$t('googleAdsAccountCard.toUseGAdsNeedsAdminAccess')"
-              />
+
+              <p
+                class="ps_gs-fz-12 mt-3 mt-md-0"
+              >
+              {{ $t('general.legendCreateNewAccount') }}
+                <a href="javascript:void(0)" rel="openPopin" @click="openPopinNewAccount">
+                  {{ $t('general.createAccount') }}
+                </a>
+                {{ $t('general.today') }}
+              </p>
+
             </b-form>
             <GoogleAdsAccountAlert
               v-if="error === GoogleAdsErrorReason.CantConnect"
               :error="error"
             />
-            <div
-              class="mt-3"
-            >
-              <p class="mb-1">
-                {{ $t('general.legendCreateNewAccount') }}
-              </p>
-              <b-button
-                variant="outline-primary"
-                class="mb-0"
-                size="sm"
-                @click="openPopinNewAccount"
-              >
-                <i
-                  class="left material-icons mr-2 ps_gs-fz-24"
-                  aria-hidden="true"
-                >person_add</i>
-                <span class="align-middle text-wrap">
-                  {{ $t('cta.createNewGoogleAdsAccount') }}
-                </span>
-              </b-button>
-            </div>
           </div>
           <div
             v-if="googleAdsAccountConfigured && isGoogleAdsAccountFullyFetched"
             class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
           >
-            <div class="d-flex align-items-center">
-              <strong>{{ displayIdName(accountChosen) }}</strong>
-              <b-badge
-                v-if="gAdsAccountStatusBadge !== null"
-                :variant="gAdsAccountStatusBadge.color"
-                class="mx-3"
-              >
-                {{ $t(`badge.${gAdsAccountStatusBadge.text}`) }}
-              </b-badge>
-              <b-badge
-                v-if="testAccountBadge !== null"
-                :variant="testAccountBadge.color"
-                class="mx-1"
-              >
-                {{ $t(`badge.${testAccountBadge.text}`) }}
-              </b-badge>
+            <div class="d-flex align-items-center base-ads-card-text">
+              {{ displayIdName(accountChosen) }}
             </div>
             <div
               v-if="!googleAdsAccountConfigured"
@@ -211,7 +218,7 @@
                 target="_blank"
               >
                 <template v-if="!isConnecting">
-                  {{ $t('cta.connectAccount') }}
+                  {{ $t('cta.connect') }}
                 </template>
                 <template v-else>
                   {{ $t('cta.connecting') }}
@@ -219,29 +226,8 @@
                 </template>
               </b-button>
             </div>
-            <div
-              v-else
-              class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center align-self-end"
-            >
-              <b-button
-                size="sm"
-                variant="outline-secondary"
-                class="mt-3 mt-md-0"
-                target="_blank"
-                data-test-id="btn-disconnect"
-                :disabled="accountAwaitsValidation()"
-                @click="disconnectGoogleAdsAccount()"
-              >
-                {{ $t('cta.disconnect') }}
-              </b-button>
-            </div>
           </div>
-          <p
-            v-if="!googleAdsAccountConfigured"
-            class="mt-3 mb-0 ps_gs-fz-12 text-muted"
-          >
-            {{ $t('googleAdsAccountCard.text') }}
-          </p>
+
         </template>
         <GoogleAdsAccountAlert
           v-if="error !== 'CantConnect'"
