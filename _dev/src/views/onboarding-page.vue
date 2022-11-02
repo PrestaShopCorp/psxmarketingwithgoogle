@@ -262,9 +262,6 @@ export default {
     },
   },
   computed: {
-    psAccountsContext() {
-      return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
-    },
     shops() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
     },
