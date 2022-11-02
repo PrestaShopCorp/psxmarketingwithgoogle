@@ -63,6 +63,7 @@ import '../src/utils/Filters';
  import results from '../.jest-test-results.json';
  import VueRouter from 'vue-router';
 
+ Vue.config.ignoredElements = ['prestashop-accounts'];
  Vue.use(BootstrapVue, BootstrapVueIcons);
  Vue.use(VueShowdown);
  Vue.use(VueRouter);
