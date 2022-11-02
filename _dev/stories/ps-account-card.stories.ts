@@ -20,7 +20,6 @@ export const NotConnected:any = Template.bind({});
 NotConnected.args = {
   mounted: function () {
     window.contextPsAccounts = cloneDeep(contextPsAccountsNotConnected),
-    console.log('contextPsAccounts', window.contextPsAccounts)
     psAccountsVue.init();
   }
 }
@@ -29,7 +28,6 @@ export const Connected:any = Template.bind({});
 Connected.args = {
   mounted: function () {
     window.contextPsAccounts = cloneDeep(contextPsAccountsConnected),
-    console.log('contextPsAccounts', window.contextPsAccounts)
     psAccountsVue.init();
   }
 }
@@ -38,7 +36,6 @@ export const ConnectedAndValidated:any = Template.bind({});
 ConnectedAndValidated.args = {
   mounted: function () {
     window.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated),
-    console.log('contextPsAccounts', window.contextPsAccounts)
     psAccountsVue.init();
   }
 }
