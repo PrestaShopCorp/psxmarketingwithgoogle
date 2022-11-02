@@ -26,7 +26,7 @@ import Vuex from 'vuex';
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import VueI18n from 'vue-i18n';
 import VueShowdown from 'vue-showdown';
-import VueSegment from '@prestashopcorp/segment-vue';
+import VueSegment from '@/lib/segment';
 
 // import jest
 import { withTests } from '@storybook/addon-jest';

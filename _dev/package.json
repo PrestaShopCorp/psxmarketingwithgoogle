@@ -17,7 +17,7 @@
   "dependencies": {
     "@googleapis/content": "^6.2.0",
     "@googleapis/oauth2": "^0.2.0",
-    "@prestashopcorp/segment-vue": "^1.2.9",
+    "@segment/analytics-next": "^1.44.0",
     "@sentry/tracing": "^6.19.7",
     "@sentry/vue": "^6.19.7",
     "@vue/composition-api": "^1.7.0",
@@ -33,7 +33,7 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.uniqby": "^4.7.0",
     "prestakit": "^1.2.5",
-    "prestashop_accounts_vue_components": "^3.0.3",
+    "prestashop_accounts_vue_components": "^4.2.2",
     "secure-ls": "^1.2.6",
     "semver": "^7.3.7",
     "showdown": "^1.9.1",

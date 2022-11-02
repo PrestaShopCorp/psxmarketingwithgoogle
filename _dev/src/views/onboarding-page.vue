@@ -1,7 +1,7 @@
 <template>
   <div class="pt-2 container">
     <div class="row mb-4">
-      <div class="col">
+      <div class="col-6">
         <section-title
           :step-number="1"
           :step-title="$t('onboarding.sectionTitle.psAccount')"
@@ -9,19 +9,13 @@
           :is-done="stepsAreCompleted.step1"
         />
       </div>
-      <div class="col">
-        <ps-accounts
+      <div class="col-6">
+        <prestashop-accounts
           class="ps_gs-ps-account-card"
-          :context="psAccountsContext"
         />
       </div>
-    </div>
 
-    <div
-      class="row  mb-4"
-      v-if="psAccountsContext.isShopContext"
-    >
-      <div class="col">
+      <div class="col-6">
         <section-title
           :step-number="2"
           :step-title="$t('onboarding.sectionTitle.freeListing.title')"
@@ -37,7 +31,7 @@
           </p>
         </div>
       </div>
-      <div class="col">
+      <div class="col-6">
         <google-account-card
           :is-enabled="stepsAreCompleted.step1"
           :loading="googleIsLoading"
@@ -61,10 +55,8 @@
           :loading="productFeedIsLoading"
         />
       </div>
-    </div>
 
-    <div class="row mb-4">
-      <div class="col">
+      <div class="col-6">
         <section-title
           :step-number="3"
           :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
@@ -78,7 +70,7 @@
           />
         </div>
       </div>
-      <div class="col">
+      <div class="col-6">
         <GoogleAdsAccountCard
           :is-enabled="stepsAreCompleted.step2"
           :loading="googleAdsIsLoading"
@@ -136,7 +128,7 @@
 </template>
 
 <script>
-import {PsAccounts} from 'prestashop_accounts_vue_components';
+import psAccountsVue from 'prestashop_accounts_vue_components';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
@@ -156,7 +148,6 @@ import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 export default {
   name: 'OnboardingPage',
   components: {
-    PsAccounts,
     SectionTitle,
     GoogleAccountCard,
     GoogleAdsAccountCard,
@@ -358,6 +349,8 @@ export default {
     },
   },
   mounted() {
+    psAccountsVue.init();
+
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty
