@@ -47,7 +47,6 @@
           @dissociateGoogleAccount="onGoogleAccountDissociationRequest"
         />
         <MerchantCenterAccountCard
-          v-if="stepsAreCompleted.step1"
           :is-enabled="googleAccountIsOnboarded"
           :is-connected="merchantCenterAccountIsChosen"
           :loading="MCAIsLoading"
@@ -58,7 +57,6 @@
           @phoneNumberHasBeenVerified="onPhoneNumberVerified"
         />
         <ProductFeedCard
-          v-if="stepsAreCompleted.step1"
           :is-enabled="merchantCenterAccountIsChosen"
           :loading="productFeedIsLoading"
         />
