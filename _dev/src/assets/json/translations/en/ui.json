@@ -80,10 +80,6 @@
     "configure": "Configure",
     "group": "Shop group"
   },
-  "psAccountCard": {
-    "disonboardedText": "Authorize your account to manage your shop’s services",
-    "onboardedText": "Your shop is associated to the PrestaShop account of"
-  },
   "googleAccountCard": {
     "title": "Google account",
     "introDisabled": "Connect your Google account and associated with it Google Merchant Center to unlock free listings.",
@@ -98,7 +94,6 @@
   "mcaCard": {
     "title": "Merchant Center account",
     "introDisabled": "Associate your Merchant Center account with PrestaShop to ease synchronisation of your store and product data",
-    "introEnabled": "[Google Merchant Center]({0})[:target=\"_blank\"] helps you get your store and product info into Google and make it available to shoppers across Google.",
     "labelSelect": "Connect an existing account",
     "claimCollides": "Your website has been already claimed.",
     "claimOverwrite": "To finish Merchant Center account creation, you need to overwrite the existing claim.",

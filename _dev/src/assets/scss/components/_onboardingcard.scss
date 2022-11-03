@@ -21,6 +21,10 @@ section {
       font-weight: 600;
     }
 
+    &__content {
+      padding-left: 32px;
+    }
+
     &__not-configured {
       position: absolute;
       z-index: 1;

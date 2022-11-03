@@ -37,42 +37,18 @@
             class="mx-3"
             variant="success"
           >
-            Connected
+            {{ $t('badge.connected') }}
           </b-badge>
-        </div>
-        <div
-          class="d-flex flex-wrap flex-md-nowrap
-        justify-content-between align-items-center mt-3"
-        >
-          <p
-            v-if="!accessToken"
-            class="mb-0"
-          >
-            {{ $t('googleAccountCard.introEnabled') }}<br>
-          </p>
-          <div
-            v-else
-            class="d-flex align-items-center pt-3 pr-3 pb-3"
-          >
-            <a
-              :href="$options.googleUrl.manageGoogleAccount"
-              :title="$t('cta.goToYourX', [$t('badge.googleAccount')])"
-              target="_blank"
-              class="external_link-no_icon link-regular text-break"
-            >
-              <strong>{{ user.details.email }}</strong>
-            </a>
-          </div>
           <div
             v-if="!accessToken"
-            class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
+            class="flex-grow-1 d-flex-md flex-md-grow-1 flex-shrink-0 text-right"
           >
             <b-button
               size="sm"
               variant="invisible"
               class="btn-google mx-1 mt-3 mt-md-0 mr-md-0 ml-md-3"
               :class="{'is-busy' : isConnecting}"
-              :disabled="isConnecting || error === 'CantConnect'"
+              :disabled="!isEnabled || isConnecting || error === 'CantConnect'"
               @click="openPopup"
               data-test-id="btn-connect"
             >
@@ -118,12 +94,29 @@
           </div>
         </div>
         <div
-          v-if="accessToken"
-          class="text-md-right text-muted mt-3"
+          class="d-flex flex-wrap flex-md-nowrap
+        justify-content-between align-items-center mt-3
+        ml-2 ps_gs-onboardingcard__content"
         >
-          <p class="ps_gs-fz-12 mb-0">
-            {{ $t('googleAccountCard.footerDissociating') }}
+          <p
+            v-if="!accessToken"
+            class="mb-0"
+          >
+            {{ $t('googleAccountCard.introEnabled') }}<br>
           </p>
+          <div
+            v-else
+            class="d-flex align-items-center pt-3 pr-3 pb-3"
+          >
+            <a
+              :href="$options.googleUrl.manageGoogleAccount"
+              :title="$t('cta.goToYourX', [$t('badge.googleAccount')])"
+              target="_blank"
+              class="external_link-no_icon link-regular text-break"
+            >
+              {{ user.details.email }}
+            </a>
+          </div>
         </div>
         <b-alert
           v-if="!error && !accessToken"

@@ -31,29 +31,33 @@
             >
             <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
               {{ $t('mcaCard.title') }}
-              <i
-                v-if="mcaConfigured && !error"
-                class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
-              >
-                check_circle
-              </i>
             </b-card-text>
+            <b-badge
+              class="mx-3"
+              :variant="mcaStatusBadge.color"
+              v-if="mcaConfigured"
+            >
+              {{ $t(`badge.${mcaStatusBadge.text}`) }}
+            </b-badge>
           </div>
         </div>
-        <VueShowdown
-          @click.native="segmentClicked"
-          class="mb-1"
-          tag="p"
-          :markdown="message"
-          :extensions="['no-p-tag', 'extended-b-link']"
-          v-if="selectedMcaDetails.id === null"
-          :vue-template="true"
-        />
         <BadgeListRequirements
           v-if="!isEnabled"
           :badges="['googleAccount']"
         />
-        <div v-if="isEnabled && selectedMcaDetails.id === null">
+        <div
+          v-if="isEnabled && selectedMcaDetails.id === null"
+          class="ml-2 ps_gs-onboardingcard__content"
+        >
+          <VueShowdown
+            @click.native="segmentClicked"
+            class="mb-1"
+            tag="p"
+            :markdown="this.$i18n.t('mcaCard.introDisabled')"
+            :extensions="['no-p-tag', 'extended-b-link']"
+            v-if="selectedMcaDetails.id === null"
+            :vue-template="true"
+          />
           <b-form class="mb-2 mt-3">
             <legend
               class="mb-1 h4 font-weight-600 bg-transparent border-0"
@@ -250,7 +254,7 @@
         </b-alert>
         <div
           v-if="isLinkedGmcFullyFetched"
-          class="d-flex flex-wrap flex-md-nowrap justify-content-between"
+          class="d-flex flex-wrap flex-md-nowrap justify-content-between ml-2 ps_gs-onboardingcard__content"
         >
           <div>
             <div class="d-flex align-items-center">
@@ -262,12 +266,6 @@
               >
                 <strong>{{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}</strong>
               </a>
-              <b-badge
-                class="mx-3"
-                :variant="mcaStatusBadge.color"
-              >
-                {{ $t(`badge.${mcaStatusBadge.text}`) }}
-              </b-badge>
               <span
                 v-if="loaderText"
                 class="text-muted"
@@ -636,11 +634,6 @@ export default {
     error() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS'];
     },
-    message() {
-      return this.isEnabled
-        ? this.$i18n.t('mcaCard.introEnabled', [this.$options.googleUrl.merchantCenterAccount])
-        : this.$i18n.t('mcaCard.introDisabled');
-    },
     mcaStatusBadge() {
       switch (this.error) {
         case WebsiteClaimErrorReason.Pending:
@@ -688,7 +681,7 @@ export default {
         default:
           return {
             color: 'success',
-            text: 'active',
+            text: 'connected',
           };
       }
     },

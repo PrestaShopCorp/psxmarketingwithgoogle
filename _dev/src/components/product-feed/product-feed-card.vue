@@ -45,7 +45,10 @@
           v-if="!isEnabled"
           :badges="['merchantCenterAccount']"
         />
-        <div v-if="(isEnabled && toConfigure) || isErrorApi">
+        <div
+          v-if="(isEnabled && toConfigure) || isErrorApi"
+          class="ml-2 ps_gs-onboardingcard__content"
+        >
           <p>
             {{ $t("productFeedCard.introToConfigure") }}<br>
             <a
@@ -98,7 +101,10 @@
             </div>
           </b-alert>
         </div>
-        <div v-if="isEnabled && !toConfigure && !isErrorApi">
+        <div
+          v-if="isEnabled && !toConfigure && !isErrorApi"
+          class="ml-2 ps_gs-onboardingcard__content"
+        >
           <b-alert
             :variant="alert === 'FeedSettingSubmissionSuccess' ? 'info' : 'warning'"
             :show="!!alert && alert !== 'ShippingSettingsMissing'"
