@@ -474,6 +474,7 @@
   },
   "googleAdsAccountCard": {
     "title": "Google Ads account",
+    "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Once connected you may need to configure your billing settings in your Google Ads account.",
     "labelSelect": "You can connect an existing Google Ads account, or create a new one in a few easy steps.",
@@ -570,6 +571,10 @@
     "toggleCreationNewRemarketingTag": "Create a new remarketing and conversion tracking tag to your shop",
     "enableCreationRemarketingTag": "Enable remarketing and conversion tracking tag",
     "pauseCampaign": "Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.",
+    "switch": {
+      "on": "On",
+      "off": "Off"
+    },
     "alerts": {
       "noTag": "By not adding the tag automatically Google will not be able to send campaigns results",
       "duplicatedTag": "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.",
@@ -980,6 +985,7 @@
   },
   "badge": {
     "free": "Free",
+    "connected": "Connected",
     "active": "Active",
     "disapproved": "Disapproved",
     "pendingCreation": "Pending",

@@ -20,18 +20,26 @@
           v-if="!isEnabled"
         >
           <div
-            class="d-flex align-items-center"
+            class="d-inline-flex align-items-center"
           >
             <img
               class="mr-3"
-              src="@/assets/images/Google-Commercial-icon-grey.svg"
+              src="@/assets/images/Google-Commercial-icon.svg"
               width="40"
               height="40"
               alt=""
             >
-            <b-card-text class="text-left mb-0">
-              {{ $t('googleAdsAccountCard.intro') }}
+            <b-card-text class="ps_gs-onboardingcard__title text-left mb-0">
+              {{ $t('googleAdsAccountCard.title') }}
             </b-card-text>
+            <div class="ml-auto">
+              <b-button
+                variant="primary"
+                disabled
+              >
+                {{ $t('googleAdsAccountCard.btnDisable') }}
+              </b-button>
+            </div>
           </div>
         </template>
         <template
@@ -93,7 +101,7 @@
             </b-dropdown>
           </div>
 
-          <div class="base-ads-card-text " v-if="isEnabled && !googleAdsAccountConfigured">
+          <div class="base-ads-card-text" v-if="isEnabled && !googleAdsAccountConfigured">
             <b-form class="mt-3 mb-2">
               <p
                 class="mb-2 w-75 ps_gs-fz-14"
@@ -383,7 +391,7 @@ export default {
         default:
           return {
             color: 'success',
-            text: 'active',
+            text: 'connected',
           };
       }
     },
