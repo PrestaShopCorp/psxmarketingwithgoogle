@@ -5,7 +5,9 @@
 
   // Custom PS
   @import "~prestakit/scss/functions";
+  @import "abstracts/variables";
   @import "~prestakit/scss/variables";
+  @import "abstracts/variables";
 
   // Bootstrap
   @import "./vendors/bootstrap";
@@ -50,12 +52,9 @@
   @import "~prestakit/scss/growl";
   @import "~prestakit/scss/search";
   @import "~prestakit/scss/floating-button";
-
-  @import "~prestakit/scss/variables";
   @import "~vue-select/src/scss/vue-select";
-
+  
   // abstracts
-  @import "abstracts/variables";
   @import "abstracts/functions";
 
   // base
@@ -102,20 +101,4 @@
   @import "pages/attribute-mapping";
 }
 
-
-/**
-* ! Adds Tooltips rules outside the scope.
-* ! needed for PS Account component
-*/
-@import "~bootstrap/scss/functions";
-
-// Custom PS
-@import "~prestakit/scss/functions";
-@import "~prestakit/scss/variables";
-
-// Bootstrap
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap-vue/src/variables";
-@import "~bootstrap/scss/tooltip";
 
