@@ -19,11 +19,7 @@
         <div class="d-flex align-items-center">
           <img
             class="mr-2"
-            :src="
-              isEnabled
-                ? require('@/assets/images/google-merchant-center-icon.svg')
-                : require('@/assets/images/google-merchant-center-icon-grey.svg')
-            "
+            src="@/assets/images/google-merchant-center-icon.svg"
             width="32"
             height="32"
             alt=""

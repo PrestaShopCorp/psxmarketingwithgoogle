@@ -21,11 +21,7 @@
         >
           <img
             class="mr-2 rounded-circle"
-            :src="
-              isEnabled
-                ? require('@/assets/images/google-icon.svg')
-                : require('@/assets/images/google-icon-grey.svg')
-            "
+            src="@/assets/images/google-icon.svg"
             width="32"
             height="32"
           >

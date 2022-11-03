@@ -4,6 +4,10 @@ section {
 
     &--disabled {
       color: $grey_muted;
+
+      img {
+        opacity: 0.5;
+      }
     }
 
     &--disabled-grey {

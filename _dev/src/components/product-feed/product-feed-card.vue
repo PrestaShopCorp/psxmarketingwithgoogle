@@ -20,11 +20,7 @@
         <div class="d-flex align-items-center">
           <img
             class="mr-2"
-            :src="
-              isEnabled
-                ? require('@/assets/images/product-feed-icon.png')
-                : require('@/assets/images/product-feed-icon-grey.png')
-            "
+            src="@/assets/images/product-feed-icon.svg"
             width="32"
             height="32"
             alt=""

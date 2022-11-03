@@ -20,9 +20,7 @@
           <div class="d-flex align-items-center">
             <img
               class="mr-3"
-              :src="isEnabled
-                ? require('@/assets/images/google-icon.svg')
-                : require('@/assets/images/google-icon-grey.svg')"
+              src="@/assets/images/google-icon.svg"
               width="32"
               height="32"
               alt=""
