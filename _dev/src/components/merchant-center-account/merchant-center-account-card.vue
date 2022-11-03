@@ -16,35 +16,43 @@
         class="ps_gs-onboardingcard p-3"
         :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
       >
-        <div class="d-md-flex flex-wrap align-items-center justify-content-between mb-3">
-          <div class="d-flex align-items-center">
-            <img
-              class="mr-2"
-              :src="
-                isEnabled
-                  ? require('@/assets/images/google-merchant-center-icon.svg')
-                  : require('@/assets/images/google-merchant-center-icon-grey.svg')
-              "
-              width="32"
-              height="32"
-              alt=""
+        <div class="d-flex align-items-center">
+          <img
+            class="mr-2"
+            :src="
+              isEnabled
+                ? require('@/assets/images/google-merchant-center-icon.svg')
+                : require('@/assets/images/google-merchant-center-icon-grey.svg')
+            "
+            width="32"
+            height="32"
+            alt=""
+          >
+          <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
+            {{ $t('mcaCard.title') }}
+          </b-card-text>
+          <b-badge
+            class="mx-3"
+            :variant="mcaStatusBadge.color"
+            v-if="mcaConfigured"
+          >
+            {{ $t(`badge.${mcaStatusBadge.text}`) }}
+          </b-badge>
+          <div
+            class="flex-grow-1 d-flex-md flex-md-grow-1 flex-shrink-0 text-right"
+          >
+            <b-button
+              v-if="selectedMcaDetails.id === null"
+              size="sm"
+              variant="primary"
+              :disabled="selectedMcaIndex === null || isLinking || shopIsOnMaintenanceMode"
+              class="mt-3 mt-md-0 ml-md-3"
+              @click="selectMerchantCenterAccount"
             >
-            <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
-              {{ $t('mcaCard.title') }}
-            </b-card-text>
-            <b-badge
-              class="mx-3"
-              :variant="mcaStatusBadge.color"
-              v-if="mcaConfigured"
-            >
-              {{ $t(`badge.${mcaStatusBadge.text}`) }}
-            </b-badge>
+              {{ $t('cta.connectAccount') }}
+            </b-button>
           </div>
         </div>
-        <BadgeListRequirements
-          v-if="!isEnabled"
-          :badges="['googleAccount']"
-        />
         <div
           v-if="isEnabled && selectedMcaDetails.id === null"
           class="ml-2 ps_gs-onboardingcard__content"
@@ -152,15 +160,6 @@
                   </b-dropdown-item>
                 </b-dropdown-group>
               </b-dropdown>
-              <b-button
-                size="sm"
-                variant="primary"
-                :disabled="selectedMcaIndex === null || isLinking || shopIsOnMaintenanceMode"
-                class="mt-3 mt-md-0 ml-md-3"
-                @click="selectMerchantCenterAccount"
-              >
-                {{ $t('cta.connect') }}
-              </b-button>
             </div>
             <VueShowdown
               class="text-muted ps_gs-fz-12 mt-3 mt-md-0"
@@ -543,7 +542,6 @@ import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
 import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
-import BadgeListRequirements from '../commons/badge-list-requirements';
 import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
 import PhoneVerificationPopin from './phone-verification/phone-verification-popin.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -553,7 +551,6 @@ export default {
   name: 'MerchantCenterAccountCard',
   components: {
     MerchantCenterAccountPopinOverwriteClaim,
-    BadgeListRequirements,
     MerchantCenterAccountPopinWebsiteRequirements,
     VueShowdown,
     PhoneVerificationPopin,

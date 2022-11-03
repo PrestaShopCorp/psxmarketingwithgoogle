@@ -98,14 +98,30 @@
         justify-content-between align-items-center mt-3
         ml-2 ps_gs-onboardingcard__content"
         >
-          <p
-            v-if="!accessToken"
-            class="mb-0"
-          >
-            {{ $t('googleAccountCard.introEnabled') }}<br>
-          </p>
           <div
-            v-else
+            v-if="isEnabled && !accessToken"
+          >
+            <p
+              class="mb-0"
+            >
+              {{ $t('googleAccountCard.introEnabled') }}<br>
+            </p>
+            <b-alert
+              v-if="!error"
+              show
+              variant="info"
+              class="mb-0 mt-3"
+            >
+              <VueShowdown
+                tag="p"
+                :extensions="['no-p-tag']"
+                class="mb-0"
+                :markdown="$t('googleAccountCard.alertInfo')"
+              />
+            </b-alert>
+          </div>
+          <div
+            v-else-if="accessToken"
             class="d-flex align-items-center pt-3 pr-3 pb-3"
           >
             <a
@@ -118,19 +134,6 @@
             </a>
           </div>
         </div>
-        <b-alert
-          v-if="!error && !accessToken"
-          show
-          variant="info"
-          class="mb-0 mt-3"
-        >
-          <VueShowdown
-            tag="p"
-            :extensions="['no-p-tag']"
-            class="mb-0"
-            :markdown="$t('googleAccountCard.alertInfo')"
-          />
-        </b-alert>
         <b-alert
           v-if="!error && accessToken && missingTokenScopes"
           show

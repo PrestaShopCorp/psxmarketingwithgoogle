@@ -17,66 +17,47 @@
         :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
         id="product-feed-card"
       >
-        <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
-          <div class="d-flex align-items-center">
-            <img
-              class="mr-2"
-              :src="
-                isEnabled
-                  ? require('@/assets/images/product-feed-icon.png')
-                  : require('@/assets/images/product-feed-icon-grey.png')
-              "
-              width="32"
-              height="32"
-              alt=""
-            >
-            <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
-              {{ $t("productFeedCard.title") }}
-            </b-card-text>
-          </div>
-        </div>
-        <p
-          class="mb-1"
-          v-if="!isEnabled"
-        >
-          {{ $t("productFeedCard.intro") }}
-        </p>
-        <BadgeListRequirements
-          v-if="!isEnabled"
-          :badges="['merchantCenterAccount']"
-        />
-        <div
-          v-if="(isEnabled && toConfigure) || isErrorApi"
-          class="ml-2 ps_gs-onboardingcard__content"
-        >
-          <p>
-            {{ $t("productFeedCard.introToConfigure") }}<br>
-            <a
-              class="ps_gs-fz-12 text-muted"
-              :href="$options.googleUrl.productConfiguration"
-              target="_blank"
-            >
-              {{ $t("cta.learnAboutProductConfiguration") }}
-            </a>
-          </p>
-          <product-feed-stepper
-            :active-step="getActiveStep"
-          />
+        <div class="d-flex align-items-center">
+          <img
+            class="mr-2"
+            :src="
+              isEnabled
+                ? require('@/assets/images/product-feed-icon.png')
+                : require('@/assets/images/product-feed-icon-grey.png')
+            "
+            width="32"
+            height="32"
+            alt=""
+          >
+          <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
+            {{ $t("productFeedCard.title") }}
+          </b-card-text>
           <div
-            class="d-flex justify-content-center justify-content-md-end mt-n1"
-            v-if="isEnabled"
+            class="flex-grow-1 d-flex-md flex-md-grow-1 flex-shrink-0 text-right"
+            v-if="toConfigure"
           >
             <b-button
               size="sm"
               variant="primary"
               @click="startConfiguration"
-              :disabled="isErrorApi"
+              :disabled="!isEnabled || isErrorApi"
             >
               {{ getActiveStep > 1 ?
                 $t("cta.continueProductFeed") : $t("cta.configureAndExportProductFeed")
               }}
             </b-button>
           </div>
+        </div>
+        <div
+          v-if="(isEnabled && toConfigure) || isErrorApi"
+          class="ml-2 ps_gs-onboardingcard__content"
+        >
+          <p>
+            {{ $t("productFeedCard.intro") }}
+          </p>
+          <product-feed-stepper
+            :active-step="getActiveStep"
+          />
         </div>
         <div
           v-if="isEnabled && isErrorApi"
@@ -180,7 +161,6 @@ import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings
 import googleUrl from '@/assets/json/googleUrl.json';
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
 import ProductFeedCardReportCard from './product-feed-card-report-card.vue';
-import BadgeListRequirements from '../commons/badge-list-requirements.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
 
@@ -189,7 +169,6 @@ export default defineComponent({
   components: {
     ProductFeedStepper,
     ProductFeedCardReportCard,
-    BadgeListRequirements,
     VueShowdown,
     ProductFeedSummaryCards,
   },
