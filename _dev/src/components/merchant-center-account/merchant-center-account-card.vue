@@ -249,7 +249,8 @@
         </b-alert>
         <div
           v-if="isLinkedGmcFullyFetched"
-          class="d-flex flex-wrap flex-md-nowrap justify-content-between ml-2 ps_gs-onboardingcard__content"
+          class="d-flex flex-wrap flex-md-nowrap justify-content-between
+            ml-2 ps_gs-onboardingcard__content"
         >
           <div>
             <div class="d-flex align-items-center">
