@@ -74,31 +74,34 @@
                 {{ $t(`badge.${testAccountBadge.text}`) }}
               </b-badge>
             </div>
-            <b-dropdown
-              :disabled="!googleAdsAccountConfigured"
-              no-caret
-              right
-              variant="outline-primary"
+            <div
               class="ml-auto"
-              menu-class="ps-dropdown__menu-small rounded"
-              toggle-class="px-1"
-              boundary="window"
+              v-if="googleAdsAccountConfigured"
             >
-              <template #button-content>
-                <i class="material-icons">
-                  more_horiz
-                </i>
-                <span class="sr-only">
-                  selector google ads actions
-                </span>
-              </template>
-              <b-dropdown-item
-                :disabled="accountAwaitsValidation()"
-                @click="disconnectGoogleAdsAccount()"
+              <b-dropdown
+                no-caret
+                right
+                variant="outline-primary"
+                menu-class="ps-dropdown__menu-small rounded"
+                toggle-class="px-1"
+                boundary="window"
               >
-                {{ $t('cta.disconnect') }}
-              </b-dropdown-item>
-            </b-dropdown>
+                <template #button-content>
+                  <i class="material-icons">
+                    more_horiz
+                  </i>
+                  <span class="sr-only">
+                    selector google ads actions
+                  </span>
+                </template>
+                <b-dropdown-item
+                  :disabled="accountAwaitsValidation()"
+                  @click="disconnectGoogleAdsAccount()"
+                >
+                  {{ $t('cta.disconnect') }}
+                </b-dropdown-item>
+              </b-dropdown>
+            </div>
           </div>
 
           <div
