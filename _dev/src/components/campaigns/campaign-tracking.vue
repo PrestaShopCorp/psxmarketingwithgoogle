@@ -42,57 +42,45 @@
       </b-form-checkbox>
     </div>
 
-    <template v-if="statusTrackingTag !== null && accountHasAtLeastOneCampaign">
-      <b-alert
-        v-if="alertTag !== null"
-        variant="warning"
-        show
-        class="mb-0 mt-3"
-      >
-        <div>
-          <VueShowdown
-            tag="p"
-            class="d-inline"
-            :markdown="alertTag.text"
-            :extensions="['no-p-tag']"
-          />
-          <div
-            v-if="alertTag.button"
-            class="mt-2 text-center d-md-flex align-items-center"
-          >
-            <b-button
-              @click="alertTag.button.onclick"
-              size="sm"
-              variant="primary"
-              class="text-wrap btn mx-1 mt-3 mt-md-0
+    <b-alert
+      v-if="alertTag !== null"
+      variant="warning"
+      show
+      class="mb-0 mt-3"
+    >
+      <div>
+        <VueShowdown
+          tag="p"
+          class="d-inline"
+          :markdown="alertTag.text"
+          :extensions="['no-p-tag']"
+        />
+        <div
+          v-if="alertTag.button"
+          class="mt-2 text-center d-md-flex align-items-center"
+        >
+          <b-button
+            @click="alertTag.button.onclick"
+            size="sm"
+            variant="primary"
+            class="text-wrap btn mx-1 mt-3 mt-md-0
               ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
-              data-test-id="btn-create-campaign"
-            >
-              {{ alertTag.button.cta }}
-            </b-button>
-          </div>
+            data-test-id="btn-create-campaign"
+          >
+            {{ alertTag.button.cta }}
+          </b-button>
         </div>
-      </b-alert>
-    </template>
-
-    <span v-if="statusTrackingTag === true">
-      <hr>
-      <BannerAds
-        size="xs"
-        :is-banner="false"
-      />
-    </span>
+      </div>
+    </b-alert>
   </b-card>
 </template>
 
 <script>
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import BannerAds from '../commons/banner-ads.vue';
 
 export default {
   name: 'CampaignCard',
   components: {
-    BannerAds,
   },
   data() {
     return {

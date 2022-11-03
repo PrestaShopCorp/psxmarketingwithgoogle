@@ -42,16 +42,16 @@
           <div
             class="mt-3"
           >
-          <b-button
-            @click="openPopinActivateTracking"
-            size="sm"
-            variant="primary"
-            data-test-id="btn-create-campaign"
-          >
-            {{ $t('cta.launchCampaign') }}
-          </b-button>
+            <b-button
+              @click="openPopinActivateTracking"
+              size="sm"
+              variant="primary"
+              data-test-id="btn-create-campaign"
+            >
+              {{ $t('cta.launchCampaign') }}
+            </b-button>
+          </div>
         </div>
-      </div>
 
         <VueShowdown
           tag="p"
@@ -60,9 +60,16 @@
           class="ps_gs-fz-12 mt-2"
           :extensions="['no-p-tag']"
         />
+        <span v-if="getRemarketingTag !== null && accountHasAtLeastOneCampaign">
+          <hr>
+          <CampaignTracking />
+        </span>
+
         <span v-if="isEnabled">
           <hr>
-          <CampaignTracking
+          <BannerAds
+            size="xs"
+            :is-banner="false"
           />
         </span>
       </b-card>
@@ -73,11 +80,13 @@
 <script>
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import CampaignTracking from './campaign-tracking.vue';
+import BannerAds from '../commons/banner-ads.vue';
 
 export default {
   name: 'CampaignCard',
   components: {
     CampaignTracking,
+    BannerAds,
   },
   data() {
     return {

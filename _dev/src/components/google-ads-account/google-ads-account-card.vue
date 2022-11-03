@@ -60,20 +60,20 @@
             </b-card-text>
             <div v-if="googleAdsAccountConfigured && !error">
               <b-badge
-                  v-if="gAdsAccountStatusBadge !== null"
-                  :variant="gAdsAccountStatusBadge.color"
-                  class="mx-3"
-                >
-                  {{ $t(`badge.${gAdsAccountStatusBadge.text}`) }}
-                </b-badge>
-                <b-badge
-                  v-if="testAccountBadge !== null"
-                  :variant="testAccountBadge.color"
-                  class="mx-1"
-                >
-                  {{ $t(`badge.${testAccountBadge.text}`) }}
-                </b-badge>
-              </div>
+                v-if="gAdsAccountStatusBadge !== null"
+                :variant="gAdsAccountStatusBadge.color"
+                class="mx-3"
+              >
+                {{ $t(`badge.${gAdsAccountStatusBadge.text}`) }}
+              </b-badge>
+              <b-badge
+                v-if="testAccountBadge !== null"
+                :variant="testAccountBadge.color"
+                class="mx-1"
+              >
+                {{ $t(`badge.${testAccountBadge.text}`) }}
+              </b-badge>
+            </div>
             <b-dropdown
               :disabled="!googleAdsAccountConfigured"
               no-caret
@@ -101,7 +101,10 @@
             </b-dropdown>
           </div>
 
-          <div class="base-ads-card-text" v-if="isEnabled && !googleAdsAccountConfigured">
+          <div
+            class="base-ads-card-text"
+            v-if="isEnabled && !googleAdsAccountConfigured"
+          >
             <b-form class="mt-3 mb-2">
               <p
                 class="mb-2 w-75 ps_gs-fz-14"
@@ -195,13 +198,16 @@
               <p
                 class="ps_gs-fz-12 mt-3 mt-md-0"
               >
-              {{ $t('general.legendCreateNewAccount') }}
-                <a href="javascript:void(0)" rel="openPopin" @click="openPopinNewAccount">
+                {{ $t('general.legendCreateNewAccount') }}
+                <a
+                  href="javascript:void(0)"
+                  rel="openPopin"
+                  @click="openPopinNewAccount"
+                >
                   {{ $t('general.createAccount') }}
                 </a>
                 {{ $t('general.today') }}
               </p>
-
             </b-form>
             <GoogleAdsAccountAlert
               v-if="error === GoogleAdsErrorReason.CantConnect"
@@ -235,7 +241,6 @@
               </b-button>
             </div>
           </div>
-
         </template>
         <GoogleAdsAccountAlert
           v-if="error !== 'CantConnect'"
