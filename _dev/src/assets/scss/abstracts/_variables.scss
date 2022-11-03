@@ -8,12 +8,18 @@ $grey_median: #B6B7B4;
 $grey-disabled: #dadada;
 $red-light: #F77B72;
 
-$blue_light: #BEEAF3;
-$blue_medium: #66CEE3;
-$blue: #25B9D7;
-$blue_dark: #21A6C1;
+// TODO: Rename these variables
+$blue_light: #E9E6F8;
+$blue_medium: #C7C0EE;
+$blue: #442CC7;
+$blue_dark: #442CC7;
 
 $purple: #442CC7;
+$green: #21834D;
+$primary: $purple;
+$info: $purple;
+$success: $green;
+
 
 // Colors background
 $bg-grey_disabled: #F6F6F6;
@@ -21,10 +27,6 @@ $violet_extralight: #FAF9FE;
 $blue_extralight: #FBFEFF;
 $bg-grey_light: #D8D8D8;
 $bg-green_light: #D4E9D9;
-
-// Colors inside circle
-$green_dark_number: #21834D;
-$grey_dark_number: #717171;
 
 // Overlays
 $overlay-popin: rgba(black, 0.65);

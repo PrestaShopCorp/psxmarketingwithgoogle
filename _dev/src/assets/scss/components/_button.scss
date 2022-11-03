@@ -61,9 +61,9 @@
   }
 
   &.disabled[disabled="disabled"]:not(.is-busy) {
-    color: #b3c7cd;
-    background-color: #eaebec;
-    border-color: #eaebec;
+    color: $gray-450;
+    background-color: $gray-disabled;
+    border-color: $gray-disabled;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='15 15 17.64 18'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath fill='%23B3C7CD' d='M32.64 24.205c0-.639-.057-1.252-.164-1.841H24v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615Z'/%3E%3Cpath fill='%23B3C7CD' d='M24 33c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711h-3.007v2.332A8.997 8.997 0 0 0 24 33Z'/%3E%3Cpath fill='%23B3C7CD' d='M18.964 25.71a5.41 5.41 0 0 1-.282-1.71c0-.593.102-1.17.282-1.71v-2.332h-3.007A8.996 8.996 0 0 0 15 24c0 1.452.348 2.827.957 4.042l3.007-2.332Z'/%3E%3Cpath fill='%23B3C7CD' d='M24 18.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C28.463 15.891 26.426 15 24 15a8.997 8.997 0 0 0-8.043 4.958l3.007 2.332c.708-2.127 2.692-3.71 5.036-3.71Z'/%3E%3Cpath d='M15 15h18v18H15V15Z'/%3E%3C/g%3E%3C/svg%3E");
     background-size: rem(18);
     background-position: left rem(11) center;
@@ -71,7 +71,7 @@
   }
 
   &.disabled[disabled="disabled"]:not(.is-busy):hover {
-    color: #b3c7cd !important;
+    color: $gray-450 !important;
     box-shadow: none !important;
   }
 
