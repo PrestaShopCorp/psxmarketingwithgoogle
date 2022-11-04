@@ -43,6 +43,24 @@
               }}
             </b-button>
           </div>
+          <div
+            v-else
+            class="d-sm-flex align-items-end mb-1"
+          >
+            <i18n
+              :path="syncStatus === 'schedule' ? 'productFeedPage.syncStatus.scheduleOn' : 'productFeedCard.nextSync'"
+              class="mt-3 mt-md-0"
+              tag="div"
+            >
+              <b-button
+                variant="invisible"
+                class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 ml-auto text-primary"
+                @click="goToProductFeed()"
+              >
+                {{ nextSyncTime }}
+              </b-button>
+            </i18n>
+          </div>
         </div>
         <div
           v-if="(isEnabled && toConfigure) || isErrorApi"
@@ -52,6 +70,7 @@
             {{ $t("productFeedCard.intro") }}
           </p>
           <product-feed-stepper
+            v-if="getActiveStep > 1"
             :active-step="getActiveStep"
           />
         </div>
@@ -99,37 +118,6 @@
               </b-button>
             </div>
           </b-alert>
-          <h3 class="font-weight-600 ps_gs-fz-14 d-flex align-items-center">
-            <i
-              class="ps_gs-fz-20 mr-2"
-              :class="[`text-${title.color}`, title.materialClass || 'material-icons']"
-            >
-              {{ title.icon }}
-            </i>
-            <span>{{ title.message }}</span>
-          </h3>
-          <div
-            class="d-sm-flex align-items-end mb-1"
-          >
-            <p class="ps_gs-fz-12 text-muted mb-0">
-              {{ syncStatus === 'schedule'
-                ? $t("productFeedPage.syncStatus.scheduleOn", [nextSyncTime.day, nextSyncTime.time])
-                : $t("productFeedCard.nextSync", [nextSyncTime.day, nextSyncTime.time])
-              }}
-            </p>
-            <b-button
-              variant="invisible"
-              class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 ml-auto text-primary"
-              @click="goToProductFeed()"
-            >
-              {{ $t("cta.trackProductStatus") }}
-            </b-button>
-          </div>
-          <div class="d-flex justify-content-between align-items-center mb-3 mt-3 pt-2">
-            <h3 class="font-weight-600 ps_gs-fz-14 mb-0">
-              {{ $t("productFeedSettings.breadcrumb2") }}
-            </h3>
-          </div>
           <b-alert
             variant="warning"
             :show="!!alert && alert === 'ShippingSettingsMissing'"
@@ -192,15 +180,8 @@ export default defineComponent({
     getActiveStep(): number {
       return this.$store.getters['productFeed/GET_STEP'];
     },
-    nextSyncTime() {
-      return {
-        day: this.$options.filters.timeConverterToDate(
-          this.getProductFeedStatus.nextJobAt,
-        ),
-        time: this.$options.filters.timeConverterToHour(
-          this.getProductFeedStatus.nextJobAt,
-        ),
-      };
+    nextSyncTime(): string {
+      return new Date(this.getProductFeedStatus.nextJobAt).toLocaleString();
     },
     toConfigure() {
       return !this.$store.state.productFeed.isConfigured;
@@ -215,37 +196,6 @@ export default defineComponent({
         ),
         // ToDo: Make the API return this information
         totalProducts: 0,
-      };
-    },
-    title() {
-      if (this.syncStatus === 'schedule') {
-        return {
-          icon: 'schedule',
-          color: 'primary',
-          message: this.$i18n.t('productFeedPage.syncStatus.readyForExport'),
-        };
-      }
-      if (this.syncStatus === 'failed') {
-        return {
-          icon: 'info_outlined',
-          color: 'danger',
-          message: this.$i18n.t('productFeedCard.syncFailedAt', [
-            this.lastSync.day,
-            this.lastSync.time,
-          ]),
-        };
-      }
-      return {
-        icon: 'check_circle',
-        color: 'success',
-        message: this.$i18n.tc('productFeedCard.syncSuccess',
-          this.lastSync.totalProducts,
-          [
-            this.lastSync.totalProducts,
-            this.lastSync.day,
-            this.lastSync.time,
-          ],
-        ),
       };
     },
     alertLink() {

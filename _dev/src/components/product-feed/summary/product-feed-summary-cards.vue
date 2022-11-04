@@ -2,9 +2,13 @@
   <b-row
     no-gutters
     class="mx-n1"
+    :class="[{'d-flex flex-column-reverse': displayAttributeMappingSimpleCard}]"
   >
-    <b-col>
+    <b-col
+      :cols="displayAttributeMappingSimpleCard ? 9 : null"
+    >
       <product-feed-card-report-card
+        :basic-display="displayAttributeMappingSimpleCard"
         :status="shippingSetupStatus"
         :title="$t('productFeedSettings.deliveryTimeAndRates.shippingSettings')"
         :description="shippingSetupDescription"
@@ -13,6 +17,7 @@
                     step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
       />
       <product-feed-card-report-card
+        :basic-display="displayAttributeMappingSimpleCard"
         v-if="isUS"
         :status="taxSettingsStatus"
         :title="$t('productFeedSettings.deliveryTimeAndRates.taxSettings')"
@@ -22,6 +27,7 @@
                     step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
       />
       <product-feed-card-report-card
+        :basic-display="displayAttributeMappingSimpleCard"
         v-if="displaySyncCard"
         status="success"
         :title="$t('productFeedSettings.summary.dataSyncSetUp')"
@@ -29,6 +35,7 @@
       />
       <product-feed-card-report-card
         v-if="displayAttributeMappingSimpleCard"
+        :basic-display="displayAttributeMappingSimpleCard"
         :status="attributeMappingStatus"
         :title="$t('productFeedSettings.steps.attributeMapping')"
         :description="attributeMapping.join(', ')"
@@ -38,9 +45,11 @@
       />
     </b-col>
     <b-col
-      class="d-flex flex-row-column"
+      :class="[{'d-flex flex-row-column': !displayAttributeMappingSimpleCard}]"
+      :cols="displayAttributeMappingSimpleCard ? 9 : null"
     >
       <product-feed-card-report-card
+        :basic-display="displayAttributeMappingSimpleCard"
         :status="targetCountriesStatus"
         :title="$t('productFeedSettings.deliveryTimeAndRates.title')"
         :sub-title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"

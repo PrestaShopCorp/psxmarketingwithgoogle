@@ -1,5 +1,35 @@
 <template>
+  <div
+    v-if="basicDisplay"
+    class="d-flex justify-content-between font-weight-600 ps_gs-fz-13 mb-1"
+  >
+    <div class="d-flex align-items-center">
+      <i
+        v-if="status === 'success'"
+        class="material-icons ps_gs-fz-18 mb-0 mr-2"
+        :class="`text-${status}`"
+      >
+        check_circle
+      </i>
+      <i
+        v-else
+        class="material-icons-round ps_gs-fz-18 mb-0 mr-2"
+        :class="`text-${status}`"
+      >
+        warning
+      </i>
+      {{ title }}
+    </div>
+    <b-link
+      @click="goTo(linkTo)"
+      class="text-right"
+    >
+      {{ basicDisplay ? $t('cta.editSettings') : link }}
+    </b-link>
+    
+  </div>
   <b-col
+    v-else
     cols
     class="ps_gs-productfeed-report-card"
     :class="size && `ps_gs-productfeed-report-card--${size}`"
@@ -115,6 +145,11 @@ export default {
       type: String,
       required: false,
       default: null,
+    },
+    basicDisplay: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   methods: {

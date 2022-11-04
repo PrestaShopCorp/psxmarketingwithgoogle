@@ -118,7 +118,7 @@
           </div>
           <div
             v-else-if="accessToken"
-            class="d-flex align-items-center pt-3 pr-3 pb-3"
+            class="d-flex align-items-center pr-3 pb-3"
           >
             <a
               :href="$options.googleUrl.manageGoogleAccount"
