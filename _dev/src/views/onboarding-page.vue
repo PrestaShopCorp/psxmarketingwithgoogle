@@ -324,7 +324,8 @@ export default {
           && this.merchantCenterAccountIsChosen
           && this.productFeedIsConfigured,
         step3: this.productFeedIsConfigured
-        && this.googleAdsAccountIsChosen,
+        && this.googleAdsAccountIsChosen
+        && this.billingSettingsCompleted,
       };
     },
     insideToast() {

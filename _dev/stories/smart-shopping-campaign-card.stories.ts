@@ -3,7 +3,6 @@ import {campaigns} from '../.storybook/mock/campaigns-list';
 import {conversionTrackingIsTrue, conversionTrackingIsFalse} from '../.storybook/mock/campaigns';
 import cloneDeep from 'lodash.clonedeep';
 import {initialStateApp} from "../.storybook/mock/state-app";
-import {rest} from 'msw';
 
 export default {
   title: 'Campaign/Card',
@@ -46,30 +45,6 @@ EnabledWithRemarketingSwitchOn.args = {
     this.$store.state.campaigns.conversionActions = [{}];
   },
 };
-
-// EnabledWithRemarketingSwitchOn.parameters = {
-//   msw: {
-//     handlers: [
-//       rest.post('/', (req: any, res, ctx) => {
-//         const payload = req.body.action;
-//         if (payload === 'toggleRemarketingTags') {
-//           return res(
-//             ctx.json({
-//               success:true
-//             }),
-//           );
-//         }
-//         if (payload === 'getRemarketingTagsStatus') {
-//           return res(
-//             ctx.json({
-//               remarketingTagsStatus: false
-//             }),
-//           );
-//         }
-//       }),
-//     ],
-//   },
-// };
 
 export const AlertAboutMissingConversionActions:any = Template.bind({});
 AlertAboutMissingConversionActions.args = {

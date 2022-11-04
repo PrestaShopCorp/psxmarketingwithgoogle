@@ -58,7 +58,7 @@
             <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
               {{ $t('googleAdsAccountCard.title') }}
             </b-card-text>
-            <div v-if="googleAdsAccountConfigured && !error">
+            <div v-if="googleAdsAccountConfigured && isGoogleAdsAccountFullyFetched">
               <b-badge
                 v-if="gAdsAccountStatusBadge !== null"
                 :variant="gAdsAccountStatusBadge.color"
@@ -96,6 +96,7 @@
                 </template>
                 <b-dropdown-item
                   :disabled="accountAwaitsValidation()"
+                  data-test-id="btn-disconnect"
                   @click="disconnectGoogleAdsAccount()"
                 >
                   {{ $t('cta.disconnect') }}
@@ -203,9 +204,8 @@
               >
                 {{ $t('general.legendCreateNewAccount') }}
                 <a
-                  href="javascript:void(0)"
                   rel="openPopin"
-                  @click="openPopinNewAccount"
+                  @click.prevent="openPopinNewAccount"
                 >
                   {{ $t('general.createAccount') }}
                 </a>
