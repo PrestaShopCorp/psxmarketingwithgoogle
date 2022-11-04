@@ -79,12 +79,11 @@
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
-  name: 'CampaignCard',
+  name: 'CampaignCardTracking',
   components: {
   },
   data() {
     return {
-      activateTracking: false,
     };
   },
   computed: {
