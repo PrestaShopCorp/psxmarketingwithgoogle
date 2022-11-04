@@ -31,7 +31,7 @@
           </p>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-6 mb-3">
         <google-account-card
           :is-enabled="stepsAreCompleted.step1"
           :loading="googleIsLoading"

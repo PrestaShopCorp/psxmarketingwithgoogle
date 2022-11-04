@@ -22,9 +22,9 @@
           <img
             class="mr-3 rounded-circle"
             :src="
-                isEnabled
-                  ? require('@/assets/images/google-icon.svg')
-                  : require('@/assets/images/google-icon-grey.svg')
+              isEnabled
+                ? require('@/assets/images/google-icon.svg')
+                : require('@/assets/images/google-icon-grey.svg')
             "
             width="40"
             height="40"
