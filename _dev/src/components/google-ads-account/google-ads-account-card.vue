@@ -198,19 +198,20 @@
                   </template>
                 </b-button>
               </div>
-
-              <p
+              <i18n
+                path="general.createNewAccount"
                 class="ps_gs-fz-12 mt-3 mt-md-0"
+                tag="div"
               >
-                {{ $t('general.legendCreateNewAccount') }}
                 <a
                   rel="openPopin"
+                  class="with-hover text-decoration-underline"
+                  role="button"
                   @click.prevent="openPopinNewAccount"
                 >
                   {{ $t('general.createAccount') }}
                 </a>
-                {{ $t('general.today') }}
-              </p>
+              </i18n>
             </b-form>
             <GoogleAdsAccountAlert
               v-if="error === GoogleAdsErrorReason.CantConnect"
