@@ -2,7 +2,6 @@
   <b-row
     no-gutters
     class="mx-n1"
-    :class="[{'d-flex flex-column-reverse': displayAttributeMappingSimpleCard}]"
   >
     <b-col
       :cols="displayAttributeMappingSimpleCard ? 9 : null"
@@ -15,6 +14,19 @@
         :link="$t('cta.editSettings')"
         :link-to="{ name: 'product-feed-settings',
                     step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
+      />
+      <product-feed-card-report-card
+        v-if="displayAttributeMappingSimpleCard"
+        :basic-display="displayAttributeMappingSimpleCard"
+        :status="targetCountriesStatus"
+        :title="$t('productFeedSettings.deliveryTimeAndRates.title')"
+        :sub-title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
+        :description="targetCountries.join(', ')"
+        :sub-title2="$t('productFeedSettings.deliveryTimeAndRates.title')"
+        :description2="deliveryTimeAndRatesDescription"
+        :link="$t('cta.editSettings')"
+        :link-to="{ name: 'product-feed-settings',
+                    step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
       />
       <product-feed-card-report-card
         :basic-display="displayAttributeMappingSimpleCard"
@@ -45,8 +57,8 @@
       />
     </b-col>
     <b-col
-      :class="[{'d-flex flex-row-column': !displayAttributeMappingSimpleCard}]"
-      :cols="displayAttributeMappingSimpleCard ? 9 : null"
+      v-if="!displayAttributeMappingSimpleCard"
+      class="d-flex flex-row-column"
     >
       <product-feed-card-report-card
         :basic-display="displayAttributeMappingSimpleCard"
