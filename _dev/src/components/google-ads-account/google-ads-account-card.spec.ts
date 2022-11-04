@@ -5,6 +5,7 @@ import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import {mount, MountOptions} from '@vue/test-utils';
+import cloneDeep from 'lodash.clonedeep';
 import config, {localVue, cloneStore} from '@/../tests/init';
 
 import GoogleAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
@@ -19,9 +20,8 @@ import {
   NeedRefreshAfterBilling,
   Canceled,
 } from '@/../stories/google-ads-account-card.stories';
-import { GoogleAdsErrorReason } from '@/store/modules/google-ads/state';
-import cloneDeep from 'lodash.clonedeep';
-import googleAdsNotChosen, { googleAdsAccountChosen, notGoogleAdsList } from '../../../.storybook/mock/google-ads';
+import {GoogleAdsErrorReason} from '@/store/modules/google-ads/state';
+import googleAdsNotChosen, {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads';
 
 describe('google-ads-account.vue / disabled', () => {
   it('card is greyed out when card is disabled', () => {
@@ -110,14 +110,13 @@ describe('google-ads-account.vue / enabled', () => {
       },
     });
 
-
     // Check that the dropdown is disabled
     expect(wrapper.find('[data-test-id="message-empty-list"]').exists()).toBeTruthy();
   });
 
   it('dropdown is disabled when API error', () => {
     const store = cloneStore();
-    store.modules.googleAds.state = cloneDeep(notGoogleAdsList);
+    store.modules.googleAds.state = cloneDeep(googleAdsAccountChosen);
 
     const wrapper = buildWrapper({
       propsData: CantConnect.args,
