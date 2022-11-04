@@ -183,22 +183,13 @@ export default defineComponent({
       return this.$store.getters['productFeed/GET_STEP'];
     },
     nextSyncTime(): string {
-      return new Date(this.getProductFeedStatus.nextJobAt).toLocaleString();
+      if (this.getProductFeedStatus.nextJobAt) {
+        return new Date(this.getProductFeedStatus.nextJobAt).toLocaleString();
+      }
+      return '--';
     },
     toConfigure() {
       return !this.$store.state.productFeed.isConfigured;
-    },
-    lastSync() {
-      return {
-        day: this.$options.filters.timeConverterToDate(
-          this.getProductFeedStatus?.lastUpdatedAt ?? this.getProductFeedStatus?.jobEndedAt,
-        ),
-        time: this.$options.filters.timeConverterToHour(
-          this.getProductFeedStatus?.lastUpdatedAt ?? this.getProductFeedStatus?.jobEndedAt,
-        ),
-        // ToDo: Make the API return this information
-        totalProducts: 0,
-      };
     },
     alertLink() {
       if (this.alert === 'Failed') {
