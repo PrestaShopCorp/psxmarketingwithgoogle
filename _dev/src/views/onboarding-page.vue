@@ -1,7 +1,7 @@
 <template>
   <div class="pt-2 container">
-    <div class="row mb-4">
-      <div class="col-6">
+    <div class="row row-cols-sm-1 row-cols-md-2 mb-4">
+      <div class="col">
         <section-title
           :step-number="1"
           :step-title="$t('onboarding.sectionTitle.psAccount')"
@@ -9,13 +9,13 @@
           :is-done="stepsAreCompleted.step1"
         />
       </div>
-      <div class="col-6">
+      <div class="col">
         <prestashop-accounts
           class="ps_gs-ps-account-card"
         />
       </div>
 
-      <div class="col-6">
+      <div class="col">
         <section-title
           :step-number="2"
           :step-title="$t('onboarding.sectionTitle.freeListing.title')"
@@ -31,7 +31,7 @@
           </p>
         </div>
       </div>
-      <div class="col-6 mb-3">
+      <div class="col mb-3">
         <google-account-card
           :is-enabled="stepsAreCompleted.step1"
           :loading="googleIsLoading"
@@ -56,7 +56,7 @@
         />
       </div>
 
-      <div class="col-6">
+      <div class="col">
         <section-title
           :step-number="3"
           :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
@@ -70,7 +70,7 @@
           />
         </div>
       </div>
-      <div class="col-6">
+      <div class="col">
         <GoogleAdsAccountCard
           :is-enabled="stepsAreCompleted.step2"
           :loading="googleAdsIsLoading"
