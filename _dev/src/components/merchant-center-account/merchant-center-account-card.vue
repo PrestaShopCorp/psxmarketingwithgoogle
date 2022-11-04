@@ -24,7 +24,7 @@
             height="32"
             alt=""
           >
-          <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
+          <b-card-text class="ps_gs-onboardingcard__title text-left mb-0">
             {{ $t('mcaCard.title') }}
           </b-card-text>
           <b-badge
@@ -36,9 +36,9 @@
           </b-badge>
           <div
             class="flex-grow-1 d-flex-md flex-md-grow-1 flex-shrink-0 text-right"
+            v-if="selectedMcaDetails.id === null"
           >
             <b-button
-              v-if="selectedMcaDetails.id === null"
               size="sm"
               variant="primary"
               :disabled="selectedMcaIndex === null || isLinking || shopIsOnMaintenanceMode"
@@ -47,6 +47,44 @@
             >
               {{ $t('cta.connectAccount') }}
             </b-button>
+          </div>
+          <div
+            v-else
+            class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
+          >
+            <b-dropdown
+              no-caret
+              right
+              variant="outline-primary"
+              menu-class="ps-dropdown__menu-small rounded"
+              toggle-class="px-1"
+              boundary="window"
+            >
+              <template #button-content>
+                <i class="material-icons">
+                  more_horiz
+                </i>
+                <span class="sr-only">
+                  {{ $t('googleAdsAccountCard.srTitle') }}
+                </span>
+              </template>
+              <b-dropdown-item
+                @click="checkWebsiteRequirements"
+              >
+                {{ $t("cta.checkRequirements") }}
+              </b-dropdown-item>
+              <b-dropdown-item
+                @click="dissociateMerchantCenterAccount"
+              >
+                {{ $t("cta.disconnect") }}
+              </b-dropdown-item>
+              <b-dropdown-item
+                target="_blank"
+                :href="merchantCenterWebsitePageUrl.businessInfo"
+              >
+                {{ $t("cta.editContact") }}
+              </b-dropdown-item>
+            </b-dropdown>
           </div>
         </div>
         <div
@@ -63,11 +101,6 @@
             :vue-template="true"
           />
           <b-form class="mb-2 mt-3">
-            <legend
-              class="mb-1 h4 font-weight-600 bg-transparent border-0"
-            >
-              {{ $t('mcaCard.labelSelect') }}
-            </legend>
             <div class="d-md-flex text-center">
               <b-dropdown
                 id="mcaSelection"
@@ -157,32 +190,24 @@
                 </b-dropdown-group>
               </b-dropdown>
             </div>
-            <VueShowdown
-              class="text-muted ps_gs-fz-12 mt-3 mt-md-0"
-              :markdown="$t('mcaCard.toUseGmcNeedsAdminAccess')"
-            />
           </b-form>
           <div class="mt-3">
-            <p class="mb-1">
-              {{ $t('general.legendCreateNewAccount') }}
-            </p>
-            <b-button
-              variant="outline-primary"
-              class="mb-0"
-              size="sm"
-              :class="shopIsOnMaintenanceMode ? 'bg-transparent text-secondary' : ''"
-              @click="checkWebsiteRequirements"
-              :disabled="shopIsOnMaintenanceMode"
+            <i18n
+              path="general.createNewAccount"
+              class="ps_gs-fz-12 mt-3 mt-md-0"
+              tag="div"
             >
-              <i
-                class="left material-icons mr-2 ps_gs-fz-24"
-                aria-hidden="true"
-              >person_add</i><!--
-          --><span
-                class="align-middle"
-              >{{ $t('cta.createNewAccount') }}
-            </span>
-            </b-button>
+              <a
+                rel="openPopin"
+                class="with-hover text-decoration-underline"
+                :class="shopIsOnMaintenanceMode ? 'bg-transparent text-secondary' : ''"
+                :disabled="shopIsOnMaintenanceMode"
+                role="button"
+                @click.prevent="checkWebsiteRequirements"
+              >
+                {{ $t('general.createAccount') }}
+              </a>
+            </i18n>
 
             <b-alert
               v-if="shopIsOnMaintenanceMode"
@@ -260,7 +285,7 @@
                 target="_blank"
                 class="external_link-no_icon link-regular"
               >
-                <strong>{{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}</strong>
+                {{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}
               </a>
               <span
                 v-if="loaderText"
@@ -278,35 +303,6 @@
                 {{ $t('badge.siteVerified') }}
               </span>
             </div>
-            <b-button
-              class=" p-0 m-0 text-primary ps_gs-fz-13 font-weight-600"
-              size="sm"
-              variant="invisible"
-              @click="checkWebsiteRequirements"
-            >
-              {{ $t("cta.checkRequirements") }}
-            </b-button>
-          </div>
-          <div
-            class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
-          >
-            <b-button
-              class="mx-1 mt-3 mt-md-0"
-              size="sm"
-              variant="outline-secondary"
-              @click="dissociateMerchantCenterAccount"
-            >
-              {{ $t("cta.disconnect") }}
-            </b-button>
-            <b-button
-              class="mx-1 mt-3 mt-md-0 mr-md-0"
-              size="sm"
-              variant="outline-secondary"
-              target="_blank"
-              :href="merchantCenterWebsitePageUrl.businessInfo"
-            >
-              {{ $t("cta.editContact") }}
-            </b-button>
           </div>
         </div>
         <b-alert

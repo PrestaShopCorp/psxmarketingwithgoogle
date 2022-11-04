@@ -123,21 +123,6 @@ ConfiguredTax.args = {
   loading: false,
 };
 
-/**
- * Shipping have been reworked on Sept 2022. This story checks the behavior of the summary
- * when old data is loaded from the API.
- */
-export const ConfiguredWithOldShippingSettings:any = Template.bind({});
-ConfiguredWithOldShippingSettings.args = {
-  beforeMount: function(this: any) {
-    this.$store.state.productFeed = cloneDeep(productFeedIsConfigured);
-    this.$store.state.productFeed.settings.shippingSetup = null;
-    this.$store.state.productFeed.settings.autoImportShippingSettings = true;
-  },
-  isEnabled: true,
-  loading: false,
-};
-
 export const ApiError:any = Template.bind({});
 ApiError.args = {
   beforeMount: function(this: any) {

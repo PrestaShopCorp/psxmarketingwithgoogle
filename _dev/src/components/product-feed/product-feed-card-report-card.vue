@@ -26,7 +26,6 @@
     >
       {{ basicDisplay ? $t('cta.editSettings') : link }}
     </b-link>
-    
   </div>
   <b-col
     v-else

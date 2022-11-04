@@ -66,22 +66,33 @@
             v-else
             class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
           >
-            <b-button
-              size="sm"
-              variant="outline-secondary"
-              class="mx-1 mt-3 mt-md-0"
-              @click="dissociateGoogleAccount"
+            <b-dropdown
+              no-caret
+              right
+              variant="outline-primary"
+              menu-class="ps-dropdown__menu-small rounded"
+              toggle-class="px-1"
+              boundary="window"
             >
-              {{ $t('cta.disconnect') }}
-            </b-button>
-            <b-button
-              size="sm"
-              variant="outline-secondary"
-              class="mx-1 mt-3 mt-md-0 mr-md-0"
-              @click="changeAccount"
-            >
-              {{ $t('cta.manageAccount') }}
-            </b-button>
+              <template #button-content>
+                <i class="material-icons">
+                  more_horiz
+                </i>
+                <span class="sr-only">
+                  {{ $t('googleAdsAccountCard.srTitle') }}
+                </span>
+              </template>
+              <b-dropdown-item
+                @click="changeAccount"
+              >
+                {{ $t('cta.manageAccount') }}
+              </b-dropdown-item>
+              <b-dropdown-item
+                @click="dissociateGoogleAccount"
+              >
+                {{ $t('cta.disconnect') }}
+              </b-dropdown-item>
+            </b-dropdown>
             <glass
               v-if="popupClosingLooper"
               @close="closePopup"

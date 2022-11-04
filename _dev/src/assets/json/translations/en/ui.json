@@ -93,8 +93,7 @@
   },
   "mcaCard": {
     "title": "Merchant Center account",
-    "introDisabled": "Associate your Merchant Center account with PrestaShop to ease synchronisation of your store and product data",
-    "labelSelect": "Connect an existing account",
+    "introDisabled": "You can connect an existing Google Merchant Center account, or create a new one in a few easy steps.",
     "claimCollides": "Your website has been already claimed.",
     "claimOverwrite": "To finish Merchant Center account creation, you need to overwrite the existing claim.",
     "footerEU": "If you are in the European Economic Area, the United Kingdom or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
@@ -104,7 +103,6 @@
     "userIsTestAccount": "This is a test account",
     "googleMCA": "Google Merchant Center account",
     "shopMaintenance": "You cannot connect a Google Merchant Center account while Maintenance mode is active.  \n Please change your shop parameters.",
-    "toUseGmcNeedsAdminAccess": "To use an existing Merchant Center account, you must have Admin access.",
     "linkingFailed": "You can't connect to your Merchant Center account right now. Try again later.",
     "AccountValidationFailed": "Account validation failed",
     "unlinkFailed": "Disconnection failed. Please refresh the page and try again.",

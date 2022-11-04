@@ -17,7 +17,7 @@
         :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
         id="product-feed-card"
       >
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center mb-3">
           <img
             class="mr-2"
             src="@/assets/images/product-feed-icon.svg"
@@ -48,8 +48,10 @@
             class="d-sm-flex align-items-end mb-1"
           >
             <i18n
-              :path="syncStatus === 'schedule' ? 'productFeedPage.syncStatus.scheduleOn' : 'productFeedCard.nextSync'"
-              class="mt-3 mt-md-0"
+              :path="syncStatus === 'schedule'
+                ? 'productFeedPage.syncStatus.scheduleOn'
+                : 'productFeedCard.nextSync'"
+              class="mt-3 mt-md-0 text-right"
               tag="div"
             >
               <b-button
