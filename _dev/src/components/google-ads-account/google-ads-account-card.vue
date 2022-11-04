@@ -91,7 +91,7 @@
                     more_horiz
                   </i>
                   <span class="sr-only">
-                    selector google ads actions
+                    {{ $t('googleAdsAccountCard.srTitle')}}
                   </span>
                 </template>
                 <b-dropdown-item
