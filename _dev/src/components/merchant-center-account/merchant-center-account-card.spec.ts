@@ -10,7 +10,6 @@ import fetchMock from 'jest-fetch-mock';
 import config, {cloneStore} from '@/../tests/init';
 
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
-import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
 import actionsTypes from '../../store/modules/accounts/actions-types';
 import {WebsiteClaimErrorReason} from '../../store/modules/accounts/state';
 
@@ -29,7 +28,6 @@ describe('merchant-center-account-card.vue', () => {
 
     // Check disabled state
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(true);
-    expect(wrapper.findComponent(BadgeListRequirements).exists()).toBeTruthy();
     // Check existing GMC list, selected account details are not displayed
     expect(wrapper.find('#mcaSelection').exists()).toBeFalsy();
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
@@ -46,7 +44,6 @@ describe('merchant-center-account-card.vue', () => {
 
     // Check disabled state
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(true);
-    expect(wrapper.findComponent(BadgeListRequirements).exists()).toBeTruthy();
     // Check existing GMC list, selected account details are not displayed
     expect(wrapper.find('#mcaSelection').exists()).toBeFalsy();
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
@@ -63,9 +60,8 @@ describe('merchant-center-account-card.vue', () => {
 
     // Check enabled state
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(false);
-    expect(wrapper.findComponent(BadgeListRequirements).exists()).toBeFalsy();
     // Check button to create an account exists
-    expect(wrapper.find('.material-icons').text()).toBe('person_add');
+    expect(wrapper.find('.with-hover').text()).toBe('create your account');
   });
 });
 

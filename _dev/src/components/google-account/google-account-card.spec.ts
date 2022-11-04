@@ -94,6 +94,6 @@ describe('google-account-card.vue', () => {
       },
     });
     // Check if account email is visible, the email is defined in the mock
-    expect(wrapper.find('a > strong').text()).toBe('v.godard@maisonroyer.com');
+    expect(wrapper.find('a').text()).toBe('v.godard@maisonroyer.com');
   });
 });

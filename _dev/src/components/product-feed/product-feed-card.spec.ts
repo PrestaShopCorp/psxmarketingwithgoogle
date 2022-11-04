@@ -8,7 +8,6 @@ import {shallowMount, mount} from '@vue/test-utils';
 import {BAlert} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
 import config, {localVue, cloneStore, filters} from '@/../tests/init';
-import BadgeListRequirements from '@/components/commons/badge-list-requirements.vue';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
@@ -36,6 +35,7 @@ describe('product-feed-card.vue', () => {
   };
 
   let storeDisabledOrNotConfigured;
+  let storePartiallyConfigured;
   let storeConfigured;
   let storeMissingFields;
   let storeApiError;
@@ -46,6 +46,12 @@ describe('product-feed-card.vue', () => {
     storeDisabledOrNotConfigured.modules.productFeed.state = {
       ...storeDisabledOrNotConfigured.modules.productFeed.state,
       ...productFeed,
+    };
+    storePartiallyConfigured = cloneStore();
+    storePartiallyConfigured.modules.productFeed.state = {
+      ...storePartiallyConfigured.modules.productFeed.state,
+      ...productFeed,
+      stepper: 2,
     };
     storeConfigured = cloneStore();
     storeConfigured.modules.productFeed.state = {
@@ -85,11 +91,10 @@ describe('product-feed-card.vue', () => {
       store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(true);
-    expect(wrapper.findComponent(BadgeListRequirements).exists()).toBeTruthy();
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
   });
 
-  it('shows stepper at 1 when enabled', () => {
+  it('does not show stepper at 1 when enabled', () => {
     const wrapper = shallowMount(ProductFeedCard, {
       propsData: {
         isEnabled: true,
@@ -98,8 +103,22 @@ describe('product-feed-card.vue', () => {
       },
       store: new Vuex.Store(storeDisabledOrNotConfigured),
     });
+    expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeFalsy();
+    expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
+    expect(wrapper.find('b-button').exists()).toBeTruthy();
+  });
+
+  it('shows stepper at 2 when enabled', () => {
+    const wrapper = shallowMount(ProductFeedCard, {
+      propsData: {
+        isEnabled: true,
+        loading: false,
+        ...config,
+      },
+      store: new Vuex.Store(storePartiallyConfigured),
+    });
     expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeTruthy();
-    expect(wrapper.findComponent(ProductFeedStepper).props('activeStep')).toBe(1);
+    expect(wrapper.findComponent(ProductFeedStepper).props('activeStep')).toBe(2);
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
     expect(wrapper.find('b-button').exists()).toBeTruthy();
   });
@@ -134,8 +153,6 @@ describe('product-feed-card.vue', () => {
     });
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
     expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
-    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
 
@@ -155,7 +172,6 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('info');
     expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
-    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
   });
 
@@ -174,8 +190,6 @@ describe('product-feed-card.vue', () => {
     });
 
     expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
-    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();
@@ -196,8 +210,7 @@ describe('product-feed-card.vue', () => {
       },
       store: new Vuex.Store(storeApiError),
     });
-    expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeTruthy();
-    expect(wrapper.findComponent(ProductFeedStepper).props('activeStep')).toBe(1);
+    expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeFalsy();
     expect(wrapper.find('b-button').attributes('disabled')).toBe('true');
     expect(wrapper.find('b-button').text()).toEqual('Start product feed configuration');
     expect(wrapper.findComponent(BAlert).exists()).toBeTruthy();
@@ -218,8 +231,6 @@ describe('product-feed-card.vue', () => {
       },
     });
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
-    expect(filters.timeConverterToDate).toHaveBeenCalledTimes(2);
-    expect(filters.timeConverterToHour).toHaveBeenCalledTimes(2);
     expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();

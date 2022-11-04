@@ -70,7 +70,6 @@ import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card';
-import BadgeListRequirements from '@/components/commons/badge-list-requirements';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 
 export default defineComponent({
@@ -78,7 +77,6 @@ export default defineComponent({
   components: {
     ProductFeedStepper,
     ProductFeedCardReportCard,
-    BadgeListRequirements,
     VueShowdown,
   },
   data() {
