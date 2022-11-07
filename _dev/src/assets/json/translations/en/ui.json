@@ -80,10 +80,6 @@
     "configure": "Configure",
     "group": "Shop group"
   },
-  "psAccountCard": {
-    "disonboardedText": "Authorize your account to manage your shop’s services",
-    "onboardedText": "Your shop is associated to the PrestaShop account of"
-  },
   "googleAccountCard": {
     "title": "Google account",
     "introDisabled": "Connect your Google account and associated with it Google Merchant Center to unlock free listings.",
@@ -97,9 +93,7 @@
   },
   "mcaCard": {
     "title": "Merchant Center account",
-    "introDisabled": "Associate your Merchant Center account with PrestaShop to ease synchronisation of your store and product data",
-    "introEnabled": "[Google Merchant Center]({0})[:target=\"_blank\"] helps you get your store and product info into Google and make it available to shoppers across Google.",
-    "labelSelect": "Connect an existing account",
+    "introDisabled": "You can connect an existing Google Merchant Center account, or create a new one in a few easy steps.",
     "claimCollides": "Your website has been already claimed.",
     "claimOverwrite": "To finish Merchant Center account creation, you need to overwrite the existing claim.",
     "footerEU": "If you are in the European Economic Area, the United Kingdom or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
@@ -109,7 +103,6 @@
     "userIsTestAccount": "This is a test account",
     "googleMCA": "Google Merchant Center account",
     "shopMaintenance": "You cannot connect a Google Merchant Center account while Maintenance mode is active.  \n Please change your shop parameters.",
-    "toUseGmcNeedsAdminAccess": "To use an existing Merchant Center account, you must have Admin access.",
     "linkingFailed": "You can't connect to your Merchant Center account right now. Try again later.",
     "AccountValidationFailed": "Account validation failed",
     "unlinkFailed": "Disconnection failed. Please refresh the page and try again.",
@@ -212,13 +205,9 @@
     "updateData": "If you have made any modification in your backoffice, please refresh your information to see the changes reflected here."
   },
   "productFeedCard": {
-    "title": "Automatically sync your products data with Google",
-    "intro": "Submit your product data directly to your Merchant Center and keep them always up to date for free listings and ads.",
-    "introToConfigure": "It's important to submit your product feed in the correct format, as Google uses this to make sure your products match the right queries.",
-    "nextSync": "Next synchronization: {0} at {1}",
-    "syncFailedAt": "Synchronization failed {0} at {1}",
-    "syncSuccess": "Products synced {1} at {2} | {0} product synced {1} at {2} | {0} products synced {1} at {2}",
-    "syncBusy": "Sync progressing...",
+    "title": "Product feed",
+    "intro": "Link your products of your catalog to showcase your products on free listings. Pricing and product availability are automatically updated daily, giving your customers access to the most recent and fairly priced products you have on offer!",
+    "nextSync": "Next synchronization on {0}",
     "mappedCategories": "{0}/{1} mapped categories",
     "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.",
     "alertFailed": "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact [customer support](mailto:support-google@prestashop.com).",
@@ -906,9 +895,7 @@
     "selectAccount": "Select account",
     "addMapping": "Add mapping",
     "modifyMapping": "Modify mapping",
-    "learnAboutProductConfiguration": "Learn more about product data specification",
     "overwriteProductFeed": "Overwrite product feed",
-    "trackProductStatus": "Track Product approval status",
     "whyDidntWork": "Check out why it didn’t work",
     "aboutProductCategory": "List of Google product categories",
     "editSettings": "Edit settings",

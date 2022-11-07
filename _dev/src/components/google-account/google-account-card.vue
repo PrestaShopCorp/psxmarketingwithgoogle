@@ -20,65 +20,31 @@
           class="d-flex align-items-center"
         >
           <img
-            class="mr-3 rounded-circle"
-            :src="
-              isEnabled
-                ? require('@/assets/images/google-icon.svg')
-                : require('@/assets/images/google-icon-grey.svg')
-            "
-            width="40"
-            height="40"
+            class="mr-2 rounded-circle"
+            src="@/assets/images/google-icon.svg"
+            width="32"
+            height="32"
           >
           <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
             {{ $t('googleAccountCard.title') }}
           </b-card-text>
-          <i
+          <b-badge
             v-if="user && user.details.email"
-            class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
+            class="mx-3"
+            variant="success"
           >
-            check_circle
-          </i>
-        </div>
-        <div
-          class="d-flex flex-wrap flex-md-nowrap
-        justify-content-between align-items-center mt-3"
-        >
-          <p
-            v-if="!accessToken"
-            class="mb-0"
-          >
-            {{ $t('googleAccountCard.introEnabled') }}<br>
-          </p>
-          <div
-            v-else
-            class="d-flex align-items-center pt-3 pr-3 pb-3"
-          >
-            <img
-              class="mr-3 rounded-circle"
-              :src="user.details.picture"
-              width="38"
-              height="38"
-              alt=""
-            >
-            <a
-              :href="$options.googleUrl.manageGoogleAccount"
-              :title="$t('cta.goToYourX', [$t('badge.googleAccount')])"
-              target="_blank"
-              class="external_link-no_icon link-regular text-break"
-            >
-              <strong>{{ user.details.email }}</strong>
-            </a>
-          </div>
+            {{ $t('badge.connected') }}
+          </b-badge>
           <div
             v-if="!accessToken"
-            class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
+            class="flex-grow-1 d-flex-md flex-md-grow-1 flex-shrink-0 text-right"
           >
             <b-button
               size="sm"
               variant="invisible"
               class="btn-google mx-1 mt-3 mt-md-0 mr-md-0 ml-md-3"
               :class="{'is-busy' : isConnecting}"
-              :disabled="isConnecting || error === 'CantConnect'"
+              :disabled="!isEnabled || isConnecting || error === 'CantConnect'"
               @click="openPopup"
               data-test-id="btn-connect"
             >
@@ -100,22 +66,33 @@
             v-else
             class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
           >
-            <b-button
-              size="sm"
-              variant="outline-secondary"
-              class="mx-1 mt-3 mt-md-0"
-              @click="dissociateGoogleAccount"
+            <b-dropdown
+              no-caret
+              right
+              variant="outline-primary"
+              menu-class="ps-dropdown__menu-small rounded"
+              toggle-class="px-1"
+              boundary="window"
             >
-              {{ $t('cta.disconnect') }}
-            </b-button>
-            <b-button
-              size="sm"
-              variant="outline-secondary"
-              class="mx-1 mt-3 mt-md-0 mr-md-0"
-              @click="changeAccount"
-            >
-              {{ $t('cta.manageAccount') }}
-            </b-button>
+              <template #button-content>
+                <i class="material-icons">
+                  more_horiz
+                </i>
+                <span class="sr-only">
+                  {{ $t('googleAdsAccountCard.srTitle') }}
+                </span>
+              </template>
+              <b-dropdown-item
+                @click="changeAccount"
+              >
+                {{ $t('cta.manageAccount') }}
+              </b-dropdown-item>
+              <b-dropdown-item
+                @click="dissociateGoogleAccount"
+              >
+                {{ $t('cta.disconnect') }}
+              </b-dropdown-item>
+            </b-dropdown>
             <glass
               v-if="popupClosingLooper"
               @close="closePopup"
@@ -124,26 +101,46 @@
           </div>
         </div>
         <div
-          v-if="accessToken"
-          class="text-md-right text-muted mt-3"
+          class="d-flex flex-wrap flex-md-nowrap
+        justify-content-between align-items-center mt-3
+        ml-2 ps_gs-onboardingcard__content"
         >
-          <p class="ps_gs-fz-12 mb-0">
-            {{ $t('googleAccountCard.footerDissociating') }}
-          </p>
+          <div
+            v-if="isEnabled && !accessToken"
+          >
+            <p
+              class="mb-0"
+            >
+              {{ $t('googleAccountCard.introEnabled') }}<br>
+            </p>
+            <b-alert
+              v-if="!error"
+              show
+              variant="info"
+              class="mb-0 mt-3"
+            >
+              <VueShowdown
+                tag="p"
+                :extensions="['no-p-tag']"
+                class="mb-0"
+                :markdown="$t('googleAccountCard.alertInfo')"
+              />
+            </b-alert>
+          </div>
+          <div
+            v-else-if="accessToken"
+            class="d-flex align-items-center pr-3 pb-3"
+          >
+            <a
+              :href="$options.googleUrl.manageGoogleAccount"
+              :title="$t('cta.goToYourX', [$t('badge.googleAccount')])"
+              target="_blank"
+              class="external_link-no_icon link-regular text-break"
+            >
+              {{ user.details.email }}
+            </a>
+          </div>
         </div>
-        <b-alert
-          v-if="!error && !accessToken"
-          show
-          variant="info"
-          class="mb-0 mt-3"
-        >
-          <VueShowdown
-            tag="p"
-            :extensions="['no-p-tag']"
-            class="mb-0"
-            :markdown="$t('googleAccountCard.alertInfo')"
-          />
-        </b-alert>
         <b-alert
           v-if="!error && accessToken && missingTokenScopes"
           show

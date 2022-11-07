@@ -4,6 +4,10 @@ section {
 
     &--disabled {
       color: $grey_muted;
+
+      img {
+        opacity: 0.5;
+      }
     }
 
     &--disabled-grey {
@@ -19,6 +23,10 @@ section {
       font-size: rem(16);
       line-height: rem(22.5);
       font-weight: 600;
+    }
+
+    &__content {
+      padding-left: 32px;
     }
 
     &__not-configured {

@@ -91,7 +91,7 @@
                     more_horiz
                   </i>
                   <span class="sr-only">
-                    {{ $t('googleAdsAccountCard.srTitle')}}
+                    {{ $t('googleAdsAccountCard.srTitle') }}
                   </span>
                 </template>
                 <b-dropdown-item
