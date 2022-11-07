@@ -1,9 +1,10 @@
 <template>
   <stepper
-    class="mt-2"
+    class="mt-2 ml-1"
     :steps="steps"
     :active-step="activeStep"
     @changeStep="stepToChange($event)"
+    vertical
   />
 </template>
 

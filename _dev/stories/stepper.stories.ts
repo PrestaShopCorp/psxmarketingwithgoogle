@@ -1,7 +1,7 @@
 import Stepper from '../src/components/commons/stepper.vue'
 
 export default {
-  title: 'Basic Components/Horizontal Stepper',
+  title: 'Basic Components/Stepper',
   component: Stepper,
   parameters: {
     jest: ['stepper.spec.ts'],
@@ -30,5 +30,26 @@ HorizontalStepper.args = {
       title: "Summary",
     },
   ],
-  activeStep: 3
+  activeStep: 3,
+  vertical: false,
+}
+
+export const VerticalStepper:any = Template.bind({});
+VerticalStepper.args = {
+  steps: [
+    {
+      title: "Shipping settings",
+    },
+    {
+      title: "Export rules",
+    },
+    {
+      title: "Attribute mapping",
+    },
+    {
+      title: "Summary",
+    },
+  ],
+  activeStep: 3,
+  vertical: true,
 }

@@ -4,6 +4,10 @@ $stepWidthMobile: rem(42);
 .ps_gs-stepper {
   @include media-breakpoint-up(sm) {
     display: flex;
+
+    &.vertical {
+      flex-direction: column;
+    }
   }
 }
 
@@ -69,8 +73,17 @@ $stepWidthMobile: rem(42);
     margin-bottom: rem(16);
     position: relative;
 
+    &.vertical {
+      max-width: 200px;
+    }
+
     &__link {
       display: inline-block;
+
+      &.vertical {
+        display: flex;
+        align-items: center;
+      }
     }
 
     a#{$root}__link:hover, a#{$root}__link:focus {
@@ -85,8 +98,11 @@ $stepWidthMobile: rem(42);
 
     &__title {
       text-align: center;
-      font-size: rem(12);
       color: $grey_muted;
+
+      &:not(.vertical) {
+        font-size: rem(12);
+      }
     }
 
     .ps_progress-ring {
@@ -107,16 +123,25 @@ $stepWidthMobile: rem(42);
       }
     }
 
-    &.active ~ #{$root}::after {
-      content:'';
-      display: block;
-      position: absolute;
-      background: $grey_median;
+    &.active ~ #{$root} {
+      &::after {
+        content:'';
+        display: block;
+        position: absolute;
+        background: $grey_median;
 
         height: 2px;
         top: calc(#{$stepWidth} / 2 - 1px);
         left: calc(-50% + #{$stepWidth} / 2);
         width: calc(100% - #{$stepWidth});
+      }
+
+      &.vertical::after {
+        width: 2px;
+        height: 50%;
+        left: calc(#{$stepWidth} / 2 - 1px);
+        top: calc(-#{$stepWidth} / 2);
+      }
     }
 
 
@@ -128,40 +153,80 @@ $stepWidthMobile: rem(42);
       background-color: #fff;
       border: 2px solid $grey_median;
       border-radius: 50%;
-        margin: 0 auto .5rem;
+      margin: 0 auto .5rem;
+
+      &.vertical {
+        margin: 0;
+      }
     }
 
-    &.complete::before,
-    &.active::before {
-      content: '';
-      display: block;
-      position: absolute;
-      background: $blue;
-      z-index: -1;
-      height: 2px;
-      width: 50%;
-      top: calc(#{$stepWidth} / 2 - 1px);
+
+    &.complete,
+    &.active {
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        background: $blue;
+        z-index: -1;
+        height: 2px;
+        width: 50%;
+        top: calc(#{$stepWidth} / 2 - 1px);
+      }
+
+      &.vertical::before {
+        width: 2px;
+        height: 50%;
+        left: calc(#{$stepWidth} / 2 - 1px);
+        top: calc(#{$stepWidth} );
+      }
     }
 
-    &.active:first-child::before {
-      width: 0;
+    &:not(.vertical) {
+      &.active:first-child::before {
+        width: 0;
+      }
+  
+      &.complete::before {
+        right: 0;
+      }
+  
+      &.complete + #{$root}.complete::before {
+        left: 0;
+        width: 100%;
+      }
+  
+      &.complete + #{$root}.complete:last-child::before {
+        width: 50%;
+      }
+  
+      &.complete + #{$root}.active::before {
+        left: 0;
+      }
     }
 
-    &.complete::before {
-      right: 0;
-    }
-
-    &.complete + #{$root}.complete:before {
-      left: 0;
-      width: 100%;
-    }
-
-    &.complete + #{$root}.complete:last-child:before {
-      width: 50%;
-    }
-
-    &.complete + #{$root}.active::before {
-      left: 0;
+    &.vertical {
+      &.active:first-child::before {
+        height: 0;
+      }
+  
+      &.complete::before {
+        bottom: 0;
+      }
+  
+      &.complete + #{$root}.complete::before {
+        bottom: 0;
+        height: 100%;
+      }
+  
+      &.complete + #{$root}.complete:last-child::before {
+        height: 50%;
+      }
+  
+      &.complete + #{$root}.active::before {
+        top: 0;
+      }
     }
   }
 }
