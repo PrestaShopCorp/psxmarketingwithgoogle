@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="basicDisplay"
-    class="d-flex justify-content-between font-weight-600 ps_gs-fz-13 mb-1"
+    class="d-flex justify-content-between ps_gs-fz-13 mb-1"
   >
     <div class="d-flex align-items-center">
       <i
@@ -24,7 +24,7 @@
       @click="goTo(linkTo)"
       class="text-right"
     >
-      {{ basicDisplay ? $t('cta.editSettings') : link }}
+      {{ basicDisplay ? $t('cta.edit') : link }}
     </b-link>
   </div>
   <b-col

@@ -16,7 +16,7 @@
         class="ps_gs-onboardingcard p-3"
         :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
       >
-        <div class="d-flex align-items-center mb-3">
+        <div class="d-flex align-items-start mb-3">
           <img
             class="mr-2"
             src="@/assets/images/google-merchant-center-icon.svg"

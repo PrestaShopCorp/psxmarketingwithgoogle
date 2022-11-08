@@ -17,7 +17,7 @@
         :class="{ 'ps_gs-onboardingcard--disabled' : !isEnabled }"
       >
         <div
-          class="d-flex align-items-center"
+          class="d-flex align-items-start"
         >
           <img
             class="mr-2 rounded-circle"
