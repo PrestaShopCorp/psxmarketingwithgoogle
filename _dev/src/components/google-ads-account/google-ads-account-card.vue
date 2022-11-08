@@ -20,13 +20,13 @@
           v-if="!isEnabled"
         >
           <div
-            class="d-inline-flex align-items-center"
+            class="d-inline-flex align-items-start align-items-md-center"
           >
             <img
               class="mr-3"
               src="@/assets/images/Google-Commercial-icon.svg"
-              width="40"
-              height="40"
+              width="32"
+              height="32"
               alt=""
             >
             <b-card-text class="ps_gs-onboardingcard__title text-left mb-0">
@@ -46,13 +46,13 @@
           v-else
         >
           <div
-            class="d-flex align-items-start"
+            class="d-flex align-items-start align-items-md-center"
           >
             <img
               class="mr-3"
               src="@/assets/images/Google-Commercial-icon.svg"
-              width="40"
-              height="40"
+              width="32"
+              height="32"
               alt=""
             >
             <b-card-text class="ps_gs-onboardingcard__title  text-left mb-0">
@@ -80,6 +80,7 @@
             >
               <b-dropdown
                 no-caret
+                size="sm"
                 right
                 variant="outline-primary"
                 menu-class="ps-dropdown__menu-small rounded"

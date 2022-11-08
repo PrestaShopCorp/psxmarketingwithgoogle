@@ -17,7 +17,7 @@
         :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
         id="product-feed-card"
       >
-        <div class="d-flex align-items-start mb-3">
+        <div class="d-flex align-items-start align-items-md-center mb-3">
           <img
             class="mr-2"
             src="@/assets/images/product-feed-icon.svg"

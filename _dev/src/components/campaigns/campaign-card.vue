@@ -18,12 +18,12 @@
         <div
           class="d-md-flex flex-wrap align-items-center justify-content-between mb-3"
         >
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-start align-items-md-center">
             <img
               class="mr-3"
               :src="require('@/assets/images/boost-campaing.svg')"
-              width="40"
-              height="40"
+              width="32"
+              height="32"
               alt=""
             >
             <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
