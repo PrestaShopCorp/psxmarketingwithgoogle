@@ -26,7 +26,10 @@
             alt=""
           >
           <div class="flex-grow-1 d-flex flex-column flex-md-row">
-            <b-card-text class="flex-grow-1 flex-sm-wrap ps_gs-onboardingcard__title text-left mb-0">
+            <b-card-text
+              class="flex-grow-1 flex-sm-wrap
+              ps_gs-onboardingcard__title text-left mb-0"
+            >
               {{ $t("productFeedCard.title") }}
             </b-card-text>
             <div
@@ -57,7 +60,8 @@
               >
                 <b-button
                   variant="invisible"
-                  class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 ml-auto text-primary"
+                  class="bg-transparent p-0 border-0
+                    font-weight-600 ps_gs-fz-13 ml-auto text-primary"
                   @click="goToProductFeed()"
                 >
                   {{ nextSyncTime }}

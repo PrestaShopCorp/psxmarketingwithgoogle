@@ -72,13 +72,11 @@
 <script>
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import CampaignTracking from './campaign-tracking.vue';
-import BannerAds from '../commons/banner-ads.vue';
 
 export default {
   name: 'CampaignCard',
   components: {
     CampaignTracking,
-    BannerAds,
   },
   data() {
     return {
