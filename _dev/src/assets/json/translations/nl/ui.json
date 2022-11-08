@@ -21,7 +21,8 @@
     "unableToFetchData": "We konden geen gegevens ophalen, probeer het later nog eens",
     "searchByX": "Zoek op {0}",
     "search": "Zoeken op",
-    "legendCreateNewAccount": "U hebt ook de mogelijkheid om in enkele stappen een nieuwe account aan te maken:",
+    "createAccount": "create your account",
+    "createNewAccount": "If you don't have an account, you can {0} today.",
     "notAvailable": "Niet beschikbaar",
     "min": "Min",
     "max": "Max",
@@ -58,8 +59,15 @@
   "onboarding": {
     "sectionTitle": {
       "psAccount": "Koppel uw Prestashop account",
-      "freeListing": "Zet uw producten op Google met gratis vermeldingen",
-      "smartShoppingCampaign": "Start een Maximale prestaties-campagne en bereik een breder publiek"
+      "freeListing": {
+        "title": "Reach more people on Google with free listings",
+        "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center.",
+        "lastTitle": "Businesses using free listings and ads on the Shopping tab together have seen an average >50% increase in clicks and >100% increase in impressions. (Google Internal Data, July 2020)"
+      },
+      "smartShoppingCampaign": {
+        "title": "Advertise on Google with Performance Max",
+        "subtitle": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion.\n\n Even better, you don't pay unless your customers click."
+      }
     },
     "productFeedNotice": "Help klanten om uw producten gemakkelijker te vinden op Google en vermeld ze gratis met gratis vermeldingen. Gratis vermeldingen helpen om meer klanten te bereiken en ze uw site te laten bezoeken."
   },
@@ -70,10 +78,6 @@
     "tips": "Nadat U klaar bent met de eerste shop, kunt U de andere configureren door ze één voor één te selecteren in de shop selector, in het horizontale menu",
     "configure": "Configureer",
     "group": "Winkelgroep"
-  },
-  "psAccountCard": {
-    "disonboardedText": "Uw account machtigen om de diensten van uw winkel te beheren",
-    "onboardedText": "Uw winkel is gekoppeld aan de PrestaShop account van"
   },
   "googleAccountCard": {
     "title": "Google-account",
@@ -89,8 +93,6 @@
   "mcaCard": {
     "title": "Merchant Center-rekening",
     "introDisabled": "Koppel uw Merchant Center-account aan PrestaShop om de synchronisatie van uw winkel- en productgegevens te vergemakkelijken",
-    "introEnabled": "[Google Merchant Center]({0})[:target=\"_blank\"] helpt u om uw winkel- en productinformatie in Google te krijgen en beschikbaar te maken voor shoppers in heel Google.",
-    "labelSelect": "Verbind een bestaande rekening",
     "claimCollides": "Uw website is al geclaimd.",
     "claimOverwrite": "Om het aanmaken van een Merchant Center account te voltooien, moet u de bestaande vordering overschrijven.",
     "footerEU": "Als u zich in de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland bevindt, moet uw Merchant Center-account geassocieerd zijn met een [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nAls u een nieuw Merchant Center-account aanmaakt via deze applicatie, wordt deze standaard geassocieerd met Google Shopping, Google's CSS. U kunt de CSS die aan uw account is gekoppeld op elk gewenst moment wijzigen. [Zoek uw CSS-partners]({1})[:target=\"_blank\"]  \nZodra u uw Merchant Center-account hebt ingesteld, kunt u onze onboarding tool gebruiken, ongeacht welke CSS u gebruikt.",
@@ -100,7 +102,6 @@
     "userIsTestAccount": "Dit is een test account",
     "googleMCA": "Google Merchant Center account",
     "shopMaintenance": "U kunt geen Google Merchant Center-account koppelen als de onderhoudsmodus actief is.  \n Wijzig uw winkel parameters.",
-    "toUseGmcNeedsAdminAccess": "Om een bestaande Merchant Center-account te gebruiken, moet u Admin-toegang hebben.",
     "linkingFailed": "U kunt nu geen verbinding maken met uw Merchant Center-account. Probeer het later opnieuw.",
     "AccountValidationFailed": "Account validatie mislukt",
     "unlinkFailed": "Verbinding verbroken. Vernieuw de pagina en probeer het opnieuw.",
@@ -203,13 +204,9 @@
     "updateData": "Indien u wijzigingen hebt aangebracht in uw backoffice, gelieve uw informatie te vernieuwen om de wijzigingen hier te zien."
   },
   "productFeedCard": {
-    "title": "Automatisch uw productgegevens synchroniseren met Google",
+    "title": "Product voer",
     "intro": "Stuur uw productgegevens rechtstreeks naar uw Merchant Center en houd ze altijd up-to-date voor gratis vermeldingen en advertenties.",
-    "introToConfigure": "Het is belangrijk dat u uw productfeed in het juiste formaat indient, omdat Google dit gebruikt om er zeker van te zijn dat uw producten overeenkomen met de juiste zoekopdrachten.",
     "nextSync": "Volgende synchronisatie: {0} bij {1}",
-    "syncFailedAt": "Synchronisatie mislukt {0} bij {1}",
-    "syncSuccess": "Producten gesynchroniseerd {1} bij {2} | {0} product gesynchroniseerd {1} bij {2} | {0} producten gesynchroniseerd {1} bij {2}",
-    "syncBusy": "Sync vordert...",
     "mappedCategories": "{0}/{1} gemapte categorieën",
     "alertFeedSettingSubmissionSuccess": "U heeft met succes uw productgegevens ingediend bij Merchant Center.  \n Eenmaal goedgekeurd, zullen ze beschikbaar zijn voor gratis listings en advertenties.",
     "alertFailed": "Product sync was niet succesvol. Controleer mogelijke redenen in [Merchant Center]({0})[:target=\"_blank\"] of neem contact op met [klantenservice](mailto:support-google@prestashop.com).",
@@ -464,7 +461,9 @@
     "alertCountryNotEligible": "Het doelland dat u hebt geselecteerd, komt niet in aanmerking voor gratis advertenties."
   },
   "googleAdsAccountCard": {
-    "title": "Sluit uw Google Ads account aan",
+    "srTitle": "selector google ads actions",
+    "title": "Google Ads account",
+    "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Eenmaal verbonden moet u mogelijk uw factureringsinstellingen configureren in uw Google Ads account.",
     "labelSelect": "Sluit een bestaande Google Ads account aan",
@@ -561,6 +560,10 @@
     "toggleCreationNewRemarketingTag": "Maak een nieuwe remarketing en conversie tracking tag voor uw winkel",
     "enableCreationRemarketingTag": "Schakel remarketing en conversie tracking tag in",
     "pauseCampaign": "Uw campagne blijft lopen totdat u deze pauzeert of zodra de einddatum is bereikt. Je kunt het op elk moment pauzeren.",
+    "switch": {
+      "on": "On",
+      "off": "Off"
+    },
     "alerts": {
       "noTag": "Door de tag niet automatisch toe te voegen zal Google niet in staat zijn om campagnes resultaten te sturen",
       "duplicatedTag": "Het lijkt erop dat u al een tag hebt gekoppeld aan uw google-account, het maken van een nieuwe tag kan gebeurtenissen dupliceren voor uw campagnes. Wij stellen voor om alleen degene te houden die wij voor u genereren.",
@@ -890,9 +893,7 @@
     "selectAccount": "Account kiezen",
     "addMapping": "Mapping toevoegen",
     "modifyMapping": "Wijzig mapping",
-    "learnAboutProductConfiguration": "Meer informatie over de specificatie van productgegevens",
     "overwriteProductFeed": "Producttoevoer overschrijven",
-    "trackProductStatus": "Goedkeuringsstatus van het product volgen",
     "whyDidntWork": "Kijk eens waarom het niet werkte",
     "aboutProductCategory": "Lijst van Google-productcategorieën",
     "editSettings": "Instellingen bewerken",
@@ -970,6 +971,7 @@
   },
   "badge": {
     "free": "Gratis",
+    "connected": "Connected",
     "active": "Actief",
     "disapproved": "Afgekeurd",
     "pendingCreation": "In afwachting van",
