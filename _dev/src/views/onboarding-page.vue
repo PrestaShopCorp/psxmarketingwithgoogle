@@ -6,10 +6,10 @@
           class="is-sticky mb-3"
         >
           <section-title
-          :step-number="1"
-          :step-title="$t('onboarding.sectionTitle.psAccount')"
-          :is-enabled="true"
-          :is-done="stepsAreCompleted.step1"
+            :step-number="1"
+            :step-title="$t('onboarding.sectionTitle.psAccount')"
+            :is-enabled="true"
+            :is-done="stepsAreCompleted.step1"
           />
         </div>
       </div>
