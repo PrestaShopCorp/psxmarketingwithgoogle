@@ -20,7 +20,7 @@
         >
           <div class="d-flex align-items-start align-items-md-center">
             <img
-              class="mr-3"
+              class="mr-2"
               :src="require('@/assets/images/boost-campaing.svg')"
               width="32"
               height="32"
@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <div class="base-ads-card-text">
+        <div class="ml-2 ps_gs-onboardingcard__content">
           <VueShowdown
             tag="p"
             :markdown="$t('smartShoppingCampaignCard.introConnected')"
@@ -51,15 +51,15 @@
               {{ $t('cta.launchCampaign') }}
             </b-button>
           </div>
+          <VueShowdown
+            tag="p"
+            :markdown="$t('smartShoppingCampaignCard.footer')"
+            :class="isEnabled ? 'mb-0' : 'mb-1'"
+            class="ps_gs-fz-12 mt-2"
+            :extensions="['no-p-tag']"
+          />
         </div>
 
-        <VueShowdown
-          tag="p"
-          :markdown="$t('smartShoppingCampaignCard.footer')"
-          :class="isEnabled ? 'mb-0' : 'mb-1'"
-          class="ps_gs-fz-12 mt-2"
-          :extensions="['no-p-tag']"
-        />
         <span v-if="getRemarketingTag !== null && accountHasAtLeastOneCampaign">
           <hr>
           <CampaignTracking />

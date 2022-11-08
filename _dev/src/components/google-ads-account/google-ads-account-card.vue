@@ -23,7 +23,7 @@
             class="d-inline-flex align-items-start align-items-md-center"
           >
             <img
-              class="mr-3"
+              class="mr-2"
               src="@/assets/images/Google-Commercial-icon.svg"
               width="32"
               height="32"
@@ -49,7 +49,7 @@
             class="d-flex align-items-start align-items-md-center"
           >
             <img
-              class="mr-3"
+              class="mr-2"
               src="@/assets/images/Google-Commercial-icon.svg"
               width="32"
               height="32"
@@ -106,89 +106,136 @@
             </div>
           </div>
 
-          <div
-            class="base-ads-card-text"
-            v-if="isEnabled && !googleAdsAccountConfigured"
-          >
-            <b-form class="mt-3 mb-2">
-              <p
-                class="mb-2 w-75 ps_gs-fz-14"
-              >
-                {{ $t('googleAdsAccountCard.labelSelect') }}
-              </p>
-              <div class="d-md-flex text-center mb-2 w-90">
-                <b-dropdown
-                  :disabled="error === GoogleAdsErrorReason.CantConnect"
-                  id="googleAdsAccountSelection"
-                  ref="googleAdsAccountSelection"
-                  :text="googleAdsLabel(selectedIndex) || $t('cta.selectAccount')"
-                  variant=" "
-                  class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
-                  :toggle-class="{'ps-dropdown__placeholder' : selectedIndex === null}"
-                  menu-class="ps-dropdown"
-                  size="sm"
+          <div class="ml-2 ps_gs-onboardingcard__content">
+            <div
+              class="base-ads-card-text"
+              v-if="isEnabled && !googleAdsAccountConfigured"
+            >
+              <b-form class="mt-3 mb-2">
+                <p
+                  class="mb-2 w-75 ps_gs-fz-14"
                 >
-                  <!-- START > SPINNER -->
-                  <b-dropdown-item
-                    link-class="px-3"
-                    :disabled="true"
-                    v-if="listLoading"
+                  {{ $t('googleAdsAccountCard.labelSelect') }}
+                </p>
+                <div class="d-md-flex text-center mb-2 w-90">
+                  <b-dropdown
+                    :disabled="error === GoogleAdsErrorReason.CantConnect"
+                    id="googleAdsAccountSelection"
+                    ref="googleAdsAccountSelection"
+                    :text="googleAdsLabel(selectedIndex) || $t('cta.selectAccount')"
+                    variant=" "
+                    class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
+                    :toggle-class="{'ps-dropdown__placeholder' : selectedIndex === null}"
+                    menu-class="ps-dropdown"
+                    size="sm"
                   >
-                    <i class="icon-busy icon-busy--dark" />
-                  </b-dropdown-item>
-                  <!-- END > SPINNED -->
-                  <!-- START > NO EXISTING ACCOUNT -->
-                  <b-dropdown-item
-                    v-if="!listLoading && googleAdsAccountSelectionOptions.length === 0"
-                    :disabled="true"
-                    variant="dark"
-                    link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
-                    data-test-id="message-empty-list"
+                    <!-- START > SPINNER -->
+                    <b-dropdown-item
+                      link-class="px-3"
+                      :disabled="true"
+                      v-if="listLoading"
+                    >
+                      <i class="icon-busy icon-busy--dark" />
+                    </b-dropdown-item>
+                    <!-- END > SPINNED -->
+                    <!-- START > NO EXISTING ACCOUNT -->
+                    <b-dropdown-item
+                      v-if="!listLoading && googleAdsAccountSelectionOptions.length === 0"
+                      :disabled="true"
+                      variant="dark"
+                      link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+                      data-test-id="message-empty-list"
+                    >
+                      <span class="mr-2">
+                        {{ $t('mcaCard.noExistingAccount') }}
+                      </span>
+                    </b-dropdown-item>
+                    <!-- END > NO EXISTING ACCOUNT -->
+                    <!-- START > REGULAR LIST -->
+                    <b-dropdown-item
+                      v-for="(option, index) in googleAdsAccountSelectionOptions"
+                      :key="option.id"
+                      @click="selectedIndex = index"
+                      :disabled="isShownAsDisabled(option)"
+                      variant="dark"
+                      link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+                    >
+                      <span class="mr-2">
+                        {{ displayIdName(option) }}
+                      </span>
+                      <span
+                        v-if="isAccountCancelled(option) || isAccountSuspended(option)"
+                        class="ps_gs-fz-12 ml-auto"
+                      >
+                        {{ $t('mcaCard.alertSuspended') }}
+                      </span>
+                      <span
+                        v-else-if="!isAdmin(option)"
+                        class="ps_gs-fz-12 ml-auto"
+                      >
+                        {{ $t('mcaCard.userIsNotAdmin') }}
+                      </span>
+                      <span
+                        v-if="isTestAccount(option)"
+                        class="ps_gs-fz-12 ml-auto"
+                      >
+                        {{ $t('mcaCard.userIsTestAccount') }}
+                      </span>
+                    </b-dropdown-item>
+                  <!-- END > REGULAR LIST -->
+                  </b-dropdown>
+                  <b-button
+                    size="sm"
+                    variant="primary"
+                    :disabled="selectedIndex === null"
+                    class="mt-3 mt-md-0 ml-md-3 flex-shrink-0"
+                    @click="selectGoogleAdsAccount"
                   >
-                    <span class="mr-2">
-                      {{ $t('mcaCard.noExistingAccount') }}
-                    </span>
-                  </b-dropdown-item>
-                  <!-- END > NO EXISTING ACCOUNT -->
-                  <!-- START > REGULAR LIST -->
-                  <b-dropdown-item
-                    v-for="(option, index) in googleAdsAccountSelectionOptions"
-                    :key="option.id"
-                    @click="selectedIndex = index"
-                    :disabled="isShownAsDisabled(option)"
-                    variant="dark"
-                    link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
+                    <template v-if="!isConnecting">
+                      {{ $t('cta.connect') }}
+                    </template>
+                    <template v-else>
+                      {{ $t('cta.connecting') }}
+                      <span class="ml-1 icon-busy" />
+                    </template>
+                  </b-button>
+                </div>
+                <i18n
+                  path="general.createNewAccount"
+                  class="ps_gs-fz-12 mt-3 mt-md-0"
+                  tag="div"
+                >
+                  <a
+                    rel="openPopin"
+                    class="with-hover text-decoration-underline"
+                    role="button"
+                    @click.prevent="openPopinNewAccount"
                   >
-                    <span class="mr-2">
-                      {{ displayIdName(option) }}
-                    </span>
-                    <span
-                      v-if="isAccountCancelled(option) || isAccountSuspended(option)"
-                      class="ps_gs-fz-12 ml-auto"
-                    >
-                      {{ $t('mcaCard.alertSuspended') }}
-                    </span>
-                    <span
-                      v-else-if="!isAdmin(option)"
-                      class="ps_gs-fz-12 ml-auto"
-                    >
-                      {{ $t('mcaCard.userIsNotAdmin') }}
-                    </span>
-                    <span
-                      v-if="isTestAccount(option)"
-                      class="ps_gs-fz-12 ml-auto"
-                    >
-                      {{ $t('mcaCard.userIsTestAccount') }}
-                    </span>
-                  </b-dropdown-item>
-                <!-- END > REGULAR LIST -->
-                </b-dropdown>
+                    {{ $t('general.createAccount') }}
+                  </a>
+                </i18n>
+              </b-form>
+              <GoogleAdsAccountAlert
+                v-if="error === GoogleAdsErrorReason.CantConnect"
+                :error="error"
+              />
+            </div>
+            <div
+              v-if="googleAdsAccountConfigured && isGoogleAdsAccountFullyFetched"
+              class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
+            >
+              <div class="d-flex align-items-center">
+                {{ displayIdName(accountChosen) }}
+              </div>
+              <div
+                v-if="!googleAdsAccountConfigured"
+                class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
+              >
                 <b-button
                   size="sm"
                   variant="primary"
-                  :disabled="selectedIndex === null"
-                  class="mt-3 mt-md-0 ml-md-3 flex-shrink-0"
-                  @click="selectGoogleAdsAccount"
+                  class="mx-1 mt-3 mt-md-0 mr-md-0"
+                  target="_blank"
                 >
                   <template v-if="!isConnecting">
                     {{ $t('cta.connect') }}
@@ -199,51 +246,6 @@
                   </template>
                 </b-button>
               </div>
-              <i18n
-                path="general.createNewAccount"
-                class="ps_gs-fz-12 mt-3 mt-md-0"
-                tag="div"
-              >
-                <a
-                  rel="openPopin"
-                  class="with-hover text-decoration-underline"
-                  role="button"
-                  @click.prevent="openPopinNewAccount"
-                >
-                  {{ $t('general.createAccount') }}
-                </a>
-              </i18n>
-            </b-form>
-            <GoogleAdsAccountAlert
-              v-if="error === GoogleAdsErrorReason.CantConnect"
-              :error="error"
-            />
-          </div>
-          <div
-            v-if="googleAdsAccountConfigured && isGoogleAdsAccountFullyFetched"
-            class="d-flex flex-wrap flex-md-nowrap justify-content-between mt-3"
-          >
-            <div class="d-flex align-items-center base-ads-card-text">
-              {{ displayIdName(accountChosen) }}
-            </div>
-            <div
-              v-if="!googleAdsAccountConfigured"
-              class="flex-grow-1 d-flex-md flex-md-grow-0 flex-shrink-0 text-center"
-            >
-              <b-button
-                size="sm"
-                variant="primary"
-                class="mx-1 mt-3 mt-md-0 mr-md-0"
-                target="_blank"
-              >
-                <template v-if="!isConnecting">
-                  {{ $t('cta.connect') }}
-                </template>
-                <template v-else>
-                  {{ $t('cta.connecting') }}
-                  <span class="ml-1 icon-busy" />
-                </template>
-              </b-button>
             </div>
           </div>
         </template>
