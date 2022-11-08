@@ -80,6 +80,7 @@
           <product-feed-stepper
             v-if="getActiveStep > 1"
             :active-step="getActiveStep"
+            vertical
           />
         </div>
         <div

@@ -4,7 +4,7 @@
     :steps="steps"
     :active-step="activeStep"
     @changeStep="stepToChange($event)"
-    vertical
+    :vertical="vertical"
   />
 </template>
 
@@ -22,6 +22,11 @@ export default {
       type: Number,
       required: false,
       default: 1,
+    },
+    vertical: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   computed: {
