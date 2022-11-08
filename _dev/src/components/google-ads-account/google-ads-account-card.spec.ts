@@ -35,7 +35,7 @@ describe('google-ads-account.vue / disabled', () => {
     });
 
     // Check if the card is greyed out
-    expect(wrapper.find('.ps_gs-onboardingcard').classes()).toContain('ps_gs-onboardingcard--disabled-grey');
+    expect(wrapper.find('.ps_gs-onboardingcard').classes()).toContain('ps_gs-onboardingcard--disabled');
 
     // Check if there is no b-alert
     expect(wrapper.find('b-alert').exists()).toBeFalsy();
@@ -73,7 +73,7 @@ describe('google-ads-account.vue / enabled', () => {
     });
 
     // Check enabled state
-    expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled-grey')).toBe(false);
+    expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(false);
   });
 
   it('dropdown should be available when card is enabled', () => {

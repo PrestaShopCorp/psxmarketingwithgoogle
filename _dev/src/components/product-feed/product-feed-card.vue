@@ -17,7 +17,7 @@
         :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
         id="product-feed-card"
       >
-        <div class="d-flex align-items-center mb-3">
+        <div class="d-flex align-items-start align-items-md-center mb-3">
           <img
             class="mr-2"
             src="@/assets/images/product-feed-icon.svg"
@@ -25,43 +25,49 @@
             height="32"
             alt=""
           >
-          <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
-            {{ $t("productFeedCard.title") }}
-          </b-card-text>
-          <div
-            class="flex-grow-1 d-flex-md flex-md-grow-1 flex-shrink-0 text-right"
-            v-if="toConfigure"
-          >
-            <b-button
-              size="sm"
-              variant="primary"
-              @click="startConfiguration"
-              :disabled="!isEnabled || isErrorApi"
+          <div class="flex-grow-1 d-flex flex-column flex-md-row">
+            <b-card-text
+              class="flex-grow-1 flex-sm-wrap
+              ps_gs-onboardingcard__title text-left mb-0"
             >
-              {{ getActiveStep > 1 ?
-                $t("cta.continueProductFeed") : $t("cta.configureAndExportProductFeed")
-              }}
-            </b-button>
-          </div>
-          <div
-            v-else
-            class="d-sm-flex align-items-end mb-1"
-          >
-            <i18n
-              :path="syncStatus === 'schedule'
-                ? 'productFeedPage.syncStatus.scheduleOn'
-                : 'productFeedCard.nextSync'"
-              class="mt-3 mt-md-0 text-right"
-              tag="div"
+              {{ $t("productFeedCard.title") }}
+            </b-card-text>
+            <div
+              class="flex-shrink-1 d-flex-md text-right"
+              v-if="toConfigure"
             >
               <b-button
-                variant="invisible"
-                class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 ml-auto text-primary"
-                @click="goToProductFeed()"
+                size="sm"
+                variant="primary"
+                @click="startConfiguration"
+                :disabled="!isEnabled || isErrorApi"
               >
-                {{ nextSyncTime }}
+                {{ getActiveStep > 1 ?
+                  $t("cta.continueProductFeed") : $t("cta.configureAndExportProductFeed")
+                }}
               </b-button>
-            </i18n>
+            </div>
+            <div
+              v-else
+              class="flex-shrink-1 align-items-end mb-1"
+            >
+              <i18n
+                :path="syncStatus === 'schedule'
+                  ? 'productFeedPage.syncStatus.scheduleOn'
+                  : 'productFeedCard.nextSync'"
+                class="mt-3 mt-md-0 text-right font-weight-600"
+                tag="div"
+              >
+                <b-button
+                  variant="invisible"
+                  class="bg-transparent p-0 border-0
+                    font-weight-600 ps_gs-fz-13 ml-auto text-primary"
+                  @click="goToProductFeed()"
+                >
+                  {{ nextSyncTime }}
+                </b-button>
+              </i18n>
+            </div>
           </div>
         </div>
         <div

@@ -17,7 +17,7 @@
         :class="{ 'ps_gs-onboardingcard--disabled' : !isEnabled }"
       >
         <div
-          class="d-flex align-items-center"
+          class="d-flex align-items-start align-items-md-center"
         >
           <img
             class="mr-2 rounded-circle"
@@ -68,6 +68,7 @@
           >
             <b-dropdown
               no-caret
+              size="sm"
               right
               variant="outline-primary"
               menu-class="ps-dropdown__menu-small rounded"

@@ -1,13 +1,17 @@
 <template>
   <div class="pt-2 container">
-    <div class="row row-cols-sm-1 row-cols-md-2 mb-4">
+    <div class="row row-cols-sm-1 row-cols-md-2 mb-4 ps_gs-onboardingpage">
       <div class="col">
-        <section-title
+        <div
+          class="is-sticky mb-3"
+        >
+          <section-title
           :step-number="1"
           :step-title="$t('onboarding.sectionTitle.psAccount')"
           :is-enabled="true"
           :is-done="stepsAreCompleted.step1"
-        />
+          />
+        </div>
       </div>
       <div class="col">
         <prestashop-accounts
@@ -16,19 +20,23 @@
       </div>
 
       <div class="col">
-        <section-title
-          :step-number="2"
-          :step-title="$t('onboarding.sectionTitle.freeListing.title')"
-          :is-enabled="stepsAreCompleted.step1"
-          :is-done="stepsAreCompleted.step2"
-        />
-        <div class="stepper-onboarding-subtitle">
-          <p class="text-justify ps_gs-fz-14">
-            {{ $t('onboarding.sectionTitle.freeListing.subtitle') }}
-          </p>
-          <p class="text-muted ps_gs-fz-13">
-            {{ $t('onboarding.sectionTitle.freeListing.lastTitle') }}
-          </p>
+        <div
+          class="is-sticky mb-3"
+        >
+          <section-title
+            :step-number="2"
+            :step-title="$t('onboarding.sectionTitle.freeListing.title')"
+            :is-enabled="stepsAreCompleted.step1"
+            :is-done="stepsAreCompleted.step2"
+          />
+          <div class="stepper-onboarding-subtitle">
+            <p class="text-justify ps_gs-fz-14">
+              {{ $t('onboarding.sectionTitle.freeListing.subtitle') }}
+            </p>
+            <p class="text-muted ps_gs-fz-13">
+              {{ $t('onboarding.sectionTitle.freeListing.lastTitle') }}
+            </p>
+          </div>
         </div>
       </div>
       <div class="col mb-3">
@@ -57,17 +65,21 @@
       </div>
 
       <div class="col">
-        <section-title
-          :step-number="3"
-          :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
-          :is-enabled="stepsAreCompleted.step2"
-          :is-done="stepsAreCompleted.step3"
-        />
-        <div class="stepper-onboarding-subtitle">
-          <VueShowdown
-            class="text-justify ps_gs-fz-14"
-            :markdown="$t('onboarding.sectionTitle.smartShoppingCampaign.subtitle')"
+        <div
+          class="is-sticky mb-3"
+        >
+          <section-title
+            :step-number="3"
+            :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
+            :is-enabled="stepsAreCompleted.step2"
+            :is-done="stepsAreCompleted.step3"
           />
+          <div class="stepper-onboarding-subtitle">
+            <VueShowdown
+              class="text-justify ps_gs-fz-14"
+              :markdown="$t('onboarding.sectionTitle.smartShoppingCampaign.subtitle')"
+            />
+          </div>
         </div>
       </div>
       <div class="col">
@@ -85,6 +97,7 @@
           @openPopin="onOpenPopinActivateTracking"
           @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
         />
+        <PromoCard />
       </div>
     </div>
 
@@ -139,6 +152,7 @@ import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-
 import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/google-ads-account-popin-disconnect.vue';
 import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
 import CampaignCard from '../components/campaigns/campaign-card.vue';
+import PromoCard from '../components/promo/promo-card.vue';
 import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
 import PsToast from '../components/commons/ps-toast';
 import PopinModuleConfigured from '../components/commons/popin-configured.vue';
@@ -154,6 +168,7 @@ export default {
     MerchantCenterAccountCard,
     ProductFeedCard,
     CampaignCard,
+    PromoCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
     GoogleAdsAccountPopinDisconnect,
