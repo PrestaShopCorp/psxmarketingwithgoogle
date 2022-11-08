@@ -21,7 +21,8 @@
     "unableToFetchData": "Não conseguimos obter dados, por favor tente novamente mais tarde.",
     "searchByX": "Pesquisar por {0}",
     "search": "Pesquisa",
-    "legendCreateNewAccount": "Também tem possibilidade de criar uma nova conta em poucos passos:",
+    "createAccount": "create your account",
+    "createNewAccount": "If you don't have an account, you can {0} today.",
     "notAvailable": "Não disponível",
     "min": "Min",
     "max": "Max",
@@ -58,8 +59,15 @@
   "onboarding": {
     "sectionTitle": {
       "psAccount": "Conecte a sua conta PrestaShop",
-      "freeListing": "Coloque os seus produtos no Google com as listagens gratuitas",
-      "smartShoppingCampaign": "Lançar uma campanha de Máximo desempenho e atingir um público mais vasto"
+      "freeListing": {
+        "title": "Reach more people on Google with free listings",
+        "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center.",
+        "lastTitle": "Businesses using free listings and ads on the Shopping tab together have seen an average >50% increase in clicks and >100% increase in impressions. (Google Internal Data, July 2020)"
+      },
+      "smartShoppingCampaign": {
+        "title": "Advertise on Google with Performance Max",
+        "subtitle": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion.\n\n Even better, you don't pay unless your customers click."
+      }
     },
     "productFeedNotice": "Ajude os clientes a encontrar mais facilmente os seus produtos no Google e enumere-os gratuitamente com listagens gratuitas. As listagens gratuitas ajudam a alcançar mais clientes e fazer com que visitem o seu site."
   },
@@ -70,10 +78,6 @@
     "tips": "Depois de terminar a primeira loja, pode configurar as outras, selecionando uma a uma no seletor de lojas, no menu horizontal",
     "configure": "Configurar",
     "group": "Grupo de lojas"
-  },
-  "psAccountCard": {
-    "disonboardedText": "Autorize a sua conta a gerir os serviços da sua loja",
-    "onboardedText": "A sua loja está associada à conta da PrestaShop da"
   },
   "googleAccountCard": {
     "title": "conta Google",
@@ -89,8 +93,6 @@
   "mcaCard": {
     "title": "Conta Merchant Center",
     "introDisabled": "Associe a sua conta Merchant Center à PrestaShop para facilitar a sincronização dos dados da sua loja e dos seus produtos",
-    "introEnabled": "[Google Merchant Center]({0})[:target=\"_blank\"] ajuda-o a obter informações sobre a sua loja e produtos no Google e a disponibilizá-las aos compradores em todo o Google.",
-    "labelSelect": "Conectar uma conta existente",
     "claimCollides": "O seu site já foi reclamado.",
     "claimOverwrite": "Para terminar a criação da conta do Merchant Center, necessita sobrescrever a reclamação existente.",
     "footerEU": "Se está no Espaço Económico Europeu, no Reino Unido ou na Suíça, a sua conta de Centro Comercial deve estar associada a um [Serviço de Comparação de Compras (CSS)]({0})[:target=\"_blank\"]  \nSe criar uma nova conta de Centro Comercial através desta aplicação, esta será associada ao Google Shopping, o CSS do Google, por defeito. Você pode alterar o CSS associado à sua conta a qualquer momento. [Encontre seus Parceiros CSS]({1})[:target=\"_blank\"]  \nUma vez que você tenha configurado sua conta Merchant Center você pode usar nossa ferramenta onboarding, independentemente do CSS que você usa.",
@@ -100,7 +102,6 @@
     "userIsTestAccount": "Esta é uma conta de teste",
     "googleMCA": "Conta Merchant Center Google",
     "shopMaintenance": "Não é possível conectar uma conta do Google Merchant Center enquanto o modo Manutenção estiver ativo.  \n Por favor, altere os parâmetros da sua loja.",
-    "toUseGmcNeedsAdminAccess": "Para utilizar uma conta existente no Centro Comercial, deve ter acesso Admin.",
     "linkingFailed": "Você não pode se conectar à sua conta do Merchant Center agora mesmo. Tente novamente mais tarde.",
     "AccountValidationFailed": "A validação da conta falhou.",
     "unlinkFailed": "A desconexão falhou. Atualize a página e tente novamente.",
@@ -203,13 +204,9 @@
     "updateData": "Se fez alguma alteração no seu back office, por favor atualize as suas informações para visualizar as mudanças refletidas aqui."
   },
   "productFeedCard": {
-    "title": "Sincronize automaticamente os dados dos seus produtos com o Google",
+    "title": "Feed de produtos",
     "intro": "Envie os seus dados de produto diretamente para o seu Merchant Center e mantenha-os sempre atualizados em termos de listagens e anúncios gratuitos.",
-    "introToConfigure": "É importante enviar o feed do seu produto no formato correto, pois o Google usa isso para garantir que seus produtos correspondam às consultas certas.",
     "nextSync": "Próxima sincronização: {0} em {1}",
-    "syncFailedAt": "A sincronização falhou {0} em {1}",
-    "syncSuccess": "Products synced {1} at {2} | {0} product synced {1} at {2} | {0} products synced {1} at {2}",
-    "syncBusy": "Sincronização a progredir...",
     "mappedCategories": "{0}/{1} categorias mapeadas",
     "alertFeedSettingSubmissionSuccess": "Você submeteu com sucesso seus dados de produto ao Merchant Center.  \n Uma vez aprovados, eles estarão disponíveis para anúncios e listagens gratuitas.",
     "alertFailed": "A sincronização de produtos não foi bem sucedida. Verifique as possíveis razões no [Merchant Center]({0})[:target=\"_blank\"] ou contacte [apoio ao cliente](mailto:support-google@prestashop.com).",
@@ -464,7 +461,9 @@
     "alertCountryNotEligible": "O país de destino que você selecionou não é elegível para listagens e anúncios gratuitos."
   },
   "googleAdsAccountCard": {
-    "title": "Ligue a sua conta Google Ads",
+    "srTitle": "selector google ads actions",
+    "title": "Conta Google Ads",
+    "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Uma vez conectado, você pode precisar configurar suas configurações de faturamento na sua conta do Google Ads.",
     "labelSelect": "Conectar uma conta existente no Google Ads",
@@ -561,6 +560,10 @@
     "toggleCreationNewRemarketingTag": "Crie uma nova etiqueta de rastreamento de remarketing e conversão para a sua loja",
     "enableCreationRemarketingTag": "Ativar o separador de rastreio de remarketing e conversão.",
     "pauseCampaign": "A sua campanha decorrerá até que faça uma pausa ou assim que a data de término for cumprida. Pode fazer uma pausa na sua campanha a qualquer momento.",
+    "switch": {
+      "on": "On",
+      "off": "Off"
+    },
     "alerts": {
       "noTag": "Ao não adicionar o separador automaticamente, o Google não poderá enviar resultados de campanhas",
       "duplicatedTag": "Parece que já tem um separador ligado à sua conta google, criando um novo separador pode duplicar os eventos para as suas campanhas. Sugerimos que fique apenas com aquele que geramos para si.",
@@ -890,9 +893,7 @@
     "selectAccount": "Selecione conta",
     "addMapping": "Adicionar mapeamento",
     "modifyMapping": "Modificar mapeamento",
-    "learnAboutProductConfiguration": "Saiba mais sobre a especificação de dados dos produtos",
     "overwriteProductFeed": "Sobrescrever o feed de produtos",
-    "trackProductStatus": "Rastrear aprovação do estado dos produtos",
     "whyDidntWork": "Verifique porque não funcionou",
     "aboutProductCategory": "Lista de categorias de produtos Google",
     "editSettings": "Editar configurações",
@@ -970,6 +971,7 @@
   },
   "badge": {
     "free": "Grátis",
+    "connected": "Connected",
     "active": "Ativo",
     "disapproved": "Não aprovado",
     "pendingCreation": "Pendente",
