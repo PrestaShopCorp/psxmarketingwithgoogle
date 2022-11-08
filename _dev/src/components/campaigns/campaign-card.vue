@@ -65,7 +65,7 @@
           <CampaignTracking />
         </span>
 
-        <span v-if="isEnabled">
+        <span>
           <hr>
           <BannerAds
             size="xs"
