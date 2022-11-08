@@ -14,7 +14,7 @@
       <b-card
         no-body
         class="ps_gs-onboardingcard p-3"
-        :class="{ 'ps_gs-onboardingcard--disabled-grey' : !isEnabled }"
+        :class="{ 'ps_gs-onboardingcard--disabled' : !isEnabled }"
       >
         <template
           v-if="!isEnabled"
@@ -108,7 +108,6 @@
 
           <div class="ml-2 ps_gs-onboardingcard__content">
             <div
-              class="base-ads-card-text"
               v-if="isEnabled && !googleAdsAccountConfigured"
             >
               <b-form class="mt-3 mb-2">

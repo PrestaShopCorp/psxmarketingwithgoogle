@@ -85,6 +85,7 @@
           @openPopin="onOpenPopinActivateTracking"
           @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
         />
+        <PromoCard />
       </div>
     </div>
 
@@ -139,6 +140,7 @@ import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-
 import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/google-ads-account-popin-disconnect.vue';
 import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
 import CampaignCard from '../components/campaigns/campaign-card.vue';
+import PromoCard from '../components/promo/promo-card.vue';
 import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
 import PsToast from '../components/commons/ps-toast';
 import PopinModuleConfigured from '../components/commons/popin-configured.vue';
@@ -154,6 +156,7 @@ export default {
     MerchantCenterAccountCard,
     ProductFeedCard,
     CampaignCard,
+    PromoCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
     GoogleAdsAccountPopinDisconnect,

@@ -64,14 +64,6 @@
           <hr>
           <CampaignTracking />
         </span>
-
-        <span>
-          <hr>
-          <BannerAds
-            size="xs"
-            :is-banner="false"
-          />
-        </span>
       </b-card>
     </b-skeleton-wrapper>
   </section>

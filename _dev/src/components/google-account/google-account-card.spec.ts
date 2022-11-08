@@ -45,7 +45,7 @@ describe('google-account-card.vue', () => {
       },
     });
 
-    expect(wrapper.find('.ps_gs-onboardingcard--disabled-grey').exists()).toBeFalsy();
+    expect(wrapper.find('.ps_gs-onboardingcard--disabled').exists()).toBeFalsy();
   });
 
   it('refresh button available when there is an API error and calls refresh function', async () => {
