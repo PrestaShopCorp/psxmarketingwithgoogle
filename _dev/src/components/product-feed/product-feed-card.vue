@@ -25,7 +25,7 @@
             height="32"
             alt=""
           >
-          <div class="flex-grow-1 d-flex flex-column flex-md-row">
+          <div class="flex-grow-1 d-flex flex-column align-items-md-center flex-md-row">
             <b-card-text
               class="flex-grow-1 flex-sm-wrap
               ps_gs-onboardingcard__title text-left mb-0"
@@ -74,7 +74,16 @@
           v-if="(isEnabled && toConfigure) || isErrorApi"
           class="ml-2 ps_gs-onboardingcard__content"
         >
-          <p>
+          <p v-if="getActiveStep > 1">
+            {{ $t("productFeedCard.introToConfigure") }}<br>
+            <a
+              :href="$options.googleUrl.productConfiguration"
+              target="_blank"
+            >
+              {{ $t("cta.learnAboutProductConfiguration") }}
+            </a>
+          </p>
+          <p v-else>
             {{ $t("productFeedCard.intro") }}
           </p>
           <product-feed-stepper
