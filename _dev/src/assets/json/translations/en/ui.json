@@ -208,7 +208,7 @@
     "intro": "Link your products of your catalog to showcase your products on free listings. Pricing and product availability are automatically updated daily, giving your customers access to the most recent and fairly priced products you have on offer!",
     "nextSync": "Next synchronization on {0}",
     "mappedCategories": "{0}/{1} mapped categories",
-    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center.  \n Once approved, they will be available for free listings and ads.",
+    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
     "alertFailed": "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact [customer support](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Your shipping information is missing.",
     "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
