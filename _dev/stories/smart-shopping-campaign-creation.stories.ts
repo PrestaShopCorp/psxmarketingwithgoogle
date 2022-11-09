@@ -299,7 +299,9 @@ EditionWithUnhandledFilters.args = {
     this.$router.history.current.params.id = '16004060865',
     this.$store.state.campaigns.errorFetchingFilters = false;
     this.$store.state.productFeed.validationSummary.activeItems = 2;
-    this.$refs.sscCreation.$data = cloneDeep(campaignWithUnhandledFilters);
+    Object.keys(campaignWithUnhandledFilters).forEach(el => {
+      this.$refs.sscCreation.$data[el] = cloneDeep(campaignWithUnhandledFilters[el]);
+  })
 },
 };
 EditionWithUnhandledFilters.parameters = {

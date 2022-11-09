@@ -60,10 +60,6 @@
           />
         </div>
 
-        <span v-if="getRemarketingTag !== null && accountHasAtLeastOneCampaign">
-          <hr>
-          <CampaignTracking />
-        </span>
       </b-card>
     </b-skeleton-wrapper>
   </section>
@@ -71,13 +67,9 @@
 
 <script>
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import CampaignTracking from './campaign-tracking.vue';
 
 export default {
   name: 'CampaignCard',
-  components: {
-    CampaignTracking,
-  },
   data() {
     return {
     };
@@ -95,9 +87,6 @@ export default {
   computed: {
     accountHasAtLeastOneCampaign() {
       return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
-    },
-    getRemarketingTag() {
-      return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
   },
   methods: {
