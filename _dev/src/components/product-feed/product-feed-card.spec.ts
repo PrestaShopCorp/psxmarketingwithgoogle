@@ -212,7 +212,7 @@ describe('product-feed-card.vue', () => {
     });
     expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeFalsy();
     expect(wrapper.find('b-button').attributes('disabled')).toBe('true');
-    expect(wrapper.find('b-button').text()).toEqual('Start product feed configuration');
+    expect(wrapper.find('b-button').text()).toEqual('Start your configuration');
     expect(wrapper.findComponent(BAlert).exists()).toBeTruthy();
     expect(wrapper.findComponent(BAlert).find('b-button').text()).toEqual('Refresh page');
   });
