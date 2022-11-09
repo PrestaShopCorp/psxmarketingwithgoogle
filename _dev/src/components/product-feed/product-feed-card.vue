@@ -74,7 +74,16 @@
           v-if="(isEnabled && toConfigure) || isErrorApi"
           class="ml-2 ps_gs-onboardingcard__content"
         >
-          <p>
+          <p v-if="getActiveStep > 1">
+            {{ $t("productFeedCard.introToConfigure") }}<br>
+            <a
+              :href="$options.googleUrl.productConfiguration"
+              target="_blank"
+            >
+              {{ $t("cta.learnAboutProductConfiguration") }}
+            </a>
+          </p>
+          <p v-else>
             {{ $t("productFeedCard.intro") }}
           </p>
           <product-feed-stepper
