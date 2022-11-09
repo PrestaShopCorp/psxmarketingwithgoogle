@@ -25,7 +25,7 @@
             height="32"
             alt=""
           >
-          <div class="flex-grow-1 d-flex flex-column flex-md-row">
+          <div class="flex-grow-1 d-flex flex-column align-items-md-center flex-md-row">
             <b-card-text
               class="flex-grow-1 flex-sm-wrap
               ps_gs-onboardingcard__title text-left mb-0"
