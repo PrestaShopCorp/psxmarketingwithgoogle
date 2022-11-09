@@ -97,6 +97,9 @@
           @openPopin="onOpenPopinActivateTracking"
           @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
         />
+        <CampaignTracking
+          v-if="getRemarketingTag !== null && accountHasAtLeastOneCampaign"
+        />
         <PromoCard />
       </div>
     </div>
@@ -152,6 +155,7 @@ import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-
 import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/google-ads-account-popin-disconnect.vue';
 import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
 import CampaignCard from '../components/campaigns/campaign-card.vue';
+import CampaignTracking from '../components/campaigns/campaign-tracking.vue';
 import PromoCard from '../components/promo/promo-card.vue';
 import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
 import PsToast from '../components/commons/ps-toast';
@@ -168,6 +172,7 @@ export default {
     MerchantCenterAccountCard,
     ProductFeedCard,
     CampaignCard,
+    CampaignTracking,
     PromoCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
@@ -331,6 +336,12 @@ export default {
     },
     productFeedIsConfigured() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
+    },
+    accountHasAtLeastOneCampaign() {
+      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
+    },
+    getRemarketingTag() {
+      return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
     stepsAreCompleted() {
       return {

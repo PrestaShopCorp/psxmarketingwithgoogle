@@ -1,78 +1,80 @@
 <template>
-  <b-card
-    no-body
-    class="ps_gs-onboardingcard"
-  >
-    <div
-      class="d-md-flex flex-wrap align-items-center justify-content-between mb-3"
+  <section>
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard p-3"
     >
-      <div class="d-flex align-items-center">
-        <img
-          class="mr-3"
-          :src="require('@/assets/images/local-offer.svg')"
-          width="40"
-          height="40"
-          alt=""
-        >
-        <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
-          {{ $t('smartShoppingCampaignCreation.enableCreationRemarketingTag') }}
-        </b-card-text>
-      </div>
-    </div>
-
-    <div class="base-ads-card-text">
-      <VueShowdown
-        tag="p"
-        :markdown="$t('smartShoppingCampaignCard.footer')"
-        class="mb-0"
-        :extensions="['no-p-tag']"
-      />
-      <b-form-checkbox
-        switch
-        size="lg"
-        class="mt-3 ps_gs-switch"
-        v-model="statusTrackingTag"
+      <div
+        class="d-md-flex flex-wrap align-items-center justify-content-between mb-3"
       >
-        <span class="ps_gs-fz-14 text-dark d-block">
-          {{ statusTrackingTag ?
-            $t('smartShoppingCampaignCreation.switch.on') :
-            $t('smartShoppingCampaignCreation.switch.off')
-          }}
-        </span>
-      </b-form-checkbox>
-    </div>
-
-    <b-alert
-      v-if="alertTag !== null"
-      variant="warning"
-      show
-      class="mb-0 mt-3"
-    >
-      <div>
-        <VueShowdown
-          tag="p"
-          class="d-inline"
-          :markdown="alertTag.text"
-          :extensions="['no-p-tag']"
-        />
-        <div
-          v-if="alertTag.button"
-          class="mt-2 text-center d-md-flex align-items-center"
-        >
-          <b-button
-            @click="alertTag.button.onclick"
-            size="sm"
-            variant="primary"
-            class="text-wrap btn mx-1 mt-3 mt-md-0
-              ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
-            data-test-id="btn-create-campaign"
+        <div class="d-flex align-items-center">
+          <img
+            class="mr-2"
+            :src="require('@/assets/images/local-offer.svg')"
+            width="32"
+            height="32"
+            alt=""
           >
-            {{ alertTag.button.cta }}
-          </b-button>
+          <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
+            {{ $t('smartShoppingCampaignCreation.enableCreationRemarketingTag') }}
+          </b-card-text>
         </div>
       </div>
-    </b-alert>
-  </b-card>
+
+      <div class="ml-2 ps_gs-onboardingcard__content">
+        <VueShowdown
+          tag="p"
+          :markdown="$t('smartShoppingCampaignCard.footer')"
+          class="mb-0"
+          :extensions="['no-p-tag']"
+        />
+        <b-form-checkbox
+          switch
+          size="lg"
+          class="mt-3 ps_gs-switch"
+          v-model="statusTrackingTag"
+        >
+          <span class="ps_gs-fz-14 text-dark d-block">
+            {{ statusTrackingTag ?
+              $t('smartShoppingCampaignCreation.switch.on') :
+              $t('smartShoppingCampaignCreation.switch.off')
+            }}
+          </span>
+        </b-form-checkbox>
+      </div>
+
+      <b-alert
+        v-if="alertTag !== null"
+        variant="warning"
+        show
+        class="mb-0 mt-3"
+      >
+        <div>
+          <VueShowdown
+            tag="p"
+            class="d-inline"
+            :markdown="alertTag.text"
+            :extensions="['no-p-tag']"
+          />
+          <div
+            v-if="alertTag.button"
+            class="mt-2 text-center d-md-flex align-items-center"
+          >
+            <b-button
+              @click="alertTag.button.onclick"
+              size="sm"
+              variant="primary"
+              class="text-wrap btn mx-1 mt-3 mt-md-0
+                ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
+              data-test-id="btn-create-campaign"
+            >
+              {{ alertTag.button.cta }}
+            </b-button>
+          </div>
+        </div>
+      </b-alert>
+    </b-card>
+  </section>
 </template>
 
 <script>
