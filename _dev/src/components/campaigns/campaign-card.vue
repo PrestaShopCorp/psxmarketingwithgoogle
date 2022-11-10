@@ -51,13 +51,6 @@
               {{ $t('cta.launchCampaign') }}
             </b-button>
           </div>
-          <VueShowdown
-            tag="p"
-            :markdown="$t('smartShoppingCampaignCard.footer')"
-            :class="isEnabled ? 'mb-0' : 'mb-1'"
-            class="ps_gs-fz-12 mt-2"
-            :extensions="['no-p-tag']"
-          />
         </div>
 
       </b-card>
