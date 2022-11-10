@@ -10,7 +10,7 @@
         >
         <div class="mr-3 ml-3">
           <h3 class="font-weight-600">
-            {{ $t("banner.titleCampaignsBanner") }}
+            {{ $t("smartShoppingCampaignCard.title") }}
           </h3>
 
           <p>
