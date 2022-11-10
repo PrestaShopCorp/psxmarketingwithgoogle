@@ -1112,7 +1112,6 @@
     "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
     "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
     "ctaCreateFirstCampaign": "Create your first campaign",
-    "titleCampaignsBanner": "Od 30 czerwca możesz tworzyć kampanie Performance Max dla Twojego sklepu",
     "textCampaignsBanner": "Performance Max to nowa generacja inteligentnych kampanii produktowych. Jest to rozszerzony typ kampanii oparty na inteligentnej technologii Google. Działa za kulisami, aby automatycznie optymalizować reklamy na całej ścieżce zakupowej i zapewnić maksymalną skuteczność."
   }
 }
