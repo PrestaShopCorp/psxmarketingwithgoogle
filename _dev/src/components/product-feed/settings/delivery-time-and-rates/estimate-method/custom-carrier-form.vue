@@ -137,9 +137,9 @@
                         size="sm"
                         step="0.01"
                         placeholder="5.99"
-                        v-model.number="customCarrier[customCarrier.offer].shippingCost"
-                        @input="$emit('dataUpdated', customCarrier)"
-                        :state="validateAmountRate(customCarrier[customCarrier.offer].shippingCost)"
+                        v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
+                        @input="$emit('dataUpdated', estimateCarrier)"
+                        :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
                       />
                     </b-input-group>
                   </div>
@@ -179,9 +179,9 @@
                         size="sm"
                         step="0.01"
                         placeholder="42.99"
-                        v-model.number="customCarrier[customCarrier.offer].orderPrice"
-                        @input="$emit('dataUpdated', customCarrier)"
-                        :state="validateAmountRate(customCarrier[customCarrier.offer].orderPrice)"
+                        v-model.number="estimateCarrier[estimateCarrier.offer].orderPrice"
+                        @input="$emit('dataUpdated', estimateCarrier)"
+                        :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].orderPrice)"
                       />
                     </b-input-group>
                   </b-col>
@@ -217,9 +217,9 @@
                         size="sm"
                         step="0.01"
                         placeholder="5.99"
-                        :state="validateAmountRate(customCarrier[customCarrier.offer].shippingCost)"
-                        v-model.number="customCarrier[customCarrier.offer].shippingCost"
-                        @input="$emit('dataUpdated', customCarrier)"
+                        :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
+                        v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
+                        @input="$emit('dataUpdated', estimateCarrier)"
                       />
                     </b-input-group>
                   </b-col>
@@ -260,7 +260,6 @@ export default Vue.extend({
   data() {
     return {
       OfferType,
-      estimateCarrier: this.customCarrier,
       offers: [
         {
           text: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.flatShippingRateForAllProducts'),
@@ -278,6 +277,9 @@ export default Vue.extend({
     };
   },
   computed: {
+    estimateCarrier() {
+      return this.customCarrier;
+    },
     validateTimeDelivery(): boolean|null {
       if (!this.displayValidationErrors) {
         return null;

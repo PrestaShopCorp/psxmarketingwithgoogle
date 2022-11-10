@@ -229,7 +229,8 @@ export default Vue.extend({
     },
   },
   mounted() {
-    if (!this.$store.state.productFeed.settings.deliveryDetails.length) {
+    if (!this.$store.state.productFeed.settings.deliveryDetails.length
+    || !this.$store.state.productFeed.settings.estimateCarriers.length) {
       this.refreshComponent();
     }
     if (this.selectedCountries.length === 1) {
