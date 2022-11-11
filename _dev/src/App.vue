@@ -19,9 +19,8 @@
         class="ps_gs-sticky-head page-head-tabs"
       >
         <Menu>
-          <!-- eslint-disable-next-line -->
-            <MenuItem
-            v-if="psAccountIsOnboarded"
+          <MenuItem
+            v-if="!currentlyOnLandingPage"
             @click.native="throwSegmentEvent"
             :route="{name: 'reporting'}"
           >
@@ -29,13 +28,13 @@
           </MenuItem>
 
           <MenuItem
-            v-if="psAccountIsOnboarded"
+            v-if="!currentlyOnLandingPage"
             :route="{name: 'product-feed'}"
           >
             {{ $t('general.tabs.exportStatus') }}
           </MenuItem>
           <MenuItem
-            v-if="psAccountIsOnboarded"
+            v-if="!currentlyOnLandingPage"
             :route="{name: 'campaign'}"
           >
             {{ $t('general.tabs.campaign') }}
@@ -67,7 +66,7 @@
       <router-view />
       <div
         class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4"
-        v-if="$route.name === 'landing-page'"
+        v-if="currentlyOnLandingPage"
       >
         <VueShowdown
           :markdown="$t('landingPage.footer.explanation')"
@@ -110,8 +109,8 @@ export default {
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
     },
-    psAccountIsOnboarded() {
-      return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
+    currentlyOnLandingPage() {
+      return this.$route.name === 'landing-page';
     },
   },
   created() {
