@@ -204,12 +204,12 @@
     "updateData": "Se hai fatto qualche modifica nel tuo backoffice, aggiorna le tue informazioni per vedere i cambiamenti riflessi qui."
   },
   "productFeedCard": {
-    "title": "Feed del prodotto",
+    "title": "Product feed",
     "intro": "Invia i dati dei tuoi prodotti direttamente al tuo Merchant Center e tienili sempre aggiornati per inserzioni e annunci gratuiti.",
     "introToConfigure": "È importante inviare il tuo feed di prodotti nel formato corretto, perché Google lo usa per assicurarsi che i tuoi prodotti corrispondano alle query giuste.",
     "nextSync": "Prossima sincronizzazione: {0} a {1}",
     "mappedCategories": "{0}/{1} categorie mappate",
-    "alertFeedSettingSubmissionSuccess": "Hai presentato con successo i dati dei tuoi prodotti al Merchant Center. Una volta approvati, saranno disponibili per inserzioni e annunci gratuiti.",
+    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
     "alertFailed": "La sincronizzazione dei prodotti non è riuscita. Controlla le possibili ragioni in [Merchant Center]({0})[:target=\"_blank\"] o contatta il [supporto clienti](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. [Add shipping settings]({0})[:target=\\\"_blank\\\"]",
     "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
@@ -462,7 +462,7 @@
     "alertCountryNotEligible": "Il paese di destinazione che hai selezionato non è idoneo per le inserzioni e gli annunci gratuiti."
   },
   "googleAdsAccountCard": {
-    "title": "Account Google Ads",
+    "title": "Google Ads account",
     "btnDisable": "Connect Google Ads account",
     "intro": "Crea campagne pubblicitarie per i tuoi prodotti: trova il pubblico giusto al momento giusto.",
     "text": "Una volta connesso, potrebbe essere necessario configurare le impostazioni di fatturazione nel tuo account Google Ads.",
