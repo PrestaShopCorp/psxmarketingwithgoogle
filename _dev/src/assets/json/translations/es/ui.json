@@ -204,12 +204,12 @@
     "updateData": "Si ha realizado alguna modificación en su backoffice, actualice su información para ver los cambios reflejados aquí."
   },
   "productFeedCard": {
-    "title": "Feed de productos",
+    "title": "Product feed",
     "intro": "Envía los datos de tus productos directamente a tu Merchant Center y manténlos siempre actualizados para obtener listados y anuncios gratuitos.",
     "introToConfigure": "Es importante que envíes tu feed de productos en el formato correcto, ya que Google lo utiliza para asegurarse de que tus productos coinciden con las consultas correctas.",
     "nextSync": "Próxima sincronización: {0} en {1}",
     "mappedCategories": "{0}/{1} categorías mapeadas",
-    "alertFeedSettingSubmissionSuccess": "Ha enviado correctamente los datos de sus productos a Merchant Center. Una vez aprobados, estarán disponibles para listados y anuncios gratuitos.",
+    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
     "alertFailed": "La sincronización del producto no se ha realizado correctamente. Compruebe los posibles motivos en [Merchant Center]({0})[:target=\"_blank\"] o póngase en contacto con [atención al cliente](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. [Add shipping settings]({0})[:target=\\\"_blank\\\"]",
     "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
@@ -462,7 +462,7 @@
     "alertCountryNotEligible": "El país de destino que has seleccionado no es elegible para listados y anuncios gratuitos."
   },
   "googleAdsAccountCard": {
-    "title": "ID de la cuenta de Google Ads",
+    "title": "Google Ads account",
     "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Una vez conectado, es posible que tengas que configurar los ajustes de facturación en tu cuenta de Google Ads.",
