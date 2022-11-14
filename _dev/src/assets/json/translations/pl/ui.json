@@ -204,12 +204,12 @@
     "updateData": "Jeśli wprowadziłeś zmiany w swoim back office, konieczne jest odświeżenie, aby były one widoczne tutaj."
   },
   "productFeedCard": {
-    "title": "Plik danych",
+    "title": "Product feed",
     "intro": "Przesyłaj dane o produkcie bezpośrednio na swoje konto Merchant Center, dzięki czemu informacje wyświetlane w karcie Zakupy i w reklamach będą zawsze aktualne.",
     "introToConfigure": "Ważne jest, aby podać swój kanał produktu w prawidłowym formacie, ponieważ Google używa go, aby upewnić się, że Twoje produkty pasują do właściwych zapytań.",
     "nextSync": "Następna synchronizacja: {0} o {1}",
     "mappedCategories": "{0}/{1} przyporządkowane kategorie",
-    "alertFeedSettingSubmissionSuccess": "Pomyślnie przesłałeś dane o swoich produktach do Merchant Center. Po zatwierdzeniu, dane te będą uwzględnione w usłudze bezpłatnego wyświetlanie informacji o produkcie i w reklamach.",
+    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
     "alertFailed": "Synchronizacja danych o produkcie nie powiodła się. Sprawdź możliwe przyczyny w [Merchant Center]({0})[:target=\"_blank\"] lub skontaktuj się z [działem obsługi klienta](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Brakuje informacji o wysyłce.",
     "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
@@ -462,7 +462,7 @@
     "alertCountryNotEligible": "Wybrany przez Ciebie kraj docelowy nie kwalifikuje się do wyświetlania bezpłatnych informacji o produkcie ani do reklam."
   },
   "googleAdsAccountCard": {
-    "title": "Konto Google Ads",
+    "title": "Google Ads account",
     "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Po podłączeniu konta, konieczne może być skonfigurowanie ustawień dotyczących płatności na Twoim koncie Google Ads.",
