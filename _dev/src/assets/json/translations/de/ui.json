@@ -207,7 +207,7 @@
     "title": "Produktzufuhr",
     "intro": "Übermitteln Sie Ihre Produktdaten direkt an Ihr Merchant Center und halten Sie sie immer auf dem neuesten Stand für kostenlose Listings und Anzeigen.",
     "introToConfigure": "Es ist wichtig, dass Sie Ihren Produkt-Feed im richtigen Format übermitteln, da Google dies nutzt, um sicherzustellen, dass Ihre Produkte den richtigen Suchanfragen entsprechen.",
-    "nextSync": "Nächste Synchronisierung: {0} bei {1}",
+    "nextSync": "Next synchronization on {0}",
     "mappedCategories": "{0}/{1} zugeordnete Kategorien",
     "alertFeedSettingSubmissionSuccess": "Sie haben Ihre Produktdaten erfolgreich an Merchant Center übermittelt. Sobald sie genehmigt sind, werden sie für kostenlose Inserate und Anzeigen zur Verfügung stehen.",
     "alertFailed": "Die Produktsynchronisierung war nicht erfolgreich. Prüfen Sie mögliche Gründe im [Merchant Center]({0})[:target=\"_blank\"] oder wenden Sie sich an [Kundensupport](mailto:support-google@prestashop.com).",
