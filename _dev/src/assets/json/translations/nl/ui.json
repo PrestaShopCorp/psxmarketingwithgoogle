@@ -204,12 +204,12 @@
     "updateData": "Indien u wijzigingen hebt aangebracht in uw backoffice, gelieve uw informatie te vernieuwen om de wijzigingen hier te zien."
   },
   "productFeedCard": {
-    "title": "Product feed",
+    "title": "Product voer",
     "intro": "Stuur uw productgegevens rechtstreeks naar uw Merchant Center en houd ze altijd up-to-date voor gratis vermeldingen en advertenties.",
     "introToConfigure": "Het is belangrijk dat u uw productfeed in het juiste formaat indient, omdat Google dit gebruikt om er zeker van te zijn dat uw producten overeenkomen met de juiste zoekopdrachten.",
     "nextSync": "Volgende synchronisatie: {0} bij {1}",
     "mappedCategories": "{0}/{1} gemapte categorieën",
-    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
+    "alertFeedSettingSubmissionSuccess": "U heeft met succes uw productgegevens ingediend bij Merchant Center. Eenmaal goedgekeurd, zullen ze beschikbaar zijn voor gratis advertenties.",
     "alertFailed": "Product sync was niet succesvol. Controleer mogelijke redenen in [Merchant Center]({0})[:target=\"_blank\"] of neem contact op met [klantenservice](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Uw verzendgegevens ontbreken.",
     "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
