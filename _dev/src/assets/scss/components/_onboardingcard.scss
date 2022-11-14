@@ -1,9 +1,12 @@
 .ps_gs-onboardingcard {
   border: none;
-  margin-bottom: rem(16);
 
   &--disabled {
     color: $grey_muted;
+
+    img {
+      opacity: 0.5;
+    }
   }
 
   &--disabled-grey {
@@ -21,6 +24,10 @@
     font-weight: 600;
   }
 
+  &__content {
+    padding-left: 32px;
+  }
+
   &__not-configured {
     position: absolute;
     z-index: 1;
@@ -35,6 +42,33 @@
     @supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
       background-color: transparent;
       backdrop-filter: blur(8px);
+    }
+  }
+}
+
+  
+  
+section {
+  &:not(:last-child) {
+    .ps_gs-onboardingcard {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      padding-bottom: 0 !important;
+
+      &::after {
+        content: '';
+        border-top: 2px solid $background-color;
+        display: block;
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  &:not(:first-child) {
+    .ps_gs-onboardingcard {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
     }
   }
 }

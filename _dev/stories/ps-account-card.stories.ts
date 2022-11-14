@@ -1,4 +1,5 @@
-import {PsAccounts} from 'prestashop_accounts_vue_components';
+import { cloneDeep } from 'lodash';
+import psAccountsVue from 'prestashop_accounts_vue_components';
 import {
   contextPsAccountsNotConnected,
   contextPsAccountsConnected,
@@ -7,26 +8,34 @@ import {
 
 export default {
   title: 'PS Account/Card',
-  component: PsAccounts,
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { PsAccounts },
-  template: '<ps-accounts v-bind="$props" />',
+  template: '<prestashop-accounts />',
+  mounted: args.mounted,
 });
 
 export const NotConnected:any = Template.bind({});
 NotConnected.args = {
-  context: Object.assign({}, contextPsAccountsNotConnected),
+  mounted: function () {
+    window.contextPsAccounts = cloneDeep(contextPsAccountsNotConnected),
+    psAccountsVue.init();
+  }
 }
 
 export const Connected:any = Template.bind({});
 Connected.args = {
-  context: Object.assign({}, contextPsAccountsConnected),
+  mounted: function () {
+    window.contextPsAccounts = cloneDeep(contextPsAccountsConnected),
+    psAccountsVue.init();
+  }
 }
 
 export const ConnectedAndValidated:any = Template.bind({});
 ConnectedAndValidated.args = {
-  context: Object.assign({}, contextPsAccountsConnectedAndValidated),
+  mounted: function () {
+    window.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated),
+    psAccountsVue.init();
+  }
 }

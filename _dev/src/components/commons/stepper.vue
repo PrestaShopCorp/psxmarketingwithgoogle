@@ -1,12 +1,16 @@
 <template>
-  <ol class="ps_gs-stepper position-relative justify-content-center p-0 mb-3">
+  <ol
+    class="ps_gs-stepper position-relative justify-content-center p-0 mb-3"
+    :class="{vertical}"
+  >
     <li
       v-for="(step, index) in steps"
       :key="step.title"
       class="ps_gs-stepper-step col px-0"
       :class="{
         'active': isActive(index),
-        'complete': isComplete(index)
+        'complete': isComplete(index),
+        vertical,
       }"
       :aria-current="isActive(index) ? 'step' : null"
     >
@@ -15,9 +19,11 @@
         :href="isClickable(index, step.notClickable) ? '#' : null"
         @click.prevent="isClickable(index, step.notClickable) ? handleStepClick(index) : null"
         class="ps_gs-stepper-step__link"
+        :class="{vertical}"
       >
         <div
           class="ps_gs-stepper-step__step d-flex align-items-center justify-content-center"
+          :class="{vertical}"
         >
           <b-icon-check
             v-if="isClickable(index, step.notClickable)"
@@ -44,6 +50,7 @@
         </div>
         <div
           class="ps_gs-stepper-step__title px-2"
+          :class="{vertical}"
           :data-nextStep="nextStepMsg(index)"
           v-html="step.title"
         />
@@ -75,6 +82,11 @@ export default {
     activeStep: {
       type: Number,
       default: 1,
+    },
+    vertical: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   methods: {

@@ -33,7 +33,7 @@ describe('google-account-card.vue', () => {
       },
     });
 
-    expect(wrapper.find('.ps_gs-onboardingcard--disabled-grey').exists()).toBeTruthy();
+    expect(wrapper.find('.ps_gs-onboardingcard--disabled').exists()).toBeTruthy();
   });
 
   it('card isn\'t greyed when enabled', () => {
@@ -45,7 +45,7 @@ describe('google-account-card.vue', () => {
       },
     });
 
-    expect(wrapper.find('.ps_gs-onboardingcard--disabled-grey').exists()).toBeFalsy();
+    expect(wrapper.find('.ps_gs-onboardingcard--disabled').exists()).toBeFalsy();
   });
 
   it('refresh button available when there is an API error and calls refresh function', async () => {
@@ -94,6 +94,6 @@ describe('google-account-card.vue', () => {
       },
     });
     // Check if account email is visible, the email is defined in the mock
-    expect(wrapper.find('a > strong').text()).toBe('v.godard@maisonroyer.com');
+    expect(wrapper.find('a').text()).toBe('v.godard@maisonroyer.com');
   });
 });

@@ -3,19 +3,21 @@
     class="ps_gs-section-title"
     :class="{ 'ps_gs-section-title--disabled' : !isEnabled }"
   >
-    <span
+    <div
       v-if="!this.isDone"
-      class="d-inline-block ml-2 mr-3 ps_gs-section-title__step"
+      class="circle mr-3 ml-2 d-inline-block"
+      :class="!isEnabled ? 'bg-circle-disabled' : 'bg-circle-active'"
     >
-      {{ stepNumber }}.
-    </span>
+      {{ stepNumber }}
+    </div>
     <i
       v-else
-      class="material-icons ml-2 mr-3 mb-0 text-success"
+      class="material-icons ml-2 mr-3 mb-0 text-success step-done-icons"
     >
       check_circle
     </i>
     {{ stepTitle }}
+
     <b-badge
       v-if="badge"
       class="mx-3"

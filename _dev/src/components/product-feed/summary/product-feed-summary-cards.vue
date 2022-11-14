@@ -3,8 +3,11 @@
     no-gutters
     class="mx-n1"
   >
-    <b-col>
+    <b-col
+      :cols="displayAttributeMappingSimpleCard ? 9 : null"
+    >
       <product-feed-card-report-card
+        :basic-display="displayAttributeMappingSimpleCard"
         :status="shippingSetupStatus"
         :title="$t('productFeedSettings.deliveryTimeAndRates.shippingSettings')"
         :description="shippingSetupDescription"
@@ -13,6 +16,20 @@
                     step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
       />
       <product-feed-card-report-card
+        v-if="displayAttributeMappingSimpleCard"
+        :basic-display="displayAttributeMappingSimpleCard"
+        :status="targetCountriesStatus"
+        :title="$t('productFeedSettings.deliveryTimeAndRates.title')"
+        :sub-title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
+        :description="targetCountries.join(', ')"
+        :sub-title2="$t('productFeedSettings.deliveryTimeAndRates.title')"
+        :description2="deliveryTimeAndRatesDescription"
+        :link="$t('cta.editSettings')"
+        :link-to="{ name: 'product-feed-settings',
+                    step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
+      />
+      <product-feed-card-report-card
+        :basic-display="displayAttributeMappingSimpleCard"
         v-if="isUS"
         :status="taxSettingsStatus"
         :title="$t('productFeedSettings.deliveryTimeAndRates.taxSettings')"
@@ -22,6 +39,7 @@
                     step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
       />
       <product-feed-card-report-card
+        :basic-display="displayAttributeMappingSimpleCard"
         v-if="displaySyncCard"
         status="success"
         :title="$t('productFeedSettings.summary.dataSyncSetUp')"
@@ -29,6 +47,7 @@
       />
       <product-feed-card-report-card
         v-if="displayAttributeMappingSimpleCard"
+        :basic-display="displayAttributeMappingSimpleCard"
         :status="attributeMappingStatus"
         :title="$t('productFeedSettings.steps.attributeMapping')"
         :description="attributeMapping.join(', ')"
@@ -38,9 +57,11 @@
       />
     </b-col>
     <b-col
+      v-if="!displayAttributeMappingSimpleCard"
       class="d-flex flex-row-column"
     >
       <product-feed-card-report-card
+        :basic-display="displayAttributeMappingSimpleCard"
         :status="targetCountriesStatus"
         :title="$t('productFeedSettings.deliveryTimeAndRates.title')"
         :sub-title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
@@ -59,9 +80,8 @@
 import {VueShowdown} from 'vue-showdown';
 import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-import ProductFeedStepper from '@/components/product-feed/product-feed-stepper';
-import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card';
-import BadgeListRequirements from '@/components/commons/badge-list-requirements';
+import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
+import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 
 export default defineComponent({
@@ -69,7 +89,6 @@ export default defineComponent({
   components: {
     ProductFeedStepper,
     ProductFeedCardReportCard,
-    BadgeListRequirements,
     VueShowdown,
   },
   data() {

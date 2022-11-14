@@ -16,50 +16,91 @@
         class="ps_gs-onboardingcard p-3"
         :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
       >
-        <div class="d-md-flex flex-wrap align-items-center justify-content-between mb-3">
-          <div class="d-flex align-items-center">
-            <img
-              class="mr-3"
-              :src="
-                isEnabled
-                  ? require('@/assets/images/google-merchant-center-icon.svg')
-                  : require('@/assets/images/google-merchant-center-icon-grey.svg')
-              "
-              width="40"
-              height="40"
-              alt=""
+        <div class="d-flex align-items-start align-items-md-center mb-3">
+          <img
+            class="mr-2"
+            src="@/assets/images/google-merchant-center-icon.svg"
+            width="32"
+            height="32"
+            alt=""
+          >
+          <b-card-text class="ps_gs-onboardingcard__title text-left mb-0">
+            {{ $t('mcaCard.title') }}
+          </b-card-text>
+          <b-badge
+            class="mx-3"
+            :variant="mcaStatusBadge.color"
+            v-if="mcaConfigured"
+          >
+            {{ $t(`badge.${mcaStatusBadge.text}`) }}
+          </b-badge>
+          <div
+            class="flex-grow-1 d-flex-md flex-md-grow-1 flex-shrink-0 text-right"
+            v-if="selectedMcaDetails.id === null"
+          >
+            <b-button
+              size="sm"
+              variant="primary"
+              :disabled="selectedMcaIndex === null || isLinking || shopIsOnMaintenanceMode"
+              class="mt-3 mt-md-0 ml-md-3"
+              @click="selectMerchantCenterAccount"
             >
-            <b-card-text class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0">
-              {{ $t('mcaCard.title') }}
-              <i
-                v-if="mcaConfigured && !error"
-                class="material-icons ps_gs-fz-22 ml-2 mr-3 mb-0 text-success align-bottom"
+              {{ $t('cta.connectAccount') }}
+            </b-button>
+          </div>
+          <div
+            v-else
+            class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
+          >
+            <b-dropdown
+              no-caret
+              size="sm"
+              right
+              variant="outline-primary"
+              menu-class="ps-dropdown__menu-small rounded"
+              toggle-class="px-1"
+              boundary="window"
+              :toggle-attrs="{title: $t('cta.moreActions')}"
+            >
+              <template #button-content>
+                <i class="material-icons">
+                  more_horiz
+                </i>
+                <span class="sr-only"/>
+              </template>
+              <b-dropdown-item
+                @click="checkWebsiteRequirements"
               >
-                check_circle
-              </i>
-            </b-card-text>
+                {{ $t("cta.checkRequirements") }}
+              </b-dropdown-item>
+              <b-dropdown-item
+                @click="dissociateMerchantCenterAccount"
+              >
+                {{ $t("cta.disconnect") }}
+              </b-dropdown-item>
+              <b-dropdown-item
+                target="_blank"
+                :href="merchantCenterWebsitePageUrl.businessInfo"
+              >
+                {{ $t("cta.editContact") }}
+              </b-dropdown-item>
+            </b-dropdown>
           </div>
         </div>
-        <VueShowdown
-          @click.native="segmentClicked"
-          class="mb-1"
-          tag="p"
-          :markdown="message"
-          :extensions="['no-p-tag', 'extended-b-link']"
-          v-if="selectedMcaDetails.id === null"
-          :vue-template="true"
-        />
-        <BadgeListRequirements
-          v-if="!isEnabled"
-          :badges="['googleAccount']"
-        />
-        <div v-if="isEnabled && selectedMcaDetails.id === null">
+        <div
+          v-if="isEnabled && selectedMcaDetails.id === null"
+          class="ml-2 ps_gs-onboardingcard__content"
+        >
+          <VueShowdown
+            @click.native="segmentClicked"
+            class="mb-1"
+            tag="p"
+            :markdown="this.$i18n.t('mcaCard.introDisabled')"
+            :extensions="['no-p-tag', 'extended-b-link']"
+            v-if="selectedMcaDetails.id === null"
+            :vue-template="true"
+          />
           <b-form class="mb-2 mt-3">
-            <legend
-              class="mb-1 h4 font-weight-600 bg-transparent border-0"
-            >
-              {{ $t('mcaCard.labelSelect') }}
-            </legend>
             <div class="d-md-flex text-center">
               <b-dropdown
                 id="mcaSelection"
@@ -148,42 +189,25 @@
                   </b-dropdown-item>
                 </b-dropdown-group>
               </b-dropdown>
-              <b-button
-                size="sm"
-                variant="primary"
-                :disabled="selectedMcaIndex === null || isLinking || shopIsOnMaintenanceMode"
-                class="mt-3 mt-md-0 ml-md-3"
-                @click="selectMerchantCenterAccount"
-              >
-                {{ $t('cta.connect') }}
-              </b-button>
             </div>
-            <VueShowdown
-              class="text-muted ps_gs-fz-12 mt-3 mt-md-0"
-              :markdown="$t('mcaCard.toUseGmcNeedsAdminAccess')"
-            />
           </b-form>
           <div class="mt-3">
-            <p class="mb-1">
-              {{ $t('general.legendCreateNewAccount') }}
-            </p>
-            <b-button
-              variant="outline-primary"
-              class="mb-0"
-              size="sm"
-              :class="shopIsOnMaintenanceMode ? 'bg-transparent text-secondary' : ''"
-              @click="checkWebsiteRequirements"
-              :disabled="shopIsOnMaintenanceMode"
+            <i18n
+              path="general.createNewAccount"
+              class="ps_gs-fz-12 mt-3 mt-md-0"
+              tag="div"
             >
-              <i
-                class="left material-icons mr-2 ps_gs-fz-24"
-                aria-hidden="true"
-              >person_add</i><!--
-          --><span
-                class="align-middle"
-              >{{ $t('cta.createNewAccount') }}
-            </span>
-            </b-button>
+              <a
+                rel="openPopin"
+                class="with-hover text-decoration-underline"
+                :class="shopIsOnMaintenanceMode ? 'bg-transparent text-secondary' : ''"
+                :disabled="shopIsOnMaintenanceMode"
+                role="button"
+                @click.prevent="checkWebsiteRequirements"
+              >
+                {{ $t('general.createAccount') }}
+              </a>
+            </i18n>
 
             <b-alert
               v-if="shopIsOnMaintenanceMode"
@@ -250,7 +274,8 @@
         </b-alert>
         <div
           v-if="isLinkedGmcFullyFetched"
-          class="d-flex flex-wrap flex-md-nowrap justify-content-between"
+          class="d-flex flex-wrap flex-md-nowrap justify-content-between
+            ml-2 ps_gs-onboardingcard__content"
         >
           <div>
             <div class="d-flex align-items-center">
@@ -260,14 +285,8 @@
                 target="_blank"
                 class="external_link-no_icon link-regular"
               >
-                <strong>{{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}</strong>
+                {{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}
               </a>
-              <b-badge
-                class="mx-3"
-                :variant="mcaStatusBadge.color"
-              >
-                {{ $t(`badge.${mcaStatusBadge.text}`) }}
-              </b-badge>
               <span
                 v-if="loaderText"
                 class="text-muted"
@@ -284,35 +303,6 @@
                 {{ $t('badge.siteVerified') }}
               </span>
             </div>
-            <b-button
-              class=" p-0 m-0 text-primary ps_gs-fz-13 font-weight-600"
-              size="sm"
-              variant="invisible"
-              @click="checkWebsiteRequirements"
-            >
-              {{ $t("cta.checkRequirements") }}
-            </b-button>
-          </div>
-          <div
-            class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
-          >
-            <b-button
-              class="mx-1 mt-3 mt-md-0"
-              size="sm"
-              variant="outline-secondary"
-              @click="dissociateMerchantCenterAccount"
-            >
-              {{ $t("cta.disconnect") }}
-            </b-button>
-            <b-button
-              class="mx-1 mt-3 mt-md-0 mr-md-0"
-              size="sm"
-              variant="outline-secondary"
-              target="_blank"
-              :href="merchantCenterWebsitePageUrl.businessInfo"
-            >
-              {{ $t("cta.editContact") }}
-            </b-button>
           </div>
         </div>
         <b-alert
@@ -545,7 +535,6 @@ import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
 import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
-import BadgeListRequirements from '../commons/badge-list-requirements';
 import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
 import PhoneVerificationPopin from './phone-verification/phone-verification-popin.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -555,7 +544,6 @@ export default {
   name: 'MerchantCenterAccountCard',
   components: {
     MerchantCenterAccountPopinOverwriteClaim,
-    BadgeListRequirements,
     MerchantCenterAccountPopinWebsiteRequirements,
     VueShowdown,
     PhoneVerificationPopin,
@@ -636,11 +624,6 @@ export default {
     error() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS'];
     },
-    message() {
-      return this.isEnabled
-        ? this.$i18n.t('mcaCard.introEnabled', [this.$options.googleUrl.merchantCenterAccount])
-        : this.$i18n.t('mcaCard.introDisabled');
-    },
     mcaStatusBadge() {
       switch (this.error) {
         case WebsiteClaimErrorReason.Pending:
@@ -688,7 +671,7 @@ export default {
         default:
           return {
             color: 'success',
-            text: 'active',
+            text: 'connected',
           };
       }
     },

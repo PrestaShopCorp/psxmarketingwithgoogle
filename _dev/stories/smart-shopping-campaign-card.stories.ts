@@ -2,6 +2,7 @@ import Campaign from '../src/components/campaigns/campaign-card.vue'
 import {campaigns} from '../.storybook/mock/campaigns-list';
 import {conversionTrackingIsTrue, conversionTrackingIsFalse} from '../.storybook/mock/campaigns';
 import cloneDeep from 'lodash.clonedeep';
+import {initialStateApp} from "../.storybook/mock/state-app";
 
 export default {
   title: 'Campaign/Card',
@@ -15,11 +16,6 @@ const Template = (args, { argTypes }) => ({
   beforeMount: args.beforeMount || (() => {}),
 });
 
-export const Disabled:any = Template.bind({});
-Disabled.args = {
-  isEnabled: false,
-  loading: false,
-};
 
 export const Enabled:any = Template.bind({});
 Enabled.args = {
@@ -32,6 +28,7 @@ EnabledWithRemarketingSwitchOff.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
+    this.$store.state.app = cloneDeep(initialStateApp);
     this.$store.state.campaigns = cloneDeep(conversionTrackingIsFalse);
     this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
   },
@@ -42,6 +39,7 @@ EnabledWithRemarketingSwitchOn.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
+    this.$store.state.app = cloneDeep(initialStateApp);
     this.$store.state.campaigns = cloneDeep(conversionTrackingIsTrue);
     this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
     this.$store.state.campaigns.conversionActions = [{}];

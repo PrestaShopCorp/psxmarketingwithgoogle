@@ -1,4 +1,9 @@
 body, html {
   height: unset;
   min-height: unset;
+
+}
+
+.is-sticky {
+  top: 0px !important;
 }

@@ -1,9 +1,10 @@
 <template>
   <stepper
-    class="mt-2"
+    class="mt-2 ml-1"
     :steps="steps"
     :active-step="activeStep"
     @changeStep="stepToChange($event)"
+    :vertical="vertical"
   />
 </template>
 
@@ -21,6 +22,11 @@ export default {
       type: Number,
       required: false,
       default: 1,
+    },
+    vertical: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   computed: {

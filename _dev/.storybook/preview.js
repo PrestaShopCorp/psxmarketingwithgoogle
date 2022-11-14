@@ -26,7 +26,7 @@ import Vuex from 'vuex';
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import VueI18n from 'vue-i18n';
 import VueShowdown from 'vue-showdown';
-import VueSegment from '@prestashopcorp/segment-vue';
+import VueSegment from '@/lib/segment';
 
 // import jest
 import { withTests } from '@storybook/addon-jest';
@@ -63,6 +63,7 @@ import '../src/utils/Filters';
  import results from '../.jest-test-results.json';
  import VueRouter from 'vue-router';
 
+ Vue.config.ignoredElements = ['prestashop-accounts'];
  Vue.use(BootstrapVue, BootstrapVueIcons);
  Vue.use(VueShowdown);
  Vue.use(VueRouter);

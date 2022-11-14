@@ -1,79 +1,109 @@
 <template>
-  <div class="pt-2">
-    <section-title
-      :step-number="1"
-      :step-title="$t('onboarding.sectionTitle.psAccount')"
-      :is-enabled="true"
-      :is-done="stepsAreCompleted.step1"
-    />
-    <ps-accounts
-      class="ps_gs-ps-account-card"
-      :context="psAccountsContext"
-    />
-    <template v-if="psAccountsContext.isShopContext">
-      <section-title
-        :step-number="2"
-        :step-title="$t('onboarding.sectionTitle.freeListing')"
-        :is-enabled="stepsAreCompleted.step1"
-        :is-done="stepsAreCompleted.step2"
-      />
-      <ProductFeedNotice
-        v-if="stepsAreCompleted.step1"
-      />
-      <google-account-card
-        :is-enabled="stepsAreCompleted.step1"
-        :loading="googleIsLoading"
-        :user="getGoogleAccount"
-        :is-connected="googleAccountIsOnboarded"
-        @connectGoogleAccount="onGoogleAccountConnection"
-        @dissociateGoogleAccount="onGoogleAccountDissociationRequest"
-      />
-      <MerchantCenterAccountCard
-        v-if="stepsAreCompleted.step1"
-        :is-enabled="googleAccountIsOnboarded"
-        :is-connected="merchantCenterAccountIsChosen"
-        :loading="MCAIsLoading"
-        :is-e-u="showCSSForMCA"
-        :is-linking="isMcaLinking"
-        @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
-        @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
-        @phoneNumberHasBeenVerified="onPhoneNumberVerified"
-      />
-      <ProductFeedCard
-        v-if="stepsAreCompleted.step1"
-        :is-enabled="merchantCenterAccountIsChosen"
-        :loading="productFeedIsLoading"
-      />
+  <div class="pt-2 container">
+    <div class="row row-cols-sm-1 row-cols-md-2 mb-4 ps_gs-onboardingpage">
+      <div class="col">
+        <div
+          class="is-sticky mb-3"
+        >
+          <section-title
+            :step-number="1"
+            :step-title="$t('onboarding.sectionTitle.psAccount')"
+            :is-enabled="true"
+            :is-done="stepsAreCompleted.step1"
+          />
+        </div>
+      </div>
+      <div class="col">
+        <prestashop-accounts
+          class="ps_gs-ps-account-card"
+        />
+      </div>
 
-      <FreeListingCard
-        v-if="stepsAreCompleted.step1"
-        :is-enabled="productFeedIsConfigured"
-        :loading="freeListingIsLoading"
-        :error-a-p-i="false"
-        @openPopin="togglePopinFreeListingDisabled"
-      />
-      <section-title
-        :step-number="3"
-        :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign')"
-        :is-enabled="stepsAreCompleted.step2"
-        :is-done="stepsAreCompleted.step3"
-        badge
-      />
-      <GoogleAdsAccountCard
-        :is-enabled="stepsAreCompleted.step2"
-        :loading="googleAdsIsLoading"
-        @selectGoogleAdsAccount="onGoogleAdsAccountSelected()"
-        @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
-        @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
-      />
-      <CampaignCard
-        v-if="stepsAreCompleted.step2"
-        :is-enabled="stepsAreCompleted.step3"
-        :loading="SSCIsLoading"
-        @openPopin="onOpenPopinActivateTracking"
-        @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
-      />
-    </template>
+      <div class="col">
+        <div
+          class="is-sticky mb-3"
+        >
+          <section-title
+            :step-number="2"
+            :step-title="$t('onboarding.sectionTitle.freeListing.title')"
+            :is-enabled="stepsAreCompleted.step1"
+            :is-done="stepsAreCompleted.step2"
+          />
+          <div class="stepper-onboarding-subtitle">
+            <p class="text-justify ps_gs-fz-14">
+              {{ $t('onboarding.sectionTitle.freeListing.subtitle') }}
+            </p>
+            <p class="text-muted ps_gs-fz-13">
+              {{ $t('onboarding.sectionTitle.freeListing.lastTitle') }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <google-account-card
+          :is-enabled="stepsAreCompleted.step1"
+          :loading="googleIsLoading"
+          :user="getGoogleAccount"
+          :is-connected="googleAccountIsOnboarded"
+          @connectGoogleAccount="onGoogleAccountConnection"
+          @dissociateGoogleAccount="onGoogleAccountDissociationRequest"
+        />
+        <MerchantCenterAccountCard
+          :is-enabled="googleAccountIsOnboarded"
+          :is-connected="merchantCenterAccountIsChosen"
+          :loading="MCAIsLoading"
+          :is-e-u="showCSSForMCA"
+          :is-linking="isMcaLinking"
+          @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
+          @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
+          @phoneNumberHasBeenVerified="onPhoneNumberVerified"
+        />
+        <ProductFeedCard
+          :is-enabled="merchantCenterAccountIsChosen"
+          :loading="productFeedIsLoading"
+        />
+      </div>
+
+      <div class="col">
+        <div
+          class="is-sticky mb-3"
+        >
+          <section-title
+            :step-number="3"
+            :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
+            :is-enabled="stepsAreCompleted.step2"
+            :is-done="stepsAreCompleted.step3"
+          />
+          <div class="stepper-onboarding-subtitle">
+            <VueShowdown
+              class="text-justify ps_gs-fz-14"
+              :markdown="$t('onboarding.sectionTitle.smartShoppingCampaign.subtitle')"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <GoogleAdsAccountCard
+          :is-enabled="stepsAreCompleted.step2"
+          :loading="googleAdsIsLoading"
+          @selectGoogleAdsAccount="onGoogleAdsAccountSelected()"
+          @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
+          @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
+        />
+        <CampaignCard
+          v-if="stepsAreCompleted.step2"
+          :is-enabled="stepsAreCompleted.step3"
+          :loading="SSCIsLoading"
+          @openPopin="onOpenPopinActivateTracking"
+          @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
+        />
+        <CampaignTracking
+          v-if="getRemarketingTag !== null && accountHasAtLeastOneCampaign"
+        />
+        <PromoCard />
+      </div>
+    </div>
+
     <!-- Modals -->
     <GoogleAccountPopinDisconnect
       ref="googleAccountDisconnectModal"
@@ -81,10 +111,6 @@
 
     <MerchantCenterAccountPopinDisconnect
       ref="mcaDisconnectModal"
-    />
-
-    <FreeListingPopinDisable
-      ref="PopinFreeListingDisable"
     />
 
     <GoogleAdsAccountPopinDisconnect
@@ -118,20 +144,19 @@
 </template>
 
 <script>
-import {PsAccounts} from 'prestashop_accounts_vue_components';
+import psAccountsVue from 'prestashop_accounts_vue_components';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
-import ProductFeedNotice from '../components/onboarding/product-feed-notice.vue';
 import MerchantCenterAccountCard from '../components/merchant-center-account/merchant-center-account-card.vue';
 import ProductFeedCard from '../components/product-feed/product-feed-card.vue';
-import FreeListingPopinDisable from '../components/free-listing/free-listing-popin-disable.vue';
-import FreeListingCard from '../components/free-listing/free-listing-card.vue';
 import GoogleAccountPopinDisconnect from '../components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/google-ads-account-popin-disconnect.vue';
 import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
 import CampaignCard from '../components/campaigns/campaign-card.vue';
+import CampaignTracking from '../components/campaigns/campaign-tracking.vue';
+import PromoCard from '../components/promo/promo-card.vue';
 import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
 import PsToast from '../components/commons/ps-toast';
 import PopinModuleConfigured from '../components/commons/popin-configured.vue';
@@ -141,21 +166,19 @@ import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 export default {
   name: 'OnboardingPage',
   components: {
-    PsAccounts,
     SectionTitle,
     GoogleAccountCard,
     GoogleAdsAccountCard,
-    ProductFeedNotice,
     MerchantCenterAccountCard,
     ProductFeedCard,
-    FreeListingCard,
     CampaignCard,
+    CampaignTracking,
+    PromoCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
     GoogleAdsAccountPopinDisconnect,
     GoogleAdsPopinNew,
     PsToast,
-    FreeListingPopinDisable,
     SSCPopinActivateTracking,
     PopinModuleConfigured,
   },
@@ -246,13 +269,6 @@ export default {
         this.phoneNumberVerified = false;
       }
     },
-    togglePopinFreeListingDisabled() {
-      if (this.$refs.PopinFreeListingDisable) {
-        this.$bvModal.show(
-          this.$refs.PopinFreeListingDisable.$refs.modal.id,
-        );
-      }
-    },
     triggerLoadOfGoogleAdsAccount() {
       this.googleAdsIsLoading = true;
       this.freeListingIsLoading = true;
@@ -266,9 +282,6 @@ export default {
     },
   },
   computed: {
-    psAccountsContext() {
-      return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
-    },
     shops() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
     },
@@ -324,6 +337,12 @@ export default {
     productFeedIsConfigured() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
+    accountHasAtLeastOneCampaign() {
+      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
+    },
+    getRemarketingTag() {
+      return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
+    },
     stepsAreCompleted() {
       return {
         step1: this.psAccountsIsOnboarded,
@@ -353,6 +372,8 @@ export default {
     },
   },
   mounted() {
+    psAccountsVue.init();
+
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty

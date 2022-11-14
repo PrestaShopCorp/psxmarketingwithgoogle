@@ -94,7 +94,10 @@ export default {
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
   components: {TunnelProductFeed},
-  template: '<div><TunnelProductFeed v-bind="$props" v-if="!hide"/></div>',
+  template: `<div>
+    <TunnelProductFeed v-bind="$props" v-if="!hide"/>
+    <p v-else>Some stories are hidden as they may freeze the browser. Use the controls below to display their content.</p>
+  </div>`,
   beforeMount: args.beforeMount,
   beforeCreate() {
     deleteProductFeedDataFromLocalStorage();
@@ -102,6 +105,11 @@ const Template = (args, {argTypes}) => ({
 });
 
 export const SettingsSetup:any = Template.bind({});
+SettingsSetup.argTypes = {
+  hide: {
+    control: 'boolean',
+  }
+};
 SettingsSetup.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeed);
@@ -112,6 +120,11 @@ SettingsSetup.args = {
 };
 
 export const EstimateDeliveryTimeAndRates:any = Template.bind({});
+EstimateDeliveryTimeAndRates.argTypes = {
+  hide: {
+    control: 'boolean',
+  }
+};
 EstimateDeliveryTimeAndRates.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
@@ -123,6 +136,11 @@ EstimateDeliveryTimeAndRates.args = {
 };
 
 export const EstimateDeliveryTimeAndRatesWithUS:any = Template.bind({});
+EstimateDeliveryTimeAndRatesWithUS.argTypes = {
+  hide: {
+    control: 'boolean',
+  }
+};
 EstimateDeliveryTimeAndRatesWithUS.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
@@ -136,6 +154,11 @@ EstimateDeliveryTimeAndRatesWithUS.args = {
 };
 
 export const ImportDeliveryTimeAndRates:any = Template.bind({});
+ImportDeliveryTimeAndRates.argTypes = {
+  hide: {
+    control: 'boolean',
+  }
+};
 ImportDeliveryTimeAndRates.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
@@ -147,6 +170,11 @@ ImportDeliveryTimeAndRates.args = {
 };
 
 export const ImportDeliveryTimeAndRatesSeveralCountries:any = Template.bind({});
+ImportDeliveryTimeAndRatesSeveralCountries.argTypes = {
+  hide: {
+    control: 'boolean',
+  }
+};
 ImportDeliveryTimeAndRatesSeveralCountries.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
@@ -160,6 +188,11 @@ ImportDeliveryTimeAndRatesSeveralCountries.args = {
 
 
 export const ImportDeliveryTimeAndRatesNoCarriers:any = Template.bind({});
+ImportDeliveryTimeAndRatesNoCarriers.argTypes = {
+  hide: {
+    control: 'boolean',
+  }
+};
 ImportDeliveryTimeAndRatesNoCarriers.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
@@ -170,11 +203,15 @@ ImportDeliveryTimeAndRatesNoCarriers.args = {
   },
 };
 
-export const ImportDeliveryTimeAndRatesWithManyCarriers:any = Template.bind({
+export const ImportDeliveryTimeAndRatesWithManyCarriers:any = Template.bind({});
+ImportDeliveryTimeAndRatesWithManyCarriers.argTypes = {
+  hide: {
+    control: 'boolean',
+  }
+};
+ImportDeliveryTimeAndRatesWithManyCarriers.args = {
   // Modify this to display the story
   hide: true,
-});
-ImportDeliveryTimeAndRatesWithManyCarriers.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
     this.$store.state.productFeed = cloneDeep(productFeed);
@@ -188,6 +225,11 @@ ImportDeliveryTimeAndRatesWithManyCarriers.args = {
 };
 
 export const AttributeMapping:any = Template.bind({});
+AttributeMapping.argTypes = {
+  hide: {
+    control: 'boolean',
+  }
+};
 AttributeMapping.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
@@ -198,6 +240,11 @@ AttributeMapping.args = {
 };
 
 export const SyncSchedule:any = Template.bind({});
+SyncSchedule.argTypes = {
+  hide: {
+    control: 'boolean',
+  }
+};
 SyncSchedule.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
@@ -208,6 +255,11 @@ SyncSchedule.args = {
 };
 
 export const Summary:any = Template.bind({});
+Summary.argTypes = {
+  hide: {
+    control: 'boolean',
+  }
+};
 Summary.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);

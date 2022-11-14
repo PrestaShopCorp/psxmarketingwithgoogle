@@ -4,8 +4,9 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {mount} from '@vue/test-utils';
-import {cloneStore} from '@/../tests/init';
+import {mount, MountOptions} from '@vue/test-utils';
+import cloneDeep from 'lodash.clonedeep';
+import config, {localVue, cloneStore} from '@/../tests/init';
 
 import GoogleAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import {
@@ -19,6 +20,8 @@ import {
   NeedRefreshAfterBilling,
   Canceled,
 } from '@/../stories/google-ads-account-card.stories';
+import {GoogleAdsErrorReason} from '@/store/modules/google-ads/state';
+import googleAdsNotChosen, {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads';
 
 describe('google-ads-account.vue / disabled', () => {
   it('card is greyed out when card is disabled', () => {
@@ -32,7 +35,7 @@ describe('google-ads-account.vue / disabled', () => {
     });
 
     // Check if the card is greyed out
-    expect(wrapper.find('.ps_gs-onboardingcard').classes()).toContain('ps_gs-onboardingcard--disabled-grey');
+    expect(wrapper.find('.ps_gs-onboardingcard').classes()).toContain('ps_gs-onboardingcard--disabled');
 
     // Check if there is no b-alert
     expect(wrapper.find('b-alert').exists()).toBeFalsy();
@@ -43,28 +46,44 @@ describe('google-ads-account.vue / disabled', () => {
 });
 
 describe('google-ads-account.vue / enabled', () => {
+  const buildWrapper = (
+    options: MountOptions<any> = {},
+  ) => {
+    const store = cloneStore();
+
+    return mount(GoogleAccountCard, {
+      localVue,
+      store: new Vuex.Store(store),
+      ...config,
+      ...options,
+    });
+  };
+
   it('shows a link to create a new account', () => {
-    const wrapper = mount(GoogleAccountCard, {
-      store: new Vuex.Store(cloneStore()),
+    const store = cloneStore();
+    store.modules.googleAds.state = cloneDeep(googleAdsNotChosen);
+
+    const wrapper = buildWrapper({
       propsData: Enabled.args,
       beforeMount: Enabled.args.beforeMount,
+      store: new Vuex.Store(store),
       stubs: {
         VueShowdown: true,
       },
     });
 
     // Check enabled state
-    expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled-grey')).toBe(false);
-
-    // Check button to create an account exists
-    expect(wrapper.find('b-button .material-icons').text()).toBe('person_add');
+    expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(false);
   });
 
   it('dropdown should be available when card is enabled', () => {
-    const wrapper = mount(GoogleAccountCard, {
-      store: new Vuex.Store(cloneStore()),
+    const store = cloneStore();
+    store.modules.googleAds.state = cloneDeep(googleAdsNotChosen);
+
+    const wrapper = buildWrapper({
       propsData: Enabled.args,
       beforeMount: Enabled.args.beforeMount,
+      store: new Vuex.Store(store),
       stubs: {
         VueShowdown: true,
       },
@@ -78,10 +97,14 @@ describe('google-ads-account.vue / enabled', () => {
   });
 
   it('there is a specific message when list is empty', () => {
-    const wrapper = mount(GoogleAccountCard, {
-      store: new Vuex.Store(cloneStore()),
+    const store = cloneStore();
+    store.modules.googleAds.state = cloneDeep(googleAdsNotChosen);
+    store.modules.googleAds.state.list = [];
+
+    const wrapper = buildWrapper({
       propsData: EnabledButNoAccount.args,
       beforeMount: EnabledButNoAccount.args.beforeMount,
+      store: new Vuex.Store(store),
       stubs: {
         VueShowdown: true,
       },
@@ -92,10 +115,13 @@ describe('google-ads-account.vue / enabled', () => {
   });
 
   it('dropdown is disabled when API error', () => {
-    const wrapper = mount(GoogleAccountCard, {
-      store: new Vuex.Store(cloneStore()),
+    const store = cloneStore();
+    store.modules.googleAds.state = cloneDeep(googleAdsAccountChosen);
+
+    const wrapper = buildWrapper({
       propsData: CantConnect.args,
       beforeMount: CantConnect.args.beforeMount,
+      store: new Vuex.Store(store),
       stubs: {
         VueShowdown: true,
       },
@@ -106,10 +132,13 @@ describe('google-ads-account.vue / enabled', () => {
   });
 
   it('clicking on disconnect emmit the event to open a popup', async () => {
-    const wrapper = mount(GoogleAccountCard, {
-      store: new Vuex.Store(cloneStore()),
+    const store = cloneStore();
+    store.modules.googleAds.state = cloneDeep(googleAdsAccountChosen);
+
+    const wrapper = buildWrapper({
       propsData: EnabledConnected.args,
       beforeMount: EnabledConnected.args.beforeMount,
+      store: new Vuex.Store(store),
       stubs: {
         VueShowdown: true,
       },
@@ -121,10 +150,14 @@ describe('google-ads-account.vue / enabled', () => {
   });
 
   it('badge and alert are red when status is Canceled', () => {
-    const wrapper = mount(GoogleAccountCard, {
-      store: new Vuex.Store(cloneStore()),
+    const store = cloneStore();
+
+    store.modules.googleAds.state.status = GoogleAdsErrorReason.Cancelled;
+
+    const wrapper = buildWrapper({
       propsData: Canceled.args,
       beforeMount: Canceled.args.beforeMount,
+      store: new Vuex.Store(store),
       stubs: {
         VueShowdown: true,
       },
@@ -138,10 +171,14 @@ describe('google-ads-account.vue / enabled', () => {
   });
 
   it('badge and alert are red when status is Suspended', () => {
-    const wrapper = mount(GoogleAccountCard, {
-      store: new Vuex.Store(cloneStore()),
+    const store = cloneStore();
+
+    store.modules.googleAds.state.status = GoogleAdsErrorReason.Suspended;
+
+    const wrapper = buildWrapper({
       propsData: Suspended.args,
       beforeMount: Suspended.args.beforeMount,
+      store: new Vuex.Store(store),
       stubs: {
         VueShowdown: true,
       },
