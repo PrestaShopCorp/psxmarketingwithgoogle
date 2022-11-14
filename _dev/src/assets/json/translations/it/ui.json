@@ -462,7 +462,6 @@
     "alertCountryNotEligible": "Il paese di destinazione che hai selezionato non è idoneo per le inserzioni e gli annunci gratuiti."
   },
   "googleAdsAccountCard": {
-    "srTitle": "selector google ads actions",
     "title": "Account Google Ads",
     "btnDisable": "Connect Google Ads account",
     "intro": "Crea campagne pubblicitarie per i tuoi prodotti: trova il pubblico giusto al momento giusto.",
@@ -970,7 +969,8 @@
     "visitThe": "Visita il {0} per maggiori informazioni",
     "investigate": "Investigate",
     "createPmax": "Crea la campagna Performance Max",
-    "understand": "Capisco che"
+    "understand": "Capisco che",
+    "moreActions": "More Actions"
   },
   "badge": {
     "free": "Libero",

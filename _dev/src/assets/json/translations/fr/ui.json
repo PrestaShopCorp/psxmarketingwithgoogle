@@ -21,8 +21,8 @@
     "unableToFetchData": "Nous n'avons pas pu récupérer les données, veuillez réessayer plus tard",
     "searchByX": "Recherche par {0}",
     "search": "Recherche",
-    "createAccount": "create your account",
-    "createNewAccount": "If you don't have an account, you can {0} today.",
+    "createAccount": "créer votre compte",
+    "createNewAccount": "Si vous n'avez de pas de compte, vous pouvez {0} aujourd'hui.",
     "notAvailable": "Non disponible",
     "min": "Min",
     "max": "Max",
@@ -60,13 +60,13 @@
     "sectionTitle": {
       "psAccount": "Connectez votre compte PrestaShop",
       "freeListing": {
-        "title": "Reach more people on Google with free listings",
-        "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center.",
-        "lastTitle": "Businesses using free listings and ads on the Shopping tab together have seen an average >50% increase in clicks and >100% increase in impressions. (Google Internal Data, July 2020)"
+        "title": "Toucher davantage de personnes sur Google avec les fiches gratuites",
+        "subtitle": "Les fiches gratuites vous donnent accès à des millions d'acheteurs à la recherche de produits similaires aux vôtres. Affichez gratuitement vos produits dans des listes classées organiquement dans l'onglet \"Shopping\" lorsque vous connectez votre compte Google à Google Merchant Center.",
+        "lastTitle": "Les entreprises qui utilisent simultanément les fiches gratuites et les campagnes publicitaires sur l'onglet Shopping ont constaté une augmentation moyenne >50 % des clics >100 % des impressions. (Données internes de Google, juillet 2020)"
       },
       "smartShoppingCampaign": {
-        "title": "Advertise on Google with Performance Max",
-        "subtitle": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion.\n\n Even better, you don't pay unless your customers click."
+        "title": "Faites de la publicité sur Google avec Performance Max",
+        "subtitle": "Connectez ou créez votre compte Google Ads et lancez une campagne Performance Max sur vos produits. Optimisez les performances de votre campagne sur plusieurs canaux Google grâce à une seule campagne. Affichez vos annonces là où elles ont le plus de chances de générer des conversions. \n\nMieux encore, vous ne payez que si vos clients cliquent."
       }
     },
     "productFeedNotice": "Aidez les clients à trouver vos produits plus facilement sur Google et listez-les gratuitement avec des fiches gratuites. Les fiches gratuites aident à atteindre plus de clients et à les amener à visiter votre site."
@@ -462,9 +462,8 @@
     "alertCountryNotEligible": "Le pays cible que vous avez sélectionné n'est pas éligible pour les fiches gratuites."
   },
   "googleAdsAccountCard": {
-    "srTitle": "selector google ads actions",
     "title": "ID du compte Google Ads",
-    "btnDisable": "Connect Google Ads account",
+    "btnDisable": "Connectez votre compte Google Ads",
     "intro": "Créez des campagnes de publicité pour vos produits : trouvez le bon public au bon moment.",
     "text": "Une fois connecté, vous devrez peut-être configurer vos paramètres de facturation dans votre compte Google Ads.",
     "labelSelect": "Connectez votre compte Google Ads",
@@ -878,15 +877,15 @@
     "enabled": "Activé",
     "agree": "Je suis d'accord",
     "enableFreeListing": "Activer les fiches gratuites",
-    "connectAccount": "Connect your account",
+    "connectAccount": "Connectez votre compte",
     "connectingAccount": "Connexion au compte en cours...",
     "chooseExistingAccount": "Choisir un compte existant",
     "createNewAccount": "Créer un nouveau compte",
     "learnAboutAccountSuspension": "En savoir plus sur la suspension de compte",
     "learnAboutSiteClaiming": "En savoir plus sur la validation du site web",
     "learnMoreAboutSmartShoppingCampaigns": "En savoir plus sur les campagnes Smart Shopping",
-    "configureAndExportProductFeed": "Start your configuration",
-    "continueProductFeed": "Resume configuration",
+    "configureAndExportProductFeed": "Commencez votre configuration",
+    "continueProductFeed": "Reprendre la configuration",
     "chooseAccount": "Choisissez votre compte",
     "supportedCountries": "Pays pris en charge",
     "cancel": "Annuler",
@@ -970,11 +969,12 @@
     "visitThe": "Visitez la page {0} pour plus d'informations.",
     "investigate": "Enquêter",
     "createPmax": "Créez une campagne Performance Max",
-    "understand": "Je comprends"
+    "understand": "Je comprends",
+    "moreActions": "Plus d'Actions"
   },
   "badge": {
     "free": "Gratuit",
-    "connected": "Connected",
+    "connected": "Connecté",
     "active": "Actif",
     "disapproved": "Désapprouvé",
     "pendingCreation": "En attente",
