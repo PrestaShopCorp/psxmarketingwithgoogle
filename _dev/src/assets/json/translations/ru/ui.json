@@ -462,7 +462,6 @@
     "alertCountryNotEligible": "Выбранная вами целевая страна не имеет права на бесплатные листинги и объявления."
   },
   "googleAdsAccountCard": {
-    "srTitle": "selector google ads actions",
     "title": "Аккаунт Google Ads",
     "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
@@ -970,7 +969,8 @@
     "visitThe": "Посетите {0} для получения дополнительной информации",
     "investigate": "Investigate",
     "createPmax": "Create Performance Max campaign",
-    "understand": "Я понимаю"
+    "understand": "Я понимаю",
+    "moreActions": "More Actions"
   },
   "badge": {
     "free": "Бесплатно",
