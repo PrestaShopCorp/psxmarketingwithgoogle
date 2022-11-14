@@ -462,7 +462,6 @@
     "alertCountryNotEligible": "O país de destino que você selecionou não é elegível para listagens e anúncios gratuitos."
   },
   "googleAdsAccountCard": {
-    "srTitle": "selector google ads actions",
     "title": "Conta Google Ads",
     "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
@@ -970,7 +969,8 @@
     "visitThe": "Visit the {0} for more information",
     "investigate": "Investigate",
     "createPmax": "Campanha Criar Máximo desempenho",
-    "understand": "Eu entendo"
+    "understand": "Eu entendo",
+    "moreActions": "More Actions"
   },
   "badge": {
     "free": "Grátis",
