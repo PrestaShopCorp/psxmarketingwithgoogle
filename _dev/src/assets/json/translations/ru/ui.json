@@ -204,12 +204,12 @@
     "updateData": "Если вы внесли какие-либо изменения в свой бэк-офис, пожалуйста, обновите информацию, чтобы увидеть изменения, отраженные здесь."
   },
   "productFeedCard": {
-    "title": "Product feed",
+    "title": "Подача продукта",
     "intro": "Отправляйте данные о своих товарах непосредственно в Merchant Center и постоянно обновляйте их для бесплатных объявлений и листингов.",
     "introToConfigure": "Очень важно представить свою ленту товаров в правильном формате, поскольку Google использует его, чтобы убедиться, что ваши товары соответствуют правильным запросам.",
     "nextSync": "Следующая синхронизация: {0} на {1}",
     "mappedCategories": "{0}/{1} сопоставленные категории",
-    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
+    "alertFeedSettingSubmissionSuccess": "Вы успешно отправили данные о своем продукте в Merchant Center. После утверждения они будут доступны для бесплатных объявлений и листингов.",
     "alertFailed": "Синхронизация продукта не была успешной. Проверьте возможные причины в [Merchant Center]({0})[:target=\"_blank\"] или обратитесь в [службу поддержки](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Ваша информация о доставке отсутствует.",
     "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
@@ -462,7 +462,7 @@
     "alertCountryNotEligible": "Выбранная вами целевая страна не имеет права на бесплатные листинги и объявления."
   },
   "googleAdsAccountCard": {
-    "title": "Google Ads account",
+    "title": "Аккаунт Google Ads",
     "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "После подключения вам может потребоваться настроить параметры выставления счетов в аккаунте Google Ads.",
