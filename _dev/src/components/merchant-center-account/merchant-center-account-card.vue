@@ -60,14 +60,13 @@
               menu-class="ps-dropdown__menu-small rounded"
               toggle-class="px-1"
               boundary="window"
+              :toggle-attrs="{title: $t('cta.moreActions')}"
             >
               <template #button-content>
                 <i class="material-icons">
                   more_horiz
                 </i>
-                <span class="sr-only">
-                  {{ $t('cta.moreActions') }}
-                </span>
+                <span class="sr-only"/>
               </template>
               <b-dropdown-item
                 @click="checkWebsiteRequirements"
