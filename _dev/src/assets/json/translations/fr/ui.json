@@ -204,12 +204,12 @@
     "updateData": "Si vous avez fait des modifications dans votre backoffice, veuillez actualiser vos informations pour voir les changements reflétés ici."
   },
   "productFeedCard": {
-    "title": "Flux produit",
+    "title": "Product feed",
     "intro": "Soumettez les données de vos produits directement à votre Merchant Center et maintenez-les toujours à jour pour obtenir des listings et des annonces gratuites.",
     "introToConfigure": "Il est important de soumettre votre flux de produits dans le format correct, car Google utilise ceci pour s'assurer que vos produits correspondent aux bonnes requêtes.",
     "nextSync": "Prochaine synchronisation : {0} à {1}",
     "mappedCategories": "{0}/{1} catégories mappées",
-    "alertFeedSettingSubmissionSuccess": "Vous avez soumis avec succès vos produits au Merchant Center. Une fois approuvés, ils seront disponibles pour les fiches gratuites et annonces.",
+    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
     "alertFailed": "La synchronisation produit a échoué. Vérifiez les raisons possibles dans [Merchant Center]({0})[:target=\"_blank\"] ou contactez le [service client](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Vos informations de livraison sont manquantes.",
     "alertShippingSettingsMissingDescription": "Pour synchroniser avec succès les données de vos produits, veuillez ajouter des informations d'expédition.",
@@ -462,7 +462,7 @@
     "alertCountryNotEligible": "Le pays cible que vous avez sélectionné n'est pas éligible pour les fiches gratuites."
   },
   "googleAdsAccountCard": {
-    "title": "ID du compte Google Ads",
+    "title": "Google Ads account",
     "btnDisable": "Connectez votre compte Google Ads",
     "intro": "Créez des campagnes de publicité pour vos produits : trouvez le bon public au bon moment.",
     "text": "Une fois connecté, vous devrez peut-être configurer vos paramètres de facturation dans votre compte Google Ads.",
