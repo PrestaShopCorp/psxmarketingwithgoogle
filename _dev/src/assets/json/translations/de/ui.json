@@ -204,12 +204,12 @@
     "updateData": "Wenn Sie in Ihrem Backoffice eine Änderung vorgenommen haben, aktualisieren Sie bitte Ihre Informationen, damit die Änderungen hier angezeigt werden."
   },
   "productFeedCard": {
-    "title": "Produktzufuhr",
+    "title": "Product feed",
     "intro": "Übermitteln Sie Ihre Produktdaten direkt an Ihr Merchant Center und halten Sie sie immer auf dem neuesten Stand für kostenlose Listings und Anzeigen.",
     "introToConfigure": "Es ist wichtig, dass Sie Ihren Produkt-Feed im richtigen Format übermitteln, da Google dies nutzt, um sicherzustellen, dass Ihre Produkte den richtigen Suchanfragen entsprechen.",
     "nextSync": "Nächste Synchronisierung: {0} bei {1}",
     "mappedCategories": "{0}/{1} zugeordnete Kategorien",
-    "alertFeedSettingSubmissionSuccess": "Sie haben Ihre Produktdaten erfolgreich an Merchant Center übermittelt. Sobald sie genehmigt sind, werden sie für kostenlose Inserate und Anzeigen zur Verfügung stehen.",
+    "alertFeedSettingSubmissionSuccess": "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
     "alertFailed": "Die Produktsynchronisierung war nicht erfolgreich. Prüfen Sie mögliche Gründe im [Merchant Center]({0})[:target=\"_blank\"] oder wenden Sie sich an [Kundensupport](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Es fehlen Ihre Versandinformationen.",
     "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
@@ -462,7 +462,7 @@
     "alertCountryNotEligible": "Das von Ihnen gewählte Zielland ist nicht für kostenlose Angebote und Anzeigen geeignet."
   },
   "googleAdsAccountCard": {
-    "title": "Google Ads-Konto",
+    "title": "Google Ads account",
     "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Nach der Verbindung müssen Sie möglicherweise Ihre Abrechnungseinstellungen in Ihrem Google Ads-Konto konfigurieren.",
