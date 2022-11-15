@@ -4,17 +4,17 @@
       {{ $t('productFeedSettings.deliveryTimeAndRates.title') }}
     </p>
 
+    <target-countries
+      @countrySelected="countries = $event;dataUpdated()"
+      :countries="selectedCountries"
+      :shipping-setup-option="getShippingValueSetup"
+    />
+
     <custom-rate
       v-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE"
       :is-multiple-countries="selectedCountries.length"
       :rate-type-chosen="rateChosen"
       @rateUpdated="rateSelected($event)"
-    />
-
-    <target-countries
-      @countrySelected="countries = $event;dataUpdated()"
-      :countries="selectedCountries"
-      :shipping-setup-option="getShippingValueSetup"
     />
 
     <shipping-settings
