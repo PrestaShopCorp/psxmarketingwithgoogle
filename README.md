@@ -141,7 +141,11 @@ https://storage.googleapis.com/psessentials-documentation/psxmarketingwithgoogle
 
 ### Storybook
 
-All components and pages of this module are available on a [dedicated website running Storybook](https://storybook-google.psessentials-integration.net/). It is updated on each push to the `master` branch.
+All components and pages of this module are available on a dedicated website running Storybook. 
+It is updated on each push to the `master` branch.  
+[Integration Storybook](https://google-storybook-integration.prestashop.com/)  
+[Preproduction Storybook](https://google-storybook-preproduction.prestashop.com/)  
+[Production Storybook](https://google-storybook.prestashop.com/)  
 
 
 ## Contributing
