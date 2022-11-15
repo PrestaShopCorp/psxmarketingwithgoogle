@@ -6,7 +6,6 @@ import Vuex from 'vuex';
 import cloneDeep from 'lodash.clonedeep';
 import config, {localVue, cloneStore} from '@/../tests/init';
 import DeliveryTimeAndRatesVue from './delivery-time-and-rates.vue';
-import countriesFormListVue from './estimate-method/countries-form-list.vue';
 import {ShippingSetupOption} from '../../../../enums/product-feed/shipping';
 import shippingSettingsVue from './import-method/shipping-settings.vue';
 import {productFeed, productFeedEstimateConfigured} from '../../../../../.storybook/mock/product-feed';
@@ -15,30 +14,32 @@ import CustomCarrierForm from './estimate-method/custom-carrier-form.vue';
 import {createCustomCarriersTemplate, CustomCarrier} from '@/providers/shipping-rate-provider';
 import CountriesFromList from './estimate-method/countries-form-list.vue';
 import {OfferType} from '@/enums/product-feed/offer';
-import { RateType } from '@/enums/product-feed/rate';
+import {RateType} from '@/enums/product-feed/rate';
 
 describe('delivery-time-and-rates.vue', () => {
   describe('Estimating carriers - custom-carrier-form components', () => {
     const buildWrapper = (
       options: MountOptions<any> = {},
-      ) => {
-        const store = cloneStore();
-        store.modules.productFeed.state = cloneDeep(productFeed);
-        store.modules.productFeed.state.stepper = 2;
-        store.modules.productFeed.state.settings.shippingSetup = ShippingSetupOption.ESTIMATE;
+    ) => {
+      const store = cloneStore();
+      store.modules.productFeed.state = cloneDeep(productFeed);
+      store.modules.productFeed.state.stepper = 2;
+      store.modules.productFeed.state.settings.shippingSetup = ShippingSetupOption.ESTIMATE;
 
-        return mount(CustomCarrierForm, {
-          localVue,
-          store: new Vuex.Store(store),
-          ...config,
-          ...options,
-        });
-      };
+      return mount(CustomCarrierForm, {
+        localVue,
+        store: new Vuex.Store(store),
+        ...config,
+        ...options,
+      });
+    };
 
     describe('validate cases', () => {
       it('is visible', () => {
         const store = cloneStore();
-        const carrier: CustomCarrier = [...productFeedEstimateConfigured.settings.estimateCarriers][0];
+        const carrier: CustomCarrier = [
+          ...productFeedEstimateConfigured.settings.estimateCarriers,
+        ][0];
 
         const wrapper = buildWrapper({
           propsData: {
@@ -109,7 +110,7 @@ describe('delivery-time-and-rates.vue', () => {
       it('should throw an error if carrierName is not filled', () => {
         const store = cloneStore();
         const carrier: CustomCarrier = [
-          ...productFeedEstimateConfigured.settings.estimateCarriers
+          ...productFeedEstimateConfigured.settings.estimateCarriers,
         ][0];
 
         const wrapper = buildWrapper({
@@ -126,7 +127,7 @@ describe('delivery-time-and-rates.vue', () => {
       it('should throw an error if offer is not selected', () => {
         const store = cloneStore();
         const carrier: CustomCarrier = [
-          ...productFeedEstimateConfigured.settings.estimateCarriers
+          ...productFeedEstimateConfigured.settings.estimateCarriers,
         ][0];
 
         const wrapper = buildWrapper({
@@ -143,7 +144,7 @@ describe('delivery-time-and-rates.vue', () => {
       it('should throw an error if delivery time has not the right value', () => {
         const store = cloneStore();
         const carrier: CustomCarrier = [
-          ...productFeedEstimateConfigured.settings.estimateCarriers
+          ...productFeedEstimateConfigured.settings.estimateCarriers,
         ][0];
         carrier.minDeliveryTime = -50;
 
@@ -157,47 +158,28 @@ describe('delivery-time-and-rates.vue', () => {
 
         expect(wrapper.vm.validateTimeDelivery).toBe(false);
       });
-
-      // it('should throw an error if carrier is not filled correctly', () => {
-      //   const store = cloneStore();
-      //   const carrier: CustomCarrier = [
-      //     ...productFeedEstimateConfigured.settings.estimateCarriers
-      //   ][0];
-      //   carrier.carrierName = '';
-      //   carrier.minDeliveryTime = -42;
-
-      //   const wrapper = buildWrapper({
-      //     propsData: {
-      //       customCarrier: carrier,
-      //       displayValidationErrors: true,
-      //     },
-      //     store: new Vuex.Store(store),
-      //   });
-
-      //   expect(wrapper.vm.validateCarrier).toBe(false);
-      // });
     });
   });
   describe('Estimating carriers - countries-form-list components', () => {
     const buildWrapper = (
       options: MountOptions<any> = {},
-      ) => {
-        const store = cloneStore();
-        store.modules.productFeed.state = cloneDeep(productFeed);
-        store.modules.productFeed.state.stepper = 2;
-        store.modules.productFeed.state.settings.shippingSetup = ShippingSetupOption.ESTIMATE;
+    ) => {
+      const store = cloneStore();
+      store.modules.productFeed.state = cloneDeep(productFeed);
+      store.modules.productFeed.state.stepper = 2;
+      store.modules.productFeed.state.settings.shippingSetup = ShippingSetupOption.ESTIMATE;
 
-        return mount(CountriesFromList, {
-          localVue,
-          store: new Vuex.Store(store),
-          ...config,
-          ...options,
-        });
-      };
+      return mount(CountriesFromList, {
+        localVue,
+        store: new Vuex.Store(store),
+        ...config,
+        ...options,
+      });
+    };
     it('should ok when carrier is filled correctly', () => {
       const store = cloneStore();
       const carriers: CustomCarrier[] = [
-        ...productFeedEstimateConfigured.settings.estimateCarriers
+        ...productFeedEstimateConfigured.settings.estimateCarriers,
       ];
       carriers[0].carrierName = 'DHL';
       carriers[0].offer = OfferType.FREE_SHIPPING;
@@ -223,7 +205,7 @@ describe('delivery-time-and-rates.vue', () => {
       const carriers: CustomCarrier[] = createCustomCarriersTemplate(
         RateType.RATE_PER_COUNTRY,
         productFeedEstimateConfigured.settings.targetCountries,
-        'EUR'
+        'EUR',
       );
       const wrapper = buildWrapper({
         propsData: {
@@ -247,7 +229,7 @@ describe('delivery-time-and-rates.vue', () => {
       const carriers: CustomCarrier[] = createCustomCarriersTemplate(
         RateType.RATE_ALL_COUNTRIES,
         productFeedEstimateConfigured.settings.targetCountries,
-        'EUR'
+        'EUR',
       );
       const wrapper = buildWrapper({
         propsData: {
@@ -271,7 +253,7 @@ describe('delivery-time-and-rates.vue', () => {
       const carriers: CustomCarrier[] = createCustomCarriersTemplate(
         RateType.RATE_PER_COUNTRY,
         productFeedEstimateConfigured.settings.targetCountries,
-        'EUR'
+        'EUR',
       );
       const wrapper = buildWrapper({
         propsData: {
@@ -318,7 +300,7 @@ describe('delivery-time-and-rates.vue', () => {
       const wrapper = buildWrapper();
 
       expect(wrapper.findComponent(shippingSettingsVue).exists()).toBeTruthy();
-      expect(wrapper.findComponent(countriesFormListVue).exists()).toBeFalsy();
+      expect(wrapper.findComponent(CountriesFromList).exists()).toBeFalsy();
     });
 
     it('filters the list of carriers to configure based on the selected countries', () => {
