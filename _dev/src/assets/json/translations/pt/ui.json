@@ -207,7 +207,7 @@
     "title": "Feed de produtos",
     "intro": "Envie os seus dados de produto diretamente para o seu Merchant Center e mantenha-os sempre atualizados em termos de listagens e anúncios gratuitos.",
     "introToConfigure": "É importante enviar o feed do seu produto no formato correto, pois o Google usa isso para garantir que seus produtos correspondam às consultas certas.",
-    "nextSync": "Próxima sincronização: {0} em {1}",
+    "nextSync": "Next synchronization on {0}",
     "mappedCategories": "{0}/{1} categorias mapeadas",
     "alertFeedSettingSubmissionSuccess": "Você submeteu com sucesso seus dados de produto ao Merchant Center. Uma vez aprovados, estarão disponíveis para anúncios e listagens gratuitas.",
     "alertFailed": "A sincronização de produtos não foi bem sucedida. Verifique as possíveis razões no [Merchant Center]({0})[:target=\"_blank\"] ou contacte [apoio ao cliente](mailto:support-google@prestashop.com).",

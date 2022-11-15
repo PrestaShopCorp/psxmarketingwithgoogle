@@ -207,7 +207,7 @@
     "title": "Plik danych",
     "intro": "Przesyłaj dane o produkcie bezpośrednio na swoje konto Merchant Center, dzięki czemu informacje wyświetlane w karcie Zakupy i w reklamach będą zawsze aktualne.",
     "introToConfigure": "Ważne jest, aby podać swój kanał produktu w prawidłowym formacie, ponieważ Google używa go, aby upewnić się, że Twoje produkty pasują do właściwych zapytań.",
-    "nextSync": "Następna synchronizacja: {0} o {1}",
+    "nextSync": "Next synchronization on {0}",
     "mappedCategories": "{0}/{1} przyporządkowane kategorie",
     "alertFeedSettingSubmissionSuccess": "Pomyślnie przesłałeś dane o swoich produktach do Merchant Center. Po zatwierdzeniu, dane te będą uwzględnione w usłudze bezpłatnego wyświetlanie informacji o produkcie i w reklamach.",
     "alertFailed": "Synchronizacja danych o produkcie nie powiodła się. Sprawdź możliwe przyczyny w [Merchant Center]({0})[:target=\"_blank\"] lub skontaktuj się z [działem obsługi klienta](mailto:support-google@prestashop.com).",
