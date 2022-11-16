@@ -21,14 +21,14 @@
     "unableToFetchData": "We were unable to fetch datas, please try again later.",
     "searchByX": "Buscar por {0}",
     "search": "Buscar en",
-    "createAccount": "create your account",
-    "createNewAccount": "If you don't have an account, you can {0} today.",
+    "createAccount": "Crea tu cuenta",
+    "createNewAccount": "Si no tienes una cuenta, puedes {0} hoy mismo.",
     "notAvailable": "No disponible",
-    "min": "Min",
+    "min": "Mín.",
     "max": "Max",
     "helpPage": "Página de ayuda",
     "noResultsFoundForX": " No se han encontrado resultados para \"{0}\"",
-    "days": "Days"
+    "days": "Días"
   },
   "landingPage": {
     "header": {
@@ -66,7 +66,7 @@
       },
       "smartShoppingCampaign": {
         "title": "Advertise on Google with Performance Max",
-        "subtitle": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion.\n\n Even better, you don't pay unless your customers click."
+        "subtitle": "Conecta o crea tu cuenta Google Ads y lanza una campaña Máximo rendimiento para tus productos. Maximiza el rendimiento de una única campaña en varios canales de Google. Muestra tus anuncios donde tienen más posibilidades de generar conversión. Y lo que es mejor, no pagas salvo que tus clientes hagan clic."
       }
     },
     "productFeedNotice": "Ayuda a los clientes a encontrar tus productos más fácilmente en Google y anúncialos gratuitamente con listados gratuitos. Los listados gratuitos te ayudan a llegar a más clientes y lograr que visiten tu sitio."
@@ -207,7 +207,7 @@
     "title": "Feed de productos",
     "intro": "Envía los datos de tus productos directamente a tu Merchant Center y manténlos siempre actualizados para obtener listados y anuncios gratuitos.",
     "introToConfigure": "Es importante que envíes tu feed de productos en el formato correcto, ya que Google lo utiliza para asegurarse de que tus productos coinciden con las consultas correctas.",
-    "nextSync": "Next synchronization on {0}",
+    "nextSync": "Próxima sincronización en {0}",
     "mappedCategories": "{0}/{1} categorías mapeadas",
     "alertFeedSettingSubmissionSuccess": "Ha enviado correctamente los datos de sus productos a Merchant Center. Una vez aprobados, estarán disponibles para listados y anuncios gratuitos.",
     "alertFailed": "La sincronización del producto no se ha realizado correctamente. Compruebe los posibles motivos en [Merchant Center]({0})[:target=\"_blank\"] o póngase en contacto con [atención al cliente](mailto:support-google@prestashop.com).",
@@ -511,9 +511,9 @@
     "introNotConnected": "Conecta o crea tu cuenta Google Ads y lanza una campaña Máximo rendimiento para tus productos. Maximiza el rendimiento de una única campaña en varios canales de Google. Muestra tus anuncios donde tengan más posibilidades de generar conversión. Y lo que es mejor, no pagas salvo que se haga clic.",
     "introConnected": "Con las campañas Máximo rendimiento, puedes anunciar tus productos y maximizar el rendimiento de tus anuncios en varios canales de Google mediante una sola campaña. Y lo que es mejor, ¡no pagas salvo que tus clientes hagan clic!",
     "footer": "En el Espacio Económico Europeo, Reino Unido o Suiza, las campañas Máximo rendimiento pueden utilizarse con cualquier servicio de comparación de precios (CSS) con el que trabaje. Los anuncios aparecerán en las páginas de resultados de búsqueda generales y en cualquier otra propiedad en la que el CSS se haya inscrito.",
-    "titleInfo": "Did you know?",
+    "titleInfo": "¿Lo sabías?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
-    "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
+    "footerInfo": "* Datos de Google, Global, Anuncios, Sep-Oct 2021."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "Todos los filtros",
@@ -612,7 +612,7 @@
     "xCampaign": "No hay campañas | {0} campaña | {0} campañas",
     "performanceMax": "Máximo rendimiento",
     "smartShoppingCampaign": "Smart Shopping Campaign",
-    "campaignType": "Type: {0}"
+    "campaignType": "Tipo: {0}"
   },
   "productFeedPage": {
     "breadcrumb": "Detalles del estado del producto",
