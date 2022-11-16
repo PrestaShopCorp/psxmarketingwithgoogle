@@ -512,7 +512,7 @@
     "introConnected": "Con las campañas Máximo rendimiento, puedes anunciar tus productos y maximizar el rendimiento de tus anuncios en varios canales de Google mediante una sola campaña. Y lo que es mejor, ¡no pagas salvo que tus clientes hagan clic!",
     "footer": "En el Espacio Económico Europeo, Reino Unido o Suiza, las campañas Máximo rendimiento pueden utilizarse con cualquier servicio de comparación de precios (CSS) con el que trabaje. Los anuncios aparecerán en las páginas de resultados de búsqueda generales y en cualquier otra propiedad en la que el CSS se haya inscrito.",
     "titleInfo": "¿Lo sabías?",
-    "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
+    "contentInfo": "Los anunciantes que actualizan sus campañas de Shopping inteligentes a Máximo rendimiento notan un incremento medio del 12% en el valor de la conversión, con el mismo o mejor retorno de la inversión publicitaria (ROAS)*",
     "footerInfo": "* Datos de Google, Global, Anuncios, Sep-Oct 2021."
   },
   "smartShoppingCampaignCreation": {
@@ -532,7 +532,7 @@
     "inputDurationTooltip": "Las campañas de anuncios no tienen fecha de finalización por defecto, de modo que los anuncios pueden funcionar indefinidamente. Siempre puedes añadir una fecha de finalización para crear una campaña más corta.",
     "inputDurationLabel1": "Fecha de inicio",
     "inputDurationLabel2": "Fecha de finalización (opcional)",
-    "inputDurationInvalidFeedback": "The end date must be set in the future.",
+    "inputDurationInvalidFeedback": "La fecha de finalización debe fijarse en el futuro.",
     "inputDatePickerHelper": "Utiliza las teclas del cursor para navegar por las fechas del calendario",
     "inputCountryHelper": "Para dirigirte a varios países debes crear varias campañas.",
     "inputCountryImutable": "El país no se puede cambiar después de la creación, si quiere dirigirse a un país diferente, tendrá que crear una nueva campaña",
@@ -561,8 +561,8 @@
     "enableCreationRemarketingTag": "Habilitar la etiqueta de remarketing y seguimiento de la conversión",
     "pauseCampaign": "Tu campaña se ejecutará hasta que la interrumpas o hasta que se cumpla la fecha de finalización. Puedes pausar tu campaña en cualquier momento.",
     "switch": {
-      "on": "On",
-      "off": "Off"
+      "on": "Activado",
+      "off": "Desactivado"
     },
     "alerts": {
       "noTag": "Al no añadir la etiqueta automáticamente, Google no podrá enviar los resultados de las campañas",
@@ -622,7 +622,7 @@
     },
     "destinations": {
       "shoppingAds": "Anuncios de Shopping",
-      "enhancedFreeListing": "Enhanced Free Listings"
+      "enhancedFreeListing": "Fichas mejoradas"
     },
     "syncStatus": {
       "title": "Estado de las sincronizaciones",
@@ -643,7 +643,7 @@
           "failed": "Sincronización fallida",
           "completed": "Sincronización completada",
           "next": "Próxima sincronización",
-          "notPlanned": "No planned synchronisation"
+          "notPlanned": "Sin sincronización planificada"
         },
         "subtitle": {
           "willHappenOnDate": "Empezará el {0} a las {1}",
@@ -671,8 +671,8 @@
       "title": "Productos activos enviados a Google",
       "description": "El estado de su producto le permite saber si su producto es elegible para aparecer en el destino al que ha optado.",
       "alert": {
-        "prescanTitle": "Warning {0} product couldn’t be exported to Google | Warning {0} products couldn’t be exported to Google",
-        "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
+        "prescanTitle": "Advertencia {0} producto no se pudo exportar a Google | Advertencia {0} productos no se pudieron exportar a Google",
+        "prescanDescription": "Algunos productos no han pasado nuestra verificación, asegúrate de que tus productos contienen la información requerida para aparecer en Google Shopping."
       }
     },
     "preScan": {
@@ -701,7 +701,7 @@
       "tableHeaderID": "ID",
       "tableHeaderAttributeID": "Atributo",
       "tableHeaderDestination": "Destino",
-      "tableHeaderName": "Title",
+      "tableHeaderName": "Título",
       "tableHeaderGoogleValidation": "Disponibilidad para Google",
       "tableHeaderLanguage": "Idioma",
       "tableHeaderCountry": "País",
@@ -816,12 +816,12 @@
     }
   },
   "notConfiguredState": {
-    "title": "Finish your configuration",
-    "titleOneLastStep": "One last step",
-    "textGoogleMissing": "Continue your configuration to start sending products to Google and creating campaigns.",
+    "title": "Termina tu configuración",
+    "titleOneLastStep": "Un último paso",
+    "textGoogleMissing": "Continúa tu configuración para comenzar a enviar productos a Google y crear campañas.",
     "textOneMoreThing": "One more thing and you are all set to send your products to Google.",
     "textBoostYourSales": "If you want to boost your sales; connect and create campaigns with Google Ads.",
-    "ctaClassic": "Go to configuration page",
+    "ctaClassic": "Ir a la página de configuración",
     "ctaLinkMCA": "Link your Google Merchant Center Account",
     "ctaExportFeed": "Sync your products with Google",
     "ctaLinkGoogleAds": "Connect your Google Ads Account"
