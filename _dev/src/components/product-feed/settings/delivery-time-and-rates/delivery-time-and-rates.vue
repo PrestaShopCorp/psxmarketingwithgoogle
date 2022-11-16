@@ -11,7 +11,8 @@
     />
 
     <custom-rate
-      v-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE"
+      v-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE
+        && selectedCountries.length > 0"
       :is-multiple-countries="selectedCountries.length"
       :rate-type-chosen="rateChosen"
       @rateUpdated="rateSelected($event)"
@@ -122,6 +123,9 @@ export default Vue.extend({
   },
   methods: {
     dataUpdated(): void {
+      if (this.selectedCountries.length < 2) {
+        this.rateChosen = RateType.RATE_ALL_COUNTRIES;
+      }
       this.displayValidationErrors = false;
     },
     previousStep(): void {
