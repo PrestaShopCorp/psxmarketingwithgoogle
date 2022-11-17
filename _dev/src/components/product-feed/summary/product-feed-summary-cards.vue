@@ -4,7 +4,7 @@
     class="mx-n1"
   >
     <b-col
-      :cols="displayAttributeMappingSimpleCard ? 9 : null"
+      :cols="displayAttributeMappingSimpleCard ? 7 : null"
     >
       <product-feed-card-report-card
         :basic-display="displayAttributeMappingSimpleCard"

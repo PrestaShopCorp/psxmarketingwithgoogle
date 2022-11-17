@@ -74,7 +74,7 @@ $stepWidthMobile: rem(42);
     position: relative;
 
     &.vertical {
-      max-width: 200px;
+      max-width: unset;
     }
 
     &__link {

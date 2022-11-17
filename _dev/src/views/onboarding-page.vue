@@ -3,7 +3,7 @@
     <div class="row row-cols-sm-1 row-cols-md-2 mb-4 ps_gs-onboardingpage">
       <div class="col">
         <div
-          class="is-sticky mb-3"
+          class="is-sticky pb-3"
         >
           <section-title
             :step-number="1"
@@ -21,7 +21,7 @@
 
       <div class="col">
         <div
-          class="is-sticky mb-3"
+          class="is-sticky pb-3"
         >
           <section-title
             :step-number="2"
@@ -66,7 +66,7 @@
 
       <div class="col">
         <div
-          class="is-sticky mb-3"
+          class="is-sticky pb-3"
         >
           <section-title
             :step-number="3"

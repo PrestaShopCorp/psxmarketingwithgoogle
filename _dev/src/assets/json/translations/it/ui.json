@@ -463,7 +463,6 @@
   },
   "googleAdsAccountCard": {
     "title": "Account Google Ads",
-    "btnDisable": "Connect Google Ads account",
     "intro": "Crea campagne pubblicitarie per i tuoi prodotti: trova il pubblico giusto al momento giusto.",
     "text": "Una volta connesso, potrebbe essere necessario configurare le impostazioni di fatturazione nel tuo account Google Ads.",
     "labelSelect": "Collega un account Google Ads esistente",

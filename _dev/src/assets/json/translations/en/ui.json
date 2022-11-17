@@ -463,7 +463,6 @@
   },
   "googleAdsAccountCard": {
     "title": "Google Ads account",
-    "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Once connected you may need to configure your billing settings in your Google Ads account.",
     "labelSelect": "You can connect an existing Google Ads account, or create a new one in a few easy steps.",
