@@ -463,7 +463,6 @@
   },
   "googleAdsAccountCard": {
     "title": "Аккаунт Google Ads",
-    "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "После подключения вам может потребоваться настроить параметры выставления счетов в аккаунте Google Ads.",
     "labelSelect": "Подключите существующий аккаунт Google Ads",

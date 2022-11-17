@@ -463,7 +463,6 @@
   },
   "googleAdsAccountCard": {
     "title": "Google Ads account",
-    "btnDisable": "Connect Google Ads account",
     "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
     "text": "Eenmaal verbonden moet u mogelijk uw factureringsinstellingen configureren in uw Google Ads account.",
     "labelSelect": "Sluit een bestaande Google Ads account aan",

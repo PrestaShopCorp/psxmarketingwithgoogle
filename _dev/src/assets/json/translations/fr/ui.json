@@ -463,7 +463,6 @@
   },
   "googleAdsAccountCard": {
     "title": "ID du compte Google Ads",
-    "btnDisable": "Connectez votre compte Google Ads",
     "intro": "Créez des campagnes de publicité pour vos produits : trouvez le bon public au bon moment.",
     "text": "Une fois connecté, vous devrez peut-être configurer vos paramètres de facturation dans votre compte Google Ads.",
     "labelSelect": "Connectez votre compte Google Ads",

@@ -20,7 +20,7 @@
           v-if="!isEnabled"
         >
           <div
-            class="d-inline-flex align-items-start align-items-md-center"
+            class="d-inline-flex align-items-start align-items-md-center mb-3"
           >
             <img
               class="mr-2"
@@ -34,10 +34,11 @@
             </b-card-text>
             <div class="ml-auto">
               <b-button
+                size="sm"
                 variant="primary"
                 disabled
               >
-                {{ $t('googleAdsAccountCard.btnDisable') }}
+                {{ $t('cta.connectAccount') }}
               </b-button>
             </div>
           </div>
