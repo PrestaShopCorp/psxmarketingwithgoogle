@@ -209,7 +209,7 @@
     "introToConfigure": "È importante inviare il tuo feed di prodotti nel formato corretto, perché Google lo usa per assicurarsi che i tuoi prodotti corrispondano alle query giuste.",
     "nextSync": "Next synchronization on {0}",
     "mappedCategories": "{0}/{1} categorie mappate",
-    "alertFeedSettingSubmissionSuccess": "Hai presentato con successo i dati dei tuoi prodotti al Merchant Center. Una volta approvati, saranno disponibili per inserzioni e annunci gratuiti.",
+    "alertFeedSettingSubmissionSuccess": "Hai inviato con successo i dati dei tuoi prodotti al Merchant Center. Una volta approvati, saranno disponibili per inserzioni e annunci gratuiti.",
     "alertFailed": "La sincronizzazione dei prodotti non è riuscita. Controlla le possibili ragioni in [Merchant Center]({0})[:target=\"_blank\"] o contatta il [supporto clienti](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. [Add shipping settings]({0})[:target=\\\"_blank\\\"]",
     "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
