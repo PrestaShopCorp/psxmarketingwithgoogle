@@ -1,5 +1,4 @@
 .ps_gs-onboardingcard {
-  border: none;
 
   &--disabled {
     color: $grey_muted;
@@ -53,6 +52,7 @@ section {
     .ps_gs-onboardingcard {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
+      border-bottom: none;
 
       padding-bottom: 0 !important;
 
@@ -69,6 +69,7 @@ section {
     .ps_gs-onboardingcard {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
+      border-top: none;
     }
   }
 }
