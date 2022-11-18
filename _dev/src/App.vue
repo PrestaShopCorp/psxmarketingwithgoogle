@@ -57,7 +57,7 @@
       </div>
       <AlertModuleUpdate
         module-name="ps_eventbus"
-        :needed-version="this.$store.state.app.eventbusVersionNeeded"
+        :needed-version="this.$store.state.app.cloudsyncVersionNeeded"
       />
       <AlertModuleUpdate
         module-name="psxmarketingwithgoogle"

@@ -11,7 +11,7 @@ export const initialStateApp: State = {
     isoCode: 'EUR',
   },
   psxMktgWithGoogleModuleVersionNeeded: '1.10.4',
-  eventbusVersionNeeded: '1.6.5',
+  cloudsyncVersionNeeded: '1.6.5',
   shopIsOnMaintenanceMode: false,
   psxMktgWithGoogleProductDetailUrl: 'https://my-shop.com/admin-dev/index.php/sell/catalog/products/1?token=blabla',
   psxMktgWithGoogleActiveCountries: ['ES', 'FR', 'IT', 'PT', 'SE', 'US'],
