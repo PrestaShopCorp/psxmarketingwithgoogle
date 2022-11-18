@@ -21,14 +21,14 @@
     "unableToFetchData": "Nie udało się pobrać danych, proszę spróbować ponownie później",
     "searchByX": "Szukaj według {0}",
     "search": "Szukaj",
-    "createAccount": "create your account",
-    "createNewAccount": "If you don't have an account, you can {0} today.",
+    "createAccount": "utwórz Twoje konto ",
+    "createNewAccount": "Nie masz jeszcze konta? {0} już teraz.",
     "notAvailable": "Niedostępne",
-    "min": "Min",
-    "max": "Max",
+    "min": "min.",
+    "max": "max.",
     "helpPage": "Strona pomocy",
     "noResultsFoundForX": "Nie znaleziono wyników dla {0}",
-    "days": "Days"
+    "days": "dni"
   },
   "landingPage": {
     "header": {
@@ -65,7 +65,7 @@
         "lastTitle": "Businesses using free listings and ads on the Shopping tab together have seen an average >50% increase in clicks and >100% increase in impressions. (Google Internal Data, July 2020)"
       },
       "smartShoppingCampaign": {
-        "title": "Advertise on Google with Performance Max",
+        "title": "Reklamuj się w Google z Performance Max",
         "subtitle": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion.\n\n Even better, you don't pay unless your customers click."
       }
     },
@@ -124,25 +124,25 @@
     "sendCode": "Wyślij kod",
     "receiveCall": "Połączenie przychodzące",
     "phoneVerifiedContinue": "Twój numer telefonu został zweryfikowany, możesz kontynuować tworzenie konta.",
-    "enterCode": "Please enter your verification code",
+    "enterCode": "Wprowadź kod weryfikacyjny",
     "validatingCode": "Trwa zatwierdzanie kodu",
-    "textMessageHasBeenSent": "A text message containing an X-digit code has been sent",
+    "textMessageHasBeenSent": "Wiadomość tekstowa zawierająca X-cyfrowy kod właśnie została wysłana",
     "askAgain60sec": "Będziesz mógł poprosić o nowy kod w ciągu 60 sekund",
-    "needPhoneVerification": "We need to verify your identity with your phone number",
+    "needPhoneVerification": "Musimy zweryfikować Twoją tożsamość za pomocą Twojego numeru telefonu",
     "fillInputs": "Wpisz swój numer telefonu i wybierz prefiks międzynarodowy",
-    "invalidCode": "Code is not valid",
-    "phoneNumberNotValid": "Your phone number is incorrect, please only put numbers",
+    "invalidCode": "Kod jest nieważny",
+    "phoneNumberNotValid": "Twój numer telefonu jest nieprawidłowy. Wprowadź tylko cyfry",
     "code": "Kod",
-    "contactMethod": "Choose your preferred contact method",
+    "contactMethod": "Wybierz preferowaną metodę kontaktu",
     "dialCode": "Wpisz kod",
-    "phoneNumber": "Enter your phone number",
+    "phoneNumber": "Wpisz Twój numer telefonu",
     "textMethod": "Wiadomość tekstowa",
     "callMethod": "Rozmowa telefoniczna",
     "selectMethod": "Wybierz preferowaną metodę kontaktu w celu weryfikacji tożsamości",
     "alertTooManyRequests": "Prosiłeś o tę usługę zbyt wiele w powiązaniu z tym numerem telefonu. Musisz poczekać 24 godziny, aby spróbować ponownie lub musisz zmienić numer telefonu.",
     "alertSomethingHappened": "Coś się stało. To po naszej stronie, proszę spróbować ponownie.",
     "alertCodeExpired": "Kod wygasł. Poproś o nowy",
-    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
+    "refreshAfterAddingWebsiteAddress": "Jeśli wprowadzono nowe informacje do Google Merchant Center, odśwież stronę."
   },
   "mcaRequirements": {
     "steps": {
@@ -155,7 +155,7 @@
     "legend2": "Adres URL strony sklepu musi zostać zweryfikowany i zgłoszony, zanim będziesz mógł przesłać dane produktów.  \n[Dowiedz się, jak zweryfikować i zgłosić swoją stronę internetową](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Przeczytaj pełną wersję wymagań Google dotyczących sklepu",
     "accurateContactInformation": {
-      "title": "I confirm that my contact information are correct and valid",
+      "title": "Potwierdzam, że moje dane kontaktowe są poprawne i aktualne",
       "description": "Na swojej stronie internetowej Sprzedawcy powinni wskazać co najmniej jedną formę kontaktu. Może to być jakakolwiek forma kontaktu.",
       "link": "Odkryj, jak dodać dane kontaktowe"
     },
@@ -264,7 +264,7 @@
     "deliveryTimeAndRates": {
       "tooltips": {
         "carrierName": "The carrier name will help you identify the carriers when it is created with the estimation method. It is limited to 90 characters",
-        "freeShippingOverAmount": "Enter the value of minimum spend required for free shipping",
+        "freeShippingOverAmount": "Wprowadź wartość minimalnej kwoty wydatków wymaganej dla darmowej wysyłki",
         "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
       },
       "title": "Czas i koszt dostawy",
@@ -338,16 +338,16 @@
       "carriersDropdownHiddenLabel": "Kopiowanie informacji o przewoźniku do innych przewoźników",
       "noCarriersTitle": "Nie masz żadnych przewoźników",
       "noCarriersDescription": "Proszę przejść do strony przewoźników, aby dodać przewoźników",
-      "countryNeededTitle": "Select your target country",
+      "countryNeededTitle": "Wybierz Twój kraj docelowy",
       "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
       "addNewCarriers": "Dodaj lub zaktualizuj przewoźników",
       "refreshCarriers": "Odśwież, jeśli edytowałeś swoje nośniki",
       "switchToFlatRate": "Przejdź do konfiguracji szacunkowego trybu wysyłki"
     },
     "preScan": {
-      "selectLanguage": "Filter by language",
+      "selectLanguage": "Filtruj według języka",
       "apiError": "An error occurred while fetching data, please try again later.",
-      "noElement": "You don't have any products."
+      "noElement": "Nie masz żadnych produktów."
     },
     "export": {
       "summarySyncDailyAt": "Synchronizuj codziennie o {0}",
@@ -404,10 +404,10 @@
       "material": "Materiał",
       "pattern": "Wzór",
       "gtin": "GTIN",
-      "ean": "EAN13",
+      "ean": "EAN-13",
       "mpn": "MPN",
       "brand": "Marka",
-      "notAvailable": "Not filled",
+      "notAvailable": "Niewypełnione",
       "specificTitle": "Szczególny",
       "sellRefurbished": "Sprzedaję odnowione produkty",
       "sellApparel": "Sprzedaję odzież i akcesoria",
@@ -439,7 +439,7 @@
       "time": "Czas",
       "youSell": "**Sprzedajesz** {0}",
       "dataSyncSetUp": "Konfiguracja synchronizacji danych",
-      "productAttributesMapping": "Category & product attribute mapping",
+      "productAttributesMapping": "Mapowanie atrybutów kategorii i produktów",
       "attributeMapped": "One category have been mapped | {0} categories have been mapped",
       "mandatoryAttributesNotMapped": "One Google attributes haven't been mapped to your custom fields | {0} Google attributes haven't been mapped to your custom fields.",
       "noticeToCompleteMapping": "We recommend mapping all your data otherwise your products might be rejected by Google.",
@@ -490,13 +490,13 @@
       "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Business name",
+      "name": "Nazwa firmy",
       "title": "Informacje o firmie",
-      "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
+      "description": "Waluta, którą teraz wybierzesz dla Twojego konta, będzie niezmienna, więc zastanów się nad wyborem.",
       "labelCountry": "Kraj płatności",
       "placeholderCountry": "Kraj",
       "labelTimeZone": "Strefa czasowa",
-      "placeholderTimeZone": "Choose time",
+      "placeholderTimeZone": "Wybierz strefę czasową",
       "labelCurrency": "Waluta",
       "placeholderCurrency": "Waluta"
     },
