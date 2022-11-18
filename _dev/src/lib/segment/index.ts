@@ -15,7 +15,9 @@ const install = (Vue: VueConstructor, options: SegmentOptions) => {
   const config: SegmentOptions = {
     debug: false,
     pageCategory: '',
-    settings: undefined,
+    settings: {
+      disableClientPersistence: true,
+    },
     disabled: false,
     ...options,
   };
