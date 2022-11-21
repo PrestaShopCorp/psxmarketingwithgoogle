@@ -8,10 +8,10 @@
       "catalog": "Katalog produktów",
       "help": "Pomoc"
     },
-    "versionDoesNotExist": "Wygląda na to, że wersja modułu nie może zostać pobrana. Jest to po naszej stronie, proszę spróbować ponownie.",
+    "versionDoesNotExist": "Wygląda na to, że ta wersja modułu nie może zostać pobrana. To kwestia problemu po naszej stronie. Proszę spróbować ponownie.",
     "moduleNeedActivation": "Marketing with Google jest wyłączony. Nie możesz korzystać z żadnych jego funkcji, dopóki nie włączysz tego modułu.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "Wersja modułu PrestaShop EventBus uruchomiona w tym sklepie jest starsza niż minimalna wymagana.\n\nMożesz używać PrestaShop Marketing with Google, ale niektóre funkcje (np. synchronizacja produktów) nie będą dostępne dopóki nie zaktualizujesz PrestaShop EventBus.",
+      "ps_eventbus": "Wersja modułu PrestaShop EventBus uruchomiona w tym sklepie jest starsza niż minimalna wymagana.\n\nMożesz używać PrestaShop Marketing with Google, ale niektóre funkcje (np. synchronizacja produktów) nie będą dostępne, dopóki nie zaktualizujesz PrestaShop EventBus.",
       "psxmarketingwithgoogle": "Proszę zaktualizować moduł PrestaShop Marketing With Google, aby działał poprawnie."
     },
     "adblockerActivated": "Aby moduł mógł poprawnie działać, wyłącz ad-blockera i odśwież swoją przeglądarkę.",
@@ -33,12 +33,12 @@
   "landingPage": {
     "header": {
       "title": "Marketing with Google",
-      "text": "Dzięki Prestashop Marketing możesz trafić do potencjalnych kupujących, którzy szukają online produktów takich jak te, które oferujesz! Skorzystaj z tego modułu, aby dotrzeć do nich poprzez Google w 3 prostych krokach.",
-      "reinsurance": "- Łatwa konfiguracja \n- Anuluj w każdej chwili"
+      "text": "Dzięki PrestaShop Marketing możesz trafić do potencjalnych kupujących, którzy szukają online produktów takich jak te, które oferujesz! Skorzystaj z tego modułu, aby dotrzeć do nich poprzez Google w 3 prostych krokach.",
+      "reinsurance": "- Łatwa konfiguracja \n- Możliwość anulowania w dowolnym momencie"
     },
     "content": {
       "content1": {
-        "title": "Zsynchronizuj swój katalog produktów z Google",
+        "title": "Zsynchronizuj Twój katalog produktów z Google",
         "text": "Połącz swój sklep z Google Merchant Center i zsynchronizuj cały swój katalog produktów. Atrybuty produktów, takie jak cena czy dostępność, będą codziennie automatycznie aktualizowane."
       },
       "content2": {
@@ -58,9 +58,9 @@
   },
   "onboarding": {
     "sectionTitle": {
-      "psAccount": "Podłącz swoje konto PrestaShop",
+      "psAccount": "Podłącz Twoje konto PrestaShop",
       "freeListing": {
-        "title": "Dotrzyj to większej liczby osób dzięki bezpłatnemu wyświetlaniu informacji o produktach",
+        "title": "Dotrzyj to większej liczby osób dzięki wyświetlaniu bezpłatnych informacji o produktach",
         "subtitle": "Bezpłatne informacje dają Ci dostęp do milionów kupujących, którzy szukają produktów podobnych do Twoich. Po połączeniu Twojego konta Google z Google Merchant Center, możesz wyświetlać Twoje produkty za darmo w organicznie uszeregowanych listach na karcie Zakupy.",
         "lastTitle": "Firmy korzystające łącznie z wyświetlania bezpłatnych informacji i reklam na karcie Zakupy odnotowały średnio >50% wzrost kliknięć i >100% wzrost wyświetleń (Dane wewnętrzne Google, lipiec 2020)"
       },
@@ -73,7 +73,7 @@
   },
   "multiShopSelector": {
     "title": "Tryb Multi-store aktywny",
-    "subtitle": "Musisz skonfigurować swoje sklepy, jeden po drugim, pod kątem tej usługi, ale będziesz mógł korzystać z tego samego konta.",
+    "subtitle": "Musisz skonfigurować swoje sklepy, jeden po drugim, pod kątem tej usługi, ale będziesz mieć możliwość korzystania z tego samego konta. ",
     "selectStore": "Wybierz z poniższej listy pierwszy sklep do skonfigurowania",
     "tips": "Po zakończeniu pracy nad pierwszym sklepem, możesz skonfigurować pozostałe, wybierając je kolejno z listy sklepów w menu poziomym",
     "configure": "Konfiguruj",
@@ -263,9 +263,9 @@
     },
     "deliveryTimeAndRates": {
       "tooltips": {
-        "carrierName": "The carrier name will help you identify the carriers when it is created with the estimation method. It is limited to 90 characters",
+        "carrierName": "Nazwa przewoźnika pomoże Ci zidentyfikować przewoźników po ich utworzeniu metodą szacowania. Jest ograniczona do 90 znaków",
         "freeShippingOverAmount": "Wprowadź wartość minimalnej kwoty wydatków wymaganej dla darmowej wysyłki",
-        "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
+        "shippingRate": "Wprowadź stawkę za wysyłkę, która obowiązuje w przypadku braku spełnienia kryterium minimalnej kwoty wymaganej do darmowej wysyłki"
       },
       "title": "Czas i koszt dostawy",
       "rateAndDelivery": "Koszt i czas dostawy",
@@ -380,7 +380,7 @@
       "title1": "1. Wybierz wszystkie cechy, które odnoszą się do Twoich produktów",
       "description1": "Pozwoli to na mapowanie obowiązkowych atrybutów produktu Google w następnym kroku w zależności od katalogu.",
       "title2": "2. Mapuj obowiązkowe atrybuty Google do swoich pól niestandardowych",
-      "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later. Keep in mind that Google will favor first filled values.",
+      "description2": "Wypełnij wszystkie wartości, aby zapewnić walidację Twoich produktów. Jeśli brakuje jakiejś wartości w Twoim katalogu, zalecamy utworzenie jej i dokończenie konfiguracji później. Pamiętaj, że Google będzie faworyzować pierwsze podane wartości.",
       "apparelAndAccessoriesTitle": "Sprzedaję odzież i/lub akcesoria",
       "apparelAndAccessoriesSubtitle": "tj. odzież, torby, buty lub kapelusze",
       "electronicsTitle": "Sprzedaję sprzęt AGD i/lub kuchenny",
@@ -441,7 +441,7 @@
       "dataSyncSetUp": "Konfiguracja synchronizacji danych",
       "productAttributesMapping": "Mapowanie atrybutów kategorii i produktów",
       "attributeMapped": "Zmapowano jedną kategorię | {0} zmapowanych kategorii",
-      "mandatoryAttributesNotMapped": "One Google attributes haven't been mapped to your custom fields | {0} Google attributes haven't been mapped to your custom fields.",
+      "mandatoryAttributesNotMapped": "Jeden atrybut Google nie został zmapowany do pól niestandardowych. {0} atrybutów Google nie zostało zmapowanych do pól niestandardowych.",
       "noticeToCompleteMapping": "Zalecamy mapowanie wszystkich danych. W przeciwnym razie Twoje produkty mogą zostać odrzucone przez Google.",
       "agreementTitle": "Rozumiem i zgadzam się na następujące warunki*.",
       "agreementCheckboxLabel1Instant": "Synchronizacja mojego kanału produktowego zostanie uruchomiona po kliknięciu na zapisz i wyeksportuj (może to potrwać od 1 do 4 godzin)",
@@ -502,7 +502,7 @@
     },
     "terms": {
       "title": "Warunki korzystania z programu Google",
-      "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
+      "label": "Zapoznałem(-am) się i zgadzam się z [Warunkami korzystania z Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
     }
   },
   "smartShoppingCampaignCard": {
@@ -595,7 +595,7 @@
     "conditionsSubTitle": "Stan produktu w momencie sprzedaży (np.: nowy, używany lub odnowiony)",
     "popinTitle": "Filtry produktów kampanii",
     "popinTitleConfirmCancel": "Wróć",
-    "xProducts": " ({0} product) | ({0} product) | ({0} products)",
+    "xProducts": "Brak produktów | {0} produkt | {0} produkty/-ów",
     "productConditions": {
       "unspecified": "Nieokreślony",
       "unknown": "Nieznany",
@@ -603,8 +603,8 @@
       "refurbished": "Odnowiony",
       "used": "Używane"
     },
-    "dimensionXFilterSelectedWithXProducts": "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
-    "filtersWithxValues": "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products"
+    "dimensionXFilterSelectedWithXProducts": " {0} filtr | {0} filtr ({1} produkt) | {0} filtr ({1} produkty/-ów)",
+    "filtersWithxValues": "{0} filtrów | {0} filtry/-ów z {1} odpowiadającym produktem | {0} filtry/-ów z {1} odpowiadającymi produktami"
   },
   "smartShoppingCampaignList": {
     "tableTitle": "Wyniki kampanii",
