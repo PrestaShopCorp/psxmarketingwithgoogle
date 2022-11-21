@@ -10,7 +10,7 @@
 
   option:hover,
   option:focus {
-    background-color: $blue_medium;
+    background-color: $purple-100;
   }
 }
 
@@ -34,8 +34,8 @@
     font-weight: 400;
 
     &:focus {
-      box-shadow: 0 0 0 0.2rem rgba($blue_dark, 0.5);
-      border-color: $blue_dark;
+      box-shadow: 0 0 0 0.2rem rgba($purple-500, 0.5);
+      border-color: $purple-500;
     }
   }
 
@@ -56,7 +56,7 @@
   .dropdown-item:hover,
   .dropdown-item:focus {
     color: #fff !important;
-    background-color: $blue_medium;
+    background-color: $purple-100;
     border-radius: 0;
   }
 
@@ -124,7 +124,7 @@
 .v-select {
   &.vs--open .vs__dropdown-toggle,
   &.vs--open .vs__dropdown-menu {
-    border-color: $blue_medium;
+    border-color: $purple-100;
   }
 
   &.has-selection {
@@ -146,15 +146,15 @@
 
   .vs__selected {
     border: none;
-    background-color: $blue-light;
-    color: $blue_dark;
+    background-color: $purple-050;
+    color: $purple-500;
     font-size: rem(12);
     padding-left: 6px;
     padding-right: 6px;
   }
   .vs__deselect {
     text-shadow: none;
-    color: $blue_dark;
+    color: $purple-500;
 
     i {
       font-size: rem(16);
@@ -326,4 +326,9 @@ input.no-arrows::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number].no-arrows {
   -moz-appearance: textfield;
+}
+
+/* Color could not be redefined in a clean way */
+input.form-control:focus {
+  border-color: $primary-hover;
 }

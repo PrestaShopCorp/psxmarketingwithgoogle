@@ -44,8 +44,8 @@
 
     &:focus {
       & + .form-check-label {
-        box-shadow: 0 0 0 0.2rem rgba($blue_dark, 0.5);
-        border-color: $blue_dark;
+        box-shadow: 0 0 0 0.2rem rgba($purple-500, 0.5);
+        border-color: $purple-500;
       }
     }
   }
