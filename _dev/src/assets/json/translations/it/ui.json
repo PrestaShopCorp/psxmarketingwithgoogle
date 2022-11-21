@@ -8,10 +8,10 @@
       "catalog": "Catalogo dei prodotti",
       "help": "Assistenza"
     },
-    "versionDoesNotExist": "Sembra che la versione del modulo non possa essere recuperata. È dalla nostra parte, per favore riprova.",
-    "moduleNeedActivation": "Il modulo Marketing with Google è disabilitato. Non potrai utilizzare nessuna delle sue funzionalità finché non si abiliterà il modulo.",
+    "versionDoesNotExist": "Sembra che la versione del modulo non possa essere recuperata. Il problema è nostro, per favore riprova.",
+    "moduleNeedActivation": "Il modulo Marketing with Google è disabilitato. Non potrai utilizzare nessuna delle sue funzionalità finché non abiliterai il modulo.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "La versione del modulo PrestaShop EventBus in esecuzione su questo negozio è più vecchia del minimo richiesto.\n\nÈ possibile utilizzare PrestaShop Marketing con Google, ma alcune caratteristiche (ad esempio la sincronizzazione dei prodotti) non sarà disponibile fino a quando si aggiorna PrestaShop EventBus",
+      "ps_eventbus": "La versione del modulo PrestaShop EventBus in esecuzione su questo shop è più vecchia del minimo richiesto.\n\nÈ possibile utilizzare PrestaShop Marketing with Google ma alcune funzionalità (ad esempio la sincronizzazione dei prodotti) non saranno disponibili fino a quando non si aggiorna PrestaShop EventBus",
       "psxmarketingwithgoogle": "Si prega di aggiornare il modulo PrestaShop Marketing With Google per farlo funzionare correttamente"
     },
     "adblockerActivated": "Per favore, disattiva il tuo ad-blocker affinché il modulo funzioni correttamente e aggiorna il tuo browser.",
@@ -821,19 +821,19 @@
     "textOneMoreThing": "Ancora una cosa e sarai pronto per inviare i tuoi prodotti a Google.",
     "textBoostYourSales": "Se vuoi incrementare le tue vendite, collegati e crea campagne con Google Ads.",
     "ctaClassic": "Vai alla pagina di configurazione",
-    "ctaLinkMCA": "Link your Google Merchant Center Account",
-    "ctaExportFeed": "Sync your products with Google",
-    "ctaLinkGoogleAds": "Connect your Google Ads Account"
+    "ctaLinkMCA": "Collega l'account Google Merchant Center",
+    "ctaExportFeed": "Sincronizza i tuoi prodotti con Google",
+    "ctaLinkGoogleAds": "Collega il tuo account Google Ads"
   },
   "configuredState": {
-    "title": "Congratulations, you're all set !",
-    "text": "You finished all the required steps to get the most out of **Marketing with Google**",
-    "cta": "Go to campaign creation",
-    "firstStep": "Link your store to a PrestaShop account",
-    "secondStep": "Sign in or create your Google Account",
-    "thirdStep": "Sign in or create your Google Merchant Center account",
-    "fourthStep": "Export and synchronize your product catalog",
-    "fifthStep": "Sign in or create your Google Ads account",
+    "title": "Congratulazioni, è tutto pronto!",
+    "text": "Hai completato tutti i passaggi richiesti per ottenere il massimo da **Marketing con Google**",
+    "cta": "Vai alla creazione della campagna",
+    "firstStep": "Collegate il tuo shop a un account PrestaShop",
+    "secondStep": "Accedi o crea il tuo account Google",
+    "thirdStep": "Crea o collega il tuo account Google Merchant Center",
+    "fourthStep": "Esporta e sincronizza il tuo catalogo prodotti",
+    "fifthStep": "Accedi o crea il tuo account Google Ads",
     "sixthStep": "**Passo successivo** creare la tua prima campagna Performance Max"
   },
   "help": {
@@ -900,7 +900,7 @@
     "editSettings": "Modifica le impostazioni",
     "editRules": "Modifica le regole",
     "shopMaintenanceBtn": "Vai alle impostazioni di manutenzione",
-    "editProductAttributes": "Edit categories & attributes",
+    "editProductAttributes": "Modifica categorie & proprietà",
     "forceSync": "Forza la sincronizzazione",
     "createNewGoogleAdsAccount": "Crea un nuovo account Google Ads",
     "back": "Indietro",
@@ -966,14 +966,14 @@
     "validateSelection": "Convalidare la selezione",
     "googleProductStatusDefinitions": "Definizioni dello stato del prodotto di Google",
     "visitThe": "Visita il {0} per maggiori informazioni",
-    "investigate": "Investigate",
+    "investigate": "Analizza",
     "createPmax": "Crea la campagna Performance Max",
     "understand": "Capisco che",
     "moreActions": "Altre azioni"
   },
   "badge": {
     "free": "Libero",
-    "connected": "Connected",
+    "connected": "Connesso",
     "active": "Attivo",
     "disapproved": "Disapprovato",
     "pendingCreation": "In attesa",
@@ -1031,7 +1031,7 @@
     "upgradeSCCToPmaxText": "Le campagne Smart Shopping saranno aggiornate a Performance Max il {0}  \n\n Non è necessario intraprendere alcuna azione poiché le impostazioni e il budget della campagna Smart Shopping rimarranno invariati. Solo il tipo di campagna verrà automaticamente aggiornato a Performance Max. \n\n Dall'inizio di luglio, sarà possibile creare solo campagne Performance Max.",
     "PMaxLiveTitle": "Performance Max è qui",
     "PMaxLiveText": "A partire da oggi, puoi creare campagne Performance Max, la prossima generazione di campagne Shopping intelligenti.\n\nPerformance Max è un tipo di campagna potenziata grazie alla tecnologia intelligente di Google. Funziona dietro le quinte per ottimizzare automaticamente i vostri annunci lungo tutto il percorso dello shopping per ottenere il massimo rendimento. ",
-    "PMaxMigrationTitle": "Important News",
+    "PMaxMigrationTitle": "Notizie importanti",
     "PMaxMigrationText": "Le vostre campagne Smart Shopping inizieranno ora ad aggiornarsi automaticamente in campagne Performance Max.\n\n- Le impostazioni della campagna e il budget rimangono invariati. \n\n- Le funzionalità sono uguali a quelle delle campagne Smart Shopping.\n\n- Da questo momento in poi è possibile creare solo campagne Performance Max.",
     "PmaxTextLink": "Scopri di più sulle campagne Performance Max",
     "textPmaxReleased": "Le vostre campagne Smart Shopping inizieranno a passare automaticamente alle Campagne Performance Max. [Per saperne di più]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
@@ -1048,10 +1048,10 @@
     "approvalStatusLang": "segnaposto",
     "approvalStatusIssues": "Motivo per cui il tuo prodotto non è approvato per Google",
     "attributeMapping": {
-      "description": "The description will be cropped automatically if it is longer than 5000",
-      "ageGroup": "The demographic for which your product is targeted.",
-      "gtin": "A code printed on product packaging to aid in identify a particular item.",
-      "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
+      "description": "La descrizione sarà automaticamente tagliata se più lunga di 5000",
+      "ageGroup": "Il target a cui si rivolge il tuo prodotto.",
+      "gtin": "Codice stampato sulla confezione di un prodotto per facilitare l'identificazione di un particolare articolo.",
+      "mpn": "Un numero univoco rilasciato dai produttori per identificare i singoli prodotti. Si tratta di una serie di numeri e lettere.",
       "pattern": "Il modello o la stampa grafica del tuo prodotto"
     },
     "GMCForm": {
@@ -1096,10 +1096,10 @@
     "options": {
       "upc": "UPC",
       "isbn": "ISBN",
-      "ean": "EAN",
+      "ean": "Codice EAN",
       "mpn": "MPN",
       "description": "Descrizione",
-      "description_short": "Short Description",
+      "description_short": "Descrizione breve",
       "longDescription": "Descrizione lunga",
       "notAvailable": "Non Disponibile"
     },
@@ -1109,13 +1109,13 @@
     "sellApparel": "Vendo abbigliamento e accessori"
   },
   "banner": {
-    "titleAdsbanner": "Just starting out in Google advertising?",
-    "textAdsBannerLong": "Get {0} of Google Ads credits* when you spend at least {0} to create your first campaigns on PrestaShop or directly via your [Google Ads Account]({1})[:target=\\\"_blank\\\"].",
-    "textAdsBanner": "Get {0} of Google Ads credits* when you spend at least {0} to create your first campaigns.",
-    "legendLong": "*Your voucher will be applied automatically from the moment you start spending! *The amount needs to be spent within 60 days of the first campaign spend and credits will be valid for 60 days once credited. [Read T&C]({0})[:target=\\\"_blank\\\"]",
-    "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
-    "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
-    "ctaCreateFirstCampaign": "Create your first campaign",
+    "titleAdsbanner": "Hai appena iniziato a fare pubblicità su Google?",
+    "textAdsBannerLong": "Ricevi {0} crediti Google Ads* se spendi almeno {0} per creare le tue prime campagne su PrestaShop o direttamente tramite il tuo [Google Ads Account]({1})[:target=\\\"_blank\\\"].",
+    "textAdsBanner": "Ricevi {0} crediti Google Ads* se spendi almeno {0} per creare le tue prime campagne.",
+    "legendLong": "*Il tuo buono sarà applicato automaticamente dal momento in cui inizierai a spendere! *L'importo deve essere speso entro 60 giorni dalla prima spesa della campagna e i crediti saranno validi per 60 giorni una volta accreditati. [Leggi le condizioni generali d'uso]({0})[:target=\\\"_blank\\\"]",
+    "legend": "*Crea un nuovo account Google Ads, il buono verrà applicato automaticamente una volta che si raggiungerà la spesa e si avranno 60 giorni per spendere i crediti. [Leggi le condizioni d'uso]({0})[:target=\\\"_blank\\\"]",
+    "legendWithoutTC": "* Crea un nuovo account Google Ads; il buono verrà applicato automaticamente una volta che si raggiungerà la spesa e si avranno 60 giorni per spendere i crediti.",
+    "ctaCreateFirstCampaign": "Crea la tua prima campagna",
     "textCampaignsBanner": "Performance Max è la nuova generazione di campagne Smart Shopping. Si tratta di un tipo di campagna potenziata grazie alla tecnologia intelligente di Google. Lavora dietro le quinte per ottimizzare automaticamente i vostri annunci lungo tutto il percorso dello shopping per ottenere il massimo rendimento."
   }
 }
