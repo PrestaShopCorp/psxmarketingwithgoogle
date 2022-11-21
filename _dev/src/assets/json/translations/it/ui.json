@@ -511,8 +511,8 @@
     "introConnected": "Con Performance Max, puoi pubblicizzare i tuoi prodotti e massimizzare il rendimento dei tuoi annunci su più canali Google attraverso un'unica campagna. Ancora meglio, non paghi a meno che i tuoi clienti non facciano clic!",
     "footer": "Nello Spazio Economico Europeo, nel Regno Unito o in Svizzera, le campagne Performance Max possono essere utilizzate con qualsiasi Servizio di Comparison Shopping (CSS) con cui lavorate. Gli annunci verranno visualizzati sulle pagine dei risultati di ricerca generali e su qualsiasi altra superficie per la quale il CSS abbia optato.",
     "titleInfo": "Lo sapevi?",
-    "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
-    "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
+    "contentInfo": "Gli inserzionisti che aggiornano le campagne Smart Shopping a Performance Max notano un aumento medio del 12% del valore di conversione con un ritorno sulla spesa pubblicitaria (ROAS) uguale o superiore*",
+    "footerInfo": "*Dati Google, Global, Ads, Sett-Ott 2021."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "Tutti i filtri",
@@ -537,7 +537,7 @@
     "inputCountryImutable": "Il paese non può essere cambiato dopo la creazione, se vuoi mirare ad un paese diverso, dovrai creare una nuova campagna",
     "inputCountryLabel": "Paese di destinazione",
     "inputCountryTooltip": "Gli annunci della tua campagna sono idonei a essere mostrati ai clienti nelle tue località geografiche mirate, o ai clienti che hanno selezionato la tua lingua mirata come impostazione della lingua del loro browser.",
-    "inputFiltersLegend": "Products filters",
+    "inputFiltersLegend": "Filtri prodotto",
     "inputFiltersAllLabel": "Includi tutti i prodotti sincronizzati",
     "inputFiltersPartialLabel": "Seleziona i prodotti usando i filtri di partizione dei prodotti",
     "inputFiltersHelper": "Take some time to [read Google Shopping ads policies]({0})[:target=\\\"_blank\\\"] some product are prohibited or restricted.",
@@ -687,11 +687,11 @@
       },
       "xHasFailedPreValidation": "{0}: preconvalida fallita.",
       "xHasPassedPreValidation": "{0}: preconvalida accettata.",
-      "labelTooltipDescription": "This attribute matches what you have configured in your product attribute mapping : short description, description...",
-      "labelTooltipBarcode": "This attribute matches what you have configured in your product attribute mapping : barcode, MPN, GTIN, ISBN, UPC..."
+      "labelTooltipDescription": "Questo attributo corrisponde a quanto configurato nella mappatura degli attributi del prodotto: descrizione breve, descrizione...",
+      "labelTooltipBarcode": "Questo attributo corrisponde a quanto configurato nella mappatura degli attributi del prodotto: codice a barre, MPN, GTIN, ISBN, UPC..."
     },
     "approvalTable": {
-      "description": "These are the status of your products that are sent to Google Merchant Center. Some products might appear more than once because of their language variation.",
+      "description": "Questi sono gli stati dei tuoi prodotti che vengono inviati a Google Merchant Center. Alcuni prodotti potrebbero apparire più di una volta a causa della loro variazione linguistica.",
       "filterTitle": "Filtra per disponibilità",
       "filterAllStatus": "Tutti",
       "filterOnlyApproved": "Approvato",
@@ -700,7 +700,7 @@
       "tableHeaderID": "ID",
       "tableHeaderAttributeID": "Attributo",
       "tableHeaderDestination": "Destinazione",
-      "tableHeaderName": "Title",
+      "tableHeaderName": "Titolo",
       "tableHeaderGoogleValidation": "Disponibilità per Google",
       "tableHeaderLanguage": "Lingua",
       "tableHeaderCountry": "Nazione",
@@ -732,7 +732,7 @@
   "campaignCard": {
     "title": "Crea la tua campagna Performance Max in pochi clic",
     "description": "Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it\\'s that easy!",
-    "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Peformance Max campaigns"
+    "footer": "Dovremo attivare il remarketing e il tag di tracciamento delle conversioni per consentire l'esecuzione di campagne Performance Max"
   },
   "keymetrics": {
     "title": "Metriche chiave",
@@ -796,7 +796,7 @@
     },
     "tooltipCol": {
       "status": "Uno stato per la tua campagna pubblicitaria che descrive se i suoi annunci possono essere eseguiti o meno al momento.",
-      "products": "Product filter is what you selected as your campaign filter with the number of affected products."
+      "products": "Il filtro prodotto è quello selezionato come filtro della campagna con il numero di prodotti interessati."
     },
     "campaignsPerformanceTable": {
       "title": "Performance della campagna",
@@ -815,12 +815,12 @@
     }
   },
   "notConfiguredState": {
-    "title": "Finish your configuration",
-    "titleOneLastStep": "One last step",
-    "textGoogleMissing": "Continue your configuration to start sending products to Google and creating campaigns.",
-    "textOneMoreThing": "One more thing and you are all set to send your products to Google.",
-    "textBoostYourSales": "If you want to boost your sales; connect and create campaigns with Google Ads.",
-    "ctaClassic": "Go to configuration page",
+    "title": "Termina la configurazione",
+    "titleOneLastStep": "Un ultimo passo",
+    "textGoogleMissing": "Continua la configurazione per iniziare a inviare prodotti a Google e creare campagne.",
+    "textOneMoreThing": "Ancora una cosa e sarai pronto per inviare i tuoi prodotti a Google.",
+    "textBoostYourSales": "Se vuoi incrementare le tue vendite, collegati e crea campagne con Google Ads.",
+    "ctaClassic": "Vai alla pagina di configurazione",
     "ctaLinkMCA": "Link your Google Merchant Center Account",
     "ctaExportFeed": "Sync your products with Google",
     "ctaLinkGoogleAds": "Connect your Google Ads Account"
