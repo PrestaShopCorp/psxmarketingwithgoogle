@@ -5,7 +5,7 @@
     >
       <b-form-radio-group
         buttons
-        button-variant="default rounded-0"
+        button-variant="outline-primary rounded-0"
         size="sm"
         v-model="reportingPeriod"
         :options="periods"

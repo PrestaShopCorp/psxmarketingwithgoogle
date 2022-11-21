@@ -8,23 +8,47 @@ $grey_median: #B6B7B4;
 $grey-disabled: #dadada;
 $red-light: #F77B72;
 
-// TODO: Rename these variables
-$blue_light: #E9E6F8;
-$blue_medium: #C7C0EE;
 $blue: #442CC7;
-$blue_dark: #442CC7;
 
-$purple: #442CC7;
+$purple-050: #E9E6F8;
+$purple-100: #C7C0EE;
+$purple-200: #A296E3;
+$purple-500: #442CC7;
+$purple-700: #3521BA;
+$purple-900: #1F10A6;
+
+$light-blue-050: #F8FAFC;
+$light-blue-100: #EFF3F7;
+$light-blue-200: #E4EBF2;
+$light-blue-300: #D9E3EC;
+$light-blue-500: #C8D7E4;
+$light-blue-700: #BBCDDD;
+$light-blue-900: #A7BED1;
+
+$purple: $purple-500;
 $green: #21834D;
 $primary: $purple;
 $info: $purple;
 $success: $green;
+$primary-lighten: $light-blue-050;
 
+
+// Because !default is missing in the ui-kit variables,
+// we have to reset some theme colors.
+$primary-hover: #3521BA;
+$primary-active: $purple;
+$btn-primary-bg: $primary-hover;
+$primary-disabled: $purple-050;
+$theme-colors-hover: (
+  "primary": $primary-hover,
+);
+$theme-colors-active: (
+  "primary": $primary-active,
+);
 
 // Colors background
 $bg-grey_disabled: #F6F6F6;
 $violet_extralight: #FAF9FE;
-$blue_extralight: #FBFEFF;
 $bg-grey_light: #D8D8D8;
 $bg-green_light: #D4E9D9;
 

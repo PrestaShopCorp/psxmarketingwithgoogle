@@ -95,7 +95,7 @@
     "introDisabled": "You can connect an existing Google Merchant Center account, or create a new one in a few easy steps.",
     "claimCollides": "Your website has been already claimed.",
     "claimOverwrite": "To finish Merchant Center account creation, you need to overwrite the existing claim.",
-    "footerEU": "If you are in the European Economic Area, the United Kingdom or Switzerland your Merchant Center account must be associated with a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nIf you create a new Merchant Center account through this application, it will be associated with Google Shopping, Google’s CSS, by default. You can change the CSS associated with your account at any time. [Find your CSS Partners]({1})[:target=\"_blank\"]  \nOnce you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
+    "footerEU": "For stores in the European Economic Area, the United Kingdom or Switzerland, your Merchant Center account is required to be associated with to a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. For new Merchant Center accounts created through this application, your account would be associated by default with Google Shopping, Google’s CSS. You can change the CSS associated with your account at any time and you can also find CSS Partners here. Once you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
     "shopInfoMissing": "Store information is missing",
     "shopInfoMissingDescription": "To complete missing store information please go to your [Merchant Center account]({0})[:target=\"_blank\"].",
     "userIsNotAdmin": "You need Admin access",
