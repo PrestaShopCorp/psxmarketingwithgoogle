@@ -9,7 +9,7 @@
       "help": "Pomoc"
     },
     "versionDoesNotExist": "Wygląda na to, że wersja modułu nie może zostać pobrana. Jest to po naszej stronie, proszę spróbować ponownie.",
-    "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
+    "moduleNeedActivation": "Marketing with Google jest wyłączony. Nie możesz korzystać z żadnych jego funkcji, dopóki nie włączysz tego modułu.",
     "moduleUpdateNeeded": {
       "ps_eventbus": "Wersja modułu PrestaShop EventBus uruchomiona w tym sklepie jest starsza niż minimalna wymagana.\n\nMożesz używać PrestaShop Marketing with Google, ale niektóre funkcje (np. synchronizacja produktów) nie będą dostępne dopóki nie zaktualizujesz PrestaShop EventBus.",
       "psxmarketingwithgoogle": "Proszę zaktualizować moduł PrestaShop Marketing With Google, aby działał poprawnie."
@@ -21,19 +21,19 @@
     "unableToFetchData": "Nie udało się pobrać danych, proszę spróbować ponownie później",
     "searchByX": "Szukaj według {0}",
     "search": "Szukaj",
-    "createAccount": "create your account",
-    "createNewAccount": "If you don't have an account, you can {0} today.",
+    "createAccount": "utwórz Twoje konto ",
+    "createNewAccount": "Nie masz jeszcze konta? {0} już teraz.",
     "notAvailable": "Niedostępne",
-    "min": "Min",
-    "max": "Max",
+    "min": "min.",
+    "max": "max.",
     "helpPage": "Strona pomocy",
     "noResultsFoundForX": "Nie znaleziono wyników dla {0}",
-    "days": "Days"
+    "days": "dni"
   },
   "landingPage": {
     "header": {
-      "title": "Marketing z Google",
-      "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 3 easy steps.",
+      "title": "Marketing with Google",
+      "text": "Dzięki Prestashop Marketing możesz trafić do potencjalnych kupujących, którzy szukają online produktów takich jak te, które oferujesz! Skorzystaj z tego modułu, aby dotrzeć do nich poprzez Google w 3 prostych krokach.",
       "reinsurance": "- Łatwa konfiguracja \n- Anuluj w każdej chwili"
     },
     "content": {
@@ -60,13 +60,13 @@
     "sectionTitle": {
       "psAccount": "Podłącz swoje konto PrestaShop",
       "freeListing": {
-        "title": "Reach more people on Google with free listings",
-        "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center.",
-        "lastTitle": "Businesses using free listings and ads on the Shopping tab together have seen an average >50% increase in clicks and >100% increase in impressions. (Google Internal Data, July 2020)"
+        "title": "Dotrzyj to większej liczby osób dzięki bezpłatnemu wyświetlaniu informacji o produktach",
+        "subtitle": "Bezpłatne informacje dają Ci dostęp do milionów kupujących, którzy szukają produktów podobnych do Twoich. Po połączeniu Twojego konta Google z Google Merchant Center, możesz wyświetlać Twoje produkty za darmo w organicznie uszeregowanych listach na karcie Zakupy.",
+        "lastTitle": "Firmy korzystające łącznie z wyświetlania bezpłatnych informacji i reklam na karcie Zakupy odnotowały średnio >50% wzrost kliknięć i >100% wzrost wyświetleń (Dane wewnętrzne Google, lipiec 2020)"
       },
       "smartShoppingCampaign": {
-        "title": "Advertise on Google with Performance Max",
-        "subtitle": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion.\n\n Even better, you don't pay unless your customers click."
+        "title": "Reklamuj się w Google z Performance Max",
+        "subtitle": "Połącz lub utwórz Twoje konto Google Ads i uruchom kampanię Performance Max dla Twoich produktów. Zmaksymalizuj wydajność reklam w wielu kanałach Google za pomocą jednej kampanii. Pokaż Twoje reklamy tam, gdzie mają one większe szanse na konwersję.\n\n Co więcej, nie zapłacisz, jeśli klienci nie klikną."
       }
     },
     "productFeedNotice": "Pomóż klientom znaleźć Twoje produkty w Google z jeszcze większą łatwością i skorzystaj z możliwości wyświetlania bezpłatnych informacji o produkcie. Wyświetlanie bezpłatnych informacji o produkcie pozwala dotrzeć do większej liczby klientów, którzy odwiedzą Twoją stronę."
@@ -105,7 +105,7 @@
     "linkingFailed": "Nie możesz się teraz połączyć z kontem Merchant Center. Spróbuj ponownie później.",
     "AccountValidationFailed": "Uwierzytelnienie konta nie powiodło się.",
     "unlinkFailed": "Rozłączenie nie powiodło się. Odśwież stronę i spróbuj ponownie.",
-    "tryAgainLater": "We can’t verify or claim the current site. **We recommend that you ensure that the site is accessible** and try again later.",
+    "tryAgainLater": "Nie możemy zweryfikować ani zatwierdzić obecnej strony. **Zalecamy upewnić się, że strona jest dostępna** i spróbować ponownie później.",
     "alertSuspended": "Twoje konto zostało dezaktywowane.",
     "alertSuspendedDescription": "Aby zapoznać się ze szczegółami dotyczącymi powodów zawieszenia, odwiedź swoje [konto Merchant Center]({0})[:target=\"_blank\"]. Po rozwiązaniu problemu, będziesz musiał poprosić o nową weryfikację, wypełniając [ten formularz]({1})[:target=\"_blank\"].",
     "notManaged": "Brak powiązania z PrestaShop",
@@ -124,25 +124,25 @@
     "sendCode": "Wyślij kod",
     "receiveCall": "Połączenie przychodzące",
     "phoneVerifiedContinue": "Twój numer telefonu został zweryfikowany, możesz kontynuować tworzenie konta.",
-    "enterCode": "Please enter your verification code",
+    "enterCode": "Wprowadź kod weryfikacyjny",
     "validatingCode": "Trwa zatwierdzanie kodu",
-    "textMessageHasBeenSent": "A text message containing an X-digit code has been sent",
+    "textMessageHasBeenSent": "Wiadomość tekstowa zawierająca X-cyfrowy kod właśnie została wysłana",
     "askAgain60sec": "Będziesz mógł poprosić o nowy kod w ciągu 60 sekund",
-    "needPhoneVerification": "We need to verify your identity with your phone number",
+    "needPhoneVerification": "Musimy zweryfikować Twoją tożsamość za pomocą Twojego numeru telefonu",
     "fillInputs": "Wpisz swój numer telefonu i wybierz prefiks międzynarodowy",
-    "invalidCode": "Code is not valid",
-    "phoneNumberNotValid": "Your phone number is incorrect, please only put numbers",
+    "invalidCode": "Kod jest nieważny",
+    "phoneNumberNotValid": "Twój numer telefonu jest nieprawidłowy. Wprowadź tylko cyfry",
     "code": "Kod",
-    "contactMethod": "Choose your preferred contact method",
+    "contactMethod": "Wybierz preferowaną metodę kontaktu",
     "dialCode": "Wpisz kod",
-    "phoneNumber": "Enter your phone number",
+    "phoneNumber": "Wpisz Twój numer telefonu",
     "textMethod": "Wiadomość tekstowa",
     "callMethod": "Rozmowa telefoniczna",
     "selectMethod": "Wybierz preferowaną metodę kontaktu w celu weryfikacji tożsamości",
     "alertTooManyRequests": "Prosiłeś o tę usługę zbyt wiele w powiązaniu z tym numerem telefonu. Musisz poczekać 24 godziny, aby spróbować ponownie lub musisz zmienić numer telefonu.",
     "alertSomethingHappened": "Coś się stało. To po naszej stronie, proszę spróbować ponownie.",
     "alertCodeExpired": "Kod wygasł. Poproś o nowy",
-    "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
+    "refreshAfterAddingWebsiteAddress": "Jeśli wprowadzono nowe informacje do Google Merchant Center, odśwież stronę."
   },
   "mcaRequirements": {
     "steps": {
@@ -155,27 +155,27 @@
     "legend2": "Adres URL strony sklepu musi zostać zweryfikowany i zgłoszony, zanim będziesz mógł przesłać dane produktów.  \n[Dowiedz się, jak zweryfikować i zgłosić swoją stronę internetową](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Przeczytaj pełną wersję wymagań Google dotyczących sklepu",
     "accurateContactInformation": {
-      "title": "I confirm that my contact information are correct and valid",
+      "title": "Potwierdzam, że moje dane kontaktowe są poprawne i aktualne",
       "description": "Na swojej stronie internetowej Sprzedawcy powinni wskazać co najmniej jedną formę kontaktu. Może to być jakakolwiek forma kontaktu.",
       "link": "Odkryj, jak dodać dane kontaktowe"
     },
     "secureCheckoutProcess": {
-      "title": "I confirm that I have a clear checkout & data collection",
+      "title": "Potwierdzam, że mam jasny zbiór danych i przeprowadzonych transakcji",
       "description": "Nie wykorzystuj i nie gromadź informacji o użytkownikach w niejasnych celach i bez zachowania stosownych środków bezpieczeństwa.",
       "link": "Dowiedz się więcej o nieodpowiedzialnym gromadzeniu i wykorzystywaniu danych"
     },
     "returnPolicy": {
-      "title": "I confirm that my return & refund policy are setup on my website",
+      "title": "Potwierdzam, że moja polityka zwrotów i refundacji jest skonfigurowana na mojej stronie internetowej",
       "description": "Polityka zwrotów musi być jasna (powinna uwzględniać wymagania i ramy czasowe) i łatwo dostępna na Twojej stronie internetowej.",
       "link": "Dowiedz się, jak skonfigurować politykę zwrotów"
     },
     "billingTerms": {
-      "title": "I confirm that my billing terms and conditions are clear and visible",
+      "title": "Potwierdzam, że moje warunki rozliczeniowe są jasne i widoczne",
       "description": "Strona internetowa musi jasno i wyraźnie przedstawiać opcje płatności oraz wszystkie koszty, które użytkownik poniesie, przed i po zakupie.",
       "link": "Przeczytaj wytyczne Merchant Center"
     },
     "completeCheckoutProcess": {
-      "title": "I confirm that I have a complete checkout process",
+      "title": "Potwierdzam, że mam kompletny proces zakupowy",
       "description": "Użytkownicy powinni mieć możliwość pomyślnego sfinalizowania zakupów.",
       "link": "Dowiedz się więcej o wymaganiach dotyczących finalizacji zakupów"
     },
@@ -207,12 +207,12 @@
     "title": "Plik danych",
     "intro": "Przesyłaj dane o produkcie bezpośrednio na swoje konto Merchant Center, dzięki czemu informacje wyświetlane w karcie Zakupy i w reklamach będą zawsze aktualne.",
     "introToConfigure": "Ważne jest, aby podać swój kanał produktu w prawidłowym formacie, ponieważ Google używa go, aby upewnić się, że Twoje produkty pasują do właściwych zapytań.",
-    "nextSync": "Next synchronization on {0}",
+    "nextSync": "Następna synchronizacja {0}",
     "mappedCategories": "{0}/{1} przyporządkowane kategorie",
     "alertFeedSettingSubmissionSuccess": "Pomyślnie przesłałeś dane o swoich produktach do Merchant Center. Po zatwierdzeniu, dane te będą uwzględnione w usłudze bezpłatnego wyświetlanie informacji o produkcie i w reklamach.",
     "alertFailed": "Synchronizacja danych o produkcie nie powiodła się. Sprawdź możliwe przyczyny w [Merchant Center]({0})[:target=\"_blank\"] lub skontaktuj się z [działem obsługi klienta](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Brakuje informacji o wysyłce.",
-    "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
+    "alertShippingSettingsMissingDescription": "Aby pomyślnie zsynchronizować kanał produktu, należy dodać informacje o wysyłce.",
     "alertProductFeedDeactivated": "Jeśli synchronizacja danych o produkcie będzie wyłączona, nowe produkty nie zostaną przesłane do Google Merchant Center. Konto nadal będzie istniało, a produkty wygasną po 30 dniach. Spowoduje to zatrzymanie wyświetlania bezpłatnych informacji o Twoich produktach i kampanii produktowych.",
     "alertProductFeedExists": "**A product feed already exists**  \n<small>Twój product feed już istnieje. Musisz go nadpisać, aby zsynchronizować swój kanał produktowy PrestaShop. </small>",
     "googleTaxonomyAssociation": "Skojarzenie taksonomii Produktu Google",
@@ -258,13 +258,13 @@
         "summary": "Skonfiguruj później"
       },
       "validationErrors": {
-        "needOptionToBeChosen": "You need to select one option to continue"
+        "needOptionToBeChosen": "Aby kontynuować, musisz wybrać jedną opcję"
       }
     },
     "deliveryTimeAndRates": {
       "tooltips": {
         "carrierName": "The carrier name will help you identify the carriers when it is created with the estimation method. It is limited to 90 characters",
-        "freeShippingOverAmount": "Enter the value of minimum spend required for free shipping",
+        "freeShippingOverAmount": "Wprowadź wartość minimalnej kwoty wydatków wymaganej dla darmowej wysyłki",
         "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
       },
       "title": "Czas i koszt dostawy",
@@ -338,16 +338,16 @@
       "carriersDropdownHiddenLabel": "Kopiowanie informacji o przewoźniku do innych przewoźników",
       "noCarriersTitle": "Nie masz żadnych przewoźników",
       "noCarriersDescription": "Proszę przejść do strony przewoźników, aby dodać przewoźników",
-      "countryNeededTitle": "Select your target country",
-      "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
+      "countryNeededTitle": "Wybierz Twój kraj docelowy",
+      "countryNeededDescription": "Wprowadź kraje docelowe, aby wyświetlić odpowiednie ustawienia wysyłki w tabeli",
       "addNewCarriers": "Dodaj lub zaktualizuj przewoźników",
       "refreshCarriers": "Odśwież, jeśli edytowałeś swoje nośniki",
       "switchToFlatRate": "Przejdź do konfiguracji szacunkowego trybu wysyłki"
     },
     "preScan": {
-      "selectLanguage": "Filter by language",
-      "apiError": "An error occurred while fetching data, please try again later.",
-      "noElement": "You don't have any products."
+      "selectLanguage": "Filtruj według języka",
+      "apiError": "Podczas pobierania danych wystąpił błąd. Spróbuj ponownie później.",
+      "noElement": "Nie masz żadnych produktów."
     },
     "export": {
       "summarySyncDailyAt": "Synchronizuj codziennie o {0}",
@@ -404,10 +404,10 @@
       "material": "Materiał",
       "pattern": "Wzór",
       "gtin": "GTIN",
-      "ean": "EAN13",
+      "ean": "EAN-13",
       "mpn": "MPN",
       "brand": "Marka",
-      "notAvailable": "Not filled",
+      "notAvailable": "Niewypełnione",
       "specificTitle": "Szczególny",
       "sellRefurbished": "Sprzedaję odnowione produkty",
       "sellApparel": "Sprzedaję odzież i akcesoria",
@@ -439,10 +439,10 @@
       "time": "Czas",
       "youSell": "**Sprzedajesz** {0}",
       "dataSyncSetUp": "Konfiguracja synchronizacji danych",
-      "productAttributesMapping": "Category & product attribute mapping",
-      "attributeMapped": "One category have been mapped | {0} categories have been mapped",
+      "productAttributesMapping": "Mapowanie atrybutów kategorii i produktów",
+      "attributeMapped": "Zmapowano jedną kategorię | {0} zmapowanych kategorii",
       "mandatoryAttributesNotMapped": "One Google attributes haven't been mapped to your custom fields | {0} Google attributes haven't been mapped to your custom fields.",
-      "noticeToCompleteMapping": "We recommend mapping all your data otherwise your products might be rejected by Google.",
+      "noticeToCompleteMapping": "Zalecamy mapowanie wszystkich danych. W przeciwnym razie Twoje produkty mogą zostać odrzucone przez Google.",
       "agreementTitle": "Rozumiem i zgadzam się na następujące warunki*.",
       "agreementCheckboxLabel1Instant": "Synchronizacja mojego kanału produktowego zostanie uruchomiona po kliknięciu na zapisz i wyeksportuj (może to potrwać od 1 do 4 godzin)",
       "agreementCheckboxLabel1Default": "Synchronizacja mojego kanału produktu zajmie trochę czasu przy {time} (Może to potrwać od 1 do 4 godzin)",
@@ -463,7 +463,7 @@
   },
   "googleAdsAccountCard": {
     "title": "Konto Google Ads",
-    "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
+    "intro": "Stwórz kampanie reklamowe dla Twoich produktów: znajdź odpowiednią grupę odbiorców w odpowiednim czasie.",
     "text": "Po podłączeniu konta, konieczne może być skonfigurowanie ustawień dotyczących płatności na Twoim koncie Google Ads.",
     "labelSelect": "Podłącz istniejące konto Google Ads",
     "id": "ID konta Google Ads",
@@ -490,13 +490,13 @@
       "description": "The email address below is the one provided during your Google account connection"
     },
     "business": {
-      "name": "Business name",
+      "name": "Nazwa firmy",
       "title": "Informacje o firmie",
-      "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
+      "description": "Waluta, którą teraz wybierzesz dla Twojego konta, będzie niezmienna, więc zastanów się nad wyborem.",
       "labelCountry": "Kraj płatności",
       "placeholderCountry": "Kraj",
       "labelTimeZone": "Strefa czasowa",
-      "placeholderTimeZone": "Choose time",
+      "placeholderTimeZone": "Wybierz strefę czasową",
       "labelCurrency": "Waluta",
       "placeholderCurrency": "Waluta"
     },
@@ -510,7 +510,7 @@
     "introNotConnected": "Połącz lub utwórz Twoje konto Google Ads i uruchom kampanię Performance Max dla Twoich produktów. Zmaksymalizuj skuteczność reklamy w wielu kanałach Google za pomocą jednej kampanii. Pokazuj Twoje reklamy tam, gdzie mają większe szanse na konwersję. Co więcej, nie zapłacisz, jeśli klienci nie klikną.",
     "introConnected": "Dzięki Performance Max możesz reklamować Twoje produkty i maksymalizować wydajność reklam w licznych kanałach Google za pomocą jednej kampanii. Co więcej, nie płacisz, dopóki klienci nie klikną w reklamę!",
     "footer": "Na terenie Europejskiego Obszaru Gospodarczego, Wielkiej Brytanii i Szwajcarii kampanie Performance Max mogą być stosowane we wszystkich porównywarkach internetowych (CSS), których używasz. Reklamy będą wyświetlane na stronach ogólnych wyników wyszukiwania oraz na wszelkich innych powierzchniach, na które wyraził zgodę CSS.",
-    "titleInfo": "Did you know?",
+    "titleInfo": "Czy wiesz, że…?",
     "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
     "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
   },
@@ -531,13 +531,13 @@
     "inputDurationTooltip": "Kampanie reklamowe domyślnie nie mają daty końcowej, dzięki czemu reklamy mogą być wyświetlane bezterminowo. Zawsze możesz dodać datę zakończenia, aby skrócić czas kampanii.",
     "inputDurationLabel1": "Data rozpoczęcia",
     "inputDurationLabel2": "Data zakończenia (opcjonalnie)",
-    "inputDurationInvalidFeedback": "The end date must be set in the future.",
+    "inputDurationInvalidFeedback": "Data końcowa musi być określona w przyszłości.",
     "inputDatePickerHelper": "Użyj kursora, aby wpisać datę z kalendarza",
     "inputCountryHelper": "Jeśli chcesz dotrzeć do klientów z różnych krajów, musisz utworzyć osobne kampanii.",
     "inputCountryImutable": "Kraj nie może być zmieniony po utworzeniu, jeśli chcesz kierować na inny kraj, musisz stworzyć nową kampanię",
     "inputCountryLabel": "Kraj docelowy",
     "inputCountryTooltip": "Twoje reklamy kwalifikują się do wyświetlania klientom w wybranych lokalizacjach lub klientom, którzy wybrali język Twojego kraju docelowego w ustawieniach swojej wyszukiwarki.",
-    "inputFiltersLegend": "Products filters",
+    "inputFiltersLegend": "Filtry produktów",
     "inputFiltersAllLabel": "Uwzględnij wszystkie zsynchronizowane produkty",
     "inputFiltersPartialLabel": "Wybierz produkty za pomocą filtrów produktów",
     "inputFiltersHelper": "Poświęć trochę czasu na [przeczytanie zasad reklam Google Shopping]({0})[:target=\"_blank\"] niektóre produkty są zabronione lub ograniczone.",
@@ -546,7 +546,7 @@
     "inputBudgetFeedback": "Dzienny budżet kampanii",
     "inputBudgetTooltip": "Twój budżet to średnia kwota, którą jesteś w stanie wydać każdego dnia na kampanię. Budżet, który wybierzesz, zależy wyłącznie od Ciebie i możesz go zmienić w dowolnym momencie.",
     "inputBudgetPlaceholder": "Kwota",
-    "inputAllSyncedProducts": "No filters selected",
+    "inputAllSyncedProducts": "Nie wybrano filtrów",
     "formHelperTitle": "Uruchomienie kampanii",
     "formHelperDescription": "Twoja kampania będzie trwała do momentu, aż ją wstrzymasz lub gdy upłynie data jej zakończenia. Możesz wstrzymać swoją kampanię w dowolnym momencie.",
     "errorNoProducts": "Chcesz rozpocząć kampanię, ale Twoje centrum handlowe Google nie zawiera jeszcze żadnych produktów. Twoja kampania rozpocznie się dopiero wtedy, gdy przynajmniej jeden produkt zostanie zatwierdzony przez Google.",
@@ -560,8 +560,8 @@
     "enableCreationRemarketingTag": "Włącz tag remarketingowy i śledzenia konwersji",
     "pauseCampaign": "Twoja kampania będzie trwała do momentu, aż ją wstrzymasz lub gdy upłynie data jej zakończenia. Możesz wstrzymać swoją kampanię w dowolnym momencie.",
     "switch": {
-      "on": "On",
-      "off": "Off"
+      "on": "Wł.",
+      "off": "Wył."
     },
     "alerts": {
       "noTag": "Przez brak automatycznie dodanego tagu, Google nie będzie w stanie wysyłać wyników kampanii",
@@ -570,7 +570,7 @@
       "hasUnhandledFilters": "Przynajmniej jeden filtr tej kampanii nie jest obsługiwany przez ten moduł. Aby uniknąć jakichkolwiek strat w istniejącej konfiguracji, można modyfikować tylko podstawowe szczegóły kampanii.",
       "PMaxExplanationTitle": "Performance Max to nowy typ kampanii oparty na celach.",
       "PMaxExplanation": "Performance Max to ulepszony typ kampanii, wykorzystujący inteligentną technologię Google. Pomoże Ci on zoptymalizować reklamy w licznych kanałach Google i uzyskać lepsze wyniki dla Twojej firmy.",
-      "PMaxExplanationPrecision": "Even better, you won't pay unless customers click.",
+      "PMaxExplanationPrecision": "Co najlepsze - nie zapłacisz, dopóki klienci nie klikną.",
       "PMaxExplanationLink": "Dowiedz się więcej o kampaniach Performance Max"
     },
     "labelSelectedDimension": "Wybrana wartość wymiaru",
@@ -584,7 +584,7 @@
     "remarketingTagLoading": "Sprawdzamy, czy posiadasz tagi remarketingowe i śledzenia konwersji w celu dodania ich do swojego sklepu",
     "descriptiveMessage": "Wyświetlane są tylko kampanie Performance Max i Inteligentne kampanie produktowe powiązane z Twoim kontem w Google Merchant Center. \nJeśli chcesz zobaczyć wszystkie Twoje kampanie, [przejdź do Twojego konta Google Ads]({0})[:target=\"_blank\"].",
     "nbProductsFiltersSelected": "Nie wybrano żadnego filtra produktu | wybrano {0} filtr produktu | wybrano {0} filtrów produktu",
-    "dimensionXFilterSelected": "{0} filter",
+    "dimensionXFilterSelected": "{0} filtr",
     "categories": "Kategoria",
     "categoriesSubTitle": "Kategoria produktu zdefiniowana przez Google dla Twojego produktu (np. Odzież",
     "brands": "Marka",
@@ -594,7 +594,7 @@
     "conditions": "Stan produktu",
     "conditionsSubTitle": "Stan produktu w momencie sprzedaży (np.: nowy, używany lub odnowiony)",
     "popinTitle": "Filtry produktów kampanii",
-    "popinTitleConfirmCancel": "Go Back",
+    "popinTitleConfirmCancel": "Wróć",
     "xProducts": " ({0} product) | ({0} product) | ({0} products)",
     "productConditions": {
       "unspecified": "Nieokreślony",
@@ -610,8 +610,8 @@
     "tableTitle": "Wyniki kampanii",
     "xCampaign": "Brak kampanii | {0} kampania | {0} kampania",
     "performanceMax": "Performance Max",
-    "smartShoppingCampaign": "Smart Shopping Campaign",
-    "campaignType": "Type: {0}"
+    "smartShoppingCampaign": "Inteligentna kampania produktowa",
+    "campaignType": "Typ: {0}"
   },
   "productFeedPage": {
     "breadcrumb": "Szczegóły statusu produktu",
@@ -620,8 +620,8 @@
       "alertSuccess": "Zostałeś pomyślnie zalogowany. Po zatwierdzeniu, Twoje produkty będą mogły być wyświetlane w wynikach wyszukiwania w karcie Zakupy Google."
     },
     "destinations": {
-      "shoppingAds": "Shopping Ads",
-      "enhancedFreeListing": "Enhanced Free Listings"
+      "shoppingAds": "Reklamy produktowe",
+      "enhancedFreeListing": "Włącz wyświetlanie bezpłatnych informacji o produkcie"
     },
     "syncStatus": {
       "title": "Status synchronizacji",
@@ -642,12 +642,12 @@
           "failed": "Synchronizacja nie powiodła się",
           "completed": "Synchronizacja zakończona",
           "next": "Następna synchronizacja",
-          "notPlanned": "No planned synchronisation"
+          "notPlanned": "Nie zaplanowano synchronizacji"
         },
         "subtitle": {
           "willHappenOnDate": "Will start on {0} at {1}",
           "happenedOnDate": "Na {date}",
-          "error": "Due to a technical issue, the sync failed on {0} at {1}. A new one will run in a few hours."
+          "error": "Z powodu problemu technicznego, synchronizacja nie powiodła się na stronie {0} pod adresem {1}. Nowa synchronizacja zostanie uruchomiona za kilka godzin."
         }
       }
     },
@@ -685,13 +685,13 @@
         "barcode": "MPN",
         "price": "Prix"
       },
-      "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
-      "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation.",
+      "xHasFailedPreValidation": "\"{0}\": proces wstępnej walidacji nie powiódł się.",
+      "xHasPassedPreValidation": "\"{0}\": proces wstępnej walidacji powiódł się.",
       "labelTooltipDescription": "This attribute matches what you have configured in your product attribute mapping : short description, description...",
       "labelTooltipBarcode": "This attribute matches what you have configured in your product attribute mapping : barcode, MPN, GTIN, ISBN, UPC..."
     },
     "approvalTable": {
-      "description": "These are the status of your products that are sent to Google Merchant Center. Some products might appear more than once because of their language variation.",
+      "description": "Są to statusy Twoich produktów, które są wysyłane do Google Merchant Center. Ze względu na zmianę języka, niektóre produkty mogą pojawić się więcej niż raz.",
       "filterTitle": "Filtruj według dostępności",
       "filterAllStatus": "Wszystkie",
       "filterOnlyApproved": "Zatwierdzony",
@@ -700,7 +700,7 @@
       "tableHeaderID": "ID",
       "tableHeaderAttributeID": "Atrybut",
       "tableHeaderDestination": "Miejsce docelowe",
-      "tableHeaderName": "Title",
+      "tableHeaderName": "Nazwa",
       "tableHeaderGoogleValidation": "Dostępność dla Google",
       "tableHeaderLanguage": "Język",
       "tableHeaderCountry": "Kraj",
@@ -732,7 +732,7 @@
   "campaignCard": {
     "title": "Utwórz kampanię Performance Max za pomocą kilku kliknięć",
     "description": "Google A.I. wyświetli reklamy poszukiwanych produktów zainteresowanym kupującym w odpowiednim czasie, zwiększając Twoją sprzedaż.\n\nUstaw dzienny budżet i z łatwością uruchom kampanię reklamową - otrzymasz rachunek tylko wtedy, gdy reklamy zostaną kliknięte, to takie proste!",
-    "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Peformance Max campaigns"
+    "footer": "Musimy aktywować remarketing i tag śledzenia konwersji, aby prowadzenie kampanii Peformance Max było możliwe"
   },
   "keymetrics": {
     "title": "Kluczowe wskaźniki",
@@ -781,7 +781,7 @@
       "conversion": "Konwersja",
       "sales": "Sprzedaż",
       "id": "ID",
-      "products": "Product Filters",
+      "products": "Filtry produktu",
       "click": "Kliknięcie",
       "costs": "Koszty",
       "averageCostPerClick": "Średnie CPC",
@@ -796,7 +796,7 @@
     },
     "tooltipCol": {
       "status": "Status kampanii reklamowej, który opisuje, czy jej reklamy mogą być w danej chwili uruchamiane, czy nie.",
-      "products": "Product filter is what you selected as your campaign filter with the number of affected products."
+      "products": "Filtr produktu jest tym, co wybrano jako filtr kampanii wraz z liczbą produktów, na które ma wpływ."
     },
     "campaignsPerformanceTable": {
       "title": "Wyniki kampanii",
@@ -815,25 +815,25 @@
     }
   },
   "notConfiguredState": {
-    "title": "Finish your configuration",
-    "titleOneLastStep": "One last step",
-    "textGoogleMissing": "Continue your configuration to start sending products to Google and creating campaigns.",
-    "textOneMoreThing": "One more thing and you are all set to send your products to Google.",
-    "textBoostYourSales": "If you want to boost your sales; connect and create campaigns with Google Ads.",
-    "ctaClassic": "Go to configuration page",
-    "ctaLinkMCA": "Link your Google Merchant Center Account",
-    "ctaExportFeed": "Sync your products with Google",
-    "ctaLinkGoogleAds": "Connect your Google Ads Account"
+    "title": "Zakończ konfigurację",
+    "titleOneLastStep": "Ostatni krok",
+    "textGoogleMissing": "Kontynuuj konfigurację, aby rozpocząć wysyłanie produktów do Google i tworzenie kampanii.",
+    "textOneMoreThing": "Jeszcze jedna rzecz i wszystko będzie gotowe do wysłania Twoich produktów do Google.",
+    "textBoostYourSales": "Jeśli chcesz zwiększyć Twoją sprzedaż, połącz się i twórz kampanie z Google Ads.",
+    "ctaClassic": "Przejdź do strony konfiguracyjnej",
+    "ctaLinkMCA": "Podłącz Twoje konto Google Merchant Center",
+    "ctaExportFeed": "Zsynchronizuj Twój katalog produktów z Google",
+    "ctaLinkGoogleAds": "Połącz Twoje konto Google Ads"
   },
   "configuredState": {
-    "title": "Congratulations, you're all set !",
-    "text": "You finished all the required steps to get the most out of **Marketing with Google**",
-    "cta": "Go to campaign creation",
-    "firstStep": "Link your store to a PrestaShop account",
-    "secondStep": "Sign in or create your Google Account",
-    "thirdStep": "Sign in or create your Google Merchant Center account",
-    "fourthStep": "Export and synchronize your product catalog",
-    "fifthStep": "Sign in or create your Google Ads account",
+    "title": "Gratulacje, wszystko gotowe!",
+    "text": "Ukończono wszystkie wymagane kroki, aby uzyskać jak najwięcej korzyści z **Marketing with Google**",
+    "cta": "Przejdź do tworzenia kampanii",
+    "firstStep": "Podłącz Twój sklep do konta PrestaShop",
+    "secondStep": "Zaloguj się lub utwórz Twoje konto Google",
+    "thirdStep": "Utwórz lub połącz Twoje konto Google Merchant Center",
+    "fourthStep": "Eksportuj i synchronizuj Twój katalog produktów",
+    "fifthStep": "Zaloguj się lub utwórz Twoje konto Google Ads",
     "sixthStep": "**Następny krok** utwórz Twoją pierwszą kampanię Performance Max"
   },
   "help": {
@@ -872,19 +872,19 @@
     "acceptInvitation": "Zaakceptuj zaproszenie",
     "continue": "Kontynuuj",
     "disabled": "Wyłączone",
-    "activateModule": "Enable module",
+    "activateModule": "Aktywuj moduł",
     "enabled": "Włączone",
     "agree": "Zgadzam się",
     "enableFreeListing": "Włącz wyświetlanie bezpłatnych informacji o produkcie",
-    "connectAccount": "Connect your account",
+    "connectAccount": "Połącz Twoje konta",
     "connectingAccount": "Podłączanie konta...",
     "chooseExistingAccount": "Wybierz istniejące konto",
     "createNewAccount": "Utwórz nowe konto",
     "learnAboutAccountSuspension": "Dowiedz się więcej o zawieszeniu konta.",
     "learnAboutSiteClaiming": "Dowiedz się więcej na temat zgłaszania strony",
     "learnMoreAboutSmartShoppingCampaigns": "Dowiedz się więcej o inteligentnych kampaniach produktowych",
-    "configureAndExportProductFeed": "Start your configuration",
-    "continueProductFeed": "Resume configuration",
+    "configureAndExportProductFeed": "Rozpocznij konfigurację",
+    "continueProductFeed": "Wznów konfigurację",
     "chooseAccount": "Wybierz swoje konto",
     "supportedCountries": "Obsługiwane kraje",
     "cancel": "Anuluj",
@@ -900,7 +900,7 @@
     "editSettings": "Edytuj ustawienia",
     "editRules": "Edytuj zasady",
     "shopMaintenanceBtn": "Przejdź do ustawień konserwacji",
-    "editProductAttributes": "Edit categories & attributes",
+    "editProductAttributes": "Edytuj kategorie i atrybuty",
     "forceSync": "Wymuś synchronizację",
     "createNewGoogleAdsAccount": "Utwórz nowe konto Google Ads",
     "back": "Wróć",
@@ -966,14 +966,14 @@
     "validateSelection": "Zatwierdzanie wyboru",
     "googleProductStatusDefinitions": "Definicje statusu produktów Google",
     "visitThe": "Odwiedź stronę {0} aby uzyskać więcej informacji.",
-    "investigate": "Investigate",
+    "investigate": "Sprawdź",
     "createPmax": "Utwórz kampanię Performance Max",
     "understand": "Rozumiem",
-    "moreActions": "More Actions"
+    "moreActions": "Dodatkowe działania"
   },
   "badge": {
     "free": "Darmowy",
-    "connected": "Connected",
+    "connected": "Połączono",
     "active": "Aktywny",
     "disapproved": "Niezatwierdzony",
     "pendingCreation": "W toku",
@@ -999,7 +999,7 @@
     "canceled": "Odwołana",
     "testAccount": "Test",
     "loading": "Ładowanie",
-    "new": "New"
+    "new": "Nowy"
   },
   "modal": {
     "titleDisconnectionMerchantCenter": "Odłączyć Twoje konto Merchant Center?",
@@ -1031,7 +1031,7 @@
     "upgradeSCCToPmaxText": "Inteligentne kampanie produktowe zostaną zaktualizowane do kampanii Performance Max w dniu {0}\n \n Nie musisz podejmować żadnych działań, ponieważ budżet i ustawienia pochodzące z Inteligentnych kampanii produktowych pozostaną bez zmian. Jedynie typ kampanii zostanie automatycznie zaktualizowany.\n\n Od lipca będzie można tworzyć wyłącznie kampanie Performance Max.",
     "PMaxLiveTitle": "Performance Max jest dostępne",
     "PMaxLiveText": "Od dzisiaj możesz tworzyć kampanie Performance Max, czyli nową generację Inteligentnych kampanii produktowych.\n\nPerformance Max to ulepszony typ kampanii zasilany inteligentną technologią Google. Działa ona za kulisami, aby automatycznie optymalizować reklamy na wszystkich etapach ścieżki klienta w celu uzyskania maksymalnej skuteczności. ",
-    "PMaxMigrationTitle": "Important News",
+    "PMaxMigrationTitle": "Ważne aktualności",
     "PMaxMigrationText": "Twoje Inteligentne kampanie produktowe będą się teraz automatycznie aktualizować do kampanii Performance Max.\n\n- Ustawienia kampanii i budżet pozostają bez zmian;\n\n- Funkcjonalności są takie same jak w inteligentnych kampaniach produktowych;\n\n- Od tego momentu możesz tworzyć tylko kampanie Performance Max.",
     "PmaxTextLink": "Dowiedz się więcej o Performance Max",
     "textPmaxReleased": "Twoje Inteligentne kampanie produktowe zaczną się teraz automatycznie przekształcać w kampanie Performance Max. Dowiedz się więcej. [Dowiedz się więcej]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
@@ -1048,10 +1048,10 @@
     "approvalStatusLang": "placeholder",
     "approvalStatusIssues": "Powód, dla którego Twój produkt nie został zatwierdzony przez Google",
     "attributeMapping": {
-      "description": "The description will be cropped automatically if it is longer than 5000",
-      "ageGroup": "The demographic for which your product is targeted.",
-      "gtin": "A code printed on product packaging to aid in identify a particular item.",
-      "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
+      "description": "Opis zostanie automatycznie przycięty, jeśli będzie dłuższy niż 5000 znaków",
+      "ageGroup": "Demografia, do której skierowany jest Twój produkt.",
+      "gtin": "Kod nadrukowany na opakowaniu produktu, ułatwiający identyfikację konkretnego artykułu.",
+      "mpn": "Unikalny numer, który jest nadawany przez producentów w celu identyfikacji poszczególnych produktów. Składa się z szeregu cyfr i liter.",
       "pattern": "Wzór lub nadruk graficzny Twojego produktu"
     },
     "GMCForm": {
@@ -1099,7 +1099,7 @@
       "ean": "EAN",
       "mpn": "MPN",
       "description": "Opis",
-      "description_short": "Short Description",
+      "description_short": "Krótki opis",
       "longDescription": "Długi opis",
       "notAvailable": "Niedostępne"
     },
@@ -1109,13 +1109,13 @@
     "sellApparel": "Sprzedaję odzież i akcesoria"
   },
   "banner": {
-    "titleAdsbanner": "Just starting out in Google advertising?",
-    "textAdsBannerLong": "Get {0} of Google Ads credits* when you spend at least {0} to create your first campaigns on PrestaShop or directly via your [Google Ads Account]({1})[:target=\\\"_blank\\\"].",
-    "textAdsBanner": "Get {0} of Google Ads credits* when you spend at least {0} to create your first campaigns.",
-    "legendLong": "*Your voucher will be applied automatically from the moment you start spending! *The amount needs to be spent within 60 days of the first campaign spend and credits will be valid for 60 days once credited. [Read T&C]({0})[:target=\\\"_blank\\\"]",
-    "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
-    "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
-    "ctaCreateFirstCampaign": "Create your first campaign",
+    "titleAdsbanner": "Dopiero zaczynasz przygodę z reklamami w Google?",
+    "textAdsBannerLong": "Zdobądź {0} kuponów promocyjnych Google Ads*, jeśli wydasz co najmniej {0} na stworzenie Twoich pierwszych kampanii na PrestaShop lub bezpośrednio przez Twoje [Google Ads Account]({1})[:target=\\\"_blank\\\"].",
+    "textAdsBanner": "Zdobądź {0} kuponów promocyjnych Google Ads* po wydaniu co najmniej {0} na stworzenie Twoich pierwszych kampanii.",
+    "legendLong": "*Twój voucher zostanie zastosowany automatycznie od momentu rozpoczęcia wydatków! *Kwota musi zostać wydana w ciągu 60 dni od daty pierwszej kampanii, a kupony promocyjne będą ważne przez 60 dni po ich przyznaniu. [Przeczytaj Warunki]({0})[:target=\\\"_blank\\\"]",
+    "legend": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. [Przeczytaj Warunki]({0})[:target=\\\"_blank\\\"]",
+    "legendWithoutTC": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. ",
+    "ctaCreateFirstCampaign": "Utwórz pierwszą kampanię",
     "textCampaignsBanner": "Performance Max to nowa generacja inteligentnych kampanii produktowych. Jest to rozszerzony typ kampanii oparty na inteligentnej technologii Google. Działa za kulisami, aby automatycznie optymalizować reklamy na całej ścieżce zakupowej i zapewnić maksymalną skuteczność."
   }
 }
