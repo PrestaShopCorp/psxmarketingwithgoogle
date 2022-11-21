@@ -487,7 +487,7 @@
     },
     "email": {
       "title": "Twój adres e-mail w Google",
-      "description": "The email address below is the one provided during your Google account connection"
+      "description": "Poniższy adres e-mail jest adresem podanym podczas podłączania Twojego konta Google"
     },
     "business": {
       "name": "Nazwa firmy",
@@ -511,8 +511,8 @@
     "introConnected": "Dzięki Performance Max możesz reklamować Twoje produkty i maksymalizować wydajność reklam w licznych kanałach Google za pomocą jednej kampanii. Co więcej, nie płacisz, dopóki klienci nie klikną w reklamę!",
     "footer": "Na terenie Europejskiego Obszaru Gospodarczego, Wielkiej Brytanii i Szwajcarii kampanie Performance Max mogą być stosowane we wszystkich porównywarkach internetowych (CSS), których używasz. Reklamy będą wyświetlane na stronach ogólnych wyników wyszukiwania oraz na wszelkich innych powierzchniach, na które wyraził zgodę CSS.",
     "titleInfo": "Czy wiesz, że…?",
-    "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
-    "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
+    "contentInfo": "Reklamodawcy, którzy aktualizują Inteligentne kampanie produktowe do Performance Max, zauważają średni wzrost wartości konwersji o 12% przy takim samym lub wyższym zwrocie z wydatków na reklamę (ROAS)*",
+    "footerInfo": "* Globalne dane Google, Reklamy, wrzesień-październik 2021."
   },
   "smartShoppingCampaignCreation": {
     "allFilters": "Wszystkie filtry",
@@ -577,7 +577,7 @@
     "nbDimensionSelected": "Nie wybrano żadnego wymiaru | wybrano {0} wymiar | wybrano {0} wymiarów",
     "nbValuesSelected": "Nie wybrano żadnej wartości | wybrano {0} wartość | wybrano {0} wartości",
     "selectProductsTitle": "Wybierz filtr produktów",
-    "selectProductsSubtitle": "The campaign can only have one dimension with one or multiple values.",
+    "selectProductsSubtitle": "Kampania może mieć tylko jeden wymiar z jedną lub wieloma wartościami.",
     "remarketingNote": "**Uwaga:** jeśli masz już skonfigurowane akcje dla konwersji Google Ads z wartościami specyficznymi dla transakcji na swojej stronie dla tego konta Google Ads, nie musisz ustawiać nowych tagów konwersji na swojej stronie.",
     "toggleNewConversionTag": "Ustaw nowe tagi śledzenia konwersji na mojej stronie",
     "toggleNewConversionTag2": "Utworzymy następujące tagi konwersji: Widok strony, Zakup, Dodaj do koszyka",
@@ -645,7 +645,7 @@
           "notPlanned": "Nie zaplanowano synchronizacji"
         },
         "subtitle": {
-          "willHappenOnDate": "Will start on {0} at {1}",
+          "willHappenOnDate": "Rozpocznie się {0} o {1}",
           "happenedOnDate": "Na {date}",
           "error": "Z powodu problemu technicznego, synchronizacja nie powiodła się na stronie {0} pod adresem {1}. Nowa synchronizacja zostanie uruchomiona za kilka godzin."
         }
@@ -660,7 +660,7 @@
       "pendingProducts": "W toku",
       "pendingProductsDescription": "Oczekujący produkt nie będzie wyświetlany w reklamach lub bezpłatnych listach, ponieważ jest sprawdzany przez Google.",
       "expiringProducts": "Wygasający",
-      "expiringProductsDescription": "Expiring products will be removed from your Google merchant center in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
+      "expiringProductsDescription": "Wygasające produkty zostaną usunięte z Twojego Google Merchant Center w ciągu najbliższych 3 dni i nie będą już kwalifikować się do wyświetlania w reklamach lub w formie bezpłatnych informacji.",
       "disapprovedProducts": "Niezatwierdzony",
       "disapprovedProductsDescription": "Twój produkt nie został zatwierdzony dla miejsca docelowego i nie jest aktywny.",
       "productsSubmittedToGoogle": "Aktywne produkty przesłane do Google: {0}",
@@ -670,13 +670,13 @@
       "title": "Aktywne produkty zgłoszone do Google",
       "description": "Status produktu informuje o tym, czy produkt kwalifikuje się do wyświetlenia w wybranej przez Ciebie lokalizacji.",
       "alert": {
-        "prescanTitle": "Warning {0} product couldn’t be exported to Google | Warning {0} products couldn’t be exported to Google",
-        "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
+        "prescanTitle": "Ostrzeżenie {0} produkt nie może zostać wyeksportowany do Google | Ostrzeżenie {0} produktów nie może zostać wyeksportowanych do Google",
+        "prescanDescription": "Niektóre z Twoich produktów nie przeszły naszej weryfikacji. Upewnij się, że Twoje produkty zawierają wymagane informacje, aby być wymienione w Google Zakupy."
       }
     },
     "preScan": {
-      "xProducts": " {0} product | {0} product | {0} products",
-      "description": "{0} with problems that couldn't be synced are listed below.",
+      "xProducts": "Brak produktów | {0} produkt | {0} produkty/-ów",
+      "description": "{0} z problemami, które nie mogły zostać zsynchronizowane, wymieniono poniżej.",
       "fields": {
         "name": "Nazwa",
         "language": "Język",
@@ -687,8 +687,8 @@
       },
       "xHasFailedPreValidation": "\"{0}\": proces wstępnej walidacji nie powiódł się.",
       "xHasPassedPreValidation": "\"{0}\": proces wstępnej walidacji powiódł się.",
-      "labelTooltipDescription": "This attribute matches what you have configured in your product attribute mapping : short description, description...",
-      "labelTooltipBarcode": "This attribute matches what you have configured in your product attribute mapping : barcode, MPN, GTIN, ISBN, UPC..."
+      "labelTooltipDescription": "Ten atrybut odpowiada temu, co zostało skonfigurowane w mapowaniu atrybutów produktu: krótki opis, opis...",
+      "labelTooltipBarcode": "Ten atrybut odpowiada temu, co zostało skonfigurowane w mapowaniu atrybutów produktu: kod kreskowy, MPN, GTIN, ISBN, UPC..."
     },
     "approvalTable": {
       "description": "Są to statusy Twoich produktów, które są wysyłane do Google Merchant Center. Ze względu na zmianę języka, niektóre produkty mogą pojawić się więcej niż raz.",
