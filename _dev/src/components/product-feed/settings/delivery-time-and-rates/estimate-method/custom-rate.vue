@@ -70,7 +70,7 @@ export default Vue.extend({
     },
     rateTypeChosen: {
       type: String as PropType<RateType>,
-      required: true,
+      required: false,
     },
   },
   computed: {

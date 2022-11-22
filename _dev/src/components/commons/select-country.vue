@@ -51,11 +51,6 @@ export default {
       type: Array,
       required: true,
     },
-    needFilter: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
     notFullWidth: {
       type: Boolean,
       required: false,
@@ -89,14 +84,14 @@ export default {
         return this.countriesChosen.length ? this.countriesChosen
           : this.getCountriesFilteredWithList(this.defaultValue);
       },
-      set(value) {
+      set(newValuesList) {
         if (this.multipleCountries) {
-          this.countriesChosen = value;
-          this.$emit('countrySelected', value);
+          this.countriesChosen = newValuesList;
+          this.$emit('countrySelected', newValuesList);
         } else {
-          const country = value.length ? [value.pop()] : [];
-          this.countriesChosen = country;
-          this.$emit('countrySelected', country);
+          const listOfOneCountry = newValuesList.length ? [newValuesList.pop()] : [];
+          this.countriesChosen = listOfOneCountry;
+          this.$emit('countrySelected', listOfOneCountry);
         }
       },
     },
