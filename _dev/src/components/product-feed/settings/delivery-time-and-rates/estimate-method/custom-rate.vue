@@ -3,11 +3,10 @@
     <p class="h3 mb-3 font-weight-600">
       {{ $t('productFeedSettings.deliveryTimeAndRates.customRate.title') }}
     </p>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col">
+        <div class="col col-12 col-md border rounded p-3 mr-1">
           <div
-            class="p-3 border rounded"
           >
             <b-form-radio
               data-test-id="radioButton"
@@ -20,6 +19,7 @@
                   {{ $t('productFeedSettings.deliveryTimeAndRates.customRate.rateTitle') }}
                 </span>
                 <VueShowdown
+                  :extensions="['no-p-tag']"
                   class="text-muted ps_gs-fz-14 mb-0"
                   :markdown="$t('productFeedSettings.deliveryTimeAndRates.customRate.rateDesc')"
                 />
@@ -27,9 +27,8 @@
             </b-form-radio>
           </div>
         </div>
-        <div class="col">
+        <div class="col col-12 col-md border rounded p-3 mt-1 mt-md-0 ml-md-1">
           <div
-            class="p-3 border rounded"
           >
             <b-form-radio
               v-model="rateSelected"
@@ -42,6 +41,7 @@
                   {{ $t('productFeedSettings.deliveryTimeAndRates.customRate.customTitle') }}
                 </span>
                 <VueShowdown
+                  :extensions="['no-p-tag']"
                   class="text-muted ps_gs-fz-14 mb-0"
                   :markdown="$t('productFeedSettings.deliveryTimeAndRates.customRate.customDesc')"
                 />
