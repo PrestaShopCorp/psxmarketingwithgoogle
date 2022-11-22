@@ -12,13 +12,13 @@
     "moduleNeedActivation": "Marketing with Google está deshabilitado, no podrás utilizar ninguna de sus funcionalidades hasta que habilites tu módulo.",
     "moduleUpdateNeeded": {
       "ps_eventbus": "La versión del módulo PrestaShop EventBus que se ejecuta en esta tienda es anterior a la mínima requerida .\n\nPuede utilizar PrestaShop Marketing con Google, pero algunas funciones (por ejemplo, la sincronización de productos) no estarán disponibles hasta que actualice PrestaShop EventBus.",
-      "psxmarketingwithgoogle": "Por favor, actualice el módulo PrestaShop Marketing With Google para que funcione correctamente"
+      "psxmarketingwithgoogle": "Por favor, actualiza el módulo PrestaShop Marketing with Google para que funcione correctamente"
     },
     "adblockerActivated": "Por favor, desactiva tu bloqueador de publicidad para que el módulo funcione correctamente y actualiza tu navegador.",
     "refreshPage": "Actualizar la página",
     "mandatory": "son obligatorios",
     "XIsMandatory": "{0} es obligatorio.",
-    "unableToFetchData": "We were unable to fetch datas, please try again later.",
+    "unableToFetchData": "No pudimos obtener datos, por favor inténtalo más tarde",
     "searchByX": "Buscar por {0}",
     "search": "Buscar en",
     "createAccount": "crea tu cuenta",
@@ -32,7 +32,7 @@
   },
   "landingPage": {
     "header": {
-      "title": "Marketing con Google",
+      "title": "Marketing with Google",
       "text": "Con Prestashop Marketing, puede llegar a compradores potenciales que están buscando en línea productos como los que usted ofrece. Utilice este módulo para llegar a ellos en Google en 3 sencillos pasos.",
       "reinsurance": "- Fácil configuración \n- Cancelar en cualquier momento"
     },
@@ -44,7 +44,7 @@
       "content2": {
         "title": "Activa las fichas órganicas para tus productos",
         "text": "Las fichas órganicas permiten mostrar los atributos de tus productos, incluyendo la imagen y el precio en los listados de clasificación orgánica en la pestaña Shopping.  \n \nUna vez sincronizado tu catálogo, habilita fácilmente las fichas órganicas en tu panel de control y comienza a mostrar tus productos en la pestaña Shopping de forma gratuita.",
-        "footer": "Cree una nueva [cuenta de Merchant Center]({0})[:target=\"_blank\"] o vincule una existente.  \nPara mostrar tus productos en Google deberás cumplir los [requisitos de elegibilidad]({1})[:target=\"_blank\"]"
+        "footer": "Crea una nueva [cuenta de Merchant Center]({0})[:target=\"_blank\"] o vincula una existente.  \nPara mostrar tus productos en Google deberás cumplir los [requisitos de elegibilidad]({1})[:target=\"_blank\"]"
       },
       "content3": {
         "title": "Aumenta tu alcance y tus ventas con Máximo rendimiento",
@@ -69,13 +69,13 @@
         "subtitle": "Conecta o crea tu cuenta Google Ads y lanza una campaña Máximo rendimiento para tus productos. Maximiza el rendimiento de una única campaña en varios canales de Google. Muestra tus anuncios donde tienen más posibilidades de generar conversión. Y lo que es mejor, no pagas salvo que tus clientes hagan clic."
       }
     },
-    "productFeedNotice": "Ayuda a los clientes a encontrar tus productos más fácilmente en Google y anúncialos gratuitamente con listados gratuitos. Los listados gratuitos te ayudan a llegar a más clientes y lograr que visiten tu sitio."
+    "productFeedNotice": "Ayuda a los clientes a encontrar tus productos más fácilmente en Google y anúncialos gratuitamente con fichas de producto gratuitas. Estas te ayudan a llegar a más clientes y lograr que visiten tu sitio."
   },
   "multiShopSelector": {
     "title": "Modo multitienda activado",
     "subtitle": "Debes configurar tus tiendas una por una para este servicio pero podrás utilizar la misma cuenta.",
     "selectStore": "Por favor, selecciona la primera tienda a configurar de la lista siguiente",
-    "tips": "Una vez configurada la primera tienda, puedes continuar con las demás seleccionándolas una a una en el selector de tiendas del menú horizontal.",
+    "tips": "Una vez configurada la primera tienda, puedes continuar con las demás seleccionándolas una a una en el selector de tiendas del menú horizontal",
     "configure": "Configuración",
     "group": "Grupo de tiendas"
   },
@@ -265,7 +265,7 @@
       "tooltips": {
         "carrierName": "El nombre del transportista te ayudará a identificar los transportistas cuando se cree con el método de estimación. Está limitado a 90 caracteres",
         "freeShippingOverAmount": "Introduce el valor del gasto mínimo requerido para el envío gratuito",
-        "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
+        "shippingRate": "Introduce la tarifa de envío que se aplica por debajo del importe mínimo requerido para el envío gratuito"
       },
       "title": "Plazo de entrega y tarifas de envío",
       "rateAndDelivery": "Tarifas de envío y plazo de entrega",
@@ -338,15 +338,15 @@
       "carriersDropdownHiddenLabel": "Copiar información del transportista a otros transportistas",
       "noCarriersTitle": "No tiene ningún transportista",
       "noCarriersDescription": "Diríjase a la página de los transportistas para añadirlos",
-      "countryNeededTitle": "Select your target country",
-      "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
+      "countryNeededTitle": "Selecciona tu país objetivo",
+      "countryNeededDescription": "Introduce los países de destino para mostrar los ajustes de envío pertinentes en la tabla",
       "addNewCarriers": "Añadir o actualizar transportistas",
       "refreshCarriers": "Actualiza si has editado tus portadores",
       "switchToFlatRate": "Cambia a la configuración sobre la previsión del método de envío"
     },
     "preScan": {
       "selectLanguage": "Filtrar por idioma",
-      "apiError": "An error occurred while fetching data, please try again later.",
+      "apiError": "Se ha producido un error al recuperar los datos, inténtalo más tarde.",
       "noElement": "Aún no tienes ningún producto."
     },
     "export": {
@@ -440,7 +440,7 @@
       "youSell": "**Vendes** {0}",
       "dataSyncSetUp": "Configuración de la sincronización de los datos",
       "productAttributesMapping": "Mapeo de atributos de categoría y producto",
-      "attributeMapped": "One category have been mapped | {0} categories have been mapped",
+      "attributeMapped": "Se ha mapeado una categoría | {0} categorías se han mapeado",
       "mandatoryAttributesNotMapped": "One Google attributes haven't been mapped to your custom fields | {0} Google attributes haven't been mapped to your custom fields.",
       "noticeToCompleteMapping": "We recommend mapping all your data otherwise your products might be rejected by Google.",
       "agreementTitle": "Comprendo y acepto las siguientes condiciones*",
