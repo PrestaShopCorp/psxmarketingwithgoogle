@@ -37,7 +37,7 @@ export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
   estimateCarriers: CustomCarrier[];
   shippingSettings: ShopShippingInterface[];
-  rate: RateType|string;
+  rate: RateType|null;
   deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
   // Deprecated: Kept for backward compatibility with old product feed.
@@ -178,7 +178,7 @@ export const state: State = {
   },
   settings: {
     shippingSetup: null,
-    rate: '',
+    rate: null,
     estimateCarriers: [],
     shippingSettings: [],
     deliveryDetails: [],

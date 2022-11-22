@@ -23,7 +23,7 @@ export const productFeed: State = {
   settings: {
     shippingSettings: [],
     shippingSetup: null,
-    rate: '',
+    rate: null,
     estimateCarriers: [],
     targetCountries: ["FR"],
     deliveryDetails: [

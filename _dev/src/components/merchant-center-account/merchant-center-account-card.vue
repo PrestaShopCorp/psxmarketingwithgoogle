@@ -66,7 +66,7 @@
                 <i class="material-icons">
                   more_horiz
                 </i>
-                <span class="sr-only"/>
+                <span class="sr-only" />
               </template>
               <b-dropdown-item
                 @click="checkWebsiteRequirements"

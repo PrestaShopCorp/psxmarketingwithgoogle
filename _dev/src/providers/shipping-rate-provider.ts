@@ -96,39 +96,39 @@ export function createCustomCarriersTemplate(
   const template: CustomCarrier[] = [];
 
   if (rate === RateType.RATE_PER_COUNTRY) {
-    for (let i = 0; i < countries.length; i += 1) {
+    countries.forEach((country) => {
       template.push({
-        ...basicTemplate(
+        ...generateEmptyCarrier(
           rate,
           currency,
+          [country],
         ),
-        countries: [countries[i]],
       });
-    }
-
+    });
     return template;
   }
 
   if (rate === RateType.RATE_ALL_COUNTRIES) {
     template.push({
-      ...basicTemplate(
+      ...generateEmptyCarrier(
         rate,
         currency,
+        countries,
       ),
-      countries,
     });
   }
   return template;
 }
 
-export function basicTemplate(
+export function generateEmptyCarrier(
   rate: RateType,
   currency: string,
+  countries: string[],
 ): CustomCarrier {
   return {
     carrierName: '',
     offer: null,
-    countries: [],
+    countries,
     currency,
     rate,
     maxDeliveryTime: null,
@@ -164,11 +164,11 @@ export function toApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
   return toApiFormat;
 }
 
-export function fromApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
-  if (customerCarrier === null || customerCarrier.length === 0) {
+export function fromApi(customerCarriers: CustomCarrier[]): CustomCarrier[] {
+  if (customerCarriers === null || customerCarriers.length === 0) {
     return [];
   }
-  const fromApiFormat = [...customerCarrier];
+  const fromApiFormat = [...customerCarriers];
 
   fromApiFormat.forEach((carrier: CustomCarrier) => {
     if (carrier.flatShippingRate.shippingCost === 0) {
