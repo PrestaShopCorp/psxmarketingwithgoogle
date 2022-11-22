@@ -2,8 +2,8 @@
   "general": {
     "tabs": {
       "exportStatus": "Esportare stato",
-      "campaign": "Campagna pubblicitaria",
-      "reporting": "Segnala",
+      "campaign": "Campagna",
+      "reporting": "Segnalazione",
       "configuration": "Configura",
       "catalog": "Catalogo dei prodotti",
       "help": "Assistenza"
@@ -11,7 +11,7 @@
     "versionDoesNotExist": "Sembra che la versione del modulo non possa essere recuperata. Il problema è nostro, per favore riprova.",
     "moduleNeedActivation": "Il modulo Marketing with Google è disabilitato. Non potrai utilizzare nessuna delle sue funzionalità finché non abiliterai il modulo.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "La versione del modulo PrestaShop EventBus in esecuzione su questo shop è più vecchia del minimo richiesto.\n\nÈ possibile utilizzare PrestaShop Marketing with Google ma alcune funzionalità (ad esempio la sincronizzazione dei prodotti) non saranno disponibili fino a quando non si aggiorna PrestaShop EventBus",
+      "ps_eventbus": "La versione del modulo PrestaShop EventBus in esecuzione su questo shop è più vecchia del minimo richiesto.\n\nÈ possibile utilizzare PrestaShop Marketing with Google ma alcune funzionalità (ad esempio la sincronizzazione dei prodotti) non saranno disponibili fino a quando aggiornerai PrestaShop EventBus",
       "psxmarketingwithgoogle": "Ti preghiamo di aggiornare il modulo PrestaShop Marketing With Google per farlo funzionare correttamente"
     },
     "adblockerActivated": "Per favore, disattiva il tuo ad-blocker affinché il modulo funzioni correttamente e aggiorna il tuo browser.",
@@ -34,7 +34,7 @@
     "header": {
       "title": "Marketing With Google",
       "text": "Con Prestashop Marketing, puoi raggiungere i potenziali acquirenti che cercano online prodotti come quelli che offri! Utilizza questo modulo per raggiungerli su Google in 3 semplici passi.",
-      "reinsurance": "- Facile configurazione\n- Annulla in qualsiasi momento"
+      "reinsurance": "- Facile configurazione\n- Annullamento in qualsiasi momento"
     },
     "content": {
       "content1": {
@@ -43,16 +43,16 @@
       },
       "content2": {
         "title": "Abilita le schede di prodotto gratuite",
-        "text": "Le schede di prodotto gratuite permettono di mostrare le caratteristiche del tuo prodotto, tra le quali l'immagine e il prezzo, in inserzioni ordinate organicamente nella scheda Shopping.\n \nDopo aver sincronizzato il tuo catalogo, abilita facilmente le schede di prodotto gratuite sulla tua dashboard e inizia a mettere in vetrina gratuitamente i tuoi prodotti nella scheda Shopping.",
+        "text": "Le schede di prodotto gratuite permettono di mostrare le caratteristiche del tuo prodotto, come l'immagine e il prezzo, in inserzioni ordinate organicamente nella scheda Shopping.\n \nDopo aver sincronizzato il tuo catalogo, abilita facilmente le schede di prodotto gratuite sulla tua dashboard e inizia a mostrare gratuitamente i tuoi prodotti nella scheda Shopping.",
         "footer": "Crea un nuovo [account Merchant Center]({0})[:target=\"_blank\"] o collegane uno esistente.  \nPer mostrare i tuoi prodotti su Google dovrai soddisfare i [requisiti di idoneità]({1})[:target=\"_blank\"]"
       },
       "content3": {
         "title": "Migliora la tua portata e le tue vendite con Performance Max",
-        "text": "Vuoi massimizzare le prestazioni delle tue campagne e trovare i clienti giusti ovunque si trovino?  A partire da un'unica campagna, Performance Max raccoglie dati su diversi canali di Google e ottimizza le prestazioni della campagna mostrando dove i tuoi annunci hanno maggiori possibilità di generare conversioni."
+        "text": "Vuoi massimizzare le prestazioni delle tue campagne e trovare i clienti giusti ovunque si trovino?  A partire da un'unica campagna, Performance Max raccoglie dati su diversi canali di Google e ottimizza le prestazioni della campagna mostrando i tuoi annunci dove c'è più possibilità di generare conversioni."
       }
     },
     "footer": {
-      "text": "Fai trovare i tuoi prodotti su Google con PS Marketing con Google",
+      "text": "Mostra i tuoi prodotti su Google con PS Marketing con Google",
       "explanation": "Nello Spazio Economico Europeo, nel Regno Unito o in Svizzera, le campagne Performance Max possono essere utilizzate con qualsiasi Servizio di Comparison Shopping (CSS) con cui lavori. Gli annunci verranno visualizzati sulle pagine dei risultati di ricerca generali e su qualsiasi altra piattaforma per la quale il CSS abbia optato."
     }
   },
@@ -61,23 +61,23 @@
       "psAccount": "Collega il tuo shop al tuo account PrestaShop",
       "freeListing": {
         "title": "Raggiungi più persone su Google con le schede di prodotto gratuite",
-        "subtitle": "Le schede di prodotto gratuite ti consentono di accedere a milioni di acquirenti che cercano prodotti simili ai tuoi. Visualizza gratuitamente i tuoi prodotti negli annunci classificati organicamente all'interno della scheda Shopping quando colleghi il tuo account Google al Google Merchant Center.",
-        "lastTitle": "Le aziende che utilizzano insieme le schede di prodotto gratuite e le inserzioni sulla scheda Shopping hanno registrato un aumento medio di oltre il 50% dei clic e di oltre il 100% delle impression. (Dati interni di Google, luglio 2020)"
+        "subtitle": "Le schede di prodotto gratuite ti consentono di accedere a milioni di acquirenti intenti a cercare prodotti simili ai tuoi. Mostra gratuitamente i tuoi prodotti negli annunci classificati organicamente all'interno della scheda Shopping quando colleghi il tuo account Google al Google Merchant Center.",
+        "lastTitle": "Le aziende che utilizzano le schede di prodotto gratuite insieme alle inserzioni sulla scheda Shopping hanno registrato un aumento medio di oltre il 50% dei clic e di oltre il 100% delle impression. (Dati interni di Google, luglio 2020)"
       },
       "smartShoppingCampaign": {
         "title": "Pubblicità su Google con Performance Max",
-        "subtitle": "Collega o crea il tuo account Google Ads e lancia una campagna Performance Max per i tuoi prodotti. Massimizza le prestazioni della tua campagna su più canali Google con una sola. Mostra i i tuoi annunci dove hanno maggiori possibilità di conversione.\n\n Inoltre, non pagherai nulla fino a quando i tuoi clienti non cliccheranno."
+        "subtitle": "Collega o crea il tuo account Google Ads e lancia una campagna Performance Max per i tuoi prodotti. Aumenta le prestazioni su più canali Google con una sola campagna. Mostra i i tuoi annunci dove c'è maggiore possibilità di conversione.\n\n Inoltre, non pagherai nulla fino a quando i tuoi clienti non cliccheranno."
       }
     },
-    "productFeedNotice": "Aiuta i clienti a trovare più facilmente i tuoi prodotti su Google e inseriscili gratuitamente con inserzioni gratuite. Le inserzioni gratuite aiutano a raggiungere più clienti e a fare in modo che visitino il tuo sito."
+    "productFeedNotice": "Aiuta i clienti a trovare più facilmente i tuoi prodotti su Google e inseriscili gratuitamente in schede di prodotto gratuite. Queste schede di prodotto gratuite ti permettono di raggiungere più clienti e a fare in modo che questi visitino il tuo sito."
   },
   "multiShopSelector": {
-    "title": "Modalità multi-negozio attivata",
-    "subtitle": "Devi configurare i tuoi negozi uno per uno per questo servizio, ma sarai in grado di utilizzare lo stesso account.",
-    "selectStore": "Seleziona il primo negozio da configurare dall'elenco che segue",
+    "title": "Modalità multinegozio attivata",
+    "subtitle": "Devi configurare i tuoi shop uno per uno per questo servizio ma potrai utilizzare lo stesso account.",
+    "selectStore": "Seleziona il primo shop da configurare dall'elenco che segue",
     "tips": "Una volta configurato il primo shop, potrai continuare con gli altri, selezionandoli uno per volta tramite il selettore del menu orizzontale",
-    "configure": "Configura",
-    "group": "Gruppo di shop"
+    "configure": "Configurare",
+    "group": "Gruppo degli shop"
   },
   "googleAccountCard": {
     "title": "Google account",
@@ -227,7 +227,7 @@
   },
   "productFeedSettings": {
     "breadcrumb1": "Feed prodotti",
-    "breadcrumb2": "Impostazioni del feed prodotto",
+    "breadcrumb2": "Impostazioni del feed prodotti",
     "steps": {
       "shippingSetup": "Configurazione della spedizione",
       "deliveryTimesAndRates": "Tempi e tariffe di consegna",
@@ -238,7 +238,7 @@
       "shippingSettingsErrors": "Questo Paese non è compatibile con la tua valuta",
       "syncSchedule": "Programma di sincronizzazione"
     },
-    "noticeDataStored": "Le impostazioni sono salvate ad ogni step ma saranno inviate solo nello step finale.",
+    "noticeDataStored": "Le impostazioni vengono salvate ad ogni step ma saranno effettive solo nello step finale.",
     "submissionExplanation": "I dati vengono memorizzati in ogni fase ma vengono inviati solo alla fine",
     "shippingSetup": {
       "title": "Configurazione della spedizione",
@@ -313,13 +313,13 @@
       "shippingLabel1": "Impostare ora le mie impostazioni di spedizione (consigliato)",
       "shippingDescription1": "PrestaShop importerà la tua lista di vettori dalle impostazioni del tuo shop e ti permetterà di fornire informazioni supplementari.",
       "manually": "Manualmente",
-      "shippingLabel2": "Salta e completa dopo la configurazione nel Google Merchant Center",
+      "shippingLabel2": "Salta e completa la configurazione nel Google Merchant Center in un secondo momento",
       "shippingDescription2": "Dovrai inserire tu stesso le informazioni di spedizione del tuo prodotto nel Google Merchant center. ",
       "noticeSetupShipping": "I tuoi prodotti non saranno sincronizzati finché non avrai impostato le informazioni di spedizione dei tuoi prodotti.",
       "taxSettings": "Impostazioni delle imposte",
       "taxSettingsDescription": "Affinché gli utenti comprendano il prezzo esatto che dovranno pagare per un prodotto, è necessario indicare le tasse che saranno incluse. Seleziona la modalità di configurazione delle imposte.",
-      "autoImportTax": "Importa automaticamente le configurazioni delle imposte",
-      "manualImportTax": "Imposta manualmente le configurazioni delle imposte nel Google Merchant Center",
+      "autoImportTax": "Importa automaticamente le impostazioni fiscali",
+      "manualImportTax": "Imposta manualmente le impostazioni fiscali nel Google Merchant Center",
       "appliedOnlyForUsa": "(si applica solo per gli USA)",
       "alertTaxes": "Devi indicare le tasse che includi, in modo che gli utenti capiscano il prezzo esatto che dovranno pagare per i tuoi prodotti.",
       "carrierDescriptionHeader": "Vettore  \n descrizione",
@@ -328,7 +328,7 @@
       "transitTimeHeader": "Tempi di consegna",
       "countryHeader": "Paese",
       "shipToCustomerTooltip": "Seleziona se questo vettore consegna all'indirizzo del cliente o no (punto di servizio, ritiro in negozio). Google permette di abilitare solo i vettori che spediscono a un indirizzo.",
-      "handlingTimeTooltip": "Inserisci il tempo necessario per preparare un ordine fino al suo ritiro da parte del vettore nei giorni lavorativi.",
+      "handlingTimeTooltip": "Inserisci il tempo necessario per preparare un ordine fino a quando sarà preso in carico dal vettore nei giorni lavorativi.",
       "transitTimeTooltip": "Inserisci il tempo necessario affinché l'ordine venga spedito al cliente una volta che lascia la tua struttura.",
       "shippingInformationTitle": "Tariffe di spedizione e tempi di consegna",
       "shippingInformationIntro": "Puoi attivare e configurare i vettori che desideri visualizzare su Google Shopping.",
@@ -342,7 +342,7 @@
       "countryNeededDescription": "Inserisci i Paesi di destinazione per visualizzare nella tabella le relative impostazioni di spedizione",
       "addNewCarriers": "Aggiungi o aggiorna i vettori",
       "refreshCarriers": "Aggiorna se hai modificato i tuoi vettori",
-      "switchToFlatRate": "Passare all'impostazione della spedizione stimata"
+      "switchToFlatRate": "Passare all'impostazione della tariffa di spedizione stimata"
     },
     "preScan": {
       "selectLanguage": "Filtra per lingua",
@@ -383,7 +383,7 @@
       "description2": "Compila tutti i valori per assicurarti che i prodotti siano convalidati. Se nel catalogo manca un valore, si consiglia di crearlo e di completare la configurazione in un secondo momento. Tieni presente che Google privilegerà i valori selezionati per primi.",
       "apparelAndAccessoriesTitle": "Vendo abbigliamento e/o accessori",
       "apparelAndAccessoriesSubtitle": "ad es. abbigliamento, borse, scarpe o cappelli",
-      "electronicsTitle": "Vendo apparecchiature domestiche o elettrodomestici da cucina",
+      "electronicsTitle": "Vendo apparecchiature domestiche e/o elettrodomestici da cucina",
       "electronicsSubtitle": "es. frigoriferi, lavastoviglie, lavatrici, lampadine",
       "variantSetsTitle": "I miei prodotti hanno set di varianti",
       "variantSetsSubtitle": "es. diverse stampe grafiche, modelli, tessuti o materiali",
@@ -419,12 +419,12 @@
       "theXField": "Il campo \"{0}\"",
       "thisCustomField": "Questo campo personalizzato",
       "learnAboutShippingSettings": "Per saperne di più sulle impostazioni di spedizione",
-      "learnHowToSetupShippingSettings": "Impara come configurare la spedizione"
+      "learnHowToSetupShippingSettings": "Impara a configurare la spedizione"
     },
     "syncSchedule": {
       "title": "Programma di sincronizzazione",
       "subTitle": "Scegli l'ora in cui vuoi che la prima sincronizzazione inizi, l'esportazione potrebbe rallentare il tuo traffico",
-      "radioLabel1": "Ora, dopo aver finito la mia configurazione (l'esportazione potrebbe rallentare il tuo shop)",
+      "radioLabel1": "Ora, dopo aver terminato la mia configurazione (l'esportazione potrebbe rallentare il tuo shop)",
       "radioLabel2": "Più tardi, approssimativamente alle 2:00 AM (GMT 1) (Quando il tuo shop ha poche visite)"
     },
     "summary": {
@@ -432,7 +432,7 @@
       "title2": "Riepilogo del feed di prodotto",
       "xItems": "{0} elementi",
       "productItems": "Elementi del prodotto",
-      "tableHeader1": "Attributo del prodotto Google",
+      "tableHeader1": "Attributi del prodotto Google",
       "tableHeader2": "I campi personalizzati del prodotto",
       "totalProducts": "Prodotti attivi pronti per la sincronizzazione",
       "date": "Data",
@@ -610,27 +610,27 @@
     "tableTitle": "Performance della campagna",
     "xCampaign": "Nessuna campagna | {0} campagna | {0} campagne",
     "performanceMax": "Performance Max",
-    "smartShoppingCampaign": "Campagne di shopping intelligenti",
+    "smartShoppingCampaign": "Campagne di shopping intelligente",
     "campaignType": "Tipo: {0}"
   },
   "productFeedPage": {
     "breadcrumb": "Dettagli sullo stato del prodotto",
     "alert": {
-      "googleIsReviewing": "Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.",
-      "alertSuccess": "Avete optato con successo. Una volta che i tuoi prodotti sono approvati, possono apparire nei risultati di ricerca della scheda Google Shopping."
+      "googleIsReviewing": "I tuoi prodotti sono in fase di revisione.  \n La revisione dei prodotti potrebbe richiedere 3-5 giorni. Una volta approvati, i prodotti saranno disponibili per schede di prodotto gratuite e annunci.",
+      "alertSuccess": "Hai dato il tuo consenso con successo. Una volta che i tuoi prodotti sono stati approvati, possono apparire nei risultati di ricerca della scheda Google Shopping."
     },
     "destinations": {
       "shoppingAds": "Annunci di shopping",
-      "enhancedFreeListing": "Attivare le inserzioni gratuite"
+      "enhancedFreeListing": "Attivare le schede di prodotto gratuite"
     },
     "syncStatus": {
       "title": "Stato delle sincronizzazioni",
-      "readyForExport": "Il feed di prodotto è pronto per l'esportazione",
+      "readyForExport": "Il feed prodotti è pronto per l'esportazione",
       "syncProcessed": "Sincronizzazione in corso / completata",
       "syncFailed": "Sincronizzazione non riuscita",
       "nextSync": "Prossima sincronizzazione: {0}",
       "lastSync": "Ultima sincronizzazione: {0}",
-      "prescanTitle": "Sta arrivando la prossima sincronizzazione",
+      "prescanTitle": "A breve la prossima sincronizzazione",
       "scheduleOn": "Sincronizzazione programmata il {0}",
       "alert": "La sincronizzazione dei prodotti non è riuscita. Controlla le possibili ragioni in [Merchant Center]({0})[:target=\"_blank\"] o contatta il [supporto clienti](mailto:support-google@prestashop.com)."
     },
@@ -645,32 +645,32 @@
           "notPlanned": "Nessuna sincronizzazione prevista"
         },
         "subtitle": {
-          "willHappenOnDate": "Inizierà da {0} alle {1}",
-          "happenedOnDate": "Su {date}",
+          "willHappenOnDate": "Inizierà il {0} alle {1}",
+          "happenedOnDate": "Il {date}",
           "error": "A causa di un problema tecnico, la sincronizzazione non è riuscita il {0} alle {1}. Una nuova sincronizzazione verrà eseguita tra qualche ora."
         }
       }
     },
     "productStatus": {
       "title": "Stato del prodotto",
-      "description": "Lo stato del tuo prodotto ti permette di sapere se il tuo prodotto è idoneo a comparire nella destinazione che hai scelto.  \nUn prodotto in sospeso non apparirà negli annunci o nelle inserzioni gratuite perché è in fase di revisione da parte di Google.  \nI prodotti in scadenza scadranno nei prossimi 3 giorni, e non saranno più idonei a comparire negli annunci o nelle inserzioni gratuite.",
-      "alert": "Ci vogliono 3-5 giorni lavorativi per rivedere i prodotti",
+      "description": "Lo stato del tuo prodotto ti permette di sapere se il tuo prodotto è idoneo a comparire nella destinazione che hai scelto.  \nUn prodotto in sospeso non apparirà negli annunci o nelle schede di prodotto gratuite perché è in fase di revisione da parte di Google.  \nI prodotti in scadenza scadranno nei prossimi 3 giorni, e non saranno più idonei a comparire negli annunci o nelle schede di prodotto gratuite.",
+      "alert": "Per rivedere i prodotto ci vogliono 3-5 giorni lavorativi",
       "approvedProducts": "Approvato",
       "approvedProductsDescription": "I prodotti attivi sono completamente approvati e idonei ad apparire nei risultati.",
       "pendingProducts": "In attesa",
-      "pendingProductsDescription": "Un prodotto in sospeso non verrà mostrato negli annunci o nelle inserzioni gratuite perché è in fase di revisione da parte di Google.",
+      "pendingProductsDescription": "Un prodotto in sospeso non verrà mostrato nelle schede di prodotto gratuite o nelle inserzioni gratuite perché è in fase di revisione da parte di Google.",
       "expiringProducts": "In scadenza",
-      "expiringProductsDescription": "I prodotti scaduti saranno rimossi dal tuo Google Merchant Center entro i prossimi tre giorni e non appariranno più negli annunci o nelle inserzioni gratuite.",
+      "expiringProductsDescription": "I prodotti in scadenza saranno rimossi dal tuo Google Merchant Center entro i prossimi tre giorni e non appariranno più negli annunci o nelle schede di prodotto gratuite.",
       "disapprovedProducts": "Non approvato",
       "disapprovedProductsDescription": "Il tuo prodotto è disapprovato per una destinazione e non è attivo.",
       "productsSubmittedToGoogle": "Prodotti attivi inviati a Google: {0}",
       "approvalStatusList": "Approvato, In attesa, Non approvato"
     },
     "overview": {
-      "title": "Prodotti attivi presentati a Google",
+      "title": "Prodotti attivi inviati a Google",
       "description": "Lo stato del tuo prodotto ti permette di sapere se il tuo prodotto è idoneo ad apparire nella destinazione che hai scelto.",
       "alert": {
-        "prescanTitle": "Non è stato possibile esportare il prodotto in Google con l'avviso {0} | Non è stato possibile esportare il prodotto in Google con l'avviso {0}",
+        "prescanTitle": "Avviso {0} Non è stato possibile esportare il prodotto in Google | Avviso {0} Non è stato possibile esportare il prodotto in Google",
         "prescanDescription": "Alcuni dei tuoi prodotti non hanno superato il nostro controllo; assicurati che i tuoi prodotti abbiano le informazioni richieste per essere elencati su Google Shopping."
       }
     },
