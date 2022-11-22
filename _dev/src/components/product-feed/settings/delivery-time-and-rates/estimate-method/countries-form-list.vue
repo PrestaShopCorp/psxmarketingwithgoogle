@@ -128,7 +128,7 @@ export default Vue.extend({
   props: {
     rateChosen: {
       type: String as PropType<RateType>,
-      required: true,
+      required: false,
     },
     countries: {
       type: Array as PropType<string[]>,

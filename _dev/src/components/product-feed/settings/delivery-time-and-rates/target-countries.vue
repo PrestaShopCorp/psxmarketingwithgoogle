@@ -16,6 +16,7 @@
         :dropdown-options="selectableCountriesList"
         :need-filter="true"
         :not-full-width="true"
+        :multiple-countries="true"
       />
     </b-form-group>
 
