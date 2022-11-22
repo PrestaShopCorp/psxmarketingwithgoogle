@@ -145,8 +145,8 @@ export default {
       });
 
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'estimateCarrier',
-        data: fromApi(json?.estimateCarriers?.[0]),
+        name: 'estimateCarriers',
+        data: fromApi(json?.estimateCarriers),
       });
 
       if (json.selectedProductCategories) {
@@ -256,12 +256,12 @@ export default {
     const deliveryFromStorage = getDataFromLocalStorage('productFeed-deliveryDetails') ?? [];
 
     if (state.settings.shippingSetup === ShippingSetupOption.ESTIMATE) {
-      const getEstimateCarrier = getDataFromLocalStorage('productFeed-estimateCarriers');
+      const getEstimateCarriers = getDataFromLocalStorage('productFeed-estimateCarriers');
 
-      if (getEstimateCarrier !== null) {
+      if (getEstimateCarriers !== null) {
         commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-          name: 'estimateCarrier',
-          data: getEstimateCarrier[0],
+          name: 'estimateCarriers',
+          data: getEstimateCarriers,
         });
       }
     }

@@ -6,17 +6,18 @@ import Vuex from 'vuex';
 import cloneDeep from 'lodash.clonedeep';
 import config, {localVue, cloneStore} from '@/../tests/init';
 import DeliveryTimeAndRatesVue from './delivery-time-and-rates.vue';
-import countriesFormListVue from './estimate-method/countries-form-list.vue';
 import {ShippingSetupOption} from '../../../../enums/product-feed/shipping';
 import shippingSettingsVue from './import-method/shipping-settings.vue';
-import {productFeed} from '../../../../../.storybook/mock/product-feed';
+import {productFeed, productFeedEstimateConfigured} from '../../../../../.storybook/mock/product-feed';
 import DeliveryType from '../../../../enums/product-feed/delivery-type';
 import CustomCarrierForm from './estimate-method/custom-carrier-form.vue';
-import {CustomCarrier} from '@/providers/shipping-rate-provider';
+import {createCustomCarriersTemplate, CustomCarrier} from '@/providers/shipping-rate-provider';
+import CountriesFromList from './estimate-method/countries-form-list.vue';
 import {OfferType} from '@/enums/product-feed/offer';
+import {RateType} from '@/enums/product-feed/rate';
 
 describe('delivery-time-and-rates.vue', () => {
-  describe('Estimating carriers', () => {
+  describe('Estimating carriers - custom-carrier-form components', () => {
     const buildWrapper = (
       options: MountOptions<any> = {},
     ) => {
@@ -32,11 +33,13 @@ describe('delivery-time-and-rates.vue', () => {
         ...options,
       });
     };
+
     describe('validate cases', () => {
-      it.todo('case for multiple target countries');
       it('is visible', () => {
         const store = cloneStore();
-        const carrier: CustomCarrier = {...productFeed.settings.estimateCarrier};
+        const carrier: CustomCarrier = [
+          ...productFeedEstimateConfigured.settings.estimateCarriers,
+        ][0];
 
         const wrapper = buildWrapper({
           propsData: {
@@ -50,31 +53,10 @@ describe('delivery-time-and-rates.vue', () => {
         expect(wrapper.find('#customCarrierForm').isVisible()).toBe(true);
       });
 
-      it('should ok when carrier is filled correctly', () => {
-        const store = cloneStore();
-        const carrier: CustomCarrier = {
-          ...productFeed.settings.estimateCarrier,
-          carrierName: 'DHL',
-          offer: OfferType.FREE_SHIPPING,
-          minDeliveryTime: 1,
-          maxDeliveryTime: 2,
-        };
-
-        const wrapper = buildWrapper({
-          propsData: {
-            customCarrier: carrier,
-            displayValidationErrors: false,
-          },
-          store: new Vuex.Store(store),
-        });
-
-        expect(wrapper.vm.validateCarrier).toBe(null);
-      });
-
       it('should show another block when merchant choose OfferType.FLAT_SHIPPING_RATE', async () => {
         const store = cloneStore();
         const carrier: CustomCarrier = {
-          ...productFeed.settings.estimateCarrier,
+          ...productFeedEstimateConfigured.settings.estimateCarriers[0],
           carrierName: 'DHL',
           minDeliveryTime: 1,
           maxDeliveryTime: 2,
@@ -99,7 +81,7 @@ describe('delivery-time-and-rates.vue', () => {
       it('should show another block when merchant choose OfferType.FREE_SHIPPING_OVER_AMOUNT', async () => {
         const store = cloneStore();
         const carrier: CustomCarrier = {
-          ...productFeed.settings.estimateCarrier,
+          ...productFeedEstimateConfigured.settings.estimateCarriers[0],
           carrierName: 'DHL',
           minDeliveryTime: 1,
           maxDeliveryTime: 2,
@@ -127,7 +109,9 @@ describe('delivery-time-and-rates.vue', () => {
     describe('errors cases', () => {
       it('should throw an error if carrierName is not filled', () => {
         const store = cloneStore();
-        const carrier: CustomCarrier = {...productFeed.settings.estimateCarrier};
+        const carrier: CustomCarrier = [
+          ...productFeedEstimateConfigured.settings.estimateCarriers,
+        ][0];
 
         const wrapper = buildWrapper({
           propsData: {
@@ -142,7 +126,9 @@ describe('delivery-time-and-rates.vue', () => {
 
       it('should throw an error if offer is not selected', () => {
         const store = cloneStore();
-        const carrier: CustomCarrier = {...productFeed.settings.estimateCarrier};
+        const carrier: CustomCarrier = [
+          ...productFeedEstimateConfigured.settings.estimateCarriers,
+        ][0];
 
         const wrapper = buildWrapper({
           propsData: {
@@ -157,10 +143,10 @@ describe('delivery-time-and-rates.vue', () => {
 
       it('should throw an error if delivery time has not the right value', () => {
         const store = cloneStore();
-        const carrier: CustomCarrier = {
-          ...productFeed.settings.estimateCarrier,
-          minDeliveryTime: -50,
-        };
+        const carrier: CustomCarrier = [
+          ...productFeedEstimateConfigured.settings.estimateCarriers,
+        ][0];
+        carrier.minDeliveryTime = -50;
 
         const wrapper = buildWrapper({
           propsData: {
@@ -172,43 +158,115 @@ describe('delivery-time-and-rates.vue', () => {
 
         expect(wrapper.vm.validateTimeDelivery).toBe(false);
       });
+    });
+  });
+  describe('Estimating carriers - countries-form-list components', () => {
+    const buildWrapper = (
+      options: MountOptions<any> = {},
+    ) => {
+      const store = cloneStore();
+      store.modules.productFeed.state = cloneDeep(productFeed);
+      store.modules.productFeed.state.stepper = 2;
+      store.modules.productFeed.state.settings.shippingSetup = ShippingSetupOption.ESTIMATE;
 
-      it('should throw an error if delivery time has not the right value', () => {
-        const store = cloneStore();
-        const carrier: CustomCarrier = {
-          ...productFeed.settings.estimateCarrier,
-          minDeliveryTime: -50,
-        };
+      return mount(CountriesFromList, {
+        localVue,
+        store: new Vuex.Store(store),
+        ...config,
+        ...options,
+      });
+    };
+    it('should ok when carrier is filled correctly', () => {
+      const store = cloneStore();
+      const carriers: CustomCarrier[] = [
+        ...productFeedEstimateConfigured.settings.estimateCarriers,
+      ];
+      carriers[0].carrierName = 'DHL';
+      carriers[0].offer = OfferType.FREE_SHIPPING;
+      carriers[0].minDeliveryTime = 1;
+      carriers[0].maxDeliveryTime = 2;
 
-        const wrapper = buildWrapper({
-          propsData: {
-            customCarrier: carrier,
-            displayValidationErrors: true,
-          },
-          store: new Vuex.Store(store),
-        });
-
-        expect(wrapper.vm.validateTimeDelivery).toBe(false);
+      const wrapper = buildWrapper({
+        propsData: {
+          carriers,
+          countries: productFeedEstimateConfigured.settings.targetCountries,
+          rateChosen: RateType.RATE_ALL_COUNTRIES,
+          displayValidationErrors: true,
+        },
+        store: new Vuex.Store(store),
       });
 
-      it('should throw an error if carrier is not filled correctly', () => {
-        const store = cloneStore();
-        const carrier: CustomCarrier = {
-          ...productFeed.settings.estimateCarrier,
-          minDeliveryTime: -50,
-          carrierName: '',
-        };
+      expect(wrapper.vm.validateCarrier(carriers[0])).toBe(null);
+    });
 
-        const wrapper = buildWrapper({
-          propsData: {
-            customCarrier: carrier,
-            displayValidationErrors: true,
-          },
-          store: new Vuex.Store(store),
-        });
-
-        expect(wrapper.vm.validateCarrier).toBe(false);
+    it('should display as many countries as there are blocks when merchant choose RateType.RATE_PER_COUNTRY', () => {
+      const store = cloneStore();
+      productFeedEstimateConfigured.settings.targetCountries = ['FR', 'BE'];
+      const carriers: CustomCarrier[] = createCustomCarriersTemplate(
+        RateType.RATE_PER_COUNTRY,
+        productFeedEstimateConfigured.settings.targetCountries,
+        'EUR',
+      );
+      const wrapper = buildWrapper({
+        propsData: {
+          carriers,
+          countries: productFeedEstimateConfigured.settings.targetCountries,
+          rateChosen: RateType.RATE_PER_COUNTRY,
+          displayValidationErrors: true,
+        },
+        store: new Vuex.Store(store),
       });
+
+      const cards = wrapper.findAll('.estimateMultiCountries #card_per_country');
+      expect(wrapper.find('.estimateMultiCountries #card_per_country')).toBeTruthy();
+      expect(wrapper.find('.estimateMultiCountries #for_all_countries').exists()).toBeFalsy();
+      expect(cards).toHaveLength(2);
+    });
+
+    it('should display only one card with many countries when merchant choose RateType.RATE_ALL_COUNTRIES', () => {
+      const store = cloneStore();
+      productFeedEstimateConfigured.settings.targetCountries = ['FR', 'BE'];
+      const carriers: CustomCarrier[] = createCustomCarriersTemplate(
+        RateType.RATE_ALL_COUNTRIES,
+        productFeedEstimateConfigured.settings.targetCountries,
+        'EUR',
+      );
+      const wrapper = buildWrapper({
+        propsData: {
+          carriers,
+          countries: productFeedEstimateConfigured.settings.targetCountries,
+          rateChosen: RateType.RATE_ALL_COUNTRIES,
+          displayValidationErrors: true,
+        },
+        store: new Vuex.Store(store),
+      });
+
+      const cards = wrapper.findAll('.estimateMultiCountries #for_all_countries');
+      expect(wrapper.find('.estimateMultiCountries #for_all_countries')).toBeTruthy();
+      expect(wrapper.find('.estimateMultiCountries #card_per_country').exists()).toBeFalsy();
+      expect(cards).toHaveLength(1);
+    });
+
+    it('should display nothing if there are no rate selected', () => {
+      const store = cloneStore();
+      productFeedEstimateConfigured.settings.targetCountries = ['FR', 'BE'];
+      const carriers: CustomCarrier[] = createCustomCarriersTemplate(
+        RateType.RATE_PER_COUNTRY,
+        productFeedEstimateConfigured.settings.targetCountries,
+        'EUR',
+      );
+      const wrapper = buildWrapper({
+        propsData: {
+          carriers,
+          countries: productFeedEstimateConfigured.settings.targetCountries,
+          rateChosen: null,
+          displayValidationErrors: true,
+        },
+        store: new Vuex.Store(store),
+      });
+
+      expect(wrapper.find('.estimateMultiCountries #for_all_countries').exists()).toBeFalsy();
+      expect(wrapper.find('.estimateMultiCountries #card_per_country').exists()).toBeFalsy();
     });
   });
 
@@ -242,7 +300,7 @@ describe('delivery-time-and-rates.vue', () => {
       const wrapper = buildWrapper();
 
       expect(wrapper.findComponent(shippingSettingsVue).exists()).toBeTruthy();
-      expect(wrapper.findComponent(countriesFormListVue).exists()).toBeFalsy();
+      expect(wrapper.findComponent(CountriesFromList).exists()).toBeFalsy();
     });
 
     it('filters the list of carriers to configure based on the selected countries', () => {

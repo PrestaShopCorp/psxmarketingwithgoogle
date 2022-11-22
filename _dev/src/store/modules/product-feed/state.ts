@@ -23,7 +23,6 @@ import attributesToMap from './attributes-to-map.json';
 import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
-import {OfferType} from '@/enums/product-feed/offer';
 import {RateType} from '@/enums/product-feed/rate';
 
 export interface ProductFeedStatus {
@@ -36,15 +35,15 @@ export interface ProductFeedStatus {
 
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
-  estimateCarrier: CustomCarrier;
+  estimateCarriers: CustomCarrier[];
   shippingSettings: ShopShippingInterface[];
+  rate: RateType|null;
   deliveryDetails: DeliveryDetail[];
   autoImportTaxSettings: boolean;
   // Deprecated: Kept for backward compatibility with old product feed.
   autoImportShippingSettings?: boolean;
   targetCountries: string[]|null;
 }
-
 export interface ProductFeedValidationSummary {
   activeItems: number|null;
   expiringItems: number|null;
@@ -179,22 +178,8 @@ export const state: State = {
   },
   settings: {
     shippingSetup: null,
-    estimateCarrier: {
-      carrierName: '',
-      countries: [],
-      currency: '',
-      rate: RateType.RATE_ALL_COUNTRIES,
-      offer: null,
-      maxDeliveryTime: null,
-      minDeliveryTime: null,
-      [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
-        shippingCost: null,
-        orderPrice: null,
-      },
-      [OfferType.FLAT_SHIPPING_RATE]: {
-        shippingCost: null,
-      },
-    },
+    rate: null,
+    estimateCarriers: [],
     shippingSettings: [],
     deliveryDetails: [],
     autoImportTaxSettings: false,

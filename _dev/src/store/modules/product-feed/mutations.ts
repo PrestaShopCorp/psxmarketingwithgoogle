@@ -31,7 +31,8 @@ import {
   PrevalidationScanSummary,
   PreScanReporting,
 } from './state';
-import {generateCustomCarrier} from '@/providers/shipping-rate-provider';
+import {CustomCarrier} from '@/providers/shipping-rate-provider';
+import {RateType} from '../../../enums/product-feed/rate';
 
 type payloadObject = {
   name: string, data: string
@@ -91,7 +92,8 @@ export default {
   ) {
     state.settings = {
       shippingSetup: null,
-      estimateCarrier: generateCustomCarrier(),
+      rate: null,
+      estimateCarriers: [],
       shippingSettings: [],
       deliveryDetails: [],
       autoImportTaxSettings: false,
@@ -201,6 +203,9 @@ export default {
   },
   [MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT](state: LocalState, payload: number) {
     state.preScanDetail.total = payload;
+  },
+  [MutationsTypes.SET_RATE_CHOSEN](state: LocalState, payload: RateType) {
+    state.settings.rate = payload;
   },
   [MutationsTypes.SET_SHIPPING_SETUP_SELECTED](state: LocalState, payload) {
     localStorage.setItem('productFeed-shippingSetup', JSON.stringify(payload));

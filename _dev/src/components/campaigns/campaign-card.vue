@@ -52,7 +52,6 @@
             </b-button>
           </div>
         </div>
-
       </b-card>
     </b-skeleton-wrapper>
   </section>
