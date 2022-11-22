@@ -50,12 +50,15 @@ describe('select countries', () => {
     });
 
     await wrapper.find('[data-test-id="ps-select-country"] [type="search"]').trigger('mousedown');
-    const options = wrapper.findAll('[data-test-id="ps-select-country"] ul li');
+    let options = wrapper.findAll('[data-test-id="ps-select-country"] ul li');
     await options.at(0).trigger('click');
 
     expect(wrapper.vm.$data.countriesChosen).toEqual(['Austria']);
     expect(wrapper.emitted('countrySelected')).toBeTruthy();
     expect(options.at(0).find('div').text()).toBe('Austria');
+
+    await wrapper.find('[data-test-id="ps-select-country"] [type="search"]').trigger('mousedown');
+    options = wrapper.findAll('[data-test-id="ps-select-country"] ul li');
 
     await options.at(1).trigger('click');
     expect(wrapper.vm.$data.countriesChosen).toEqual(['Austria', 'Belgium']);
@@ -76,12 +79,15 @@ describe('select countries', () => {
     });
 
     await wrapper.find('[data-test-id="ps-select-country"] [type="search"]').trigger('mousedown');
-    const options = wrapper.findAll('[data-test-id="ps-select-country"] ul li');
+    let options = wrapper.findAll('[data-test-id="ps-select-country"] ul li');
     await options.at(0).trigger('click');
 
     expect(wrapper.vm.$data.countriesChosen).toEqual(['Austria']);
     expect(wrapper.emitted('countrySelected')).toBeTruthy();
     expect(options.at(0).find('div').text()).toBe('Austria');
+
+    await wrapper.find('[data-test-id="ps-select-country"] [type="search"]').trigger('mousedown');
+    options = wrapper.findAll('[data-test-id="ps-select-country"] ul li');
 
     await options.at(1).trigger('click');
     expect(wrapper.vm.$data.countriesChosen).toEqual(['Belgium']);
