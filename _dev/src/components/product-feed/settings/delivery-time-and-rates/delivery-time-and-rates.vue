@@ -233,10 +233,16 @@ export default Vue.extend({
     },
   },
   mounted() {
-    if (!this.$store.state.productFeed.settings.deliveryDetails.length
-    || !this.$store.state.productFeed.settings.estimateCarriers.length) {
+    if (this.getShippingValueSetup === ShippingSetupOption.IMPORT
+    && !this.$store.state.productFeed.settings.deliveryDetails.length) {
       this.refreshComponent();
     }
+
+    if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE
+    && !this.$store.state.productFeed.settings.estimateCarriers.length) {
+      this.refreshComponent();
+    }
+
     if (this.selectedCountries.length === 1) {
       this.rateChosen = RateType.RATE_ALL_COUNTRIES;
     }
