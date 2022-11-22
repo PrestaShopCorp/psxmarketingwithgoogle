@@ -133,15 +133,15 @@
     "invalidCode": "El código no es válido",
     "phoneNumberNotValid": "Tu número de teléfono es incorrecto, introduce solo números",
     "code": "Código",
-    "contactMethod": "Elija su método de contacto preferido",
+    "contactMethod": "Elige tu método de contacto preferido",
     "dialCode": "Marca el código",
-    "phoneNumber": "Introduzca su número de teléfono",
+    "phoneNumber": "Introduce tu número de teléfono",
     "textMethod": "Mensaje de texto",
     "callMethod": "Llamada telefónica",
-    "selectMethod": "Selecciona el método de contacto deseado para verificar tu identidad",
+    "selectMethod": "Selecciona el método de contacto para verificar tu identidad",
     "alertTooManyRequests": "Has solicitado este servicio demasiadas veces con este número de teléfono. Tienes que esperar 24 horas para volver a intentarlo o cambiar tu número de teléfono.",
-    "alertSomethingHappened": "Something happened. It's on our side, please try again.",
-    "alertCodeExpired": "El código ha caducado. Por favor, pide otro",
+    "alertSomethingHappened": "Ha ocurrido algo. Inténtalo de nuevo.",
+    "alertCodeExpired": "El código ha caducado. Pide otro",
     "refreshAfterAddingWebsiteAddress": "Si has añadido información nueva en Google Merchant Center, actualiza tu página."
   },
   "mcaRequirements": {
@@ -150,24 +150,24 @@
       "shopInfo": "Información de la tienda",
       "phoneValidation": "Validación telefónica"
     },
-    "title": "Crear una nueva cuenta de Merchant Center",
-    "legend": "Para participar en los listados gratuitos y anunciarte en Google debes reconocer y cumplir los siguientes requisitos:",
+    "title": "Crear una nueva cuenta Merchant Center",
+    "legend": "Para participar en las fichas de producto gratuitas y anunciarte en Google debes aceptar y cumplir los siguientes requisitos:",
     "legend2": "La URL del sitio web de la tienda debe ser verificada y reclamada antes de poder cargar los datos de los productos.  \n[Aprende a verificar y reclamar tu sitio web](https://support.google.com/merchants/answer/176793?hl=en",
     "footer": "Leer la versión completa de los requisitos de la tienda de Google",
     "accurateContactInformation": {
       "title": "Confirmo que mis datos de contacto son correctos y válidos",
-      "description": "Los comerciantes deben tener al menos un método de contacto en su sitio web, que puede ser cualquier tipo de método de contacto.",
+      "description": "Los comerciantes deben tener al menos un método de contacto en su sitio web, que puede ser cualquier tipo.",
       "link": "Descubre cómo añadir información de contacto"
     },
     "secureCheckoutProcess": {
       "title": "Confirmo que tengo un proceso claro de recogida de datos y checkout",
       "description": "No utilizar indebidamente la información sobre el usuario, ni recogerla con fines poco claros o sin las medidas de seguridad adecuadas.",
-      "link": "Aprende sobre la recopilación y el uso irresponsable de datos"
+      "link": "Saber más sobre la recopilación y el uso irresponsable de datos"
     },
     "returnPolicy": {
       "title": "Confirmo que mi política de devoluciones y reembolsos está configurada en mi sitio web",
       "description": "La política de devoluciones y reembolsos debe ser clara (incluir requisitos y plazos) y de fácil acceso en tu sitio web.",
-      "link": "Aprende a configurar las políticas de devolución"
+      "link": "Aprender a configurar las políticas de devolución"
     },
     "billingTerms": {
       "title": "Confirmo que mis condiciones de facturación son claras y visibles",
@@ -177,12 +177,12 @@
     "completeCheckoutProcess": {
       "title": "Confirmo que dispongo de un proceso de checkout completo",
       "description": "Los usuarios deben ser capaces de completar con éxito el proceso de compra.",
-      "link": "Aprende sobre los requisitos de pago"
+      "link": "Saber más sobre los requisitos de checkout"
     },
     "websiteURL": "URL del sitio web",
-    "websiteURLDescription": "El sitio web utilizado para crear tu cuenta de Merchant Center",
+    "websiteURLDescription": "El sitio web utilizado para crear tu cuenta Merchant Center",
     "storeName": "Nombre de la tienda",
-    "storeNameDescription": "Este nombre aparecerá en tus listados gratuitos y en los anuncios de compras.",
+    "storeNameDescription": "Este nombre aparecerá en tus fichas gratuitas y en los anuncios de Shopping.",
     "businessLocation": "Ubicación de la empresa",
     "businessAddress": "Dirección de la empresa",
     "businessPhone": "Número de teléfono de la empresa",
@@ -190,18 +190,18 @@
     "businessCity": "Ciudad",
     "businessRegion": "Región",
     "businessCountry": "País",
-    "changeCountryField": "You can [change your country]({0})[:target=\\\"_blank\\\" class=\\\"text-decoration-underline text-muted\\\"] informations in your back office",
-    "changeRegionField": "You can [change your region]({0})[:target=\\\"_blank\\\" class=\\\"text-decoration-underline text-muted\\\"] informations in your back office",
-    "changeAddressField": "You can [change your business address]({0})[:target=\\\"_blank\\\" class=\\\"text-decoration-underline text-muted\\\"] informations in your back office",
-    "changeZipCodeField": "You can [change your zipcode]({0})[:target=\\\"_blank\\\" class=\\\"text-decoration-underline text-muted\\\"] informations in your back office",
-    "changeCityField": "You can [change your city]({0})[:target=\\\"_blank\\\" class=\\\"text-decoration-underline text-muted\\\"] informations in your back office",
-    "changePhoneNumberField": "You can [change your business phone number]({0})[:target=\\\"_blank\\\" class=\\\"text-decoration-underline text-muted\\\"] informations in your back office",
+    "changeCountryField": "Puedes [cambiar tu país]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] información en tu back office",
+    "changeRegionField": "Puedes [cambiar tu región]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] información en tu back office",
+    "changeAddressField": "Puedes [cambiar tu dirección de empresa]({0})[:target=\\\"_blank\\\" class=\\\"text-decoration-underline text-muted\\\"] información en tu back office",
+    "changeZipCodeField": "Puedes [cambiar tu código postal]({0})[:target=\\\"_blank\\\" class=\\\"text-decoration-underline text-muted\\\"] información en tu back office",
+    "changeCityField": "Puedes [cambiar tu ciudad]({0})[:target=\\\"_blank\\\" class=\\\"text-decoration-underline text-muted\\\"] informatción en tu back office",
+    "changePhoneNumberField": "Puedes [cambiar tu número de teléfono de empresa]({0})[:target=\\\"_blank\\\" class=\\\"text-decoration-underline text-muted\\\"] información en tu back office",
     "siteContainsAdultContent": "Mi sitio web tiene contenido para adultos",
     "seePolicyAdultContent": "Ver política de contenidos para adultos",
-    "labelReadAndAgree": "By purchasing Shopping ads, I have read and agree to comply with [Google's terms and policies]({0})[:target=\\\"_blank\\\"], including [Google’s Merchant Center terms of service]({1})[:target=\\\"_blank\\\"], [Shopping ads policies]({2})[:target=\\\"_blank\\\"], and [Google Ads Terms and Conditions]({3})[:target=\\\"_blank\\\"].",
-    "alert": "Su tienda será revisada, por lo que si falta uno de estos requisitos, su cuenta será suspendida.",
+    "labelReadAndAgree": "Al comprar anuncios Shopping, he leído y cumplo con los [Términos y Condiciones de Google]({0})[:target=\\\"_blank\\\"], incluyendo los [términos de servicio de Google Merchant Center]({1})[:target=\\\"_blank\\\"], [políticas Shopping ads]({2})[:target=\\\"_blank\\\"], y [Términos y Condiciones de Google Ads]({3})[:target=\\\"_blank\\\"].",
+    "alert": "Tu tienda será revisada, por lo que si falta algún requisito, será suspendida.",
     "phoneFormat": "El número de teléfono de tu empresa no es un formato válido (sólo se acepta el número), por favor, cámbialo.",
-    "updateData": "Si ha realizado alguna modificación en su backoffice, actualice su información para ver los cambios reflejados aquí."
+    "updateData": "Si ha realizado alguna modificación en tu backoffice, actualiza tu información para ver los cambios reflejados aquí."
   },
   "productFeedCard": {
     "title": "Feed de productos",
