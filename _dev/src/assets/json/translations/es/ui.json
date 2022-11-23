@@ -1,17 +1,17 @@
 {
   "general": {
     "tabs": {
-      "exportStatus": "Estado de las exportaciones",
+      "exportStatus": "Estado de la exportación",
       "campaign": "Campaña",
       "reporting": "Informes",
-      "configuration": "Configuración",
+      "configuration": "Configurar",
       "catalog": "Catálogo de productos",
       "help": "Ayuda"
     },
-    "versionDoesNotExist": "Parece que no se puede recuperar la versión del módulo. Es por nuestra parte, por favor, inténtelo de nuevo.",
+    "versionDoesNotExist": "Parece que no se puede recuperar la versión del módulo. Es por nuestra parte, por favor, inténtalo de nuevo.",
     "moduleNeedActivation": "Marketing with Google está deshabilitado, no podrás utilizar ninguna de sus funcionalidades hasta que habilites tu módulo.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "La versión del módulo PrestaShop EventBus que se ejecuta en esta tienda es anterior a la mínima requerida .\n\nPuede utilizar PrestaShop Marketing con Google, pero algunas funciones (por ejemplo, la sincronización de productos) no estarán disponibles hasta que actualice PrestaShop EventBus.",
+      "ps_eventbus": "La versión del módulo PrestaShop EventBus que se ejecuta en esta tienda es anterior a la mínima requerida.\n\nPuedes utilizar PrestaShop Marketing with Google, pero algunas funciones (por ejemplo, la sincronización de productos) no estarán disponibles hasta que actualices PrestaShop EventBus",
       "psxmarketingwithgoogle": "Por favor, actualiza el módulo PrestaShop Marketing with Google para que funcione correctamente"
     },
     "adblockerActivated": "Por favor, desactiva tu bloqueador de publicidad para que el módulo funcione correctamente y actualiza tu navegador.",
@@ -1114,7 +1114,7 @@
     "textAdsBanner": "Obtén {0} créditos Google Ads* cuando gastes al menos {0} para crear tu primera campaña.",
     "legendLong": "*Tu vale se aplicará automáticamente desde el momento en que empieces a gastar. *El importe debe emplearse en los 60 días siguientes al gasto de la primera campaña y los créditos serán válidos durante 60 días una vez asignados. [Leer T&C]({0})[:target=\"_blank\\\\\"]",
     "legend": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos. [Leer T&C]({0})[:target=\"_blank\\\\\"]",
-    "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
+    "legendWithoutTC": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos.",
     "ctaCreateFirstCampaign": "Cree su primera campaña",
     "textCampaignsBanner": "Máximo rendimiento es la nueva generación de campañas Shopping inteligentes. Es un tipo de campaña mejorada proporcionada por la tecnología inteligente de Google. Funciona en segundo plano para optimizar automáticamente tus anuncios a lo largo del proceso de compra con el fin de maximizar el rendimiento."
   }
